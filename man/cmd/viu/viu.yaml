@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: viu
+description: View images right from the terminal
+flags:
+    --help: Prints help information
+    -1, --once: Only loop once through the animation
+    -V, --version: Prints version information
+    -b, --blocks: Force block output
+    -f, --frame-rate=: Play gif at the given frame rate
+    -h, --height=: Resize the image to a provided height
+    -m, --mirror: Display a mirror of the original image
+    -n, --name: Output the name of the file before displaying
+    -r, --recursive: Recurse down directories if passed one
+    -s, --static: Show only first frame of gif
+    -t, --transparent: Display transparent image with transparent background
+    -w, --width=: Resize the image to a provided width

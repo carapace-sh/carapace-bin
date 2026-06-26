@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ts
+description: Time Stamping Authority command
+group: standard
+flags:
+    -CAfile=: File with trusted CA certs
+    -CApath=: Path to trusted CA files
+    -CAstore=: URI to trusted CA store
+    -cert: Put cert request into query
+    -chain=: File with signer CA chain
+    -config=: Configuration file
+    -data=: File to hash
+    -digest=: Digest (as a hex string)
+    -in=: Input file
+    -inkey=: File with private key for reply
+    -no_nonce: Do not include a nonce
+    -out=: Output file
+    -passin=: Input file pass phrase source
+    -query: Generate a TS query
+    -queryfile=: File containing a TS query
+    -reply: Generate a TS reply
+    -section=: Section to use within config file
+    -signer=: Signer certificate file
+    -text: Output text (not DER)
+    -token_in: Input is a PKCS#7 file
+    -token_out: Output is a PKCS#7 file
+    -tspolicy=: Policy OID to use
+    -untrusted=: Extra untrusted certs
+    -verify: Verify a TS response

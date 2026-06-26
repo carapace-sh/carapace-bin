@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: view <tag>
+description: View information about a GitLab release.
+flags:
+    -w, --web: Open the release in the browser.

@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pull [OPTIONS] [SERVICE...]
+description: Pull service images
+flags:
+    --ignore-buildable: Ignore images that can be built
+    --ignore-pull-failures: Pull what it can and ignores images with pull failures
+    --include-deps: Also pull services declared as dependencies
+    --no-parallel&: DEPRECATED disable parallel pulling
+    --parallel&: DEPRECATED pull multiple images in parallel
+    --policy=: Apply pull policy ("missing"|"always")
+    -q, --quiet: Pull without printing progress information

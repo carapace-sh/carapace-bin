@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: enable-portal
+description: Create or edit files needed so that the portal from this kitten is used by xdg-desktop-portal
+flags:
+    -h, --help: Show help for this command

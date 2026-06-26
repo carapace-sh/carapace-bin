@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: check
+description: Check that all the relevant packages have been bumped
+flags:
+    -i, --interactive: Open an interactive interface used to set version bumps

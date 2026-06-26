@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: connect [OPTIONS] <DOMAIN_NAME> [PROG]...
+description: Connect to wezterm multiplexer
+flags:
+    --class=: Override the default windowing system class
+    --position=: Override the position for the initial window launched by this process
+    --workspace=: Override the default workspace with the provided name
+    -h, --help: Print help (see more with '--help')

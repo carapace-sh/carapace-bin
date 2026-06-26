@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: search
+description: search contents of archive members
+flags:
+    --password=: password for encrypted files

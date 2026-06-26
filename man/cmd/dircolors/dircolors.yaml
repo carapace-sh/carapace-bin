@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: dircolors
+description: color setup for ls
+flags:
+    --bourne-shell=: output Bourne shell code to set LS_COLORS
+    --c-shell=: output C shell code to set LS_COLORS
+    --help: display this help and exit
+    --version: output version information and exit
+    -b, --sh,=: output Bourne shell code to set LS_COLORS
+    -c, --csh,=: output C shell code to set LS_COLORS
+    -p, --print-database: output defaults

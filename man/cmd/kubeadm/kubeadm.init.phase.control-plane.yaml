@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: control-plane
+description: Generate all static Pod manifest files necessary to establish the control plane

@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: item-list [<number>]
+description: List the items in a project
+flags:
+    --format=: 'Output format: {json}'
+    --owner=: Login of the owner. Use "@me" for the current user
+    --query=: Filter items using the Projects filter syntax, e.g. "assignee:octocat -status:Done"
+    -L, --limit=: Maximum number of items to fetch
+    -q, --jq=: Filter JSON output using a jq `expression`
+    -t, --template=: Format JSON output using a Go template; see "gh help formatting"

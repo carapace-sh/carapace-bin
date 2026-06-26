@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: explore
+description: Browse an installed package
+flags:
+    --shell=: shell to use

@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: import
+description: Import resources into an existing stack
+persistentflags:
+    --config-file=: Use the configuration values in the specified file rather than detecting the file name
+    --diff: Display operation as a rich diff showing the overall change
+    --exec-agent=: ""
+    --exec-kind=: ""
+    --generate-code: Generate resource declaration code for the imported resources
+    --parent=: The name and URN of the parent resource in the format name=urn, where name is the variable name of the parent resource
+    --properties=*: The property names to use for the import in the format name1,name2
+    --protect: Allow resources to be imported with protection from deletion enabled
+    --provider=: The name and URN of the provider to use for the import in the format name=urn, where name is the variable name for the provider resource
+    --skip-preview: Do not perform a preview before performing the refresh
+    --suppress-outputs: Suppress display of stack outputs (in case they contain sensitive values)
+    --suppress-permalink?: Suppress display of the state permalink
+    -d, --debug: Print detailed debugging output during resource operations
+    -f, --file=: The path to a JSON-encoded file containing a list of resources to import
+    -m, --message=: Optional message to associate with the update operation
+    -o, --out=: The path to the file that will contain the generated resource declarations
+    -p, --parallel=: Allow P resource operations to run in parallel at once (1 for no parallelism). Defaults to unbounded.
+    -s, --stack=: The name of the stack to operate on. Defaults to the current stack
+    -y, --yes: Automatically approve and perform the refresh after previewing it

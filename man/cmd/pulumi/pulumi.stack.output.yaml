@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: output
+description: Show a stack's output properties
+persistentflags:
+    --show-secrets: Display outputs which are marked as secret in plaintext
+    -j, --json: Emit output as JSON

@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: entity
+description: Interact with New Relic entities
+
+documentation:
+  command: >-
+    Interact with New Relic entities. Search, tag, and manage monitored services and applications.

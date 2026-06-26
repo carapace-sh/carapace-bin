@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+description: list the names of all available specs
+flags:
+    -h, --help: display help for command
+    -s, --shell=: 'shell to use alias specs, supported shells: bash, zsh'

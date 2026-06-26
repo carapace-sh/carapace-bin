@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: set-x11-keymap
+description: Set X11 and console keyboard mappings

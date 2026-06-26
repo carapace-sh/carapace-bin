@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: delete
+description: Deletes box entry on Vagrant Cloud
+flags:
+    --no-force: Prompt for deletion confirmation
+    -f, --force: Do not prompt for deletion confirmation

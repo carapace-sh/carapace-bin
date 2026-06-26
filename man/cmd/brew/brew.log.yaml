@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: log
+description: Show the `git log` for <formula> or <cask>, or show the log for the Homebrew repository if no formula or cask is provided
+group: main
+flags:
+    --cask: Treat all named arguments as casks.
+    --debug: Display any debugging information.
+    --formula: Treat all named arguments as formulae.
+    --help: Show this message.
+    --max-count: Print only a specified number of commits.
+    --oneline: Print only one line per commit.
+    --patch: Also print patch from commit.
+    --quiet: Make some output more quiet.
+    --stat: Also print diffstat from commit.
+    --verbose: Make some output more verbose.
+    "-1": Print only one commit.

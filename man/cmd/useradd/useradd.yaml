@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: useradd
+description: create a new user or update default new user information
+flags:
+    --badnames: do not check for bad names
+    --btrfs-subvolume-home: use BTRFS subvolume for home directory
+    -D, --defaults: print or change default useradd configuration
+    -G, --groups=: list of supplementary groups of the new
+    -K, --key=: override /etc/login.defs defaults
+    -M, --no-create-home: do not create the user's home directory
+    -N, --no-user-group: do not create a group with the same name as
+    -P, --prefix=: prefix directory where are located the /etc/* files
+    -R, --root=: directory to chroot into
+    -U, --user-group: create a group with the same name as the user
+    -b, --base-dir=: base directory for the home directory of the
+    -c, --comment=: GECOS field of the new account
+    -d, --home-dir=: home directory of the new account
+    -e, --expiredate=: expiration date of the new account
+    -f, --inactive=: password inactivity period of the new account
+    -g, --gid=: name or ID of the primary group of the new
+    -h, --help: display this help message and exit
+    -k, --skel=: use this alternative skeleton directory
+    -l, --no-log-init: do not add the user to the lastlog and
+    -m, --create-home: create the user's home directory
+    -o, --non-unique: allow to create users with duplicate
+    -p, --password=: encrypted password of the new account
+    -r, --system: create a system account
+    -s, --shell=: login shell of the new account
+    -u, --uid=: user ID of the new account

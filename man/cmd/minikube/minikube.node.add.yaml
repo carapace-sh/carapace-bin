@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: add
+description: Adds a node to the given cluster.
+flags:
+    --control-plane: If set, added node will become a control-plane. Defaults to false. Currently only supported for existing HA (multi-control plane) clusters.
+    --delete-on-failure: If set, delete the current cluster if start fails and try again. Defaults to false.
+    --worker: If set, added node will be available as worker. Defaults to true.

@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list [options] [<package-spec>...]
+aliases:
+    - ls
+description: list installed or available packages
+flags:
+    --autoremove: list packages that will be removed by autoremove
+    --available: list only available packages
+    --extras: list only extras
+    --installed: list only installed packages
+    --json: request JSON output format
+    --obsoletes: list only obsoleted packages
+    --recent: list only recently added packages
+    --showduplicates: show all versions of packages
+    --upgrades: list only available upgrades

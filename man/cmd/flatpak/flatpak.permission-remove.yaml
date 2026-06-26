@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: permission-remove [OPTION…] TABLE ID [APP_ID]
+description: Remove item from permission store
+group: permission
+flags:
+    --ostree-verbose: Show OSTree debug information
+    -h, --help: Show help options
+    -v, --verbose: Show debug information, -vv for more detail

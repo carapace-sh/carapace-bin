@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create [OPTIONS] PLUGIN PLUGIN-DATA-DIR
+description: Create a plugin from a rootfs and configuration. Plugin data directory must contain config.json and rootfs directory.
+flags:
+    --compress: Compress the context using gzip

@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: od
+description: dump files in octal and other formats
+flags:
+    --endian=: swap input bytes according the specified order
+    --help: display this help and exit
+    --traditional: accept arguments in third form above
+    --version: output version information and exit
+    -A, --address-radix=: output format for file offsets; RADIX is one
+    -N, --read-bytes=: limit dump to BYTES input bytes
+    -j, --skip-bytes=: skip BYTES input bytes first
+    -t, --format=: select output format or formats
+    -v, --output-duplicates: do not use * to mark line suppression

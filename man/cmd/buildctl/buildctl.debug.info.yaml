@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: info
+description: display internal information
+flags:
+    --format=: Format the output using the given Go template

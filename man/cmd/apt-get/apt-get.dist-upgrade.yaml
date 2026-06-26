@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Upgrade the system, intelligently handling changing dependencies
+    between package versions. May remove currently installed packages
+    or install new ones as needed to resolve dependency changes.
+description: dist-upgrade in addition to performing the function of upgrade

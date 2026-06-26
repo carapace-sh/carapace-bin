@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: store
+description: Reads and performs actions on pnpm store that is on the current filesystem
+group: store

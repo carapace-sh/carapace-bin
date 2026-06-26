@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: build
+aliases:
+    - b
+description: Builds the current project
+flags:
+    --auto-snapshot: Automatically sets --snapshot if the repository is dirty
+    --clean: Removes the 'dist' directory before building
+    --deprecated&: Force print the deprecation message - tests only
+    --id=*: Builds only the specified build ids
+    --single-target: Builds only for current GOOS and GOARCH, regardless of what's set in the configuration file
+    --skip=*: 'Skip the given options (valid options are: before, post-hooks, pre-hooks, validate)'
+    --snapshot: Generate an unversioned snapshot build, skipping all validations
+    --timeout=: Timeout to the entire build process
+    -f, --config=: Load configuration from file
+    -o, --output=: Copy the binary to the path after the build. Only taken into account when using --single-target and a single id (either with --id or if configuration only has one build)
+    -p, --parallelism=: 'Number of tasks to run concurrently (default: number of CPUs)'

@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: watch
+description: execute a program periodically, showing output fullscreen
+flags:
+    -C, --no-color: do not interpret ANSI color and style sequences
+    -b, --beep: beep if command has a non-zero exit
+    -c, --color: interpret ANSI color and style sequences
+    -d, --differences?: highlight changes between updates
+    -e, --errexit: exit if command has a non-zero exit
+    -g, --chgexit: exit when output from command changes
+    -h, --help: display this help and exit
+    -n, --interval=: seconds to wait between updates
+    -p, --precise: attempt run command in precise intervals
+    -q, --equexit=: exit when output from command does not change
+    -r, --no-rerun: do not rerun program on window resize
+    -s, --shotsdir: directory to store screenshots
+    -t, --no-title: turn off header
+    -v, --version: output version information and exit
+    -w, --no-wrap: turn off line wrapping
+    -x, --exec: pass command to exec instead of "sh -c"

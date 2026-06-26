@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: yank
+description: Remove a pushed crate from the index
+flags:
+    --index=: Registry index URL to yank from
+    --registry=: Registry to yank from
+    --token=: API token to use when authenticating
+    --undo: Undo a yank, putting a version back into the index
+    --vers=&: The version to yank or un-yank
+    --version=: The version to yank or un-yank
+    -h, --help: Print help

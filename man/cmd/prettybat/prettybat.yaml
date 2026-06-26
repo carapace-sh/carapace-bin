@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: prettybat
+description: Pretty-print source code and highlight it with bat

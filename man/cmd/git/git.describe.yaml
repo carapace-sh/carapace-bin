@@ -1,0 +1,83 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: describe
+description: Give an object a human readable name based on an available ref
+group: main
+flags:
+  --abbrev?: use <n> digits to display object names
+  --all: use any ref
+  --always: show abbreviated commit object as fallback
+  --broken?: 'append <mark> on broken working tree (default: "-broken")'
+  --candidates=: 'consider <n> most recent tags (default: 10)'
+  --contains: find the tag that comes after the commit
+  --debug: debug search strategy on stderr
+  --dirty?: 'append <mark> on dirty working tree (default: "-dirty")'
+  --exact-match: only output exact matches
+  --exclude=: do not consider tags matching <pattern>
+  --first-parent: only follow first parent
+  --long: always use long format
+  --match=: only consider tags matching <pattern>
+  --tags: use any tag, even unannotated
+documentation:
+  command: |-
+    The command finds the most recent tag that is reachable from a
+    commit.  If the tag points to the commit, then only the tag is
+    shown.  Otherwise, it suffixes the tag name with the number of
+    additional commits on top of the tagged object and the
+    abbreviated object name of the most recent commit. The result
+    is a "human-readable" object name which can also be used to
+    identify the commit to other git commands.
+
+    By default (without `--all` or `--tags`) `git describe` only shows
+    annotated tags.  For more information about creating annotated tags
+    see the `-a` and `-s` options to [git-tag](cmd://git/tag).
+
+    If the given object refers to a blob, it will be described
+    as `<commit-ish>:<path>`, such that the blob can be found
+    at _<path>_ in the _<commit-ish>_, which itself describes the
+    first commit in which this blob occurs in a reverse revision walk
+    from `HEAD`.
+  flag:
+    abbrev: |-
+      Instead of using the default number of hexadecimal digits (which
+      will vary according to the number of objects in the repository with
+      a default of 7) of the abbreviated object name, use _<n>_ digits, or
+      as many digits as needed to form a unique object name. An _<n>_ of 0
+      will suppress long format, only showing the closest tag.
+    all: |-
+      Instead of using only the annotated tags, use any ref
+      found in `refs/` namespace.  This option enables matching
+      any known branch, remote-tracking branch, or lightweight tag.
+    always: Show uniquely abbreviated commit object as fallback.
+    candidates: |-
+      Instead of considering only the 10 most recent tags as
+      candidates to describe the input commit-ish consider
+      up to _<n>_ candidates.  Increasing _<n>_ above 10 will take
+      slightly longer but may produce a more accurate result.
+      An _<n>_ of 0 will cause only exact matches to be output.
+    contains: |-
+      Instead of finding the tag that predates the commit, find
+      the tag that comes after the commit, and thus contains it.
+      Automatically implies `--tags`.
+    debug: |-
+      Verbosely display information about the searching strategy
+      being employed to standard error.  The tag name will still
+      be printed to standard out.
+    exact-match: |-
+      Only output exact matches (a tag directly references the
+      supplied commit).  This is a synonym for `--candidates=0`.
+    first-parent: |-
+      Follow only the first parent commit upon seeing a merge commit.
+      This is useful when you wish to not match tags on branches merged
+      in the history of the target commit.
+    long: |-
+      Always output the long format (the tag, the number of commits
+      and the abbreviated commit name) even when it matches a tag.
+      This is useful when you want to see parts of the commit object name
+      in "describe" output, even when the commit in question happens to be
+      a tagged version.  Instead of just emitting the tag name, it will
+      describe such a commit as v1.2-0-gdeadbee (0th commit since tag v1.2
+      that points at object deadbee....).
+    tags: |-
+      Instead of using only the annotated tags, use any tag
+      found in `refs/tags` namespace.  This option enables matching
+      a lightweight (non-annotated) tag.

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: uninstall
+description: Uninstall a Node.js version
+flags:
+    --using=: Either an explicit version, or a filename with the version written in it

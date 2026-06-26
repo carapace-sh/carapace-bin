@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pacman-db-upgrade
+description: Upgrade the local pacman database to a newer format
+flags:
+    --config=: set an alternate configuration file
+    --nocolor: disable colorized output messages
+    -V, --version: show version information and exit
+    -d, --dbpath=: set an alternate database location
+    -h, --help: show this help message and exit
+    -r, --root=: set an alternate installation root

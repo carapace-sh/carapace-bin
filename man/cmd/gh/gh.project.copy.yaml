@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: copy [<number>]
+description: Copy a project
+flags:
+    --drafts: Include draft issues when copying
+    --format=: 'Output format: {json}'
+    --source-owner=: Login of the source owner. Use "@me" for the current user.
+    --target-owner=: Login of the target owner. Use "@me" for the current user.
+    --title=!: Title for the new project
+    -q, --jq=: Filter JSON output using a jq `expression`
+    -t, --template=: Format JSON output using a Go template; see "gh help formatting"

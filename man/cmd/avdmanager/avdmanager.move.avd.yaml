@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: avd
+description: Moves or renames an Android Virtual Device
+flags:
+    -n, --name=: Name of the AVD to move or rename.
+    -p, --path=: Path to the AVD's new directory.
+    -r, --rename=: New name of the AVD.

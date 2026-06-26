@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+description: List stacks
+flags:
+    --cloud-status=: Filter by status
+    --experimental-status=: Filter by status (Deprecated)
+    --run-order: Sort stacks by order of execution
+    --why: Shows the reason why the stack has changed

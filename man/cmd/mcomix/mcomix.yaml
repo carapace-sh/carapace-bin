@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: mcomix
+description: GTK Comic Book Viewer
+flags:
+    --help: Show this help and exit.
+    -W=: Sets the desired output log level.
+    -b, --zoom-best: Start the application with zoom set to best fit mode.
+    -d, --double-page: Start the application in double page mode.
+    -f, --fullscreen: Start the application in fullscreen mode.
+    -h, --zoom-height: Start the application with zoom set to fit height.
+    -l, --library: Show the library on startup.
+    -m, --manga: Start the application in manga mode.
+    -s, --slideshow: Start the application in slideshow mode.
+    -v, --version: Show the version number and exit.
+    -w, --zoom-width: Start the application with zoom set to fit width.

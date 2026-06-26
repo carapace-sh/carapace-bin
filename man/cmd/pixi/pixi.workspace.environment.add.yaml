@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: add
+aliases:
+    - a
+description: Adds an environment to the manifest file
+flags:
+    --force: Update the manifest even if the environment already exists
+    --no-default-feature: Don't include the default feature in the environment
+    --solve-group=: The solve-group to add the environment to
+    -f, --feature=*: Features to add to the environment

@@ -1,0 +1,28 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+aliases:
+    - ls
+description: List pull requests in a repository
+group: General commands
+documentation:
+    command: |
+        List pull requests in a repository. Filter by state with `-s` (open, closed,
+        merged, all), by author with `-A`, by assignee with `-a`, by label with `-l`,
+        by base branch with `-B`, and by head branch with `-H`. Use `-S` to search
+        PRs with a query string. Filter drafts with `-d`. Limit results with `-L`.
+        Output in web browser with `-w` or get structured JSON with `--json`.
+flags:
+    --app=: Filter by GitHub App author
+    --json=*: Output JSON with the specified `fields`
+    -A, --author=: Filter by author
+    -B, --base=: Filter by base branch
+    -H, --head=: Filter by head branch ("<owner>:<branch>" syntax not supported)
+    -L, --limit=: Maximum number of items to fetch
+    -S, --search=: Search pull requests with `query`
+    -a, --assignee=: Filter by assignee
+    -d, --draft: Filter by draft state
+    -l, --label=*: Filter by label
+    -q, --jq=: Filter JSON output using a jq `expression`
+    -s, --state=: 'Filter by state: {open|closed|merged|all}'
+    -t, --template=: Format JSON output using a Go template; see "gh help formatting"
+    -w, --web: List pull requests in the web browser

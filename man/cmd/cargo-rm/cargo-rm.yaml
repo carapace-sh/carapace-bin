@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Remove a dependency from the Cargo.toml manifest file. Supports
+    removing build dependencies, dev dependencies, and specifying
+    the target package in a workspace.
+description: Remove a dependency from a Cargo.toml manifest file
+flags:
+    --manifest-path=: Path to the manifest to remove a dependency from
+    -B, --build: Remove crate as build dependency
+    -D, --dev: Remove crate as development dependency
+    -V, --version: Prints version information
+    -h, --help: Prints help information
+    -p, --package=: Package id of the crate to remove this dependency from
+    -q, --quiet: Do not print any output in case of success

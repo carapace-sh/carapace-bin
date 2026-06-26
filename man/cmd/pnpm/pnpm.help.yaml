@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: help
+description: Show help for pnpm
+flags:
+    -h, --help: Output usage information

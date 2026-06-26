@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list [flags]
+aliases:
+    - ls
+description: List project issues.
+flags:
+    --author=: Filter issue by author <username>.
+    --in=: 'search in: title, description.'
+    --not-assignee=: Filter issue by not being assigned to <username>.
+    --not-author=: Filter issue by not being by author(s) <username>.
+    --not-label=*: Filter issue by lack of label <name>.
+    --order=: 'Order issue by <field>. Order options: created_at, updated_at, priority, due_date, relative_position, label_priority, milestone_due, popularity, weight.'
+    --search=: Search <string> in the fields defined by '--in'.
+    --sort=: Return issue sorted in asc or desc order.
+    -A, --all: Get all issues.
+    -C, --confidential: Filter by confidential issues.
+    -F, --output-format=: 'Options: ''details'', ''ids'', ''urls''.'
+    -M, --mine&: Filter only issues assigned to me.
+    -O, --output=: 'Options: ''text'' or ''json''.'
+    -P, --per-page=: Number of items to list per page.
+    -a, --assignee=: Filter issue by assignee <username>.
+    -c, --closed: Get only closed issues.
+    -e, --epic=: List issues belonging to a given epic (requires --group, no pagination support).
+    -i, --iteration=: Filter issue by iteration <id>.
+    -l, --label=*: Filter issue by label <name>.
+    -m, --milestone=: Filter issue by milestone <id>.
+    -o, --opened&: Get only open issues.
+    -p, --page=: Page number.
+    -t, --issue-type=: 'Filter issue by its type. Options: issue, incident, test_case.'
+persistentflags:
+    -R, --repo=: Select another repository. Can use either `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format. Also accepts full URL or Git URL.
+    -g, --group=: Select a group or subgroup. Ignored if a repo argument is set.

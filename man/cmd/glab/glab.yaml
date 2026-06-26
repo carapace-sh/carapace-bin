@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: glab <command> <subcommand> [flags]
+description: A GitLab CLI tool.
+flags:
+    -v, --version: show glab version information
+persistentflags:
+    -R, --repo=&: Select another repository. Can use either `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format. Also accepts full URL or Git URL.
+    -h, --help: Show help for this command.
+
+documentation:
+  command: >-
+    A GitLab CLI tool that brings GitLab to your terminal. Authenticate with `glab auth login`. Key commands: `glab mr` (merge requests), `glab issue` (issues), `glab ci` (CI/CD pipelines), `glab repo` (repositories), `glab snippet` (snippets), `glab variable` (CI variables), `glab label` (labels), `glab api` (GitLab API). Use `-R <owner/repo>` to target a specific repository. Auto-completion available for commands, options, and resource IDs.

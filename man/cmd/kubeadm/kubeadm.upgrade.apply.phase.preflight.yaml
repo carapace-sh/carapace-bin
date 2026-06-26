@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: preflight
+description: Run preflight checks before upgrade
+flags:
+    --allow-experimental-upgrades: Show unstable versions of Kubernetes as an upgrade alternative and allow upgrading to an alpha/beta/release candidate versions of Kubernetes.
+    --allow-release-candidate-upgrades: Show release candidate versions of Kubernetes as an upgrade alternative and allow upgrading to a release candidate versions of Kubernetes.
+    --config=: Path to a kubeadm configuration file.
+    --dry-run: Do not change any state, just output what actions would be performed.
+    --ignore-preflight-errors=*: 'A list of checks whose errors will be shown as warnings. Example: ''IsPrivilegedUser,Swap''. Value ''all'' ignores errors from all checks.'
+    --kubeconfig=: The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.
+    -f, --force: Force upgrading although some requirements might not be met. This also implies non-interactive mode.
+    -y, --yes: Perform the upgrade and do not prompt for confirmation (non-interactive mode).

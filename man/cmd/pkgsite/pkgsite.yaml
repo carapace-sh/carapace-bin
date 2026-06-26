@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pkgsite
+description: Pkgsite extracts and generates documentation for Go programs
+flags:
+    -cache: fetch from the module cache
+    -cachedir=: module cache directory
+    -dev: enable developer mode
+    -gopath_mode: assume that local modules' paths are relative to GOPATH/src
+    -gorepo=: path to Go repo on local filesystem
+    -http=: HTTP service address to listen for incoming requests on
+    -list: for each path, serve all modules in build list
+    -open: open a browser window to the server's address
+    -proxy: fetch from GOPROXY if not found locally
+    -static=: path to folder containing static files served

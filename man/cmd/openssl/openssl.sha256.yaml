@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: sha256
+description: SHA-2 256 Digest
+group: digest

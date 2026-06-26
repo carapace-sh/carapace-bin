@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: mkswap
+description: Set up a Linux swap area
+flags:
+    --lock?: use exclusive device lock (yes, no or nonblock)
+    --verbose: verbose output
+    -L, --label=: specify label
+    -U, --uuid=: specify the uuid to use
+    -V, --version: display version
+    -c, --check: check bad blocks before creating the swap area
+    -f, --force: allow swap size area be larger than device
+    -h, --help: display this help
+    -p, --pagesize=: specify page size in bytes
+    -v, --swapversion=: specify swap-space version number

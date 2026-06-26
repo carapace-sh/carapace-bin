@@ -1,0 +1,78 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rustdoc
+description: generate documentation for Rust projects
+flags:
+    --cap-lints=: Set the most restrictive lint level
+    --cfg: pass a --cfg to rustc
+    --check: Run rustdoc checks
+    --check-cfg: pass a --check-cfg to rustc
+    --check-theme=: check if given theme is valid
+    --color=: Configure coloring of output
+    --crate-name=: specify the name of this crate
+    --crate-type=: Comma separated list of types of crates for the compiler to emit
+    --crate-version=: crate version to print into documentation
+    --default-setting=: Default value for a rustdoc setting
+    --default-theme=: Set the default theme
+    --diagnostic-width=: Provide width of the output for truncated error messages
+    --disable-minification: removed
+    --disable-per-crate-search: disables generating the crate selector on the search box
+    --display-doctest-warnings: show warnings that originate in doctests
+    --document-hidden-items: document items that have doc(hidden)
+    --document-private-items: document private items
+    --edition=: edition to use when compiling rust code
+    --emit=: Comma separated list of types of output for rustdoc to emit
+    --enable-index-page: To enable generation of the index page
+    --enable-per-target-ignores: parse ignore-foo for ignoring doctests on a per-target basis
+    --error-format=: How errors and other messages are produced
+    --extern-html-root-takes-precedence: give precedence to `--extern-html-root-url`
+    --extern-html-root-url=: base URL to use for dependencies
+    --extern=: pass an --extern to rustc
+    --force-warn=: Set lint force-warn
+    --generate-link-to-definition: Make the identifiers in the HTML source code pages navigable
+    --generate-redirect-map: Generate JSON file at the top level instead of generating HTML redirection files
+    --html-after-content=: files to include inline between the content and </body> of a rendered Markdown file
+    --html-before-content=: files to include inline between <body> and the content of a rendered Markdown file
+    --html-in-header=: files to include inline in the <head> section of a rendered Markdown file
+    --index-page=: Markdown file to be used as index page
+    --json=: Configure the structure of JSON diagnostics
+    --markdown-after-content=: files to include inline between the content and </body> of a rendered Markdown file
+    --markdown-before-content=: files to include inline between <body> and the content of a rendered Markdown file
+    --markdown-css=: CSS files to include via <link> in a rendered Markdown file
+    --markdown-no-toc: don't include table of contents
+    --markdown-playground-url=: URL to send code snippets to
+    --no-run: Compile doctests without running them
+    --nocapture: Don't capture stdout and stderr of tests
+    --output=: Which directory to place the output
+    --persist-doctests=: Directory to persist doctest executables into
+    --playground-url=: URL to send code snippets to
+    --resource-suffix=: suffix to add to CSS and JavaScript files
+    --runtool: The tool to run tests with when building for a different target than host
+    --runtool-arg: One (of possibly many) arguments to pass to the runtool
+    --scrape-examples-output-path: collect function call information and output at the given path
+    --scrape-examples-target-crate: collect function call information for functions from the target crate
+    --scrape-tests: Include test code when scraping examples
+    --show-coverage: calculate percentage of public items with documentation
+    --show-type-layout: Include the memory layout of types in the docs
+    --sort-modules-by-appearance: sort modules by where they appear in the program, rather than alphabetically
+    --static-root-path=: Path string to force loading static files from in output pages
+    --sysroot=: Override the system root
+    --target=: target triple to document
+    --test: run code examples as tests
+    --test-args=: arguments to pass to the test runner
+    --test-builder=: The rustc-like binary to use as the test builder
+    --test-run-directory=: The working directory in which to run tests
+    --theme=: additional themes which will be added to the generated docs
+    --with-examples: path to function call information
+    -A, --allow=: Set lint allowed
+    -C, --codegen=: pass a codegen option to rustc
+    -D, --deny=: Set lint denied
+    -F, --forbid=: Set lint forbidden
+    -L, --library-path=: directory to add to crate search path
+    -V, --version: print rustdoc's version
+    -W, --warn=: Set lint warnings
+    -Z=: unstable / perma-unstable options (only on nightly build)
+    -e, --extend-css=: To add some CSS rules with a given file to generate doc with your own theme
+    -h, --help: show this help message
+    -o, --out-dir=: which directory to place the output
+    -v, --verbose: use verbose output
+    -w, --output-format=: the output type to write

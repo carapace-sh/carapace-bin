@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create
+aliases:
+    - c
+description: Create a release
+flags:
+    --tag=: Tag name. If the tag does not exist yet, it will be created by Gitea
+    --target=: Target branch name or commit hash. Defaults to the default branch of the repo
+    -R, --remote=: Discover Gitea login from remote. Optional
+    -a, --asset=: Path to file attachment. Can be specified multiple times
+    -d, --draft: Is a draft
+    -l, --login=: Use a different Gitea Login. Optional
+    -n, --note=: Release notes
+    -o, --output=: Output format. (simple, table, csv, tsv, yaml, json)
+    -p, --prerelease: Is a pre-release
+    -r, --repo=: Override local repository path or gitea repository slug to interact with. Optional
+    -t, --title=: Release title

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: gsutil
+description: Access Google Cloud Storage with the gsutil command.
+flags:
+    --app=: Optional name of the GCP application to use if logged into multiple.

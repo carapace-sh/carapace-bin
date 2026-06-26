@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: logout
+description: Remove an API token from the registry locally
+flags:
+    --registry=: Registry to use
+    -h, --help: Print help

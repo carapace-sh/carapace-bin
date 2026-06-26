@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ca [OPTIONS]
+description: Display and rotate the root CA
+flags:
+    --ca-cert=: Path to the PEM-formatted root CA certificate to use for the new cluster
+    --ca-key=: Path to the PEM-formatted root CA key to use for the new cluster
+    --cert-expiry=: Validity period for node certificates (ns|us|ms|s|m|h)
+    --external-ca=: Specifications of one or more certificate signing endpoints
+    --rotate: Rotate the swarm CA - if no certificate or key are provided, new ones will be generated
+    -d, --detach: Exit immediately instead of waiting for the root rotation to converge
+    -q, --quiet: Suppress progress output

@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: strings
+description: print the sequences of printable characters in files
+flags:
+    -T, --target=: Specify the binary file format
+    -a, --all: Scan the entire file, not just the data section [default]
+    -d, --data: Only scan the data sections in the file
+    -e, --encoding=: 'Select character size and endianness:'
+    -f, --print-file-name: Print the name of the file before each string
+    -h, --help: Display this information
+    -n, --bytes=: Locate & print any NUL-terminated sequence of at
+    -o: An alias for --radix=o
+    -s, --output-separator=: String used to separate strings in output.
+    -t, --radix=: Print the location of the string in base 8, 10 or 16
+    -v, --version: Print the program's version number
+    -w, --include-all-whitespace: Include all whitespace as valid string characters

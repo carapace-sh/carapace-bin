@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: resume-cli
+description: command line tool for JSON Resume
+flags:
+    -V, --version: output the version number
+    -h, --help: display help for command

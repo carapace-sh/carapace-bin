@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: devices
+description: list connected devices
+flags:
+    -l: long output
+
+documentation:
+  command: >-
+    List all connected Android devices and emulators. Each device is shown with its serial number and state (device, offline, unauthorized, etc.). Use `-l` for long output that includes device model, product name, and other details. Useful for identifying which device will receive commands when multiple are connected. Use `-s <serial>` with other adb commands to target a specific device.

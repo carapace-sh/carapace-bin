@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pull [-a] [-z ALGORITHM] [-Z] REMOTE... LOCAL
+description: copy files/dirs from device
+flags:
+    -Z: disable compression
+    -a: preserve file timestamp and mode
+    -z=: enable compression with a specified algorithm (any, none, brotli)
+
+documentation:
+  command: >-
+    Copy files and directories from the device to the local host. Pull multiple remote files to a local directory, or pull a single file to a local destination. Use `-a` to preserve file timestamps and modes. Compress transfers with `-z` (any, none, or brotli algorithm). If no local destination is given, files are pulled to the current directory maintaining the remote path structure.

@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: cast5-cbc
+aliases:
+    - cast5-cfb
+    - cast5-ecb
+    - cast5-ofb
+description: CAST5 Cipher
+group: cipher

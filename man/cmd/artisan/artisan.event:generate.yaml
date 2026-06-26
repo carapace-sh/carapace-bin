@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: event:generate
+description: Generate the missing events and listeners based on registration

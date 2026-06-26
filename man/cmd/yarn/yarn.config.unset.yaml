@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: unset
+description: Unset a configuration setting
+flags:
+    -H, --home: Update the home configuration instead of the project configuration

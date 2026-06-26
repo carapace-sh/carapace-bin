@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: sum
+description: checksum and count the blocks in a file
+flags:
+    --help: display this help and exit
+    --version: output version information and exit
+    -r: use BSD sum algorithm, use 1K blocks
+    -s, --sysv: use System V sum algorithm, use 512 bytes blocks

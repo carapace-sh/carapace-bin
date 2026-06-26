@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: unlock-key [OPTIONS]
+description: Manage the unlock key
+flags:
+    --rotate: Rotate unlock key
+    -q, --quiet: Only display token

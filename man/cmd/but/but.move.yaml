@@ -1,0 +1,39 @@
+name: move
+description: Move a commit to a different location in the stack.
+flags:
+    -a, --after: Move the commit after (above) the target instead of before (below)
+    -h, --help: Print help (see more with '--help')
+documentation:
+    command: |-
+        Move a commit to a different location in the stack.
+
+        By default, commits are moved to be before (below) the target.
+        Use `--after` to move the commit after (above) the target instead.
+
+        When moving to a branch, the commit is placed at the top of that branch's stack.
+
+        ## Examples
+
+        Move a commit before another commit:
+
+        ```text
+        but move abc123 def456
+        ```
+
+        Move a commit after another commit:
+
+        ```text
+        but move abc123 def456 --after
+        ```
+
+        Move a commit to a different branch (places at top):
+
+        ```text
+        but move abc123 my-feature-branch
+        ```
+    flag:
+        help: Print help (see a summary with '-h')
+        status-after: |-
+            After a mutation command completes, also output workspace status.
+
+            In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).

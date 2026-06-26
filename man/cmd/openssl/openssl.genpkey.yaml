@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: genpkey
+description: Generation of Private Key or Parameters
+group: standard
+flags:
+    -algorithm=: The public key algorithm
+    -config=: Load a configuration file (this may load modules)
+    -encopt=*: Private key encoder parameter
+    -genparam: Generate parameters, not key
+    -out=: Output (private key) file
+    -outform=: output format (DER or PEM)
+    -outpubkey=: Output public key file
+    -paramfile=: Parameters file
+    -pass=: Output file pass phrase source
+    -pkeyopt=*: Set the public key algorithm option as opt:value
+    -propquery=: Property query used when fetching algorithms
+    -provider-path=: Provider load path (must be before 'provider' argument if required)
+    -provider=*: Provider to load (can be specified multiple times)
+    -provparam=: Set a provider key-value parameter
+    -quiet: Do not output status while generating keys
+    -rand=: Load the given file(s) into the random number generator
+    -text: Print the private key in text
+    -verbose: Output status while generating keys
+    -writerand=: Write random data to the specified file

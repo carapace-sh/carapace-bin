@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: auto-self-update
+description: The rustup auto self update mode
+flags:
+    -h, --help: Print help

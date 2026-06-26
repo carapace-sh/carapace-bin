@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: dependency [flags]
+description: Manage the role's dependencies
+flags:
+    --help: Show help message and exit
+    -s, --scenario-name=: Name of the scenario to target

@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pop
+description: Restore state that was pushed onto the snapshot stack
+flags:
+    --no-delete: Don't delete the snapshot after the restore
+    --no-provision: Disable provisioning
+    --no-start: Don't start the snapshot after the restore
+    --provision: Enable provisioning
+    --provision-with=: Enable only certain provisioners, by type or by name.

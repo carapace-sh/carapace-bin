@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: prompt
+description: Prints the full starship prompt
+flags:
+    -V, --version: Prints version information
+    -d, --cmd-duration=: The execution duration of the last command, in milliseconds
+    -h, --help: Prints help information
+    -j, --jobs=: The number of currently running jobs
+    -k, --keymap=: The keymap of fish/zsh
+    -p, --path=: The path that the prompt should render for
+    -s, --status=: The status code of the previously run command

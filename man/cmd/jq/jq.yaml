@@ -1,0 +1,42 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: jq
+description: Command-line JSON processor
+flags:
+    --arg: pre-set a variable to a string
+    --argjson: pre-set a variable to an object
+    --args: remaining arguments are string arguments, not files
+    --indent=: indent output using given number of spaces
+    --jsonargs: remaining arguments are JSON arguments, not files
+    --rawfile: pre-set a variable to the contents of a file
+    --seq: use application/json-seq ASCII RS/LF scheme in input and output
+    --slurpfile: pre-set a variable to an array of JSON texts read from a file
+    --stream: parse input streamily (changes output)
+    --tab: indent output using TAB characters
+    --unbuffered: flush output after each JSON object
+    --version: output jq's version number
+    -C, --color-output: output in color
+    -L=: prepend a directory to the module search path
+    -M, --monochrome-output: output without color
+    -R, --raw-input: consider each input line as a JSON strings
+    -S, --sort-keys: output object keys in sorted order
+    -a, --ascii-output: restrict output to ASCII
+    -c, --compact-output: don't pretty-print
+    -e, --exit-status: report "false" and "null" results via exit code
+    -f, --from-file=: read filter from file
+    -j, --join-output: like -r, without newlines between outputs
+    -n, --null-input: input is ignored
+    -r, --raw-output: don't JSON-quote output if it's a string
+    -s, --slurp: join input JSON objects to array before filtering
+documentation:
+  command: >-
+    Transform JSON data with a rich expression language. jq reads
+    whitespace-separated JSON values from stdin (or files) and applies a
+    filter program to each, outputting results to stdout. The simplest
+    filter is . (identity), which formats and validates JSON. Chain filters
+    with |, collect results into arrays with [ ], and use range, min, max,
+    length, keys, has, sort, unique, and many other built-in functions.
+    Set variables with --arg (string) or --argjson (JSON), slurp entire
+    input with -s, output raw strings with -r, or compact single-line with
+    -c. Use --from-file to load a filter program from a file. Stream large
+    inputs with --stream for incremental processing. Prepend -Ldir to add
+    module search paths for custom functions.

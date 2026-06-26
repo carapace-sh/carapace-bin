@@ -1,0 +1,79 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create [OPTIONS] IMAGE [COMMAND] [ARG...]
+description: Create a new service
+flags:
+    --cap-add=: Add Linux capabilities
+    --cap-drop=: Drop Linux capabilities
+    --config=: Specify configurations to expose to the service
+    --constraint=: Placement constraints
+    --container-label=: Container labels
+    --credential-spec=: Credential spec for managed service account (Windows only)
+    --dns-option=: Set DNS options
+    --dns-search=: Set custom DNS search domains
+    --dns=: Set custom DNS servers
+    --endpoint-mode=: Endpoint mode (vip or dnsrr)
+    --entrypoint=: Overwrite the default ENTRYPOINT of the image
+    --env-file=: Read in a file of environment variables
+    --generic-resource=: User defined resources
+    --group=: Set one or more supplementary user groups for the container
+    --health-cmd=: Command to run to check health
+    --health-interval=: Time between running the check (ms|s|m|h)
+    --health-retries=: Consecutive failures needed to report unhealthy
+    --health-start-interval=: Time between running the check during the start period (ms|s|m|h)
+    --health-start-period=: Start period for the container to initialize before counting retries towards unstable (ms|s|m|h)
+    --health-timeout=: Maximum time to allow one check to run (ms|s|m|h)
+    --host=: Set one or more custom host-to-IP mappings (host:ip)
+    --hostname=: Container hostname
+    --init: Use an init inside each service container to forward signals and reap processes
+    --isolation=: Service container isolation mode
+    --limit-cpu=: Limit CPUs
+    --limit-memory=: Limit Memory
+    --limit-pids=: Limit maximum number of processes (default 0 = unlimited)
+    --log-driver=: Logging driver for service
+    --log-opt=: Logging driver options
+    --max-concurrent=: Number of job tasks to run concurrently (default equal to --replicas)
+    --memory-swap=: Swap Bytes (-1 for unlimited)
+    --memory-swappiness=: Tune memory swappiness (0-100), -1 to reset to default
+    --mode=: Service mode ("replicated", "global", "replicated-job", "global-job")
+    --mount=: Attach a filesystem mount to the service
+    --name=: Service name
+    --network=: Network attachments
+    --no-healthcheck: Disable any container-specified HEALTHCHECK
+    --no-resolve-image: Do not query the registry to resolve image digest and supported platforms
+    --oom-score-adj=: 'Tune host''s OOM preferences (-1000 to 1000) '
+    --placement-pref=: Add a placement preference
+    --read-only: Mount the container's root filesystem as read only
+    --replicas-max-per-node=: Maximum number of tasks per node (default 0 = unlimited)
+    --replicas=: Number of tasks
+    --reserve-cpu=: Reserve CPUs
+    --reserve-memory=: Reserve Memory
+    --restart-condition=: Restart when condition is met ("none", "on-failure", "any") (default "any")
+    --restart-delay=: Delay between restart attempts (ns|us|ms|s|m|h) (default 5s)
+    --restart-max-attempts=: Maximum number of restarts before giving up
+    --restart-window=: Window used to evaluate the restart policy (ns|us|ms|s|m|h)
+    --rollback-delay=: Delay between task rollbacks (ns|us|ms|s|m|h) (default 0s)
+    --rollback-failure-action=: Action on rollback failure ("pause", "continue") (default "pause")
+    --rollback-max-failure-ratio=: Failure rate to tolerate during a rollback (default 0)
+    --rollback-monitor=: Duration after each task rollback to monitor for failure (ns|us|ms|s|m|h) (default 5s)
+    --rollback-order=: Rollback order ("start-first", "stop-first") (default "stop-first")
+    --rollback-parallelism=: Maximum number of tasks rolled back simultaneously (0 to roll back all at once)
+    --secret=: Specify secrets to expose to the service
+    --stop-grace-period=: Time to wait before force killing a container (ns|us|ms|s|m|h) (default 10s)
+    --stop-signal=: Signal to stop the container
+    --sysctl=: Sysctl options
+    --ulimit=: Ulimit options
+    --update-delay=: Delay between updates (ns|us|ms|s|m|h) (default 0s)
+    --update-failure-action=: Action on update failure ("pause", "continue", "rollback") (default "pause")
+    --update-max-failure-ratio=: Failure rate to tolerate during an update (default 0)
+    --update-monitor=: Duration after each task update to monitor for failure (ns|us|ms|s|m|h) (default 5s)
+    --update-order=: Update order ("start-first", "stop-first") (default "stop-first")
+    --update-parallelism=: Maximum number of tasks updated simultaneously (0 to update all at once)
+    --with-registry-auth: Send registry authentication details to swarm agents
+    -d, --detach: Exit immediately instead of waiting for the service to converge
+    -e, --env=: Set environment variables
+    -l, --label=: Service labels
+    -p, --publish=: Publish a port as a node port
+    -q, --quiet: Suppress progress output
+    -t, --tty: Allocate a pseudo-TTY
+    -u, --user=: 'Username or UID (format: <name|uid>[:<group|gid>])'
+    -w, --workdir=: Working directory inside the container

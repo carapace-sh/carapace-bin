@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: fonts
+description: Lists all discovered fonts in system and custom font paths
+flags:
+    --font-path=: Adds additional directories that are recursively searched for fonts.
+    --ignore-embedded-fonts: Ensures fonts embedded into Typst won't be considered
+    --ignore-system-fonts: Ensures system fonts won't be searched, unless explicitly included via `--font-path`
+    --variants: Also lists style variants of each font family
+    -h, --help: Print help (see a summary with '-h')

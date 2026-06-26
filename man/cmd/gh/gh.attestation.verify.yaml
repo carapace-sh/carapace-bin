@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: verify [<file-path> | oci://<image-uri>] [--owner | --repo]
+description: Verify an artifact's integrity using attestations
+flags:
+    --bundle-from-oci: When verifying an OCI image, fetch the attestation bundle from the OCI registry instead of from GitHub
+    --cert-identity=: Enforce that the certificate's SubjectAlternativeName matches the provided value exactly
+    --cert-oidc-issuer=: Enforce that the issuer of the OIDC token matches the provided value
+    --custom-trusted-root=: Path to a trusted_root.jsonl file; likely for offline verification
+    --deny-self-hosted-runners: Fail verification for attestations generated on self-hosted runners
+    --format=: 'Output format: {json}'
+    --hostname=: Configure host to use
+    --no-public-good: Do not verify attestations signed with Sigstore public good instance
+    --predicate-type=: Enforce that verified attestations' predicate type matches the provided value
+    --signer-digest=: Enforce that the digest associated with the signer workflow matches the provided value
+    --signer-repo=: Enforce that the workflow that signed the attestation's repository matches the provided value (<owner>/<repo>)
+    --signer-workflow=: Enforce that the workflow that signed the attestation matches the provided value ([host/]<owner>/<repo>/<path>/<to>/<workflow>)
+    --source-digest=: Enforce that the digest associated with the source repository matches the provided value
+    --source-ref=: Enforce that the git ref associated with the source repository matches the provided value
+    -L, --limit=: Maximum number of attestations to fetch
+    -R, --repo=: Repository name in the format <owner>/<repo>
+    -b, --bundle=: Path to bundle on disk, either a single bundle in a JSON file or a JSON lines file with multiple bundles
+    -d, --digest-alg=: 'The algorithm used to compute a digest of the artifact: {sha256|sha512}'
+    -i, --cert-identity-regex=: Enforce that the certificate's SubjectAlternativeName matches the provided regex
+    -o, --owner=: GitHub organization to scope attestation lookup by
+    -q, --jq=: Filter JSON output using a jq `expression`
+    -t, --template=: Format JSON output using a Go template; see "gh help formatting"

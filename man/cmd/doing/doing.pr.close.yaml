@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: close [OPTIONS] PR_ID...
+description: Close a specific PR_ID
+flags:
+    --help: Show this message and exit.

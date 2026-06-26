@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pull
+description: Pull records from the remote sync server (one way sync)
+flags:
+    --force: Force push records This will first wipe the local store, and then download all records from the remote
+    --page=: Page Size How many records to download at once. Defaults to 100
+    -h, --help: Print help
+    -t, --tag=: The tag to push (eg, 'history'). Defaults to all tags

@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: issue [command] [flags]
+description: Work with GitLab issues.
+persistentflags:
+    -R, --repo=: Select another repository. Can use either `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format. Also accepts full URL or Git URL.
+
+documentation:
+  command: >-
+    Work with GitLab issues. Key subcommands: `glab issue create` (open a new issue), `glab issue list` (show issues), `glab issue view` (show issue details), `glab issue update` (modify issue), `glab issue close` (close an issue), `glab issue reopen` (reopen a closed issue), `glab issue note` (add comments), `glab issue subscribe` / `glab issue unsubscribe` (notifications). Use `-R` to target a specific repository. Filter by label, assignee, or milestone.

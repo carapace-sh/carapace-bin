@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: library
+description: Creates a new, generic library project in the current workspace
+flags:
+    --entry-file=: The path at which to create the library's public API file
+    --skip-install: Do not install dependency packages.
+    --skip-package-json: Do not add dependencies to the "package.json" file.
+    --skip-ts-config: Do not update "tsconfig.json" to add a path mapping for the new library.
+    -p, --prefix=: A prefix to apply to generated selectors.

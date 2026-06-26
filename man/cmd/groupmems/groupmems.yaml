@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: groupmems
+description: administer members of a user's primary group
+flags:
+    -R, --root=: directory to chroot into
+    -a, --add=: add username to the members of the group
+    -d, --delete=: remove username from the members of the group
+    -g, --group=: change groupname instead of the user's group
+    -h, --help: display this help message and exit
+    -l, --list: list the members of the group
+    -p, --purge: purge all members from the group

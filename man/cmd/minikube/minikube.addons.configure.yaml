@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: configure ADDON_NAME
+description: 'Configures the addon w/ADDON_NAME within minikube (example: minikube addons configure registry-creds). For a list of available addons use: minikube addons list'
+flags:
+    -f, --config-file=: An optional configuration file to read addon specific configs from instead of being prompted each time.

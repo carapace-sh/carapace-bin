@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: linkage
+description: Check the library links from the given <formula> kegs
+group: developer
+flags:
+    --cached: Print the cached linkage values stored in `HOMEBREW_CACHE`, set by a previous `brew linkage` run.
+    --debug: Display any debugging information.
+    --help: Show this message.
+    --quiet: Make some output more quiet.
+    --reverse: For every library that a keg references, print its dylib path followed by the binaries that link to it.
+    --strict: Exit with a non-zero status if any undeclared dependencies with linkage are found.
+    --test: Show only missing libraries and exit with a non-zero status if any missing libraries are found.
+    --verbose: Make some output more verbose.

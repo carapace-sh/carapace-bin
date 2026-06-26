@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: play
+description: Replay terminal recording
+flags:
+    -i, --idle-time-limit=: Limit idle time to a given number of seconds
+    -l, --loop: Loop loop loop loop
+    -m, --pause-on-markers: Automatically pause on markers
+    -s, --speed=: Set playback speed

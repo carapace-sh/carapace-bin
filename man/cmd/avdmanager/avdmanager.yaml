@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Create and manage Android Virtual Devices (AVDs) from the command
+    line. Supports creating, deleting, listing, and moving AVDs, as
+    well as listing available device definitions and system image targets.
+    Part of the Android SDK command-line tools.
+description: create and manage Android Virtual Devices
+flags:
+    --clear-cache: Clear the SDK Manager repository manifest cache.
+    -h, --help: Help on a specific command.
+    -s, --silent: Silent mode, shows errors only.
+    -v, --verbose: Verbose mode, shows errors, warnings and all messages.

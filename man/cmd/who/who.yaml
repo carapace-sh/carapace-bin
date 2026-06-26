@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: who
+description: show who is logged on
+flags:
+    --help: display this help and exit
+    --lookup: attempt to canonicalize hostnames via DNS
+    --message: same as -T
+    --version: output version information and exit
+    -H, --heading: print line of column headings
+    -T, --mesg: add user's message status as +, - or ?
+    -a, --all: same as -b -d --login -p -r -t -T -u
+    -b, --boot: time of last system boot
+    -d, --dead: print dead processes
+    -l, --login: print system login processes
+    -m: only hostname and user associated with stdin
+    -p, --process: print active processes spawned by init
+    -q, --count: all login names and number of users logged on
+    -r, --runlevel: print current runlevel
+    -s, --short: print only name, line, and time (default)
+    -t, --time: print last system clock change
+    -u, --users: list users logged in
+    -w, --writable: same as -T

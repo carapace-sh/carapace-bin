@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: telnet
+description: User interface to TELNET
+flags:
+    --usage: give a short usage message
+    -?, --help: give this help list
+    -4, --ipv4: use only IPv4
+    -6, --ipv6: use only IPv6
+    -8, --binary: use an 8-bit data transmission
+    -E, --no-escape: use no escape character
+    -K, --no-login: do not automatically login to the remote system
+    -L, --binary-output: use an 8-bit data transmission for output only
+    -V, --version: print program version
+    -a, --login: attempt automatic login
+    -c, --no-rc: do not read the user's .telnetrc file
+    -d, --debug: turn on debugging
+    -e, --escape=: use CHAR as an escape character
+    -l, --user=: attempt automatic login as USER
+    -n, --trace=: record trace information into FILE
+    -r, --rlogin: use a user-interface similar to rlogin

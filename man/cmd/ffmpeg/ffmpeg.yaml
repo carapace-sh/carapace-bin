@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ffmpeg
+description: Hyper fast Audio and Video encoder
+
+documentation:
+  command: >-
+    Convert audio and video between formats. ffmpeg reads from arbitrary
+    inputs (files, pipes, streams, devices), filters, and transcodes them
+    into output formats. Specify inputs with -i before outputs; do not mix
+    input and output files. Options apply to the next file and are reset
+    between files. Global options (e.g., -v) should be specified first.
+    Stream selection is automatic or explicit via -map. Filtergraphs (simple
+    via -filter, complex via -filter_complex) process raw frames between
+    decoders and encoders. Encoding is CPU-intensive; for fast, lossless
+    copying use -c copy to remux without recoding.

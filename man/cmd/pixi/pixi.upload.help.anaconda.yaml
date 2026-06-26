@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: anaconda
+description: Options for uploading to a Anaconda.org server

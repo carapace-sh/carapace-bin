@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: kak
+description: a vim-inspired, selection oriented code editor
+flags:
+    -E=: execute argument on server initialisation
+    -c=: connect to given session
+    -clear: clear dead sessions
+    -d: run as a headless session (requires -s)
+    -e=: execute argument on client initialisation
+    -f=: 'filter: for each file, select the entire buffer and execute the given keys'
+    -help: display a help message and quit
+    -i=: backup the files on which a filter is applied using the given suffix
+    -l: list existing sessions
+    -n: do not source kakrc files on startup
+    -p=: just send stdin as commands to the given session
+    -q: in filter mode, be quiet about errors applying keys
+    -ro: readonly mode
+    -s=: set session name
+    -ui=: set the type of user interface to use (terminal, dummy, or json)
+    -version: display kakoune version and exit

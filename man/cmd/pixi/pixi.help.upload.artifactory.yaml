@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: artifactory
+description: Options for uploading to a Artifactory channel. Authentication is used from the keychain / auth-file

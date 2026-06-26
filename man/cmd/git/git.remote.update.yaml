@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: update
+description: Fetch updates for remote
+flags:
+  -p, --prune: prune remotes after fetching
+documentation:
+  command: |-
+    Fetch updates for remotes or remote groups in the repository as defined by
+    `remotes.<group>`. If neither group nor remote is specified on the command line,
+    the configuration parameter `remotes.default` will be used; if
+    `remotes.default` is not defined, all remotes which do not have the
+    configuration parameter `remote.<name>.skipDefaultUpdate` set to `true` will
+    be updated.  (See [git-config](cmd://git/config)).
+
+    With `--prune` option, run pruning against all the remotes that are updated.

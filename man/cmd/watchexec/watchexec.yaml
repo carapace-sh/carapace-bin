@@ -1,0 +1,42 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: watchexec
+description: Execute commands when watched files change
+flags:
+    --changes-only: Only print path change information. Overridden by --verbose
+    --force-poll=: Force polling mode (interval in milliseconds)
+    --no-default-ignore: Skip auto-ignoring of commonly ignored globs
+    --no-environment: Do not set WATCHEXEC_*_PATH environment variables for the command
+    --no-ignore: Skip auto-loading of ignore files (.gitignore, .ignore, etc.) for filtering
+    --no-meta: Ignore metadata changes
+    --no-process-group: Do not use a process group when running the command
+    --no-vcs-ignore: Skip auto-loading of .gitignore files for filtering
+    --on-busy-update=: Select the behaviour to use when receiving events while the command is running.
+    --shell=: Use a different shell, or `none`. E.g. --shell=bash
+    -N, --notify: Send a desktop notification when watchexec notices a change
+    -V, --version: Prints version information
+    -W, --watch-when-idle: Deprecated alias for --on-busy-update=do-nothing, which will become the
+    -c, --clear: Clear screen before executing command
+    -d, --debounce=: Set the timeout between detected change and command execution, defaults to 100ms
+    -e, --exts=: Comma-separated list of file extensions to watch
+    -f, --filter=: Ignore all modifications except those matching the pattern
+    -h, --help: Prints help information
+    -i, --ignore=: Ignore modifications to paths matching the pattern
+    -n, --no-shell: 'Do not wrap command in a shell. Deprecated: use --shell=none instead.'
+    -p, --postpone: Wait until first change to execute command
+    -r, --restart: Restart the process if it's still running.
+    -s, --signal=: Send signal to process upon changes, e.g. SIGHUP
+    -v, --verbose: Print debugging messages to stderr
+    -w, --watch=: Watch a specific file or directory
+
+documentation:
+  command: >-
+    Execute commands when files change. watchexec watches directories
+    (default: current) and runs a command whenever matching files
+    change. Basic usage: watchexec -- npm run build. Ignore patterns
+    with --ignore (gitignore-style). Debounce with --watch-when-idle
+    or --debounce. Clear screen between runs with --clear. Restart
+    processes with --restart. Signal handling with --signal (send
+    SIGTERM before killing). Watch specific paths with --watch.
+    Use --exts to filter by extension. Shell command with -s sh or -c.
+    Stop on error with --stop-flag-error. Process group with --process-group.
+    Environment variables control behavior (WATCHEXEC_*).

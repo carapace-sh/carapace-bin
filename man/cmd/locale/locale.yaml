@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: locale
+description: Get locale-specific information
+flags:
+    --usage: Give a short usage message
+    -?, --help: Give this help list
+    -V, --version: Print program version
+    -a, --all-locales: Write names of available locales
+    -c, --category-name: Write names of selected categories
+    -k, --keyword-name: Write names of selected keywords
+    -m, --charmaps: Write names of available charmaps
+    -v, --verbose: Print more information

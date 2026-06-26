@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: deno
+description: A modern JavaScript and TypeScript runtime
+flags:
+    -V, --version: Prints version information
+persistentflags:
+    --unstable: Enable unstable features and APIs
+    -L, --log-level=: 'Set log level [possible values: debug, info]'
+    -h, --help: Prints help information
+    -q, --quiet: Suppress diagnostic output

@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+aliases:
+    - ls
+description: List recent workflow runs
+documentation:
+    command: |
+        List recent workflow runs for the repository. Filter by branch with `-b`,
+        by status with `-s` (queued, completed, in_progress, etc.), by event with
+        `-e` (push, pull_request, workflow_dispatch, etc.), and by user with `-u`.
+        Limit results with `-L` (default 20, max 100). Use `--all` to include
+        disabled workflows. Output can be filtered with `--jq` or formatted with
+        `--template`, or get raw JSON with `--json`.
+flags:
+    --created=: Filter runs by the `date` it was created
+    --json=*: Output JSON with the specified `fields`
+    -L, --limit=: Maximum number of runs to fetch
+    -a, --all: Include disabled workflows
+    -b, --branch=: Filter runs by branch
+    -c, --commit=: Filter runs by the `SHA` of the commit
+    -e, --event=: Filter runs by which `event` triggered the run
+    -q, --jq=: Filter JSON output using a jq `expression`
+    -s, --status=: 'Filter runs by status: {queued|completed|in_progress|requested|waiting|pending|action_required|cancelled|failure|neutral|skipped|stale|startup_failure|success|timed_out}'
+    -t, --template=: Format JSON output using a Go template; see "gh help formatting"
+    -u, --user=: Filter runs by user who triggered the run
+    -w, --workflow=: Filter runs by workflow

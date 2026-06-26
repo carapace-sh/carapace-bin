@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: missing
+description: Check the given <formula> kegs for missing dependencies
+group: main
+flags:
+    --debug: Display any debugging information.
+    --help: Show this message.
+    --hide: Act as if none of the specified <hidden> are installed. <hidden> should be a comma-separated list of formulae.
+    --quiet: Make some output more quiet.
+    --verbose: Make some output more verbose.

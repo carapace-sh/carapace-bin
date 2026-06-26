@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: unlock
+description: Remove locks other processes created
+flags:
+    --remove-all: remove all locks, even non-stale ones
+
+documentation:
+  command: >-
+    Remove stale locks left by interrupted operations. Only remove locks you are sure are no longer in use.

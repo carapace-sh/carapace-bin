@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: interface
+description: Creates a new, generic interface definition in the given or default project
+flags:
+    --prefix=: A prefix to apply to generated selectors.
+    --project=: The name of the project.

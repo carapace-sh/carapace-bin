@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ls [OPTIONS]
+aliases:
+    - list
+description: List volumes
+flags:
+    --cluster: Display only cluster volumes, and use cluster volume list formatting
+    --format=: 'Format output using a custom template:'
+    -f, --filter=: Provide filter values (e.g. "dangling=true")
+    -q, --quiet: Only display volume names

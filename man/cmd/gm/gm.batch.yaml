@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: batch
+description: issue multiple commands in interactive or batch mode
+flags:
+    -echo=: echo command back to standard out
+    -escape=: force use Unix or Windows escape format for command line argument parsing
+    -fail=: when feedback is on, output the designated text if the command returns error
+    -feedback=: print text (see -pass and -fail options) feedback after each command to indicate the result
+    -help: print program options
+    -pass=: when feedback is on, output the designated text if the command executed successfully
+    -prompt=: use the given text as command prompt
+    -stop-on-error=: when turned on, batch execution quits prematurely when any command returns error
+    -tap-mode=: Enables or disables Test Anything Protocol (TAP) output for test results

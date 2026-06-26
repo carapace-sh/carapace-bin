@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: import [<filename> | -]
+description: Import aliases from a YAML file
+flags:
+    --clobber: Overwrite existing aliases of the same name

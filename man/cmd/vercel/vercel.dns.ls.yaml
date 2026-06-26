@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ls
+description: List all DNS entries for a domain
+
+documentation:
+  command: >-
+    List all DNS records configured for a domain.

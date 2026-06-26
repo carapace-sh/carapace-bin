@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: horizon:clear-metrics
+description: Delete metrics for all jobs and queues

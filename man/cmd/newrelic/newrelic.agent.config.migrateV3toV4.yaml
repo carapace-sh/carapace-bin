@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: migrateV3toV4
+description: migrate V3 configuration to V4 configuration format
+flags:
+    --overwrite: 'if set ti true and pathOutput file exists already the old file is removed '
+    -c, --pathConfiguration=: path configuration
+    -d, --pathDefinition=: path definition
+    -o, --pathOutput=: path output

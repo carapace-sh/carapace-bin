@@ -1,0 +1,182 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: add
+aliases:
+- stage
+description: Add file contents to the index
+group: main
+flags:
+  --chmod=: Override the executable bit of the added files.
+  --ignore-errors: If some files could not be added because of errors indexing them, do not abort the operation, but continue adding the others.
+  --ignore-missing: This option can only be used together with --dry-run.
+  --ignore-removal: Update the index by adding new files that are unknown to the index and files modified in the working tree, but ignore files that have been removed from the working tree.
+  --no-all: Update the index by adding new files that are unknown to the index and files modified in the working tree, but ignore files that have been removed from the working tree.
+  --no-ignore-removal: Update the index not only where the working tree has a file matching <pathspec> but also where the index already has an entry.
+  --no-warn-embedded-repo: By default, git add will warn when adding an embedded repository to the index without using git submodule add to create an entry in .gitmodules.
+  --pathspec-file-nul: Pathspec elements are separated with NUL character and all other characters are taken literally.
+  --pathspec-from-file=: Pathspec is passed in <file> instead of commandline args.
+  --refresh: Don't add the file(s), but only refresh their stat() information in the index.
+  --renormalize: Apply the "clean" process freshly to all tracked files to forcibly add them again to the index.
+  -A, --all: Update the index not only where the working tree has a file matching <pathspec> but also where the index already has an entry.
+  -N, --intent-to-add: 'Record only the fact that the path will be added later. '
+  -e, --edit: Open the diff vs. the index in an editor and let the user edit it.
+  -f, --force: Allow adding otherwise ignored files.
+  -i, --interactive: Add modified contents in the working tree interactively to the index.
+  -n, --dry-run: Don't actually add the file(s), just show if they exist and/or will be ignored.
+  -p, --patch: Interactively choose hunks of patch between the index and the work tree and add them to the index.
+  -u, --update: Update the index just where it already has an entry matching <pathspec>.
+  -v, --verbose: Be verbose.
+documentation:
+  command: |-
+    Add contents of new or changed files to the index. The "index" (also
+    known as the "staging area") is what you use to prepare the contents of
+    the next commit.
+
+    When you run `git commit` without any other arguments, it will only
+    commit staged changes. For example, if you've edited `file.c` and want
+    to commit your changes to that file, you can run:
+
+       git add file.c
+       git commit
+
+    You can also add only part of your changes to a file with `git add -p`.
+
+    This command can be performed multiple times before a commit.  It only
+    adds the content of the specified file(s) at the time the add command is
+    run; if you want subsequent changes included in the next commit, then
+    you must run `git add` again to add the new content to the index.
+
+    The `git status` command can be used to obtain a summary of which
+    files have changes that are staged for the next commit.
+
+    The `git add` command will not add ignored files by default. You can
+    use the `--force` option to add ignored files. If you specify the exact
+    filename of an ignored file, `git add` will fail with a list of ignored
+    files. Otherwise it will silently ignore the file.
+
+    Please see [git-commit](cmd://git/commit) for alternative ways to add content to a
+    commit.
+  flag:
+    all: |
+      Update the index not only where the working tree has a file matching **\<pathspec\>**
+      but also where the index already has an entry.
+      This adds, modifies, and removes index entries to match the working tree.
+
+      If no **\<pathspec\>** is given when `-A` option is used,
+      all files in the entire working tree are updated
+      (old versions of Git used to limit the update to the current directory and its subdirectories).
+    chmod: |-
+      Override the executable bit of the added files.  The executable
+      bit is only changed in the index, the files on disk are left
+      unchanged.
+    dry-run: |-
+      Don't actually add the file(s), just show if they exist and/or will
+      be ignored.
+    edit: |-
+      Open the diff vs. the index in an editor and let the user
+      edit it.  After the editor was closed, adjust the hunk headers
+      and apply the patch to the index.
+
+      The intent of this option is to pick and choose lines of the patch to
+      apply, or even to modify the contents of lines to be staged. This can be
+      quicker and more flexible than using the interactive hunk selector.
+      However, it is easy to confuse oneself and create a patch that does not
+      apply to the index. See EDITING PATCHES below.
+    force: |-
+      Allow adding otherwise ignored files. The option is also used when
+      `submodule.<name>.ignore=all` is set, but you want to stage an
+      update of the submodule. The `path` to the submodule must be explicitly
+      specified.
+    ignore-errors: |-
+      If some files could not be added because of errors indexing
+      them, do not abort the operation, but continue adding the
+      others. The command shall still exit with non-zero status.
+      The configuration variable `add.ignoreErrors` can be set to
+      true to make this the default behaviour.
+    ignore-missing: |-
+      This option can only be used together with `--dry-run`. By using
+      this option the user can check if any of the given files would
+      be ignored, no matter if they are already present in the work
+      tree or not.
+    ignore-removal: |-
+      Update the index by adding new files that are unknown to the
+      index and files modified in the working tree, but ignore
+      files that have been removed from the working tree.  This
+      option is a no-op when no _<pathspec>_ is used.
+
+      This option is primarily to help users who are used to older
+      versions of Git, whose `git add <pathspec>...` was a synonym
+      for `git add --no-all <pathspec>...`, i.e. ignored removed files.
+    intent-to-add: |-
+      Record only the fact that the path will be added later. An entry
+      for the path is placed in the index with no content. This is
+      useful for, among other things, showing the unstaged content of
+      such files with `git diff` and committing them with `git commit -a`.
+    interactive: |-
+      Add modified contents in the working tree interactively to
+      the index. Optional path arguments may be supplied to limit
+      operation to a subset of the working tree. See *Interactive
+      mode* for details.
+    no-all: |
+      Update the index by adding new files that are unknown to the index and files modified in the working tree,
+      but ignore files that have been removed from the working tree.
+      This option is a no-op when no **\<pathspec\>** is used.
+
+      This option is primarily to help users who are used to older versions of Git,
+      whose `git add <pathspec>...` was a synonym for `git add –no-all <pathspec>...`, i.e. ignored removed files.
+    no-ignore-removal: |-
+      Update the index not only where the working tree has a file
+      matching _<pathspec>_ but also where the index already has an
+      entry. This adds, modifies, and removes index entries to
+      match the working tree.
+
+      If no _<pathspec>_ is given when `-A` option is used, all
+      files in the entire working tree are updated (old versions
+      of Git used to limit the update to the current directory and its
+      subdirectories).
+    no-warn-embedded-repo: |-
+      By default, `git add` will warn when adding an embedded
+      repository to the index without using `git submodule add` to
+      create an entry in `.gitmodules`. This option will suppress the
+      warning (e.g., if you are manually performing operations on
+      submodules).
+    patch: |-
+      Interactively choose hunks of patch between the index and the
+      work tree and add them to the index. This gives the user a chance
+      to review the difference before adding modified contents to the
+      index.
+
+      This effectively runs `add --interactive`, but bypasses the
+      initial command menu and directly jumps to the `patch` subcommand.
+      See *Interactive mode* for details.
+    pathspec-file-nul: |-
+      Only meaningful with `--pathspec-from-file`. Pathspec elements are
+      separated with _NUL_ character and all other characters are taken
+      literally (including newlines and quotes).
+    pathspec-from-file: |-
+      Pathspec is passed in _<file>_ instead of commandline args. If
+      _<file>_ is exactly `-` then standard input is used. Pathspec
+      elements are separated by _LF_ or _CR/LF_. Pathspec elements can be
+      quoted as explained for the configuration variable `core.quotePath`
+      (see [git-config](cmd://git/config)). See also `--pathspec-file-nul` and
+      global `--literal-pathspecs`.
+    refresh: |-
+      Don't add the file(s), but only refresh their stat()
+      information in the index.
+    renormalize: |-
+      Apply the "clean" process freshly to all tracked files to
+      forcibly add them again to the index.  This is useful after
+      changing `core.autocrlf` configuration or the `text` attribute
+      in order to correct files added with wrong _CRLF/LF_ line endings.
+      This option implies `-u`. Lone CR characters are untouched, thus
+      while a _CRLF_ cleans to _LF_, a _CRCRLF_ sequence is only partially
+      cleaned to _CRLF_.
+    update: |-
+      Update the index just where it already has an entry matching
+      _<pathspec>_.  This removes as well as modifies index entries to
+      match the working tree, but adds no new files.
+
+      If no _<pathspec>_ is given when `-u` option is used, all
+      tracked files in the entire working tree are updated (old versions
+      of Git used to limit the update to the current directory and its
+      subdirectories).
+    verbose: Be verbose.

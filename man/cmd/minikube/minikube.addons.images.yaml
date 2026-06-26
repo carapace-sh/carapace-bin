@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: images ADDON_NAME
+description: 'List image names the addon w/ADDON_NAME used. For a list of available addons use: minikube addons list'
+flags:
+    -o, --output=: minikube addons images ADDON_NAME --output OUTPUT. table, json

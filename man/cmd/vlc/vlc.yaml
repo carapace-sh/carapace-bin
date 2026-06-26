@@ -1,0 +1,243 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: vlc
+description: the VLC media player
+flags:
+    --advanced: Show advanced options
+    --aspect-ratio=: Source aspect ratio
+    --audio: Enable audio
+    --audio-filter=: Audio filters
+    --audio-language=: Audio language
+    --audio-replay-gain-default=: Default replay gain
+    --audio-replay-gain-mode=: Replay gain mode
+    --audio-replay-gain-preamp: VAL   Replay preamp
+    --audio-time-stretch: Enable time stretching audio
+    --audio-visual: Audio visualizations
+    --auto-preparse: Automatically preparse items
+    --autoscale: Video Auto Scaling
+    --bookmark1=: Playlist bookmark 1
+    --bookmark2=: Playlist bookmark 2
+    --bookmark3=: Playlist bookmark 3
+    --bookmark4=: Playlist bookmark 4
+    --bookmark5=: Playlist bookmark 5
+    --bookmark6=: Playlist bookmark 6
+    --bookmark7=: Playlist bookmark 7
+    --bookmark8=: Playlist bookmark 8
+    --bookmark9=: Playlist bookmark 9
+    --bookmark10=: Playlist bookmark 10
+    --config=: use alternate config file
+    --control=: Control interfaces
+    --crop=: Video cropping
+    --custom-aspect-ratios=: Custom aspect ratios list
+    --custom-crop-ratios=: Custom crop ratios list
+    --deinterlace-mode=: Deinterlace mode
+    --deinterlace=: Deinterlace
+    --dvd=: DVD device
+    --extraintf=: Extra interface modules
+    --extrashort-jump-size=: Very short jump length
+    --force-dolby-surround=: Force detection of Dolby Surround
+    --global-key-aspect-ratio=: Cycle source aspect ratio
+    --global-key-audio-track=: Cycle audio track
+    --global-key-audiodevice-cycle=: Cycle through audio devices
+    --global-key-crop=: Cycle video crop
+    --global-key-decr-scalefactor=: Decrease scale factor
+    --global-key-deinterlace-mode=: Cycle deinterlace modes
+    --global-key-deinterlace=: Toggle deinterlacing
+    --global-key-faster=: Faster
+    --global-key-frame-next=: Next frame
+    --global-key-incr-scalefactor=: Increase scale factor
+    --global-key-intf-show=: Show controller in fullscreen
+    --global-key-jump+extrashort=: Very short forward jump
+    --global-key-jump+long=: Long forward jump
+    --global-key-jump+medium=: Medium forward jump
+    --global-key-jump+short=: Short forward jump
+    --global-key-jump-extrashort=: Very short backwards jump
+    --global-key-jump-long=: Long backwards jump
+    --global-key-jump-medium=: Medium backwards jump
+    --global-key-jump-short=: Short backwards jump
+    --global-key-leave-fullscreen=: Exit fullscreen
+    --global-key-loop=: Normal/Loop/Repeat
+    --global-key-next=: Next
+    --global-key-play-pause=: Play/Pause
+    --global-key-program-sid-next=: Cycle next program Service ID
+    --global-key-program-sid-prev=: Cycle previous program Service ID
+    --global-key-quit=: Quit
+    --global-key-random=: Random
+    --global-key-rate-faster-fine=: Faster (fine)
+    --global-key-rate-normal=: Normal rate
+    --global-key-rate-slower-fine=: Slower (fine)
+    --global-key-slower=: Slower
+    --global-key-subtitle-revtrack=: Cycle subtitle track in reverse order
+    --global-key-subtitle-toggle=: Toggle subtitles
+    --global-key-subtitle-track=: Cycle subtitle track
+    --global-key-toggle-autoscale=: Toggle autoscaling
+    --global-key-toggle-fullscreen=: Fullscreen
+    --global-key-vol-down=: Volume down
+    --global-key-vol-mute=: Mute
+    --global-key-vol-up=: Volume up
+    --global-key-wallpaper=: Toggle wallpaper mode in video output
+    --global-key-zoom-double=: 2:1 Double
+    --global-key-zoom-half=: 1:2 Half
+    --global-key-zoom-original=: 1:1 Original
+    --global-key-zoom-quarter=: 1:4 Quarter
+    --help-verbose: ask for extra verbosity when displaying help
+    --hotkeys-x-wheel-mode=: Mouse wheel horizontal axis control
+    --hotkeys-y-wheel-mode=: Mouse wheel vertical axis control
+    --ignore-config: no configuration option will be loaded
+    --ignore-filetypes=: Ignored extensions
+    --input-fast-seek: Fast seek
+    --input-repeat=: Input repetitions
+    --input-title-format=: Change title according to current media
+    --interact: Interface interaction
+    --key-aspect-ratio=: Cycle source aspect ratio
+    --key-audio-track=: Cycle audio track
+    --key-audiodevice-cycle=: Cycle through audio devices
+    --key-crop=: Cycle video crop
+    --key-decr-scalefactor=: Decrease scale factor
+    --key-deinterlace-mode=: Cycle deinterlace modes
+    --key-deinterlace=: Toggle deinterlacing
+    --key-faster=: Faster
+    --key-frame-next=: Next frame
+    --key-incr-scalefactor=: Increase scale factor
+    --key-intf-show=: Show controller in fullscreen
+    --key-jump+extrashort=: Very short forward jump
+    --key-jump+long=: Long forward jump
+    --key-jump+medium=: Medium forward jump
+    --key-jump+short=: Short forward jump
+    --key-jump-extrashort=: Very short backwards jump
+    --key-jump-long=: Long backwards jump
+    --key-jump-medium=: Medium backwards jump
+    --key-jump-short=: Short backwards jump
+    --key-leave-fullscreen=: Exit fullscreen
+    --key-loop=: Normal/Loop/Repeat
+    --key-next=: Next
+    --key-play-pause=: Play/Pause
+    --key-prev=: Previous
+    --key-program-sid-next=: Cycle next program Service ID
+    --key-program-sid-prev=: Cycle previous program Service ID
+    --key-quit=: Quit
+    --key-random=: Random
+    --key-rate-faster-fine=: Faster (fine)
+    --key-rate-normal=: Normal rate
+    --key-rate-slower-fine=: Slower (fine)
+    --key-slower=: Slower
+    --key-stop=: Stop
+    --key-subtitle-revtrack=: Cycle subtitle track in reverse order
+    --key-subtitle-toggle=: Toggle subtitles
+    --key-subtitle-track=: Cycle subtitle track
+    --key-toggle-autoscale=: Toggle autoscaling
+    --key-toggle-fullscreen=: Fullscreen
+    --key-vol-down=: Volume down
+    --key-vol-mute=: Mute
+    --key-vol-up=: Volume up
+    --key-wallpaper=: Toggle wallpaper mode in video output
+    --key-zoom-double=: 2:1 Double
+    --key-zoom-half=: 1:2 Half
+    --key-zoom-original=: 1:1 Original
+    --key-zoom-quarter=: 1:4 Quarter
+    --list-verbose: print a list of available modules with extra
+    --long-jump-size=: Long jump length
+    --longhelp: print help for VLC and all its modules
+    --media-library: Use media library
+    --medium-jump-size=: Medium jump length
+    --menu-language=: Menu language
+    --metadata-network-access: Allow metadata network access
+    --mouse-hide-timeout=: Hide cursor and fullscreen controller after x milliseconds
+    --no-advanced: Dont show advanced options
+    --no-audio: Disable audio
+    --no-audio-time-stretch: Disable time stretching audio
+    --no-auto-preparse: Dont automatically preparse items
+    --no-autoscale: Video Auto Scaling
+    --no-full-help: Exhaustive help for VLC and its modules
+    --no-fullscreen: No Fullscreen video output
+    --no-help: print help for VLC
+    --no-help-verbose: ask for extra verbosity when displaying help
+    --no-ignore-config: no configuration option will be loaded
+    --no-input-fast-seek: Fast seek
+    --no-interact: No interface interaction
+    --no-list: print a list of available modules
+    --no-list-verbose: print a list of available modules with extra
+    --no-longhelp: print help for VLC and all its modules
+    --no-loop: Dont repeat all
+    --no-media-library: Use media library
+    --no-metadata-network-access: Dont allow metadata network access
+    --no-osd: No on Screen Display
+    --no-play-and-exit: Play and exit
+    --no-play-and-stop: Play and stop
+    --no-playlist-autostart: Auto start
+    --no-playlist-cork: Pause on audio communication
+    --no-playlist-tree: Display playlist tree
+    --no-random: Dont play files randomly forever
+    --no-repeat: Dont repeat current item
+    --no-reset-config: reset the current config to the default values
+    --no-reset-plugins-cache: resets the current plugins cache
+    --no-show-hiddenfiles: Dont show hidden files
+    --no-snapshot-preview: No Display video snapshot preview
+    --no-snapshot-sequential: Use sequential numbers instead of timestamps
+    --no-spu: Disable sub-pictures
+    --no-start-paused: Dont start paused
+    --no-sub-autodetect-file: Autodetect subtitle files
+    --no-version: print version information
+    --no-video-on-top: Not always on top
+    --no-video-title-show: Do not how media title on video
+    --no-video-wallpaper: Disable wallpaper mode
+    --open=: Default stream
+    --osd: On Screen Display
+    --pidfile=: Write process id to file
+    --play-and-exit: Play and exit
+    --play-and-stop: Play and stop
+    --playlist-autostart: Auto start
+    --playlist-cork: Pause on audio communication
+    --playlist-tree: Display playlist tree
+    --preferred-resolution=: Preferred video resolution
+    --preparse-timeout=: Preparsing timeout
+    --rate: Playback speed
+    --recursive=: Subdirectory behavior
+    --reset-config: reset the current config to the default values
+    --reset-plugins-cache: resets the current plugins cache
+    --short-jump-size=: Short jump length
+    --show-hiddenfiles: Show hidden files
+    --snapshot-format=: Video snapshot format
+    --snapshot-path=: Video snapshot directory (or filename)
+    --snapshot-prefix=: Video snapshot file prefix
+    --snapshot-preview: Display video snapshot preview
+    --snapshot-sequential: Use sequential numbers instead of timestamps
+    --spu: Enable sub-pictures
+    --start-paused: Start paused
+    --stream-filter=: Stream filter module
+    --sub-autodetect-file: Autodetect subtitle files
+    --sub-file=: Use subtitle file
+    --sub-filter=: Subpictures filter module
+    --sub-language=: Subtitle language
+    --sub-source=: Subpictures source module
+    --sub-text-scale=: Subtitles text scaling factor
+    --vcd=: VCD device
+    --version: print version information
+    --video-filter=: Video filter module
+    --video-on-top: Always on top
+    --video-splitter=: Video splitter module
+    --video-title-position=: Position of video title
+    --video-title-show: Show media title on video
+    --video-title-timeout=: Show video title for x milliseconds
+    --video-wallpaper: Enable wallpaper mode
+    -H, --full-help: Exhaustive help for VLC and its modules
+    -I, --intf=: Interface module
+    -L, --loop: Repeat all
+    -R, --repeat: Repeat current item
+    -Z, --random: Play files randomly forever
+    -f, --fullscreen: Fullscreen video output
+    -h, --help: print help for VLC
+    -l, --list: print a list of available modules
+    -p, --module=: print help on a specific module
+    -v, --verbose=: Verbosity
+
+documentation:
+  command: >-
+    VideoLAN media player for audio and video. vlc plays local files,
+    network streams (HTTP, RTP, RTSP, MMS), DVDs, VCDs, and device streams.
+    Command-line usage: vlc [options] [source]. Key options: -v (verbose),
+    --play-and-pause, --fullscreen, --loop, --no-video. Stream with
+    --sout (streaming output): vlc source --sout #duplicate{\
+    transcode{vcodec=mp4v,vb=512}:std{access=file,mux=ts,dst=file.mp4}}.
+    Start HTTP interface with --http-port. Record with --run-time.
+    Video filters with --video-filter. Audio effects with --audio-filter.
+    Works on Linux, macOS, Windows, and mobile platforms.

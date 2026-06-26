@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ls [OPTIONS]
+aliases:
+    - list
+description: List configs
+flags:
+    --format=: 'Format output using a custom template:'
+    -f, --filter=: Filter output based on conditions provided
+    -q, --quiet: Only display IDs

@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: is-enabled
+description: Check whether unit files are enabled
+group: unit file
+documentation:
+  command: |
+    Check whether any of the specified unit files are enabled. Returns
+    exit code 0 if at least one is enabled, non-zero otherwise. Prints
+    the current enable status: enabled, enabled-runtime, linked,
+    linked-runtime, alias, masked, masked-runtime, static, indirect,
+    disabled, generated, transient, bad, or not-found.

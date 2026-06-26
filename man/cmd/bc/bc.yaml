@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    An arbitrary precision calculator language. Supports interactive
+    and scripted arithmetic with the `-l` flag providing standard
+    math library functions.
+description: An arbitrary precision calculator language
+flags:
+    -h, --help: print this usage and exit
+    -i, --interactive: force interactive mode
+    -l, --mathlib: use the predefined math routines
+    -q, --quiet: don't print initial banner
+    -s, --standard: non-standard bc constructs are errors
+    -v, --version: print version information and exit
+    -w, --warn: warn about non-standard bc constructs

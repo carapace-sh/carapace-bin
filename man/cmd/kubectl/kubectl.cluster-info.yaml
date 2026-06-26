@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: cluster-info
+description: Display cluster information
+group: cluster management

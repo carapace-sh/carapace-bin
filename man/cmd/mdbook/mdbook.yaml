@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: mdbook
+description: Creates a book from markdown files
+flags:
+    -V, --version: Print version
+    -h, --help: Print help

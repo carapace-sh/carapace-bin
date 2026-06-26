@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: autoremove
+description: Uninstall formulae that were only installed as a dependency of another formula and are now no longer needed
+group: main
+flags:
+    --debug: Display any debugging information.
+    --dry-run: List what would be uninstalled, but do not actually uninstall anything.
+    --help: Show this message.
+    --quiet: Make some output more quiet.
+    --verbose: Make some output more verbose.

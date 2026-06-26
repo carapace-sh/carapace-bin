@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list [pattern]...
+description: list packages based on package names
+flags:
+    --installed: list installed packages
+    --manual-installed: list manually installed packages
+    --upgradable: list upgradable packages
+    -a, --all-versions: print full records for all available versions
+    -t, --target-release=: which distribution packages to retrieved from
+    -v, --verbose: verbose output

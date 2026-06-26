@@ -1,0 +1,110 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: cherry-pick
+description: Apply the changes introduced by some existing commits
+group: main
+flags:
+  --abort: cancel the operation and return to the pre-sequence state
+  --allow-empty: preserve empty commits
+  --allow-empty-message: allow empty commit message
+  --cleanup=: set commit message cleanup mode
+  --continue: ontinue the operation in progress
+  --ff: fast forward
+  --keep-redundant-commits: preserve redundant commits
+  --no-gpg-sign: do not GPG-sign commits
+  --no-rerere-autoupdate: disallow rerere mechanism to update the index
+  --quit: forget about the current operation in progress
+  --rerere-autoupdate: allow rerere mechanism to update the index
+  --skip: skip the current commit
+  --strategy=: use the given merge strategy
+  -S, --gpg-sign?: GPG-sign commits
+  -X, --strategy-option=: pass the merge strategy-specific option through to the merge strategy
+  -e, --edit: edit the commit message prior to committing
+  -m, --mainline=: specify parent number to pick relative change
+  -n, --no-commit: apply changes without committing them
+  -s, --signoff: add Signed-off-by line at the end of the commit message
+  -x: append cherry-pick source to original commit message
+documentation:
+  command: |-
+    Given one or more existing commits, apply the change each one
+    introduces, recording a new commit for each.  This requires your
+    working tree to be clean (no modifications from the HEAD commit).
+
+    When it is not obvious how to apply a change, the following
+    happens:
+
+    1. The current branch and `HEAD` pointer stay at the last commit
+       successfully made.
+    2. The `CHERRY_PICK_HEAD` ref is set to point at the commit that
+       introduced the change that is difficult to apply.
+    3. Paths in which the change applied cleanly are updated both
+       in the index file and in your working tree.
+    4. For conflicting paths, the index file records up to three
+       versions, as described in the "TRUE MERGE" section of
+       [git-merge](cmd://git/merge).  The working tree files will include
+       a description of the conflict bracketed by the usual
+       conflict markers `<<<<<<<` and `>>>>>>>`.
+    5. No other modifications are made.
+
+    See [git-merge](cmd://git/merge) for some hints on resolving such
+    conflicts.
+  flag:
+    allow-empty: |-
+      Preserve commits that are empty (i.e. that do not change the tree)
+      in the output. The default is to drop such commits, requiring the
+      use of `--allow-empty` with `git commit` to create them explicitly.
+    edit: |-
+      With `--edit` (the default), `git cherry-pick` will open the
+      editor before committing so that the user can edit the commit
+      message.
+    ff: |-
+      If the current HEAD is the same as the parent of the cherry-picked
+      commit, then a fast forward merge to the cherry-picked commit will
+      be performed. This is the default behavior when no conflicting
+      changes are present.
+    gpg-sign: |-
+      GPG-sign commits. The `keyid` argument is optional and defaults
+      to the committer identity. `--no-gpg-sign` is useful to
+      countermand both `commit.gpgSign` configuration variable and
+      earlier `--gpg-sign`.
+    mainline: |-
+      When cherry-picking a merge commit, specify the parent number
+      (1-based) relative to which the change should be taken. The
+      cherry-pick applies the diff relative to this parent. See
+      [git-merge](cmd://git/merge) for the format of the merge commit
+      message, which lists the parent numbers.
+    no-commit: |-
+      Usually `git cherry-pick` will create a new commit for each
+      cherry-picked commit. With `--no-commit`, the changes are applied
+      to the index and working tree but no commit is created, allowing
+      you to make further modifications before committing.
+    no-rerere-autoupdate: |-
+      After the rerere mechanism reuses a recorded resolution on
+      the current conflict to update the files in the working
+      tree, allow it to also update the index with the result of
+      resolution.  `--no-rerere-autoupdate` is a good way to
+      double-check what [git-rerere](cmd://git/rerere) did and catch potential
+      mismerges, before committing the result to the index with a
+      separate [git-add](cmd://git/add).
+    rerere-autoupdate: |-
+      After the rerere mechanism reuses a recorded resolution on
+      the current conflict to update the files in the working
+      tree, allow it to also update the index with the result of
+      resolution.  `--no-rerere-autoupdate` is a good way to
+      double-check what [git-rerere](cmd://git/rerere) did and catch potential
+      mismerges, before committing the result to the index with a
+      separate [git-add](cmd://git/add).
+    signoff: |-
+      Add a `Signed-off-by` trailer at the end of the commit message.
+    strategy: |-
+      Use the given merge strategy. Should be one of `ort`, `ours`,
+      `recursive`, `octopus`, or `subtree`. For further details, see
+      the section "MERGE STRATEGIES" in [git-merge](cmd://git/merge).
+      The `ort` strategy is the default.
+    strategy-option: |-
+      Pass the merge strategy-specific option through to the merge
+      strategy. This implies `--merge` and, if no strategy has been
+      specified, `-s ort`.
+    x: |-
+      When recording the commit, append a line that says "(cherry picked
+      from commit ...)" to the original commit message in order to
+      indicate which commit this cherry-pick was derived from.

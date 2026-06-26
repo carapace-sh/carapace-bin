@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: switch
+description: Switch to a worktree; create if needed
+flags:
+    --branches: Include branches without worktrees (interactive picker)
+    --clobber: Remove stale paths at target
+    --no-cd: Skip directory change after switching
+    --no-verify: Skip hooks
+    --remotes: Include remote branches (interactive picker)
+    -b, --base=: Base branch
+    -c, --create: Create a new branch
+    -h, --help: Print help (see more with '--help')
+    -x, --execute=: Command to run after switch
+    -y, --yes: Skip approval prompts

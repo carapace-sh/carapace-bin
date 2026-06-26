@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: auto
+description: Import history for the current shell
+flags:
+    -h, --help: Print help

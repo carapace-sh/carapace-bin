@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: run
+description: Run a script defined in the package.json
+group: general
+flags:
+    --inspect: Forwarded to the underlying Node process when executing a binary
+    --inspect-brk: Forwarded to the underlying Node process when executing a binary
+    -B, --binaries-only: Ignore any user defined scripts and only check for binaries
+    -T, --top-level: Check the root workspace for scripts and/or binaries instead of the current one

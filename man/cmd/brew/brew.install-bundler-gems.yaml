@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: install-bundler-gems
+description: Install Homebrew's Bundler gems
+group: developer
+flags:
+    --add-groups: Installs the specified comma-separated list of gem groups, in addition to those already installed.
+    --debug: Display any debugging information.
+    --groups: 'Installs the specified comma-separated list of gem groups (default: last used). Replaces any previously installed groups.'
+    --help: Show this message.
+    --quiet: Make some output more quiet.
+    --verbose: Make some output more verbose.

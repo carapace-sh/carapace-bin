@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: traefik
+description: Traefik is a modern HTTP reverse proxy and load balancer made to deploy microservices with ease

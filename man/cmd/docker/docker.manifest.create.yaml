@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create MANIFEST_LIST MANIFEST [MANIFEST...]
+description: Create a local manifest list for annotating and pushing to a registry
+flags:
+    --insecure: Allow communication with an insecure registry
+    -a, --amend: Amend an existing manifest list

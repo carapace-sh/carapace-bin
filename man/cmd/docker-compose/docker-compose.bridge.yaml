@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: bridge CMD [OPTIONS]
+description: Convert compose files into another model

@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: purge
+description: purge is identical to remove except that packages are removed and purged

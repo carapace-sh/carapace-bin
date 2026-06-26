@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: set-environment
+flags:
+    -F: TODO description
+    -g: TODO description
+    -h: TODO description
+    -r: TODO description
+    -t=: target-session
+    -u: TODO description

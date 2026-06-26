@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: link
+aliases:
+    - ln
+description: Connect the local project to another one
+group: manage
+flags:
+    --aggregate-output: Aggregate output from child processes that are run in parallel
+    --color: Controls colors in the output
+    --loglevel=: What level of logs to report
+    --no-color: Controls colors in the output
+    --stream: Stream output from child processes immediately
+    --use-stderr: Divert all output to stderr
+    -C, --dir=: Change to directory <dir>
+    -h, --help: Output usage information
+    -w, --workspace-root: Run the command on the root workspace project

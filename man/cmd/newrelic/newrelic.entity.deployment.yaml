@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: deployment
+description: Manage deployment markers for a New Relic entity

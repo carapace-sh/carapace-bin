@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: develop
+description: Setup or update all the resources needed to develop on a module locally
+group: module
+flags:
+    --sdk=: New SDK for the module
+    --source=: Directory to store the module implementation source code in
+persistentflags:
+    --focus: Only show output for focused commands
+    -m, --mod=: Path to dagger.json config file for the module or a directory containing that file. Either local path (e.g. "/path/to/some/dir") or a github repo (e.g. "github.com/dagger/dagger/path/to/some/subdir")

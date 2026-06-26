@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: direnv
+description: Generate a .envrc file that integrates direnv with this devbox project
+flags:
+    --environment=: environment to use, when supported (e.g.secrets support dev, prod, preview.)
+    --envrc-dir=: path to directory where the .envrc file should be generated.
+    -c, --config=: path to directory containing a devbox.json config file
+    -f, --force: force overwrite existing files
+    -p, --print-envrc&: output contents of devbox configuration to use in .envrc
+persistentflags:
+    --env-file=: path to a file containing environment variables to set in the devbox environment
+    -e, --env=: environment variables to set in the devbox environment

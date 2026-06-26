@@ -1,0 +1,136 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: qpdf
+description: PDF transformation software
+flags:
+    --accessibility?: restrict document accessibility
+    --add-attachment=*: start add attachment options
+    --allow-insecure: allow empty owner passwords
+    --allow-weak-crypto: allow insecure cryptographic algorithms
+    --annotate?: restrict document annotation
+    --assemble?: restrict document assembly
+    --bits=: specify encryption key length
+    --check: partially check whether PDF is valid
+    --check-linearization: check linearization tables
+    --cleartext-metadata: don't encrypt metadata
+    --coalesce-contents: combine content streams
+    --collate?: collate with --pages
+    --completion-bash: enable bash completion
+    --completion-zsh: enable zsh completion
+    --compress-streams?: compress uncompressed streams
+    --compression-level=: set compression level for flate
+    --copy-attachments-from=: start copy attachment options
+    --copy-encryption=: copy another file's encryption details
+    --copyright: show copyright information
+    --creationdate=*: set attachment's creation date
+    --decode-level=: control which streams to uncompress
+    --decrypt: remove encryption from input file
+    --description=*: set attachment's description
+    --deterministic-id: generate ID deterministically
+    --empty: use empty file as input
+    --encrypt: start encryption options
+    --encryption-file-password=: supply password for --copy-encryption
+    --externalize-inline-images: convert inline to regular images
+    --extract?: restrict text/graphic extraction
+    --file=: source for pages
+    --filename=*: set attachment's displayed filename
+    --filtered-stream-data: show filtered stream data
+    --flatten-annotations=: push annotations into content
+    --flatten-rotation: remove rotation from page dictionary
+    --force-R5: forces use of deprecated R=5 encryption
+    --force-V4: forces use of V=4 encryption handler
+    --force-version: set output PDF version
+    --form?: restrict form filling
+    --from?: source pages for underlay/overlay
+    --generate-appearances: generate appearances for form fields
+    --help?: provide help
+    --ignore-xref-streams: use xref tables rather than streams
+    --ii-min-bytes=: set minimum size for --externalize-inline-images
+    --is-encrypted: silently test whether a file is encrypted
+    --job-json-file=: job JSON file
+    --job-json-help: show format of job JSON
+    --jpeg-quality=: set jpeg quality level for jpeg
+    --json-help?: show format of JSON output
+    --json-input: input file is qpdf JSON
+    --json-key=*: limit which keys are in JSON output
+    --json-object=*: limit which objects are in JSON
+    --json-output?: apply defaults for JSON serialization
+    --json-stream-data=: how to handle streams in json output
+    --json-stream-prefix=: prefix for json stream data files
+    --json?: show file in JSON format
+    --keep-files-open-threshold=: set threshold for --keep-files-open
+    --keep-files-open?: manage keeping multiple files open
+    --keep-inline-images: exclude inline images from optimization
+    --key=*: specify attachment key
+    --linearize: linearize (web-optimize) output
+    --linearize-pass1=: save pass 1 of linearization
+    --list-attachments: list embedded files
+    --mimetype=*: attachment mime type, e.g. application/pdf
+    --min-version=: set minimum PDF version
+    --moddate=*: set attachment's modification date
+    --modify-other?: restrict other modifications
+    --modify=: restrict document modification
+    --newline-before-endstream: force a newline before endstream
+    --no-original-object-ids: omit original object IDs in qdf
+    --no-warn: suppress printing of warning messages
+    --normalize-content?: fix newlines in content streams
+    --object-streams=: control use of object streams
+    --oi-min-area=: minimum area for --optimize-images
+    --oi-min-height=: minimum height for --optimize-images
+    --oi-min-width=: minimum width for --optimize-images
+    --optimize-images: use efficient compression for images
+    --overlay=: begin overlay options
+    --owner-password=: specify owner password
+    --pages: show number of pages
+    --password-file=: read password from a file
+    --password-is-hex-key: provide hex-encoded encryption key
+    --password-mode=: tweak how qpdf encodes passwords
+    --password=: silently test a file's password
+    --prefix=: key prefix for copying attachments
+    --preserve-unreferenced: preserve unreferenced objects
+    --preserve-unreferenced-resources: use --remove-unreferenced-resources=no
+    --print=: restrict printing
+    --progress: show progress when writing
+    --qdf: enable viewing PDF code in a text editor
+    --range=: page range
+    --raw-stream-data: show raw stream data
+    --recompress-flate: uncompress and recompress flate
+    --remove-attachment=: remove an embedded file
+    --remove-info: remove file information
+    --remove-metadata: remove metadata
+    --remove-page-labels: remove explicit page numbers
+    --remove-restrictions: remove security restrictions from input file
+    --remove-structure: remove metadata
+    --remove-unreferenced-resources: remove unreferenced page resources
+    --repeat=: overlay/underlay pages to repeat
+    --replace*: replace attachment with same key
+    --replace-input: overwrite input with output
+    --report-memory-usage: best effort report of memory usage
+    --requires-password: silently test a file's password
+    --rotate=: rotate pages
+    --set-page-labels=: number pages for the entire document
+    --show-attachment=: export an embedded file
+    --show-crypto: show available crypto providers
+    --show-encryption: information about encrypted files
+    --show-encryption-key: show key with --show-encryption
+    --show-linearization: show linearization hint tables
+    --show-npages: show number of pages
+    --show-object=: show contents of an object
+    --show-pages: display page dictionary information
+    --show-xref: show cross reference data
+    --split-pages?: write pages to separate files
+    --static-aes-iv: use a fixed AES vector
+    --static-id: use a fixed document ID
+    --stream-data=: show filtered stream data
+    --suppress-password-recovery: don't try different password encodings
+    --suppress-recovery: suppress error recovery
+    --test-json-schema: test generated json against schema
+    --to=: destination pages for underlay/overlay
+    --underlay: begin underlay options
+    --update-from-json=: update a PDF from qpdf JSON
+    --use-aes?: use AES with 128-bit encryption
+    --user-password=: specify user password
+    --verbose: print additional information
+    --version: show qpdf version
+    --warning-exit-0: exit 0 even with warnings
+    --with-images: include image details with --show-pages
+    --zopfli: indicate whether zopfli is enabled and active

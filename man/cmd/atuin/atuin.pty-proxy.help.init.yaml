@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: init
+description: Print shell code to initialize atuin pty-proxy on shell startup

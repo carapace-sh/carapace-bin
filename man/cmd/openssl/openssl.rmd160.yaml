@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rmd160
+description: RMD-160 Digest
+group: digest

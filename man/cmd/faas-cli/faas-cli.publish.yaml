@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: publish
+description: Builds and pushes multi-arch OpenFaaS container images
+flags:
+    --build-label=*: Add a label for Docker image (LABEL=VALUE)
+    --copy-extra=*: Extra paths that will be copied into the function build context
+    --disable-stack-pull: Disables the template configuration in the stack.yml
+    --envsubst: Substitute environment variables in stack.yml file
+    --extra-tag=*: Additional extra image tag
+    --handler=: Directory with handler for function, e.g. handler.js
+    --image=: Docker image name to build
+    --lang=: Programming language template
+    --name=: Name of the deployed function
+    --no-cache: Do not use Docker's build cache
+    --parallel=: Build in parallel to depth specified.
+    --platforms=: A set of platforms to publish
+    --quiet: Perform a quiet build, without showing output from Docker
+    --shrinkwrap: Just write files to ./build/ folder for shrink-wrapping
+    --squash: 'Use Docker''s squash flag for smaller images [experimental] '
+    --tag=: Override latest tag on function Docker image, accepts 'latest', 'sha', 'branch', or 'describe'
+    -b, --build-arg=*: Add a build-arg for Docker (KEY=VALUE)
+    -o, --build-option=*: Set a build option, e.g. dev

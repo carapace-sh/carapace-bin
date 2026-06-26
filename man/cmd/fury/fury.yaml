@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: fury
+description: Command line interface to Gemfury API
+flags:
+    -h, --help: help for fury
+    -v, --version: version for fury
+persistentflags:
+    --api-token=: Inline authentication token
+    -a, --account=: Current account username

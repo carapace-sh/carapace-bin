@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: delete
+description: Delete a NerdStorage collection.
+flags:
+    --packageId=: the external package ID
+    -c, --collection=: the collection name to delete the document from
+    -e, --entityGuid=: the entity GUID
+    -s, --scope=: the scope to delete the document from

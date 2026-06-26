@@ -1,0 +1,50 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: merge-file
+description: Run a three-way file merge
+group: low-level manipulator
+flags:
+  --diff3: use a diff3 based merge
+  --marker-size=: for conflicts, use this marker size
+  --ours: for conflicts, use our version
+  --theirs: for conflicts, use their version
+  --union: for conflicts, use a union version
+  -L=: set labels for file1/orig-file/file2
+  -p, --stdout: send results to standard output
+  -q, --quiet: do not warn about conflicts
+documentation:
+  command: |-
+    Given three files `<current>`, `<base>` and `<other>`,
+    `git merge-file` incorporates all changes that lead from `<base>`
+    to `<other>` into `<current>`. The result ordinarily goes into
+    `<current>`. `git merge-file` is useful for combining separate changes
+    to an original. Suppose `<base>` is the original, and both
+    `<current>` and `<other>` are modifications of `<base>`,
+    then `git merge-file` combines both changes.
+
+    A conflict occurs if both `<current>` and `<other> have changes in a common segment of lines. If a conflict is found, `git merge-file
+    normally outputs a warning and brackets the conflict with lines containing
+    <<<<<<< and >>>>>>> markers. A typical conflict will look like this:
+
+    <<<<<<< A
+    lines in file A
+    =======
+    lines in file B
+    >>>>>>> B
+
+    If there are conflicts, the user should edit the result and delete one of
+    the alternatives.  When `--ours`, `--theirs`, or `--union` option is in effect,
+    however, these conflicts are resolved favouring lines from `<current>`,
+    lines from `<other>`, or lines from both respectively.  The length of the
+    conflict markers can be given with the `--marker-size` option.
+
+    If `--object-id` is specified, exactly the same behavior occurs, except that
+    instead of specifying what to merge as files, it is specified as a list of
+    object IDs referring to blobs.
+
+    The exit value of this program is negative on error, and the number of
+    conflicts otherwise (truncated to 127 if there are more than that many
+    conflicts). If the merge was clean, the exit value is 0.
+
+    `git merge-file` is designed to be a minimal clone of RCS 'merge`; that is, it`
+    implements all of RCS 'merges functionality which is needed by
+    [git](man://git/1).

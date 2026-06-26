@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: delete <id>
+description: Delete an SSH key from your GitHub account
+flags:
+    --confirm&: Skip the confirmation prompt
+    -y, --yes: Skip the confirmation prompt

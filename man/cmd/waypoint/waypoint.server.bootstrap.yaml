@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: bootstrap
+description: Bootstrap the server and retrieve the initial auth token
+flags:
+    --context-create=: Create a CLI context for this bootstrapped server.
+    --context-set-default: Set the newly bootstrapped server as the default CLI context.
+    --plain: Plain output
+    --server-addr=: Address for the server.
+    --server-tls: Connected to via TLS.
+    --server-tls-skip-verify: Skip verification of the TLS certificate advertised by the server.
+    -a, --app=: App to target.
+    -p, --project=: Project to target.
+    -w, --workspace=: Workspace to operate in.

@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: remove
+aliases:
+    - rm
+description: Remove platform(s) from the workspace file and updates the lockfile
+flags:
+    --no-install: Don't update the environment, only remove the platform(s) from the lock-file
+    -f, --feature=: The name of the feature to remove the platform from

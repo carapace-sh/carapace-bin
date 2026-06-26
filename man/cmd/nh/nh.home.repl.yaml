@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: repl
+description: Load a home-manager configuration in a Nix REPL
+flags:
+    -c, --configuration=: Name of the flake homeConfigurations attribute

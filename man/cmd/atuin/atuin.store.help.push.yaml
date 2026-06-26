@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: push
+description: Push all records to the remote sync server (one way sync)

@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ""
+
+documentation:
+  command: >-
+    Run local Kubernetes clusters using Docker container "nodes". kind
+    is designed for testing Kubernetes itself, using kubeadm to create
+    clusters. Key commands: create cluster (kind create cluster), delete
+    (kind delete cluster), build node images (kind build node-image),
+    load images into nodes (kind load docker-image). Multi-node clusters
+    and custom control-plane configurations supported. Useful for CI/CD,
+    local development, and testing Kubernetes manifests. Works on Linux,
+    macOS, and Windows (with Docker Desktop or Podman).

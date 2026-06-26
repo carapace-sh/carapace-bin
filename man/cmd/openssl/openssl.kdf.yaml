@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: kdf
+description: Key Derivation Functions
+group: standard
+flags:
+    -binary: Output in binary format (default is hexadecimal)
+    -cipher=: Cipher
+    -digest=: Digest
+    -kdfopt=*: KDF algorithm control parameters in n:v form
+    -keylen=: The size of the output derived key
+    -mac=: MAC See 'Supported Controls' in the EVP_KDF_ docs
+    -out=: Output to filename rather than stdout
+    -propquery=: Property query used when fetching algorithms
+    -provider-path=: Provider load path (must be before 'provider' argument if required)
+    -provider=*: Provider to load (can be specified multiple times)
+    -provparam=: Set a provider key-value parameter

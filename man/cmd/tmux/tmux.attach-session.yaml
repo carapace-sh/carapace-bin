@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: attach-session
+description: attach or switch to a session
+flags:
+    -E: don't apply update-environment option
+    -c=: specify working directory for the session
+    -d: detach other clients attached to target session
+    -f=: set client flags
+    -r: put the client into read-only mode
+    -t=: specify target session
+    -x: with -d, send SIGHUP to the parent of the attached client

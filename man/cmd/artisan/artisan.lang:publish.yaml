@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: lang:publish [--existing] [--force]
+description: Publish all language files that are available for customization
+flags:
+    --existing: Publish and overwrite only the files that have already been published
+    --force: Overwrite any existing files

@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: import-environment
+description: Import all or some environment variables
+group: environment
+documentation:
+  command: |
+    Import all, one or more environment variables set on the client into
+    the systemd manager environment block. If a list of variable names is
+    passed, client-side values are imported. If no arguments are passed,
+    the entire environment block inherited by the systemctl process is
+    imported (deprecated as shell variables often only make sense locally).

@@ -1,0 +1,113 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: switch
+description: Switch branches
+group: main
+flags:
+  --conflict=: conflict style (merge or diff3)
+  --discard-changes: throw away local modifications
+  --guess: second guess 'git switch <no-such-branch>'
+  --ignore-other-worktrees: do not check if another worktree is holding the given ref
+  --orphan=: new unparented branch
+  --overwrite-ignore: update ignored files (default)
+  --progress: force progress reporting
+  --recurse-submodules?: control recursive updating of submodules
+  -C, --force-create=: create/reset and switch to a branch
+  -c, --create=: create and switch to a new branch
+  -d, --detach: detach HEAD at named commit
+  -f, --force: force checkout (throw away local modifications)
+  -m, --merge: perform a 3-way merge with the new branch
+  -q, --quiet: suppress progress reporting
+  -t, --track: set upstream info for new branch
+documentation:
+  command: |-
+    Switch to a specified branch. The working tree and the index are
+    updated to match the branch. All new commits will be added to the tip
+    of this branch.
+
+    Optionally a new branch could be created with either `-c`, `-C`,
+    automatically from a remote branch of same name (see `--guess`), or
+    detach the working tree from any branch with `--detach`, along with
+    switching.
+
+    Switching branches does not require a clean index and working tree
+    (i.e. no differences compared to `HEAD`). The operation is aborted
+    however if the operation leads to loss of local changes, unless told
+    otherwise with `--discard-changes` or `--merge`.
+  flag:
+    conflict: |-
+      The same as `--merge` option above, but changes the way the
+      conflicting hunks are presented, overriding the
+      `merge.conflictStyle` configuration variable.  Possible values are
+      `merge` (default), `diff3`, and `zdiff3`.
+    detach: |-
+      Switch to a commit for inspection and discardable
+      experiments. See the "DETACHED HEAD" section in
+      [git-checkout](cmd://git/checkout) for details.
+    discard-changes: |-
+      Proceed even if the index or the working tree differs from
+      `HEAD`. Both the index and working tree are restored to match
+      the switching target. If `--recurse-submodules` is specified,
+      submodule content is also restored to match the switching
+      target. This is used to throw away local changes.
+    force: An alias for `--discard-changes`.
+    ignore-other-worktrees: |-
+      `git switch` refuses when the wanted ref is already
+      checked out by another worktree. This option makes it check
+      the ref out anyway. In other words, the ref can be held by
+      more than one worktree.
+    merge: |-
+      If you have local modifications to one or more files that
+      are different between the current branch and the branch to
+      which you are switching, the command normally refuses to
+      switch branches in order to preserve your modifications in
+      context.  However, with this option, the conflicting local
+      changes are automatically stashed before the switch and
+      reapplied afterwards.  If the local changes do not overlap
+      with the differences between branches, the switch proceeds
+      without stashing.  If reapplying the stash results in
+      conflicts, the entry is saved to the stash list.  Resolve
+      the conflicts and run `git stash drop` when done, or clear
+      the working tree (e.g. with `git reset --hard`) before
+      running `git stash pop` later to re-apply your changes.
+    orphan: |-
+      Create a new orphan branch named `<new-branch>`, started from
+      the commit at which `git switch` is invoked. The first commit
+      made on this new branch will have no parent (it is a root
+      commit), effectively starting a new, independent history.
+    quiet: Quiet, suppress feedback messages.
+    guess: |-
+      If _<branch>_ is not found but there does exist a tracking
+      branch in exactly one remote (call it _<remote>_) with a
+      matching name, treat as equivalent to
+
+      ```
+      $ git switch -c <branch> --track <remote>/<branch>
+      ```
+
+      If the branch exists in multiple remotes and one of them is named by
+      the `checkout.defaultRemote` configuration variable, we'll use that
+      one for the purposes of disambiguation, even if the _<branch>_ isn't
+      unique across all remotes. Set it to e.g. `checkout.defaultRemote=origin`
+      to always checkout remote branches from there if _<branch>_ is
+      ambiguous but exists on the `origin` remote. See also
+      `checkout.defaultRemote` in [git-config](cmd://git/config).
+
+      `--guess` is the default behavior. Use `--no-guess` to disable it.
+
+      The default behavior can be set via the `checkout.guess` configuration
+      variable.
+    progress: |-
+      Progress status is reported on the standard error stream
+      by default when it is attached to a terminal, unless `--quiet`
+      is specified. This flag enables progress reporting even if not
+      attached to a terminal, regardless of `--quiet`.
+    recurse-submodules: |-
+      Using `--recurse-submodules` will update the content of all
+      active submodules according to the commit recorded in the
+      superproject. If nothing (or `--no-recurse-submodules`) is
+      used, submodules working trees will not be updated. Just
+      like [git-submodule](cmd://git/submodule), this will detach `HEAD` of the
+      submodules.
+    track: |-
+      Do not set up "upstream" configuration, even if the
+      `branch.autoSetupMerge` configuration variable is true.

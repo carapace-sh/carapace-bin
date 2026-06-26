@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: git-archive-file
+description: Export the current HEAD of the git repository to an archive
+flags:
+    --help: Display help message

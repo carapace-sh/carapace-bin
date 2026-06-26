@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: remove
+aliases:
+    - rm
+description: Remove a command from the workspace
+flags:
+    -f, --feature=: The feature for which the task should be removed
+    -p, --platform=: The platform for which the task should be removed

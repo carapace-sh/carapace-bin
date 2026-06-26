@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: auth
+description: Manage recordings on asciinema.org account
+documentation:
+  command: >-
+    Link the local asciinema CLI to an asciinema server account. Displays a URL
+    to open in a browser for authentication. Required for remote streaming with
+    `stream` or `session` commands; optional for uploads.

@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: lsfd
+description: list file descriptors
+flags:
+    --_drop-privilege: (testing purpose) do setuid(1) just after starting
+    --debug-filter: dump the internal data structure of filter and exit
+    --dump-counters: dump counter definitions
+    --hyperlink?: print paths as terminal hyperlinks
+    --summary?: print summary information
+    -C, --counter=: define custom counter for --summary output
+    -H, --list-columns: list the available columns
+    -J, --json: use JSON output format
+    -Q, --filter=: apply display filter
+    -V, --version: display version
+    -h, --help: display this help
+    -i, --inet?: list only IPv4 and/or IPv6 sockets
+    -l, --threads: list in threads level
+    -n, --noheadings: don't print headings
+    -o, --output=: output columns (see --list-columns)
+    -p, --pid=: collect information only specified processes
+    -r, --raw: use raw output format
+    -u, --notruncate: don't truncate text in columns

@@ -1,0 +1,30 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: kotlinc
+description: Kotlin command-line compiler
+flags:
+    -J: Pass an option directly to JVM
+    -P=: Pass an option to a plugin
+    -Werror: Report an error if there are any warnings
+    -X: Print a synopsis of advanced options
+    -api-version=: Allow using declarations only from the specified version of bundled libraries
+    -classpath=: List of directories and JAR/ZIP archives to search for user class files
+    -d=: Destination for generated class files
+    -e, --expression: Evaluate the given string as a Kotlin script
+    -h, --help: Print a synopsis of standard options
+    -include-runtime: Include Kotlin runtime into the resulting JAR
+    -java-parameters: Generate metadata for Java 1.8 reflection on method parameters
+    -jdk-home=: Include a custom JDK from the specified location into the classpath
+    -jvm-target=: Target version of the generated JVM bytecode
+    -kotlin-home=: Path to the home directory of Kotlin compiler used for discovery of runtime libraries
+    -language-version=: Provide source compatibility with the specified version of Kotlin
+    -module-name=: Name of the generated .kotlin_module file
+    -no-jdk: Don't automatically include the Java runtime into the classpath
+    -no-reflect: Don't automatically include Kotlin reflection into the classpath
+    -no-stdlib: Don't automatically include the Kotlin/JVM stdlib and Kotlin reflection into the classpath
+    -nowarn: Generate no warnings
+    -opt-in=: Enable usages of API that requires opt-in with an opt-in requirement marker with the given fully qualified name
+    -progressive: Enable progressive compiler mode.
+    -script: Evaluate the given Kotlin script (*.kts) file
+    -script-templates=: Script definition template classes
+    -verbose: Enable verbose logging output
+    -version: Display compiler version

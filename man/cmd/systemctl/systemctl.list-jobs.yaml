@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list-jobs
+description: List jobs
+group: job
+documentation:
+  command: |
+    List jobs that are in progress. If one or more PATTERNs are specified,
+    only jobs for units matching one of them are shown. When combined with
+    `--after` or `--before`, the list is augmented with information on
+    which other job each job is waiting for, and which other jobs are
+    waiting for it.

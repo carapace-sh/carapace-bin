@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: git-abort
+description: Abort current rebase, merge or cherry-pick, without the need to find exact command in history
+flags:
+    --help: show help

@@ -1,0 +1,65 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: redis-cli
+description: Redis command line interface
+flags:
+    --askpass: Force user to input password with mask from STDIN
+    --bigkeys: Sample Redis keys looking for keys with many elements
+    --cacert=: CA Certificate file to verify with
+    --cacertdir=: Directory where trusted CA certificates are stored
+    --cert=: Client certificate to authenticate with
+    --cluster=: Cluster Manager command and arguments
+    --csv: Output in CSV format
+    --eval=: Send an EVAL command using the Lua script at <file>
+    --functions-rdb=: Like --rdb but only get the functions when getting the RDB dump file
+    --help: Output this help and exit
+    --hotkeys: Sample Redis keys looking for hot keys
+    --insecure: Allow insecure TLS connection by skipping cert validation
+    --intrinsic-latency=: Run a test to measure intrinsic system latency
+    --json: Output in JSON format
+    --key=: Private key file to authenticate with
+    --latency: Enter a special mode continuously sampling latency
+    --latency-dist: Shows latency as a spectrum, requires xterm 256 colors
+    --latency-history: Like --latency but tracking latency changes over time
+    --ldb: Used with --eval enable the Redis Lua debugger
+    --ldb-sync-mode: Like --ldb but uses the synchronous Lua debugger
+    --lru-test=: Simulate a cache workload with an 80-20 distribution
+    --memkeys: Sample Redis keys looking for keys consuming a lot of memory
+    --memkeys-samples=: Sample Redis keys looking for keys consuming a lot of memory
+    --no-auth-warning: Don't show warning message when using password on command line interface
+    --no-raw: Force formatted output even when STDOUT is not a tty
+    --pass=: Alias of -a for consistency with the new --user option
+    --pattern=: Keys pattern when using the --scan, --bigkeys or --hotkeys options
+    --pipe: Transfer raw Redis protocol from stdin to server
+    --pipe-timeout=: In --pipe mode, abort with error if after sending all data
+    --quoted-input: Force input to be handled as quoted strings
+    --quoted-json: Same as --json, but produce ASCII-safe quoted strings, not Unicode
+    --quoted-pattern=: Same as --pattern, but the specified string can be quoted
+    --raw: Use raw formatting for replies
+    --rdb=: Transfer an RDB dump from remote server to local file
+    --replica: Simulate a replica showing commands received from the master
+    --scan: List all keys using the SCAN command
+    --show-pushes=: Whether to print RESP3 PUSH messages
+    --sni=: Server name indication for TLS
+    --stat: 'Print rolling stats about server: mem, clients, ...'
+    --tls: Establish a secure TLS connection
+    --tls-ciphers=: Sets the list of preferred ciphers
+    --tls-ciphersuites=: Sets the list of preferred ciphersuites
+    --user=: Used to send ACL style 'AUTH username pass'
+    --verbose: Verbose mode
+    --version: Output version and exit
+    "-2": Start session in RESP2 protocol mode
+    "-3": Start session in RESP3 protocol mode
+    -D=: Delimiter between responses for raw formatting
+    -X: Read <tag> argument from STDIN
+    -a=: Password to use when connecting to the server
+    -c: Enable cluster mode
+    -d=: Delimiter between response bulks for raw formatting
+    -e: Return exit error code when command execution fails
+    -h=: Server hostname
+    -i=: When -r is used, waits <interval> seconds per command
+    -n=: Database number
+    -p=: Server port
+    -r=: Execute specified command N times
+    -s=: Server socket
+    -u=: Server URI.
+    -x: Read last argument from STDIN

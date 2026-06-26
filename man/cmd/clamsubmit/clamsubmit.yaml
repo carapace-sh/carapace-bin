@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Submit files to ClamAV for analysis. Supports submitting false
+    positives and false negatives for signature improvement.
+description: File submission utility for ClamAV
+flags:
+    -?: Show this help
+    -N=: Your name contained in quotation marks (required)
+    -V=: Detected virus name (required with -p)
+    -d: Enable debug output
+    -e=: Your email address (required)
+    -h: Show this help
+    -n=: Submit a false negative (FN)
+    -p=: Submit a false positive (FP)
+    -v: Show version

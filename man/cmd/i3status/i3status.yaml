@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: i3status
+description: Generates a status line for i3bar, dzen2, xmobar or lemonbar
+flags:
+    -c=: Specifies an alternate configuration file path.

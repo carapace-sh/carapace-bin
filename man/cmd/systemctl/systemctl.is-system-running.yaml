@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: is-system-running
+description: Check whether system is fully running
+group: system
+documentation:
+  command: |
+    Checks whether the system is operational. Returns success (exit code 0)
+    when the system is fully up and running, specifically not in startup,
+    shutdown or maintenance mode, and with no failed services. The current
+    state is printed to standard output: initializing, starting, running,
+    degraded, maintenance, stopping, offline, or unknown. Use `--wait` to
+    wait until boot is completed before returning.

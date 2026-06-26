@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: dump
+description: Print a backed-up file to stdout
+flags:
+    --path=*: only consider snapshots which include this (absolute) `path` for snapshot ID "latest"
+    --tag=*: only consider snapshots which include this `taglist` for snapshot ID "latest"
+    -H, --host=*: only consider snapshots for this host when the snapshot ID is "latest" (can be specified multiple times)
+    -a, --archive=: set archive `format` as "tar" or "zip"
+
+documentation:
+  command: >-
+    Print a single file from a snapshot to stdout. Useful for extracting specific files without restoring everything.

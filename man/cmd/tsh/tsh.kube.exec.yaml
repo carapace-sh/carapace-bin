@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: exec
+description: Execute a command in a Kubernetes pod.
+flags:
+    --invite=: A comma separated list of people to mark as invited for the session.
+    --no-participant-req&: Displays a verbose list of required participants in a moderated session.
+    --no-quiet&: Only print output from the remote session
+    --no-stdin&: Pass stdin to the container
+    --no-tty&: Stdin is a TTY
+    --participant-req: Displays a verbose list of required participants in a moderated session.
+    --reason=: The purpose of the session.
+    -c, --container=: Container name. If omitted, use the kubectl.kubernetes.io/default-container annotation for selecting the container to be attached or the first container in the pod will be chosen
+    -f, --filename=: to use to exec into the resource
+    -q, --quiet: Only print output from the remote session
+    -s, --stdin: Pass stdin to the container
+    -t, --tty: Stdin is a TTY

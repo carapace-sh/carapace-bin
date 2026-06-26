@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: bsp
+description: start build server
+flags:
+    --host=: the server host for the bsp server
+    --pipe-name=: a path to a new existing socket file to communicate through
+    --port=: the port for the bsp server
+    --protocol=: the connection protocol for the bsp server
+    --socket=: a path to a socket file to communicate through

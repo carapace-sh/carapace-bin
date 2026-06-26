@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: write
+description: Write a new MIDX file
+flags:
+  --bitmap: write a multi-pack bitmap
+  --no-bitmap: do not write a multi-pack bitmap
+  --preferred-pack=: specify the tie-breaking pack used when multiple packs contain the same object
+  --refs-snapshot=: specify a file which contains a "refs snapshot" taken prior to repacking
+  --stdin-packs: provide pack index basenames over stdin

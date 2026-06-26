@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: gcloud
+description: manage Google Cloud Platform resources and developer workflow

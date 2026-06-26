@@ -1,0 +1,30 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: compare
+description: compare two images
+flags:
+    -authenticate=*: decrypt image with this password
+    -auto-orient*: orient (rotate) images so they are upright
+    -colorspace=*: alternate image colorspace
+    -compress=*: image compression type
+    -debug=*: display copious debugging information
+    -define=*: coder/decoder specific options
+    -density=*: horizontal and vertical density of the image
+    -depth=*: image depth
+    -display=*: get image or font from this X server
+    -endian=*: multibyte word order (LSB, MSB, or Native)
+    -file=*: write difference image to this file
+    -help: print program options
+    -highlight-color=*: color to use when annotating difference pixels
+    -highlight-style=*: pixel highlight style (assign, threshold, tint, xor)
+    -interlace=*: None, Line, Plane, or Partition
+    -limit=*: Disk, File, Map, Memory, Pixels, Width, Height, Threads, Read, or Write resource limit
+    -log=*: format of debugging information
+    -matte*: store matte channel if the image has one
+    -maximum-error*: maximum total difference before returning error
+    -metric*: comparison metric (MAE, MSE, PAE, PSNR, RMSE)
+    -monitor*: show progress indication
+    -sampling-factor=*: horizontal and vertical sampling factors
+    -size=*: width and height of image
+    -type=*: image type
+    -verbose: print detailed information about the image
+    -version: print version information

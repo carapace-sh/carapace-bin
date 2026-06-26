@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: show
+description: Show configured hooks
+flags:
+    --expanded: Show expanded commands with current variables
+    -h, --help: Print help (see more with '--help')

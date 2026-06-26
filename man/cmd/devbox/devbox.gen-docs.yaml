@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: gen-docs <path>
+description: '[Internal] Generate documentation for the CLI'
+hidden: true

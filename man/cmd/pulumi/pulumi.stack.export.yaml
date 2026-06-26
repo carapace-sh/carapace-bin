@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: export
+description: Export a stack's deployment to standard out
+flags:
+    --show-secrets: Emit secrets in plaintext in exported stack. Defaults to `false`
+persistentflags:
+    --file=: A filename to write stack output to
+    --version=: Previous stack version to export. (If unset, will export the latest.)

@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: stats
+description: Calculate statistics for your history
+flags:
+    -c, --count=: How many top commands to list
+    -h, --help: Print help
+    -n, --ngram-size=: The number of consecutive commands to consider

@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: download
+description: download modules to local cache
+flags:
+    -json: print a sequence of JSON objects
+    -x: print the commands download executes

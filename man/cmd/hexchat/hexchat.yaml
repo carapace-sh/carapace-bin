@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: hexchat
+description: IRC Client
+flags:
+    --display=: X display to use
+    --help-all: Show all help options
+    --help-gtk: Show GTK+ Options
+    --minimize=: Begin minimized. Level 0=Normal 1=Iconified 2=Tray
+    -a, --no-auto: Don't auto connect to servers
+    -c, --command=: Execute command
+    -d, --cfgdir=: Use a different config directory
+    -e, --existing: Open URL or execute command in an existing HexChat
+    -h, --help: Show help options
+    -n, --no-plugins: Don't auto load any plugins
+    -p, --plugindir: Show plugin/script auto-load directory
+    -u, --configdir: Show user config directory
+    -v, --version: Show version information

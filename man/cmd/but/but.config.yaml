@@ -1,0 +1,50 @@
+name: config
+description: View and manage GitButler configuration.
+flags:
+    -h, --help: Print help (see more with '--help')
+documentation:
+    command: |-
+        View and manage GitButler configuration.
+
+        Without a subcommand, displays an overview of important settings including
+        user information, target branch, forge configuration, and AI setup.
+
+        ## Examples
+
+        View configuration overview:
+
+        ```text
+        but config
+        ```
+
+        View/set user configuration:
+
+        ```text
+        but config user
+        but config user set name "John Doe"
+        but config user set email john@example.com
+        ```
+
+        View/set forge configuration:
+
+        ```text
+        but config forge
+        ```
+
+        View/set target branch:
+
+        ```text
+        but config target
+        ```
+
+        View/set metrics:
+
+        ```text
+        but config metrics
+        ```
+    flag:
+        help: Print help (see a summary with '-h')
+        status-after: |-
+            After a mutation command completes, also output workspace status.
+
+            In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).

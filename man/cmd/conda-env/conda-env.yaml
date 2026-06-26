@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Manage conda environments. Creates, exports, lists, removes,
+    and updates environments defined in YAML specification files.
+description: Manage conda environments

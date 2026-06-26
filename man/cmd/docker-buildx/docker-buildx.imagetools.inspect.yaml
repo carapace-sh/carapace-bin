@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: inspect [OPTIONS] NAME
+description: Show details of an image in the registry
+flags:
+    --format=: Format the output using the given Go template
+    --raw: Show original, unformatted JSON manifest

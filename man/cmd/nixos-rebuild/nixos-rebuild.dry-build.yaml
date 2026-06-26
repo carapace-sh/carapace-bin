@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: dry-build
+description: Show what store paths would be built or downloaded, but otherwise do nothing

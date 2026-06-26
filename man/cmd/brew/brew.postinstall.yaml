@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: postinstall
+description: Rerun the post-install steps for <formula>
+group: main
+flags:
+    --debug: Display any debugging information.
+    --help: Show this message.
+    --quiet: Make some output more quiet.
+    --verbose: Make some output more verbose.

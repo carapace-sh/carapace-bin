@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: capture-pane
+description: capture the contents of a pane to a buffer
+flags:
+    -C: escape non-printable characters as octal \ooo
+    -E=: specify last line to capture
+    -J: join wrapped lines and preserve trailing space
+    -N: preserve trailing space
+    -P: only capture beginnings of as-yet incomplete escape sequences
+    -S=: specify start line to capture
+    -a: use alternate screen
+    -b=: choose target buffer
+    -e: include escape sequences for attributes etc
+    -p: print data to stdout
+    -q: ignore errors when trying to access alternate screen
+    -t=: choose source pane

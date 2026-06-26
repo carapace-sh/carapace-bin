@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: patool
+description: An archive file manager
+flags:
+    --non-interactive: don't query for user input
+    -q, --quiet*: quiet operation
+    -v, --verbose*: verbose operation
+persistentflags:
+    -h, --help: show this help message and exit

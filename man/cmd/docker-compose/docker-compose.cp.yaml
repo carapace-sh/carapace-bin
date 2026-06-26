@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: cp [OPTIONS] SERVICE:SRC_PATH DEST_PATH|-
+description: Copy files/folders between a service container and the local filesystem
+flags:
+    --all: Include containers created by the run command
+    --index=: Index of the container if service has multiple replicas
+    -L, --follow-link: Always follow symbol link in SRC_PATH
+    -a, --archive: Archive mode (copy all uid/gid information)

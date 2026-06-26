@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: modify-metadata
+description: Modify metadata file
+flags:
+    -h, --help: show this help message and exit

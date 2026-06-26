@@ -1,0 +1,52 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: fd
+description: find entries in the filesystem
+flags:
+    --and=: Add additional required search patterns
+    --base-directory=: Change the base directory
+    --batch-size=: Maximum number of arguments for batch commands
+    --changed-after=: alias for --changed-within
+    --changed-before=: Filter by file modification time (older than)
+    --changed-within=: Filter by file modification time (newer than)
+    --exact-depth=: When to use colors
+    --format=: Print results according to template
+    --hyperlink=: When to add terminal hyperlinks
+    --ignore-file=: Add a custom ignore file.
+    --max-results=: Limit the number of results
+    --min-depth=: 'Set minimum search depth (default: none)'
+    --no-ignore-parent: Ignore parent directory's .gitignore
+    --no-ignore-vcs: Ignore .gitignore files
+    --no-require-git: Do not require a git repository to respect gitignores
+    --one-file-system: Stay within the same file system
+    --path-separator=: Set the path separator
+    --prune: Do not recurse into matching directories
+    --regex=: Regular expression search
+    --search-path=*: Provide paths to search
+    --show-errors: Show filesystem errors
+    --strip-cwd-prefix=: Strip current working directory prefix
+    -0, --print0: Separate results by the null character
+    "-1": Limit to one result
+    -E, --exclude=: Exclude entries that match the given glob pattern
+    -F, --fixed-strings: fixed string search
+    -H, --hidden: Search hidden files and directories
+    -I, --no-ignore: Do not respect .(git|fd)ignore files
+    -L, --follow: Follow symbolic links
+    -S, --size=: Limit results based on the size of files.
+    -V, --version: Prints version information
+    -X, --exec-batch=: Execute a command with all search results at once
+    -a, --absolute-path: Show absolute instead of relative paths
+    -c, --color=: When to use colors
+    -d, --max-depth=: 'Set maximum search depth (default: none)'
+    -e, --extension=: Filter by file extension
+    -g, --glob: 'Glob-based search (default: regular expression)'
+    -h, --help: Prints help information
+    -i, --ignore-case: 'Case-insensitive search (default: smart case)'
+    -j, --threads=: Set number of threads
+    -l, --list-details: Use a long listing format with file metadata
+    -o, --owner=: Filter by owning user and/or group
+    -p, --full-path: 'Search full path (default: file-/dirname only)'
+    -q, --quiet: Quiet mode
+    -s, --case-sensitive: 'Case-sensitive search (default: smart case)'
+    -t, --type=: Filter by type
+    -u, --unrestricted: Unrestricted Search
+    -x, --exec=: Execute a command for each search result

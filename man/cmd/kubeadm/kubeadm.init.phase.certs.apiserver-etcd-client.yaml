@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: apiserver-etcd-client
+description: Generate the certificate the apiserver uses to access etcd
+flags:
+    --cert-dir=: The path where to save and store the certificates.
+    --config=: Path to a kubeadm configuration file.
+    --dry-run: Don't apply any changes; just output what would be done.
+    --kubernetes-version=: Choose a specific Kubernetes version for the control plane.

@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: model:show [--database [DATABASE]] [--json] [--] <model>
+description: Show information about an Eloquent model
+flags:
+    --database=: The database connection to use
+    --json: Output the model as JSON

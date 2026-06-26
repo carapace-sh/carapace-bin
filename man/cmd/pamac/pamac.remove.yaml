@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: remove
+description: Remove packages
+flags:
+    --no-confirm: bypass any and all confirmation messages
+    --no-orphans: do not remove dependencies that are not required by other
+    -d, --dry-run: only print what would be done but do not run the transaction
+    -n, --no-save: ignore files backup
+    -o, --orphans: remove dependencies that are not required by other packages,
+    -u, --unneeded: remove packages only if they are not required by any other

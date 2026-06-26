@@ -1,0 +1,34 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: read-tree
+description: Reads tree information into the index
+group: low-level manipulator
+flags:
+  --aggressive: 3-way merge in presence of adds and removes
+  --debug-unpack: debug unpack-trees
+  --empty: only empty the index
+  --exclude-per-directory=: allow explicitly ignored files to be overwritten
+  --index-output=: write resulting index to <file>
+  --no-sparse-checkout: skip applying sparse checkout filter
+  --prefix=: read the tree into the index under <subdirectory>/
+  --recurse-submodules=: control recursive updating of submodules
+  --reset: same as -m, but discard unmerged entries
+  --trivial: 3-way merge if no file level merging required
+  -i: don't check the working tree after merging
+  -m: perform a merge in addition to a read
+  -n, --dry-run: don't update the index or the work tree
+  -q, --quiet: suppress feedback messages
+  -u: update working tree with merge result
+  -v, --verbose: be verbose
+documentation:
+  command: |-
+    Reads the tree information given by <tree-ish> into the index,
+    but does not actually *update* any of the files it "caches". (see:
+    [git-checkout-index](cmd://git/checkout-index))
+
+    Optionally, it can merge a tree into the index, perform a
+    fast-forward (i.e. 2-way) merge, or a 3-way merge, with the `-m`
+    flag.  When used with `-m`, the `-u` flag causes it to also update
+    the files in the work tree with the result of the merge.
+
+    Only trivial merges are done by `git read-tree` itself.  Only conflicting paths
+    will be in an unmerged state when 'git read-tree' returns.

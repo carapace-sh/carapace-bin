@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: extension
+aliases:
+    - extensions
+    - ext
+description: Manage gh extensions
+documentation:
+    command: |
+        GitHub CLI extensions are repositories that provide additional gh commands.
+        Extension repositories must start with `gh-` and contain an executable of
+        the same name. Install extensions with `gh extension install`, manage with
+        `gh extension list`, and remove with `gh extension remove`.

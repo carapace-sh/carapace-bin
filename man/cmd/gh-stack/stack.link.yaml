@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: link <branch-or-pr> <branch-or-pr> [<branch-or-pr>...]
+description: Link PRs into a stack on GitHub without local tracking
+flags:
+    --base=: Base branch for the bottom of the stack
+    --draft: Create new PRs as drafts
+    --remote=: Remote to push to (defaults to auto-detected remote)

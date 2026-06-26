@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+aliases:
+    - ls
+description: List GitHub Actions caches
+flags:
+    --json=*: Output JSON with the specified `fields`
+    -L, --limit=: Maximum number of caches to fetch
+    -O, --order=: 'Order of caches returned: {asc|desc}'
+    -S, --sort=: 'Sort fetched caches: {created_at|last_accessed_at|size_in_bytes}'
+    -k, --key=: Filter by cache key prefix
+    -q, --jq=: Filter JSON output using a jq `expression`
+    -r, --ref=: Filter by ref, formatted as refs/heads/<branch name> or refs/pull/<number>/merge
+    -t, --template=: Format JSON output using a Go template; see "gh help formatting"

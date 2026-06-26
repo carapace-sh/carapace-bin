@@ -1,0 +1,168 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: nix
+description: a tool for reproducible and declarative configuration management
+flags:
+    --accept-flake-config: Enable the accept-flake-config setting
+    --access-tokens=: Set the access-tokens setting
+    --allow-dirty: Enable the allow-dirty setting
+    --allow-import-from-derivation: Enable the allow-import-from-derivation setting
+    --allow-new-privileges: Enable the allow-new-privileges setting
+    --allow-symlinked-store: Enable the allow-symlinked-store setting
+    --allow-unsafe-native-code-during-evaluation: Enable the allow-unsafe-native-code-during-evaluation setting
+    --allowed-impure-host-deps=: Set the allowed-impure-host-deps setting
+    --allowed-uris=: Set the allowed-uris setting
+    --allowed-users=: Set the allowed-users setting
+    --auto-optimise-store: Enable the auto-optimise-store setting
+    --bash-prompt-prefix=: Set the bash-prompt-prefix setting
+    --bash-prompt-suffix=: Set the bash-prompt-suffix setting
+    --bash-prompt=: Set the bash-prompt setting
+    --build-hook=: Set the build-hook setting
+    --build-poll-interval=: Set the build-poll-interval setting
+    --build-users-group=: Set the build-users-group setting
+    --builders-use-substitutes: Enable the builders-use-substitutes setting
+    --builders=*: Set the builders setting
+    --commit-lockfile-summary=: Set the commit-lockfile-summary setting
+    --compress-build-log: Enable the compress-build-log setting
+    --connect-timeout=: Set the connect-timeout setting
+    --cores=: Set the cores setting
+    --debug: Set the logging verbosity level to ‘debug’
+    --diff-hook=: Set the diff-hook setting
+    --download-attempts=: Set the download-attempts setting
+    --download-speed=: Set the download-speed setting
+    --enforce-determinism: Enable the enforce-determinism setting
+    --eval-cache: Enable the eval-cache setting
+    --experimental-features=: Set the experimental-features setting
+    --extra-access-tokens=: Append to the access-tokens setting
+    --extra-allowed-impure-host-deps=: Append to the allowed-impure-host-deps setting
+    --extra-allowed-uris=: Append to the allowed-uris setting
+    --extra-allowed-users=: Append to the allowed-users setting
+    --extra-experimental-features=: Append to the experimental-features setting
+    --extra-extra-platforms=: Append to the extra-platforms setting
+    --extra-hashed-mirrors=: Append to the hashed-mirrors setting
+    --extra-ignored-acls=: Append to the ignored-acls setting
+    --extra-nix-path=: Append to the nix-path setting
+    --extra-platforms=: Set the extra-platforms setting
+    --extra-plugin-files=: Append to the plugin-files setting
+    --extra-sandbox-paths=: Append to the sandbox-paths setting
+    --extra-secret-key-files=: Append to the secret-key-files setting
+    --extra-substituters=: Append to the substituters setting
+    --extra-system-features=: Append to the system-features setting
+    --extra-trusted-public-keys=: Append to the trusted-public-keys setting
+    --extra-trusted-substituters=: Append to the trusted-substituters setting
+    --extra-trusted-users=: Append to the trusted-users setting
+    --fallback: Enable the fallback setting
+    --filter-syscalls: Enable the filter-syscalls setting
+    --flake-registry=: Set the flake-registry setting
+    --fsync-metadata: Enable the fsync-metadata setting
+    --gc-reserved-space=: Set the gc-reserved-space setting
+    --hashed-mirrors=: Set the hashed-mirrors setting
+    --http-connections=: Set the http-connections setting
+    --http2: Enable the http2 setting
+    --ignore-try: Enable the ignore-try setting
+    --ignored-acls=: Set the ignored-acls setting
+    --impersonate-linux-26: Enable the impersonate-linux-26 setting
+    --keep-build-log: Enable the keep-build-log setting
+    --keep-derivations: Enable the keep-derivations setting
+    --keep-env-derivations: Enable the keep-env-derivations setting
+    --keep-failed: Enable the keep-failed setting
+    --keep-going: Enable the keep-going setting
+    --keep-outputs: Enable the keep-outputs setting
+    --log-format=: Set the format of log output
+    --log-lines=: Set the log-lines setting
+    --max-build-log-size=: Set the max-build-log-size setting
+    --max-free=: Set the max-free setting
+    --max-jobs=: Set the max-jobs setting
+    --max-silent-time=: Set the max-silent-time setting
+    --min-free-check-interval=: Set the min-free-check-interval setting
+    --min-free=: Set the min-free setting
+    --nar-buffer-size=: Set the nar-buffer-size setting
+    --narinfo-cache-negative-ttl=: Set the narinfo-cache-negative-ttl setting
+    --narinfo-cache-positive-ttl=: Set the narinfo-cache-positive-ttl setting
+    --netrc-file=: Set the netrc-file setting
+    --nix-path=: Set the nix-path setting
+    --no-accept-flake-config: Disable the accept-flake-config setting
+    --no-allow-dirty: Disable the allow-dirty setting
+    --no-allow-import-from-derivation: Disable the allow-import-from-derivation setting
+    --no-allow-new-privileges: Disable the allow-new-privileges setting
+    --no-allow-symlinked-store: Disable the allow-symlinked-store setting
+    --no-allow-unsafe-native-code-during-evaluation: Disable the allow-unsafe-native-code-during-evaluation setting
+    --no-auto-optimise-store: Disable the auto-optimise-store setting
+    --no-builders-use-substitutes: Disable the builders-use-substitutes setting
+    --no-compress-build-log: Disable the compress-build-log setting
+    --no-enforce-determinism: Disable the enforce-determinism setting
+    --no-eval-cache: Disable the eval-cache setting
+    --no-fallback: Disable the fallback setting
+    --no-filter-syscalls: Disable the filter-syscalls setting
+    --no-fsync-metadata: Disable the fsync-metadata setting
+    --no-http2: Disable the http2 setting
+    --no-ignore-try: Disable the ignore-try setting
+    --no-impersonate-linux-26: Disable the impersonate-linux-26 setting
+    --no-keep-build-log: Disable the keep-build-log setting
+    --no-keep-derivations: Disable the keep-derivations setting
+    --no-keep-env-derivations: Disable the keep-env-derivations setting
+    --no-keep-failed: Disable the keep-failed setting
+    --no-keep-going: Disable the keep-going setting
+    --no-keep-outputs: Disable the keep-outputs setting
+    --no-preallocate-contents: Disable the preallocate-contents setting
+    --no-print-missing: Disable the print-missing setting
+    --no-pure-eval: Disable the pure-eval setting
+    --no-require-sigs: Disable the require-sigs setting
+    --no-restrict-eval: Disable the restrict-eval setting
+    --no-run-diff-hook: Disable the run-diff-hook setting
+    --no-sandbox: Disable sandboxing
+    --no-sandbox-fallback: Disable the sandbox-fallback setting
+    --no-show-trace: Disable the show-trace setting
+    --no-substitute: Disable the substitute setting
+    --no-sync-before-registering: Disable the sync-before-registering setting
+    --no-trace-function-calls: Disable the trace-function-calls setting
+    --no-trace-verbose: Disable the trace-verbose setting
+    --no-use-case-hack: Disable the use-case-hack setting
+    --no-use-registries: Disable the use-registries setting
+    --no-use-sqlite-wal: Disable the use-sqlite-wal setting
+    --no-warn-dirty: Disable the warn-dirty setting
+    --plugin-files=: Set the plugin-files setting
+    --post-build-hook=: Set the post-build-hook setting
+    --pre-build-hook=: Set the pre-build-hook setting
+    --preallocate-contents: Enable the preallocate-contents setting
+    --print-missing: Enable the print-missing setting
+    --pure-eval: Enable the pure-eval setting
+    --quiet: Decrease the logging verbosity level
+    --relaxed-sandbox: Enable sandboxing, but allow builds to disable it
+    --repeat=: Set the repeat setting
+    --require-sigs: Enable the require-sigs setting
+    --restrict-eval: Enable the restrict-eval setting
+    --run-diff-hook: Enable the run-diff-hook setting
+    --sandbox: Enable sandboxing
+    --sandbox-build-dir=: Set the sandbox-build-dir setting
+    --sandbox-dev-shm-size=: Set the sandbox-dev-shm-size setting
+    --sandbox-fallback: Enable the sandbox-fallback setting
+    --sandbox-paths=: Set the sandbox-paths setting
+    --secret-key-files=: Set the secret-key-files setting
+    --show-trace: Enable the show-trace setting
+    --stalled-download-timeout=: Set the stalled-download-timeout setting
+    --store=: Set the store setting
+    --substitute: Enable the substitute setting
+    --substituters=*: Set the substituters setting
+    --sync-before-registering: Enable the sync-before-registering setting
+    --system-features=: Set the system-features setting
+    --system=: Set the system setting
+    --tarball-ttl=: Set the tarball-ttl setting
+    --timeout=: Set the timeout setting
+    --trace-function-calls: Enable the trace-function-calls setting
+    --trace-verbose: Enable the trace-verbose setting
+    --trusted-public-keys=: Set the trusted-public-keys setting
+    --trusted-substituters=: Set the trusted-substituters setting
+    --trusted-users=: Set the trusted-users setting
+    --use-case-hack: Enable the use-case-hack setting
+    --use-registries: Enable the use-registries setting
+    --use-sqlite-wal: Enable the use-sqlite-wal setting
+    --user-agent-suffix=: Set the user-agent-suffix setting
+    --warn-dirty: Enable the warn-dirty setting
+    -L, --print-build-logs: Print full build logs on standard error
+    -v, --verbose: Increase the logging verbosity level
+persistentflags:
+    --help: Show usage information
+    --offline: Disable substituters and consider all previously downloaded files up-to-date
+    --option=*: Set the Nix configuration setting name to value
+    --refresh: Consider all previously downloaded files out-of-date
+    --version: Show version information

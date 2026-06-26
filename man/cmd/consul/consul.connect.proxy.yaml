@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: proxy
+description: Runs a Consul Connect proxy
+flags:
+    --ca-file=: Path to a CA file to use for TLS when communicating with Consul.
+    --ca-path=: Path to a directory of CA certificates to use for TLS when communicating with Consul.
+    --client-cert=: Path to a client cert file to use for TLS when 'verify_incoming' is enabled.
+    --client-key=: Path to a client key file to use for TLS when 'verify_incoming' is enabled.
+    --datacenter=: Name of the datacenter to query.
+    --http-addr=: The `address` and port of the Consul HTTP agent.
+    --listen=: Address to listen for inbound connections to the proxied service.
+    --log-json: Output logs in JSON format.
+    --log-level=: Specifies the log level.
+    --pprof-addr=: Enable debugging via pprof.
+    --proxy-id=: The proxy's ID on the local agent.
+    --register: Self-register with the local Consul agent.
+    --register-id=: ID suffix for the service.
+    --service-addr=: Address of the local service to proxy.
+    --service=: Name of the service this proxy is representing.
+    --sidecar-for=: The ID of a service instance on the local agent that this proxy should become a sidecar for.
+    --stale: Permit any Consul server (non-leader) to respond to this request.
+    --tls-server-name=: The server name to use as the SNI host when connecting via TLS.
+    --token-file=: File containing the ACL token to use in the request.
+    --token=: ACL token to use in the request.
+    --upstream=: Upstream service to support connecting to.

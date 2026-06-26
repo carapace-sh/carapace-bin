@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    JetBrains DataGrip — a database IDE. Launches the DataGrip
+    development environment for SQL and database management.
+description: DataGrip CLI

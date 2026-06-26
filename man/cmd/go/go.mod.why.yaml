@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: why
+description: explain why packages or modules are needed
+flags:
+    -m: treat arguments as a list of modules
+    -vendor: exclude tests of dependencies

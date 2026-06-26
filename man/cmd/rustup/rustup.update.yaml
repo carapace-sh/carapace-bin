@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: update
+aliases:
+    - upgrade
+    - up
+description: Update Rust toolchains and rustup
+flags:
+    --force: Force an update, even if some components are missing
+    --force-non-host: Install toolchains that require an emulator. See https://github.com/rust-lang/rustup/wiki/Non-host-toolchains
+    --no-self-update: Don't perform self update when running the `rustup update` command
+    -h, --help: Print help

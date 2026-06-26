@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: provision
+description: provisions the vagrant machine
+flags:
+    --provision-with=: Enable only certain provisioners, by type or by name.

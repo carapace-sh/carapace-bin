@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rm [NAME]
+description: Remove a builder instance
+flags:
+    --all-inactive: Remove all inactive builders
+    --keep-daemon: Keep the buildkitd daemon running
+    --keep-state: Keep BuildKit state
+    -f, --force: Do not prompt for confirmation

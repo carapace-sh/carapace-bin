@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: export
+description: Export stash entries to a ref
+flags:
+    --print: print the object ID instead of writing it to a ref
+    --to-ref=: save the data to the given ref
+
+documentation:
+  command: >-
+    Export the specified stashes, or all of them if none are specified, to a chain of commits which can be transferred using the normal fetch and push mechanisms, then imported using the `import` subcommand.

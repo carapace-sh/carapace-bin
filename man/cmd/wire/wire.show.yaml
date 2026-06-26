@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: show
+description: describe all top-level provider sets
+flags:
+    -tags=: append build tags to the default wirebuild

@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: fmt [options] [target...]
+description: Reformat your configuration in the standard style
+flags:
+    -check: Check if the input is formatted
+    -diff: Display diffs of formatting changes
+    -list: Don't list files whose formatting differs
+    -no-color: If specified, output won't contain any color
+    -recursive: Also process files in subdirectories
+    -write: Don't write to source files

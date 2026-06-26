@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: owner
+description: Manage the owners of a crate on the registry
+flags:
+    --index=: Registry index URL to modify owners for
+    --registry=: Registry to modify owners for
+    --token=: API token to use when authenticating
+    -a, --add=*: Name of a user or team to invite as an owner
+    -h, --help: Print help
+    -l, --list: List owners of a crate
+    -r, --remove=*: Name of a user or team to remove as an owner

@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: open
+aliases:
+    - o
+description: Open something of the repository in web browser
+group: HELPERS
+flags:
+    -R, --remote=: Discover Gitea login from remote. Optional
+    -l, --login=: Use a different Gitea Login. Optional
+    -r, --repo=: Override local repository path or gitea repository slug to interact with. Optional

@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: nmcli
+description: command-line tool for controlling NetworkManager
+flags:
+    -a, --ask: ask for missing parameters
+    -c, --colors=: whether to use colors in output
+    -e, --escape=: escape columns separators in values
+    -f, --fields=: specify fields to output
+    -g, --get-values=: shortcut for -m tabular -t -f
+    -h, --help: print this help
+    -m, --mode=: output mode
+    -o, --overview: overview mode
+    -p, --pretty: pretty output
+    -s, --show-secrets: allow displaying passwords
+    -t, --terse: terse output
+    -v, --version: show program version
+    -w, --wait=: set timeout waiting for finishing operations

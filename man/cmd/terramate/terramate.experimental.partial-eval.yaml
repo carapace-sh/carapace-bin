@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: partial-eval
+description: Partial evaluate the expressions
+flags:
+    -g, --global=*: 'set/override globals. eg.: --global name=<expr>'

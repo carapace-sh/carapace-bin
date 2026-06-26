@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: set-context [NAME | --current] [--cluster=cluster_nickname] [--user=user_nickname] [--namespace=namespace]
+description: Set a context entry in kubeconfig
+flags:
+    --cluster=: cluster for the context entry in kubeconfig
+    --current: Modify the current context
+    --user=: user for the context entry in kubeconfig
+    -n, --namespace=: namespace for the context entry in kubeconfig

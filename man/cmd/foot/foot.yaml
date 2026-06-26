@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: foot
+description: A fast, lightweight and minimalistic Wayland terminal emulator
+flags:
+    --log-no-syslog: disable syslog logging (only applicable in server mode)
+    -C, --check-config: verify configuration, exit with 0 if ok, otherwise exit with 1
+    -D, --working-directory=: directory to start in (CWD)
+    -F, --fullscreen: start in fullscreen mode
+    -H, --hold: remain open after child process exits
+    -L, --login-shell: start shell as a login shell
+    -T, --title=: initial window title (foot)
+    -W, --window-size-chars=: initial width and height, in characters
+    -a, --app-id=: window application ID (foot)
+    -c, --config=: load configuration from PATH ($XDG_CONFIG_HOME/foot/foot.ini)
+    -d, --log-level=: log level (info)
+    -e: ignored (for compatibility with xterm -e)
+    -f, --font=: comma separated list of fonts in fontconfig format (monospace)
+    -l, --log-colorize?: enable/disable colorization of log output on stderr
+    -m, --maximized: start in maximized mode
+    -o, --override=: override configuration option
+    -p, --print-pid=: print PID to file or FD (only applicable in server mode)
+    -s, --server?: run as a server (use 'footclient' to start terminals).
+    -t, --term=: value to set the environment variable TERM to (foot)
+    -v, --version: show the version number and quit
+    -w, --window-size-pixels=: initial width and height, in pixels

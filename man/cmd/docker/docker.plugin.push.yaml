@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: push [OPTIONS] PLUGIN[:TAG]
+description: Push a plugin to a registry
+flags:
+    --disable-content-trust&: Skip image verification (deprecated)

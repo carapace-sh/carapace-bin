@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: unlock
+description: Unlock a worktree
+documentation:
+  command: Unlock a worktree, allowing it to be pruned, moved or deleted.

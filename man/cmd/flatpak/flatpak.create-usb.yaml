@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create-usb [OPTION…] MOUNT-PATH [REF…]
+description: Copy apps or runtimes onto removable media
+group: install
+flags:
+    --allow-partial: Allow partial commits in the created repo
+    --app: Look for app with the specified name
+    --arch=: Arch to copy
+    --destination-repo=: Use custom repository directory within the mount
+    --installation=: Work on a non-default system-wide installation
+    --ostree-verbose: Show OSTree debug information
+    --runtime: Look for runtime with the specified name
+    --system: Work on the system-wide installation (default)
+    -h, --help: Show help options
+    -u, --user: Work on the user installation
+    -v, --verbose: Show debug information, -vv for more detail

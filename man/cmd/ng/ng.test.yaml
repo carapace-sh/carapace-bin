@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: test
+description: Runs unit tests in a project
+flags:
+    --browsers=: Override which browsers tests are run against.
+    --code-coverage: Output a code coverage report.
+    --code-coverage-exclude=: Globs to exclude from code coverage.
+    --include=: Globs of files to include, relative to workspace or project root.
+    --inline-style-language=: The stylesheet language to use for the application's inline component styles.
+    --karma-config=: The name of the Karma configuration file.
+    --main=: The name of the main entry-point file.
+    --poll=: Enable and define the file watching poll time period in milliseconds.
+    --polyfills=: The name of the polyfills file.
+    --preserve-symlinks: Do not use the real path when resolving modules.
+    --progress: Log progress to the console while building.
+    --reporters=: Karma reporters to use. Directly passed to the karma runner.
+    --source-map: Output source maps for scripts and styles.
+    --ts-config=: The name of the TypeScript configuration file.
+    --watch: Run build when files change.
+    --web-worker-ts-config=: TypeScript configuration for Web Worker modules.
+    -c, --configuration=: One or more named builder configurations

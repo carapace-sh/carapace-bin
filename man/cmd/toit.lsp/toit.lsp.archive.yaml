@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: archive
+description: archive a set of entrypoints into a toit archive file
+flags:
+    --include-sdk: if set, will include the used SDK files in the archive file
+    --out=: 'the output file. Use: ''-'' for stdout'
+    --sdk=: the default SDK path to use
+    --toitc=: the default toit compiler to use
+    -v, --verbose: ""

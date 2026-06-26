@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: upgrade
+description: Upgrade the current package's dependencies to latest versions
+flags:
+    --major-versions: Upgrades packages to their latest resolvable versions, and updates pubspec.yaml.
+    --no-offline: Do not use cached packages instead of accessing the network.
+    --no-precompile: Do not precompile executables in immediate dependencies.
+    --null-safety: Upgrade constraints in pubspec.yaml to null-safety versions
+    --offline: Use cached packages instead of accessing the network.
+    --precompile: Precompile executables in immediate dependencies.
+    -C, --directory=: Run this in the directory<dir>.
+    -h, --help: Print this usage information.
+    -n, --dry-run: Report what dependencies would change but don't change any.

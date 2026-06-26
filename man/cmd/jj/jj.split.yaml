@@ -1,0 +1,160 @@
+name: split
+description: Split a revision in two
+flags:
+    --after=*: The revision(s) to insert after (can be repeated to create a merge commit)
+    --before=*: The revision(s) to insert before (can be repeated to create a merge commit)
+    --destination=*: The revision(s) to rebase the selected changes onto (can be repeated to create a merge commit)
+    --editor: Open an editor to edit the change description(s)
+    --tool=: Specify diff editor to be used (implies --interactive)
+    -A, --insert-after=*: The revision(s) to insert after (can be repeated to create a merge commit)
+    -B, --insert-before=*: The revision(s) to insert before (can be repeated to create a merge commit)
+    -d=*: The revision(s) to rebase the selected changes onto (can be repeated to create a merge commit)
+    -h, --help: Print help (see more with '--help')
+    -i, --interactive: Interactively choose which parts to split
+    -m, --message=*: The change description to use for the selected changes (don't open editor)
+    -o, --onto=*: The revision(s) to rebase the selected changes onto (can be repeated to create a merge commit)
+    -p, --parallel: Split the revision into two parallel revisions instead of a parent and child
+    -r, --revision=: The revision to split
+completion:
+    flag:
+        color:
+            - always
+            - never
+            - debug
+            - auto
+        config-file:
+            - $files
+        repository:
+            - $directories
+    positionalany:
+        - $files
+documentation:
+    command: |-
+        Split a revision in two
+
+        Starts a [diff editor] on the changes in the revision. Edit the right side
+        of the diff until it has the content you want in the first commit. Once you
+        close the editor, your revision will be split into two commits.
+
+        [diff editor]:
+            https://docs.jj-vcs.dev/latest/config/#editing-diffs
+
+        By default, the selected changes stay in the original commit, and the
+        remaining changes go into a new child commit:
+
+        ```text
+        L                 L'
+        |                 |
+        K (split)   =>    K" (remaining)
+        |                 |
+        J                 K' (selected)
+                          |
+                          J
+        ```
+
+        With `--parallel/-p`, the two parts become sibling commits instead of
+        parent and child:
+
+        ```text
+                          L'
+        L                / \
+        |               K'  |  (selected)
+        K (split)  =>   |   K" (remaining)
+        |                \ /
+        J                 J
+        ```
+
+        With `-o`, `-A`, or `-B`, the selected changes are extracted into a new
+        commit at the specified location, while the remaining changes stay in place:
+
+        ```text
+        M                 M'
+        |                 |
+        L                 L'
+        |                 |
+        K (split)   =>    K' (remaining, stays here)
+        |                 |
+        J                 J'
+                          |
+                          K" (selected, inserted before J with -B J)
+        ```
+
+        If the change you split had a description, you will be asked to enter a
+        change description for each commit. If the change did not have a
+        description, the second commit will not get a description, and you will be
+        asked for a description only for the first commit.
+
+        Splitting an empty commit is not supported because the same effect can be
+        achieved with `jj new`.
+    flag:
+        at-operation: |-
+            Operation to load the repo at
+
+            Operation to load the repo at. By default, Jujutsu loads the repo at the most recent operation, or at the merge of the divergent operations if any.
+
+            You can use `--at-op=<operation ID>` to see what the repo looked like at an earlier operation. For example `jj --at-op=<operation ID> st` will show you what `jj st` would have shown you when the given operation had just finished. `--at-op=@` is pretty much the same as the default except that divergent operations will never be merged.
+
+            Use `jj op log` to find the operation ID you want. Any unambiguous prefix of the operation ID is enough.
+
+            When loading the repo at an earlier operation, the working copy will be ignored, as if `--ignore-working-copy` had been specified.
+
+            It is possible to run mutating commands when loading the repo at an earlier operation. Doing that is equivalent to having run concurrent commands starting at the earlier operation. There's rarely a reason to do that, but it is possible.
+        config: |-
+            Additional configuration options (can be repeated)
+
+            The name should be specified as TOML dotted keys. The value should be specified as a TOML expression. If string value isn't enclosed by any TOML constructs (such as array notation), quotes can be omitted.
+        editor: |-
+            Open an editor to edit the change description(s)
+
+            Forces an editor to open when using `--message` to allow the message to be edited afterward.
+        help: Print help (see a summary with '-h')
+        ignore-immutable: |-
+            Allow rewriting immutable commits
+
+            By default, Jujutsu prevents rewriting commits in the configured set of immutable commits. This option disables that check and lets you rewrite any commit but the root commit.
+
+            This option only affects the check. It does not affect the `immutable_heads()` revset or the `immutable` template keyword.
+        ignore-working-copy: |-
+            Don't snapshot the working copy, and don't update it
+
+            By default, Jujutsu snapshots the working copy at the beginning of every command. The working copy is also updated at the end of the command, if the command modified the working-copy commit (`@`). If you want to avoid snapshotting the working copy and instead see a possibly stale working-copy commit, you can use `--ignore-working-copy`. This may be useful e.g. in a command prompt, especially if you have another process that commits the working copy.
+
+            Loading the repository at a specific operation with `--at-operation` implies `--ignore-working-copy`.
+        insert-after: |-
+            The revision(s) to insert after (can be repeated to create a merge commit)
+
+            Extracts the selected changes into a new commit inserted after the given revision(s). The remaining changes stay in the original commit's location.
+        insert-before: |-
+            The revision(s) to insert before (can be repeated to create a merge commit)
+
+            Extracts the selected changes into a new commit inserted before the given revision(s). The remaining changes stay in the original commit's location.
+        interactive: |-
+            Interactively choose which parts to split
+
+            This is the default if no filesets are provided.
+        message: |-
+            The change description to use for the selected changes (don't open editor)
+
+            Sets the description for the revision containing the selected changes. The other revision will keep its original description, if any.
+        no-integrate-operation: |-
+            Run the command as usual but don't integrate any operations
+
+            When this option is given, the operations will still be created as usual but they will not be integrated to the operation log. The working copy will also not be updated.
+
+            The command will print the resulting operation ID. You can pass that to e.g. `jj --at-op` to inspect the resulting repo state, or you can pass it to `jj op restore` to restore the repo to that state. You can also pass the ID to `jj op integrate` to integrate the operation.
+
+            Note that this does *not* prevent side effects outside the repo. For example, `jj git push --no-integrate-operation` will still perform the push.
+        onto: |-
+            The revision(s) to rebase the selected changes onto (can be repeated to create a merge commit)
+
+            Extracts the selected changes into a new commit based on the given revision(s). The remaining changes stay in the original commit's location.
+        quiet: |-
+            Silence non-primary command output
+
+            For example, `jj file list` will still list files, but it won't tell you if the working copy was snapshotted or if descendants were rebased.
+
+            Warnings and errors will still be printed.
+        repository: |-
+            Path to repository to operate on
+
+            By default, Jujutsu searches for the closest .jj/ directory in an ancestor of the current working directory.

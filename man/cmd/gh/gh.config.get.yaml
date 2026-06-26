@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: get <key>
+description: Print the value of a given configuration key
+flags:
+    -h, --host=: Get per-host setting

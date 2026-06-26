@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: update [pkg]...
+description: Update packages in your devbox
+flags:
+    --all-projects: update all projects in the working directory, recursively.
+    --environment=: environment to use, when supported (e.g.secrets support dev, prod, preview.)
+    --no-install: update lockfile but don't install anything
+    --sync-lock: sync all devbox.lock dependencies in multiple projects. Dependencies will sync to the latest local version.
+    -c, --config=&: path to directory containing a devbox.json config file

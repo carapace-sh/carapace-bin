@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: eval
+description: '[experimental] Evaluate a template expression'
+flags:
+    --dry-run: Show template variables and expanded result
+    -h, --help: Print help (see more with '--help')

@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: powershell
+description: connects to machine via powershell remoting
+flags:
+    -c, --command=: Execute a powershell command directly
+    -e, --elevated: Execute a powershell command with elevated permissions

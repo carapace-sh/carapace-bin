@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ls [OPTIONS]
+aliases:
+    - list
+description: List contexts
+flags:
+    --format=: 'Format output using a custom template:'
+    -q, --quiet: Only show context names

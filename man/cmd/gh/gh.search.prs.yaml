@@ -1,0 +1,48 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: prs [<query>]
+description: Search for pull requests
+flags:
+    --app=: Filter by GitHub App author
+    --archived: Filter based on the repository archived state {true|false}
+    --assignee=: Filter by assignee
+    --author=: Filter by author
+    --checks=: 'Filter based on status of the checks: {pending|success|failure}'
+    --closed=: Filter on closed at `date`
+    --commenter=: Filter based on comments by `user`
+    --comments=: Filter on `number` of comments
+    --created=: Filter based on created at `date`
+    --draft: Filter based on draft state
+    --interactions=: Filter on `number` of reactions and comments
+    --involves=: Filter based on involvement of `user`
+    --json=*: Output JSON with the specified `fields`
+    --label=*: Filter on label
+    --language=: Filter based on the coding language
+    --locked: Filter on locked conversation status
+    --match=*: 'Restrict search to specific field of issue: {title|body|comments}'
+    --mentions=: Filter based on `user` mentions
+    --merged: Filter based on merged state
+    --merged-at=: Filter on merged at `date`
+    --milestone=: Filter by milestone `title`
+    --no-assignee: Filter on missing assignee
+    --no-label: Filter on missing label
+    --no-milestone: Filter on missing milestone
+    --no-project: Filter on missing project
+    --order=: 'Order of results returned, ignored unless ''--sort'' flag is specified: {asc|desc}'
+    --owner=*: Filter on repository owner
+    --project=: Filter on project board `owner/number`
+    --reactions=: Filter on `number` of reactions
+    --review-requested=: Filter on `user` or team requested to review
+    --review=: 'Filter based on review status: {none|required|approved|changes_requested}'
+    --reviewed-by=: Filter on `user` who reviewed
+    --sort=: 'Sort fetched results: {comments|reactions|reactions-+1|reactions--1|reactions-smile|reactions-thinking_face|reactions-heart|reactions-tada|interactions|created|updated}'
+    --state=: 'Filter based on state: {open|closed}'
+    --team-mentions=: Filter based on team mentions
+    --updated=: Filter on last updated at `date`
+    --visibility=*: 'Filter based on repository visibility: {public|private|internal}'
+    -B, --base=: Filter on base branch name
+    -H, --head=: Filter on head branch name
+    -L, --limit=: Maximum number of results to fetch
+    -R, --repo=*: Filter on repository
+    -q, --jq=: Filter JSON output using a jq `expression`
+    -t, --template=: Format JSON output using a Go template; see "gh help formatting"
+    -w, --web: Open the search query in the web browser

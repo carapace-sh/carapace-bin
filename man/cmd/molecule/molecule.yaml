@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: molecule [flags] COMMAND
+description: Testing framework to aid in the development of Ansible roles
+flags:
+    --debug: Enable debug mode
+    --help: Show help message and exit
+    --no-debug: Disable debug mode (default)
+    -c, --base-config=*: Path to a base config (can be used multiple times)
+    -e, --env-file=: Path to environment variables file
+    -v, --verbose*: Increase Ansible verbosity level

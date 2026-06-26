@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: inspect [OPTIONS] [MANIFEST_LIST] MANIFEST
+description: Display an image manifest, or manifest list
+flags:
+    --insecure: Allow communication with an insecure registry
+    -v, --verbose: Output additional info including layers and platform

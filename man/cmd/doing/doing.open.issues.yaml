@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: issues
+description: Open all active issues view
+flags:
+    --help: Show this message and exit.

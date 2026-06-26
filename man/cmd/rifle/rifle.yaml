@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rifle
+description: ranger's file opener
+flags:
+    --version: show program's version number and exit
+    -c=: read config from specified file instead of default
+    -f=: use additional flags
+    -h, --help: show this help message and exit
+    -l: list possible ways to open the files
+    -p=: pick a method to open the files
+    -w=: open the files with PROGRAM

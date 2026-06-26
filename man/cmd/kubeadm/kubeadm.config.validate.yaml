@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: validate
+description: Read a file containing the kubeadm configuration API and report any validation problems
+flags:
+    --allow-experimental-api: Allow validation of experimental, unreleased APIs.
+    --config=: Path to a kubeadm configuration file.

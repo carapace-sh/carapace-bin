@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: fork <repo>
+description: Fork a GitLab repository.
+flags:
+    --remote: 'Add a remote for the fork. Options: true, false.'
+    -c, --clone: 'Clone the fork. Options: true, false.'
+    -n, --name=: The name assigned to the new project after forking.
+    -p, --path=: The path assigned to the new project after forking.

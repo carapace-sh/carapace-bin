@@ -1,0 +1,34 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: gzip
+description: Compress or uncompress files
+flags:
+    --rsyncable: make rsync-friendly archive
+    -1, --fast: compress faster
+    -9, --best: compress better
+    -L, --license: display software license
+    -N, --name: save or restore the original name and timestamp
+    -S, --suffix=: use suffix SUF on compressed files
+    -V, --version: display version number
+    -c, --stdout: write on standard output, keep original files unchanged
+    -d, --decompress: decompress
+    -f, --force: force overwrite of output file and compress links
+    -h, --help: give this help
+    -k, --keep: keep (don't delete) input files
+    -l, --list: list compressed file contents
+    -n, --no-name: do not save or restore the original name and timestamp
+    -q, --quiet: suppress all warnings
+    -r, --recursive: operate recursively on directories
+    -t, --test: test compressed file integrity
+    -v, --verbose: verbose mode
+
+documentation:
+  command: >-
+    Compress or expand files using Lempel-Ziv coding (LZ77). gzip
+    replaces each file with a .gz compressed version, preserving
+    the original filename and timestamp. Reads from stdin with -
+    or no file argument. Decompress with gzip -d, gunzip, or zcat.
+    Default compression level is 6; use -1 (fastest) to -9 (best).
+    Keep original file with -k; output to stdout with -c. List
+    compression stats with -l; test integrity with -t. gunzip
+    can decompress files created by gzip, zip, compress, or pack.
+    zcat outputs decompressed data without creating a .gz file.

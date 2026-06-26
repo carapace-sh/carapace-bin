@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: gist <command>
+description: Manage gists
+group: core
+documentation:
+    command: |
+        Work with GitHub gists. Create gists with `gh gist create`, view them
+        with `gh gist view`, and manage their state (edit, rename, delete).
+        Gists can be public or secret (unlisted).

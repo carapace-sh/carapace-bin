@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: diff3
+description: compare three files line by line
+flags:
+    --diff-program=: use PROGRAM to compare files
+    --help: display this help and exit
+    --strip-trailing-cr: strip trailing carriage return on input
+    -3, --easy-only: like -e, but incorporate only nonoverlapping changes
+    -A, --show-all: output all changes, bracketing conflicts
+    -E, --show-overlap: like -e, but bracket conflicts
+    -L, --label=*: use LABEL instead of file name
+    -T, --initial-tab: make tabs line up by prepending a tab
+    -X: like -x, but bracket conflicts
+    -a, --text: treat all files as text
+    -e, --ed: output ed script incorporating changes
+    -i: append 'w' and 'q' commands to ed scripts
+    -m, --merge: output actual merged file
+    -v, --version: output version information and exit
+    -x, --overlap-only: like -e, but incorporate only overlapping changes

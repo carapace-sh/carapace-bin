@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: healthcheck
+aliases:
+    - hc
+description: Checks if needed tools are installed
+flags:
+    -f, --config=: Configuration file
+    -q, --quiet: 'Quiet mode: no output'

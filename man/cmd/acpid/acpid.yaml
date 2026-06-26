@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Notify user-space programs of ACPI events such as power button
+    presses, lid close/open, battery events, and thermal zone changes.
+    Runs as a background daemon, reading events from /proc/acpi/event
+    or the kernel input layer via netlink. Matches incoming events
+    against a set of rule files in /etc/acpi/events and executes the
+    corresponding action scripts. Also accepts connections on a UNIX
+    domain socket to broadcast events to listening applications.
+description: Advanced Configuration and Power Interface event daemon
+flags:
+    -L, --lockfile=: This  option  changes  the  lock  file  used  to  stop event processing.
+    -S, --nosocket: This option tells acpid not to open a UNIX domain socket.
+    -c, --confdir=: This option changes the directory in which acpid looks for rule configuration files.
+    -e, --eventfile=: This option changes the event file  from  which  acpid  reads  events.
+    -f, --foreground: This option keeps acpid in the foreground by not forking at startup.
+    -g, --socketgroup=: This option changes the group ownership of the UNIX domain  socket  to  which  acpid publishes events.
+    -h, --help: Show help and exit.
+    -l, --logevents: This option tells acpid to log information about all events and actions.
+    -m, --socketmode=: This  option  changes  the permissions of the UNIX domain socket to which acpid pub‐ lishes events.
+    -n, --netlink: This  option  forces acpid to use the Linux kernel input layer and netlink interface for ACPI events.
+    -p, --pidfile=: This option tells acpid to use the specified file as its pidfile.
+    -r, --dropaction=: This  option  defines the pseudo-action which tells acpid to abort all processing of an event, including client notifications.
+    -s, --socketfile=: This option changes the name of the UNIX domain socket which acpid  opens.
+    -t, --tpmutefix: This option enables special handling of the mute button for certain ThinkPad models.
+    -v, --version: Print version information and exit.

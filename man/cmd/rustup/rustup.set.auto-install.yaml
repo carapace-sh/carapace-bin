@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: auto-install
+description: The auto toolchain install mode
+flags:
+    -h, --help: Print help

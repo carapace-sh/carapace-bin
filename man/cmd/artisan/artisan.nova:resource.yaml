@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: nova:resource [-m|--model MODEL] [--] <name>
+description: Create a new resource class
+flags:
+    --model=: The model class being represented.

@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: doc
+description: Opens the official Angular documentation (angular.io) in a browser, and searches for a given keyword.
+flags:
+    --version=: Contains the version of Angular to use for the documentation.
+    -s, --search: Search all of angular.io.

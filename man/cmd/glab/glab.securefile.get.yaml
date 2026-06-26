@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: get <fileID>
+aliases:
+    - show
+description: Get details of a project secure file. (GitLab 18.0 and later)

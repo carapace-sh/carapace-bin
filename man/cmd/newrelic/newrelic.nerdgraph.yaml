@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: nerdgraph
+description: Execute GraphQL requests to the NerdGraph API
+
+documentation:
+  command: >-
+    Execute GraphQL requests to the New Relic NerdGraph API for advanced data retrieval and mutations.

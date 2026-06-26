@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: login
+description: Log in to OpenFaaS gateway
+flags:
+    --timeout=: Override the timeout for this API call
+    --tls-no-verify: Disable TLS validation
+    -g, --gateway=: Gateway URL starting with http(s)://
+    -p, --password=: Gateway password
+    -s, --password-stdin: Reads the gateway password from stdin
+    -u, --username=: Gateway username

@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ls [OPTIONS]
+description: List running compose projects
+flags:
+    --filter=: Filter output based on conditions provided
+    --format=: 'Format the output. Values: [table | json]'
+    -a, --all: Show all stopped Compose projects
+    -q, --quiet: Only display project names

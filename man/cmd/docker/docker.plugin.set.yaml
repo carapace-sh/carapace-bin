@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: set PLUGIN KEY=VALUE [KEY=VALUE...]
+description: Change settings for a plugin

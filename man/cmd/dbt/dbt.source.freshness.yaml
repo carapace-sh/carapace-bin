@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: freshness
+description: source freshness
+flags:
+    --exclude=*: Specify the models to exclude
+    --profile=: Which profile to load. Overrides setting in dbt_project.yml
+    --project-dir=: Which directory to look in for the dbt_project.yml file
+    --selector=: The selector name to use, as defined in selectors.yml
+    --state=: Use the given directory as the source for json files to compare with this project.
+    --threads=: Specify number of threads to use.
+    --vars=: Supply variables to the project.
+    -o, --output=: Specify the output path for the json report.
+    -s, --select=*: Specify the nodes to include
+    -t, --target=: Which target to load for the given profile

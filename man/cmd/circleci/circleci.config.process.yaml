@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: process
+description: Validate config and display expanded configuration.
+flags:
+    --pipeline-parameters=: 'YAML/JSON map of pipeline parameters, accepts either YAML/JSON directly or file path (for example: my-params.yml)'
+    -o, --org-slug=: 'organization slug (for example: github/example-org), used when a config depends on private orbs belonging to that org'

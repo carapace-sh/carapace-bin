@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: tree
+aliases:
+    - t
+description: Show a tree of workspace dependencies
+flags:
+    --frozen: Install the environment as defined in the lockfile, doesn't update lockfile if it isn't up-to-date with the manifest file
+    --locked: Check if lockfile is up-to-date before installing the environment, aborts when lockfile isn't up-to-date with the manifest file
+    --no-install: Don't modify the environment, only modify the lock-file
+    -e, --environment=: The environment to list packages for. Defaults to the default environment
+    -i, --invert: Invert tree and show what depends on given package in the regex argument
+    -p, --platform=: The platform to list packages for. Defaults to the current platform
+persistentflags:
+    -m, --manifest-path=: The path to `pixi.toml`, `pyproject.toml`, or the workspace directory

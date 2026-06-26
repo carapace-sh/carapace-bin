@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: serve
+aliases:
+    - server
+description: Start a self-hosted Charm Cloud server.
+flags:
+    --data-dir=: Directory to store SQLite db, SSH keys and file data
+    --health-port=: Health port to listen on
+    --http-port=: HTTP port to listen on
+    --ssh-port=: SSH port to listen on
+    --stats-port=: Stats port to listen on
+
+documentation:
+  command: >-
+    Start a self-hosted Charm Cloud server for private deployments.

@@ -1,0 +1,15 @@
+name: uncommit
+description: Uncommit changes from a commit or file-in-commit to the unstaged area.
+flags:
+    -h, --help: Print help (see more with '--help')
+documentation:
+    command: |-
+        Uncommit changes from a commit or file-in-commit to the unstaged area.
+
+        Wrapper for `but rub <source> zz`.
+    flag:
+        help: Print help (see a summary with '-h')
+        status-after: |-
+            After a mutation command completes, also output workspace status.
+
+            In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).

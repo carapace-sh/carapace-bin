@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: camellia-192-cbc
+aliases:
+    - camellia-192-ecb
+description: Camellia-192 Cipher
+group: cipher

@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: objdump
+description: Print information about executables and relocatables
+group: wrapper

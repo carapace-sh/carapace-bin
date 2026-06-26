@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: run MODEL [PROMPT]
+description: Run a model
+flags:
+    --format=: Response format (e.g. json)
+    --insecure: Use an insecure registry
+    --nowordwrap: Don't wrap words to the next line automatically
+    --verbose: Show timings for response

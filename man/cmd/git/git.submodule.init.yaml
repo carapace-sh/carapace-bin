@@ -1,0 +1,28 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: init
+description: Initialize the submodules recorded in the index
+documentation:
+  command: |-
+    Initialize the submodules recorded in the index (which were
+    added and committed elsewhere) by setting `submodule.$name.url`
+    in `.git/config`, using the same setting from `.gitmodules` as
+    a template. If the URL is relative, it will be resolved using
+    the default remote. If there is no default remote, the current
+    repository will be assumed to be upstream.
+
+    Optional _<path>_ arguments limit which submodules will be initialized.
+    If no path is specified and submodule.active has been configured, submodules
+    configured to be active will be initialized, otherwise all submodules are
+    initialized.
+
+    It will also copy the value of `submodule.$name.update`, if present in
+    the `.gitmodules` file, to `.git/config, but (1) this command does not alter existing information in `.git/config`, and (2) `submodule.$name.update
+    that is set to a custom command is *not* copied for security reasons.
+
+    You can then customize the submodule clone URLs in `.git/config`
+    for your local setup and proceed to `git submodule update`;
+    you can also just use `git submodule update --init` without
+    the explicit `init` step if you do not intend to customize
+    any submodule locations.
+
+    See the add subcommand for the definition of default remote.

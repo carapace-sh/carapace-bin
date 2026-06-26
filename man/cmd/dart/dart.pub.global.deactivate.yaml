@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: deactivate
+description: Remove a previously activated package
+flags:
+    -h, --help: Print this usage information.
+
+documentation:
+  command: >-
+    Remove a previously activated global package and its executables.

@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: dedupe
+description: Reduce duplication in the package tree
+flags:
+    --audit: submit audit reports
+    --bin-links: create symlinks
+    --dry-run: only report changes
+    --fund: show funding message
+    --global-style: use global layout
+    --ignore-scripts: do not run scripts specified in package.json
+    --legacy-bundling: support older npm version
+    --omit=: omit dependency types
+    --package-lock: when false ignore `package-lock.json`
+    --strict-peer-deps: any conflicting `peerDependencies` will be treated as install failure
+    --workspaces: Enable running a command in the context fo all workspaces
+    -w, --workspace=*: Enable running a command in the context of the given workspace

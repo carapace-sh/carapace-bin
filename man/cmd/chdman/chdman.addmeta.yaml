@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: addmeta
+description: add metadata to the CHD
+flags:
+    -i, --input=: input file name
+    -ix, --index=: indexed instance of this metadata tag
+    -nocs, --nochecksum: do not include this metadata information in the overall SHA-1
+    -t, --tag=: 4-character tag for metadata
+    -vf, --valuefile=: file containing data to add
+    -vt, --valuetext=: text for the metadata

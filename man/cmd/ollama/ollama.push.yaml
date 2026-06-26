@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: push MODEL
+description: Push a model to a registry
+flags:
+    --insecure: Use an insecure registry

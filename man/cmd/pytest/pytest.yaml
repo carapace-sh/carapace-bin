@@ -1,0 +1,95 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pytest
+description: simple powerful testing with Python
+flags:
+    --assert=: control assertion debugging tools
+    --basetemp=: base temporary directory for this test run
+    --cache-clear: remove all cache contents at start of test run
+    --cache-show=: show cache contents, don't perform collection or tests
+    --capture=: 'per-test capturing method: one of fd|sys|no|tee-sys'
+    --code-highlight=: whether code should be highlighted (only if --color is also enabled)
+    --collect-in-virtualenv: don't ignore tests in a local virtualenv directory
+    --collect-only: only collect tests, don't execute them
+    --color=: color terminal output (yes/no/auto)
+    --confcutdir=: only load conftest.py's relative to specified dir
+    --continue-on-collection-errors: force test execution even if collection errors occur
+    --debug=: store internal tracing debug information in this log file
+    --deselect=*: deselect item (via node id prefix) during collection (multi-allowed)
+    --disable-plugin-autoload: disable plugin auto-loading through entry point packaging metadata
+    --disable-warnings: disable warnings summary
+    --doctest-continue-on-failure: for a given doctest, continue to run after the first failure
+    --doctest-glob=: 'doctests file matching pattern, default: test*.txt'
+    --doctest-ignore-import-errors: ignore doctest collection errors
+    --doctest-modules: run doctests in all .py modules
+    --doctest-report=: choose another output format for diffs on doctest failure
+    --durations-min=: minimal duration in seconds for inclusion in slowest list
+    --durations=: show N slowest setup/test durations (N=0 for all)
+    --failed-first: run all tests, but run the last failures first
+    --fixtures: show available fixtures, sorted by plugin appearance
+    --fixtures-per-test: show fixtures per test
+    --force-short-summary: force condensed summary output regardless of verbosity level
+    --full-trace: don't cut any tracebacks
+    --ignore-glob=: ignore path pattern during collection (multi-allowed)
+    --ignore=: ignore path during collection (multi-allowed)
+    --import-mode=: prepend/append to sys.path when importing test modules
+    --junit-prefix=: prepend prefix to classnames in junit-xml output
+    --junit-xml=: create junit-xml style report file at given path
+    --keep-duplicates: keep duplicate tests
+    --last-failed: rerun only the tests that failed at the last run
+    --last-failed-no-failures=: determines whether to execute tests when there are no previously known failures
+    --log-auto-indent=: auto-indent multiline messages passed to the logging module
+    --log-cli-date-format=: log date format used by the logging module
+    --log-cli-format=: log format used by the logging module
+    --log-cli-level=: CLI logging level
+    --log-date-format=: log date format used by the logging module
+    --log-disable=*: disable a logger by name (multi-allowed)
+    --log-file-date-format=: log date format used by the logging module
+    --log-file-format=: log format used by the logging module
+    --log-file-level=: log file logging level
+    --log-file-mode=: log file open mode
+    --log-file=: path to a file when logging will be written to
+    --log-format=: log format used by the logging module
+    --log-level=: level of messages to catch/display
+    --markers: show markers (builtin, plugin and per-project ones)
+    --maxfail=: exit after first num failures or errors
+    --new-first: run tests from new files first, then the rest sorted by file mtime
+    --no-fold-skipped: do not fold skipped tests in short summary
+    --no-header: disable header
+    --no-showlocals: hide locals in tracebacks
+    --no-summary: disable summary
+    --noconftest: don't load any conftest.py files
+    --pastebin=: send failed|all info to bpaste.net pastebin service
+    --pdb: start the interactive Python debugger on errors or KeyboardInterrupt
+    --pdbcls=: specify a custom interactive Python debugger for use with --pdb
+    --pyargs: try to interpret all arguments as Python packages
+    --rootdir=: define root directory for tests
+    --runxfail: report the results of xfail tests as if they were not marked
+    --setup-only: only setup fixtures, do not execute tests
+    --setup-plan: show what fixtures and tests would be executed but don't execute anything
+    --setup-show: show setup of fixtures while executing tests
+    --show-capture=: controls how captured stdout/stderr/log is shown on failed tests
+    --stepwise: exit on test failure and continue from last failing test next time
+    --stepwise-reset: reset stepwise state, restarting the stepwise workflow
+    --stepwise-skip: ignore the first failing test but stop on the next failing test
+    --strict: enable the strict option
+    --strict-config: enable the strict_config option
+    --strict-markers: enable the strict_markers option
+    --tb=: traceback print mode (auto/long/short/line/native/no)
+    --trace: immediately break when running each test
+    --trace-config: trace considerations of conftest.py files
+    --verbosity=: set verbosity
+    --xfail-tb: show tracebacks for xfail
+    -V, --version: display pytest version and information about plugins
+    -W, --pythonwarnings=*: set which warnings to report, see -W option of Python itself
+    -c, --config-file=: load configuration from `FILE` instead of trying to locate one of the implicit configuration files
+    -h, --help: show help message and configuration info
+    -k=: only run tests which match the given substring expression
+    -l, --showlocals: show locals in tracebacks
+    -m=: only run tests matching given mark expression
+    -o, --override-ini=*: override configuration option with "option=value" style
+    -p=*: early-load given plugin module name or entry point (multi-allowed)
+    -q, --quiet: decrease verbosity
+    -r=: show extra test summary info as specified by chars
+    -s: shortcut for --capture=no
+    -v, --verbose*: increase verbosity
+    -x, --exitfirst: exit instantly on first error or failed test

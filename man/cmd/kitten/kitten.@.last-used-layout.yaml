@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: last-used-layout
+description: Switch to the last used layout
+flags:
+    --no-response: Don't wait for a response from kitty
+    -a, --all: Change the layout in all tabs
+    -h, --help: Show help for this command
+    -m, --match=: The tab to match

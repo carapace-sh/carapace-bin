@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: send-telemetry
+description: Send telemetry event to GitHub
+hidden: true

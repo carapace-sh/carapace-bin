@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+aliases:
+    - ls
+description: List tracked times on issues & pulls
+flags:
+    --fields=: 'Comma-separated list of fields to print. Available values:'
+    -R, --remote=: Discover Gitea login from remote. Optional
+    -f, --from=: Show only times tracked after this date
+    -l, --login=: Use a different Gitea Login. Optional
+    -m, --mine: Show all times tracked by you across all repositories (overrides command arguments)
+    -o, --output=: Output format. (simple, table, csv, tsv, yaml, json)
+    -r, --repo=: Override local repository path or gitea repository slug to interact with. Optional
+    -t, --total: Print the total duration at the end
+    -u, --until=: Show only times tracked before this date

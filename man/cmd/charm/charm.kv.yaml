@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: kv
+description: Use the Charm key value store.
+
+documentation:
+  command: >-
+    Use the Charm Cloud key-value store. Get, set, list, and delete key-value pairs, optionally scoped to a database with @db.

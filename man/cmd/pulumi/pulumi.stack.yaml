@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: stack
+description: Manage stacks
+flags:
+    --show-name: Display only the stack name
+    --show-secrets: Display stack outputs which are marked as secret in plaintext
+    -i, --show-ids: Display each resource's provider-assigned unique ID
+    -u, --show-urns: Display each resource's Pulumi-assigned globally unique URN
+persistentflags:
+    -s, --stack=: The name of the stack to operate on. Defaults to the current stack

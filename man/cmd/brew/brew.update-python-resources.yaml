@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: update-python-resources
+description: Update versions for PyPI resource blocks in <formula>
+group: developer
+flags:
+    --debug: Display any debugging information.
+    --exclude-packages: Exclude these packages when finding resources.
+    --extra-packages: Include these additional packages when finding resources.
+    --help: Show this message.
+    --ignore-non-pypi-packages: Don't fail if <formula> is not a PyPI package.
+    --package-name: Use the specified <package-name> when finding resources for <formula>. If no package name is specified, it will be inferred from the formula's stable URL.
+    --print-only: Print the updated resource blocks instead of changing <formula>.
+    --quiet: Make some output more quiet.
+    --silent: Suppress any output.
+    --verbose: Make some output more verbose.
+    --version: Use the specified <version> when finding resources for <formula>. If no version is specified, the current version for <formula> will be used.

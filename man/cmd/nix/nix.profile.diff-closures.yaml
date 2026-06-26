@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: diff-closures
+description: show the closure difference between each version of a profile
+flags:
+    --debug: Set the logging verbosity level to 'debug'
+    --log-format=: Set the format of log output
+    --profile=: The profile to operate on
+    --quiet: Decrease the logging verbosity level
+    -L, --print-build-logs: Print full build logs on standard error
+    -v, --verbose: Increase the logging verbosity level

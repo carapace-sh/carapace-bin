@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: openssl
+description: OpenSSL command line program
+persistentflags:
+    -help: Display this summary
+documentation:
+  command: >-
+    OpenSSL cryptography toolkit for SSL/TLS protocols and related
+    cryptographic standards. Provides commands for key and certificate
+    management, encryption and decryption, message digests, SSL/TLS
+    client and server testing, and S/MIME operations. Individual
+    subcommands are documented in their own man pages (e.g.
+    [openssl-x509](man://openssl-x509/1ssl),
+    [openssl-req](man://openssl-req/1ssl)).

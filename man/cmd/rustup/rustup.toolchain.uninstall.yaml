@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: uninstall
+aliases:
+    - remove
+    - rm
+    - delete
+    - del
+description: Uninstall the given toolchains
+flags:
+    -h, --help: Print help

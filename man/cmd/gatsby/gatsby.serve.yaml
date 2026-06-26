@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: serve
+description: Serve previously built Gatsby site
+flags:
+    --open-tracing-config-file=: Tracer configuration file.
+    --prefix-paths: Serve site with link paths prefixed with the pathPrefix.
+    -H, --host=: Set host.
+    -o, --open: Open the site in your (default) browser for you.
+    -p, --port=: Set port.

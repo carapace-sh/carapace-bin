@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: blake2s256
+description: BLAKE2s-256 Digest
+group: digest

@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: swayidle
+description: Idle manager for Wayland
+flags:
+    -C=: path to config file
+    -S=: pick the seat to work with
+    -d: debug
+    -h: this help menu
+    -w: wait for command to finish

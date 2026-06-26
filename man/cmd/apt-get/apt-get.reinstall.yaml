@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: reinstall
+description: reinstall is an alias for install --reinstall

@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: save IMAGE [ARCHIVE | -]
+description: Save a image from minikube
+flags:
+    --daemon: Cache image to docker daemon
+    --remote: Cache image to remote registry

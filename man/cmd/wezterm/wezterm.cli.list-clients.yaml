@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list-clients [OPTIONS]
+description: list clients
+flags:
+    --format=: Controls the output format
+    -h, --help: Print help

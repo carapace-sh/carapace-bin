@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: role [flags] ROLE_NAME
+description: Initialize a new role for use with Molecule
+flags:
+    --dependency-name=: Name of galaxy dependency to initialize
+    --help: Show help message and exit
+    --provisioner-name=: Name of provisioner to initialize
+    --verifier-name=: Name of verifier to initialize
+    -d, --driver-name=: Name of the driver to use

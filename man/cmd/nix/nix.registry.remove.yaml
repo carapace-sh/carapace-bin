@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: remove
+description: remove flake from user flake registry
+flags:
+    --debug: Set the logging verbosity level to 'debug'
+    --log-format=: Set the format of log output
+    --quiet: Decrease the logging verbosity level
+    --registry=: The registry to operate on
+    -L, --print-build-logs: Print full build logs on standard error
+    -v, --verbose: Increase the logging verbosity level

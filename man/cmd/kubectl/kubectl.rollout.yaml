@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rollout SUBCOMMAND
+description: Manage the rollout of a resource
+group: deploy

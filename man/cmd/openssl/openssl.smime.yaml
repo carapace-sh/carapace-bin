@@ -1,0 +1,83 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: smime
+description: S/MIME mail processing
+group: standard
+flags:
+    -CAfile=: Trusted certificates file
+    -CApath=: Trusted certificates directory
+    -CAstore=: Trusted certificates store URI
+    -allow_proxy_certs: allow the use of proxy certificates
+    -attime=: verification epoch time
+    -auth_level=: chain authentication security level
+    -binary: Don't translate message to text
+    -certfile=: Extra signer and intermediate CA certificates to include when signing or to use as preferred signer certs and for chain building when verifying
+    -check_ss_sig: check root CA self-signatures
+    -config=: Load a configuration file (this may load modules)
+    -content=: Supply or override content for detached signature
+    -crl_check: check leaf certificate revocation
+    -crl_check_all: check full chain revocation
+    -crlfeol: Use CRLF as EOL termination instead of LF only
+    -decrypt: Decrypt encrypted message
+    -encrypt: Encrypt message
+    -explicit_policy: set policy variable require-explicit-policy
+    -extended_crl: enable extended CRL features
+    -from=: From address
+    -ignore_critical: permit unhandled critical extensions
+    -in=: Input file
+    -indef: Same as -stream
+    -inform=: Input format SMIME (default), PEM or DER
+    -inhibit_any: set policy variable inhibit-any-policy
+    -inhibit_map: set policy variable inhibit-policy-mapping
+    -inkey=: Input private key (if not signer or recipient)
+    -issuer_checks: (deprecated)
+    -keyform=: Input private key format (DER/PEM)
+    -md=: Digest algorithm to use when signing or resigning
+    -no-CAfile: Do not load the default certificates file
+    -no-CApath: Do not load certificates from the default certificates directory
+    -no-CAstore: Do not load certificates from the default certificates store
+    -no_alt_chains: (deprecated)
+    -no_check_time: ignore certificate validity time
+    -noattr: Don't include any signed attributes
+    -nocerts: Don't include signers certificate when signing
+    -nochain: set PKCS7_NOCHAIN so certificates contained in the message are not used as untrusted CAs
+    -nodetach: Use opaque signing
+    -noindef: Disable CMS streaming
+    -nointern: Don't search certificates in message for signer
+    -nosigs: Don't verify message signature
+    -nosmimecap: Omit the SMIMECapabilities attribute
+    -noverify: Don't verify signers certificate
+    -out=: Output file
+    -outform=: Output format SMIME (default), PEM or DER
+    -partial_chain: accept chains anchored by intermediate trust-store CAs
+    -passin=: Input file pass phrase source
+    -pk7out: Output PKCS#7 structure
+    -policy=: adds policy to the acceptable policy set
+    -policy_check: perform rfc5280 policy checks
+    -policy_print: print policy processing diagnostics
+    -propquery=: Property query used when fetching algorithms
+    -provider-path=: Provider load path (must be before 'provider' argument if required)
+    -provider=*: Provider to load (can be specified multiple times)
+    -provparam=: Set a provider key-value parameter
+    -purpose=: certificate chain purpose
+    -rand=: Load the given file(s) into the random number generator
+    -recip=: Recipient certificate file for decryption
+    -resign: Resign a signed message
+    -sign: Sign message
+    -signer=: Signer certificate file
+    -stream: Enable CMS streaming
+    -subject=: Subject
+    -suiteB_128: Suite B 128-bit mode allowing 192-bit algorithms
+    -suiteB_128_only: Suite B 128-bit-only mode
+    -suiteB_192: Suite B 192-bit-only mode
+    -text: Include or delete text MIME headers
+    -to=: To address
+    -trusted_first: search trust store first (default)
+    -use_deltas: use delta CRLs
+    -verify: Verify signed message
+    -verify_depth=: chain depth limit
+    -verify_email=: expected peer email
+    -verify_hostname=: expected peer hostname
+    -verify_ip=: expected peer IP address
+    -verify_name=: verification policy name
+    -writerand=: Write random data to the specified file
+    -x509_strict: disable certificate compatibility work-arounds

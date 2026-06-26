@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: search
+description: Search for windows with titles, names, or classes with a regular expression pattern
+flags:
+    --all: Require that all conditions be met.
+    --any: Match windows that match any condition.
+    --class: Match against the window class.
+    --classname: Match against the window classname.
+    --desktop=: Only match windows on a certain desktop.
+    --limit=: Stop searching after finding N matching windows.
+    --maxdepth=: Set recursion/child search depth.
+    --name: Match against the window name.
+    --onlyvisible: Show only visible windows in the results.
+    --pid=: Match windows that belong to a specific process id.
+    --role: Match against the window role.
+    --screen=: Select windows only on a specific screen.
+    --sync: Block until there are results.

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: getwindowgeometry
+description: Output the geometry (location and position) of a window
+flags:
+    --shell: Output values suitable for 'eval' in a shell

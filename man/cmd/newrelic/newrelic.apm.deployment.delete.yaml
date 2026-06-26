@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: delete
+description: Delete a New Relic APM deployment
+flags:
+    -d, --deploymentID=: the ID of the deployment to be deleted

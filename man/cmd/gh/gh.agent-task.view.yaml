@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: view [<session-id> | <pr-number> | <pr-url> | <pr-branch>]
+description: View an agent task session (preview)
+flags:
+    --follow: Follow agent session logs
+    --json=*: Output JSON with the specified `fields`
+    --log: Show agent session logs
+    -q, --jq=: Filter JSON output using a jq `expression`
+    -t, --template=: Format JSON output using a Go template; see "gh help formatting"
+    -w, --web: Open agent task in the browser
+persistentflags:
+    -R, --repo=: Select another repository using the `[HOST/]OWNER/REPO` format

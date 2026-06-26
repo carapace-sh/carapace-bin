@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: try-restart
+description: Restart one or more units if active
+group: unit
+documentation:
+  command: |
+    Stop and then start one or more units if the units are running. This
+    does nothing if units are not running.

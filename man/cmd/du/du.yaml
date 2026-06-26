@@ -1,0 +1,44 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: du
+description: estimate file space usage
+flags:
+    --apparent-size: print apparent sizes, rather than disk usage; although
+    --exclude=: exclude files that match PATTERN
+    --files0-from=: summarize disk usage of the
+    --help: display this help and exit
+    --inodes: list inode usage information instead of block usage
+    --si: like -h, but use powers of 1000 not 1024
+    --time-style=: 'show times using STYLE, which can be:'
+    --time=: 'show time as WORD instead of modification time:'
+    --version: output version information and exit
+    -0, --null: end each output line with NUL, not newline
+    -B, --block-size=: scale sizes by SIZE before printing them; e.g.,
+    -D, --dereference-args: dereference only symlinks that are listed on the
+    -H: equivalent to --dereference-args (-D)
+    -L, --dereference: dereference all symbolic links
+    -P, --no-dereference: don't follow any symbolic links (this is the default)
+    -S, --separate-dirs: for directories do not include size of subdirectories
+    -X, --exclude-from=: exclude files that match any pattern in FILE
+    -a, --all: write counts for all files, not just directories
+    -b, --bytes: equivalent to '--apparent-size --block-size=1'
+    -c, --total: produce a grand total
+    -d, --max-depth=: print the total for a directory (or file, with --all)
+    -h, --human-readable: print sizes in human readable format (e.g., 1K 234M 2G)
+    -k: like --block-size=1K
+    -l, --count-links: count sizes many times if hard linked
+    -m: like --block-size=1M
+    -s, --summarize: display only a total for each argument
+    -t, --threshold=: exclude entries smaller than SIZE if positive,
+    -x, --one-file-system: skip directories on different file systems
+
+documentation:
+  command: >-
+    Estimate disk space usage. du reports the amount of disk space used
+    by files and directories. By default, shows usage for each argument
+    (recursive for directories). Summarize only with -s (or --max-depth=0);
+    limit depth with --max-depth=N. Show apparent sizes (actual file content)
+    rather than disk blocks with -A; human-readable with -h. Show only total
+    per argument with -s. Include all files with -a; exclude matching patterns
+    with --exclude=PATTERN. Count hard links multiple times with -l. Dereference
+    symlinks with -L; only command-line symlinks with -D. NUL-terminate output
+    with -0. Grand total with -c; inode usage with --inodes.

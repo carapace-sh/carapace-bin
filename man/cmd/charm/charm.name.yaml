@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: name [username]
+description: Username stuff
+
+documentation:
+  command: >-
+    View or set your Charm Cloud username.

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: validate
+description: Test an URI string vor validity
+flags:
+    -h, --help: show usage help

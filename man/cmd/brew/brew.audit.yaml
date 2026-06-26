@@ -1,0 +1,31 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: audit
+description: Check <formula> for Homebrew coding style violations
+group: developer
+flags:
+    --arch: Audit the given CPU architecture
+    --audit-debug: Enable debugging and profiling of audit methods
+    --cask: Treat all named arguments as casks
+    --debug: Display any debugging information
+    --display-filename: Prefix every line of output with the file or formula name being audited
+    --eval-all: Evaluate all available formulae and casks
+    --except-cops=: Specify a comma-separated <cops> list to skip checking
+    --except=: Specify a comma-separated <method> list to skip
+    --fix: Fix style violations automatically using RuboCop's auto-correct feature
+    --formula: Treat all named arguments as formulae
+    --git: Run additional, slower style checks that navigate the Git repository
+    --help: Show this message
+    --installed: Only check formulae and casks that are currently installed
+    --new: Run various additional style checks
+    --no-signing: Audit for signed apps, which are required on ARM
+    --online: Run additional, slower style checks that require a network connection
+    --only-cops=: Specify a comma-separated <cops> list to check
+    --only=: Specify a comma-separated <method> list to only run
+    --os=: Audit the given operating system
+    --quiet: Make some output more quiet
+    --signing: Audit for signed apps, which are required on ARM
+    --skip-style: Skip running non-RuboCop style checks
+    --strict: Run additional, stricter style checks
+    --tap=: Check the formulae within the given tap, specified as <user>`/`<repo>
+    --token-conflicts: Audit for token conflicts
+    --verbose: Make some output more verbose

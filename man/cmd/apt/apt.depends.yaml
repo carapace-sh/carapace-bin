@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: depends [pattern]...
+description: list package dependencies
+flags:
+    --breaks: ""
+    --conflicts: ""
+    --depends: ""
+    --enhances: ""
+    --implicit: ""
+    --installed: ""
+    --pre-depends: ""
+    --recommends: ""
+    --recurse: ""
+    --replaces: ""
+    --suggests: ""
+    -i, --important: ""

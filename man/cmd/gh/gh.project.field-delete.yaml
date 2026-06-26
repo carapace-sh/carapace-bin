@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: field-delete
+description: Delete a field in a project
+flags:
+    --format=: 'Output format: {json}'
+    --id=!: ID of the field to delete
+    -q, --jq=: Filter JSON output using a jq `expression`
+    -t, --template=: Format JSON output using a Go template; see "gh help formatting"

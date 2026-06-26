@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: imv
+description: Image viewer for X11 and Wayland
+flags:
+    -b=: Set the background colour
+    -c=: Specify a command to be run on launch
+    -d: Start with overlay visible
+    -f: Start fullscreen
+    -h: Show help message and quit
+    -l: List open files to stdout at exit
+    -n=: Start with the given path, or index selected
+    -r: Load directories recursively
+    -s=: Set scaling mode to use
+    -t=: Start in slideshow mode, with each image shown for the given number of seconds
+    -u=: Set upscaling method used by imv
+    -v: Show version and quit
+    -x: Disable looping of input paths

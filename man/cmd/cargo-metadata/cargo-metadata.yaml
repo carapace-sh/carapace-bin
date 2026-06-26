@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Output the resolved dependencies of a Cargo package in JSON
+    format. Includes workspace members, feature resolution, and
+    dependency versions.
+description: Output the resolved dependencies of a package
+flags:
+    --all-features: Activate all available features
+    --color=: 'Coloring: auto, always, never'
+    --config=: Override a configuration value
+    --filter-platform=: Only include resolve dependencies matching the given
+    --format-version=: 'Format version [possible values: 1]'
+    --frozen: Require Cargo.lock and cache are up to date
+    --locked: Require Cargo.lock is up to date
+    --manifest-path=: Path to Cargo.toml
+    --no-default-features: Do not activate the `default` feature
+    --no-deps: Output information only about the workspace members and don't
+    --offline: Run without accessing the network
+    -F, --features=: Space or comma separated list of features to activate
+    -Z=: Unstable (nightly-only) flags to Cargo, see 'cargo -Z help'
+    -h, --help: Print help information
+    -q, --quiet: Do not print cargo log messages
+    -v, --verbose: Use verbose output (-vv very verbose/build.rs output)

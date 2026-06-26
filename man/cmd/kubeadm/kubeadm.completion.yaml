@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: completion SHELL
+description: Output shell completion code for the specified shell (bash or zsh)

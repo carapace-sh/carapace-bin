@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: user <package-spec>...
+description: mark package as user-installed
+flags:
+    --skip-unavailable: allow skipping packages that are not installed

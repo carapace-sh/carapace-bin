@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: describe
+description: Describe the template
+persistentflags:
+    -u, --url=: Use as alternative store for templates

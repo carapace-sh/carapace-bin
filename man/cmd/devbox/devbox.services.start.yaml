@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: start [service]...
+description: Start service. If no service is specified, starts all services

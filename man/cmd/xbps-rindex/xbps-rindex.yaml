@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: xbps-rindex [OPTIONS] MODE ARGUMENTS
+description: XBPS utility to manage local binary package repositories
+flags:
+    --compression=: 'Compression format: none, gzip, bzip2, lz4, xz, zstd (default)'
+    --force: Force mode to overwrite entry in add mode
+    --privkey=: Path to the private key for signing
+    --signedby=: Signature details, i.e "name <email>"
+    -C, --hashcheck: Consider file hashes for cleaning up packages
+    -S, --sign-pkg=*: Sign binary package archive
+    -a, --add=*: Add package(s) to repository index
+    -c, --clean=: Clean repository index
+    -d, --debug: Debug mode shown to stderr
+    -h, --help: Show usage
+    -r, --remove-obsoletes=: Removes obsolete packages from repository
+    -s, --sign=: Initialize repository metadata signature
+    -v, --verbose: Show XBPS version

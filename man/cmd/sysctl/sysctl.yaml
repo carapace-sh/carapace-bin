@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: sysctl
+description: configure kernel parameters at runtime
+flags:
+    --deprecated: include deprecated parameters to listing
+    --dry-run: Print the key and values but do not write
+    --system: read values from all system directories
+    -A: alias of -a
+    -N, --names: print variable names without values
+    -V, --version: output version information and exit
+    -X: alias of -a
+    -a, --all: display all variables
+    -b, --binary: print value without new line
+    -d: alias of -h
+    -e, --ignore: ignore unknown variables errors
+    -f: alias of -p
+    -h, --help: display this help and exit
+    -n, --values: print only values of the given variable(s)
+    -o: does nothing
+    -p, --load?: read values from file
+    -q, --quiet: do not echo variable set
+    -r, --pattern=: select setting that match expression
+    -w, --write: enable writing a value to variable
+    -x: does nothing

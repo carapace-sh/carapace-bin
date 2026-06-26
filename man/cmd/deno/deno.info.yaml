@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: info
+description: Show info about cache or info related to source file
+flags:
+    --cert=: Load certificate authority from PEM encoded file
+    --import-map=: Load import map file
+    --json: 'UNSTABLE: Outputs the information in JSON format'
+    --location=: Show files used for origin bound APIs like the Web Storage API when running a script with '--location=<HREF>'
+    -r, --reload?: Reload source code cache (recompile TypeScript)

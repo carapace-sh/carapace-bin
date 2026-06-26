@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    ClamAV mail filter (milter) for integration with MTAs such
+    as Sendmail and Postfix. Scans email messages for viruses
+    during SMTP delivery.
+description: milter compatible scanner
+flags:
+    -V, --version: Show version
+    -c, --config-file=: Read configuration from file
+    -h, --help: Show this help

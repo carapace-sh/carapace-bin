@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ""
+
+documentation:
+  command: >-
+    Manage multiple runtime versions of tools (Node.js, Python, Ruby,
+    Go, and many more). asdf extends .tool-versions files to pin versions
+    per project. Install a plugin (asdf plugin add nodejs), then install
+    versions (asdf install nodejs 20.0.0). Set a local version with
+    asdf local nodejs 20.0.0 (writes to .tool-versions). Global default
+    with asdf global. List installed versions with asdf list. Update
+    plugin updates with asdf plugin update. Reshim regenerates shims
+    after installing new versions. Extensible via plugins for any
+    language/runtime. Works across shells (bash, zsh, fish).

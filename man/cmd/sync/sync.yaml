@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: sync
+description: Synchronize cached writes to persistent storage
+flags:
+    --help: display this help and exit
+    --version: output version information and exit
+    -d, --data: sync only file data, no unneeded metadata
+    -f, --file-system: sync the file systems that contain the files

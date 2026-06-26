@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: add
+description: Add a new MFA device.
+flags:
+    --name=: Name of the new MFA device
+    --type=: Type of the new MFA device (TOTP, WEBAUTHN)

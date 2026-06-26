@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: install
+description: Write shell integration to config files
+flags:
+    --cmd=: Command name for shell integration (defaults to binary name)
+    --dry-run: Show what would be changed
+    -h, --help: Print help (see more with '--help')
+    -y, --yes: Skip confirmation prompt

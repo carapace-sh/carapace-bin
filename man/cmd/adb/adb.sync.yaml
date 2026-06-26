@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: sync
+description: sync a local build from $ANDROID_PRODUCT_OUT to the device
+flags:
+    -Z: disable compression
+    -l: list files that would be copied, but don't copy them
+    -n: 'dry run: push files to device without storing to the filesystem'
+    -z=: enable compression with a specified algorithm (any, none, brotli)

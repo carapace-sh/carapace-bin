@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: dos2unix
+description: DOS/Mac to Unix and vice versa text file format converter
+flags:
+    --allow-chown: allow file ownership change
+    --no-allow-chown: don't allow file ownership change (default)
+    "-7": convert 8 bit characters to 7 bit space
+    -D, --display-enc=: Set encoding of displayed text.
+    -F, --follow-symlink: follow symbolic links and convert the targets
+    -L, --license: display software license
+    -S, --skip-symlink: keep symbolic links and targets unchanged (default)
+    -V, --version: display version number
+    -b, --keep-bom: keep Byte Order Mark
+    -c, --convmode=: conversion mode
+    -f, --force: force conversion of binary files
+    -h, --help: display this help text
+    -i, --info?: display file information
+    -k, --keepdate: keep output file date
+    -l, --newline: add additional newline
+    -m, --add-bom: add Byte Order Mark (default UTF-8)
+    -n, --newfile: write to new file
+    -o, --oldfile: write to old file (default)
+    -q, --quiet: quiet mode, suppress all warnings
+    -r, --remove-bom: remove Byte Order Mark (default)
+    -s, --safe: skip binary files (default)
+    -u, --keep-utf16: keep UTF-16 encoding
+    -v, --verbose: verbose operation

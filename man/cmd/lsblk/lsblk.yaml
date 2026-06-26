@@ -1,0 +1,44 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: lsblk
+description: list block devices
+flags:
+    --ct-filter=: restrict the next counter
+    --ct=: define a custom counter
+    --highlight=: colorize lines matching the expression
+    --hyperlink?: Print mountpoint paths as terminal hyperlinks
+    --properties-by=: methods used to gather data
+    --sysroot=: use specified directory as system root
+    -A, --noempty: don't print empty devices
+    -D, --discard: print discard capabilities
+    -E, --dedup=: de-duplicate output by <column>
+    -H, --list-columns: list the available columns
+    -I, --include=: show only devices with specified major numbers
+    -J, --json: use JSON output format
+    -M, --merge: group parents of sub-trees (usable for RAIDs, Multi-path)
+    -N, --nvme: output info about NVMe devices
+    -O, --output-all: output all columns
+    -P, --pairs: use key="value" output format
+    -Q, --filter=: print only lines matching the expression
+    -S, --scsi: output info about SCSI devices
+    -T, --tree?: use tree format output
+    -V, --version: display version
+    -a, --all: print all devices
+    -b, --bytes: print SIZE in bytes rather than in human readable format
+    -d, --nodeps: don't print slaves or holders
+    -e, --exclude=: 'exclude devices by major number (default: RAM disks)'
+    -f, --fs: output info about filesystems
+    -h, --help: display this help
+    -i, --ascii: use ascii characters only
+    -l, --list: use list format output
+    -m, --perms: output info about permissions
+    -n, --noheadings: don't print headings
+    -o, --output=: output columns
+    -p, --paths: print complete device path
+    -r, --raw: use raw output format
+    -s, --inverse: inverse dependencies
+    -t, --topology: output info about topology
+    -v, --virtio: output info about virtio devices
+    -w, --width=: specifies output width as number of characters
+    -x, --sort=: sort output by <column>
+    -y, --shell: use column names that can be used as shell variables
+    -z, --zoned: print zone related information

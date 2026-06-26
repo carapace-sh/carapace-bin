@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Display a listing of all index target files that `apt-get update`
+    would download from configured repositories. Output format is
+    deb822 (RFC 822-style key-value pairs) by default.
+description: Displays by default a deb822 formatted listing of information

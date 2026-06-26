@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: sync [@DB]
+description: Sync local db with latest Charm Cloud db.
+
+documentation:
+  command: >-
+    Synchronize the local database with the latest version from Charm Cloud.

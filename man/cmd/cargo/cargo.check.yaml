@@ -1,0 +1,41 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: check
+description: Check a local package and all of its dependencies for errors
+group: build
+flags:
+    --all: Alias for --workspace (deprecated)
+    --all-features: Activate all available features
+    --all-targets: Check all targets
+    --bench=*: Check only the specified bench target
+    --benches: Check all targets that have `bench = true` set
+    --bin=*: Check only the specified binary
+    --bins: Check all binaries
+    --example=*: Check only the specified example
+    --examples: Check all examples
+    --exclude=*: Exclude packages from the check
+    --future-incompat-report: Outputs a future incompatibility report at the end of the build
+    --ignore-rust-version: Ignore `rust-version` specification in packages
+    --keep-going: Do not abort the build as soon as there is an error
+    --lib: Check only this package's library
+    --manifest-path=: Path to Cargo.toml
+    --message-format=*: Error format
+    --no-default-features: Do not activate the `default` feature
+    --profile=: Check artifacts with the specified profile
+    --target-dir=: Directory for all generated artifacts
+    --target=*: Check for the target triple
+    --test=*: Check only the specified test target
+    --tests: Check all targets that have `test = true` set
+    --timings: Output a build timing report at the end of the build
+    --unit-graph: Output build graph in JSON (unstable)
+    --workspace: Check all packages in the workspace
+    -F, --features=*: Space or comma separated list of features to activate
+    -h, --help: Print help
+    -j, --jobs=: 'Number of parallel jobs, defaults to # of CPUs.'
+    -p, --package=*: Package(s) to check
+    -r, --release: Check artifacts in release mode, with optimizations
+documentation:
+  command: |
+    Check a local package and all of its dependencies for errors without
+    producing binary artifacts. This is faster than `cargo build` since it
+    skips code generation and linking. Useful for rapid iteration during
+    development to quickly verify type correctness and catch compile errors.

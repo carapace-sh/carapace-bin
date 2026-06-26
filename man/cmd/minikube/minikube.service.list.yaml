@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list [flags]
+description: Lists the URLs for the services in your local cluster
+flags:
+    -n, --namespace=: The services namespace
+    -o, --output=: The output format. One of 'json', 'table'

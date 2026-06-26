@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: top CONTAINER [ps OPTIONS]
+description: Display the running processes of a container

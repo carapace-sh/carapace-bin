@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: preflight
+description: Run upgrade node pre-flight checks
+flags:
+    --config=: Path to a kubeadm configuration file.
+    --ignore-preflight-errors=*: 'A list of checks whose errors will be shown as warnings. Example: ''IsPrivilegedUser,Swap''. Value ''all'' ignores errors from all checks.'

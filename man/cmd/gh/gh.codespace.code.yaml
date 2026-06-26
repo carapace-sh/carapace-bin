@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: code
+description: Open a codespace in Visual Studio Code
+flags:
+    --insiders: Use the insiders version of Visual Studio Code
+    -w, --web: Use the web version of Visual Studio Code
+persistentflags:
+    --repo-owner=: Filter codespace selection by repository owner (username or org)
+    -R, --repo=: Filter codespace selection by repository name (user/repo)
+    -c, --codespace=: Name of the codespace

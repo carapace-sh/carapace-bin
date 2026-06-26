@@ -1,0 +1,34 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: cvsexportcommit
+description: Export a single commit to a CVS checkout
+group: interaction
+flags:
+  -P: Force the parent commit, even if it is not a direct parent
+  -W: Tell cvsexportcommit that the current working directory is not only a Git checkout, but also the CVS checkout
+  -a: Add authorship information
+  -c: Commit automatically if the patch applied cleanly
+  -d: Set an alternative CVSROOT to use
+  -f: Force the merge even if the files are not up to date
+  -k: Reverse CVS keyword expansion in working CVS checkout before applying patch
+  -m: Prepend the commit message with the provided prefix
+  -p: Be pedantic (paranoid) when applying patches
+  -u: Update affected files from CVS repository before attempting export
+  -v: Verbose
+  -w: Specify the location of the CVS checkout to use for the export
+documentation:
+  command: |-
+    Exports a commit from Git to a CVS checkout, making it easier
+    to merge patches from a Git repository into a CVS repository.
+
+    Specify the name of a CVS checkout using the -w switch or execute it
+    from the root of the CVS working copy. In the latter case GIT_DIR must
+    be defined. See examples below.
+
+    It does its best to do the safe thing, it will check that the files are
+    unchanged and up to date in the CVS checkout, and it will not autocommit
+    by default.
+
+    Supports file additions, removals, and commits that affect binary files.
+
+    If the commit is a merge commit, you must tell 'git cvsexportcommit' what
+    parent the changeset should be done against.

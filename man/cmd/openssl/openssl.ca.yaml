@@ -1,0 +1,67 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ca
+description: Certificate Authority (CA) Management
+group: standard
+flags:
+    -batch: Don't ask questions
+    -cert=: The CA cert
+    -certform=: Certificate input format (DER/PEM/P12); has no effect
+    -config=: A config file
+    -create_serial: If reading serial fails, create a new random serial
+    -crl_CA_compromise=: sets compromise time to val and the revocation reason to CACompromise
+    -crl_compromise=: sets compromise time to val and the revocation reason to keyCompromise
+    -crl_hold=: the hold instruction, an OID. Sets revocation reason to certificateHold
+    -crl_lastupdate=: Sets the CRL lastUpdate time to val (YYMMDDHHMMSSZ or YYYYMMDDHHMMSSZ)
+    -crl_nextupdate=: Sets the CRL nextUpdate time to val (YYMMDDHHMMSSZ or YYYYMMDDHHMMSSZ)
+    -crl_reason=: revocation reason
+    -crldays=: Days until the next CRL is due
+    -crlexts=: CRL extension section (override value in config file)
+    -crlhours=: Hours until the next CRL is due
+    -crlsec=: Seconds until the next CRL is due
+    -dateopt=*: Datetime format used for printing. (rfc_822/iso_8601). Default is rfc_822.
+    -days=: Number of days from today to certify the cert for
+    -enddate=: '[CC]YYMMDDHHMMSSZ value for notAfter certificate field, overrides -days'
+    -extensions=: Extension section (override value in config file)
+    -extfile=: Configuration file with X509v3 extensions to add
+    -gencrl: Generate a new CRL
+    -in=: The input cert request(s)
+    -infiles: The last argument, requests to process
+    -inform=: CSR input format to use (PEM or DER; by default try PEM first)
+    -key=: Key to decrypt the private key or cert files if encrypted. Better use -passin
+    -keyfile=: The CA private key
+    -keyform=: Private key file format (DER/PEM)
+    -md=: Digest to use, such as sha256
+    -msie_hack: msie modifications to handle all Universal Strings
+    -multivalue-rdn: Deprecated; multi-valued RDNs support is always on.
+    -name=: The particular CA definition to use
+    -noemailDN: Don't add the EMAIL field to the DN
+    -not_after=: An alias for -enddate
+    -not_before=: An alias for -startdate
+    -notext: Do not print the generated certificate
+    -out=: Where to put the output file(s)
+    -outdir=: Where to put output cert
+    -passin=: Key and cert input file pass phrase source
+    -policy=: The CA 'policy' to support
+    -preserveDN: Don't re-order the DN
+    -propquery=: Property query used when fetching algorithms
+    -provider-path=: Provider load path (must be before 'provider' argument if required)
+    -provider=*: Provider to load (can be specified multiple times)
+    -provparam=: Set a provider key-value parameter
+    -quiet: Terse output during processing
+    -rand=: Load the given file(s) into the random number generator
+    -rand_serial: Always create a random serial; do not store it
+    -revoke=: Revoke a cert (given in file)
+    -section=: An alias for -name
+    -selfsign: Sign a cert with the key associated with it
+    -sigopt=*: Signature parameter in n:v form
+    -spkac=: File contains DN and signed public key and challenge
+    -ss_cert=: File contains a self signed cert to sign
+    -startdate=: '[CC]YYMMDDHHMMSSZ value for notBefore certificate field'
+    -status=: Shows cert status given the serial number
+    -subj=: Use arg instead of request's subject
+    -updatedb: Updates db for expired cert
+    -utf8: Input characters are UTF8; default ASCII
+    -valid=: Add a Valid(not-revoked) DB entry about a cert (given in file)
+    -verbose: Verbose output during processing
+    -vfyopt=*: Verification parameter in n:v form
+    -writerand=: Write random data to the specified file

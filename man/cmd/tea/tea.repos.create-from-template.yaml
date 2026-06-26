@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create-from-template
+aliases:
+    - ct
+description: Create a repository based on an existing template
+flags:
+    --avatar: copy repo avatar from template
+    --content: copy git content from template
+    --description=: add custom description to repo
+    --githooks: copy git hooks from template
+    --labels: copy repo labels from template
+    --private: make new repo private
+    --topics: copy topics from template
+    --webhooks: copy webhooks from template
+    -O, --owner=: name of repo owner
+    -l, --login=: Use a different Gitea Login. Optional
+    -n, --name=: name of new repo
+    -o, --output=: Output format. (simple, table, csv, tsv, yaml, json)
+    -t, --template=: source template to copy from

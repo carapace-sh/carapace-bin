@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+aliases:
+    - ls
+description: List releases in a repository
+group: General commands
+flags:
+    --exclude-drafts: Exclude draft releases
+    --exclude-pre-releases: Exclude pre-releases
+    --json=*: Output JSON with the specified `fields`
+    -L, --limit=: Maximum number of items to fetch
+    -O, --order=: 'Order of releases returned: {asc|desc}'
+    -q, --jq=: Filter JSON output using a jq `expression`
+    -t, --template=: Format JSON output using a Go template; see "gh help formatting"

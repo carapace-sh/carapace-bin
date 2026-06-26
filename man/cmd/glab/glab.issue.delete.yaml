@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: delete <id>
+aliases:
+    - del
+description: Delete an issue.

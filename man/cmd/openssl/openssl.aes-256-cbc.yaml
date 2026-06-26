@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: aes-256-cbc
+aliases:
+    - aes-256-ecb
+description: AES-256 Cipher
+group: cipher

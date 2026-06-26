@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: registry-login
+description: Generate and save the registry authentication file
+flags:
+    --account-id=: Your AWS Account id
+    --ecr: If we are using ECR we need a different set of flags, so if this is set, we need to set --username and --password
+    --password=: The registry password
+    --region=: Your AWS region
+    --server=: The server URL, it is defaulted to the docker registry
+    -s, --password-stdin: Reads the docker password from stdin, either pipe to the command or remember to press ctrl+d when reading interactively
+    -u, --username=: The Registry Username

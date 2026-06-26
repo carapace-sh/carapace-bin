@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create
+description: create a new authentication token
+flags:
+    --cidr=*: addresses used to limit access
+    --read-only: mark token as unable to publish

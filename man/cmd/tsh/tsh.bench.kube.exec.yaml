@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: exec
+description: Run a benchmark test to exec into the specified Pod
+hidden: true
+flags:
+    --container=: Selects the container to exec into.
+    --interactive: Create interactive Kube session
+    --no-interactive&: Create interactive Kube session

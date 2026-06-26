@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: config:publish [--all] [--force] [--] [<name>]
+description: Publish configuration files to your application
+flags:
+    --all: Publish all configuration files
+    --force: Overwrite any existing configuration files

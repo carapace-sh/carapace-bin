@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: xbps-fetch [options] <url> <url+N>
+description: XBPS utility to fetch files from URLs
+flags:
+    -V, --version: Show XBPS version
+    -d, --debug: Enable debug messages to stderr
+    -o, --out=: Rename downloaded file to <file>
+    -s, --sha256: Output sha256sums of the files
+    -v, --verbose: Enable verbose output

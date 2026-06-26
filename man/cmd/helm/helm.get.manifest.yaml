@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: manifest
+description: download the manifest for a named release
+flags:
+    --revision=: get the named release with revision

@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: gftp
+description: file transfer client for *NIX based machines
+flags:
+    --info: Display some information about how gFTP was built.
+    -h, --help: Display program usage.
+    -v, --version: Display the current version of gFTP.

@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: switch
+description: Switch active GitHub account
+documentation:
+    command: |
+        Switch the active GitHub account. Specify the hostname with `-h` and
+        the account to switch to with `-u`. If you have multiple accounts
+        authenticated on the same host, use this to change which one is active.
+flags:
+    -h, --hostname=: The hostname of the GitHub instance to switch account for
+    -u, --user=: The account to switch to

@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: offline
+description: reset offline/unauthorized devices to force reconnect

@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: component
+description: Creates a new, generic component definition in the given or default project.
+flags:
+    --export: The declaring NgModule exports this component.
+    --flat: Create the new files at the top level of the current project.
+    --project=: The name of the project.
+    --selector=: The HTML selector to use for this component.
+    --skip-import: Do not import this component into the owning NgModule.
+    --skip-selector: Specifies if the component should have a selector or not.
+    --skip-tests: Do not create "spec.ts" test files for the new component.
+    --style=: The file extension or preprocessor to use for style files
+    --type=: Adds a developer-defined type to the filename, in the format "name.type.ts".
+    -b, --display-block: 'Specifies if the style will contain :host { display: block; }.'
+    -c, --change-detection=: The change detection strategy to use in the new component.
+    -m, --module=: The declaring NgModule.
+    -p, --prefix=: The prefix to apply to the generated component selector.
+    -s, --inline-style: Include styles inline in the component.ts file.
+    -t, --inline-template: Include template inline in the component.ts file.
+    -v, --view-encapsulation=: The view encapsulation strategy to use in the new component.

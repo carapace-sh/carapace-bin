@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: download
+description: Downloads a Terraform module and stores it on the project vendor dir
+flags:
+    -d, --dir=: dir to vendor downloaded project

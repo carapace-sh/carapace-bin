@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: describe
+description: Generates a description of the given package
+flags:
+    --allow-local-deps: Allow local dependencies and don't report them
+    --disallow-local-deps: Always disallow local dependencies and report them as error
+    --out-dir=: Output directory of description files
+    -v, --verbose: Show more information

@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: service-log-level
+description: Get/set logging threshold for service
+group: unit
+documentation:
+  command: |
+    If no argument is given, print the current log level as reported by
+    the service. If an optional argument LEVEL is provided, change the
+    current log level of the service to LEVEL. Accepts syslog log levels
+    (0-7 or emerg, alert, crit, err, warning, notice, info, debug). The
+    service must implement the generic org.freedesktop.LogControl1 interface.

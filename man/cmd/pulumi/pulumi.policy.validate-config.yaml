@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: validate-config
+description: Validate a Policy Pack configuration
+flags:
+    --config=: The file path for the Policy Pack configuration file

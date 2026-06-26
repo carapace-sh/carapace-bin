@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: init
+description: Install missing plugins or upgrade plugins
+flags:
+    -upgrade: On top of installing missing plugins, update installed plugins to the latest available version

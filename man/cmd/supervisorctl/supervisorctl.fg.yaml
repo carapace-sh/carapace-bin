@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: fg
+description: Connect to a process in foreground mode Press Ctrl+C to exit foreground

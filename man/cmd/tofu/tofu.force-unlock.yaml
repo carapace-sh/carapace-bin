@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: force-unlock LOCK_ID
+description: Release a stuck lock on the current workspace
+flags:
+    -force: Don't ask for input for unlock confirmation.

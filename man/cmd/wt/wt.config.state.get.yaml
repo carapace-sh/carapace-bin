@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: get
+description: Get all stored state
+flags:
+    --format=: Output format (table, json)
+    -h, --help: Print help (see more with '--help')

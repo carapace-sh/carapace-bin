@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: init [options] [shell]
+description: generates shell configurations and prints the source command for the specified shell
+flags:
+    --generate-full-configs: ""
+    -h, --help: display help for command

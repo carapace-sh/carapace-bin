@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: windowactivate
+description: Activate the window
+flags:
+    --sync: After sending the window activation, wait until the window is actually activated

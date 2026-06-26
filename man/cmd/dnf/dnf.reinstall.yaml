@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: reinstall [options] <package-spec>...
+aliases:
+    - rei
+description: reinstall packages
+flags:
+    --allow-downgrade: enable downgrade of dependencies
+    --allowerasing: allow removing of installed packages
+    --downloadonly: download packages without executing transaction
+    --no-allow-downgrade: disable downgrade of dependencies
+    --skip-broken: resolve dependency problems by removing problematic packages
+    --skip-unavailable: allow skipping packages

@@ -1,0 +1,69 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: n-m3u8dl-re
+description: Cross-Platform, modern and powerful stream downloader for MPD/M3U8/ISM
+flags:
+    --ad-keyword=: Set URL keywords (regular expressions) for AD segments
+    --allow-hls-multi-ext-map: 'Allow multiple #EXT-X-MAP in HLS (experimental)'
+    --append-url-params: Add Params of input Url to segments, useful for some websites, such as kakao.com
+    --auto-select: Automatically selects the best tracks of all types
+    --auto-subtitle-fix: Automatically fix subtitles
+    --base-url=: Set BaseURL
+    --binary-merge: Binary merge
+    --check-segments-count: Check if the actual number of segments downloaded matches the expected number
+    --custom-hls-iv=: Set the HLS decryption iv
+    --custom-hls-key=: Set the HLS decryption key
+    --custom-hls-method=: Set HLS encryption method
+    --custom-proxy=: Set web request proxy
+    --custom-range=: Download only part of the segments
+    --decryption-binary-path=: Full path to the tool used for MP4 decryption
+    --decryption-engine=: Set the third-party program used for decryption
+    --del-after-done: Delete temporary files when done
+    --disable-update-check: Disable version update check
+    --download-retry-count=: The number of retries when download segment error
+    --ffmpeg-binary-path=: Full path to the ffmpeg binary
+    --force-ansi-console: Force assuming the terminal is ANSI-compatible and interactive
+    --http-request-timeout=: Timeout duration for HTTP requests (in seconds)
+    --key-text-file=: Set the kid-key file, the program will search the KEY with KID from the file
+    --key=*: Set decryption key(s) to mp4decrypt/shaka-packager/ffmpeg
+    --live-fix-vtt-by-audio: Correct VTT sub by reading the start time of the audio file
+    --live-keep-segments: Keep segments when recording a live (liveRealTimeMerge enabled)
+    --live-perform-as-vod: Download live streams as vod
+    --live-pipe-mux: Real-time muxing to TS file through pipeline + ffmpeg (liveRealTimeMerge enabled)
+    --live-real-time-merge: Real-time merge into file when recording live
+    --live-record-limit=: Recording time limit when recording live
+    --live-take-count=: Manually set the number of segments downloaded for the first time when recording live
+    --live-wait-time=: Manually set the live playlist refresh interval
+    --log-level=: Set log level
+    --morehelp=: Set more help info about one option
+    --mp4-real-time-decryption: Decrypt MP4 segments in real time
+    --mux-import=*: When MuxAfterDone enabled, allow to import local media files
+    --no-ansi-color: Remove ANSI colors
+    --no-date-info: Date information is not written during muxing
+    --no-log: Disable log file output
+    --save-dir=: Set output directory
+    --save-name=: Set output filename
+    --skip-download: Skip download
+    --skip-merge: Skip segments merge
+    --sub-format=: Subtitle output format
+    --sub-only: Select only subtitle tracks
+    --task-start-at=: Task execution will not start before this time
+    --thread-count=: Set download thread count
+    --tmp-dir=: Set temporary file directory
+    --ui-language=: Set UI language
+    --urlprocessor-args=: Give these arguments to the URL Processors.
+    --use-ffmpeg-concat-demuxer: When merging with ffmpeg, use the concat demuxer instead of the concat protocol
+    --use-system-proxy: Use system default proxy
+    --version: Show version information
+    --write-meta-json: Write meta json after parsed
+    -?: Show help and usage information
+    -H, --header=: Pass custom header(s) to server
+    -M, --mux-after-done=: When all works is done, try to mux the downloaded streams
+    -R, --max-speed=: Set speed limit
+    -da, --drop-audio=: Drop audio streams by regular expressions
+    -ds, --drop-subtitle=: Drop subtitle streams by regular expressions
+    -dv, --drop-video=: Drop video streams by regular expressions
+    -h, --help: Show help and usage information
+    -mt, --concurrent-download: Concurrently download the selected audio, video and subtitles
+    -sa, --select-audio=: Select audio streams by regular expressions
+    -ss, --select-subtitle=: Select subtitle streams by regular expressions
+    -sv, --select-video=: Select video streams by regular expressions

@@ -1,0 +1,37 @@
+name: setup
+description: Sets up a GitButler project from a git repository in the current directory.
+flags:
+    --init: Initialize a new git repository with an empty commit if one doesn't exist.
+    -h, --help: Print help (see more with '--help')
+documentation:
+    command: |-
+        Sets up a GitButler project from a git repository in the current directory.
+
+        This command will:
+        - Add the repository to the global GitButler project registry
+        - Switch to the gitbutler/workspace branch (if not already on it)
+        - Set up a default target branch (the remote's HEAD)
+        - Add a gb-local remote if no push remote exists
+
+        If you have an existing Git repository and want to start using GitButler
+        with it, you can run this command to set up the necessary configuration
+        and data structures.
+
+        ## Examples
+
+        Initialize a new git repository and set up GitButler:
+
+        ```text
+        but setup --init
+        ```
+    flag:
+        help: Print help (see a summary with '-h')
+        init: |-
+            Initialize a new git repository with an empty commit if one doesn't exist.
+
+            This is useful when running in non-interactive environments (like CI/CD)
+            where you want to ensure a git repository exists before setting up GitButler.
+        status-after: |-
+            After a mutation command completes, also output workspace status.
+
+            In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).

@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: do [options] [arguments]
+description: execute a multi-action transaction
+flags:
+    --action=: action to be done (install, remove, upgrade, downgrade, reinstall)
+    --advisories=*: limit the operation to packages matching the given advisory
+    --advisory-severities=*: limit the operation to packages matching the given advisory severity
+    --allow-downgrade: enable downgrade of dependencies
+    --allowerasing: allow removing of installed packages
+    --bugfix: limit to packages that fix a bugfix advisory
+    --bzs=*: limit the operation to packages matching the given bugzilla
+    --cves=*: limit the operation to packages matching the given cve
+    --downloadonly: download packages without executing transaction
+    --enhancement: limit to packages that fix an enhancement advisory
+    --from-repo=: limit the operation to the given repository
+    --from-vendor=: limit the operation to packages from the given vendor
+    --installed-from-repo=: limit the operation to packages installed from the given repository
+    --newpackage: limit to packages that fix a newpackage advisory
+    --no-allow-downgrade: disable downgrade of dependencies
+    --offline: store the transaction to be performed offline
+    --security: limit the operation to packages matching the given security criteria
+    --skip-broken: resolve dependency problems by removing problematic packages
+    --skip-unavailable: allow skipping packages that are not available
+    --type=: type of the following items (auto, package, group)

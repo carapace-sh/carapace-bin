@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: org
+description: Manage orgs
+persistentflags:
+    --json: output as json
+    --otp=: one-time password
+    -p, --parseable: output as json

@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: apply
+description: Apply all the deferred version bumps at once
+flags:
+    --all: Apply the deferred version changes on all workspaces
+    --dry-run: Print the versions without actually generating the package archive
+    --json: Format the output as an NDJSON stream
+    --prerelease: Add a prerelease identifier to new versions
+    -R, --recursive: Release the transitive workspaces as well

@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: kill-window
+aliases:
+    - killw
+description: destroy a given window
+flags:
+    -a: kill all windows except the one specified by -t
+    -t=: specify target window

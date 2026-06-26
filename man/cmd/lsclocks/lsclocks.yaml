@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: lsclocks
+description: display system clocks
+flags:
+    --no-discover-dynamic: do not try to discover dynamic clocks
+    --output-all: output all columns
+    -J, --json: use JSON output format
+    -V, --version: display version
+    -c, --cpu-clock=: also display CPU clock of specified process
+    -d, --dynamic-clock=: also display specified dynamic clock
+    -h, --help: display this help
+    -n, --noheadings: don't print headings
+    -o, --output=: output columns
+    -r, --raw: use raw output format
+    -t, --time=: show current time of single clock

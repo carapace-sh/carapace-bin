@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: make:resource [-f|--force] [-c|--collection] [--] <name>
+description: Create a new resource
+flags:
+    --collection: Create a resource collection
+    --force: Create the class even if the resource already exists

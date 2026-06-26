@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: options
+description: Show install options specific to <formula>
+group: main
+flags:
+    --command: Show options for the specified <command>.
+    --compact: Show all options on a single line separated by spaces.
+    --debug: Display any debugging information.
+    --eval-all: Evaluate all available formulae and casks, whether installed or not, to show their options.
+    --help: Show this message.
+    --installed: Show options for formulae that are currently installed.
+    --quiet: Make some output more quiet.
+    --verbose: Make some output more verbose.

@@ -1,0 +1,41 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: dngconverter
+description: Adobe DNG Converter
+flags:
+    -c: output lossless compressed DNG files
+    -count=: limit pixel count to <num> pixels/image
+    -cr2.4: set Camera Raw compatibility to 2.4 and later
+    -cr4.1: set Camera Raw compatibility to 4.1 and later
+    -cr4.6: set Camera Raw compatibility to 4.6 and later
+    -cr5.4: set Camera Raw compatibility to 5.4 and later
+    -cr6.6: set Camera Raw compatibility to 6.6 and later
+    -cr7.1: set Camera Raw compatibility to 7.1 and later
+    -cr11.2: set Camera Raw compatibility to 11.2 and later
+    -cr12.4: set Camera Raw compatibility to 12.4 and later
+    -cr13.2: set Camera Raw compatibility to 13.2 and later
+    -cr14.0: set Camera Raw compatibility to 14.0 and later
+    -cr15.3: set Camera Raw compatibility to 15.3 and later
+    -d=: output converted files to the specified directory
+    -dng1.1: set DNG backward version to 1.1
+    -dng1.3: set DNG backward version to 1.3
+    -dng1.4: set DNG backward version to 1.4
+    -dng1.5: set DNG backward version to 1.5
+    -dng1.6: set DNG backward version to 1.6
+    -dng1.7: set DNG backward version to 1.7
+    -dng1.7.1: set DNG backward version to 1.7.1
+    -e: embed original raw file inside DNG files
+    -fl: embed fast load data inside DNG files
+    -jxl: use JPEG XL compression, if supported by image type
+    -jxl_distance=: set JPEG XL distance metric
+    -jxl_effort=: set JPEG XL effort level
+    -l: output linear DNG files
+    -losslessJXL: uses Lossless JPEG XL compression
+    -lossy: use lossy compression
+    -lossyMosaicJXL: uses Lossy JPEG XL compression with Bayer images
+    -mp: process multiple raw files in parallel
+    -o=: specify the name of the output DNG file
+    -p0: set JPEG preview size to none
+    -p1: set JPEG preview size to medium size (default)
+    -p2: set JPEG preview size to full size
+    -side=: limit size to <num> pixels/side
+    -u: output uncompressed DNG files

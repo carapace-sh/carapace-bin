@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: trigger <job-id>
+description: Trigger a manual CI/CD job.
+flags:
+    -b, --branch=: The branch to search for the job. (default current branch)
+    -p, --pipeline-id=: The pipeline ID to search for the job.

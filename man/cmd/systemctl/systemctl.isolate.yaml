@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: isolate
+description: Start one unit and stop all others
+group: unit
+documentation:
+  command: |
+    Start the unit specified on the command line and its dependencies and
+    stop all others, unless they have IgnoreOnIsolate=yes. If a unit name
+    with no extension is given, an extension of ".target" will be assumed.
+    This command is dangerous as it will immediately stop processes that
+    are not enabled in the new target, possibly including the graphical
+    environment or terminal you are currently using.

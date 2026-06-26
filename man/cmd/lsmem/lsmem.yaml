@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: lsmem
+description: list the ranges of available memory with their online status
+flags:
+    --output-all: output all columns
+    --summary?: print summary information
+    -J, --json: use JSON output format
+    -P, --pairs: use key="value" output format
+    -S, --split=: split ranges by specified columns
+    -V, --version: display version
+    -a, --all: list each individual memory block
+    -b, --bytes: print SIZE in bytes rather than in human readable format
+    -h, --help: display this help
+    -n, --noheadings: don't print headings
+    -o, --output=: output columns
+    -r, --raw: use raw output format
+    -s, --sysroot=: use the specified directory as system root

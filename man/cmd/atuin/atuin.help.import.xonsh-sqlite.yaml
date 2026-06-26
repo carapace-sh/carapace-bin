@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: xonsh-sqlite
+description: Import history from xonsh sqlite db

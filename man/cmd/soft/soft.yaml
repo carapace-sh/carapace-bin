@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: soft
+description: A self-hostable Git server for the command line
+flags:
+    -h, --help: help for soft
+    -v, --version: version for soft

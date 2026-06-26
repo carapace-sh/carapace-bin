@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: repo
+description: manage repository metadata
+documentation:
+  command: |-
+    Retrieve information about the repository.
+
+    THIS COMMAND IS EXPERIMENTAL. THE BEHAVIOR MAY CHANGE.

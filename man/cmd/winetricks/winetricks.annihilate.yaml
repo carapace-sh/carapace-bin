@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: annihilate
+description: Delete ALL DATA AND APPLICATIONS INSIDE THIS WINEPREFIX

@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: build [OPTIONS] PATH | URL | -
+description: Build an image from a Dockerfile
+group: common

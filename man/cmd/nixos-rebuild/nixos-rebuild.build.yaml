@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: build
+description: build the new configuration without activating it or adding it to the boot menu

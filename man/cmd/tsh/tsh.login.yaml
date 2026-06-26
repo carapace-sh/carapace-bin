@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: login
+description: Log in to a cluster and retrieve the session certificate.
+flags:
+    --browser=: Set to 'none' to suppress browser opening on login
+    --kube-cluster=: Name of the Kubernetes cluster to login to
+    --no-overwrite&: Whether to overwrite the existing identity file.
+    --no-request-nowait&: Finish without waiting for request resolution
+    --no-verbose&: Show extra status information
+    --out=: Identity output
+    --overwrite: Whether to overwrite the existing identity file.
+    --request-id=: Login with the roles requested in the given request
+    --request-nowait: Finish without waiting for request resolution
+    --request-reason=: Reason for requesting additional roles
+    --request-reviewers=: Suggested reviewers for role request
+    --request-roles=: Request one or more extra roles
+    -f, --format=: 'Identity format: file, openssh (for OpenSSH compatibility) or kubernetes (for kubeconfig)'
+    -v, --verbose: Show extra status information
+
+documentation:
+  command: >-
+    Log in to a Teleport cluster and retrieve a session certificate. Required before accessing any cluster resources.

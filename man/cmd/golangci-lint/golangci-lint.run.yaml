@@ -1,0 +1,54 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: run
+description: Lint the code.
+flags:
+    --allow-parallel-runners: Allow multiple parallel golangci-lint instances running.
+    --allow-serial-runners: Allow multiple golangci-lint instances running, but serialize them around a lock.
+    --build-tags=*: Build tags
+    --default=: Default set of linters to enable
+    --enable-only=*: Override linters configuration section to only run the specific linter(s)
+    --fast-only: Filter enabled linters to run only fast linters
+    --fix: Apply the fixes detected by the linters and formatters (if it's supported by the linter)
+    --internal-cmd-test&: Option is used only for testing golangci-lint command, don't use it
+    --issues-exit-code=: Exit code when issues were found
+    --max-issues-per-linter=: Maximum issues count per one linter. Set to 0 to disable
+    --max-same-issues=: Maximum count of issues with the same text. Set to 0 to disable
+    --modules-download-mode=: Modules download mode. If not empty, passed as -mod=<mode> to go tools
+    --new-from-merge-base=: Show only new issues created after the best common ancestor (merge-base against HEAD)
+    --new-from-patch=: Show only new issues created in git patch with file path `PATH`
+    --new-from-rev=: Show only new issues created after git revision `REV`
+    --no-config: Don't read config file
+    --output.checkstyle.path=: Output path can be either `stdout`, `stderr` or path to the file to write to.
+    --output.code-climate.path=: Output path can be either `stdout`, `stderr` or path to the file to write to.
+    --output.html.path=: Output path can be either `stdout`, `stderr` or path to the file to write to.
+    --output.json.path=: Output path can be either `stdout`, `stderr` or path to the file to write to.
+    --output.junit-xml.extended: Support extra JUnit XML fields.
+    --output.junit-xml.path=: Output path can be either `stdout`, `stderr` or path to the file to write to.
+    --output.sarif.path=: Output path can be either `stdout`, `stderr` or path to the file to write to.
+    --output.tab.colors: Use colors.
+    --output.tab.path=: Output path can be either `stdout`, `stderr` or path to the file to write to.
+    --output.tab.print-linter-name: Print linter name in the end of issue text.
+    --output.teamcity.path=: Output path can be either `stdout`, `stderr` or path to the file to write to.
+    --output.text.colors: Use colors.
+    --output.text.path=: Output path can be either `stdout`, `stderr` or path to the file to write to.
+    --output.text.print-issued-lines: Print lines of code with issue.
+    --output.text.print-linter-name: Print linter name in the end of issue text.
+    --path-mode=: Path mode to use (empty, or 'abs')
+    --path-prefix=: Path prefix to add to output
+    --show-stats: Show statistics per linter
+    --skip-dirs=*&: Regexps of directories to skip
+    --skip-files=*&: Regexps of files to skip
+    --tests: Analyze tests (*_test.go)
+    --timeout=: Timeout for total work. Disabled by default
+    --uniq-by-line: Make issues output unique by line
+    --whole-files: Show issues in any part of update files (requires new-from-rev or new-from-patch)
+    -D, --disable=*: Disable specific linter
+    -E, --enable=*: Enable specific linter
+    -c, --config=: Read config from file path `PATH`
+    -j, --concurrency=: 'Number of CPUs to use (Default: Automatically set to match Linux container CPU quota and fall back to the number of logical CPUs in the machine)'
+    -n, --new: 'Show only new issues: if there are unstaged changes or untracked files, only those changes are analyzed, else only changes in HEAD~ are analyzed.'
+persistentflags:
+    --cpu-profile-path=: Path to CPU profile output file
+    --mem-profile-path=: Path to memory profile output file
+    --print-resources-usage&: Print avg and max memory usage of golangci-lint and total time
+    --trace-path=: Path to trace output file

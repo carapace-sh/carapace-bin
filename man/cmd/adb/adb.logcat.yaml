@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: logcat
+description: show device log
+
+documentation:
+  command: >-
+    Display the device's log output in real time. Shows log entries from all apps and system components. Use filters (tag:priority) to limit output, e.g., `ActivityManager:I` shows only Info level and above for ActivityManager. Clear the log with `-c`, save to file with `-f <filename>`. Use `-d` to dump the log and exit. Available priorities: V (verbose), D (debug), I (info), W (warn), E (error), F (fatal), S (silent). Filter by process ID with `--pid`, by size with `-g`.

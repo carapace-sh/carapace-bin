@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: build-vm-with-bootloader
+description: Like build-vm, but boots with the regular bootloader of your configuration

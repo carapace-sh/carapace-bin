@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+aliases:
+    - ls
+description: List the projects for an owner
+flags:
+    --closed: Include closed projects
+    --format=: 'Output format: {json}'
+    --owner=: Login of the owner
+    -L, --limit=: Maximum number of projects to fetch
+    -q, --jq=: Filter JSON output using a jq `expression`
+    -t, --template=: Format JSON output using a Go template; see "gh help formatting"
+    -w, --web: Open projects list in the browser

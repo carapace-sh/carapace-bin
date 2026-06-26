@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: streams <log group>
+description: List streams in log group
+flags:
+    --descending: order streams descending
+    --orderBy=: order streams by LogStreamName or LastEventTime
+    --prefix=: stream prefix filter

@@ -1,0 +1,200 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: s_client
+description: SSL/TLS client program
+group: standard
+flags:
+    "-4": Use IPv4 only
+    "-6": Use IPv6 only
+    -CAfile=: PEM format file of CA's
+    -CApath=: PEM format directory of CA's
+    -CAstore=: URI to store of CA's
+    -CRL=: CRL file to use
+    -CRLform=: CRL format (PEM or DER); default PEM
+    -adv: Advanced command mode
+    -allow_no_dhe_kex: In TLSv1.3 allow non-(ec)dhe based key exchange on resumption
+    -allow_proxy_certs: allow the use of proxy certificates
+    -alpn=: Enable ALPN extension, considering named protocols supported (comma-separated list)
+    -async: Support asynchronous operation
+    -attime=: verification epoch time
+    -auth_level=: chain authentication security level
+    -bind=: bind local address for connection
+    -brief: Restrict output to brief summary of connection parameters
+    -bugs: Turn on SSL bug compatibility
+    -build_chain: Build client certificate chain
+    -cert=: Client certificate file to use
+    -cert_chain=: Client certificate chain file (in PEM format)
+    -certform=: Client certificate file format (PEM/DER/P12); has no effect
+    -chainCAfile=: CA file for certificate chain (PEM format)
+    -chainCApath=: Use dir as certificate store path to build CA certificate chain
+    -chainCAstore=: CA store URI for certificate chain
+    -check_ss_sig: check root CA self-signatures
+    -cipher=: Specify TLSv1.2 and below cipher list to be used
+    -ciphersuites=: Specify TLSv1.3 ciphersuites to be used
+    -client_renegotiation: Allow client-initiated renegotiation
+    -client_sigalgs=: Signature algorithms to support for client certificate authentication (colon-separated list)
+    -comp: Use SSL/TLS-level compression
+    -connect=: 'TCP/IP where to connect; default: 4433)'
+    -crl_check: check leaf certificate revocation
+    -crl_check_all: check full chain revocation
+    -crl_download: Download CRL from distribution points
+    -crlf: Convert LF from terminal into CRLF
+    -ct: Request and parse SCTs (also enables OCSP stapling)
+    -ctlogfile=: CT log list CONF file
+    -curves=: Groups to advertise (colon-separated list)
+    -dane_ee_no_namechecks: Disable name checks when matching DANE-EE(3) TLSA records
+    -dane_tlsa_domain=: DANE TLSA base domain
+    -dane_tlsa_rrdata=: DANE TLSA rrdata presentation form
+    -debug: Extra output
+    -debug_broken_protocol: Perform all sorts of protocol violations for testing purposes
+    -dtls: Use any version of DTLS
+    -dtls1: Just use DTLSv1
+    -dtls1_2: Just use DTLSv1.2
+    -early_data=: File to send as early data
+    -enable_client_rpk: Enable raw public keys (RFC7250) from the client
+    -enable_pha: Enable post-handshake-authentication
+    -enable_server_rpk: Enable raw public keys (RFC7250) from the server
+    -explicit_policy: set policy variable require-explicit-policy
+    -extended_crl: enable extended CRL features
+    -fallback_scsv: Send the fallback SCSV
+    -groups=: Groups to advertise (colon-separated list)
+    -host=: Use -connect instead
+    -ign_eof: Ignore input eof (default when -quiet)
+    -ignore_critical: permit unhandled critical extensions
+    -ignore_unexpected_eof: Do not treat lack of close_notify from a peer as an error
+    -inhibit_any: set policy variable inhibit-any-policy
+    -inhibit_map: set policy variable inhibit-policy-mapping
+    -issuer_checks: (deprecated)
+    -key=: 'Private key file to use; default: -cert file'
+    -keyform=: Key format (DER/PEM)
+    -keylogfile=: Write TLS secrets to file
+    -keymatexport=: Export keying material using label
+    -keymatexportlen=: Export len bytes of keying material; default 20
+    -ktls: Enable Kernel TLS for sending and receiving
+    -legacy_renegotiation: Enable use of legacy renegotiation (dangerous)
+    -legacy_server_connect: Allow initial connection to servers that don't support RI
+    -max_pipelines=: Maximum number of encrypt/decrypt pipelines to be used
+    -max_protocol=: Specify the maximum protocol version to be used
+    -max_send_frag=: Maximum Size of send frames
+    -maxfraglen=: 'Enable Maximum Fragment Length Negotiation (len values: 512, 1024, 2048 and 4096)'
+    -min_protocol=: Specify the minimum protocol version to be used
+    -msg: Show protocol messages
+    -msgfile=: File to send output of -msg or -trace, instead of stdout
+    -mtu=: Set the link layer MTU
+    -name=: Hostname to use for "-starttls lmtp", "-starttls smtp" or "-starttls xmpp[-server]"
+    -named_curve=: Elliptic curve used for ECDHE (server-side only)
+    -nameopt=*: Certificate subject/issuer name printing options
+    -nbio: Use non-blocking IO
+    -nbio_test: More ssl protocol testing
+    -nextprotoneg=: Enable NPN extension, considering named protocols supported (comma-separated list)
+    -no-CAfile: Do not load the default certificates file
+    -no-CApath: Do not load certificates from the default certificates directory
+    -no-CAstore: Do not load certificates from the default certificates store
+    -no-interactive: Don't run the client in the interactive mode
+    -no_alt_chains: (deprecated)
+    -no_check_time: ignore certificate validity time
+    -no_comp: Disable SSL/TLS compression (default)
+    -no_ems: Disable Extended master secret extension
+    -no_etm: Disable Encrypt-then-Mac extension
+    -no_ign_eof: Don't ignore input eof
+    -no_legacy_server_connect: Disallow initial connection to servers that don't support RI
+    -no_middlebox: Disable TLSv1.3 middlebox compat mode
+    -no_renegotiation: Disable all renegotiation.
+    -no_resumption_on_reneg: Disallow session resumption on renegotiation
+    -no_rx_cert_comp: Disable receiving TLSv1.3 compressed certificates
+    -no_ssl3: Just disable SSLv3
+    -no_ticket: Disable use of TLS session tickets
+    -no_tls1: Just disable TLSv1
+    -no_tls1_1: Just disable TLSv1.1
+    -no_tls1_2: Just disable TLSv1.2
+    -no_tls1_3: Just disable TLSv1.3
+    -no_tx_cert_comp: Disable sending TLSv1.3 compressed certificates
+    -nocommands: Do not use interactive command letters
+    -noct: Do not request or parse SCTs (default)
+    -noservername: Do not send the server name (SNI) extension in the ClientHello
+    -ocsp_check_all: Require checking status of full chain, attempting to use OCSP stapling first
+    -ocsp_check_leaf: Require checking leaf certificate status, attempting to use OCSP stapling first
+    -partial_chain: accept chains anchored by intermediate trust-store CAs
+    -pass=: Private key and cert file pass phrase source
+    -policy=: adds policy to the acceptable policy set
+    -policy_check: perform rfc5280 policy checks
+    -policy_print: print policy processing diagnostics
+    -port=: Use -connect instead
+    -prefer_no_dhe_kex: In TLSv1.3 prefer non-(ec)dhe over (ec)dhe-based key exchange on resumption
+    -prexit: Print session information when the program exits
+    -prioritize_chacha: Prioritize ChaCha ciphers when preferred by clients
+    -propquery=: Property query used when fetching algorithms
+    -provider-path=: Provider load path (must be before 'provider' argument if required)
+    -provider=*: Provider to load (can be specified multiple times)
+    -provparam=: Set a provider key-value parameter
+    -proxy=: Connect to via specified proxy to the real server
+    -proxy_pass=: Proxy authentication password source
+    -proxy_user=: UserID for proxy authentication
+    -psk=: PSK in hex (without 0x)
+    -psk_identity=: PSK identity
+    -psk_session=: File to read PSK SSL session from
+    -purpose=: certificate chain purpose
+    -quic: Use QUIC
+    -quiet: No s_client output
+    -rand=: Load the given file(s) into the random number generator
+    -read_buf=: Default read buffer size to be used for connections
+    -reconnect: Drop and re-make the connection with the same Session-ID
+    -record_padding=: Block size to pad TLS 1.3 records to.
+    -requestCAfile=: PEM format file of CA names to send to the server
+    -sctp: Use SCTP
+    -sctp_label_bug: Enable SCTP label length bug
+    -security_debug: Enable security debug messages
+    -security_debug_verbose: Output more security debug output
+    -serverinfo=: types  Send empty ClientHello extensions (comma-separated numbers)
+    -servername=: Set TLS extension servername (SNI) in ClientHello (default)
+    -serverpref: Use server's cipher preferences
+    -sess_in=: File to read SSL session from
+    -sess_out=: File to write SSL session to
+    -showcerts: Show all certificates sent by the server
+    -sigalgs=: Signature algorithms to support (colon-separated list)
+    -split_send_frag=: Size used to split data for encrypt pipelines
+    -srp_lateuser: (deprecated) SRP username into second ClientHello message
+    -srp_moregroups: (deprecated) Tolerate other than the known g N values.
+    -srp_strength=: (deprecated) Minimal length in bits for N
+    -srppass=: (deprecated) Password for 'user'
+    -srpuser=: (deprecated) SRP authentication for 'user'
+    -ssl_config=: Use specified section for SSL_CTX configuration
+    -starttls=: Use the appropriate STARTTLS command before starting TLS
+    -state: Print the ssl states
+    -status: Sends a certificate status request to the server (OCSP stapling) The server response (if any) will be printed out.
+    -strict: Enforce strict certificate checks as per TLS standard
+    -suiteB_128: Suite B 128-bit mode allowing 192-bit algorithms
+    -suiteB_128_only: Suite B 128-bit-only mode
+    -suiteB_192: Suite B 192-bit-only mode
+    -tfo: Connect using TCP Fast Open
+    -timeout: Enable send/receive timeout on DTLS connections
+    -tls1: Just use TLSv1
+    -tls1_1: Just use TLSv1.1
+    -tls1_2: Just use TLSv1.2
+    -tls1_3: Just use TLSv1.3
+    -tlsextdebug: Hex dump of all TLS extensions received
+    -trace: Show trace output of protocol messages
+    -trusted_first: search trust store first (default)
+    -unix=: Connect over the specified Unix-domain socket
+    -use_deltas: use delta CRLs
+    -use_srtp=: Offer SRTP key management with a colon-separated profile list
+    -verify=: Turn on peer certificate verification
+    -verify_depth=: chain depth limit
+    -verify_email=: expected peer email
+    -verify_hostname=: expected peer hostname
+    -verify_ip=: expected peer IP address
+    -verify_name=: verification policy name
+    -verify_quiet: Restrict verify output to errors
+    -verify_return_error: Close connection on verification error
+    -verifyCAfile=: CA file for certificate verification (PEM format)
+    -verifyCApath=: Use dir as certificate store path to verify CA certificate
+    -verifyCAstore=: CA store URI for certificate verification
+    -wdebug: WATT-32 tcp debugging
+    -writerand=: Write random data to the specified file
+    -x509_strict: disable certificate compatibility work-arounds
+    -xcert=: cert for Extended certificates
+    -xcertform=: format of Extended certificate (PEM/DER/P12); has no effect
+    -xchain=: chain for Extended certificates
+    -xchain_build: build certificate chain for the extended certificates
+    -xkey=: key for Extended certificates
+    -xkeyform=: format of Extended certificate's key (DER/PEM/P12); has no effect
+    -xmpphost=: Alias of -name option for "-starttls xmpp[-server]"

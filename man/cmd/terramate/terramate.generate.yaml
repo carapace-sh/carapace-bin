@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: generate
+description: Generate terraform code for stacks
+flags:
+    --detailed-exit-code: Return detailed exit code (0 = ok, 1 = errors, 2 = no errors but changes were made

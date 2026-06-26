@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: supervisord
+description: run a set of applications as daemons
+flags:
+    --minprocs=: the minimum number of processes available for start success
+    --profile_options=: run supervisord under profiler and output results
+    -a, --minfds=: the minimum number of file descriptors for start success
+    -c, --configuration=: 'configuration file path '
+    -d, --directory=: directory to chdir to when daemonized
+    -e, --loglevel=: 'use LEVEL as log level '
+    -h, --help: print this usage message and exit
+    -i, --identifier=: identifier used for this instance of supervisord
+    -j, --pidfile=: write a pid file for the daemon process to FILENAME
+    -k, --nocleanup: 'prevent the process from performing cleanup '
+    -l, --logfile=: use FILENAME as logfile path
+    -m, --umask=: 'use this umask for daemon subprocess '
+    -n, --nodaemon: 'run in the foreground '
+    -q, --childlogdir=: the log directory for child process logs
+    -s, --silent: 'no logs to stdout '
+    -t, --strip_ansi: strip ansi escape codes from process output
+    -u, --user=: 'run supervisord as this user '
+    -v, --version: print supervisord version number and exit
+    -y, --logfile_maxbytes=: use BYTES to limit the max size of logfile
+    -z, --logfile_backups=: number of backups to keep when max bytes reached

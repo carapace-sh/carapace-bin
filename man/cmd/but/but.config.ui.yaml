@@ -1,0 +1,29 @@
+name: ui
+description: View and configure UI preferences
+flags:
+    -h, --help: Print help (see more with '--help')
+documentation:
+    command: |
+        View and configure UI preferences.
+
+        Without arguments, displays current UI settings. Use subcommands to set or unset configuration values.
+
+        Examples
+
+        View UI configuration:
+
+          but config ui
+
+        Enable TUI mode for diff by default:
+
+          but config ui set tui true
+
+        Disable TUI mode:
+
+          but config ui set tui false
+    flag:
+        help: Print help (see a summary with '-h')
+        status-after: |-
+            After a mutation command completes, also output workspace status.
+
+            In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).

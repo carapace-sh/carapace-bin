@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: unzip
+description: list, test and extract compressed files in a ZIP archive
+flags:
+    -C: match filenames case-insensitively
+    -K: keep setuid/setgid/tacky permissions
+    -L: make (some) names lowercase
+    -M: pipe through "more" pager
+    -T: timestamp archive to latest
+    -U: use escapes for all non-ASCII Unicode
+    -V: retain VMS version numbers
+    -X: restore UID/GID info
+    -Z: ZipInfo mode
+    -a: auto-convert any text files
+    -d=: extract files into exdir
+    -f: freshen existing files, create none
+    -j: junk paths (do not make directories)
+    -l: list files (short format)
+    -n: never overwrite existing files
+    -o: overwrite files WITHOUT prompting
+    -p: extract files to pipe, no messages
+    -q: quiet mode (-qq => quieter)
+    -t: test compressed archive data
+    -u: update files, create if necessary
+    -v: list verbosely/show version info
+    -x=: exclude files that follow (in xlist)
+    -z: display archive comment only

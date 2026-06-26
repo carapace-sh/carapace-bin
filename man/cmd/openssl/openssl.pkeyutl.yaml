@@ -1,0 +1,41 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pkeyutl
+description: Public key algorithm cryptographic operation command
+group: standard
+flags:
+    -asn1parse: parse the output as ASN.1 data to check its DER encoding and print errors
+    -certin: Input is a cert with a public key
+    -config=: Load a configuration file (this may load modules)
+    -decap: Decapsulate shared secret
+    -decrypt: Decrypt input data with private key
+    -derive: Derive shared secret from own and peer (EC)DH keys
+    -digest=: The digest algorithm to use for signing/verifying raw input data. Implies -rawin
+    -encap: Encapsulate shared secret
+    -encrypt: Encrypt input data with public key
+    -hexdump: Hex dump output
+    -in=: Input file - default stdin
+    -inkey=: Input key, by default private key
+    -kdf=: Use KDF algorithm
+    -kdflen=: KDF algorithm output length
+    -kemop=: KEM operation specific to the key algorithm
+    -keyform=: Private key format (DER/PEM)
+    -out=: Output file - default stdout
+    -passin=: Input file pass phrase source
+    -peerform=: Peer key format (DER/PEM/P12)
+    -peerkey=: Peer key file used in key derivation
+    -pkeyopt=*: Public key options as opt:value
+    -pkeyopt_passin=: Public key option that is read as a passphrase argument opt:passphrase
+    -propquery=: Property query used when fetching algorithms
+    -provider-path=: Provider load path (must be before 'provider' argument if required)
+    -provider=*: Provider to load (can be specified multiple times)
+    -provparam=: Set a provider key-value parameter
+    -pubin: Input key is a public key
+    -rand=: Load the given file(s) into the random number generator
+    -rawin: Indicate that the signature/verification input data is not yet hashed
+    -rev: Reverse the order of the input buffer
+    -secret=: File to store secret on encapsulation
+    -sigfile=: Signature file (verify operation only)
+    -sign: Sign input data with private key
+    -verify: Verify with public key
+    -verifyrecover: Verify RSA signature, recovering original signature input data
+    -writerand=: Write random data to the specified file

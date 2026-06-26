@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: up [service]...
+description: Starts process manager with specified services. If no services are listed, starts the process manager with all the services in your project
+flags:
+    --pcflags=*: pass flags directly to process compose
+    --process-compose-file=: path to process compose file or directory containing process compose-file.yaml|yml. Default is directory containing devbox.json
+    -b, --background: run service in background
+    -p, --pcport=: specify the port for process-compose to use. You can also set the pcport by exporting DEVBOX_PC_PORT_NUM

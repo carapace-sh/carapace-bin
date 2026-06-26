@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: audit
+description: Run a security audit
+flags:
+    --audit-level=: mnimum level of vulnerability level to exit with non-zero exit code
+    --dry-run: only report what would be done
+    --json: output as json
+    --omit=: omit dependency type
+    --package-lock-only: ignore node-modules
+    --workspaces: Enable running a command in the context fo all workspaces
+    -f, --force: remove various protections against unfortunate side effects
+    -w, --workspace=*: Enable running a command in the context of the given workspace

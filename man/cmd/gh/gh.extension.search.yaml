@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: search [<query>]
+description: Search extensions to the GitHub CLI
+flags:
+    --json=*: Output JSON with the specified `fields`
+    --license=*: Filter based on license type
+    --order=: 'Order of repositories returned, ignored unless ''--sort'' flag is specified: {asc|desc}'
+    --owner=*: Filter on owner
+    --sort=: 'Sort fetched repositories: {forks|help-wanted-issues|stars|updated}'
+    -L, --limit=: Maximum number of extensions to fetch
+    -q, --jq=: Filter JSON output using a jq `expression`
+    -t, --template=: Format JSON output using a Go template; see "gh help formatting"
+    -w, --web: Open the search query in the web browser

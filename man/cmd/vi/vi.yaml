@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: vi
+description: screen oriented (visual) display editor based on ex
+flags:
+    -L=: temporary file to open in recovery mode
+    -R: Files are opened read-only when this option is given
+    -V: Echo command input to standard error, unless it originates from a terminal
+    -c=: Execute command when editing begins
+    -l: Start in a special mode useful for the Lisp programming language
+    -r=: temporary file to open in recovery mode
+    -s: Script mode, all feedback for interactive editing is disabled
+    -t=: Read the tags file, then choose the file and position specified by tagstring for editing
+    -w=: Specify the size of the editing window for visual mode

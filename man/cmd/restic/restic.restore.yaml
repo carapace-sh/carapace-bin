@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: restore
+description: Extract the data from a snapshot
+flags:
+    --iexclude=*: same as `--exclude` but ignores the casing of filenames
+    --iinclude=*: same as `--include` but ignores the casing of filenames
+    --path=*: only consider snapshots which include this (absolute) `path` for snapshot ID "latest"
+    --tag=*: only consider snapshots which include this `taglist` for snapshot ID "latest"
+    --verify: verify restored files content
+    -H, --host=*: only consider snapshots for this host when the snapshot ID is "latest" (can be specified multiple times)
+    -e, --exclude=*: exclude a `pattern` (can be specified multiple times)
+    -i, --include=*: include a `pattern`, exclude everything else (can be specified multiple times)
+    -t, --target=: directory to extract data to
+
+documentation:
+  command: >-
+    Extract files from a snapshot to the specified target directory. Use --include or --exclude to select specific files.

@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: url-parse
+description: Parse and extract git URL components
+group: low-level helper
+flags:
+    -c, --component=: Which URL component to extract
+
+documentation:
+  command: >-
+    Parse and extract components from Git URLs. Git supports many ways to specify URLs, some of them non-standard (for example, the scp style `[user@]host:[path]` format). This command eases interoperability with Git URLs by enabling the parsing and extraction of the components of all Git URLs. Any syntactically valid URL is parsed, even if the scheme is not one Git supports for fetching or pushing.

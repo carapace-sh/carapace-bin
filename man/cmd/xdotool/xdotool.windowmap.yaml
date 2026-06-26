@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: windowmap
+description: Map a window
+flags:
+    --sync: After requesting the window map, wait until the window is actually mapped (visible)

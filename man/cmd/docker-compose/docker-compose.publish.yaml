@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: publish [OPTIONS] REPOSITORY[:TAG]
+description: Publish compose application
+flags:
+    --app: Published compose application (includes referenced images)
+    --insecure-registry&: Use insecure registry
+    --oci-version=: OCI image/artifact specification version (automatically determined by default)
+    --resolve-image-digests: Pin image tags to digests
+    --with-env: Include environment variables in the published OCI artifact
+    -y, --yes: Assume "yes" as answer to all prompts

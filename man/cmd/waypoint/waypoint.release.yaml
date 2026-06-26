@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: release
+description: Open a deployment to traffic
+flags:
+    --deployment=: Release the specified deployment.
+    --label=: Labels to set for this operation.
+    --plain: Plain output
+    --prune: Prune old unreleased deployments.
+    --prune-retain=: The number of unreleased deployments to keep.
+    --remote: True to use a remote runner to execute.
+    --remote-source=: Override configurations for how remote runners source data.
+    --repeat: Re-release if deploy is already released.
+    --var-file=: HCL or JSON file containing variable values to set for this operation.
+    --var=: Variable value to set for this operation.
+    -a, --app=: App to target.
+    -p, --project=: Project to target.
+    -w, --workspace=: Workspace to operate in.

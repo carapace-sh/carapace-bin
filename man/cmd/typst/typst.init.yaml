@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: init
+description: Initializes a new project from a template
+flags:
+    --package-cache-path=: Custom path to package cache, defaults to system-dependent location
+    --package-path=: Custom path to local packages, defaults to system-dependent location
+    -h, --help: Print help (see a summary with '-h')

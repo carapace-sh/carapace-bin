@@ -1,0 +1,34 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: merge
+description: Merge the given notes ref into the current notes ref
+flags:
+  --abort: Abort/reset an in-progress git notes merge
+  --commit: Finalize an in-progress git notes merge
+  -q, --quiet: When merging notes, operate quietly
+  -s, --strategy=: Resolve notes conflicts using the given strategy
+  -v, --verbose: When merging notes, be more verbose
+documentation:
+  flag:
+    abort: |-
+      Abort/reset an in-progress `git notes merge`, i.e. a notes merge
+      with conflicts. This simply removes all files related to the
+      notes merge.
+    commit: |-
+      Finalize an in-progress `git notes merge. Use this option when you have resolved the conflicts that `git notes merge
+      stored in `.git/NOTES_MERGE_WORKTREE`. This amends the partial
+      merge commit created by `git notes merge` (stored in
+      `.git/NOTES_MERGE_PARTIAL`) by adding the notes in
+      `.git/NOTES_MERGE_WORKTREE`. The notes ref stored in the
+      `.git/NOTES_MERGE_REF` symref is updated to the resulting commit.
+    quiet: When merging notes, operate quietly.
+    strategy: |-
+      When merging notes, resolve notes conflicts using the given
+      strategy. The following strategies are recognized: `manual`
+      (default), `ours`, `theirs`, `union` and `cat_sort_uniq`.
+      This option overrides the `notes.mergeStrategy` configuration setting.
+      See the "NOTES MERGE STRATEGIES" section below for more
+      information on each notes merge strategy.
+    verbose: |-
+      When merging notes, be more verbose.
+      When pruning notes, report all object names whose notes are
+      removed.

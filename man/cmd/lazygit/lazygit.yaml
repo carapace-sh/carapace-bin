@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: lazygit
+description: simple terminal UI for git commands
+flags:
+    --print-config-dir: Print the config directory
+    --use-config-dir=: override default config directory with provided directory
+    --use-config-file=: Comma seperated list to custom config file(s)
+    -c, --config: Print the default config
+    -d, --debug: Run in debug mode with logging (see --logs flag below). Use the LOG_LEVEL env var to set the log level (debug/info/warn/error)
+    -f, --filter=: Path to filter on in `git log -- <path>`.
+    -g, --git-dir=: equivalent of the --git-dir git argument
+    -h, --help: Displays help with available flag, subcommand, and positional value parameters.
+    -l, --logs: Tail lazygit logs (intended to be used when `lazygit --debug` is called in a separate terminal tab)
+    -p, --path=: Path of git repo.
+    -v, --version: Print the current version
+    -w, --work-tree=: equivalent of the --work-tree git argument
+
+documentation:
+  command: >-
+    Simple terminal UI for git commands. lazygit provides a ncurses-based
+    interface for staging, committing, viewing diffs, branching, and
+    rebasing without leaving the terminal. Navigate files with arrows,
+    stage/unstage with Space, commit with c, push with P. View and manage
+    stashes, submodules, and worktrees. Interactive rebase with edit/pick/squash.
+    Blame with b, diff with d. Search commits with / and filter by author.
+    Works with any git workflow; designed to complement the command line
+    rather than replace it. Run from any directory; auto-detects repo root.

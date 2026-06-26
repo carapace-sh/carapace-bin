@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: readme [filename]
+description: Generate markdown readme file for this project
+flags:
+    --environment=: environment to use, when supported (e.g.secrets support dev, prod, preview.)
+    --save-template: Save default template for the README file
+    -c, --config=: path to directory containing a devbox.json config file
+    -t, --template=: Path to a custom template for the README file

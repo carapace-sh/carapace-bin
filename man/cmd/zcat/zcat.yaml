@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: zcat
+description: compress or expand files
+flags:
+    --help: display this help and exit
+    --version: display version information and exit
+    -S, --suffix=: use suffix SUF on compressed files
+    -f, --force: force; read compressed data even from a terminal
+    -l, --list: list compressed file contents
+    -q, --quiet: suppress all warnings
+    -r, --recursive: operate recursively on directories
+    -t, --test: test compressed file integrity
+    -v, --verbose: verbose mode

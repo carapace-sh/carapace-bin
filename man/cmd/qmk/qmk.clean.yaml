@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: clean
+description: Clean the QMK firmware folder of build artifacts
+flags:
+    -a, --all: Remove *.hex and *.bin files in the QMK root as well.
+    -h, --help: show this help message and exit

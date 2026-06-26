@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+description: List all available images from the local cache.
+flags:
+    --format=: 'Go template format string for the cache list output.  The format for Go templates can be found here: https://pkg.go.dev/text/template'

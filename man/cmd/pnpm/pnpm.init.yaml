@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: init
+description: Create a package.json file
+flags:
+    --bare: Creates a package.json with only the required fields
+    --init-package-manager: Pin the project to the current pnpm version via the packageManager field
+    --init-type=: Set the module system (commonjs or module)
+    -h, --help: Output usage information

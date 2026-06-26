@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: svg-term
+description: Share terminal sessions as razor-sharp animated SVG everywhere
+flags:
+    --at=: timestamp of frame to render in ms [number]
+    --cast=: asciinema cast id to download [string], required if no stdin provided [string]
+    --command=: command to record [string]
+    --from=: lower range of timeline to render in ms [number]
+    --height=: height in lines [number]
+    --help: print this help [boolean]
+    --in=: json file to use as input [string]
+    --no-cursor: disable cursor rendering [boolean]
+    --no-optimize: disable svgo optimization [boolean]
+    --out=: output file, emits to stdout if omitted, [string]
+    --padding-x=: distance between text and image bounds on x axis [number]
+    --padding-y=: distance between text and image bounds on y axis [number]
+    --padding=: distance between text and image bounds, [number]
+    --profile=: terminal profile file to use, requires --term [string]
+    --term=: terminal profile format, requires --profile [string]
+    --to=: upper range of timeline to render in ms [number]
+    --width=: width in columns [number]
+    --window: render with window decorations [boolean]

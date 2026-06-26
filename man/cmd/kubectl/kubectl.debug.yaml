@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debug (POD | TYPE[[.VERSION].GROUP]/NAME) [ -- COMMAND [args...] ]
+description: Create debugging sessions for troubleshooting workloads and nodes
+group: troubleshooting
+flags:
+    --arguments-only: If specified, everything after -- will be passed to the new container as Args instead of Command.
+    --attach: If true, wait for the container to start running, and then attach as if 'kubectl attach ...' were called.  Default false, unless '-i/--stdin' is set, in which case the default is true.
+    --copy-to=: Create a copy of the target Pod with this name.
+    --custom=: Path to a JSON or YAML file containing a partial container spec to customize built-in debug profiles.
+    --env=: Environment variables to set in the container.
+    --image-pull-policy=: The image pull policy for the container. If left empty, this value will not be specified by the client and defaulted by the server.
+    --image=: Container image to use for debug container.
+    --keep-annotations: If true, keep the original pod annotations.(This flag only works when used with '--copy-to')
+    --keep-init-containers: Run the init containers for the pod. Defaults to true.(This flag only works when used with '--copy-to')
+    --keep-labels: If true, keep the original pod labels.(This flag only works when used with '--copy-to')
+    --keep-liveness: If true, keep the original pod liveness probes.(This flag only works when used with '--copy-to')
+    --keep-readiness: If true, keep the original pod readiness probes.(This flag only works when used with '--copy-to')
+    --keep-startup: If true, keep the original startup probes.(This flag only works when used with '--copy-to')
+    --profile=: Options are "legacy", "general", "baseline", "netadmin", "restricted" or "sysadmin".
+    --replace: When used with '--copy-to', delete the original Pod.
+    --same-node: When used with '--copy-to', schedule the copy of target Pod on the same node.
+    --set-image=: When used with '--copy-to', a list of name=image pairs for changing container images, similar to how 'kubectl set image' works.
+    --share-processes: When used with '--copy-to', enable process namespace sharing in the copy.
+    --target=: When using an ephemeral container, target processes in this container name.
+    -c, --container=: Container name to use for debug container.
+    -f, --filename=*: identifying the resource to debug
+    -i, --stdin: Keep stdin open on the container(s) in the pod, even if nothing is attached.
+    -q, --quiet: If true, suppress informational messages.
+    -t, --tty: Allocate a TTY for the debugging container.

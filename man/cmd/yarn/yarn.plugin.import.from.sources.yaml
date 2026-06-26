@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: sources
+description: Build a plugin from sources
+flags:
+    --branch=: The branch of the repository that should be cloned
+    --no-minify: Build a plugin for development (debugging) - non-minified and non-mangled
+    --path=: The path where the repository should be cloned to
+    --repository=: The repository that should be cloned
+    -f, --force: Always clone the repository instead of trying to fetch the latest commits--json   Format the output as an NDJSON stream

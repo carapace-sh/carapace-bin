@@ -1,0 +1,148 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: tag
+description: Create, list, delete or verify a tag object signed with GPG
+group: main
+flags:
+  --cleanup=: 'how to strip spaces and #comments from message'
+  --color?: respect format colors
+  --column=: show tag list in columns
+  --contains=: print only tags that contain the commit
+  --create-reflog: create a reflog
+  --format=: format to use for the output
+  --merged=: print only tags that are merged
+  --no-contains=: print only tags that don't contain the commit
+  --no-merged=: print only tags that are not merged
+  --points-at=: print only tags of the object
+  --sort=: field name to sort on
+  -F, --file=: read message from file
+  -a, --annotate: annotated tag, needs a message
+  -d, --delete: delete tags
+  -e, --edit: force edit of tag message
+  -f, --force: replace the tag if exists
+  -i, --ignore-case: sorting and filtering are case insensitive
+  -l, --list: list tag names
+  -m, --message=: tag message
+  -n: print <n> lines of each tag message
+  -s, --sign: annotated and GPG-signed tag
+  -u, --local-user=: use another key to sign the tag
+  -v, --verify: verify tags
+documentation:
+  command: |-
+    Add a tag reference in `refs/tags/`, unless `-d`/`-l`/`-v` is given
+    to delete, list or verify tags.
+
+    Unless `-f` is given, the named tag must not yet exist.
+
+    If one of `-a`, `-s`, or `-u <key-id>` is passed, the command
+    creates a `tag` object, and requires a tag message.  Unless
+    `-m <msg>` or `-F <file>` is given, an editor is started for the user to type
+    in the tag message.
+
+    If `-m <msg>` or `-F <file>` or `--trailer <token>[=<value>]` is given
+    and `-a`, `-s`, and `-u <key-id>` are absent, `-a` is implied.
+
+    Otherwise, a tag reference that points directly at the given object
+    (i.e., a lightweight tag) is created.
+
+    A cryptographically signed tag object will be created when `-s` or
+    `-u <key-id>` is used. The signing backend (GPG, X.509, SSH, etc.) is
+    controlled by the `gpg.format` configuration variable, defaulting to
+    OpenPGP. When `-u <key-id>` is not used, the committer identity for
+    the current user is used to find the key for signing. The
+    configuration variable `gpg.program` is used to specify a custom
+    signing binary.
+
+    Tag objects (created with `-a`, `-s`, or `-u`) are called "annotated"
+    tags; they contain a creation date, the tagger name and e-mail, a
+    tagging message, and an optional cryptographic signature. Whereas a
+    "lightweight" tag is simply a name for an object (usually a commit
+    object).
+
+    Annotated tags are meant for release while lightweight tags are meant
+    for private or temporary object labels. For this reason, some git
+    commands for naming objects (like `git describe`) will ignore
+    lightweight tags by default.
+  flag:
+    annotate: Make an unsigned, annotated tag object
+    cleanup: |-
+      Set how the tag message is cleaned up.
+      The  _<mode>_ can be one of `verbatim`, `whitespace` and `strip`.  The
+      `strip` mode is default. The `verbatim` mode does not change message at
+      all, `whitespace` removes just leading/trailing whitespace lines and
+      `strip` removes both whitespace and commentary.
+    create-reflog: |-
+      Create a reflog for the tag. To globally enable reflogs for tags, see
+      `core.logAllRefUpdates` in [git-config](cmd://git/config).
+      The negated form `--no-create-reflog` only overrides an earlier
+      `--create-reflog`, but currently does not negate the setting of
+      `core.logAllRefUpdates`.
+    delete: Delete existing tags with the given names.
+    edit: |-
+      Let further edit the message taken from file with `-F` and command line with
+      `-m`.
+    file: |-
+      Take the tag message from _<file>_.  Use `-` to
+      read the message from the standard input.
+      Implies `-a` if none of `-a`, `-s`, or `-u <key-id>`
+      is given.
+    force: Replace an existing tag with the given name (instead of failing)
+    format: |-
+      A string that interpolates `%(fieldname)` from a tag ref being shown
+      and the object it points at.  The format is the same as
+      that of [git-for-each-ref](cmd://git/for-each-ref).  When unspecified,
+      defaults to `%(refname:strip=2)`.
+    ignore-case: Sorting and filtering tags are case insensitive.
+    list: |-
+      List tags. With optional `<pattern>...`, e.g. `git` tag --list
+      `v-*'`, list only the tags that match the pattern(s).
+
+      Running `git tag` without arguments also lists all tags. The pattern
+      is a shell wildcard (i.e., matched using `fnmatch`(3)). Multiple
+      patterns may be given; if any of them matches, the tag is shown.
+
+      This option is implicitly supplied if any other list-like option such
+      as `--contains` is provided. See the documentation for each of those
+      options for details.
+    local-user: |-
+      Make a cryptographically signed tag using the given key. The
+      format of the <key-id> and the backend used depend on the
+      `gpg.format` configuration variable. See
+      [git-config](cmd://git/config).
+    message: |-
+      Use _<msg>_ (instead of prompting).
+      If multiple `-m` options are given, their values are
+      concatenated as separate paragraphs.
+      Implies `-a` if none of `-a`, `-s`, or `-u <key-id>`
+      is given.
+    n: |-
+      _<num>_ specifies how many lines from the annotation, if any,
+      are printed when using `-l`. Implies `--list`.
+
+      The default is not to print any annotation lines.
+      If no number is given to `-n`, only the first line is printed.
+      If the tag is not annotated, the commit message is displayed instead.
+    sign: |-
+      Make a cryptographically signed tag, using the default signing
+      key. The signing backend used depends on the `gpg.format`
+      configuration variable. The default key is determined by the
+      backend. For GPG, it's based on the committer's email address,
+      while for SSH it may be a specific key file or agent
+      identity. See [git-config](cmd://git/config).
+    sort: |-
+      Sort based on the key given.  Prefix `-` to sort in
+      descending order of the value. You may use the `--sort=<key>` option
+      multiple times, in which case the last _<key>_ becomes the primary
+      key. Also supports "`version:refname`" or "`v:refname`" (tag
+      names are treated as versions). The "`version:refname`" sort
+      order can also be affected by the "`versionsort.suffix`"
+      configuration variable.
+      The keys supported are the same as those in `git for-each-ref`. Sort order defaults to the value configured for the `tag.sort`
+      variable if it exists, or lexicographic order otherwise. See
+      [git-config](cmd://git/config).
+    verify: Verify the cryptographic signature of the given tags.
+    column: |-
+      Display tag listing in columns. See configuration variable
+      `column.tag` for option syntax. `--column` and `--no-column`
+      without options are equivalent to `always` and `never` respectively.
+
+      This option is only applicable when listing tags without annotation lines.

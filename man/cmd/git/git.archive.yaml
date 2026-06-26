@@ -1,0 +1,114 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: archive
+description: Create an archive of files from a named tree
+group: main
+flags:
+  --add-file=: add untracked file to archive
+  --exec=: path to the remote git-upload-archive command
+  --format=: archive format
+  --prefix=: prepend prefix to each pathname in the archive
+  --remote=: retrieve the archive from remote repository <repo>
+  --worktree-attributes: read .gitattributes in working directory
+  '-0': set compression level
+  '-1': set compression level
+  '-2': set compression level
+  '-3': set compression level
+  '-4': set compression level
+  '-5': set compression level
+  '-6': set compression level
+  '-7': set compression level
+  '-8': set compression level
+  '-9': set compression level
+  -l, --list: list supported archive formats
+  -o, --output=: write the archive to this file
+  -v, --verbose: report archived files on stderr
+documentation:
+  command: |-
+    Creates an archive of the specified format containing the tree
+    structure for the named tree, and writes it out to the standard
+    output.  If <prefix> is specified it is
+    prepended to the filenames in the archive.
+
+    'git archive' behaves differently when given a tree ID as opposed to a
+    commit ID or tag ID. When a tree ID is provided, the current time is
+    used as the modification time of each file in the archive. On the
+    other hand, when a commit ID or tag ID is provided, the commit time as
+    recorded in the referenced commit object is used instead.
+    Additionally the commit ID is stored in a global extended pax header
+    if the tar format is used; it can be extracted using 'git
+    get-tar-commit-id'. In ZIP files it is stored as a file comment.
+  flag:
+    '0': |
+      Specify compression level. Larger values allow the command to spend more
+      time to compress to smaller size. Supported values are from `-0`
+      (store-only) to `-9` (best ratio). Default is `-6` if not given.
+    '1': |
+      Specify compression level. Larger values allow the command to spend more
+      time to compress to smaller size. Supported values are from `-0`
+      (store-only) to `-9` (best ratio). Default is `-6` if not given.
+    '2': |
+      Specify compression level. Larger values allow the command to spend more
+      time to compress to smaller size. Supported values are from `-0`
+      (store-only) to `-9` (best ratio). Default is `-6` if not given.
+    '3': |
+      Specify compression level. Larger values allow the command to spend more
+      time to compress to smaller size. Supported values are from `-0`
+      (store-only) to `-9` (best ratio). Default is `-6` if not given.
+    '4': |
+      Specify compression level. Larger values allow the command to spend more
+      time to compress to smaller size. Supported values are from `-0`
+      (store-only) to `-9` (best ratio). Default is `-6` if not given.
+    '5': |
+      Specify compression level. Larger values allow the command to spend more
+      time to compress to smaller size. Supported values are from `-0`
+      (store-only) to `-9` (best ratio). Default is `-6` if not given.
+    '6': |
+      Specify compression level. Larger values allow the command to spend more
+      time to compress to smaller size. Supported values are from `-0`
+      (store-only) to `-9` (best ratio). Default is `-6` if not given.
+    '7': |
+      Specify compression level. Larger values allow the command to spend more
+      time to compress to smaller size. Supported values are from `-0`
+      (store-only) to `-9` (best ratio). Default is `-6` if not given.
+    '8': |
+      Specify compression level. Larger values allow the command to spend more
+      time to compress to smaller size. Supported values are from `-0`
+      (store-only) to `-9` (best ratio). Default is `-6` if not given.
+    '9': |
+      Specify compression level. Larger values allow the command to spend more
+      time to compress to smaller size. Supported values are from `-0`
+      (store-only) to `-9` (best ratio). Default is `-6` if not given.
+    add-file: |
+      Add a non-tracked file to the archive. Can be repeated to add multiple
+      files. The path of the file in the archive is built by concatenating the
+      value of the last `--prefix` option (if any) before this `--add-file`
+      and the basename of &lt;file&gt;.
+    exec: |
+      Used with --remote to specify the path to the *git-upload-archive* on
+      the remote side.
+    format: |
+      Format of the resulting archive. Possible values are `tar`, `zip`,
+      `tar.gz`, `tgz`, and any format defined using the configuration option
+      `tar.<format>.command`. If `--format` is not given, and the output file
+      is specified, the format is inferred from the filename if possible (e.g.
+      writing to `foo.zip` makes the output to be in the `zip` format).
+      Otherwise the output format is `tar`.
+    list: |
+      Show all available formats.
+    output: |
+      Write the archive to &lt;file&gt; instead of stdout.
+    prefix: |
+      Prepend &lt;prefix&gt;/ to paths in the archive. Can be repeated; its
+      rightmost value is used for all tracked files. See below which value
+      gets used by `--add-file`.
+    remote: |
+      Instead of making a tar archive from the local repository, retrieve a
+      tar archive from a remote repository. Note that the remote repository
+      may place restrictions on which sha1 expressions may be allowed in
+      `<tree-ish>`. See [git-upload-archive](cmd://git/upload-archive)
+      for details.
+    verbose: |
+      Report progress to stderr.
+    worktree-attributes: |
+      Look for attributes in .gitattributes files in the working tree as well
+      (see [ATTRIBUTES](#ATTRIBUTES)).

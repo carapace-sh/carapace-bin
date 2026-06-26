@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rec
+description: Record terminal session
+flags:
+    --env=: List of env vars to save
+    --filename=: Filename template, used when recording to a directory
+    --headless: Use headless mode - don't use TTY for input/output
+    --overwrite: Overwrite target file if it already exists
+    --tty-size=: Override terminal size for the recorded command
+    -I, --input: Enable input recording
+    -a, --append: Append to an existing recording file
+    -c, --command=: Command to record
+    -f, --format=: Recording file format
+    -h, --help: Print help
+    -i, --idle-time-limit=: Limit idle time to a given number of seconds
+    -q, --quiet: Quiet mode, i.e. suppress diagnostic messages
+    -t, --title=: Title of the recording
+documentation:
+  command: >-
+    Record a terminal session to a `.cast` file. Captures all output and optionally
+    keyboard input (`-I`). End with Ctrl+D or `exit`; pause/resume with Ctrl+\.
+    Default format is `asciicast-v3`. Use `-c` to record a specific command (defaults
+    to `$SHELL`). Use `-i` to cap idle time, and `--title` for a descriptive title.

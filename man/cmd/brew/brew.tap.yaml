@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: tap
+description: Tap a formula repository
+group: main
+flags:
+    --custom-remote: Install or change a tap with a custom remote. Useful for mirrors.
+    --debug: Display any debugging information.
+    --eval-all: Evaluate all the formulae, casks and aliases in the new tap to check validity. Implied if `HOMEBREW_EVAL_ALL` is set.
+    --force: Force install core taps even under API mode.
+    --force-auto-update: Auto-update tap even if it is not hosted on GitHub. By default, only taps hosted on GitHub are auto-updated (for performance reasons).
+    --help: Show this message.
+    --no-force-auto-update: Auto-update tap even if it is not hosted on GitHub. By default, only taps hosted on GitHub are auto-updated (for performance reasons).
+    --quiet: Make some output more quiet.
+    --repair: Migrate tapped formulae from symlink-based to directory-based structure.
+    --verbose: Make some output more verbose.

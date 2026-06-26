@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: studio
+description: Interact with Benthos studio (https://studio.benthos.dev)
+flags:
+    -e, --endpoint=: Specify the URL of the Benthos studio server to connect to.

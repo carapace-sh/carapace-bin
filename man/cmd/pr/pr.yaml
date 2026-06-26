@@ -1,0 +1,31 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pr
+description: convert text files for printing
+flags:
+    --columns=: output COLUMN columns and print columns down
+    --help: display this help and exit
+    --pages=: begin [stop] printing with page
+    --version: output version information and exit
+    -D, --date-format=: use FORMAT for the header date
+    -F=: use form feeds instead of newlines to separate pages
+    -J, --join-lines: merge full lines, turns off -W line truncation, no column
+    -N=: start counting with NUMBER at 1st line of first page printed
+    -S, --sep-string=: separate columns by STRING
+    -T, --omit-pagination: omit page headers and trailers, eliminate any pagination
+    -W, --page-width=: set page width to PAGE_WIDTH (72) characters alway
+    -a, --across: print columns across rather than down, used together
+    -c, --show-control-chars: use hat notation (^G) and octal backslash notation
+    -d, --double-space: double space the output
+    -e, --expand=: expand input CHARs (TABs) to tab WIDTH (8)
+    -f, --form-feed=: use form feeds instead of newlines to separate pages
+    -h, --header=: use a centered HEADER instead of filename in page header
+    -i, --output-tabs=: replace spaces with CHARs (TABs) to tab WIDTH (8)
+    -l, --length=: set the page length to PAGE_LENGTH (66) lines
+    -m, --merge: print all files in parallel, one in each column,
+    -n, --number-lines=: number lines, use DIGITS (5) digits
+    -o, --indent=: offset each line with MARGIN (zero) spaces,
+    -r, --no-file-warnings: omit warning when a file cannot be opened
+    -s, --separator=: separate columns by a single character
+    -t, --omit-header: omit page headers and trailers;
+    -v, --show-nonprinting: use octal backslash notation
+    -w, --width=: set page width to PAGE_WIDTH (72) characters

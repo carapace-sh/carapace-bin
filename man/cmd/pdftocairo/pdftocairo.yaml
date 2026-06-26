@@ -1,0 +1,59 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pdftocairo
+description: Portable Document Format (PDF) to PNG/JPEG/TIFF/PDF/PS/EPS/SVG using cairo
+flags:
+    -?: print usage information
+    -H=: height of crop area in pixels (default is 0)
+    -W=: width of crop area in pixels (default is 0)
+    -antialias=: set cairo antialias option
+    -cropbox: use the crop box rather than media box
+    -duplex: enable duplex printing
+    -e: print only even pages
+    -eps: generate Encapsulated PostScript (EPS)
+    -expand: expand pages smaller than the paper size
+    -f=: first page to print
+    -gray: generate a grayscale image file (PNG, JPEG)
+    -h: print usage information
+    -help, --help: print usage information
+    -icc=: ICC color profile to use
+    -jpeg: generate a JPEG file
+    -jpegopt=: jpeg options, with format <opt1>=<val1>[,<optN>=<valN>]*
+    -l=: last page to print
+    -level2: generate Level 2 PostScript (PS, EPS)
+    -level3: generate Level 3 PostScript (PS, EPS)
+    -mono: generate a monochrome image file (PNG, JPEG)
+    -nocenter: don't center pages smaller than the paper size
+    -nocrop: don't crop pages to CropBox
+    -noshrink: don't shrink pages larger than the paper size
+    -o: print only odd pages
+    -opw=: owner password (for encrypted files)
+    -origpagesizes: conserve original page sizes (PS, PDF, SVG)
+    -paper=: paper size (letter, legal, A4, A3, match)
+    -paperh=: paper height, in points
+    -paperw=: paper width, in points
+    -pdf: generate a PDF file
+    -png: generate a PNG file
+    -print: print to a Windows printer
+    -printdlg: show Windows print dialog and print
+    -printer=: printer name or use default if this option is not specified
+    -printopt=: printer options, with format <opt1>=<val1>[,<optN>=<valN>]*
+    -ps: generate PostScript file
+    -q: don't print any messages or errors
+    -r=: resolution, in PPI (default is 150)
+    -rx=: X resolution, in PPI (default is 150)
+    -ry=: Y resolution, in PPI (default is 150)
+    -scale-to-x=: scales each page horizontally to fit in scale-to-x pixels
+    -scale-to-y=: scales each page vertically to fit in scale-to-y pixels
+    -scale-to=: scales each page to fit within scale-to*scale-to pixel box
+    -setupdlg: show printer setup dialog before printing
+    -singlefile: write only the first page and do not add digits
+    -struct: enable logical document structure
+    -svg: generate a Scalable Vector Graphics (SVG) file
+    -sz=: size of crop square in pixels (sets W and H)
+    -tiff: generate a TIFF file
+    -tiffcompression=: set TIFF compression
+    -transp: use a transparent background instead of white (PNG)
+    -upw=: user password (for encrypted files)
+    -v: print copyright and version info
+    -x=: x-coordinate of the crop area top left corner
+    -y=: y-coordinate of the crop area top left corner

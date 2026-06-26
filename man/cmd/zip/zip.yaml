@@ -1,0 +1,46 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: zip
+description: package and compress (archive) files
+flags:
+    -@: read names from stdin
+    "-0": store only
+    "-1": compress faster
+    "-9": compress better
+    -A: adjust self-extracting exe
+    -D: do not add directory entries
+    -F: fix zipfile (-FF try harder)
+    -J: junk zipfile prefix (unzipsfx)
+    -T: test zipfile integrity
+    -X: eXclude eXtra file attributes
+    -b=: ""
+    -c: add one-line comments
+    -d: delete entries in zipfile
+    -e: encrypt
+    -f: 'freshen: only changed files'
+    -i: include only the following names
+    -j: junk (don't record) directory names
+    -l: convert LF to CR LF
+    -m: move into zipfile (delete OS files)
+    -n=: don't compress these suffixes
+    -o: make zipfile as old as latest entry
+    -q: quiet operation
+    -r: recurse into directories
+    -t=: ""
+    -u: 'update: only changed or new files'
+    -v: verbose operation/print version info
+    -x: exclude the following names
+    -y: store symbolic links as the link instead of the referenced file
+    -z: add zipfile comment
+
+documentation:
+  command: >-
+    Package and compress files into a ZIP archive. zip creates archives
+    compatible with PKZIP; unzip extracts them. Basic usage: zip archive.zip
+    file1 file2 ... or zip -r archive.zip dir/. Add files recursively
+    with -r; update existing archive with -u. Compression levels -1 (fastest)
+    to -9 (smallest); default is 6. Encrypt with -e (prompts for password).
+    Exclude patterns with -x; include only matching with -i. Remove
+    original files after archiving with -m. Set archive comment with
+    -z. Split archives with -s size. Use -@ to read file list from stdin.
+    To extract: unzip archive.zip; list contents with -l. Archive
+    automatically uses Zip64 for files over 4 GB.

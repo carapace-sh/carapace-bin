@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: tor-resolve
+description: resolve a hostname to an IP address via tor
+flags:
+    "-4": Use the SOCKS4a protocol rather than the default SOCKS5 protocol
+    "-5": Use the SOCKS5 protocol
+    -p=: Override the default SOCKS port without setting the hostname
+    -v: Display verbose output
+    -x: Perform a reverse lookup

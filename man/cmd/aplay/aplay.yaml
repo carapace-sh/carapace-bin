@@ -1,0 +1,48 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Command-line playback and recording tool for the ALSA soundcard
+    driver. Supports multiple file formats (voc, wav, raw, au) and
+    various sample formats. Configure PCM device with `-D`, sample
+    rate with `-r`, channels with `-c`, and duration with `-d`. Use
+    `-l` to list available sound cards and digital audio devices, or
+    `-L` to list PCM device names.
+description: command-line sound recorder and player for ALSA soundcard driver
+flags:
+    --buffer-size=: 'buffer duration is # frames'
+    --disable-channels: disable automatic channel conversions
+    --disable-format: disable automatic format conversions
+    --disable-resample: disable automatic rate resample
+    --disable-softvol: disable software volume control (softvol)
+    --dump-hw-params: dump hw_params of the device
+    --fatal-errors: treat all errors as fatal
+    --max-file-time=: start another output file when the old file has recorded for this many seconds
+    --period-size=: 'distance between interrupts is # frames'
+    --process-id-file: write the process ID here
+    --test-coef=: test coefficient for ring buffer position (default 8)
+    --test-nowait: do not wait for ring buffer - eats whole CPU
+    --test-position: test ring buffer position
+    --use-strftime: apply the strftime facility to the output file name
+    --version: print current version
+    -A, --avail-min=: 'min available space for wakeup is # microseconds'
+    -B, --buffer-time=: 'buffer duration is # microseconds'
+    -D, --device=: select PCM by name
+    -F, --period-time=: 'distance between interrupts is # microseconds'
+    -L, --list-pcms: list device names
+    -M, --mmap: mmap stream
+    -N, --nonblock: nonblocking mode
+    -R, --start-delay=: 'delay for automatic PCM start is # microseconds '
+    -T, --stop-delay=: 'delay for automatic PCM stop is # microseconds from xrun'
+    -V, --vumeter=: 'enable VU meter (TYPE: mono or stereo)'
+    -c, --channels=: channels
+    -d, --duration=: 'interrupt after # seconds'
+    -f, --format=: sample format (case insensitive)
+    -h, --help: help
+    -i, --interactive: allow interactive operation from stdin
+    -l, --list-devices: list all soundcards and digital audio devices
+    -m, --chmap=: Give the channel map to override or follow
+    -q, --quiet: quiet mode
+    -r, --rate=: sample rate
+    -s, --samples=: 'interrupt after # samples per channel'
+    -t, --file-type=: file type (voc, wav, raw or au)
+    -v, --verbose: show PCM structure and setup (accumulative)

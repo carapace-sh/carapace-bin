@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: desc
+description: Display <formula>'s name and one-line description
+group: main
+flags:
+    --cask: Treat all named arguments as casks.
+    --debug: Display any debugging information.
+    --description: Search just descriptions for <text>. If <text> is flanked by slashes, it is interpreted as a regular expression.
+    --eval-all: Evaluate all available formulae and casks, whether installed or not, to search their descriptions. Implied if `HOMEBREW_EVAL_ALL` is set.
+    --formula: Treat all named arguments as formulae.
+    --help: Show this message.
+    --name: Search just names for <text>. If <text> is flanked by slashes, it is interpreted as a regular expression.
+    --quiet: Make some output more quiet.
+    --search: Search both names and descriptions for <text>. If <text> is flanked by slashes, it is interpreted as a regular expression.
+    --verbose: Make some output more verbose.

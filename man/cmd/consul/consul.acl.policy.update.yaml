@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: update
+description: ' Update an ACL policy'
+flags:
+    --ca-file=: Path to a CA file to use for TLS when communicating with Consul.
+    --ca-path=: Path to a directory of CA certificates to use for TLS when communicating with Consul.
+    --client-cert=: Path to a client cert file to use for TLS when 'verify_incoming' is enabled.
+    --client-key=: Path to a client key file to use for TLS when 'verify_incoming' is enabled.
+    --datacenter=: Name of the datacenter to query.
+    --description=: A description of the policy
+    --format=: Output format.
+    --http-addr=: The `address` and port of the Consul HTTP agent.
+    --id=: The ID of the policy to update.
+    --meta: Indicates that policy metadata such as the content hash and raft indices should be shown for each entry
+    --name=: The policies name.
+    --namespace=: Specifies the namespace to query.
+    --no-merge: Do not merge the current policy information with what is provided to the command.
+    --rules=: The policy rules.
+    --stale: Permit any Consul server (non-leader) to respond to this request.
+    --tls-server-name=: The server name to use as the SNI host when connecting via TLS.
+    --token-file=: File containing the ACL token to use in the request.
+    --token=: ACL token to use in the request.
+    --valid-datacenter=: Datacenter that the policy should be valid within.

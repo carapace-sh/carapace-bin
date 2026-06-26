@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: play
+description: Replay terminal recording
+flags:
+    -i, --idle-time-limit=: Limit idle time to a given number of seconds
+    -l, --loop: Loop loop loop loop
+    -m, --pause-on-markers: Automatically pause on markers
+    -s, --speed=: Set playback speed
+documentation:
+  command: >-
+    Replay a recorded `.cast` file in the terminal. Accepts local files, HTTP(S) URLs,
+    or stdin (`-`). Controls: Space to pause/resume, "." to step forward, "]" to skip
+    to next marker. Use `-s` to set playback speed (e.g. `2.0` for double speed),
+    `-l` to loop indefinitely, and `-i` to cap idle time during playback.

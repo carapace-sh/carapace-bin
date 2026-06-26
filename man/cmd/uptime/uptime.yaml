@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: uptime
+description: Tell how long the system has been running
+flags:
+    -V, --version: output version information and exit
+    -c, --container: show container uptime
+    -h, --help: display this help and exit
+    -p, --pretty: show uptime in pretty format
+    -r, --raw: show uptime values in raw format
+    -s, --since: system up since

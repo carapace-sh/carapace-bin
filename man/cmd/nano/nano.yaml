@@ -1,0 +1,63 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: nano
+description: Nano's ANOther editor, inspired by Pico
+flags:
+    -!, --magic: Also try magic to determine syntax
+    -%, --stateflags: Show some states on the title bar
+    -/, --modernbindings: Use better-known key bindings
+    -@, --colonparsing: Accept 'filename:linenumber' notation
+    -_, --minibar: Show a feedback bar at the bottom
+    -0, --zero: Hide all bars, use whole terminal
+    -1, --solosidescroll: Scroll only the current line sideways
+    -A, --smarthome: Enable smart home key
+    -B, --backup: Save backups of existing files
+    -C, --backupdir=: Directory for saving unique backup files
+    -D, --boldtext: Use bold instead of reverse video text
+    -E, --tabstospaces: Convert typed tabs to spaces
+    -F, --multibuffer: Read a file into a new buffer by default
+    -G, --locking: Use (vim-style) lock files
+    -H, --historylog: Save & reload old search/replace strings
+    -I, --ignorercfiles: Don't look at nanorc files
+    -J, --guidestripe=: Show a guiding bar at this column
+    -K, --rawsequences: Fix numeric keypad key confusion problem
+    -L, --nonewlines: Don't add an automatic newline
+    -M, --trimblanks: Trim tail spaces when hard-wrapping
+    -N, --noconvert: Don't convert files from DOS/Mac format
+    -O, --bookstyle: Leading whitespace means new paragraph
+    -P, --positionlog: Save & restore position of the cursor
+    -Q, --quotestr=: Regular expression to match quoting
+    -R, --restricted: Restrict access to the filesystem
+    -S, --softwrap: Display overlong lines on multiple rows
+    -T, --tabsize=: Make a tab this number of columns wide
+    -U, --quickblank: Wipe status bar upon next keystroke
+    -V, --version: Print version information and exit
+    -W, --wordbounds: Detect word boundaries more accurately
+    -X, --wordchars=: Which other characters are word parts
+    -Y, --syntax=: Syntax definition to use for coloring
+    -Z, --zap: Let Bsp and Del erase a marked region
+    -a, --atblanks: When soft-wrapping, do it at whitespace
+    -b, --breaklonglines: Automatically hard-wrap overlong lines
+    -c, --constantshow: Constantly show cursor position
+    -d, --rebinddelete: Fix Backspace/Delete confusion problem
+    -e, --emptyline: Keep the line below the title bar empty
+    -f, --rcfile=: Use only this file for configuring nano
+    -g, --showcursor: Show cursor in file browser & help text
+    -h, --help: Show this help text and exit
+    -i, --autoindent: Automatically indent new lines
+    -j, --jumpyscrolling: Scroll per half-screen, not per line
+    -k, --cutfromcursor: Cut from cursor to end of line
+    -l, --linenumbers: Show line numbers in front of the text
+    -m, --mouse: Enable the use of the mouse
+    -n, --noread: Do not read the file (only write it)
+    -o, --operatingdir=: Set operating directory
+    -p, --preserve: Preserve XON (^Q) and XOFF (^S) keys
+    -q, --indicator: Show a position+portion indicator
+    -r, --fill=: Set width for hard-wrap and justify
+    -s, --speller=: Use this alternative spell checker
+    -t, --saveonexit: Save changes on exit, don't prompt
+    -u, --unix: Save a file by default in Unix format
+    -v, --view: View mode (read-only)
+    -w, --nowrap: Don't hard-wrap long lines [default]
+    -x, --nohelp: Don't show the two help lines
+    -y, --afterends: Make Ctrl+Right stop at word ends
+    -z, --listsyntaxes: List the names of available syntaxes

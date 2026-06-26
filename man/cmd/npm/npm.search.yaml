@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: search
+description: Search for packages
+flags:
+    --color=: whether to show color in output
+    --json: output as json
+    --no-description: hide descripton
+    --offline: force offline mode
+    --prefer-offline: bypass staleness checks for cached data
+    --prefer-online: force staleness checks for cached data
+    --searchexclude=: space separated options that limit the results
+    --searchopts=: space separated search options
+    -l, --long: Search the registry for packages
+    -p, --parseable: output parseable results

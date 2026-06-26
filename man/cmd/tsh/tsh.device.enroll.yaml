@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: enroll
+description: Enroll this device as a trusted device. Requires Teleport Enterprise.
+flags:
+    --token=!: Device enrollment token

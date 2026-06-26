@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: format
+description: Format a string using a template
+flags:
+    --strip-ansi: Strip ANSI sequences when reading from STDIN
+    --theme=: Glamour theme to use for markdown formatting
+    -l, --language=: Programming language to parse code
+    -t, --type=: Format to use (markdown,template,code,emoji)

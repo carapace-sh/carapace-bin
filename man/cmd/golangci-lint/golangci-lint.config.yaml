@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: config
+description: Configuration file information and verification.
+persistentflags:
+    --no-config: Don't read config file
+    -c, --config=: Read config from file path `PATH`

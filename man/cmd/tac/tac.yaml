@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: tac
+description: concatenate and print files in reverse
+flags:
+    --help: display this help and exit
+    --version: output version information and exit
+    -b, --before: attach the separator before instead of after
+    -r, --regex: interpret the separator as a regular expression
+    -s, --separator=: use STRING as the separator instead of newline

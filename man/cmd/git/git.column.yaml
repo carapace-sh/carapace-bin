@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: column
+description: Display data in columns
+group: low-level helper
+flags:
+  --command=: lookup config vars
+  --indent=: padding space on left border
+  --mode=: layout to use
+  --nl=: padding space on right border
+  --padding=: padding space between columns
+  --raw-mode=: layout to use
+  --width=: maximum width
+documentation:
+  command: |-
+    This command formats the lines of its standard input into a table with
+    multiple columns. Each input line occupies one cell of the table. It
+    is used internally by other git commands to format output into
+    columns.

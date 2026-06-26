@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: convert
+description: Convert a recording into another format
+flags:
+    --overwrite: Overwrite target file if it already exists
+    --server-url=: asciinema server URL
+    -f, --format=: Output file format
+    -h, --help: Print help
+    -q, --quiet: Quiet mode, i.e. suppress diagnostic messages
+documentation:
+  command: >-
+    Convert asciicast files between formats (v3, v2, v1) or export to raw/plain
+    text. Reads from files, URLs, or stdin; writes to files or stdout. Use `-f`
+    to specify output format: `asciicast-v3` (default), `asciicast-v2`, `raw`,
+    or `txt`. Format is auto-detected from `.txt` extension.

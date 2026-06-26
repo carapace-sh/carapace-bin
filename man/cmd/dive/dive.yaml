@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: dive
+description: Docker Image Visualizer & Explorer
+flags:
+    --ci: Skip the interactive TUI and validate against CI rules (same as env var CI=true)
+    --ci-config=: If CI=true in the environment, use the given yaml to drive validation rules.
+    --highestUserWastedPercent=: (only valid with --ci given) highest allowable percentage of bytes wasted (as a ratio between 0-1), otherwise CI validation will fail.
+    --highestWastedBytes=: (only valid with --ci given) highest allowable bytes wasted, otherwise CI validation will fail.
+    --lowestEfficiency=: (only valid with --ci given) lowest allowable image efficiency (as a ratio between 0-1), otherwise CI validation will fail.
+    -h, --help: help for dive
+    -j, --json=: Skip the interactive TUI and write the layer analysis statistics to a given file.
+persistentflags:
+    --config=: config file (default is $HOME/.dive.yaml, ~/.config/dive/*.yaml, or $XDG_CONFIG_HOME/dive.yaml)
+    --source=: 'The container engine to fetch the image from. Allowed values: docker, podman, docker-archive'
+    -i, --ignore-errors: ignore image parsing errors and run the analysis anyway
+    -v, --version: display version number
+
+documentation:
+  command: >-
+    Explore Docker images and their layer contents. dive is an
+    interactive tool for inspecting Docker image layers, showing
+    which files were added, modified, or deleted in each layer.
+    Navigate layers with arrows, see file tree and content changes.
+    Run commands in the image with --shell or --user. Show layer
+    diffs with d. Navigate to specific layer with Enter. Useful for
+    optimizing image size, finding unnecessary files, and auditing
+    layer contents. Works with local Docker daemon and remote registries
+    (--username/--password). Build analysis with dive build <dockerfile>.
+    Keybindings: Ctrl+C quit, arrows navigate, Tab toggle layer/filepath.

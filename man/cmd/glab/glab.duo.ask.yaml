@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ask <prompt>
+description: Generate Git commands from natural language.
+flags:
+    --git: Ask a question about Git.

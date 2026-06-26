@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: diff
+description: Show differences between two snapshots
+flags:
+    --metadata: print changes in metadata
+
+documentation:
+  command: >-
+    Show the differences between two snapshots, listing added, removed, and modified files with size changes.

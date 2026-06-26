@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: paste
+description: merge lines of files
+flags:
+    --help: display this help and exit
+    --version: output version information and exit
+    -d, --delimiters=: reuse characters from LIST instead of TABs
+    -s, --serial: paste one file at a time instead of in parallel
+    -z, --zero-terminated: line delimiter is NUL, not newline

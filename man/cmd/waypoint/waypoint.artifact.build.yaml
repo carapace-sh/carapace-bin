@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: build
+description: Build a new versioned artifact from source
+flags:
+    --label=: Labels to set for this operation.
+    --plain: Plain output
+    --push: Push the artifact to the configured registry.
+    --remote: True to use a remote runner to execute.
+    --remote-source=: Override configurations for how remote runners source data.
+    --var-file=: HCL or JSON file containing variable values to set for this operation.
+    --var=: Variable value to set for this operation.
+    -a, --app=: App to target.
+    -p, --project=: Project to target.
+    -w, --workspace=: Workspace to operate in.

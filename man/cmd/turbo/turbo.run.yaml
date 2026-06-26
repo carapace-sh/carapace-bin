@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: run
+description: Run tasks across projects in your monorepo
+flags:
+    --cache-dir=: Override the filesystem cache directory
+    --cache-workers=: 'Set the number of concurrent cache operations (default 10) [default: 10]'
+    --concurrency=: Limit the concurrency of task execution. Use 1 for serial (i.e. one-at-a-time) execution
+    --continue: Continue execution even if a task exits with an error or non-zero exit code
+    --dry-run=: '[possible values: text, json]'
+    --filter=: Use the given selector to specify package(s) to act as entry points
+    --force: Ignore the existing cache (to force execution)
+    --global-deps=: Specify glob of global filesystem dependencies to be hashed
+    --graph=: Generate a graph of the task execution and output to a file when a filename is specified
+    --ignore=: Files to ignore when calculating changed files (i.e. --since). Supports globs
+    --include-dependencies: Include the dependencies of tasks in execution
+    --log-prefix=: Use "none" to remove prefixes from task logs
+    --no-cache: Avoid saving task results to the cache. Useful for development/watch tasks
+    --no-daemon: Run without using turbo's daemon process
+    --no-deps: Exclude dependent task consumers from execution
+    --output-logs=: Set type of process output logging.
+    --parallel: Execute all tasks in parallel
+    --profile=: File to write turbo's performance profile output into
+    --remote-only: Ignore the local filesystem cache for all tasks
+    --scope=: Specify package(s) to act as entry points for task execution. Supports globs
+    --since=: Limit/Set scope to changed packages since a mergebase

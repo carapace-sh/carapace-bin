@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: push [options] PATH
+description: Update remote state from a local state file
+flags:
+    -force: Write the state even if lineages don't match or the remote serial is higher
+    -lock: Don't hold a state lock during the operation
+    -lock-timeout?: Duration to retry a state lock

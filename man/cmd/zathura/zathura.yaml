@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: zathura
+description: a document viewer
+flags:
+    --cache-dir=: Path to the cache directory
+    --fork: Fork into the background
+    --mode=: Start in a non-default mode
+    --synctex-forward=: Move to given synctex position
+    --synctex-pid=: Highlight given position in the given process
+    -P, --page=: Page number to go to
+    -b, --bookmark=: Bookmark to go to
+    -c, --config-dir=: Path to the config directory
+    -d, --data-dir=: Path to the data directory
+    -e, --reparent=: Reparents to window specified by xid (X11)
+    -f, --find=: Search for the given phrase and display results
+    -h, --help: Show help options
+    -l, --log-level=: Log level (debug, info, warning, error)
+    -p, --plugins-dir=: Path to the directories containing plugins
+    -v, --version: Print version information
+    -w, --password=: Document password
+    -x, --synctex-editor-command=: Synctex editor (forwarded to the synctex command)

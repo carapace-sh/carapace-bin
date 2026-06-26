@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: serie
+description: "A rich git commit graph in your terminal, like magic \U0001F4DA"
+flags:
+    --preload: Preload all graph images
+    -V, --version: Print version
+    -g, --graph-width=: Commit graph image cell width
+    -h, --help: Print help
+    -o, --order=: Commit ordering algorithm
+    -p, --protocol=: Image protocol to render graph

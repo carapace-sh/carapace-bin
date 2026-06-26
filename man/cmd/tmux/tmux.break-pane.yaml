@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: break-pane
+description: break a pane from an existing into a new window
+flags:
+    -F=: specify output format
+    -P: print information of new window after it has been created
+    -a: move window to next index after
+    -b: move window to next index before
+    -d: don't make the new window become the active one
+    -n=: specify window name
+    -s=: specify source pane
+    -t=: specify destination window

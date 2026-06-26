@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: snapshots
+description: List all snapshots
+flags:
+    --last: only show the last snapshot for each host and path
+    --latest=: only show the last `n` snapshots for each host and path
+    --path=*: only consider snapshots for this `path` (can be specified multiple times)
+    --tag=*: only consider snapshots which include this `taglist` in the format `tag[,tag,...]` (can be specified multiple times)
+    -H, --host=*: only consider snapshots for this `host` (can be specified multiple times)
+    -c, --compact: use compact output format
+    -g, --group-by=: string for grouping snapshots by host,paths,tags
+
+documentation:
+  command: >-
+    List all snapshots in the repository with date, host, paths, and tags. Use --compact for a shorter format.

@@ -1,0 +1,210 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: s_server
+description: SSL/TLS server program
+group: standard
+flags:
+    "-4": Use IPv4 only
+    "-6": Use IPv6 only
+    -CAfile=: PEM format file of CA's
+    -CApath=: PEM format directory of CA's
+    -CAstore=: URI to store of CA's
+    -CRL=: CRL file to use
+    -CRLform=: CRL file format (PEM or DER); default PEM
+    -HTTP: Like -WWW but ./path includes HTTP headers
+    -Verify=: Turn on peer certificate verification, must have a cert
+    -WWW: Respond to a 'GET with the file ./path
+    -accept=: TCP/IP optional host and port to listen on for connections (default is *:4433)
+    -allow_no_dhe_kex: In TLSv1.3 allow non-(ec)dhe based key exchange on resumption
+    -allow_proxy_certs: allow the use of proxy certificates
+    -alpn=: Set the advertised protocols for the ALPN extension (comma-separated list)
+    -anti_replay: Switch on anti-replay protection (default)
+    -async: Operate in asynchronous mode
+    -attime=: verification epoch time
+    -auth_level=: chain authentication security level
+    -brief: Restrict output to brief summary of connection parameters
+    -bugs: Turn on SSL bug compatibility
+    -build_chain: Build server certificate chain
+    -cert=: Server certificate file to use; default server.pem
+    -cert_chain=: Server certificate chain file in PEM format
+    -cert_comp: Pre-compress server certificates
+    -cert2=: Certificate file to use for servername; default server2.pem
+    -certform=: Server certificate file format (PEM/DER/P12); has no effect
+    -chainCAfile=: CA file for certificate chain (PEM format)
+    -chainCApath=: use dir as certificate store path to build CA certificate chain
+    -chainCAstore=: use URI as certificate store to build CA certificate chain
+    -check_ss_sig: check root CA self-signatures
+    -cipher=: Specify TLSv1.2 and below cipher list to be used
+    -ciphersuites=: Specify TLSv1.3 ciphersuites to be used
+    -client_renegotiation: Allow client-initiated renegotiation
+    -client_sigalgs=: Signature algorithms to support for client certificate authentication (colon-separated list)
+    -comp: Use SSL/TLS-level compression
+    -context=: Set session ID context
+    -crl_check: check leaf certificate revocation
+    -crl_check_all: check full chain revocation
+    -crl_download: Download CRLs from distribution points in certificate CDP entries
+    -crlf: Convert LF from terminal into CRLF
+    -curves=: Groups to advertise (colon-separated list)
+    -dcert=: Second server certificate file to use (usually for DSA)
+    -dcert_chain=: second server certificate chain file in PEM format
+    -dcertform=: Second server certificate file format (PEM/DER/P12); has no effect
+    -debug: Print more output
+    -debug_broken_protocol: Perform all sorts of protocol violations for testing purposes
+    -dhparam=: DH parameters file to use
+    -dkey=: Second private key file to use (usually for DSA)
+    -dkeyform=: Second key file format (DER/PEM)
+    -dpass=: Second private key and cert file pass phrase source
+    -dtls: Use any DTLS version
+    -dtls1: Just talk DTLSv1
+    -dtls1_2: Just talk DTLSv1.2
+    -early_data: Attempt to read early data
+    -enable_client_rpk: Enable raw public keys (RFC7250) from the client
+    -enable_server_rpk: Enable raw public keys (RFC7250) from the server
+    -explicit_policy: set policy variable require-explicit-policy
+    -ext_cache: Disable internal cache, set up and use external cache
+    -extended_crl: enable extended CRL features
+    -groups=: Groups to advertise (colon-separated list)
+    -http_server_binmode: opening files in binary mode when acting as http server (-WWW and -HTTP)
+    -id_prefix=: Generate SSL/TLS session IDs prefixed by arg
+    -ign_eof: Ignore input EOF (default when -quiet)
+    -ignore_critical: permit unhandled critical extensions
+    -ignore_unexpected_eof: Do not treat lack of close_notify from a peer as an error
+    -inhibit_any: set policy variable inhibit-any-policy
+    -inhibit_map: set policy variable inhibit-policy-mapping
+    -issuer_checks: (deprecated)
+    -key=: Private key file to use; default is -cert file or elseserver.pem
+    -key2=: -Private Key file to use for servername if not in -cert2
+    -keyform=: Key format (DER/PEM)
+    -keylogfile=: Write TLS secrets to file
+    -keymatexport=: Export keying material using label
+    -keymatexportlen=: Export len bytes of keying material; default 20
+    -ktls: Enable Kernel TLS for sending and receiving
+    -legacy_renegotiation: Enable use of legacy renegotiation (dangerous)
+    -legacy_server_connect: Allow initial connection to servers that don't support RI
+    -listen: Listen for a DTLS ClientHello with a cookie and then connect
+    -max_early_data=: The maximum number of bytes of early data as advertised in tickets
+    -max_pipelines=: Maximum number of encrypt/decrypt pipelines to be used
+    -max_protocol=: Specify the maximum protocol version to be used
+    -max_send_frag=: Maximum Size of send frames
+    -min_protocol=: Specify the minimum protocol version to be used
+    -msg: Show protocol messages
+    -msgfile=: File to send output of -msg or -trace, instead of stdout
+    -mtu=: Set link-layer MTU
+    -naccept=: 'Terminate after #num connections'
+    -named_curve=: Elliptic curve used for ECDHE (server-side only)
+    -nameopt=*: Certificate subject/issuer name printing options
+    -nbio: Use non-blocking IO
+    -nbio_test: Test with the non-blocking test bio
+    -nextprotoneg=: Set the advertised protocols for the NPN extension (comma-separated list)
+    -no-CAfile: Do not load the default certificates file
+    -no-CApath: Do not load certificates from the default certificates directory
+    -no-CAstore: Do not load certificates from the default certificates store URI
+    -no_alt_chains: (deprecated)
+    -no_anti_replay: Switch off anti-replay protection
+    -no_ca_names: Disable TLS Extension CA Names
+    -no_cache: Disable session cache
+    -no_check_time: ignore certificate validity time
+    -no_comp: Disable SSL/TLS compression (default)
+    -no_dhe: Disable ephemeral DH
+    -no_ems: Disable Extended master secret extension
+    -no_etm: Disable Encrypt-then-Mac extension
+    -no_ign_eof: Do not ignore input EOF
+    -no_legacy_server_connect: Disallow initial connection to servers that don't support RI
+    -no_middlebox: Disable TLSv1.3 middlebox compat mode
+    -no_proxy=: List of addresses of servers not to use HTTP(S) proxy for Default from environment variable 'no_proxy', else 'NO_PROXY', else none
+    -no_renegotiation: Disable all renegotiation.
+    -no_resume_ephemeral: Disable caching and tickets if ephemeral (EC)DH is used
+    -no_resumption_on_reneg: Disallow session resumption on renegotiation
+    -no_rx_cert_comp: Disable receiving TLSv1.3 compressed certificates
+    -no_ssl3: Just disable SSLv3
+    -no_ticket: Disable use of TLS session tickets
+    -no_tls1: Just disable TLSv1
+    -no_tls1_1: Just disable TLSv1.1
+    -no_tls1_2: Just disable TLSv1.2
+    -no_tls1_3: Just disable TLSv1.3
+    -no_tx_cert_comp: Disable sending TLSv1.3 compressed certificates
+    -nocert: Don't use any certificates (Anon-DH)
+    -num_tickets=: The number of TLSv1.3 session tickets that a server will automatically issue
+    -partial_chain: accept chains anchored by intermediate trust-store CAs
+    -pass=: Private key and cert file pass phrase source
+    -policy=: adds policy to the acceptable policy set
+    -policy_check: perform rfc5280 policy checks
+    -policy_print: print policy processing diagnostics
+    -port=: TCP/IP port to listen on for connections (default is 4433)
+    -prefer_no_dhe_kex: In TLSv1.3 prefer non-(ec)dhe over (ec)dhe-based key exchange on resumption
+    -prioritize_chacha: Prioritize ChaCha ciphers when preferred by clients
+    -propquery=: Property query used when fetching algorithms
+    -provider-path=: Provider load path (must be before 'provider' argument if required)
+    -provider=*: Provider to load (can be specified multiple times)
+    -provparam=: Set a provider key-value parameter
+    -proxy=: '[http[s]://]host[:port][/path] of HTTP(S) proxy to use; path is ignored'
+    -psk=: PSK in hex (without 0x)
+    -psk_hint=: PSK identity hint to use
+    -psk_identity=: PSK identity to expect
+    -psk_session=: File to read PSK SSL session from
+    -purpose=: certificate chain purpose
+    -quiet: No server output
+    -rand=: Load the given file(s) into the random number generator
+    -read_buf=: Default read buffer size to be used for connections
+    -record_padding=: Block size to pad TLS 1.3 records to.
+    -recv_max_early_data=: The maximum number of bytes of early data (hard limit)
+    -rev: act as an echo server that sends back received text reversed
+    -sctp: Use SCTP
+    -sctp_label_bug: Enable SCTP label length bug
+    -security_debug: Print output from SSL/TLS security framework
+    -security_debug_verbose: Print more output from SSL/TLS security framework
+    -sendfile: Use sendfile to response file with -WWW
+    -serverinfo=: PEM serverinfo file for certificate
+    -servername=: Servername for HostName TLS extension
+    -servername_fatal: On servername mismatch send fatal alert (default warning alert)
+    -serverpref: Use server's cipher preferences
+    -sigalgs=: Signature algorithms to support (colon-separated list)
+    -split_send_frag=: Size used to split data for encrypt pipelines
+    -srpuserseed=: (deprecated) A seed string for a default user salt
+    -srpvfile=: (deprecated) The verifier file for SRP
+    -ssl_config=: Configure SSL_CTX using the given configuration value
+    -state: Print the SSL states
+    -stateless: Require TLSv1.3 cookies
+    -status: Provide certificate status response if requested, for server cert only
+    -status_all: Provide certificate status response(s) if requested, for the whole chain
+    -status_file=*: File containing DER encoded OCSP Response (can be specified multiple times)
+    -status_timeout=: Status request responder timeout
+    -status_url=: Status request fallback URL
+    -status_verbose: Print more output in certificate status callback
+    -strict: Enforce strict certificate checks as per TLS standard
+    -suiteB_128: Suite B 128-bit mode allowing 192-bit algorithms
+    -suiteB_128_only: Suite B 128-bit-only mode
+    -suiteB_192: Suite B 192-bit-only mode
+    -tfo: Listen for TCP Fast Open connections
+    -timeout: Enable timeouts
+    -tls1: Just talk TLSv1
+    -tls1_1: Just talk TLSv1.1
+    -tls1_2: just talk TLSv1.2
+    -tls1_3: just talk TLSv1.3
+    -tlsextdebug: Hex dump of all TLS extensions received
+    -trace: trace protocol messages
+    -trusted_first: search trust store first (default)
+    -unix=: Unix domain socket to accept on
+    -unlink: For -unix, unlink existing socket first
+    -use_deltas: use delta CRLs
+    -use_srtp=: Offer SRTP key management with a colon-separated profile list
+    -verify=: Turn on peer certificate verification
+    -verify_depth=: chain depth limit
+    -verify_email=: expected peer email
+    -verify_hostname=: expected peer hostname
+    -verify_ip=: expected peer IP address
+    -verify_name=: verification policy name
+    -verify_quiet: No verify output except verify errors
+    -verify_return_error: Close connection on verification error
+    -verifyCAfile=: CA file for certificate verification (PEM format)
+    -verifyCApath=: use dir as certificate store path to verify CA certificate
+    -verifyCAstore=: use URI as certificate store to verify CA certificate
+    -writerand=: Write random data to the specified file
+    -www: Respond to a 'GET /' with a status page
+    -x509_strict: disable certificate compatibility work-arounds
+    -xcert=: cert for Extended certificates
+    -xcertform=: format of Extended certificate (PEM/DER/P12); has no effect
+    -xchain=: chain for Extended certificates
+    -xchain_build: build certificate chain for the extended certificates
+    -xkey=: key for Extended certificates
+    -xkeyform=: format of Extended certificate's key (DER/PEM/P12); has no effect
+    -zerocopy_sendfile: Use zerocopy mode of KTLS sendfile

@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: thaw
+description: Resume execution of a frozen unit
+group: unit
+documentation:
+  command: |
+    Thaw (unfreeze) one or more frozen units. This is the inverse operation
+    to freeze and resumes the execution of processes in the unit's cgroup.

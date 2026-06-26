@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: token <command> [flags]
+description: Manage GitLab Agents for Kubernetes tokens.

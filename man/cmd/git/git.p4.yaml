@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: p4
+description: Import from and submit to Perforce repositories
+group: interaction
+documentation:
+  command: |-
+    This command provides a way to interact with p4 repositories
+    using Git.
+
+    Create a new Git repository from an existing p4 repository using
+    'git p4 clone', giving it one or more p4 depot paths.  Incorporate
+    new commits from p4 changes with 'git p4 sync'.  The 'sync' command
+    is also used to include new branches from other p4 depot paths.
+    Submit Git changes back to p4 using 'git p4 submit'.  The command
+    'git p4 rebase' does a sync plus rebases the current branch onto
+    the updated p4 remote branch.

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: nova:translate [--force] [--] <language>
+description: Create translation files for Nova
+flags:
+    --force: Overwrite any existing files

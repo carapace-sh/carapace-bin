@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: edit
+description: Edit the notes for a given object
+flags:
+  --allow-empty: Allow an empty note object to be stored
+documentation:
+  flag:
+    allow-empty: |-
+      Allow an empty note object to be stored. The default behavior is
+      to automatically remove empty notes.

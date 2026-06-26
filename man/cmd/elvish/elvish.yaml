@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: elvish
+description: expressive programming language and a versatile interactive shell
+flags:
+    -buildinfo: Output information about the Elvish build and quit
+    -c: Treat the first argument as code to execute
+    -compileonly: Parse and compile Elvish code without executing it
+    -daemon: '[internal flag] Run the storage daemon instead of an Elvish shell'
+    -db=: '[internal flag] Path to the database file'
+    -deprecation-level=: Show warnings for all features deprecated as of version 0.X (default 18)
+    -help: Show usage help and quit
+    -i: A no-op flag, introduced for POSIX compatibility
+    -json: Show the output from -buildinfo, -compileonly or -version in JSON
+    -log=: Path to a file to write debug logs
+    -lsp: Run the builtin language server
+    -norc: Don't read the RC file when running interactively
+    -rc=: Path to the RC file when running interactively
+    -sock=: '[internal flag] Path to the daemon''s UNIX socket'
+    -version: Output the Elvish version and quit

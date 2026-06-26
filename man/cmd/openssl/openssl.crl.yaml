@@ -1,0 +1,35 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: crl
+description: Certificate Revocation List (CRL) Management
+group: standard
+flags:
+    -CAfile=: Verify CRL using certificates in file name
+    -CApath=: Verify CRL using certificates in dir
+    -CAstore=: Verify CRL using certificates in store URI
+    -badsig: Corrupt last byte of loaded CRL signature (for test)
+    -crlnumber: Print CRL number
+    -dateopt=*: Datetime format used for printing. (rfc_822/iso_8601). Default is rfc_822.
+    -fingerprint: Print the crl fingerprint
+    -gendelta=: Other CRL to compare/diff to the Input one
+    -hash: Print hash value
+    -hash_old: Print old-style (MD5) hash value
+    -in=: Input file - default stdin
+    -inform=: CRL input format (DER or PEM); has no effect
+    -issuer: Print issuer DN
+    -key=: CRL signing Private key to use
+    -keyform=: Private key file format (DER/PEM/P12); has no effect
+    -lastupdate: Set lastUpdate field
+    -nameopt=*: Certificate subject/issuer name printing options
+    -nextupdate: Set nextUpdate field
+    -no-CAfile: Do not load the default certificates file
+    -no-CApath: Do not load certificates from the default certificates directory
+    -no-CAstore: Do not load certificates from the default certificates store
+    -noout: No CRL output
+    -out=: output file - default stdout
+    -outform=: Output format - default PEM
+    -propquery=: Property query used when fetching algorithms
+    -provider-path=: Provider load path (must be before 'provider' argument if required)
+    -provider=*: Provider to load (can be specified multiple times)
+    -provparam=: Set a provider key-value parameter
+    -text: Print out a text format version
+    -verify: Verify CRL signature

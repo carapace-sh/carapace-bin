@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: man
+description: Generate man pages
+hidden: true
+
+documentation:
+  command: >-
+    Generate roff-formatted man pages for the Charm CLI using mango-cobra.

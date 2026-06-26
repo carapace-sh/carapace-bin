@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: help [COMMAND]...
+description: Print this message or the help of the given subcommand(s)

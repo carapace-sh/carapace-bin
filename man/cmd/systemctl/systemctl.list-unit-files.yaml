@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list-unit-files
+description: List installed unit files
+group: unit file
+documentation:
+  command: |
+    List unit files installed on the system, in combination with their
+    enablement state (as reported by is-enabled). Unlike list-units, this
+    command lists template units in addition to explicitly instantiated
+    units.

@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Create, modify, and extract files from archives. An archive is a
+    single file holding a collection of other files in a structure that
+    makes it possible to retrieve the original individual files (members).
+    Member contents, permissions, timestamps, owner, and group are preserved
+    in the archive. Supports thin archives, plugin-based output formats,
+    and the ability to specify the target object format.

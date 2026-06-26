@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: patch-commit
+description: Generate a patch out of a directory
+group: general
+flags:
+    -s, --save: Add the patch to your resolution entries

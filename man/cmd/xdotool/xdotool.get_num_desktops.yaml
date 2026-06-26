@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: get_num_desktops
+description: Outputs the current number of desktops

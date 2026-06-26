@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: wire
+description: print any Wire errors found
+flags:
+    -tags=: append build tags to the default wirebuild

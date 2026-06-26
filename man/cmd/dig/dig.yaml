@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: dig
+description: DNS lookup utility
+flags:
+    "-4": This option indicates that only IPv4 should be used.
+    "-6": This option indicates that only IPv6 should be used.
+    -b=: This option sets the source IP address of the query.
+    -c=: This  option  sets the query class.
+    -f=: This option sets batch mode.
+    -k=: This option tells named to sign queries using TSIG using a key read  from  the  given file.
+    -m: This option enables memory usage debugging.
+    -p=: This option sends the query to a non-standard port on the server.
+    -q=: This option specifies the domain name to query.
+    -r: This  option  indicates  that options from ${HOME}/.digrc should not be read.
+    -t=: This option indicates the resource record type to query.
+    -u: This option indicates that print query times should be provided in  microseconds  instead of milliseconds.
+    -v: This option prints the version number and exits.
+    -x=: This option sets simplified reverse lookups, for mapping addresses to names.
+    -y=: This option signs queries using TSIG with the given authentication key.

@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: get_desktop_for_window
+description: Output the desktop currently containing the given window

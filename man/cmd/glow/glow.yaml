@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: glow [SOURCE|DIR]
+description: Render markdown on the CLI, with pizzazz!
+flags:
+    -a, --all: show system files and directories (TUI-mode only)
+    -l, --line-numbers: show line numbers (TUI-mode only)
+    -m, --mouse&: enable mouse wheel (TUI-mode only)
+    -n, --preserve-new-lines: preserve newlines in the output
+    -p, --pager: display with pager
+    -s, --style=: style name or JSON path
+    -w, --width=: word-wrap at width (set to 0 to disable)
+persistentflags:
+    --config=: config file

@@ -1,0 +1,68 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: display
+description: display an image on a workstation running X
+flags:
+    -authenticate=: decrypt image with this password
+    -backdrop*: display image centered on a backdrop
+    -border=: surround image with a border of color
+    -colormap=: Shared or Private
+    -colors*: preferred number of colors in the image
+    -colorspace=: alternate image colorspace
+    -comment=: annotate image with comment
+    -compress=: image compression type
+    -contrast*: enhance or reduce the image contrast
+    -crop=: preferred size and location of the cropped image
+    -debug=: display copious debugging information
+    -define=: Coder/decoder specific options
+    -delay=: display the next image after pausing
+    -density=: horizontal and vertical density of the image
+    -depth=: image depth
+    -despeckle*: reduce the speckles within an image
+    -display=: display image to this X server
+    -dispose=: Undefined, None, Background, Previous
+    -dither*: apply Floyd/Steinberg error diffusion to image
+    -edge=: apply a filter to detect edges in the image
+    -endian=: multibyte word order (LSB, MSB, or Native)
+    -enhance*: apply a digital filter to enhance a noisy image
+    -filter=: use this filter when resizing an image
+    -flip*: flip image in the vertical direction
+    -flop*: flop image in the horizontal direction
+    -frame=: surround image with an ornamental border
+    -gamma=: level of gamma correction
+    -geometry=: preferred size and location of the Image window
+    -help: print program options
+    -immutable*: displayed image cannot be modified
+    -interlace=: None, Line, Plane, or Partition
+    -label=: assign a label to an image
+    -limit=: Disk, File, Map, Memory, Pixels, Width, Height or Threads resource limit
+    -log=: format of debugging information
+    -map=: display image using this Standard Colormap
+    -matte*: store matte channel if the image has one
+    -monitor*: show progress indication
+    -monochrome*: transform image to black and white
+    -negate*: replace every pixel with its complementary color
+    -noop*: do not apply options to image
+    -page=: size and location of an image canvas
+    -quality=: JPEG/MIFF/PNG compression level
+    -raise=: lighten/darken image edges to create a 3-D effect
+    -remote=: execute a command in an remote display process
+    -roll=: roll an image vertically or horizontally
+    -rotate=: apply Paeth rotation to the image
+    -sample=: scale image with pixel sampling
+    -sampling-factor=: horizontal and vertical sampling factors
+    -scenes=: image scene range
+    -segment=: segment an image
+    -set=: set image attribute
+    -sharpen=: sharpen the image
+    -size=: width and height of image
+    -texture=: name of texture to tile onto the image background
+    -treedepth=: color tree depth
+    -trim*: trim image edges
+    -type=: image type
+    -update=: detect when image file is modified and redisplay
+    -verbose: print detailed information about the image
+    -version: print version information
+    -virtual-pixel=: Constant, Edge, Mirror, or Tile
+    -window=: display image to background of this window
+    -window_group=: exit program when this window id is destroyed
+    -write=: write image to a file

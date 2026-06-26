@@ -1,0 +1,27 @@
+name: apply
+description: Apply a branch to the workspace.
+flags:
+    -h, --help: Print help (see more with '--help')
+documentation:
+    command: |-
+        Apply a branch to the workspace.
+
+        If you want to apply an unapplied branch to your workspace so you
+        can work on it, you can run `but apply <branch-name>`.
+
+        This will apply the changes in that branch into your working directory
+        as a parallel applied branch.
+
+        ## Examples
+
+        Apply by branch name:
+
+        ```text
+        but apply my-feature-branch
+        ```
+    flag:
+        help: Print help (see a summary with '-h')
+        status-after: |-
+            After a mutation command completes, also output workspace status.
+
+            In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).

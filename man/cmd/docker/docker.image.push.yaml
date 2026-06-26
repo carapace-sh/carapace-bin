@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: push [OPTIONS] NAME[:TAG]
+description: Upload an image to a registry
+flags:
+    --disable-content-trust&: Skip image verification (deprecated)
+    --platform=: Push a platform-specific manifest as a single-platform image to the registry.
+    -a, --all-tags: Push all tags of an image to the repository
+    -q, --quiet: Suppress verbose output

@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: spkac
+description: SPKAC printing and generating command
+group: standard
+flags:
+    -challenge=: Challenge string
+    -digest=: 'Sign new SPKAC with the specified digest (default: MD5)'
+    -in=: Input file
+    -key=: Create SPKAC using private key
+    -keyform=: Private key file format (DER/PEM)
+    -noout: Don't print SPKAC
+    -out=: Output file
+    -passin=: Input file pass phrase source
+    -pubkey: Output public key
+    -spkac=: Alternative SPKAC name
+    -spksect=: Specify the name of an SPKAC-dedicated section of configuration
+    -verify: Verify SPKAC signature

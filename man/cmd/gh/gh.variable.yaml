@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: variable <command>
+description: Manage GitHub Actions variables
+persistentdocumentation:
+    command: |
+        Variables can be set at the repository, environment, or organization level
+        for use in GitHub Actions or Dependabot. Unlike secrets, variables are not
+        encrypted and are visible in workflow logs. Run `gh help variable set` to
+        learn how to get started.
+flags:
+    -R, --repo=: Select another repository using the `[HOST/]OWNER/REPO` format

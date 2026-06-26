@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: publish
+description: Publishes a package to the npm registry
+flags:
+    --access=: Published as public or restricted
+    --changed-files-ignore-pattern=: Defines files to ignore when filtering for changed projects
+    --dry-run: Does everything a publish would do except actually publishing
+    --filter-prod=: Restricts the scope to package names matching the given pattern
+    --filter=: set filter
+    --force: Publish packages even if their current version is already in the registry
+    --ignore-scripts: Ignores any publish related lifecycle scripts
+    --json: Show information in JSON format
+    --no-git-checks: Don't check if current branch is your publish branch, clean, and up to date
+    --otp=: One-time password for two-factor authentication
+    --provenance: Publicly link the package to where it was built and published
+    --publish-branch=: Sets branch name to publish
+    --report-summary: Save the list of the newly published
+    --tag=: Registers the published package with the given tag
+    --test-pattern=: 'Defines files related to tests '
+    -r, --recursive: Publish all packages from the workspace

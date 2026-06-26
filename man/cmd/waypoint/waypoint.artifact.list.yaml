@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+description: List pushed artifacts
+flags:
+    --desc: Sort the values in descending order.
+    --json: Output the deployment information as JSON.
+    --limit=: How many values to show.
+    --long-ids: Show long identifiers rather than sequence numbers.
+    --order-by=: Order the values by which field.
+    --physical-state=: Show values in the given physical states.
+    --plain: Plain output
+    --state=: Filter values to have the given status.
+    --verbose: Display more details about each deployment.
+    --workspace-all: List builds in all workspaces for this project and application.
+    -a, --app=: App to target.
+    -p, --project=: Project to target.
+    -w, --workspace=: Workspace to operate in.

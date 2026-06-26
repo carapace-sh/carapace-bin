@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: outdated
+description: check if there is a new version for the box
+flags:
+    --cacert=: CA certificate for SSL download
+    --capath=: CA certificate directory for SSL download
+    --cert=: A client SSL cert, if needed
+    --global: Check all boxes installed
+    --insecure: Do not validate SSL certificates
+    -f, --force: Force checks for latest box updates

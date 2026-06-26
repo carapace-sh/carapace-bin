@@ -1,0 +1,28 @@
+name: push
+description: Push changes in a branch to remote.
+flags:
+    -d, --dry-run: Show what would be pushed without actually pushing
+    -f, --with-force: Force push even if it's not fast-forward
+    -h, --help: Print help (see more with '--help')
+    -r, --run-hooks: Run pre-push hooks
+    -s, --skip-force-push-protection: Skip force push protection checks
+documentation:
+    command: |-
+        Push changes in a branch to remote.
+
+        `but push` will update the remote with the latest commits from the
+        applied branch(es).
+
+        Without a branch ID:
+        - Interactive mode: Lists all branches with unpushed commits and prompts for selection
+        - Non-interactive mode: Automatically pushes all branches with unpushed commits
+
+        With a branch ID:
+        - `but push bu` - push the branch with CLI ID "bu"
+        - `but push feature-branch` - push the branch named "feature-branch"
+    flag:
+        help: Print help (see a summary with '-h')
+        status-after: |-
+            After a mutation command completes, also output workspace status.
+
+            In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).

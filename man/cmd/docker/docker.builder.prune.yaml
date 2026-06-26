@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: prune
+description: Remove build cache
+flags:
+    --filter=: Provide filter values (e.g. "until=24h")
+    --keep-storage=: Amount of disk space to keep for cache
+    -a, --all: Remove all unused build cache, not just dangling ones
+    -f, --force: Do not prompt for confirmation

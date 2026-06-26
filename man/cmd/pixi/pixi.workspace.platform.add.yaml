@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: add
+aliases:
+    - a
+description: Adds a platform(s) to the workspace file and updates the lockfile
+flags:
+    --no-install: Don't update the environment, only add changed packages to the lock-file
+    -f, --feature=: The name of the feature to add the platform to

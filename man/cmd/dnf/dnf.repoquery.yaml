@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: repoquery [options] [<package-spec>...]
+aliases:
+    - rq
+description: search for packages in repositories
+flags:
+    --arch=: limit to packages of given architectures
+    --available: query available packages
+    --disable-modular-filtering: include packages of inactive module streams
+    --duplicates: limit to installed duplicate packages
+    --exactdeps: limit to packages that require the specified capability
+    --extras: limit to installed packages not in any repository
+    --file=*: limit to packages that own files
+    --installed: query installed packages
+    --installonly: limit to installed installonly packages
+    --latest-limit=: limit to N latest packages
+    --leaves: limit to groups of installed packages not required by others

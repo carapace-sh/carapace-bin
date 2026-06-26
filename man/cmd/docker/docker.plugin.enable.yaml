@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: enable [OPTIONS] PLUGIN
+description: Enable a plugin
+flags:
+    --timeout=: HTTP client timeout (in seconds)

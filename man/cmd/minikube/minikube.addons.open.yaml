@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: open ADDON_NAME
+description: 'Opens the addon w/ADDON_NAME within minikube (example: minikube addons open dashboard). For a list of available addons use: minikube addons list '
+flags:
+    --https: Open the addons URL with https instead of http
+    --interval=: The time interval for each check that wait performs in seconds
+    --url: Display the Kubernetes addons URL in the CLI instead of opening it in the default browser
+    --wait=: Amount of time to wait for service in seconds
+persistentflags:
+    --format=: Format to output addons URL in.  This format will be applied to each url individually and they will be printed one at a time.

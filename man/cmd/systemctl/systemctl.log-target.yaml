@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: log-target
+description: Get/set logging target for manager
+group: manager state
+documentation:
+  command: |
+    If no argument is given, print the current log target of the manager.
+    If an optional argument TARGET is provided, change the current log
+    target to TARGET. Accepts values: console, kmsg, journal, syslog,
+    null, or auto (auto is equivalent to console if invoked interactively,
+    otherwise journal or syslog).

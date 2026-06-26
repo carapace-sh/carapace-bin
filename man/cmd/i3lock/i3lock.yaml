@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: i3lock
+description: improved screen locker
+flags:
+    --debug: Enables debug logging.
+    --raw=: Read the image given by --image as a raw image instead of PNG.
+    -b, --beep: Enable beeping.
+    -c, --color=: Turn the screen into the given color instead of white.
+    -e, --ignore-empty-password: Do not validate empty password.
+    -f, --show-failed-attempts: Show the number of failed attempts, if any.
+    -i, --image=: Display the given PNG image instead of a blank screen.
+    -n, --nofork: Don't fork after starting.
+    -p, --pointer=: Set pointer.
+    -t, --tiling: If an image is specified (via -i) it will display the image tiled all over the screen
+    -u, --no-unlock-indicator: Disable  the  unlock indicator.
+    -v, --version: Display the version of your i3lock

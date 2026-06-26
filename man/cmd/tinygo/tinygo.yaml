@@ -1,0 +1,28 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: tinygo
+description: TinyGo is a Go compiler for small places
+flags:
+    -cpuprofile=: cpuprofile output
+    -dumpssa: dump internal Go SSA
+    -gc=: garbage collector to use
+    -ldflags=: Go link tool compatible ldflags
+    -llvm-features=: comma separated LLVM features to enable
+    -no-debug: strip debug information
+    -o=: output
+    -ocd-commands=: OpenOCD commands, overriding target spec
+    -ocd-output: print OCD daemon output during debug
+    -opt=: optimization level
+    -panic=: panic strategy
+    -port=: flash port
+    -print-allocs=: regular expression of functions for which heap allocations should be printed
+    -print-stacks: print stack sizes of goroutines
+    -printir: print LLVM IR
+    -programmer=: which hardware programmer to use
+    -scheduler=: which scheduler to use
+    -serial=: which serial output to use
+    -size=: print sizes
+    -tags=: a space-separated list of extra build tags
+    -target=: chip/board name or JSON target specification file
+    -verifyir: run extra verification steps on LLVM IR
+    -wasm-abi=: WebAssembly ABI conventions
+    -x: Print commands

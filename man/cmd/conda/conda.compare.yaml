@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: compare
+description: Compare packages between conda environments
+flags:
+    --json: Report all output as json.
+    -h, --help: Show this help message and exit.
+    -n, --name=: Name of environment.
+    -p, --prefix=: Full path to environment location (i.e. prefix).
+    -q, --quiet: Do not display progress bar.
+    -v, --verbose: Use once for info, twice for debug, three times for trace.

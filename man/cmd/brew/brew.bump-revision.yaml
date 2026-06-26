@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: bump-revision
+description: Create a commit to increment the revision of <formula>
+group: developer
+flags:
+    --debug: Display any debugging information.
+    --dry-run: Print what would be done rather than doing it.
+    --help: Show this message.
+    --message: Append <message> to the default commit message.
+    --quiet: Make some output more quiet.
+    --remove-bottle-block: Remove the bottle block in addition to bumping the revision.
+    --verbose: Make some output more verbose.
+    --write-only: Make the expected file modifications without taking any Git actions.

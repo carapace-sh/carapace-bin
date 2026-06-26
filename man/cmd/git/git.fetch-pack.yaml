@@ -1,0 +1,35 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: fetch-pack
+description: Receive missing objects from another repository
+group: low-level synching
+flags:
+  --all: Fetch all remote refs
+  --check-self-contained-and-connected: Output "connectivity-ok" if the received pack is self-contained and connected
+  --deepen-relative: Argument --depth specifies the number of commits from the current shallow boundary instead of from the tip of each remote branch history
+  --depth=: Limit fetching to ancestor-chains not longer than n
+  --exec=: Same as --upload-pack=<git-upload-pack>
+  --include-tag: If the remote side supports it, annotated tags objects will be downloaded on the same connection
+  --no-progress: Do not show the progress
+  --refetch: Skips negotiating commits with the server in order to fetch all matching objects
+  --shallow-exclude=: Deepen or shorten the history of a shallow repository to exclude commits reachable from a specified remote branch or tag
+  --shallow-since=: Deepen or shorten the history of a shallow repository to include all reachable commits after <date>
+  --stdin: Take the list of refs from stdin, one per line
+  --thin: Fetch a "thin" pack, which records objects in deltified form based on objects not included in the pack
+  --upload-pack=: Use this to specify the path to git-upload-pack on the remote side, if is not found on your $PATH
+  -k, --keep: Do not invoke git unpack-objects on received data, but create a single packfile out of it instead
+  -q, --quiet: Pass -q flag to git unpack-objects; this makes the cloning process less verbose
+  -v: Run verbosely
+documentation:
+  command: |-
+    Usually you would want to use 'git fetch', which is a
+    higher level wrapper of this command, instead.
+
+    Invokes 'git-upload-pack' on a possibly remote repository
+    and asks it to send objects missing from this repository, to
+    update the named heads.  The list of commits available locally
+    is found out by scanning the local refs/ hierarchy and sent to
+    'git-upload-pack' running on the other end.
+
+    This command degenerates to download everything to complete the
+    asked refs from the remote side when the local side does not
+    have a common ancestor commit.

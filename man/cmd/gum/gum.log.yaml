@@ -1,0 +1,117 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: log
+description: Log messages to output
+flags:
+    --formatter=: The log formatter to use
+    --key.align=: Text Alignment
+    --key.background=: Background Color
+    --key.bold: Bold text
+    --key.border-background=: Border Background Color
+    --key.border-foreground=: Border Foreground Color
+    --key.border=: Border Style
+    --key.faint: Faint text
+    --key.foreground=: Foreground Color
+    --key.height=: Text height
+    --key.italic: Italicize text
+    --key.margin=: Text margin
+    --key.padding=: Text padding
+    --key.strikethrough: Strikethrough text
+    --key.underline: Underline text
+    --key.width=: Text width
+    --level.align=: Text Alignment
+    --level.background=: Background Color
+    --level.bold: Bold text
+    --level.border-background=: Border Background Color
+    --level.border-foreground=: Border Foreground Color
+    --level.border=: Border Style
+    --level.faint: Faint text
+    --level.foreground=: Foreground Color
+    --level.height=: Text height
+    --level.italic: Italicize text
+    --level.margin=: Text margin
+    --level.padding=: Text padding
+    --level.strikethrough: Strikethrough text
+    --level.underline: Underline text
+    --level.width=: Text width
+    --message.align=: Text Alignment
+    --message.background=: Background Color
+    --message.bold: Bold text
+    --message.border-background=: Border Background Color
+    --message.border-foreground=: Border Foreground Color
+    --message.border=: Border Style
+    --message.faint: Faint text
+    --message.foreground=: Foreground Color
+    --message.height=: Text height
+    --message.italic: Italicize text
+    --message.margin=: Text margin
+    --message.padding=: Text padding
+    --message.strikethrough: Strikethrough text
+    --message.underline: Underline text
+    --message.width=: Text width
+    --min-level=: Minimal level to show
+    --prefix.align=: Text Alignment
+    --prefix.background=: Background Color
+    --prefix.bold: Bold text
+    --prefix.border-background=: Border Background Color
+    --prefix.border-foreground=: Border Foreground Color
+    --prefix.border=: Border Style
+    --prefix.faint: Faint text
+    --prefix.foreground=: Foreground Color
+    --prefix.height=: Text height
+    --prefix.italic: Italicize text
+    --prefix.margin=: Text margin
+    --prefix.padding=: Text padding
+    --prefix.strikethrough: Strikethrough text
+    --prefix.underline: Underline text
+    --prefix.width=: Text width
+    --prefix=: Prefix to print before the message
+    --separator.align=: Text Alignment
+    --separator.background=: Background Color
+    --separator.bold: Bold text
+    --separator.border-background=: Border Background Color
+    --separator.border-foreground=: Border Foreground Color
+    --separator.border=: Border Style
+    --separator.faint: Faint text
+    --separator.foreground=: Foreground Color
+    --separator.height=: Text height
+    --separator.italic: Italicize text
+    --separator.margin=: Text margin
+    --separator.padding=: Text padding
+    --separator.strikethrough: Strikethrough text
+    --separator.underline: Underline text
+    --separator.width=: Text width
+    --time.align=: Text Alignment
+    --time.background=: Background Color
+    --time.bold: Bold text
+    --time.border-background=: Border Background Color
+    --time.border-foreground=: Border Foreground Color
+    --time.border=: Border Style
+    --time.faint: Faint text
+    --time.foreground=: Foreground Color
+    --time.height=: Text height
+    --time.italic: Italicize text
+    --time.margin=: Text margin
+    --time.padding=: Text padding
+    --time.strikethrough: Strikethrough text
+    --time.underline: Underline text
+    --time.width=: Text width
+    --value.align=: Text Alignment
+    --value.background=: Background Color
+    --value.bold: Bold text
+    --value.border-background=: Border Background Color
+    --value.border-foreground=: Border Foreground Color
+    --value.border=: Border Style
+    --value.faint: Faint text
+    --value.foreground=: Foreground Color
+    --value.height=: Text height
+    --value.italic: Italicize text
+    --value.margin=: Text margin
+    --value.padding=: Text padding
+    --value.strikethrough: Strikethrough text
+    --value.underline: Underline text
+    --value.width=: Text width
+    -f, --format: Format message using printf
+    -l, --level=: The log level to use
+    -o, --file=: Log to file
+    -s, --structured: Use structured logging
+    -t, --time=: The time format to use (kitchen, layout, ansic, rfc822, etc...)

@@ -1,0 +1,38 @@
+name: status
+description: Overview of the project workspace state.
+flags:
+    --files&: Determines whether the committed files should be shown as well
+    --no-hint: Disable hints about available commands at the end of output
+    -f: Determines whether the committed files should be shown as well
+    -h, --help: Print help (see more with '--help')
+    -r, --refresh-prs: Forces a sync of pull requests from the forge before showing status
+    -u, --upstream: Show detailed list of upstream commits that haven't been integrated yet
+    -v, --verbose: Show verbose output with commit author and timestamp
+documentation:
+    command: |-
+        Overview of the project workspace state.
+
+        This shows unstaged files, files staged to stacks, all applied
+        branches (stacked or parallel), commits on each of those branches,
+        upstream commits that are unintegrated, commit status (pushed or local),
+        and base branch information.
+
+        ## Examples
+
+        Normal usage:
+
+        ```text
+        but status
+        ```
+
+        Shorthand with listing files modified
+
+        ```text
+        but status -f
+        ```
+    flag:
+        help: Print help (see a summary with '-h')
+        status-after: |-
+            After a mutation command completes, also output workspace status.
+
+            In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).

@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: sudoreplay
+description: replay sudo session logs
+flags:
+    -R, --no-resize: do not attempt to re-size the terminal
+    -S, --suspend-wait: wait while the command was suspended
+    -V, --version: display version information and exit
+    -d, --directory=: specify directory for session logs
+    -f, --filter=: specify which I/O type(s) to display
+    -h, --help: display help message and exit
+    -l, --list: list available session IDs, with optional expression
+    -m, --max-wait=: max number of seconds to wait between events
+    -n, --non-interactive: no prompts, session is sent to the standard output
+    -s, --speed=: speed up or slow down output

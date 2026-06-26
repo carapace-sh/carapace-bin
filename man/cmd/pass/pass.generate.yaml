@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: generate
+description: generate a new password
+flags:
+    -c, --clip: additionally put on clipboard
+    -f, --force: prompt before overwriting
+    -i, --in-place: only replace first line of existing
+    -n, --no-symbols: without symbols

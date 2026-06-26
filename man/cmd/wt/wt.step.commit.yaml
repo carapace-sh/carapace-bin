@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: commit
+description: Stage and commit with LLM-generated message
+flags:
+    --no-verify: Skip hooks
+    --show-prompt: Show prompt without running LLM
+    --stage=: 'What to stage before committing [default: all]'
+    -h, --help: Print help (see more with '--help')
+    -y, --yes: Skip approval prompts

@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: arecord
+description: command-line sound recorder and player for ALSA soundcard driver

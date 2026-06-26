@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: release
+description: Releases a version entry on Vagrant Cloud
+flags:
+    --no-force: Do not release without confirmation
+    -f, --force: Release without confirmation

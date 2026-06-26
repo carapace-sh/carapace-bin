@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: +list-fonts
+description: list all the available fonts for Ghostty
+flags:
+    --bold: filter results to bold style
+    --family=: filter results to a specific family
+    --help: show help
+    --italic: filter results to italic style
+    --style=: filter results based on the style string advertised by a font

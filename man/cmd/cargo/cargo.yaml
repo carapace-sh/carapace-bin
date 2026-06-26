@@ -1,0 +1,48 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: cargo
+description: Rust's package manager
+flags:
+    --explain=: Provide a detailed explanation of a rustc error message
+    --list: List installed commands
+    -C=: Change to DIRECTORY before doing anything (nightly-only)
+    -V, --version: Print version info and exit
+    -h, --help: Print help
+persistentflags:
+    --color=: Coloring
+    --config=*: Override a configuration value
+    --frozen: Equivalent to specifying both --locked and --offline
+    --locked: Assert that `Cargo.lock` will remain unchanged
+    --offline: Run without accessing the network
+    -Z=*: Unstable (nightly-only) flags to Cargo, see 'cargo -Z help' for details
+    -q, --quiet: Do not print cargo log messages
+    -v, --verbose*: Use verbose output (-vv very verbose/build.rs output)
+documentation:
+  command: |
+    Cargo is Rust's package manager. It manages Rust projects, downloads dependencies
+    from registries (defaulting to crates.io), compiles code, and distributes packages.
+    Commands are organized into groups: Build Commands (build, check, test, bench,
+    doc, run, clean, fix, rustc, rustdoc), Manifest Commands (add, remove, update,
+    tree, metadata, vendor), Package Commands (new, init, install, uninstall, search,
+    info), and Publishing Commands (login, logout, owner, yank, publish, package).
+    Use `cargo help <subcommand>` for detailed information about each command.
+  flag:
+    color: |
+      Control when colored output is used. Values: `auto` (default, colored when
+      outputting to a TTY), `never` (disable colors), `always` (always use colors).
+    config: |
+      Override a configuration value from the command line. Values should use TOML
+      dot notation (e.g., `build.jobs=4`). Can be specified multiple times.
+    frozen: |
+      Assert that `Cargo.lock` will remain unchanged. Fails if the lock file needs
+      updating. Equivalent to specifying both `--locked` and `--offline`.
+    locked: |
+      Assert that `Cargo.lock` will remain unchanged. Fails if a dependency update
+      is needed. Useful for reproducible builds.
+    offline: |
+      Run without accessing the network. Dependencies must already be cached locally,
+      otherwise the build will fail.
+    verbose: |
+      Use verbose output. Specify once for normal verbose, twice (`-vv`) for very
+      verbose output including build script output.
+    quiet: |
+      Suppress all cargo log messages. Only the final output of the command is shown.

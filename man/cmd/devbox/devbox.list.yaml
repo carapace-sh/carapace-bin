@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+aliases:
+    - ls
+description: List installed packages
+flags:
+    --environment=: environment to use, when supported (e.g.secrets support dev, prod, preview.)
+    --outdated: List outdated packages
+    -c, --config=: path to directory containing a devbox.json config file

@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: convert
+description: Convert compose files to Kubernetes manifests, Helm charts, or another model
+flags:
+    --templates=: Directory containing transformation templates
+    -o, --output=: The output directory for the Kubernetes resources
+    -t, --transformation=*: 'Transformation to apply to compose model (default: docker/compose-bridge-kubernetes)'

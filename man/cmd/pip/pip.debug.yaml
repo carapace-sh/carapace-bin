@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debug
+description: Display debug information
+flags:
+    --abi=: Only use wheels compatible with Python abi
+    --implementation=: Only use wheels compatible with Python implementation
+    --platform=: Only use wheels compatible with <platform>
+    --python-version=: The Python interpreter version to use for wheel

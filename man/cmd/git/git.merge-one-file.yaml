@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: merge-one-file
+description: The standard helper program to use with git-merge-index
+group: low-level helper
+documentation:
+  command: |-
+    This is the standard helper program to use with 'git merge-index'
+    to resolve a merge after the trivial merge done with 'git read-tree -m'.

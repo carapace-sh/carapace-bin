@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: move
+description: Moves to any selected entry in the stack. (EXPERIMENTAL)

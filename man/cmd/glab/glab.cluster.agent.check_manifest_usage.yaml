@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: check_manifest_usage [flags]
+description: Check agent configuration files for built-in GitOps manifests usage. (EXPERIMENTAL)
+flags:
+    -A, --agent-per-page=: Number of projects to list per page.
+    -P, --per-page=: Number of projects to list per page.
+    -a, --agent-page=: Page number for projects.
+    -g, --group=!: Group ID to check.
+    -p, --page=: Page number for projects.
+    -r, --recursive: Recursively check subgroups.

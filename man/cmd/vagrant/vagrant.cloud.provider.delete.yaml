@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: delete
+description: Deletes a provider entry on Vagrant Cloud
+flags:
+    --no-force: Do not force deletion of box version provider without confirmation
+    -f, --force: Force deletion of box version provider without confirmation

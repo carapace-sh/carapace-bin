@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: cat
+description: Print full output of recorded session
+documentation:
+  command: >-
+    Concatenate multiple `.cast` files into a single recording, adjusting timing
+    so each plays immediately after the previous. Outputs to stdout. At least two
+    input files required. For raw terminal output, use `asciinema convert -f raw`
+    instead.

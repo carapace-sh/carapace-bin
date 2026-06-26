@@ -1,0 +1,202 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: aria2c
+description: The ultra fast download utility
+flags:
+    --all-proxy-passwd=: Set password for --all-proxy
+    --all-proxy-user=: Set user for --all-proxy
+    --all-proxy=: Use a proxy server for all protocols
+    --allow-overwrite: Restart download from scratch if the corresponding control file doesn't exist
+    --allow-piece-length-change: If false is given, aria2 aborts download when a piece length is different from one in a control file
+    --always-resume: Always resume download
+    --async-dns: Enable asynchronous DNS
+    --async-dns-server=: Comma separated list of DNS server address used in asynchronous DNS resolver
+    --auto-file-renaming: Rename file name if the same file already exists
+    --auto-save-interval=: Save a control file(*.aria2) every SEC seconds
+    --bt-detach-seed-only: Exclude seed only downloads when counting concurrent active downloads
+    --bt-enable-hook-after-hash-check: Allow hook command invocation after hash check (see -V option) in BitTorrent download
+    --bt-enable-lpd: Enable Local Peer Discovery
+    --bt-exclude-tracker=: Comma separated list of BitTorrent tracker's announce URI to remove
+    --bt-external-ip=: Specify the external IP address to use in BitTorrent download and DHT
+    --bt-force-encryption: Requires BitTorrent message payload encryption with arc4
+    --bt-hash-check-seed: If true is given, after hash check using --check-integrity option and file is complete, continue to seed file
+    --bt-load-saved-metadata: Before getting torrent metadata from DHT when downloading with magnet link, first try to read file saved by --bt-save-metadata option
+    --bt-lpd-interface=: Use given interface for Local Peer Discovery
+    --bt-max-open-files=: Specify maximum number of files to open in multi-file BitTorrent/Metalink downloads globally
+    --bt-max-peers=: Specify the maximum number of peers per torrent
+    --bt-metadata-only: Download metadata only
+    --bt-min-crypto-level=: Set minimum level of encryption method
+    --bt-prioritize-piece=: Try to download first and last pieces of each file first
+    --bt-remove-unselected-file: Removes the unselected files when download is completed in BitTorrent
+    --bt-request-peer-speed-limit=: If the whole download speed of every torrent is lower than SPEED, aria2 temporarily increases the number of peers to try for more download speed
+    --bt-require-crypto: If true is given, aria2 doesn't accept and establish connection with legacy BitTorrent handshake
+    --bt-save-metadata: Save metadata as .torrent file
+    --bt-seed-unverified: Seed previously downloaded files without verifying piece hashes
+    --bt-stop-timeout=: Stop BitTorrent download if download speed is 0 in consecutive SEC seconds
+    --bt-tracker-connect-timeout=: Set the connect timeout in seconds to establish connection to tracker
+    --bt-tracker-interval=: Set the interval in seconds between tracker requests
+    --bt-tracker-timeout=: Set timeout in seconds
+    --bt-tracker=: Comma separated list of additional BitTorrent tracker's announce URI
+    --ca-certificate=: Use the certificate authorities in FILE to verify the peers
+    --certificate=: Use the client certificate in FILE
+    --check-certificate: Verify the peer using certificates specified in --ca-certificate option
+    --checksum=: Set checksum
+    --conditional-get: Download file only when the local file is older than remote file
+    --conf-path=: Change the configuration file path to PATH
+    --connect-timeout=: Set the connect timeout in seconds to establish connection to HTTP/FTP/proxy server
+    --console-log-level=: Set log level to output to console
+    --content-disposition-default-utf8: Handle quoted string in Content-Disposition header as UTF-8 instead of ISO-8859-1, for example, the filename parameter, but not the extended version filename*
+    --deferred-input: If true is given, aria2 does not read all URIs and options from file specified by -i option at startup, but it reads one by one when it needs later
+    --dht-entry-point=: Set host and port as an entry point to IPv4 DHT network
+    --dht-entry-point6=: Set host and port as an entry point to IPv6 DHT network
+    --dht-file-path=: Change the IPv4 DHT routing table file to PATH
+    --dht-file-path6=: Change the IPv6 DHT routing table file to PATH
+    --dht-listen-addr6=: Specify address to bind socket for IPv6 DHT
+    --dht-listen-port=: Set UDP listening port used by DHT(IPv4, IPv6) and UDP tracker
+    --dht-message-timeout=: Set timeout in seconds
+    --disable-ipv6: Disable IPv6
+    --disk-cache=: Enable disk cache
+    --download-result=: This option changes the way "Download Results" is formatted
+    --dry-run: If true is given, aria2 just checks whether the remote file is available and doesn't download data
+    --dscp=: Set DSCP value in outgoing IP packets of BitTorrent traffic for QoS
+    --enable-async-dns6: Enable IPv6 name resolution in asynchronous DNS resolver
+    --enable-color: Enable color output for a terminal
+    --enable-dht: Enable IPv4 DHT functionality
+    --enable-dht6: Enable IPv6 DHT functionality
+    --enable-http-keep-alive: Enable HTTP/1.1 persistent connection
+    --enable-http-pipelining: Enable HTTP/1.1 pipelining
+    --enable-mmap: Map files into memory
+    --enable-peer-exchange: Enable Peer Exchange extension
+    --enable-rpc: Enable JSON-RPC/XML-RPC server
+    --event-poll=: Specify the method for polling events
+    --file-allocation=: Specify file allocation method
+    --follow-metalink=: Controls how Metalink files are handled after download
+    --follow-torrent=: Controls how Torrent files are handled after download
+    --force-save: Save download with --save-session option even if the download is completed or removed
+    --ftp-passwd=: Set FTP password
+    --ftp-proxy-passwd=: Set password for --ftp-proxy
+    --ftp-proxy-user=: Set user for --ftp-proxy
+    --ftp-proxy=: Use a proxy server for FTP
+    --ftp-reuse-connection: Reuse connection in FTP
+    --ftp-type=: Set FTP transfer type
+    --ftp-user=: Set FTP user
+    --gid=: Set GID manually
+    --hash-check-only: If true is given, after hash check using --check-integrity option, abort download whether or not download is complete
+    --header=: Append HEADER to HTTP request header
+    --http-accept-gzip: 'Send ''Accept-Encoding: deflate, gzip'' request header and inflate response if remote server responds with ''Content-Encoding: gzip'' or ''Content-Encoding: deflate'''
+    --http-auth-challenge: Send HTTP authorization header only when it is requested by the server
+    --http-no-cache: 'Send Cache-Control: no-cache and Pragma: no-cache header to avoid cached content'
+    --http-passwd=: Set HTTP password
+    --http-proxy-passwd=: Set password for --http-proxy
+    --http-proxy-user=: Set user for --http-proxy
+    --http-proxy=: Use a proxy server for HTTP
+    --http-user=: Set HTTP user
+    --https-proxy-passwd=: Set password for --https-proxy
+    --https-proxy-user=: Set user for --https-proxy
+    --https-proxy=: Use a proxy server for HTTPS
+    --human-readable: Print sizes and speed in human readable format (e.g., 1.2Ki, 3.4Mi) in the console readout
+    --interface=: Bind sockets to given interface
+    --keep-unfinished-download-result: Keep unfinished download results even if doing so exceeds --max-download-result
+    --listen-port=: Set TCP port number for BitTorrent downloads
+    --load-cookies=: Load Cookies from FILE using the Firefox3 format and Mozilla/Firefox(1.x/2.x)/Netscape format
+    --log-level=: Set log level to output to file specified using --log option
+    --lowest-speed-limit=: Close connection if download speed is lower than or equal to this value(bytes per sec)
+    --max-download-limit=: Set max download speed per each download in bytes/sec
+    --max-download-result=: Set maximum number of download result kept in memory
+    --max-file-not-found=: If aria2 receives `file not found' status from the remote HTTP/FTP servers NUM times without getting a single byte, then force the download to fail
+    --max-mmap-limit=: Set the maximum file size to enable mmap
+    --max-overall-download-limit=: Set max overall download speed in bytes/sec
+    --max-overall-upload-limit=: Set max overall upload speed in bytes/sec
+    --max-resume-failure-tries=: When used with --always-resume=false, aria2 downloads file from scratch when aria2 detects N number of URIs that does not support resume
+    --metalink-base-uri=: Specify base URI to resolve relative URI in metalink:url and metalink:metaurl element in a metalink file stored in local disk
+    --metalink-enable-unique-protocol: If true is given and several protocols are available for a mirror in a metalink file, aria2 uses one of them
+    --metalink-language=: The language of the file to download
+    --metalink-location=: The location of the preferred server
+    --metalink-os=: The operating system of the file to download
+    --metalink-preferred-protocol=: Specify preferred protocol
+    --metalink-version=: The version of the file to download
+    --min-tls-version=: Specify minimum SSL/TLS version to enable
+    --multiple-interface=: Comma separated list of interfaces to bind sockets to
+    --netrc-path=: Specify the path to the netrc file
+    --no-conf: Disable loading aria2.conf file
+    --no-file-allocation-limit=: No file allocation is made for files whose size is smaller than SIZE
+    --no-proxy=: Specify comma separated hostnames, domains or network address with or without CIDR block where proxy should not be used
+    --no-want-digest-header: Whether to disable Want-Digest header when doing requests
+    --on-bt-download-complete=: For BitTorrent, a command specified in --on-download-complete is called after download completed and seeding is over
+    --on-download-complete=: Set the command to be executed after download completed
+    --on-download-error=: Set the command to be executed after download aborted due to error
+    --on-download-pause=: Set the command to be executed after download was paused
+    --on-download-start=: Set the command to be executed after download got started
+    --on-download-stop=: Set the command to be executed after download stopped
+    --optimize-concurrent-downloads: Optimizes the number of concurrent downloads according to the bandwidth available
+    --pause: Pause download after added
+    --pause-metadata: Pause downloads created as a result of metadata download
+    --peer-agent=: Set client reported during Extended torrent handshakes
+    --peer-id-prefix=: Specify the prefix of peer ID
+    --piece-length=: Set a piece length for HTTP/FTP downloads
+    --private-key=: Use the private key in FILE
+    --proxy-method=: Set the method to use in proxy request
+    --realtime-chunk-checksum: Validate chunk of data by calculating checksum while downloading a file if chunk checksums are provided
+    --referer=: Set an http referrrer (Referer)
+    --remove-control-file: Remove control file before download
+    --retry-wait=: Set the seconds to wait between retries
+    --reuse-uri: Reuse already used URIs if no unused URIs are left
+    --rlimit-nofile=: Set the soft limit of open file descriptors
+    --rpc-allow-origin-all: Add Access-Control-Allow-Origin header field with value '*' to the RPC response
+    --rpc-certificate=: Use the certificate in FILE for RPC server
+    --rpc-listen-all: Listen incoming JSON-RPC/XML-RPC requests on all network interfaces
+    --rpc-listen-port=: Specify a port number for JSON-RPC/XML-RPC server to listen to
+    --rpc-max-request-size=: Set max size of JSON-RPC/XML-RPC request
+    --rpc-passwd=: Set JSON-RPC/XML-RPC password
+    --rpc-private-key=: Use the private key in FILE for RPC server
+    --rpc-save-upload-metadata: Save the uploaded torrent or metalink metadata in the directory specified by --dir option
+    --rpc-secret=: Set RPC secret authorization token
+    --rpc-secure: RPC transport will be encrypted by SSL/TLS
+    --rpc-user=: Set JSON-RPC/XML-RPC user
+    --save-cookies=: Save Cookies to FILE in Mozilla/Firefox(1.x/2.x)/ Netscape format
+    --save-not-found: Save download with --save-session option even if the file was not found on the server
+    --save-session-interval=: Save error/unfinished downloads to a file specified by --save-session option every SEC seconds
+    --save-session=: Save error/unfinished downloads to FILE on exit
+    --seed-ratio=: Specify share ratio
+    --seed-time=: Specify seeding time in (fractional) minutes
+    --select-file=: Set file to download by specifying its index
+    --server-stat-if=: Specify the filename to load performance profile of the servers
+    --server-stat-of=: Specify the filename to which performance profile of the servers is saved
+    --server-stat-timeout=: Specifies timeout in seconds to invalidate performance profile of the servers since the last contact to them
+    --show-console-readout: Show console readout
+    --socket-recv-buffer-size=: Set the maximum socket receive buffer in bytes
+    --ssh-host-key-md=: Set checksum for SSH host public key
+    --stderr: Redirect all console output that would be otherwise printed in stdout to stderr
+    --stop-with-process=: Stop application when process PID is not running
+    --stop=: Stop application after SEC seconds has passed
+    --stream-piece-selector=: Specify piece selection algorithm used in HTTP/FTP download
+    --summary-interval=: Set interval to output download progress summary
+    --truncate-console-readout: Truncate console readout to fit in a single line
+    --uri-selector=: Specify URI selection algorithm
+    --use-head: Use HEAD method for the first request to the HTTP server
+    -D, --daemon: Run as daemon
+    -M, --metalink-file=: The file path to the .meta4 and .metalink file
+    -O, --index-out=*: Set file path for file with index=INDEX
+    -P, --parameterized-uri: Enable parameterized URI support
+    -R, --remote-time: Retrieve timestamp of the remote file from the remote HTTP/FTP server and if it is available, apply it to the local file
+    -S, --show-files: Print file listing of .torrent, .meta4 and .metalink file and exit
+    -T, --torrent-file=: The path to the .torrent file
+    -U, --user-agent=: Set user agent for http(s) downloads
+    -V, --check-integrity: Check file integrity by validating piece hashes or a hash of entire file
+    -Z, --force-sequential: Fetch URIs in the command-line sequentially and download each URI in a separate session
+    -c, --continue: Continue downloading a partially downloaded file
+    -d, --dir=: The directory to store the downloaded file
+    -h, --help=: Print usage and exit
+    -i, --input-file=: Downloads URIs found in FILE
+    -j, --max-concurrent-downloads=: Set maximum number of parallel downloads for every static (HTTP/FTP) URL, torrent and metalink
+    -k, --min-split-size=: aria2 does not split less than 2*SIZE byte range
+    -l, --log=: The file name of the log file
+    -m, --max-tries=: Set number of tries
+    -n, --no-netrc: Disables netrc support
+    -o, --out=: The file name of the downloaded file
+    -p, --ftp-pasv: Use the passive mode in FTP
+    -q, --quiet: Make aria2 quiet(no console output)
+    -s, --split=: Download a file using N connections
+    -t, --timeout=: Set timeout in seconds
+    -u, --max-upload-limit=: Set max upload speed per each torrent in bytes/sec
+    -v, --version: Print the version number and exit
+    -x, --max-connection-per-server=: The maximum number of connections to one server for each download

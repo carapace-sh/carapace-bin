@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: set
+description: Set a key-value pair
+flags:
+    -h, --help: Print help
+    -k, --key=!: Key to set
+    -n, --namespace=: Namespace for the key-value pair

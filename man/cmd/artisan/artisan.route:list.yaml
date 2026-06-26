@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: route:list [--json] [--method [METHOD]] [--name [NAME]] [--domain [DOMAIN]] [--path [PATH]] [--except-path [EXCEPT-PATH]] [-r|--reverse] [--sort [SORT]] [--except-vendor] [--only-vendor]
+description: List all registered routes
+flags:
+    --domain=: Filter the routes by domain
+    --except-path=: Do not display the routes matching the given path pattern
+    --except-vendor: Do not display routes defined by vendor packages
+    --json: Output the route list as JSON
+    --method=: Filter the routes by method
+    --name=: Filter the routes by name
+    --only-vendor: Only display routes defined by vendor packages
+    --path=: Only show routes matching the given path pattern
+    --reverse: Reverse the ordering of the routes
+    --sort=: The column (domain, method, uri, name, action, middleware) to sort by

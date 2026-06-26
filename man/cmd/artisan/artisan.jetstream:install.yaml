@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: jetstream:install [--dark] [--teams] [--api] [--verification] [--pest] [--ssr] [--composer [COMPOSER]] [--] <stack>
+description: Install the Jetstream components and resources
+flags:
+    --api: Indicates if API support should be installed
+    --composer=: Absolute path to the Composer binary which should be used to install packages
+    --dark: Indicate that dark mode support should be installed
+    --pest: Indicates if Pest should be installed
+    --ssr: Indicates if Inertia SSR support should be installed
+    --teams: Indicates if team support should be installed
+    --verification: Indicates if email verification support should be installed

@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: remove
+description: Remove worktree; delete branch if merged
+flags:
+    --foreground: Run removal in foreground (block until complete)
+    --no-delete-branch: Keep branch after removal
+    --no-verify: Skip hooks
+    -D, --force-delete: Delete unmerged branches
+    -f, --force: Force worktree removal
+    -h, --help: Print help (see more with '--help')
+    -y, --yes: Skip approval prompts

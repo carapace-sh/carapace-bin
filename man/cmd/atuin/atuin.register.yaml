@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: register
+description: Register with the configured server
+flags:
+    -e, --email=: ""
+    -h, --help: Print help
+    -p, --password=: ""
+    -u, --username=: ""

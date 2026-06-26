@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: devbox
+description: Instant, easy, predictable development environments
+persistentflags:
+    --debug&: Show full stack traces on errors
+    --trace?&: write a trace to a file
+    -q, --quiet: suppresses logs

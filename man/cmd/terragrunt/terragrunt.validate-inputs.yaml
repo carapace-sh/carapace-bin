@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: validate-inputs
+description: Checks if the terragrunt configured inputs align with the terraform defined variables
+group: terragrunt

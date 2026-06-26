@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create
+description: Create a new Flutter project
+flags:
+    --description=: The description to use for your new Flutter project.
+    --list-samples=: Specifies a JSON output file for a listing of Flutter code samples that can be created with "--sample".
+    --no-offline: When "flutter pub get" is run by the create command, does not run it in offline mode.
+    --no-overwrite: When performing operations, do not overwrite existing files.
+    --no-pub: Do not run "flutter pub get" after the project has been created.
+    --offline: When "flutter pub get" is run by the create command, this runs it in offline mode.
+    --org=: The organization responsible for your new Flutter project, in reverse domain name notation.
+    --overwrite: When performing operations, overwrite existing files.
+    --platforms=: The platforms supported by this project.
+    --project-name=: The project name for this new Flutter project.
+    --pub: Run "flutter pub get" after the project has been created.
+    -a, --android-language=: The language to use for Android-specific code.
+    -h, --help: Print this usage information.
+    -i, --ios-language=: The language to use for iOS-specific code.
+    -s, --sample=: Specifies the Flutter code sample to use as the "main.dart" for an application.
+    -t, --template=: Specify the type of project to create.

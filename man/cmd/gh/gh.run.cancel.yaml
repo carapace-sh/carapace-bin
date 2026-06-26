@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: cancel [<run-id>]
+description: Cancel a workflow run
+documentation:
+    command: |
+        Cancel a workflow run that is currently in progress. Prompts for confirmation
+        unless `--force` is passed. Only runs in `queued`, `in_progress`, or `waiting`
+        status can be cancelled. Use `gh run list` to find the run ID if needed.
+flags:
+    --force: Force cancel a workflow run

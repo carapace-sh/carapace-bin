@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: format
+aliases:
+    - fmt
+description: Format TOML documents
+flags:
+    --cache-path=: Set a cache path
+    --check: Dry-run and report any files that are not correctly formatted
+    --diff: Print the differences in patch formatting to `stdout`
+    --no-auto-config: Do not search for a configuration file
+    --stdin-filepath=: A path to the file that the Taplo CLI will treat like stdin
+    -c, --config=: Path to the Taplo configuration file
+    -f, --force: Ignore syntax errors and force formatting
+    -o, --option=*: A formatter option given as a "key=value", can be set multiple times

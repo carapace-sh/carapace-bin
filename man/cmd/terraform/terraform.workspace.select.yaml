@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: select NAME
+description: Select a workspace
+flags:
+    -or-create: Create the Terraform workspace if it doesn't exist

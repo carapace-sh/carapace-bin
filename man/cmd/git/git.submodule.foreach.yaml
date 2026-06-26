@@ -1,0 +1,42 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: foreach
+description: Evaluates an arbitrary shell command in each checked out submodule
+flags:
+  --recursive: ''
+documentation:
+  command: |-
+    Evaluate an arbitrary shell _<command>_ in each checked out submodule.
+    The command has access to the variables `$name`, `$sm_path`, `$displaypath`,
+    `$sha1` and `$toplevel`:
+
+    `$name`;; the name of the relevant submodule section in `.gitmodules`
+    `$sm_path`;; the path of the submodule as recorded in the immediate
+    superproject
+    `$displaypath`;; the relative path from the
+    current working directory to the submodules root directory
+    `$sha1`;; the commit as recorded in the immediate superproject
+    `$toplevel`;; the absolute path to the top-level of the immediate superproject.
+
+    Note that to avoid conflicts with `$PATH` on Windows, the `$path`
+    variable is now a deprecated synonym of `$sm_path` variable.
+    Any submodules defined in the superproject but not checked out are
+    ignored by this command. Unless given `--quiet`, foreach prints the name
+    of each submodule before evaluating the command.
+    If `--recursive` is given, submodules are traversed recursively (i.e.
+    the given shell command is evaluated in nested submodules as well).
+    A non-zero return from the command in any submodule causes
+    the processing to terminate. This can be overridden by adding ++||:+
+    to the end of the command.
+
+    As an example, the command below will show the path and currently
+    checked out commit for each submodule:
+
+    ```
+    git submodule foreach `echo $sm_path `git rev-parse HEAD`'`
+    ```
+  flag:
+    recursive: |-
+      Traverse submodules recursively. This option is only valid for `foreach`,
+      `update`, `status` and `sync` commands. The operation is performed not
+      only in the submodules of the current repo, but also
+      in any nested submodules inside those submodules (and so on).

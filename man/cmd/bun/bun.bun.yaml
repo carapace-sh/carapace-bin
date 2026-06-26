@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: bun
+description: Bundle dependencies of input files into a .bun

@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pdftotext
+description: Portable Document Format (PDF) to text converter (version 3.03)
+flags:
+    -?: print usage information
+    -H=: height of crop area in pixels (default is 0)
+    -W=: width of crop area in pixels (default is 0)
+    -bbox: output bounding box for each word and page size to html. Sets -htmlmeta
+    -bbox-layout: like -bbox but with extra layout bounding box data.  Sets -htmlmeta
+    -colspacing=: how much spacing we allow after a word before considering adjacent text to be a new column, as a fraction of the font size (default is 0.7, old releases had a 0.3 default)
+    -cropbox: use the crop box rather than media box
+    -enc=: output text encoding name
+    -eol=: output end-of-line convention (unix, dos, or mac)
+    -f=: first page to convert
+    -fixed=: assume fixed-pitch (or tabular) text
+    -h: print usage information
+    -help, --help: print usage information
+    -htmlmeta: generate a simple HTML file, including the meta information
+    -l=: last page to convert
+    -layout: maintain original physical layout
+    -listenc: list available encodings
+    -nodiag: discard diagonal text
+    -nopgbrk: don't insert page breaks between pages
+    -opw=: owner password (for encrypted files)
+    -q: don't print any messages or errors
+    -r=: resolution, in DPI (default is 72)
+    -raw: keep strings in content stream order
+    -tsv: generate a simple TSV file, including the meta information for bounding boxes
+    -upw=: user password (for encrypted files)
+    -v: print copyright and version info
+    -x=: x-coordinate of the crop area top left corner
+    -y=: y-coordinate of the crop area top left corner

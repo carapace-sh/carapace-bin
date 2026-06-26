@@ -1,0 +1,40 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: switch
+description: Build and activate a nix-darwin configuration
+flags:
+    --accept-flake-config: Accept configuration from flakes
+    --build-host=: Build the configuration on a different host over SSH
+    --builders=: Explicitly define remote builders
+    --commit-lock-file: Commit the lock file after updates
+    --cores=: Number of cores Nix should utilize
+    --fallback: Attempt to build locally if substituters fail
+    --impure: Allow impure builds
+    --json: Output results in JSON format
+    --log-format=: Logging format used by Nix
+    --no-net: Prohibit network usage
+    --no-nom: Don't use nix-output-monitor for the build process
+    --no-registries: Do not use registries (deprecated)
+    --no-update-lock-file: Do not update the flake.lock file
+    --no-use-registries: Do not use registries
+    --no-write-lock-file: Do not write a lock file
+    --offline: Build without internet access
+    --recreate-lock-file: Recreate the flake.lock file entirely
+    --refresh: Refresh flakes to the latest revision
+    --repair: Repair corrupted store paths
+    --show-activation-logs: Show activation logs
+    --use-substitutes: Use substitutes when copying
+    -H, --hostname=: Select this hostname from darwinConfigurations
+    -I, --include=*: Paths to include
+    -K, --keep-failed: Keep build outputs from failed builds
+    -L, --print-build-logs: Print build logs directly to stdout
+    -Q, --no-build-output: Suppress build output
+    -R, --bypass-root-check: Don't panic if calling nh as root
+    -U, --update-input=*: Update the specified flake input(s)
+    -a, --ask: Ask for confirmation
+    -d, --diff=: Whether to display a package diff
+    -j, --max-jobs=: Number of concurrent jobs Nix should run
+    -k, --keep-going: Continue building despite encountering errors
+    -n, --dry: Only print actions, without performing them
+    -o, --out-link=: Path to save the result link
+    -t, --show-trace: Display tracebacks on errors
+    -u, --update: Update all flake inputs

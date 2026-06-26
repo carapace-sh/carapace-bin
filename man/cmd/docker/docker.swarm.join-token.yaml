@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: join-token [OPTIONS] (worker|manager)
+description: Manage join tokens
+flags:
+    --rotate: Rotate join token
+    -q, --quiet: Only display token

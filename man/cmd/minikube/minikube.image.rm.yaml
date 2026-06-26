@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rm IMAGE [IMAGE...]
+aliases:
+    - remove
+    - unload
+description: Remove one or more images

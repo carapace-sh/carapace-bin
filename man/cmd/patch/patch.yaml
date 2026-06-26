@@ -1,0 +1,43 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: patch
+description: appy a diff file to an original
+flags:
+    --backup-if-mismatch: Back up if the patch does not match exactly.
+    --binary: Read and write data in binary mode.
+    --dry-run: Do not actually change any files; just print what would happen.
+    --help: Output this help.
+    --merge: Merge using conflict markers instead of creating reject files.
+    --no-backup-if-mismatch: Back up mismatches only if otherwise requested.
+    --posix: Conform to the POSIX standard.
+    --quiet: Work silently unless an error occurs.
+    --quoting-style=: output file names using quoting style WORD.
+    --read-only=: How to handle read-only input files
+    --reject-format=: Create 'context' or 'unified' rejects.
+    --verbose: Output extra information about the work being done.
+    -B, --prefix=: Prepend PREFIX to backup file names.
+    -D, --ifdef=: Make merged if-then-else output using NAME.
+    -E, --remove-empty-files: Remove output files that are empty after patching.
+    -F, --fuzz=: Set the fuzz factor to LINES for inexact matching.
+    -N, --forward: Ignore patches that appear to be reversed or already applied.
+    -R, --reverse: Assume patches were created with old and new files swapped.
+    -T, --set-time: Likewise, assuming local time.
+    -V, --version-control=: Use STYLE version control.
+    -Y, --basename-prefix=: Prepend PREFIX to backup file basenames.
+    -Z, --set-utc: Set times of patched files, assuming diff uses UTC (GMT).
+    -b, --backup: Back up the original contents of each file.
+    -c, --context: Interpret the patch as a context difference.
+    -d, --directory=: Change the working directory to DIR first.
+    -e, --ed: Interpret the patch as an ed script.
+    -f, --force: Like -t, but ignore bad-Prereq patches, and assume unreversed.
+    -g, --get=: Get files from RCS etc. if positive; ask if negative.
+    -i, --input=: Read patch from PATCHFILE instead of stdin.
+    -l, --ignore-whitespace: Ignore white space changes between patch and input.
+    -n, --normal: Interpret the patch as a normal difference.
+    -o, --output=: Output patched files to FILE.
+    -p, --strip=: Strip NUM leading components from file names.
+    -r, --reject-file=: Output rejects to FILE.
+    -s, --silent: Work silently unless an error occurs.
+    -t, --batch: Ask no questions; skip bad-Prereq patches; assume reversed.
+    -u, --unified: Interpret the patch as a unified difference.
+    -v, --version: Output version info.
+    -z, --suffix=: Append SUFFIX to backup file names.

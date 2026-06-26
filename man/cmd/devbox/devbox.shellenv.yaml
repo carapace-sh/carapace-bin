@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: shellenv
+description: Print shell commands that create a Devbox Environment in the shell
+flags:
+    --environment=: environment to use, when supported (e.g.secrets support dev, prod, preview.)
+    --format=: Output format for shell environment (nushell)
+    --init-hook: runs init hook after exporting shell environment
+    --install: install packages before exporting shell environment
+    --no-refresh-alias&: by default, devbox will add refresh alias to the environmentUse this flag to disable this behavior.
+    --omit-nix-env&: shell environment will omit the env-vars from print-dev-env
+    --preserve-path-stack&: preserves existing PATH order if this project's environment is already in PATH. Useful if you want to avoid overshadowing another devbox project that is already active
+    --pure: if this flag is specified, devbox creates an isolated environment inheriting almost no variables from the current environment. A few variables, in particular HOME, USER and DISPLAY, are retained.
+    -c, --config=: path to directory containing a devbox.json config file
+    -r, --recompute: Recompute environment if needed
+persistentflags:
+    --env-file=: path to a file containing environment variables to set in the devbox environment
+    -e, --env=: environment variables to set in the devbox environment

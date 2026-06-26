@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pack
+description: Create a tarball from a package
+flags:
+    --dry-run: Do everything a pack would do except actually creating the tarball
+    --filter=: Restrict the scope to package names matching the given pattern
+    --json: Log output in JSON format
+    --out=: Customize the output tarball path (supports %s for name and %v for version)
+    --pack-destination=: Directory in which pnpm pack will save tarballs
+    --pack-gzip-level=: Custom gzip compression level for the tarball
+    -r, --recursive: Pack all packages from the workspace

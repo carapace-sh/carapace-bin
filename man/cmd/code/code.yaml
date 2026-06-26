@@ -1,0 +1,37 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Visual Studio Code editor. Launches the editor window or manages
+    extensions. Supports opening files, folders, and comparing files,
+    as well as installing, listing, and uninstalling extensions.
+description: Visual Studio Code
+flags:
+    --category=: Filters installed extensions by provided category, when using --list-extensions.
+    --diff: Compare two files with each other.
+    --disable-extension=: Disable an extension.
+    --disable-extensions: Disable all installed extensions.
+    --disable-gpu: Disable GPU hardware acceleration.
+    --enable-proposed-api=: Enables proposed API features for extensions.
+    --extensions-dir=: Set the root path for extensions.
+    --inspect-brk-extensions=: Allow debugging and profiling of extensions with the extension host being paused after start.
+    --inspect-extensions=: Allow debugging and profiling of extensions.
+    --install-extension=: Installs or updates the extension.
+    --list-extensions: List the installed extensions.
+    --locale=: The locale to use (e.g. en-US or zh-TW).
+    --log=: Log level to use.
+    --max-memory=: Max memory size for a window (in Mbytes).
+    --prof-startup: Run CPU profiler during startup.
+    --show-versions: Show versions of installed extensions, when using --list-extensions.
+    --sync=: Turn sync on or off.
+    --telemetry: Shows all telemetry events which VS code collects.
+    --uninstall-extension=: Uninstalls an extension.
+    --user-data-dir=: Specifies the directory that user data is kept in.
+    --verbose: Print verbose output (implies --wait).
+    -a, --add=: Add folder(s) to the last active window.
+    -g, --goto=: Open a file at the path on the specified line and character position.
+    -h, --help: Print usage.
+    -n, --new-window: Force to open a new window.
+    -r, --reuse-window: Force to open a file or folder in an already opened window.
+    -s, --status: Print process usage and diagnostics information.
+    -v, --version: Print version.
+    -w, --wait: Wait for the files to be closed before returning.

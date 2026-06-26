@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: mirror [ID | URL | PATH] [flags]
+description: Mirror a project or repository to the specified location, using pull or push methods.
+flags:
+    --allow-divergence: Determines if divergent refs are skipped.
+    --direction=!: 'Mirror direction. Options: pull, push.'
+    --enabled: Determines if the mirror is enabled.
+    --protected-branches-only: Determines if only protected branches are mirrored.
+    --url=!: The target URL to which the repository is mirrored.

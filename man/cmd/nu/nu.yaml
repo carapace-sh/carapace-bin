@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: nu
+description: Nushell
+flags:
+    --config=: start with an alternate config file
+    --env-config=: start with an alternate environment config file
+    --ide-ast: generate the ast on the given source
+    --ide-check=: run a diagnostic check on the given source and limit number of errors returned to provided number
+    --ide-complete=: list completions for the item at the given position
+    --ide-goto-def=: go to the definition of the item at the given position
+    --ide-hover=: give information about the item at the given position
+    --log-level=: log level for diagnostic logs (error, warn, info, debug, trace). Off by default
+    --log-target=: set the target for the log to output. stdout, stderr(default), mixed or file
+    --no-std-lib: start with no standard library
+    --plugin-config=: start with an alternate plugin signature file
+    --stdin: redirect standard input to a command (with `-c`) or a script file
+    --testbin=: run internal test binary
+    -I, --include-path=: set the NU_LIB_DIRS for the given script (semicolon-delimited)
+    -c, --commands=: run the given commands and then exit
+    -e, --execute=: run the given commands and then enter an interactive shell
+    -h, --help: Display the help message for this command
+    -i, --interactive: start as an interactive shell
+    -l, --login: start as a login shell
+    -m, --table-mode=: the table mode to use. rounded is default.
+    -n, --no-config-file: start with no config file and no env file
+    -t, --threads=: threads to use for parallel commands
+    -v, --version: print the version

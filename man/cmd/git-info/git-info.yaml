@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: git-info
+description: Returns information on current repository
+flags:
+    --help: Display help message
+    --no-config: Don't show list all variables set in config file, along with their values
+    -c, --color: Use color for information titles

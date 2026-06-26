@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: doing init [OPTIONS] [REFERENCE_ISSUE]
+description: Create a .doing-cli-config file
+flags:
+    --help: Show this message and exit.

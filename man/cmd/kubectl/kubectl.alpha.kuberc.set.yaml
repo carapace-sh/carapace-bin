@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: set --section (defaults|aliases) --command COMMAND
+description: Set values in the kuberc configuration
+flags:
+    --appendarg=*: Argument to append to the command (can be specified multiple times, for aliases only)
+    --command=!: Command to configure (e.g., 'get', 'create', 'set env')
+    --kuberc=: Path to the kuberc file to use for preferences. This can be disabled by exporting KUBECTL_KUBERC=false feature gate or turning off the feature KUBERC=off.
+    --name=: Alias name (required for --section=aliases)
+    --option=*: Flag option in the form flag=value (can be specified multiple times)
+    --overwrite: Allow overwriting existing entries
+    --prependarg=*: Argument to prepend to the command (can be specified multiple times, for aliases only)
+    --section=!: 'Section to modify: ''defaults'' or ''aliases'''

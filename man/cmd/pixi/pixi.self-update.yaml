@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: self-update
+description: Update pixi to the latest version or a specific version
+flags:
+    --dry-run: Only show release notes, do not modify the binary
+    --force: Force download the desired version when not exactly same with the current. If no desired version, always replace with the latest version
+    --no-release-note: Skip printing the release notes
+    --version=: The desired version (to downgrade or upgrade to)

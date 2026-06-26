@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: dedupe
+description: Deduplicate dependencies with overlapping ranges
+group: general
+flags:
+    --json: Format the output as an NDJSON stream
+    --mode=: Change what artifacts installs generate
+    -c, --check: Exit with exit code 1 when duplicates are found, without persisting the dependency tree
+    -s, --strategy=: The strategy to use when deduping dependencies

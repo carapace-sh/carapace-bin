@@ -1,0 +1,45 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: server
+description: A high performance webserver
+flags:
+    --appendPort: append port to baseURL
+    --bind=: interface to which the server will bind
+    --cacheDir=: 'filesystem path to cache directory. Defaults: $TMPDIR/hugo_cache/'
+    --cleanDestinationDir: remove files from destination not found in static directories
+    --disableBrowserError: do not show build errors in the browser
+    --disableFastRender: enables full re-renders on changes
+    --disableKinds=*: disable different kind of pages (home, RSS etc.)
+    --disableLiveReload: watch without enabling live browser reload on rebuild
+    --enableGitInfo: add Git revision, date and author info to the pages
+    --forceSyncStatic: copy all files when static is changed.
+    --gc: enable to run some cleanup tasks (remove unused cache files) after the build
+    --i18n-warnings: print missing translations
+    --ignoreCache: ignores the cache directory
+    --liveReloadPort=: port for live reloading (i.e. 443 in HTTPS proxy situations)
+    --meminterval=: interval to poll memory usage (requires --memstats), valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h".
+    --memstats=: log memory usage to this file
+    --minify: minify any supported output format (HTML, XML etc.)
+    --navigateToChanged: navigate to changed content file on live browser reload
+    --noChmod: don't sync permission mode of files
+    --noHTTPCache: prevent HTTP caching
+    --noTimes: don't sync modification time of files
+    --path-warnings: print warnings on duplicate target paths etc.
+    --poll=: set this to a poll interval, e.g --poll 700ms, to use a poll based approach to watch for file system changes
+    --print-mem: print memory usage to screen at intervals
+    --profile-cpu=: write cpu profile to `file`
+    --profile-mem=: write memory profile to `file`
+    --profile-mutex=: write Mutex profile to `file`
+    --renderToDisk: render to Destination path (default is render to memory & serve from there)
+    --templateMetrics: display metrics about template executions
+    --templateMetricsHints: calculate some improvement hints when combined with --templateMetrics
+    --trace=: write trace to `file` (not useful in general)
+    -D, --buildDrafts: include content marked as draft
+    -E, --buildExpired: include expired content
+    -F, --buildFuture: include content with publishdate in the future
+    -b, --baseURL=: hostname (and path) to the root, e.g. http://spf13.com/
+    -c, --contentDir=: filesystem path to content directory
+    -d, --destination=: filesystem path to write files to
+    -l, --layoutDir=: filesystem path to layout directory
+    -p, --port=: port on which the server will listen
+    -t, --theme=*: themes to use (located in /themes/THEMENAME/)
+    -w, --watch: watch filesystem for changes and recreate as needed

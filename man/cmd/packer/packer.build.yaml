@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: build
+description: build image(s) from template
+flags:
+    -color: Enable color output
+    -debug: Debug mode enabled for builds.
+    -except=: Run all builds and post-processors other than these.
+    -force: Force a build to continue if artifacts exist, deletes existing artifacts.
+    -machine-readable: Produce machine-readable output.
+    -on-error=: 'If the build fails do: clean up (default), abort, ask, or run-cleanup-provisioner.'
+    -only=: Build only the specified builds.
+    -parallel-builds=: 'Number of builds to run in parallel. 1 disables parallelization. 0 means no limit (Default: 0)'
+    -timestamp-ui: Enable prefixing of each ui output with an RFC3339 timestamp.
+    -var-file=: JSON or HCL2 file containing user variables.
+    -var=*: Variable for templates, can be used multiple times.

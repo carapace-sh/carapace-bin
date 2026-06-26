@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: update
+description: Update dependencies as recorded in the local lock file
+group: manifest
+flags:
+    --aggressive&: Force updating all dependencies of [SPEC]... as well
+    --ignore-rust-version: Ignore `rust-version` specification in packages
+    --manifest-path=: Path to Cargo.toml
+    --precise=: Update [SPEC] to exactly PRECISE
+    --recursive: Force updating all dependencies of [SPEC]... as well
+    -b, --breaking: Update [SPEC] to latest SemVer-breaking version (unstable)
+    -h, --help: Print help
+    -n, --dry-run: Don't actually write the lockfile
+    -w, --workspace: Only update the workspace packages
+documentation:
+  command: |
+    Update dependencies as recorded in the local lock file (Cargo.lock). Without
+    arguments, updates all dependencies. Pass a specific package name to update
+    just that dependency. Use `--precise` to pin to a specific version. The
+    `--breaking` flag (unstable) updates to the latest SemVer-breaking version.
+    Use `--dry-run` to preview changes without modifying the lock file.

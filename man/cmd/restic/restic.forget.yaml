@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: forget
+description: Remove snapshots from the repository
+flags:
+    --host=*: only consider snapshots with the given `host` (can be specified multiple times)
+    --hostname=*: only consider snapshots with the given `hostname` (can be specified multiple times)
+    --keep-tag=*: keep snapshots with this `taglist` (can be specified multiple times)
+    --keep-within-daily=: keep daily snapshots that are newer than `duration` (eg. 1y5m7d2h) relative to the latest snapshot
+    --keep-within-hourly=: keep hourly snapshots that are newer than `duration` (eg. 1y5m7d2h) relative to the latest snapshot
+    --keep-within-monthly=: keep monthly snapshots that are newer than `duration` (eg. 1y5m7d2h) relative to the latest snapshot
+    --keep-within-weekly=: keep weekly snapshots that are newer than `duration` (eg. 1y5m7d2h) relative to the latest snapshot
+    --keep-within-yearly=: keep yearly snapshots that are newer than `duration` (eg. 1y5m7d2h) relative to the latest snapshot
+    --keep-within=: keep snapshots that are newer than `duration` (eg. 1y5m7d2h) relative to the latest snapshot
+    --max-repack-size=: 'maximum `size` to repack (allowed suffixes: k/K, m/M, g/G, t/T)'
+    --max-unused=: tolerate given `limit` of unused data (absolute value in bytes with suffixes k/K, m/M, g/G, t/T, a value in % or the word 'unlimited')
+    --path=*: only consider snapshots which include this (absolute) `path` (can be specified multiple times)
+    --prune: automatically run the 'prune' command if snapshots have been removed
+    --repack-cacheable-only: only repack packs which are cacheable
+    --tag=*: only consider snapshots which include this `taglist` in the format `tag[,tag,...]` (can be specified multiple times)
+    -H, --keep-hourly=: keep the last `n` hourly snapshots
+    -c, --compact: use compact output format
+    -d, --keep-daily=: keep the last `n` daily snapshots
+    -g, --group-by=: string for grouping snapshots by host,paths,tags
+    -l, --keep-last=: keep the last `n` snapshots
+    -m, --keep-monthly=: keep the last `n` monthly snapshots
+    -n, --dry-run: do not delete anything, just print what would be done
+    -w, --keep-weekly=: keep the last `n` weekly snapshots
+    -y, --keep-yearly=: keep the last `n` yearly snapshots
+
+documentation:
+  command: >-
+    Remove snapshots from the repository according to retention policies (e.g. --keep-daily, --keep-monthly). Does not delete data until prune is run.

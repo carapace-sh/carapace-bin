@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: unlink
+description: Remove symlinks for <formula> from Homebrew's prefix
+group: main
+flags:
+    --debug: Display any debugging information.
+    --dry-run: List files which would be unlinked without actually unlinking or deleting any files.
+    --help: Show this message.
+    --quiet: Make some output more quiet.
+    --verbose: Make some output more verbose.

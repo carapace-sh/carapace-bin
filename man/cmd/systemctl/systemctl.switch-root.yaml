@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: switch-root
+description: Change to a different root file system
+group: system
+documentation:
+  command: |
+    Change to a different root file system. This is used during early boot
+    to switch from an initial RAM disk (initrd) to the actual root file system.
+    The SYSTEMD_IN_GLIBC_SHUTDOWN environment variable should be set during
+    this transition.

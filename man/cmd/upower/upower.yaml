@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: upower
+description: UPower command line tool
+flags:
+    --monitor-detail: Monitor with detail
+    -d, --dump: Dump all parameters for all objects
+    -e, --enumerate: Enumerate objects paths for devices
+    -h, --help: Show help options
+    -i, --show-info=: Show information about object path
+    -m, --monitor: Monitor activity from the power daemon
+    -v, --version: Print version of client and daemon

@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: addons  SUBCOMMAND [flags]
+description: Enable or disable a minikube addon
+group: configuration

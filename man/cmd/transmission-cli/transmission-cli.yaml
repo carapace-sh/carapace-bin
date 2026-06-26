@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: transmission-cli [flags] torrent-file
+description: A fast and easy BitTorrent client
+flags:
+    --tos=: Use a ToS or DSCP name or value from 0-255 to set the peer socket service type
+    -B, --no-blocklist: Disable peer blocklists
+    -D, --no-downlimit: Don't limit the download speed
+    -M, --no-portmap: Disable portmapping
+    -U, --no-uplimit: Don't limit the upload speed
+    -V, --version: Show version number and exit
+    -b, --blocklist: Enable peer blocklists
+    -d, --downlimit=: Set the maximum download speed in KB/s
+    -ep, --encryption-preferred: Prefer encrypted peer connections
+    -er, --encryption-required: Encrypt all peer connections
+    -et, --encryption-tolerated: Prefer unencrypted peer connections
+    -f, --finish=: Set a script to run when the torrent finishes
+    -g, --config-dir=: Directory to look for configuratinon files in
+    -h, --help: Prints a short usage summary
+    -m, --portmap: Enable port mapping via NAT-PMP or UPnP
+    -p, --port=: Set the port to listen for incoming peers
+    -u, --uplimit=: Set the maximum upload speed in KB/s
+    -v, --verify: Verify the torrent's downloaded data
+    -w, --download-dir=: Where to save downloaded data

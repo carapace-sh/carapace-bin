@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: prune
+description: Prune all unreachable objects from the object database
+group: manipulator
+flags:
+  --exclude-promisor-objects: limit traversal to objects outside promisor packfiles
+  --expire=: expire objects older than <time>
+  --progress: show progress
+  -n, --dry-run: do not remove, show only
+  -v, --verbose: report pruned objects
+documentation:
+  command: |-
+    NOTE: In most cases, users should run 'git gc', which calls
+    'git prune'. See the section "NOTES", below.
+
+    This runs 'git fsck --unreachable' using all the refs
+    available in `refs/`, optionally with an additional set of
+    objects specified on the command line, and prunes all unpacked
+    objects unreachable from any of these head objects from the object database.
+    In addition, it
+    prunes the unpacked objects that are also found in packs by
+    running `git prune-packed`.
+    It also removes entries from .git/shallow that are not reachable by
+    any ref.
+
+    Note that unreachable, packed objects will remain.  If this is
+    not desired, see [git-repack](cmd://git/repack).

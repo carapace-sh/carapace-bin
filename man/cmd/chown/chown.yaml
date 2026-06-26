@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: chown
+description: change file owner and group
+flags:
+    --dereference: affect the referent of each symbolic link
+    --from=: change the ownership of each file only if its current owner and/or group match those specified here
+    --help: display this help and exit
+    --no-preserve-root: do not treat '/' specially (the default)
+    --preserve-root: fail to operate recursively on '/'
+    --quiet: suppress most error messages
+    --reference=: use RFILE's owner and group rather than specifying OWNER:GROUP values
+    --version: output version information and exit
+    -H: if a command line argument is a symbolic link to a directory, traverse it
+    -L: traverse every symbolic link to a directory encountered
+    -P: do not traverse any symbolic links (default)
+    -R, --recursive: operate on files and directories recursively
+    -c, --changes: like verbose but report only when a change is made
+    -f, --silent=: suppress most error messages
+    -h, --no-dereference: affect symbolic links instead of any referenced file
+    -v, --verbose: output a diagnostic for every file processed
+
+documentation:
+  command: >-
+    Change file owner and group. chown sets the user (owner) and/or group
+    of each FILE. Format: [OWNER][:[GROUP]] (e.g., root, alice, alice:staff,
+    :www-data). Owner only: chown user file. Owner+group: chown user:group file.
+    Change group only: chown :group file or chgrp group file. Colon without
+    owner changes group to the owner's login group. Copy ownership from
+    another file with --reference=RFILE. Conditional change with --from
+    (only change if current owner:group matches). Recursive with -R; control
+    symlink traversal with -H/-L/-P (default -P). Suppress most errors with -f.
+    Verbose output with -v; report changes only with -c.

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ollama
+description: Large language model runner
+flags:
+    -v, --version: Show version information

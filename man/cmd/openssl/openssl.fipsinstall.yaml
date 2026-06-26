@@ -1,0 +1,50 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: fipsinstall
+description: FIPS configuration installation
+group: standard
+flags:
+    -config=: The parent config to verify
+    -corrupt_desc=: Corrupt a self test by description
+    -corrupt_type=: Corrupt a self test by type
+    -dsa_sign_disabled: Disallow DSA signing
+    -ecdh_cofactor_check: Enable Cofactor check for ECDH
+    -ems_check: Enable the run-time FIPS check for EMS during TLS1_PRF
+    -hkdf_digest_check: Enable digest check for HKDF
+    -hkdf_key_check: Enable key check for HKDF
+    -hmac_key_check: Enable key check for HMAC
+    -in=: Input config file, used when verifying
+    -kbkdf_key_check: Enable key check for KBKDF
+    -kmac_key_check: Enable key check for KMAC
+    -mac_name=: MAC name
+    -macopt=*: MAC algorithm parameters in n:v form. See 'PARAMETER NAMES' in the EVP_MAC_ docs
+    -module=: File name of the provider module
+    -no_conditional_errors: Disable the ability of the fips module to enter an error state if any conditional self tests fail
+    -no_drbg_truncated_digests: Disallow truncated digests with Hash and HMAC DRBGs
+    -no_pbkdf2_lower_bound_check: Disable lower bound check for PBKDF2
+    -no_security_checks: Disable the run-time FIPS security checks in the module
+    -no_short_mac: Disallow short MAC output
+    -noout: Disable logging of self test events
+    -out=: Output config file, used when generating
+    -pedantic: Set options for strict FIPS compliance
+    -provider_name=: FIPS provider name
+    -quiet: No messages, just exit status
+    -rsa_pkcs15_padding_disabled: Disallow PKCS#1 version 1.5 padding for RSA encryption
+    -rsa_pss_saltlen_check: Enable salt length check for RSA-PSS signature operations
+    -rsa_sign_x931_disabled: Disallow X931 Padding for RSA signing
+    -section_name=: FIPS Provider config section name (optional)
+    -self_test_oninstall: Forces self tests to run once on module installation
+    -self_test_onload: Forces self tests to always run on module load
+    -signature_digest_check: Enable checking for approved digests for signatures
+    -sshkdf_digest_check: Enable digest check for SSHKDF
+    -sshkdf_key_check: Enable key check for SSHKDF
+    -sskdf_digest_check: Enable digest check for SSKDF
+    -sskdf_key_check: Enable key check for SSKDF
+    -tdes_encrypt_disabled: Disallow Triple-DES encryption
+    -tls1_prf_digest_check: Enable digest check for TLS1-PRF
+    -tls1_prf_key_check: Enable key check for TLS1-PRF
+    -tls13_kdf_digest_check: Enable digest check for TLS13-KDF
+    -tls13_kdf_key_check: Enable key check for TLS13-KDF
+    -verify: Verify a config file instead of generating one
+    -x942kdf_key_check: Enable key check for X942KDF
+    -x963kdf_digest_check: Enable digest check for X963KDF
+    -x963kdf_key_check: Enable key check for X963KDF

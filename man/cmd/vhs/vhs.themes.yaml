@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: themes
+description: List all the available themes, one per line
+flags:
+    --markdown&: output as markdown

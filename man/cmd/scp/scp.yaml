@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: scp
+description: OpenSSH secure file copy
+flags:
+    "-3": Copies between two remote hosts are transferred through the local host
+    "-4": Forces scp to use IPv4 addresses only
+    "-6": Forces scp to use IPv6 addresses only
+    -A: Allows forwarding of ssh-agent to the remote system
+    -B: Selects batch mode
+    -C: Compression enable
+    -D=: Connect directly to a local SFTP server program
+    -F=: Specifies an alternative per-user configuration file for ssh
+    -J=: Connect to the target host by first making an scp connection to the jump host
+    -O: Use the legacy SCP protocol for file transfers instead of the SFTP protocol
+    -P=: Specifies the port to connect to on the remote host
+    -R: Copies between two remote hosts are performed by connecting to the origin host and executing scp there
+    -S=: Name of program to use for the encrypted connection
+    -T: Disable strict filename checking
+    -X=*: Specify an option that controls aspects of SFTP protocol behaviour
+    -c=: Selects the cipher to use for encrypting the data transfer
+    -i=: Selects the file from which the identity for public key authentication is read
+    -l=: Limits the used bandwidth, specified in Kbit/s
+    -o=*: Can be used to pass options to ssh in the format used in ssh_config
+    -p: Preserves modification times, access times, and file mode bits from the source file
+    -q: Quiet mode
+    -r: Recursively copy entire directories
+    -v: Verbose mode

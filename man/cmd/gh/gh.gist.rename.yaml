@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rename {<id> | <url>} <old-filename> <new-filename>
+description: Rename a file in a gist

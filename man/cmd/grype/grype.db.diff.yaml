@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: diff [flags] base_db_url target_db_url
+description: diff two DBs and display the result
+flags:
+    -d, --delete: delete downloaded databases after diff occurs
+    -o, --output=: format to display results

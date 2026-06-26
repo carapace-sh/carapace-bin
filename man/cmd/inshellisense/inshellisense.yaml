@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: inshellisense [options] [command]
+description: IDE style command line auto complete
+flags:
+    -V, --verbose: enable verbose logging
+    -c, --check: check if shell is in an inshellisense session
+    -h, --help: display help for command
+    -l, --login: start shell as a login shell
+    -s, --shell=: 'shell to use for command execution, supported shells:'
+    -v, --version: output the current version

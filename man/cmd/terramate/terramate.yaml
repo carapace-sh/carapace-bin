@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: terramate
+description: A tool for managing terraform stacks
+flags:
+    --disable-check-git-uncommitted: Disable git check for uncommitted files
+    --disable-check-git-untracked: Disable git check for untracked files
+    --disable-checkpoint: Disable checkpoint checks for updates
+    --disable-checkpoint-signature: Disable checkpoint signature
+    --log-destination=: Destination of log messages
+    --log-fmt=: 'Log format to use: ''console'', ''text'', or ''json'''
+    --log-level=: 'Log level to use: ''disabled'', ''trace'', ''debug'', ''info'', ''warn'', ''error'', or ''fatal'''
+    --no-tags=*: Filter stacks that do not have the given tags
+    --quiet: Disable output
+    --tags=*: 'Filter stacks by tags. Use ":" for logical AND and "," for logical OR. Example: --tags app:prod filters stacks containing tag "app" AND "prod". If multiple --tags are provided, an OR expression is created. Example: "--tags a --tags b" is the same as "--tags a,b"'
+    --version: Terramate version
+    -B, --git-change-base=: Git base ref for computing changes
+    -C, --chdir=: Sets working directory
+    -c, --changed: Filter by changed infrastructure
+    -h, --help: Show context-sensitive help.
+    -v, --verbose=*: Increase verboseness of output

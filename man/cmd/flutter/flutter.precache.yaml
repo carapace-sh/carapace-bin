@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: precache
+description: Populate the Flutter tool's cache of binary artifacts
+flags:
+    --fuchsia: Precache artifacts for Fuchsia development.
+    --ios: Precache artifacts for iOS development.
+    --linux: Precache artifacts for Linux desktop development.
+    --macos: Precache artifacts for macOS desktop development.
+    --no-fuchsia: Do not precache artifacts for Fuchsia development.
+    --no-ios: Do not precache artifacts for iOS development.
+    --no-linux: Do not precache artifacts for Linux desktop development.
+    --no-macos: Do not precache artifacts for macOS desktop development.
+    --no-universal: Do not precache artifacts required for any development platform.
+    --no-web: Do not precache artifacts for web development.
+    --no-windows: Do not precache artifacts for Windows desktop development.
+    --no-winuwp: Do not precache artifacts for Windows UWP desktop development.
+    --universal: Precache artifacts required for any development platform.
+    --web: Precache artifacts for web development.
+    --windows: Precache artifacts for Windows desktop development.
+    --winuwp: Precache artifacts for Windows UWP desktop development.
+    -a, --all-platforms: Precache artifacts for all host platforms.
+    -f, --force: Force re-downloading of artifacts.
+    -h, --help: Print this usage information.

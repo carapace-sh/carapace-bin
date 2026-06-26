@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: delete-asset <tag> <asset-name>
+description: Delete an asset from a release
+group: Targeted commands
+flags:
+    -y, --yes: Skip the confirmation prompt

@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rmdir
+description: remove empty directories
+flags:
+    --help: display this help and exit
+    --ignore-fail-on-non-empty: each failure that is solely because a directory is non-empty
+    --version: output version information and exit
+    -p, --parents: remove DIRECTORY and its ancestors
+    -v, --verbose: output a diagnostic for every directory processed

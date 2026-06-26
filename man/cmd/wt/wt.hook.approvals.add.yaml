@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: add
+description: Store approvals in approvals.toml
+flags:
+    --all: Show all commands
+    -h, --help: Print help (see more with '--help')

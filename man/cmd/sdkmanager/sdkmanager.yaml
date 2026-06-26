@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: sdkmanager
+description: Android SDK manager
+flags:
+    --channel?: Include packages in channels up to <channelId>
+    --help: show help
+    --include_obsolete: show obsolete packages in the package listing
+    --install: installs or updates packages
+    --licenses: show and offer the option to accept licenses for all available packages
+    --list: all installed and available packages are printed out
+    --list_installed: all installed packages are printed out
+    --no_https: Force all connections to use http rather than https
+    --package_file?: 'package file to use '
+    --proxy?: Connect via a proxy of the given type
+    --proxy_host?: IP or DNS address of the proxy to use
+    --proxy_port?: Proxy port to connect to
+    --sdk_root?: Use the specified SDK root instead of the SDK containing this tool
+    --uninstall: uninstall the listed packages
+    --update: all installed packages are updated to the latest version
+    --verbose: Enable verbose output.
+    --version: prints the current version of sdkmanager

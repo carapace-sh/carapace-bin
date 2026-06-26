@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: fakeroot
+description: run a command in an environment faking root privileges for file manipulation
+flags:
+    --faked=: Specify an alternative binary to use as faked.
+    -b=: Specify  fd  base  (TCP  mode only).
+    -h: Display help.
+    -i=: Load a fakeroot environment previously saved using -s from load-file.
+    -l, --lib=: Specify an alternative wrapper library.
+    -s=: Save the fakeroot environment to save-file on exit.
+    -u, --unknown-is-real: Use the real ownership of files previously unknown to fakeroot.
+    -v: Display version.

@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: kotlin
+description: run Kotlin programs, scripts or REPL
+flags:
+    -D?: Set a system JVM property
+    -J?: Pass an option directly to JVM
+    -X?: Pass -X argument to the compiler
+    -classpath=: Paths where to find user class files
+    -compiler-path: Kotlin compiler classpath for compiling script or expression or running REPL
+    -e, --expression=: Evaluates the expression and prints the result
+    -h, --help: Print a synopsis of options
+    -howtorun=: How to run the supplied command with arguments
+    -no-reflect: Don't include Kotlin reflection implementation into classpath
+    -no-stdlib: Don't include Kotlin standard library into classpath
+    -version: Display Kotlin version

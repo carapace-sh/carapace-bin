@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ecparam
+description: EC parameter manipulation and generation
+group: standard
+flags:
+    -check: Validate the ec parameters
+    -check_named: Check that named EC curve parameters have not been modified
+    -conv_form=: Specifies the point conversion form
+    -genkey: Generate ec key
+    -in=: Input file  - default stdin
+    -inform=: Input format - default PEM (DER or PEM)
+    -list_curves: Prints a list of all curve 'short names'
+    -name=: Use the ec parameters with specified 'short name'
+    -no_seed: If 'explicit' parameters are chosen do not use the seed
+    -noout: Do not print the ec parameter
+    -out=: Output file - default stdout
+    -outform=: Output format - default PEM
+    -param_enc=: Specifies the way the ec parameters are encoded
+    -propquery=: Property query used when fetching algorithms
+    -provider-path=: Provider load path (must be before 'provider' argument if required)
+    -provider=*: Provider to load (can be specified multiple times)
+    -provparam=: Set a provider key-value parameter
+    -rand=: Load the given file(s) into the random number generator
+    -text: Print the ec parameters in text form
+    -writerand=: Write random data to the specified file

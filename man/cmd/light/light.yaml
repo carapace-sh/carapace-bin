@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: light
+description: a program to control backlight controllers
+flags:
+    -A=: Increase brightness by value
+    -G: Get brightness
+    -I: Restore the previously saved brightness
+    -L: List available devices
+    -N: Set minimum brightness to value
+    -O: Save the current brightness
+    -P: Get minimum brightness
+    -S=: Set brightness to value
+    -T=: Multiply brightness by value
+    -U=: Decrease brightness by value
+    -V: Show program version and exit
+    -r: Interpret input and output values in raw mode
+    -s=: Specify device target path to use
+    -v=: Specify the verbosity level

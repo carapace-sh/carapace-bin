@@ -1,0 +1,23 @@
+name: gui
+aliases:
+    - .
+description: Open the GitButler GUI for the current project.
+flags:
+    -h, --help: Print help (see more with '--help')
+documentation:
+    command: |-
+        Open the GitButler GUI for the current project.
+
+        Running `but gui` will launch the GitButler graphical user interface
+        in the current directory's GitButler project.
+
+        This provides a visual way to manage branches, commits, and uncommitted
+        changes, complementing the command-line interface.
+
+        You can also just run `but .` as a shorthand to open the GUI.
+    flag:
+        help: Print help (see a summary with '-h')
+        status-after: |-
+            After a mutation command completes, also output workspace status.
+
+            In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).

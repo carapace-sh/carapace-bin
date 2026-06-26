@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create
+aliases:
+    - c
+description: Create a pull-request
+flags:
+    --allow-maintainer-edits: Enable maintainers to push to the base branch of created pull
+    --head=: Branch name of the PR source (default is current one). To specify a different head repo, use <user>:<branch>
+    -D, --deadline=: Deadline timestamp to assign
+    -L, --labels=: Comma-separated list of labels to assign
+    -R, --remote=: Discover Gitea login from remote. Optional
+    -a, --assignees=: Comma-separated list of usernames to assign
+    -b, --base=: Branch name of the PR target (default is repos default branch)
+    -d, --description=: ""
+    -l, --login=: Use a different Gitea Login. Optional
+    -m, --milestone=: Milestone to assign
+    -r, --repo=: Override local repository path or gitea repository slug to interact with. Optional
+    -t, --title=: ""
+    -v, --referenced-version=: commit-hash or tag name to assign

@@ -1,0 +1,43 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: img2pdf
+description: losslessly convert raster images to PDF
+flags:
+    --art-border=: border between the ArtBox and the MediaBox
+    --author=: sets the author metadata value
+    --bleed-border=: border between the BleedBox and the MediaBox
+    --creationdate=: sets the UTC creation date metadata value
+    --creator=: sets the creator metadata value
+    --crop-border=: border between the CropBox and the MediaBox
+    --engine=: choose PDF engine (internal, pikepdf or pdfrw)
+    --first-frame-only: only convert the first frame of multi-frame input images
+    --from-file=: read the list of images from FILE
+    --gui: run experimental tkinter gui
+    --include-thumbnails: create one page per frame including thumbnails
+    --keywords=*: sets the keywords metadata value
+    --moddate=: sets the UTC modification date metadata value
+    --orientation=: alias for --rotation
+    --pdfa=: output a PDF/A-1b compliant document
+    --pillow-limit-break: disable Pillow decompression bomb size limit
+    --producer=: sets the producer metadata value
+    --subject=: sets the subject metadata value
+    --title=: sets the title metadata value
+    --trim-border=: border between the TrimBox and the MediaBox
+    --viewer-center-window: instruct the PDF viewer to center the window
+    --viewer-fit-window: instruct the PDF viewer to resize the window to fit the page size
+    --viewer-fullscreen: instruct the PDF viewer to open in fullscreen mode
+    --viewer-initial-page=: instruct the PDF viewer to show the given page
+    --viewer-magnification=: instruct the PDF viewer to open with a certain zoom level
+    --viewer-page-layout=: instruct the PDF viewer how to arrange the pages on the screen
+    --viewer-panes=: instruct the PDF viewer which side panes to show
+    -C, --colorspace=: forces the PIL colorspace
+    -D, --nodate: suppress timestamps in the output
+    -S, --pagesize=: sets the size of the PDF pages
+    -V, --version: prints version information and exits
+    -a, --auto-orient: conditionally swap page dimensions to match input image orientation
+    -b, --border=: minimal distance between image border and PDF page border
+    -f, --fit=: fit the image using the given dimensions
+    -h, --help: show this help message and exit
+    -o, --output=: output to a file instead of standard output
+    -r, --rotation=: specifies how input images should be rotated
+    -s, --imgsize=: sets the size of the images on the PDF pages
+    -v, --verbose: operate in verbose mode

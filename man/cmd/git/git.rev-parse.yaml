@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rev-parse
+description: Pick out and massage parameters
+group: low-level interrogator
+documentation:
+  command: |-
+    Many Git porcelainish commands take a mixture of flags
+    (i.e. parameters that begin with a dash '-') and parameters
+    meant for the underlying 'git rev-list' command they use internally
+    and flags and parameters for the other commands they use
+    downstream of 'git rev-list'.  The primary purpose of this command
+    is to allow calling programs to distinguish between them.  There are
+    a few other operation modes that have nothing to do with the above
+    "help parse command line options".
+
+    Unless otherwise specified, most of the options and operation modes
+    require you to run this command inside a git repository or a working
+    tree that is under the control of a git repository, and will give you
+    a fatal error otherwise.

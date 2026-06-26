@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: mouse-demo
+description: Demo the mouse handling kitty implements for terminal programs
+flags:
+    -h, --help: Show help for this command

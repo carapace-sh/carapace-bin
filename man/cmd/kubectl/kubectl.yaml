@@ -1,0 +1,33 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: kubectl
+description: kubectl controls the Kubernetes cluster manager
+persistentflags:
+    --as-group=*: Group to impersonate for the operation, this flag can be repeated to specify multiple groups.
+    --as-uid=: UID to impersonate for the operation.
+    --as-user-extra=*: User extras to impersonate for the operation, this flag can be repeated to specify multiple values for the same key.
+    --as=: Username to impersonate for the operation. User could be a regular user or a service account in a namespace.
+    --cache-dir=: Default cache directory
+    --certificate-authority=: Path to a cert file for the certificate authority
+    --client-certificate=: Path to a client certificate file for TLS
+    --client-key=: Path to a client key file for TLS
+    --cluster=: The name of the kubeconfig cluster to use
+    --context=: The name of the kubeconfig context to use
+    --disable-compression: If true, opt-out of response compression for all requests to the server
+    --insecure-skip-tls-verify: If true, the server's certificate will not be checked for validity. This will make your HTTPS connections insecure
+    --kubeconfig=: Path to the kubeconfig file to use for CLI requests.
+    --kuberc=: Path to the kuberc file to use for preferences. This can be disabled by exporting KUBECTL_KUBERC=false feature gate or turning off the feature KUBERC=off.
+    --log-flush-frequency=: Maximum number of seconds between log flushes
+    --match-server-version: Require server version to match client version
+    --password=: Password for basic authentication to the API server
+    --profile-output=: Name of the file to write the profile to
+    --profile=: Name of profile to capture. One of (none|cpu|heap|goroutine|threadcreate|block|mutex|trace)
+    --request-timeout=: The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don't timeout requests.
+    --tls-server-name=: Server name to use for server certificate validation. If it is not provided, the hostname used to contact the server is used
+    --token=: Bearer token for authentication to the API server
+    --user=: The name of the kubeconfig user to use
+    --username=: Username for basic authentication to the API server
+    --vmodule=: comma-separated list of pattern=N settings for file-filtered logging (only works for the default text log format)
+    --warnings-as-errors: Treat warnings received from the server as errors and exit with a non-zero exit code
+    -n, --namespace=: If present, the namespace scope for this CLI request
+    -s, --server=: The address and port of the Kubernetes API server
+    -v, --v=: number for the log level verbosity

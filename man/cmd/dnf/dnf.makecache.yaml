@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: makecache
+aliases:
+    - mc
+description: generate the metadata cache

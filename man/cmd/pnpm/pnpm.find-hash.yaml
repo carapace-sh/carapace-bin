@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: find-hash
+description: Experimental! Lists the packages that include the file with the specified hash
+flags:
+    -h, --help: Output usage information

@@ -1,0 +1,34 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: bootstrap agent-name [flags]
+aliases:
+    - bs
+description: Bootstrap a GitLab Agent for Kubernetes in a project.
+flags:
+    --commit-author-email=: The Git commit author email to use. Conflicts with the --use-api-commit-author flag.
+    --commit-author-name=: The Git commit author name to use. Conflicts with the --use-api-commit-author flag.
+    --create-environment: Create an environment for the GitLab Agent.
+    --create-flux-environment: Create an environment for FluxCD. Affects only the environment creation, not the use of Flux itself. Flux is always required for the bootstrap process.
+    --environment-flux-resource-path=: Flux resource path of the environment for the GitLab Agent.
+    --environment-name=: Name of the environment for the GitLab Agent.
+    --environment-namespace=: Kubernetes namespace of the environment for the GitLab Agent.
+    --flux-environment-flux-resource-path=: Flux resource path of the environment for FluxCD.
+    --flux-environment-name=: Name of the environment for FluxCD.
+    --flux-environment-namespace=: Kubernetes namespace of the environment for FluxCD.
+    --flux-source-name=: Flux source name.
+    --flux-source-namespace=: Flux source namespace.
+    --flux-source-type=: Source type of the flux-system, like Git, OCI, or Helm.
+    --gitlab-agent-token-secret-name=: Name of the Secret where the token for the GitLab Agent is stored. The helm-release-target-namespace is implied for the namespace of the Secret.
+    --helm-release-filepath=: File path within the GitLab Agent project to commit the Flux HelmRelease to.
+    --helm-release-name=: Name of the Flux HelmRelease manifest.
+    --helm-release-namespace=: Namespace of the Flux HelmRelease manifest.
+    --helm-release-target-namespace=: Namespace of the GitLab Agent deployment.
+    --helm-release-values-from=*: 'Kubernetes object reference that contains the values.yaml data key in the format ''<kind>/<name>'', where ''kind'' must be one of: (Secret, ConfigMap)'
+    --helm-release-values=*: Local path to values.yaml files
+    --helm-repository-address=: Address of the HelmRepository.
+    --helm-repository-filepath=: File path within the GitLab Agent project to commit the Flux HelmRepository to.
+    --helm-repository-name=: Name of the Flux HelmRepository manifest.
+    --helm-repository-namespace=: Namespace of the Flux HelmRepository manifest.
+    --no-reconcile: Do not trigger Flux reconciliation for GitLab Agent for Kubernetes Flux resource.
+    --use-api-commit-author: When creating Git commits use the user from the authenticated API request. Conflicts with the --commit-author-name and --commit-author-email flags.
+    -b, --manifest-branch=: Branch to commit the Flux Manifests to. (default to the project default branch)
+    -p, --manifest-path=: Location of directory in Git repository for storing the GitLab Agent for Kubernetes Helm resources.

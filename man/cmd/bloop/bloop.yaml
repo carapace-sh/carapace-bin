@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Build and test Scala code. A build server that compiles, tests,
+    and runs Scala projects with fast incremental compilation. Supports
+    project introspection, BSP protocol, and console REPL.
+description: Build and test Scala code
+persistentflags:
+    --debug=: Debug the execution of a concrete task
+    --no-color: do not color output
+    --verbose: print out debugging information to stderr
+    -c, --config-dir=: file path to the bloop config directory
+    -v, --version: print the root section at the beginning of the execution

@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: environment
+description: Summarise Homebrew's build environment as a plain list
+flags:
+    --debug: Display any debugging information.
+    --help: Show this message.
+    --plain: Generate plain output even when piped.
+    --quiet: Make some output more quiet.
+    --shell: Generate a list of environment variables for the specified shell, or `--shell=auto` to detect the current shell.
+    --verbose: Make some output more verbose.

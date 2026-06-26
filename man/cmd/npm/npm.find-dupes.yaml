@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: find-dupes
+description: Find duplication in the package tree
+flags:
+    --bin-links: create symlinks
+    --fund: Display funding message
+    --global-style: Use global layout
+    --ignore-scripts: Disable scripts
+    --legacy-bundling: Use legacy bundling
+    --omit=*: omit dependency type
+    --package-lock: When false ignore package.lock
+    --strict-peer-deps: Fail and abort for any conflicting `peerDependencies`
+    --workspaces: Enable running a command in the context fo all workspaces
+    -w, --workspace=*: Enable running a command in the context of the given workspace

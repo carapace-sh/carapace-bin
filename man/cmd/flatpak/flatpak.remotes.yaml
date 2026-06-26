@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: remotes [OPTION…]
+description: List remote repositories
+group: repository
+flags:
+    --columns=: What information to show
+    --installation=: Work on a non-default system-wide installation
+    --ostree-verbose: Show OSTree debug information
+    --show-disabled: Show disabled remotes
+    --system: Work on the system-wide installation (default)
+    -d, --show-details: Show remote details
+    -h, --help: Show help options
+    -u, --user: Work on the user installation
+    -v, --verbose: Show debug information, -vv for more detail

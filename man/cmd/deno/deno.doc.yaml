@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: doc
+description: Show documentation for a modul
+flags:
+    --import-map=: Load import map file
+    --json: Output documentation in JSON format
+    --private: Output private documentation
+    -r, --reload?: Reload source code cache (recompile TypeScript)

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: inspect
+description: see components of a template
+flags:
+    -machine-readable: Machine-readable output

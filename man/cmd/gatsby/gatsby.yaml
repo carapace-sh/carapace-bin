@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: gatsby
+description: Build blazing fast, modern apps and websites with React
+flags:
+    --json: Turn on the JSON logger
+    --no-color: Turn off the color in output
+    --no-colors: Turn off the color in output
+    --verbose: Turn on verbose output
+    -h, --help: Show help
+    -v, --version: Show the version of the Gatsby CLI

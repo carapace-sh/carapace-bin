@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: unstack [branch]
+aliases:
+    - delete
+description: Delete a stack locally and on GitHub
+flags:
+    --local: Only delete the stack locally

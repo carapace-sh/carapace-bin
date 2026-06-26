@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Bash Automated Testing System — a TAP-compliant testing
+    framework for Bash. Write test cases in Bash scripts and
+    run them with TAP or pretty-formatted output.
+description: Bash Automated Testing System
+flags:
+    -c, --count: Count the number of test cases without running any tests
+    -h, --help: Display this help message
+    -p, --pretty: Show results in pretty format (default for terminals)
+    -t, --tap: Show results in TAP format
+    -v, --version: Display the version number

@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: expunge
+description: expunge plugin
+flags:
+    --force: Do not prompt for confirmation
+    --global-only: Only expunge global plugins
+    --local: Include plugins from local project for expunge
+    --local-only: Only expunge local project plugins
+    --reinstall: Reinstall current plugins after expunge

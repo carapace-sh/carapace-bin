@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: select-window
+description: Visually select a window in the specified tab
+flags:
+    --exclude-active: Exclude the currently active window from the list of windows to pick
+    --reactivate-prev-tab: When the selection is finished, the previously activated tab will be reactivated
+    --response-timeout=: The time in seconds to wait for the user to select a window
+    --self: Select window from the tab containing the window this command is run in
+    --title=: A title that will be displayed to the user to describe what this selection is for
+    -h, --help: Show help for this command
+    -m, --match=: The tab to match

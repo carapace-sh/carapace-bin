@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: diff
+description: Open the diff viewer to see the differences between two specified files

@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: set
+aliases:
+    - add
+description: Set the override toolchain for a directory
+flags:
+    --path=: Path to the directory
+    -h, --help: Print help

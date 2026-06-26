@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: deploy
+description: Invokes the deploy builder for a specified project or for the default project in the workspace
+flags:
+    -c, --configuration=: One or more named builder configurations

@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: _complete [-s|--shell SHELL] [-i|--input INPUT] [-c|--current CURRENT] [-a|--api-version API-VERSION] [-S|--symfony SYMFONY]
+description: Internal command to provide shell completion suggestions
+flags:
+    --api-version=: The API version of the completion script
+    --current=: The index of the "input" array that the cursor is in (e.g. COMP_CWORD)
+    --input=: An array of input tokens (e.g. COMP_WORDS or argv)
+    --shell=: The shell type ("bash", "fish", "zsh")
+    --symfony=: deprecated

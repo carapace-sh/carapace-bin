@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: prune
+description: Delete stale references
+flags:
+  -n, --dry-run: dry run
+documentation:
+  command: |-
+    Delete stale references associated with _<name>_. By default, stale
+    remote-tracking branches under _<name>_ are deleted, but depending on
+    global configuration and the configuration of the remote we might even
+    prune local tags that haven't been pushed there. Equivalent to `git fetch --prune <name>`, except that no new references will be fetched.
+
+    See the PRUNING section of [git-fetch](cmd://git/fetch) for what it'll prune
+    depending on various configuration.
+
+    With `--dry-run` option, report what branches would be pruned, but do not
+    actually prune them.

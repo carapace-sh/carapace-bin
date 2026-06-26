@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: symbols
+description: Parse stdin and print the list of symbols

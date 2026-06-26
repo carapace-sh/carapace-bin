@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: remove
+description: remove a box
+flags:
+    --all: Remove all available versions of the box
+    --box-version=: The specific version of the box to remove
+    --provider=: The specific provider type for the box to remove
+    -f, --force: Remove without confirmation.

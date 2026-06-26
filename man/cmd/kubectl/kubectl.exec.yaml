@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: exec (POD | TYPE/NAME) [-c CONTAINER] [flags] -- COMMAND [args...]
+description: Execute a command in a container
+group: troubleshooting
+flags:
+    --pod-running-timeout=: The length of time (like 5s, 2m, or 3h, higher than zero) to wait until at least one pod is running
+    -c, --container=: Container name. If omitted, use the kubectl.kubernetes.io/default-container annotation for selecting the container to be attached or the first container in the pod will be chosen
+    -f, --filename=*: to use to exec into the resource
+    -i, --stdin: Pass stdin to the container
+    -q, --quiet: Only print output from the remote session
+    -t, --tty: Stdin is a TTY

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: source
+description: Print the source code for the constraints
+flags:
+    -v, --verbose: Also print the fact database automatically compiled from the workspace manifests

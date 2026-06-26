@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: depends
+aliases:
+    - de
+description: visualize tox environment dependencies
+flags:
+    --discover=*: 'for Python discovery first try these Python executables (default: [])'
+    --hashseed=: 'set PYTHONHASHSEED to SEED before running commands. Defaults to a random integer in the range [1, 4294967295] ([1, 1024] on Windows). Passing ''notset'' suppresses this behavior. (default: 264197440)'
+    --list-dependencies: 'list the dependencies installed during environment setup (default: False)'
+    --no-list-dependencies: 'never list the dependencies installed during environment setup (default: True)'
+    --result-json=: 'write a JSON file with detailed information about all commands and results involved (default: None)'

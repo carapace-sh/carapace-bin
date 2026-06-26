@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: install [options] <package-spec>|@<group-spec>|@<environment-spec>...
+aliases:
+    - in
+description: install packages
+flags:
+    --allow-downgrade: enable downgrade of dependencies
+    --allowerasing: allow removing of installed packages
+    --downloadonly: download packages without executing transaction
+    --no-allow-downgrade: disable downgrade of dependencies
+    --skip-broken: resolve dependency problems by removing problematic packages
+    --skip-unavailable: allow skipping packages that are not available

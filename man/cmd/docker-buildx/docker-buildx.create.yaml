@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create [OPTIONS] [CONTEXT|ENDPOINT]
+description: Create a new builder instance
+flags:
+    --append: Append a node to builder instead of changing it
+    --bootstrap: Boot builder after creation
+    --buildkitd-flags=: Flags for buildkitd daemon
+    --config=: BuildKit config file
+    --driver-opt=*: Options for the driver
+    --driver=: 'Driver to use (available: "docker-container", "kubernetes", "remote")'
+    --leave: Remove a node from builder instead of changing it
+    --name=: Builder instance name
+    --node=: Create/modify node with given name
+    --platform=*: Fixed platforms for current node
+    --use: Set the current builder instance

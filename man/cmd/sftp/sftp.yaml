@@ -1,0 +1,28 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: sftp
+description: OpenSSH secure file transfer
+flags:
+    "-4": Forces sftp to use IPv4 addresses only.
+    "-6": Forces sftp to use IPv6 addresses only.
+    -A: Allows forwarding of ssh-agent(1) to the remote system.
+    -B=: Specify the size of the buffer that sftp uses when transferring files.
+    -C: Enables compression (via ssh's -C flag).
+    -D=: Connect directly to a local sftp server (rather than via ssh(1)).
+    -F=: Specifies an alternative per-user configuration file for ssh(1).
+    -J=: Connect to the target host by first making an sftp connection to the jump host described by destination.
+    -N: Disables quiet mode, e.g. to override the implicit quiet mode set by the -b flag.
+    -P=: Specifies the port to connect to on the remote host.
+    -R=: Specify how many requests may be outstanding at any one time.
+    -S=: Name of the program to use for the encrypted connection.
+    -a: Attempt to continue interrupted transfers rather than overwriting existing partial or complete copies of files.
+    -b=: Batch mode reads a series of commands from an input batchfile instead of stdin.
+    -c=: Selects the cipher to use for encrypting the data transfers.
+    -f: Requests that files be flushed to disk immediately after transfer.
+    -i=: Selects the file from which the identity (private key) for public key authentication is read.
+    -l=: Limits the used bandwidth, specified in Kbit/s.
+    -o=: Can be used to pass options to ssh in the format used in ssh_config(5).
+    -p: Preserves modification times, access times, and modes from the original files transferred.
+    -q: 'Quiet mode: disables the progress meter as well as warning and diagnostic messages from ssh(1).'
+    -r: Recursively copy entire directories when uploading and downloading.
+    -s=: Specifies the SSH2 subsystem or the path for an sftp server on the remote host.
+    -v: Raise logging level.  This option is also passed to ssh.

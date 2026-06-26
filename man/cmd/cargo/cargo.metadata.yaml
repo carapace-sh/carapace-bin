@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: metadata
+description: Output the resolved dependencies of a package, the concrete used versions including overrides, in machine-readable format
+flags:
+    --all-features: Activate all available features
+    --filter-platform=*: Only include resolve dependencies matching the given target-triple
+    --format-version=: Format version
+    --manifest-path=: Path to Cargo.toml
+    --no-default-features: Do not activate the `default` feature
+    --no-deps: Output information only about the workspace members and don't fetch dependencies
+    -F, --features=*: Space or comma separated list of features to activate
+    -h, --help: Print help
+documentation:
+  command: |
+    Output the resolved dependencies of a package in machine-readable JSON
+    format. Includes the concrete versions used, features enabled, and
+    dependency graph. The `--format-version` flag specifies the output format
+    (currently only version 1 is supported). Use `--no-deps` to output only
+    workspace member information without fetching dependency metadata.

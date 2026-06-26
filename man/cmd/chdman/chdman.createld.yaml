@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: createld
+description: create a laserdisc CHD from the input file
+flags:
+    -c, --compression=: which compression codecs to use
+    -f, --force: force overwriting an existing file
+    -hs, --hunksize=: size of each hunk, in bytes
+    -i, --input=: input file name
+    -if, --inputframes=: effective length of input in frames
+    -isf, --inputstartframe=: starting frame within the input
+    -np, --numprocessors=: limit the number of processors to use during compression
+    -o, --output=: output file name
+    -op, --outputparent=: parent file name for output CHD

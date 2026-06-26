@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: +show-config
+description: show the current configuration
+flags:
+    --changes-only: Only show the options that have been changed
+    --default: Show the default configuration
+    --docs: Print the documentation above each option as a comment
+    --help: show help

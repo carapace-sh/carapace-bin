@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: add <key-file>
+description: Add a deploy key to a GitHub repository
+flags:
+    -t, --title=: Title of the new key
+    -w, --allow-write: Allow write access for the key

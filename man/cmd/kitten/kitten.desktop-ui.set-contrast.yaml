@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: set-contrast
+description: Change the contrast
+flags:
+    -h, --help: Show help for this command

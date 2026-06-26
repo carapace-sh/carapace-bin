@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: view {<license-key> | <spdx-id>}
+description: View a specific repository license
+flags:
+    -w, --web: Open https://choosealicense.com/ in the browser

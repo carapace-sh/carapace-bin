@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create [<name>]
+description: Create a new extension
+flags:
+    --precompiled=: 'Create a precompiled extension. Possible values: go, other'

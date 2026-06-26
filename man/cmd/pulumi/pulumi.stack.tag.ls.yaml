@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ls
+description: List all stack tags
+persistentflags:
+    -j, --json: Emit output as JSON

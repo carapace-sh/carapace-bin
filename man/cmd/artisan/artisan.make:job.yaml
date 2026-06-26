@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: make:job [-f|--force] [--sync] [--test] [--pest] [--phpunit] [--] <name>
+description: Create a new job class
+flags:
+    --force: Create the class even if the job already exists
+    --pest: Generate an accompanying Pest test for the Job
+    --phpunit: Generate an accompanying PHPUnit test for the Job
+    --sync: Indicates that job should be synchronous
+    --test: Generate an accompanying Test test for the Job

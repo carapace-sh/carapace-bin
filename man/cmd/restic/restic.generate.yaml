@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: generate
+description: Generate manual pages and auto-completion files (bash, fish, zsh)
+flags:
+    --bash-completion=: write bash completion `file`
+    --fish-completion=: write fish completion `file`
+    --man=: write man pages to `directory`
+    --zsh-completion=: write zsh completion `file`
+
+documentation:
+  command: >-
+    Generate shell completion scripts and man pages for restic. Output one type at a time; use `-` as the file argument to write to stdout.

@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: xbacklight
+description: adjust backlight brightness using RandR extension
+flags:
+    -d=: Display to set backlight for.
+    -dec=: Decreases brightness by the specified amount.
+    -display=: Display to set backlight for.
+    -get: Print  out  the  current backlight brightness of each output with such a control.
+    -help: Print out a summary of the usage and exit.
+    -inc=: Increases brightness by the specified amount.
+    -set=: Sets each backlight brightness to the specified level.
+    -steps=: Number of steps to take while fading.
+    -time=: Length of time to spend fading the backlight between old and new value.
+    -version: Print out the program version and exit.

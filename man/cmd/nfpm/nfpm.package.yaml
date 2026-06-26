@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: package
+aliases:
+    - pkg
+    - p
+description: Creates a package based on the given the given config file and flags
+flags:
+    -f, --config=: config file to be used
+    -p, --packager=: which packager implementation to use [apk|deb|rpm]
+    -t, --target=: where to save the generated package (filename, folder or empty for current folder)

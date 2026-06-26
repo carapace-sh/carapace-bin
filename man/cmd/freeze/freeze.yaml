@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: freeze
+description: Generate images of code and terminal output
+flags:
+    --border.color=: Border color
+    --border.width=: Border width thickness
+    --font.family=: Font family to use for code
+    --font.file=: Font file to embed
+    --font.ligatures: Use ligatures in the font
+    --font.size=: Font size to use for code
+    --line-height=: Line height relative to font size
+    --lines=: Lines to capture (start,end)
+    --shadow.blur=: Shadow Gaussian Blur
+    --shadow.x=: Shadow offset x coordinate
+    --shadow.y=: Shadow offset y coordinate
+    --show-line-numbers: Show line numbers
+    --window: Display window controls
+    -H, --height=: Height of terminal window
+    -W, --width=: Width of terminal window
+    -b, --background=: Apply a background fill
+    -c, --config=: Base configuration file or template
+    -i, --interactive: Use an interactive form for configuration options
+    -l, --language=: Language of code file
+    -m, --margin=: Apply margin to the window
+    -o, --output=: Output location for .svg, .png, or .webp
+    -p, --padding=: Apply padding to the code
+    -r, --border.radius=: Corner radius of window
+    -t, --theme=: Theme to use for syntax highlighting
+    -x, --execute=: Capture output of command execution

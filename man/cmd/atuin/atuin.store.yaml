@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: store
+description: Manage the atuin data store
+flags:
+    -h, --help: Print help

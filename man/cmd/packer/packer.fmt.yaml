@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: fmt
+description: Rewrites HCL2 config files to canonical format
+flags:
+    -check: Check if the input is formatted.
+    -diff: Display diffs of formatting change
+    -recursive: Also process files in subdirectories.
+    -write: Don't write to source files

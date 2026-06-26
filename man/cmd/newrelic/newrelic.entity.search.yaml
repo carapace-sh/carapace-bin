@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: search
+description: Search for New Relic entities
+flags:
+    --tag=: search for entities matching the given entity tag
+    -d, --domain=: search for entities matching the given entity domain
+    -f, --fields-filter=*: filter search results to only return certain fields for each search result
+    -n, --name=: search for entities matching the given name
+    -r, --reporting=: search for entities based on whether or not an entity is reporting (true or false)
+    -s, --alert-severity=: search for entities matching the given alert severity type
+    -t, --type=: search for entities matching the given type

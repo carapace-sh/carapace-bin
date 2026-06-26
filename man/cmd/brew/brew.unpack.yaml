@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: unpack
+description: Unpack the source files for <formula> into subdirectories of the current working directory
+group: developer
+flags:
+    --debug: Display any debugging information.
+    --destdir: Create subdirectories in the directory named by <path> instead.
+    --force: Overwrite the destination directory if it already exists.
+    --git: Initialise a Git repository in the unpacked source. This is useful for creating patches for the software.
+    --help: Show this message.
+    --patch: Patches for <formula> will be applied to the unpacked source.
+    --quiet: Make some output more quiet.
+    --verbose: Make some output more verbose.

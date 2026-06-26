@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: delete
+aliases:
+    - rm
+description: Delete one or more releases
+flags:
+    --delete-tag: Also delete the git tag for this release
+    -R, --remote=: Discover Gitea login from remote. Optional
+    -l, --login=: Use a different Gitea Login. Optional
+    -o, --output=: Output format. (simple, table, csv, tsv, yaml, json)
+    -r, --repo=: Override local repository path or gitea repository slug to interact with. Optional
+    -y, --confirm: Confirm deletion (required)

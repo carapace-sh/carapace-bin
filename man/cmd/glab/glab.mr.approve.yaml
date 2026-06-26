@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: approve {<id> | <branch>}
+description: Approve merge requests.
+flags:
+    -s, --sha=: SHA, which must match the SHA of the HEAD commit of the merge request.

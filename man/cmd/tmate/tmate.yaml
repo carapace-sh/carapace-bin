@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: tmate
+description: Instant terminal sharing
+flags:
+    -F: set the foreground mode, useful for setting remote access
+    -S=: set the socket path, useful to issue commands to a running tmate instance
+    -V: print version
+    -f=: set the config file path
+    -k=: specify an api-key, necessary for using named sessions on tmate.io
+    -n=: specify the session token instead of getting a random one
+    -r=: same, but for the read-only token
+    -v: set verbosity (can be repeated)

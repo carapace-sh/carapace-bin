@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: run
+description: Run an executable in a conda environment
+flags:
+    --cwd=: Current working directory for command to run in.
+    --debug-wrapper-scripts: When this is set, where implemented, the shell wrapper scriptswill echo to stderr a lot of debugging information.
+    --dev: Sets `CONDA_EXE` to `python -m conda`.
+    --live-stream: Display the output for the subprocess stdout and stderr on real time.
+    --no-capture-output: Don't capture stdout/stderr
+    -h, --help: Show this help message and exit.
+    -n, --name=: Name of environment.
+    -p, --prefix=: Full path to environment location (i.e. prefix).
+    -v, --verbose: Use once for info, twice for debug, three times for trace.

@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: smbios11
+description: 'List strings passed via SMBIOS Type #11'

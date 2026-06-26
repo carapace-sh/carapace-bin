@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: prune
+description: clean up build cache
+flags:
+    --all: Include internal/frontend references
+    --format=: Format the output using the given Go template
+    --free-storage=: Keep free data below this limit
+    --keep-duration=: Keep data newer than this limit
+    --keep-storage-min=: Always allow data above this limit
+    --keep-storage=: Keep data below this limit
+    -f, --filter=: Filter records
+    -v, --verbose: Verbose output

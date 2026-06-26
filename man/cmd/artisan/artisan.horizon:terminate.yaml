@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: horizon:terminate [--wait]
+description: Terminate the master supervisor so it can be restarted
+flags:
+    --wait: Wait for all workers to terminate

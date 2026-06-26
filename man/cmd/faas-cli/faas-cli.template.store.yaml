@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: store
+description: Command for pulling and listing templates from store
+persistentflags:
+    --debug: Enable debug output
+    --overwrite: Overwrite existing templates?

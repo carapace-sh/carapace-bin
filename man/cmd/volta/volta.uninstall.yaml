@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: uninstall
+description: Uninstalls a tool from your toolchain
+flags:
+    --quiet: Prevents unnecessary output
+    --verbose: Enables verbose diagnostics
+    -h, --help: Prints help information

@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: wishlist
+description: The SSH Directory
+flags:
+    -h, --help: help for wishlist
+    -v, --version: version for wishlist
+persistentflags:
+    -c, --config=: Path to the config file to use

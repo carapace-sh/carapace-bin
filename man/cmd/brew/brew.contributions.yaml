@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: contributions
+description: Summarise contributions to Homebrew repositories
+group: developer
+flags:
+    --csv: Print a CSV of contributions across repositories over the time period.
+    --debug: Display any debugging information.
+    --from: Date (ISO-8601 format) to start searching contributions. Omitting this flag searches the last year.
+    --help: Show this message.
+    --quiet: Make some output more quiet.
+    --repositories: 'Specify a comma-separated list of repositories to search. Supported repositories: `brew`, `core`, `cask`, `aliases`, `autoupdate`, `bundle`, `command-not-found`, `test-bot`, `services`, `cask-fonts` and `cask-versions`. Omitting this flag, or specifying `--repositories=primary`, searches only the main repositories: brew,core,cask. Specifying `--repositories=all`, searches all repositories. '
+    --to: Date (ISO-8601 format) to stop searching contributions.
+    --user: Specify a comma-separated list of GitHub usernames or email addresses to find contributions from. Omitting this flag searches maintainers.
+    --verbose: Make some output more verbose.

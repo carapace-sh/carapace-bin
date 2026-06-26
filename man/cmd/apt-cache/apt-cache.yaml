@@ -1,0 +1,35 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Query the APT package cache to display and search package metadata.
+    Does not modify system state — purely informational. Use `search` to
+    find packages by regex, `show` to view detailed package records,
+    `depends` and `rdepends` to inspect dependency relationships, and
+    `policy` to debug package version pinning and source priorities.
+description: query the APT cache
+flags:
+    --all-names: Make pkgnames print all names
+    --implicit: Per default depends and rdepends print only dependencies explicitly expressed in the metadata
+    --installed: Limit the output of depends and rdepends to packages which are currently installed
+    --no-breaks: Omit breaks
+    --no-conflicts: Omit conflicts
+    --no-depends: Omit depends
+    --no-enhances: Omit enhances
+    --no-pre-depends: Omit pre-depends
+    --no-recommends: Omit recommends
+    --no-replaces: Omit replaces
+    --no-suggests: Omit suggests
+    --recurse: Make depends and rdepends recursive so that all packages mentioned are printed once
+    --with-source=: Adds the given file as a source for metadata
+    -a, --all-versions: Print full records for all available versions
+    -c, --config-file=: Configuration File
+    -f, --full: Print full package records when searching
+    -g, --generate: Perform automatic package cache regeneration
+    -h, --help: Show a short usage summary
+    -i, --important: Print only important dependencies
+    -n, --names-only,: Only search on the package and provided package names
+    -o, --option=*: Set a Configuration Option
+    -p, --pkg-cache=: Select the file to store the package cache
+    -q, --quiet: Quiet
+    -s, --src-cache=: Select the file to store the source cache
+    -v, --version: Show the program version

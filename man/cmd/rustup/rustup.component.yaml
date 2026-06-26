@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: component
+description: Modify a toolchain's installed components
+flags:
+    -h, --help: Print help

@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: run-script
+aliases:
+    - run
+description: Run arbitrary package scripts
+flags:
+    --if-present: ""
+    --ignore-scripts: do not run scripts specified in package.json
+    --script-shell=: shell to use for scripts
+    --workspaces: Enable running a command in the context fo all workspaces
+    -w, --workspace=*: Enable running a command in the context of the given workspace

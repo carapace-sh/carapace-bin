@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: tap-info
+description: Show detailed information about one or more <tap>s
+group: main
+flags:
+    --debug: Display any debugging information.
+    --help: Show this message.
+    --installed: Show information on each installed tap.
+    --json: 'Print a JSON representation of <tap>. Currently the default and only accepted value for <version> is `v1`. See the docs for examples of using the JSON output: <https://docs.brew.sh/Querying-Brew>'
+    --quiet: Make some output more quiet.
+    --verbose: Make some output more verbose.

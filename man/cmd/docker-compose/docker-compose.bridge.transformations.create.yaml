@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create [OPTION] PATH
+description: Create a new transformation
+flags:
+    -f, --from=: 'Existing transformation to copy (default: docker/compose-bridge-kubernetes)'

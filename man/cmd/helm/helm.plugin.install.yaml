@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: install
+description: install one or more Helm plugins
+flags:
+    --version=: specify a version constraint. If this is not specified, the latest version is installed

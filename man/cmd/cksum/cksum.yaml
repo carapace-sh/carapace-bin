@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Compute and verify file checksums. Supports various digest
+    algorithms, base64 output, and batch verification from
+    checksum files.
+description: compute and verify file checksums
+flags:
+    --base64: emit base64-encoded digests, not hexadecimal
+    --debug: indicate which implementation used
+    --help: display this help and exit
+    --ignore-missing: don't fail or report status for missing files
+    --quiet: don't print OK for each successfully verified file
+    --raw: emit a raw binary digest, not hexadecimal
+    --status: don't output anything, status code shows success
+    --strict: exit non-zero for improperly formatted checksum lines
+    --tag: create a BSD-style checksum (the default)
+    --untagged: create a reversed style checksum, without digest type
+    --version: output version information and exit
+    -a, --algorithm=: select the digest type to use
+    -c, --check: read checksums from the FILEs and check them
+    -l, --length=: digest length in bits; must not exceed the max for the blake2 algorithm and must be a multiple of 8
+    -w, --warn: warn about improperly formatted checksum lines
+    -z, --zero: end each output line with NUL, not newline, and disable file name escaping

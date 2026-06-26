@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: up
+description: Upgrade dependencies across the project
+group: general
+flags:
+    --mode=: Change what artifacts installs generate
+    -C, --caret: Use the ^ semver modifier on the resolved range
+    -E, --exact: Don't use any semver modifier on the resolved range
+    -R, --recursive: Resolve again ALL resolutions for those packages
+    -T, --tilde: Use the ~ semver modifier on the resolved range
+    -i, --interactive: Offer various choices, depending on the detected upgrade paths

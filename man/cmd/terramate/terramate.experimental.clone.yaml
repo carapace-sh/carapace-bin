@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: clone
+description: Clones a stack
+flags:
+    --skip-child-stacks: Clone ignores child stacks

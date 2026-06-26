@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create
+description: Creates a version entry on Vagrant Cloud
+flags:
+    -d, --description=: A description for this version

@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: git-utimes
+description: only touch files that are newer than their last commit date
+flags:
+    --help: show help
+    --newer: only touch files that are newer than their last commit date

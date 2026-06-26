@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: options
+description: View or set your gatsby-cli configuration settings.

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: owner
+description: Manage package owners
+persistentflags:
+    --otp=: one-time password

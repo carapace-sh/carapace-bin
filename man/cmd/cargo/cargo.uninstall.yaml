@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: uninstall
+description: Remove a Rust binary
+group: package
+flags:
+    --bin=*: Only uninstall the binary NAME
+    --root=: Directory to uninstall packages from
+    -h, --help: Print help
+    -p, --package=*: Package to uninstall
+documentation:
+  command: |
+    Remove a Rust binary that was installed via `cargo install`. Pass the
+    package name as an argument, or use `--package` to specify which package
+    to uninstall. Use `--bin` to remove only a specific binary from the
+    package. Use `--root` to specify the installation directory.

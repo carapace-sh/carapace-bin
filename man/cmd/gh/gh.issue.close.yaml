@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: close {<number> | <url>}
+description: Close issue
+group: Targeted commands
+documentation:
+    command: |
+        Close an issue. Specify the closing reason with `-r` (completed, not planned,
+        or duplicate). Use `--duplicate-of` to mark it as a duplicate of another issue.
+        Optionally leave a closing comment with `-c` or `--comment`.
+flags:
+    --duplicate-of=: Mark as duplicate of another issue by number or URL
+    -c, --comment=: Leave a closing comment
+    -r, --reason=: 'Reason for closing: {completed|not planned|duplicate}'

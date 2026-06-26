@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: gcloud
+aliases:
+    - gcp
+description: Start local proxy for GCP access.
+flags:
+    --app=: Optional Name of the GCP application to use if logged into multiple.
+    -f, --format=: 'Optional format to print the commands for setting environment variables, one of: unix, command-prompt, powershell, text. Default is unix.'
+    -p, --port=: Specifies the source port used by the proxy listener.

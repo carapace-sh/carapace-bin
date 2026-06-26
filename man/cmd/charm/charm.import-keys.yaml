@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: import-keys BACKUP.tar
+description: Import previously backed up Charm account keys.
+flags:
+    -f, --force-overwrite: overwrite if keys exist; don’t prompt for input
+
+documentation:
+  command: >-
+    Import previously backed up Charm account keys to restore access.

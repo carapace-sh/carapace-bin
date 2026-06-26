@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: codespace
+aliases:
+    - cs
+description: Connect to and manage codespaces
+group: core
+documentation:
+    command: |
+        Connect to and manage codespaces. Create codespaces with `gh codespace create`,
+        SSH into them with `gh codespace ssh`, manage ports with `gh codespace ports`,
+        and delete them with `gh codespace delete`. Codespaces provide cloud-based
+        development environments with VS Code integration.

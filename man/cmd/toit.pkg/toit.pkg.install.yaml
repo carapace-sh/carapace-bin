@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: install
+aliases:
+    - download
+    - fetch
+description: Installs a package in the current project, or downloads all dependencies
+flags:
+    --local: Treat package argument as local path
+    --name=: The name used for the 'import' clause
+    --recompute: Recompute dependencies

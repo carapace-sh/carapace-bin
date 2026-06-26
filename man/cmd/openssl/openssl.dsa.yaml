@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: dsa
+description: DSA Data Management
+group: standard
+flags:
+    -in=: Input key
+    -inform=: Input format (DER/PEM/PVK); has no effect
+    -modulus: Print the DSA public value
+    -noout: Don't print key out
+    -out=: Output file
+    -outform=: Output format, DER PEM PVK
+    -passin=: Input file pass phrase source
+    -passout=: Output file pass phrase source
+    -propquery=: Property query used when fetching algorithms
+    -provider-path=: Provider load path (must be before 'provider' argument if required)
+    -provider=*: Provider to load (can be specified multiple times)
+    -provparam=: Set a provider key-value parameter
+    -pubin: Expect a public key in input file
+    -pubout: Output public key, not private
+    -pvk-none: Don't enforce PVK encoding
+    -pvk-strong: Enable 'Strong' PVK encoding level (default)
+    -pvk-weak: Enable 'Weak' PVK encoding level
+    -text: Print the key in text

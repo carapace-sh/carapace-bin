@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: set
+description: Alter rustup settings
+flags:
+    -h, --help: Print help

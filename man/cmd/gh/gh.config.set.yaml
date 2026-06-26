@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: set <key> <value>
+description: Update configuration with a value for the given key
+flags:
+    -h, --host=: Set per-host setting

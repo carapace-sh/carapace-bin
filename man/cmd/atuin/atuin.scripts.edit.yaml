@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: edit
+flags:
+    --no-edit: Skip opening editor
+    --no-tags: Remove all tags from the script
+    --rename=: Rename the script
+    --script=: ""
+    -d, --description=: ""
+    -h, --help: Print help
+    -s, --shebang=: ""
+    -t, --tags=*: Replace all existing tags with these new tags

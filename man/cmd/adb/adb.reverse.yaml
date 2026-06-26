@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: reverse
+description: reverse socket connection
+flags:
+    --list: list all reverse socket connections from device
+    --no-rebind: don't replace existing connection
+    --remove: remove specific reverse socket connection
+    --remove-all: remove all reverse socket connection

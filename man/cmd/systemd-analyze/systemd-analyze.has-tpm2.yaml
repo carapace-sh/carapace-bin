@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: has-tpm2
+description: Report whether TPM2 support is available

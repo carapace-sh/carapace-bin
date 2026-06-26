@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: cp
+description: copies old-path to new-path
+flags:
+    -f, --force: cp forcefully

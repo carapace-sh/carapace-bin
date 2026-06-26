@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: staticcheck
+description: The advanced Go linter
+flags:
+    --checks=: Comma-separated list of checks to enable
+    --debug.cpuprofile=: Write CPU profile to file
+    --debug.measure-analyzers=: Write analysis measurements to file.
+    --debug.memprofile=: Write memory profile to file
+    --debug.no-compile-errors: Don't print compile errors
+    --debug.repeat-analyzers=: Run analyzers num times
+    --debug.unused-graph=: Write unused's object graph to file
+    --debug.version: Print detailed version information about this program
+    --explain=: Print description of check
+    --fail=: Comma-separated list of checks that can cause a non-zero exit status.
+    --go=: Target Go version in the format '1.x' (default 1.15)
+    --show-ignored: Don't filter ignored problems
+    --tags=: List of build tags
+    --tests: Include tests
+    --unused.whole-program: Run unused in whole program mode
+    --version: Print version and exit

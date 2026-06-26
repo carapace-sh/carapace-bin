@@ -1,0 +1,188 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: tar
+description: tar - an archiving utility
+flags:
+    --acls: Enable the POSIX ACLs support
+    --add-file=: add given FILE to the archive
+    --after-date=: only store files older than DATE-OR-FILE
+    --anchored: patterns match file name start
+    --atime-preserve=: preserve access times on dumped files
+    --backup=: backup before removal
+    --check-device: check device numbers when creating incremental archives
+    --checkpoint-action=: execute ACTION on each checkpoint
+    --checkpoint=: display progress messages every NUMBERth record
+    --clamp-mtime: only set time when the file is more recent than what was given with --mtime
+    --compare: find differences between archive and file system
+    --concatenate: append tar files to an archive
+    --confirmation: ask for confirmation for every action
+    --delay-directory-restore: delay setting modification times and permissions until the end of extraction
+    --delete: delete from the archive (not on mag tapes!)
+    --exclude-backups: exclude backup and lock files
+    --exclude-caches: exclude contents of directories containing CACHEDIR.TAG
+    --exclude-caches-all: exclude directories containing CACHEDIR.TAG
+    --exclude-caches-under: exclude everything under directories containing CACHEDIR.TAG
+    --exclude-ignore-recursive=: read exclude patterns for each directory and its subdirectories from FILE
+    --exclude-ignore=: read exclude patterns for each directory from FILE
+    --exclude-tag-all=: exclude directories containing FILE
+    --exclude-tag-under=: exclude everything under directories containing FILE
+    --exclude-tag=: exclude contents of directories containing FILE
+    --exclude-vcs: exclude version control system directories
+    --exclude-vcs-ignores: read exclude patterns from the VCS ignore files
+    --exclude=: exclude files, given as a PATTERN
+    --force-local: archive file is local even if it has a colon
+    --full-time: print file time to its full resolution
+    --get: extract files from an archive
+    --group-map=: use FILE to map file owner GIDs and names
+    --group=: force NAME as group for added files
+    --gunzip: filter the archive through gzip
+    --hard-dereference: follow hard links
+    --hole-detection=: technique to detect holes
+    --ignore-case: ignore case
+    --ignore-command-error: ignore exit codes of children
+    --ignore-failed-read: do not exit with nonzero on unreadable files
+    --index-file=: send verbose output to FILE
+    --keep-directory-symlink: preserve existing symlinks to directories when extracting
+    --keep-newer-files: don't replace existing files that are newer than their archive copies
+    --level=: dump level for created listed-incremental archive
+    --lzip: filter the archive through lzip
+    --lzma: filter the archive through lzma
+    --lzop: filter the archive through lzop
+    --mode=: force (symbolic) mode CHANGES for added files
+    --mtime=: set mtime for added files from DATE-OR-FILE
+    --new-volume-script=: run script at end of each tape
+    --newer-mtime=: compare date and time when data changed only
+    --no-acls: Disable the POSIX ACLs support
+    --no-anchored: patterns match after any '/'
+    --no-auto-compress: do not use archive suffix to determine the compression program
+    --no-check-device: do not check device numbers when creating
+    --no-delay-directory-restore: cancel the effect of --delay-directory-restore option
+    --no-ignore-case: case sensitive matching (default)
+    --no-ignore-command-error: treat non-zero exit codes of children as error
+    --no-null: disable the effect of the previous --null option
+    --no-overwrite-dir: preserve metadata of existing directories
+    --no-quote-chars=: disable quoting for characters from STRING
+    --no-recursion: avoid descending automatically in directories
+    --no-same-owner: extract files as yourself
+    --no-same-permissions: apply the user's umask when extracting permissions from the archive
+    --no-seek: archive is not seekable
+    --no-selinux: Disable the SELinux context support
+    --no-unquote: do not unquote input file or member names
+    --no-verbatim-files-from: treats file names starting with dash as options
+    --no-wildcards: verbatim string matching
+    --no-wildcards-match-slash: wildcards do not match '/'
+    --no-xattrs: Disable extended attributes support
+    --null: reads null-terminated names; implies
+    --numeric-owner: always use numbers for user/group names
+    --occurrence=: process only the NUMBERth occurrence of each file in the archive
+    --old-archive: same as --format=v7
+    --one-file-system: stay in local file system when creating archive
+    --one-top-level=: create a subdirectory to avoid having loose files extracted
+    --overwrite: overwrite existing files when extracting
+    --overwrite-dir: overwrite metadata of existing directories when extracting
+    --owner-map=: use FILE to map file owner UIDs and names
+    --owner=: force NAME as owner for added files
+    --pax-option=: control pax keywords
+    --portability: same as --format=v7
+    --posix: same as --format=posix
+    --quote-chars=: additionally quote characters from STRING
+    --quoting-style=: set name quoting style
+    --record-size=: NUMBER of bytes per record, multiple of 512
+    --recursion: recurse into directories (default)
+    --recursive-unlink: empty hierarchies prior to extracting directory
+    --remove-files: remove files after adding them to the archive
+    --restrict: disable use of some potentially harmful options
+    --rmt-command=: use given rmt COMMAND instead of rmt
+    --rsh-command=: use remote COMMAND instead of rsh
+    --same-order: member arguments are listed in the same order
+    --same-owner: try extracting files with the same ownership
+    --same-permissions: extract information about file permissions
+    --selinux: Enable the SELinux context support
+    --show-defaults: show tar defaults
+    --show-omitted-dirs: list each directory that does not match search criteria
+    --show-snapshot-field-ranges: show valid ranges for snapshot-file fields
+    --show-stored-names: show file or archive names after transformation
+    --show-transformed-names: show file or archive names after transformation
+    --skip-old-files: don't replace existing files when extracting
+    --sort=: directory sorting order
+    --sparse-version=: set version of the sparse format to use
+    --strip-components=: strip NUMBER leading components from file names on extraction
+    --suffix=: backup before removal
+    --test-label: test the archive volume label and exit
+    --to-command=: pipe extracted files to another program
+    --totals=: print total bytes after processing the archive
+    --transform=: use sed replace EXPRESSION to transform file names
+    --uncompress: filter the archive through compress
+    --ungzip: filter the archive through gzip
+    --unquote: unquote input file or member names (default)
+    --usage: give a short usage message
+    --utc: print file modification times in UTC
+    --verbatim-files-from: reads file names verbatim
+    --version: print program version
+    --volno-file=: use/update the volume number in FILE
+    --warning=: warning control
+    --wildcards: use wildcards (default for exclusion)
+    --wildcards-match-slash: wildcards match '/' (default for exclusion)
+    --xattrs: Enable extended attributes support
+    --xattrs-exclude=: specify the exclude pattern for xattr keys
+    --xattrs-include=: specify the include pattern for xattr keys
+    --xform=: use sed replace EXPRESSION to transform file names
+    --zstd: filter the archive through zstd
+    -?, --help: give this help list
+    -A, --catenate: append tar files to an archive
+    -B, --read-full-records: reblock as we read (for 4.2BSD pipes)
+    -C, --directory=: change to directory DIR
+    -F, --info-script=: run script at end of each tape
+    -G, --incremental: handle old GNU-format incremental backup
+    -H, --format=: create archive of the given format
+    -I, --use-compress-program=: filter through PROG (must accept -d)
+    -J, --xz: filter the archive through xz
+    -K, --starting-file=: begin at member MEMBER-NAME when reading the archive
+    -L, --tape-length=: change tape after writing NUMBER x 1024 bytes
+    -M, --multi-volume: create/list/extract multi-volume archive
+    -N, --newer=: only store files newer than DATE-OR-FILE
+    -O, --to-stdout: extract files to standard output
+    -P, --absolute-names: don't strip leading '/'s from file names
+    -R, --block-number: show block number within archive with each message
+    -S, --sparse: handle sparse files efficiently
+    -T, --files-from=: get names to extract or create from FILE
+    -U, --unlink-first: remove each file prior to extracting over it
+    -V, --label=: create archive with volume name TEXT
+    -W, --verify: attempt to verify the archive after writing it
+    -X, --exclude-from=: exclude patterns listed in FILE
+    -Z, --compress: filter the archive through compress
+    -a, --auto-compress: use archive suffix to determine the compression program
+    -b, --blocking-factor=: BLOCKS x 512 bytes per record
+    -c, --create: create a new archive
+    -d, --diff: find differences between archive and file system
+    -f, --file=: use archive file or device ARCHIVE
+    -g, --listed-incremental=: handle new GNU-format incremental backup
+    -h, --dereference: follow symlinks
+    -i, --ignore-zeros: ignore zeroed blocks in archive (means EOF)
+    -j, --bzip2: filter the archive through bzip2
+    -k, --keep-old-files: don't replace existing files when extracting, treat them as errors
+    -l, --check-links: print a message if not all links are dumped
+    -m, --touch: don't extract file modified time
+    -n, --seek: archive is seekable
+    -o: when creating, same as --old-archive; when extracting, same as --no-same-owner
+    -p, --preserve-permissions: extract information about file permissions
+    -r, --append: append files to the end of an archive
+    -s, --preserve-order: member arguments are listed in the same order
+    -t, --list: list the contents of an archive
+    -u, --update: only append files newer than copy in archive
+    -v, --verbose: verbosely list files processed
+    -w, --interactive: ask for confirmation for every action
+    -x, --extract: extract files from an archive
+    -z, --gzip: filter the archive through gzip
+
+documentation:
+  command: >-
+    Store multiple files in a single archive. tar creates archives
+    (commonly .tar or .tar.gz) that preserve file structure, permissions,
+    and timestamps. Key operations: -c create, -x extract, -t list, -r
+    append, -u update. Read from or write to files with -f; use - for
+    stdin/stdout. Compress with -z (gzip), -j (bzip2), -J (xz). Preserve
+    permissions with -p. Follow symlinks with -h. Exclude patterns with
+    --exclude=PATTERN. List contents verbosely with -v. Extract specific
+    files by specifying them after the archive name. Combine with gzip/bzip2/xz
+    extensions automatically (filename.tar.gz). Use --strip-components
+    to remove leading path elements when extracting.

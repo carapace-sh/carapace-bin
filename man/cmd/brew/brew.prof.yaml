@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: prof
+description: Run Homebrew with a Ruby profiler
+group: developer
+flags:
+    --debug: Display any debugging information.
+    --help: Show this message.
+    --quiet: Make some output more quiet.
+    --stackprof: Use `stackprof` instead of `ruby-prof` (the default).
+    --verbose: Make some output more verbose.

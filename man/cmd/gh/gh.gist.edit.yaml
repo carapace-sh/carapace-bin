@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: edit {<id> | <url>} [<filename>]
+description: Edit one of your gists
+flags:
+    -a, --add=: Add a new file to the gist
+    -d, --desc=: New description for the gist
+    -f, --filename=: Select a file to edit
+    -r, --remove=: Remove a file from the gist

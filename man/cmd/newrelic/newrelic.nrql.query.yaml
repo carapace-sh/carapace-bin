@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: query
+description: Execute a NRQL query to New Relic
+flags:
+    -q, --query=: the NRQL query you want to execute

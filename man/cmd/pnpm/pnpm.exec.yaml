@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: exec
+description: Executes a shell command in scope of a project
+group: run

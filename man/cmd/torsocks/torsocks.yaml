@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: torsocks
+description: Shell wrapper to simplify the use of the torsocks(8) library to transparently torify an application
+flags:
+    --shell: Spawn a torified shell
+    --version: Show version
+    -P, --port=: Specify Tor port
+    -d, --debug: Set debug mode.
+    -h, --help: Show this help
+    -i, --isolate: Automatic tor isolation. Can't be used with -u/-p
+    -p, --pass=: Password for the SOCKS5 authentication
+    -u, --user=: Username for the SOCKS5 authentication

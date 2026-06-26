@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: vmstat
+description: Report virtual memory statistics
+flags:
+    -D, --disk-sum: summarize disk statistics
+    -S, --unit=: define display unit
+    -V, --version: output version information and exit
+    -a, --active: active/inactive memory
+    -d, --disk: disk statistics
+    -f, --forks: number of forks since boot
+    -h, --help: display this help and exit
+    -m, --slabs: slabinfo
+    -n, --one-header: do not redisplay header
+    -p, --partition=: partition specific statistics
+    -s, --stats: event counter statistics
+    -t, --timestamp: show timestamp
+    -w, --wide: wide output
+    -y, --no-first: skips first line of output

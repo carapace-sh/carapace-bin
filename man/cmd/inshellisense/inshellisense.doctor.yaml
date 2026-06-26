@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: doctor
+description: checks the health of this inshellisense installation
+flags:
+    -h, --help: display help for command

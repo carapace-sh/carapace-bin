@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: fork [<repository>] [-- <gitflags>...]
+description: Create a fork of a repository
+group: Targeted commands
+flags:
+    --clone: Clone the fork
+    --default-branch-only: Only include the default branch in the fork
+    --fork-name=: Rename the forked repository
+    --org=: Create the fork in an organization
+    --remote: Add a git remote for the fork
+    --remote-name=: Specify the name for the new remote

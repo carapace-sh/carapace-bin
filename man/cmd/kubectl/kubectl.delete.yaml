@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: delete ([-f FILENAME] | [-k DIRECTORY] | TYPE [(NAME | -l label | --all)])
+description: Delete resources by file names, stdin, resources and names, or by resources and label selector
+group: basic intermediate
+flags:
+    --all: Delete all resources, in the namespace of the specified resource types.
+    --cascade?: Must be "background", "orphan", or "foreground". Selects the deletion cascading strategy for the dependents (e.g. Pods created by a ReplicationController). Defaults to background.
+    --dry-run?: Must be "none", "server", or "client". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.
+    --field-selector=: Selector (field query) to filter on, supports '=', '==', and '!='.(e.g. --field-selector key1=value1,key2=value2). The server only supports a limited number of field queries per type.
+    --force: If true, immediately remove resources from API and bypass graceful deletion. Note that immediate deletion of some resources may result in inconsistency or data loss and requires confirmation.
+    --grace-period=: Period of time in seconds given to the resource to terminate gracefully. Ignored if negative. Set to 1 for immediate shutdown. Can only be set to 0 when --force is true (force deletion).
+    --ignore-not-found: Treat "resource not found" as a successful delete. Defaults to "true" when --all is specified.
+    --now: If true, resources are signaled for immediate shutdown (same as --grace-period=1).
+    --raw=: Raw URI to DELETE to the server.  Uses the transport specified by the kubeconfig file.
+    --timeout=: The length of time to wait before giving up on a delete, zero means determine a timeout from the size of the object
+    --wait: If true, wait for resources to be gone before returning. This waits for finalizers.
+    -A, --all-namespaces: If present, list the requested object(s) across all namespaces. Namespace in current context is ignored even if specified with --namespace.
+    -R, --recursive: Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.
+    -f, --filename=*: containing the resource to delete.
+    -i, --interactive: If true, delete resource only when user confirms.
+    -k, --kustomize=: Process a kustomization directory. This flag can't be used together with -f or -R.
+    -l, --selector=: Selector (label query) to filter on, supports '=', '==', '!=', 'in', 'notin'.(e.g. -l key1=value1,key2=value2,key3 in (value3)). Matching objects must satisfy all of the specified label constraints.
+    -o, --output=: Output mode. Use "-o name" for shorter output (resource/name).

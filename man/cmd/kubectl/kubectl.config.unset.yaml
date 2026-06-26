@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: unset PROPERTY_NAME
+description: Unset an individual value in a kubeconfig file

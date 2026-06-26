@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: gc
+description: perform garbage collection on a Nix store
+flags:
+    --debug: Set the logging verbosity level to 'debug'
+    --dry-run: Show what this command would do without doing it
+    --log-format=: Set the format of log output
+    --max=: Stop after freeing n bytes of disk space
+    --quiet: Decrease the logging verbosity level
+    -L, --print-build-logs: Print full build logs on standard error
+    -v, --verbose: Increase the logging verbosity level

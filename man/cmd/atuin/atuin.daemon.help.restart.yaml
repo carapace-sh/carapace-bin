@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: restart
+description: Restart the daemon (stop, then start in background)

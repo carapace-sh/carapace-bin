@@ -1,0 +1,33 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: dgst
+description: Message Digest calculation
+group: standard
+flags:
+    -binary: Print in binary form
+    -c: Print the digest with separating colons
+    -d: Print debug info
+    -debug: Print debug info
+    -fips-fingerprint: Compute HMAC with the key used in OpenSSL-FIPS fingerprint
+    -hex: Print as hex dump
+    -hmac-env=: Create hashed MAC with key from environment variable
+    -hmac-stdin: Create hashed MAC with key from stdin
+    -hmac=: Create hashed MAC with key
+    -keyform=: Key file format (DER/PEM)
+    -list: List digests
+    -mac=: Create MAC (not necessarily HMAC)
+    -macopt=*: MAC algorithm parameters in n:v form or key
+    -out=: Output to filename rather than stdout
+    -passin=: Input file pass phrase source
+    -propquery=: Property query used when fetching algorithms
+    -provider-path=: Provider load path (must be before 'provider' argument if required)
+    -provider=*: Provider to load (can be specified multiple times)
+    -provparam=: Set a provider key-value parameter
+    -prverify=: Verify a signature using private key
+    -r: Print the digest in coreutils format
+    -rand=: Load the given file(s) into the random number generator
+    -sign=: Sign digest using private key
+    -signature=: File with signature to verify
+    -sigopt=*: Signature parameter in n:v form
+    -verify=: Verify a signature using public key
+    -writerand=: Write random data to the specified file
+    -xoflen=: Output length for XOF algorithms. To obtain the maximum security strength set this to 32 (or greater) for SHAKE128, and 64 (or greater) for SHAKE256

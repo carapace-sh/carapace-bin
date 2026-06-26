@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: generate-stubs
+description: Autogenerate type stubs
+flags:
+    --all-features: Activate all available features
+    --color=: 'Coloring: auto, always, never'
+    --config=: Override a configuration value (unstable)
+    --frozen: Require Cargo.lock and cache are up to date
+    --future-incompat-report: Outputs a future incompatibility report at the end of the build (unstable)
+    --ignore-rust-version: Ignore `rust-version` specification in packages
+    --locked: Require Cargo.lock is up to date
+    --no-default-features: Do not activate the `default` feature
+    --offline: Run without accessing the network
+    --profile=: Build artifacts with the specified Cargo profile
+    --target-dir=: Directory for all generated artifacts
+    --target=: Build for the target triple
+    --timings=: 'Timing output formats (unstable) (comma separated): html, json'
+    -F, --features=*: Space or comma separated list of features to activate
+    -Z=: Unstable (nightly-only) flags to Cargo
+    -b, --bindings=: Which kind of bindings to use
+    -f, --find-interpreter: Find interpreters from the host machine
+    -i, --interpreter=*: The python versions to build wheels for, given as the executables of interpreters
+    -j, --jobs=: 'Number of parallel jobs, defaults to # of CPUs'
+    -m, --manifest-path=: Path to Cargo.toml
+    -o, --out=!: The directory to store the type stubs in
+    -q, --quiet: Do not print cargo log messages
+    -v, --verbose*: Use verbose output (-vv very verbose/build.rs output)

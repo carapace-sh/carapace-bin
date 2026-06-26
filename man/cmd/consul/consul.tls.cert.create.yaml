@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create
+description: Create a new certificate
+flags:
+    --additional-dnsname=: Provide an additional dnsname for Subject Alternative Names.
+    --additional-ipaddress=: Provide an additional ipaddress for Subject Alternative Names.
+    --ca=: Provide path to the ca.
+    --cli: Generate cli certificate.
+    --client: Generate client certificate.
+    --days=: Provide number of days the certificate is valid for from now on.
+    --dc=: Provide the datacenter.
+    --domain=: Provide the domain.
+    --key=: Provide path to the key.
+    --node=: When generating a server cert and this is set an additional dns name is included of the form <node>.server.<datacenter>.<domain>.
+    --server: Generate server certificate.

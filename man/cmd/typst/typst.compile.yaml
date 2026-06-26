@@ -1,0 +1,28 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: compile
+aliases:
+    - c
+description: Compiles an input file into a supported output format
+flags:
+    --creation-timestamp=: The document's creation date formatted as a UNIX timestamp.
+    --deps-format=: File format to use for dependencies
+    --deps=: File path to which a list of current compilation's dependencies will be written. Use `-` to write to stdout
+    --diagnostic-format=: The format to emit diagnostics in
+    --features=: Enables in-development features that may be changed or removed at any time
+    --font-path=: Adds additional directories that are recursively searched for fonts.
+    --ignore-embedded-fonts: Ensures fonts embedded into Typst won't be considered
+    --ignore-system-fonts: Ensures system fonts won't be searched, unless explicitly included via `--font-path`
+    --input=: Add a string key-value pair visible through `sys.inputs`
+    --make-deps=: File path to which a Makefile with the current compilation's dependencies will be written
+    --no-pdf-tags: By default, even when not producing a `PDF/UA-1` document, a tagged PDF document is written to provide a baseline of accessibility. In some circumstances (for example when trying to reduce the size of a document) it can be desirable to disable tagged PDF
+    --open=: Opens the output file with the default viewer or a specific program after compilation. Ignored if output is stdout
+    --package-cache-path=: Custom path to package cache, defaults to system-dependent location
+    --package-path=: Custom path to local packages, defaults to system-dependent location
+    --pages=: Which pages to export. When unspecified, all pages are exported.
+    --pdf-standard=: One (or multiple comma-separated) PDF standards that Typst will enforce conformance with
+    --ppi=: The PPI (pixels per inch) to use for PNG export
+    --root=: Configures the project root (for absolute paths)
+    --timings=: Produces performance timings of the compilation process.
+    -f, --format=: The format of the output file, inferred from the extension by default
+    -h, --help: Print help (see a summary with '-h')
+    -j, --jobs=: Number of parallel jobs spawned during compilation. Defaults to number of CPUs. Setting it to 1 disables parallelism

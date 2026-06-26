@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: path
+description: print cryptographic hash of the NAR serialisation of a path
+flags:
+    --base16: Print the hash in base-16 format
+    --base32: Print the hash in base-32 (Nix-specific) format
+    --base64: Print the hash in base-64 format
+    --debug: Set the logging verbosity level to 'debug'
+    --log-format=: Set the format of log output
+    --quiet: Decrease the logging verbosity level
+    --sri: Print the hash in SRI format
+    --type=: hash algorithm
+    -L, --print-build-logs: Print full build logs on standard error
+    -v, --verbose: Increase the logging verbosity level

@@ -1,0 +1,277 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: curl
+description: transfer a URL
+flags:
+    -#, --progress-bar: Display transfer progress as a bar
+    --abstract-unix-socket=: Connect via abstract Unix domain socket
+    --alt-svc=: Enable alt-svc with this cache file
+    --anyauth: Pick any authentication method
+    --aws-sigv4=: AWS V4 signature auth
+    --basic: HTTP Basic Authentication
+    --ca-native: Load CA certs from the OS
+    --cacert=: CA certificate to verify peer against
+    --capath=: CA directory to verify peer against
+    --cert-status: Verify server cert status OCSP-staple
+    --cert-type=: Certificate type (DER/PEM/ENG/PROV/P12)
+    --ciphers=: TLS 1.2 (1.1, 1.0) ciphers to use
+    --compressed: Request compressed response
+    --compressed-ssh=: Enable SSH compression
+    --connect-timeout=: Maximum time allowed to connect
+    --connect-to=: Connect to host2 instead of host1
+    --create-dirs: Create necessary local directory hierarchy
+    --create-file-mode=: File mode for created files
+    --crlf: Convert LF to CRLF in upload
+    --crlfile=: Certificate Revocation list
+    --curves=: (EC) TLS key exchange algorithms to request
+    --data-ascii=: HTTP POST ASCII data
+    --data-binary=: HTTP POST binary data
+    --data-raw=: HTTP POST data, '@' allowed
+    --data-urlencode=: HTTP POST data URL encoded
+    --delegation=: GSS-API delegation permission
+    --digest: HTTP Digest Authentication
+    --disable-eprt: Inhibit using EPRT or LPRT
+    --disable-epsv: Inhibit using EPSV
+    --disallow-username-in-url=: Disallow username in URL
+    --dns-interface=: Interface to use for DNS requests
+    --dns-ipv4-addr=: IPv4 address to use for DNS requests
+    --dns-ipv6-addr=: IPv6 address to use for DNS requests
+    --dns-servers=: DNS server addrs to use
+    --doh-cert-status: Verify DoH server cert status OCSP-staple
+    --doh-insecure: Allow insecure DoH server connections
+    --doh-url=: Resolve hostnames over DoH
+    --dump-ca-embed: Write the embedded CA bundle to standard output
+    --ech=: Configure ECH
+    --egd-file=: EGD socket path for random data
+    --engine=: Crypto engine to use
+    --etag-compare=: Load ETag from file
+    --etag-save=: Parse incoming ETag and save to a file
+    --expect100-timeout=: How long to wait for 100-continue
+    --fail-early: Fail on first transfer error
+    --fail-with-body: Fail on HTTP errors but save the body
+    --false-start: Enable TLS False Start
+    --follow: Follow redirects per spec
+    --form-escape: Escape form fields using backslash
+    --form-string=: Specify multipart MIME data
+    --ftp-account=: Account data string
+    --ftp-alternative-to-user=: String to replace USER [name]
+    --ftp-create-dirs=: Create the remote dirs if not present
+    --ftp-method=: Control CWD usage
+    --ftp-pasv: Send PASV/EPSV instead of PORT
+    --ftp-pret: Send PRET before PASV
+    --ftp-skip-pasv-ip=: Skip the IP address for PASV
+    --ftp-ssl-ccc: Send CCC after authenticating
+    --ftp-ssl-ccc-mode=: Set CCC mode
+    --ftp-ssl-control=: Require TLS for login, clear for transfer
+    --happy-eyeballs-timeout-ms=: Time for IPv6 before IPv4
+    --haproxy-clientip=: Set address in HAProxy PROXY
+    --haproxy-protocol=: Send HAProxy PROXY protocol v1 header
+    --hostpubmd5=: Acceptable MD5 hash of host public key
+    --hostpubsha256=: Acceptable SHA256 hash of host public key
+    --hsts=: Enable HSTS with this cache file
+    --http0.9: Allow HTTP/0.9 responses
+    --http1.1: Use HTTP/1.1
+    --http2: Use HTTP/2
+    --http2-prior-knowledge=: Use HTTP/2 without HTTP/1.1 Upgrade
+    --http3: Use HTTP/3
+    --http3-only: Use HTTP/3 only
+    --ignore-content-length=: Ignore the size of the remote resource
+    --interface=: Use network interface
+    --ip-tos=: Set IP Type of Service or Traffic Class
+    --ipfs-gateway=: Gateway for IPFS
+    --json=: HTTP POST JSON
+    --keepalive-cnt=: Maximum number of keepalive probes
+    --keepalive-time=: Interval time for keepalive probes
+    --key-type=: Private key file type (DER/PEM/ENG)
+    --key=: Private key filename
+    --knownhosts=: Specify knownhosts path
+    --krb=: Enable Kerberos with security <level>
+    --libcurl=: Generate libcurl code for this command line
+    --limit-rate=: Limit transfer speed to RATE
+    --local-port=: Use a local port number within RANGE
+    --location-trusted=: As --location, but send secrets to other hosts
+    --login-options=: Server login options
+    --mail-auth=: Originator address of the original email
+    --mail-from=: Mail from this address
+    --mail-rcpt-allowfails=: Allow RCPT TO command to fail
+    --mail-rcpt=: Mail to this address
+    --max-filesize=: Maximum file size to download
+    --max-redirs=: Maximum number of redirects allowed
+    --metalink: Process given URLs as metalink XML file
+    --mptcp: Enable Multipath TCP
+    --negotiate: Use HTTP Negotiate (SPNEGO) authentication
+    --netrc-file=: Specify FILE for netrc
+    --netrc-optional=: Use either .netrc or URL
+    --no-alpn: Disable the ALPN TLS extension
+    --no-clobber: Do not overwrite files that already exist
+    --no-keepalive: Disable TCP keepalive on the connection
+    --no-npn: Disable the NPN TLS extension
+    --no-progress-meter=: Do not show the progress meter
+    --no-sessionid: Disable SSL session-ID reusing
+    --noproxy=: List of hosts which do not use proxy
+    --ntlm: HTTP NTLM authentication
+    --ntlm-wb: HTTP NTLM authentication with winbind
+    --oauth2-bearer=: OAuth 2 Bearer Token
+    --out-null: Discard response data into the void
+    --output-dir=: Directory to save files in
+    --parallel-immediate=: Do not wait for multiplexing
+    --parallel-max: Maximum concurrency for parallel transfers
+    --parallel-max-host: Maximum connections to a single host
+    --pass=: Passphrase for the private key
+    --path-as-is: Do not squash .. sequences in URL path
+    --pinnedpubkey=: Public key to verify peer against
+    --post301: Do not switch to GET after a 301 redirect
+    --post302: Do not switch to GET after a 302 redirect
+    --post303: Do not switch to GET after a 303 redirect
+    --preproxy=: Use this proxy first
+    --proto-default=: Use PROTOCOL for any URL missing a scheme
+    --proto-redir=: Enable/disable PROTOCOLS on redirect
+    --proto=: Enable/disable PROTOCOLS
+    --proxy-anyauth=: Pick any proxy authentication method
+    --proxy-basic: Use Basic authentication on the proxy
+    --proxy-ca-native: Load CA certs from the OS to verify proxy
+    --proxy-cacert=: CA certificates to verify proxy against
+    --proxy-capath=: CA directory to verify proxy against
+    --proxy-cert-type=: Client certificate type for HTTPS proxy
+    --proxy-cert=: Set client certificate for proxy
+    --proxy-ciphers=: TLS 1.2 (1.1, 1.0) ciphers to use for proxy
+    --proxy-crlfile=: Set a CRL list for proxy
+    --proxy-digest: Digest auth with the proxy
+    --proxy-header=: Pass custom header(s) to proxy
+    --proxy-http2: Use HTTP/2 with HTTPS proxy
+    --proxy-insecure=: Skip HTTPS proxy cert verification
+    --proxy-key-type=: Private key file type for proxy
+    --proxy-key=: Private key for HTTPS proxy
+    --proxy-negotiate=: HTTP Negotiate (SPNEGO) auth with the proxy
+    --proxy-ntlm: NTLM authentication with the proxy
+    --proxy-pass=: Passphrase for private key for HTTPS proxy
+    --proxy-pinnedpubkey=: FILE/HASHES public key to verify proxy with
+    --proxy-service-name=: SPNEGO proxy service name
+    --proxy-ssl-allow-beast=: Allow this security flaw for HTTPS proxy
+    --proxy-ssl-auto-client-cert: Auto client certificate for proxy
+    --proxy-tls13-ciphers=: TLS 1.3 proxy cipher suites
+    --proxy-tlsauthtype=: TLS authentication type for HTTPS proxy
+    --proxy-tlspassword=: TLS password for HTTPS proxy
+    --proxy-tlsuser=: TLS username for HTTPS proxy
+    --proxy-tlsv1: TLSv1 for HTTPS proxy
+    --proxy1.0=: Use HTTP/1.0 proxy on given port
+    --pubkey=: SSH Public key filename
+    --random-file=: File for reading random data from
+    --rate=: Request rate for serial transfers
+    --raw: Do HTTP "raw"; no transfer decoding
+    --remote-name-all=: Use the remote filename for all URLs
+    --remove-on-error: Remove output file on errors
+    --request-target=: Specify the target for this request
+    --resolve=: Resolve host+port to address
+    --retry-all-errors: Retry all errors (with --retry)
+    --retry-connrefused=: Retry on connection refused (with --retry)
+    --retry-delay=: Wait time between retries
+    --retry-max-time=: Retry only within this period
+    --retry=: Retry request if transient problems occur
+    --sasl-authzid=: Identity for SASL PLAIN authentication
+    --sasl-ir: Initial response in SASL authentication
+    --service-name=: SPNEGO service name
+    --sigalgs=: TLS signature algorithms to use
+    --skip-existing: Skip download if local file already exists
+    --socks4a=: SOCKS4a proxy on given host + port
+    --socks4=: SOCKS4 proxy on given host + port
+    --socks5-basic: Username/password auth for SOCKS5 proxies
+    --socks5-gssapi-nec=: Compatibility with NEC SOCKS5 server
+    --socks5-gssapi-service=: SOCKS5 proxy service name for GSS-API
+    --socks5-gssapi=: Enable GSS-API auth for SOCKS5 proxies
+    --socks5-hostname=: SOCKS5 proxy, pass hostname to proxy
+    --socks5=: SOCKS5 proxy on given host + port
+    --ssl: Try enabling TLS
+    --ssl-allow-beast=: Allow security flaw to improve interop
+    --ssl-auto-client-cert: Use auto client certificate (Schannel)
+    --ssl-no-revoke=: Disable cert revocation checks (Schannel)
+    --ssl-reqd: Require SSL/TLS
+    --ssl-revoke-best-effort=: Ignore missing cert CRL dist points
+    --ssl-sessions=: Load/save SSL session tickets from/to this file
+    --stderr: Where to redirect stderr
+    --styled-output=: Enable styled output for HTTP headers
+    --suppress-connect-headers=: Suppress proxy CONNECT response headers
+    --tcp-fastopen: Use TCP Fast Open
+    --tcp-nodelay: Set TCP_NODELAY
+    --tftp-blksize=: Set TFTP BLKSIZE option
+    --tftp-no-options=: Do not send any TFTP options
+    --tls-earlydata: Allow use of TLSv1.3 early data (0RTT)
+    --tls-max=: Maximum allowed TLS version
+    --tls13-ciphers=: TLS 1.3 cipher suites to use
+    --tlsauthtype=: TLS authentication type
+    --tlspassword: TLS password
+    --tlsuser=: TLS username
+    --tlsv1.0: TLSv1.0 or greater
+    --tlsv1.1: TLSv1.1 or greater
+    --tlsv1.2: TLSv1.2 or greater
+    --tlsv1.3: TLSv1.3 or greater
+    --tr-encoding: Request compressed transfer encoding
+    --trace-ascii=: Like --trace, but without hex output
+    --trace-config=*: Details to log in trace/verbose output
+    --trace-ids: Transfer + connection ids in verbose output
+    --trace-time: Add time stamps to trace/verbose output
+    --trace=: Write a debug trace to FILE
+    --unix-socket=: Connect through this Unix domain socket
+    --upload-flags=: IMAP upload behavior
+    --url-query=: Add a URL query part
+    --url=: URL(s) to work with
+    --variable=: Set variable
+    --vlan-priority=: Set VLAN priority
+    --xattr: Store metadata in extended file attributes
+    -:, --next: Make next URL use separate options
+    -0, --http1.0: Use HTTP/1.0
+    -1, --tlsv1: TLSv1.0 or greater
+    -2, --sslv2: SSLv2
+    -3, --sslv3: SSLv3
+    -4, --ipv4: Resolve names to IPv4 addresses
+    -6, --ipv6: Resolve names to IPv6 addresses
+    -A, --user-agent=: Send User-Agent <name> to server
+    -B, --use-ascii: Use ASCII/text transfer
+    -C, --continue-at=: Resumed transfer offset
+    -D, --dump-header=: Write the received headers to <filename>
+    -E, --cert=: Client certificate file and password
+    -F, --form=: Specify multipart MIME data
+    -G, --get: Put the post data in the URL and use GET
+    -H, --header=*: Pass custom header(s) to server
+    -I, --head: Show document info only
+    -J, --remote-header-name=: Use the header-provided filename
+    -K, --config=: Read config from a file
+    -L, --location: Follow redirects
+    -M, --manual: Display the full manual
+    -N, --no-buffer: Disable buffering of the output stream
+    -O, --remote-name: Write output to file named as remote file
+    -P, --ftp-port=: Send PORT instead of PASV
+    -Q, --quote: Send command(s) to server before transfer
+    -R, --remote-time: Set remote file's time on local output
+    -S, --show-error: Show error even when -s is used
+    -T, --upload-file=: Transfer local FILE to destination
+    -U, --proxy-user=: Proxy user and password
+    -V, --version: Show version number and quit
+    -X, --request=: Specify request method to use
+    -Y, --speed-limit=: Stop transfers slower than this
+    -Z, --parallel: Perform transfers in parallel
+    -a, --append: Append to target file when uploading
+    -b, --cookie=: Send cookies from string/load from file
+    -c, --cookie-jar=: Save cookies to <filename> after operation
+    -d, --data=: HTTP POST data
+    -e, --referer=: Referrer URL
+    -f, --fail: Fail fast with no output on HTTP errors
+    -g, --globoff: Disable URL globbing with {} and []
+    -h, --help: Get help for commands
+    -i, --show-headers: Show response headers in output
+    -j, --junk-session-cookies=: Ignore session cookies read from file
+    -k, --insecure: Allow insecure server connections
+    -l, --list-only: List only mode
+    -m, --max-time=: Maximum time allowed for transfer
+    -n, --netrc: Must read .netrc for username and password
+    -o, --output=: Write to file instead of stdout
+    -p, --proxytunnel: HTTP proxy tunnel (using CONNECT)
+    -q, --disable: Disable .curlrc
+    -r, --range=: Retrieve only the bytes within RANGE
+    -s, --silent: Silent mode
+    -t, --telnet-option=: Set telnet option
+    -u, --user=: Server user and password
+    -v, --verbose: Make the operation more talkative
+    -w, --write-out=: Output FORMAT after completion
+    -x, --proxy=: Use this proxy
+    -y, --speed-time=: Trigger 'speed-limit' abort after this time
+    -z, --time-cond=: Transfer based on a time condition

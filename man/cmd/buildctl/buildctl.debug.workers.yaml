@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: workers
+description: list workers
+flags:
+    --format=: Format the output using the given Go template
+    -f, --filter=: containerd-style filter string slice
+    -v, --verbose: Verbose output

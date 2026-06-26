@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: assemble
+description: Assemble and build Flutter resources
+flags:
+    --DartDefines=*: Additional key-value pairs that will be available as constants.
+    --build-inputs=: A file path where a newline-separated file containing all inputs used will be written after a build.
+    --build-outputs=: A file path where a newline-separated file containing all outputs created will be written after a build.
+    --depfile=: A file path where a depfile will be written.
+    --performance-measurement-file=: Output individual target performance to a JSON file.
+    --resource-pool-size=: The maximum number of concurrent tasks the build system will run.
+    -d, --define=: Allows passing configuration to a target, as in "--define=target=key=value".
+    -h, --help: Print this usage information.
+    -i, --input=: Allows passing additional inputs with "--input=key=value".
+    -o, --output=: A directory where output files will be written.

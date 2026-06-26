@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: patch <store-path>
+description: Apply Devbox patches to a package to fix common linker errors
+hidden: true
+flags:
+    --gcc=: patch binaries to use a different gcc
+    --glibc=: patch binaries to use a different glibc
+    --restore-refs: restore references to removed store paths

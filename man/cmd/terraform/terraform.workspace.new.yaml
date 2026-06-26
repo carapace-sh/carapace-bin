@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: new [OPTIONS] NAME
+description: Create a new workspace
+flags:
+    -lock: Don't hold a state lock during the operation.
+    -lock-timeout?: Duration to retry a state lock.
+    -state?: Copy an existing state file into the new workspace.

@@ -1,0 +1,31 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: cat-file
+description: Provide content or type and size information for repository objects
+group: low-level interrogator
+flags:
+  --allow-unknown-type: allow -s and -t to work with broken/corrupt objects
+  --batch-all-objects: show all objects with --batch or --batch-check
+  --batch-check=: show info about objects fed from the standard input
+  --batch=: show info and content of objects fed from the standard input
+  --buffer: buffer --batch output
+  --filters: for blob objects, run filters on object's content
+  --follow-symlinks: follow in-tree symlinks (used with --batch or --batch-check)
+  --path=: use a specific path for --textconv/--filters
+  --textconv: for blob objects, run textconv on object's content
+  --unordered: do not order --batch-all-objects output
+  -e: exit with zero when there's no error
+  -p: pretty-print object's content
+  -s: show object size
+  -t: show object type
+documentation:
+  command: |-
+    Output the contents or other properties such as size, type or delta
+    information of one or more objects.
+
+    This command can operate in two modes, depending on whether an option
+    from the `--batch` family is specified.
+
+    In non-batch mode, the command provides information on an object
+    named on the command line.
+
+    In batch mode, arguments are read from standard input.

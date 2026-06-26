@@ -1,0 +1,43 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: build
+description: Compile a local package and all of its dependencies
+group: build
+flags:
+    --all: Alias for --workspace (deprecated)
+    --all-features: Activate all available features
+    --all-targets: Build all targets
+    --artifact-dir=: Copy final artifacts to this directory (unstable)
+    --bench=*: Build only the specified bench target
+    --benches: Build all targets that have `bench = true` set
+    --bin=*: Build only the specified binary
+    --bins: Build all binaries
+    --example=*: Build only the specified example
+    --examples: Build all examples
+    --exclude=*: Exclude packages from the build
+    --future-incompat-report: Outputs a future incompatibility report at the end of the build
+    --ignore-rust-version: Ignore `rust-version` specification in packages
+    --keep-going: Do not abort the build as soon as there is an error
+    --lib: Build only this package's library
+    --manifest-path=: Path to Cargo.toml
+    --message-format=*: Error format
+    --no-default-features: Do not activate the `default` feature
+    --profile=: Build artifacts with the specified profile
+    --target-dir=: Directory for all generated artifacts
+    --target=*: Build for the target triple
+    --test=*: Build only the specified test target
+    --tests: Build all targets that have `test = true` set
+    --timings: Output a build timing report at the end of the build
+    --unit-graph: Output build graph in JSON (unstable)
+    --workspace: Build all packages in the workspace
+    -F, --features=*: Space or comma separated list of features to activate
+    -h, --help: Print help
+    -j, --jobs=: 'Number of parallel jobs, defaults to # of CPUs.'
+    -p, --package=*: Package to build (see `cargo help pkgid`)
+    -r, --release: Build artifacts in release mode, with optimizations
+documentation:
+  command: |
+    Compile a local package and all of its dependencies. By default, builds the
+    package's library and binaries. Use `--bin`, `--lib`, `--example`, `--bench`,
+    or `--test` to build specific targets. The `--release` flag builds with
+    optimizations (default for release profiles). Use `--workspace` to build
+    all packages in the workspace. The `-j` flag controls parallelism.

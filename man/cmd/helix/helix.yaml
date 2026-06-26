@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: helix
+description: A post-modern text editor
+flags:
+    --health=: Checks for potential errors in editor setup
+    --hsplit: Splits all given files horizontally into different windows
+    --log=: Specifies a file to use for logging
+    --tutor: Loads the tutorial
+    --vsplit: Splits all given files vertically into different windows
+    -V, --version: Prints version information
+    -c, --config=: Specifies a file to use for configuration
+    -g, --grammar=: Fetches or builds tree-sitter grammars listed in languages.toml
+    -h, --help: Prints help information
+    -v*: Increases logging verbosity each use for up to 3 times
+    -w, --working-dir=: Specify an initial working directory

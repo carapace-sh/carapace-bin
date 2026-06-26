@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: gitignore <command>
+description: List and view available repository gitignore templates
+group: Targeted commands

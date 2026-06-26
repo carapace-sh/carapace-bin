@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ssh-agent
+description: OpenSSH authentication agent
+flags:
+    -D: Foreground mode
+    -E=: Specifies the hash algorithm used when displaying key fingerprints
+    -P=: Specify a pattern-list of acceptable paths for PKCS#11 provider and FIDO authenticator
+    -a=: Bind the agent to the UNIX-domain socket bind_address
+    -c: Generate C-shell commands on stdout
+    -d: Debug mode
+    -k: Kill the current agent
+    -s: Generate Bourne shell commands on stdout
+    -t=: Set a default value for the maximum lifetime of identities added to the agent

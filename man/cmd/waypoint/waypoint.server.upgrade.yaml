@@ -1,0 +1,52 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: upgrade
+description: Upgrades Waypoint server in the current context to the latest version
+flags:
+    --auto-approve: Confirm server upgrade.
+    --context-name=: Waypoint server context to upgrade.
+    --docker-odr-image=: Docker image for the Waypoint On-Demand Runners.
+    --docker-server-image=: Docker image for the Waypoint server.
+    --ecs-cluster=: Configures the Cluster to upgrade.
+    --ecs-cpu=: Configures the requested CPU amount for the Waypoint server task in ECS.
+    --ecs-mem=: Configures the requested memory amount for the Waypoint server task in ECS.
+    --ecs-odr-cpu=: Configures the requested CPU amount for the Waypoint On-Demand runner in ECS.
+    --ecs-odr-image=: Docker image for the Waypoint On-Demand Runners.
+    --ecs-odr-mem=: Configures the requested memory amount for the Waypoint On-Demand runner in ECS.
+    --ecs-region=: Configures which AWS region to install into.
+    --ecs-server-image=: Docker image for the Waypoint server.
+    --ecs-task-role-name=: IAM Execution Role to assign to the on-demand runner.
+    --k8s-advertise-internal: Advertise the internal service address rather than the external.
+    --k8s-context=: The Kubernetes context to upgrade the Waypoint server to.
+    --k8s-namespace=: Namespace to install the Waypoint server into for Kubernetes.
+    --k8s-odr-image=: Docker image for the Waypoint On-Demand Runners
+    --k8s-openshift: Enables installing the Waypoint server on Kubernetes on Red Hat OpenShift.
+    --k8s-runner-service-account-init: Create the service account if it does not exist.
+    --k8s-runner-service-account=: Service account to assign to the on-demand runner.
+    --k8s-server-image=: Docker image for the Waypoint server.
+    --nomad-annotate-service=: Annotations for the Service generated.
+    --nomad-auth-soft-fail: Don't fail the Nomad task on an auth failure obtaining server image container.
+    --nomad-consul-datacenter=: The datacenter where Consul is located.
+    --nomad-consul-domain=: The domain where Consul is located. The default is consul.
+    --nomad-consul-service: Create service for Waypoint UI and Server in Consul.
+    --nomad-consul-service-backend-tags=: Tags for the Waypoint backend service generated in Consul.
+    --nomad-consul-service-hostname=: If set, will use this hostname for Consul DNS rather than the default.
+    --nomad-consul-service-ui-tags=: Tags for the Waypoint UI service generated in Consul.
+    --nomad-dc=: Datacenters to install to for Nomad. The default is dc1.
+    --nomad-host-volume=: Nomad host volume name.
+    --nomad-host=: Hostname of the Nomad server to use.
+    --nomad-namespace=: Namespace to install the Waypoint server into for Nomad.
+    --nomad-odr-image=: Docker image for the on-demand runners.
+    --nomad-policy-override: Override the Nomad sentinel policy for enterprise Nomad.
+    --nomad-region=: Region to install to for Nomad.
+    --nomad-runner-cpu=: CPU required to run this task in MHz.
+    --nomad-runner-memory=: MB of Memory to allocate to the runner job task.
+    --nomad-server-cpu=: CPU required to run this task in MHz.
+    --nomad-server-image=: Docker image for the Waypoint server.
+    --nomad-server-memory=: MB of Memory to allocate to the server job task.
+    --plain: Plain output
+    --platform=: Platform to upgrade the Waypoint server from.
+    --snapshot: Enable or disable taking a snapshot of Waypoint server prior to upgrades.
+    --snapshot-name=: Filename to write the snapshot to.
+    -a, --app=: App to target.
+    -p, --project=: Project to target.
+    -w, --workspace=: Workspace to operate in.

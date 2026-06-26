@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ui:auth [--views] [--force] [--] [<type>]
+description: Scaffold basic login and registration views and routes
+flags:
+    --force: Overwrite existing views by default
+    --views: Only scaffold the authentication views

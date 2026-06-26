@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Helper script to manage the default Java environment on Arch Linux.
+    Use `status` to list installed Java environments, `get` to show the
+    current default, `set` to switch to a specific Java version, `unset`
+    to clear the default, and `fix` to repair a broken configuration.
+description: Arch Linux helper script to set/unset/check/fix the enabled Java environment
+flags:
+    -h, --help: Show help

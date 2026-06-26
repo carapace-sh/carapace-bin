@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: info
+description: Get environment information for debugging and issue reporting
+flags:
+    -C, --clipboard: Automagically copy environment information to clipboard

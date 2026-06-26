@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: refresh [options]
+description: Update the state to match remote systems
+flags:
+    -compact-warnings: show warnings in a more compact form
+    -input: Ask for input for variables if not directly set
+    -lock: Don't hold a state lock during the operation
+    -lock-timeout?: Duration to retry a state lock
+    -no-color: If specified, output won't contain any color
+    -parallelism?: Limit the number of parallel resource operations
+    -target?*: Resource to target
+    -var-file?: Set variables in the Terraform configuration from a file
+    -var=*: Set a variable in the Terraform configuration

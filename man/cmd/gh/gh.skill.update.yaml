@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: update [<skill>...] [flags]
+description: Update installed skills to their latest versions (preview)
+flags:
+    --all: Update all skills without prompting
+    --dir=: Scan a custom directory for installed skills
+    --dry-run: Report available updates without modifying files
+    --force: Re-download even if already up to date
+    --unpin: Clear pinned version and include pinned skills in update

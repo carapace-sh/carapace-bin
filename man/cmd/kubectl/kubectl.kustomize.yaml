@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: kustomize DIR
+description: Build a kustomization target from a directory or URL
+group: advanced
+flags:
+    --as-current-user: use the uid and gid of the command executor to run the function in the container
+    --enable-alpha-plugins: enable kustomize plugins
+    --enable-helm: Enable use of the Helm chart inflator generator.
+    --enable-managedby-label&: enable adding app.kubernetes.io/managed-by
+    --helm-api-versions=*: Kubernetes api versions used by Helm for Capabilities.APIVersions
+    --helm-command=: helm command (path to executable)
+    --helm-debug: Enable debug output from the Helm chart inflator generator.
+    --helm-kube-version=: Kubernetes version used by Helm for Capabilities.KubeVersion
+    --load-restrictor=: if set to 'LoadRestrictionsNone', local kustomizations may load files from outside their root. This does, however, break the relocatability of the kustomization.
+    --mount=*: a list of storage options read from the filesystem
+    --network: enable network access for functions that declare it
+    --network-name=: the docker network to run the container in
+    --reorder=&: Reorder the resources just before output. Use 'legacy' to apply a legacy reordering (Namespaces first, Webhooks last, etc). Use 'none' to suppress a final reordering.
+    -e, --env=*: a list of environment variables to be used by functions
+    -o, --output=: If specified, write output to this path.

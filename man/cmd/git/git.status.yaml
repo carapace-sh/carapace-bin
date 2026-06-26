@@ -1,0 +1,65 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: status
+description: show the working tree status
+group: main
+flags:
+  --ahead-behind: display detailed ahead/behind counts for the branch relative to its upstream branch
+  --column?: Display untracked files in columns.
+  --find-renames?: turn on rename detection, optionally setting the similarity threshold
+  --ignore-submodules?: Ignore changes to submodules when looking for changes.
+  --ignored?: Show ignored files as well
+  --long: Give the output in the long-format. This is the default.
+  --no-ahead-behind: do not display detailed ahead/behind counts for the branch relative to its upstream branch
+  --no-column: Do not display untracked files in columns.
+  --no-renames: turn off rename detection
+  --porcelain?: Give the output in an easy-to-parse format for scripts.
+  --renames: turn on rename detection
+  --show-stash: Show the number of entries currently stashed away.
+  -b, --branch: Show the branch and tracking info even in short-format.
+  -s, --short: Give the output in the short-format.
+  -u, --untracked-files=: Show untracked files
+  -v, --verbose: also show the textual changes
+  -z: Terminate entries with NUL, instead of LF.
+documentation:
+  command: |-
+    Displays paths that have differences between the index file and the
+    current HEAD commit, paths that have differences between the working
+    tree and the index file, and paths in the working tree that are not
+    tracked by Git (and are not ignored by [gitignore](man://gitignore/5)). The first
+    are what you _would_ commit by running `git commit`; the second and
+    third are what you _could_ commit by running `git add` before running
+    `git commit`.
+  flag:
+    branch: Show the branch and tracking info even in short-format.
+    long: Give the output in the long-format. This is the default.
+    no-ahead-behind: |-
+      Display or do not display detailed ahead/behind counts for the
+      branch relative to its upstream branch.  Defaults to `true`.
+    no-column: |-
+      Display untracked files in columns. See configuration variable
+      `column.status` for option syntax. `--column` and `--no-column without options are equivalent to `always` and `never
+      respectively.
+    no-renames: |-
+      Turn on/off rename detection regardless of user configuration.
+      See also [git-diff](cmd://git/diff) `--no-renames`.
+    short: Give the output in the short-format.
+    show-stash: Show the number of entries currently stashed away.
+    verbose: |-
+      In addition to the names of files that have been changed, also
+      show the textual changes that are staged to be committed
+      (i.e., like the output of `git diff --cached`). If `-v` is specified
+      twice, then also show the changes in the working tree that
+      have not yet been staged (i.e., like the output of `git diff`).
+    z: |-
+      Terminate entries with _NUL_, instead of _LF_.  This implies
+      the `--porcelain=v1` output format if no other format is given.
+    ahead-behind: |-
+      Display or do not display detailed ahead/behind counts for the
+      branch relative to its upstream branch.  Defaults to `true`.
+    column: |-
+      Display untracked files in columns. See configuration variable
+      `column.status` for option syntax. `--column` and `--no-column without options are equivalent to `always` and `never
+      respectively.
+    renames: |-
+      Turn on/off rename detection regardless of user configuration.
+      See also [git-diff](cmd://git/diff) `--no-renames`.

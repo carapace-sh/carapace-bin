@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: speedtest-cli
+description: Command line interface for testing internet bandwidth using speedtest.net
+flags:
+    --bytes: Display values in bytes instead of bits.
+    --csv: Suppress verbose output, only show basic information in CSV format.
+    --csv-delimiter=: Single character delimiter to use in CSV output.
+    --csv-header: Print CSV headers
+    --exclude=*: Exclude a server from selection.
+    --json: Suppress verbose output, only show basic information in JSON format.
+    --list: Display a list of speedtest.net servers sorted by distance
+    --mini=: URL of the Speedtest Mini server
+    --no-download: Do not perform download test
+    --no-pre-allocate: Do not pre allocate upload data.
+    --no-upload: Do not perform upload test
+    --secure: Use HTTPS instead of HTTP when communicating with speedtest.net operated servers
+    --server=*: Specify a server ID to test against.
+    --share: Generate and provide a URL to the speedtest.net share results image
+    --simple: Suppress verbose output, only show basic information
+    --single: Only use a single connection instead of multiple.
+    --source=: Source IP address to bind to
+    --timeout=: HTTP timeout in seconds. Default 10
+    --version: Show the version number and exit
+    -h, --help: show this help message and exit

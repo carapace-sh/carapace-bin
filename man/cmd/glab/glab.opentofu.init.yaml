@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: init <state> [flags]
+description: Initialize OpenTofu or Terraform.
+flags:
+    -b, --binary=: Name or path of the OpenTofu or Terraform binary to use for the initialization.
+    -d, --directory=: Directory of the OpenTofu or Terraform project to initialize.

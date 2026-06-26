@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pull [OPTIONS] NAME[:TAG|@DIGEST]
+description: Download an image from a registry
+group: common
+flags:
+    --disable-content-trust&: Skip image verification (deprecated)
+    --platform=: Set platform if server is multi-platform capable
+    -a, --all-tags: Download all tagged images in the repository
+    -q, --quiet: Suppress verbose output

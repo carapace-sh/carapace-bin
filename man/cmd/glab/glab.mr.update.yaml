@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: update [<id> | <branch>]
+description: Update a merge request.
+flags:
+    --draft: Mark merge request as a draft.
+    --fill-commit-body: Fill body with each commit body when multiple commits. Can only be used with --fill.
+    --lock-discussion: Lock discussion on merge request.
+    --remove-source-branch: Toggles the removal of the source branch on merge.
+    --reviewer=*: Request review from users by their usernames. Prefix with '!' or '-' to remove from existing reviewers, '+' to add. Otherwise, replace existing reviewers with given users.
+    --squash-before-merge: Toggles the option to squash commits into a single commit when merging.
+    --target-branch=: Set target branch.
+    --unassign: Unassign all users.
+    --unlock-discussion: Unlock discussion on merge request.
+    --wip: Mark merge request as a work in progress. Alternative to --draft.
+    -a, --assignee=*: Assign users via username. Prefix with '!' or '-' to remove from existing assignees, '+' to add. Otherwise, replace existing assignees with given users.
+    -d, --description=: Merge request description. Set to "-" to open an editor.
+    -f, --fill: Do not prompt for title or body, and just use commit info.
+    -l, --label=*: Add labels.
+    -m, --milestone=: Title of the milestone to assign. Set to "" or 0 to unassign.
+    -r, --ready: Mark merge request as ready to be reviewed and merged.
+    -t, --title=: Title of merge request.
+    -u, --unlabel=*: Remove labels.
+    -y, --yes: Skip confirmation prompt.

@@ -1,0 +1,30 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: send-pack
+description: Push objects over Git protocol to another repository
+group: low-level synching
+flags:
+  --all: push all refs
+  --atomic: request atomic transaction on remote side
+  --exec=: receive pack program
+  --force-with-lease=: require old value of ref to be at this value
+  --helper-status: print status from remote helper
+  --mirror: mirror all refs
+  --progress: force progress reporting
+  --push-option=: option to transmit
+  --receive-pack=: receive pack program
+  --remote=: remote name
+  --signed=: GPG sign the push
+  --stateless-rpc: use stateless RPC protocol
+  --stdin: read refs from stdin
+  --thin: use thin pack
+  -f, --force: force updates
+  -n, --dry-run: dry run
+  -q, --quiet: be more quiet
+  -v, --verbose: be more verbose
+documentation:
+  command: |-
+    Usually you would want to use 'git push', which is a
+    higher-level wrapper of this command, instead. See [git-push](cmd://git/push).
+
+    Invokes 'git-receive-pack' on a possibly remote repository, and
+    updates it from the current repository, sending named refs.

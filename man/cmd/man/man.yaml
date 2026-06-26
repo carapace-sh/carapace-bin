@@ -1,0 +1,50 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: man
+description: an interface to the system reference manuals
+flags:
+    --location: print physical location of man page(s)
+    --location-cat: print physical location of cat file(s)
+    --names-only: make --regex and --wildcard match page names only,
+    --nh: turn off hyphenation
+    --nj: turn off justification
+    --no-hyphenation: turn off hyphenation
+    --no-justification: turn off justification
+    --no-subpages: don't try subpages, e.g. 'man foo bar' => 'man
+    --path: print physical location of man page(s)
+    --regex: show all pages matching regex
+    --usage: give a short usage message
+    --warnings=: enable warnings from groff
+    --wildcard: show all pages matching wildcard
+    -?, --help: give this help list
+    -7, --ascii: display ASCII translation of certain latin1 chars
+    -C, --config-file=: use this user configuration file
+    -D, --default: reset all options to their default values
+    -E, --encoding=: use selected output encoding
+    -H, --html=: use  or BROWSER to display HTML output
+    -I, --match-case: look for pages case-sensitively
+    -K, --global-apropos: search for text in all pages
+    -L, --locale=: define the locale for this particular man search
+    -M, --manpath=: set search path for manual pages to PATH
+    -P, --pager=: use program PAGER to display output
+    -R, --recode=: output source page encoded in ENCODING
+    -S: use colon separated section list
+    -T, --troff-device=: use groff with selected device
+    -V, --version: print program version
+    -W, --where-cat: print physical location of cat file(s)
+    -X, --gxditview=: use groff and display through gxditview
+    -Z, --ditroff: use groff and force it to produce ditroff
+    -a, --all: find all matching manual pages
+    -c, --catman: used by catman to reformat out of date cat pages
+    -d, --debug: emit debugging messages
+    -e, --extension=: limit search to extension type EXTENSION
+    -f, --whatis: equivalent to whatis
+    -i, --ignore-case: look for pages case-insensitively (default)
+    -k, --apropos: equivalent to apropos
+    -l, --local-file: interpret PAGE argument(s) as local filename(s)
+    -m, --systems=: use manual pages from other systems
+    -p, --preprocessor=: STRING indicates which preprocessors to run
+    -r, --prompt=: provide the `less' pager with a prompt
+    -s, --sections=: use colon separated section list
+    -t, --troff: use groff to format pages
+    -u, --update: force a cache consistency check
+    -w, --where: print physical location of man page(s)

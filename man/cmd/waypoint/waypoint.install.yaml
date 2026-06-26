@@ -1,0 +1,65 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: install
+description: Install the Waypoint server to Kubernetes, Nomad, ECS, or Docker
+flags:
+    --accept-tos: Pass to accept the Terms of Service and Privacy Policy.
+    --context-create=: Create a context with connection information for this installation.
+    --context-set-default: Set the newly installed server as the default CLI context.
+    --docker-odr-image=: Docker image for the Waypoint On-Demand Runners
+    --docker-server-image=: Docker image for the Waypoint server.
+    --ecs-cluster=: Configures the Cluster to install into.
+    --ecs-cpu=: Configures the requested CPU amount for the Waypoint server task in ECS.
+    --ecs-execution-role-name=: Configures the IAM Execution role name to use.
+    --ecs-mem=: Configures the requested memory amount for the Waypoint server task in ECS.
+    --ecs-odr-cpu=: Configures the requested CPU amount for the Waypoint On-Demand runner in ECS.
+    --ecs-odr-image=: Docker image for the Waypoint On-Demand Runners.
+    --ecs-odr-mem=: Configures the requested memory amount for the Waypoint On-Demand runner in ECS.
+    --ecs-region=: Configures which AWS region to install into.
+    --ecs-server-image=: Docker image for the Waypoint server.
+    --ecs-subnets=: Subnets to install server into.
+    --ecs-task-role-name=: IAM Execution Role to assign to the on-demand runner.
+    --k8s-advertise-internal: Advertise the internal service address rather than the external.
+    --k8s-annotate-service=: Annotations for the Service generated.
+    --k8s-context=: The Kubernetes context to install the Waypoint server to.
+    --k8s-cpu-request=: Configures the requested CPU amount for the Waypoint server in Kubernetes.
+    --k8s-mem-request=: Configures the requested memory amount for the Waypoint server in Kubernetes.
+    --k8s-namespace=: Namespace to install the Waypoint server into for Kubernetes.
+    --k8s-odr-image=: Docker image for the Waypoint On-Demand Runners
+    --k8s-openshift: Enables installing the Waypoint server on Kubernetes on Red Hat OpenShift.
+    --k8s-pull-policy=: Set the pull policy for the Waypoint server image.
+    --k8s-pull-secret=: Secret to use to access the Waypoint server image on Kubernetes.
+    --k8s-runner-service-account-init: Create the service account if it does not exist.
+    --k8s-runner-service-account=: Service account to assign to the on-demand runner.
+    --k8s-secret-file=: Use the Kubernetes Secret in the given path to access the Waypoint server image.
+    --k8s-server-image=: Docker image for the Waypoint server.
+    --k8s-storage-request=: Configures the requested persistent volume size for the Waypoint server in Kubernetes.
+    --k8s-storageclassname=: Name of the StorageClass required by the volume claim to install the Waypoint server image to.
+    --nomad-annotate-service=: Annotations for the Service generated.
+    --nomad-auth-soft-fail: Don't fail the Nomad task on an auth failure obtaining server image container.
+    --nomad-consul-datacenter=: The datacenter where Consul is located.
+    --nomad-consul-domain=: The domain where Consul is located.
+    --nomad-consul-service: Create service for Waypoint UI and Server in Consul.
+    --nomad-consul-service-backend-tags=: Tags for the Waypoint backend service generated in Consul.
+    --nomad-consul-service-hostname=: If set, will use this hostname for Consul DNS rather than the default.
+    --nomad-consul-service-ui-tags=: Tags for the Waypoint UI service generated in Consul.
+    --nomad-csi-fs=: Nomad CSI volume mount option file system. The default is xfs.
+    --nomad-csi-volume-capacity-max=: Nomad CSI volume capacity maximum, in bytes.
+    --nomad-csi-volume-capacity-min=: Nomad CSI volume capacity minimum, in bytes.
+    --nomad-csi-volume-provider=: Nomad CSI volume provider, required for volume type 'csi'.
+    --nomad-dc=: Datacenters to install to for Nomad. The default is dc1.
+    --nomad-host-volume=: Nomad host volume name, required for volume type 'host'.
+    --nomad-host=: Hostname of the Nomad server to use, like for launching on-demand tasks.
+    --nomad-namespace=: Namespace to install the Waypoint server into for Nomad.
+    --nomad-odr-image=: Docker image for the on-demand runners.
+    --nomad-policy-override: Override the Nomad sentinel policy for enterprise Nomad.
+    --nomad-region=: Region to install to for Nomad.
+    --nomad-runner-cpu=: CPU required to run this task in MHz.
+    --nomad-runner-memory=: MB of Memory to allocate to the runner job task.
+    --nomad-server-cpu=: CPU required to run this task in MHz.
+    --nomad-server-image=: Docker image for the Waypoint server.
+    --nomad-server-memory=: MB of Memory to allocate to the Server job task.
+    --plain: Plain output
+    --platform=: Platform to install the Waypoint server into.
+    -a, --app=: App to target.
+    -p, --project=: Project to target.
+    -w, --workspace=: Workspace to operate in.

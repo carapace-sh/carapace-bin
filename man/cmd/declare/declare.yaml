@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: declare
+description: Declare variables and give them attributes
+flags:
+    -A: each name is an associative array variable
+    -F: inhibit the display of function definitions
+    -I: inherit the attributes and value of any existing variable with the same name
+    -a: each name is an indexed array variable
+    -f: each name refers to a shell function
+    -g: forces variables to be created or modified at the global scope
+    -i: the variable is to be treated as an integer
+    -l: all upper-case characters are converted to lower-case
+    -n: give each name the nameref attribute
+    -p: display the attributes and values of each name
+    -r: make names readonly
+    -t: give each name the trace attribute
+    -u: all lower-case characters are converted to upper-case
+    -x: mark each name for export to subsequent commands via the environment

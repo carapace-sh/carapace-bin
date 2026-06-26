@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: upload-pack
+description: send objects packed to the client
+documentation:
+  command: |-
+    Invoked by 'git fetch-pack', learns what
+    objects the other side is missing, and sends them after packing.
+
+    This command is usually not invoked directly by the end user.
+    The UI for the protocol is on the 'git fetch-pack' side, and the
+    program pair is meant to be used to pull updates from a remote
+    repository.  For push operations, see 'git send-pack'.

@@ -1,0 +1,58 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: req
+description: PKCS#10 X.509 Certificate Signing Request (CSR) Management
+group: standard
+flags:
+    -CA=: Issuer cert to use for signing a cert, implies -x509
+    -CAkey=: Issuer private key to use with -CA; default is -CA arg (Required by some CA's)
+    -addext=: Additional cert extension key=value pair (may be given more than once)
+    -batch: Do not ask anything during request generation
+    -cipher=: Specify the cipher for private key encryption
+    -config=: Request template file
+    -copy_extensions=: copy extensions from request when using -x509
+    -days=: Number of days certificate is valid for
+    -extensions=: Cert or request extension section (override value in config file)
+    -in=: X.509 request input file (default stdin)
+    -inform=: CSR input format to use (PEM or DER; by default try PEM first)
+    -key=: Key for signing, and to include unless -in given
+    -keyform=: Key file format (DER/PEM)
+    -keyout=: File to write private key to
+    -modulus: RSA modulus
+    -multivalue-rdn: Deprecated; multi-valued RDNs support is always on.
+    -nameopt=*: Certificate subject/issuer name printing options
+    -new: New request
+    -newhdr: Output "NEW" in the header lines
+    -newkey=: Generate new key with [<alg>:]<nbits> or <alg>[:<file>] or param:<file>
+    -nodes: Don't encrypt private keys; deprecated
+    -noenc: Don't encrypt private keys
+    -noout: Do not output REQ
+    -not_after=: '[CC]YYMMDDHHMMSSZ value for notAfter certificate field, overrides -days'
+    -not_before=: '[CC]YYMMDDHHMMSSZ value for notBefore certificate field'
+    -out=: Output file
+    -outform=: Output format - DER or PEM
+    -passin=: Private key and certificate password source
+    -passout=: Output file pass phrase source
+    -pkeyopt=*: Public key options as opt:value
+    -precert: Add a poison extension to generated cert (implies -new)
+    -propquery=: Property query used when fetching algorithms
+    -provider-path=: Provider load path (must be before 'provider' argument if required)
+    -provider=*: Provider to load (can be specified multiple times)
+    -provparam=: Set a provider key-value parameter
+    -pubkey: Output public key
+    -quiet: Terse output
+    -rand=: Load the given file(s) into the random number generator
+    -reqexts=: An alias for -extensions
+    -reqopt=*: Various request text options
+    -section=: Config section to use (default "req")
+    -set_serial=: Serial number to use
+    -sigopt=*: Signature parameter in n:v form
+    -subj=: Set or modify subject of request or cert
+    -subject: Print the subject of the output request or cert
+    -text: Text form of request
+    -utf8: Input characters are UTF8 (default ASCII)
+    -verbose: Verbose output
+    -verify: Verify self-signature on the request
+    -vfyopt=*: Verification parameter in n:v form
+    -writerand=: Write random data to the specified file
+    -x509: Output an X.509 certificate structure instead of a cert request
+    -x509v1: Request cert generation with X.509 version 1

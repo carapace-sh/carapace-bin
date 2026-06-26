@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: netcat
+description: simple Unix utility which reads and writes data across network connections
+flags:
+    -G, --pointer=: 'source-routing pointer: 4, 8, 12, ...'
+    -L, --tunnel=: forward local port to remote address
+    -T, --telnet: answer using TELNET negotiation
+    -V, --version: output version information and exit
+    -c, --close: close connection on EOF from stdin
+    -e, --exec=: program to exec after connect
+    -g, --gateway=: source-routing hop point[s], up to 8
+    -h, --help: display this help and exit
+    -i, --interval=: delay interval for lines sent, ports scanned
+    -l, --listen: listen mode, for inbound connects
+    -n, --dont-resolve: numeric-only IP addresses, no DNS
+    -o, --output=: output hexdump traffic to FILE (implies -x)
+    -p, --local-port=: local port number
+    -r, --randomize: randomize local and remote ports
+    -s, --source=: local source address (ip or hostname)
+    -t, --tcp: TCP mode (default)
+    -u, --udp: UDP mode
+    -v, --verbose: verbose (use twice to be more verbose)
+    -w, --wait=: timeout for connects and final net reads
+    -x, --hexdump: hexdump incoming and outgoing traffic
+    -z, --zero: zero-I/O mode (used for scanning)

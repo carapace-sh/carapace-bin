@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: scan <on|off|bredr|le>
+description: Scan for devices

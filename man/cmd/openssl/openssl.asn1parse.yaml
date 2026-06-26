@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: asn1parse
+description: Parse an ASN.1 sequence
+group: standard
+flags:
+    -dlimit=: dump the first arg bytes of unknown data in hex form
+    -dump: unknown data in hex form
+    -genconf=: file to generate ASN1 structure from
+    -genstr=: string to generate ASN1 structure from
+    -i: indents the output
+    -in=: input file
+    -inform=: input format - one of DER PEM B64
+    -item=: item to parse and print (-inform  will be ignored)
+    -length=: length of section in file
+    -noout: do not produce any output
+    -offset=: offset into file
+    -oid=: file of extra oid definitions
+    -out=: output file (output format is always DER)
+    -strictpem: equivalent to '-inform pem' (obsolete)
+    -strparse=*: offset; a series of these can be used to 'dig' into multiple ASN1 blob wrappings

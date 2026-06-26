@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: clean
+description: Remove untracked files from the working tree
+group: main
+flags:
+  -X: remove only ignored files
+  -d: remove whole directories
+  -e, --exclude=: add <pattern> to ignore rules
+  -f, --force: force
+  -i, --interactive: interactive cleaning
+  -n, --dry-run: dry run
+  -q, --quiet: do not print names of files removed
+  -x: remove ignored files, too
+documentation:
+  command: |-
+    Cleans the working tree by recursively removing files that are not
+    under version control, starting from the current directory.
+
+    Normally, only files unknown to Git are removed, but if the `-x`
+    option is specified, ignored files are also removed. This can, for
+    example, be useful to remove all build products.
+
+    If any optional `<pathspec>...` arguments are given, only those paths
+    that match the pathspec are affected.

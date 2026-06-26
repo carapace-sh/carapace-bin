@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: numfmt
+description: Convert numbers from/to human-readable strings
+flags:
+    --debug: print warnings about invalid input
+    --field=: replace the numbers in these input fields (default=1)
+    --format=: use printf style floating-point FORMAT
+    --from-unit=: specify the input unit size (instead of the default 1)
+    --from=: auto-scale input numbers to UNITs
+    --grouping: use locale-defined grouping of digits
+    --header?: print (without converting) the first N header lines
+    --help: display this help and exit
+    --invalid=: failure mode for invalid numbers
+    --padding=: pad the output to N characters
+    --round=: use METHOD for rounding when scaling
+    --suffix=: add SUFFIX to output numbers, and accept optional SUFFIX in input numbers
+    --to-unit=: the output unit size (instead of the default 1)
+    --to=: auto-scale output numbers to UNITs
+    --version: output version information and exit
+    -d, --delimiter=: use X instead of whitespace for field delimiter
+    -z, --zero-terminated: line delimiter is NUL, not newline

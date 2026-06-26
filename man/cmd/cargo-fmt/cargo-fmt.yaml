@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: cargo-fmt
+description: format all bin and lib files of the current crate
+flags:
+    --all: Format all packages (only usable in workspaces)
+    --manifest-path=: Specify path to Cargo.toml
+    --message-format=: 'Specify message-format: short|json|human'
+    --version: Print rustfmt version and exit
+    -h, --help: Prints help information
+    -p, --package=: Specify package to format (only usable in workspaces)
+    -q, --quiet: No output printed to stdout
+    -v, --verbose: Use verbose output

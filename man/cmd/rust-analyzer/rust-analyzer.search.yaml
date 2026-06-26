@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: search
+flags:
+    --debug=: Prints debug information for any nodes with source exactly equal to snippet.

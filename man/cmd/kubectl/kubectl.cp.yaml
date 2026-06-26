@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: cp <file-spec-src> <file-spec-dest>
+description: Copy files and directories to and from containers
+group: troubleshooting
+flags:
+    --no-preserve: The copied file/directory's ownership and permissions will not be preserved in the container
+    --retries=: Set number of retries to complete a copy operation from a container. Specify 0 to disable or any negative value for infinite retrying. The default is 0 (no retry).
+    -c, --container=: Container name. If omitted, use the kubectl.kubernetes.io/default-container annotation for selecting the container to be attached or the first container in the pod will be chosen

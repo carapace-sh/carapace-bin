@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: recover
+description: Recover data from the repository not referenced by snapshots
+
+documentation:
+  command: >-
+    Recover data that is not referenced by any snapshot. Useful for rescuing files from corrupted or partially overwritten repositories.

@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: alias <command>
+description: Create command shortcuts
+documentation:
+    command: |
+        Create command shortcuts (aliases) for gh commands or compose multiple commands.
+        Use `gh alias set` to create an alias, `gh alias list` to see all aliases,
+        `gh alias delete` to remove one, and `gh alias import` to import shell aliases.

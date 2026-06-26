@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: repair [OPTION…]
+description: Repair a flatpak installation
+group: install
+flags:
+    --dry-run: Don't make any changes
+    --installation=: Work on a non-default system-wide installation
+    --ostree-verbose: Show OSTree debug information
+    --reinstall-all: Reinstall all refs
+    --system: Work on the system-wide installation (default)
+    -h, --help: Show help options
+    -u, --user: Work on the user installation
+    -v, --verbose: Show debug information, -vv for more detail

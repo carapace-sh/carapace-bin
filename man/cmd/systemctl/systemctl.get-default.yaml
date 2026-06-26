@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: get-default
+description: Get the name of the default target
+group: unit file
+documentation:
+  command: |
+    Return the name of the default target to boot into. This returns the
+    target unit name that default.target is aliased (symlinked) to.

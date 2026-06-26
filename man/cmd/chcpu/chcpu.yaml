@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Configure CPUs on a system. Supports enabling, disabling,
+    configuring, and deconfiguring CPUs, as well as setting
+    dispatching mode and triggering a CPU rescan.
+description: configure CPUs
+flags:
+    -V, --version: display version
+    -c, --configure=: configure cpus
+    -d, --disable=: disable cpus
+    -e, --enable=: enable cpus
+    -g, --deconfigure=: deconfigure cpus
+    -h, --help: display this help
+    -p, --dispatch=: set dispatching mode
+    -r, --rescan: trigger rescan of cpus

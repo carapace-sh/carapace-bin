@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: formatters
+description: Display help for formatters.
+flags:
+    --json: Display as JSON

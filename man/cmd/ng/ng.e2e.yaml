@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: e2e
+description: Builds and serves an Angular app, then runs end-to-end tests
+flags:
+    -c, --configuration=: One or more named builder configurations

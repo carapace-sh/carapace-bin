@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: show
+description: Show properties of one or more units/jobs or the manager
+group: unit
+documentation:
+  command: |
+    Show properties of one or more units, jobs, or the manager itself.
+    If no argument is specified, properties of the manager will be shown.
+    By default, empty properties are suppressed; use `--all` to show those
+    too. Use `--property=` to select specific properties. This command is
+    intended for computer-parsable output; use status for human-readable
+    output.

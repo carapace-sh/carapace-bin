@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: search
+description: Search for packages and display associated information
+flags:
+    --envs: Search all of the current user's environments.
+    --json: Report all output as json.
+    --offline: Offline mode.
+    --override-channels: Do not search default or .condarc channels.
+    --repodata-fn=: Specify name of repodata on remote server.
+    --use-local: Use locally built packages.
+    -C, --use-index-cache: Use cache of channel index files, even if it has expired.
+    -h, --help: Show this help message and exit.
+    -i, --info: Provide detailed information about each package.
+    -k, --insecure: Allow conda to perform "insecure" SSL connections and transfers.
+    -q, --quiet: Do not display progress bar.
+    -v, --verbose: Use once for info, twice for debug, three times for trace.

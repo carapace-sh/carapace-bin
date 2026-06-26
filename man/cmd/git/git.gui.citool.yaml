@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: citool
+description: Start git gui and arrange to make exactly one commit before exiting and returning to the shell
+flags:
+  --amend: Automatically enter the Amend Last Commit mode of the interface
+  --nocommit: Behave as normal citool, but instead of making a commit simply terminate with a zero exit code

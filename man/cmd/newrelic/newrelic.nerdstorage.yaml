@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: nerdstorage
+description: Read, write, and delete NerdStorage documents and collections.

@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: generate
+description: generate Go files by processing source
+flags:
+    -C=: Change to dir before running the command
+    -n: print commands that would be executed
+    -run=: specifies a regular expression to select matching directives
+    -v: print the names of packages and files as they are processed
+    -x: print commands as they are executed

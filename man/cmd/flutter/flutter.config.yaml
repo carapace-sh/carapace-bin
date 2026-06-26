@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: config
+description: Configure Flutter settings
+flags:
+    --analytics: Enable reporting anonymously tool usage statistics and crash reports.
+    --android-sdk=: The Android SDK directory.
+    --android-studio-dir=: The Android Studio install directory.
+    --build-dir=: The relative path to override a projects build directory.
+    --clear-features: Remove all configured features and restore them to the default values.
+    --clear-ios-signing-cert: Clear the saved development certificate choice used to sign apps for iOS device deployment.
+    --enable-android: Enable Flutter for Android.
+    --enable-custom-devices: Enable Early support for custom device types.
+    --enable-fuchsia: Enable Flutter for Fuchsia.
+    --enable-ios: Enable Flutter for iOS.
+    --enable-linux-desktop: Enable beta-quality support for desktop on Linux.
+    --enable-macos-desktop: Enable beta-quality support for desktop on macOS.
+    --enable-web: Enable Flutter for web.
+    --enable-windows-desktop: Enable beta-quality support for desktop on Windows.
+    --enable-windows-uwp-desktop: Enable  Flutter for Windows UWP.
+    --no-analytics: Disable reporting anonymously tool usage statistics and crash reports.
+    --no-enable-android: Disable Flutter for Android.
+    --no-enable-custom-devices: Disable Early support for custom device types.
+    --no-enable-fuchsia: Disable Flutter for Fuchsia.
+    --no-enable-ios: Disable Flutter for iOS.
+    --no-enable-linux-desktop: Disable beta-quality support for desktop on Linux.
+    --no-enable-macos-desktop: Disable beta-quality support for desktop on macOS.
+    --no-enable-web: Disable Flutter for web.
+    --no-enable-windows-desktop: Disable beta-quality support for desktop on Windows.
+    --no-enable-windows-uwp-desktop: Disable Flutter for Windows UWP.
+    --no-single-widget-reload-optimization: Disable Hot reload optimization for changes to class body of a single widget.
+    --single-widget-reload-optimization: Enable Hot reload optimization for changes to class body of a single widget.
+    -h, --help: Print this usage information.

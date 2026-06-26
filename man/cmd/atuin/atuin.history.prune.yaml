@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: prune
+description: Delete history entries matching the configured exclusion filters
+flags:
+    -h, --help: Print help
+    -n, --dry-run: List matching history lines without performing the actual deletion

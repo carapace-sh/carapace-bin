@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: fish
+description: the friendly interactive shell
+flags:
+    --print-debug-categories: Print all debug categories, and then exit
+    --print-rusage-self: When fish exits, output stats from getrusage
+    --profile-startup=: Will write timing for fish startup to specified file
+    -C, --init-command=: Evaluate specified commands after reading the configuration
+    -N, --no-config: Do not read configuration files
+    -P, --private: Enables private mode
+    -c, --command=: Evaluate  the  specified  commands  instead  of  reading  from the commandline
+    -d, --debug=: Enables debug output and specify a pattern for matching debug categories
+    -f, --features=: Enables one or more comma-separated feature flags
+    -i, --interactive: The shell is interactive
+    -l, --login: Act as if invoked as a login shell
+    -n, --no-execute: Do not execute any commands, only perform syntax checking
+    -o, --debug-output=: Specifies a file path to receive the debug output
+    -p, --profile=: when fish exits, output timing information on all executed commands to the specified file
+    -v, --version: Print version and exit

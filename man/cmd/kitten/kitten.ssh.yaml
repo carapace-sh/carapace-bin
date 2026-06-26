@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ssh
+description: Truly convenient SSH
+flags:
+    -h, --help: Show help for this command
+
+documentation:
+  command: >-
+    SSH with kitty's terminal integration. Automatically transfers the kitty terminfo and enables features like icat and clipboard over SSH.

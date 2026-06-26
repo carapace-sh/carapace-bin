@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: delete <name>
+description: Delete a label from a repository
+flags:
+    --confirm&: Confirm deletion without prompting
+    --yes: Confirm deletion without prompting

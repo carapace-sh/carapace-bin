@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: garden [<repository>]
+description: Explore a git repository as a garden
+group: Targeted commands
+hidden: true

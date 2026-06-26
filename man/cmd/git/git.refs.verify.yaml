@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: verify
+description: Verify ref database consistency
+flags:
+    --strict: enable strict checking
+    --verbose: be verbose
+
+documentation:
+  command: >-
+    Verify reference database consistency. Use `--strict` to enable stricter error checking, causing warnings to be reported as errors.

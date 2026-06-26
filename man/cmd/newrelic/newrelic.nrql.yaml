@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: nrql
+description: Commands for interacting with the New Relic Database
+
+documentation:
+  command: >-
+    Execute NRQL (New Relic Query Language) queries against your telemetry data from the command line.

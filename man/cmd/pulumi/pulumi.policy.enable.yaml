@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: enable
+description: Enable a Policy Pack for a Pulumi organization
+persistentflags:
+    --config=: The file path for the Policy Pack configuration file
+    --policy-group=: The Policy Group for which the Policy Pack will be enabled; if not specified, the default Policy Group is used

@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pnpm
+description: Fast, disk space efficient package manager
+flags:
+    --aggregate-output: Aggregate output from child processes that are run in parallel
+    --changed-files-ignore-pattern=: Defines files to ignore when filtering for changed projects
+    --color: Controls colors in the output
+    --filter-prod=: Restricts the scope to package names matching the given pattern
+    --filter=: set filter
+    --loglevel=: What level of logs to report
+    --no-color: Controls colors in the output
+    --stream: Stream output from child processes immediately
+    --test-pattern=: Defines files related to tests.
+    --use-stderr: Divert all output to stderr
+    --workspace-root: Run the command on the root workspace project
+    -C, --dir=: Change to directory <dir>
+    -h, --help: Output usage information
+    -v, --version: show version

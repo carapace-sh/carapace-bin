@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: volta
+description: The JavaScript Launcher
+flags:
+    --quiet: Prevents unnecessary output
+    --verbose: Enables verbose diagnostics
+    -h, --help: Prints help information
+    -v, --version: Prints the current version of Volta
+
+documentation:
+  command: >-
+    JavaScript tool manager that automates switching between Node.js
+    versions per-project. volta pin node@20 sets the project's runtime;
+    automatically activates the correct version when you cd into the
+    directory. Install tools (npm packages) with volta install npm@latest;
+    those tools use the pinned Node version. No need to manage .nvmrc or
+    shell hooks. Spins up the right version instantly on every shell.
+    Manages Node, npm, yarn, and pnpm versions. Pin to exact versions
+    for reproducible environments. Global tool installs (volta install
+    node) for machine-wide defaults. Pin runs in CI to ensure consistent
+    versions across machines.

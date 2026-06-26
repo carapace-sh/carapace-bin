@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: update <key> <value>
+description: Update an existing variable for a project or group.
+flags:
+    -d, --description=: Set description of a variable.
+    -g, --group=: Set variable for a group.
+    -m, --masked: Whether the variable is masked.
+    -p, --protected: Whether the variable is protected.
+    -r, --raw: Whether the variable is treated as a raw string.
+    -s, --scope=: 'The environment_scope of the variable. Values: all (*), or specific environments.'
+    -t, --type=: 'The type of a variable: env_var, file.'
+    -v, --value=: The value of a variable.

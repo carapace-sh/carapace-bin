@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: options
+description: Show a list of global command-line options (applies to all commands).

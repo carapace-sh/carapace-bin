@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: browser
+description: Start a tree browser showing all files in the specified commit

@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: behave_screen_edge
+description: Bind an action to events when the mouse hits the screen edge or corner
+flags:
+    --delay=: Delay in milliseconds before running the command
+    --quiesce=: Delay in milliseconds before the next command will run

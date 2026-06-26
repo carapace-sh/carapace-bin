@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: set-cluster NAME [--server=server] [--certificate-authority=path/to/certificate/authority] [--insecure-skip-tls-verify=true] [--tls-server-name=example.com]
+description: Set a cluster entry in kubeconfig
+flags:
+    --certificate-authority=: Path to certificate-authority file for the cluster entry in kubeconfig
+    --embed-certs?: embed-certs for the cluster entry in kubeconfig
+    --insecure-skip-tls-verify?: insecure-skip-tls-verify for the cluster entry in kubeconfig
+    --proxy-url=: proxy-url for the cluster entry in kubeconfig
+    --server=: server for the cluster entry in kubeconfig
+    --tls-server-name=: tls-server-name for the cluster entry in kubeconfig

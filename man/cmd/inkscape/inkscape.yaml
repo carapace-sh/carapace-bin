@@ -1,0 +1,65 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: inkscape
+description: an SVG (Scalable Vector Graphics) editing program
+flags:
+    --action-list: List all available actions
+    --actions=: List of actions (with optional arguments) to execute
+    --batch-process: Close GUI after executing all actions/verbs
+    --class=: Program class as used by the window manager
+    --convert-dpi-method=: Method used to convert pre-0.92 document dpi
+    --dbus-listen: Enter a listening loop for D-Bus messages in console mode
+    --dbus-name=: Specify the D-Bus name; default is 'org.inkscape'
+    --display=: X display to use
+    --export-area-snap: Snap the bitmap export area outwards to the nearest integer values
+    --export-ignore-filters: Render objects without filters instead of rasterizing (PS/EPS/PDF)
+    --export-latex: Export text separately to LaTeX file (PS/EPS/PDF)
+    --export-margin=: 'Margin around export area: units of page size for SVG, mm for PS/EPS/PDF'
+    --export-overwrite: Overwrite input file
+    --export-pdf-version=: PDF version (1.4 or 1.5)
+    --export-ps-level=: Postscript level (2 or 3); default is 3
+    --export-type=: File type(s) to export
+    --g-fatal-warnings: Make all warnings fatal
+    --gapplication-service: Enter GApplication service mode (use from D-Bus service files)
+    --gdk-debug=: GDK debugging flags to set
+    --gdk-no-debug=: GDK debugging flags to unset
+    --gtk-debug=: GTK+ debugging flags to set
+    --gtk-module=: Load additional GTK+ modules
+    --gtk-no-debug=: GTK+ debugging flags to unset
+    --help-all: Show all help options
+    --help-gapplication: Show GApplication options
+    --help-gtk: Show GTK+ Options
+    --name=: Program name as used by the window manager
+    --no-convert-text-baseline-spacing: Do not fix pre-0.92 document's text baseline spacing on opening
+    --pdf-page=: PDF page number to import
+    --pdf-poppler: Use poppler when importing via commandline
+    --select=: 'Select objects: comma-separated list of IDs'
+    --shell: Start Inkscape in interactive shell mode
+    --system-data-directory: Print system data directory
+    --user-data-directory: Print user data directory
+    --vacuum-defs: Remove unused definitions from the <defs> section(s) of document
+    --verb-list: List all available verbs
+    --verb=: List of verbs to execute
+    -?, --help: Show help options
+    -C, --export-area-page: Area to export is page
+    -D, --export-area-drawing: Area to export is whole drawing (ignoring page size)
+    -H, --query-height: Height of drawing or object (if specified by --query-id)
+    -I, --query-id=: ID(s) of object(s) to be queried
+    -S, --query-all: Print bounding boxes of all objects
+    -T, --export-text-to-path: Convert text to paths (PS/EPS/PDF/SVG)
+    -V, --version: Print Inkscape version
+    -W, --query-width: Width of drawing or object (if specified by --query-id)
+    -X, --query-x: X coordinate of drawing or object (if specified by --query-id)
+    -Y, --query-y: Y coordinate of drawing or object (if specified by --query-id)
+    -a, --export-area=: Area to export in SVG user units
+    -b, --export-background=: Background color for exported bitmaps (any SVG color string)
+    -d, --export-dpi=: Resolution for bitmaps and rasterized filters; default is 96
+    -g, --with-gui: With graphical user interface (required by some actions/verbs)
+    -h, --export-height=: Bitmap height in pixels (overrides --export-dpi)
+    -i, --export-id=: ID(s) of object(s) to export
+    -j, --export-id-only: Hide all objects except object with ID selected by export-id
+    -l, --export-plain-svg: Remove Inkscape-specific SVG attributes/properties
+    -o, --export-filename=: Output file name (file type is guessed from extension)
+    -p, --pipe: Read input file from standard input (stdin)
+    -t, --export-use-hints: Use stored filename and DPI hints when exporting object selected by --export-id
+    -w, --export-width=: Bitmap width in pixels (overrides --export-dpi)
+    -y, --export-background-opacity=: Background opacity for exported bitmaps (0.0 to 1.0, or 1 to 255)

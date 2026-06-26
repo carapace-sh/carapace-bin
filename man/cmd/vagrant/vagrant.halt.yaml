@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: halt
+description: stops the vagrant machine
+flags:
+    -f, --force: Force shut down (equivalent of pulling power)

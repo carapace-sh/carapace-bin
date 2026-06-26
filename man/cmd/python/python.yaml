@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: python
+description: an interpreted, interactive, object-oriented programming language
+flags:
+    --check-hash-based-pycs=: control how Python invalidates hash-based .pyc files
+    -B: don't write .pyc files on import
+    -E: ignore PYTHON* environment variables
+    -I: isolate Python from the user's environment
+    -O*: remove assert and __debug__-dependent statements
+    -S: don't imply 'import site' on initialization
+    -V*: print the Python version number and exit
+    -W=*: warning control
+    -X=*: set implementation-specific option
+    -b: issue warnings about str(bytes_instance), str(bytearray_instance) and comparing bytes/bytearray with str
+    -c=: program passed in as string
+    -d: turn on parser debugging output
+    -h: print this help message and exit
+    -i: inspect interactively after running script
+    -m=: run library module as a script
+    -q: don't print version and copyright messages on interactive startup
+    -s: don't add user site directory to sys.path
+    -u: force the stdout and stderr streams to be unbuffered
+    -v*: verbose (trace import statements)
+    -x: skip first line of source

@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: storeutl
+description: Command to list and display certificates, keys, CRLs, etc
+group: standard
+flags:
+    -alias=: Search by alias
+    -certs: Search for certificates only
+    -crls: Search for CRLs only
+    -fingerprint=: Search by public key fingerprint, given in hex
+    -issuer=: Search by issuer and serial, issuer name
+    -keys: Search for keys only
+    -noout: No PEM output, just status
+    -out=: Output file - default stdout
+    -passin=: Input file pass phrase source
+    -r: Recurse through names
+    -serial=: Search by issuer and serial, serial number
+    -skeys: Search for symmetric keys only
+    -subject=: Search by subject
+    -text: Print a text form of the objects

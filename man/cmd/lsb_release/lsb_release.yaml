@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: lsb_release
+description: prints certain LSB (Linux Standard Base) and Distribution information
+flags:
+    -a, --all: Display all of the above information.
+    -c, --codename: Display the codename according to the distribution release.
+    -d, --description: Display the single line text description of the distribution.
+    -h, --help: Display this message.
+    -i, --id: Display the string id of the distributor.
+    -r, --release: Display the release number of the distribution.
+    -s, --short: Display all of the above information in short output format.
+    -v, --version: Display the version of the LSB specification against which the distribution is compliant.

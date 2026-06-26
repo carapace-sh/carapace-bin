@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: new-window
+flags:
+    -F=: format
+    -P: TODO description
+    -S: TODO description
+    -a: TODO description
+    -b: TODO description
+    -c=: start-directory
+    -d: TODO description
+    -e=: environment
+    -k: TODO description
+    -n=: window-name
+    -t=: target-window

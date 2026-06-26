@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: destroy
+description: estroy one or more deployments
+flags:
+    --all: Delete ALL deployments, including released.
+    --force: Yes to all confirmations.
+    --label=: Labels to set for this operation.
+    --plain: Plain output
+    --remote: True to use a remote runner to execute.
+    --remote-source=: Override configurations for how remote runners source data.
+    --var-file=: HCL or JSON file containing variable values to set for this operation.
+    --var=: Variable value to set for this operation.
+    -a, --app=: App to target.
+    -p, --project=: Project to target.
+    -w, --workspace=: Workspace to operate in.

@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: gist-logs
+description: Upload logs for a failed build of <formula> to a new Gist
+group: main
+flags:
+    --debug: Display any debugging information.
+    --help: Show this message.
+    --new-issue: Automatically create a new issue in the appropriate GitHub repository after creating the Gist.
+    --private: The Gist will be marked private and will not appear in listings but will be accessible with its link.
+    --quiet: Make some output more quiet.
+    --verbose: Make some output more verbose.
+    --with-hostname: Include the hostname in the Gist.

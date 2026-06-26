@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: selectwindow
+description: Get the window id (for a client) by clicking on it

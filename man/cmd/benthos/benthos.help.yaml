@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: help
+aliases:
+    - h
+description: Shows a list of commands or help for one command

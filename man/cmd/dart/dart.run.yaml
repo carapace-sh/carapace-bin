@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: run
+description: Run a Dart program
+flags:
+    --enable-asserts: Enable assert statements.
+    --enable-vm-service=: Enables the VM service and listens on the specified port for connections
+    --no-enable-asserts: Enable assert statements.
+    --no-pause-isolates-on-exit: Do not pause isolates on exit when running with --enable-vm-service.
+    --no-pause-isolates-on-start: Pause isolates on start when running with --enable-vm-service.
+    --no-pause-isolates-on-unhandled-exceptions: Do not pause isolates when an unhandled exception is encountered when running with --enable-vm-service.
+    --no-warn-on-pause-with-no-debugger: Do not print a warning when an isolate pauses with no attached debugger when running with --enable-vm-service.
+    --observe=: The observe flag is a convenience flag used to run a program with a set of common options useful for debugging.
+    --pause-isolates-on-exit: Pause isolates on exit when running with --enable-vm-service.
+    --pause-isolates-on-start: Pause isolates on start when running with --enable-vm-service.
+    --pause-isolates-on-unhandled-exceptions: Pause isolates when an unhandled exception is encountered when running with --enable-vm-service.
+    --verbosity=: Sets the verbosity level of the compilation.
+    --warn-on-pause-with-no-debugger: Print a warning when an isolate pauses with no attached debugger when running with --enable-vm-service.
+    -D, --define=: Define an environment declaration.
+    -h, --help: Print this usage information.
+
+documentation:
+  command: >-
+    Run a Dart program. Supports both JIT and AOT-compiled programs. Use --enable-vm-service for debugging.

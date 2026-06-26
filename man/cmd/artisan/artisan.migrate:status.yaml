@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: migrate:status [--database [DATABASE]] [--pending [PENDING]] [--path [PATH]] [--realpath]
+description: Show the status of each migration
+flags:
+    --database=: The database connection to use
+    --path=: The path(s) to the migrations files to use
+    --pending=: Only list pending migrations
+    --realpath: Indicate any provided migration file paths are pre-resolved absolute paths

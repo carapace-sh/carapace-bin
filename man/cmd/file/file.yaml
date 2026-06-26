@@ -1,0 +1,34 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: file
+description: determine file type
+flags:
+    --apple: output the Apple CREATOR/TYPE
+    --exclude-quiet=: like exclude, but ignore unknown tests
+    --extension: output a slash-separated list of extensions
+    --help: display this help and exit
+    --mime-encoding: output the MIME encoding
+    --mime-type: output the MIME type
+    -0, --print0: terminate filenames with ASCII NUL
+    -C, --compile: compile file specified by -m
+    -F, --separator=: use string as separator instead of `:'
+    -L, --dereference: follow symlinks
+    -N, --no-pad: do not pad output
+    -P, --parameter: set file engine parameter limits
+    -S, --no-sandbox: disable system call sandboxing
+    -Z, --uncompress-noreport: only print the contents of compressed files
+    -b, --brief: do not prepend filenames to output lines
+    -c, --checking-printout: print the parsed form of the magic file
+    -d, --debug: print debugging messages
+    -e, --exclude=: exclude TEST from the list of test to be performed for file
+    -f, --files-from=: read the filenames to be examined from FILE
+    -h, --no-dereference: don't follow symlinks (default)
+    -i, --mime: output MIME type strings
+    -k, --keep-going: don't stop at the first match
+    -l, --list: list magic strength
+    -m, --magic-file=: use LIST as a colon-separated list of magic number files
+    -n, --no-buffer: do not buffer output
+    -p, --preserve-date: preserve access times on files
+    -r, --raw: don't translate unprintable chars to \ooo
+    -s, --special-files: treat special (block/char devices) files as ordinary ones
+    -v, --version: output version information and exit
+    -z, --uncompress: try to look inside compressed files

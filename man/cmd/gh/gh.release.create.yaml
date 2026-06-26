@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create [<tag>] [<filename>... | <pattern>...]
+aliases:
+    - new
+description: Create a new release
+group: General commands
+flags:
+    --discussion-category=: Start a discussion in the specified category
+    --fail-on-no-commits: Fail if there are no commits since the last release (no impact on the first release)
+    --generate-notes: Automatically generate title and notes for the release via GitHub Release Notes API
+    --latest: Mark this release as "Latest" (default [automatic based on date and version]). --latest=false to explicitly NOT set as latest
+    --notes-from-tag: Fetch notes from the tag annotation or message of commit associated with tag
+    --notes-start-tag=: Tag to use as the starting point for generating release notes
+    --target=: Target `branch` or full commit SHA (default [main branch])
+    --verify-tag: Abort in case the git tag doesn't already exist in the remote repository
+    -F, --notes-file=: Read release notes from `file` (use "-" to read from standard input)
+    -d, --draft: Save the release as a draft instead of publishing it
+    -n, --notes=: Release notes
+    -p, --prerelease: Mark the release as a prerelease
+    -t, --title=: Release title

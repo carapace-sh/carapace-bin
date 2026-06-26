@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: undo <transaction-spec>
+description: revert all actions from the specified transaction
+flags:
+    --ignore-extras: don't consider extra packages as errors
+    --ignore-installed: don't consider mismatches as errors
+    --skip-unavailable: allow skipping packages

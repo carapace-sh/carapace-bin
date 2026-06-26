@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: uniq
+description: report or omit repeated lines
+flags:
+    --all-repeated=: like -D, but allow separating groups
+    --group=: show all items, separating groups with an empty line;
+    --help: display this help and exit
+    --version: output version information and exit
+    -D: print all duplicate lines
+    -c, --count: prefix lines by the number of occurrences
+    -d, --repeated: only print duplicate lines, one for each group
+    -f, --skip-fields=: avoid comparing the first N fields
+    -i, --ignore-case: ignore differences in case when comparing
+    -s, --skip-chars=: avoid comparing the first N characters
+    -u, --unique: only print unique lines
+    -w, --check-chars=: compare no more than N characters in lines
+    -z, --zero-terminated: line delimiter is NUL, not newline

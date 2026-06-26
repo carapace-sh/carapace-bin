@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: packer
+description: Create identical machine images for multiple platforms from a single source configuration.
+flags:
+    -v, --version: show version
+persistentflags:
+    -h, --help: show help

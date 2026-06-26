@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: source-set
+description: Set the configuration for a dynamic source plugin
+flags:
+    --config=: Configuration for the dynamic source type.
+    --delete: Delete the configuration for this source type.
+    --plain: Plain output
+    --type=: Dynamic source type to configure, such as 'vault'.
+    -a, --app=: App to target.
+    -p, --project=: Project to target.
+    -w, --workspace=: Workspace to operate in.

@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: repo [OPTION…] LOCATION
+description: Repository maintenance
+group: build
+flags:
+    --branches: List the branches in the repository
+    --commits=: Show commits for a branch
+    --info: Print general information about the repository
+    --metadata=: Print metadata for a branch
+    --ostree-verbose: Show OSTree debug information
+    --subset: Limit information to subsets with this prefix
+    --subsets: Print information about the repo subsets
+    -h, --help: Show help options
+    -v, --verbose: Show debug information, -vv for more detail

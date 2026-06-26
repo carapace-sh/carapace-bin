@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: attach
+description: Attach to a running app
+flags:
+    --app-id=: The package name (Android) or bundle identifier (iOS) for the app
+    --dart-define=*: Additional key-value pairs that will be available as constants.
+    --dds-port=: When this value is provided, the Dart Development Service (DDS) will be bound to the provided port.
+    --debug: Build a debug version of your app (default mode).
+    --debug-uri=: The URL at which the observatory is listening.
+    --device-timeout=: Time in seconds to wait for devices to attach.
+    --device-user=: Identifier number for a user or work profile on Android only.
+    --device-vmservice-port=: Look for vmservice connections only from the specified port.
+    --host-vmservice-port=: When a device-side vmservice port is forwarded to a host-side port, use this value as the host port.
+    --no-null-assertions: Do not perform additional null assertions on the boundaries of migrated and un-migrated code.
+    --no-track-widget-creation: Do not track widget creation locations.
+    --null-assertions: Perform additional null assertions on the boundaries of migrated and un-migrated code.
+    --pid-file=: Specify a file to write the process ID to.
+    --profile: Build a version of your app specialized for performance profiling.
+    --track-widget-creation: Track widget creation locations.
+    -h, --help: Print this usage information.
+    -t, --target=: The main entry-point file of the application, as run on the device.

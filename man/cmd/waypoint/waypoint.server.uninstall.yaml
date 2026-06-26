@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: uninstall
+description: Uninstall the Waypoint server
+flags:
+    --auto-approve: Auto-approve server uninstallation.
+    --delete-context: Delete the context for the server once it's uninstalled.
+    --ecs-cluster=: Configures the Cluster to uninstall.
+    --ecs-region=: Configures which AWS region to uninstall from.
+    --ignore-runner-error: Ignore any errors encountered while uninstalling runners.
+    --k8s-context=: The Kubernetes context to unisntall the Waypoint server from.
+    --k8s-namespace=: Namespace in Kubernetes to uninstall the Waypoint server from.
+    --plain: Plain output
+    --platform=: Platform to uninstall the Waypoint server from.
+    --snapshot: Enable or disable taking a snapshot of Waypoint server prior to uninstall.
+    --snapshot-name=: Filename to write the snapshot to.
+    -a, --app=: App to target.
+    -p, --project=: Project to target.
+    -w, --workspace=: Workspace to operate in.

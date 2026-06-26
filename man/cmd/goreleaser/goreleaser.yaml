@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: goreleaser
+description: Release engineering, simplified
+flags:
+    -v, --version: version for goreleaser
+persistentflags:
+    --verbose: Enable verbose mode

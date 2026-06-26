@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list-python
+description: Search and list the available python installations
+flags:
+    --target=: Target triple to list interpreters for
+    -v, --verbose*: Use verbose output

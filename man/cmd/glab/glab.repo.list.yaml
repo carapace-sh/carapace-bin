@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+aliases:
+    - ls
+description: Get list of repositories.
+flags:
+    --archived: Limit by archived status. Use 'false' to exclude archived repositories. Used with the '--group' flag.
+    --member: List only projects of which you are a member.
+    --starred: List only starred projects.
+    -F, --output=: 'Format output as: text, json.'
+    -G, --include-subgroups: Include projects in subgroups of this group. Default is false. Used with the '--group' flag.
+    -P, --per-page=: Number of items to list per page.
+    -a, --all: List all projects on the instance.
+    -g, --group=: Return repositories in only the given group.
+    -m, --mine: List only projects you own. Default if no filters are provided.
+    -o, --order=: Return repositories ordered by id, created_at, or other fields.
+    -p, --page=: Page number.
+    -s, --sort=: Return repositories sorted in asc or desc order.
+    -u, --user=: List user projects.

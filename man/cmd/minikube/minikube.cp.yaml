@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: cp <source node name>:<source file path> <target node name>:<target file absolute path>
+description: Copy the specified file into minikube
+group: advanced

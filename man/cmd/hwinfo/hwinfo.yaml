@@ -1,0 +1,70 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: hwinfo
+description: Probe for hardware
+flags:
+    --all: probe for particular hardware item
+    --arch: probe for particular hardware item
+    --bios: probe for particular hardware item
+    --block: probe for particular hardware item
+    --bluetooth: probe for particular hardware item
+    --braille: probe for particular hardware item
+    --bridge: probe for particular hardware item
+    --camera: probe for particular hardware item
+    --cdrom: probe for particular hardware item
+    --chipcard: probe for particular hardware item
+    --cpu: probe for particular hardware item
+    --debug=: Set debug level to N.
+    --disk: probe for particular hardware item
+    --dsl: probe for particular hardware item
+    --dump-db=: Dump hardware data base.
+    --dvb: probe for particular hardware item
+    --fingerprint: probe for particular hardware item
+    --floppy: probe for particular hardware item
+    --framebuffer: probe for particular hardware item
+    --gfxcard: probe for particular hardware item
+    --help: Print usage.
+    --hub: probe for particular hardware item
+    --ide: probe for particular hardware item
+    --isapnp: probe for particular hardware item
+    --isdn: probe for particular hardware item
+    --joystick: probe for particular hardware item
+    --keyboard: probe for particular hardware item
+    --listmd: Normally hwinfo does not report RAID devices.
+    --log=: Write log info to FILE.
+    --map: If disk names have  changed this prints a list of disk name mappings.
+    --memory: probe for particular hardware item
+    --mmc-ctrl: probe for particular hardware item
+    --modem: probe for particular hardware item
+    --monitor: probe for particular hardware item
+    --mouse: probe for particular hardware item
+    --netcard: probe for particular hardware item
+    --network: probe for particular hardware item
+    --only=: This option can be given more than once.
+    --partition: probe for particular hardware item
+    --pci: probe for particular hardware item
+    --pcmcia: probe for particular hardware item
+    --pcmcia-ctrl: probe for particular hardware item
+    --pppoe: probe for particular hardware item
+    --printer: probe for particular hardware item
+    --reallyall: probe for particular hardware item
+    --redasd: probe for particular hardware item
+    --save-config=: Store config for a particular device below /var/lib/hardware.
+    --scanner: probe for particular hardware item
+    --scsi: probe for particular hardware item
+    --short: Show only a summary.
+    --show-config=: Show saved config data for a particular device.
+    --smp: probe for particular hardware item
+    --sound: probe for particular hardware item
+    --storage-ctrl: probe for particular hardware item
+    --sys: probe for particular hardware item
+    --tape: probe for particular hardware item
+    --tv: probe for particular hardware item
+    --uml: probe for particular hardware item
+    --usb: probe for particular hardware item
+    --usb-ctrl: probe for particular hardware item
+    --vbe: probe for particular hardware item
+    --verbose: Increase verbosity.
+    --version: Print libhd version.
+    --wlan: probe for particular hardware item
+    --xen: probe for particular hardware item
+    --zip: probe for particular hardware item

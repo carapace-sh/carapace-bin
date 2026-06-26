@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ""
+
+documentation:
+  command: >-
+    User-friendly HTTP client with intuitive CLI syntax. httpie (or
+    just 'http') sends HTTP requests with natural syntax: http GET
+    example.com/api, http POST api.example.com data='{"key":"value"}'.
+    Supports all HTTP methods, custom headers, JSON/form/file upload,
+    authentication (Basic, Bearer, Digest). Pretty-prints JSON and
+    colors terminal output automatically. Sessions persist cookies and
+    headers across requests. Use --session to manage named sessions.
+    Download files with http --download; follow redirects with -L.
+    Body from stdin with @-, file with @file.txt. Print only headers
+    with http HEAD. Debug with --print (h/H/b/B for request/response).

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: status
+description: Print the current status of the record store
+flags:
+    -h, --help: Print help

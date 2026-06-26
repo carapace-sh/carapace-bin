@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: view [<number> | <url> | <branch>]
+description: View a pull request
+group: Targeted commands
+documentation:
+    command: |
+        View a pull request in the terminal. Pass the PR number, URL, or branch
+        name as argument. Use `-c` or `--comments` to include PR comments.
+        Use `-w` to open in browser, or get structured JSON with `--json`.
+flags:
+    --json=*: Output JSON with the specified `fields`
+    -c, --comments: View pull request comments
+    -q, --jq=: Filter JSON output using a jq `expression`
+    -t, --template=: Format JSON output using a Go template; see "gh help formatting"
+    -w, --web: Open a pull request in the browser

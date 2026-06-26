@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: history
+aliases:
+    - hist
+description: '[PREVIEW] Display history for a stack'
+flags:
+    --show-secrets: Show secret values when listing config instead of displaying blinded values
+persistentflags:
+    --full-dates: Show full dates, instead of relative dates
+    --page-size=: Used with 'page' to control number of results returned
+    --page=: Used with 'page-size' to paginate results
+    -j, --json: Emit output as JSON

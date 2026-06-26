@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: cache
+description: Modify the syntax-definition and theme cache
+hidden: true
+flags:
+    --blank: Create completely new syntax and theme sets (instead of appending to the default sets).
+    --source=: Use a different directory to load syntaxes and themes from.
+    --target=: Use a different directory to store the cached syntax and theme set.
+    -b, --build: Initialize or update the syntax/theme cache by loading from the source directory.
+    -c, --clear: Remove the cached syntax definitions and themes.
+    -h, --help: Prints help information

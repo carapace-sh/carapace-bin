@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rm
+description: clear a tag that is no longer in use from the package

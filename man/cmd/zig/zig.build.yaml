@@ -1,0 +1,28 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: build [options]
+description: Build project from build.zig
+group: project
+flags:
+    --build-file=: Override path to build.zig
+    --build-runner=: Override path to build runner
+    --cache-dir=: Override the local cache directory
+    --color=: Enable or disable colored output
+    --debug-compile-errors: Crash with diagnostics at first compile error
+    --debug-log=: Enable printing debug/info log messages for scope
+    --fetch=: Fetch all packages and exit
+    --global-cache-dir=: Override the global cache directory
+    --job-count=: Limit concurrent jobs
+    --reference-trace: Enable reference trace (256 lines)
+    --seed=: Override the random seed for the build
+    --system=: Set system package directory path
+    --verbose-air: Enable compiler debug output for Zig AIR
+    --verbose-cc: Display C compiler invocations
+    --verbose-cimport: Enable compiler debug output for C imports
+    --verbose-generic-instances: Enable compiler debug output for generic instance generation
+    --verbose-intern-pool: Enable compiler debug output for InternPool
+    --verbose-link: Display linker invocations
+    --verbose-llvm-bc=: Enable compiler debug output for unoptimized LLVM BC
+    --verbose-llvm-cpu-features: Enable compiler debug output for LLVM CPU features
+    --verbose-llvm-ir=: Enable compiler debug output for unoptimized LLVM IR
+    --zig-lib-dir=: Override path to Zig installation lib directory
+    -h, --help: Print help

@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: show-join-command
+description: Show the join command for control-plane and worker node

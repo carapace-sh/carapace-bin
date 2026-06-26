@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: remove
+description: Remove an environmentRemoves a provided environment
+flags:
+    --json: Report all output as json
+    --solver=: Choose which solver backend to use
+    -d, --dry-run: Only display what would have been done
+    -h, --help: Show this help message and exit
+    -n, --name=: Name of environment
+    -p, --prefix=: Full path to environment location
+    -q, --quiet: Do not display progress bar.
+    -v, --verbose: Once for INFO, twice for DEBUG, three times for TRACE.
+    -y, --yes: Sets any confirmation values to 'yes' automatically

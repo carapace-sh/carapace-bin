@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+description: List references
+flags:
+    --color=: respect any colors specified in the --format option
+    --contains=: only list refs which contain the specified commit
+    --count=: limit refs
+    --exclude=*: only list refs which do not match any excluded pattern(s)
+    --format=: a string that interpolates %(fieldname) from a ref being shown
+    --ignore-case: sorting and filtering refs are case insensitive
+    --include-root-refs: also include HEAD ref and pseudorefs
+    --merged=: only list refs whose tips are reachable from the specified commit
+    --no-contains=: only list refs which don't contain the specified commit
+    --no-merged=: only list refs whose tips are not reachable from the specified commit
+    --omit-empty: do not print a newline after formatted refs
+    --perl: quote strings for perl
+    --points-at=: only list refs which points at the given object
+    --python: quote strings for python
+    --shell: quote strings for shell
+    --sort=*: field name to sort on
+    --start-after=: start iteration after the provided marker
+    --stdin: read reference patterns from stdin
+    --tcl: quote strings for tcl
+
+documentation:
+  command: >-
+    List references in the repository with support for filtering, formatting, and sorting. This subcommand is an alias for [git-for-each-ref](cmd://git/for-each-ref) and offers identical functionality.

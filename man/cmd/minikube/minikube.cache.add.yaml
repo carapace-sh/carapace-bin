@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: add
+description: Add an image to local cache.
+flags:
+    --all: Add image to cache for all running minikube clusters

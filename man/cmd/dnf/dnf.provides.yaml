@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: provides <package-spec>...
+description: find what package provides the given value

@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: consul
+description: Consul automates networking for simple and secure application delivery
+flags:
+    -h, --help: show help
+    -v, --version: show version
+
+documentation:
+  command: >-
+    Consul service mesh and service discovery tool. Manage services, health checks, key-value store, and connect service mesh across distributed infrastructure.

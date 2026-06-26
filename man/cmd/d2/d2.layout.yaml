@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: layout [name]
+description: Lists available layout engine options with short help

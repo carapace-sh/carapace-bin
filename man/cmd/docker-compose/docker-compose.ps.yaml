@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ps [OPTIONS] [SERVICE...]
+description: List containers
+flags:
+    --filter=: 'Filter services by a property (supported filters: status)'
+    --format=: 'Format output using a custom template:'
+    --no-trunc: Don't truncate output
+    --orphans: Include orphaned services (not declared by project)
+    --services: Display services
+    --status=*: 'Filter services by status. Values: [paused | restarting | removing | running | dead | created | exited]'
+    -a, --all: Show all stopped containers (including those created by the run command)
+    -q, --quiet: Only display IDs

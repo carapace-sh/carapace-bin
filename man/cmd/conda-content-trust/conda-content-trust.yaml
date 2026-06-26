@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Sign, verify, and manage metadata signatures for conda
+    packages, ensuring package integrity and authenticity.
+description: Signing and verification tools for Conda
+flags:
+    -V, --version: Show the conda-content-trust version number and exit.
+    -h, --help: show this help message and exit

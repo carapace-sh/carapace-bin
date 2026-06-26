@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: copy
+description: Copy snapshots from one repository to another
+flags:
+    --key-hint2=: 'key ID of key to try decrypting the destination repository first (default: $RESTIC_KEY_HINT2)'
+    --password-command2=: 'shell `command` to obtain the destination repository password from (default: $RESTIC_PASSWORD_COMMAND2)'
+    --password-file2=: '`file` to read the destination repository password from (default: $RESTIC_PASSWORD_FILE2)'
+    --path=*: only consider snapshots which include this (absolute) `path`, when no snapshot ID is given
+    --repo2=: 'destination `repository` to copy snapshots to (default: $RESTIC_REPOSITORY2)'
+    --repository-file2=: '`file` from which to read the destination repository location to copy snapshots to (default: $RESTIC_REPOSITORY_FILE2)'
+    --tag=*: only consider snapshots which include this `taglist`, when no snapshot ID is given
+    -H, --host=*: only consider snapshots for this `host`, when no snapshot ID is given (can be specified multiple times)
+
+documentation:
+  command: >-
+    Copy snapshots from one repository to another. Useful for migration or creating redundant backups.

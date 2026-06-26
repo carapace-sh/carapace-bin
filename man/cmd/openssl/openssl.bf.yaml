@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: bf
+aliases:
+    - bf-cbc
+    - bf-cfb
+    - bf-ecb
+    - bf-ofb
+description: Blowfish Cipher
+group: cipher

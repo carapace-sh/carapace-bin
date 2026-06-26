@@ -1,0 +1,38 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: task
+description: A task runner / simpler Make alternative written in Go
+persistentflags:
+    --completion=: Generates shell completion script.
+    --disable-fuzzy: Disables fuzzy matching for task names.
+    --experiments: Lists all the available experiments and whether or not they are enabled.
+    --insecure: Forces Task to download Taskfiles over insecure connections.
+    --nested: Nest namespaces when listing tasks as JSON
+    --no-status: Ignore status when listing tasks as JSON
+    --output-group-begin=: Message template to print before a task's grouped output.
+    --output-group-end=: Message template to print after a task's grouped output.
+    --output-group-error-only: Swallow output from successful tasks.
+    --sort=: Changes the order of the tasks when listed. [default|alphanumeric|none].
+    --status: Exits with non-zero exit code if any of the given tasks is not up-to-date.
+    --summary: Show summary about a task.
+    --version: Show Task version.
+    -C, --concurrency=: Limit number of tasks to run concurrently.
+    -F, --failfast: When running tasks in parallel, stop all tasks if one fails.
+    -I, --interval=: Interval to watch for changes.
+    -a, --list-all: Lists tasks with or without a description.
+    -c, --color: Colored output. Enabled by default. Set flag to false or use NO_COLOR=1 to disable.
+    -d, --dir=: Sets the directory in which Task will execute and look for a Taskfile.
+    -f, --force: Forces execution even when the task is up-to-date.
+    -g, --global: Runs global Taskfile, from $HOME/{T,t}askfile.{yml,yaml}.
+    -h, --help: Shows Task usage.
+    -i, --init: Creates a new Taskfile.yml in the current folder.
+    -j, --json: Formats task list as JSON.
+    -l, --list: Lists tasks with description of current Taskfile.
+    -n, --dry: Compiles and prints tasks in the order that they would be run, without executing them.
+    -o, --output=: 'Sets output style: [interleaved|group|prefixed].'
+    -p, --parallel: Executes tasks provided on command line in parallel.
+    -s, --silent: Disables echoing.
+    -t, --taskfile=: Choose which Taskfile to run. Defaults to "Taskfile.yml".
+    -v, --verbose: Enables verbose mode.
+    -w, --watch: Enables watch of the given task.
+    -x, --exit-code: Pass-through the exit code of the task command.
+    -y, --yes: Assume "yes" as answer to all prompts.

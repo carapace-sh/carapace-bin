@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: get
+flags:
+    --format=: Display format
+    --merged=: Whether or not to merge config values
+    --show-origin: Display where the config value is defined
+    -h, --help: Print help

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ssh
+description: Start local TLS proxy for ssh connections when using Teleport in single-port mode.
+flags:
+    -c, --cluster=: Specify the Teleport cluster to connect

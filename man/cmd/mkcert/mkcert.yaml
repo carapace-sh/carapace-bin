@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: mkcert
+description: simple tool for making locally-trusted development certificates
+flags:
+    -CAROOT: Print the CA certificate and key storage location
+    -cert-file=: Customize the output paths
+    -client: Generate a certificate for client authentication
+    -csr=: Generate a certificate based on the supplied CSR
+    -ecdsa: Generate a certificate with an ECDSA key
+    -install=: Install the local CA in the system trust store
+    -key-file=: Customize the output paths
+    -p12-file=: Customize the output paths
+    -pkcs12: 'Generate a ".p12" PKCS #12 file, also know as a ".pfx" file'
+    -uninstall=: Uninstall the local CA (but do not delete it)

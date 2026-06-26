@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+description: List New Relic Synthetics monitors
+flags:
+    -s, --statusFilter=: filter the results on the status field. Possible values ENABLED, DISABLED, MUTED. Comma separated.

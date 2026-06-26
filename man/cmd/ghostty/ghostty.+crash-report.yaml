@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: +crash-report
+description: inspect and send crash report
+flags:
+    --help: show help

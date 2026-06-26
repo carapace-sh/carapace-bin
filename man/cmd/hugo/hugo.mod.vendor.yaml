@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: vendor
+description: Vendor all module dependencies into the _vendor directory.

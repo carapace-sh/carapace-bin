@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Run a command or interactive shell with a special root directory.
+    Changes the root filesystem location for the executed command,
+    optionally specifying the user, group, and supplementary groups.
+description: run command or interactive shell with special root directory
+flags:
+    --groups=: specify supplementary groups as g1,g2,..,gN
+    --help: display this help and exit
+    --skip-chdir: do not change working directory to '/'
+    --userspec=: specify user and group (ID or name) to use
+    --version: output version information and exit

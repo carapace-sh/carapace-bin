@@ -1,0 +1,60 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: run [OPTION…] APP [ARGUMENT…]
+description: Run an app
+group: run
+flags:
+    --a11y-bus: Proxy accessibility bus calls (default except when sandboxed)
+    --add-policy=: Add generic policy option
+    --allow=: Allow feature
+    --app-path=: Use PATH instead of the app's /app
+    --arch=: Arch to use
+    --branch=: Branch to use
+    --command=: Command to run
+    --commit: Run specified commit
+    --cwd=: Directory to run the command in
+    --device=: Expose device to app
+    --disallow=: Don't allow feature
+    --env-fd=: Read environment variables in env -0 format from FD
+    --env=: Set environment variable
+    --file-forwarding: Enable file forwarding
+    --filesystem=: Expose filesystem to app (:ro for read-only)
+    --help-all: Show all help options
+    --installation=: Work on a non-default system-wide installation
+    --instance-id-fd: Write the instance ID to the given file descriptor
+    --log-a11y-bus: Log accessibility bus calls
+    --log-session-bus: Log session bus calls
+    --log-system-bus: Log system bus calls
+    --no-a11y-bus: Don't proxy accessibility bus calls
+    --no-documents-portal: Don't start portals
+    --no-session-bus: Don't proxy session bus calls
+    --no-talk-name=: Don't allow app to talk to name on the session bus
+    --nodevice=: Don't expose device to app
+    --nofilesystem=: Don't expose filesystem to app
+    --nosocket=: Don't expose socket to app
+    --ostree-verbose: Show OSTree debug information
+    --own-name=: Allow app to own name on the session bus
+    --parent-expose-pids: Make processes visible in parent namespace
+    --parent-pid=: Use PID as parent pid for sharing namespaces
+    --parent-share-pids: Share process ID namespace with parent
+    --persist=: Persist home directory subpath
+    --remove-policy=: Remove generic policy option
+    --runtime-commit: Use specified runtime commit
+    --runtime-version=: Runtime version to use
+    --runtime=: Runtime to use
+    --sandbox: Run completely sandboxed
+    --session-bus: Proxy session bus calls (default except when sandboxed)
+    --share=: Share with host
+    --socket=: Expose socket to app
+    --system: Work on the system-wide installation (default)
+    --system-no-talk-name=: Don't allow app to talk to name on the system bus
+    --system-own-name=: Allow app to own name on the system bus
+    --system-talk-name=: Allow app to talk to name on the system bus
+    --talk-name=: Allow app to talk to name on the session bus
+    --unset-env=: Remove variable from environment
+    --unshare=: Unshare with host
+    --usr-path=: Use PATH instead of the runtime's /usr
+    -d, --devel: Use development runtime
+    -h, --help: Show help options
+    -p, --die-with-parent: Kill processes when the parent process dies
+    -u, --user: Work on the user installation
+    -v, --verbose: Show debug information, -vv for more detail

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: fix
+description: fixes templates from old versions of packer
+flags:
+    -validate: If true (default), validates the fixed template.

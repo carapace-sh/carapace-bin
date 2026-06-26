@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ls
+description: Show all teams you're a part of
+
+documentation:
+  command: >-
+    Display all teams you are a member of. Shows team name, slug, and
+    your role within each team. Use `vercel teams switch` to change
+    the active team context.

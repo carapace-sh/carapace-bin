@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: new
+description: Create an Angular workspace
+flags:
+    --commit: Initial git repository commit information.
+    --create-application: Create a new initial application project in the 'src' folder of the new workspace.
+    --defaults: Disable interactive input prompts for options with a default.
+    --directory=: The directory name to create the workspace in.
+    --interactive: Enable interactive input prompts.
+    --minimal: Create a workspace without any testing frameworks.
+    --new-project-root=: The path where new projects will be created, relative to the new workspace root.
+    --package-manager=: The package manager used to install dependencies.
+    --routing: Generate a routing module for the initial project.
+    --skip-install: Do not install dependency packages.
+    --strict: Creates a workspace with stricter type checking and stricter bundle budgets settings.
+    --style=: The file extension or preprocessor to use for style files.
+    --view-encapsulation=: The view encapsulation strategy to use in the initial project.
+    -S, --skip-tests: Do not generate "spec.ts" test files for the new project.
+    -c, --collection=: A collection of schematics to use in generating the initial application.
+    -d, --dry-run: Run through and reports activity without writing out results.
+    -f, --force: Force overwriting of existing files.
+    -g, --skip-git: Do not initialize a git repository.
+    -p, --prefix=: The prefix to apply to generated selectors for the initial project.
+    -s, --inline-style: Include styles inline in the component TS file.
+    -t, --inline-template: Include template inline in the component TS file.

@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list-keymaps
+description: List the layouts for a specific keyboard
+flags:
+    --keyboard=: Specify keyboard name.
+    -h, --help: show this help message and exit

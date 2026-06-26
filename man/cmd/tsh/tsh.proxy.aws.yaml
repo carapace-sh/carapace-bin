@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: aws
+description: Start local proxy for AWS access.
+flags:
+    --app=: Optional Name of the AWS application to use if logged into multiple.
+    --no-endpoint-url&: Run local proxy to serve as an AWS endpoint URL. If not specified, local proxy serves as an HTTPS proxy.
+    -e, --endpoint-url: Run local proxy to serve as an AWS endpoint URL. If not specified, local proxy serves as an HTTPS proxy.
+    -f, --format=: 'Optional format to print the commands for setting environment variables, one of: unix, command-prompt, powershell, text. Default is unix. Or specify a service format, one of: athena-odbc, athena-jdbc'
+    -p, --port=: Specifies the source port used by the proxy listener.

@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: +edit-config
+description: The `edit-config` command opens the Ghostty configuration file

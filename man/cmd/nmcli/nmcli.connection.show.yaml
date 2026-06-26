@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: show
+description: show details for specified connection
+flags:
+    --active: show active connections
+    --order=: specify order

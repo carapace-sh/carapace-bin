@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: start
+description: Starts tsh daemon service.
+hidden: true
+flags:
+    --addr=: Addr is the daemon listening address.
+    --certs-dir=: Directory containing certs used to create secure gRPC connection with daemon service
+    --prehog-addr=: URL where prehog events should be submitted

@@ -1,0 +1,37 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: up
+aliases:
+    - update
+description: Create or update the resources in a stack
+flags:
+    -j, --json: Serialize the update diffs, operations, and overall output as JSON
+persistentflags:
+    --client=: The address of an existing language runtime host to connect to
+    --config-file=: Use the configuration values in the specified file rather than detecting the file name
+    --config-path: Config keys contain a path to a property in a map or list to set
+    --diff: Display operation as a rich diff showing the overall change
+    --exec-agent=: ""
+    --exec-kind=: ""
+    --expect-no-changes: Return an error if any changes occur during this update
+    --plan=: '[EXPERIMENTAL] Path to a plan file to use for the update. The update will not perform operations that exceed its plan (e.g. replacements instead of updates, or updates insteadof sames).'
+    --policy-pack-config=*: Path to JSON file containing the config for the policy pack of the corresponding "--policy-pack" flag
+    --policy-pack=*: Run one or more policy packs as part of this update
+    --replace=*: Specify resources to replace. Multiple resources can be specified using --replace urn1 --replace urn2. Wildcards (*, **) are also supported
+    --secrets-provider=: 'The type of the provider that should be used to encrypt and decrypt secrets (possible choices: default, passphrase, awskms, azurekeyvault, gcpkms, hashivault). Onlyused when creating a new stack from an existing template'
+    --show-config: Show configuration keys and variables
+    --show-reads: Show resources that are being read in, alongside those being managed directly in the stack
+    --show-replacement-steps: Show detailed resource replacement creates and deletes instead of a single step
+    --show-sames: Show resources that don't need be updated because they haven't changed, alongside those that do
+    --suppress-outputs: Suppress display of stack outputs (in case they contain sensitive values)
+    --suppress-permalink?: Suppress display of the state permalink
+    --target-dependents: Allows updating of dependent targets discovered but not specified in --target list
+    --target-replace=*: Specify a single resource URN to replace. Other resources will not be updated. Shorthand for --target urn --replace urn.
+    -c, --config=*: Config to use during the update
+    -d, --debug: Print detailed debugging output during resource operations
+    -f, --skip-preview: Do not perform a preview before performing the update
+    -m, --message=: Optional message to associate with the update operation
+    -p, --parallel=: Allow P resource operations to run in parallel at once (1 for no parallelism). Defaults to unbounded.
+    -r, --refresh?: Refresh the state of the stack's resources before this update
+    -s, --stack=: The name of the stack to operate on. Defaults to the current stack
+    -t, --target=*: Specify a single resource URN to update. Other resources will not be updated. Multiple resources can be specified using --target urn1 --target urn2. Wildcards (*, **) are also supported
+    -y, --yes: Automatically approve and perform the update after previewing it

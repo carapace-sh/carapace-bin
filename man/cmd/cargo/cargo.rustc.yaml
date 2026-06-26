@@ -1,0 +1,40 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rustc
+description: Compile a package, and pass extra options to the compiler
+flags:
+    --all-features: Activate all available features
+    --all-targets: Build all targets
+    --bench=*: Build only the specified bench target
+    --benches: Build all targets that have `bench = true` set
+    --bin=*: Build only the specified binary
+    --bins: Build all binaries
+    --crate-type=*: Comma separated list of types of crates for the compiler to emit
+    --example=*: Build only the specified example
+    --examples: Build all examples
+    --future-incompat-report: Outputs a future incompatibility report at the end of the build
+    --ignore-rust-version: Ignore `rust-version` specification in packages
+    --keep-going: Do not abort the build as soon as there is an error
+    --lib: Build only this package's library
+    --manifest-path=: Path to Cargo.toml
+    --message-format=*: Error format
+    --no-default-features: Do not activate the `default` feature
+    --print=: Output compiler information without compiling
+    --profile=: Build artifacts with the specified profile
+    --target-dir=: Directory for all generated artifacts
+    --target=*: Target triple which compiles will be for
+    --test=*: Build only the specified test target
+    --tests: Build all targets that have `test = true` set
+    --timings: Output a build timing report at the end of the build
+    --unit-graph: Output build graph in JSON (unstable)
+    -F, --features=*: Space or comma separated list of features to activate
+    -h, --help: Print help
+    -j, --jobs=: 'Number of parallel jobs, defaults to # of CPUs.'
+    -p, --package=: Package to build
+    -r, --release: Build artifacts in release mode, with optimizations
+documentation:
+  command: |
+    Compile a package, and pass extra options to the rustc compiler. This command
+    allows passing arbitrary flags directly to the compiler. Use `--print` to
+    query compiler information (e.g., `--print=cfg`, `--print=crate-name`).
+    Any extra arguments after `--` are passed to rustc. Useful for fine-tuning
+    compilation or querying compiler settings.

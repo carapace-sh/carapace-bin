@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: get <log group>
+description: Get log events
+flags:
+    --expand: indent JSON log messages
+    --filter=: event filter pattern
+    --invert: invert colors for light terminal themes
+    --prefix=: log group prefix filter
+    --pretty: print timestamp and stream name prefix
+    --rawString: print JSON strings without escaping
+    --start=: start getting the logs from this point
+    --stop=: stop getting the logs at this point

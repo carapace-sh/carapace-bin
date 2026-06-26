@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: tcpip
+description: restart adbd listening on TCP on PORT

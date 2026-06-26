@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: configutl
+description: openssl configuration file helper command
+group: standard
+flags:
+    -config=: Config file to deal with (the default one if omitted)
+    -noheader: Don't print the information about original config
+    -out=: Output to filename rather than stdout

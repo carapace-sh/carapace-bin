@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: version
+description: Print the client and server version information
+flags:
+    --client: If true, shows client version only (no server required).
+    -o, --output=: One of 'yaml' or 'json'.

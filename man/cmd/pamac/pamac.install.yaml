@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: install
+description: Install packages from repositories, path or url
+flags:
+    --as-deps: mark all packages installed as a dependency
+    --as-explicit: mark all packages explicitly installed
+    --ignore=: ignore a package upgrade, multiple packages can be
+    --no-confirm: bypass any and all confirmation messages
+    --no-upgrade: do not check for updates
+    --overwrite=: overwrite conflicting files, multiple patterns can be
+    --upgrade: check for updates
+    -d, --dry-run: only print what would be done but do not run the
+    -w, --download-only: download all packages but do not install/upgrade

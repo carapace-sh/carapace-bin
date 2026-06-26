@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: link
+description: Link one or more units files into the search path
+group: unit file
+documentation:
+  command: |
+    Link a unit file that is not in the unit file search path into the
+    search path. This command expects an absolute path to a unit file.
+    The file system where the linked unit files are located must be
+    accessible when systemd is started (e.g. not under /home/ or /var/
+    unless those are on the root file system).

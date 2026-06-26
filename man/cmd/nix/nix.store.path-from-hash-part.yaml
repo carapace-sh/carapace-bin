@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: path-from-hash-part
+description: get a store path from its hash part

@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create
+description: Create a context
+flags:
+    --plain: Plain output
+    --server-addr=: Address for the server.
+    --server-auth-token=: Authentication token to use to connect to the server.
+    --server-require-auth: If true, will send authentication details.
+    --server-tls: If true, will connect to the server over TLS.
+    --server-tls-skip-verify: If true, will not validate TLS cert presented by the server.
+    --set-default: Set this context as the new default for the CLI. The default is false.
+    -a, --app=: App to target.
+    -p, --project=: Project to target.
+    -w, --workspace=: Workspace to operate in.

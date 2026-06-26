@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: configure
+description: configure projecs
+flags:
+    --threads=: set the number of threads used to compile and test all projects

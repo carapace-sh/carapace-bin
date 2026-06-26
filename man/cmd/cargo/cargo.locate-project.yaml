@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: locate-project
+description: Print a JSON representation of a Cargo.toml file's location
+flags:
+    --manifest-path=: Path to Cargo.toml
+    --message-format=: Output representation
+    --workspace: Locate Cargo.toml of the workspace root
+    -h, --help: Print help

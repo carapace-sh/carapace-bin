@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: code
+description: generate and print an OTP code from the secret key stored
+flags:
+    -c, --clip: copy to clipboard

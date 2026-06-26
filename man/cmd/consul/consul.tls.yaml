@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: tls
+description: Builtin helpers for creating CAs and certificates

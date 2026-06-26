@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: goweight
+description: A tool to analyze and troubleshoot a Go binary size
+flags:
+    --help: Show context-sensitive help
+    --tags=: Build tags
+    --version: Show application version
+    -j, --json: Output json

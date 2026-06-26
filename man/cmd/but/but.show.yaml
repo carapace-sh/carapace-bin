@@ -1,0 +1,46 @@
+name: show
+description: Shows detailed information about a commit or branch.
+flags:
+    -h, --help: Print help (see more with '--help')
+    -v, --verbose: Show full commit messages and files changed for each commit
+documentation:
+    command: |-
+        Shows detailed information about a commit or branch.
+
+        When given a commit ID, displays the full commit message, author information,
+        committer information (if different from author), and the list of files modified.
+
+        When given a branch name, displays the branch name and a list of all commits
+        on that branch. Use --verbose to show full commit messages and files changed.
+
+        ## Examples
+
+        Show commit details by short commit ID:
+
+        ```text
+        but show a1b2c3d
+        ```
+
+        Show commit details by CLI ID:
+
+        ```text
+        but show c5
+        ```
+
+        Show branch commits by branch name:
+
+        ```text
+        but show my-feature-branch
+        ```
+
+        Show branch with full commit details:
+
+        ```text
+        but show my-feature-branch --verbose
+        ```
+    flag:
+        help: Print help (see a summary with '-h')
+        status-after: |-
+            After a mutation command completes, also output workspace status.
+
+            In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).

@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: i3
+description: an improved dynamic, tiling window manager
+flags:
+    --force-xinerama: Use Xinerama instead of RandR.
+    --get-socketpath: Retrieve the i3 IPC socket path from X11, print it, then exit.
+    --shmlog-size=: Limits the size of the i3 SHM log to <limit> bytes.
+    -C: validate configuration file and exit
+    -L=: path to the serialized layout during restarts
+    -V: enable verbose mode
+    -a: disable autostart ('exec' lines in config)
+    -c=: use the provided configfile instead
+    -d=: enable debug output
+    -v: display version and exit

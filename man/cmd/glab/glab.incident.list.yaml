@@ -1,0 +1,30 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list [flags]
+aliases:
+    - ls
+description: List project incidents.
+flags:
+    --author=: Filter incident by author <username>.
+    --in=: 'search in: title, description.'
+    --not-assignee=: Filter incident by not being assigned to <username>.
+    --not-author=: Filter incident by not being by author(s) <username>.
+    --not-label=*: Filter incident by lack of label <name>.
+    --order=: 'Order incident by <field>. Order options: created_at, updated_at, priority, due_date, relative_position, label_priority, milestone_due, popularity, weight.'
+    --search=: Search <string> in the fields defined by '--in'.
+    --sort=: Return incident sorted in asc or desc order.
+    -A, --all: Get all incidents.
+    -C, --confidential: Filter by confidential incidents.
+    -F, --output-format=: 'Options: ''details'', ''ids'', ''urls''.'
+    -M, --mine&: Filter only incidents assigned to me.
+    -O, --output=: 'Options: ''text'' or ''json''.'
+    -P, --per-page=: Number of items to list per page.
+    -a, --assignee=: Filter incident by assignee <username>.
+    -c, --closed: Get only closed incidents.
+    -e, --epic=: List issues belonging to a given epic (requires --group, no pagination support).
+    -l, --label=*: Filter incident by label <name>.
+    -m, --milestone=: Filter incident by milestone <id>.
+    -o, --opened&: Get only open incidents.
+    -p, --page=: Page number.
+persistentflags:
+    -R, --repo=: Select another repository. Can use either `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format. Also accepts full URL or Git URL.
+    -g, --group=: Select a group or subgroup. Ignored if a repo argument is set.

@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: nix-build
+description: build a Nix expression
+flags:
+    --arg=*: Pass [name] [expr] to Nix functions.
+    --argstr=*: Pass [name] [string] to Nix functions
+    --dry-run: Show what store paths would be built or downloaded
+    --help: Show usage information
+    --no-out-link: Do not create a symlink to the output path
+    -A, --attr=: Attribute to build
+    -I, --include=: Include paths
+    -o, --out-link=: Change the name of the symlink to the output path

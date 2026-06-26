@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: reset
+aliases:
+    - rm
+    - delete
+description: Reset a configuration value to its default
+flags:
+    -k, --key=: the key to delete

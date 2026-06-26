@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: stop
+description: Stops a running local Kubernetes cluster
+group: basic
+flags:
+    --all: Set flag to stop all profiles (clusters)
+    --cancel-scheduled: cancel any existing scheduled stop requests
+    --keep-context-active: keep the kube-context active after cluster is stopped. Defaults to false.
+    --schedule=: Set flag to stop cluster after a set amount of time (e.g. --schedule=5m)
+    -o, --output=: 'Format to print stdout in. Options include: [text,json]'

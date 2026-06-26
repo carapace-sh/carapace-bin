@@ -1,0 +1,34 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: dmesg
+description: Display or control the kernel ring buffer
+flags:
+    --noescape: don't escape unprintable character
+    --since=: display the lines since the specified time
+    --time-format=: 'show timestamp using the given format:'
+    --until=: display the lines until the specified time
+    -C, --clear: clear the kernel ring buffer
+    -D, --console-off: disable printing messages to console
+    -E, --console-on: enable printing messages to console
+    -F, --file=: use the file instead of the kernel log buffer
+    -H, --human: human readable output
+    -L, --color?: colorize messages(auto, always or never)
+    -P, --nopager: do not pipe output into a pager
+    -S, --syslog: force to use syslog(2) rather than /dev/kmsg
+    -T, --ctime: show human-readable timestamp (may be inaccurate!)
+    -V, --version: display version
+    -W, --follow-new: wait and print only new messages
+    -c, --read-clear: read and clear all messages
+    -d, --show-delta: show time delta between printed messages
+    -e, --reltime: show local time and time delta in readable format
+    -f, --facility=: restrict output to defined facilities
+    -h, --help: display this help
+    -k, --kernel: display kernel messages
+    -l, --level=: restrict output to defined levels
+    -n, --console-level=: set level of messages printed to console
+    -p, --force-prefix: force timestamp output on each line of multi-line messages
+    -r, --raw: print the raw message buffer
+    -s, --buffer-size=: buffer size to query the kernel ring buffer
+    -t, --notime: don't show any timestamp with messages
+    -u, --userspace: display userspace messages
+    -w, --follow: wait for new messages
+    -x, --decode: decode facility and level to readable string

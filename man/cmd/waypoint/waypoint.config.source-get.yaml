@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: source-get
+description: Get the configuration for a dynamic source plugin
+flags:
+    --plain: Plain output
+    --type=: Dynamic source type to look up, such as 'vault'.
+    -a, --app=: App to target.
+    -p, --project=: Project to target.
+    -w, --workspace=: Workspace to operate in.

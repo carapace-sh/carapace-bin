@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: skeyutl
+description: opaque symmetric keys routines
+group: standard
+flags:
+    -cipher=: The cipher to generate key for
+    -genkey: Generate an opaque symmetric key
+    -propquery=: Property query used when fetching algorithms
+    -provider-path=: Provider load path (must be before 'provider' argument if required)
+    -provider=*: Provider to load (can be specified multiple times)
+    -provparam=: Set a provider key-value parameter
+    -skeymgmt=: Symmetric key management name for opaque keys handling
+    -skeyopt=*: Key options as opt:value for opaque keys handling

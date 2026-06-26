@@ -1,0 +1,195 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: systemctl
+description: Query or send control commands to the system manager
+persistentflags:
+    --after: Show units ordered after with 'list-dependencies'
+    --before: Show units ordered before with 'list-dependencies'
+    --boot-loader-entry=: Boot into a specific boot loader entry on next boot
+    --boot-loader-menu=: Boot into boot loader menu on next boot
+    --check-inhibitors=: Specify if checking inhibitors before shutting down, sleeping or hibernating
+    --drop-in=: Edit unit files using the specified drop-in file name
+    --dry-run: Only print what would be done
+    --failed: Shortcut for --state=failed
+    --firmware-setup: Tell the firmware to show the setup menu on next boot
+    --global: Enable/disable/mask default user unit files globally
+    --image-policy=: Specify disk image dissection policy
+    --image=: Edit/enable/disable/mask unit files in the specified disk image
+    --job-mode=: Specify how to deal with already queued jobs, when queueing a new job
+    --kill-subgroup=: Send signal to sub-control group only
+    --kill-value=: Signal value to enqueue
+    --kill-whom=: Whom to send signal to
+    --legend=: Enable/disable the legend (column headers and hints)
+    --marked: Restart/reload previously marked units
+    --message=: Specify human-readable reason for system shutdown
+    --mkdir: Create directory before mounting, if missing
+    --no-ask-password: Do not ask for system passwords
+    --no-block: Do not wait until operation finished
+    --no-pager: Do not pipe output into a pager
+    --no-reload: Don't reload daemon after en-/dis-abling unit files
+    --no-wall: Don't send wall message before halt/power-off/reboot
+    --no-warn: Suppress several warnings shown by default
+    --now: Start or stop unit after enabling or disabling it
+    --plain: Print unit dependencies as a list instead of a tree
+    --preset-mode=: Apply only enable, only disable, or all presets
+    --read-only: Create read-only bind mount
+    --reboot-argument=: Specify argument string to pass to reboot()
+    --reverse: Show reverse dependencies with 'list-dependencies'
+    --root=: Enable/disable/mask unit files in the specified root directory
+    --runtime: Enable/disable/mask unit files temporarily until next reboot
+    --show-types: When showing sockets, explicitly show their type
+    --state=: List units with particular LOAD or SUB or ACTIVE state
+    --stdin: Read new contents of edited file from stdin
+    --system: Connect to system manager
+    --timestamp=: Change format of printed timestamps.
+    --user: Connect to user service manager
+    --value: When showing properties, only print the value
+    --version: Show package version
+    --wait: wait until service stopped or startup completed
+    --what=: Which types of resources to remove
+    --when=: Schedule halt/power-off/reboot/kexec action after a certain timestamp
+    --with-dependencies: Show unit dependencies with 'status', 'cat', 'list-units', and 'list-unit-files'.
+    -C, --capsule=: Connect to service manager of specified capsule
+    -H, --host=: Operate on remote host
+    -M, --machine=: Operate on a local container
+    -P=: Equivalent to --value --property=NAME
+    -T, --show-transaction: When enqueuing a unit job, show full transaction
+    -a, --all: Show all properties/all units currently in memory, including dead/empty ones
+    -f, --force: When enabling unit files, override existing symlinks When shutting down, execute action immediately
+    -h, --help: Show this help
+    -i: Shortcut for --check-inhibitors=no
+    -l, --full: Don't ellipsize unit names on output
+    -n, --lines=: Number of journal entries to show
+    -o, --output=: Change journal output mode
+    -p, --property=: Show only properties by this name
+    -q, --quiet: Suppress output
+    -r, --recursive: Show unit list of host and local containers
+    -s, --signal=: Which signal to send
+    -t, --type=: List units of a particular type
+    -v, --verbose: Show unit logs while executing operation
+documentation:
+  command: |
+    Introspect and control the state of the systemd system and service manager.
+    Manages units (services, mount points, sockets, timers), monitors system state,
+    and controls boot and shutdown behavior. Operates on the system manager by
+    default; use `--user` to target the per-user service manager.
+  flag:
+    state: |
+      Filter units by LOAD, ACTIVE, or SUB state. Multiple comma-separated values
+      are accepted. Use `help` to list all valid states (e.g. `loaded`, `active`,
+      `running`, `exited`, `failed`).
+    type: |
+      Filter by unit type (e.g. `service`, `socket`, `timer`, `mount`, `path`).
+      Multiple comma-separated values are accepted.
+    output: |
+      Control journal output format. Common values: `short`, `verbose`, `json`,
+      `json-pretty`, `cat`.
+    signal: |
+      Signal to send to processes. Common values: `SIGTERM`, `SIGKILL`, `SIGHUP`,
+      `SIGINT`.
+    job-mode: |
+      How to handle already queued jobs. Values: `fail` (default), `replace`,
+      `replace-irreversibly`, `isolate`, `flush`, `ignore-dependencies`,
+      `ignore-requirements`.
+    timestamp: |
+      Format for printed timestamps. Values: `pretty` (default), `unix`, `us`,
+      `utc`, `us+utc`.
+    what: |
+      Types of resources to clean. Values: `all`, `configuration`, `state`,
+      `cache`, `logs`, `runtime`.
+    kill-whom: |
+      Recipient of the signal. Values: `main`, `control`, `all` (default).
+    check-inhibitors: |
+      Whether to check inhibitor locks before shutdown/sleep. Values: `yes`
+      (default), `no`, `auto`.
+    host: |
+      Operate on a remote host via SSH. Format: `[user@]host[:port][/container]`.
+    machine: |
+      Operate on a local container. Format: `[user@]container` or `.host` for
+      the local system.
+    capsule: |
+      Connect to the service manager of the specified systemd capsule.
+    preset-mode: |
+      Apply only a subset of presets. Values: `full` (default), `enable-only`,
+      `disable-only`.
+    force: |
+      When enabling units, override existing symlinks. When shutting down,
+      execute the action immediately without blocking.
+    when: |
+      Schedule action at a specific timestamp. Use `show` to display the
+      currently scheduled action, `cancel` to cancel it, `auto` to schedule
+      according to maintenance window or one minute in the future.
+    reboot-argument: |
+      Architecture and firmware specific argument for reboot. Example:
+      `recovery` for system recovery, `fota` for firmware over the air update.
+    boot-loader-menu: |
+      Tell the boot loader to show its menu on next boot. Takes a timeout
+      value (pass 0 to disable timeout).
+    boot-loader-entry: |
+      Boot into a specific boot loader entry on next boot. Pass `help` to
+      list available entries.
+    drop-in: |
+      When editing a unit, use the specified drop-in file name instead of
+      the default `override.conf`.
+    image: |
+      Operate on unit files in the specified disk image instead of the
+      host filesystem.
+    image-policy: |
+      Specify the dissection policy for the disk image (used with --image).
+    stdin: |
+      Read unit file contents from standard input instead of launching an
+      editor. Completely replaces old contents.
+    wait: |
+      Wait until the unit stops or completes startup before returning.
+    legend: |
+      Enable or disable column headers and the footer hint (default: enabled).
+    no-warn: |
+      Suppress several warnings that are shown by default.
+    no-wall: |
+      Do not send a wall message before halt, power-off, or reboot.
+    marked: |
+      Operate on units that have been previously marked for restart or reload.
+    quiet: |
+      Suppress non-essential output.
+    verbose: |
+      Show unit logs while executing the operation.
+    dry-run: |
+      Only print what would be done without actually performing the operation.
+    failed: |
+      Shortcut for --state=failed, listing only failed units.
+    no-reload: |
+      When enabling or disabling units, don't reload the daemon configuration
+      afterward. The changes will take effect on next daemon-reload or reboot.
+    no-pager: |
+      Do not pipe output into a pager; print all output directly to stdout.
+    no-block: |
+      Do not wait until the operation finishes. Return immediately after
+      enqueuing the job.
+    plain: |
+      When showing dependencies, print them as a list instead of a tree.
+      Useful when combined with --reverse, --after, or --before.
+    all: |
+      Show all units currently in memory, including inactive/dead/empty ones.
+      Without this flag, only active units, units with pending jobs, or
+      failed units are shown.
+    recursive: |
+      When listing units, show the unit list of the host and all local
+      containers rather than just the local container or host.
+    property: |
+      When showing properties, only display properties by this name.
+      Can be specified multiple times to show multiple properties.
+    lines: |
+      Number of recent journal entries to show when using status command.
+      Defaults to 10. Use 0 to show no journal entries, or a very large
+      number to show all entries.
+    after: |
+      With list-dependencies, show units ordered after the specified units
+      (reverse dependencies).
+    before: |
+      With list-dependencies, show units ordered before the specified units
+      (forward dependencies).
+    reverse: |
+      With list-dependencies, show reverse dependencies (units that require
+      or want the specified units).
+    with-dependencies: |
+      With status, cat, list-units, or list-unit-files, also show unit
+      dependencies.

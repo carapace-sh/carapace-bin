@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: trace [<job-id>] [flags]
+description: Trace a CI/CD job log in real time.
+flags:
+    -b, --branch=: The branch to search for the job. (default current branch)
+    -p, --pipeline-id=: The pipeline ID to search for the job.

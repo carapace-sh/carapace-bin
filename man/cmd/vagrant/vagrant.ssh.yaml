@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ssh
+description: connects to machine via SSH
+flags:
+    --no-tty: Disables tty when executing an ssh command (defaults to true)
+    -c, --command=: Execute an SSH command directly
+    -p, --plain: Plain mode, leaves authentication up to user
+    -t, --tty: Enables tty when executing an ssh command (defaults to true)

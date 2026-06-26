@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: update-context
+description: Update kubeconfig in case of an IP or port change
+group: configuration

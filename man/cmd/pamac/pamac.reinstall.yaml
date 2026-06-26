@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: reinstall
+description: Reinstall packages
+flags:
+    --as-deps: mark all packages installed as a dependency
+    --as-explicit: mark all packages explicitly installed
+    --no-confirm: bypass any and all confirmation messages
+    --overwrite=: overwrite conflicting files, multiple patterns can be
+    -w, --download-only: download all packages but do not install/upgrade

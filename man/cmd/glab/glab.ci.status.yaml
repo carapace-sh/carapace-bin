@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: status [flags]
+aliases:
+    - stats
+description: View a running CI/CD pipeline on current or other branch specified.
+flags:
+    -b, --branch=: Check pipeline status for a branch. (default current branch)
+    -c, --compact: Show status in compact format.
+    -l, --live: Show status in real time until the pipeline ends.

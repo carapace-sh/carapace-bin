@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: node
+description: Add, remove, or list additional nodes
+group: advanced

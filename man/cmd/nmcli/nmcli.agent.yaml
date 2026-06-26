@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: agent
+description: NetworkManager secret agent or polkit agent

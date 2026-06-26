@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: taplo
+description: A TOML toolkit written in Rust
+flags:
+    -V, --version: Print version
+persistentflags:
+    --colors=: ""
+    --help: Print help (see a summary with '-h')
+    --log-spans: Enable logging spans
+    --verbose: Enable a verbose logging format
+    -h: Print help (see more with '--help')

@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: run
+description: Run command in the stacks
+flags:
+    --cloud-sync-deployment: Enable synchronization of stack execution with the Terramate Cloud
+    --cloud-sync-drift-status: Enable drift detection and synchronization with the Terramate Cloud
+    --cloud-sync-terraform-plan-file=: Enable sync of Terraform plan file
+    --continue-on-error: Continue executing in other stacks in case of error
+    --disable-check-gen-code: Disable outdated generated code check
+    --disable-check-git-remote: Disable checking if local default branch is updated with remote
+    --disable-safeguards=: 'Disable safeguards: {all,none,git,git-untracked,git-uncommitted,outdated-code,git-out-of-sync}'
+    --dry-run: Plan the execution but do not execute it
+    --eval: Evaluate command line arguments as HCL strings
+    --no-recursive: Do not recurse into child stacks
+    --reverse: Reverse the order of execution
+    -X: Disable all safeguards

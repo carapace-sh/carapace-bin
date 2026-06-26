@@ -1,0 +1,33 @@
+name: forge
+description: View and manage forge configuration
+flags:
+    -h, --help: Print help (see more with '--help')
+documentation:
+    command: |
+        View and manage forge configuration.
+
+        Shows configured forge accounts (GitHub, GitLab, etc.) and authentication status. Use subcommands to authenticate or forget accounts.
+
+        Examples
+
+        View configured forge accounts:
+
+          but config forge
+
+        Authenticate with a forge:
+
+          but config forge auth
+
+        List authenticated accounts:
+
+          but config forge list-users
+
+        Forget an account:
+
+          but config forge forget username
+    flag:
+        help: Print help (see a summary with '-h')
+        status-after: |-
+            After a mutation command completes, also output workspace status.
+
+            In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).

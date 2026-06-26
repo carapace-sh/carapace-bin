@@ -1,0 +1,34 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: lncrawl
+description: Generate and download e-books from online sources
+flags:
+    --add-source-url: Add source url at the end of each chapter.
+    --all: Download all chapters.
+    --bot=: Select a bot.
+    --chapters=: A list of specific chapter urls.
+    --crawler=: Load additional crawler files.
+    --filename-only: Skip appending chapter range with file name
+    --filename=: Set the output file name
+    --first=: Download first few chapters.
+    --format=: 'Define which formats to output. Default: all.'
+    --last=: Download last few chapters.
+    --list-sources: Display a list of available sources.
+    --login=: User name/email address and password for login.
+    --multi: Build separate books by volumes.
+    --page=: The start and final chapter urls.
+    --range=: The start and final chapter indexes.
+    --resume=: Resume download of a novel
+    --shard-count=: Discord bot shard counts.
+    --shard-id=: Discord bot shard id.
+    --single: Put everything in a single book.
+    --suppress: Suppress all input prompts and use defaults.
+    --volumes=: The list of volume numbers to download.
+    -f, --force: Force replace any existing folder.
+    -h, --help: show this help message and exit
+    -i, --ignore: Ignore any existing folder (do not replace).
+    -l: Set log levels.
+    -o, --output=: Path where the downloads to be stored.
+    -q, --query=: Novel query followed by list of source sites.
+    -s, --source=: Profile page url of the novel.
+    -v, --version: show program's version number and exit
+    -x, --sources=: Filter out the sources to search for novels.

@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: invite
+description: Invite a new member to a team
+
+documentation:
+  command: >-
+    Send an invitation email to a new team member. Specify the email
+    address and desired role (viewer, developer, or admin). The invitee
+    receives an email with a link to join the team.

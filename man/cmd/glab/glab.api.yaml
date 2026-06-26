@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: api <endpoint>
+description: Make an authenticated request to the GitLab API.
+flags:
+    --hostname=: The GitLab hostname for the request. Defaults to 'gitlab.com', or the authenticated host in the current Git directory.
+    --input=: The file to use as the body for the HTTP request.
+    --paginate: Make additional HTTP requests to fetch all pages of results.
+    --silent: Do not print the response body.
+    -F, --field=*: Add a parameter of inferred type. Changes the default HTTP method to "POST".
+    -H, --header=*: Add an additional HTTP request header.
+    -X, --method=: The HTTP method for the request.
+    -f, --raw-field=*: Add a string parameter.
+    -i, --include: Include HTTP response headers in the output.

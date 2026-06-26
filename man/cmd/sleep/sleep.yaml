@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: sleep
+description: delay for a specified amount of time
+flags:
+    --help: display this help and exit
+    --version: output version information and exit

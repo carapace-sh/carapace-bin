@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: windowunmap
+description: Unmap a window, making it no longer appear on your screen
+flags:
+    --sync: After requesting the window unmap, wait until the window is actually unmapped (hidden)

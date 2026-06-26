@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: documents [OPTION…] [APPID]
+description: List exported files
+group: access
+flags:
+    --columns=: What information to show
+    --ostree-verbose: Show OSTree debug information
+    -h, --help: Show help options
+    -v, --verbose: Show debug information, -vv for more detail

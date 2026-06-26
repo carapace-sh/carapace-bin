@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pacman
+description: package manager utility
+flags:
+    -V, --version: Display version
+    -h, --help: Display syntax for the given operation

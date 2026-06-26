@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: install-multi-package
+description: push one or more packages to the device and install them atomically
+flags:
+    --abi=: override platform's default ABI
+    --date-check-agent: update deployment agent when local version is newer and using fast deploy
+    --fastdeploy: use fast deploy
+    --force-agent: force update of deployment agent when using fast deploy
+    --instant: cause the app to be installed as an ephemeral install app
+    --local-agent: locate agent files from local source build (instead of SDK location)
+    --no-fastdeploy: prevent use of fast deploy
+    --no-streaming: always push APK to device and invoke Package Manager as separate steps
+    --streaming: force streaming APK directly into Package Manager
+    --version-check-agent: update deployment agent when local version has different version code and using fast deploy
+    -d: allow version code downgrade (debuggable packages only)
+    -g: grant all runtime permissions
+    -p: partial application install (install-multiple only)
+    -r: replace existing application
+    -t: allow test packages

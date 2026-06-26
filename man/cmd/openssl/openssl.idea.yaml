@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: idea
+aliases:
+    - idea-cbc
+    - idea-cfb
+    - idea-ecb
+    - idea-ofb
+description: IDEA Cipher
+group: cipher

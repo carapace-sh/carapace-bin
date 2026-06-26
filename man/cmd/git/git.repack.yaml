@@ -1,0 +1,41 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: repack
+description: Pack unpacked objects in a repository
+group: manipulator
+flags:
+  --cruft: same as -a, pack unreachable cruft objects separately
+  --cruft-expiration=: with --cruft, expire objects older than this
+  --depth=: limits the maximum delta depth
+  --expire-to=: pack prefix to store a pack containing pruned objects
+  --keep-pack=: do not repack this pack
+  --max-pack-size=: maximum size of each packfile
+  --pack-kept-objects: repack objects in packs marked with .keep
+  --threads=: limits the maximum number of threads
+  --unpack-unreachable=: with -A, do not loosen objects older than this
+  --window-memory=: same as the above, but limit memory size instead of entries count
+  --window=: size of the window used for delta compression
+  -A: same as -a, and turn unreachable objects loose
+  -F: pass --no-reuse-object to git-pack-objects
+  -a: pack everything in a single pack
+  -b, --write-bitmap-index: write bitmap index
+  -d: remove redundant packs, and run git-prune-packed
+  -f: pass --no-reuse-delta to git-pack-objects
+  -g, --geometric=: find a geometric progression with factor <N>
+  -i, --delta-islands: pass --delta-islands to git-pack-objects
+  -k, --keep-unreachable: with -a, repack unreachable objects
+  -l, --local: pass --local to git-pack-objects
+  -m, --write-midx: write a multi-pack index of the resulting packs
+  -n: do not run git-update-server-info
+  -q, --quiet: be quiet
+documentation:
+  command: |-
+    This command is used to combine all objects that do not currently
+    reside in a "pack", into a pack.  It can also be used to re-organize
+    existing packs into a single, more efficient pack.
+
+    A pack is a collection of objects, individually compressed, with
+    delta compression applied, stored in a single file, with an
+    associated index file.
+
+    Packs are used to reduce the load on mirror systems, backup
+    engines, disk storage, etc.

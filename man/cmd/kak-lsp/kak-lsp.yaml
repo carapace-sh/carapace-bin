@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: kak-lsp
+description: Kakoune Language Server Protocol Client
+flags:
+    --initial-request: Read initial request from stdin
+    --kakoune: Generate commands for Kakoune to plug in kak-lsp
+    --log=: File to write the log into instead of stderr
+    --request: Forward stdin to kak-lsp server
+    -V, --version: Prints version information
+    -c, --config=: Read config from FILE
+    -d, --daemonize: Daemonize kak-lsp process (server only)
+    -h, --help: Prints help information
+    -s, --session=: Session id to communicate via unix socket
+    -t, --timeout=: Session timeout in seconds (default 1800)
+    -v: Sets the level of verbosity (use up to 4 times)

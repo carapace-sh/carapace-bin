@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: prettyping
+description: This script is a wrapper around the system's "ping" tool
+flags:
+    --awkbin=: Override the awk interpreter.
+    --color: Enable color output.
+    --columns=: Override auto-detection of terminal dimensions.
+    --last=: Use the last "n" pings at the statistics line.
+    --legend: Enable/disable the latency legend.
+    --lines=: Override auto-detection of terminal dimensions.
+    --multicolor: Enable multi-color unicode output.
+    --nocolor: Disable color output.
+    --nolegend: Enable/disable the latency legend.
+    --nomulticolor: Disable multi-color unicode output.
+    --noterminal: Force the output designed to a terminal.
+    --nounicode: Disable unicode characters.
+    --pingbin=: Override the ping tool.
+    --rttmax=: Maximum RTT represented in the unicode graph.
+    --rttmin=: Minimum RTT represented in the unicode graph.
+    --terminal: Force the output designed to a terminal.
+    --unicode: Enable unicode characters.
+    "-6": 'Shortcut for: --pingbin ping6'
+    -R: Record route mode is not allowed in prettyping.
+    -a: Audible ping is not implemented yet.
+    -f: Flood mode is not allowed in prettyping.
+    -q: Quiet output is not allowed in prettyping.
+    -v: Verbose output seems to be the default mode in ping.

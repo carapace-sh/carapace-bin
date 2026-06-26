@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: set_window
+description: Set properties about a window
+flags:
+    --class=: Set window class
+    --classname=: Set window class name
+    --icon-name=: Set window WM_ICON_NAME
+    --name=: Set window WM_NAME
+    --overrideredirect=: Set window's override_redirect value
+    --role=: Set window WM_WINDOW_ROLE
+    --urgency=: Set window urgency hint

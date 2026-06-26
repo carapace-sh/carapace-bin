@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: resize-os-window
+description: Resize/show/hide/etc. the specified OS Windows
+flags:
+    --action=: The action to perform
+    --height=: Change the height of the window
+    --incremental: Treat the specified sizes as increments on the existing window size
+    --no-response: Don't wait for a response indicating the success of the action
+    --self: Resize the window this command is run in, rather than the active window
+    --unit=: The unit in which to interpret specified sizes
+    --width=: Change the width of the window
+    -h, --help: Show help for this command
+    -m, --match=: The window to match

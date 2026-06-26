@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: login [OPTIONS] [SERVER]
+description: Log in to a registry
+group: common
+flags:
+    --password-stdin: Take the Password or Personal Access Token (PAT) from stdin
+    -p, --password=: Password or Personal Access Token (PAT)
+    -u, --username=: Username

@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: stack <command> [flags]
+aliases:
+    - stacks
+description: Create, manage, and work with stacked diffs. (EXPERIMENTAL)
+persistentflags:
+    -R, --repo=: Select another repository. Can use either `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format. Also accepts full URL or Git URL.

@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: dumpmeta
+description: dump metadata from the CHD to stdout or to a file
+flags:
+    -f, --force: force overwriting an existing file
+    -i, --input=: input file name
+    -ix, --index=: indexed instance of this metadata tag
+    -o, --output=: output file name
+    -t, --tag=: 4-character tag for metadata

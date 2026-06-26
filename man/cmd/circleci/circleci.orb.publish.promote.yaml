@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: promote
+description: Promote a development version of an orb to a semantic release

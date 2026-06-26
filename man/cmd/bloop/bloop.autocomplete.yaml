@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: autocomplete
+description: generate autocompletion
+flags:
+    --command=: ""
+    --format=: output format
+    --mode=: completion mode
+    --project=: ""

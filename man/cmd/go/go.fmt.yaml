@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: fmt
+description: gofmt (reformat) package sources
+flags:
+    -C=: Change to dir before running the command
+    -mod: set module download mode
+    -n: print commands that would be executed
+    -x: print commands as they are executed

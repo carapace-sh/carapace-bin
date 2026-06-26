@@ -1,0 +1,49 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: update-index
+description: Register file contents in the working tree to the index
+group: low-level manipulator
+flags:
+  --add: do not ignore new files
+  --assume-unchanged: mark files as "not changing"
+  --cacheinfo=: add the specified entry to the index
+  --chmod=: override the executable bit of the listed files
+  --clear-resolve-undo: (for porcelains) forget saved unresolved conflicts
+  --force-remove: remove named paths even if present in worktree
+  --force-untracked-cache: enable untracked cache without testing the filesystem
+  --force-write-index: write out the index even if is not flagged as changed
+  --fsmonitor: enable or disable file system monitor
+  --fsmonitor-valid: mark files as fsmonitor valid
+  --ignore-missing: ignore files missing from worktree
+  --ignore-skip-worktree-entries: do not touch index-only entries
+  --ignore-submodules: 'refresh: ignore submodules'
+  --index-info: add entries from standard input to the index
+  --index-version=: write index in this format
+  --info-only: add to index only; do not add content to object database
+  --no-assume-unchanged: clear assumed-unchanged bit
+  --no-fsmonitor-valid: clear fsmonitor valid bit
+  --no-skip-worktree: clear skip-worktree bit
+  --really-refresh: like --refresh, but ignore assume-unchanged setting
+  --refresh: refresh stat information
+  --remove: notice files missing from worktree
+  --replace: let files replace directories and vice-versa
+  --skip-worktree: mark files as "index-only"
+  --split-index: enable or disable split index
+  --stdin: read list of paths to be updated from standard input
+  --test-untracked-cache: test if the filesystem supports untracked cache
+  --unmerged: refresh even if index contains unmerged entries
+  --unresolve: 'repopulate stages #2 and #3 for the listed paths'
+  --untracked-cache: enable/disable untracked cache
+  --verbose: report actions to standard output
+  -g, --again: only update entries that differ from HEAD
+  -q: continue refresh even when index needs update
+  -z: 'with --stdin: input lines are terminated by null bytes'
+documentation:
+  command: |-
+    Modifies the index. Each file mentioned is updated into the index and
+    any 'unmerged' or 'needs updating' state is cleared.
+
+    See also [git-add](cmd://git/add) for a more user-friendly way to do some of
+    the most common operations on the index.
+
+    The way 'git update-index' handles files it is told about can be modified
+    using the various options:

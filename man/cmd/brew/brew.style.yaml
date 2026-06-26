@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: style
+description: Check formulae or files for conformance to Homebrew style guidelines
+group: developer
+flags:
+    --cask: Treat all named arguments as casks.
+    --debug: Display any debugging information.
+    --except-cops: Specify a comma-separated <cops> list to skip checking for violations of the listed RuboCop cops.
+    --fix: Fix style violations automatically using RuboCop's auto-correct feature.
+    --formula: Treat all named arguments as formulae.
+    --help: Show this message.
+    --only-cops: Specify a comma-separated <cops> list to check for violations of only the listed RuboCop cops.
+    --quiet: Make some output more quiet.
+    --reset-cache: Reset the RuboCop cache.
+    --verbose: Make some output more verbose.

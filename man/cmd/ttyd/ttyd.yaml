@@ -1,0 +1,31 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ttyd
+description: ttyd is a tool for sharing terminal over the web
+flags:
+    -6, --ipv6: Enable IPv6 support
+    -A, --ssl-ca=: SSL CA file path for client certificate verification
+    -B, --browser: Open terminal with the default system browser
+    -C, --ssl-cert=: SSL certificate file path
+    -H, --auth-header=: HTTP Header name for auth proxy
+    -I, --index=: Custom index.html path
+    -K, --ssl-key=: SSL key file path
+    -O, --check-origin: Do not allow websocket connection from different origin
+    -P, --ping-interval=: Websocket ping interval(sec)
+    -R, --readonly: Do not allow clients to write to the TTY
+    -S, --ssl: Enable SSL
+    -T, --terminal-type=: Terminal type to report
+    -a, --url-arg=: Allow client to send command line arguments in URL
+    -b, --base-path=: Expected base path for requests coming from a reverse proxy
+    -c, --credential=: Credential for basic authentication
+    -d, --debug=: Set log level
+    -g, --gid=: Group id to run with
+    -h, --help: Print this text and exit
+    -i, --interface=: Network interface to bind
+    -m, --max-clients=: Maximum clients to support
+    -o, --once: Accept only one client and exit on disconnection
+    -p, --port=: Port to listen
+    -s, --signal=: Signal to send to the command when exit it
+    -t, --client-option=: Send option to client
+    -u, --uid=: User id to run with
+    -v, --version: Print the version and exit
+    -w, --cwd=: Working directory to be set for the child program

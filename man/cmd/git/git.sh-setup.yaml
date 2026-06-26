@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: sh-setup
+description: Common Git shell script setup code
+group: low-level helper
+documentation:
+  command: |-
+    This is not a command the end user would want to run.  Ever.
+    This documentation is meant for people who are studying the
+    Porcelain-ish scripts and/or are writing new ones.
+
+    The 'git sh-setup' scriptlet is designed to be sourced (using
+    `.`) by other shell scripts to set up some variables pointing at
+    the normal Git directories and a few helper shell functions.
+
+    Before sourcing it, your script should set up a few variables;
+    `USAGE` (and `LONG_USAGE`, if any) is used to define the message
+    given by `usage()` shell function.  `SUBDIRECTORY_OK` can be set
+    if the script can run from a subdirectory of the working tree
+    (some commands do not).
+
+    The scriptlet sets `GIT_DIR` and `GIT_OBJECT_DIRECTORY` shell
+    variables, but does *not* export them to the environment.

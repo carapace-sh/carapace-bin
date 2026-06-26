@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: new-window
+description: Open new window
+flags:
+    --cwd=: The initial working directory for the new window
+    --dont-take-focus: Keep the current window focused instead of switching to the newly opened window
+    --new-tab: Open a new tab
+    --no-response: Don't wait for a response giving the id of the newly opened window
+    --tab-title=: Set the title of the tab, when open a new tab
+    --title=: The title for the new window
+    --window-type=: What kind of window to open
+    -h, --help: Show help for this command
+    -m, --match=: The tab to match

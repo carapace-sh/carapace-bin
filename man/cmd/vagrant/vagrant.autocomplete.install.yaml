@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: install
+description: install autocomplete
+flags:
+    -b, --bash: Install bash autocomplete
+    -z, --zsh: Install zsh autocomplete

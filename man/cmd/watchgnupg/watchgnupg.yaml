@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: watchgnupg
+description: Read and print logs from a socket
+flags:
+    --force: delete an already existing socket file
+    --help: display this help and exit
+    --tcp: listen on a TCP port and optionally on a local socket
+    --time-only: print only the time; not a full timestamp
+    --verbose: enable extra informational output
+    --version: print version of the program and exit

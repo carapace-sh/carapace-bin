@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: snapshot
+description: Saves, restores and inspects snapshots of Consul server state

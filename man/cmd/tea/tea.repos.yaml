@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: repos
+aliases:
+    - repo
+description: Show repository details
+group: ENTITIES
+flags:
+    --limit=: specify limit of items per page
+    -T, --type=: 'Filter by type: fork, mirror, source'
+    -f, --fields=: 'Comma-separated list of fields to print. Available values:'
+    -l, --login=: Use a different Gitea Login. Optional
+    -o, --output=: Output format. (simple, table, csv, tsv, yaml, json)
+    -p, --page=: specify page, default is 1
+    -s, --starred: List your starred repos instead
+    -w, --watched: List your watched repos instead

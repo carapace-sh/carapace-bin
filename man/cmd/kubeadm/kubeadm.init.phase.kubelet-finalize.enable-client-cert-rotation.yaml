@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: enable-client-cert-rotation
+description: Enable kubelet client certificate rotation
+flags:
+    --cert-dir=: The path where to save and store the certificates.
+    --config=: Path to a kubeadm configuration file.
+    --dry-run: Don't apply any changes; just output what would be done.

@@ -1,0 +1,61 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: fix
+description: Fix finds Go programs that use old APIs
+flags:
+    -C=: Change to dir before running the command
+    -V: print version and exit
+    -a: force rebuilding of packages that are already up-to-date
+    -any: enable any analysis
+    -asan: enable interoperation with address sanitizer
+    -asmflags=: arguments to pass on each go tool asm invocation
+    -buildmode=: build mode to use
+    -buildtag: enable buildtag analysis
+    -buildvcs?: whether to stamp binaries with version control information
+    -c=: display offending line with this many lines of context
+    -compiler=: name of compiler to use
+    -diff: display diffs instead of rewriting files
+    -fix: apply all suggested fixes
+    -fixtool=: select a different analysis tool
+    -flags: print analyzer flags in JSON
+    -fmtappendf: enable fmtappendf analysis
+    -force=: force these fixes to run even if the code looks updated
+    -forvar: enable forvar analysis
+    -gccgoflags=: arguments to pass on each gccgo compiler/linker invocation
+    -gcflags=: arguments to pass on each go tool compile invocation
+    -go=: go language version for files
+    -hostport: enable hostport analysis
+    -inline: enable inline analysis
+    -installsuffix=: a suffix to use in the name of the package installation directory
+    -json: emit JSON output
+    -ldflags=: arguments to pass on each go tool link invocation
+    -linkshared: build code that will be linked against shared libraries
+    -mapsloop: enable mapsloop analysis
+    -minmax: enable minmax analysis
+    -msan: enable interoperation with memory sanitizer
+    -n: print the commands but do not run them
+    -newexpr: enable newexpr analysis
+    -omitzero: enable omitzero analysis
+    -overlay=: read a JSON config file that provides an overlay for build operations
+    -p=: the number of programs to run in parallel
+    -pgo=: specify the file path of a profile for profile-guided optimization
+    -pkgdir=: install and load all packages from dir
+    -plusbuild: enable plusbuild analysis
+    -r=: restrict the rewrites to this comma-separated list
+    -race: enable data race detection
+    -rangeint: enable rangeint analysis
+    -reflecttypefor: enable reflecttypefor analysis
+    -slicescontains: enable slicescontains analysis
+    -slicessort: enable slicessort analysis
+    -stditerators: enable stditerators analysis
+    -stringsbuilder: enable stringsbuilder analysis
+    -stringscut: enable stringscut analysis
+    -stringscutprefix: enable stringscutprefix analysis
+    -stringsseq: enable stringsseq analysis
+    -tags=: a comma-separated list of build tags to consider satisfied during the
+    -testingcontext: enable testingcontext analysis
+    -toolexec=: a program to use to invoke toolchain programs like vet and asm
+    -trimpath: remove all file system paths from the resulting executable
+    -v: print the names of packages as they are compiled
+    -waitgroup: enable waitgroup analysis
+    -work: print the name of the temporary work directory
+    -x: print the commands

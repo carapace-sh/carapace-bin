@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: exec
+description: Run a command within fnm context
+flags:
+    --using=: Either an explicit version, or a filename with the version written in it

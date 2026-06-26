@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: update
+description: Update the current environment based on environment file
+flags:
+    --json: Report all output as json
+    --prune: remove installed packages not defined in environment.yml
+    --solver=: Choose which solver backend to use
+    -f, --file=: environment definition
+    -h, --help: Show this help message and exit
+    -n, --name=: Name of environment
+    -p, --prefix=: Full path to environment location
+    -q, --quiet: Do not display progress bar
+    -v, --verbose: Use once for info, twice for debug, three times for trace

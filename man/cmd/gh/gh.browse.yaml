@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: browse [<number> | <path> | <commit-sha>]
+description: Open repositories, issues, pull requests, and more in the browser
+group: core
+documentation:
+    command: |
+        Open repositories, issues, pull requests, and more in the browser.
+        Without arguments, opens the repository home page. Pass an issue or PR number,
+        a file path, or a commit SHA to open specific content. Use flags like `--settings`,
+        `--releases`, or `--wiki` to open specific sections.
+    flag:
+        branch: |
+            Select another branch by passing in the branch name. Combined with a file path,
+            opens that file on the specified branch instead of the default branch.
+        commit: |
+            Select another commit by passing in the commit SHA. Defaults to the last commit
+            if not specified. Use with a file path to open that file at a specific commit.
+flags:
+    --blame: Open blame view for a file
+    -a, --actions: Open repository actions
+    -b, --branch=: Select another branch by passing in the branch name
+    -c, --commit?: Select another commit by passing in the commit SHA, default is the last commit
+    -n, --no-browser: Print destination URL instead of opening the browser
+    -p, --projects: Open repository projects
+    -r, --releases: Open repository releases
+    -s, --settings: Open repository settings
+    -w, --wiki: Open repository wiki
+persistentflags:
+    -R, --repo=: Select another repository using the `[HOST/]OWNER/REPO` format

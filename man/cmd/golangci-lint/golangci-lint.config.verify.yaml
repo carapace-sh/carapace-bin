@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: verify
+description: Verify configuration against JSON schema.
+flags:
+    --schema=&: JSON schema URL

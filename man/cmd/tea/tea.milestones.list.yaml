@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+aliases:
+    - ls
+description: List milestones of the repository
+flags:
+    --limit=: specify limit of items per page
+    --state=: Filter by milestone state (all|open|closed)
+    -R, --remote=: Discover Gitea login from remote. Optional
+    -f, --fields=: 'Comma-separated list of fields to print. Available values:'
+    -l, --login=: Use a different Gitea Login. Optional
+    -o, --output=: Output format. (simple, table, csv, tsv, yaml, json)
+    -p, --page=: specify page, default is 1
+    -r, --repo=: Override local repository path or gitea repository slug to interact with. Optional

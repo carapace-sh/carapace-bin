@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: update-check
+description: Print current and latest version number
+group: troubleshooting

@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: release
+description: Create a new draft Homebrew/brew release with the appropriate version number and release notes
+group: developer
+flags:
+    --debug: Display any debugging information.
+    --help: Show this message.
+    --major: Create a major release.
+    --minor: Create a minor release.
+    --quiet: Make some output more quiet.
+    --verbose: Make some output more verbose.

@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: get
+description: Retrieves or lists data from the KV store
+flags:
+    --base64: Base64 encode the value.
+    --ca-file=: Path to a CA file to use for TLS when communicating with Consul.
+    --ca-path=: Path to a directory of CA certificates to use for TLS when communicating with Consul.
+    --client-cert=: Path to a client cert file to use for TLS when 'verify_incoming' is enabled.
+    --client-key=: Path to a client key file to use for TLS when 'verify_incoming' is enabled.
+    --datacenter=: Name of the datacenter to query.
+    --detailed: Provide additional metadata about the key in addition to the value.
+    --http-addr=: The `address` and port of the Consul HTTP agent.
+    --keys: List keys which start with the given prefix, but not their values.
+    --namespace=: Specifies the namespace to query.
+    --recurse: Recursively look at all keys prefixed with the given path.
+    --separator=: String to use as a separator between keys.
+    --stale: Permit any Consul server (non-leader) to respond to this request.
+    --tls-server-name=: The server name to use as the SNI host when connecting via TLS.
+    --token-file=: File containing the ACL token to use in the request.
+    --token=: ACL token to use in the request.

@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: generate-docs
+description: Populates the specified folder with documentation in markdown about minikube
+hidden: true
+flags:
+    --code-path=: The path on the file system where the error code docs in markdown need to be saved
+    --path=: The path on the file system where the docs in markdown need to be saved
+    --test-path=: The path on the file system where the testing docs in markdown need to be saved

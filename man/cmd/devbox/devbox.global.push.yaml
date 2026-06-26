@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: push <git-repo>
+description: Push a [global] config. Leave empty to use jetify cloud. Can be a git repo for self storage.
+flags:
+    --environment=: environment to use, when supported (e.g.secrets support dev, prod, preview.)
+    -c, --config=&: path to directory containing a devbox.json config file

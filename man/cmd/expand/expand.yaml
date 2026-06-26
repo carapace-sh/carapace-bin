@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: expand
+description: convert tabs to spaces
+flags:
+    --help: display this help and exit
+    --version: output version information and exit
+    -i, --initial: do not convert tabs after non blanks
+    -t, --tabs=: have tabs N characters apart, not 8. use comma separated list of tab positions

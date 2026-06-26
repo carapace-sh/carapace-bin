@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: delete <id> [flags]
+description: Delete the schedule with the specified ID.

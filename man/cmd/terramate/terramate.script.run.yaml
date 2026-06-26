@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: run
+description: Run script in stacks
+flags:
+    --disable-check-gen-code: Disable outdated generated code check
+    --disable-check-git-remote: Disable checking if local default branch is updated with remote
+    --disable-safeguards=: 'Disable safeguards: {all,none,git,git-untracked,git-uncommitted,outdated-code,git-out-of-sync}'
+    --dry-run: Plan the execution but do not execute it
+    --no-recursive: Do not recurse into child stacks
+    -X: Disable all safeguards

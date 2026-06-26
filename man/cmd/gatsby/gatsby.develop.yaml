@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: develop
+description: Start development server
+flags:
+    --ca-file=: Custom HTTPS CA certificate file.
+    --graphql-tracing: Trace every graphql resolver.
+    --inspect-brk=: Opens a port for debugging.
+    --inspect=: Opens a port for debugging.
+    --open-tracing-config-file=: Tracer configuration file.
+    -H, --host=: Set host.
+    -S, --https: Use HTTPS.
+    -c, --cert-file=: Custom HTTPS cert file.
+    -k, --key-file=: Custom HTTPS key file.
+    -o, --open: Open the site in your (default) browser for you.
+    -p, --port=: Set port.

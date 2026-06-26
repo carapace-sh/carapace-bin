@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: store
+description: OpenFaaS store commands
+persistentflags:
+    -p, --platform=: Target platform for store
+    -u, --url=: Alternative Store URL starting with http(s)://

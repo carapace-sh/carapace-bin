@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: sessions
+description: Reports the previous sessions (unstable)
+flags:
+    --limit=: Limit the number of results
+    --manifest-path=: Path to Cargo.toml
+    -h, --help: Print help

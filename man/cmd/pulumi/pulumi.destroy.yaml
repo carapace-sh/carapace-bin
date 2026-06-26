@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: destroy
+aliases:
+    - down
+description: Destroy an existing stack and its resources
+flags:
+    -j, --json: Serialize the destroy diffs, operations, and overall output as JSON
+persistentflags:
+    --config-file=: Use the configuration values in the specified file rather than detecting the file name
+    --diff: Display operation as a rich diff showing the overall change
+    --exclude-protected: Do not destroy protected resources. Destroy all other resources.
+    --exec-agent=: ""
+    --exec-kind=: ""
+    --show-config: Show configuration keys and variables
+    --show-replacement-steps: Show detailed resource replacement creates and deletes instead of a single step
+    --show-sames: Show resources that don't need to be updated because they haven't changed, alongside those that do
+    --suppress-outputs: Suppress display of stack outputs (in case they contain sensitive values)
+    --suppress-permalink?: Suppress display of the state permalink
+    --target-dependents: Allows destroying of dependent targets discovered but not specified in --target list
+    -d, --debug: Print detailed debugging output during resource operations
+    -f, --skip-preview: Do not perform a preview before performing the destroy
+    -m, --message=: Optional message to associate with the destroy operation
+    -p, --parallel=: Allow P resource operations to run in parallel at once (1 for no parallelism). Defaults to unbounded.
+    -r, --refresh?: Refresh the state of the stack's resources before this update
+    -s, --stack=: The name of the stack to operate on. Defaults to the current stack
+    -t, --target=*: 'Specify a single resource URN to destroy. All resources necessary to destroy this target will also be destroyed. Multiple resources can be specified using: --target urn1 --target urn2. Wildcards (*, **) are also supported'
+    -y, --yes: Automatically approve and perform the destroy after previewing it

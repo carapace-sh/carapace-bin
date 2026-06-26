@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: clean
+description: Remove unused packages and caches
+flags:
+    --json: Report all output as json.
+    -a, --all: Remove index cache, lock files, unused cache packages, and tarballs.
+    -c=*: Remove temporary files that could not be deleted earlier due to being in-use.
+    -d, --dry-run: Only display what would have been done.
+    -f, --force-pkgs-dirs: Remove *all* writable package caches.
+    -h, --help: Show this help message and exit.
+    -i, --index-cache: Remove index cache.
+    -p, --packages: Remove unused packages from writable package caches.
+    -q, --quiet: Do not display progress bar.
+    -t, --tarballs: Remove cached package tarballs.
+    -v, --verbose: Can be used multiple times.
+    -y, --yes: Do not ask for confirmation.

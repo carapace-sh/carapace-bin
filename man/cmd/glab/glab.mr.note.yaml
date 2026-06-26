@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: note [<id> | <branch>]
+aliases:
+    - comment
+description: Add a comment or note to a merge request.
+flags:
+    --unique: Don't create a comment or note if it already exists.
+    -m, --message=: Comment or note message.

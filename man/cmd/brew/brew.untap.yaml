@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: untap
+description: Remove a tapped formula repository
+group: main
+flags:
+    --debug: Display any debugging information.
+    --force: Untap even if formulae or casks from this tap are currently installed.
+    --help: Show this message.
+    --quiet: Make some output more quiet.
+    --verbose: Make some output more verbose.

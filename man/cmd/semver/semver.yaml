@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: semver
+description: A JavaScript implementation of the https://semver.org/ specification
+flags:
+    --ltr: Coerce version strings left to right (default)
+    --preid=: Identifier to be used to prefix version increments.
+    --rtl: Coerce version strings right to left
+    -c, --coerce: Coerce a string into SemVer if possible
+    -i, --increment=: Increment a version by the specified level.
+    -l, --loose: Interpret versions and ranges loosely
+    -p, --include-prerelease: Always include prerelease versions in range matching
+    -r, --range=: Print versions that match the specified range.

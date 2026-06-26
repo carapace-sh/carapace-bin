@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: chromastyles
+description: Generate CSS stylesheet for the Chroma code highlighter
+persistentflags:
+    --highlightStyle=: style used for highlighting lines (see https://github.com/alecthomas/chroma)
+    --linesStyle=: style used for line numbers (see https://github.com/alecthomas/chroma)
+    --style=: highlighter style (see https://help.farbox.com/pygments.html)

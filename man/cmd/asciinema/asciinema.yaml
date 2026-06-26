@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: asciinema
+description: Record and share your terminal sessions, the right way.
+flags:
+    --version: show program's version number and exit
+persistentflags:
+    --server-url=: asciinema server URL
+    -h, --help: show this help message and exit
+    -q, --quiet: Quiet mode, i.e. suppress diagnostic messages

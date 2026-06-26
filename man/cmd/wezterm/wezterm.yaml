@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: wezterm [OPTIONS] [COMMAND]
+description: Wez's Terminal Emulator
+flags:
+    --config-file=: Specify the configuration file to use, overrides the normal
+    --config=: Override specific configuration values
+    -V, --version: Print version
+    -h, --help: Print help
+    -n, --skip-config: Skip loading wezterm.lua

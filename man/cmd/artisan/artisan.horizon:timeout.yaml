@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: horizon:timeout [<environment>]
+description: Get the maximum timeout for the given environment

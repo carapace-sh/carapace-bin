@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: add [<key-file>]
+description: Add a GPG key to your GitHub account
+flags:
+    -t, --title=: Title for the new key

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: set-accent-color
+description: Change the accent color
+flags:
+    -h, --help: Show help for this command

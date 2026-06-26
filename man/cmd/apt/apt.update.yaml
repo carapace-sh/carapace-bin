@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: update
+description: update list of available packages
+flags:
+    --allow-insecure-repositories: allow insecure repositories
+    --list-cleanup: automatically manage the contents of /var/lib/apt/lists
+    --print-uris: print file URIs
+
+documentation:
+  command: >-
+    Refresh the package lists from all configured repositories. Fetches the latest package indexes so that apt can determine which packages are available for installation or upgrade. Should be run before `apt install` or `apt upgrade` to ensure up-to-date information. Use `--allow-insecure-repositories` if repositories don't have valid signatures. The `--list-cleanup` flag automatically manages the contents of `/var/lib/apt/lists`.

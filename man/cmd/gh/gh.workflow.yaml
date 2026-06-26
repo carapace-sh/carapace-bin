@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: workflow <command>
+description: View details about GitHub Actions workflows
+group: actions
+documentation:
+    command: |
+        List, view, and run workflows in GitHub Actions. Enable or disable
+        workflows with `gh workflow enable` and `gh workflow disable`, run
+        them manually with `gh workflow run`, and view details with
+        `gh workflow view`.
+persistentflags:
+    -R, --repo=: Select another repository using the `[HOST/]OWNER/REPO` format

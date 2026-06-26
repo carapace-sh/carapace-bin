@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: tofu
+description: The open source infrastructure as code tool
+flags:
+    -chdir?: Switch to a different working directory before executing the given subcommand.
+    -help: Show this help output, or the help for a specified subcommand.
+    -version: An alias for the "version" subcommand.

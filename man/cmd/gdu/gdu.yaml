@@ -1,0 +1,36 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: gdu
+description: Pretty fast disk usage analyzer written in Go
+flags:
+    --enable-profiling: Enable collection of profiling data and provide it on http://localhost:6060/debug/pprof/
+    --si: Show sizes with decimal SI prefixes (kB, MB, GB) instead of binary prefixes (KiB, MiB, GiB)
+    -B, --show-relative-size: Show relative size
+    -H, --no-hidden: Ignore hidden directories (beginning with dot)
+    -I, --ignore-dirs-pattern=*: Absolute path patterns to ignore (separated by comma)
+    -X, --ignore-from=: Read absolute path patterns to ignore from file
+    -a, --show-apparent-size: Show apparent size
+    -c, --no-color: Do not use colorized output
+    -d, --show-disks: Show all mounted disks
+    -f, --input-file=: Import analysis from JSON file
+    -g, --const-gc: Enable memory garbage collection during analysis with constant level set by GOGC
+    -h, --help: help for gdu
+    -i, --ignore-dirs=*: Absolute paths to ignore (separated by comma)
+    -l, --log-file=: Path to a logfile
+    -m, --max-cores=: Set max cores that GDU will use. 4 cores available
+    -n, --non-interactive: Do not run in interactive mode
+    -o, --output-file=: Export all info into file as JSON
+    -p, --no-progress: Do not show progress in non-interactive mode
+    -s, --summarize: Show only a total in non-interactive mode
+    -v, --version: Print version
+    -x, --no-cross: Do not cross filesystem boundaries
+
+documentation:
+  command: >-
+    Fast disk usage analyzer written in Go. gdu scans directories and
+    shows space usage with an interactive ncurses UI. Default: gdu /path.
+    Navigate with arrow keys; open directories with Enter. Delete with d.
+    Sort with s; toggle apparent size with a. Ignore paths with -i or
+    --ignore-dirs. Filter by file type with -t or --type. Show only
+    top items with --max-depth. Export JSON with --output-json. Works
+    fast on SSDs (parallel processing); usable on HDDs too. TUI colors
+    indicate usage levels. Set disk analyzer with --disk-util.

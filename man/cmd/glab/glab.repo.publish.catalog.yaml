@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: catalog <tag-name>
+description: '[EXPERIMENTAL] Publishes CI/CD components to the catalog.'

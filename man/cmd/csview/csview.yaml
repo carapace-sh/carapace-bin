@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    A high performance CSV viewer with CJK/emoji support. Displays
+    CSV files in a formatted table with configurable delimiter, style,
+    indent, and padding.
+description: A high performance csv viewer with cjk/emoji support
+flags:
+    --sniff=: Limit column widths sniffing to the specified number of rows
+    -H, --no-headers: Specify that the input has no header row
+    -V, --version: Print version information
+    -d, --delimiter=: Specify the field delimiter
+    -h, --help: Print help information
+    -i, --indent=: Specify global indent for table
+    -p, --padding=: Specify padding for table cell
+    -s, --style=: Specify the border style
+    -t, --tsv: Use '\t' as delimiter for tsv

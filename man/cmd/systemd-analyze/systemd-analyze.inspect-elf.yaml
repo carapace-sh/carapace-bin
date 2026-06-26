@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: inspect-elf
+description: Parse and print ELF package metadata

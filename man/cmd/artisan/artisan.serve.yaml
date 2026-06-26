@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: serve [--host [HOST]] [--port [PORT]] [--tries [TRIES]] [--no-reload]
+description: Serve the application on the PHP development server
+flags:
+    --host=: The host address to serve the application on
+    --no-reload: Do not reload the development server on .env file changes
+    --port=: The port to serve the application on
+    --tries=: The max number of ports to attempt to serve from

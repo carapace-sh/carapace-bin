@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: request-pull
+description: Generates a summary of pending changes
+group: interaction
+flags:
+  -p: show patch text as well
+documentation:
+  command: |-
+    Generate a request asking your upstream project to pull changes into
+    their tree.  The request, printed to the standard output,
+    begins with the branch description, summarizes
+    the changes, and indicates from where they can be pulled.
+
+    The upstream project is expected to have the commit named by
+    `<start>` and the output asks it to integrate the changes you made
+    since that commit, up to the commit named by `<end>`, by visiting
+    the repository named by `<URL>`.

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create
+description: Create a new Benthos config
+flags:
+    -s, --small: Print only the main components of a Benthos config (input, pipeline, output) and omit all fields marked as advanced.

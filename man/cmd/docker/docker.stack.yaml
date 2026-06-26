@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: stack [OPTIONS]
+description: Manage Swarm stacks
+group: swarm
+persistentflags:
+    --orchestrator=&: Orchestrator to use (swarm|all)

@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: dump
+description: Dumps the internal state of the %{product} server process.
+flags:
+    --action_cache: Dump action cache content.
+    --memory=: Dump the memory use of the given Skyframe node.
+    --noaction_cache: Dump action cache content.
+    --nopackages: Dump package cache content.
+    --norule_classes: Dump rule classes.
+    --norules: Dump rules, including counts and memory usage (if memory is tracked).
+    --packages: Dump package cache content.
+    --rule_classes: Dump rule classes.
+    --rules: Dump rules, including counts and memory usage (if memory is tracked).
+    --skyframe=: Dump the Skyframe graph.
+    --skykey_filter=: Regex filter of SkyKey names to output. Only used with --skyframe=deps, rdeps, function_graph.
+    --skylark_memory=: Dumps a pprof-compatible memory profile to the specified path. To learn more please see https://github.com/google/pprof.

@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: version
+description: print OpenSSL version information
+group: standard
+flags:
+    -a: Show all data
+    -b: Show build date
+    -c: Show CPU settings info
+    -d: Show configuration directory
+    -f: Show compiler flags used
+    -m: Show modules directory
+    -o: Show some internal datatype options
+    -p: Show target build platform
+    -r: Show random seeding options
+    -v: Show library version
+    -w: Show Windows install context

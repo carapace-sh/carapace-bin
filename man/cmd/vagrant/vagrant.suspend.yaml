@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: suspend
+description: suspends the machine
+flags:
+    -a, --all-global: Suspend all running vms globally.

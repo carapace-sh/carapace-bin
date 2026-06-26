@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: lf
+description: terminal file manager
+flags:
+    --command=: command to execute on client initialization
+    --config=: path to the config file
+    --cpuprofile=: path to the file to write the CPU profile
+    --doc: show documentation
+    --last-dir-path=: path to the file to write the last dir on exit (to use for cd)
+    --memprofile=: path to the file to write the memory profile
+    --remote=: send remote command to server
+    --selection-path=: path to the file to write selected files on open
+    --server: start server (automatic)
+    --single: start a client without server
+    --version: show version

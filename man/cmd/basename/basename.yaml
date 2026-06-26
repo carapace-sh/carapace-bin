@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Strip directory path and optional suffix from filenames. Useful
+    in shell scripts to extract the filename portion of a path.
+description: strip directory and suffix from filenames
+flags:
+    --help: display this help and exit
+    --version: output version information and exit
+    -a, --multiple: support multiple arguments and treat each as a NAME
+    -s, --suffix=: remove a trailing SUFFIX; implies -a
+    -z, --zero: end each output line with NUL, not newline

@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: daemon-reload
+description: Reload systemd manager configuration
+group: manager state
+documentation:
+  command: |
+    Reload the systemd manager configuration. This will rerun all generators,
+    reload all unit files, and recreate the entire dependency tree. While
+    reloading, all sockets systemd listens on behalf of user configuration
+    will stay accessible. This command should not be confused with the reload
+    command which reloads service-specific configuration.

@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: flash
+description: QMK Flash
+flags:
+    --bootloader=: The flash command, corresponding to qmk's make options of bootloaders.
+    --keyboard=: The keyboard to build a firmware for
+    --keymap=: The keymap to build a firmware for
+    -b, --bootloaders: List the available bootloaders.
+    -c, --clean: Remove object files before compiling.
+    -e, --env=: Set a variable to be passed to make.
+    -h, --help: show this help message and exit
+    -j, --parallel=: Set the number of parallel make jobs
+    -n, --dry-run: Don't actually build

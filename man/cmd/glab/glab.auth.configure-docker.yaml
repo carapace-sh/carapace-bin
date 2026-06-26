@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: configure-docker
+description: Register glab as a Docker credential helper

@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pennant:purge [--except [EXCEPT]] [--except-registered] [--store [STORE]] [--] [<features>...]
+aliases:
+    - pennant:clear
+description: Delete Pennant features from storage
+flags:
+    --except-registered: Purge all features except those registered
+    --except=: The features that should be excluded from purging
+    --store=: The store to purge the features from

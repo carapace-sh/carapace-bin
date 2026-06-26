@@ -1,0 +1,69 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: init
+description: Create an empty Git repository or reinitialize an existing one
+group: main
+flags:
+  --bare: create a bare repository
+  --object-format=: specify the hash algorithm to use
+  --separate-git-dir=: separate git dir from working tree
+  --shared?: specify that the git repository is to be shared amongst several users
+  --template=: directory from which templates will be used
+  -b, --initial-branch=: override the name of the initial branch
+  -q, --quiet: be quiet
+documentation:
+  command: |-
+    This command creates an empty Git repository - basically a `.git`
+    directory with subdirectories for `objects`, `refs/heads`,
+    `refs/tags`, and template files.  An initial branch without any
+    commits will be created (see the `--initial-branch` option below
+    for its name).
+
+    If the `GIT_DIR` environment variable is set then it specifies a path
+    to use instead of `./.git` for the base of the repository.
+
+    If the object storage directory is specified via the
+    `GIT_OBJECT_DIRECTORY` environment variable then the sha1 directories are created underneath; otherwise, the default `$GIT_DIR/objects`
+    directory is used.
+
+    Running `git init` in an existing repository is safe. It will not
+    overwrite things that are already there. The primary reason for
+    rerunning `git init` is to pick up newly added templates (or to move
+    the repository to another place if `--separate-git-dir` is given).
+  flag:
+    bare: |-
+      Create a bare repository. If `GIT_DIR` environment is not set, it is set to the
+      current working directory.
+    initial-branch: |-
+      Use _<branch-name>_ for the initial branch in the newly created
+      repository.  If not specified, fall back to the default name
+
+      (currently `master`, but this will change to `main` when Git 3.0 is released).
+
+      `main`.
+
+      The default name can be customized via the `init.defaultBranch` configuration
+      variable.
+    object-format: |-
+      Specify the given object _<format>_ (hash algorithm) for the repository.  The valid
+      values are `sha1` and (if enabled) `sha256`.  `sha1` is the default.
+
+      Note: At present, there is no interoperability between SHA-256
+      repositories and SHA-1 repositories.
+
+      Historically, we warned that SHA-256 repositories may later need
+      backward incompatible changes when we introduce such interoperability
+      features. Today, we only expect compatible changes. Furthermore, if such
+      changes prove to be necessary, it can be expected that SHA-256 repositories
+      created with today's Git will be usable by future versions of Git
+      without data loss.
+    quiet: Only print error and warning messages; all other output will be suppressed.
+    separate-git-dir: |-
+      Instead of initializing the repository as a directory to either `$GIT_DIR` or
+      `./.git/`, create a text file there containing the path to the actual
+      repository.  This file acts as a filesystem-agnostic Git symbolic link to the
+      repository.
+
+      If this is a reinitialization, the repository will be moved to the specified path.
+    template: |-
+      Specify the directory from which templates will be used.  (See the "TEMPLATE
+      DIRECTORY" section below.)

@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: readall
+description: Import all items from the specified <tap>, or from all installed taps if none is provided
+group: main
+flags:
+    --aliases: Verify any alias symlinks in each tap.
+    --arch: Read using the given CPU architecture. (Pass `all` to simulate all architectures.)
+    --debug: Display any debugging information.
+    --eval-all: Evaluate all available formulae and casks, whether installed or not. Implied if `HOMEBREW_EVAL_ALL` is set.
+    --help: Show this message.
+    --no-simulate: Don't simulate other system configurations when checking formulae and casks.
+    --os: Read using the given operating system. (Pass `all` to simulate all operating systems.)
+    --quiet: Make some output more quiet.
+    --syntax: Syntax-check all of Homebrew's Ruby files (if no <tap> is passed).
+    --verbose: Make some output more verbose.

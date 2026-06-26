@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: billing
+description: Manages the account payment methods
+
+documentation:
+  command: >-
+    Manage payment methods for your Vercel account.

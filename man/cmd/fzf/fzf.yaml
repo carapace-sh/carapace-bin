@@ -1,0 +1,123 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: fzf
+description: a command-line fuzzy finder
+flags:
+    --accept-nth=: Define which fields to print on accept
+    --algo=: Fuzzy matching algorithm
+    --ansi: Enable processing of ANSI color codes
+    --bash: Print script to set up Bash shell integration
+    --bind=: Custom key bindings
+    --border-label-pos=: Position of the border label
+    --border-label=: Label to print on the border
+    --border=: Draw border around the finder
+    --color=: Base scheme
+    --cycle: Enable cyclic scroll
+    --disabled: Do not perform search
+    --ellipsis=: Ellipsis to show when line is truncated
+    --expect=: Comma-separated list of keys to complete fzf
+    --filepath-word: Make word-wise movements respect path separators
+    --fish: Print script to set up Fish shell integration
+    --footer-border=: Draw border around the footer section
+    --footer-label-pos=: Position of the footer label
+    --footer-label=: Label to print on the footer border
+    --footer=: String to print as footer
+    --freeze-left=: Number of fields to freeze on the left
+    --freeze-right=: Number of fields to freeze on the right
+    --gap-line=: Draw horizontal line on each gap using the string
+    --gap=: Render empty lines between each item
+    --ghost=: Ghost text to display when the input is empty
+    --gutter-raw=: Character used for the gutter column in raw mode
+    --gutter=: Character used for the gutter column
+    --header-border=: Draw border around the header section
+    --header-first: Print header before the prompt line
+    --header-label-pos=: Position of the header label
+    --header-lines-border=: Display header from --header-lines with a separate border
+    --header-lines=: The first N lines of the input are treated as header
+    --header=: String to print as header
+    --height=: Display fzf window below the cursor with the given height instead of using fullscreen
+    --help: Show this message
+    --highlight-line: Highlight the whole current line
+    --history-size=: Maximum number of history entries
+    --history=: File to store fzf search history (*not* shell command history)
+    --hscroll-off=: Number of screen columns to keep to the right
+    --info-command=: Command to generate info line
+    --info=: Finder info style
+    --input-border=: Draw border around the input section
+    --input-label-pos=: Position of the input label
+    --input-label=: Label to print on the input border
+    --jump-labels=: Label characters for jump and jump-accept
+    --keep-right: Keep the right end of the line visible on overflow
+    --layout=: Choose layout
+    --list-border=: Draw border around the list section
+    --list-label-pos=: Position of the list label
+    --list-label=: Label to print on the list border
+    --listen-unsafe=: allow remote process execution
+    --listen=: Start HTTP server to receive actions via TCP/Unix domain socket
+    --literal: Do not normalize latin script letters before matching
+    --man: Show man page
+    --margin=: Screen margin
+    --marker-multi-line=: Multi-select marker for multi-line entries
+    --marker=: Multi-select marker
+    --min-height=: Minimum height when --height is given as a percentage
+    --no-bold: Do not use bold text
+    --no-clear: Do not clear finder interface on exit
+    --no-color: Disable colors
+    --no-extended: Disable extended-search mode
+    --no-hscroll: Disable horizontal scroll
+    --no-ignore-case: Case-sensitive match
+    --no-info: A synonym for --info=hidden
+    --no-input: Disable and hide the input section
+    --no-mouse: Disable mouse
+    --no-multi: Disable multi-select
+    --no-multi-line: Disable multi-line display of items when using --read0
+    --no-scrollbar: Hide scrollbar
+    --no-separator: Hide info line separator
+    --no-sort: Do not sort the result
+    --no-tty-default: Make fzf search for the current TTY device via standard error instead of defaulting to /dev/tty
+    --no-unicode: Use ASCII characters instead of Unicode drawing characters to draw borders, the spinner and the horizontal separator
+    --padding=: Padding inside border
+    --phony: Do not perform search
+    --pointer=: Pointer to the current line
+    --preview-border=: Short for --preview-window=border-STYLE
+    --preview-label-pos=: Position of the border label on the border line of the preview window
+    --preview-label=: Label to print on the horizontal border line of the preview window
+    --preview-window=: Preview window layout
+    --preview-wrap-sign=: Indicator for wrapped lines in the preview window
+    --preview=: Command to preview highlighted line
+    --print-query: Print query as the first line
+    --print0: Print output delimited by ASCII NUL characters
+    --prompt=: Input prompt
+    --raw: Enable raw mode (show non-matching items)
+    --read0: Read input delimited by ASCII NUL characters
+    --scheme=: Scoring scheme
+    --scroll-off=: Number of screen lines to keep above or below when scrolling to the top or to the bottom
+    --scrollbar=: Scrollbar character(s) (each for list section and preview window)
+    --separator=: Draw horizontal separator on info line using the string
+    --smart-case: Smart-case match
+    --style=: Apply a style preset
+    --sync: Synchronous search for multi-staged filtering
+    --tabstop=: Number of spaces for a tab character
+    --tac: Reverse the order of the input
+    --tail=: Maximum number of items to keep in memory
+    --tiebreak=: Comma-separated list of sort criteria to apply
+    --tmux=: Start fzf in a tmux popup
+    --track: Track the current selection when the result is updated
+    --version: Display version information and exit
+    --walker-root=: List of directories to walk
+    --walker-skip=: Comma-separated list of directory names to skip
+    --walker=: Determines the behavior of the built-in directory walker
+    --with-nth=: Transform the presentation of each line using field index expressions
+    --with-shell=: Shell command and flags to start child processes with
+    --wrap-sign=: Indicator for wrapped lines
+    --wrap=: Enable line wrap
+    --zsh: Print script to set up Zsh shell integration
+    -0, --exit-0: Exit immediately when there's no match
+    -1, --select-1: Automatically select the only match
+    -d, --delimiter=: Field delimiter regex
+    -e, --exact: Enable Exact-match
+    -f, --filter=: Filter mode
+    -i, --ignore-case: Case-insensitive match
+    -m, --multi=: Enable multi-select with tab/shift-tab
+    -n, --nth=: Comma-separated list of field index expressions for limiting search scope
+    -q, --query=: Start the finder with the given query
+    -x, --extended: Extended-search mode

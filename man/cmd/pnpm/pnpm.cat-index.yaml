@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: cat-index
+description: Prints the index file of a specific package from the store
+flags:
+    -h, --help: Output usage information

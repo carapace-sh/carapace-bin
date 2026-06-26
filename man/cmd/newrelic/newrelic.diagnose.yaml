@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: diagnose
+description: Troubleshoot your New Relic installation
+
+documentation:
+  command: >-
+    Troubleshoot New Relic installation and connectivity issues with diagnostic checks.

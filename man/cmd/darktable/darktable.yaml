@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    A digital photography workflow application and raw developer.
+    Manages photo libraries, applies non-destructive edits, and
+    processes RAW images.
+description: a digital photography workflow application
+flags:
+    --cachedir=: user cache directory
+    --conf=: override config values
+    --configdir=: user config directory
+    --datadir=: data directory
+    --disable-opencl: prevent OpenCL initialization
+    --library=: library file
+    --localedir=: locale directory
+    --luacmd=: lua command
+    --moduledir=: module directory
+    --noiseprofiles=: noiseprofiles json file
+    --tmpdir=: tmp directory
+    --version: print version number
+    -d=: enable debug output
+    -h, --help: ""
+    -t=: num openmp threads

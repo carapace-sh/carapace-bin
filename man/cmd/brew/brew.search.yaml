@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: search
+description: Perform a substring search of cask tokens and formula names for <text>
+group: main
+flags:
+    --archlinux: Search for <text> in the given database.
+    --cask: Search for casks.
+    --closed: Search for only closed GitHub pull requests.
+    --debian: Search for <text> in the given database.
+    --debug: Display any debugging information.
+    --desc: Search for formulae with a description matching <text> and casks with a name or description matching <text>.
+    --eval-all: Evaluate all available formulae and casks, whether installed or not, to search their descriptions. Implied if `HOMEBREW_EVAL_ALL` is set.
+    --fedora: Search for <text> in the given database.
+    --fink: Search for <text> in the given database.
+    --formula: Search for formulae.
+    --help: Show this message.
+    --macports: Search for <text> in the given database.
+    --open: Search for only open GitHub pull requests.
+    --opensuse: Search for <text> in the given database.
+    --pull-request: Search for GitHub pull requests containing <text>.
+    --quiet: Make some output more quiet.
+    --repology: Search for <text> in the given database.
+    --ubuntu: Search for <text> in the given database.
+    --verbose: Make some output more verbose.

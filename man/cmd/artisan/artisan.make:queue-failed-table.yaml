@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: make:queue-failed-table
+aliases:
+    - queue:failed-table
+description: Create a migration for the failed queue jobs database table

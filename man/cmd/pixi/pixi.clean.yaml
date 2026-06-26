@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: clean
+description: Cleanup the environments
+flags:
+    --activation-cache: Only remove the activation cache
+    --build: Only remove the pixi-build cache
+    -e, --environment=: The environment directory to remove
+persistentflags:
+    -m, --manifest-path=: The path to `pixi.toml`, `pyproject.toml`, or the workspace directory

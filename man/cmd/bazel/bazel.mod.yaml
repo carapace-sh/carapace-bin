@@ -1,0 +1,146 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: mod
+description: Queries the Bzlmod external dependency graph
+flags:
+    --action_env=*: Specifies the set of environment variables available to actions with target
+    --all_repos: 'For `mod show_repo`: display all repos in the entire workspace.'
+    --all_visible_repos: 'For `mod show_repo`: display all repos visible to the chosen base module, under their apparent names.'
+    --allow_analysis_failures: If true, an analysis failure of a rule target results in the target's propagation
+    --allow_unresolved_symlinks: If enabled, Bazel allows the use of `ctx.action.declare_symlink()` and the use of
+    --allowed_cpu_values=: Allowed values for the `--cpu` flag.
+    --analysis_testing_deps_limit=: Sets the maximum number of transitive dependencies through a rule attribute with
+    --archived_tree_artifact_mnemonics_filter=: Regex filter for mnemonics of actions for which we should create archived tree artifacts. This option is a no-op for actions which do not generate tree artifacts.
+    --base_module=: Specify a module relative to which the specified target repos will be interpreted.
+    --build_runfile_links: If true, build runfiles symlink forests for all targets.  If false, write them only when required by a local action, test or run command.
+    --build_runfile_manifests: If true, write runfiles manifests for all targets. If false, omit them. Local tests will fail to run when false.
+    --charset=: Chooses the character set to use for the tree. Only affects text output. Valid values
+    --check_licenses: Deprecated in favor of `--config=check_licenses`.
+    --check_visibility: If disabled, visibility errors in target dependencies are demoted to warnings.
+    --collect_code_coverage: If specified, Bazel will instrument code (using offline instrumentation where
+    --cpu=: 'Deprecated: this flag is not used internally by Blaze although there are legacy platform'
+    --cycles: Points out dependency cycles inside the displayed tree.
+    --default_visibility=: Default visibility for packages that don't set it explicitly ('public' or 'private').
+    --define=*: Each `--define` option specifies an assignment for a build variable.
+    --deleted_packages=*: A comma-separated list of names of packages which the build system will consider non-existent, even if they are visible somewhere on the package path.
+    --depth=: Maximum display depth of the dependency tree. A depth of 1 displays the direct
+    --enable_runfiles=: Enable runfiles symlink tree; By default, it's off on Windows, on on other platforms.
+    --enforce_constraints: Checks the environments each target is compatible with and reports errors if any target has dependencies that don't support the same environments
+    --exec_aspects=*: Comma-separated list of aspects to be applied to exec-configured targets, regardless of whether or not they are top-level targets. This is an experimental feature and is subject to change.
+    --experimental_action_listener=*: Deprecated in favor of aspects. Use `action_listener` to attach an `extra_action` to
+    --experimental_allow_map_directory: If enabled, Bazel allows the use of ctx.actions.map_directory(). This allows for the creation of actions based on the files in a directory through a user defined Starlark function and a <code>template_ctx</code> that supports basic action generation APIs.
+    --experimental_check_external_other_files: Check for modifications made to the non-output, non-repo external files, e.g. host files.
+    --experimental_check_output_files: Check for modifications made to the output files of a build. Consider setting this flag to false if you don't expect these files to change outside of bazel since it will speed up subsequent runs as they won't have to check a previous run's cache.
+    --experimental_collect_code_coverage_for_generated_files: If specified, Bazel will also generate collect coverage information for generated files.
+    --experimental_debug_selects_always_succeed: When set, `select` functions with no matching clause will return an empty value, instead
+    --experimental_enforce_transitive_visibility: If true, enable package()s to set the transitive_visibility attribute to restrict which packages may depend on them.
+    --experimental_exclude_defines_from_exec_config: If true, don't propagate `--define`s to the exec transition at default; only propagate
+    --experimental_exec_config=: If set to `//some:label:my.bzl%my_transition`, uses my_transition for `cfg = "exec"`
+    --experimental_exec_configuration_distinguisher=: Please only use this flag as part of a suggested migration or testing strategy due to
+    --experimental_extended_sanity_checks: Enables internal validation checks to make sure that configured target implementations only access things they should. Causes a performance hit.
+    --experimental_lazy_macro_expansion_packages=: List of packages in which symbolic macro are expanded only if necessary.
+    --experimental_max_directories_to_eagerly_visit_in_globbing=: If non-negative, the first time a glob is evaluated in a package, the subdirectories of the package will be traversed in order to warm filesystem caches and compensate for lack of parallelism in globbing. At most this many directories will be visited.
+    --experimental_output_directory_naming_scheme=: Please only use this flag as part of a suggested migration or testing strategy. In
+    --experimental_output_paths=: Which model to use for where in the output tree rules write their outputs, particularly
+    --experimental_override_platform_cpu_name=*: Each entry should be of the form `label=value` where label refers to a platform and values
+    --experimental_platform_in_output_dir=: If true, a shortname for the target platform is used in the output directory name
+    --experimental_propagate_custom_flag=*: Which custom flags (starlark flags or defines) to propagate to the exec transition, by
+    --experimental_remotable_source_manifests: Whether to make source manifest actions remotable
+    --experimental_strict_fileset_output: If this option is enabled, filesets will treat all output artifacts as regular files. They will not traverse directories or be sensitive to symlinks.
+    --experimental_throttle_action_cache_check: Whether to throttle the check whether an action is cached.
+    --experimental_use_platforms_in_output_dir_legacy_heuristic: Please only use this flag as part of a suggested migration or testing strategy. Note
+    --experimental_writable_outputs: If true, the file permissions of action outputs are set to `0755` instead of `0555`
+    --extension_filter=: Only display the usages of these module extensions and the repos generated by them if their respective flags are set. If set, the result graph will only include paths that contain modules using the specified extensions. An empty list disables the filter, effectively specifying all possible extensions.
+    --extension_info=: Specify how much detail about extension usages to include in the query result.
+    --extension_usages=: Specify modules whose extension usages will be displayed in the show_extension query.
+    --features=*: The given features will be enabled or disabled by default for targets built in the target configuration.
+    --fetch: Allows the command to fetch external dependencies. If set to false, the command will utilize any cached version of the dependency, and if none exists, the command will result in failure.
+    --flag_alias=*: Sets a shorthand name for a Starlark flag. It takes a single key-value pair in the form
+    --from=: The module(s) starting from which the dependency graph query will be displayed. Check
+    --host_action_env=*: Specifies the set of environment variables available to actions with execution
+    --host_compilation_mode=: 'Specify the mode the tools used during the build will be built in. Values:'
+    --host_cpu=: The host CPU.
+    --host_features=*: The given features will be enabled or disabled by default for targets built in the exec configuration.
+    --include_builtin: Include built-in modules in the dependency graph. Disabled by default because it is quite noisy.
+    --include_config_fragments_provider=: 'INTERNAL BLAZE DEVELOPER FEATURE: If `direct`, all configured targets expose'
+    --include_unused: The queries will also take into account and display the unused modules, which are not
+    --incompatible_always_include_files_in_data: If true, native rules add `DefaultInfo.files` of data dependencies to their runfiles,
+    --incompatible_auto_exec_groups: When enabled, an exec groups is automatically created for each toolchain used by a rule.
+    --incompatible_bazel_test_exec_run_under: If enabled, `bazel test --run_under=//:runner` builds `//:runner` in the exec
+    --incompatible_bep_cpu_from_platform: If specified, the value of the cpu constraint (@platforms//cpu:cpu) of the target platform is used to set the Configuration.cpu and Configuration.platform_name fields in the BEP.
+    --incompatible_check_testonly_for_output_files: If enabled, check testonly for prerequisite targets that are output files by looking up the testonly of the generating rule. This matches visibility checking.
+    --incompatible_compact_repo_mapping_manifest: If enabled, the `{binary}.repo_mapping` file emits a module extension's repo mapping
+    --incompatible_config_setting_private_default_visibility: If incompatible_enforce_config_setting_visibility=false, this is a noop. Else, if this flag is false, any config_setting without an explicit visibility attribute is //visibility:public. If this flag is true, config_setting follows the same visibility logic as all other rules. See https://github.com/bazelbuild/bazel/issues/12933.
+    --incompatible_disable_select_on=: List of flags for which the use in `select()` is disabled.
+    --incompatible_enforce_config_setting_visibility: If true, enforce config_setting visibility restrictions. If false, every config_setting is visible to every target. See https://github.com/bazelbuild/bazel/issues/12932.
+    --incompatible_exclude_starlark_flags_from_exec_config: If true, don't propagate starlark flags to the exec transition at default; only propagate starlark flags specified in `--experimental_propagate_custom_flag`.
+    --incompatible_filegroup_runfiles_for_data: If true, runfiles of targets listed in the srcs attribute are available to targets that consume the filegroup as a data dependency.
+    --incompatible_limit_platforms_in_output_dir_to=: Added for gradual rollout of --experimental_platform_in_output_dir to non-exec configurations. Takes a comma-separated list of platform labels. If set, --experimental_platform_in_output_dir is only enabled for platforms in this list. Otherwise, --experimental_platform_in_output_dir applies to all platforms.
+    --incompatible_merge_genfiles_directory: If true, the genfiles directory is folded into the bin directory.
+    --incompatible_modify_execution_info_additive: When enabled, passing multiple `--modify_execution_info` flags is additive.
+    --incompatible_target_cpu_from_platform: If specified, the value of the cpu constraint (`@platforms//cpu:cpu`) of
+    --instrument_test_targets: When coverage is enabled, specifies whether to consider instrumenting test rules.
+    --instrumentation_filter=: When coverage is enabled, only rules with names included by the
+    --legacy_globbing_threads=: Number of threads to use for glob evaluation. Takes an integer, or a keyword ("auto", "HOST_CPUS", "HOST_RAM"), optionally followed by an operation ([-|*]<float>) eg. "auto", "HOST_CPUS*.5". "auto" means to use a reasonable value derived from the machine's hardware profile (e.g. the number of processors).
+    --loading_phase_threads=: Number of parallel threads to use for the loading/analysis phase.Takes an integer, or a keyword ("auto", "HOST_CPUS", "HOST_RAM"), optionally followed by an operation ([-|*]<float>) eg. "auto", "HOST_CPUS*.5". "auto" sets a reasonable default based on host resources. Must be at least 1.
+    --min_param_file_size=: Minimum command line length before creating a parameter file.
+    --modify_execution_info=*: Add or remove keys from an action's execution info based on action mnemonic.
+    --noall_repos: 'For `mod show_repo`: display all repos in the entire workspace.'
+    --noall_visible_repos: 'For `mod show_repo`: display all repos visible to the chosen base module, under their apparent names.'
+    --noallow_analysis_failures: If true, an analysis failure of a rule target results in the target's propagation
+    --noallow_unresolved_symlinks: If enabled, Bazel allows the use of `ctx.action.declare_symlink()` and the use of
+    --nobuild_runfile_links: If true, build runfiles symlink forests for all targets.  If false, write them only when required by a local action, test or run command.
+    --nobuild_runfile_manifests: If true, write runfiles manifests for all targets. If false, omit them. Local tests will fail to run when false.
+    --nocheck_licenses: Deprecated in favor of `--config=check_licenses`.
+    --nocheck_visibility: If disabled, visibility errors in target dependencies are demoted to warnings.
+    --nocollect_code_coverage: If specified, Bazel will instrument code (using offline instrumentation where
+    --nocycles: Points out dependency cycles inside the displayed tree.
+    --noenforce_constraints: Checks the environments each target is compatible with and reports errors if any target has dependencies that don't support the same environments
+    --noexperimental_allow_map_directory: If enabled, Bazel allows the use of ctx.actions.map_directory(). This allows for the creation of actions based on the files in a directory through a user defined Starlark function and a <code>template_ctx</code> that supports basic action generation APIs.
+    --noexperimental_check_external_other_files: Check for modifications made to the non-output, non-repo external files, e.g. host files.
+    --noexperimental_check_output_files: Check for modifications made to the output files of a build. Consider setting this flag to false if you don't expect these files to change outside of bazel since it will speed up subsequent runs as they won't have to check a previous run's cache.
+    --noexperimental_collect_code_coverage_for_generated_files: If specified, Bazel will also generate collect coverage information for generated files.
+    --noexperimental_debug_selects_always_succeed: When set, `select` functions with no matching clause will return an empty value, instead
+    --noexperimental_enforce_transitive_visibility: If true, enable package()s to set the transitive_visibility attribute to restrict which packages may depend on them.
+    --noexperimental_exclude_defines_from_exec_config: If true, don't propagate `--define`s to the exec transition at default; only propagate
+    --noexperimental_extended_sanity_checks: Enables internal validation checks to make sure that configured target implementations only access things they should. Causes a performance hit.
+    --noexperimental_remotable_source_manifests: Whether to make source manifest actions remotable
+    --noexperimental_strict_fileset_output: If this option is enabled, filesets will treat all output artifacts as regular files. They will not traverse directories or be sensitive to symlinks.
+    --noexperimental_throttle_action_cache_check: Whether to throttle the check whether an action is cached.
+    --noexperimental_use_platforms_in_output_dir_legacy_heuristic: Please only use this flag as part of a suggested migration or testing strategy. Note
+    --noexperimental_writable_outputs: If true, the file permissions of action outputs are set to `0755` instead of `0555`
+    --nofetch: Allows the command to fetch external dependencies. If set to false, the command will utilize any cached version of the dependency, and if none exists, the command will result in failure.
+    --noinclude_builtin: Include built-in modules in the dependency graph. Disabled by default because it is quite noisy.
+    --noinclude_unused: The queries will also take into account and display the unused modules, which are not
+    --noincompatible_always_include_files_in_data: If true, native rules add `DefaultInfo.files` of data dependencies to their runfiles,
+    --noincompatible_auto_exec_groups: When enabled, an exec groups is automatically created for each toolchain used by a rule.
+    --noincompatible_bazel_test_exec_run_under: If enabled, `bazel test --run_under=//:runner` builds `//:runner` in the exec
+    --noincompatible_bep_cpu_from_platform: If specified, the value of the cpu constraint (@platforms//cpu:cpu) of the target platform is used to set the Configuration.cpu and Configuration.platform_name fields in the BEP.
+    --noincompatible_check_testonly_for_output_files: If enabled, check testonly for prerequisite targets that are output files by looking up the testonly of the generating rule. This matches visibility checking.
+    --noincompatible_compact_repo_mapping_manifest: If enabled, the `{binary}.repo_mapping` file emits a module extension's repo mapping
+    --noincompatible_config_setting_private_default_visibility: If incompatible_enforce_config_setting_visibility=false, this is a noop. Else, if this flag is false, any config_setting without an explicit visibility attribute is //visibility:public. If this flag is true, config_setting follows the same visibility logic as all other rules. See https://github.com/bazelbuild/bazel/issues/12933.
+    --noincompatible_enforce_config_setting_visibility: If true, enforce config_setting visibility restrictions. If false, every config_setting is visible to every target. See https://github.com/bazelbuild/bazel/issues/12932.
+    --noincompatible_exclude_starlark_flags_from_exec_config: If true, don't propagate starlark flags to the exec transition at default; only propagate starlark flags specified in `--experimental_propagate_custom_flag`.
+    --noincompatible_filegroup_runfiles_for_data: If true, runfiles of targets listed in the srcs attribute are available to targets that consume the filegroup as a data dependency.
+    --noincompatible_merge_genfiles_directory: If true, the genfiles directory is folded into the bin directory.
+    --noincompatible_modify_execution_info_additive: When enabled, passing multiple `--modify_execution_info` flags is additive.
+    --noincompatible_target_cpu_from_platform: If specified, the value of the cpu constraint (`@platforms//cpu:cpu`) of
+    --noinstrument_test_targets: When coverage is enabled, specifies whether to consider instrumenting test rules.
+    --noshow_loading_progress: If enabled, causes Bazel to print "Loading package:" messages.
+    --nostamp: Stamp binaries with the date, username, hostname, workspace information, etc.
+    --nostrict_filesets: If this option is enabled, filesets crossing package boundaries are reported as errors.
+    --nouse_target_platform_for_tests: If true, use the target platform for running tests rather than the test exec group.
+    --noverbose: The queries will also display the reason why modules were resolved to their current version (if changed). Defaults to true only for the explain query.
+    --noverbose_visibility_errors: If enabled, visibility errors include additional diagnostic information.
+    --output=: 'The format in which the query results should be printed. Allowed values for query are:'
+    --package_path=: A colon-separated list of where to look for packages. Elements beginning with '%workspace%' are relative to the enclosing workspace. If omitted or empty, the default is the output of 'bazel info default-package-path'.
+    --platform_suffix=: Specifies a suffix to be added to the configuration directory.
+    --run_under=: Prefix to insert before the executables for the `test` and `run` commands.
+    --scl_config=: Name of the scl config defined in PROJECT.scl. Note that this feature is still under development b/324119879.
+    --show_loading_progress: If enabled, causes Bazel to print "Loading package:" messages.
+    --stamp: Stamp binaries with the date, username, hostname, workspace information, etc.
+    --strict_filesets: If this option is enabled, filesets crossing package boundaries are reported as errors.
+    --target_environment=*: Declares this build's target environment. Must be a label reference to an
+    --use_target_platform_for_tests: If true, use the target platform for running tests rather than the test exec group.
+    --verbose: The queries will also display the reason why modules were resolved to their current version (if changed). Defaults to true only for the explain query.
+    --verbose_visibility_errors: If enabled, visibility errors include additional diagnostic information.
+    -c, --compilation_mode=: 'Specify the mode the binary will be built in. Values: `fastbuild`, `dbg`, `opt`.'

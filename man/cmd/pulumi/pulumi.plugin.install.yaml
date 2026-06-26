@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: install
+description: Install one or more plugins
+persistentflags:
+    --exact: Force installation of an exact version match (usually >= is accepted)
+    --reinstall: Reinstall a plugin even if it already exists
+    --server=: A URL to download plugins from
+    -f, --file=: Install a plugin from a tarball file, instead of downloading it

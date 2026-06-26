@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: init
+description: initializes a new Vagrant environment by creating a Vagrantfile
+flags:
+    --box-version=: Version of the box to add
+    --output=: Output path for the box. '-' for stdout
+    --template=: Path to custom Vagrantfile template
+    -f, --force: Overwrite existing Vagrantfile
+    -m, --minimal: Use minimal Vagrantfile template (no help comments). Ignored with --template

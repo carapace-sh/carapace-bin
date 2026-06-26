@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: gofmt
+description: format Go source code
+flags:
+    --cpuprofile=: write cpu profile to this file
+    -d: display diffs instead of rewriting files
+    -e: report all errors (not just the first 10 on different lines)
+    -l: list files whose formatting differs from gofmt's
+    -r=: rewrite rule
+    -s: simplify code
+    -w: write result to (source) file instead of stdout

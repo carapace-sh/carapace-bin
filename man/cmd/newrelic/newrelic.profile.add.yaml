@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: add
+aliases:
+    - configure
+description: Add a new profile
+flags:
+    --accountId=: your account ID
+    --apiKey=: your personal API key
+    --licenseKey=: your license key
+    -r, --region=: the US or EU region
+    -y, --acceptDefaults: suppress prompts and accept default values

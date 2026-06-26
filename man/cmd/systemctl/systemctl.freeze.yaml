@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: freeze
+description: Freeze execution of unit processes
+group: unit
+documentation:
+  command: |
+    Freeze one or more units using cgroup freezer. Freezing causes all
+    processes contained within the unit's cgroup to be suspended; they
+    will not be scheduled to run on CPU until thawed. Note that this
+    command is supported only on systems using unified cgroup hierarchy.
+    Units are automatically thawed just before executing a job against
+    them (e.g. before stopping).

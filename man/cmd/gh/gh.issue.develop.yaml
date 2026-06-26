@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: develop {<number> | <url>}
+description: Manage linked branches for an issue
+group: Targeted commands
+flags:
+    --branch-repo=: Name or URL of the repository where you want to create your new branch
+    -b, --base=: Name of the remote branch you want to make your new branch from
+    -c, --checkout: Checkout the branch after creating it
+    -i, --issue-repo=&: Name or URL of the issue's repository
+    -l, --list: List linked branches for the issue
+    -n, --name=: Name of the branch to create

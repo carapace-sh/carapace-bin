@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: activate-pane [OPTIONS]
+description: Activate (focus) a pane
+flags:
+    --pane-id=: Specify the target pane
+    -h, --help: Print help

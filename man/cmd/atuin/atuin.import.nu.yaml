@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: nu
+description: Import history from the nu history file
+flags:
+    -h, --help: Print help

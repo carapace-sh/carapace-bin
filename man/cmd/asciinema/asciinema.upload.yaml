@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: upload
+description: Upload locally saved terminal session to asciinema.org

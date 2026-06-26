@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list-keyboards
+description: List the keyboards currently defined within QMK
+flags:
+    -h, --help: show this help message and exit

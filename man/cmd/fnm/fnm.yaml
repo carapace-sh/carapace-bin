@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: fnm
+description: A fast and simple Node.js manager
+flags:
+    -v, --version: Print version
+persistentflags:
+    --arch=: Override the architecture of the installed Node binary. Defaults to arch of fnm binary
+    --corepack-enabled: Enable corepack support for each new installation. This will make fnm call `corepack enable` on every Node.js installation. For more information about corepack see <https://nodejs.org/api/corepack.html>
+    --fnm-dir=: The root directory of fnm installation
+    --log-level=: The log level of fnm commands
+    --node-dist-mirror=: <https://nodejs.org/dist/> mirror
+    --resolve-engines=: Resolve `engines.node` field in `package.json` whenever a `.node-version` or `.nvmrc` file is not present. This feature is enabled by default. To disable it, provide `--resolve-engines=false`
+    --version-file-strategy=: A strategy for how to resolve the Node version. Used whenever `fnm use` or `fnm install` is called without a version, or when `--use-on-cd` is configured on evaluation
+    -h, --help: Print help (see summary with '-h')
+
+documentation:
+  command: >-
+    Fast Node.js version manager written in Rust. fnm manages multiple
+    Node.js versions with fast switching and .node-version/.nvmrc
+    support. Key commands: install (fnm install 20), use (fnm use 20),
+    default (fnm default 18), list (fnm list). Lists remote versions
+    with fnm ls-remote. Uses symlinks to switch versions; very fast.
+    Supports .nvmrc and .node-version files for auto-switching.
+    Configurable with environment variables (FNM_*). Written in Rust
+    for speed (unlike nvm which is bash-based). Works on macOS, Linux,
+    and Windows (via WSL). Alias versions with fnm alias 20 lts.

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: inspect IMAGE[:TAG] [IMAGE[:TAG]...]
+description: Return low-level information about keys and signatures
+flags:
+    --pretty: Print the information in a human friendly format

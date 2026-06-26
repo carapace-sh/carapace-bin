@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: newrelic
+description: The New Relic CLI
+flags:
+    -h, --help: help for newrelic-dev
+persistentflags:
+    --debug: debug level logging
+    --format=: output text format [JSON, Text, YAML]
+    --plain: output compact text
+    --profile=: the authentication profile to use
+    --trace: trace level logging
+    -a, --accountId=: the account ID to use. Can be overridden by setting NEW_RELIC_ACCOUNT_ID
+
+documentation:
+  command: >-
+    New Relic CLI for managing observability resources, sending events, querying data, and configuring New Relic from the terminal.

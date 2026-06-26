@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: weak <package-spec>...
+description: mark package as a weak dependency
+flags:
+    --skip-unavailable: allow skipping packages that are not installed

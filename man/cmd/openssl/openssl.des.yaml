@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: des
+aliases:
+    - des-cbc
+    - des-cfb
+    - des-ecb
+    - des-ede
+    - des-ede-cbc
+    - des-ede-cfb
+    - des-ede-ofb
+    - des-ofb
+description: DES Cipher
+group: cipher

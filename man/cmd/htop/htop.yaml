@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: htop
+description: interactive process viewer
+flags:
+    --drop-capabilities?: Drop Linux capabilities when running as root
+    --readonly: Disable all system and process changing feature
+    -C, --no-color: Use a monochrome color scheme
+    -F, --filter=: Show only the commands matching the given filter
+    -H, --highlight-changes?: Highlight new and old processes
+    -U, --no-unicode: Do not use unicode but plain ASCII
+    -d, --delay=: Set the delay between updates, in tenths of seconds
+    -h, --help: Print this help screen
+    -m, --no-mouse: Disable the mouse
+    -p, --pid=: Show only the given PIDs
+    -s, --sort-key=: Sort by COLUMN (try --sort-key=help for a list)
+    -t, --tree: Show the tree view by default
+    -u, --user=: Show only processes for a given user (or $USER)
+    -v, --version: Print version info

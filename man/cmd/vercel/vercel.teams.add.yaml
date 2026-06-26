@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: add
+description: Create a new team
+
+documentation:
+  command: >-
+    Create a new team on Vercel. You become the owner of the created
+    team. After creation, you can invite members and configure team
+    settings. Team slugs must be unique across the Vercel platform.

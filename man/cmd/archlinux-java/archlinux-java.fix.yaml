@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: fix
+description: Fix an invalid/broken default Java environment configuration

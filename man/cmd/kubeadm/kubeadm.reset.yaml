@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: reset
+description: Performs a best effort revert of changes made to this host by 'kubeadm init' or 'kubeadm join'
+flags:
+    --cert-dir=: The path to the directory where the certificates are stored. If specified, clean this directory.
+    --cleanup-tmp-dir: Cleanup the "/etc/kubernetes/tmp" directory
+    --config=: Path to a kubeadm configuration file.
+    --cri-socket=: Path to the CRI socket to connect. If empty kubeadm will try to auto-detect this value; use this option only if you have more than one CRI installed or if you have non-standard CRI socket.
+    --dry-run: Don't apply any changes; just output what would be done.
+    --ignore-preflight-errors=*: 'A list of checks whose errors will be shown as warnings. Example: ''IsPrivilegedUser,Swap''. Value ''all'' ignores errors from all checks.'
+    --kubeconfig=: The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.
+    --skip-phases=*: List of phases to be skipped
+    -f, --force: Reset the node without prompting for confirmation.

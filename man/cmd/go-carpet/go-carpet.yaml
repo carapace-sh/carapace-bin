@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: go-carpet
+description: show test coverage for Go source files
+flags:
+    --256colors: use more colors on 256-color terminal
+    --args=: pass additional arguments for go test
+    --file=: comma-separated list of files to test
+    --func=: comma-separated functions list
+    --include-vendor: include vendor directories for show coverage
+    --summary: only show summary for each file
+    --version: get version

@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: load-config
+description: (Re)load a config file
+flags:
+    --ignore-overrides: Have previous config overrides ignored
+    --no-response: Don't wait for a response indicating the success of the action
+    -h, --help: Show help for this command
+    -o, --override=: Override individual configuration options

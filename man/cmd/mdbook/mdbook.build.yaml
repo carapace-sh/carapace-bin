@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: build
+description: Builds a book from its markdown files
+flags:
+    -V, --version: Print version
+    -d, --dest-dir=: Output directory for the book
+    -h, --help: Print help
+    -o, --open: Opens the compiled book in a web browser

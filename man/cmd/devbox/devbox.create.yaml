@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create [dir] --template <template>
+description: Initialize a directory as a devbox project using a template
+flags:
+    --show-all: show all available templates
+    -r, --repo=&: 'Git repository HTTPS URL to import template files from. Example: https://github.com/jetify-com/devbox'
+    -s, --subdir=&: 'Subdirectory of the Git repository in which the template files reside. Example: examples/tutorial'
+    -t, --template=: template to initialize the project with

@@ -1,0 +1,45 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: test
+description: Execute all unit and integration tests and build examples of a local package
+group: build
+flags:
+    --all: Alias for --workspace (deprecated)
+    --all-features: Activate all available features
+    --all-targets: Test all targets (does not include doctests)
+    --bench=*: Test only the specified bench target
+    --benches: Test all targets that have `bench = true` set
+    --bin=*: Test only the specified binary
+    --bins: Test all binaries
+    --doc: Test only this library's documentation
+    --example=*: Test only the specified example
+    --examples: Test all examples
+    --exclude=*: Exclude packages from the test
+    --future-incompat-report: Outputs a future incompatibility report at the end of the build
+    --ignore-rust-version: Ignore `rust-version` specification in packages
+    --lib: Test only this package's library
+    --manifest-path=: Path to Cargo.toml
+    --message-format=*: Error format
+    --no-default-features: Do not activate the `default` feature
+    --no-fail-fast: Run all tests regardless of failure
+    --no-run: Compile, but don't run tests
+    --profile=: Build artifacts with the specified profile
+    --target-dir=: Directory for all generated artifacts
+    --target=*: Build for the target triple
+    --test=*: Test only the specified test target
+    --tests: Test all targets that have `test = true` set
+    --timings: Output a build timing report at the end of the build
+    --unit-graph: Output build graph in JSON (unstable)
+    --workspace: Test all packages in the workspace
+    -F, --features=*: Space or comma separated list of features to activate
+    -h, --help: Print help
+    -j, --jobs=: 'Number of parallel jobs, defaults to # of CPUs.'
+    -p, --package=*: Package to run tests for
+    -q, --quiet: Display one character per test instead of one line
+    -r, --release: Build artifacts in release mode, with optimizations
+documentation:
+  command: |
+    Execute all unit and integration tests and build examples of a local package.
+    Tests are built with the `dev` profile by default. Use `--doc` to run only
+    documentation tests, `--no-run` to compile without running, and `--no-fail-fast`
+    to run all tests regardless of failure. The `-q` flag produces compact output
+    (one character per test). Test binaries are placed in `target/debug/deps/`.

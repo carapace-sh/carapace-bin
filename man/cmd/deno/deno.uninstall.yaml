@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: uninstall
+description: Uninstalls an executable script in the installation root's bin directory
+flags:
+    --root=: Installation root
+    --unstable: Enable unstable features and APIs
+    -h, --help: Print help information
+    -q, --quiet: Suppress diagnostic output

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: export
+description: Export recorded desktop sesions to video.
+flags:
+    --out=: Override output file name

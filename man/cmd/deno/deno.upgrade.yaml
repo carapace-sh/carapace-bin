@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: upgrade
+description: Upgrade deno executable to the given version
+flags:
+    --canary: Upgrade to canary builds
+    --cert=: Load certificate authority from PEM encoded file
+    --dry-run: Perform all checks without replacing old exe
+    --output=: The path to output the updated version to
+    --unstable: Enable unstable features and APIs
+    --version=: The version to upgrade to
+    -f, --force: Replace current exe even if not out-of-date
+    -h, --help: Print help information
+    -q, --quiet: Suppress diagnostic output

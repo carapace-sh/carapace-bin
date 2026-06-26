@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pull MODEL
+description: Pull a model from a registry
+flags:
+    --insecure: Use an insecure registry

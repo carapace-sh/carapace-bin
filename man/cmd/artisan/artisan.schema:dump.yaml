@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: schema:dump [--database [DATABASE]] [--path [PATH]] [--prune]
+description: Dump the given database schema
+flags:
+    --database=: The database connection to use
+    --path=: The path where the schema dump file should be stored
+    --prune: Delete all existing migration files

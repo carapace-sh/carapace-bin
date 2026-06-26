@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: db
+description: View and control proxied databases.
+flags:
+    -c, --cluster=: Specify the Teleport cluster to connect
+
+documentation:
+  command: >-
+    View and connect to proxied databases registered with Teleport. Supports PostgreSQL, MySQL, and MongoDB.

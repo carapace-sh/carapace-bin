@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: coverage
+description: Print coverage reports
+flags:
+    --exclude?: Exclude source files from the report
+    --ignore?: Ignore coverage files
+    --include?: 'Include source files in the report [default: ^file:]'
+    --lcov: Output coverage report in lcov format

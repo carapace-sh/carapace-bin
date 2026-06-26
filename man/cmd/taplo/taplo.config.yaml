@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: config
+aliases:
+    - cfg
+description: Operations with the Taplo config file

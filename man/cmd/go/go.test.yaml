@@ -1,0 +1,100 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: test
+description: test packages
+flags:
+    -C=: Change to dir before running the command
+    -a: force rebuilding of packages that are already up-to-date
+    -asan: enable interoperation with address sanitizer
+    -asmflags=: arguments to pass on each go tool asm invocation
+    -bench=: Run only those benchmarks matching a regular expression
+    -benchmem: Print memory allocation statistics for benchmarks
+    -benchtime=: Run enough iterations of each benchmark to take t
+    -blockprofile=: Write a goroutine blocking profile to the specified file when all tests are complete
+    -blockprofilerate=: Control the detail provided in goroutine blocking profiles by calling runtime.SetBlockProfileRate with n
+    -buildmode=: build mode to use
+    -buildvcs?: whether to stamp binaries with version control information
+    -c: Compile the test binary to pkg.test in the current directory but do not run it
+    -compiler=: name of compiler to use
+    -count=: Run each test, benchmark, and fuzz seed n times
+    -cover: enable code coverage instrumentation
+    -covermode=: Set the mode for coverage analysis for the package[s] being tested
+    -coverpkg=: apply coverage analysis to each package matching the patterns
+    -coverprofile=: Write a coverage profile to the file after all tests have passed
+    -cpu=: Specify a list of GOMAXPROCS values for which the tests, benchmarks or fuzz tests should be executed
+    -cpuprofile=: Write a CPU profile to the specified file before exiting
+    -exec=: Run the test binary using xprog
+    -failfast: Do not start new tests after the first test failure.
+    -fullpath: Show full file names in the error messages
+    -fuzz=: Run the fuzz test matching the regular expression
+    -fuzzminimizetime=: Run enough iterations of the fuzz target during each minimization attempt to take t
+    -fuzztime=: Run enough iterations of the fuzz target during fuzzing to take t
+    -gccgoflags=: arguments to pass on each gccgo compiler/linker invocation
+    -gcflags=: arguments to pass on each go tool compile invocation
+    -installsuffix=: a suffix to use in the name of the package installation directory
+    -json: Log verbose output and test results in JSON
+    -ldflags=: arguments to pass on each go tool link invocation
+    -linkshared: build code that will be linked against shared libraries
+    -list=: List tests, benchmarks, fuzz tests, or examples matching the regular expression
+    -memprofile=: Write an allocation profile to the file after all tests have passed
+    -memprofilerate=: Enable more precise (and expensive) memory allocation profiles by setting runtime.MemProfileRate
+    -mod=: module download mode to use
+    -modcacherw: leave newly-created directories in the module cache read-write
+    -modfile=: read and possibly write an alternate go.mod file
+    -msan: enable interoperation with memory sanitizer
+    -mutexprofile=: Write a mutex contention profile to the specified file when all tests are complete
+    -mutexprofilefraction=: Sample 1 in n stack traces of goroutines holding a contended mutex
+    -n: print the commands but do not run them
+    -o=: Compile the test binary to the named file
+    -outputdir=: Place output files from profiling in the specified directory
+    -overlay=: read a JSON config file that provides an overlay for build operations
+    -p=: the number of programs to run in parallel
+    -parallel=: Allow parallel execution of test functions
+    -pgo=: specify the file path of a profile for profile-guided optimization
+    -pkgdir=: install and load all packages from dir
+    -race: enable data race detection
+    -run=: Run only those tests, examples, and fuzz tests matching the regular expression
+    -short: Tell long-running tests to shorten their run time
+    -shuffle=: Randomize the execution order of tests and benchmarks
+    -skip=: Run only those tests, examples, fuzz tests, and benchmarks that do not match the regular expression
+    -tags=: a comma-separated list of build tags to consider satisfied during the
+    -test.bench=: run only benchmarks matching regexp
+    -test.benchmem: print memory allocations for benchmarks
+    -test.benchtime=: run each benchmark for duration d or N times if `d` is of the form Nx
+    -test.blockprofile=: write a goroutine blocking profile to file
+    -test.blockprofilerate=: set blocking profile rate
+    -test.count=: run tests and benchmarks n times
+    -test.coverprofile=: write a coverage profile to file
+    -test.cpu=: comma-separated list of cpu counts to run each test with
+    -test.cpuprofile=: write a cpu profile to file
+    -test.failfast: do not start new tests after the first test failure
+    -test.fullpath: show full file names in error messages
+    -test.fuzz=: run the fuzz test matching regexp
+    -test.fuzzcachedir=: directory where interesting fuzzing inputs are stored
+    -test.fuzzminimizetime=: time to spend minimizing a value after finding a failing input
+    -test.fuzztime=: time to spend fuzzing; default is to run indefinitely
+    -test.fuzzworker: coordinate with the parent process to fuzz random values
+    -test.gocoverdir=: write coverage intermediate files to this directory
+    -test.list=: list tests, examples, and benchmarks matching regexp then exit
+    -test.memprofile=: write an allocation profile to file
+    -test.memprofilerate=: set memory allocation profiling rate
+    -test.mutexprofile=: write a mutex contention profile to the named file after execution
+    -test.mutexprofilefraction=: if >= 0, calls runtime.SetMutexProfileFraction()
+    -test.outputdir=: write profiles to dir
+    -test.paniconexit0: panic on call to os.Exit(0)
+    -test.parallel=: run at most n tests in parallel
+    -test.run=: run only tests and examples matching regexp
+    -test.short: run smaller test suite to save time
+    -test.shuffle=: randomize the execution order of tests and benchmarks
+    -test.skip=: do not list or run tests matching regexp
+    -test.testlogfile=: write test action log to file
+    -test.timeout=: panic test binary after duration d
+    -test.trace=: write an execution trace to file
+    -test.v: 'verbose: print additional output'
+    -timeout=: If a test binary runs longer than duration d, panic
+    -toolexec=: a program to use to invoke toolchain programs like vet and asm
+    -trace=: Write an execution trace to the specified file before exiting
+    -trimpath: remove all file system paths from the resulting executable
+    -v: print the names of packages as they are compiled
+    -vet=: Configure the invocation of "go vet" during "go test" to use the comma-separated list of vet checks
+    -work: print the name of the temporary work directory
+    -x: print the commands

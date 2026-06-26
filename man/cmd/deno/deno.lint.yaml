@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: lint
+description: Lint source files
+flags:
+    --ignore?: Ignore linting particular source files
+    --json: Output lint result in JSON format
+    --rules: List available rules
+    --rules-exclude?: Exclude lint rules
+    --rules-include?: Include lint rules
+    --rules-tags?: Use set of rules with a tag
+    -c, --config=: Load configuration file

@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ci
+description: Install a project with a clean slate
+flags:
+    --ignore-scripts: Disable scripts
+    --script-shell=: shell to use for scripts

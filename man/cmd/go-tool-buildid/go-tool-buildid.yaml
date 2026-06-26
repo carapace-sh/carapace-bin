@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: go-tool-buildid
+description: Buildid displays or updates the build ID stored in a Go package or binary.
+flags:
+    -w: write build ID

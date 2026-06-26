@@ -1,0 +1,100 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: interpret-trailers
+description: add or parse structured information in commit messages
+documentation:
+  command: |-
+    Add or parse _trailer_ lines that look similar to RFC 822 e-mail
+    headers, at the end of the otherwise free-form part of a commit
+    message. For example, in the following commit message
+
+    ```
+    subject
+
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+    Signed-off-by: Alice <alice@example.com>
+    Signed-off-by: Bob <bob@example.com>
+    ```
+
+    the last two lines starting with `Signed-off-by` are trailers.
+
+    This command reads commit messages from either the
+    _<file>_ arguments or the standard input if no _<file>_ is specified.
+    If `--parse` is specified, the output consists of the parsed trailers
+    coming from the input, without influencing them with any command line
+    options or configuration variables.
+
+    Otherwise, this command applies `trailer.<key-alias>` configuration
+    variables (which could potentially add new trailers, as well as
+    reposition them), as well as any command line arguments that can
+    override configuration variables (such as `--trailer=...` which could
+    also add new trailers), to each input file. The result is emitted on the
+    standard output.
+
+    This command can also operate on the output of [git-format-patch](cmd://git/format-patch),
+    which is more elaborate than a plain commit message. Namely, such output
+    includes a commit message (as above), a `---` divider line, and a patch part.
+    For these inputs, the divider and patch parts are not modified by
+    this command and are emitted as is on the output, unless
+    `--no-divider` is specified.
+
+    Some configuration variables control the way the `--trailer` arguments
+    are applied to each input and the way any existing trailer in
+    the input is changed. They also make it possible to
+    automatically add some trailers.
+
+    By default, a `<key>=<value>` or `<key>:<value>` argument given
+    using `--trailer` will be appended after the existing trailers only if
+    the last trailer has a different (_<key>_, _<value>_) pair (or if there
+    is no existing trailer). The _<key>_ and _<value>_ parts will be trimmed
+    to remove starting and trailing whitespace, and the resulting trimmed
+    _<key>_ and _<value>_ will appear in the output like this:
+
+    ```
+    key: value
+    ```
+
+    This means that the trimmed _<key>_ and _<value>_ will be separated by
+    "`:` " (one colon followed by one space).
+
+    For convenience, a _<key-alias>_ can be configured to make using `--trailer`
+    shorter to type on the command line. This can be configured using the
+    `trailer.<key-alias>.key` configuration variable. The _<key-alias>_ must be a prefix
+    of the full _<key>_ string, although case sensitivity does not matter. For
+    example, if you have
+
+    ```
+    trailer.sign.key "Signed-off-by: "
+    ```
+
+    in your configuration, you only need to specify `--trailer="sign: foo"`
+    on the command line instead of `--trailer="Signed-off-by: foo"`.
+
+    By default the new trailer will appear at the end of all the existing
+    trailers. If there is no existing trailer, the new trailer will appear
+    at the end of the input. A blank line will be added before the new
+    trailer if there isn't one already.
+
+    Existing trailers are extracted from the input by looking for
+    a group of one or more lines that (i) is all trailers, or (ii) contains at
+    least one Git-generated or user-configured trailer and consists of at
+    least 25% trailers.
+    The group must be preceded by one or more empty (or whitespace-only) lines.
+    The group must either be at the end of the input or be the last
+    non-whitespace lines before a line that starts with `---` (followed by a
+    space or the end of the line).
+
+    When reading trailers, there can be no whitespace before or inside the
+    _<key>_, but any number of regular space and tab characters are allowed
+    between the _<key>_ and the separator. There can be whitespaces before,
+    inside or after the _<value>_. The _<value>_ may be split over multiple lines
+    with each subsequent line starting with at least one whitespace, like
+    the "folding" in RFC 822. Example:
+
+    ```
+    key: This is a very long value, with spaces and
+      newlines in it.
+    ```
+
+    Note that trailers do not follow (nor are they intended to follow) many of the
+    rules for RFC 822 headers. For example they do not follow the encoding rule.

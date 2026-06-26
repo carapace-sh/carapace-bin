@@ -1,0 +1,216 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: blame
+aliases:
+- annotate
+description: Show what revision and author last modified each line of a file
+group: interrogator
+flags:
+  --abbrev?: use <n> digits to display object names
+  --color-by-age: color lines by age
+  --color-lines: color redundant metadata from previous line differently
+  --contents=: use <file>'s contents as the final image
+  --ignore-rev=: ignore <rev> when blaming
+  --ignore-revs-file=: ignore revisions from <file>
+  --incremental: show blame entries as we find them, incrementally
+  --line-porcelain: show porcelain format with per-line commit information
+  --minimal: spend extra cycles to find better match
+  --progress: force progress reporting
+  --root: do not treat root commits as boundaries
+  --score-debug: show output score for blame entries
+  --show-stats: show work cost statistics
+  -C*?: find line copies within and across files
+  -L=: process only line range <start>,<end> or function :<funcname>
+  -M?: find line movements within and across files
+  -S=: use revisions from <file> instead of calling git-rev-list
+  -b: do not show object names of boundary commits
+  -c: 'use the same output mode as git-annotate '
+  -e, --show-email: 'show author email instead of name '
+  -f, --show-name: 'show original filename '
+  -l: 'show long commit SHA1 '
+  -n, --show-number: 'show original linenumber '
+  -p, --porcelain: show in a format designed for machine consumption
+  -s: 'suppress author name and timestamp '
+  -t: 'show raw timestamp '
+  -w: ignore whitespace differences
+documentation:
+  command: |-
+    Annotates each line in the given file with information from the revision which
+    last modified the line. Optionally, start annotating from the given revision.
+
+    When specified one or more times, `-L` restricts annotation to the requested
+    lines.
+
+    The origin of lines is automatically followed across whole-file
+    renames (currently there is no option to turn the rename-following
+    off). To follow lines moved from one file to another, or to follow
+    lines that were copied and pasted from another file, etc., see the
+    `-C` and `-M` options.
+
+    The report does not tell you anything about lines which have been deleted or
+    replaced; you need to use a tool such as `git diff` or the "pickaxe"
+    interface briefly mentioned in the following paragraph.
+
+    Apart from supporting file annotation, Git also supports searching the
+    development history for when a code snippet occurred in a change. This makes it
+    possible to track when a code snippet was added to a file, moved or copied
+    between files, and eventually deleted or replaced. It works by searching for
+    a text string in the diff. A small example of the pickaxe interface
+    that searches for `blame_usage`:
+
+    ```
+    $ git log --pretty=oneline -S'blame_usage'
+    5040f17eba15504bad66b14a645bddd9b015ebb7 blame -S <ancestry-file>
+    ea4c7f9bf69e781dd0cd88d2bccb2bf5cc15c9a7 git-blame: Make the output
+    ```
+  flag:
+    C: |
+      In addition to `-M`, detect lines moved or copied from other files that
+      were modified in the same commit. This is useful when you reorganize
+      your program and move code around across files. When this option is
+      given twice, the command additionally looks for copies from other files
+      in the commit that creates the file. When this option is given three
+      times, the command additionally looks for copies from other files in any
+      commit.
+
+      &lt;num&gt; is optional but it is the lower bound on the number of
+      alphanumeric characters that Git must detect as moving/copying between
+      files for it to associate those lines with the parent commit. And the
+      default value is 40. If there are more than one `-C` options given, the
+      &lt;num&gt; argument of the last `-C` will take effect.
+    L: |
+      Annotate only the line range given by *&lt;start&gt;,&lt;end&gt;*, or by
+      the function name regex *&lt;funcname&gt;*. May be specified multiple
+      times. Overlapping ranges are allowed.
+
+      *&lt;start&gt;* and *&lt;end&gt;* are optional. `-L <start>` or
+      `-L <start>,` spans from *&lt;start&gt;* to end of file. `-L ,<end>`
+      spans from start of file to *&lt;end&gt;*.
+
+      *&lt;start&gt;* and *&lt;end&gt;* can take one of these forms:
+
+      -   number
+
+          If *&lt;start&gt;* or *&lt;end&gt;* is a number, it specifies an
+          absolute line number (lines count from 1).
+
+      -   `/regex/`
+
+          This form will use the first line matching the given POSIX regex. If
+          *&lt;start&gt;* is a regex, it will search from the end of the
+          previous `-L` range, if any, otherwise from the start of file. If
+          *&lt;start&gt;* is `^/regex/`, it will search from the start of
+          file. If *&lt;end&gt;* is a regex, it will search starting at the
+          line given by *&lt;start&gt;*.
+
+      -   +offset or -offset
+
+          This is only valid for *&lt;end&gt;* and will specify a number of
+          lines before or after the line given by *&lt;start&gt;*.
+
+      If `:<funcname>` is given in place of *&lt;start&gt;* and *&lt;end&gt;*,
+      it is a regular expression that denotes the range from the first
+      funcname line that matches *&lt;funcname&gt;*, up to the next funcname
+      line. `:<funcname>` searches from the end of the previous `-L` range, if
+      any, otherwise from the start of file. `^:<funcname>` searches from the
+      start of file. The function names are determined in the same way as
+      `git diff` works out patch hunk headers (see *Defining a custom
+      hunk-header* in [gitattributes](man://gitattributes/5)).
+    M: |
+      Detect moved or copied lines within a file. When a commit moves or
+      copies a block of lines (e.g. the original file has A and then B, and
+      the commit changes it to B and then A), the traditional *blame*
+      algorithm notices only half of the movement and typically blames the
+      lines that were moved up (i.e. B) to the parent and assigns blame to the
+      lines that were moved down (i.e. A) to the child commit. With this
+      option, both groups of lines are blamed on the parent by running extra
+      passes of inspection.
+
+      &lt;num&gt; is optional but it is the lower bound on the number of
+      alphanumeric characters that Git must detect as moving/copying within a
+      file for it to associate those lines with the parent commit. The default
+      value is 20.
+    S: |
+      Use revisions from revs-file instead of calling
+      [git-rev-list](cmd://git/rev-list).
+    abbrev: |-
+      Instead of using the default _7+1_ hexadecimal digits as the
+      abbreviated object name, use _<m>+1_ digits, where _<m>_ is at
+      least _<n>_ but ensures the commit object names are unique.
+      Note that 1 column
+      is used for a caret to mark the boundary commit.
+    b: |-
+      Show blank SHA-1 for boundary commits.  This can also
+      be controlled via the `blame.blankBoundary` config option. c: `Use` the same output mode as [git-annotate](man://git-annotate/1) (Default: off).
+    color-by-age: |-
+      Color line annotations depending on the age of the line in
+      the default format.  The `color.blame.highlightRecent` config
+      option controls what color is used for each range of age.
+    color-lines: |-
+      Color line annotations in the default format differently if they come from
+      the same commit as the preceding line. This makes it easier to distinguish
+      code blocks introduced by different commits. The color defaults to cyan and
+      can be adjusted using the `color.blame.repeatedLines` config option.
+    contents: |
+      Annotate using the contents from the named file, starting from
+      &lt;rev&gt; if it is specified, and HEAD otherwise. You may specify *-*
+      to make the command read from the standard input for the file contents.
+    ignore-rev: |
+      Ignore changes made by the revision when assigning blame, as if the
+      change never happened. Lines that were changed or added by an ignored
+      commit will be blamed on the previous commit that changed that line or
+      nearby lines. This option may be specified multiple times to ignore more
+      than one revision. If the `blame.markIgnoredLines` config option is set,
+      then lines that were changed by an ignored commit and attributed to
+      another commit will be marked with a `?` in the blame output. If the
+      `blame.markUnblamableLines` config option is set, then those lines
+      touched by an ignored commit that we could not attribute to another
+      revision are marked with a *\**.
+    ignore-revs-file: |
+      Ignore revisions listed in `file`, which must be in the same format as
+      an `fsck.skipList.` This option may be repeated, and these files will be processed after any files specified with the `blame.ignoreRevsFile`
+      config option. An empty file name, `""`, will clear the list of revs
+      from previously processed files.
+    incremental: |-
+      Show the result incrementally in a format designed for
+      machine consumption.
+    l: |-
+      Show long rev (Default: off).
+    line-porcelain: |-
+      Show the porcelain format, but output commit information for
+      each line, not just the first time a commit is referenced.
+      Implies `--porcelain`.
+    minimal: |
+      [TODO] missing documentation
+    porcelain: Show in a format designed for machine consumption.
+    progress: |-
+      Enable progress reporting on the standard error stream even if
+      not attached to a terminal. By default, progress status is
+      reported only when it is attached. You can't use `--progress`
+      together with `--porcelain` or `--incremental`.
+    root: |-
+      Do not treat root commits as boundaries.  This can also be
+      controlled via the `blame.showRoot` config option.
+    s: Suppress the author name and timestamp from the output.
+    score-debug: |-
+      Include debugging information related to the movement of
+      lines between files (see `-C`) and lines moved within a
+      file (see `-M`).  The first number listed is the score.
+      This is the number of alphanumeric characters detected
+      as having been moved between or within files.  This must be above
+      a certain threshold for `git blame` to consider those lines
+      of code to have been moved.
+    show-email: |-
+      Show the author email instead of the author name (Default: off).
+      This can also be controlled via the `blame.showEmail` config
+      option.
+    show-name: |-
+      Show the filename in the original commit.  By default
+      the filename is shown if there is any line that came from a
+      file with a different name, due to rename detection.
+    show-number: |-
+      Show the line number in the original commit (Default: off).
+    show-stats: Include additional statistics at the end of blame output.
+    t: 'Show raw timestamp (Default: off).'
+    w: |-
+      Ignore whitespace when comparing the parent's version and
+      the child's to find where the lines came from.

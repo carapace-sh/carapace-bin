@@ -1,0 +1,37 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ping
+description: send ICMP ECHO_REQUEST to network hosts
+flags:
+    "-4": use IPv4
+    "-6": use IPv6
+    -A: use adaptive ping
+    -B: sticky source address
+    -D: print timestamps
+    -F=: define flow label, default is random
+    -I=: either interface name or address
+    -L: suppress loopback of multicast packets
+    -M=: define mtu discovery
+    -O: report outstanding replies
+    -Q=: use quality of service <tclass> bits
+    -R: record route
+    -S=: use <size> as SO_SNDBUF socket option value
+    -T=: define timestamp, can be one of <tsonly|tsandaddr|tsprespec>
+    -U: print user-to-user latency
+    -V: print version and exit
+    -W=: time to wait for response
+    -a: use audible ping
+    -b: allow pinging broadcast
+    -c=: stop after <count> replies
+    -d: use SO_DEBUG socket option
+    -f: flood ping
+    -h: print help and exit
+    -i=: seconds between sending each packet
+    -l=: send <preload> number of packages while waiting replies
+    -m=: tag the packets going out
+    -n: no dns name resolution
+    -p=: contents of padding byte
+    -q: quiet output
+    -s=: use <size> as number of data bytes to be sent
+    -t=: define time to live
+    -v: verbose output
+    -w=: reply wait <deadline> in seconds

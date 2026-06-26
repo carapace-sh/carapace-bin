@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: gh-copilot
+description: Your AI command line copilot
+flags:
+    -h, --help: help for copilot
+    -v, --version: version for copilot

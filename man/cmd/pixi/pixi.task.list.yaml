@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+aliases:
+    - ls
+    - l
+description: List all tasks in the workspace
+flags:
+    --json: List as json instead of a tree If not specified, the default environment is used
+    -e, --environment=: The environment the list should be generated for. If not specified, the default environment is used
+    -s, --summary: Tasks available for this machine per environment

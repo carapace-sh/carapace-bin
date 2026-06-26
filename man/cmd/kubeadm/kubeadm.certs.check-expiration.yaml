@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: check-expiration
+description: Check certificates expiration for a Kubernetes cluster
+flags:
+    --allow-missing-template-keys: If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.
+    --cert-dir=: The path where to save the certificates
+    --config=: Path to a kubeadm configuration file.
+    --kubeconfig=: The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.
+    --show-managed-fields: If true, keep the managedFields when printing objects in JSON or YAML format.
+    -o, --output=: 'Output format. One of: text|json|yaml|kyaml|go-template|go-template-file|template|templatefile|jsonpath|jsonpath-as-json|jsonpath-file.'

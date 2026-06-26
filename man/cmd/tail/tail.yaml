@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: tail
+description: output the last part of files
+flags:
+    --help: display this help and exit
+    --max-unchanged-stats=: reopen a FILE which has not changed size after N iterations
+    --pid=: with -f, terminate after process ID, PID dies
+    --retry: keep trying to open a file if it is inaccessible
+    --version: output version information and exit
+    -F: same as --follow=name --retry
+    -c, --bytes=: output the last NUM bytes
+    -f, --follow?: output appended data as the file grows
+    -n, --lines=: output the last NUM lines, instead of the last 10
+    -q, --quiet=: never output headers giving file names
+    -s, --sleep-interval=: with -f, sleep for approximately N seconds
+    -v, --verbose: always output headers giving file names
+    -z, --zero-terminated: line delimiter is NUL, not newline

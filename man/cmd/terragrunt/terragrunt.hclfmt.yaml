@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: hclfmt
+description: Recursively find hcl files and rewrite them into a canonical format
+group: terragrunt

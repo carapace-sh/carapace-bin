@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create
+description: Create a new Dart project
+flags:
+    --force: Force project generation, even if the target directory already exists.
+    --no-pub: Do not run 'pub get' after the project has been created.
+    --pub: Run 'pub get' after the project has been created.
+    -h, --help: Print this usage information.
+    -t, --template=: The project template to use.
+
+documentation:
+  command: >-
+    Create a new Dart project from templates. Supports console, server, web, and package templates.

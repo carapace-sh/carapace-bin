@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: prepare [flags]
+description: Use the provisioner to prepare instances into a starting state
+flags:
+    --help: Show help message and exit
+    --no-force: Disable force mode (default)
+    -d, --driver-name=: Name of the driver to use
+    -f, --force: Enable force mode
+    -s, --scenario-name=: Name of the scenario to target

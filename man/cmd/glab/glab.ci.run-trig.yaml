@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: run-trig [flags]
+aliases:
+    - run-trig
+description: Run a CI/CD pipeline trigger.
+flags:
+    --variables=*: Pass variables to pipeline in the format <key>:<value>.
+    -b, --branch=: Create pipeline on branch or reference <string>.
+    -i, --input=*: Pass inputs to pipeline in format '<key>:<value>'. Cannot be used for merge request pipelines. See documentation for examples.
+    -t, --token=: Pipeline trigger token. Can be omitted only if the `CI_JOB_TOKEN` environment variable is set.

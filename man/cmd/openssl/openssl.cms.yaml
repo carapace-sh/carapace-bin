@@ -1,0 +1,126 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: cms
+description: CMS (Cryptographic Message Syntax) command
+group: standard
+flags:
+    -CAfile=: Trusted certificates file
+    -CApath=: Trusted certificates directory
+    -CAstore=: Trusted certificates store URI
+    -EncryptedData_decrypt: Decrypt CMS "EncryptedData" object using symmetric key
+    -EncryptedData_encrypt: Create CMS "EncryptedData" object using symmetric key
+    -aes128-wrap: Use AES128 to wrap key
+    -aes192-wrap: Use AES192 to wrap key
+    -aes256-wrap: Use AES256 to wrap key
+    -allow_proxy_certs: allow the use of proxy certificates
+    -asciicrlf: Perform CRLF canonicalisation when signing
+    -attime=: verification epoch time
+    -auth_level=: chain authentication security level
+    -binary: 'Treat input as binary: do not translate to canonical form'
+    -cades: Check/Include signingCertificate attribute (CAdES-BES)
+    -cert=*: Recipient certs (optional; used only when encrypting)
+    -certfile=: Extra signer and intermediate CA certificates to include when signing or to use as preferred signer certs and for chain building when verifying
+    -certsout=: Certificate output file
+    -check_ss_sig: check root CA self-signatures
+    -cmsout: Output CMS structure
+    -compress: Create a CMS "CompressedData" object
+    -config=: Load a configuration file (this may load modules)
+    -content=: Supply or override content for detached signature
+    -crl_check: check leaf certificate revocation
+    -crl_check_all: check full chain revocation
+    -crlfeol: Use CRLF as EOL termination instead of LF only
+    -data_create: Create a CMS "Data" object
+    -data_out: Copy CMS "Data" object to output
+    -debug_decrypt: Disable MMA protection, return error if no recipient found (see doc)
+    -decrypt: Decrypt encrypted message
+    -des3-wrap: Use 3DES-EDE to wrap key
+    -digest=: Sign a pre-computed digest in hex notation
+    -digest_create: Create a CMS "DigestedData" object
+    -digest_verify: Verify a CMS "DigestedData" object and output it
+    -econtent_type=: OID for external content
+    -encrypt: Encrypt message
+    -explicit_policy: set policy variable require-explicit-policy
+    -extended_crl: enable extended CRL features
+    -from=: From address
+    -ignore_critical: permit unhandled critical extensions
+    -in=: Input file
+    -indef: Same as -stream
+    -inform=: Input format SMIME (default), PEM or DER
+    -inhibit_any: set policy variable inhibit-any-policy
+    -inhibit_map: set policy variable inhibit-policy-mapping
+    -inkey=: Input private key (if not signer or recipient)
+    -issuer_checks: (deprecated)
+    -kekcipher=: The key encryption algorithm to use
+    -keyform=: Input private key format (DER/PEM)
+    -keyid: Use subject key identifier
+    -keyopt=*: Set public key parameters as n:v pairs
+    -md=: Digest algorithm to use
+    -nameopt=*: For the -print option specifies various strings printing options
+    -no-CAfile: Do not load the default certificates file
+    -no-CApath: Do not load certificates from the default certificates directory
+    -no-CAstore: Do not load certificates from the default certificates store
+    -no_alt_chains: (deprecated)
+    -no_attr_verify: Do not verify signed attribute signatures
+    -no_check_time: ignore certificate validity time
+    -no_content_verify: Do not verify signed content signatures
+    -no_signing_time: Omit the signing time attribute
+    -noattr: Don't include any signed attributes
+    -nocerts: Don't include signer's certificate when signing
+    -nodetach: Use opaque signing
+    -noindef: Disable CMS streaming
+    -nointern: Don't search certificates in message for signer
+    -noout: For the -cmsout operation do not output the parsed CMS structure
+    -nosigs: Don't verify message signature
+    -nosmimecap: Omit the SMIMECapabilities attribute
+    -noverify: Don't verify signers certificate
+    -originator=: Originator certificate file
+    -out=: Output file
+    -outform=: Output format SMIME (default), PEM or DER
+    -partial_chain: accept chains anchored by intermediate trust-store CAs
+    -passin=: Input file pass phrase source
+    -policy=: adds policy to the acceptable policy set
+    -policy_check: perform rfc5280 policy checks
+    -policy_print: print policy processing diagnostics
+    -print: For the -cmsout operation print out all fields of the CMS structure
+    -propquery=: Property query used when fetching algorithms
+    -provider-path=: Provider load path (must be before 'provider' argument if required)
+    -provider=*: Provider to load (can be specified multiple times)
+    -provparam=: Set a provider key-value parameter
+    -purpose=: certificate chain purpose
+    -pwri_password=: Specific password for recipient
+    -rand=: Load the given file(s) into the random number generator
+    -rctform=: Receipt file format
+    -receipt_request_all: When signing, create a receipt request for all recipients
+    -receipt_request_first: When signing, create a receipt request for first recipient
+    -receipt_request_from=: Create signed receipt request with specified email address
+    -receipt_request_print: Print CMS Receipt Request
+    -receipt_request_to=: Create signed receipt targeted to specified address
+    -recip=: Recipient cert file
+    -recip_kdf=: Set KEMRecipientInfo KDF for current recipient
+    -recip_ukm=: KEMRecipientInfo user keying material for current recipient, in hex notation
+    -resign: Resign a signed message
+    -secretkey=: Use specified hex-encoded key to decrypt/encrypt recipients or content
+    -secretkeyid=: Identity of the -secretkey for CMS "KEKRecipientInfo" object
+    -sign: Sign message
+    -sign_receipt: Generate a signed receipt for a message
+    -signer=: Signer certificate(s) input/output file
+    -stream: Enable CMS streaming
+    -subject=: Subject
+    -suiteB_128: Suite B 128-bit mode allowing 192-bit algorithms
+    -suiteB_128_only: Suite B 128-bit-only mode
+    -suiteB_192: Suite B 192-bit-only mode
+    -text: Include or delete text MIME headers
+    -to=: To address
+    -trusted_first: search trust store first (default)
+    -uncompress: Uncompress a CMS "CompressedData" object
+    -use_deltas: use delta CRLs
+    -verify: Verify signed message
+    -verify_depth=: chain depth limit
+    -verify_email=: expected peer email
+    -verify_hostname=: expected peer hostname
+    -verify_ip=: expected peer IP address
+    -verify_name=: verification policy name
+    -verify_receipt=: Verify receipts; exit if receipt signatures do not verify
+    -verify_retcode: Exit non-zero on verification failure
+    -wrap=: Key wrap algorithm to use when encrypting with key agreement or key encapsulation
+    -writerand=: Write random data to the specified file
+    -x509_strict: disable certificate compatibility work-arounds

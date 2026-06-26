@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: apply
+description: Create or update a project
+flags:
+    --app-status-poll: Enable polling to continuously generate status reports for apps.
+    --app-status-poll-interval=: Interval between polling to generate status reports if polling is enabled.
+    --data-source=: The data source type to use.
+    --from-waypoint-hcl=: waypoint.hcl formatted file to load settings from.
+    --git-auth-type=: Authentication type for Git.
+    --git-password=: Password for authentication when git-auth-type is 'basic'.
+    --git-path=: Path is a subdirectory within the checked out repository to go into for the project's configuration.
+    --git-private-key-password=: Password for the private key specified by git-private-key-path.
+    --git-private-key-path=: Path to a PEM-encoded private key for 'ssh'-based auth.
+    --git-ref=: Git ref to clone on new operations.
+    --git-url=: URL of the Git repository to clone.
+    --git-username=: Username for authentication when git-auth-type is 'basic'.
+    --plain: Plain output
+    --poll: Enable polling.
+    --poll-interval=: Interval between polling if polling is enabled.
+    --runner-profile=: Name of a runner profile to be used for this project
+    --waypoint-hcl=: Path to a waypoint.hcl file to associate with this project.
+    -a, --app=: App to target.
+    -p, --project=: Project to target.
+    -w, --workspace=: Workspace to operate in.

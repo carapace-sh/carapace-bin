@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: mailsplit
+description: Simple UNIX mbox splitter program
+group: low-level helper
+flags:
+  --keep-cr: "Do not remove \r from lines ending with \r\n"
+  --mboxrd: Input is of the "mboxrd" format and "^>+From " line escaping is reversed
+  -b: If any file doesn’t begin with a From line, assume it is a single mail message
+  -d=: Precision for the generated filenames
+  -f=: Skip the first <nn> numbers
+  -o=: Directory in which to place the individual messages
+documentation:
+  command: |-
+    Splits a mbox file or a Maildir into a list of files: "0001" "0002" ..  in the
+    specified directory so you can process them further from there.
+
+    IMPORTANT: Maildir splitting relies upon filenames being sorted to output
+    patches in the correct order.

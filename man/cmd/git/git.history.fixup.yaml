@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: fixup
+description: Interactively fix up <commit>
+flags:
+    --empty=: how to handle commits that become empty
+    --no-dry-run: do not perform a dry-run without updating any refs
+    --reedit-message: edit the commit message of the fixup
+    --update-refs=: control which refs should be updated
+    -n, --dry-run: perform a dry-run without updating any refs
+
+documentation:
+  command: >-
+    Apply the currently staged changes to the specified commit. This is similar to `git commit --fixup=<commit>` followed by `git rebase --autosquash <commit>~`. Changes are applied to the target commit by performing a three-way merge between the HEAD commit, the target commit, and the tree generated from staged changes. The commit message and authorship of the target commit are preserved by default, unless `--reedit-message` is specified. If applying the staged changes would result in a conflict, the command aborts with an error. All branches that are descendants of the original commit are updated to point to the rewritten history.

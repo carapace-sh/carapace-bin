@@ -1,0 +1,78 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: table
+description: Render a table of data
+flags:
+    --border.align=: Text Alignment
+    --border.background=: Background Color
+    --border.bold: Bold text
+    --border.border-background=: Border Background Color
+    --border.border-foreground=: Border Foreground Color
+    --border.border=: Border Style
+    --border.faint: Faint text
+    --border.foreground=: Foreground Color
+    --border.height=: Text height
+    --border.italic: Italicize text
+    --border.margin=: Text margin
+    --border.padding=: Text padding
+    --border.strikethrough: Strikethrough text
+    --border.underline: Underline text
+    --border.width=: Text width
+    --cell.align=: Text Alignment
+    --cell.background=: Background Color
+    --cell.bold: Bold text
+    --cell.border-background=: Border Background Color
+    --cell.border-foreground=: Border Foreground Color
+    --cell.border=: Border Style
+    --cell.faint: Faint text
+    --cell.foreground=: Foreground Color
+    --cell.height=: Text height
+    --cell.italic: Italicize text
+    --cell.margin=: Text margin
+    --cell.padding=: Text padding
+    --cell.strikethrough: Strikethrough text
+    --cell.underline: Underline text
+    --cell.width=: Text width
+    --fields-per-record=: Sets the number of expected fields per record
+    --header.align=: Text Alignment
+    --header.background=: Background Color
+    --header.bold: Bold text
+    --header.border-background=: Border Background Color
+    --header.border-foreground=: Border Foreground Color
+    --header.border=: Border Style
+    --header.faint: Faint text
+    --header.foreground=: Foreground Color
+    --header.height=: Text height
+    --header.italic: Italicize text
+    --header.margin=: Text margin
+    --header.padding=: Text padding
+    --header.strikethrough: Strikethrough text
+    --header.underline: Underline text
+    --header.width=: Text width
+    --height=: Table height
+    --hide-count: Hide item count on help keybinds
+    --lazy-quotes: If LazyQuotes is true, a quote may appear in an unquoted field and a non-doubled quote may appear in a quoted field
+    --padding=: Padding
+    --selected.align=: Text Alignment
+    --selected.background=: Background Color
+    --selected.bold: Bold text
+    --selected.border-background=: Border Background Color
+    --selected.border-foreground=: Border Foreground Color
+    --selected.border=: Border Style
+    --selected.faint: Faint text
+    --selected.foreground=: Foreground Color
+    --selected.height=: Text height
+    --selected.italic: Italicize text
+    --selected.margin=: Text margin
+    --selected.padding=: Text padding
+    --selected.strikethrough: Strikethrough text
+    --selected.underline: Underline text
+    --selected.width=: Text width
+    --show-help: Show help keybinds
+    --timeout=: Timeout until choose returns selected element
+    -b, --border=: border style
+    -c, --columns=*: Column names
+    -f, --file=: file path
+    -p, --print: static print
+    -r, --return-column=: Which column number should be returned instead of whole row as string. Default=0 returns whole Row
+    -s, --separator=: Row separator
+    -w, --widths=*: Column widths

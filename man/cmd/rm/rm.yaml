@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rm
+description: remove files or directories
+flags:
+    --help: display this help and exit
+    --interactive?: 'prompt according to WHEN: never, once (-I), or always (-i); without WHEN, prompt always'
+    --no-preserve-root: do not treat '/' specially
+    --one-file-system: when removing a hierarchy recursively, skip any directory that is on a file system different from that of the corresponding command line argument
+    --preserve-root?: do not remove '/' (default); with 'all', reject any command line argument on a separate device from its parent
+    --version: output version information and exit
+    -I: prompt once before removing more than three files, or when removing recursively
+    -R: remove directories and their contents recursively
+    -d, --dir: remove empty directories
+    -f, --force: ignore nonexistent files and arguments, never prompt
+    -i: prompt before every removal
+    -r, --recursive: remove directories and their contents recursively
+    -v, --verbose: explain what is being done
+
+documentation:
+  command: >-
+    Remove files or directories. rm deletes each FILE, unlinking it from
+    the filesystem. Does not remove directories by default; use -r/-R to
+    recurse. Prompts for confirmation if file is unwritable and stdin is
+    a terminal, unless -f is given. Interactive mode -i prompts before
+    every removal; -I prompts once when removing more than three files
+    or recursing. Force removal of nonexistent files with -f (silently
+    ignores them). Preserve root with --preserve-root; do not recursively
+    remove / with --no-preserve-root (default, protected). Remove empty
+    directories with -d. Verbose output with -v. Never removes '.' or '..'.

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pennant:feature [-f|--force] [--] <name>
+description: Create a new feature class
+flags:
+    --force: Create the class even if the feature already exists

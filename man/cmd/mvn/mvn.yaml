@@ -1,0 +1,39 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: mvn
+description: Apache Maven is a software project management and comprehension tool
+flags:
+    --color=: Defines the color mode of the output
+    -B, --batch-mode: Run in non-interactive (batch) mode
+    -C, --strict-checksums: Fail the build if checksums don't match
+    -D, --define=: Define a system property
+    -N, --non-recursive: Do not recurse into sub-projects
+    -P, --activate-profiles=: Comma-delimited list of profiles to activate
+    -T, --threads=: Thread count
+    -U, --update-snapshots: Forces a check for missing releases and updated snapshots on remote repositories
+    -V, --show-version: Display version information WITHOUT stopping build
+    -X, --debug: Produce execution debug output
+    -am, --also-make: also build projects required by the list
+    -amd, --also-make-dependents: also build projects that depend on projects on the list
+    -b, --builder=: The id of the build strategy to use
+    -c, --lax-checksums: Warn if checksums don't match
+    -e, --errors: Produce execution error messages
+    -emp, --encrypt-master-password=: Encrypt master security password
+    -ep, --encrypt-password=: Encrypt server password
+    -f, --file=: Force the use of an alternate POM file
+    -fae, --fail-at-end: Only fail the build afterwards
+    -ff, --fail-fast: Stop at first failure in reactorized builds
+    -fn, --fail-never: NEVER fail the build, regardless of project result
+    -gs, --global-settings=: Alternate path for the global settings file
+    -gt, --global-toolchains=: Alternate path for the global toolchains file
+    -h, --help: Display help information
+    -l, --log-file=: Log file where all build output will go
+    -llr, --legacy-local-repository: Use Maven 2 Legacy Local Repository behaviour
+    -nsu, --no-snapshot-updates: Suppress SNAPSHOT updates
+    -ntp, --no-transfer-progress: Do not display transfer progress when downloading or uploading
+    -o, --offline: Work offline
+    -pl, --projects=: Comma-delimited list of specified reactor projects to build instead of all projects
+    -q, --quiet: Quiet output - only show errors
+    -rf, --resume-from=: Resume reactor from specified project
+    -s, --settings=: Alternate path for the user settings file
+    -t, --toolchains=: Alternate path for the user toolchains file
+    -v, --version: Display version information

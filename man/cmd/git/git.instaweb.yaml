@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: instaweb
+description: Instantly browse your working repository in gitweb
+group: interrogator
+flags:
+  --restart: restart the web server
+  --start: start the web server
+  --stop: stop the web server
+  -b, --browser=: the browser to launch
+  -d, --httpd=: the command to launch
+  -l, --local: only bind on 127.0.0.1
+  -p, --port=: the port to bind to
+documentation:
+  command: |-
+    A simple script to set up `gitweb` and a web server for browsing the local
+    repository.

@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: why
+description: Display the reason why a package is needed
+group: general
+flags:
+    --json: Format the output as an NDJSON stream
+    --peers: Also print the peer dependencies that match the specified name
+    -R, --recursive: List, for each workspace, what are all the paths that lead to the dependency

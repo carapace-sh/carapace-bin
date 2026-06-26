@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rename REPO NEWNAME
+description: Rename a Git repository

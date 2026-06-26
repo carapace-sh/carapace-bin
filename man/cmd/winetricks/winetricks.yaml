@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: winetricks
+description: manage virtual Windows environments using Wine
+flags:
+    --country=: Set country code to CC and don't detect your IP address
+    --gui: Show gui diagnostics even when driven by commandline
+    --isolate: Install each app or game in its own bottle (WINEPREFIX)
+    --no-clean: Don't delete temp directories (useful during debugging)
+    --self-update: Update this application to the last version
+    --verify: Run (automated) GUI tests for verbs, if available
+    -V, --version: Display version and exit
+    -f, --force: Don't check whether packages were already installed
+    -h, --help: Display this message and exit
+    -k, --keep_isos: Cache isos (allows later installation without disc)
+    -q, --unattended: Don't ask any questions, just install automatically
+    -r, --ddrescue: Retry hard when caching scratched discs
+    -t, --torify: Run downloads under torify, if available
+    -v, --verbose: Echo all commands as they are executed

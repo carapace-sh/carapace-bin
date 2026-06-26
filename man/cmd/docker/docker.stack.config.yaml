@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: config [OPTIONS]
+description: Outputs the final config file, after doing merges and interpolations
+flags:
+    --skip-interpolation: Skip interpolation and output only merged config
+    -c, --compose-file=*: Path to a Compose file, or "-" to read from stdin

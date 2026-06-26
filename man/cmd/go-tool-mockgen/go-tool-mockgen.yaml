@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: go-tool-mockgen
+description: mock interfaces
+flags:
+    -aux_files=: Comma-separated pkg=path pairs of auxiliary Go source files
+    -build_constraint=: If non-empty, added as //go:build <constraint>
+    -build_flags=: Additional flags for go build
+    -copyright_file=: Copyright file used to add copyright header
+    -debug_parser: Print out parser results only.
+    -destination=: Output file
+    -exclude_interfaces=: Comma-separated names of interfaces to be exclude
+    -exec_only=: DEPRECATED  If set, execute this reflection program
+    -imports=: Comma-separated name=path pairs of explicit imports to use
+    -mock_names=: Comma-separated interfaceName=mockName pairs of explicit mock names to use
+    -model_gob=: Skip package/source loading entirely and use the gob encoded model.Package at the given path
+    -package=: Package of the generated code
+    -prog_only: DEPRECATED  Only generate the reflection progra
+    -self_package=: The full package import path for the generated code
+    -source=: Input Go source fil
+    -typed: Generate Type-safe 'Return', 'Do', 'DoAndReturn' function
+    -version: Print version
+    -write_command_comment: Writes the command used as a comment if true
+    -write_generate_directive: Add //go:generate directive to regenerate the mock
+    -write_package_comment: Writes package documentation comment  if true
+    -write_source_comment: Writes original file  or interface names  comment if true

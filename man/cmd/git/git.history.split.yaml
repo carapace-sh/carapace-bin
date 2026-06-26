@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: split
+description: split a commit
+documentation:
+  command: |-
+    Interactively split up <commit> into two commits by choosing
+    hunks introduced by it that will be moved into the new split-out
+    commit. These hunks will then be written into a new commit that
+    becomes the parent of the previous commit. The original commit
+    stays intact, except that its parent will be the newly split-out
+    commit.
+
+    The commit messages of the split-up commits will be asked for by launching
+    the configured editor. Authorship of the commit will be the same as for the
+    original commit.
+
+    If passed, _<pathspec>_ can be used to limit which changes shall be split out
+    of the original commit. Files not matching any of the pathspecs will remain
+    part of the original commit. For more details, see the 'pathspec' entry in
+    [gitglossary](man://gitglossary/7).
+
+    It is invalid to select either all or no hunks, as that would lead to
+    one of the commits becoming empty.

@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: verify [flags]
+description: Run automated tests against instances
+flags:
+    --help: Show help message and exit
+    -s, --scenario-name=: Name of the scenario to target

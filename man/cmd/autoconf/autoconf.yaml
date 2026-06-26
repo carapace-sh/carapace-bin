@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Generate a configuration script from a template file. By default
+    reads `configure.ac` (or `configure.in`) and produces a portable
+    `configure` shell script. Supports tracing macro calls, verbose
+    reporting, and warning categories for debugging.
+description: Generate a configuration script from a TEMPLATE-FILE
+flags:
+    -B, --prepend-include=: prepend directory DIR to search path
+    -I, --include=: append directory DIR to search path
+    -V, --version: print version number, then exit
+    -W, --warnings=: report the warnings falling in CATEGORY
+    -d, --debug: don't remove temporary files
+    -f, --force: consider all files obsolete
+    -h, --help: print this help, then exit
+    -i, --initialization: also trace Autoconf's initialization process
+    -o, --output=: save output in FILE (stdout is the default)
+    -t, --trace=: report the list of calls to MACRO
+    -v, --verbose: verbosely report processing

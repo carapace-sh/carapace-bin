@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: help
+description: Displays a list of available conda commands and their help strings
+flags:
+    --help).: ""
+    -h, --help: Show this help message and exit.

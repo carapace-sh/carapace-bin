@@ -1,0 +1,50 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: tree
+description: list contents of directories in a tree-like format
+flags:
+    --charset=: Use charset X for terminal/HTML and indentation line output.
+    --device: Print device ID number to which each file belongs.
+    --dirsfirst: List directories before files (-U disables).
+    --fromfile: Reads paths from files (.=stdin)
+    --help: Print usage and this help message and exit.
+    --inodes: Print inode number of each file.
+    --matchdirs: Include directory names in -P pattern matching.
+    --nolinks: Turn off hyperlinks in HTML output.
+    --noreport: Turn off file/directory count at end of tree listing.
+    --si: Like -h, but use in SI units (powers of 1000).
+    --sort=: 'Select sort: name,version,size,mtime,ctime.'
+    --version: Print version and exit.
+    -A: Print ANSI lines graphic indentation lines.
+    -C: Turn colorization on always.
+    -D: Print the date of last modification or (-c) status change.
+    -F: Appends '/', '=', '*', '@', '|' or '>' as per ls -F.
+    -H=: Prints out HTML format with baseHREF as top directory.
+    -I=: Do not list files that match the given pattern.
+    -J: Prints out an JSON representation of the tree.
+    -L=: Descend only level directories deep.
+    -N: Print non-printable characters as is.
+    -P=: List only those files that match the pattern given.
+    -Q: Quote filenames with double quotes.
+    -R: Rerun tree when max dir level reached.
+    -S: Print with CP437 (console) graphics indentation lines.
+    -T=: Replace the default HTML title and H1 header with string.
+    -U: Leave files unsorted.
+    -X: Prints out an XML representation of the tree.
+    -a: All files are listed.
+    -c: Sort files by last status change time.
+    -d: List directories only.
+    -f: Print the full path prefix for each file.
+    -g: Displays file group owner or GID number.
+    -h: Print the size in a more human readable way.
+    -i: Don't print indentation lines.
+    -l: Follow symbolic links like directories.
+    -n: Turn colorization off always (-C overrides).
+    -o=: Output to file instead of stdout.
+    -p: Print the protections for each file.
+    -q: Print non-printable characters as '?'.
+    -r: Reverse the order of the sort.
+    -s: Print the size in bytes of each file.
+    -t: Sort files by last modification time.
+    -u: Displays file owner or UID number.
+    -v: Sort files alphanumerically by version.
+    -x: Stay on current filesystem only.

@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: cp
+description: Copy config to another stack
+persistentflags:
+    --path: The key contains a path to a property in a map or list to set
+    -d, --dest=: The name of the new stack to copy the config to

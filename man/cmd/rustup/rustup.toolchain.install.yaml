@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: install
+aliases:
+    - update
+    - add
+description: Install or update the given toolchains, or by default the active toolchain
+flags:
+    --allow-downgrade: Allow rustup to downgrade the toolchain to satisfy your component choice
+    --force: Force an update, even if some components are missing
+    --force-non-host: Install toolchains that require an emulator. See https://github.com/rust-lang/rustup/wiki/Non-host-toolchains
+    --no-self-update: Don't perform self update when running the `rustup toolchain install` command
+    --profile=: ""
+    -c, --component=*: Comma-separated list of components to be added on installation
+    -h, --help: Print help
+    -t, --target=*: Comma-separated list of targets to be added on installation

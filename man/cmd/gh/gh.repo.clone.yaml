@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: clone <repository> [<directory>] [-- <gitflags>...]
+description: Clone a repository locally
+group: Targeted commands
+documentation:
+    command: |
+        Clone a GitHub repository locally. Supports `owner/repo`, `owner/repo/subdir`,
+        or full HTTPS/SSH URLs. When cloning a fork, automatically adds an upstream
+        remote pointing to the parent repository. Use `--no-upstream` to skip this,
+        or `-u` to customize the upstream remote name.
+flags:
+    --no-upstream: Do not add an upstream remote when cloning a fork
+    -u, --upstream-remote-name=: Upstream remote name when cloning a fork

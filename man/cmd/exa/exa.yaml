@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: exa
+description: a modern replacement for ls
+
+documentation:
+  command: >-
+    Modern replacement for ls with colors and Git integration. exa
+    displays directory contents with color-coded file types (executable,
+    symlink, directory). Long format (-l) shows permissions, size, date,
+    and name. Git support with --git shows file modification status
+    relative to HEAD. Tree view (-T) recursively lists directories.
+    Grid view (-2) shows contents in columns (default in terminal).
+    Sort by size (-sS), modified (-sM), extensions (-sX), version (-sv).
+    Filter by type (-t f/d/l) or extension (-e). Icons with --icons.
+    Hyperlink mode with --hyperlink for terminal navigation. Hide
+    hidden files with --ignore-hidden. Combine flags for custom views.

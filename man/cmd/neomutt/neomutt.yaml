@@ -1,0 +1,30 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: neomutt
+description: The NeoMutt Mail User Agent
+flags:
+    -A=: Print an expanded version of the given alias to stdout and exit
+    -B: Run in batch mode (do not start the ncurses UI)
+    -D: Dump all config variables as 'name=value' pairs to stdout
+    -E: Edit draft (-H) or include (-i) file during message composition
+    -F=: Specify an alternative initialization file to read
+    -G: Start NeoMutt with a listing of subscribed newsgroups
+    -H=: Specify a draft file with header and body for message composing
+    -R: Open mailbox in read-only mode
+    -Z: Open the first mailbox with new message or exit immediately
+    -a=: Attach one or more files to a message (must be the last option)
+    -b=: Specify a blind carbon copy (Bcc) recipient
+    -c=: Specify a carbon copy (Cc) recipient
+    -d=: Log debugging output to a file (default is "~/.neomuttdebug0")
+    -e=: Specify a command to be run after reading the config files
+    -f=: Specify a mailbox (as defined with 'mailboxes' command) to load
+    -g=: Like -G, but start at specified news server
+    -h: Print this help message and exit
+    -i=: Specify an include file to be embedded in the body of a message
+    -l=: Specify a file for debugging output (default "~/.neomuttdebug0")
+    -m=: Specify a default mailbox format type for newly created folders
+    -n: Do not read the system-wide configuration file
+    -p: Resume a prior postponed message, if any
+    -s=: Specify a subject (must be enclosed in quotes if it has spaces)
+    -v: Print the NeoMutt version and compile-time definitions and exit
+    -y: Start NeoMutt with a listing of all defined mailboxes
+    -z: Open the first or specified (-f) mailbox if it holds any message

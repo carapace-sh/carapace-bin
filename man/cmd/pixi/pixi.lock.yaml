@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: lock
+description: Solve environment and update the lock file without installing the environments
+flags:
+    --check: Check if any changes have been made to the lock file. If yes, exit with a non-zero code
+    --dry-run: Compute the lock file without writing to disk. Implies --no-install
+    --json: Output the changes in JSON format
+    --no-install: Don't modify the environment, only modify the lock-file
+persistentflags:
+    -m, --manifest-path=: The path to `pixi.toml`, `pyproject.toml`, or the workspace directory

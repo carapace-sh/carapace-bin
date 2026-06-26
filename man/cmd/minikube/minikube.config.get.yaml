@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: get PROPERTY_NAME
+description: Gets the value of PROPERTY_NAME from the minikube config file

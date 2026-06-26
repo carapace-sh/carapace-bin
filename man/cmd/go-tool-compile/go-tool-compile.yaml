@@ -1,0 +1,70 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: go-tool-compile
+description: compiles a single Go packag
+flags:
+    -%: debug non-static initializers
+    -+: compiling runtime
+    -B: disable bounds checking
+    -C: disable printing of columns in error messages
+    -D=: set relative path for local imports
+    -E: debug symbol export
+    -I=: add directory to import search path
+    -K: debug missing line numbers
+    -L: also show actual source file names in error messages for positions affected by //line directives
+    -N: disable optimizations
+    -S: print assembly listing
+    -V: print version and exit
+    -W: debug parse tree after type checking
+    -asan: build code compatible with C/C++ address sanitizer
+    -asmhdr=: write assembly header to file
+    -bench=: append benchmark times to file
+    -blockprofile=: write block profile to file
+    -buildid=: record id as the build id in the export metadata
+    -c=: concurrency during compilation (1 means no concurrency) (default 12)
+    -clobberdead: clobber dead stack slots (for debugging)
+    -clobberdeadreg: clobber dead registers (for debugging)
+    -complete: compiling complete package (no C or assembly)
+    -coveragecfg=: read coverage configuration from file
+    -cpuprofile=: write cpu profile to file
+    -d=: enable debugging settings; try -d help
+    -dwarf: generate DWARF symbols (default true)
+    -dwarfbasentries: use base address selection entries in DWARF (default true)
+    -dwarflocationlists: add location lists to DWARF in optimized mode (default true)
+    -dynlink: support references to Go symbols defined in other shared libraries
+    -e: no limit on number of errors reported
+    -embedcfg=: read go:embed configuration from file
+    -gendwarfinl=: generate DWARF inline info records (default 2)
+    -goversion=: required version of the runtime
+    -h: halt on error
+    -importcfg=: read import configuration from file
+    -installsuffix=: set pkg directory suffix
+    -j: debug runtime-initialized variables
+    -json=: version,file for JSON compiler/optimizer detail output
+    -l: disable inlining -lang string Go language version source code expects
+    -linkobj=: write linker-specific object to file
+    -linkshared: generate code that will be linked against Go shared libraries
+    -live: debug liveness analysis
+    -m: print optimization decisions
+    -memprofile=: write memory profile to file
+    -memprofilerate=: set runtime.MemProfileRate to rate
+    -msan: build code compatible with C/C++ memory sanitizer
+    -mutexprofile=: write mutex profile to file
+    -nolocalimports: reject local (relative) imports
+    -o=: write output to file
+    -oldcomparable: enable old comparable semantics
+    -p=: set expected package import path
+    -pack: write to file.a instead of file.o
+    -pgoprofile=: read profile from file
+    -r: debug generated wrappers
+    -race: enable race detector
+    -shared: generate code that can be linked into a shared library
+    -smallframes: reduce the size limit for stack allocated objects
+    -spectre=: enable spectre mitigations in list (all, index, ret)
+    -std: compiling standard library
+    -symabis=: read symbol ABIs from file
+    -t: enable tracing for debugging the compiler
+    -traceprofile=: write an execution trace to file
+    -trimpath=: remove prefix from recorded source file paths
+    -v: increase debug verbosity
+    -w: debug type checking
+    -wb: enable write barrier (default true)

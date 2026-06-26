@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: nh
+description: Yet another nix helper
+persistentflags:
+    -e, --elevation-strategy=: Choose the privilege elevation strategy
+    -v, --verbose*: Increase logging verbosity

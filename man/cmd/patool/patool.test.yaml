@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: test
+description: test an archive
+flags:
+    --password=: password for encrypted files

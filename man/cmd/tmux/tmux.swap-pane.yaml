@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: swap-pane
+flags:
+    -D: TODO description
+    -U: TODO description
+    -Z: TODO description
+    -d: TODO description
+    -s=: src-pane
+    -t=: dst-pane

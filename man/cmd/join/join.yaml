@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: join
+description: join lines of two files on a common field
+flags:
+    --check-order: check that the input is correctly sorted, even
+    --header: treat the first line in each file as field headers,
+    --help: display this help and exit
+    --nocheck-order: do not check that the input is correctly sorted
+    --version: output version information and exit
+    -1=: join on this FIELD of file 1
+    -2=: join on this FIELD of file 2
+    -a=: also print unpairable lines from file FILENUM, where
+    -e=: replace missing input fields with EMPTY
+    -i, --ignore-case: ignore differences in case when comparing fields
+    -j=: equivalent to '-1 FIELD -2 FIELD'
+    -o=: obey FORMAT while constructing output line
+    -t=: use CHAR as input and output field separator
+    -v=: like -a FILENUM, but suppress joined output lines
+    -z, --zero-terminated: line delimiter is NUL, not newline

@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: tap-new
+description: Generate the template files for a new tap
+group: developer
+flags:
+    --branch: 'Initialize Git repository and setup GitHub Actions workflows with the specified branch name (default: `main`).'
+    --debug: Display any debugging information.
+    --github-packages: Upload bottles to GitHub Packages.
+    --help: Show this message.
+    --no-git: Don't initialize a Git repository for the tap.
+    --pull-label: 'Label name for pull requests ready to be pulled (default: `pr-pull`).'
+    --quiet: Make some output more quiet.
+    --verbose: Make some output more verbose.

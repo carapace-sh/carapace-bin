@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: purge
+description: Delete all records in the store that cannot be decrypted with the current key
+flags:
+    -h, --help: Print help

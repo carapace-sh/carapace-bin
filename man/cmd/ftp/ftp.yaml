@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ftp
+description: File Transfer Protocol client
+flags:
+    --prompt?: print a command line PROMPT (optionally), even if not on a tty
+    --usage: give a short usage message
+    -?, --help: give this help list
+    -4, --ipv4: contact IPv4 hosts
+    -6, --ipv6: contact IPv6 hosts
+    -A, --active: enable active mode transfer
+    -N, --netrc=: select a specific initialization file
+    -V, --version: print program version
+    -d, --debug: enable debugging output
+    -e, --no-edit: disable command line editing
+    -g, --no-glob: turn off file name globbing
+    -i, --no-prompt: do not prompt during multiple file transfers
+    -n, --no-login: do not automatically login to the remote system
+    -p, --passive: enable passive mode transfer, default for `pftp'
+    -t, --trace: enable packet tracing
+    -v, --verbose: verbose output

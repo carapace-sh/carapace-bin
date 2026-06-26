@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: publish
+description: Upload a package to the registry
+group: publishing
+flags:
+    --all-features: Activate all available features
+    --allow-dirty: Allow dirty working directories to be packaged
+    --exclude=*: Don't publish specified packages
+    --index=: Registry index URL to upload the package to
+    --keep-going: Do not abort the build as soon as there is an error
+    --manifest-path=: Path to Cargo.toml
+    --no-default-features: Do not activate the `default` feature
+    --no-verify: Don't verify the contents by building them
+    --registry=: Registry to upload the package to
+    --target-dir=: Directory for all generated artifacts
+    --target=*: Build for the target triple
+    --workspace: Publish all packages in the workspace
+    -F, --features=*: Space or comma separated list of features to activate
+    -h, --help: Print help
+    -j, --jobs=: 'Number of parallel jobs, defaults to # of CPUs.'
+    -n, --dry-run: Perform all checks without uploading
+    -p, --package=*: Package(s) to publish
+documentation:
+  command: |
+    Upload a package to the registry. By default, publishes to the default
+    registry (crates.io). Use `--registry` to specify a different registry.
+    The `--dry-run` flag validates the package without uploading. Use
+    `--allow-dirty` to publish from a dirty working directory. Requires
+    authentication via `cargo login` first.

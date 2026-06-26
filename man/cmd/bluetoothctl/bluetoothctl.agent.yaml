@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: agent <on|off|auto|capability>
+description: Enable/disable agent with given capability

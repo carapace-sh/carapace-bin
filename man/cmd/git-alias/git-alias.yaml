@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: git-alias
+description: Define, search and show aliases
+flags:
+    --help: show help

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: fish
+description: Generate the autocompletion script for fish
+flags:
+    --no-descriptions: disable completion descriptions

@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Create, redefine, or display shell aliases. An alias definition
+    provides a string value that replaces a command name when the shell
+    encounters it. With no arguments, print all currently defined aliases
+    in a reusable format. Specify `name=value` to define or redefine an
+    alias; specify only a name to display that alias's definition. Alias
+    definitions affect the current shell execution environment and its
+    subshells, but not the parent process.
+description: Define or display aliases
+flags:
+    -p: print all defined aliases in a reusable format

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: refresh
+description: Update the local configuration based on the most recent deployment of the stack
+persistentflags:
+    -f, --force: Overwrite configuration file, if it exists, without creating a backup

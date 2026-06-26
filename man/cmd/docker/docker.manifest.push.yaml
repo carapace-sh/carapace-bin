@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: push [OPTIONS] MANIFEST_LIST
+description: Push a manifest list to a repository
+flags:
+    --insecure: Allow push to an insecure registry
+    -p, --purge: Remove the local manifest list after push

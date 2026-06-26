@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: var
+description: Show a Git logical variable
+group: low-level interrogator
+flags:
+  -l: Cause the logical variables to be listed
+documentation:
+  command: |-
+    Prints a Git logical variable. Exits with code 1 if the variable has
+    no value.
+  flag:
+    l: |-
+      Display the logical variables. In addition, all the
+      variables of the Git configuration file .git/config are listed
+      as well. (However, the configuration variables listing functionality
+      is deprecated in favor of `git config list`.)

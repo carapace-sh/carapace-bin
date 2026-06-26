@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: add [branch]
+description: Add a new branch on top of the current stack
+flags:
+    -A, --all: Stage all changes including untracked files
+    -m, --message=: Create a commit with this message
+    -u, --update: Stage changes to tracked files only

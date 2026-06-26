@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: completions
+description: Generates Volta completions
+flags:
+    --quiet: Prevents unnecessary output
+    --verbose: Enables verbose diagnostics
+    -f, --force: Write over an existing file, if any.
+    -h, --help: Prints help information
+    -o, --output=: File to write generated completions to

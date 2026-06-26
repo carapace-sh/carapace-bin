@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: dap
+description: Starts a headless TCP server communicating via Debug Adaptor Protocol (DAP).
+flags:
+    --client-addr=: host:port where the DAP client is waiting for the DAP server to dial in

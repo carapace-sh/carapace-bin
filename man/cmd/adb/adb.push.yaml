@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: push [–sync] [-z ALGORITHM] [-Z] LOCAL... REMOTE
+description: copy local files/directories to device
+flags:
+    --sync: only push files that are newer on the host than the device
+    -Z: disable compression
+    -n: 'dry run: push files to device without storing to the filesystem'
+    -z=: enable compression with a specified algorithm (any, none, brotli)
+
+documentation:
+  command: >-
+    Copy local files and directories to the device. Push multiple local files to a remote directory, or push a single file replacing the remote destination. Use `--sync` to only push files that are newer on the host than the device (incremental sync). Compress transfers with `-z` (any, none, or brotli algorithm). The `-n` flag performs a dry run without actually writing to the device filesystem. Can push directories recursively.

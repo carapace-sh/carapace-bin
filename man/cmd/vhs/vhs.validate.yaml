@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: validate <file>...
+description: Validate a glob file path and parses all the files to ensure they are valid without running them.

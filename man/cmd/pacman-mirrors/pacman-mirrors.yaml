@@ -1,0 +1,34 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pacman-mirrors
+description: generate pacman mirrorlist
+flags:
+    --continent: Use continent from geolocation
+    --country-list: List all available countries
+    --geoip: Get current country using geolocation
+    --interval=: Max. number of hours since last sync
+    --no-color: Disable color
+    --protocols=: 'API: Replace protocols in configuration'
+    --status: Status for the current mirror list.
+    -B, --set-branch=: 'API: Replace branch in configuration'
+    -G, --get-branch: Return branch from configuration
+    -P, --proto=: 'API: Replace protocols in configuration'
+    -R, --re-branch: 'API: Replace branch in mirrorlist'
+    -S=: 'API: Replace branch in configuration'
+    -U, --url=: 'API: Replace mirror url in mirrorlist'
+    -a, --api: TODO
+    -c, --country=: Comma separated list of countries, from which mirrors will be used
+    -d, --default: 'INTERACTIVE: Load default mirror file'
+    -f, --fasttrack=: Generate mirrorlist with a number of up-to-date mirrors
+    -fc: TODO
+    -g: Create mirror list from active pool.
+    -h, --help: ""
+    -i, --interactive: Generate custom mirrorlist
+    -l, --list: List all available countries
+    -lc, --country-config: lists configured mirror countries
+    -m, --method=: Generation method
+    -n, --no-mirrorlist: Use to skip generation of mirrorlist
+    -p, --prefix=: 'API: Set prefix to : $mnt | /mnt/install'
+    -q, --quiet: Quiet mode - less verbose output
+    -s, --no-status: Ignore mirror branch status
+    -t, --timeout=: Maximum waiting time for server response
+    -v, --version: Print the pacman-mirrors version

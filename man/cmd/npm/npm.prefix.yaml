@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: prefix
+description: Display prefix
+flags:
+    -g, --global: operate globally

@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: nix-instantiate
+description: instantiate store derivations from Nix expression
+flags:
+    --add-root=: Create a symlink to the output path
+    --arg=*: Pass [name] [expr] to Nix functions.
+    --argstr=*: Pass [name] [string] to Nix functions
+    --dry-run: Show what store paths would be built or downloaded
+    --eval: Evaluate the input files, and print the resulting values on standard output
+    --find-file: Lookup files in the nix search path
+    --help: Show usage information
+    --json: Print the result of --eval as JSON
+    --parse: Just parse the input files, and print their abstract syntax trees on standard output in ATerm format.
+    --read-write-mode: Perform evaluation in read/write mode
+    --strict: Recursively evaluate list elements and attributes.
+    --xml: Print the result of --eval as XML
+    -A, --attr=: Attribute to build
+    -E, --expr=: The expression to evaluate
+    -I, --include=: Include paths

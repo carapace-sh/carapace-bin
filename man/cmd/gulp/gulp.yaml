@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: gulp
+description: Command Line Interface for gulp
+flags:
+    --color: Will force gulp and gulp plugins to display colors.
+    --compact-tasks: Reduce the output of task dependency tree.
+    --continue: Continue execution of tasks upon failure.
+    --cwd=: Manually set the CWD.
+    --depth=: Specify the depth of the task dependency tree.
+    --log-level=: Set the loglevel.
+    --no-color: Will force gulp and gulp plugins to not display colors.
+    --require=: Will require a module before running the gulpfile.
+    --series: Run tasks given on the CLI in series.
+    --sort-tasks: 'Will sort top tasks of task dependency tree. '
+    --tasks-depth=: Specify the depth of the task dependency tree.
+    --tasks-json: Print the task dependency tree, in JSON format.
+    --tasks-simple: Print a plaintext list of tasks for the loaded gulpfile.
+    --verify: Will verify plugins referenced in project's package.json.
+    -L*: Set the loglevel.
+    -S, --silent: Suppress all gulp logging.
+    -T, --tasks: Print the task dependency tree for the loaded gulpfile.
+    -f, --gulpfile=: Manually set path of gulpfile.
+    -h, --help: Show this help.
+    -v, --version: Print the global and local gulp versions.

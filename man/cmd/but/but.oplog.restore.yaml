@@ -1,0 +1,20 @@
+name: restore
+description: Restore to a specific oplog snapshot.
+flags:
+    -f, --force: Skip confirmation prompt
+    -h, --help: Print help (see more with '--help')
+documentation:
+    command: |-
+        Restore to a specific oplog snapshot.
+
+        This command allows you to revert the repository to a previous state
+        captured in an oplog snapshot.
+
+        You need to provide the SHA of the oplog entry you want to restore to,
+        which you can find by running `but oplog` or `but oplog list`.
+    flag:
+        help: Print help (see a summary with '-h')
+        status-after: |-
+            After a mutation command completes, also output workspace status.
+
+            In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).

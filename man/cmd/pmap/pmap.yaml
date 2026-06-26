@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pmap
+description: report memory map of a process
+flags:
+    -A, --range=: limit results to the given range
+    -C, --read-rc-from=: read the rc from file
+    -N, --create-rc-to=: create new rc to file
+    -V, --version: output version information and exit
+    -X: show even more details
+    -XX: show everything the kernel provides
+    -c, --read-rc: read the default rc
+    -d, --device: show the device format
+    -h, --help: display this help and exit
+    -n, --create-rc: create new default rc
+    -p, --show-path: show path in the mapping
+    -q, --quiet: do not display header and footer
+    -x, --extended: show details

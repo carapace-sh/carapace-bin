@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: verify
+description: check that a bundle file is valid
+flags:
+  -q, --quiet: do not show bundle details

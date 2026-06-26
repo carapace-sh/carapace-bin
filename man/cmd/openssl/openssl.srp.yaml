@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: srp
+description: Maintain SRP password file
+group: standard
+flags:
+    -add: Add a user and SRP verifier
+    -config=: A config file
+    -delete: Delete user from verifier file
+    -gn=: Set g and N values to be used for new verifier
+    -list: List users
+    -modify: Modify the SRP verifier of an existing user
+    -name=: The particular srp definition to use
+    -passin=: Input file pass phrase source
+    -passout=: Output file pass phrase source
+    -srpvfile=: The srp verifier file name
+    -userinfo=: Additional info to be set for user
+    -verbose: Talk a lot while doing things

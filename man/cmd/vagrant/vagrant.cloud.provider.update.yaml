@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: update
+description: Updates a provider entry on Vagrant Cloud
+flags:
+    -C, --checksum-type=: Type of checksum used (md5, sha1, sha256, sha384, sha512). --checksum option is required.
+    -c, --checksum=: Checksum of the box for this provider. --checksum-type option is required.

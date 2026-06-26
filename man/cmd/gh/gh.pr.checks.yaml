@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: checks [<number> | <url> | <branch>]
+description: Show CI status for a single pull request
+group: Targeted commands
+flags:
+    --fail-fast: Exit watch mode on first check failure
+    --json=*: Output JSON with the specified `fields`
+    --required: Only show checks that are required
+    --watch: Watch checks until they finish
+    -i, --interval=: Refresh interval in seconds in watch mode
+    -q, --jq=: Filter JSON output using a jq `expression`
+    -t, --template=: Format JSON output using a Go template; see "gh help formatting"
+    -w, --web: Open the web browser to show details about checks

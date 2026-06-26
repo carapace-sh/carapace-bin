@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: job <id> [flags]
+description: Cancel CI/CD jobs.
+flags:
+    --dry-run: Simulates process, but does not cancel anything.

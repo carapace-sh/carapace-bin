@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pub
+description: Work with packages
+flags:
+    --no-trace: Do not print debugging information when an error occurs.
+    --trace: Print debugging information when an error occurs.
+    -h, --help: Print this usage information.
+    -v, --verbose: Shortcut for "--verbosity=all".
+
+documentation:
+  command: >-
+    Manage Dart packages with the pub package manager. Add, remove, upgrade, and publish packages.

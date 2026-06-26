@@ -1,0 +1,28 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    System monitor for X that displays system information (CPU,
+    memory, network, disk, etc.) on the desktop in a configurable
+    widget.
+description: A system  monitor for X originally based on the torsmo code
+flags:
+    -C, --print-config: print the builtin default config to stdout
+    -D, --debug: increase debugging output, ie. -DD for more debugging
+    -X, --display=: X11 display to use
+    -a, --alignment=: text alignment on screen
+    -b, --double-buffer: double buffer (prevents flickering)
+    -c, --config=: config file to load
+    -d, --daemonize: daemonize, fork to background
+    -f, --font=: font to use
+    -h, --help: help
+    -i=: number of times to update conky (and quit)
+    -m, --xinerama-head=: Xinerama monitor index (0=first)
+    -o, --own-window: create own window to draw
+    -p, --pause=: pause for SECS seconds at startup before doing anything
+    -q, --quiet: quiet mode
+    -t, --text=: text to render, remember single quotes, like -t '$uptime'
+    -u, --interval=: update interval
+    -v, --version: version
+    -w, --window-id=: window id to draw
+    -x=: x position
+    -y=: y position

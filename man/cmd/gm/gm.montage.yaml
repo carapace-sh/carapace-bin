@@ -1,0 +1,79 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: montage
+description: create a composite image (in a grid) from separate images
+flags:
+    -adjoin*: join images into a single multi-image file
+    -affine=*: affine transform matrix
+    -authenticate=*: decrypt image with this password
+    -background=*: background color
+    -blue-primary=*: chomaticity blue primary point
+    -blur=*: apply a filter to blur the image
+    -bordercolor=*: border color
+    -borderwidth=*: border width
+    -colors*: preferred number of colors in the image
+    -colorspace=*: alternate image colorsapce
+    -comment=*: annotate image with comment
+    -compose=*: composite operator
+    -compress=*: image compression type
+    -crop=*: preferred size and location of the cropped image
+    -debug=*: display copious debugging information
+    -define=*: Coder/decoder specific options
+    -density=*: horizontal and vertical density of the image
+    -depth=*: image depth
+    -display=*: query font from this X server
+    -dispose=*: Undefined, None, Background, Previous
+    -dither*: apply Floyd/Steinberg error diffusion to image
+    -draw=*: annotate the image with a graphic primitive
+    -encoding=*: text encoding type
+    -endian=*: multibyte word order (LSB, MSB, or Native)
+    -fill=*: color to use when filling a graphic primitive
+    -filter=*: use this filter when resizing an image
+    -flip*: flip image in the vertical direction
+    -flop*: flop image in the horizontal direction
+    -font=*: font to use when annotating with text
+    -format=*: output formatted image characteristics
+    -frame=*: surround image with an ornamental border
+    -gamma=*: level of gamma correction
+    -geometry=*: preferred tile and border sizes
+    -gravity=*: which direction to gravitate towards
+    -green-primary=*: chomaticity green primary point
+    -help*: print program options
+    -interlace=*: None, Line, Plane, or Partition
+    -label=*: assign a label to an image
+    -limit=*: Disk, File, Map, Memory, Pixels, Width, Height or Threads resource limit
+    -log=*: format of debugging information
+    -matte*: store matte channel if the image has one
+    -mattecolor=*: color to be used with the -frame option
+    -mode=*: Frame, Unframe, or Concatenate
+    -monitor*: show progress indication
+    -monochrome*: transform image to black and white
+    -noop*: do not apply options to image
+    -page=*: size and location of an image canvas
+    -pointsize=*: font point size
+    -quality=*: JPEG/MIFF/PNG compression level
+    -red-primary=*: chomaticity red primary point
+    -repage=*: adjust current page offsets by geometry
+    -resize=*: resize the image
+    -rotate=*: apply Paeth rotation to the image
+    -sampling-factor=*: horizontal and vertical sampling factors
+    -scenes=*: image scene range
+    -set=*: set image attribute
+    -shadow*: add a shadow beneath a tile to simulate depth
+    -sharpen=*: sharpen the image
+    -size=*: width and height of image
+    -strip*: strip all profiles and text attributes from image
+    -stroke=*: color to use when stroking a graphic primitive
+    -strokewidth=*: stroke (line) width
+    -texture=*: name of texture to tile onto the image background
+    -thumbnail=*: resize the image (optimized for thumbnails)
+    -tile=*: number of tiles per row and column
+    -title=*: thumbnail title
+    -transform*: affine transform image
+    -transparent=*: make this color transparent within the image
+    -treedepth=*: color tree depth
+    -trim*: trim image edges
+    -type=*: image type
+    -verbose: print detailed information about the image
+    -version: print version information
+    -virtual-pixel=*: Constant, Edge, Mirror, or Tile
+    -white-point=*: chomaticity white point

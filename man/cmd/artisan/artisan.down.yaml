@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: down [--redirect [REDIRECT]] [--render [RENDER]] [--retry [RETRY]] [--refresh [REFRESH]] [--secret [SECRET]] [--with-secret] [--status [STATUS]]
+description: Put the application into maintenance / demo mode
+flags:
+    --redirect=: The path that users should be redirected to
+    --refresh=: The number of seconds after which the browser may refresh
+    --render=: The view that should be prerendered for display during maintenance mode
+    --retry=: The number of seconds after which the request may be retried
+    --secret=: The secret phrase that may be used to bypass maintenance mode
+    --status=: The status code that should be used when returning the maintenance mode response
+    --with-secret: Generate a random secret phrase that may be used to bypass maintenance mode

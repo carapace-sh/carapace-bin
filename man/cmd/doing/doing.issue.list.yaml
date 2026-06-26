@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list [OPTIONS]
+description: List issues related to the project
+flags:
+    --help: Show this message and exit
+    --no-show_state: Do not show column with work item state
+    --no-web: Open overview of issues in the web browser
+    --show_state: Show column with work item state
+    --story_points=: Filter on number of story points
+    -A, --author=: Filter by author
+    -a, --assignee=: Filter by assignee
+    -l, --label=: Filter by labels
+    -o, --output_format=: Output format
+    -s, --state=: Filter by state
+    -t, --type=: Type of work item
+    -w, --web: Open overview of issues in the web browser

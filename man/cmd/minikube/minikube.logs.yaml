@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: logs
+description: Returns logs to debug a local Kubernetes cluster
+group: troubleshooting
+flags:
+    --audit: Show only the audit logs
+    --file=: If present, writes to the provided file instead of stdout.
+    --last-start-only: Show only the last start logs.
+    --node=: The node to get logs from. Defaults to the primary control plane.
+    --problems: Show only log entries which point to known problems
+    -f, --follow: Show only the most recent journal entries, and continuously print new entries as they are appended to the journal.
+    -n, --length=: Number of lines back to go within the log

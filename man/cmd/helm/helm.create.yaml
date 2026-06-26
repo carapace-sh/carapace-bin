@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create
+description: create a new chart with the given name
+group: main
+flags:
+    -p, --starter=: the name or absolute path to Helm starter scaffold

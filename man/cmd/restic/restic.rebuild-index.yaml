@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rebuild-index
+description: Build a new index
+flags:
+    --read-all-packs: read all pack files to generate new index from scratch
+
+documentation:
+  command: >-
+    Rebuild the repository index from scratch. Use when the index is corrupted or after manual recovery operations.

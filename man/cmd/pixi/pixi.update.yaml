@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: update
+description: The `update` command checks if there are newer versions of the dependencies and updates the `pixi.lock` file and environments accordingly
+flags:
+    --auth-file=: Path to the file containing the authentication token
+    --concurrent-downloads=: Max concurrent network requests, default is `50`
+    --concurrent-solves=: Max concurrent solves, default is the number of CPUs
+    --json: Output the changes in JSON format
+    --no-install: Don't install the (solve) environments needed for pypi-dependencies solving
+    --pinning-strategy=: Set pinning strategy
+    --pypi-keyring-provider=: Specifies whether to use the keyring to look up credentials for PyPI
+    --run-post-link-scripts: Run post-link scripts (insecure)
+    --tls-no-verify: Do not verify the TLS certificate of the server
+    --tls-root-certs=: 'Which TLS root certificates to use: ''webpki'' (bundled Mozilla roots), ''native'' (system store), or ''all'' (both)'
+    --use-environment-activation-cache: Use environment activation cache (experimental)
+    -e, --environment=*: The environments to update. If none is specified, all environments are updated
+    -n, --dry-run: Don't actually write the lockfile or update any environment
+    -p, --platform=*: The platforms to update. If none is specified, all platforms are updated
+persistentflags:
+    -m, --manifest-path=: The path to `pixi.toml`, `pyproject.toml`, or the workspace directory

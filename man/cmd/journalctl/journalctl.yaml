@@ -1,0 +1,65 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: journalctl
+description: Query the journal
+flags:
+    --after-cursor=: Show entries after the specified cursor
+    --case-sensitive?: Force case sensitive or insensitive matching
+    --cursor-file=: Show entries after cursor in FILE and update FILE
+    --disk-usage: Show total disk usage of all journal files
+    --dump-catalog: Show entries in the message catalog
+    --facility=: Show entries with the specified facilities
+    --file=*: Show journal file
+    --flush: Flush all journal data from /run into /var
+    --force: Override of the FSS key pair with --setup-keys
+    --header: Show journal header information
+    --image=: Operate on files in filesystem image
+    --interval=: Time interval for changing the FSS sealing key
+    --list-boots: Show terse information about recorded boots
+    --list-catalog: Show all message IDs in the catalog
+    --namespace=: Show journal data from specified namespace
+    --no-full: Ellipsize fields
+    --no-hostname: Suppress output of hostname field
+    --no-pager: Do not pipe output into a pager
+    --no-tail: Show all lines, even in follow mode
+    --output-fields=: Select fields to print in verbose/export/json modes
+    --relinquish-var: Stop logging to disk, log to temporary file system
+    --root=: Operate on files below a root directory
+    --rotate: Request immediate rotation of the journal files
+    --setup-keys: Generate a new FSS key pair
+    --show-cursor: Print the cursor after all the entries
+    --smart-relinquish-var: Similar, but NOP if log directory is on root mount
+    --sync: Synchronize unwritten journal messages to disk
+    --system: Show the system journal
+    --update-catalog: Update the message catalog database
+    --user: Show the user journal for the current user
+    --user-unit=*: Show logs from the specified user unit
+    --utc: Express time in Coordinated Universal Time (UTC)
+    --vacuum-files=: Leave only the specified number of journal files
+    --vacuum-size=: Reduce disk usage below specified size
+    --vacuum-time=: Remove journal files older than specified time
+    --verify: Verify journal file consistency
+    --verify-key=: Specify FSS verification key
+    --version: Show package version
+    -D, --directory=: Show journal files from directory
+    -F, --field=: List all values that a specified field takes
+    -M, --machine=: Operate on local container
+    -N, --fields: List all field names currently used
+    -S, --since=: Show entries not older than the specified date
+    -U, --until=: Show entries not newer than the specified date
+    -a, --all: Show all fields, including long and unprintable
+    -b, --boot=: Show current boot or the specified boot
+    -c, --cursor=: Show entries starting at the specified cursor
+    -e, --pager-end: Immediately jump to the end in the pager
+    -f, --follow: Follow the journal
+    -g, --grep=: Show entries with MESSAGE matching PATTERN
+    -h, --help: Show this help text
+    -k, --dmesg: Show kernel message log from the current boot
+    -m, --merge: Show entries from all available journals
+    -n, --lines=: Number of journal entries to show
+    -o, --output=: Change journal output mode
+    -p, --priority=: Show entries with the specified priority
+    -q, --quiet: Do not show info messages and privilege warning
+    -r, --reverse: Show the newest entries first
+    -t, --identifier=*: Show entries with the specified syslog identifier
+    -u, --unit=*: Show logs from the specified unit
+    -x, --catalog: Add message explanations where available

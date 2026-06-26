@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: config
+description: Print database connection information. Useful when configuring GUI clients.
+flags:
+    --db=&: Print information for the specified database.
+    -f, --format=: 'Print format: "text" to print in table format (default), "cmd" to print connect command, "json" or "yaml" to print in JSON or YAML.'

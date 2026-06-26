@@ -1,0 +1,43 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: spin
+description: Display spinner while running a command
+flags:
+    --padding=: Padding
+    --show-error: Show output of command only if the command fails
+    --show-output: Show or pipe output of command during execution (shows both STDOUT and STDERR)
+    --show-stderr: Show STDERR errput
+    --show-stdout: Show STDOUT output
+    --spinner.align=: Text Alignment
+    --spinner.background=: Background Color
+    --spinner.bold: Bold text
+    --spinner.border-background=: Border Background Color
+    --spinner.border-foreground=: Border Foreground Color
+    --spinner.border=: Border Style
+    --spinner.faint: Faint text
+    --spinner.foreground=: Foreground Color
+    --spinner.height=: Text height
+    --spinner.italic: Italicize text
+    --spinner.margin=: Text margin
+    --spinner.padding=: Text padding
+    --spinner.strikethrough: Strikethrough text
+    --spinner.underline: Underline text
+    --spinner.width=: Text width
+    --timeout=: Timeout until spin command aborts
+    --title.align=: Text Alignment
+    --title.background=: Background Color
+    --title.bold: Bold text
+    --title.border-background=: Border Background Color
+    --title.border-foreground=: Border Foreground Color
+    --title.border=: Border Style
+    --title.faint: Faint text
+    --title.foreground=: Foreground Color
+    --title.height=: Text height
+    --title.italic: Italicize text
+    --title.margin=: Text margin
+    --title.padding=: Text padding
+    --title.strikethrough: Strikethrough text
+    --title.underline: Underline text
+    --title.width=: Text width
+    --title=: Text to display to user while spinning
+    -a, --align=: Alignment of spinner with regard to the title
+    -s, --spinner=: Spinner type

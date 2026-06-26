@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: killall
+description: kill processes by name
+flags:
+    -I, --ignore-case: case insensitive process name match
+    -V, --version: display version information
+    -e, --exact: require exact match for very long names
+    -g, --process-group: kill process group instead of process
+    -i, --interactive: ask for confirmation before killing
+    -l, --list: list all known signal names
+    -n, --ns=: match processes that belong to the same namespaces as PID
+    -o, --older-than=: kill processes older than TIME
+    -q, --quiet: don't print complaints
+    -r, --regexp: interpret NAME as an extended regular expression
+    -s, --signal=: send this signal instead of SIGTERM
+    -u, --user=: kill only process(es) running as USER
+    -v, --verbose: report if the signal was successfully sent
+    -w, --wait: wait for processes to die
+    -y, --younger-than=: kill processes younger than TIME

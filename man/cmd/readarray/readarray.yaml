@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: readarray
+description: Read lines from standard input into an indexed array variable
+flags:
+    -C=: evaluate callback each time quantum lines are read
+    -O=: begin assigning to array at index origin
+    -c=: specify the number of lines read between each call to callback
+    -d=: read lines until the first character of delim is read instead of newline
+    -n=: copy at most count lines
+    -s: treat the first line read as the number of lines to skip
+    -t=: remove a trailing delim from each line read
+    -u=: read lines from file descriptor fd instead of the standard input

@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: cat
+description: Display the source of a <formula> or <cask>
+group: developer
+flags:
+    --cask: Treat all named arguments as casks.
+    --debug: Display any debugging information.
+    --formula: Treat all named arguments as formulae.
+    --help: Show this message.
+    --quiet: Make some output more quiet.
+    --verbose: Make some output more verbose.

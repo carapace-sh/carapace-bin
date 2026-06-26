@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: package
+description: packages a running vagrant environment into a box
+flags:
+    --base=: Name of a VM in VirtualBox to package as a base box (VirtualBox Only)
+    --include=: Comma separated additional files to package with the box
+    --info=: Path to a custom info.json file containing additional box information
+    --output=: Name of the file to output
+    --vagrantfile=: Vagrantfile to package with the box

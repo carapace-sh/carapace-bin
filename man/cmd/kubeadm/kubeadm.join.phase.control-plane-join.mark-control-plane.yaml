@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: mark-control-plane
+description: Mark a node as a control-plane
+flags:
+    --config=: Path to a kubeadm configuration file.
+    --control-plane: Create a new control plane instance on this node
+    --dry-run: Don't apply any changes; just output what would be done.
+    --node-name=: Specify the node name.

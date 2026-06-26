@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: mktree
+description: Build a tree-object from ls-tree formatted text
+group: low-level manipulator
+flags:
+  --batch: allow creation of more than one tree
+  --missing: allow missing objects
+  -z: input is NUL terminated
+documentation:
+  command: |-
+    Reads standard input in non-recursive `ls-tree` output format, and creates
+    a tree object.  The order of the tree entries is normalized by mktree so
+    pre-sorting the input is not required.  The object name of the tree object
+    built is written to the standard output.

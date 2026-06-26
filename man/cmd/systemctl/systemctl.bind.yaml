@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: bind
+description: Bind-mount a path from the host into a unit's namespace
+group: unit
+documentation:
+  command: |
+    Bind-mount a file or directory from the host into the specified unit's
+    mount namespace. The first path argument is the source on the host, the
+    second is the destination in the unit's namespace (omitted if same as
+    source). Use `--read-only` for a read-only bind mount, `--mkdir` to
+    create the destination first. Note this is only supported for units that
+    run within a mount namespace (e.g., with RootImage=, PrivateMounts=).
+    The bind mount is ephemeral and is undone when the unit process exits.

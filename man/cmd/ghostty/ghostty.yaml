@@ -1,0 +1,205 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ghostty
+description: 'a fast, feature-rich, and cross-platform terminal emulator '
+flags:
+    --abnormal-command-exit-runtime?: The number of milliseconds of runtime below which we consider a process exit to be abnormal
+    --adjust-box-thickness?: Thickness in pixels of box drawing characters
+    --adjust-cell-height?: Height of the cell
+    --adjust-cell-width?: Witdth of the cell
+    --adjust-cursor-height?: Height in pixels of the cursor
+    --adjust-cursor-thickness?: Thickness in pixels of the bar cursor and outlined rect cursor
+    --adjust-font-baseline?: Distance in pixels from the bottom of the cell to the text baseline
+    --adjust-icon-height?: Height in pixels or percentage adjustment of maximum height for nerd font icons
+    --adjust-overline-position?: Distance in pixels from the top of the cell to the top of the overline
+    --adjust-overline-thickness?: Thickness in pixels of the overline
+    --adjust-strikethrough-position?: Distance in pixels from the top of the cell to the top of the strikethrough
+    --adjust-strikethrough-thickness?: Thickness in pixels of the strikethrough
+    --adjust-underline-position?: Distance in pixels from the top of the cell to the top of the underline
+    --adjust-underline-thickness?: Thickness in pixels of the underline
+    --alpha-blending?: What color space to use when performing alpha blending
+    --app-notifications?: Control the in-app notifications that Ghostty shows
+    --async-backend?: Configures the low-level API to use for async IO, eventing, etc.
+    --auto-update-channel?: The release channel to use for auto-updates
+    --auto-update?: Control the auto-update functionality of Ghostty
+    --background-blur?: Whether to blur the background when `background-opacity` is less than 1
+    --background-image-fit?: Background image fit
+    --background-image-opacity?: Background image opacity
+    --background-image-position?: Background image position
+    --background-image-repeat: Whether to repeat the background image or not
+    --background-image?: Background image for the terminal
+    --background-opacity-cells: Applies background opacity to cells with an explicit background color set
+    --background-opacity?: The opacity level (opposite of transparency) of the background
+    --background?: Background color for the window
+    --bell-audio-path?: If `audio` is an enabled bell feature, this is a path to an audio file
+    --bell-audio-volume?: If `audio` is an enabled bell feature, this is the volume to play the audio file at
+    --bell-features?: Bell features to enable if bell support is available in your runtime
+    --bold-color?: Modifies the color used for bold text in the terminal
+    --class?: The setting that will change the application class value
+    --click-repeat-interval?: The time in milliseconds between clicks to consider a click a repeat
+    --clipboard-codepoint-map?*: Map specific Unicode codepoints to replacement values when copying text to clipboard
+    --clipboard-paste-bracketed-safe: If true, bracketed pastes will be considered safe
+    --clipboard-paste-protection: Require confirmation before pasting text that appears unsafe
+    --clipboard-read?: Whether to allow programs running in the terminal to read from the system clipboard
+    --clipboard-trim-trailing-spaces: Trims trailing whitespace on data that is copied to the clipboard
+    --clipboard-write?: Whether to allow programs running in the terminal to write to the system clipboard
+    --command-palette-entry?*: Custom entries into the command palette
+    --command?: The command to run, usually a shell
+    --config-default-files: When this is true, the default configuration file paths will be loaded
+    --config-file?*: Additional configuration files to read
+    --confirm-close-surface?: Confirms that a surface should be closed before closing it
+    --copy-on-select?: Whether to automatically copy selected text to the clipboard
+    --cursor-click-to-move: Enables the ability to move the cursor at prompts
+    --cursor-color?: The color of the cursor
+    --cursor-opacity?: The opacity level (opposite of transparency) of the cursor
+    --cursor-style-blink?: Sets the default blinking state of the cursor
+    --cursor-style?: The style of the cursor
+    --cursor-text?: The color of the text under the cursor
+    --custom-shader-animation?: Controls when custom shaders are animated
+    --custom-shader?*: Custom shaders to run after the default shaders
+    --desktop-notifications: bool
+    --enquiry-response?: String to send when we receive `ENQ` (`0x05`) from the command that we are running
+    --env?*: Extra environment variables to pass to commands launched in a terminal surface
+    --faint-opacity?: The opacity level (opposite of transparency) of the faint text
+    --focus-follows-mouse: If true, when there are multiple split panes, the mouse selects the pane that is focused
+    --font-codepoint-map?*: Force one or a range of Unicode codepoints to map to a specific named font
+    --font-family-bold-italic?*: The font families to use for bold italic
+    --font-family-bold?*: The font families to use for bold
+    --font-family-italic?*: The font families to use for italic
+    --font-family?*: The font families to use
+    --font-feature?*: Apply a font feature
+    --font-shaping-break?: Locations to break font shaping into multiple runs
+    --font-size?: Font size in points
+    --font-style-bold-italic?: The named font style to use for bold italic
+    --font-style-bold?: The named font style to use for bold
+    --font-style-italic?: The named font style to use for italic
+    --font-style?: The named font style to use
+    --font-synthetic-style?: Control whether Ghostty should synthesize a style if the requested style is not available
+    --font-thicken: Draw fonts with a thicker stroke
+    --font-thicken-strength?: Strength of thickening when `font-thicken` is enabled
+    --font-variation-bold-italic?*: Set font variation for bold-italic
+    --font-variation-bold?*: Set font variation for bold
+    --font-variation-italic?*: Set font variation for italic
+    --font-variation?*: Set font variation
+    --foreground?: Foreground color for the window
+    --freetype-load-flags?: FreeType load flags to enable
+    --fullscreen?: Start new windows in fullscreen
+    --grapheme-width-method?: The method to use for calculating the cell width of a grapheme cluster
+    --gtk-custom-css?*: Custom CSS files to be loaded
+    --gtk-opengl-debug: Enable or disable GTK's OpenGL debugging logs
+    --gtk-quick-terminal-layer?: The layer of the quick terminal window
+    --gtk-quick-terminal-namespace?: The namespace for the quick terminal window
+    --gtk-single-instance?: Run in single-instance mode
+    --gtk-tabs-location?: Determines the side of the screen that the GTK tab bar will stick to
+    --gtk-titlebar: Display the full GTK titlebar
+    --gtk-titlebar-hide-when-maximized: Hide the titlebar when the window is maximized
+    --gtk-titlebar-style?: The style of the GTK titlebar
+    --gtk-toolbar-style?: Determines the appearance of the top and bottom bars tab bar
+    --gtk-wide-tabs: Use "wide" GTK tabs
+    --help: show help
+    --image-storage-limit?: The total amount of bytes that can be used for image data
+    --initial-command?: This is the same as "command", but only applies to the first terminal surface created
+    --initial-window: Create an initial window when Ghostty is run
+    --input?: Data to send as input to the command on startup
+    --key-remap?*: Remap modifier keys within Ghostty
+    --language?: Set Ghostty's graphical user interface language
+    --link-previews?: Show link previews for a matched URL
+    --link-url: Enable URL matching
+    --linux-cgroup-hard-fail: Let cgroup initialization failure cause exit
+    --linux-cgroup-memory-limit?: Memory limit for any individual terminal process
+    --linux-cgroup-processes-limit?: Number of processes limit for any individual terminal process
+    --linux-cgroup?: Put every surface (tab, split, window) into a dedicated Linux cgroup
+    --macos-applescript: If true, Ghostty exposes and handles the built-in AppleScript dictionary
+    --macos-auto-secure-input: Automatically enable the "Secure Input" feature
+    --macos-custom-icon?: The absolute path to the custom icon file
+    --macos-dock-drop-behavior?: Controls the windowing behavior when dropping a file on the macOS dock icon
+    --macos-hidden?: Control whether macOS app is excluded from the dock and app switcher
+    --macos-icon-frame?: The material to use for the frame of the macOS app icon
+    --macos-icon-ghost-color?: The color of the ghost in the macOS app icon
+    --macos-icon-screen-color?: The color of the screen in the macOS app icon
+    --macos-icon?: Customize the macOS app icon
+    --macos-non-native-fullscreen?: Non-native fullscreen mode
+    --macos-option-as-alt?: Treat option key as alt
+    --macos-secure-input-indication: Show a graphical indication when secure input is enabled
+    --macos-shortcuts?: Whether macOS Shortcuts are allowed to control Ghostty
+    --macos-titlebar-proxy-icon?: Whether the proxy icon in the macOS titlebar is visible
+    --macos-titlebar-style?: The style of the macOS titlebar
+    --macos-window-buttons?: Whether the window buttons in the macOS titlebar are visible
+    --macos-window-shadow: Whether to enable the macOS window shadow
+    --maximize: Whether to start the window in a maximized state
+    --minimum-contrast?: The minimum contrast ratio between the foreground and background colors
+    --mouse-hide-while-typing: Hide the mouse immediately when typing
+    --mouse-reporting: Enable or disable mouse reporting
+    --mouse-scroll-multiplier?: Multiplier for scrolling distance with the mouse wheel
+    --mouse-shift-capture?: Determines whether running programs can detect the shift key pressed with a mouse click
+    --notify-on-command-finish-action?: Controls how the user is notified when command finishes
+    --notify-on-command-finish-after?: Controls how long a command must run before sending a notification
+    --notify-on-command-finish?: Controls when command finished notifications are sent
+    --osc-color-report-format?: Sets the reporting format for OSC sequences that request color information
+    --palette-generate: Whether to automatically generate the extended 256 color palette from the base 16 ANSI colors
+    --palette-harmonious: Invert the palette colors generated when palette-generate is enabled
+    --progress-style: Allow applications to show graphical progress bars
+    --quick-terminal-animation-duration?: Duration (in seconds) of the quick terminal enter and exit animation
+    --quick-terminal-autohide: Automatically hide the quick terminal when focus shifts to another window
+    --quick-terminal-keyboard-interactivity?: Determines under which circumstances that the quick terminal should receive keyboard input
+    --quick-terminal-position?: The position of the "quick" terminal window
+    --quick-terminal-screen?: The screen where the quick terminal should show up
+    --quick-terminal-space-behavior?: Behavior of the quick terminal when switching between macOS spaces
+    --quit-after-last-window-closed: Whether or not to quit after the last surface is closed
+    --quit-after-last-window-closed-delay?: Controls how long Ghostty will stay running after the last open surface has been closed
+    --resize-overlay-duration?: Controls how long the overlay is visible on the screen before it is hidde
+    --resize-overlay-position?: Controls the position of the overlay
+    --resize-overlay?: Controls when resize overlays are shown
+    --right-click-action?: The action to take when the user right-clicks on the terminal surface
+    --scroll-to-bottom?: When to scroll the surface to the bottom
+    --scrollback-limit?: The size of the scrollback buffer in bytes
+    --scrollbar?: Control when the scrollbar is shown
+    --search-background?: The background color for search matches
+    --search-foreground?: The foreground color for search matches
+    --search-selected-background?: The background color for the currently selected search match
+    --search-selected-foreground?: The foreground color for the currently selected search match
+    --selection-background?: The background color for selection
+    --selection-clear-on-copy: Whether to clear selected text after copying
+    --selection-clear-on-typing: Whether to clear selected text when typing
+    --selection-foreground?: The foreground color for selection
+    --selection-word-chars?: Characters that mark word boundaries during text selection operations
+    --shell-integration-features?: Shell integration features to enable
+    --shell-integration?: Whether to enable shell integration auto-injection or not
+    --split-divider-color?: The color of the split divider
+    --split-inherit-working-directory: New split panes inherit the working directory of the previously focused split
+    --split-preserve-zoom?: Control when Ghostty preserves a zoomed split
+    --tab-inherit-working-directory: New tabs inherit the working directory of the previously focused tab
+    --term?: Set the TERM environment variable
+    --theme?: A theme to use
+    --title-report: Enable or disable title reporting (CSI 21 t)
+    --title?: The title Ghostty will use for the window
+    --undo-timeout?: The duration that undo operations remain available
+    --unfocused-split-fill?: The color to dim the unfocused split
+    --unfocused-split-opacity?: The opacity level (opposite of transparency) of an unfocused split
+    --version: show version
+    --vt-kam-allowed: Allows the "KAM" mode
+    --wait-after-command: Keep the terminal open after the command exits
+    --window-colorspace?: The colorspace to use for the terminal window
+    --window-decoration?: Enable window decorations
+    --window-height?: The initial window height
+    --window-inherit-font-size: Inherit the font size of the previously focused window
+    --window-inherit-working-directory: Inherit the working directory of the previously focused window
+    --window-new-tab-position?: The position where new tabs are created
+    --window-padding-balance: The viewport dimensions are usually not perfectly divisible by the cell size
+    --window-padding-color?: The color of the padding area of the window
+    --window-padding-x?: Horizontal window padding
+    --window-padding-y?: Vertical window padding
+    --window-position-x?: The starting window position
+    --window-position-y?: The starting window position
+    --window-save-state?: Whether to enable saving and restoring window state
+    --window-show-tab-bar?: Whether to show the tab bar
+    --window-step-resize: Resize the window in discrete increments of the focused surface's cell size
+    --window-subtitle?: The text that will be displayed in the subtitle of the window
+    --window-theme?: The theme to use for the windows
+    --window-title-font-family?: The font that will be used for the application's window and tab titles
+    --window-titlebar-background?: Background color for the window titlebar
+    --window-titlebar-foreground?: Foreground color for the window titlebar
+    --window-vsync: Synchronize rendering with the screen refresh rate
+    --window-width?: The initial window width
+    --working-directory?: The directory to change to after starting the command
+    --x11-instance-name?: This controls the instance name field of the `WM_CLASS` X11 property
+    -e: run command

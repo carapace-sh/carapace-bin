@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: +list-keybinds
+description: list all the available keybinds
+flags:
+    --default: print out all the default keybinds
+    --docs: print out the documentation for each action
+    --help: show help
+    --plain: disable formatting

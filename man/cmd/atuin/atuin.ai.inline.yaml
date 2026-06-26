@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: inline
+description: Inline completion mode with small TUI overlay
+flags:
+    -h, --help: Print help
+persistentflags:
+    --api-endpoint=: Custom API endpoint; defaults to reading from the `ai.endpoint` setting
+    --api-token=: Custom API token; defaults to reading from the `ai.api_token` setting
+    -v, --verbose: Enable verbose logging

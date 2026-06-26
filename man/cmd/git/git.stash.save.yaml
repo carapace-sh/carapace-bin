@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: save
+description: Save local modifications to a new stash (deprecated, use push)
+flags:
+    -S, --staged: only stash staged
+    -k, --keep-index: keep changed added to index
+    -m, --message=: set description
+    -p, --patch: interactively select hunks between HEAD and working tree
+    -q, --quiet: suppress feedback messages
+
+documentation:
+  command: >-
+    Save local modifications to a new stash. This option is deprecated in favour of `git stash push`. It differs from `stash push` in that it cannot take pathspec. Instead, all non-option arguments are concatenated to form the stash message.

@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: w
+description: Show who is logged on and what they are doing
+flags:
+    --help: display this help and exit
+    -V, --version: output version information and exit
+    -c, --container: show container uptime
+    -f, --from: show remote hostname field
+    -h, --no-header: do not print header
+    -i, --ip-addr: display IP address instead of hostname (if possible)
+    -o, --old-style: old style output
+    -p, --pids: show the PID(s) of processes in WHAT
+    -s, --short: short format
+    -u, --no-current: ignore current process username

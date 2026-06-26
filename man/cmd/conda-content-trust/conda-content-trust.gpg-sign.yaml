@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: gpg-sign
+description: Sign a given piece of metadata usign GPG
+flags:
+    -h, --help: show this help message and exit

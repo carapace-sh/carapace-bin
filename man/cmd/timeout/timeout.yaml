@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: timeout
+description: run a command with a time limit
+flags:
+    --help: display this help and exit
+    --version: output version information and exit
+    -f, --foreground: when not running timeout directly from a shell prompt, allow COMMAND to read from the TTY and get TTY signals
+    -k, --kill-after=: also send a KILL signal if COMMAND is still running this long after the initial signal was sent
+    -p, --preserve-status: exit with the same status as COMMAND, even when the command times out
+    -s, --signal=: specify the signal to be sent on timeout
+    -v, --verbose: diagnose to stderr any signal sent upon timeout

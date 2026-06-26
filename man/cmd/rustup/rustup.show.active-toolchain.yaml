@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: active-toolchain
+description: Show the active toolchain
+flags:
+    -h, --help: Print help
+    -v, --verbose: Enable verbose output with rustc information

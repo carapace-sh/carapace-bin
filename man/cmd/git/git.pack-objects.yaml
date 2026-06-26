@@ -1,0 +1,71 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pack-objects
+description: Create a packed archive of objects
+group: low-level manipulator
+flags:
+  --all: include objects reachable from any reference
+  --all-progress: show progress meter during object writing phase
+  --all-progress-implied: similar to --all-progress when progress meter is shown
+  --compression=: pack compression level
+  --delta-base-offset: use OFS_DELTA objects
+  --delta-islands: respect islands during delta compression
+  --depth=: maximum length of delta chain allowed in the resulting pack
+  --exclude-promisor-objects: do not pack objects in promisor packfiles
+  --filter=: object filtering
+  --honor-pack-keep: ignore packs that have companion .keep file
+  --include-tag: include tag objects that refer to objects to be packed
+  --incremental: ignore packed objects
+  --index-version=: write the pack index file in the specified idx format version
+  --indexed-objects: include objects referred to by the index
+  --keep-pack=: ignore this pack
+  --keep-true-parents: do not hide commits by grafts
+  --keep-unreachable: keep unreachable objects
+  --local: ignore borrowed objects from alternate object store
+  --max-pack-size=: maximum size of each output pack file
+  --missing=: handling for missing objects
+  --non-empty: do not create an empty pack output
+  --pack-loose-unreachable: pack loose unreachable objects
+  --progress: show progress meter
+  --reflog: include objects referred by reflog entries
+  --reuse-delta: reuse existing deltas
+  --reuse-object: reuse existing objects
+  --revs: read revision arguments from standard input
+  --shallow: create packs suitable for shallow fetches
+  --sparse: use the sparse reachability algorithm
+  --stdout: output pack to stdout
+  --thin: create thin packs
+  --threads=: use threads when searching for best delta matches
+  --unpack-unreachable=: unpack unreachable objects newer than <time>
+  --unpacked: limit the objects to those that are not yet packed
+  --use-bitmap-index: use a bitmap index if available to speed up counting objects
+  --window-memory=: limit pack window by memory in addition to object limit
+  --window=: limit pack window by objects
+  --write-bitmap-index: write a bitmap index together with the pack index
+  -q, --quiet: do not show progress meter
+documentation:
+  command: |-
+    Reads list of objects from the standard input, and writes either one or
+    more packed archives with the specified base-name to disk, or a packed
+    archive to the standard output.
+
+    A packed archive is an efficient way to transfer a set of objects
+    between two repositories as well as an access efficient archival
+    format.  In a packed archive, an object is either stored as a
+    compressed whole or as a difference from some other object.
+    The latter is often called a delta.
+
+    The packed archive format (.pack) is designed to be self-contained
+    so that it can be unpacked without any further information. Therefore,
+    each object that a delta depends upon must be present within the pack.
+
+    A pack index file (.idx) is generated for fast, random access to the
+    objects in the pack. Placing both the index file (.idx) and the packed
+    archive (.pack) in the pack/ subdirectory of $GIT_OBJECT_DIRECTORY (or
+    any of the directories on $GIT_ALTERNATE_OBJECT_DIRECTORIES)
+    enables Git to read from the pack archive.
+
+    The 'git unpack-objects' command can read the packed archive and
+    expand the objects contained in the pack into "one-file
+    one-object" format; this is typically done by the smart-pull
+    commands when a pack is created on-the-fly for efficient network
+    transport by their peers.

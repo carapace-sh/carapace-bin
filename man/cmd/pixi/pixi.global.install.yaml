@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: install
+aliases:
+    - i
+description: Installs the defined packages in a globally accessible location and exposes their command line applications.
+flags:
+    --auth-file=: Path to the file containing the authentication token
+    --branch=: The git branch
+    --concurrent-downloads=: Max concurrent network requests, default is `50`
+    --concurrent-solves=: Max concurrent solves, default is the number of CPUs
+    --expose=*: Add one or more mapping which describe which executables are exposed. The syntax is `exposed_name=executable_name`, so for example `python3.10=python`. Alternatively, you can input only an executable_name and `executable_name=executable_name` is assumed
+    --force-reinstall: Specifies that the environment should be reinstalled
+    --git=: The git url, e.g. `https://github.com/user/repo.git`
+    --no-shortcut&: Specifies that no shortcuts should be created for the installed packages
+    --no-shortcuts: Specifies that no shortcuts should be created for the installed packages
+    --path=: The path to the local package
+    --pinning-strategy=: Set pinning strategy
+    --pypi-keyring-provider=: Specifies whether to use the keyring to look up credentials for PyPI
+    --rev=: The git revision
+    --run-post-link-scripts: Run post-link scripts (insecure)
+    --subdir=: The subdirectory within the git repository
+    --tag=: The git tag
+    --tls-no-verify: Do not verify the TLS certificate of the server
+    --tls-root-certs=: 'Which TLS root certificates to use: ''webpki'' (bundled Mozilla roots), ''native'' (system store), or ''all'' (both)'
+    --use-environment-activation-cache: Use environment activation cache (experimental)
+    --with=*: Add additional dependencies to the environment. Their executables will not be exposed
+    -c, --channel=*: The channels to consider as a name or a url. Multiple channels can be specified by using this field multiple times
+    -e, --environment=: Ensures that all packages will be installed in the same environment
+    -p, --platform=: The platform to install the packages for

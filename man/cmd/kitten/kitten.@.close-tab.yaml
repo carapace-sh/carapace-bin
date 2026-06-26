@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: close-tab
+description: Close the specified tabs
+flags:
+    --ignore-no-match: Do not return an error if no tabs are matched to be closed
+    --no-response: Don't wait for a response indicating the success of the action
+    --self: Close the tab of the window this command is run in, rather than the active tab
+    -h, --help: Show help for this command
+    -m, --match=: The tab to match

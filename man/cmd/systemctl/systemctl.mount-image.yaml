@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: mount-image
+description: Mount an image from the host into a unit's namespace
+group: unit
+documentation:
+  command: |
+    Mount an image from the host into the specified unit's mount namespace.
+    The first path argument is the source image on the host, the second is
+    the destination directory in the unit's mount namespace. An optional
+    third argument specifies a colon-separated tuple of partition name and
+    mount options (format: partitionName:mountOptions). Use `--read-only`
+    for a read-only mount, `--mkdir` to create the destination first.
+    This is only supported for units that run within a mount namespace.

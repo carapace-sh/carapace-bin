@@ -1,0 +1,28 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Retrieve and process core dumps managed by systemd-coredump.
+    Lists, dumps, debugs, and inspects stored core dump files.
+description: List or retrieve coredumps from the journal
+persistentflags:
+    --all: Look at all journal files instead of local ones
+    --debugger=: Use the given debugger
+    --file=: Use journal file
+    --image-policy=: Specify disk image dissection policy
+    --image=: Operate on disk image as filesystem root
+    --json=: Generate JSON output
+    --no-legend: Do not print the column headers
+    --no-pager: Do not pipe output into a pager
+    --root=: Operate on an alternate filesystem root
+    --version: Print version string
+    "-1": Show information about most recent entry only
+    -A, --debugger-arguments=: Pass the given arguments to the debugger
+    -D, --directory=: Use journal files from directory
+    -F, --field=: List all values a certain field takes
+    -S, --since=: Only print coredumps since the date
+    -U, --until=: Only print coredumps until the date
+    -h, --help: Show this help
+    -n=: Show maximum number of rows
+    -o, --output=: Write output to FILE
+    -q, --quiet: Do not show info messages and privilege warning
+    -r, --reverse: Show the newest entries first

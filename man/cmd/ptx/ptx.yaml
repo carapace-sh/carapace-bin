@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ptx
+description: produce a permuted index of file contents
+flags:
+    --format=: generate output as given directives
+    --help: display this help and exit
+    --version: output version information and exit
+    -A, --auto-reference: output automatically generated references
+    -F, --flag-truncation=: use STRING for flagging line truncations.
+    -G, --traditional: behave more like System V 'ptx'
+    -M, --macro-name=: macro name to use instead of 'xx'
+    -O=: generate output as roff directives
+    -R, --right-side-refs: put references at right, not counted in -w
+    -S, --sentence-regexp=: for end of lines or end of sentences
+    -T=: generate output as TeX directives
+    -W, --word-regexp=: use REGEXP to match each keyword
+    -b, --break-file=: word break characters in this FILE
+    -f, --ignore-case: fold lower case to upper case for sorting
+    -g, --gap-size=: gap size in columns between output fields
+    -i, --ignore-file=: read ignore word list from FILE
+    -o, --only-file=: read only word list from this FILE
+    -r, --references: first field of each line is a reference
+    -t, --typeset-mode: '- not implemented -'
+    -w, --width=: output width in columns, reference excluded

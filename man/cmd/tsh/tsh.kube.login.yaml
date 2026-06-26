@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: login
+description: Login to a Kubernetes cluster.
+flags:
+    --all: Generate a kubeconfig with every cluster the user has access to.
+    --as-groups=: Configure custom Kubernetes group impersonation.
+    --as=: Configure custom Kubernetes user impersonation.
+    --no-all&: Generate a kubeconfig with every cluster the user has access to.
+    --set-context-name=: Define a custom context name.
+    -c, --cluster=: Specify the Teleport cluster to connect
+    -n, --kube-namespace=: Configure the default Kubernetes namespace.

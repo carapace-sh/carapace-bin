@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+description: List packages, groups, repositories or files
+flags:
+    -f, --files: list files owned by the given packages
+    -g, --groups: list all packages that are members of the given
+    -i, --installed: list installed packages
+    -m, --foreign: list packages that were not found in the
+    -o, --orphans: list packages that were installed as dependencies
+    -q, --quiet: only print names
+    -r, --repos: list all packages available in the given repos

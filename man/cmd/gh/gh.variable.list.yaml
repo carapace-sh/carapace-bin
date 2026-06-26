@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+aliases:
+    - ls
+description: List variables
+flags:
+    --json=*: Output JSON with the specified `fields`
+    -e, --env=: List variables for an environment
+    -o, --org=: List variables for an organization
+    -q, --jq=: Filter JSON output using a jq `expression`
+    -t, --template=: Format JSON output using a Go template; see "gh help formatting"

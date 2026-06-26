@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: distro-sync [options] [<package-spec>...]
+aliases:
+    - distro-sync
+description: upgrade or downgrade installed packages to the latest available version
+flags:
+    --allowerasing: allow removing of installed packages
+    --downloadonly: download packages without executing RPM transaction
+    --skip-broken: resolve dependency problems by removing problematic packages
+    --skip-unavailable: allow skipping packages that are not possible to synchronize

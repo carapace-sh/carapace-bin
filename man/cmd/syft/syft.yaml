@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: syft
+description: Generate a package SBOM
+flags:
+    --catalogers=*: enable one or more package catalogers
+    --exclude=*: exclude paths from being scanned using a glob expression
+    --file=: file to write the default report output to (default is STDOUT)
+    --name=: set the name of the target being analyzed
+    --platform=: an optional platform specifier for container image sources (e.g. 'linux/arm64', 'linux/arm64/v8', 'arm64', 'linux')
+    -o, --output=*: report output format, options=[syft-json cyclonedx-xml cyclonedx-json github-json spdx-tag-value spdx-json syft-table syft-text template]
+    -s, --scope=: selection of layers to catalog, options=[Squashed AllLayers]
+    -t, --template=: specify the path to a Go template file
+persistentflags:
+    -c, --config=: application config file
+    -q, --quiet: suppress all logging output
+    -v, --verbose*: increase verbosity (-v = info, -vv = debug)

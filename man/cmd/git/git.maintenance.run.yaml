@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: run
+description: Start running maintenance on the current repository
+flags:
+  --auto: run tasks based on the state of the repository
+  --quiet: don't report progress or other information to stderr
+  --schedule: run tasks based on frequency
+  --task*=: run a specific task

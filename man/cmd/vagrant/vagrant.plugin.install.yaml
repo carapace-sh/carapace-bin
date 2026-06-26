@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: install
+description: install plugin
+flags:
+    --entry-point=: The name of the entry point file for loading the plugin.
+    --local: Install plugin for local project only
+    --plugin-clean-sources: Remove all plugin sources defined so far (including defaults)
+    --plugin-source=: Add a RubyGems repository source
+    --plugin-version=: Install a specific version of the plugin
+    --verbose: Enable verbose output for plugin installation

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: defaults PROPERTY_NAME
+description: Lists all valid default values for PROPERTY_NAME
+flags:
+    -o, --output=: 'Output format. Accepted values: [json, yaml]'

@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: add
+description: Adds support for an external library to your project
+flags:
+    --defaults: Disable interactive input prompts for options with a default.
+    --interactive: Enable interactive input prompts.
+    --registry=: The NPM registry to use.
+    --skip-confirmation: Skip asking a confirmation prompt before installing and executing the package.
+    --verbose: Display additional details about internal operations during execution.

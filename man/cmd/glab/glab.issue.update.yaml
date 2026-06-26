@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: update <id>
+description: Update issue
+flags:
+    --due-date=: A date in 'YYYY-MM-DD' format.
+    --lock-discussion: Lock discussion on issue.
+    --unassign: Unassign all users.
+    --unlock-discussion: Unlock discussion on issue.
+    -a, --assignee=*: Assign users by username. Prefix with '!' or '-' to remove from existing assignees, or '+' to add new. Otherwise, replace existing assignees with these users.
+    -c, --confidential: Make issue confidential
+    -d, --description=: Issue description. Set to "-" to open an editor.
+    -l, --label=*: Add labels.
+    -m, --milestone=: Title of the milestone to assign Set to "" or 0 to unassign.
+    -p, --public: Make issue public.
+    -t, --title=: Title of issue.
+    -u, --unlabel=*: Remove labels.
+    -w, --weight=: Set weight of the issue.

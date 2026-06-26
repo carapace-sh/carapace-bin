@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: capslock
+description: 'Capslock is a capability analysis CLI for Go packages '
+flags:
+    -buildtags=: command-separated list of build tags to use when loading packages
+    -goarch=: GOARCH value to use when loading packages
+    -goos=: GOOS value to use when loading packages
+    -noisy: include output on unanalyzed function calls
+    -output=: output mode to use
+    -packages=: target patterns to be analysed

@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ls
+description: List recorded sessions.
+flags:
+    --from-utc=: Start of time range in which recordings are listed. Format 2006-01-02. Defaults to 24 hours ago.
+    --last=: Duration into the past from which session recordings should be listed. Format 5h30m40s
+    --limit=: Maximum number of recordings to show. Default 50.
+    --to-utc=: End of time range in which recordings are listed. Format 2006-01-02. Defaults to current time.
+    -f, --format=: Format output (text, json, yaml). Defaults to 'text'.

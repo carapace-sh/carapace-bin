@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: connect
+description: Interact with Consul Connect
+
+documentation:
+  command: >-
+    Manage Consul Connect service mesh features including intentions, CA roots, and proxy configuration.

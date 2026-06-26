@@ -1,0 +1,43 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: install
+description: Install a Rust binary
+group: package
+flags:
+    --all-features: Activate all available features
+    --bin=*: Install only the specified binary
+    --bins: Install all binaries
+    --branch=: Branch to use when installing from git
+    --debug: Build in debug mode (with the 'dev' profile) instead of release mode
+    --example=*: Install only the specified example
+    --examples: Install all examples
+    --git=: Git URL to install the specified crate from
+    --ignore-rust-version: Ignore `rust-version` specification in packages
+    --index=: Registry index to install from
+    --keep-going: Do not abort the build as soon as there is an error
+    --list: List all installed packages and their versions
+    --message-format=*: Error format
+    --no-default-features: Do not activate the `default` feature
+    --no-track: Do not save tracking information
+    --path=: Filesystem path to local crate to install from
+    --profile=: Install artifacts with the specified profile
+    --registry=: Registry to use
+    --rev=: Specific commit to use when installing from git
+    --root=: Directory to install packages into
+    --tag=: Tag to use when installing from git
+    --target-dir=: Directory for all generated artifacts
+    --target=*: Build for the target triple
+    --timings: Output a build timing report at the end of the build
+    --vers=&: Specify a version to install
+    --version=: Specify a version to install
+    -F, --features=*: Space or comma separated list of features to activate
+    -f, --force: Force overwriting existing crates or binaries
+    -h, --help: Print help
+    -j, --jobs=: 'Number of parallel jobs, defaults to # of CPUs.'
+    -n, --dry-run: Perform all checks without installing (unstable)
+documentation:
+  command: |
+    Install a Rust binary crate from the local system, a git repository, or
+    the default registry (crates.io). Use `--git`, `--path`, or a bare package
+    name to specify the source. The `--version` or `--vers` flag specifies
+    which version to install. Use `--list` to show all installed binaries.
+    Use `--root` to specify the installation directory.

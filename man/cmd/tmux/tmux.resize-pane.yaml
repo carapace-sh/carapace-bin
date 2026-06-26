@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: resize-pane
+flags:
+    -D: TODO description
+    -L: TODO description
+    -M: TODO description
+    -R: TODO description
+    -T: TODO description
+    -U: TODO description
+    -Z: TODO description
+    -t=: target-pane
+    -x=: width
+    -y=: height

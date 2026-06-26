@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: todo [<id> | <branch>]
+aliases:
+    - add-todo
+description: Add a to-do item to merge request.

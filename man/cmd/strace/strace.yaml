@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: strace
+
+documentation:
+  command: >-
+    Trace system calls and signals. strace runs a command and prints
+    each system call it makes (read, write, open, fork, exec, etc.)
+    and signals it receives. Basic usage: strace command. Summarize
+    with -c (count calls by type). Filter by syscall with -e trace=write.
+    Show timestamps with -t, -tt, or -ttt. Attach to running process
+    with -p PID. Trace children with -f; follow forks. Print raw
+    arguments with -v. Redirect output with -o file. Filter by
+    result with -e trace=exit. Time with -T (show duration per call).
+    Trace library calls with -e trace=library. Strace is essential
+    for debugging and understanding program behavior.

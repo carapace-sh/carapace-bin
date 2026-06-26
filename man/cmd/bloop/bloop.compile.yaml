@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: compile <project>
+description: compile projects
+flags:
+    --cascade: compile a project and all projects depending on it
+    --incremental: compile the project incrementally
+    --pipeline: pipeline the compilation of modules in your build
+    --projects=*: the projects to compile
+    --reporter=: pick reporter to show compilation messages
+    -p, --project=*: the projects to compile
+    -w, --watch: run the command when projects' source files change

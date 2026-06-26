@@ -1,0 +1,31 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: helm
+description: The Helm package manager for Kubernetes.
+flags:
+    -h, --help: help for helm
+persistentflags:
+    --add-dir-header: If true, adds the file directory to the header of the log messages
+    --alsologtostderr: log to standard error as well as files
+    --debug: enable verbose output
+    --kube-apiserver=: the address and the port for the Kubernetes API server
+    --kube-as-group=*: group to impersonate for the operation, this flag can be repeated to specify multiple groups.
+    --kube-as-user=: username to impersonate for the operation
+    --kube-ca-file=: the certificate authority file for the Kubernetes API server connection
+    --kube-context=: name of the kubeconfig context to use
+    --kube-token=: bearer token used for authentication
+    --kubeconfig=: path to the kubeconfig file
+    --log-backtrace-at=: when logging hits line file:N, emit a stack trace
+    --log-dir=: If non-empty, write log files in this directory
+    --log-file-max-size=: Defines the maximum size a log file can grow to. Unit is megabytes. If the value is 0, the maximum file size is unlimited.
+    --log-file=: If non-empty, use this log file
+    --logtostderr: log to standard error instead of files
+    --one-output: If true, only write logs to their native severity level (vs also writing to each lower severity level)
+    --registry-config=: path to the registry config file
+    --repository-cache=: path to the file containing cached repository indexes
+    --repository-config=: path to the file containing repository names and URLs
+    --skip-headers: If true, avoid header prefixes in the log messages
+    --skip-log-headers: If true, avoid headers when opening log files
+    --stderrthreshold=: logs at or above this threshold go to stderr
+    --vmodule=*: comma-separated list of pattern=N settings for file-filtered logging
+    -n, --namespace=: namespace scope for this request
+    -v, --v=: number for the log level verbosity

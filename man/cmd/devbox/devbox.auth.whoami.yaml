@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: whoami
+description: Show the current user
+flags:
+    --show-tokens: Show the access, id, and refresh tokens

@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: init
+description: Initialize and validate a project
+flags:
+    --from-project=: Create a new application by fetching the given application from a remote source.
+    --into=: Where to write the application fetched via -from-project
+    --plain: Plain output
+    --update: Update the project configuration if it already exists.
+    -a, --app=: App to target.
+    -p, --project=: Project to target.
+    -w, --workspace=: Workspace to operate in.

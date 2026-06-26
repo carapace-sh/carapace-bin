@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: code <query>
+description: Search within code
+flags:
+    --extension=: Filter on file extension
+    --filename=: Filter on filename
+    --json=*: Output JSON with the specified `fields`
+    --language=: Filter results by language
+    --match=*: 'Restrict search to file contents or file path: {file|path}'
+    --owner=*: Filter on owner
+    --size=: Filter on size range, in kilobytes
+    -L, --limit=: Maximum number of code results to fetch
+    -R, --repo=*: Filter on repository
+    -q, --jq=: Filter JSON output using a jq `expression`
+    -t, --template=: Format JSON output using a Go template; see "gh help formatting"
+    -w, --web: Open the search query in the web browser

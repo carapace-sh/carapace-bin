@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: hybrid-sleep
+description: Hibernate and suspend the system
+group: system
+documentation:
+  command: |
+    Hibernate and suspend the system. This combines hibernation with
+    suspend functionality - system state is saved to disk but memory
+    remains powered, allowing faster wake if battery is sufficient.

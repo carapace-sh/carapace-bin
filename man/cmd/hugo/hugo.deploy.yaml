@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: deploy
+description: Deploy your site to a Cloud provider.
+flags:
+    --confirm: ask for confirmation before making changes to the target
+    --dryRun: dry run
+    --force: force upload of all files
+    --invalidateCDN: invalidate the CDN cache listed in the deployment target
+    --maxDeletes=: 'maximum # of files to delete, or -1 to disable'
+    --target=: target deployment from deployments section in config file; defaults to the first one

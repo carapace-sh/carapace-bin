@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: custom
+description: Build a version of golangci-lint with custom linters.
+persistentflags:
+    --destination=: The directory path used to store the custom binary
+    --name=: The name of the custom binary
+    --version=: The golangci-lint version used to build the custom binary

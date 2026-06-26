@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: subtract
+description: subtract one set of data files from another set
+flags:
+    -cpuprofile=: Write CPU profile to specified file
+    -hw: Panic on warnings (for stack trace)
+    -i=: Input dirs to examine (comma separated)
+    -memprofile=: Write memory profile to specified file
+    -memprofilerate=: Set memprofile sampling rate to value
+    -o=: Output directory to write
+    -pkg=: Restrict output to package(s) matching specified package pattern
+    -v=: Verbose trace output level

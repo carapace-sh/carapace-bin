@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: more
+description: display the contents of a file in a terminal
+flags:
+    -V, --version: display version
+    -c, --print-over: do not scroll, display text and clean line ends
+    -d, --silent: display help instead of ringing bell
+    -e, --exit-on-eof: exit on end-of-file
+    -f, --logical: count logical rather than screen lines
+    -h, --help: display this help
+    -l, --no-pause: suppress pause after form feed
+    -n, --lines=: the number of lines per screenful
+    -p, --clean-print: do not scroll, clean screen and display text
+    -s, --squeeze: squeeze multiple blank lines into one
+    -u, --plain: suppress underlining and bold

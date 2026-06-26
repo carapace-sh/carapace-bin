@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: profile [profile]
+description: Clean a specific profile
+flags:
+    --max=: Pass --max to nix store gc
+    --no-gc: Don't run nix store --gc
+    --no-gcroots: Don't clean gcroots
+    --optimise: Run nix-store --optimise after gc
+    -K, --keep-since=: At least keep gcroots and generations in this time range since now
+    -a, --ask: Ask for confirmation
+    -k, --keep=: At least keep this number of generations
+    -n, --dry: Only print actions, without performing them

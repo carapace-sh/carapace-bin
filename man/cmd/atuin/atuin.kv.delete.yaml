@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: delete
+aliases:
+    - rm
+description: Delete one or more key-value pairs
+flags:
+    -h, --help: Print help
+    -n, --namespace=: Namespace for the key-value pair

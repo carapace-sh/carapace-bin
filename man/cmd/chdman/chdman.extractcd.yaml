@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: extractcd
+description: extract CD file from a CHD input file
+flags:
+    -f, --force: force overwriting an existing file
+    -i, --input=: input file name
+    -ip, --inputparent=: parent file name for input CHD
+    -o, --output=: output file name
+    -ob, --outputbin=: output file name for binary data
+    -sb, --splitbin: output one binary file per track

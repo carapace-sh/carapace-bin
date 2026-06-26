@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ls
+description: List tabs/windows
+flags:
+    --all-env-vars: Show all environment variables in output, not just differing ones
+    --output-format=: Output in JSON or kitty session format
+    --self: Only list the window this command is run in
+    -h, --help: Show help for this command
+    -m, --match=: The window to match
+    -t, --match-tab=: The tab to match

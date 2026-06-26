@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: verify-tag
+description: Check the GPG signature of tags
+flags:
+  --format=: format to use for the output
+  --raw: print raw gpg status output
+  -v, --verbose: print tag contents
+documentation:
+  command: |-
+    Validates the gpg signature created by `git tag` in the tag
+    objects listed on the command line.
+  flag:
+    raw: |-
+      Print the raw gpg status output to standard error instead of the normal
+      human-readable output.
+    verbose: Print the contents of the tag object before validating it.

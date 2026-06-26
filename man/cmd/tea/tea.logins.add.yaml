@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: add
+description: Add a Gitea login
+flags:
+    --no-version-check: Do not check version of Gitea instance
+    --password=: Password for basic auth (will create token)
+    --user=: User for basic auth (will create token)
+    -a, --ssh-agent-key=: Use SSH public key or SSH fingerprint to login (needs a running ssh-agent with ssh key loaded)
+    -c, --ssh-agent-principal=: Use SSH certificate with specified principal to login (needs a running ssh-agent with certificate loaded)
+    -i, --insecure: Disable TLS verification
+    -n, --name=: Login name
+    -s, --ssh-key=: Path to a SSH key/certificate to use, overrides auto-discovery
+    -t, --token=: Access token. Can be obtained from Settings > Applications
+    -u, --url=: Server URL

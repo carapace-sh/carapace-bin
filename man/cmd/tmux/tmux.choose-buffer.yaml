@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: choose-buffer
+description: put a pane into buffer choice mode
+flags:
+    -F=: specify format for each list item
+    -K=: specify format for each shortcut key
+    -N: start without the preview
+    -O=: initial sort order
+    -Z: zoom the pane
+    -f=: filter items
+    -r: reverse sort order
+    -t=: specify target window

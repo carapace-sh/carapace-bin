@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pulse:work [--stop-when-empty]
+description: Process incoming Pulse data from the ingest stream
+flags:
+    --stop-when-empty: Stop when the stream is empty

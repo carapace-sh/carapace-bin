@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ui
+description: Open the web UI
+flags:
+    --authenticate: Creates a new invite token and passes it to the UI for authorization.
+    --plain: Plain output
+    -a, --app=: App to target.
+    -p, --project=: Project to target.
+    -w, --workspace=: Workspace to operate in.

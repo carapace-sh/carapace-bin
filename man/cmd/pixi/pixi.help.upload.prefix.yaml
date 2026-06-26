@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: prefix
+description: Options for uploading to a prefix.dev server. Authentication is used from the keychain / auth-file

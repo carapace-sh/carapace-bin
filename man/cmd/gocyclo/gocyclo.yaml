@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: gocyclo
+description: Calculate cyclomatic complexities of Go functions
+flags:
+    -avg: show the average complexity over all functions
+    -avg-short: show the average complexity over all functions without a label
+    -ignore=: exclude files matching the given regular expression
+    -over=: show functions with complexity > N only
+    -top=: show the top N most complex functions only
+    -total: show the total complexity for all functions
+    -total-short: show the total complexity for all functions without a label

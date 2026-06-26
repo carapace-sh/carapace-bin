@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ls
+description: show information about a path inside a NAR file
+flags:
+    --debug: Set the logging verbosity level to 'debug'
+    --json: Produce output in JSON format
+    --log-format=: Set the format of log output
+    --quiet: Decrease the logging verbosity level
+    -L, --print-build-logs: Print full build logs on standard error
+    -R, --recursive: List subdirectories recursively
+    -d, --directory: Show directories rather than their contents
+    -l, --long: Show detailed file information
+    -v, --verbose: Increase the logging verbosity level

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: get
+description: Get a New Relic Synthetics monitor
+flags:
+    --monitorId=: A New Relic Synthetics monitor ID

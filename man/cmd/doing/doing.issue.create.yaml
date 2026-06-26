@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create [OPTIONS] ISSUE
+description: Create an issue
+flags:
+    --add-to-current-sprint: If the item needs to be added to the current sprint
+    --do-not-add-to-current-sprint: If the item needs to be added to the current sprint
+    --help: Show this message and exit
+    --not-mine: Do not assign issue to yourself
+    -a, --assignee=: Emailadres or alias of person to assign
+    -b, --body=: Optional description of the work item
+    -l, --label=: Attach tags (labels) to work item
+    -m, --mine: Assign issue to yourself
+    -p, --parent=: To create a child work item, specify the ID of the parent work item
+    -s, --story_points=: The number of story points to assign assigned if not specified
+    -t, --type=: Type of work item

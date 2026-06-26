@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Print or set the system date and time. Supports various output
+    formats including ISO 8601 and RFC 5322. Can parse date strings
+    with `-d` and set the system clock with `-s`.
+description: print or set the system date and time
+flags:
+    --debug: annotate the parsed date,
+    --help: display this help and exit
+    --rfc-3339=: output date/time in RFC 3339 format.
+    --universal=: print or set Coordinated Universal Time (UTC)
+    --version: output version information and exit
+    -I, --iso-8601=: output date/time in ISO 8601 format
+    -R, --rfc-email: output date and time in RFC 5322 format.
+    -d, --date=: display time described by STRING, not 'now'
+    -f, --file=: like --date; once for each line of DATEFILE
+    -r, --reference=: display the last modification time of FILE
+    -s, --set=: set time described by STRING
+    -u, --utc,=: print or set Coordinated Universal Time (UTC)

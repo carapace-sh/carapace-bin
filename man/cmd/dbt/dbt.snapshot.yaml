@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: snapshot
+description: Execute snapshots defined in your project
+flags:
+    --defer: Defer to the state variable for resolving unselected nodes
+    --exclude=*: Specify the models to exclude
+    --favor-state: Defer to the state variable for resolving unselected nodes
+    --no-defer: Do not defer to the state variable for resolving unselected nodes
+    --no-favor-state: If defer is set, expect standard defer behaviour
+    --profile=: Which profile to load. Overrides setting in dbt_project.yml
+    --project-dir=: Which directory to look in for the dbt_project.yml file
+    --selector=: The selector name to use
+    --state=: Use the given directory as the source for json files to compare
+    --threads=: Specify number of threads to use while snapshotting tables
+    --vars=: Supply variables to the project
+    -h, --help: show this help message and exit
+    -m, --models=*: Specify the nodes to include
+    -s, --select=*: Specify the nodes to include
+    -t, --target=: Which target to load for the given profile

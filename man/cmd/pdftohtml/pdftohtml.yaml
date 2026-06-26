@@ -1,0 +1,30 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pdftohtml
+description: program to convert PDF files into HTML, XML and PNG images
+flags:
+    -?: print usage information
+    -c: generate complex document
+    -dataurls: use data URLs instead of external images in HTML
+    -enc=: output text encoding name
+    -f=: first page to convert
+    -fmt=: image file format for Splash output (png or jpg)
+    -fontfullname: outputs font full name
+    -h: print usage information
+    -help, --help: print usage information
+    -hidden: output hidden text
+    -i: ignore images
+    -l=: last page to convert
+    -nodrm: override document DRM settings
+    -noframes: generate no frames
+    -nomerge: do not merge paragraphs
+    -noroundcoord: do not round coordinates (with XML output only)
+    -opw=: owner password (for encrypted files)
+    -p: exchange .pdf links by .html
+    -q: don't print any messages or errors
+    -s: generate single document that includes all pages
+    -stdout: use standard output
+    -upw=: user password (for encrypted files)
+    -v: print copyright and version info
+    -wbt=: word break threshold (default 10 percent)
+    -xml: output for XML post-processing
+    -zoom=: zoom the pdf document (default 1.5)

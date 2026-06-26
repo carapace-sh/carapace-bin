@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: reboot
+description: prepare system to perform offline transaction and reboot
+flags:
+    --number=: boot number
+    --poweroff: power off after transaction instead of rebooting

@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rsautl
+description: RSA command for signing, verification, encryption, and decryption
+group: standard
+flags:
+    -asn1parse: Run output through asn1parse; useful with -verify
+    -certin: Input is a cert carrying an RSA public key
+    -decrypt: Decrypt with private key
+    -encrypt: Encrypt with public key
+    -hexdump: Hex dump output
+    -in=: Input file
+    -inkey=: Input key, by default an RSA private key
+    -keyform=: Private key format (DER/PEM)
+    -oaep: Use PKCS#1 OAEP
+    -out=: Output file
+    -passin=: Input file pass phrase source
+    -pkcs: Use PKCS#1 v1.5 padding (default)
+    -propquery=: Property query used when fetching algorithms
+    -provider-path=: Provider load path (must be before 'provider' argument if required)
+    -provider=*: Provider to load (can be specified multiple times)
+    -provparam=: Set a provider key-value parameter
+    -pubin: Input key is an RSA public pkey
+    -rand=: Load the given file(s) into the random number generator
+    -raw: Use no padding
+    -rev: Reverse the order of the input buffer
+    -sign: Sign with private key
+    -verify: Verify with public key
+    -writerand=: Write random data to the specified file
+    -x931: Use ANSI X9.31 padding

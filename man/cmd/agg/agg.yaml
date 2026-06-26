@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Convert asciicast recordings (v2 format) into animated GIF images.
+    Accepts a local file path or URL as input and produces a GIF at the
+    specified output path. Supports configurable frame rate, idle time
+    limiting, color themes, font family and size, terminal dimensions,
+    and rendering backends. Optionally disable the animation loop with
+    `--no-loop`.
+description: asciinema gif generator
+flags:
+    --cols=: Override terminal width
+    --font-dir=: Use additional font directory
+    --font-family=: Specify font family
+    --font-size=: Specify font size (in pixels)
+    --fps-cap=: Set FPS cap
+    --idle-time-limit=: Limit idle time to max number of seconds
+    --line-height=: Specify line height
+    --no-loop: Disable animation loop
+    --renderer=: Select frame rendering backend
+    --rows=: Override terminal height
+    --speed=: Adjust playback speed
+    --theme=: Select color theme
+    -V, --version: Print version information
+    -h, --help: Print help information
+    -v, --verbose: Enable verbose logging

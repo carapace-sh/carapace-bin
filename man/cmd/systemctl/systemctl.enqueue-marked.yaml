@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: enqueue-marked
+description: Enqueue jobs for all marked units
+group: unit
+documentation:
+  command: |
+    Enqueue start/stop/restart/reload jobs for all units that have the
+    respective "needs-*" markers set. When a unit marked for reload does
+    not support reload, restart will be queued. Those properties can be
+    set using set-property Markers=.... Unless --no-block is used,
+    systemctl will wait for the queued jobs to finish.

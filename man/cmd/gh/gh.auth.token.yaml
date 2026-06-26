@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: token
+description: Print the authentication token gh uses for a hostname and account
+documentation:
+    command: |
+        Print the authentication token gh uses for a hostname and account.
+        Use `-h` to specify the hostname and `-u` for the account. Tokens
+        are useful for API access or configuring other tools.
+flags:
+    --secure-storage&: Search only secure credential store for authentication token
+    -h, --hostname=: The hostname of the GitHub instance authenticated with
+    -u, --user=: The account to output the token for

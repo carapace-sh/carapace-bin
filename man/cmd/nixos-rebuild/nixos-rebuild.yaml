@@ -1,0 +1,38 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: nixos-rebuild
+description: reconfigure a NixOS machine
+persistentflags:
+    --accept-flake-config: Accept flake nixConfig
+    --build-host=: Specify host to perform the rebuild with
+    --builders=*: Specify ad-hoc remote builders
+    --diff: Show diff between current and new system closures
+    --fallback: Enable the fallback setting
+    --flake=: Build the NixOS system from specified flake
+    --help: Show usage information
+    --impure: Use impure nix evaluation
+    --install-bootloader: Causes the bootloader to be (re)installed
+    --keep-failed: Enable the keep-failed setting
+    --keep-going: Enable the keep-going setting
+    --log-format=: Set the format of log output
+    --max-jobs=: Set the max-jobs setting
+    --no-build-nix: Do not rebuild the 'nixUnstable' nixpkgs attribute before rebuilding
+    --no-flake=: Do not imply --flake if /etc/nixos/flake.nix exists
+    --no-net: Disable substituters and consider all previously downloaded files up-to-date
+    --no-reexec: Do not rebuild the 'nixUnstable' nixpkgs attribute before rebuilding
+    --offline: Disable substituters and consider all previously downloaded files up-to-date
+    --option=*: Set the Nix configuration setting name to value
+    --quiet: Decrease the logging verbosity level
+    --refresh: Consider all previously downloaded files out-of-date
+    --rollback: Rollback to previous configuration instead of rebuilding
+    --show-trace: Enable the show-trace setting
+    --sudo: Prefix activation commands with `sudo`
+    --target-host=: Specify host to apply rebuilt configuration to
+    --upgrade: Update the root user's channel named 'nixos' before rebuilding
+    --upgrade-all: Update all of the root user's channels before rebuilding
+    --use-substitutes: Use substitue caches when running `nix-copy-closure`
+    -L, --print-build-logs: Print full build logs on standard error
+    -Q, --no-build-output: Do not output on stdout or stderr
+    -S, --ask-sudo-password: Ask for sudo password on the target host
+    -c, --specialisation=: Activates given specialisation
+    -p, --profile-name=: Specify Nix profile to place the new configuration in
+    -v, --verbose: Increase the logging verbosity level

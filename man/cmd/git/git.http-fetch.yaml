@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: http-fetch
+description: download from a remote git repository via HTTP
+documentation:
+  command: |-
+    Downloads a remote Git repository via HTTP.
+
+    This command always gets all objects. Historically, there were three options
+    `-a`, `-c` and `-t` for choosing which objects to download. They are now
+    silently ignored.

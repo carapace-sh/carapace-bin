@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: exit-codes
+description: Exit codes used by gh
+hidden: true

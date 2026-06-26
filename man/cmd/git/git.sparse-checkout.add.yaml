@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: add
+description: Add all files under SOME/DIR/ECTORY/ (at any depth) to the sparse checkout

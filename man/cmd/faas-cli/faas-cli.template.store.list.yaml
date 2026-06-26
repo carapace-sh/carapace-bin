@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+description: List templates from OpenFaaS organizations
+flags:
+    -p, --platform=: Shows the platform if the output is verbose
+    -v, --verbose: Shows additional language and platform
+persistentflags:
+    -u, --url=: Use as alternative store for templates

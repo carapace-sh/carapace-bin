@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: remove [options] <package-spec>|@<group-spec>|@<environment-spec>...
+aliases:
+    - rm
+description: remove packages
+flags:
+    --limit=: override installonly_limit when using --oldinstallonly
+    --no-autoremove: disable removal of dependencies
+    --oldinstallonly: remove old installonly packages

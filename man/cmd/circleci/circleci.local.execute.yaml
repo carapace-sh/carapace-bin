@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: execute
+description: Run a job in a container on the local machine
+flags:
+    --branch=: Git branch
+    --checkout-key=: Git Checkout key
+    --index=: node index of parallelism
+    --job=: job to be executed
+    --node-total=: total number of parallel nodes
+    --repo-url=: Git Url
+    --revision=: Git Revision
+    --skip-checkout: use local path as-is
+    -c, --config=: config file
+    -e, --env=*: Set environment variables, e.g. `-e VAR=VAL`
+    -o, --org-slug=: 'organization slug (for example: github/example-org), used when a config depends on private orbs belonging to that org'
+    -v, --volume=*: Volume bind-mounting

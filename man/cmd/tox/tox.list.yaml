@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+aliases:
+    - l
+description: list environments
+flags:
+    --skip-env=: 'exclude all environments selected that match this regular expression (default: '''')'
+    -d: 'list just default envs (default: False)'
+    -f=*: 'factors to evaluate (passing multiple factors means ''AND'', passing this option multiple times means ''OR'') (default: [])'
+    -m=*: 'labels to evaluate (default: [])'

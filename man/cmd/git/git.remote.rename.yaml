@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rename
+description: Rename a remote
+documentation:
+  command: |-
+    Rename the remote named _<old>_ to _<new>_. All remote-tracking branches and
+    configuration settings for the remote are updated.
+
+    In case _<old>_ and _<new>_ are the same, and _<old>_ is a file under
+    `$GIT_DIR/remotes` or `$GIT_DIR/branches`, the remote is converted to
+    the configuration file format.

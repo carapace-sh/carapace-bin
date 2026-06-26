@@ -1,0 +1,33 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create [<name>]
+aliases:
+    - new
+description: Create a new repository
+group: General commands
+documentation:
+    command: |
+        Create a new GitHub repository. By default, creates a private repository
+        in your user account. Use `--public`, `--private`, or `--internal` to set
+        visibility. With `--clone`, the new repository is cloned to the current
+        directory. Template repositories can be specified with `-p` or `--template`.
+flags:
+    --add-readme: Add a README file to the new repository
+    --disable-issues: Disable issues in the new repository
+    --disable-wiki: Disable wiki in the new repository
+    --enable-issues&: Enable issues in the new repository
+    --enable-wiki&: Enable wiki in the new repository
+    --include-all-branches: Include all branches from template repository
+    --internal: Make the new repository internal
+    --private: Make the new repository private
+    --public: Make the new repository public
+    --push: Push local commits to the new repository
+    -c, --clone: Clone the new repository to the current directory
+    -d, --description=: Description of the repository
+    -g, --gitignore=: Specify a gitignore template for the repository
+    -h, --homepage=: Repository home page `URL`
+    -l, --license=: Specify an Open Source License for the repository
+    -p, --template=: Make the new repository based on a template `repository`
+    -r, --remote=: Specify remote name for the new repository
+    -s, --source=: Specify path to local repository to use as source
+    -t, --team=: The `name` of the organization team to be granted access
+    -y, --confirm&: Skip the confirmation prompt

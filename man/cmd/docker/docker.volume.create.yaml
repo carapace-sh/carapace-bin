@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create [OPTIONS] [VOLUME]
+description: Create a volume
+flags:
+    --availability=: Cluster Volume availability ("active", "pause", "drain")
+    --group=: Cluster Volume group (cluster volumes)
+    --label=: Set metadata for a volume
+    --limit-bytes=: Minimum size of the Cluster Volume in bytes
+    --name=&: Specify volume name
+    --required-bytes=: Maximum size of the Cluster Volume in bytes
+    --scope=: Cluster Volume access scope ("single", "multi")
+    --secret=: Cluster Volume secrets
+    --sharing=: Cluster Volume access sharing ("none", "readonly", "onewriter", "all")
+    --topology-preferred=: A topology that the Cluster Volume would be preferred in
+    --topology-required=: A topology that the Cluster Volume must be accessible from
+    --type=: Cluster Volume access type ("mount", "block")
+    -d, --driver=: Specify volume driver name
+    -o, --opt=: Set driver specific options

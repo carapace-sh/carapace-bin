@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: logout
+description: Log out of a GitHub account
+documentation:
+    command: |
+        Log out of a GitHub account. Specify the hostname with `-h` and the
+        username with `-u`. Removes the stored authentication credentials
+        for the specified account.
+flags:
+    -h, --hostname=: The hostname of the GitHub instance to log out of
+    -u, --user=: The account to log out of

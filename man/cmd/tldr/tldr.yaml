@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: tldr
+description: A fast TLDR client
+flags:
+    --color=: Control whether to use color
+    --no-auto-update: If auto update is configured, disable it for this run
+    --pager: Use a pager to page output
+    --seed-config: Create a basic config
+    --show-paths: Show file and directory paths used by tealdeer
+    -L, --language=: Override the language
+    -c, --clear-cache: Clear the local cache
+    -f, --render=: Render a specific markdown file
+    -h, --help: Print help information
+    -l, --list: List all commands in the cache
+    -p, --platform=: Override the operating system
+    -q, --quiet: Suppress informational messages
+    -r, --raw: Display the raw markdown instead of rendering it
+    -u, --update: Update the local cache
+    -v, --version: Print the version

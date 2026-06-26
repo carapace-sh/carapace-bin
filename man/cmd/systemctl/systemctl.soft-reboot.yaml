@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: soft-reboot
+description: Shut down and reboot userspace
+group: system
+documentation:
+  command: |
+    Shut down and reboot userspace. Unlike reboot, this only restarts
+    userspace services and daemons while keeping the kernel running.
+    This is useful for faster reboots where hardware does not need to
+    be reinitialized. A new root file system can be set up on "/run/next-root/"
+    before invoking this command.

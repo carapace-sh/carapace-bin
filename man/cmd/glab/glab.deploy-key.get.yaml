@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: get <key-id>
+description: Returns a single deploy key specified by the ID.

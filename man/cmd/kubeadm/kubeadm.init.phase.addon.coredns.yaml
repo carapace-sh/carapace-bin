@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: coredns
+description: Install the CoreDNS addon to a Kubernetes cluster
+flags:
+    --config=: Path to a kubeadm configuration file.
+    --dry-run: Don't apply any changes; just output what would be done.
+    --feature-gates=: 'A set of key=value pairs that describe feature gates for various features. Options are:'
+    --image-repository=: Choose a container registry to pull control plane images from
+    --kubeconfig=: The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.
+    --kubernetes-version=: Choose a specific Kubernetes version for the control plane.
+    --print-manifest: Print the addon manifests to STDOUT instead of installing them
+    --service-cidr=: Use alternative range of IP address for service VIPs.
+    --service-dns-domain=: Use alternative domain for services, e.g. "myorg.internal".

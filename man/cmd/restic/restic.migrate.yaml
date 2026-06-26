@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: migrate
+description: Apply migrations
+flags:
+    -f, --force: apply a migration a second time
+
+documentation:
+  command: >-
+    Apply repository format migrations to upgrade storage to newer and more efficient layouts.

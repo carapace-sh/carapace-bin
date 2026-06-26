@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: build
+description: Build packages from AUR
+flags:
+    --builddir=: build directory
+    --no-clone: do not clone build files from AUR, only use local files
+    --no-confirm: bypass any and all confirmation messages
+    --no-keep: do not keep built packages in cache after installation
+    -d, --dry-run: only print what would be done
+    -k, --keep: keep built packages in cache after installation

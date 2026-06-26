@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: update
+description: Update a New Relic One workload.
+flags:
+    -e, --entityGuid=*: the list of entity Guids composing the workload
+    -g, --guid=: the GUID of the workload you want to update
+    -n, --name=: the name of the workload
+    -q, --entitySearchQuery=*: a list of search queries, combined using an OR operator
+    -s, --scopeAccountIds=*: accounts that will be used to get entities from

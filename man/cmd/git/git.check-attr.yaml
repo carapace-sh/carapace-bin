@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: check-attr
+description: Display gitattributes information
+group: low-level helper
+flags:
+  --cached: use .gitattributes only from the index
+  --source=: which tree-ish to check attributes at
+  --stdin: read file names from stdin
+  -a, --all: report all attributes set on file
+  -z: terminate input and output records by a NUL character
+documentation:
+  command: |-
+    For every pathname, this command will list if each attribute is 'unspecified',
+    'set', or 'unset' as a gitattribute on that pathname.

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: config
+description: Change configuration options, such as sending of optional analytics data
+flags:
+    -h, --help: help for config

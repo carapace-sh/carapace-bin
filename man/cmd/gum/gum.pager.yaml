@@ -1,0 +1,82 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pager
+description: Scroll through a file
+flags:
+    --align=: Text Alignment
+    --background=: Background Color
+    --bold: Bold text
+    --border-background=: Border Background Color
+    --border-foreground=: Border Foreground Color
+    --border=: Border Style
+    --faint: Faint text
+    --foreground=: Foreground Color
+    --height=: Text height
+    --help.align=: Text Alignment
+    --help.background=: Background Color
+    --help.bold: Bold text
+    --help.border-background=: Border Background Color
+    --help.border-foreground=: Border Foreground Color
+    --help.border=: Border Style
+    --help.faint: Faint text
+    --help.foreground=: Foreground Color
+    --help.height=: Text height
+    --help.italic: Italicize text
+    --help.margin=: Text margin
+    --help.padding=: Text padding
+    --help.strikethrough: Strikethrough text
+    --help.underline: Underline text
+    --help.width=: Text width
+    --italic: Italicize text
+    --line-number.align=: Text Alignment
+    --line-number.background=: Background Color
+    --line-number.bold: Bold text
+    --line-number.border-background=: Border Background Color
+    --line-number.border-foreground=: Border Foreground Color
+    --line-number.border=: Border Style
+    --line-number.faint: Faint text
+    --line-number.foreground=: Foreground Color
+    --line-number.height=: Text height
+    --line-number.italic: Italicize text
+    --line-number.margin=: Text margin
+    --line-number.padding=: Text padding
+    --line-number.strikethrough: Strikethrough text
+    --line-number.underline: Underline text
+    --line-number.width=: Text width
+    --margin=: Text margin
+    --match-highlight.align=: Text Alignment
+    --match-highlight.background=: Background Color
+    --match-highlight.bold: Bold text
+    --match-highlight.border-background=: Border Background Color
+    --match-highlight.border-foreground=: Border Foreground Color
+    --match-highlight.border=: Border Style
+    --match-highlight.faint: Faint text
+    --match-highlight.foreground=: Foreground Color
+    --match-highlight.height=: Text height
+    --match-highlight.italic: Italicize text
+    --match-highlight.margin=: Text margin
+    --match-highlight.padding=: Text padding
+    --match-highlight.strikethrough: Strikethrough text
+    --match-highlight.underline: Underline text
+    --match-highlight.width=: Text width
+    --match.align=: Text Alignment
+    --match.background=: Background Color
+    --match.bold: Bold text
+    --match.border-background=: Border Background Color
+    --match.border-foreground=: Border Foreground Color
+    --match.border=: Border Style
+    --match.faint: Faint text
+    --match.foreground=: Foreground Color
+    --match.height=: Text height
+    --match.italic: Italicize text
+    --match.margin=: Text margin
+    --match.padding=: Text padding
+    --match.strikethrough: Strikethrough text
+    --match.underline: Underline text
+    --match.width=: Text width
+    --padding=: Text padding
+    --show-line-numbers: Show line numbers
+    --soft-wrap: Soft wrap lines
+    --strikethrough: Strikethrough text
+    --timeout=: Timeout until command exits
+    --underline: Underline text
+    --width=: Text width

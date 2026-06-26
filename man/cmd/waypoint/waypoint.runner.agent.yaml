@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: agent
+description: Run a runner for executing remote operations
+flags:
+    --enable-dynamic-config: Allow dynamic config to be created when an exec plugin is used.
+    --id=: If this is set, the runner will use the specified id.
+    --liveness-tcp-addr=: Open a TCP listener on this address when it is running.
+    --odr: Indicates to the runner it's operating as an on-demand runner.
+    --plain: Plain output
+    -a, --app=: App to target.
+    -p, --project=: Project to target.
+    -w, --workspace=: Workspace to operate in.

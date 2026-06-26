@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    ClamAV on-access scanning daemon. Monitors filesystem activity
+    and scans files in real-time when they are accessed, using fanotify.
+description: an anti-virus on-access scanning daemon and clamd client
+flags:
+    --copy=: Copy infected files into DIRECTORY
+    --fdpass: Pass filedescriptor to clamd (useful if clamd is running as a different user)
+    --move=: Move infected files into DIRECTORY
+    --remove: Remove infected files. Be careful!
+    --stream: Force streaming files to clamd (for debugging and unit testing)
+    -F, --foreground: Output to foreground and do not daemonize
+    -V, --version: Print version number and exit
+    -W, --watch-list=: Watch directories from FILE
+    -c, --config-file=: Read configuration from FILE
+    -e, --exclude-list=: Exclude directories from FILE
+    -h, --help: Show this help
+    -l, --log=: Save scanning output to FILE
+    -p, --ping: ']    Ping clamd up to [A] times at optional interval [I] until it responds.'
+    -v, --verbose: Be verbose
+    -w, --wait: Wait up to 30 seconds for clamd to start. Optionally use alongside --ping to set attempts [A] and interval [I] to check clamd.
+    -z, --allmatch: Continue scanning within file after finding a match.

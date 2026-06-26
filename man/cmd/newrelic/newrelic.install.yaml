@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: install
+description: Install New Relic.
+flags:
+    --localRecipes=: a path to local recipes to load instead of service other fetching
+    --tag=*: 'the tags to add during install, can be multiple. Example: --tag tag1:test,tag2:test'
+    -c, --recipePath=*: the path to a recipe file to install
+    -n, --recipe=*: the name of a recipe to install
+    -t, --testMode: fakes operations for UX testing
+    -y, --assumeYes: use "yes" for all questions during install
+
+documentation:
+  command: >-
+    Install and configure New Relic agents and integrations on the current system.

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: license
+description: Outputs the licenses of dependencies to a directory
+flags:
+    -d, --dir=: Directory to output licenses to

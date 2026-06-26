@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: templ
+description: A language for writing HTML user interfaces in Go

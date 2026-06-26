@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: lint
+description: examine a chart for possible issues
+group: main
+flags:
+    --set-file=*: 'set values from respective files specified via the command line (can specify multiple or separate values with commas: key1=path1,key2=path2)'
+    --set-string=*: 'set STRING values on the command line (can specify multiple or separate values with commas: key1=val1,key2=val2)'
+    --set=*: 'set values on the command line (can specify multiple or separate values with commas: key1=val1,key2=val2)'
+    --strict: fail on lint warnings
+    --with-subcharts: lint dependent charts
+    -f, --values=*: specify values in a YAML file or a URL (can specify multiple)

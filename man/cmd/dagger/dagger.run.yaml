@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: run [flags] COMMAND
+aliases:
+    - r
+description: Run a command in a Dagger session
+group: exec
+flags:
+    --cleanup-timeout=: max duration to wait between SIGTERM and SIGKILL on interrupt
+    --focus: Only show output for focused commands.

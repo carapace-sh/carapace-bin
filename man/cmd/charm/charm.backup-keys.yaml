@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: backup-keys
+description: Backup your Charm account keys
+flags:
+    -o, --output=: keys backup filepath
+
+documentation:
+  command: >-
+    Export and backup your Charm account encryption keys for safekeeping.

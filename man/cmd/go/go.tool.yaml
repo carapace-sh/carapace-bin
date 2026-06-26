@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: tool
+description: run specified go tool
+flags:
+    -C=: Change to dir before running the command
+    -n: only print the command that would be executed

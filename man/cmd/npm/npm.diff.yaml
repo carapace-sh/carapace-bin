@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: diff
+description: The registry diff command
+flags:
+    --diff-dest-prefix=: destination prefix to be used in output
+    --diff-ignore-all-space: ignore whitespace when comparing lines
+    --diff-name-only: print only filenames
+    --diff-no-prefix: do not show any source or destination prefix
+    --diff-src-prefix=: source prefix to be used in output
+    --diff-text: treat all files as text
+    --diff-unified=: numver of lines of context to print
+    --diff=*: argument to compare
+    --tag=: tag to use when version is omitted
+    -g, --global: operate globally

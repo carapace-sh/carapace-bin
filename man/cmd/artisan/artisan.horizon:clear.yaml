@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: horizon:clear [--queue [QUEUE]] [--force]
+description: Delete all of the jobs from the specified queue
+flags:
+    --force: Force the operation to run when in production
+    --queue=: The name of the queue to clear

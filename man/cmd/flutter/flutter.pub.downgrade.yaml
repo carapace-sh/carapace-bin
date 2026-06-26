@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: downgrade
+description: Downgrade the current package's dependencies to oldest versions
+flags:
+    --no-offline: Do not use cached packages instead of accessing the network.
+    --offline: Use cached packages instead of accessing the network.
+    -C, --directory=: Run this in the directory<dir>.
+    -h, --help: Print this usage information.
+    -n, --dry-run: Report what dependencies would change but don't change any.

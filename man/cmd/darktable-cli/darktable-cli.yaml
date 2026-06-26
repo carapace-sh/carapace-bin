@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Command-line variant of darktable for headless image processing.
+    Applies styles and exports images without launching the GUI.
+description: a command line darktable variant
+flags:
+    --apply-custom-presets=: custom preset
+    --bpp=: bit depth
+    --height=: max height
+    --help,-h: ""
+    --hq=: high quality resampling
+    --style-overwrite: ""
+    --style=: style name
+    --upscale=: upscaling
+    --verbose: ""
+    --version: ""
+    --width=: max width

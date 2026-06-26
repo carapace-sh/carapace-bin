@@ -1,0 +1,38 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: run
+description: Initiate a Postman Collection run from a given URL or pat
+flags:
+    --bail=: Specify whether or not to gracefully
+    --color=: Enable/Disable colored output
+    --cookie-jar=: Specify the path to a custom cookie jar
+    --delay-request=: Specify the extent of delay between
+    --disable-unicode: Forces Unicode compliant symbols to be
+    --env-var=: Allows the specification of environment
+    --export-collection=: Exports the executed collection to a
+    --export-cookie-jar=: Exports the cookie jar to a file after
+    --export-environment=: Exports the final environment to a file
+    --export-globals=: Exports the final globals to a file
+    --folder=: Specify the folder to run from a
+    --global-var=: Allows the specification of global
+    --ignore-redirects: Prevents Newman from automatically
+    --no-insecure-file-read: Prevents reading the files situated
+    --postman-api-key=: API Key used to load the resources from
+    --silent: Prevents Newman from showing output to
+    --ssl-client-cert-list=: Specify the path to a client
+    --ssl-client-cert=: Specify the path to a client
+    --ssl-client-key=: Specify the path to a client
+    --ssl-client-passphrase=: Specify the client certificate
+    --ssl-extra-ca-certs=: Specify additionally trusted CA
+    --timeout-request=: Specify a timeout for requests
+    --timeout-script=: Specify a timeout for scripts
+    --timeout=: Specify a timeout for collection run
+    --verbose: Show detailed information of collection
+    --working-dir=: Specify the path to the working
+    -d, --iteration-data=: Specify a data file to use for
+    -e, --environment=: Specify a URL or path to a Postman
+    -g, --globals=: Specify a URL or path to a file
+    -h, --help: display help for command
+    -k, --insecure: Disables SSL validations
+    -n, --iteration-count=: Define the number of iterations to run
+    -r, --reporters=: Specify the reporters to use for this
+    -x, --suppress-exit-code: Specify whether or not to override the

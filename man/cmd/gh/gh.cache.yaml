@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: cache <command>
+description: Manage GitHub Actions caches
+group: actions
+documentation:
+    command: |
+        Work with GitHub Actions caches. List caches with `gh cache list` to see
+        available caches and their sizes, and delete caches with `gh cache delete`.
+        Use `-R` or `--repo` to operate on a different repository.
+persistentflags:
+    -R, --repo=: Select another repository using the `[HOST/]OWNER/REPO` format

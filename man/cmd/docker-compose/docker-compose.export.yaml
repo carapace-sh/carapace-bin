@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: export [OPTIONS] SERVICE
+description: Export a service container's filesystem as a tar archive
+flags:
+    --index=: index of the container if service has multiple replicas.
+    -o, --output=: Write to a file, instead of STDOUT

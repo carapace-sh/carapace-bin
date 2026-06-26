@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: version
+description: Displays the version of the language server
+flags:
+    -json: output the version information as a JSON object

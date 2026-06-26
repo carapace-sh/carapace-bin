@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: cargo-clippy
+description: Checks a package to catch common mistakes and improve your Rust code
+flags:
+    --fix: Automatically apply lint suggestions. This flag implies `--no-deps`
+    --no-deps: Run Clippy only on the given crate, without linting the dependencies
+    -V, --version: Print version info and exit
+    -h, --help: Print this message

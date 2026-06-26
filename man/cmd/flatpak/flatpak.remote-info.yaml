@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: remote-info [OPTION…]  REMOTE REF
+description: Show information about an application or runtime in a remote
+group: repository
+flags:
+    --app: Look for app with the specified name
+    --arch=: Arch to install for
+    --cached: Use local caches even if they are stale
+    --commit=: Commit to show info for
+    --installation=: Work on a non-default system-wide installation
+    --log: Display log
+    --ostree-verbose: Show OSTree debug information
+    --runtime: Look for runtime with the specified name
+    --show-runtime: Show runtime
+    --show-sdk: Show sdk
+    --sideloaded: Only list refs available as sideloads
+    --system: Work on the system-wide installation (default)
+    -c, --show-commit: Show commit
+    -h, --help: Show help options
+    -m, --show-metadata: Show metadata
+    -p, --show-parent: Show parent
+    -r, --show-ref: Show ref
+    -u, --user: Work on the user installation
+    -v, --verbose: Show debug information, -vv for more detail

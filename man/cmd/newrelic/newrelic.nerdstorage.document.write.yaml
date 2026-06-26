@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: write
+description: Write a NerdStorage document.
+flags:
+    -c, --collection=: the collection name to write the document to
+    -d, --documentId=: the document ID
+    -e, --entityGuid=: the entity GUID
+    -o, --document=: the document to be written, in JSON format
+    -p, --packageId=: the external package ID
+    -s, --scope=: the scope to write the document to

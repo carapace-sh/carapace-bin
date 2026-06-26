@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: clear
+description: remove all the stash entries
+documentation:
+  command: |-
+    Remove all the stash entries. Note that those entries will then
+    be subject to pruning, and may be impossible to recover (see
+    'EXAMPLES' below for a possible strategy).

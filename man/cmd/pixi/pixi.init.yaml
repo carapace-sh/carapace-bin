@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: init
+description: Creates a new workspace
+flags:
+    --conda-pypi-map=*: Set a mapping between conda channels and pypi channels
+    --format=: The manifest format to create
+    -c, --channel=*: Channel to use in the workspace
+    -i, --import=: Environment.yml file to bootstrap the workspace
+    -p, --platform=*: Platforms that the workspace supports
+    -s, --scm=: Source Control Management used for this workspace

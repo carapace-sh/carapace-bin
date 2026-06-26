@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: generate
+description: Generate a LS_COLORS expression
+flags:
+    -h, --help: Prints help information

@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: poweroff
+description: Shut down and power-off the system
+group: system
+documentation:
+  command: |
+    Shut down and power-off the system. This is mostly equivalent to
+    `systemctl start poweroff.target --Job-mode=replace-irreversibly --no-block`,
+    but also prints a wall message to all users. This command is asynchronous;
+    it will return after the power-off operation is enqueued without waiting
+    for it to complete.

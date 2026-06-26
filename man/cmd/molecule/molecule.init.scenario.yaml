@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: scenario [flags] [SCENARIO_NAME]
+description: Initializes a new scenario to use with Molecule
+flags:
+    --dependency-name=: Name of galaxy dependency to initialize
+    --help: Show help message and exit
+    --provisioner-name=: Name of provisioner to initialize
+    --verifier-name=: Name of verifier to initialize
+    -d, --driver-name=: Name of the driver to use
+    -r, --role-name=: Name of the role to create

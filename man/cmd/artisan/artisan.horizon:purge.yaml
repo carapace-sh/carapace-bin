@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: horizon:purge [--signal [SIGNAL]]
+description: Terminate any rogue Horizon processes
+flags:
+    --signal=: The signal to send to the rogue processes

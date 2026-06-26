@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: timings
+description: Reports the build timings of previous sessions (unstable)
+flags:
+    --id=: Session ID to report on
+    --manifest-path=: Path to Cargo.toml
+    --open: Opens the timing report in a browser
+    -h, --help: Print help

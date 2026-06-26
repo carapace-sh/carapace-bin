@@ -1,0 +1,58 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: mitmproxy
+description: interactive, SSL/TLS-capable intercepting proxy
+flags:
+    --allow-hosts=*: Opposite of --ignore-hosts
+    --anticache: Strip out request headers that might cause the server to return 304-not-modified
+    --anticomp: Try to convince servers to send us un-compressed data
+    --cert-passphrase=: Passphrase for decrypting the private key provided in the --cert option
+    --certs=: SSL certificates of the form "[domain=]path"
+    --commands: Show all commands and their signatures
+    --console-layout-headers: Show layout component headers
+    --console-layout=: Console layout
+    --http2: Enable HTTP/2 support
+    --ignore-hosts=*: Ignore host and forward all traffic without processing it
+    --intercept=: Intercept filter expression
+    --key-size=: TLS key size for certificates and CA
+    --listen-host=: Address to bind proxy to
+    --map-local=: Map remote resources to a local file
+    --no-anticache: Do not strip out request headers that might cause the server to return 304-not-modified
+    --no-anticomp: Do not try to convince servers to send us un-compressed data
+    --no-console-layout-headers: Do not show layout component headers
+    --no-http2: Disable HTTP/2 support
+    --no-rawtcp: Disable raw TCP connections
+    --no-server-replay-kill-extra: Do not kill extra requests during replay
+    --no-server-replay-nopop: Remove flows from server replay state after use
+    --no-server-replay-refresh: ""
+    --no-showhost: Do not use the Host header to construct URLs for display
+    --no-ssl-insecure: Verify upstream server SSL/TLS certificates
+    --options: Show all options and their default values
+    --proxyauth=: Require proxy authentication
+    --rawtcp: Enable raw TCP connections
+    --server: Start a proxy server
+    --server-replay-kill-extra: Kill extra requests during replay
+    --server-replay-nopop: Don't remove flows from server replay state after use
+    --server-replay-refresh: Refresh server replay responses by adjusting date, expires and last-modified headers
+    --set=*: Set an option
+    --showhost: Use the Host header to construct URLs for display
+    --stickyauth=: Set sticky auth filter
+    --stickycookie=: Set sticky cookie filter
+    --tcp-hosts=: Generic TCP SSL proxy mode for all hosts that match the pattern
+    --upstream-auth=: Add HTTP Basic authentication to upstream proxy and reverse proxy requests
+    --version: show version number and exit
+    --view-filter=: Limit the view to matching flows
+    -B, --modify-body=: Replacement pattern
+    -C, --client-replay=: Replay client requests from a saved file
+    -H, --modify-headers=: Header modify pattern
+    -M, --map-remote=: Map remote resources to another remote URL
+    -S, --server-replay=: Replay server responses from a saved file
+    -h, --help: show this help message and exit
+    -k, --ssl-insecure: Do not verify upstream server SSL/TLS certificates
+    -m, --mode=: Set mode
+    -n, --no-server: Do not start a proxy server
+    -p, --listen-port=: Proxy service port
+    -q, --quiet: Quiet
+    -r, --rfile=: Read flows from file
+    -s, --scripts=*: Execute a script
+    -v, --verbose: Increase log verbosity
+    -w, --save-stream-file=: Stream flows to file as they arrive

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: start
+description: Starts a node.
+flags:
+    --delete-on-failure: If set, delete the current cluster if start fails and try again. Defaults to false.

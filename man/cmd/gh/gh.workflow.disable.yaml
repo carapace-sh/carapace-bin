@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: disable [<workflow-id> | <workflow-name>]
+description: Disable a workflow
+documentation:
+    command: |
+        Disable a workflow to prevent it from running. Pass the workflow ID or
+        name as argument. The workflow file remains in the repository but will
+        not trigger automatically. Use `gh workflow enable` to re-enable it.

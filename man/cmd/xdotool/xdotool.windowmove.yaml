@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: windowmove
+description: Move the window to the given position
+flags:
+    --relative: Make movement relative to the current window position
+    --sync: After sending the window move request, wait until the window is actually moved

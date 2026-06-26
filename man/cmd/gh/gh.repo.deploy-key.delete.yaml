@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: delete <key-id>
+description: Delete a deploy key from a GitHub repository

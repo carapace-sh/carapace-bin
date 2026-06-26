@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Remove sections from each line of files. Select bytes, characters,
+    or fields from input lines using a delimiter. Supports complement
+    selection and custom output delimiters.
+description: remove sections from each line of files
+flags:
+    --complement: complement the set of selected bytes, characters
+    --help: display this help and exit
+    --output-delimiter=: use STRING as the output delimiter
+    --version: output version information and exit
+    -b, --bytes=: select only these bytes
+    -c, --characters=: select only these characters
+    -d, --delimiter=: use DELIM instead of TAB for field delimiter
+    -f, --fields=: select only these fields;  also print any line
+    -n: (ignored)
+    -s, --only-delimited: do not print lines not containing delimiters
+    -z, --zero-terminated: line delimiter is NUL, not newline

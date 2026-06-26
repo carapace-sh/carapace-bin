@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: reopen {<number> | <url> | <branch>}
+description: Reopen a pull request
+group: Targeted commands
+documentation:
+    command: |
+        Reopen a closed pull request without merging. Optionally add a comment
+        explaining why it was reopened with `-c` or `--comment`.
+flags:
+    -c, --comment=: Add a reopening comment

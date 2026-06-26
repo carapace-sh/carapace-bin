@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rm
+description: Removes a Policy Pack from a Pulumi organization
+persistentflags:
+    -y, --yes: Skip confirmation prompts, and proceed with removal anyway

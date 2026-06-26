@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: telescope:publish [--force]
+description: Publish all of the Telescope resources
+flags:
+    --force: Overwrite any existing files

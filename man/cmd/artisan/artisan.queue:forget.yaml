@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: queue:forget <id>
+description: Delete a failed queue job

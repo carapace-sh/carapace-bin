@@ -1,0 +1,34 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pgrep
+description: look up processes based on name and other attributes
+flags:
+    --cgroup=: match by cgroup v2 names
+    --env=: match on environment variable
+    --ns=: match the processes that belong to the same namespace as <pid>
+    --nslist=: list which namespaces will be considered for the --ns option.
+    --signal=: signal to send (either number or name)
+    -A, --ignore-ancestors: exclude our ancestors from results
+    -F, --pidfile=: read PIDs from file
+    -G, --group=: match real group IDs
+    -L, --logpidfile: fail if PID file is not locked
+    -O, --older=: select where older than seconds
+    -P, --parent=: match only child processes of the given parent
+    -U, --uid=: match by real IDs
+    -V, --version: output version information and exit
+    -a, --list-full: list PID and full command line
+    -c, --count: count of matching processes
+    -d, --delimiter=: specify output delimiter
+    -f, --full: use full process name to match
+    -g, --pgroup=: match listed process group IDs
+    -h, --help: display this help and exit
+    -i, --ignore-case: match case insensitively
+    -l, --list-name: list PID and process name
+    -n, --newest: select most recently started
+    -o, --oldest: select least recently started
+    -r, --runstates=: match runstates
+    -s, --session=: match session IDs
+    -t, --terminal=: match by controlling terminal
+    -u, --euid=: match by effective IDs
+    -v, --inverse: negates the matching
+    -w, --lightweight: list all TID
+    -x, --exact: match exactly with the command name

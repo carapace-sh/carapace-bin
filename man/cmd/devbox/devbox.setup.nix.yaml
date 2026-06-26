@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: nix
+description: Install Nix
+flags:
+    --daemon: Install Nix in multi-user mode. This flag is not supported if you are using DetSys installer

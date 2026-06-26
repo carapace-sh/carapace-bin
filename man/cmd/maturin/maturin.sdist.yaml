@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: sdist
+description: Build only a source distribution (sdist) without compiling
+flags:
+    -m, --manifest-path=: The path to the Cargo.toml
+    -o, --out=: The directory to store the built wheels in
+    -v, --verbose*: Use verbose output

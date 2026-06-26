@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+description: List all available workspaces
+flags:
+    --json: Format the output as an NDJSON stream
+    --no-private: Exclude workspaces that have the private field set to true
+    --since: Only include workspaces that have been changed since the specified ref.
+    -R, --recursive: Find packages via dependencies/devDependencies instead of using the workspaces field
+    -v, --verbose: Also return the cross-dependencies between workspaces

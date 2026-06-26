@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: top
+description: Check out the top branch of the stack (furthest from the trunk)

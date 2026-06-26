@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: serve
+description: Starts the Language Server
+flags:
+    -cpuprofile=: file into which to write CPU profile
+    -log-file=: path to a file to log into with support for variables
+    -memprofile=: file into which to write memory profile
+    -port=: port number to listen on
+    -req-concurrency=: number of RPC requests to process concurrently

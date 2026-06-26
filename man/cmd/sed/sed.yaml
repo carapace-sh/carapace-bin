@@ -1,0 +1,34 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: sed
+description: stream editor for filtering and transforming text
+flags:
+    --debug: annotate program execution
+    --follow-symlinks: follow symlinks when processing in place
+    --help: display this help and exit
+    --posix: disable all GNU extensions
+    --sandbox: operate in sandbox mode (disable e/r/w commands)
+    --silent=: suppress automatic printing of pattern space
+    --version: output version information and exit
+    -E: use extended regular expressions in the script
+    -e, --expression=: add the script to the commands to be executed
+    -f, --file=: add the contents of script-file to the commands to be executed
+    -i, --in-place=: edit files in place (makes backup if SUFFIX supplied)
+    -l, --line-length=: specify the desired line-wrap length for the l command
+    -n, --quiet=: suppress automatic printing of pattern space
+    -r, --regexp-extended: use extended regular expressions in the script
+    -s, --seperate: consider files as separate rather than as a single, continuous long stream.
+    -u, --unbuffered: load minimal amounts of data from the input files and flush the output buffers more often
+    -z, --null-data: separate lines by NUL characters
+
+documentation:
+  command: >-
+    Filter and transform text line by line. sed reads input files (or
+    stdin) and applies script commands (s/regex/replacement/, d for
+    delete, p for print, a/i/c for append/insert/change) to each line.
+    Default behavior prints all lines; use -n to suppress unless p is
+    explicitly called. Edit files in place with -i (backup with -i.bak).
+    Extended regex with -E; use -e for multiple commands or -f for
+    script files. The s command supports flags: g (global), I (case-insensitive),
+    number (replace Nth occurrence). Hold and pattern spaces enable
+    multi-line operations. Scripts without -e/-f use the first positional
+    argument as the script body.

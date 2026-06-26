@@ -1,0 +1,23 @@
+name: mark
+description: Mark a commit or branch for auto-stage or auto-commit.
+flags:
+    -d, --delete: Deletes a mark
+    -h, --help: Print help (see more with '--help')
+documentation:
+    command: |-
+        Mark a commit or branch for auto-stage or auto-commit.
+
+        Creates or removes a rule for auto-staging or auto-committing changes
+        to the specified target entity.
+
+        If you mark a branch, new unstaged changes that GitButler sees when
+        you run any command will be automatically staged to that branch.
+
+        If you mark a commit, new uncommitted changes will automatically be
+        amended into the marked commit.
+    flag:
+        help: Print help (see a summary with '-h')
+        status-after: |-
+            After a mutation command completes, also output workspace status.
+
+            In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).

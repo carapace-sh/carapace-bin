@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: logout
+description: Logs out of your account
+
+documentation:
+  command: >-
+    Log out of the current Vercel account.

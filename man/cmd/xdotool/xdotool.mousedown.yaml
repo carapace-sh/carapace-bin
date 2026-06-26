@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: mousedown
+description: Send a mousedown for the given button
+flags:
+    --clearmodifiers: Clear modifiers before clicking
+    --delay=: Specify how long, in milliseconds, to delay between clicks
+    --repeat=: Specify how many times to click
+    --window=: Specify a window to send a click to

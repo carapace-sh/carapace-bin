@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: build-import-bundle [OPTION…] LOCATION FILENAME
+description: Import a file bundle into a local repository
+group: build
+flags:
+    --gpg-homedir=: GPG Homedir to use when looking for keyrings
+    --gpg-sign=: GPG Key ID to sign the commit with
+    --no-summary-index: Don't generate a summary index
+    --no-update-summary: Don't update the summary
+    --oci: Import oci image instead of flatpak bundle
+    --ostree-verbose: Show OSTree debug information
+    --ref=: Override the ref used for the imported bundle
+    --update-appstream: Update the appstream branch
+    -h, --help: Show help options
+    -v, --verbose: Show debug information, -vv for more detail

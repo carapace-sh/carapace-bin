@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: stats
+description: Show statistics about repositories and installations
+group: miscellaneous

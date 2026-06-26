@@ -1,0 +1,56 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: install
+aliases:
+    - i
+description: Installs all dependencies of the project in the current working directory
+group: manage
+flags:
+    --aggregate-output: Aggregate output from child processes that are run in parallel
+    --changed-files-ignore-pattern=: Defines files to ignore when filtering for changed projects since the specified commit/branch
+    --child-concurrency=: Controls the number of child processes run parallelly
+    --color: Controls colors in the output
+    --filter-prod=: Restricts the scope to package names matching the given pattern
+    --filter=: set filter
+    --fix-lockfile: Fix broken lockfile entries automatically
+    --force: Force reinstall dependencies
+    --frozen-lockfile: Don't generate a lockfile and fail if an update is needed
+    --global-dir: Specify a custom directory to store global packages
+    --hoist-pattern=: Hoist all dependencies matching the pattern to
+    --ignore-pnpmfile: Disable pnpm hooks defined in .pnpmfile.cjs
+    --ignore-scripts: Don't run lifecycle scripts
+    --lockfile-dir=: The directory in which the pnpm-lock.yaml will be created
+    --lockfile-only: Dependencies are not downloaded
+    --loglevel=: What level of logs to report
+    --modules-dir=: The directory in which dependencies will be installed
+    --network-concurrency=: Maximum number of concurrent network requests
+    --no-color: Controls colors in the output
+    --no-frozen-lockfile: Don't generate a lockfile and fail if an update is needed
+    --no-hoist: Dependencies inside the modules directory will have access only to their listed dependencies
+    --no-lockfile: Don't read or generate a `pnpm-lock.yaml` file
+    --no-optional: '`optionalDependencies` are not installed'
+    --no-verify-store-integrity: If false, doesn't check whether packages in the store were mutated
+    --offline: Trigger an error if any required dependencies are not available in local store
+    --package-import-method=: configure import method
+    --prefer-frozen-lockfile: If the available `pnpm-lock.yaml` satisfies the `package.json` then perform a headless installation
+    --prefer-offline: Skip staleness checks for cached data, but request missing data from the server
+    --public-hoist-pattern=: Hoist all dependencies matching the pattern to the root of the modules directory
+    --reporter=: configure output
+    --shamefully-hoist: All the subdeps will be hoisted into the root node_modules
+    --side-effects-cache: Use or cache the results of (pre/post)install hooks
+    --side-effects-cache-readonly: Only use the side effects cache if present, do not create it for new packages
+    --store-dir=: The directory in which all the packages are saved on the disk
+    --stream: Stream output from child processes immediately
+    --strict-peer-dependencies: Fail on missing or invalid peer dependencies
+    --test-pattern=: Defines files related to tests
+    --use-running-store-server: Only allows installation with a store server
+    --use-stderr: Divert all output to stderr
+    --use-store-server: Starts a store server in the background
+    --verify-store-integrity: If false, doesn't check whether packages in the store were mutated
+    --virtual-store-dir=: The directory with links to the store
+    -C, --dir=: Change to directory <dir>
+    -D, --dev: Only `devDependencies` are installed regardless of the `NODE_ENV`
+    -P, --prod: Packages in `devDependencies` won't be installed
+    -h, --help: Output usage information
+    -r, --recursive: Run installation recursively in every package found in subdirectories
+    -s, --silent: No output is logged to the console, except fatal errors
+    -w, --workspace-root: Run the command on the root workspace project

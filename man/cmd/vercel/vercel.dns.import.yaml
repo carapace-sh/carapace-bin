@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: import
+description: Import a DNS zone file
+
+documentation:
+  command: >-
+    Import records from a standard DNS zone file into a Vercel DNS zone. Parses the zone file and creates corresponding DNS records.

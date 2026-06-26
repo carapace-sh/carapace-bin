@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: service-watchdogs
+description: Get/set service watchdog state
+group: manager state
+documentation:
+  command: |
+    If no argument is given, print the current state of service runtime
+    watchdogs. If an optional boolean argument is provided, globally
+    enables or disables the service runtime watchdogs (WatchdogSec=) and
+    emergency actions (e.g. OnFailure=, StartLimitAction=). The hardware
+    watchdog is not affected by this setting.

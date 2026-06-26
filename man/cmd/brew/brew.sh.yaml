@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: sh
+description: Enter an interactive shell for Homebrew's build environment
+group: developer
+flags:
+    --cmd: Execute commands in a non-interactive shell.
+    --debug: Display any debugging information.
+    --env: Use the standard `PATH` instead of superenv's when `std` is passed.
+    --help: Show this message.
+    --quiet: Make some output more quiet.
+    --verbose: Make some output more verbose.

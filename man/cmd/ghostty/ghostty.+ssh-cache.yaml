@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: +ssh-cache
+description: Manage the SSH terminfo cache for automatic remote host setup
+flags:
+    --add=: Manually add host to cache
+    --clear: Clear entire cache
+    --expire-days=: Set custom expiration period
+    --host=: Check if host is cached
+    --remove=: Remove host from cache

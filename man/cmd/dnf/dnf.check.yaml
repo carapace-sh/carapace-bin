@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: check
+description: check for problems in the package database
+flags:
+    --dependencies: show missing dependencies and conflicts
+    --duplicates: show duplicated packages
+    --obsoleted: show obsoleted packages

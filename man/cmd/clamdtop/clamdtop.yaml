@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Ncurses-based monitoring tool for clamd. Displays real-time
+    information about the clamd daemon including queue stats,
+    connection information, and scan statistics.
+description: monitor the Clam AntiVirus Daemon
+flags:
+    -V, --version: Show version
+    -c, --config-file=: Read clamd's configuration files from FILE
+    -d, --defaultcolors: Use default terminal colors
+    -h, --help: Show this help

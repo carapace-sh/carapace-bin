@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: gpasswd
+description: administer /etc/group and /etc/gshadow
+flags:
+    -A, --administrators=: set the list of administrators for GROUP
+    -M, --members=: set the list of members of GROUP
+    -Q, --root=: directory to chroot into
+    -R, --restrict: restrict access to GROUP to its members
+    -a, --add=: add USER to GROUP
+    -d, --delete=: remove USER from GROUP
+    -h, --help: display this help message and exit
+    -r, --remove-password: remove the GROUP's password

@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create
+aliases:
+    - c
+description: Create a label
+flags:
+    --color=: label color value
+    --description=: label description
+    --file=: indicate a label file
+    --name=: label name
+    -R, --remote=: Discover Gitea login from remote. Optional
+    -l, --login=: Use a different Gitea Login. Optional
+    -o, --output=: Output format. (simple, table, csv, tsv, yaml, json)
+    -r, --repo=: Override local repository path or gitea repository slug to interact with. Optional

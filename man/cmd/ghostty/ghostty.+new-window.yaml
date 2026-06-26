@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: +new-window
+description: The `new-window` will use native platform IPC to open up a new window in a running instance of Ghostty
+flags:
+    --class=: If set, open up a new window in a custom instance of Ghostty
+    --command=: Command to execute in first surface
+    --title=: Override title of first surface
+    --working-directory=: Working directory for the new window
+    -e: Any arguments after this will be interpreted as a command to execute

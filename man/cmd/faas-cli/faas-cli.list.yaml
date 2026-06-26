@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+description: List OpenFaaS functions
+flags:
+    --envsubst: Substitute environment variables in stack.yml file
+    --sort=: Sort the functions by "name" or "invocations"
+    --tls-no-verify: Disable TLS validation
+    -g, --gateway=: Gateway URL starting with http(s)://
+    -k, --token=: Pass a JWT token to use instead of basic auth
+    -n, --namespace=: Namespace of the function
+    -q, --quiet: Quiet mode - print out only the function's ID
+    -v, --verbose: Verbose output for the function list

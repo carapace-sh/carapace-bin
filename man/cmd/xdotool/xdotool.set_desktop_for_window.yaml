@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: set_desktop_for_window
+description: Move a window to a different desktop

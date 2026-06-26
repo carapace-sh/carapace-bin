@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Visual Studio Code Insiders — the nightly pre-release build
+    of VS Code with the latest features and fixes.
+description: Visual Studio Code Insiders

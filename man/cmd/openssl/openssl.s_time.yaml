@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: s_time
+description: SSL/TLS performance timing program
+group: standard
+flags:
+    -CAfile=: PEM format file of CA's
+    -CApath=: PEM format directory of CA's
+    -CAstore=: URI to store of CA's
+    -bugs: Turn on SSL bug compatibility
+    -cafile=: PEM format file of CA's
+    -cert=: Cert file to use, PEM format assumed
+    -cipher=: TLSv1.2 and below cipher list to be used
+    -ciphersuites=: Specify TLSv1.3 ciphersuites to be used
+    -connect=: Where to connect as post:port (default is localhost:4433)
+    -key=: File with key, PEM; default is -cert file
+    -nameopt=*: Certificate subject/issuer name printing options
+    -new: Just time new connections
+    -no-CAfile: Do not load the default certificates file
+    -no-CApath: Do not load certificates from the default certificates directory
+    -no-CAstore: Do not load certificates from the default certificates store URI
+    -propquery=: Property query used when fetching algorithms
+    -provider-path=: Provider load path (must be before 'provider' argument if required)
+    -provider=*: Provider to load (can be specified multiple times)
+    -provparam=: Set a provider key-value parameter
+    -reuse: Just time connection reuse
+    -time=: Seconds to collect data, default 30
+    -tls1: Just use TLSv1.0
+    -tls1_1: Just use TLSv1.1
+    -tls1_2: Just use TLSv1.2
+    -tls1_3: Just use TLSv1.3
+    -verify=: Turn on peer certificate verification, set depth
+    -www=: Fetch specified page from the site

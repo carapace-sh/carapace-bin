@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: update
+description: Update deprecated config settings
+flags:
+    -h, --help: Print help (see more with '--help')
+    -y, --yes: Skip confirmation prompt

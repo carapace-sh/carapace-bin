@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: bundle
+description: Bundle module and dependencies into single file
+flags:
+    --cert=: Load certificate authority from PEM encoded file
+    --import-map=: Load import map file
+    --lock-write: Write lock file (use with --lock)
+    --lock=: Check the specified lock file
+    --no-check: Skip type checking modules
+    --no-remote: Do not resolve remote modules
+    --watch: 'UNSTABLE: Watch for file changes and restart process automatically'
+    -c, --config=: Load configuration file
+    -r, --reload?: Reload source code cache (recompile TypeScript)

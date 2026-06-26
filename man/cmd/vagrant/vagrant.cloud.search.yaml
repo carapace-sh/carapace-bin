@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: search
+description: Search Vagrant Cloud for available boxes
+flags:
+    --auth: Authenticate with Vagrant Cloud if required before searching
+    --no-auth: Do not authenticate with Vagrant Cloud if required before searching
+    --page=: 'The page to display Default: 1'
+    --sort-by=: 'Field to sort results on (created, downloads, updated) Default: downloads'
+    -j, --json: Formats results in JSON
+    -l, --limit=: 'Max number of search results Default: 25'
+    -o, --order=: 'Order to display results (''desc'' or ''asc'') Default: ''desc'''
+    -p, --provider=: Filter search results to a single provider. Defaults to all.
+    -s, --short: Shows a simple list of box names

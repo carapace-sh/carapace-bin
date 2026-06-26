@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: octane:status [--server [SERVER]]
+description: Get the current status of the Octane server
+flags:
+    --server=: The server that is running the application

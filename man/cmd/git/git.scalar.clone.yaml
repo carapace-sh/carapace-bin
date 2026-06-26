@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: clone
+description: Clone a repository with Scalar optimizations
+flags:
+    --full-clone: do not create a partial clone
+    --maintenance: enable automatic maintenance
+    --single-branch: clone only the history leading to the tip of a single branch
+    --src: show source URL
+    --tags: clone tags
+    -b, --branch=: clone only the history leading to the tip of the specified branch
+
+documentation:
+  command: >-
+    Clone the specified repository, similar to [git-clone](cmd://git/clone). By default, only commit and tree objects are cloned. Once finished, the worktree is located at `<enlistment>/src`. The sparse-checkout feature is enabled (except when run with `--full-clone`) and the only files present are those in the top-level directory. Use `git sparse-checkout set` to expand the set of directories you want to see.

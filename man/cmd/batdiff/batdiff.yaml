@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Diff a file against the current git index, or display the diff
+    between two files, using bat syntax highlighting. Supports
+    delta display mode, configurable pager, and context lines.
+description: Diff a file against the current git index, or display the diff between two files
+flags:
+    --color: Force color output.
+    --delta: Display diffs using delta.
+    --no-color: Force disable color output.
+    --pager=: Specify the pager to use.
+    --paging=: Enable/disable paging.
+    --terminal-width=: Generate output for the specified terminal width.
+    -C, --context=: The number of lines to show before and after the differing lines.

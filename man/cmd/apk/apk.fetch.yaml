@@ -1,0 +1,46 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: fetch
+description: Download packages from repositories to a local directory
+group: repository maintenance
+flags:
+    --allow-untrusted: Install packages with untrusted signature or no signature
+    --arch=: Temporarily override architecture
+    --built-after=: Only fetch packages that have buildtime more recent than TIMESPEC
+    --cache-dir=: Temporarily override the cache directory
+    --cache-max-age=: Maximum AGE (in minutes) for index in cache before it's refreshed
+    --force-binary-stdout: Continue even if binary data will be printed to the terminal
+    --force-broken-world: 'DANGEROUS: Delete world constraints until a solution without conflicts is found'
+    --force-missing-repositories: Continue even if some of the repository indexes are not available
+    --force-non-repository: Continue even if packages may be lost on reboot
+    --force-old-apk: Continue even if packages use unsupported features
+    --force-overwrite: Overwrite files in other packages
+    --force-refresh: Do not use cached files (local or from proxy)
+    --from=: search packages from given source
+    --keys-dir=: Override directory of trusted keys
+    --no-cache: Do not use any local cache path
+    --no-check-certificate: Do not validate the HTTPS server certificates
+    --no-interactive: Disable interactive mode
+    --no-network: Do not use the network
+    --no-progress: Disable progress bar even for TTYs
+    --print-arch: Print default arch and exit
+    --progress: Show progress
+    --progress-fd=: Write progress to the specified file descriptor
+    --purge: Purge modified configuration and cached packages
+    --repositories-file=: Override system repositories
+    --simulate: Simulate the requested operation without making any changes
+    --timeout=: Timeout network connections if no progress is made in TIME seconds
+    --url: Print the full URL for downloaded packages
+    --wait=: Wait for TIME seconds to get an exclusive repository lock before failing
+    -R, --recursive: Fetch packages and all of their dependencies
+    -U, --update-cache: Alias for '--cache-max-age 1'
+    -V, --version: Print program version and exit
+    -X, --repository=: Specify additional package repository
+    -f, --force: Enable selected --force-* options (deprecated)
+    -i, --interactive: Ask confirmation before performing certain operations
+    -l, --link: Create hard links if possible
+    -o, --output=: Write the downloaded file(s) to DIR
+    -p, --root=: Manage file system at ROOT
+    -q, --quiet: Print less information
+    -s, --stdout: Dump the .apk file(s) to stdout
+    -v, --verbose: Print more information (can be specified twice)
+    -w, --world: Download packages needed to satisfy WORLD

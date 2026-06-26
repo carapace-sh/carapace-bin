@@ -1,0 +1,44 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: javac
+description: Reads Java class and interface definitions and compiles them into bytecode and class files
+flags:
+    --add-modules=: Root modules to resolve in addition to the initial modules
+    --enable-preview: Enable preview languge features
+    --limit-modules=: Limit the universe of observable modules
+    --module-source-path=: Specify where to find input source files for multiple modules
+    --module-version=: Specify version of modules that are being compiled
+    --module=: Compile only the specified module
+    --processor-module-path=: Specify a module path where to find annotation processors
+    --release=: Compile for a specific VM version
+    --system=: Override location of system modules
+    --upgrade-module-path=: Override location of upgradeable modules
+    -?: Print help message
+    -A: Options to pass to annotation processors
+    -J: Pass flag directly to the runtime system
+    -Werror: Terminate compilation if warnings occur
+    -X: Print help on extra options
+    -bootclasspath, --boot-class-path=: Override location of bootstrap class files
+    -classpath, --class-path=: Specify where to find user class files and annotation processors
+    -cp=: Specify where to find user class files and annotation processors
+    -d: Specify where to place generated class files
+    -deprecation: Output source locations where deprecated APIs are used
+    -encoding=: Specify character encoding used by source files
+    -endorseddirs=: Override location of endorsed standards path
+    -extdirs=: Override location of installed extensions
+    -g?: Generates all debugging information
+    -h: Specify where to place generated native header files
+    -help: Print help message
+    -implicit?: Specify whether or not to generate class files for implicitly referenced files
+    -nowarn: Generate no warnings
+    -p, --module-path=: Root modules to resolve in addition to the initial modules
+    -parameters: Generate metadata for reflection on method parameters
+    -proc?: Control whether annotation processing and/or compilation is done.
+    -processor=: Names of the annotation processors to run; bypasses default discovery process
+    -processorpath, --processor-path=: Specify where to find annotation processors
+    -profile=: Check that API used is available in the specified profile
+    -s: Specify where to place generated source files
+    -source=: Provide source compatibility with specified release
+    -sourcepath, --source-path=: Specify where to find input source files
+    -target=: Generate class files for specific VM version
+    -verbose: Output messages about what the compiler is doing
+    -version, --version: Version information

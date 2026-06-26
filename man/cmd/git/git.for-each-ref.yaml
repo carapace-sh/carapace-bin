@@ -1,0 +1,45 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: for-each-ref
+description: Output information on each ref
+group: low-level interrogator
+flags:
+  --color=: respect any colors specified in the --format option
+  --contains=: only list refs which contain the specified commit
+  --count=: limit refs
+  --exclude*=: only list refs which do not match any excluded pattern(s)
+  --format=: a string that interpolates %(fieldname) from a ref being shown
+  --ignore-case: sorting and filtering refs are case insensitive
+  --merged=: only list refs whose tips are reachable from the specified commit
+  --no-contains=: only list refs which don’t contain the specified commit
+  --no-merged=: only list refs whose tips are not reachable from the specified commit
+  --omit-empty: do not print a newline after formatted refs
+  --perl: quote strings for perl
+  --points-at=: only list refs which points at the given object
+  --python: quote strings for python
+  --shell: 'quote strings for shell '
+  --sort*=: field name to sort on
+  --stdin: read patterns from standard input
+  --tcl: quote strings for tcl
+documentation:
+  command: |-
+    Iterate over all refs that match _<pattern>_ and show them
+    according to the given _<format>_, after sorting them according
+    to the given set of _<key>_.  If _<count>_ is given, stop after
+    showing that many refs.  The interpolated values in _<format>_
+    can optionally be quoted as string literals in the specified
+    host language allowing their direct evaluation in that language.
+  flag:
+    count: Stop after showing _<count>_ refs.
+    ignore-case: Sorting and filtering refs are case insensitive.
+    omit-empty: |-
+      Do not print a newline after formatted refs where the format expands
+      to the empty string.
+    points-at: Only list refs which points at the given object.
+    stdin: |-
+      The list of patterns is read from standard input instead of from
+      the argument list.
+    tcl: |-
+      If given, strings that substitute `%(fieldname)`
+      placeholders are quoted as string literals suitable for
+      the specified host language.  This is meant to produce
+      a scriptlet that can directly be "eval"ed.

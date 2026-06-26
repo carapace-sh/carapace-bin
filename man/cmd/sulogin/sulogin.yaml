@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: sulogin
+description: single-user login
+flags:
+    -V, --version: display version
+    -e, --force: examine password files directly if getpwnam(3) fails
+    -h, --help: display this help
+    -p, --login-shell: start a login shell
+    -t, --timeout=: 'max time to wait for a password (default: no limit)'

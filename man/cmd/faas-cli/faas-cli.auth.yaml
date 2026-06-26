@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: auth
+description: Obtain a token for your OpenFaaS gateway
+flags:
+    --audience=: OAuth2 audience
+    --auth-url=: OAuth2 Authorize URL i.e. http://idp/oauth/authorize
+    --client-id=: OAuth2 client_id
+    --client-secret=: OAuth2 client_secret, for use with client_credentials grant
+    --grant=: grant for OAuth2 flow - either implicit, implicit-id or client_credentials
+    --launch-browser: Launch browser for OAuth2 redirect
+    --listen-port=: OAuth2 local port for receiving cookie
+    --redirect-host=: Host for OAuth2 redirection in the implicit flow including URL scheme
+    --scope=: scope for OAuth2 flow - i.e. "openid profile"
+    -g, --gateway=: Gateway URL starting with http(s)://

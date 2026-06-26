@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: init [<dir>]
+description: Initialize a directory as a devbox project
+flags:
+    --auto&: Automatically detect packages to add
+    --dry-run&: Dry run for auto mode. Prints the config that would be used

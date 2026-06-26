@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+aliases:
+    - ls
+description: List the environments in the manifest file
+flags:
+    --json: List the system requirements in JSON format
+    -e, --environment=: The environment to list the system requirements for

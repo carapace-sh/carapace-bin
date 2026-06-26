@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: xbps-uchroot [OPTIONS] [--] <dir> <cmd> [<cmdargs>]
+description: XBPS utility to chroot and bind mount with Linux namespaces
+flags:
+    -B, --bind-ro=: Bind mounts <src> into <dir>/<dest> (read-only)
+    -O, --overlayfs: Creates a tempdir and mounts <dir> read-only via overlayfs
+    -b, --bind-rw=: Bind mounts <src> into <dir>/<dest> (read-write)
+    -h, --help: Show usage
+    -o, --options=: Options to be passed to the tmpfs mount (for use with -t)
+    -t, --tmpfs: Creates a tempdir and mounts <dir> on tmpfs (for use with -O)
+    -v, --verbose: Show XBPS version

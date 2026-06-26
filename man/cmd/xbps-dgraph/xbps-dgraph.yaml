@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: xbps-dgraph [OPTIONS] [MODE] <pkgname>
+description: XBPS utility to generate package dot graphs
+flags:
+    -C, --config=: Path to confdir (xbps.d)
+    -M, --memory-sync: Remote repository data is fetched and stored in memory, ignoring on-disk repodata archives.
+    -R, --repository: Enable repository mode. This mode explicitly looks for packages in repositories.
+    -c, --graph-config=: Path to the graph configuration file
+    -d, --debug: Debug mode shown to stderr
+    -f, --fulldeptree: Generate a dependency graph
+    -g, --gen-config: Generate a configuration file
+    -h, --help: Show usage
+    -m, --metadata: Generate a metadata graph (default mode)
+    -r, --rootdir=: Full path to rootdir

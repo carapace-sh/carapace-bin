@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: board [command] [flags]
+description: Work with GitLab issue boards in the given project.
+persistentflags:
+    -R, --repo=: Select another repository using the OWNER/REPO format or the project ID. Supports group namespaces.

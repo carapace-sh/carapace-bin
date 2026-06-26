@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: kill
+description: Send signal to processes of a unit
+group: unit
+documentation:
+  command: |
+    Send a UNIX process signal to one or more processes of the unit.
+    Use `--kill-whom=` to select which process to send the signal to:
+    main (only the main process), control (only the control process),
+    or all (all processes in the unit). Use `--signal=` to select the
+    signal to send (e.g. SIGTERM, SIGKILL, SIGHUP). Combine with
+    `--kill-value=` to enqueue a POSIX Realtime Signal with an associated
+    value.

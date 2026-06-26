@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: getwindowfocus
+description: Prints the window id of the currently focused window
+flags:
+    -f: ignore WM_CLASS property

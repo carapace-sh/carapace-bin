@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: fmt [options] [files]
+description: Reformat Zig source into canonical form
+group: source
+flags:
+    --ast-check: Run zig ast-check on every file
+    --check: List non-conforming files and exit with an error if the list is non-empty
+    --color=: Enable or disable colored error messages
+    --exclude=*: Exclude file or directory from formatting
+    --stdin: Format code from stdin; output to stdout
+    --zon: Treat all input files as ZON, regardless of file extension
+    -h, --help: Print help

@@ -1,0 +1,22 @@
+name: add
+description: Add a new alias
+flags:
+    -g, --global: Store the alias globally (in ~/.gitconfig) instead of locally
+    -h, --help: Print help (see more with '--help')
+documentation:
+    command: |
+        Add a new alias
+
+        Creates a new alias that expands to the given command.
+
+        Examples
+
+          but alias add st status
+          but alias add stv "status --verbose"
+          but alias add co "commit --only"
+    flag:
+        help: Print help (see a summary with '-h')
+        status-after: |-
+            After a mutation command completes, also output workspace status.
+
+            In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).

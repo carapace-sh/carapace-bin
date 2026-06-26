@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: compare-versions
+description: VERSION2 Compare two version strings

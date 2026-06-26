@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: build
+aliases:
+    - b
+description: build
+flags:
+    --allow=: Allow extra privileged entitlement
+    --debug-json-cache-metrics=: Where to output json cache metrics
+    --export-cache=: Export build cache
+    --frontend=: Define frontend used for build
+    --import-cache=: Import build cache
+    --local=: Allow build access to the local directory
+    --metadata-file=: Output build metadata (e.g., image digest) to a file as JSON
+    --no-cache: Disable cache for all the vertices
+    --oci-layout=: Allow build access to the local OCI layout
+    --opt=: Define custom options for frontend
+    --progress=: Set type of progress
+    --ref-file=: Write build ref to a file
+    --registry-auth-tlscontext=: Overwrite TLS configuration when authenticating with registries
+    --secret=: Secret value exposed to the build
+    --source-policy-file=: Read source policy file from a JSON file
+    --ssh=: Allow forwarding SSH agent or a raw Unix socket to the builder
+    --trace=: Path to trace file
+    -o, --output=: Define exports for build result

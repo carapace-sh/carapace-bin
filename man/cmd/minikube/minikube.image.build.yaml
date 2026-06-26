@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: build PATH | URL | -
+description: Build a container image in minikube
+flags:
+    --all: Build image on all nodes.
+    --build-env=*: 'Environment variables to pass to the build. (format: key=value)'
+    --build-opt=*: 'Specify arbitrary flags to pass to the build. (format: key=value)'
+    --push: Push the new image (requires tag)
+    -f, --file=: Path to the Dockerfile to use (optional)
+    -n, --node=: The node to build on. Defaults to the primary control plane.
+    -t, --tag=: Tag to apply to the new image (optional)

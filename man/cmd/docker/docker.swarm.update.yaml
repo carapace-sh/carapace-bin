@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: update [OPTIONS]
+description: Update the swarm
+flags:
+    --autolock: Change manager autolocking setting (true|false)
+    --cert-expiry=: Validity period for node certificates (ns|us|ms|s|m|h)
+    --dispatcher-heartbeat=: Dispatcher heartbeat period (ns|us|ms|s|m|h)
+    --external-ca=: Specifications of one or more certificate signing endpoints
+    --max-snapshots=: Number of additional Raft snapshots to retain
+    --snapshot-interval=: Number of log entries between Raft snapshots
+    --task-history-limit=: Task history retention limit

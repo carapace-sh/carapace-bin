@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: service
+aliases:
+    - svc
+description: Create a service using a specified subcommand

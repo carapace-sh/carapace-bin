@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: autoclean
+description: Like clean, but only removes package files that can no longer be downloaded

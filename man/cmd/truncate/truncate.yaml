@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: truncate
+description: Shrink or extend the size of each FILE to the specified size
+flags:
+    --help: display this help and exit
+    --version: output version information and exit
+    -c, --no-create: do not create any files
+    -o, --io-blocks: treat SIZE as number of IO blocks instead of bytes
+    -r, --reference=: base size on RFILE
+    -s, --size=: set or adjust the file size by SIZE bytes

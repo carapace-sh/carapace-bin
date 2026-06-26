@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: sudo
+description: execute a command as another user
+flags:
+    --host=: run command on host (if supported by plugin)
+    -A, --askpass: use a helper program for password prompting
+    -B, --bell: ring bell when prompting
+    -C, --close-from=: close all file descriptors >= num
+    -E, --preserve-env?: preserve user environment when running command
+    -H, --set-home: set HOME variable to target user's home dir
+    -K, --remove-timestamp: remove timestamp file completely
+    -P, --preserve-groups: preserve group vector instead of setting to target's
+    -S, --stdin: read password from standard input
+    -U, --other-user=: in list mode, display privileges for user
+    -V, --version: display version information and exit
+    -b, --background: run command in the background
+    -e, --edit: edit files instead of running a command
+    -g, --group=: run command as the specified group name or ID
+    -h, --help: display help message and exit
+    -i, --login: run login shell as the target user; a command may also be specified
+    -k, --reset-timestamp: invalidate timestamp file
+    -l, --list: list user's privileges or check a specific command; use twice for longer format
+    -n, --non-interactive: non-interactive mode, no prompts are used
+    -p, --prompt=: use the specified password prompt
+    -s, --shell: run shell as the target user; a command may also be specified
+    -u, --user=: run command (or edit file) as specified user name or ID
+    -v, --validate: update user's timestamp without running a command

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: revoke [<id> | <branch>]
+aliases:
+    - unapprove
+description: Revoke approval on a merge request.

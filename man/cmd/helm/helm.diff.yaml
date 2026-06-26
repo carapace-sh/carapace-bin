@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: diff
+description: Preview helm upgrade changes as a diff
+group: main

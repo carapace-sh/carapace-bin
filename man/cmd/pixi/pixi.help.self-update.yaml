@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: self-update
+description: Update pixi to the latest version or a specific version

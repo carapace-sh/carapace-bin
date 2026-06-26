@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: actions
+description: Learn about working with GitHub Actions
+hidden: true

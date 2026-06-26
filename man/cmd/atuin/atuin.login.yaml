@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: login
+description: Login to the configured server
+flags:
+    -h, --help: Print help
+    -k, --key=: The encryption key for your account
+    -p, --password=: ""
+    -t, --totp-code=: The two-factor authentication code for your account, if any
+    -u, --username=: ""

@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pass
+description: stores, retrieves, generates, and synchronizes passwords securely

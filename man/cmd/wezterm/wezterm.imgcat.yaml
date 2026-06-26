@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: imgcat [OPTIONS] [FILE
+description: Output an image to the terminal
+flags:
+    --height=: Specify the display height
+    --no-preserve-aspect-ratio: Do not respect the aspect ratio
+    --width=: Specify the display width
+    -h, --help: Print help

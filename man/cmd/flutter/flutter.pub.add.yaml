@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: add
+description: Add a dependency to pubspec.yaml
+flags:
+    --git-path=: Path of git package in repository
+    --git-ref=: Git branch or commit to be retrieved
+    --git-url=: Git URL of the package
+    --hosted-url=: URL of package host server
+    --no-offline: Do not use cached packages instead of accessing the network.
+    --no-precompile: Do not build executables in immediate dependencies.
+    --offline: Use cached packages instead of accessing the network.
+    --path=: Local path
+    --precompile: Build executables in immediate dependencies.
+    --sdk=: SDK source for package
+    -C, --directory=: Run this in the directory <dir>.
+    -d, --dev: Adds package to the development dependencies instead.
+    -h, --help: Print this usage information.
+    -n, --dry-run: Report what dependencies would change but don't change

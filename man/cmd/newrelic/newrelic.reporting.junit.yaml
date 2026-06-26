@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: junit
+description: Send JUnit test run results to New Relic
+flags:
+    --dryRun: suppress posting custom events to NRDB
+    -o, --output: output generated custom events to stdout
+    -p, --path=: the path to a JUnit-formatted test results file

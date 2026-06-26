@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: prune
+description: remove outdated boxes
+flags:
+    --name=: The specific box name to check for outdated versions.
+    -f, --force: Destroy without confirmation even when box is in use.
+    -k, --keep-active-boxes: When combined with `--force`, will keep boxes still actively in use.
+    -n, --dry-run: Only print the boxes that would be removed.
+    -p, --provider=: The specific provider type for the boxes to destroy.

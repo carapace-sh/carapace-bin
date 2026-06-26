@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: commits [<query>]
+description: Search for commits
+flags:
+    --author-date=: Filter based on authored `date`
+    --author-email=: Filter on author email
+    --author-name=: Filter on author name
+    --author=: Filter by author
+    --committer-date=: Filter based on committed `date`
+    --committer-email=: Filter on committer email
+    --committer-name=: Filter on committer name
+    --committer=: Filter by committer
+    --hash=: Filter by commit hash
+    --json=*: Output JSON with the specified `fields`
+    --merge: Filter on merge commits
+    --order=: 'Order of commits returned, ignored unless ''--sort'' flag is specified: {asc|desc}'
+    --owner=*: Filter on repository owner
+    --parent=: Filter by parent hash
+    --sort=: 'Sort fetched commits: {author-date|committer-date}'
+    --tree=: Filter by tree hash
+    --visibility=*: 'Filter based on repository visibility: {public|private|internal}'
+    -L, --limit=: Maximum number of commits to fetch
+    -R, --repo=*: Filter on repository
+    -q, --jq=: Filter JSON output using a jq `expression`
+    -t, --template=: Format JSON output using a Go template; see "gh help formatting"
+    -w, --web: Open the search query in the web browser

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: set-working-directory [CWD] [HOST]
+description: Advise the terminal of the current working directory by emitting an OSC 7 escape sequence
+flags:
+    -h, --help: Print help

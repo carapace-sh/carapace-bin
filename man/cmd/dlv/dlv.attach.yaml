@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: attach
+description: Attach to running process and begin debugging.
+flags:
+    --continue: Continue the debugged process on start.

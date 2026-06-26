@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: search
+description: Searches for the given name in all packages
+flags:
+    -v, --verbose: Show more information

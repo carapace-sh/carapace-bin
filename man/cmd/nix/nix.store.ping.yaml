@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ping
+description: test whether a store can be accessed
+flags:
+    --debug: Set the logging verbosity level to 'debug'
+    --json: Produce output in JSON format
+    --log-format=: Set the format of log output
+    --quiet: Decrease the logging verbosity level
+    -L, --print-build-logs: Print full build logs on standard error
+    -v, --verbose: Increase the logging verbosity level

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: idea
+description: IntelliJ IDEA CLI
+flags:
+    --wait: Wait for the files to be closed before returning to the command prompt

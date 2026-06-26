@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: logout [hostname]
+description: Remove locally-stored credentials for a remote host

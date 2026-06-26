@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: set-url
+description: Changes URLs for the remote
+flags:
+  --add: add URL
+  --delete: delete URLs
+  --push: manipulate push URLs
+documentation:
+  command: |-
+    Change URLs for the remote. Sets first URL for remote _<name>_ that matches
+    regex _<oldurl>_ (first URL if no _<oldurl>_ is given) to _<newurl>_. If
+    _<oldurl>_ doesn't match any URL, an error occurs and nothing is changed.
+
+    With `--push`, push URLs are manipulated instead of fetch URLs.
+
+    With `--add`, instead of changing existing URLs, new URL is added.
+
+    With `--delete`, instead of changing existing URLs, all URLs matching
+    regex _<URL>_ are deleted for remote _<name>_.  Trying to delete all
+    non-push URLs is an error.
+
+    Note that the push URL and the fetch URL, even though they can
+    be set differently, must still refer to the same place.  What you
+    pushed to the push URL should be what you would see if you
+    immediately fetched from the fetch URL.  If you are trying to
+    fetch from one place (e.g. your upstream) and push to another (e.g.
+    your publishing repository), use two separate remotes.

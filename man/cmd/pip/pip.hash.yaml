@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: hash
+description: Compute a hash of a local package archive
+flags:
+    -a, --algorithm=: The hash algorithm to use

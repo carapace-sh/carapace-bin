@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: bundle
+description: Build the Flutter assets directory from your app
+flags:
+    --asset-dir=: The output directory for the kernel_blob.bin file, the native snapshet, the assets, etc.
+    --build-number=: An identifier used as an internal version number.
+    --debug: Build a debug version of your app (default mode).
+    --depfile=: A file path where a depfile will be written.
+    --no-pub: Do not run "flutter pub get" before executing this command.
+    --no-track-widget-creation: Do not track widget creation locations.
+    --no-tree-shake-icons: Do not tree shake icon fonts so that only glyphs used by the application remain.
+    --profile: Build a version of your app specialized for performance profiling.
+    --pub: Run "flutter pub get" before executing this command.
+    --release: Build a release version of your app.
+    --target-platform=: The architecture for which to build the application.
+    --track-widget-creation: Track widget creation locations.
+    --tree-shake-icons: Tree shake icon fonts so that only glyphs used by the application remain.
+    -h, --help: Print this usage information.
+    -t, --target=: The main entry-point file of the application, as run on the device.

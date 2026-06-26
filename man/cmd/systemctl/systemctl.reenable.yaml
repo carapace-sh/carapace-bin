@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: reenable
+description: Reenable one or more unit files
+group: unit file
+documentation:
+  command: |
+    Reenable one or more units. This is a combination of disable and enable,
+    useful to reset the symlinks a unit file is enabled with to the defaults
+    configured in its [Install] section. This command implicitly reloads the
+    system manager configuration after completing the operation.

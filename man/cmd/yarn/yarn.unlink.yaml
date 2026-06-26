@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: unlink
+description: Disconnect the local project from another one
+group: general
+flags:
+    -A, --all: Unlink all workspaces belonging to the target project from the current one

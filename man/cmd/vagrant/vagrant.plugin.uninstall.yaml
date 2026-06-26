@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: uninstall
+description: uninstall plugin
+flags:
+    --local: Remove plugin from local project

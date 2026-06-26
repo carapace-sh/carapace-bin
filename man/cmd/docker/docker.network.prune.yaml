@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: prune [OPTIONS]
+description: Remove all unused networks
+flags:
+    --filter=: Provide filter values (e.g. "until=<timestamp>")
+    -f, --force: Do not prompt for confirmation

@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: start [OPTIONS] CONTAINER [CONTAINER...]
+description: Start one or more stopped containers
+flags:
+    --checkpoint-dir=: Use a custom checkpoint storage directory
+    --checkpoint=: Restore from this checkpoint
+    --detach-keys=: Override the key sequence for detaching a container
+    -a, --attach: Attach STDOUT/STDERR and forward signals
+    -i, --interactive: Attach container's STDIN

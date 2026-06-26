@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: hx
+
+documentation:
+  command: >-
+    Post-modern modal text editor with built-in LSP support and tree-sitter
+    syntax highlighting. helix (hx) uses modal editing (Normal, Insert,
+    View modes) similar to Kakoune. Navigate with hl/c/j/k, select with
+    v, and edit with delete (d), yank (y), paste (p). Multiple cursors
+    via mirror selection. Language server integration for go-to-definition,
+    hover, rename, and more. Built-in fuzzy file picker (Space-f), buffer
+    picker (Space-b), and window splitting (Ctrl-w). Tree-sitter for
+    accurate syntax highlighting. No configuration needed; sensible
+    defaults out of the box. Tutorial with --tutor. Check health with
+    --health. Write modes (w, W), quit with :q, save with :w.

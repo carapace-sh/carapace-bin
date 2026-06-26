@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: test
+description: Test a package
+flags:
+    --ignore-scripts: do not run scripts specified in package.json
+    --script-shell=: shell to user

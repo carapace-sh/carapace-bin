@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: cli [OPTIONS] <COMMAND>
+description: Interact with experimental mux server
+flags:
+    --class=: Class of the gui instance
+    --no-auto-start: Don't automatically start the server
+    --prefer-mux: Prefer connecting to a background mux server
+    -h, --help: Print help

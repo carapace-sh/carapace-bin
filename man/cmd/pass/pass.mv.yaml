@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: mv
+description: rename or move old-path to new-path
+flags:
+    -f, --force: mv forcefully

@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: migrate
+aliases:
+    - migration
+description: Run the server migration tool.
+hidden: true
+
+documentation:
+  command: >-
+    Run database migrations on a self-hosted Charm server's SQLite database. Ensures the database schema is up to date.

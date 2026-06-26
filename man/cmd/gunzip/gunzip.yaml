@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: gunzip
+description: Uncompress files
+flags:
+    --help: display this help and exit
+    --version: display version information and exit
+    -N, --name: save or restore the original name and timestamp
+    -S, --suffix=: use suffix SUF on compressed files
+    -c, --stdout: write on standard output, keep original files unchanged
+    -f, --force: force overwrite of output file and compress links
+    -k, --keep: keep (don't delete) input files
+    -l, --list: list compressed file contents
+    -n, --no-name: do not save or restore the original name and timestamp
+    -q, --quiet: suppress all warnings
+    -r, --recursive: operate recursively on directories
+    -t, --test: test compressed file integrity
+    -v, --verbose: verbose mode

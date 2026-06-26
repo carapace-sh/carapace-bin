@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: adb
+description: Android Debug Bridge
+flags:
+    -H: name of adb server host [default=localhost]
+    -L=: listen on given socket for adb server [default=tcp:localhost:5037]
+    -P: port of adb server [default=5037]
+    -a: listen on all network interfaces, not just localhost
+    -d: use USB device (error if multiple devices connected)
+    -e: use TCP/IP device (error if multiple TCP/IP devices available)
+    -s=: use device with given serial (overrides $ANDROID_SERIAL)
+    -t=: use device with given transport id
+
+documentation:
+  command: >-
+    Android Debug Bridge (adb) is a versatile command-line tool that lets you communicate with a device. The adb command facilitates a variety of device actions, such as installing and debugging apps, and provides access to a Unix shell that you can use to run commands on the device. Connect via USB or TCP, manage device connections, push/pull files, and execute remote shell commands. Start the adb server with `adb start-server`; stop it with `adb kill-server`. Use `-s <serial>` to target a specific device when multiple are connected.

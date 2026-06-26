@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: help
+description: Displays complete help for [cmd]
+
+documentation:
+  command: >-
+    Display detailed help information for any vercel command. Use
+    this command when you need more information about available
+    options and usage examples for a specific subcommand.

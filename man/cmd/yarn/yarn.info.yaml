@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: info
+description: See information related to packages
+group: general
+flags:
+    --cache: Print information about the cache entry of a package (path, size, checksum)
+    --dependents: Print all dependents for each matching package
+    --json: Format the output as an NDJSON stream
+    --manifest: Print data obtained by looking at the package archive (license, homepage, ...)
+    --name-only: Only print the name for the matching packages
+    --virtuals: Print each instance of the virtual packages
+    -A, --all: Print versions of a package from the whole project
+    -R, --recursive: Print information for all packages, including transitive dependencies
+    -X, --extra=: An array of requests of extra data provided by plugins

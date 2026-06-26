@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pip
+description: package manager for Python packages
+persistentflags:
+    --cache-dir=: Store the cache data in dir
+    --cert=: Path to alternate CA bundle
+    --client-cert=: Path to SSL client certificate, a single file
+    --disable-pip-version-check: ""
+    --exists-action=: Default action when a path already exists
+    --isolated: Run pip in an isolated mode
+    --log=: Path to a verbose appending log
+    --no-cache-dir: Disable the cache
+    --no-color: Suppress colored output
+    --no-input: Disable prompting for input
+    --no-python-version-warning: ""
+    --proxy=: Specify a proxy in the form
+    --retries=: Maximum number of retries each connection should
+    --timeout=: Set the socket timeout (default 15 seconds)
+    --trusted-host=: Mark this host or host:port pair as trusted
+    --use-deprecated=: Enable deprecated functionality
+    --use-feature=: Enable new functionality
+    -V, --version: Show version and exit
+    -h, --help: Show help
+    -q, --quiet: Give less output
+    -v, --verbose: Give more output

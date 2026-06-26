@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: co
+description: Alias for "pr checkout"
+group: alias

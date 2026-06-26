@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rm [OPTIONS] IMAGE [IMAGE...]
+aliases:
+    - rmi
+    - remove
+description: Remove one or more images
+flags:
+    --no-prune: Do not delete untagged parents
+    --platform=*: Remove only the given platform variant. Formatted as "os[/arch[/variant]]" (e.g., "linux/amd64")
+    -f, --force: Force removal of the image

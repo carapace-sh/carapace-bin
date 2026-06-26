@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: view [<repository>]
+description: View a repository
+group: Targeted commands
+documentation:
+    command: |
+        View a repository in the terminal or open it in the browser. Without
+        arguments, shows the repository for the current directory. Use `-b` to
+        view a specific branch. Use `-w` to open in browser, or get structured
+        output with `--json` or filter with `--jq`.
+flags:
+    --json=*: Output JSON with the specified `fields`
+    -b, --branch=: View a specific branch of the repository
+    -q, --jq=: Filter JSON output using a jq `expression`
+    -t, --template=: Format JSON output using a Go template; see "gh help formatting"
+    -w, --web: Open a repository in the browser

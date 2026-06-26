@@ -1,0 +1,33 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: fast-export
+description: Git data exporter
+group: manipulator
+flags:
+  --anonymize: Anonymize the contents of the repository while still retaining the shape of the history and stored tree
+  --anonymize-map*=: Convert token <from> to <to> in the anonymized output
+  --export-marks.: ''
+  --export-marks=: Dumps the internal marks table to <file> when complete
+  --fake-missing-tagger: Fake a tagger to be able to fast-import the output
+  --full-tree: This option will cause fast-export to issue a "deleteall" directive for each commit
+  --import-marks=: Before processing any input, load the marks specified in <file>
+  --mark-tags: In addition to labelling blobs and commits with mark ids, also label tags
+  --no-data: Skip output of blob objects and instead refer to blobs via their original SHA-1 hash
+  --progress=: Insert progress statements every <n> objects
+  --reencode=: Specify how to handle encoding header in commit objects
+  --reference-excluded-parents: Refer to commits in the excluded range of history by their sha1sum
+  --refspec: Apply the specified refspec to each ref exported
+  --show-original-ids: Add an extra directive to the output for commits and blobs, original-oid <SHA1SUM>
+  --signed-tags=: Specify how to handle signed tags
+  --tag-of-filtered-object=: Specify how to handle tags whose tagged object is filtered out
+  --use-done-feature: Start the stream with a feature done stanza, and terminate it with a done command
+  -C: Perform copy detection
+  -M: Perform move detection
+documentation:
+  command: |-
+    This program dumps the given revisions in a form suitable to be piped
+    into 'git fast-import'.
+
+    You can use it as a human-readable bundle replacement (see
+    [git-bundle](cmd://git/bundle)), or as a format that can be edited before being
+    fed to 'git fast-import' in order to do history rewrites (an ability
+    relied on by tools like 'git filter-repo').

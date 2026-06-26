@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: phase
+description: Use this command to invoke single phase of the "join" workflow

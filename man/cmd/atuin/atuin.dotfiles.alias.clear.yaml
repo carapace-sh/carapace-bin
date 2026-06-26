@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: clear
+description: Delete all aliases
+flags:
+    -h, --help: Print help

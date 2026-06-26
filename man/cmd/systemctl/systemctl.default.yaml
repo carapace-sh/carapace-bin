@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: default
+description: Enter system default mode
+group: system
+documentation:
+  command: |
+    Enter default mode. This is equivalent to `systemctl isolate default.target`.
+    This operation is blocking by default; use `--no-block` for asynchronous
+    behavior. This is typically the normal boot target.

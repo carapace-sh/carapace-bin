@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: last
+description: Show a listing of last logged in users
+flags:
+    --time-format=: show timestamps in the specified <format>
+    -F, --fulltimes: print full login and logout times and dates
+    -R, --nohostname: don't display the hostname field
+    -V, --version: display version
+    -a, --hostlast: display hostnames in the last column
+    -d, --dns: translate the IP number back into a hostname
+    -f, --file=: use a specific file instead of /var/log/wtmp
+    -h, --help: display this help
+    -i, --ip: display IP numbers in numbers-and-dots notation
+    -n, --limit=: how many lines to show
+    -p, --present=: display who were present at the specified time
+    -s, --since=: display the lines since the specified time
+    -t, --until=: display the lines until the specified time
+    -w, --fullnames: display full user and domain names
+    -x, --system: display system shutdown entries and run level changes

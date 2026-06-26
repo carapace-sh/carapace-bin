@@ -1,0 +1,48 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ssh
+description: OpenSSH remote login client
+flags:
+    "-4": Forces ssh to use IPv4 addresses only
+    "-6": Forces ssh to use IPv6 addresses only
+    -A: Enables forwarding of connections from an authentication agent
+    -B=: Bind to given address before attempting to connect
+    -C: Requests compression of all data
+    -D=: Specifies a local “dynamic” application-level port forwarding
+    -E=: Append debug logs to log_file instead of standard error
+    -F=: Specifies an alternative per-user configuration file
+    -G: Causes ssh to print its configuration after evaluating Host and Match blocks and exit
+    -I=: Specify the PKCS#11 shared library ssh should use
+    -J=: Connect to the target host by using given jump host
+    -K: Enables GSSAPI-based authentication and forwarding of GSSAPI credentials
+    -L=: Specifies that connections are to be forwarded
+    -M: Places the ssh client into “master” mode for connection sharing
+    -N: Do not execute a remote command.  This is useful for just forwarding ports.
+    -O=: Control an active connection multiplexing master process
+    -Q=: Queries ssh for the algorithms supported
+    -R=: Specifies that connections ar to be forwarded
+    -S=: Specifies the location of a control socket
+    -T: Disable pseudo-terminal allocation
+    -V: Display the version number and exit
+    -W=: Requests that standard input and output on the client be forwarded
+    -X: Enables X11 forwarding
+    -Y: Enables trusted X11 forwarding
+    -a: Disables forwarding of the authentication agent connection.
+    -b=: Use bind_address on the local machine as the source address of the connection
+    -c=: Selects the cipher specification for encrypting the session
+    -e=: Sets the escape character for sessions with a pty
+    -f: Requests ssh to go to background just before command execution
+    -g: Allows remote hosts to connect to local forwarded ports
+    -i=: Selects a file from which the identity (private key) is read
+    -k: Disables forwarding of GSSAPI credentials to the server
+    -l=: Specifies the user to log in as on the remote machine
+    -m=: A comma-separated list of MAC algorithms
+    -n: Redirects stdin from /dev/null
+    -o=: Can be used to give options in the format used in the configuration file
+    -p=: Port to connect to on the remote host
+    -q: Quiet mode
+    -s: May be used to request invocation of a subsystem on the remote system
+    -t: Force pseudo-terminal allocation
+    -v: Verbose mode
+    -w=: Requests tunnel device forwarding
+    -x: Disables X11 forwarding
+    -y: Send log information using the syslog system module

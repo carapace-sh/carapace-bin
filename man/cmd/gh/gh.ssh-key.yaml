@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ssh-key <command>
+description: Manage SSH keys
+documentation:
+    command: |
+        Manage SSH keys registered with your GitHub account. Add keys with
+        `gh ssh-key add`, list them with `gh ssh-key list`, and remove them
+        with `gh ssh-key delete`. SSH keys authenticate git operations and
+        remote API access.

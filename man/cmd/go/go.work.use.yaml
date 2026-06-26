@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: use
+description: add modules to workspace file
+flags:
+    -r: recursively for modules in the argument directories

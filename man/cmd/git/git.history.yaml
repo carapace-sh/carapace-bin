@@ -1,0 +1,28 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: history
+description: manage the history of a repository
+documentation:
+  command: |-
+    Rewrite history by rearranging or modifying specific commits in the
+    history.
+
+    THIS COMMAND IS EXPERIMENTAL. THE BEHAVIOR MAY CHANGE.
+
+    This command is related to [git-rebase](cmd://git/rebase) in that both commands can be
+    used to rewrite history. There are a couple of major differences though:
+
+    * Most subcommands of [git-history](cmd://git/history) can work in a bare repository as
+      they do not need to touch either the index or the worktree. The `fixup`
+      subcommand is an exception to this, as it reads staged changes from the index.
+    * [git-history](cmd://git/history) does not execute any [githooks](man://githooks/5) at the
+      current point in time. This may change in the future.
+    * [git-history](cmd://git/history) by default updates all branches that are descendants
+      of the original commit to point to the rewritten commit.
+
+    Overall, [git-history](cmd://git/history) aims to provide a more opinionated way to modify
+    your commit history that is simpler to use compared to [git-rebase](cmd://git/rebase) in
+    general.
+
+    Use [git-rebase](cmd://git/rebase) if you want to reapply a range of commits onto a
+    different base, or interactive rebases if you want to edit a range of commits
+    at once.

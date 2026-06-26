@@ -1,0 +1,37 @@
+name: alias
+description: Manage command aliases.
+flags:
+    -h, --help: Print help (see more with '--help')
+documentation:
+    command: |-
+        Manage command aliases.
+
+        Aliases allow you to create shortcuts for commonly used commands.
+        They are stored in git config under the `but.alias.*` namespace.
+
+        ## Examples
+
+        List all configured aliases:
+
+        ```text
+        but alias
+        ```
+
+        Create a new alias:
+
+        ```text
+        but alias add st status
+        but alias add stv "status --verbose"
+        ```
+
+        Remove an alias:
+
+        ```text
+        but alias remove st
+        ```
+    flag:
+        help: Print help (see a summary with '-h')
+        status-after: |-
+            After a mutation command completes, also output workspace status.
+
+            In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).

@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: du
+description: Disk usage
+flags:
+    --filter=: Provide filter values
+    --verbose: Provide a more verbose output

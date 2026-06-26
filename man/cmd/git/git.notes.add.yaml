@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: add
+description: Add notes for a given object
+flags:
+  --allow-empty: Allow an empty note object to be stored
+  -C, --reuse-message=: Take the given blob object as the note message
+  -F, --file=: Take the note message from the given file
+  -c, --reedit-message=: Like -C, but with -c the editor is invoked
+  -m, --message=: Use the given note message
+documentation:
+  flag:
+    allow-empty: |-
+      Allow an empty note object to be stored. The default behavior is
+      to automatically remove empty notes.
+    file: |-
+      Take the note message from the given file.  Use `-` to
+      read the note message from the standard input.
+    message: |-
+      Use the given note message (instead of prompting).
+      If multiple `-m` options are given, their values
+      are concatenated as separate paragraphs.
+    reedit-message: |-
+      Like `-C`, but with `-c` the editor is invoked, so that
+      the user can further edit the note message.
+    reuse-message: |-
+      Take the given blob object (for example, another note) as the
+      note message. (Use `git notes copy <object>` instead to
+      copy notes between objects.)  Implies `--no-stripspace` since
+      the default behavior is to copy the message verbatim.

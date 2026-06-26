@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rm [OPTIONS] STACK [STACK...]
+aliases:
+    - remove
+    - down
+description: Remove one or more stacks
+flags:
+    -d, --detach: Do not wait for stack removal

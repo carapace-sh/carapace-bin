@@ -1,0 +1,34 @@
+name: absorb
+description: Amends changes into the appropriate commits where they belong.
+flags:
+    --dry-run: Show the absorption plan without making any changes
+    -h, --help: Print help (see more with '--help')
+    -n, --new: Create new commits, instead of amending existing ones. This is useful when you want to preserve existing commits and add new ones for the absorbed changes
+documentation:
+    command: |-
+        Amends changes into the appropriate commits where they belong.
+
+        The semantic for finding "the appropriate commit" is as follows:
+
+        - If a change has a dependency to a particular commit, it will be amended into that particular commit
+        - If a change is staged to a particular lane (branch), it will be amended into a commit there
+        - If there are no commits in this branch, a new commit is created
+        - Changes are amended into the topmost commit of the leftmost (first) lane (branch)
+
+        Optionally an identifier to an Uncommitted File or a Branch (stack) may be provided.
+
+        - If an Uncommitted File id is provided, absorb will be performed for just that file
+        - If a Branch (stack) id is provided, absorb will be performed for all changes staged to that stack
+        - If no source is provided, absorb is performed for all uncommitted changes
+
+        If `--dry-run` is specified, no changes will be made; instead, the absorption plan
+        (what changes would be absorbed by which commits) will be shown.
+
+        If `--new` is specified, new commits will be created for absorbed changes
+        instead of amending existing commits.
+    flag:
+        help: Print help (see a summary with '-h')
+        status-after: |-
+            After a mutation command completes, also output workspace status.
+
+            In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).

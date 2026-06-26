@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: bump-cask-pr
+description: Create a pull request to update <cask> with a new version
+group: developer
+flags:
+    --commit: When passed with `--write-only`, generate a new commit after writing changes to the cask file.
+    --debug: Display any debugging information.
+    --dry-run: Print what would be done rather than doing it.
+    --force: Ignore duplicate open PRs.
+    --fork-org: Use the specified GitHub organization for forking.
+    --help: Show this message.
+    --message: Prepend <message> to the default pull request message.
+    --no-audit: Don't run `brew audit` before opening the PR.
+    --no-browse: Print the pull request URL instead of opening in a browser.
+    --no-fork: Don't try to fork the repository.
+    --no-style: Don't run `brew style --fix` before opening the PR.
+    --quiet: Make some output more quiet.
+    --sha256: Specify the <SHA-256> checksum of the new download.
+    --url: Specify the <URL> for the new download.
+    --verbose: Make some output more verbose.
+    --version: Specify the new <version> for the cask.
+    --version-arm: Specify the new cask <version> for the ARM architecture.
+    --version-intel: Specify the new cask <version> for the Intel architecture.
+    --write-only: Make the expected file modifications without taking any Git actions.

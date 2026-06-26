@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: extractraw
+description: extract raw file from a CHD input file
+flags:
+    -f, --force: force overwriting an existing file
+    -i, --input=: input file name
+    -ib, --inputbytes=: effective length of input in bytes
+    -ih, --inputhunks=: effective length of input in hunks
+    -ip, --inputparent=: parent file name for input CHD
+    -isb, --inputstartbyte=: starting byte offset within the input
+    -ish, --inputstarthunk=: starting hunk offset within the input
+    -o, --output=: output file name

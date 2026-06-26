@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: license <command>
+description: Explore repository licenses
+group: Targeted commands

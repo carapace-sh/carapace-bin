@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: test
+description: Tests that a book's Rust code samples compile
+flags:
+    -L, --library-path=*: A comma-separated list of directories to add to the crate search path when building tests
+    -V, --version: Print version
+    -c, --chapter=: ""
+    -h, --help: Print help

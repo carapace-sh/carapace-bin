@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: info
+description: Show information about a package
+flags:
+    --json: Format the output as an NDJSON stream
+    -f, --fields=: A comma-separated list of manifest fields that should be displayed

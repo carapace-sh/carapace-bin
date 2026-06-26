@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: autoclean
+description: clean obsolete packages and scripts from archive
+flags:
+    --dry-run: perform a simulation of events taken
+    -s, --simulate: perform a simulation of events taken

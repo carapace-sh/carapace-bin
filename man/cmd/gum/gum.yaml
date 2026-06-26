@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: gum
+description: A tool for glamorous shell scripts
+persistentflags:
+    -h, --help: Show context-sensitive help.
+    -v, --version: Print the version number

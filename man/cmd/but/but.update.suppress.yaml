@@ -1,0 +1,15 @@
+name: suppress
+description: Suppress update notifications temporarily
+flags:
+    -h, --help: Print help (see more with '--help')
+documentation:
+    command: |-
+        Suppress update notifications temporarily
+
+        Hide update notifications for the specified number of days (1-30). Useful when you want to stay on a specific version temporarily.
+    flag:
+        help: Print help (see a summary with '-h')
+        status-after: |-
+            After a mutation command completes, also output workspace status.
+
+            In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).

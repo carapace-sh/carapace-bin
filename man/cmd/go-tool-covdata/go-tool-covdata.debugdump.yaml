@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugdump
+description: dump data in human-readable format for debugging purposes
+flags:
+    -cpuprofile=: Write CPU profile to specified file
+    -hw: Panic on warnings (for stack trace)
+    -i=: Input dirs to examine (comma separated)
+    -live: Select only live (executed) functions for dump output
+    -memprofile=: Write memory profile to specified file
+    -memprofilerate=: Set memprofile sampling rate to value
+    -pkg=: Restrict output to package(s) matching specified package pattern
+    -v=: Verbose trace output level

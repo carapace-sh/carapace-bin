@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: unbottled
+description: Show the unbottled dependents of formulae
+group: developer
+flags:
+    --debug: Display any debugging information.
+    --dependents: Skip getting analytics data and sort by number of dependents instead.
+    --eval-all: Evaluate all available formulae and casks, whether installed or not, to check them. Implied if `HOMEBREW_EVAL_ALL` is set.
+    --help: Show this message.
+    --lost: Print the `homebrew/core` commits where bottles were lost in the last week.
+    --quiet: Make some output more quiet.
+    --tag: Use the specified bottle tag (e.g. `big_sur`) instead of the current OS.
+    --total: Print the number of unbottled and total formulae.
+    --verbose: Make some output more verbose.

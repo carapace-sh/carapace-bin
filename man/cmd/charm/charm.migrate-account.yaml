@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: migrate-account
+hidden: true
+flags:
+    -v, --verbose: print debug output
+
+documentation:
+  command: >-
+    Migrate a Charm account from legacy RSA SSH keys to Ed25519 keys. Authenticates with the existing key, generates a link token, then re-authenticates with the new Ed25519 key and syncs encryption keys.

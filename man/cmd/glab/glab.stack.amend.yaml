@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: amend
+description: Save more changes to a stacked diff. (EXPERIMENTAL)
+flags:
+    -d, --description=: a description of the change
+    -m, --message=: alias for the description flag

@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rename [<new-name>]
+description: Rename a repository
+group: Targeted commands
+flags:
+    --confirm&: Skip confirmation prompt
+    -y, --yes: Skip the confirmation prompt
+persistentflags:
+    -R, --repo=: Select another repository using the `[HOST/]OWNER/REPO` format

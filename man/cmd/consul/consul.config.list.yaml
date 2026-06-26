@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+description: List centralized config entries of a given kind
+flags:
+    --kind=: The kind of configurations to list.
+    --namespace=: Specifies the namespace to query.

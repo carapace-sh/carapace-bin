@@ -1,0 +1,33 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    The uncompromising Python code formatter. Automatically reformats
+    Python code to comply with PEP 8. Supports checking mode (`--check`),
+    diff output (`--diff`), configurable line length, target Python
+    versions, and exclusion patterns.
+description: The uncompromising code formatter
+flags:
+    --check: Don't write the files back , just return the status.
+    --color: Show colored diff
+    --config=: Read configuration from FILE path.
+    --diff: Don't write the files back, just output a diff for each file on stdout.
+    --exclude=: A regular expression that matches files and directories that should be excluded.
+    --extend-exclude=: Like --exclude, but adds additional files and directories on top of the excluded ones.
+    --fast: Skip temporary sanity checks.
+    --force-exclude=: Like --exclude, but files and directories matching this regex will be excluded.
+    --include=: A regular expression that matches files and directories that should be included.
+    --ipynb: Format all input files like Jupyter Notebooks
+    --no-color: Do not show colored diff
+    --pyi: 'Format all input files like typing stubs regardless of file extension '
+    --required-version=: Require a specific version of Black to be running.
+    --safe: Do not skip temporary sanity checks.
+    --stdin-filename=: The name of the file when passing it through stdin.
+    --version: Show the version and exit.
+    -C, --skip-magic-trailing-comma: Don't use trailing commas as a reason to split lines.
+    -S, --skip-string-normalization: Don't normalize string quotes or prefixes.
+    -c, --code=: Format the code passed in as a string.
+    -h, --help: Show this message and exit.
+    -l, --line-length=: How many characters per line to allow.
+    -q, --quiet: Don't emit non-error messages to stderr.
+    -t, --target-version=: Python versions that should be supported by Black's output.
+    -v, --verbose: Also emit messages to stderr about files that were not changed.

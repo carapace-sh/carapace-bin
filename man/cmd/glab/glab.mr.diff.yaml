@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: diff [<id> | <branch>]
+description: View changes in a merge request.
+flags:
+    --color=: 'Use color in diff output: always, never, auto.'
+    --raw: Use raw diff format that can be piped to commands

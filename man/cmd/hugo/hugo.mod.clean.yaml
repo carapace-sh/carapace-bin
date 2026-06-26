@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: clean
+description: Delete the Hugo Module cache for the current project.
+flags:
+    --all: clean entire module cache
+    --pattern=: pattern matching module paths to clean (all if not set), e.g. "**hugo*"

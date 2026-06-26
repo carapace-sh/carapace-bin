@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: optipng
+description: Optimize Portable Network Graphics files
+flags:
+    -backup: keep a backup of the modified files
+    -clobber: overwrite existing files
+    -dir=: write output file(s) to <directory>
+    -f=: PNG delta filters (0-5)
+    -fix: enable error recovery
+    -force: enforce writing of a new output file
+    -full: produce a full report on IDAT (might reduce speed)
+    -help: show help
+    -i=: PNG interlace type (0-1)
+    -keep: keep a backup of the modified files
+    -log=: log messages to <file>
+    -nb: no bit depth reduction
+    -nc: no color type reduction
+    -np: no palette reduction
+    -nx: no reductions
+    -nz: no IDAT recoding
+    -o=: optimization level (0-7)
+    -out=: write output file to <file>
+    -preserve: preserve file attributes if possible
+    -quiet: run in quiet mode
+    -silent: run in quiet mode
+    -simulate: run in simulation mode
+    -snip: cut one image out of multi-image or animation files
+    -strip=: strip metadata objects (e.g. "all")
+    -zc=: zlib compression levels (1-9)
+    -zm=: zlib memory levels (1-9)
+    -zs=: zlib compression strategies (0-3)
+    -zw=: zlib window size (256,512,1k,2k,4k,8k,16k,32k)

@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: hub
+description: search for charts in the Artifact Hub or your own hub instance
+flags:
+    --endpoint=: Hub instance to query for charts
+    --max-col-width=: maximum column width for output table
+    -o, --output=: 'prints the output in the specified format. Allowed values: table, json, yaml'

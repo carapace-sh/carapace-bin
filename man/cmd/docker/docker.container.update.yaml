@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: update [OPTIONS] CONTAINER [CONTAINER...]
+description: Update configuration of one or more containers
+flags:
+    --blkio-weight=: Block IO (relative weight), between 10 and 1000, or 0 to disable (default 0)
+    --cpu-period=: Limit CPU CFS (Completely Fair Scheduler) period
+    --cpu-quota=: Limit CPU CFS (Completely Fair Scheduler) quota
+    --cpu-rt-period=: Limit the CPU real-time period in microseconds
+    --cpu-rt-runtime=: Limit the CPU real-time runtime in microseconds
+    --cpus=: Number of CPUs
+    --cpuset-cpus=: CPUs in which to allow execution (0-3, 0,1)
+    --cpuset-mems=: MEMs in which to allow execution (0-3, 0,1)
+    --kernel-memory=&: Kernel memory limit (deprecated)
+    --memory-reservation=: Memory soft limit
+    --memory-swap=: 'Swap limit equal to memory plus swap: -1 to enable unlimited swap'
+    --pids-limit=: Tune container pids limit (set -1 for unlimited)
+    --restart=: Restart policy to apply when a container exits
+    -c, --cpu-shares=: CPU shares (relative weight)
+    -m, --memory=: Memory limit

@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pack-redundant
+description: Find redundant pack files
+group: low-level interrogator
+documentation:
+  command: |-
+    This program computes which packs in your repository
+    are redundant. The output is suitable for piping to
+    `xargs rm` if you are in the root of the repository.
+
+    `git pack-redundant` accepts a list of objects on standard input. Any objects
+    given will be ignored when checking which packs are required. This makes the
+    following command useful when wanting to remove packs which contain unreachable
+    objects.
+
+    git fsck --full --unreachable | cut -d ' ' -f3 | \
+    git pack-redundant --all | xargs rm

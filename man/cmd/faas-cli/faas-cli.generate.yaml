@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: generate
+description: Generate Kubernetes CRD YAML file
+flags:
+    --annotation=*: Any annotations you want to add (to store functions only)
+    --api=: CRD API version e.g openfaas.com/v1, serving.knative.dev/v1
+    --arch=: Desired image arch. (Default x86_64)
+    --envsubst: Substitute environment variables in stack.yml file
+    --from-store=: generate using a store image
+    --tag=: Override latest tag on function Docker image, accepts 'latest', 'sha', 'branch', 'describe'
+    -n, --namespace=: Kubernetes namespace for functions

@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: info
+description: Information about the system, workspace and environments for the current machine

@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ssh
+description: Run SSH benchmark tests
+hidden: true
+flags:
+    --no-random&: 'Connect to random hosts for each SSH session. The provided hostname must be all: tsh bench ssh --random <user>@all <command>'
+    --random: 'Connect to random hosts for each SSH session. The provided hostname must be all: tsh bench ssh --random <user>@all <command>'
+    -p, --port=: SSH port on a remote host

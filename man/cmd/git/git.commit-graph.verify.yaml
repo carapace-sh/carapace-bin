@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: verify
+description: Read the commit-graph file and verify its contents against the object database
+flags:
+  --no-progress: Turn progress off explicitly
+  --object-dir=: Use given directory for the location of packfiles and commit-graph file
+  --progress: Turn progress on explicitly
+  --shallow: Only check the tip commit-graph file in a chain of split commit-graphs

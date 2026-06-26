@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: link
+description: call the link function to create a link to a file
+flags:
+    --help: display this help and exit
+    --version: output version information and exit

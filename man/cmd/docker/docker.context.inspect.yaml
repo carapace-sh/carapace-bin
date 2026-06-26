@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: inspect [OPTIONS] [CONTEXT] [CONTEXT...]
+description: Display detailed information on one or more contexts
+flags:
+    -f, --format=: 'Format output using a custom template:'

@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: waypoint
+description: Easy application deployment for Kubernetes and Amazon ECS
+flags:
+    --autocomplete-install: show version
+    --autocomplete-uninstall: show version
+    --version: show version
+persistentflags:
+    -h, --help: show help

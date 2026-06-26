@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: gpg-key-lookup
+description: Fetch the actual ed25519 public key value of the underlying key
+flags:
+    -h, --help: show this help message and exit

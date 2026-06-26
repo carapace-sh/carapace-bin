@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: passport:client [--personal] [--password] [--client] [--name [NAME]] [--provider [PROVIDER]] [--redirect_uri [REDIRECT_URI]] [--user_id [USER_ID]] [--public]
+description: Create a client for issuing access tokens
+flags:
+    --client: Create a client credentials grant client
+    --name=: The name of the client
+    --password: Create a password grant client
+    --personal: Create a personal access token client
+    --provider=: The name of the user provider
+    --public: Create a public client (Auth code grant type only)
+    --redirect_uri=: The URI to redirect to after authorization
+    --user_id=: The user ID the client should be assigned to

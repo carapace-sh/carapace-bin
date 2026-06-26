@@ -1,0 +1,95 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Scan files and directories for viruses using the ClamAV engine.
+    Supports recursive scanning, heuristics, scanning inside archives,
+    and various alert and exclusion options.
+description: scan files and directories for viruses
+flags:
+    --alert-broken: Alert on broken executable files (PE & ELF)
+    --alert-broken-media: Alert on broken graphics files (JPEG, TIFF, PNG, GIF)
+    --alert-encrypted: Alert on encrypted archives and documents
+    --alert-encrypted-archive: Alert on encrypted archives
+    --alert-encrypted-doc: Alert on encrypted documents
+    --alert-exceeds-max: Alert on files that exceed max file size, max scan size, or max recursion limit
+    --alert-macros: Alert on OLE2 files containing VBA macros
+    --alert-partition-intersection: Alert on raw DMG image files containing partition intersections
+    --alert-phishing-cloak: Alert on emails containing cloaked URLs
+    --alert-phishing-ssl: Alert on emails containing SSL mismatches in URLs
+    --bell: Sound bell on virus detection
+    --bytecode: Load bytecode from the database
+    --bytecode-timeout=: Set bytecode timeout (in milliseconds)
+    --bytecode-unsigned: Load unsigned bytecode
+    --copy=: Copy infected files into DIRECTORY
+    --cross-fs: Scan files and directories on other filesystems
+    --debug: Enable libclamav's debug messages
+    --detect-pua: Detect Possibly Unwanted Applications
+    --detect-structured: Detect structured data (SSN, Credit Card)
+    --disable-cache: Disable caching and cache checks for hash sums of scanned files.
+    --dumpcerts: Dump authenticode certificate chain in PE files
+    --exclude-dir=: Don't scan directories matching REGEX
+    --exclude-pua=: Skip PUA sigs of category CAT
+    --exclude=: Don't scan file names matching REGEX
+    --follow-dir-symlinks: Follow directory symlinks (0 = never, 1 = direct, 2 = always)
+    --follow-file-symlinks: Follow file symlinks (0 = never, 1 = direct, 2 = always)
+    --gen-json: Generate JSON metadata for the scanned file(s). For testing & development use ONLY.
+    --heuristic-alerts: Heuristic alerts
+    --heuristic-scan-precedence: Stop scanning as soon as a heuristic match is found
+    --include-dir=: Only scan directories matching REGEX
+    --include-pua=: Load PUA sigs of category CAT
+    --include=: Only scan file names matching REGEX
+    --leave-temps: Do not remove temporary files
+    --max-dir-recursion=: Maximum directory recursion level
+    --max-embeddedpe=: Maximum size file to check for embedded PE
+    --max-files=: The maximum number of files to scan for each container file (**)
+    --max-filesize=: Files larger than this will be skipped and assumed clean
+    --max-htmlnormalize=: Maximum size of HTML file to normalize
+    --max-htmlnotags=: Maximum size of normalized HTML file to scan
+    --max-iconspe=: Maximum number of icons in PE file to be scanned
+    --max-partitions=: Maximum number of partitions in disk image to be scanned
+    --max-rechwp3=: Maximum recursive calls to HWP3 parsing function
+    --max-recursion=: Maximum archive recursion level for container file (**)
+    --max-scansize=: The maximum amount of data to scan for each container file (**)
+    --max-scantime=: Scan time longer than this will be skipped and assumed clean (milliseconds)
+    --max-scriptnormalize=: Maximum size of script file to normalize
+    --max-ziptypercg=: Maximum size zip to type reanalyze
+    --move=: Move infected files into DIRECTORY
+    --no-summary: Disable summary at end of scanning
+    --nocerts: Disable authenticode certificate chain verification in PE files
+    --normalize: Normalize html, script, and text files. Use normalize=no for yara compatibility
+    --official-db-only: Only load official signatures
+    --pcre-match-limit=: Maximum calls to the PCRE match function.
+    --pcre-max-filesize=: Maximum size file to perform PCRE subsig matching.
+    --pcre-recmatch-limit=: Maximum recursive calls to the PCRE match function.
+    --phishing-scan-urls: Enable URL signature-based phishing detection
+    --phishing-sigs: Enable email signature-based phishing detection
+    --quiet: Only output error messages
+    --remove: Remove infected files. Be careful!
+    --scan-archive: Scan archive files (supported by libclamav)
+    --scan-elf: Scan ELF files
+    --scan-html: Scan HTML files
+    --scan-hwp3: Scan HWP3 files
+    --scan-mail: Scan mail files
+    --scan-ole2: Scan OLE2 containers
+    --scan-pdf: Scan PDF files
+    --scan-pe: Scan PE files
+    --scan-swf: Scan SWF files
+    --scan-xmldocs: Scan xml-based document files
+    --statistics: Collect and print execution statistics
+    --stdout: Write to stdout instead of stderr. Does not affect 'debug' messages.
+    --structured-cc-count=: Min CC count to generate a detect
+    --structured-cc-mode=: CC mode (0=credit debit and private label, 1=credit cards only
+    --structured-ssn-count=: Min SSN count to generate a detect
+    --structured-ssn-format=: SSN format (0=normal,1=stripped,2=both)
+    --tempdir=: Create temporary files in DIRECTORY
+    -V, --version: Print version number
+    -a, --archive-verbose: Show filenames inside scanned archives
+    -d, --database=: Load virus database from FILE or load all supported db files from DIR
+    -f, --file-list=: Scan files from FILE
+    -h, --help: Show this help
+    -i, --infected: Only print infected files
+    -l, --log=: Save scan report to FILE
+    -o, --suppress-ok-results: Skip printing OK files
+    -r, --recursive: Scan subdirectories recursively
+    -v, --verbose: Be verbose
+    -z, --allmatch: Continue scanning within file after finding a match

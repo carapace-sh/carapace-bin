@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create MODEL
+description: Create a model from a Modelfile
+flags:
+    -f, --file=: Name of the Modelfile (default "Modelfile")

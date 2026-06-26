@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: chmod
+description: change file mode bits
+flags:
+    --dereference: affect the referent of each symbolic link, rather than the symbolic link itself
+    --help: display this help and exit
+    --no-preserve-root: do not treat '/' specially (the default)
+    --preserve-root: fail to operate recursively on '/'
+    --quiet: suppress most error messages
+    --reference=: use RFILE's mode instead of MODE values
+    --version: output version information and exit
+    -H: if a command line argument is a symbolic link to a directory, traverse it
+    -L: traverse every symbolic link to a directory encountered
+    -P: do not traverse any symbolic links
+    -R, --recursive: change files and directories recursively
+    -c, --changes: like verbose but report only when a change is made
+    -f, --silent: suppress most error messages
+    -h, --no-dereference: affect each symbolic link, rather than the referent
+    -v, --verbose: output a diagnostic for every file processed
+
+documentation:
+  command: >-
+    Change file mode bits. chmod sets permissions on files using symbolic
+    (rwxXst) or octal (0-7) notation. Symbolic: [ugoa][-+=][perms], e.g.
+    u+rx, go-w, a=rwx. Octal: four digits (setuid 4, setgid 2, sticky 1;
+    owner 4/2/1; group 4/2/1; other 4/2/1), e.g. 755 or 644. Permissions:
+    r (read), w (write), x (execute/search), X (execute if dir or has execute),
+    s (setuid/setgid), t (sticky). Copy mode from another file with
+    --reference=RFILE. Recursive with -R; control symlink traversal with
+    -H/-L/-P. umask affects symbolic mode unless explicitly overridden.
+    chmod does not change permissions of symlinks themselves (on most systems),
+    but affects the target via the system call.

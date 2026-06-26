@@ -1,0 +1,30 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: speed
+description: Algorithm Speed Measurement
+group: standard
+flags:
+    -aead: Benchmark EVP-named AEAD cipher in TLS-like sequence
+    -async_jobs=: Enable async mode and start specified number of jobs
+    -bytes=: Run [non-PKI] benchmarks on custom-sized buffer
+    -cmac=: CMAC using EVP-named cipher
+    -config=: Load a configuration file (this may load modules)
+    -decrypt: Time decryption instead of encryption (only EVP)
+    -elapsed: Use wall-clock time instead of CPU user time as divisor
+    -evp=: Use EVP-named cipher or digest
+    -hmac=: HMAC using EVP-named digest
+    -kem-algorithms: Benchmark KEM algorithms
+    -mb: Enable (tls1>=1) multi-block mode on EVP-named cipher
+    -misalign=: Use specified offset to mis-align buffers
+    -mlock: Lock memory for better result determinism
+    -mr: Produce machine readable output
+    -multi=: Run benchmarks in parallel
+    -primes=: Specify number of primes (for RSA only)
+    -propquery=: Property query used when fetching algorithms
+    -provider-path=: Provider load path (must be before 'provider' argument if required)
+    -provider=*: Provider to load (can be specified multiple times)
+    -provparam=: Set a provider key-value parameter
+    -rand=: Load the given file(s) into the random number generator
+    -seconds=: Run benchmarks for specified amount of seconds
+    -signature-algorithms: Benchmark signature algorithms
+    -testmode: Run the speed command in test mode
+    -writerand=: Write random data to the specified file

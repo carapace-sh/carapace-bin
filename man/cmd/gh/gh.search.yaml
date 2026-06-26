@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: search <command>
+description: Search for repositories, issues, and pull requests
+documentation:
+    command: |
+        Search across all of GitHub. Use `gh search repos` to find repositories,
+        `gh search issues` to find issues, and `gh search prs` to find pull requests.
+        Use qualifiers like `repo:`, `user:`, `label:`, and `-` prefixes to exclude
+        results. On Unix systems, use `--` before the query to avoid hyphen interpretation.

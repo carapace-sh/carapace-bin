@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: module
+description: Creates a new, generic NgModule definition in the given or default project
+flags:
+    --flat: Create the new files at the top level of the current project root.
+    --project=: The name of the project.
+    --route=: The route path for a lazy-loaded module.
+    --routing: Create a routing module.
+    --routing-scope=: The scope for the new routing module.
+    -m, --module=: The declaring NgModule.

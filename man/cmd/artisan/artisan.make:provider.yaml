@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: make:provider [-f|--force] [--] <name>
+description: Create a new service provider class
+flags:
+    --force: Create the class even if the provider already exists

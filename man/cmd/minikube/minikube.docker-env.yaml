@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: docker-env
+description: Configure environment to use minikube's Docker daemon
+group: images
+flags:
+    --no-proxy: Add machine IP to NO_PROXY environment variable
+    --shell=: 'Force environment to be configured for a specified shell: [fish, cmd, powershell, tcsh, bash, zsh], default is auto-detect'
+    --ssh-add: Add SSH identity key to SSH authentication agent
+    --ssh-host: Use SSH connection instead of HTTPS (port 2376)
+    -o, --output=: One of 'text', 'yaml' or 'json'.
+    -u, --unset: Unset variables instead of setting them

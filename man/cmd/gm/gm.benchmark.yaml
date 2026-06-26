@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: benchmark
+description: benchmark one of the other command
+flags:
+    -concurrent: run multiple commands in parallel
+    -duration=: duration to run benchmark (in seconds)
+    -iterations=: number of command iterations per benchmark
+    -rawcsv: CSV output (threads,iterations,user_time,elapsed_time)
+    -stepthreads=: step benchmark with increasing number of threads

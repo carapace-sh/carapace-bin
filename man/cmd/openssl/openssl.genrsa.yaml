@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: genrsa
+description: Generation of RSA Private Key
+group: standard
+flags:
+    "-3": (deprecated) Use 3 for the E value
+    -F4: Use the Fermat number F4 (0x10001) for the E value
+    -f4: Use the Fermat number F4 (0x10001) for the E value
+    -out=: Output the key to specified file
+    -passout=: Output file pass phrase source
+    -primes=: Specify number of primes
+    -propquery=: Property query used when fetching algorithms
+    -provider-path=: Provider load path (must be before 'provider' argument if required)
+    -provider=*: Provider to load (can be specified multiple times)
+    -provparam=: Set a provider key-value parameter
+    -quiet: Terse output
+    -rand=: Load the given file(s) into the random number generator
+    -traditional: Use traditional format for private keys
+    -verbose: Verbose output
+    -writerand=: Write random data to the specified file

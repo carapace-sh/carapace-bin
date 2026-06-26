@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: update
+description: Reload config and add/remove as necessary, and will restart affected programs

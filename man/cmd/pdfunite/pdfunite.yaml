@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pdfunite
+description: Portable Document Format (PDF) page merger
+flags:
+    -?: print usage information
+    -h: print usage information
+    -help, --help: print usage information
+    -v: print copyright and version info

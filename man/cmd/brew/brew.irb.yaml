@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: irb
+description: Enter the interactive Homebrew Ruby shell
+group: developer
+flags:
+    --debug: Display any debugging information.
+    --examples: Show several examples.
+    --help: Show this message.
+    --pry: Use Pry instead of IRB. Implied if `HOMEBREW_PRY` is set.
+    --quiet: Make some output more quiet.
+    --verbose: Make some output more verbose.

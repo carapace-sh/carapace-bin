@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rehash
+description: Create symbolic links to certificate and CRL files named by the hash values
+group: standard
+flags:
+    -compat: Create both new- and old-style hash links
+    -h: Display this summary
+    -n: Do not remove existing links
+    -old: Use old-style hash to generate links
+    -propquery=: Property query used when fetching algorithms
+    -provider-path=: Provider load path (must be before 'provider' argument if required)
+    -provider=*: Provider to load (can be specified multiple times)
+    -provparam=: Set a provider key-value parameter
+    -v: Verbose output

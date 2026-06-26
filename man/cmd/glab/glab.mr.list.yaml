@@ -1,0 +1,30 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list [flags]
+aliases:
+    - ls
+description: List merge requests.
+flags:
+    --author=: Filter merge request by author <username>.
+    --mine&: Get only merge requests assigned to me.
+    --not-draft: Filter by non-draft merge requests.
+    --not-label=*: Filter merge requests by not having label <name>.
+    --search=: Filter by <string> in title and description.
+    -A, --all: Get all merge requests.
+    -F, --output=: 'Format output as: text, json.'
+    -M, --merged: Get only merged merge requests.
+    -O, --opened&: Get only open merge requests.
+    -P, --per-page=: Number of items to list per page.
+    -S, --sort=: 'Sort merge requests by <field>. Sort options: asc, desc.'
+    -a, --assignee=*: Get only merge requests assigned to users.
+    -c, --closed: Get only closed merge requests.
+    -d, --draft: Filter by draft merge requests.
+    -l, --label=*: Filter merge request by label <name>.
+    -m, --milestone=: Filter merge request by milestone <id>.
+    -o, --order=: 'Order merge requests by <field>. Order options: created_at, title, merged_at or updated_at.'
+    -p, --page=: Page number.
+    -r, --reviewer=*: Get only merge requests with users as reviewer.
+    -s, --source-branch=: Filter by source branch <name>.
+    -t, --target-branch=: Filter by target branch <name>.
+persistentflags:
+    -R, --repo=: Select another repository. Can use either `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format. Also accepts full URL or Git URL.
+    -g, --group=: Select a group/subgroup. This option is ignored if a repo argument is set.

@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: join-pane
+flags:
+    -b: TODO description
+    -d: TODO description
+    -f: TODO description
+    -h: TODO description
+    -l=: size
+    -s=: src-pane
+    -t=: dst-pane
+    -v: TODO description

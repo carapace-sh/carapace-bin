@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: copilot [flags] [args]
+description: Run the GitHub Copilot CLI (preview)
+flags:
+    --remove: Remove the downloaded Copilot CLI

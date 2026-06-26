@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: envoy
+description: Runs or Configures Envoy as a Connect proxy
+flags:
+    --address=: LAN address to advertise in the gateway service registration
+    --admin-access-log-path=: The path to write the access log for the administration server.
+    --admin-bind=: The address:port to start envoy's admin server on.
+    --bind-address=: Bind address to use instead of the default binding rules given as `<name>=<ip>:<port>` pairs.
+    --bootstrap: Generate the bootstrap.json but don't exec envoy
+    --ca-file=: Path to a CA file to use for TLS when communicating with Consul.
+    --ca-path=: Path to a directory of CA certificates to use for TLS when communicating with Consul.
+    --client-cert=: Path to a client cert file to use for TLS when 'verify_incoming' is enabled.
+    --client-key=: Path to a client key file to use for TLS when 'verify_incoming' is enabled.
+    --deregister-after-critical=: The amount of time the gateway services health check can be failing before being deregistered
+    --envoy-binary=: The full path to the envoy binary to run.
+    --envoy-version=: Sets the envoy-version that the envoy binary has.
+    --expose-servers: Expose the servers for WAN federation via this mesh gateway
+    --gateway=: The type of gateway to register.
+    --grpc-addr=: Set the agent's gRPC address and port (in http(s)://host:port format).
+    --http-addr=: The `address` and port of the Consul HTTP agent.
+    --mesh-gateway: Configure Envoy as a Mesh Gateway.
+    --namespace=: Specifies the namespace to query.
+    --no-central-config: Require that the command run on the same agent as the proxy will.
+    --omit-deprecated-tags: Disable deprecated tags.
+    --proxy-id=: The proxy's ID on the local agent.
+    --register: Register a new gateway service before configuring and starting Envoy
+    --service=: Service name to use for the registration
+    --sidecar-for=: The ID of a service instance on the local agent that this proxy should become a sidecar for.
+    --tls-server-name=: The server name to use as the SNI host when connecting via TLS.
+    --token-file=: File containing the ACL token to use in the request.
+    --token=: ACL token to use in the request.
+    --wan-address=: WAN address to advertise in the gateway service registration.

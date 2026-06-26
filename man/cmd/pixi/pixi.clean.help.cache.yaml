@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: cache
+description: Clean the cache of your system which are touched by pixi

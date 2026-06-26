@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: fetch [options] <url>
+description: Copy a package into global cache and print its hash
+group: project
+flags:
+    --color=: Enable or disable colored error messages
+    --debug-hash: Print verbose hash information to stdout
+    --global-cache-dir=: Override path to global Zig cache directory
+    --save: Add the fetched package to build.zig.zon
+    --save-exact: Add the fetched package to build.zig.zon, storing the URL verbatim
+    --save-exact-name=: Add the fetched package to build.zig.zon as name, storing the URL verbatim
+    --save-name=: Add the fetched package to build.zig.zon as name
+    -h, --help: Print help

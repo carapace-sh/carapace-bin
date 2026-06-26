@@ -1,0 +1,33 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Upload coverage reports to Codecov. Supports specifying branch,
+    commit SHA, PR number, and build number. Can also discover and
+    upload coverage reports from a directory.
+description: codecov uploader
+flags:
+    --CL: Display a link for the current changelog
+    --changelog: Display a link for the current changelog
+    --version: Show version number
+    -B, --branch=: Specify the branch manually
+    -C, --sha=: Specify the commit SHA mannually
+    -F, --flags: Flag the upload to group coverage metrics
+    -N, --parent=: The commit SHA of the parent for which you are uploading coverage.
+    -P, --pr=: Specify the pull request number mannually
+    -Q, --source=: Used internally by Codecov, this argument helps track wrappers of the uploader
+    -R, --rootDir=: Specify the project root directory when not in a git repo
+    -T, --tag=: Specify the git tag
+    -X, --feature=: Toggle functionalities
+    -Z, --nonZero: Should errors exit with a non-zero
+    -b, --build=: Specify the build number manually
+    -c, --clean: Move discovered coverage reports to the trash
+    -d, --dryRun: Don't upload files to Codecov
+    -e, --env=: Specify environment variables to be included with this build.
+    -f, --file=: Target file(s) to upload
+    -h, --help: Show help
+    -n, --name=: Custom defined name of the upload.
+    -r, --slug=: Specify the slug manually (Enterprise use)
+    -s, --dir=: Directory to search for coverage reports.
+    -t, --token=: Codecov upload token
+    -u, --url=: Change the upload host (Enterprise use)
+    -v, --verbose: Run with verbose logging

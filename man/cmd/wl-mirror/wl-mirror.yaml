@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: wl-mirror
+description: a simple Wayland output mirror client
+flags:
+    --fullscreen-output=: open wl-mirror as fullscreen on output O
+    --no-fullscreen: open wl-mirror as a window (default)
+    --no-fullscreen-output: open wl-mirror as fullscreen on the current output (default)
+    --no-invert-colors: don't invert colors in the mirrored screen (default)
+    --no-region: capture the entire output (default)
+    --no-show-cursor: don't show the cursor on the mirrored screen
+    --no-verbose: disable debug logging (default)
+    --toggle-freeze: toggle freeze state of screen capture
+    --unfreeze: resume the screen capture after a freeze
+    -F, --fullscreen: open wl-mirror as fullscreen
+    -S, --stream: accept a stream of additional options on stdin
+    -V, --version: print version
+    -b, --backend=: use a specific backend for capturing the screen
+    -c, --show-cursor: show the cursor on the mirrored screen (default)
+    -f, --freeze: freeze the current image on the screen
+    -h, --help: show this help
+    -i, --invert-colors: invert colors in the mirrored screen
+    -r, --region=: capture custom region R
+    -s, --scaling=*: scaling mode
+    -t, --transform=: apply custom transform T
+    -v, --verbose: enable debug logging

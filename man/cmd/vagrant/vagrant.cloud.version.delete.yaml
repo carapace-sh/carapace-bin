@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: delete
+description: Deletes a version entry on Vagrant Cloud
+flags:
+    --no-force: Do not force deletion without confirmation
+    -f, --force: Force deletion without confirmation

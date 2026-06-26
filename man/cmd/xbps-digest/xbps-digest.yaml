@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: xbps-digest [options] [file] [file+N]
+description: XBPS utility to generate message digests
+flags:
+    -V, --version: Show XBPS version
+    -h, --help: Show usage
+    -m, --mode=: Selects the digest mode, sha256 (default)

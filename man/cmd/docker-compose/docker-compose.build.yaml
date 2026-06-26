@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: build [OPTIONS] [SERVICE...]
+description: Build or rebuild services
+flags:
+    --build-arg=*: Set build-time variables for services
+    --builder=: Set builder to use
+    --check: Check build configuration
+    --compress&: Compress the build context using gzip. DEPRECATED
+    --force-rm&: Always remove intermediate containers. DEPRECATED
+    --no-cache: Do not use cache when building the image
+    --no-rm&: Do not remove intermediate containers after a successful build. DEPRECATED
+    --parallel&: Build images in parallel. DEPRECATED
+    --print: Print equivalent bake file
+    --progress=&: Set type of ui output (auto, tty, plain, json, quiet)
+    --provenance=: Add a provenance attestation
+    --pull: Always attempt to pull a newer version of the image
+    --push: Push service images
+    --sbom=: Add a SBOM attestation
+    --ssh=: Set SSH authentications used when building service images. (use 'default' for using your default SSH Agent)
+    --with-dependencies: Also build dependencies (transitively)
+    -m, --memory=: Set memory limit for the build container. Not supported by BuildKit.
+    -q, --quiet: Suppress the build output

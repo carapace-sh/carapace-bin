@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: blobl
+description: Execute a Bloblang mapping on documents consumed via stdin
+flags:
+    --max-token-length=: Set the buffer size for document lines.
+    -f, --file=: execute a mapping from a file.
+    -p, --pretty: pretty-print output.
+    -r, --raw: consume raw strings.
+    -t, --threads=: the number of processing threads to use, when >1 ordering is no longer guaranteed.

@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: detach-tab
+description: Detach the specified tabs and place them in a different/new OS window
+flags:
+    --self: Detach the tab this command is run in, rather than the active tab
+    -h, --help: Show help for this command
+    -m, --match=: The tab to match
+    -t, --target-tab=: The tab to match

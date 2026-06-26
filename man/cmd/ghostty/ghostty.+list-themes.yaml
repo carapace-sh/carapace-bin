@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: +list-themes
+description: preview or list all the available themes for Ghostty
+flags:
+    --color=: Specify the color scheme of the themes included in the list
+    --help: show help
+    --path: Show the full path to the theme
+    --plain: Force a plain listing of themes

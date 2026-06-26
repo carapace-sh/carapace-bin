@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: set_desktop
+description: Change the current view to the specified desktop
+flags:
+    --relative: Use relative movements instead of absolute

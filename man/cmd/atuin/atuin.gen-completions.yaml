@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: gen-completions
+description: Generate shell completions
+flags:
+    -h, --help: Print help
+    -o, --out-dir=: Set the output directory
+    -s, --shell=!: Set the shell for generating completions

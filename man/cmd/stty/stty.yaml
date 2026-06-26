@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: stty
+description: change and print terminal line settings
+flags:
+    --help: display this help and exit
+    --version: output version information and exit
+    -F, --file=: open and use the specified DEVICE instead of stdin
+    -a, --all: print all current settings in human-readable form
+    -g, --save: print all current settings in a stty-readable form

@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: setup-git
+description: Setup git with GitHub CLI
+flags:
+    -f, --force: Force setup even if the host is not known. Must be used in conjunction with `--hostname`
+    -h, --hostname=: The hostname to configure git for

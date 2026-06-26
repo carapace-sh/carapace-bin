@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: delete <state> [<serial>] [flags]
+description: Delete the given state or if the serial is provided only that version of the given state.
+flags:
+    -f, --force: Force delete the state without prompting.

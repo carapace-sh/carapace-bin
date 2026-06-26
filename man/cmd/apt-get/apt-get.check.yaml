@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Update the package cache and check for broken package dependencies
+    on the system. Exits with a non-zero status if problems are found,
+    making it useful in automated maintenance scripts.
+description: check is a diagnostic tool

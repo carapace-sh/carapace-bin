@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: release
+aliases:
+    - r
+description: Releases the current project
+flags:
+    --auto-snapshot: Automatically sets --snapshot if the repository is dirty
+    --clean: Removes the 'dist' directory
+    --deprecated&: Force print the deprecation message - tests only
+    --draft: Whether to set the release to draft. Overrides release.draft in the configuration file
+    --fail-fast: Whether to abort the release publishing on the first error
+    --release-footer-tmpl=: Load custom release notes footer from a templated markdown file (overrides --release-footer)
+    --release-footer=: Load custom release notes footer from a markdown file
+    --release-header-tmpl=: Load custom release notes header from a templated markdown file (overrides --release-header)
+    --release-header=: Load custom release notes header from a markdown file
+    --release-notes-tmpl=: Load custom release notes from a templated markdown file (overrides --release-notes)
+    --release-notes=: Load custom release notes from a markdown file (will skip GoReleaser changelog generation)
+    --skip=*: Skip the given options (valid options are announce, archive, aur, aur-source, before, chocolatey, docker, homebrew, ko, nfpm, nix, notarize, publish, sbom, scoop, sign, snapcraft, validate, winget)
+    --snapshot: Generate an unversioned snapshot release, skipping all validations and without publishing any artifacts (implies --skip=announce,publish,validate)
+    --timeout=: Timeout to the entire release process
+    -f, --config=: Load configuration from file
+    -p, --parallelism=: 'Amount tasks to run concurrently (default: number of CPUs)'

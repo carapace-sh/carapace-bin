@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: init [flags] COMMAND
+description: Use the provisioner to cleanup any changes made to external systems
+flags:
+    --help: Show help message and exit

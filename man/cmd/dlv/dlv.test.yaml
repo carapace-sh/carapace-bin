@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: test
+description: Compile test binary and begin debugging program.
+flags:
+    --output=: Output path for the binary.

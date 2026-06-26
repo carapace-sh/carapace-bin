@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: login
+description: Log in to the Pulumi service
+persistentflags:
+    --default-org=: A default org to associate with the login. Please note, currently, only the managed and self-hosted backends support organizations
+    -c, --cloud-url=: A cloud URL to log in to
+    -l, --local: Use Pulumi in local-only mode

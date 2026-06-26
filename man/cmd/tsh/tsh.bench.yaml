@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: bench
+description: Run Teleport benchmark tests.
+hidden: true
+flags:
+    --duration=: Test duration
+    --export: Export the latency profile
+    --no-export&: Export the latency profile
+    --path=: Directory to save the latency profile to, default path is the current directory
+    --rate=: Requests per second rate
+    --scale=: Value scale in which to scale the recorded values
+    --ticks=: Ticks per half distance
+    -c, --cluster=: Specify the Teleport cluster to connect

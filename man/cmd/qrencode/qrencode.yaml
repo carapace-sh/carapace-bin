@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: qrencode
+description: Encode input data in a QR Code and save as a PNG or EPS image
+flags:
+    --background=: specify foreground/background color in hexadecimal notation.
+    --foreground=: specify foreground/background color in hexadecimal notation.
+    --inline: only useful for SVG output, generates an SVG without the XML tag.
+    --rle: enable run-length encoding for SVG.
+    --strict-version: disable automatic version number adjustment.
+    --svg-path: use single path to draw modules for SVG.
+    --verbose: display verbose information to stderr.
+    -8, --8bit: encode entire data in 8-bit mode. -k, -c and -i will be ignored.
+    -M, --micro: encode in a Micro QR Code.
+    -S, --structured: make structured symbols.
+    -V, --version: display the version number and copyrights of the qrencode.
+    -c, --casesensitive: encode lower-case alphabet characters in 8-bit mode.
+    -d, --dpi=: specify the DPI of the generated PNG.
+    -h, --help: display the help message.
+    -i, --ignorecase: ignore case distinctions and use only upper-case characters.
+    -k, --kanji: assume that the input text contains kanji (shift-jis).
+    -l, --level=: specify error correction level from L (lowest) to H (highest).
+    -m, --margin=: specify the width of the margins.
+    -o, --output=: write image to FILENAME.
+    -r, --read-from=: read input data from FILENAME.
+    -s, --size=: specify module size in dots (pixels).
+    -t, --type=: specify the type of the generated image.
+    -v, --symversion=: specify the minimum version of the symbol.

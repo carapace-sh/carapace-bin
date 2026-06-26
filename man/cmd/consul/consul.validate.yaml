@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: validate
+description: Validate config files/directories
+flags:
+    --config-format=: Config files are in this format irrespective of their extension.
+    --quiet: When given, a successful run will produce no output.
+
+documentation:
+  command: >-
+    Validate Consul configuration files for syntax and logical errors.

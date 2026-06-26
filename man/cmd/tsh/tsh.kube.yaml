@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: kube
+description: Manage available Kubernetes clusters
+
+documentation:
+  command: >-
+    Manage and access Kubernetes clusters registered with Teleport. Get kubeconfig credentials for kubectl access.

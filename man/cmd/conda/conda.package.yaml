@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: package
+description: Low-level conda package utility
+flags:
+    --pkg-build=: Package build number of the created package.
+    --pkg-name=: Package name of the created package.
+    --pkg-version=: Package version of the created package.
+    -h, --help: Show this help message and exit.
+    -n, --name=: Name of environment.
+    -p, --prefix=: Full path to environment location (i.e. prefix).
+    -r, --reset: Remove all untracked files and exit.
+    -u, --untracked: Display all untracked files and exit.
+    -w, --which=*: Given some PATH print which conda package the file came from.

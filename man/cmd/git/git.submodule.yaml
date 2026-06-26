@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: submodule
+description: Only print error messages
+group: main
+persistentflags:
+  --quiet: Only print error messages
+documentation:
+  command: |-
+    Inspects, updates and manages submodules.
+
+    For more information about submodules, see [gitsubmodules](man://gitsubmodules/7).

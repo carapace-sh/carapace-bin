@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list [<owner>]
+aliases:
+    - ls
+description: List repositories owned by user or organization
+group: General commands
+documentation:
+    command: |
+        List repositories owned by a user or organization. Use `--limit` to control
+        how many results to show (default 30, max 100). Filter by visibility with
+        `--visibility` (public, private, internal), by language with `--language`,
+        and by topic with `--topic`. Show only forks with `--fork` or non-forks with
+        `--source`. Use `--json` with specific fields for structured output.
+flags:
+    --archived: Show only archived repositories
+    --fork: Show only forks
+    --json=*: Output JSON with the specified `fields`
+    --no-archived: Omit archived repositories
+    --private&: Show only private repositories
+    --public&: Show only public repositories
+    --source: Show only non-forks
+    --topic=*: Filter by topic
+    --visibility=: 'Filter by repository visibility: {public|private|internal}'
+    -L, --limit=: Maximum number of repositories to list
+    -l, --language=: Filter by primary coding language
+    -q, --jq=: Filter JSON output using a jq `expression`
+    -t, --template=: Format JSON output using a Go template; see "gh help formatting"

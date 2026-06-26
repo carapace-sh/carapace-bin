@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: jar
+description: create an archive for classes and resources
+flags:
+    --hash-modules=: Compute and record the hashes of modules matched by the given pattern
+    --help-extra: Give help on extra options
+    --help:compat: 'Show compat help '
+    --module-version=: The module version
+    --release=: Places all following files in a versioned directory of the jar
+    --validate: Validate the contents of the jar archive
+    --version: Print program version
+    -?: Show help
+    -0, --no-compress: Store only; use no ZIP compression
+    -C=: Change to the specified directory and include the following file
+    -M, --no-manifest: Do not create a manifest file for the entries
+    -c, --create: Create the archive
+    -d, --describe-module: Print the module descriptor, or automatic module name
+    -e, --main-class=: The application entry point for stand-alone applications
+    -f, --file=: The archive file name
+    -h, --help: 'Show help '
+    -i, --generate-index=: Generate index information for the specified jar archives
+    -m, --manifest=: Include the manifest information from the given manifest file
+    -p, --module-path: Location of module dependence for generating the hash
+    -t, --list: List the table of contents for the archive
+    -u, --update: Update an existing jar archive
+    -v, --verbose: Generate verbose output on standard output
+    -x, --extract: Extract named (or all) files from the archive

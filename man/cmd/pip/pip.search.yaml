@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: search
+description: Search for PyPI packages
+flags:
+    -i, --index=: Base URL of Python Package Index (default

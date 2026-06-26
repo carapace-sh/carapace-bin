@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: clean
+description: Clean runtime, cache, state, logs or configuration of unit
+group: unit
+documentation:
+  command: |
+    Remove the configuration, state, cache, logs, runtime, or file descriptor
+    store data of the specified units. Use `--what=` to select which kind of
+    resource to remove. For service units, this removes directories configured
+    with ConfigurationDirectory=, StateDirectory=, CacheDirectory=, LogsDirectory=
+    and RuntimeDirectory=. For timer units with Persistent=, use `--what=state`
+    to clear persistent timestamp data. If `--what=` is not specified, cache
+    and runtime data as well as the file descriptor store are removed.

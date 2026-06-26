@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: grype [IMAGE]
+description: A vulnerability scanner for container images, filesystems, and SBOMs
+flags:
+    --add-cpes-if-none: generate CPEs for packages with no CPE data
+    --by-cve: orient results by CVE instead of the original vulnerability ID when possible
+    --distro=: 'distro to match against in the format: <distro>:<version>'
+    --exclude=*: exclude paths from being scanned using a glob expression
+    --file=: file to write the report output to (default is STDOUT)
+    --only-fixed: ignore matches for vulnerabilities that are not fixed
+    --only-notfixed: ignore matches for vulnerabilities that are fixed
+    --platform=: an optional platform specifier for container image sources (e.g. 'linux/arm64', 'linux/arm64/v8', 'arm64', 'linux')
+    --show-suppressed: show suppressed/ignored vulnerabilities in the output (only supported with table output format)
+    -f, --fail-on=: set the return code to 1 if a vulnerability is found with a severity >= the given severity
+    -o, --output=: report output formatter
+    -s, --scope=: selection of layers to analyze
+    -t, --template=: specify the path to a Go template file (requires 'template' output to be selected)
+persistentflags:
+    -c, --config=: application config file
+    -q, --quiet: suppress all logging output
+    -v, --verbose*: increase verbosity

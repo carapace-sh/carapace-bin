@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: cache
+description: Operate on local cache directories
+flags:
+    --cleanup: remove old cache directories
+    --max-age=: max age in `days` for cache directories to be considered old
+    --no-size: do not output the size of the cache directories
+
+documentation:
+  command: >-
+    Manage the local cache directory. Use cleanup to remove old cache data for repositories no longer in use.

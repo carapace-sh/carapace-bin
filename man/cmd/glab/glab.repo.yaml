@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: repo <command> [flags]
+aliases:
+    - project
+description: Work with GitLab repositories and projects.
+
+documentation:
+  command: >-
+    Work with GitLab repositories and projects. Alias: `project`. Key subcommands: `glab repo clone` (clone a repo), `glab repo create` (create a new project), `glab repo fork` (fork a project), `glab repo list` (show repos), `glab repo view` (show project details), `glab repo archive` (archive a project), `glab repo search` (find projects), `glab repo contribute` (show contribution guidelines). Manage project settings, members, and access levels.

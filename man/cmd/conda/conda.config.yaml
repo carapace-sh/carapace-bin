@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: config
+description: Modify configuration values in .condarc
+flags:
+    --add=: Add one configuration value to the beginning of a list key.
+    --append=: Add one configuration value to the end of a list key.
+    --describe=: Describe given configuration parameters.
+    --env: Write to the active conda environment .condarc file
+    --file=: Write to the given file.
+    --get=: Get a configuration value.
+    --json: Report all output as json.
+    --prepend=: Add one configuration value to the beginning of a list key.
+    --remove-key=: Remove a configuration key (and all its values).
+    --remove=: Remove a configuration value from a list key.
+    --set=: Set a boolean or string key
+    --show-sources: Display all identified configuration sources.
+    --show=: Display configuration values as calculated and compiled.
+    --stdin: Apply configuration information given in yaml format piped through stdin.
+    --system: Write to the system .condarc file at '/opt/miniconda3/.condarc'.
+    --validate: Validate all configuration sources.
+    --write-default: Write the default configuration to a file.
+    -h, --help: Show this help message and exit.
+    -q, --quiet: Do not display progress bar.
+    -v, --verbose: Use once for info, twice for debug, three times for trace.

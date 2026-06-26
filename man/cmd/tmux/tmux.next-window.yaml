@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: next-window
+flags:
+    -a: TODO description
+    -t=: target-session

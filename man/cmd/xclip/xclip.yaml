@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: xclip [flags] [FILE]
+description: command line interface to X selections
+flags:
+    -d, -d=: X display to use
+    -f, -f: Print the text piped to standard in back to standard out
+    -h, -h: Show quick summary of options
+    -i, -i: Read text into X selection
+    -l, -l=: Number of X selection requests to wait before exiting
+    -noutf8: Operate in legacy mode
+    -o, -o: Print the X selection to standard out
+    -quiet: Run in the foreground, output information messages
+    -r, -r: Remove any trailing newlines from the selection
+    -selection=: Specify which X selection to use
+    -silent: Fork into background to wait, output errors only
+    -t, -t=: Specify a specific data format with given target atom
+    -verbose: Verbose output
+    -version: Show version information

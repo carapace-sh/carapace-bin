@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: last
+description: Get the last command ran
+flags:
+    --cmd-only: Show only the text of the command
+    --human: ""
+    --timezone=: Display the command time in another timezone other than the configured default
+    --tz=: Display the command time in another timezone other than the configured default
+    -f, --format=: 'Available variables: {command}, {directory}, {duration}, {user}, {host}, {author}, {intent}, {time}, {session}, {uuid} and {relativetime}. Example: --format "{time} - [{duration}] - {directory}$\t{command}"'
+    -h, --help: Print help (see more with '--help')

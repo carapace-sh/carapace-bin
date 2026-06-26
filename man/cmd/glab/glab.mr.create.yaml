@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create
+aliases:
+    - new
+description: Create a new merge request.
+flags:
+    --allow-collaboration: Allow commits from other members.
+    --copy-issue-labels: Copy labels from issue to the merge request. Used with --related-issue.
+    --create-source-branch: Create a source branch if it does not exist.
+    --draft: Mark merge request as a draft.
+    --fill-commit-body: Fill description with each commit body when multiple commits. Can only be used with --fill.
+    --no-editor: Don't open editor to enter a description. If true, uses prompt. Defaults to false.
+    --push: Push committed changes after creating merge request. Make sure you have committed changes.
+    --recover: Save the options to a file if the merge request creation fails. If the file exists, the options are loaded from the recovery file. (EXPERIMENTAL)
+    --remove-source-branch: Remove source branch on merge.
+    --reviewer=*: Request review from users by their `usernames`.
+    --signoff: Append a DCO signoff to the merge request description.
+    --squash-before-merge: Squash commits into a single commit when merging.
+    --target-project=&: Add target project by id, OWNER/REPO, or GROUP/NAMESPACE/REPO.
+    --wip: Mark merge request as a draft. Alternative to --draft.
+    -H, --head=: Select another head repository using the `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format, the project ID, or the full URL.
+    -a, --assignee=*: Assign merge request to people by their `usernames`.
+    -b, --target-branch=: The target or base branch into which you want your code merged into.
+    -d, --description=: Supply a description for the merge request.
+    -f, --fill: Do not prompt for title or description, and just use commit info. Sets `push` to `true`, and pushes the branch.
+    -i, --related-issue=: Create a merge request for an issue. If --title is not provided, uses the issue title.
+    -l, --label=*: Add label by name. Multiple labels should be comma-separated.
+    -m, --milestone=: The global ID or title of a milestone to assign.
+    -s, --source-branch=: Create a merge request from this branch. Default is the current branch.
+    -t, --title=: Supply a title for the merge request.
+    -w, --web: Continue merge request creation in a browser.
+    -y, --yes: Skip submission confirmation prompt. Use --fill to skip all optional prompts.

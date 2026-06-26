@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: catalog
+description: Interact with the catalog
+
+documentation:
+  command: >-
+    Interact with the Consul catalog to list services, nodes, and their health status.

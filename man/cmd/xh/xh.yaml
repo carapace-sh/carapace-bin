@@ -1,0 +1,66 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: xh
+description: Friendly and fast tool for sending HTTP requests
+flags:
+    --all: Show any intermediary requests/responses while following redirects with --follow
+    --cert-key=: A private key file to use with --cert
+    --cert=: Use a client side certificate for SSL
+    --check-status: Exit with an error status code if the server replies with an error
+    --curl: Print a translation to a curl command
+    --curl-long: Use the long versions of curl's flags
+    --debug: Print full error stack traces and debug log messages
+    --format-options=: Set output formatting options
+    --generate=: Generate shell completions or man pages
+    --help: Print help
+    --http-version=: HTTP version to use
+    --https: Make HTTPS requests if not specified in the URL
+    --ignore-netrc: Do not use credentials from .netrc
+    --interface=: Bind to a network interface or local IP address
+    --max-redirects=: Number of redirects to follow. Only respected if --follow is used
+    --multipart: Like --form, but force a multipart/form-data request even without files
+    --offline: Construct HTTP requests without sending them anywhere
+    --pretty=: Controls output processing
+    --proxy=: 'Use a proxy for a protocol. For example: --proxy https:http://proxy.host:8080'
+    --raw=: Pass raw request data without extra processing
+    --resolve=: Override DNS resolution for specific domain to a custom IP
+    --response-charset=: Override the response encoding for terminal display purposes
+    --response-mime=: Override the response mime type for coloring and formatting for the terminal
+    --session-read-only=: Create or read a session without updating it form the request/response exchange
+    --session=: Create, or reuse and update a session
+    --ssl=: Force a particular TLS version
+    --timeout=: Connection timeout of the request
+    --verify=: If 'no', skip SSL verification. If a file path, use it as a CA bundle
+    -4, --ipv4=: Resolve hostname to ipv4 addresses only
+    -6, --ipv6=: Resolve hostname to ipv6 addresses only
+    -A, --auth-type=: Specify the auth mechanism
+    -F, --follow: Do follow redirects
+    -I, --ignore-stdin: Do not attempt to read stdin
+    -P, --history-print=: The same as --print but applies only to intermediary requests/responses
+    -S, --stream: Always stream the response body
+    -V, --version: Print version
+    -a, --auth=: Authenticate as USER with PASS (-A basic|digest) or with TOKEN (-A bearer)
+    -b, --body: Print only the response body. Shortcut for --print=b
+    -c, --continue: Resume an interrupted download. Requires --download and --output
+    -d, --download: Download the body to a file instead of printing it
+    -f, --form: Serialize data items from the command line as form fields
+    -h, --headers: Print only the response headers. Shortcut for --print=h
+    -j, --json: Serialize data items from the command line as a JSON object
+    -m, --meta: Print only the response metadata. Shortcut for --print=m
+    -o, --output=: Save output to FILE instead of stdout
+    -p, --print=: String specifying what the output should contain
+    -q, --quiet: Do not print to stdout or stderr
+    -s, --style=: Output coloring style
+    -v, --verbose: Print the whole request as well as the response
+    -x, --compress: Content compressed (encoded) with Deflate algorithm
+
+documentation:
+  command: >-
+    Fast, friendly HTTP client with HTTPS and JSON support. xh is a
+    drop-in replacement for HTTPie with a rust implementation for speed.
+    Send requests with intuitive syntax: xh GET example.com, xh POST
+    example.com field=value. Support for all HTTP methods, headers,
+    authentication (Basic, Bearer, Hawk), and body formats. Pretty-print
+    JSON automatically; color output in terminals. Follow redirects,
+    download files, and stream responses. HTTP/2 and HTTP/3 support.
+    Shorthand: xh (same as xh GET), xhs (HTTPS by default). Sessions
+    persist authentication across requests. Validate with --verify.

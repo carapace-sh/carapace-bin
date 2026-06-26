@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: dedup
+description: Delete duplicate history entries (that have the same command, cwd and hostname)
+flags:
+    --dupkeep=!: How many recent duplicates to keep
+    -b, --before=!: Only delete results added before this date
+    -h, --help: Print help
+    -n, --dry-run: List matching history lines without performing the actual deletion

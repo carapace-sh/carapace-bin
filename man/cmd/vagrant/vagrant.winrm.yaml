@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: winrm
+description: executes commands on a machine via WinRM
+flags:
+    -c, --command=: Execute a WinRM command directly
+    -e, --elevated: Run with elevated credentials
+    -s, --shell=: Use specified shell (powershell, cmd)

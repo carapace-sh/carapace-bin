@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: mktemp
+description: create a temporary file or directory
+flags:
+    --help: display this help and exit
+    --suffix=: append SUFF to TEMPLATE
+    --version: output version information and exit
+    -d, --directory: create a directory, not a file
+    -p, --tmpdir?: interpret TEMPLATE relative to DIR
+    -q, --quiet: suppress diagnostics about file/dir-creation failure
+    -t: interpret TEMPLATE as a single file name component
+    -u, --dry-run: do not create anything; merely print a name (unsafe)

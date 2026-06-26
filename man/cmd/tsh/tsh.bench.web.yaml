@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: web
+description: Run Web benchmark tests
+hidden: true

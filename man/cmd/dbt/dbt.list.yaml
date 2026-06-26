@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+description: List the resources in your project
+flags:
+    --exclude=*: Specify the models to exclude
+    --indirect-selection=: Select all tests that are adjacent to selected resources
+    --output-keys=: Output keys
+    --output=: Output format
+    --profile=: Which profile to load. Overrides setting in dbt_project.yml
+    --project-dir=: Which directory to look in for the dbt_project.yml file
+    --resource-type=: Limit to resource type
+    --selector=: The selector name to use
+    --state=: Use the given directory as the source for json files to compare
+    --vars=: Supply variables to the project
+    -h, --help: show this help message and exit
+    -m, --models=*: Specify the nodes to include
+    -s, --select=*: Specify the nodes to include
+    -t, --target=: Which target to load for the given profile

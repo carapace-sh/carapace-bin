@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: set REPO KEY=VAL
+description: Set Git build environment key

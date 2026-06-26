@@ -1,0 +1,35 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: julia
+description: high-level, high-performance dynamic programming language for technical computing
+flags:
+    --banner=: Enable or disable startup banner
+    --bug-report?: Launch a bug report session.
+    --check-bounds=: Emit bounds checks always, never, or respect @inbounds declarations
+    --code-coverage?: Count executions of source lines
+    --color=: Enable or disable color text
+    --compiled-modules=: Enable or disable incremental precompilation of modules
+    --depwarn=: Enable or disable syntax and method deprecation warnings ("error" turns warnings into errors)
+    --handle-signals=: Enable or disable Julia's default signal handlers
+    --help-hidden: Uncommon options not shown by `-h`
+    --history-file=: Load or save history
+    --inline=: Control whether inlining is permitted, including overriding @inline declarations
+    --machine-file=: Run processes on hosts listed in <file>
+    --math-mode=: Disallow or enable unsafe floating point optimizations
+    --project=: Set <dir> as the home project/environment
+    --startup-file=: Load `~/.julia/config/startup.jl`
+    --sysimage-native-code=: Use native code from system image if available
+    --track-allocation?: Count bytes allocated by each source line
+    --warn-overwrite=: Enable or disable method overwrite warnings
+    --warn-scope=: Enable or disable warning for ambiguous top-level scope
+    -E, --print=: Evaluate <expr> and display the result
+    -H, --home=: Set location of `julia` executable
+    -J, --sysimage=: Start up with the given system image file
+    -L, --load=: Load <file> immediately on all processors
+    -O, --optimize?: Set the optimization level
+    -e, --eval=: Evaluate <expr>
+    -h, --help: Print this message (--help-hidden for more)
+    -i: Interactive mode; REPL runs and isinteractive() is true
+    -p, --procs=: Integer value N launches N additional local worker processes
+    -q, --quiet: 'Quiet startup: no banner, suppress REPL warnings'
+    -t, --threads=: Enable N threads
+    -v, --version: Display version information

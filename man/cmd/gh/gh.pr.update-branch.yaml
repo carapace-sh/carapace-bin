@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: update-branch [<number> | <url> | <branch>]
+description: Update a pull request branch
+group: Targeted commands
+flags:
+    --rebase: Update PR branch by rebasing on top of latest base branch

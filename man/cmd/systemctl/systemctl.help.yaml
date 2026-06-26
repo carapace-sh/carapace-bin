@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: help
+description: Show manual for one or more units
+group: unit
+documentation:
+  command: |
+    Show manual pages for one or more units, if available. If a PID is
+    given, the manual pages for the unit the process belongs to are shown.

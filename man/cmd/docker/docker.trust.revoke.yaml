@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: revoke [OPTIONS] IMAGE[:TAG]
+description: Remove trust for an image
+flags:
+    -y, --yes: Do not prompt for confirmation

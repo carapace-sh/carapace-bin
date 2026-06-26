@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create
+description: Create intentions for service connections.
+flags:
+    --allow: Create an intention that allows when matched.
+    --ca-file=: Path to a CA file to use for TLS when communicating with Consul.
+    --ca-path=: Path to a directory of CA certificates to use for TLS when communicating with Consul.
+    --client-cert=: Path to a client cert file to use for TLS when 'verify_incoming' is enabled.
+    --client-key=: Path to a client key file to use for TLS when 'verify_incoming' is enabled.
+    --datacenter=: Name of the datacenter to query.
+    --deny: Create an intention that denies when matched.
+    --file: Read intention data from one or more files.
+    --http-addr=: The `address` and port of the Consul HTTP agent.
+    --meta=*: Metadata to set on the intention, formatted as key=value.
+    --namespace=: Specifies the namespace to query.
+    --replace: Replace matching intentions.
+    --stale: Permit any Consul server (non-leader) to respond to this request.
+    --tls-server-name=: The server name to use as the SNI host when connecting via TLS.
+    --token-file=: File containing the ACL token to use in the request.
+    --token=: ACL token to use in the request.

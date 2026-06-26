@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+documentation:
+  command: >-
+    Compare two sorted files line by line. Output shows lines
+    unique to file 1, unique to file 2, and common to both,
+    in three columns.
+description: compare two sorted files line by line
+flags:
+    --check-order: check that the input is correctly sorted
+    --help: display this help and exit
+    --nocheck-order: do not check that the input is correctly sorted
+    --output-delimiter=: separate columns with STR
+    --total: output a summary
+    --version: output version information and exit
+    "-1": suppress column 1 (lines unique to FILE1)
+    "-2": suppress column 2 (lines unique to FILE2)
+    "-3": suppress column 3 (lines that appear in both files)
+    -z, --zero-terminated: line delimiter is NUL, not newline

@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: copy
+description: Copy the notes for the first object onto the second object
+flags:
+  --stdin: Also read the object names to remove notes from the standard input
+  -f, --force: Overwrite existing notes
+documentation:
+  flag:
+    force: |-
+      When adding notes to an object that already has notes,
+      overwrite the existing notes (instead of aborting).
+    stdin: Only valid for `remove` and `copy`. See the respective subcommands.

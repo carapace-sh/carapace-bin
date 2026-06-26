@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: publish [<directory>] [flags]
+description: Validate and publish skills to a GitHub repository (preview)
+flags:
+    --dry-run: Validate without publishing
+    --fix: Auto-fix issues where possible without publishing (e.g. strip install metadata)
+    --tag=: Version tag for the release (e.g. v1.0.0)

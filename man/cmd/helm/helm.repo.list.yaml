@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+description: list chart repositories
+flags:
+    -o, --output=: 'prints the output in the specified format. Allowed values: table, json, yaml'

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: horizon [--environment [ENVIRONMENT]]
+description: Start a master supervisor in the foreground
+flags:
+    --environment=: The environment name

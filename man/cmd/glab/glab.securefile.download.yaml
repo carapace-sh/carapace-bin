@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: download <fileID> [flags]
+description: Download a secure file for a project.
+flags:
+    --all: Download all (limit 100) of a project's secure files. Files are downloaded with their original name and file extension.
+    --force-download: 'Force download file(s) even if checksum verification fails. Warning: when enabled, this setting allows the download of files that are corrupt or tampered with.'
+    --no-verify: 'Do not verify the checksum of the downloaded file(s). Warning: when enabled, this setting allows the download of files that are corrupt or tampered with.'
+    --output-dir=: Output directory for files downloaded with --all.
+    -p, --path=: Path to download the secure file to, including filename and extension.

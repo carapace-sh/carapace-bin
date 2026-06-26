@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: zig
+description: General-purpose programming language and toolchain
+flags:
+    --color=: Enable or disable colored error messages
+    -h, --help: Print help
+    -v, --version: Print version number and exit

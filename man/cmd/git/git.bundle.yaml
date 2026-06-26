@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: bundle
+description: Move objects and refs by archive
+group: main
+flags:
+  -v, --verbose: be verbose
+documentation:
+  command: |-
+    Create, unpack, and manipulate "bundle" files. Bundles are used for
+    the "offline" transfer of Git objects without an active "server"
+    sitting on the other side of the network connection.
+
+    They can be used to create both incremental and full backups of a
+    repository (see the "full backup" example in "EXAMPLES"), and to relay
+    the state of the references in one repository to another (see the second
+    example).
+
+    Git commands that fetch or otherwise "read" via protocols such as
+    `ssh://` and `https://` can also operate on bundle files. It is
+    possible [git-clone](cmd://git/clone) a new repository from a bundle, to use
+    [git-fetch](cmd://git/fetch) to fetch from one, and to list the references
+    contained within it with [git-ls-remote](cmd://git/ls-remote). There's no
+    corresponding "write" support, i.e. a 'git push' into a bundle is not
+    supported.

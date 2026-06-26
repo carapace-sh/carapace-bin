@@ -1,0 +1,46 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: deinit
+description: Unregister the given submodules
+flags:
+  --all: remove the whole submodule section from the config as well
+  --force: remove working tree even if it contains local modifications
+documentation:
+  command: |-
+    Unregister the given submodules, i.e. remove the whole
+    `submodule.$name section from .git/config together with their work tree. Further calls to `git submodule update`, `git submodule foreach
+    and `git submodule sync` will skip any unregistered submodules until
+    they are initialized again, so use this command if you don't want to
+    have a local checkout of the submodule in your working tree anymore.
+
+    When the command is run without pathspec, it errors out,
+    instead of deinit-ing everything, to prevent mistakes.
+
+    If `--force` is specified, the submodule's working tree will
+    be removed even if it contains local modifications.
+
+    If you really want to remove a submodule from the repository and commit
+    that use [git-rm](cmd://git/rm) instead. See [gitsubmodules](man://gitsubmodules/7) for removal
+    options.
+  flag:
+    all: |-
+      Unregister all submodules in the working tree. This option is only
+      valid for the `deinit` command.
+    force: |-
+      Force the command to proceed, even if it would otherwise fail.
+      This option is only valid for `add`, `deinit` and `update` commands.
+      `add`;; allow adding an otherwise ignored submodule path.
+      This option is also used to bypass a check that the submodule's name
+      is not already in use. By default, `git submodule add` will fail if
+      the proposed name (which is derived from the path) is already registered
+      for another submodule in the repository. Using `--force` allows the command
+      to proceed by automatically generating a unique name by appending a number
+      to the conflicting name (e.g., if a submodule named `child` exists, it will
+      try 'child1', and so on).
+      `deinit`;; the submodule working trees will be removed even
+      if they contain local changes.
+      `update`;; (only effective with the checkout procedure),
+      throw away local changes in submodules when switching to a
+      different commit; and always run a checkout operation in the
+      submodule, even if the commit listed in the index of the
+      containing repository matches the commit checked out in the
+      submodule.

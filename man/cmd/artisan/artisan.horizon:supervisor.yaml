@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: horizon:supervisor [--balance [BALANCE]] [--delay [DELAY]] [--backoff [BACKOFF]] [--max-jobs [MAX-JOBS]] [--max-time [MAX-TIME]] [--force] [--max-processes [MAX-PROCESSES]] [--min-processes [MIN-PROCESSES]] [--memory [MEMORY]] [--nice [NICE]] [--paused] [--queue [QUEUE]] [--sleep [SLEEP]] [--timeout [TIMEOUT]] [--tries [TRIES]] [--auto-scaling-strategy [AUTO-SCALING-STRATEGY]] [--balance-cooldown [BALANCE-COOLDOWN]] [--balance-max-shift [BALANCE-MAX-SHIFT]] [--workers-name [WORKERS-NAME]] [--parent-id [PARENT-ID]] [--rest [REST]] [--] <name> <connection>
+description: Start a new supervisor
+flags:
+    --auto-scaling-strategy=: If supervisor should scale by jobs or time to complete
+    --backoff=: The number of seconds to wait before retrying a job that encountered an uncaught exception
+    --balance-cooldown=: The number of seconds to wait in between auto-scaling attempts
+    --balance-max-shift=: The maximum number of processes to increase or decrease per one scaling
+    --balance=: The balancing strategy the supervisor should apply
+    --delay=: The number of seconds to delay failed jobs (Deprecated)
+    --force: Force the worker to run even in maintenance mode
+    --max-jobs=: The number of jobs to process before stopping a child process
+    --max-processes=: The maximum number of total workers to start
+    --max-time=: The maximum number of seconds a child process should run
+    --memory=: The memory limit in megabytes
+    --min-processes=: The minimum number of workers to assign per queue
+    --nice=: The process priority
+    --parent-id=: The parent process ID
+    --paused: Start the supervisor in a paused state
+    --queue=: The names of the queues to work
+    --rest=: Number of seconds to rest between jobs
+    --sleep=: Number of seconds to sleep when no job is available
+    --timeout=: The number of seconds a child process can run
+    --tries=: Number of times to attempt a job before logging it failed
+    --workers-name=: The name that should be assigned to the workers

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: check
+description: Check for updates to Rust toolchains and rustup
+flags:
+    -h, --help: Print help

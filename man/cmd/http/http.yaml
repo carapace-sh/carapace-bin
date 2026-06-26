@@ -1,0 +1,62 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: http
+description: command-line HTTP client for the API era
+flags:
+    --all: Show any intermediary requests/responses as well.
+    --boundary=: Specify a custom boundary string for multipart/form-data requests.
+    --cert-key=: The private key to use with SSL.
+    --cert=: You can specify a local cert to use as client side SSL certificate.
+    --check-status: By default, HTTPie exits with 0 when no network or other fatal errors occur.
+    --chunked: ""
+    --ciphers=: A string in the OpenSSL cipher list format.
+    --debug: Prints the exception traceback should one occur.
+    --default-scheme=: The default scheme to use if not specified in the URL.
+    --format-options=: Controls output formatting.
+    --help: Show this help message and exit.
+    --ignore-netrc: Ignore credentials from .netrc.
+    --max-headers=: The maximum number of response headers to be read before giving up.
+    --max-redirects=: By default, requests have a limit of 30 redirects (works with --follow).
+    --multipart: Similar to --form, but always sends a multipart/form-data request.
+    --offline: Build the request and print it but don’t actually send it.
+    --path-as-is: Bypass dot segment (/../ or /./) URL squashing.
+    --pretty=: Controls output processing.
+    --proxy=: String mapping protocol to the URL of the proxy.
+    --session-read-only=: Create or read a session without updating it form the request/response exchange.
+    --session=: Create, or reuse and update a session.
+    --sorted: Re-enables all sorting options while formatting output.
+    --ssl=: The desired protocol version to use.
+    --timeout=: The connection timeout of the request in seconds.
+    --traceback: Prints the exception traceback should one occur.
+    --unsorted: Disables all sorting while formatting output.
+    --verify=: Set to "no" (or "false") to skip checking the host's SSL certificate.
+    --version: Show version and exit.
+    -A, --auth-type=: The authentication mechanism to be used.
+    -F, --follow: Follow 30x Location redirects.
+    -I, --ignore-stdin: Do not attempt to read stdin.
+    -P, --history-print=: The same as --print, -p but applies only to intermediary requests/responses.
+    -S, --stream: Always stream the response body by line, i.e., behave like `tail -f'.
+    -a, --auth=: If only the username is provided (-a username), HTTPie will prompt for the password.
+    -b, --body: Print only the response body.
+    -c, --continue: Resume an interrupted download.
+    -d, --download: Do not print the response body to stdout.
+    -f, --form: Data items from the command line are serialized as form fields.
+    -h, --headers: Print only the response headers.
+    -j, --json: Data items from the command line are serialized as a JSON object.
+    -o, --output=: Save output to FILE instead of stdout.
+    -p, --print=: String specifying what the output should contain.
+    -q, --quiet: Do not print to stdout or stderr.
+    -s, --style=: ""
+    -v, --verbose: Verbose output.
+    -x, --compress: Content compressed (encoded) with Deflate algorithm.
+
+documentation:
+  command: >-
+    Send HTTP requests using URL syntax. http is a simple, curl-like
+    tool that infers method from URL scheme. GET is default: http
+    example.com. Use https by default; http forces HTTP. Specify method:
+    http POST example.com field=value. Send headers with Header:value.
+    Send JSON body with JSON string. Authenticate with user:pass@host.
+    Download to file with :FILENAME. Follow redirects with -L.
+    Print request/response details with -v. Pretty-print JSON with -p.
+    Timeout with --timeout. No cookies by default; use --session
+    for cookie persistence. Download files with http --download URL.

@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: lint
+description: Parse Benthos templates and report any linting errors

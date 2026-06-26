@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: set
+description: Set configuration value
+persistentflags:
+    --path: The key contains a path to a property in a map or list to set
+    --plaintext: Save the value as plaintext (unencrypted)
+    --secret: Encrypt the value instead of storing it in plaintext

@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: conjure
+description: execute a Magick Scripting Language (MSL) XML script
+flags:
+    -debug=: display copious debugging information
+    -help: print program options
+    -log=: format of debugging information
+    -verbose: print detailed information about the image
+    -version: print version information

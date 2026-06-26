@@ -1,0 +1,43 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ls-files
+description: Show information about files in the index and the working tree
+group: low-level interrogator
+flags:
+  --abbrev=: use <n> digits to display object names
+  --debug: show debugging data
+  --deduplicate: suppress duplicate entries
+  --directory: show 'other' directories' names only
+  --empty-directory: don't show empty directories
+  --eol: show line endings of files
+  --error-unmatch: if any <file> is not in the index, treat this as an error
+  --exclude-per-directory=: read additional per-directory exclude patterns in <file>
+  --exclude-standard: add the standard git exclusions
+  --format=: format to use for the output
+  --full-name: make the output relative to the project top directory
+  --recurse-submodules: recurse through submodules
+  --resolve-undo: show resolve-undo information
+  --sparse: show sparse directories in the presence of a sparse index
+  --with-tree=: pretend that paths removed since <tree-ish> are still present
+  -X, --exclude-from=: read exclude patterns from <file>
+  -c, --cached: show cached files in the output (default)
+  -d, --deleted: show deleted files in the output
+  -f: use lowercase letters for 'fsmonitor clean' files
+  -i, --ignored: show ignored files in the output
+  -k, --killed: show files on the filesystem that need to be removed
+  -m, --modified: show modified files in the output
+  -o, --others: show other files in the output
+  -s, --stage: show staged contents' object name in the output
+  -t: identify the file status with tags
+  -u, --unmerged: show unmerged files in the output
+  -v: use lowercase letters for 'assume unchanged' files
+  -x, --exclude=: skip files matching pattern
+  -z: separate paths with the NUL character
+documentation:
+  command: |-
+    This command merges the file listing in the index with the actual working
+    directory list, and shows different combinations of the two.
+
+    Several flags can be used to determine which files are
+    shown, and each file may be printed multiple times if there are
+    multiple entries in the index or if multiple statuses are applicable for
+    the relevant file selection options.

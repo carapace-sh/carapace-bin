@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: kubectl
+description: Run a kubectl binary matching the cluster version
+group: advanced
+flags:
+    --ssh: Use SSH for running kubernetes client on the node

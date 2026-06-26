@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: update
+aliases:
+    - upgrade
+description: Upgrade your system
+flags:
+    --builddir=: build directory (use with --aur)
+    --devel: also upgrade development packages (use with --aur)
+    --disable-downgrade: disable package downgrades
+    --enable-downgrade: enable package downgrades
+    --force-refresh: force the refresh of the databases
+    --ignore=: ignore a package upgrade
+    --no-aur: do not upgrade packages installed from AUR
+    --no-confirm: bypass any and all confirmation messages
+    --no-devel: do not upgrade development packages
+    --overwrite=: overwrite conflicting files
+    -a, --aur: also upgrade packages installed from AUR
+    -w, --download-only: download all packages but do not install/upgrade
