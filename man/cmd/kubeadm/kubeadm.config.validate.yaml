@@ -2,5 +2,6 @@
 name: validate
 description: Read a file containing the kubeadm configuration API and report any validation problems
 flags:
+    --allow-deprecated-api: Allow validation of deprecated APIs.
     --allow-experimental-api: Allow validation of experimental, unreleased APIs.
     --config=: Path to a kubeadm configuration file.

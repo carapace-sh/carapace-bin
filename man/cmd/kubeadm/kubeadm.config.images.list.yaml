@@ -7,6 +7,10 @@ flags:
     -o, --output=: 'Output format. One of: text|json|yaml|kyaml|go-template|go-template-file|template|templatefile|jsonpath|jsonpath-as-json|jsonpath-file.'
 persistentflags:
     --config=: Path to a kubeadm configuration file.
-    --feature-gates=: 'A set of key=value pairs that describe feature gates for various features. Options are:'
+    --feature-gates=: |-
+        A set of key=value pairs that describe feature gates for various features. Options are:
+        NodeLocalCRISocket=true|false (default=true)
+        PublicKeysECDSA=true|false (DEPRECATED - default=false)
+        RootlessControlPlane=true|false (ALPHA - default=false)
     --image-repository=: Choose a container registry to pull control plane images from
     --kubernetes-version=: Choose a specific Kubernetes version for the control plane.
