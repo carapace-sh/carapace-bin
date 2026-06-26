@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: bootstrap-token
 description: Configures bootstrap token and cluster-info RBAC rules
+documentation:
+    command: Configure bootstrap tokens during the upgrade apply process. Ensures tokens are properly set up for joining new nodes after the upgrade.
 flags:
     --config=: Path to a kubeadm configuration file.
     --dry-run: Do not change any state, just output what actions would be performed.

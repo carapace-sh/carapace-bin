@@ -3,3 +3,5 @@ name: upload-config
 aliases:
     - uploadconfig
 description: Upload the kubeadm and kubelet configuration to a ConfigMap
+documentation:
+    command: Upload the kubeadm and kubelet configuration to ConfigMaps in the cluster, enabling correct configuration of system components and a seamless user experience when upgrading.

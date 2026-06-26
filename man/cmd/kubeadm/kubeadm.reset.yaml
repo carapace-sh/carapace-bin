@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: reset
 description: Performs a best effort revert of changes made to this host by 'kubeadm init' or 'kubeadm join'
+documentation:
+    command: Revert changes made to this host by kubeadm init or kubeadm join. Cleans up the local file system. For control-plane nodes, also removes the local stacked etcd member. Does not delete etcd data with external etcd, clean CNI config in /etc/cni/net.d, clean iptables/nftables/IPVS rules, or remove /home/rsteube/.kube.
 flags:
     --cert-dir=: The path to the directory where the certificates are stored. If specified, clean this directory.
     --cleanup-tmp-dir: Cleanup the "/etc/kubernetes/tmp" directory

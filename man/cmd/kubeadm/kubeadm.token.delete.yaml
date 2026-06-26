@@ -1,3 +1,5 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: delete [token-value] ...
 description: Delete bootstrap tokens on the server
+documentation:
+    command: Delete bootstrap tokens from the server. Accepts the full token string or just the token ID.

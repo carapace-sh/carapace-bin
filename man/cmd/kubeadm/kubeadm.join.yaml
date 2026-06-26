@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: join [api-server-endpoint]
 description: Run this on any machine you wish to join an existing cluster
+documentation:
+    command: Initialize a Kubernetes worker or control-plane node and join it to an existing cluster. Establishes bidirectional trust through token-based discovery (node trusts the control plane) and TLS bootstrap (control plane trusts the node). Supports --control-plane to join as an additional control-plane node, --certificate-key to download shared certificates, --skip-phases, and --config.
 flags:
     --apiserver-advertise-address=: If the node should host a new control plane instance, the IP address the API Server will advertise it's listening on. If not set the default network interface will be used.
     --apiserver-bind-port=: If the node should host a new control plane instance, the port for the API Server to bind to.

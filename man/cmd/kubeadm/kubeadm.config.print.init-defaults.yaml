@@ -1,5 +1,7 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: init-defaults
 description: Print default init configuration, that can be used for 'kubeadm init'
+documentation:
+    command: Print default init configuration for kubeadm init. Output can be used as a starting point for a custom configuration file.
 flags:
     --component-configs=*: 'A comma-separated list for component config API objects to print the default values for. Available values: [KubeProxyConfiguration KubeletConfiguration]. If this flag is not set, no component configs will be printed.'

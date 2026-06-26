@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: coredns
 description: Upgrade the CoreDNS addon
+documentation:
+    command: Upgrade the CoreDNS addon on the node during the upgrade node process.
 flags:
     --config=: Path to a kubeadm configuration file.
     --dry-run: Do not change any state, just output the actions that would be performed.

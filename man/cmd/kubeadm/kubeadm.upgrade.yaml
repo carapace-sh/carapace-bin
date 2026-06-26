@@ -1,3 +1,5 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: upgrade
 description: Upgrade your cluster smoothly to a newer version with this command
+documentation:
+    command: Upgrade a Kubernetes cluster to a new version. Provides commands to plan an upgrade, apply it, and upgrade individual nodes. Since v1.15.0, kubeadm upgrade apply and kubeadm upgrade node also automatically renew kubeadm-managed certificates (opt-out with --certificate-renewal=false).

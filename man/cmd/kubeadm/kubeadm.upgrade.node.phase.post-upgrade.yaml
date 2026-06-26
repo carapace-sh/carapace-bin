@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: post-upgrade
 description: Run post upgrade tasks
+documentation:
+    command: Run post-upgrade tasks on the node after the upgrade.
 flags:
     --config=: Path to a kubeadm configuration file.
     --dry-run: Do not change any state, just output the actions that would be performed.

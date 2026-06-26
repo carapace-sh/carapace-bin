@@ -1,3 +1,5 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: phase
 description: Use this command to invoke single phase of the "apply" workflow
+documentation:
+    command: Invoke individual phases of the kubeadm upgrade apply workflow. Each phase can be run separately.

@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: download-certs [api-server-endpoint]
 description: Download certificates shared among control-plane nodes from the kubeadm-certs Secret
+documentation:
+    command: Download control-plane certificates from the kubeadm-certs Secret in the cluster. Requires --certificate-key to decrypt the certificates.
 flags:
     --certificate-key=: Use this key to decrypt the certificate secrets uploaded by init. The certificate key is a hex encoded string that is an AES key of size 32 bytes.
     --config=: Path to a kubeadm configuration file.

@@ -1,5 +1,7 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: config
 description: Manage configuration for a kubeadm cluster persisted in a ConfigMap in the cluster
+documentation:
+    command: Manage the kubeadm configuration that is uploaded to the cluster during kubeadm init (stored in a ConfigMap called kubeadm-config in the kube-system namespace) and read during kubeadm join, kubeadm reset, and kubeadm upgrade.
 persistentflags:
     --kubeconfig=: The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.

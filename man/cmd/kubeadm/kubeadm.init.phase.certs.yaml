@@ -1,3 +1,5 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: certs
 description: Certificate generation
+documentation:
+    command: Generate all required certificates for the cluster. If existing cert/key files are present in the cert directory, kubeadm skips generation for those and uses the existing files. Users can provide their own CA by placing it in /etc/kubernetes/pki before running.

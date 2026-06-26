@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: certs [api-server-endpoint]
 description: Generate the certificates for the new control plane components
+documentation:
+    command: Generate the certificates for a new control-plane node joining the cluster. Uses certificates downloaded from the kubeadm-certs Secret.
 flags:
     --apiserver-advertise-address=: If the node should host a new control plane instance, the IP address the API Server will advertise it's listening on. If not set the default network interface will be used.
     --config=: Path to a kubeadm configuration file.

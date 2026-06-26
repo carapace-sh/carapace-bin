@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: generate-csr
 description: Generate keys and certificate signing requests
+documentation:
+    command: Generate keys and certificate signing requests (CSRs) for all control-plane certificates and kubeconfig files. Designed for use in External CA Mode — generates CSRs which can be submitted to an external certificate authority for signing.
 flags:
     --cert-dir=: The path where to save the certificates
     --config=: Path to a kubeadm configuration file.

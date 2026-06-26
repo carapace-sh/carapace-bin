@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: all
 description: Upgrade all the addons
+documentation:
+    command: Upgrade all addon components (CoreDNS and kube-proxy) on the node during the upgrade node process.
 flags:
     --config=: Path to a kubeadm configuration file.
     --dry-run: Do not change any state, just output the actions that would be performed.

@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: apiserver-etcd-client
 description: Renew the certificate the apiserver uses to access etcd
+documentation:
+    command: Renew the certificate the API server uses to access etcd.
 flags:
     --cert-dir=: The path where to save the certificates
     --config=: Path to a kubeadm configuration file.

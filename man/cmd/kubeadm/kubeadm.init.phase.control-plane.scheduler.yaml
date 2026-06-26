@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: scheduler
 description: Generates the kube-scheduler static Pod manifest
+documentation:
+    command: Generate the kube-scheduler static Pod manifest. Configures the scheduler with appropriate flags and certificates.
 flags:
     --cert-dir=: The path where to save and store the certificates.
     --config=: Path to a kubeadm configuration file.

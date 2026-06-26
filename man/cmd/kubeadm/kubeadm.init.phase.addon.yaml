@@ -1,3 +1,5 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: addon
 description: Install required addons for passing conformance tests
+documentation:
+    command: 'Install required addons for passing conformance tests. Deploys CoreDNS and kube-proxy via the API server. Note: although the DNS server is deployed, it will not be scheduled until CNI is installed.'

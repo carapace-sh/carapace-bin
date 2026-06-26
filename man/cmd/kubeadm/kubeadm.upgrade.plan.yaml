@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: plan [version] [flags]
 description: Check which versions are available to upgrade to and validate whether your current cluster is upgradeable.
+documentation:
+    command: Check which versions are available to upgrade to and validate whether the current cluster is upgradeable. Can only run on control-plane nodes with admin.conf.
 flags:
     --allow-experimental-upgrades: Show unstable versions of Kubernetes as an upgrade alternative and allow upgrading to an alpha/beta/release candidate versions of Kubernetes.
     --allow-missing-template-keys: If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.

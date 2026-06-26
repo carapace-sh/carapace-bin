@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: migrate
 description: Read an older version of the kubeadm configuration API types from a file, and output the similar config object for the newer version
+documentation:
+    command: Convert old configuration files using a deprecated API version to a newer, supported API version (kubeadm.k8s.io/v1beta4). Performs the conversion locally in the CLI without touching anything in the cluster.
 flags:
     --allow-experimental-api: Allow migration to experimental, unreleased APIs.
     --new-config=: Path to the resulting equivalent kubeadm config file using the new API version. Optional, if not specified output will be sent to STDOUT.

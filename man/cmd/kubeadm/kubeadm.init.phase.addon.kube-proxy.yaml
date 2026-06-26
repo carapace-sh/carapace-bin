@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: kube-proxy
 description: Install the kube-proxy addon to a Kubernetes cluster
+documentation:
+    command: Install the kube-proxy addon to a Kubernetes cluster via the API server. Kube-proxy maintains network rules on nodes for service routing.
 flags:
     --apiserver-advertise-address=: The IP address the API Server will advertise it's listening on. If not set the default network interface will be used.
     --apiserver-bind-port=: Port for the API Server to bind to.

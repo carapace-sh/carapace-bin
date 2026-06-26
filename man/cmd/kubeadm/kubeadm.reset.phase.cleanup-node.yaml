@@ -3,6 +3,8 @@ name: cleanup-node
 aliases:
     - cleanupnode
 description: Run cleanup node.
+documentation:
+    command: Clean up the node local file system from files created by kubeadm init or kubeadm join. Removes certificates, kubeconfig files, and static pod manifests.
 flags:
     --cert-dir=: The path to the directory where the certificates are stored. If specified, clean this directory.
     --cleanup-tmp-dir: Cleanup the "/etc/kubernetes/tmp" directory

@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: kubeadm
 description: 'kubeadm: easily bootstrap a secure Kubernetes cluster'
+documentation:
+    command: Bootstrap a secure Kubernetes cluster using best-practice fast paths. Provides `kubeadm init` to initialize a control-plane node and `kubeadm join` to join worker or additional control-plane nodes to the cluster. By design, kubeadm only handles bootstrapping — not machine provisioning or addon installation. Higher-level tooling is expected to build on top of kubeadm for conformant cluster deployments.
 persistentflags:
     --rootfs=: The path to the 'real' host root filesystem. This will cause kubeadm to chroot into the provided path.
     --vmodule=: comma-separated list of pattern=N settings for file-filtered logging

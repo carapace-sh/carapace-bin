@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: control-plane
 description: Generate the manifests for the new control plane components
+documentation:
+    command: Generate the static Pod manifest for the control-plane on the joining node.
 flags:
     --apiserver-advertise-address=: If the node should host a new control plane instance, the IP address the API Server will advertise it's listening on. If not set the default network interface will be used.
     --apiserver-bind-port=: If the node should host a new control plane instance, the port for the API Server to bind to.

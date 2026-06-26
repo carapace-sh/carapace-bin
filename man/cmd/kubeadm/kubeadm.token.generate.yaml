@@ -1,3 +1,5 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: generate
 description: Generate and print a bootstrap token, but do not create it on the server
+documentation:
+    command: Generate and print a random bootstrap token but do not create it on the server. For convenience only — users can provide their own token in the correct format.

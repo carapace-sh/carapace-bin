@@ -3,6 +3,8 @@ name: bootstrap-token
 aliases:
     - bootstraptoken
 description: Generates bootstrap tokens used to join a node to a cluster
+documentation:
+    command: Generate bootstrap tokens used for establishing bidirectional trust between a node joining the cluster and a control-plane node. Writes the cluster-info ConfigMap, sets up RBAC access rules, and configures auto-approval for new CSR requests.
 flags:
     --config=: Path to a kubeadm configuration file.
     --dry-run: Don't apply any changes; just output what would be done.

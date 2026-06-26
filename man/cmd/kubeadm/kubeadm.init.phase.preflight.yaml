@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: preflight
 description: Run pre-flight checks
+documentation:
+    command: Run pre-flight checks to validate the system state before making changes. Some checks only trigger warnings; others are errors and will cause kubeadm to exit until the problem is corrected or --ignore-preflight-errors is specified.
 flags:
     --config=: Path to a kubeadm configuration file.
     --cri-socket=: Path to the CRI socket to connect. If empty kubeadm will try to auto-detect this value; use this option only if you have more than one CRI installed or if you have non-standard CRI socket.

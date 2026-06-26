@@ -1,3 +1,5 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: show-join-command
 description: Show the join command for control-plane and worker node
+documentation:
+    command: Show the kubeadm join command for control-plane and worker nodes. Displays the commands that can be used to add additional nodes to the cluster.

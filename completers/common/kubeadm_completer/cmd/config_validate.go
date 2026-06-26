@@ -14,6 +14,7 @@ var config_validateCmd = &cobra.Command{
 func init() {
 	carapace.Gen(config_validateCmd).Standalone()
 
+	config_validateCmd.Flags().Bool("allow-deprecated-api", false, "Allow validation of deprecated APIs.")
 	config_validateCmd.Flags().Bool("allow-experimental-api", false, "Allow validation of experimental, unreleased APIs.")
 	config_validateCmd.Flags().String("config", "", "Path to a kubeadm configuration file.")
 	configCmd.AddCommand(config_validateCmd)

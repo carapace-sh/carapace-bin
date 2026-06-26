@@ -1,3 +1,5 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: wait-control-plane
 description: Wait for the control plane to start
+documentation:
+    command: Wait for the control plane to start. Kubeadm waits until the control plane components are up and running before continuing the init sequence.

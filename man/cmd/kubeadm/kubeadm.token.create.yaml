@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: create [token]
 description: Create bootstrap tokens on the server
+documentation:
+    command: Create a bootstrap token on the server. Token format is [a-z0-9]{6}.[a-z0-9]{16}. If no token is given, kubeadm generates a random one. Supports --ttl (default 24h), --print-join-command to output the full kubeadm join command, and --usages to specify token use cases.
 flags:
     --certificate-key=: When used together with '--print-join-command', print the full 'kubeadm join' flag needed to join the cluster as a control-plane. To create a new certificate key you must use 'kubeadm init phase upload-certs --upload-certs'.
     --config=: Path to a kubeadm configuration file.

@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: diff [version]
 description: 'Show what differences would be applied to existing static pod manifests. See also: kubeadm upgrade apply --dry-run'
+documentation:
+    command: Show differences that would be applied to existing static pod manifests during an upgrade. Useful for reviewing changes before running the actual upgrade.
 flags:
     --config=: Path to a kubeadm configuration file.
     --kubeconfig=: The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.

@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: all
 description: Renew all available certificates
+documentation:
+    command: Renew all available certificates in the cluster. Renewals run unconditionally regardless of expiration date. After renewal, control-plane components must be restarted and renewed certificates re-distributed.
 flags:
     --cert-dir=: The path where to save the certificates
     --config=: Path to a kubeadm configuration file.
