@@ -11,12 +11,16 @@ type pixiInfo struct {
 }
 
 type environmentInfo struct {
-	Name         string   `json:"name"`
-	Features     []string `json:"features"`
-	Dependencies []string `json:"dependencies"`
-	Platforms    []string `json:"platforms"`
-	Tasks        []string `json:"tasks"`
-	Channels     []string `json:"channels"`
+	Name         string         `json:"name"`
+	Features     []string       `json:"features"`
+	Dependencies []string       `json:"dependencies"`
+	Platforms    []platformInfo `json:"platforms"`
+	Tasks        []string       `json:"tasks"`
+	Channels     []string       `json:"channels"`
+}
+
+type platformInfo struct {
+	Name string `json:"name"`
 }
 
 func actionExecPixi(arg ...string) func(f func(output []byte) carapace.Action) carapace.Action {
