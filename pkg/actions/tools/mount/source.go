@@ -1,6 +1,8 @@
 package mount
 
 import (
+	"runtime"
+
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/fs"
 )
@@ -11,10 +13,31 @@ import (
 //	LABEL=ROOT
 func ActionSources() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return carapace.Batch(
-			fs.ActionBlockDevices(),
-			carapace.ActionFiles(),
-			carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
+		var keyValues carapace.Action
+		switch runtime.GOOS {
+		case "darwin":
+			keyValues = carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
+				switch len(c.Parts) {
+				case 0:
+					return carapace.ActionValuesDescribed(
+						"LABEL", "specifies device by volume name",
+						"UUID", "specifies device by volume UUID",
+					).Suffix("=")
+				case 1:
+					switch c.Parts[0] {
+					case "LABEL":
+						return fs.ActionLabels()
+					case "UUID":
+						return fs.ActionUuids()
+					default:
+						return carapace.ActionValues()
+					}
+				default:
+					return carapace.ActionValues()
+				}
+			})
+		default:
+			keyValues = carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
 				switch len(c.Parts) {
 				case 0:
 					return carapace.ActionValuesDescribed(
@@ -43,7 +66,12 @@ func ActionSources() carapace.Action {
 				default:
 					return carapace.ActionValues()
 				}
-			}),
+			})
+		}
+		return carapace.Batch(
+			fs.ActionBlockDevices(),
+			carapace.ActionFiles(),
+			keyValues,
 		).ToA()
 	}).Tag("sources")
 }
