@@ -14,6 +14,7 @@ func Nushell(completers []string) string {
 
 let carapace_completer = {|spans|
   load-env {
+  	CARAPACE_SHELL: 'nushell'
   	CARAPACE_SHELL_BUILTINS: (help commands | where category != "" | get name | each { split row " " | first } | uniq  | str join "\n")
   	CARAPACE_SHELL_FUNCTIONS: (help commands | where category == "" | get name | each { split row " " | first } | uniq  | str join "\n")
   }
