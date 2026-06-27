@@ -1,0 +1,3092 @@
+aihubmix/AiHubmix-Phi-4-mini-reasoning: |
+  Microsoft's Phi-4-mini reasoning model via AiHubMix — small,
+  efficient reasoning for lightweight coding and analysis tasks.
+aihubmix/ByteDance-Seed/Seed-OSS-36B-Instruct: |
+  ByteDance's Seed-OSS 36B instruction-tuned model via AiHubMix —
+  large open-weight model for general instruction following.
+aihubmix/DeepSeek-R1: |
+  DeepSeek's reasoning model via AiHubMix — thinks before answering
+  for complex problem-solving, math, and science tasks.
+aihubmix/DeepSeek-V3: |
+  DeepSeek's general-purpose V3 model via AiHubMix — strong
+  coding and reasoning at competitive pricing.
+aihubmix/DeepSeek-V3-Fast: |
+  DeepSeek's V3 with faster inference via AiHubMix — optimized
+  for high-throughput applications.
+aihubmix/DeepSeek-V3.1-Terminus: |
+  DeepSeek's V3.1 Terminus variant via AiHubMix — latest
+  general-purpose model with extended capabilities.
+aihubmix/DeepSeek-V3.1-Think: |
+  DeepSeek's V3.1 with thinking mode via AiHubMix — reasoning
+  capabilities combined with general use.
+aihubmix/ERNIE-X1.1-Preview: |
+  Baidu's ERNIE X1.1 preview via AiHubMix — Chinese language
+  model with reasoning and general capabilities.
+aihubmix/aihub-Phi-4-mini-instruct: |
+  Microsoft's Phi-4-mini instruct model via AiHubMix — efficient
+  instruction following for lightweight tasks.
+aihubmix/aihub-Phi-4-multimodal-instruct: |
+  Microsoft's Phi-4 multimodal instruct via AiHubMix — small
+  efficient model with vision and text capabilities.
+aihubmix/anthropic-opus-4-6: |
+  Anthropic's Claude Opus 4.6 via AiHubMix — most capable model
+  for complex codebases and nuanced analysis.
+aihubmix/claude-3-7-sonnet: |
+  Anthropic's Claude 3.7 Sonnet via AiHubMix — balanced model
+  with strong reasoning and coding capabilities.
+aihubmix/claude-fable-5: |
+  Anthropic's Claude Fable 5 via AiHubMix — optimized for
+  creative writing and storytelling tasks.
+aihubmix/claude-haiku-4-5: |
+  Anthropic's Claude Haiku 4.5 via AiHubMix — fast, cost-effective
+  model for simple tasks and quick lookups.
+aihubmix/claude-opus-4-1: |
+  Anthropic's Claude Opus 4.1 via AiHubMix — highly capable model
+  for complex reasoning and analysis tasks.
+aihubmix/claude-opus-4-5: |
+  Anthropic's Claude Opus 4.5 via AiHubMix — top-tier reasoning
+  across codebases, long documents, and nuanced analysis.
+aihubmix/claude-opus-4-5-think: |
+  Anthropic's Claude Opus 4.5 with thinking mode via AiHubMix —
+  deep reasoning with extended contemplation.
+aihubmix/claude-opus-4-6: |
+  Anthropic's Claude Opus 4.6 via AiHubMix — most capable model
+  for complex problem-solving and analysis.
+aihubmix/claude-opus-4-6-think: |
+  Anthropic's Claude Opus 4.6 with thinking mode via AiHubMix —
+  extended reasoning for the most complex tasks.
+aihubmix/claude-opus-4-7: |
+  Anthropic's Claude Opus 4.7 via AiHubMix — latest top-tier
+  model with advanced reasoning capabilities.
+aihubmix/claude-opus-4-7-think: |
+  Anthropic's Claude Opus 4.7 with thinking mode via AiHubMix —
+  deep reasoning for the most challenging problems.
+aihubmix/claude-opus-4-8: |
+  Anthropic's Claude Opus 4.8 via AiHubMix — highest capability
+  model for complex reasoning and analysis.
+aihubmix/claude-opus-4-8-think: |
+  Anthropic's Claude Opus 4.8 with thinking mode via AiHubMix —
+  maximum reasoning depth for the hardest problems.
+aihubmix/claude-sonnet-4-5: |
+  Anthropic's Claude Sonnet 4.5 via AiHubMix — balanced model
+  with strong reasoning, coding, and tool use.
+aihubmix/claude-sonnet-4-5-think: |
+  Anthropic's Claude Sonnet 4.5 with thinking mode via AiHubMix —
+  balanced capabilities with extended reasoning.
+aihubmix/claude-sonnet-4-6: |
+  Anthropic's Claude Sonnet 4.6 via AiHubMix — latest balanced
+  model with strong all-around performance.
+aihubmix/claude-sonnet-4-6-think: |
+  Anthropic's Claude Sonnet 4.6 with thinking mode via AiHubMix —
+  balanced model with deep reasoning mode.
+aihubmix/coding-glm-4.6-free: |
+  Zhipu's GLM-4.6 coding variant via AiHubMix — free tier for
+  code generation and completion tasks.
+aihubmix/coding-minimax-m2: |
+  MiniMax's coding model M2 via AiHubMix — efficient code
+  generation and completion.
+aihubmix/coding-minimax-m2-free: |
+  MiniMax's free coding model M2 via AiHubMix — no-cost
+  access to code generation.
+aihubmix/coding-minimax-m2.1: |
+  MiniMax's coding model M2.1 via AiHubMix — improved code
+  generation with better quality.
+aihubmix/coding-minimax-m2.1-free: |
+  MiniMax's free coding model M2.1 via AiHubMix — free access
+  to improved code generation.
+aihubmix/coding-minimax-m2.5: |
+  MiniMax's coding model M2.5 via AiHubMix — enhanced code
+  generation for complex programming tasks.
+aihubmix/coding-minimax-m2.5-free: |
+  MiniMax's free coding model M2.5 via AiHubMix — no-cost
+  access to enhanced code generation.
+aihubmix/coding-minimax-m2.5-highspeed: |
+  MiniMax's fast coding model M2.5 via AiHubMix — high-speed
+  code generation for quick turnarounds.
+aihubmix/coding-minimax-m2.7: |
+  MiniMax's coding model M2.7 via AiHubMix — latest generation
+  with improved reasoning for code.
+aihubmix/coding-minimax-m2.7-free: |
+  MiniMax's free coding model M2.7 via AiHubMix — no-cost
+  access to latest code generation.
+aihubmix/coding-minimax-m2.7-highspeed: |
+  MiniMax's fast coding model M2.7 via AiHubMix — quick code
+  generation with latest improvements.
+aihubmix/coding-minimax-m3: |
+  MiniMax's coding model M3 via AiHubMix — newest generation
+  with advanced code understanding.
+aihubmix/coding-minimax-m3-free: |
+  MiniMax's free coding model M3 via AiHubMix — no-cost
+  access to newest code generation.
+aihubmix/coding-step-3.5-flash: |
+  Stepfun's 3.5 Flash coding model via AiHubMix — fast, efficient
+  code generation and completion.
+aihubmix/coding-step-3.5-flash-free: |
+  Stepfun's free 3.5 Flash coding model via AiHubMix — no-cost
+  fast code generation.
+aihubmix/coding-step-3.7-flash: |
+  Stepfun's 3.7 Flash coding model via AiHubMix — improved
+  fast code generation.
+aihubmix/coding-step-3.7-flash-free: |
+  Stepfun's free 3.7 Flash coding model via AiHubMix — no-cost
+  improved fast code generation.
+aihubmix/deepinfra-kimi-k2.7-code: |
+  Moonshot AI's Kimi K2.7 code model via AiHubMix — large context
+  code understanding and generation.
+aihubmix/deepseek-v3.2: |
+  DeepSeek's V3.2 via AiHubMix — updated general-purpose model
+  with improved capabilities.
+aihubmix/deepseek-v3.2-think: |
+  DeepSeek's V3.2 with thinking mode via AiHubMix — general
+  model with reasoning capabilities.
+aihubmix/deepseek-v4-flash: |
+  DeepSeek's V4 Flash via AiHubMix — fast, efficient latest
+  generation model.
+aihubmix/deepseek-v4-pro: |
+  DeepSeek's V4 Pro via AiHubMix — high-capability latest
+  generation model.
+aihubmix/doubao-seed-1-6: |
+  ByteDance's Doubao Seed 1.6 via AiHubMix — general-purpose
+  model with strong Chinese language support.
+aihubmix/doubao-seed-1-6-flash: |
+  ByteDance's fast Doubao Seed 1.6 via AiHubMix — high-speed
+  general-purpose responses.
+aihubmix/doubao-seed-1-6-lite: |
+  ByteDance's lightweight Doubao Seed 1.6 via AiHubMix —
+  efficient, resource-light model.
+aihubmix/doubao-seed-1-6-thinking: |
+  ByteDance's Doubao Seed 1.6 with thinking via AiHubMix —
+  reasoning-enhanced model.
+aihubmix/doubao-seed-1-8: |
+  ByteDance's Doubao Seed 1.8 via AiHubMix — improved
+  general-purpose model.
+aihubmix/doubao-seed-2-0-code-preview: |
+  ByteDance's Doubao Seed 2.0 code preview via AiHubMix —
+  next-generation code-specialized model.
+aihubmix/doubao-seed-2-0-lite-260215: |
+  ByteDance's Doubao Seed 2.0 Lite via AiHubMix — efficient
+  lightweight model.
+aihubmix/doubao-seed-2-0-lite-260428: |
+  ByteDance's Doubao Seed 2.0 Lite (updated) via AiHubMix —
+  improved efficient model.
+aihubmix/doubao-seed-2-0-mini: |
+  ByteDance's Doubao Seed 2.0 Mini via AiHubMix — small,
+  efficient general-purpose model.
+aihubmix/doubao-seed-2-0-mini-260428: |
+  ByteDance's Doubao Seed 2.0 Mini (updated) via AiHubMix —
+  improved small efficient model.
+aihubmix/doubao-seed-2-0-pro: |
+  ByteDance's Doubao Seed 2.0 Pro via AiHubMix — high-capability
+  general-purpose model.
+aihubmix/doubao-seed-2-1-pro: |
+  ByteDance's Doubao Seed 2.1 Pro via AiHubMix — enhanced
+  general-purpose model.
+aihubmix/doubao-seed-2-1-turbo: |
+  ByteDance's Doubao Seed 2.1 Turbo via AiHubMix — fast,
+  capable general-purpose model.
+aihubmix/ernie-4.5: |
+  Baidu's ERNIE 4.5 via AiHubMix — strong Chinese language
+  understanding and generation.
+aihubmix/ernie-4.5-turbo-latest: |
+  Baidu's ERNIE 4.5 Turbo (latest) via AiHubMix — faster
+  variant with strong capabilities.
+aihubmix/ernie-4.5-turbo-vl: |
+  Baidu's ERNIE 4.5 Turbo with vision-language via AiHubMix —
+  multimodal Chinese model.
+aihubmix/ernie-5.0: |
+  Baidu's ERNIE 5.0 via AiHubMix — latest generation with
+  advanced reasoning and Chinese language.
+aihubmix/ernie-5.0-thinking-exp: |
+  Baidu's ERNIE 5.0 experimental thinking via AiHubMix —
+  reasoning capabilities with exploration mode.
+aihubmix/ernie-5.0-thinking-preview: |
+  Baidu's ERNIE 5.0 thinking preview via AiHubMix — reasoning
+  capabilities for complex tasks.
+aihubmix/ernie-5.1: |
+  Baidu's ERNIE 5.1 via AiHubMix — enhanced model with improved
+  reasoning and understanding.
+aihubmix/ernie-x1-turbo: |
+  Baidu's ERNIE X1 Turbo via AiHubMix — fast reasoning model
+  with Chinese language strength.
+aihubmix/gemini-2.5-flash: |
+  Google's Gemini 2.5 Flash via AiHubMix — fast, efficient
+  multimodal model with strong reasoning.
+aihubmix/gemini-2.5-flash-image: |
+  Google's Gemini 2.5 Flash with image support via AiHubMix —
+  vision-enabled fast model.
+aihubmix/gemini-2.5-flash-lite: |
+  Google's Gemini 2.5 Flash Lite via AiHubMix — lightweight
+  efficient multimodal model.
+aihubmix/gemini-2.5-flash-lite-nothink: |
+  Google's Gemini 2.5 Flash Lite (no thinking) via AiHubMix —
+  fast responses without reasoning mode.
+aihubmix/gemini-2.5-flash-lite-preview-09-2025: |
+  Google's Gemini 2.5 Flash Lite preview (Sept 2025) via
+  AiHubMix — lightweight efficient model.
+aihubmix/gemini-2.5-flash-lite-preview-09-2025-nothink: |
+  Google's Gemini 2.5 Flash Lite (no thinking) preview via
+  AiHubMix — fast lightweight responses.
+aihubmix/gemini-2.5-flash-nothink: |
+  Google's Gemini 2.5 Flash (no thinking) via AiHubMix —
+  fast responses without reasoning mode.
+aihubmix/gemini-2.5-flash-preview-05-20-nothink: |
+  Google's Gemini 2.5 Flash preview (May 20) no thinking via
+  AiHubMix — quick non-reasoning responses.
+aihubmix/gemini-2.5-flash-preview-05-20-search: |
+  Google's Gemini 2.5 Flash preview with search via AiHubMix —
+  search-augmented fast model.
+aihubmix/gemini-2.5-flash-preview-09-2025: |
+  Google's Gemini 2.5 Flash preview (Sept 2025) via AiHubMix —
+  latest flash variant.
+aihubmix/gemini-2.5-flash-search: |
+  Google's Gemini 2.5 Flash with search via AiHubMix —
+  search-augmented multimodal model.
+aihubmix/gemini-2.5-pro: |
+  Google's Gemini 2.5 Pro via AiHubMix — flagship multimodal
+  model with 1M+ token context and strong reasoning.
+aihubmix/gemini-2.5-pro-preview-05-06: |
+  Google's Gemini 2.5 Pro preview (May 6) via AiHubMix —
+  earlier preview version.
+aihubmix/gemini-2.5-pro-preview-06-05: |
+  Google's Gemini 2.5 Pro preview (June 5) via AiHubMix —
+  newer preview version.
+aihubmix/gemini-2.5-pro-search: |
+  Google's Gemini 2.5 Pro with search via AiHubMix —
+  search-augmented flagship model.
+aihubmix/gemini-3-flash-preview: |
+  Google's Gemini 3 Flash preview via AiHubMix — next-generation
+  fast multimodal model.
+aihubmix/gemini-3-flash-preview-free: |
+  Google's free Gemini 3 Flash preview via AiHubMix —
+  no-cost access to next-gen fast model.
+aihubmix/gemini-3-flash-preview-search: |
+  Google's Gemini 3 Flash preview with search via AiHubMix —
+  search-augmented next-gen model.
+aihubmix/gemini-3.1-flash-lite: |
+  Google's Gemini 3.1 Flash Lite via AiHubMix — lightweight
+  efficient model with strong capabilities.
+aihubmix/gemini-3.1-flash-lite-preview: |
+  Google's Gemini 3.1 Flash Lite preview via AiHubMix —
+  early access lightweight model.
+aihubmix/gemini-3.1-flash-lite-preview-nothink: |
+  Google's Gemini 3.1 Flash Lite no thinking via AiHubMix —
+  fast responses without reasoning.
+aihubmix/gemini-3.1-pro-preview: |
+  Google's Gemini 3.1 Pro preview via AiHubMix — early access
+  to next-gen flagship.
+aihubmix/gemini-3.1-pro-preview-customtools: |
+  Google's Gemini 3.1 Pro preview with custom tools via
+  AiHubMix — extensible reasoning model.
+aihubmix/gemini-3.5-flash: |
+  Google's Gemini 3.5 Flash via AiHubMix — fast, efficient
+  latest generation.
+aihubmix/glm-4.5v: |
+  Zhipu's GLM-4.5 Vision via AiHubMix — multimodal model with
+  Chinese language strength.
+aihubmix/glm-4.6: |
+  Zhipu's GLM-4.6 via AiHubMix — improved general-purpose
+  model with strong Chinese capabilities.
+aihubmix/glm-4.6v: |
+  Zhipu's GLM-4.6 Vision via AiHubMix — multimodal variant with
+  vision support.
+aihubmix/glm-4.7: |
+  Zhipu's GLM-4.7 via AiHubMix — latest generation with
+  enhanced reasoning and Chinese language.
+aihubmix/glm-5: |
+  Zhipu's GLM-5 via AiHubMix — newest flagship model with
+  advanced capabilities.
+aihubmix/glm-5-turbo: |
+  Zhipu's GLM-5 Turbo via AiHubMix — fast variant with
+  strong capabilities.
+aihubmix/glm-5.1: |
+  Zhipu's GLM-5.1 via AiHubMix — updated model with improved
+  performance.
+aihubmix/glm-5.2: |
+  Zhipu's GLM-5.2 via AiHubMix — latest version with enhanced
+  reasoning.
+aihubmix/glm-5v-turbo: |
+  Zhipu's GLM-5 Vision Turbo via AiHubMix — fast multimodal
+  model with vision.
+aihubmix/gpt-4.1: |
+  OpenAI's GPT-4.1 via AiHubMix — improved instruction following
+  with 1M token context.
+aihubmix/gpt-4.1-free: |
+  OpenAI's free GPT-4.1 via AiHubMix — no-cost access to
+  GPT-4.1 capabilities.
+aihubmix/gpt-4.1-mini: |
+  OpenAI's GPT-4.1 Mini via AiHubMix — smaller, faster variant
+  with good quality.
+aihubmix/gpt-4.1-mini-free: |
+  OpenAI's free GPT-4.1 Mini via AiHubMix — no-cost access to
+  smaller fast model.
+aihubmix/gpt-4.1-nano: |
+  OpenAI's GPT-4.1 Nano via AiHubMix — most efficient GPT-4.1
+  variant for lightweight tasks.
+aihubmix/gpt-4.1-nano-free: |
+  OpenAI's free GPT-4.1 Nano via AiHubMix — no-cost efficient
+  lightweight model.
+aihubmix/gpt-4o: |
+  OpenAI's GPT-4o via AiHubMix — flagship multimodal model with
+  vision, audio, and text capabilities.
+aihubmix/gpt-4o-2024-11-20: |
+  OpenAI's GPT-4o (Nov 2024) via AiHubMix — specific version
+  with documented capabilities.
+aihubmix/gpt-4o-audio-preview: |
+  OpenAI's GPT-4o audio preview via AiHubMix — multimodal with
+  audio processing.
+aihubmix/gpt-4o-free: |
+  OpenAI's free GPT-4o via AiHubMix — no-cost access to flagship
+  multimodal model.
+aihubmix/gpt-4o-mini: |
+  OpenAI's GPT-4o Mini via AiHubMix — smaller, faster, cheaper
+  variant maintaining good quality.
+aihubmix/gpt-4o-mini-search-preview: |
+  OpenAI's GPT-4o Mini search preview via AiHubMix — fast model
+  with search augmentation.
+aihubmix/gpt-4o-search-preview: |
+  OpenAI's GPT-4o search preview via AiHubMix — flagship with
+  search augmentation.
+aihubmix/gpt-5: |
+  OpenAI's GPT-5 via AiHubMix — latest flagship model with
+  advanced reasoning and capabilities.
+aihubmix/gpt-5-chat-latest: |
+  OpenAI's GPT-5 chat latest via AiHubMix — newest chat-optimized
+  GPT-5 variant.
+aihubmix/gpt-5-codex: |
+  OpenAI's GPT-5 Codex via AiHubMix — code-specialized GPT-5
+  variant for programming tasks.
+aihubmix/gpt-5-mini: |
+  OpenAI's GPT-5 Mini via AiHubMix — smaller, efficient GPT-5
+  variant.
+aihubmix/gpt-5-nano: |
+  OpenAI's GPT-5 Nano via AiHubMix — most efficient GPT-5
+  variant for lightweight tasks.
+aihubmix/gpt-5-pro: |
+  OpenAI's GPT-5 Pro via AiHubMix — high-capability GPT-5
+  variant between standard and max.
+aihubmix/gpt-5.1: |
+  OpenAI's GPT-5.1 via AiHubMix — updated GPT-5 with improved
+  capabilities.
+aihubmix/gpt-5.1-chat-latest: |
+  OpenAI's GPT-5.1 chat latest via AiHubMix — newest chat variant.
+aihubmix/gpt-5.1-codex: |
+  OpenAI's GPT-5.1 Codex via AiHubMix — code-specialized variant.
+aihubmix/gpt-5.1-codex-max: |
+  OpenAI's GPT-5.1 Codex Max via AiHubMix — highest capability
+  code-specialized model.
+aihubmix/gpt-5.1-codex-mini: |
+  OpenAI's GPT-5.1 Codex Mini via AiHubMix — efficient code
+  specialized variant.
+aihubmix/gpt-5.2: |
+  OpenAI's GPT-5.2 via AiHubMix — further improved flagship model.
+aihubmix/gpt-5.2-chat-latest: |
+  OpenAI's GPT-5.2 chat latest via AiHubMix — newest chat variant.
+aihubmix/gpt-5.2-codex: |
+  OpenAI's GPT-5.2 Codex via AiHubMix — code-specialized variant.
+aihubmix/gpt-5.2-high: |
+  OpenAI's GPT-5.2 High via AiHubMix — high-capability variant
+  for complex tasks.
+aihubmix/gpt-5.2-low: |
+  OpenAI's GPT-5.2 Low via AiHubMix — efficient variant for
+  simpler tasks.
+aihubmix/gpt-5.2-pro: |
+  OpenAI's GPT-5.2 Pro via AiHubMix — professional tier GPT-5.2.
+aihubmix/gpt-5.3-chat-latest: |
+  OpenAI's GPT-5.3 chat latest via AiHubMix — newest generation
+  chat variant.
+aihubmix/gpt-5.3-codex: |
+  OpenAI's GPT-5.3 Codex via AiHubMix — latest code-specialized
+  generation.
+aihubmix/gpt-5.4: |
+  OpenAI's GPT-5.4 via AiHubMix — latest in the GPT-5 series.
+aihubmix/gpt-5.4-high: |
+  OpenAI's GPT-5.4 High via AiHubMix — high-capability variant.
+aihubmix/gpt-5.4-low: |
+  OpenAI's GPT-5.4 Low via AiHubMix — efficient variant.
+aihubmix/gpt-5.4-mini: |
+  OpenAI's GPT-5.4 Mini via AiHubMix — smaller efficient variant.
+aihubmix/gpt-5.4-nano: |
+  OpenAI's GPT-5.4 Nano via AiHubMix — most efficient variant.
+aihubmix/gpt-5.4-pro: |
+  OpenAI's GPT-5.4 Pro via AiHubMix — professional tier variant.
+aihubmix/gpt-5.5: |
+  OpenAI's GPT-5.5 via AiHubMix — latest production model.
+aihubmix/gpt-5.5-free: |
+  OpenAI's free GPT-5.5 via AiHubMix — no-cost access to latest.
+aihubmix/gpt-5.5-pro: |
+  OpenAI's GPT-5.5 Pro via AiHubMix — professional tier of latest.
+aihubmix/gpt-chat-latest: |
+  OpenAI's latest chat model via AiHubMix — always-up-to-date
+  chat completion.
+aihubmix/gpt-oss-120b: |
+  OpenAI's open-source 120B model via AiHubMix — large open-weight
+  model for self-hosting.
+aihubmix/gpt-oss-20b: |
+  OpenAI's open-source 20B model via AiHubMix — smaller open-weight
+  model.
+aihubmix/grok-4: |
+  xAI's Grok-4 via AiHubMix — reasoning model with real-time
+  knowledge and strong capabilities.
+aihubmix/grok-4-1-fast-non-reasoning: |
+  xAI's Grok-4.1 fast non-reasoning via AiHubMix — fast responses
+  without extended thinking.
+aihubmix/grok-4-1-fast-reasoning: |
+  xAI's Grok-4.1 fast reasoning via AiHubMix — quick reasoning
+  responses.
+aihubmix/grok-4-20-non-reasoning: |
+  xAI's Grok-4.20 non-reasoning via AiHubMix — large model without
+  thinking mode.
+aihubmix/grok-4-20-reasoning: |
+  xAI's Grok-4.20 reasoning via AiHubMix — large reasoning model
+  for complex tasks.
+aihubmix/grok-4-fast-non-reasoning: |
+  xAI's Grok-4 fast non-reasoning via AiHubMix — fast non-reasoning
+  responses.
+aihubmix/grok-4-fast-reasoning: |
+  xAI's Grok-4 fast reasoning via AiHubMix — quick reasoning
+  responses.
+aihubmix/grok-4.20-beta-0309-non-reasoning: |
+  xAI's Grok-4.20 beta (March 9) non-reasoning via AiHubMix —
+  beta fast responses.
+aihubmix/grok-4.20-beta-0309-reasoning: |
+  xAI's Grok-4.20 beta (March 9) reasoning via AiHubMix —
+  beta reasoning responses.
+aihubmix/grok-4.20-multi-agent-0309: |
+  xAI's Grok-4.20 multi-agent (March 9) via AiHubMix — multi-agent
+  coordination capabilities.
+aihubmix/grok-4.20-multi-agent-beta-0309: |
+  xAI's Grok-4.20 multi-agent beta (March 9) via AiHubMix —
+  beta multi-agent variant.
+aihubmix/grok-4.3: |
+  xAI's Grok-4.3 via AiHubMix — latest Grok with improved reasoning.
+aihubmix/grok-build-0.1: |
+  xAI's Grok Build 0.1 via AiHubMix — experimental build with
+  novel capabilities.
+aihubmix/grok-code-fast-1: |
+  xAI's Grok code fast via AiHubMix — quick code generation model.
+aihubmix/hy3-preview: |
+  Upstage's Solar Pro 3 via AiHubMix — reasoning-optimized model
+  for complex analysis.
+aihubmix/jina-deepsearch-v1: |
+  Jina's DeepSearch v1 via AiHubMix — search-augmented AI for
+  comprehensive research.
+aihubmix/k2.6-code-preview-free: |
+  Moonshot AI's Kimi K2.6 code preview (free) via AiHubMix —
+  no-cost code-focused model.
+aihubmix/kat-dev: |
+  Kwaipilot's Kat Dev via AiHubMix — development-focused model
+  for coding tasks.
+aihubmix/kimi-for-coding-free: |
+  Moonshot AI's free Kimi coding via AiHubMix — no-cost access
+  to coding model.
+aihubmix/kimi-k2-0711: |
+  Moonshot AI's Kimi K2 (July 11) via AiHubMix — specific version
+  of reasoning model.
+aihubmix/kimi-k2-thinking: |
+  Moonshot AI's Kimi K2 thinking via AiHubMix — reasoning model
+  with extended thinking.
+aihubmix/kimi-k2-turbo-preview: |
+  Moonshot AI's Kimi K2 turbo preview via AiHubMix — fast
+  reasoning model preview.
+aihubmix/kimi-k2.5: |
+  Moonshot AI's Kimi K2.5 via AiHubMix — improved reasoning model
+  with better quality.
+aihubmix/kimi-k2.6: |
+  Moonshot AI's Kimi K2.6 via AiHubMix — further improved reasoning
+  with enhanced capabilities.
+aihubmix/kimi-k2.7-code: |
+  Moonshot AI's Kimi K2.7 code via AiHubMix — code-specialized
+  reasoning model for programming.
+aihubmix/kimi-k2.7-code-highspeed: |
+  Moonshot AI's fast Kimi K2.7 code via AiHubMix — quick code
+  generation with reasoning.
+aihubmix/llama-4-maverick: |
+  Meta's LLaMA 4 Maverick via AiHubMix — efficient open-weight
+  model with strong performance.
+aihubmix/llama-4-scout: |
+  Meta's LLaMA 4 Scout via AiHubMix — compact variant with
+  good capabilities.
+aihubmix/mimo-v2-flash-free: |
+  Xiaomi's free Mimo V2 Flash via AiHubMix — no-cost fast
+  multimodal model.
+aihubmix/mimo-v2-omni: |
+  Xiaomi's Mimo V2 Omni via AiHubMix — full multimodal model
+  with audio and vision.
+aihubmix/mimo-v2-pro: |
+  Xiaomi's Mimo V2 Pro via AiHubMix — professional-tier
+  multimodal model.
+aihubmix/minimax-m2: |
+  MiniMax's M2 via AiHubMix — efficient general-purpose model
+  with strong multilingual support.
+aihubmix/minimax-m2.1: |
+  MiniMax's M2.1 via AiHubMix — improved model with better
+  reasoning and speed.
+aihubmix/minimax-m2.5: |
+  MiniMax's M2.5 via AiHubMix — enhanced model with improved
+  quality across tasks.
+aihubmix/minimax-m2.5-highspeed: |
+  MiniMax's fast M2.5 via AiHubMix — high-speed variant
+  maintaining quality.
+aihubmix/minimax-m2.7: |
+  MiniMax's M2.7 via AiHubMix — latest generation with advanced
+  reasoning.
+aihubmix/minimax-m3: |
+  MiniMax's M3 via AiHubMix — newest model with improved
+  capabilities.
+aihubmix/mistral-large-3: |
+  Mistral's Large 3 via AiHubMix — flagship model with strong
+  reasoning and multilingual support.
+aihubmix/nvidia-nemotron-3-super-120b-a12b: |
+  NVIDIA's Nemotron 3 Super 120B via AiHubMix — large efficient
+  model optimized for inference.
+aihubmix/o3: |
+  OpenAI's o3 via AiHubMix — advanced reasoning model for
+  complex problem-solving and analysis.
+aihubmix/o3-mini: |
+  OpenAI's o3 Mini via AiHubMix — smaller, faster reasoning
+  model with good quality.
+aihubmix/o3-pro: |
+  OpenAI's o3 Pro via AiHubMix — professional-tier reasoning
+  model with enhanced capabilities.
+aihubmix/o4-mini: |
+  OpenAI's o4 Mini via AiHubMix — efficient reasoning model
+  with multimodal support.
+aihubmix/qwen3-235b-a22b: |
+  Qwen's 235B model via AiHubMix — large open-weight model with
+  strong reasoning.
+aihubmix/qwen3-235b-a22b-instruct-2507: |
+  Qwen's 235B instruct (July 2025) via AiHubMix — instruction-tuned
+  large model.
+aihubmix/qwen3-235b-a22b-thinking-2507: |
+  Qwen's 235B thinking (July 2025) via AiHubMix — reasoning-enabled
+  large model.
+aihubmix/qwen3-coder-30b-a3b-instruct: |
+  Qwen's 30B coder instruct via AiHubMix — code-specialized
+  instruction-tuned model.
+aihubmix/qwen3-coder-480b-a35b-instruct: |
+  Qwen's 480B coder instruct via AiHubMix — large code-specialized
+  model for complex programming.
+aihubmix/qwen3-coder-flash: |
+  Qwen's 3 Coder Flash via AiHubMix — fast code generation model.
+aihubmix/qwen3-coder-next: |
+  Qwen's 3 Coder Next via AiHubMix — next-generation code model
+  with improved capabilities.
+aihubmix/qwen3-coder-plus: |
+  Qwen's 3 Coder Plus via AiHubMix — enhanced code generation
+  model.
+aihubmix/qwen3-coder-plus-2025-07-22: |
+  Qwen's 3 Coder Plus (July 22, 2025) via AiHubMix — specific
+  dated version.
+aihubmix/qwen3-max: |
+  Qwen's 3 Max via AiHubMix — largest and most capable Qwen 3
+  variant.
+aihubmix/qwen3-max-2026-01-23: |
+  Qwen's 3 Max (Jan 23, 2026) via AiHubMix — specific dated
+  version.
+aihubmix/qwen3-next-80b-a3b-instruct: |
+  Qwen's 3 Next 80B instruct via AiHubMix — next-generation
+  instruction-tuned model.
+aihubmix/qwen3-next-80b-a3b-thinking: |
+  Qwen's 3 Next 80B thinking via AiHubMix — next-generation
+  reasoning model.
+aihubmix/qwen3-vl-235b-a22b-instruct: |
+  Qwen's 3 VL 235B instruct via AiHubMix — large multimodal
+  instruction-tuned model.
+aihubmix/qwen3-vl-235b-a22b-thinking: |
+  Qwen's 3 VL 235B thinking via AiHubMix — large multimodal
+  reasoning model.
+aihubmix/qwen3-vl-30b-a3b-instruct: |
+  Qwen's 3 VL 30B instruct via AiHubMix — efficient multimodal
+  instruction model.
+aihubmix/qwen3-vl-30b-a3b-thinking: |
+  Qwen's 3 VL 30B thinking via AiHubMix — efficient multimodal
+  reasoning model.
+aihubmix/qwen3-vl-flash: |
+  Qwen's 3 VL Flash via AiHubMix — fast multimodal model.
+aihubmix/qwen3-vl-flash-2026-01-22: |
+  Qwen's 3 VL Flash (Jan 22, 2026) via AiHubMix — specific dated
+  version.
+aihubmix/qwen3-vl-plus: |
+  Qwen's 3 VL Plus via AiHubMix — enhanced multimodal model.
+aihubmix/qwen3.5-122b-a10b: |
+  Qwen's 3.5 122B via AiHubMix — large open-weight model with
+  strong capabilities.
+aihubmix/qwen3.5-27b: |
+  Qwen's 3.5 27B via AiHubMix — efficient open-weight model.
+aihubmix/qwen3.5-35b-a3b: |
+  Qwen's 3.5 35B via AiHubMix — balanced open-weight model.
+aihubmix/qwen3.5-397b-a17b: |
+  Qwen's 3.5 397B via AiHubMix — very large open-weight model
+  for high-capability tasks.
+aihubmix/qwen3.5-flash: |
+  Qwen's 3.5 Flash via AiHubMix — fast, efficient model.
+aihubmix/qwen3.5-plus: |
+  Qwen's 3.5 Plus via AiHubMix — enhanced variant with better
+  quality.
+aihubmix/qwen3.6-27b: |
+  Qwen's 3.6 27B via AiHubMix — updated efficient model.
+aihubmix/qwen3.6-35b-a3b: |
+  Qwen's 3.6 35B via AiHubMix — updated balanced model.
+aihubmix/qwen3.6-flash: |
+  Qwen's 3.6 Flash via AiHubMix — fast updated model.
+aihubmix/qwen3.6-max-preview: |
+  Qwen's 3.6 Max preview via AiHubMix — early access to largest
+  3.6 variant.
+aihubmix/qwen3.6-plus: |
+  Qwen's 3.6 Plus via AiHubMix — enhanced 3.6 variant.
+aihubmix/qwen3.7-max: |
+  Qwen's 3.7 Max via AiHubMix — largest 3.7 variant with
+  maximum capabilities.
+aihubmix/qwen3.7-plus: |
+  Qwen's 3.7 Plus via AiHubMix — enhanced 3.7 variant.
+aihubmix/step-3.5-flash: |
+  Stepfun's 3.5 Flash via AiHubMix — fast, efficient model
+  with Chinese language support.
+aihubmix/step-3.7-flash: |
+  Stepfun's 3.7 Flash via AiHubMix — improved fast model.
+aihubmix/step-3.7-flash-free: |
+  Stepfun's free 3.7 Flash via AiHubMix — no-cost access to
+  fast model.
+aihubmix/xiaomi-mimo-v2-omni-free: |
+  Xiaomi's free Mimo V2 Omni via AiHubMix — no-cost full
+  multimodal access.
+aihubmix/xiaomi-mimo-v2-pro-free: |
+  Xiaomi's free Mimo V2 Pro via AiHubMix — no-cost professional
+  multimodal access.
+aihubmix/xiaomi-mimo-v2.5: |
+  Xiaomi's Mimo V2.5 via AiHubMix — updated multimodal model.
+aihubmix/xiaomi-mimo-v2.5-free: |
+  Xiaomi's free Mimo V2.5 via AiHubMix — no-cost access to
+  updated model.
+aihubmix/xiaomi-mimo-v2.5-pro: |
+  Xiaomi's Mimo V2.5 Pro via AiHubMix — professional-tier
+  multimodal model.
+aihubmix/xiaomi-mimo-v2.5-pro-free: |
+  Xiaomi's free Mimo V2.5 Pro via AiHubMix — no-cost professional
+  tier access.
+alibaba-singapore/deepseek-v3.2: |
+  DeepSeek's V3.2 via Alibaba Singapore — general-purpose model
+  with strong coding and reasoning.
+alibaba-singapore/deepseek-v4-flash: |
+  DeepSeek's V4 Flash via Alibaba Singapore — fast, efficient
+  latest generation.
+alibaba-singapore/deepseek-v4-pro: |
+  DeepSeek's V4 Pro via Alibaba Singapore — high-capability
+  latest generation.
+alibaba-singapore/qwen3.5-27b: |
+  Qwen's 3.5 27B via Alibaba Singapore — efficient open-weight
+  model with strong multilingual support.
+alibaba-singapore/qwen3.5-35b-a3b: |
+  Qwen's 3.5 35B via Alibaba Singapore — balanced open-weight
+  model.
+alibaba-singapore/qwen3.6-flash: |
+  Qwen's 3.6 Flash via Alibaba Singapore — fast, updated model.
+alibaba-singapore/qwen3.6-max-preview: |
+  Qwen's 3.6 Max preview via Alibaba Singapore — early access
+  to largest 3.6 variant.
+alibaba-singapore/qwen3.6-plus: |
+  Qwen's 3.6 Plus via Alibaba Singapore — enhanced 3.6 variant.
+alibaba-singapore/qwen3.7-max: |
+  Qwen's 3.7 Max via Alibaba Singapore — largest 3.7 variant.
+alibaba-singapore/qwen3.7-plus: |
+  Qwen's 3.7 Plus via Alibaba Singapore — enhanced 3.7 variant.
+anthropic/claude-fable-5: |
+  Anthropic's Claude Fable 5 via direct API — optimized for
+  creative writing, storytelling, and narrative tasks.
+anthropic/claude-haiku-4-5-20251001: |
+  Anthropic's Claude Haiku 4.5 (Oct 2025) via direct API —
+  fast, cost-effective model for simple tasks.
+anthropic/claude-opus-4-1-20250805: |
+  Anthropic's Claude Opus 4.1 (Aug 2025) via direct API —
+  highly capable model for complex analysis.
+anthropic/claude-opus-4-20250514: |
+  Anthropic's Claude Opus 4 (May 2025) via direct API — top-tier
+  reasoning for complex codebases and documents.
+anthropic/claude-opus-4-5-20251101: |
+  Anthropic's Claude Opus 4.5 (Nov 2025) via direct API —
+  enhanced top-tier reasoning model.
+anthropic/claude-opus-4-6: |
+  Anthropic's Claude Opus 4.6 via direct API — most capable
+  model for complex reasoning and analysis.
+anthropic/claude-opus-4-7: |
+  Anthropic's Claude Opus 4.7 via direct API — latest flagship
+  with advanced reasoning.
+anthropic/claude-opus-4-8: |
+  Anthropic's Claude Opus 4.8 via direct API — highest capability
+  model in the Claude lineup.
+anthropic/claude-sonnet-4-20250514: |
+  Anthropic's Claude Sonnet 4 (May 2025) via direct API —
+  balanced model with strong reasoning and coding.
+anthropic/claude-sonnet-4-5-20250929: |
+  Anthropic's Claude Sonnet 4.5 (Sept 2025) via direct API —
+  enhanced balanced model.
+anthropic/claude-sonnet-4-6: |
+  Anthropic's Claude Sonnet 4.6 via direct API — latest balanced
+  model with strong all-around performance.
+avian/deepseek/deepseek-v3.2: |
+  DeepSeek's V3.2 via Avian — general-purpose model with strong
+  coding and reasoning.
+avian/deepseek/deepseek-v4-flash: |
+  DeepSeek's V4 Flash via Avian — fast, efficient latest generation.
+avian/deepseek/deepseek-v4-pro: |
+  DeepSeek's V4 Pro via Avian — high-capability latest generation.
+avian/minimax/minimax-m2.5: |
+  MiniMax's M2.5 via Avian — enhanced model with improved quality.
+avian/moonshotai/kimi-k2.5: |
+  Moonshot AI's Kimi K2.5 via Avian — improved reasoning model.
+avian/moonshotai/kimi-k2.6: |
+  Moonshot AI's Kimi K2.6 via Avian — further improved reasoning.
+avian/z-ai/glm-5: |
+  Zhipu's GLM-5 via Avian — flagship model with strong Chinese
+  language support.
+avian/z-ai/glm-5.1: |
+  Zhipu's GLM-5.1 via Avian — updated flagship with improvements.
+azure/codex-mini-latest: |
+  OpenAI's Codex Mini latest via Azure — code-specialized model
+  with Azure enterprise security.
+azure/gpt-4.1: |
+  OpenAI's GPT-4.1 via Azure — improved instruction following
+  with 1M token context, Azure-managed.
+azure/gpt-4.1-mini: |
+  OpenAI's GPT-4.1 Mini via Azure — smaller, faster variant
+  with enterprise features.
+azure/gpt-4.1-nano: |
+  OpenAI's GPT-4.1 Nano via Azure — most efficient variant for
+  lightweight tasks.
+azure/gpt-4.5-preview: |
+  OpenAI's GPT-4.5 preview via Azure — early access to next
+  generation.
+azure/gpt-4o: |
+  OpenAI's GPT-4o via Azure — flagship multimodal model with
+  Azure compliance and security.
+azure/gpt-4o-mini: |
+  OpenAI's GPT-4o Mini via Azure — smaller, faster, cheaper
+  variant with enterprise features.
+azure/gpt-5: |
+  OpenAI's GPT-5 via Azure — latest flagship with advanced
+  reasoning, Azure-managed.
+azure/gpt-5-mini: |
+  OpenAI's GPT-5 Mini via Azure — smaller efficient GPT-5 variant,
+  Azure enterprise.
+azure/gpt-5-nano: |
+  OpenAI's GPT-5 Nano via Azure — most efficient GPT-5 variant
+  for lightweight tasks.
+azure/o3: |
+  OpenAI's o3 via Azure — advanced reasoning model with Azure
+  enterprise features.
+azure/o3-mini: |
+  OpenAI's o3 Mini via Azure — smaller, faster reasoning model
+  with enterprise security.
+azure/o3-pro: |
+  OpenAI's o3 Pro via Azure — professional-tier reasoning model
+  with enhanced capabilities.
+azure/o4-mini: |
+  OpenAI's o4 Mini via Azure — efficient reasoning model with
+  multimodal support.
+bedrock/us.anthropic.claude-haiku-4-5-20251001-v1:0: |
+  Anthropic's Claude Haiku 4.5 (Oct 2025) via AWS Bedrock US —
+  fast, cost-effective with AWS infrastructure.
+bedrock/us.anthropic.claude-opus-4-1-20250805-v1:0: |
+  Anthropic's Claude Opus 4.1 (Aug 2025) via AWS Bedrock US —
+  highly capable with AWS integration.
+bedrock/us.anthropic.claude-opus-4-5-20251101-v1:0: |
+  Anthropic's Claude Opus 4.5 (Nov 2025) via AWS Bedrock US —
+  enhanced top-tier with AWS infrastructure.
+bedrock/us.anthropic.claude-opus-4-6-v1: |
+  Anthropic's Claude Opus 4.6 via AWS Bedrock US — most capable
+  model with AWS integration.
+bedrock/us.anthropic.claude-opus-4-7: |
+  Anthropic's Claude Opus 4.7 via AWS Bedrock US — latest flagship
+  with AWS infrastructure.
+bedrock/us.anthropic.claude-opus-4-8: |
+  Anthropic's Claude Opus 4.8 via AWS Bedrock US — highest
+  capability with AWS integration.
+bedrock/us.anthropic.claude-sonnet-4-5-20250929-v1:0: |
+  Anthropic's Claude Sonnet 4.5 (Sept 2025) via AWS Bedrock US —
+  balanced model with AWS features.
+bedrock/us.anthropic.claude-sonnet-4-6: |
+  Anthropic's Claude Sonnet 4.6 via AWS Bedrock US — latest
+  balanced model with AWS integration.
+bedrock-europe/eu.anthropic.claude-haiku-4-5-20251001-v1:0: |
+  Anthropic's Claude Haiku 4.5 (Oct 2025) via AWS Bedrock Europe —
+  fast, cost-effective with EU data residency.
+bedrock-europe/eu.anthropic.claude-opus-4-1-20250805-v1:0: |
+  Anthropic's Claude Opus 4.1 (Aug 2025) via AWS Bedrock Europe —
+  highly capable with EU compliance.
+bedrock-europe/eu.anthropic.claude-opus-4-5-20251101-v1:0: |
+  Anthropic's Claude Opus 4.5 (Nov 2025) via AWS Bedrock Europe —
+  enhanced top-tier with EU data residency.
+bedrock-europe/eu.anthropic.claude-opus-4-6-v1: |
+  Anthropic's Claude Opus 4.6 via AWS Bedrock Europe — most
+  capable with EU compliance.
+bedrock-europe/eu.anthropic.claude-opus-4-7: |
+  Anthropic's Claude Opus 4.7 via AWS Bedrock Europe — latest
+  flagship with EU infrastructure.
+bedrock-europe/eu.anthropic.claude-opus-4-8: |
+  Anthropic's Claude Opus 4.8 via AWS Bedrock Europe — highest
+  capability with EU data residency.
+bedrock-europe/eu.anthropic.claude-sonnet-4-5-20250929-v1:0: |
+  Anthropic's Claude Sonnet 4.5 (Sept 2025) via AWS Bedrock Europe —
+  balanced model with EU compliance.
+bedrock-europe/eu.anthropic.claude-sonnet-4-6: |
+  Anthropic's Claude Sonnet 4.6 via AWS Bedrock Europe — latest
+  balanced model with EU infrastructure.
+cerebras/gpt-oss-120b: |
+  OpenAI's open-source 120B via Cerebras — large model with
+  ultra-fast inference on wafer-scale hardware.
+cerebras/zai-glm-4.7: |
+  Zhipu's GLM-4.7 via Cerebras — fast inference for Chinese
+  language model.
+chutes/MiniMaxAI/MiniMax-M2.5-TEE: |
+  MiniMax M2.5 with TEE security via Chutes — trusted execution
+  environment for secure inference.
+chutes/Qwen/Qwen3-235B-A22B-Thinking-2507-TEE: |
+  Qwen 235B thinking with TEE via Chutes — secure reasoning
+  in trusted environment.
+chutes/Qwen/Qwen3-32B-TEE: |
+  Qwen 32B with TEE via Chutes — secure efficient inference.
+chutes/Qwen/Qwen3.5-397B-A17B-TEE: |
+  Qwen 397B with TEE via Chutes — large secure model with
+  trusted execution.
+chutes/Qwen/Qwen3.6-27B-TEE: |
+  Qwen 27B with TEE via Chutes — secure inference for updated
+  model.
+chutes/deepseek-ai/DeepSeek-V3.2-TEE: |
+  DeepSeek V3.2 with TEE via Chutes — secure general-purpose
+  inference.
+chutes/google/gemma-4-31B-turbo-TEE: |
+  Google Gemma 4 31B turbo with TEE via Chutes — fast secure
+  open-weight model.
+chutes/moonshotai/Kimi-K2.5-TEE: |
+  Kimi K2.5 with TEE via Chutes — secure reasoning model.
+chutes/moonshotai/Kimi-K2.6-TEE: |
+  Kimi K2.6 with TEE via Chutes — secure improved reasoning.
+chutes/zai-org/GLM-5-TEE: |
+  GLM-5 with TEE via Chutes — secure flagship model.
+chutes/zai-org/GLM-5.1-TEE: |
+  GLM-5.1 with TEE via Chutes — secure updated flagship.
+chutes/zai-org/GLM-5.2-TEE: |
+  GLM-5.2 with TEE via Chutes — secure latest version.
+copilot/claude-haiku-4.5: |
+  Anthropic's Claude Haiku 4.5 via GitHub Copilot — fast,
+  integrated with development workflow.
+copilot/claude-opus-4.5: |
+  Anthropic's Claude Opus 4.5 via GitHub Copilot — top-tier
+  coding and reasoning in IDE.
+copilot/claude-opus-4.7: |
+  Anthropic's Claude Opus 4.7 via GitHub Copilot — latest
+  top-tier in development context.
+copilot/claude-opus-4.8: |
+  Anthropic's Claude Opus 4.8 via GitHub Copilot — highest
+  capability for complex codebases.
+copilot/claude-sonnet-4.5: |
+  Anthropic's Claude Sonnet 4.5 via GitHub Copilot — balanced
+  model optimized for coding.
+copilot/claude-sonnet-4.6: |
+  Anthropic's Claude Sonnet 4.6 via GitHub Copilot — latest
+  balanced model in IDE.
+copilot/gemini-2.5-pro: |
+  Google's Gemini 2.5 Pro via GitHub Copilot — multimodal with
+  large context for code understanding.
+copilot/gemini-3-flash-preview: |
+  Google's Gemini 3 Flash preview via GitHub Copilot — fast
+  next-gen model in IDE.
+copilot/gemini-3.1-pro-preview: |
+  Google's Gemini 3.1 Pro preview via GitHub Copilot —
+  early access in development workflow.
+copilot/gemini-3.5-flash: |
+  Google's Gemini 3.5 Flash via GitHub Copilot — fast, efficient
+  in coding context.
+copilot/gpt-3.5-turbo: |
+  OpenAI's GPT-3.5 Turbo via GitHub Copilot — legacy model for
+  simple completions.
+copilot/gpt-4: |
+  OpenAI's GPT-4 via GitHub Copilot — capable model for code
+  completion and reasoning.
+copilot/gpt-4-0125-preview: |
+  OpenAI's GPT-4 (Jan 2025 preview) via GitHub Copilot —
+  specific version for development.
+copilot/gpt-4.1: |
+  OpenAI's GPT-4.1 via GitHub Copilot — improved instruction
+  following for coding tasks.
+copilot/gpt-4o: |
+  OpenAI's GPT-4o via GitHub Copilot — flagship multimodal
+  model in development context.
+copilot/gpt-4o-mini: |
+  OpenAI's GPT-4o Mini via GitHub Copilot — smaller, faster
+  variant for quick completions.
+copilot/gpt-5-mini: |
+  OpenAI's GPT-5 Mini via GitHub Copilot — efficient latest
+  generation in IDE.
+copilot/gpt-5.3-codex: |
+  OpenAI's GPT-5.3 Codex via GitHub Copilot — latest code-specialized
+  generation.
+copilot/gpt-5.4: |
+  OpenAI's GPT-5.4 via GitHub Copilot — newest model in series.
+copilot/gpt-5.4-mini: |
+  OpenAI's GPT-5.4 Mini via GitHub Copilot — efficient variant
+  for development.
+copilot/gpt-5.5: |
+  OpenAI's GPT-5.5 via GitHub Copilot — latest production model
+  in IDE.
+cortecs/claude-4-5-sonnet: |
+  Anthropic's Claude Sonnet 4.5 via Cortecs — balanced model
+  with strong coding capabilities.
+cortecs/claude-4-6-sonnet: |
+  Anthropic's Claude Sonnet 4.6 via Cortecs — latest balanced
+  model.
+cortecs/claude-haiku-4-5: |
+  Anthropic's Claude Haiku 4.5 via Cortecs — fast, efficient
+  for lightweight tasks.
+cortecs/claude-opus4-5: |
+  Anthropic's Claude Opus 4.5 via Cortecs — top-tier reasoning
+  for complex analysis.
+cortecs/claude-opus4-6: |
+  Anthropic's Claude Opus 4.6 via Cortecs — most capable model.
+cortecs/claude-opus4-7: |
+  Anthropic's Claude Opus 4.7 via Cortecs — latest flagship with
+  advanced reasoning.
+cortecs/claude-opus4-8: |
+  Anthropic's Claude Opus 4.8 via Cortecs — highest capability
+  in lineup.
+cortecs/claude-sonnet-4: |
+  Anthropic's Claude Sonnet 4 via Cortecs — previous generation
+  balanced model.
+cortecs/codestral-2508: |
+  Mistral's Codestral (Aug 2025) via Cortecs — code-specialized
+  model for generation and completion.
+cortecs/cosmos3-super-reasoner: |
+  Mistral's Cosmos 3 Super Reasoner via Cortecs — reasoning-focused
+  model for complex problem-solving.
+cortecs/deepseek-chat-v3.1: |
+  DeepSeek's V3.1 chat via Cortecs — general-purpose with
+  strong coding.
+cortecs/deepseek-r1-0528: |
+  DeepSeek's R1 (May 28) via Cortecs — reasoning model for
+  complex analysis.
+cortecs/deepseek-v3-0324: |
+  DeepSeek's V3 (Mar 24) via Cortecs — general-purpose model.
+cortecs/deepseek-v3.2: |
+  DeepSeek's V3.2 via Cortecs — updated general-purpose model.
+cortecs/deepseek-v4-flash: |
+  DeepSeek's V4 Flash via Cortecs — fast latest generation.
+cortecs/deepseek-v4-pro: |
+  DeepSeek's V4 Pro via Cortecs — high-capability latest generation.
+cortecs/devstral-2512: |
+  Mistral's Devstral (Dec 2025) via Cortecs — code-specialized
+  for development tasks.
+cortecs/gemini-2.5-flash: |
+  Google's Gemini 2.5 Flash via Cortecs — fast, efficient
+  multimodal.
+cortecs/gemini-2.5-pro: |
+  Google's Gemini 2.5 Pro via Cortecs — flagship multimodal
+  with large context.
+cortecs/gemini-3.1-flash-lite: |
+  Google's Gemini 3.1 Flash Lite via Cortecs — lightweight
+  efficient model.
+cortecs/gemini-3.5-flash: |
+  Google's Gemini 3.5 Flash via Cortecs — fast latest generation.
+cortecs/gemma-3-27b-it: |
+  Google's Gemma 3 27B instruct via Cortecs — open-weight
+  instruction-tuned model.
+cortecs/gemma-4-26b-a4b-it: |
+  Google's Gemma 4 26B via Cortecs — efficient open-weight model.
+cortecs/gemma-4-31b-it: |
+  Google's Gemma 4 31B instruct via Cortecs — larger open-weight
+  instruction model.
+cortecs/glm-4.6: |
+  Zhipu's GLM-4.6 via Cortecs — strong Chinese language model.
+cortecs/glm-4.7: |
+  Zhipu's GLM-4.7 via Cortecs — updated model with improvements.
+cortecs/glm-4.7-flash: |
+  Zhipu's GLM-4.7 Flash via Cortecs — fast variant.
+cortecs/glm-5: |
+  Zhipu's GLM-5 via Cortecs — flagship with advanced capabilities.
+cortecs/glm-5-turbo: |
+  Zhipu's GLM-5 Turbo via Cortecs — fast flagship.
+cortecs/glm-5.1: |
+  Zhipu's GLM-5.1 via Cortecs — updated flagship.
+cortecs/glm-5.2: |
+  Zhipu's GLM-5.2 via Cortecs — latest version.
+cortecs/glm-5v-turbo: |
+  Zhipu's GLM-5 Vision Turbo via Cortecs — fast multimodal.
+cortecs/gpt-4.1: |
+  OpenAI's GPT-4.1 via Cortecs — improved with 1M context.
+cortecs/gpt-4.1-mini: |
+  OpenAI's GPT-4.1 Mini via Cortecs — smaller, faster variant.
+cortecs/gpt-4.1-nano: |
+  OpenAI's GPT-4.1 Nano via Cortecs — most efficient variant.
+cortecs/gpt-4o: |
+  OpenAI's GPT-4o via Cortecs — flagship multimodal.
+cortecs/gpt-4o-mini: |
+  OpenAI's GPT-4o Mini via Cortecs — smaller, faster variant.
+cortecs/gpt-5: |
+  OpenAI's GPT-5 via Cortecs — latest flagship.
+cortecs/gpt-5-mini: |
+  OpenAI's GPT-5 Mini via Cortecs — efficient GPT-5.
+cortecs/gpt-5-nano: |
+  OpenAI's GPT-5 Nano via Cortecs — most efficient GPT-5.
+cortecs/gpt-5.1: |
+  OpenAI's GPT-5.1 via Cortecs — updated flagship.
+cortecs/gpt-5.4: |
+  OpenAI's GPT-5.4 via Cortecs — latest in series.
+cortecs/gpt-oss-120b: |
+  OpenAI's open-source 120B via Cortecs — large open-weight model.
+cortecs/gpt-oss-20b: |
+  OpenAI's open-source 20B via Cortecs — smaller open-weight model.
+cortecs/gpt-oss-safeguard-120b: |
+  OpenAI's safeguarded 120B via Cortecs — safety-tuned large model.
+cortecs/hermes-4-405b: |
+  NousResearch's Hermes 4 405B via Cortecs — large open-weight
+  with strong reasoning.
+cortecs/hermes-4-70b: |
+  NousResearch's Hermes 4 70B via Cortecs — efficient open-weight
+  model.
+cortecs/holo2-30b-a3b: |
+  Hologram's Holo 2 30B via Cortecs — efficient vision-language
+  model.
+cortecs/kimi-k2.5: |
+  Moonshot AI's Kimi K2.5 via Cortecs — reasoning model with
+  good quality.
+cortecs/kimi-k2.6: |
+  Moonshot AI's Kimi K2.6 via Cortecs — improved reasoning model.
+cortecs/kimi-k2.7-code: |
+  Moonshot AI's Kimi K2.7 code via Cortecs — code-specialized
+  reasoning.
+cortecs/llama-3.1-405b-instruct: |
+  Meta's LLaMA 3.1 405B instruct via Cortecs — large open-weight
+  instruction model.
+cortecs/llama-3.1-8b-instruct: |
+  Meta's LLaMA 3.1 8B instruct via Cortecs — efficient open-weight
+  instruction model.
+cortecs/llama-3.1-nemotron-ultra-253b-v1: |
+  NVIDIA's Nemotron Ultra 253B via Cortecs — large efficient model
+  optimized for inference.
+cortecs/llama-3.3-70b-instruct: |
+  Meta's LLaMA 3.3 70B instruct via Cortecs — improved efficiency
+  and performance.
+cortecs/llama-4-maverick: |
+  Meta's LLaMA 4 Maverick via Cortecs — efficient open-weight
+  model with strong performance.
+cortecs/magistral-medium-2509: |
+  Mistral's Magistral Medium (Sept 2025) via Cortecs —
+  mid-tier model for general tasks.
+cortecs/magistral-small-2509: |
+  Mistral's Magistral Small (Sept 2025) via Cortecs — efficient
+  model for lightweight tasks.
+cortecs/minimax-m2: |
+  MiniMax M2 via Cortecs — efficient general-purpose.
+cortecs/minimax-m2.1: |
+  MiniMax M2.1 via Cortecs — improved model.
+cortecs/minimax-m2.5: |
+  MiniMax M2.5 via Cortecs — enhanced model.
+cortecs/minimax-m2.7: |
+  MiniMax M2.7 via Cortecs — latest generation with reasoning.
+cortecs/minimax-m3: |
+  MiniMax M3 via Cortecs — newest model.
+cortecs/ministral-14b-2512: |
+  Mistral's Ministral 14B (Dec 2025) via Cortecs — efficient
+  mid-tier model.
+cortecs/ministral-3b-2512: |
+  Mistral's Ministral 3B (Dec 2025) via Cortecs — small efficient
+  model.
+cortecs/ministral-8b-2512: |
+  Mistral's Ministral 8B (Dec 2025) via Cortecs — compact model
+  for basic tasks.
+cortecs/mistral-7b-instruct-v0.3: |
+  Mistral's 7B instruct v0.3 via Cortecs — popular open-weight
+  instruction model.
+cortecs/mistral-large-2402: |
+  Mistral's Large (Feb 2024) via Cortecs — previous flagship
+  with strong reasoning.
+cortecs/mistral-large-2512: |
+  Mistral's Large (Dec 2025) via Cortecs — latest flagship with
+  improved capabilities.
+cortecs/mistral-medium-2508: |
+  Mistral's Medium (Aug 2025) via Cortecs — balanced mid-tier.
+cortecs/mistral-medium-3.5: |
+  Mistral's Medium 3.5 via Cortecs — improved balanced model.
+cortecs/mistral-nemo-instruct-2407: |
+  Mistral's Nemo instruct (July 2024) via Cortecs — compact
+  instruction model.
+cortecs/mistral-small-2503: |
+  Mistral's Small (Mar 2025) via Cortecs — efficient lightweight
+  model.
+cortecs/mistral-small-2506: |
+  Mistral's Small (June 2025) via Cortecs — updated efficient model.
+cortecs/mistral-small-2603: |
+  Mistral's Small (Mar 2026) via Cortecs — latest efficient model.
+cortecs/mistral-small-3.2-24b-instruct-2506: |
+  Mistral's Small 3.2 24B instruct (June 2025) via Cortecs —
+  efficient instruction model.
+cortecs/nemotron-3-super-120b-a12b: |
+  NVIDIA's Nemotron 3 Super 120B via Cortecs — large efficient
+  optimized model.
+cortecs/nemotron-nano-v2-12b: |
+  NVIDIA's Nemotron Nano v2 12B via Cortecs — compact efficient
+  model.
+cortecs/nova-2-lite: |
+  Amazon's Nova 2 Lite via Cortecs — lightweight fast model.
+cortecs/nova-lite-v1: |
+  Amazon's Nova Lite v1 via Cortecs — efficient model.
+cortecs/nova-micro-v1: |
+  Amazon's Nova Micro v1 via Cortecs — smallest, fastest model.
+cortecs/nova-pro-v1: |
+  Amazon's Nova Pro v1 via Cortecs — capable mid-tier model.
+cortecs/nvidia-nemotron-3-nano-30b-a3b: |
+  NVIDIA's Nemotron 3 Nano 30B via Cortecs — compact efficient
+  inference model.
+cortecs/nvidia-nemotron-3-nano-omni: |
+  NVIDIA's Nemotron 3 Nano Omni via Cortecs — multimodal nano
+  model.
+cortecs/pixtral-large-2502: |
+  Mistral's Pixtral Large (Feb 2025) via Cortecs — large
+  multimodal model.
+cortecs/qwen-2.5-72b-instruct: |
+  Qwen's 2.5 72B instruct via Cortecs — popular open-weight
+  instruction model.
+cortecs/qwen3-235b-a22b-instruct-2507: |
+  Qwen's 235B instruct (July 2025) via Cortecs — large
+  instruction model.
+cortecs/qwen3-30b-a3b-instruct-2507: |
+  Qwen's 30B instruct (July 2025) via Cortecs — efficient
+  instruction model.
+cortecs/qwen3-32b: |
+  Qwen's 3 32B via Cortecs — balanced open-weight model.
+cortecs/qwen3-coder-30b-a3b-instruct: |
+  Qwen's 3 coder 30B instruct via Cortecs — code-specialized
+  instruction model.
+cortecs/qwen3-coder-next: |
+  Qwen's 3 coder next via Cortecs — next-gen code model.
+cortecs/qwen3-next-80b-a3b-thinking: |
+  Qwen's 3 next 80B thinking via Cortecs — reasoning-enabled
+  next-gen model.
+cortecs/qwen3-vl-235b-a22b: |
+  Qwen's 3 VL 235B via Cortecs — large multimodal model.
+cortecs/qwen3.5-122b-a10b: |
+  Qwen's 3.5 122B via Cortecs — large open-weight model.
+cortecs/qwen3.5-397b-a17b: |
+  Qwen's 3.5 397B via Cortecs — very large open-weight model.
+cortecs/qwen3.5-9b: |
+  Qwen's 3.5 9B via Cortecs — small efficient open-weight model.
+cortecs/qwen3.6-27b: |
+  Qwen's 3.6 27B via Cortecs — updated efficient model.
+cortecs/qwen3.6-35b-a3b: |
+  Qwen's 3.6 35B via Cortecs — updated balanced model.
+deepseek/deepseek-v4-flash: |
+  DeepSeek's V4 Flash direct — fast, efficient latest generation.
+deepseek/deepseek-v4-pro: |
+  DeepSeek's V4 Pro direct — high-capability latest generation.
+fireworks/accounts/fireworks/models/deepseek-v4-flash: |
+  DeepSeek's V4 Flash via Fireworks AI — fast inference platform.
+fireworks/accounts/fireworks/models/deepseek-v4-pro: |
+  DeepSeek's V4 Pro via Fireworks AI — high-capability inference.
+fireworks/accounts/fireworks/models/glm-5p1: |
+  Zhipu's GLM-5p1 via Fireworks AI — thinking variant with
+  reasoning.
+fireworks/accounts/fireworks/models/glm-5p2: |
+  Zhipu's GLM-5p2 via Fireworks AI — enhanced thinking variant.
+fireworks/accounts/fireworks/models/gpt-oss-120b: |
+  OpenAI's open-source 120B via Fireworks AI — fast inference
+  for large model.
+fireworks/accounts/fireworks/models/gpt-oss-20b: |
+  OpenAI's open-source 20B via Fireworks AI — fast inference
+  for compact model.
+fireworks/accounts/fireworks/models/kimi-k2p6: |
+  Moonshot AI's Kimi K2.6 via Fireworks AI — improved reasoning
+  on fast platform.
+fireworks/accounts/fireworks/models/kimi-k2p7-code: |
+  Moonshot AI's Kimi K2.7 code via Fireworks AI — code-specialized
+  on fast platform.
+fireworks/accounts/fireworks/models/minimax-m2p7: |
+  MiniMax M2.7 via Fireworks AI — fast inference for latest
+  generation.
+fireworks/accounts/fireworks/models/minimax-m3: |
+  MiniMax M3 via Fireworks AI — fast inference for newest model.
+fireworks/accounts/fireworks/models/qwen3p6-plus: |
+  Qwen's 3.6 Plus via Fireworks AI — fast inference for updated
+  model.
+fireworks/accounts/fireworks/models/qwen3p7-plus: |
+  Qwen's 3.7 Plus via Fireworks AI — fast inference for latest
+  enhanced model.
+gemini/gemini-2.5-flash: |
+  Google's Gemini 2.5 Flash direct — fast, efficient multimodal
+  with strong reasoning.
+gemini/gemini-2.5-pro: |
+  Google's Gemini 2.5 Pro direct — flagship multimodal with 1M+
+  token context.
+gemini/gemini-3-flash-preview: |
+  Google's Gemini 3 Flash preview — next-generation fast model.
+gemini/gemini-3-pro-preview: |
+  Google's Gemini 3 Pro preview — next-generation flagship.
+gemini/gemini-3.1-pro-preview-customtools: |
+  Google's Gemini 3.1 Pro preview with custom tools — extensible
+  reasoning model.
+gemini/gemini-3.5-flash: |
+  Google's Gemini 3.5 Flash — latest fast multimodal model.
+groq/moonshotai/kimi-k2-instruct-0905: |
+  Moonshot AI's Kimi K2 instruct (Sept 2025) via Groq — ultra-fast
+  inference for coding.
+groq/qwen/qwen3-32b: |
+  Qwen's 3 32B via Groq — ultra-fast inference on open-weight
+  model.
+huggingface/MiniMaxAI/MiniMax-M2.7:fireworks-ai: |
+  MiniMax M2.7 via Hugging Face (Fireworks) — fast inference
+  on efficient model.
+huggingface/MiniMaxAI/MiniMax-M3:fireworks-ai: |
+  MiniMax M3 via Hugging Face (Fireworks) — fast inference on
+  newest model.
+huggingface/Qwen/Qwen3-32B:groq: |
+  Qwen's 3 32B via Hugging Face (Groq) — ultra-fast inference.
+huggingface/deepseek-ai/DeepSeek-V4-Flash:fireworks-ai: |
+  DeepSeek V4 Flash via Hugging Face (Fireworks) — fast inference
+  on latest model.
+huggingface/deepseek-ai/DeepSeek-V4-Pro:fireworks-ai: |
+  DeepSeek V4 Pro via Hugging Face (Fireworks) — fast inference
+  on high-capability model.
+huggingface/meta-llama/Llama-3.3-70B-Instruct:groq: |
+  Meta's LLaMA 3.3 70B instruct via Hugging Face (Groq) —
+  ultra-fast inference.
+huggingface/meta-llama/Llama-4-Scout-17B-16E-Instruct:groq: |
+  Meta's LLaMA 4 Scout via Hugging Face (Groq) — ultra-fast
+  compact model.
+huggingface/moonshotai/Kimi-K2.5:fireworks-ai: |
+  Kimi K2.5 via Hugging Face (Fireworks) — fast inference on
+  reasoning model.
+huggingface/moonshotai/Kimi-K2.6:fireworks-ai: |
+  Kimi K2.6 via Hugging Face (Fireworks) — fast inference on
+  improved reasoning.
+huggingface/openai/gpt-oss-120b:cerebras: |
+  OpenAI's open-source 120B via Hugging Face (Cerebras) —
+  wafer-scale fast inference.
+huggingface/openai/gpt-oss-120b:fireworks-ai: |
+  OpenAI's open-source 120B via Hugging Face (Fireworks) —
+  fast inference on large model.
+huggingface/openai/gpt-oss-120b:groq: |
+  OpenAI's open-source 120B via Hugging Face (Groq) — ultra-fast
+  large model inference.
+huggingface/openai/gpt-oss-20b:fireworks-ai: |
+  OpenAI's open-source 20B via Hugging Face (Fireworks) —
+  fast inference on small model.
+huggingface/openai/gpt-oss-20b:groq: |
+  OpenAI's open-source 20B via Hugging Face (Groq) — ultra-fast
+  compact model.
+huggingface/openai/gpt-oss-safeguard-20b:groq: |
+  OpenAI's safeguarded 20B via Hugging Face (Groq) — ultra-fast
+  safety-tuned model.
+huggingface/zai-org/GLM-4.7:cerebras: |
+  Zhipu's GLM-4.7 via Hugging Face (Cerebras) — fast inference
+  on Chinese model.
+huggingface/zai-org/GLM-5.1-FP8:fireworks-ai: |
+  Zhipu's GLM-5.1 FP8 via Hugging Face (Fireworks) — quantized
+  fast inference.
+huggingface/zai-org/GLM-5.2:fireworks-ai: |
+  Zhipu's GLM-5.2 via Hugging Face (Fireworks) — fast inference
+  on latest version.
+hyper/deepseek-v4-flash: |
+  DeepSeek's V4 Flash via Crush Hyper — curated fast inference
+  for development.
+hyper/deepseek-v4-pro: |
+  DeepSeek's V4 Pro via Crush Hyper — curated high-capability
+  inference.
+hyper/gemma-4-26b-a4b-it: |
+  Google's Gemma 4 26B via Crush Hyper — curated efficient
+  open-weight model.
+hyper/glm-5: |
+  Zhipu's GLM-5 via Crush Hyper — curated flagship with Chinese
+  language strength.
+hyper/glm-5.1: |
+  Zhipu's GLM-5.1 via Crush Hyper — curated updated flagship.
+hyper/glm-5.2: |
+  Zhipu's GLM-5.2 via Crush Hyper — curated latest version.
+hyper/gpt-oss-120b: |
+  OpenAI's open-source 120B via Crush Hyper — curated large
+  open-weight inference.
+hyper/kimi-k2.5: |
+  Moonshot AI's Kimi K2.5 via Crush Hyper — curated reasoning
+  model for development.
+hyper/kimi-k2.6: |
+  Moonshot AI's Kimi K2.6 via Crush Hyper — curated improved
+  reasoning model.
+hyper/kimi-k2.7-code: |
+  Moonshot AI's Kimi K2.7 code via Crush Hyper — curated
+  code-specialized reasoning.
+hyper/llama-3.3-70b-instruct: |
+  Meta's LLaMA 3.3 70B instruct via Crush Hyper — curated
+  strong open-weight model.
+hyper/llama-4-maverick-17b-128e-instruct-fp8: |
+  Meta's LLaMA 4 Maverick FP8 via Crush Hyper — curated
+  efficient quantized model.
+hyper/minimax-m2.7: |
+  MiniMax M2.7 via Crush Hyper — curated latest generation
+  with reasoning.
+hyper/qwen3-coder-480b-a35b-instruct-int4-mixed-ar: |
+  Qwen's 3 coder 480B int4 mixed via Crush Hyper — quantized
+  large code model.
+hyper/qwen3-next-80b-a3b-instruct: |
+  Qwen's 3 next 80B instruct via Crush Hyper — curated next-gen
+  instruction model.
+hyper/qwen3.6-flash: |
+  Qwen's 3.6 Flash via Crush Hyper — curated fast updated model.
+hyper/qwen3.6-max: |
+  Qwen's 3.6 Max via Crush Hyper — curated largest 3.6 variant.
+hyper/qwen3.6-plus: |
+  Qwen's 3.6 Plus via Crush Hyper — curated enhanced variant.
+hyper/qwen3.7-max: |
+  Qwen's 3.7 Max via Crush Hyper — curated largest 3.7 variant.
+hyper/qwen3.7-plus: |
+  Qwen's 3.7 Plus via Crush Hyper — curated enhanced 3.7.
+ionet/Intel/Qwen3-Coder-480B-A35B-Instruct-int4-mixed-ar: |
+  Qwen's 3 coder 480B int4 via IONET — Intel-optimized large
+  code model.
+ionet/MiniMaxAI/MiniMax-M2.5: |
+  MiniMax M2.5 via IONET — cloud inference on enhanced model.
+ionet/MiniMaxAI/MiniMax-M2.7: |
+  MiniMax M2.7 via IONET — cloud inference on latest generation.
+ionet/Qwen/Qwen3-Next-80B-A3B-Instruct: |
+  Qwen's 3 next 80B instruct via IONET — cloud inference on
+  next-gen model.
+ionet/Qwen/Qwen3.6-27B: |
+  Qwen's 3.6 27B via IONET — cloud inference on efficient model.
+ionet/Qwen/Qwen3.6-35B-A3B: |
+  Qwen's 3.6 35B via IONET — cloud inference on balanced model.
+ionet/deepseek-ai/DeepSeek-V3.2: |
+  DeepSeek V3.2 via IONET — cloud inference on updated model.
+ionet/deepseek-ai/DeepSeek-V4-Flash: |
+  DeepSeek V4 Flash via IONET — cloud inference on fast model.
+ionet/deepseek-ai/DeepSeek-V4-Pro: |
+  DeepSeek V4 Pro via IONET — cloud inference on high-capability.
+ionet/google/gemma-4-26b-a4b-it: |
+  Google Gemma 4 26B via IONET — cloud inference on efficient
+  open-weight.
+ionet/meta-llama/Llama-3.3-70B-Instruct: |
+  Meta LLaMA 3.3 70B instruct via IONET — cloud inference on
+  strong open-weight.
+ionet/meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8: |
+  Meta LLaMA 4 Maverick FP8 via IONET — cloud inference on
+  quantized model.
+ionet/moonshotai/Kimi-K2-Instruct-0905: |
+  Kimi K2 instruct (Sept 2025) via IONET — cloud inference on
+  reasoning model.
+ionet/moonshotai/Kimi-K2-Thinking: |
+  Kimi K2 thinking via IONET — cloud inference on reasoning mode.
+ionet/moonshotai/Kimi-K2.5: |
+  Kimi K2.5 via IONET — cloud inference on improved reasoning.
+ionet/moonshotai/Kimi-K2.6: |
+  Kimi K2.6 via IONET — cloud inference on further improved.
+ionet/moonshotai/Kimi-K2.7-Code: |
+  Kimi K2.7 code via IONET — cloud inference on code-specialized.
+ionet/openai/gpt-oss-120b: |
+  OpenAI open-source 120B via IONET — cloud inference on large
+  open-weight.
+ionet/openai/gpt-oss-20b: |
+  OpenAI open-source 20B via IONET — cloud inference on compact
+  open-weight.
+ionet/zai-org/GLM-4.5-Air: |
+  Zhipu GLM-4.5 Air via IONET — cloud inference on lightweight
+  variant.
+ionet/zai-org/GLM-4.6: |
+  Zhipu GLM-4.6 via IONET — cloud inference on strong Chinese model.
+ionet/zai-org/GLM-4.7: |
+  Zhipu GLM-4.7 via IONET — cloud inference on updated model.
+ionet/zai-org/GLM-4.7-Flash: |
+  Zhipu GLM-4.7 Flash via IONET — cloud inference on fast variant.
+ionet/zai-org/GLM-5: |
+  Zhipu GLM-5 via IONET — cloud inference on flagship.
+ionet/zai-org/GLM-5.1: |
+  Zhipu GLM-5.1 via IONET — cloud inference on updated flagship.
+ionet/zai-org/GLM-5.2: |
+  Zhipu GLM-5.2 via IONET — cloud inference on latest version.
+kimi-coding/kimi-for-coding: |
+  Moonshot AI's Kimi for Coding — specialized coding model
+  with strong context understanding.
+minimax/MiniMax-M2: |
+  MiniMax M2 direct — efficient general-purpose with multilingual
+  support.
+minimax/MiniMax-M2.1: |
+  MiniMax M2.1 direct — improved model with better quality.
+minimax/MiniMax-M2.1-highspeed: |
+  MiniMax M2.1 highspeed direct — fast variant.
+minimax/MiniMax-M2.5: |
+  MiniMax M2.5 direct — enhanced model for various tasks.
+minimax/MiniMax-M2.5-highspeed: |
+  MiniMax M2.5 highspeed direct — fast enhanced variant.
+minimax/MiniMax-M2.7: |
+  MiniMax M2.7 direct — latest generation with reasoning.
+minimax/MiniMax-M2.7-highspeed: |
+  MiniMax M2.7 highspeed direct — fast latest generation.
+minimax/MiniMax-M3: |
+  MiniMax M3 direct — newest model with advanced capabilities.
+minimax-china/MiniMax-M2: |
+  MiniMax M2 via China region — general-purpose model.
+minimax-china/MiniMax-M2.1: |
+  MiniMax M2.1 via China region — improved model.
+minimax-china/MiniMax-M2.1-highspeed: |
+  MiniMax M2.1 highspeed via China region — fast variant.
+minimax-china/MiniMax-M2.5: |
+  MiniMax M2.5 via China region — enhanced model.
+minimax-china/MiniMax-M2.5-highspeed: |
+  MiniMax M2.5 highspeed via China region — fast enhanced.
+minimax-china/MiniMax-M2.7: |
+  MiniMax M2.7 via China region — latest generation.
+minimax-china/MiniMax-M2.7-highspeed: |
+  MiniMax M2.7 highspeed via China region — fast latest.
+minimax-china/MiniMax-M3: |
+  MiniMax M3 via China region — newest model.
+nebius/MiniMaxAI/MiniMax-M2.5: |
+  MiniMax M2.5 via Nebius — cloud inference on enhanced model.
+nebius/MiniMaxAI/MiniMax-M2.5-fast: |
+  MiniMax M2.5 fast via Nebius — quick inference on enhanced model.
+nebius/NousResearch/Hermes-4-405B: |
+  NousResearch's Hermes 4 405B via Nebius — cloud inference on
+  large open-weight.
+nebius/NousResearch/Hermes-4-70B: |
+  NousResearch's Hermes 4 70B via Nebius — cloud inference on
+  efficient open-weight.
+nebius/PrimeIntellect/INTELLECT-3: |
+  PrimeIntellect's INTELLECT-3 via Nebius — cloud inference on
+  research model.
+nebius/Qwen/Qwen3-235B-A22B-Instruct-2507: |
+  Qwen's 235B instruct (July 2025) via Nebius — cloud inference
+  on large model.
+nebius/Qwen/Qwen3-235B-A22B-Thinking-2507-fast: |
+  Qwen's 235B thinking fast (July 2025) via Nebius — quick
+  reasoning inference.
+nebius/Qwen/Qwen3-30B-A3B-Instruct-2507: |
+  Qwen's 30B instruct (July 2025) via Nebius — efficient instruction.
+nebius/Qwen/Qwen3-32B: |
+  Qwen's 3 32B via Nebius — balanced open-weight.
+nebius/Qwen/Qwen3-Next-80B-A3B-Thinking: |
+  Qwen's 3 next 80B thinking via Nebius — reasoning-enabled
+  next-gen.
+nebius/Qwen/Qwen3-Next-80B-A3B-Thinking-fast: |
+  Qwen's 3 next 80B thinking fast via Nebius — quick reasoning.
+nebius/Qwen/Qwen3.5-397B-A17B: |
+  Qwen's 3.5 397B via Nebius — large open-weight model.
+nebius/Qwen/Qwen3.5-397B-A17B-fast: |
+  Qwen's 3.5 397B fast via Nebius — quick large model inference.
+nebius/deepseek-ai/DeepSeek-V3.2: |
+  DeepSeek V3.2 via Nebius — updated general-purpose.
+nebius/deepseek-ai/DeepSeek-V3.2-fast: |
+  DeepSeek V3.2 fast via Nebius — quick updated model.
+nebius/meta-llama/Llama-3.3-70B-Instruct: |
+  Meta LLaMA 3.3 70B instruct via Nebius — strong open-weight.
+nebius/meta-llama/Meta-Llama-3.1-8B-Instruct: |
+  Meta LLaMA 3.1 8B instruct via Nebius — efficient compact model.
+nebius/moonshotai/Kimi-K2.5: |
+  Kimi K2.5 via Nebius — reasoning model with good quality.
+nebius/moonshotai/Kimi-K2.5-fast: |
+  Kimi K2.5 fast via Nebius — quick reasoning model.
+nebius/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B: |
+  NVIDIA's Nemotron 3 Nano 30B via Nebius — compact efficient
+  inference.
+nebius/nvidia/nemotron-3-super-120b-a12b: |
+  NVIDIA's Nemotron 3 Super 120B via Nebius — large efficient
+  model.
+nebius/openai/gpt-oss-120b: |
+  OpenAI open-source 120B via Nebius — cloud inference on large
+  open-weight.
+nebius/openai/gpt-oss-120b-fast: |
+  OpenAI open-source 120B fast via Nebius — quick large model.
+nebius/zai-org/GLM-5: |
+  Zhipu GLM-5 via Nebius — flagship with Chinese language.
+neuralwatt/glm-5.2: |
+  Zhipu GLM-5.2 via NeuralWatt — energy-efficient inference on
+  latest version.
+neuralwatt/glm-5.2-fast: |
+  Zhipu GLM-5.2 fast via NeuralWatt — quick energy-efficient
+  inference.
+neuralwatt/glm-5.2-short: |
+  Zhipu GLM-5.2 short via NeuralWatt — energy-efficient short
+  responses.
+neuralwatt/glm-5.2-short-fast: |
+  Zhipu GLM-5.2 short fast via NeuralWatt — quick short response
+  efficient.
+neuralwatt/kimi-k2.6: |
+  Kimi K2.6 via NeuralWatt — energy-efficient reasoning.
+neuralwatt/kimi-k2.6-fast: |
+  Kimi K2.6 fast via NeuralWatt — quick energy-efficient reasoning.
+neuralwatt/kimi-k2.7-code: |
+  Kimi K2.7 code via NeuralWatt — energy-efficient code
+  generation.
+neuralwatt/qwen3.5-397b: |
+  Qwen's 3.5 397B via NeuralWatt — energy-efficient large model.
+neuralwatt/qwen3.5-397b-fast: |
+  Qwen's 3.5 397B fast via NeuralWatt — quick large model.
+neuralwatt/qwen3.6-35b: |
+  Qwen's 3.6 35B via NeuralWatt — energy-efficient balanced model.
+neuralwatt/qwen3.6-35b-fast: |
+  Qwen's 3.6 35B fast via NeuralWatt — quick balanced model.
+openai/gpt-4.1: |
+  OpenAI's GPT-4.1 direct — improved instruction following with
+  1M token context.
+openai/gpt-4.1-mini: |
+  OpenAI's GPT-4.1 Mini direct — smaller, faster variant.
+openai/gpt-4.1-nano: |
+  OpenAI's GPT-4.1 Nano direct — most efficient variant for
+  lightweight tasks.
+openai/gpt-4o: |
+  OpenAI's GPT-4o direct — flagship multimodal with vision,
+  audio, and text.
+openai/gpt-4o-mini: |
+  OpenAI's GPT-4o Mini direct — smaller, faster, cheaper variant.
+openai/gpt-5: |
+  OpenAI's GPT-5 direct — latest flagship with advanced reasoning.
+openai/gpt-5-codex: |
+  OpenAI's GPT-5 Codex direct — code-specialized variant.
+openai/gpt-5-mini: |
+  OpenAI's GPT-5 Mini direct — efficient GPT-5 variant.
+openai/gpt-5-nano: |
+  OpenAI's GPT-5 Nano direct — most efficient GPT-5.
+openai/gpt-5.1: |
+  OpenAI's GPT-5.1 direct — updated flagship with improvements.
+openai/gpt-5.1-codex: |
+  OpenAI's GPT-5.1 Codex direct — code-specialized updated.
+openai/gpt-5.1-codex-max: |
+  OpenAI's GPT-5.1 Codex Max direct — highest capability code.
+openai/gpt-5.1-codex-mini: |
+  OpenAI's GPT-5.1 Codex Mini direct — efficient code specialized.
+openai/gpt-5.2: |
+  OpenAI's GPT-5.2 direct — further improved flagship.
+openai/gpt-5.2-codex: |
+  OpenAI's GPT-5.2 Codex direct — code-specialized further improved.
+openai/gpt-5.3-codex: |
+  OpenAI's GPT-5.3 Codex direct — latest code-specialized generation.
+openai/gpt-5.4: |
+  OpenAI's GPT-5.4 direct — latest in the series.
+openai/gpt-5.4-mini: |
+  OpenAI's GPT-5.4 Mini direct — efficient variant.
+openai/gpt-5.4-nano: |
+  OpenAI's GPT-5.4 Nano direct — most efficient in series.
+openai/gpt-5.4-pro: |
+  OpenAI's GPT-5.4 Pro direct — professional tier.
+openai/gpt-5.5: |
+  OpenAI's GPT-5.5 direct — latest production model.
+openai/gpt-5.5-pro: |
+  OpenAI's GPT-5.5 Pro direct — professional tier of latest.
+openai/o3: |
+  OpenAI's o3 direct — advanced reasoning for complex problem-solving.
+openai/o3-mini: |
+  OpenAI's o3 Mini direct — smaller, faster reasoning model.
+openai/o4-mini: |
+  OpenAI's o4 Mini direct — efficient reasoning with multimodal.
+opencode-go/deepseek-v4-flash: |
+  DeepSeek V4 Flash via OpenCode GO — code-focused fast inference.
+opencode-go/deepseek-v4-pro: |
+  DeepSeek V4 Pro via OpenCode GO — code-focused high-capability.
+opencode-go/glm-5: |
+  Zhipu GLM-5 via OpenCode GO — code context with Chinese support.
+opencode-go/glm-5.1: |
+  Zhipu GLM-5.1 via OpenCode GO — code context updated.
+opencode-go/glm-5.2: |
+  Zhipu GLM-5.2 via OpenCode GO — code context latest.
+opencode-go/kimi-k2.5: |
+  Kimi K2.5 via OpenCode GO — reasoning for code understanding.
+opencode-go/kimi-k2.6: |
+  Kimi K2.6 via OpenCode GO — improved reasoning for code.
+opencode-go/kimi-k2.7-code: |
+  Kimi K2.7 code via OpenCode GO — specialized for code generation.
+opencode-go/mimo-v2-omni: |
+  Xiaomi Mimo V2 Omni via OpenCode GO — multimodal for code and
+  vision.
+opencode-go/mimo-v2-pro: |
+  Xiaomi Mimo V2 Pro via OpenCode GO — professional multimodal
+  for code.
+opencode-go/mimo-v2.5: |
+  Xiaomi Mimo V2.5 via OpenCode GO — updated multimodal.
+opencode-go/mimo-v2.5-pro: |
+  Xiaomi Mimo V2.5 Pro via OpenCode GO — professional updated.
+opencode-go/minimax-m2.5: |
+  MiniMax M2.5 via OpenCode GO — efficient code generation.
+opencode-go/minimax-m2.7: |
+  MiniMax M2.7 via OpenCode GO — latest code generation.
+opencode-go/minimax-m3: |
+  MiniMax M3 via OpenCode GO — newest code model.
+opencode-go/qwen3.5-plus: |
+  Qwen's 3.5 Plus via OpenCode GO — enhanced code model.
+opencode-go/qwen3.6-plus: |
+  Qwen's 3.6 Plus via OpenCode GO — updated enhanced code.
+opencode-go/qwen3.7-max: |
+  Qwen's 3.7 Max via OpenCode GO — largest code model.
+opencode-go/qwen3.7-plus: |
+  Qwen's 3.7 Plus via OpenCode GO — enhanced code model.
+opencode-zen/big-pickle: |
+  OpenCode Zen's Big Pickle — large context model for extensive
+  code understanding.
+opencode-zen/claude-fable-5: |
+  Claude Fable 5 via OpenCode Zen — creative writing and
+  storytelling in code context.
+opencode-zen/claude-haiku-4-5: |
+  Claude Haiku 4.5 via OpenCode Zen — fast, efficient for simple
+  code tasks.
+opencode-zen/claude-opus-4-1: |
+  Claude Opus 4.1 via OpenCode Zen — highly capable for complex
+  codebases.
+opencode-zen/claude-opus-4-5: |
+  Claude Opus 4.5 via OpenCode Zen — top-tier for large code
+  understanding.
+opencode-zen/claude-opus-4-6: |
+  Claude Opus 4.6 via OpenCode Zen — most capable model for
+  complex analysis.
+opencode-zen/claude-opus-4-7: |
+  Claude Opus 4.7 via OpenCode Zen — latest flagship with advanced
+  reasoning.
+opencode-zen/claude-opus-4-8: |
+  Claude Opus 4.8 via OpenCode Zen — highest capability in lineup.
+opencode-zen/claude-sonnet-4: |
+  Claude Sonnet 4 via OpenCode Zen — balanced model for
+  production code.
+opencode-zen/claude-sonnet-4-5: |
+  Claude Sonnet 4.5 via OpenCode Zen — enhanced balanced model.
+opencode-zen/claude-sonnet-4-6: |
+  Claude Sonnet 4.6 via OpenCode Zen — latest balanced model.
+opencode-zen/deepseek-v4-flash: |
+  DeepSeek V4 Flash via OpenCode Zen — fast code generation.
+opencode-zen/deepseek-v4-flash-free: |
+  DeepSeek V4 Flash free via OpenCode Zen — no-cost fast code.
+opencode-zen/deepseek-v4-pro: |
+  DeepSeek V4 Pro via OpenCode Zen — high-capability code.
+opencode-zen/gemini-3-flash: |
+  Gemini 3 Flash via OpenCode Zen — fast next-gen code.
+opencode-zen/gemini-3.1-pro: |
+  Gemini 3.1 Pro via OpenCode Zen — early access next-gen.
+opencode-zen/gemini-3.5-flash: |
+  Gemini 3.5 Flash via OpenCode Zen — fast latest code.
+opencode-zen/glm-5: |
+  GLM-5 via OpenCode Zen — code with Chinese language support.
+opencode-zen/glm-5.1: |
+  GLM-5.1 via OpenCode Zen — updated code model.
+opencode-zen/glm-5.2: |
+  GLM-5.2 via OpenCode Zen — latest code version.
+opencode-zen/gpt-5: |
+  GPT-5 via OpenCode Zen — latest flagship code model.
+opencode-zen/gpt-5-codex: |
+  GPT-5 Codex via OpenCode Zen — code-specialized latest.
+opencode-zen/gpt-5-nano: |
+  GPT-5 Nano via OpenCode Zen — efficient latest code.
+opencode-zen/gpt-5.1: |
+  GPT-5.1 via OpenCode Zen — updated flagship code.
+opencode-zen/gpt-5.1-codex: |
+  GPT-5.1 Codex via OpenCode Zen — code-specialized updated.
+opencode-zen/gpt-5.1-codex-max: |
+  GPT-5.1 Codex Max via OpenCode Zen — highest code capability.
+opencode-zen/gpt-5.1-codex-mini: |
+  GPT-5.1 Codex Mini via OpenCode Zen — efficient code specialized.
+opencode-zen/gpt-5.2: |
+  GPT-5.2 via OpenCode Zen — further improved code model.
+opencode-zen/gpt-5.2-codex: |
+  GPT-5.2 Codex via OpenCode Zen — code-specialized further improved.
+opencode-zen/gpt-5.3-codex: |
+  GPT-5.3 Codex via OpenCode Zen — latest code generation.
+opencode-zen/gpt-5.3-codex-spark: |
+  GPT-5.3 Codex Spark via OpenCode Zen — special code variant.
+opencode-zen/gpt-5.4: |
+  GPT-5.4 via OpenCode Zen — newest in series.
+opencode-zen/gpt-5.4-mini: |
+  GPT-5.4 Mini via OpenCode Zen — efficient variant.
+opencode-zen/gpt-5.4-nano: |
+  GPT-5.4 Nano via OpenCode Zen — most efficient in series.
+opencode-zen/gpt-5.4-pro: |
+  GPT-5.4 Pro via OpenCode Zen — professional tier.
+opencode-zen/gpt-5.5: |
+  GPT-5.5 via OpenCode Zen — latest production code model.
+opencode-zen/gpt-5.5-pro: |
+  GPT-5.5 Pro via OpenCode Zen — professional tier of latest.
+opencode-zen/grok-build-0.1: |
+  Grok Build 0.1 via OpenCode Zen — experimental code model.
+opencode-zen/kimi-k2.5: |
+  Kimi K2.5 via OpenCode Zen — reasoning for code understanding.
+opencode-zen/kimi-k2.6: |
+  Kimi K2.6 via OpenCode Zen — improved reasoning for code.
+opencode-zen/mimo-v2.5-free: |
+  Mimo V2.5 free via OpenCode Zen — no-cost multimodal code.
+opencode-zen/minimax-m2.5: |
+  MiniMax M2.5 via OpenCode Zen — efficient code generation.
+opencode-zen/minimax-m2.7: |
+  MiniMax M2.7 via OpenCode Zen — latest code generation.
+opencode-zen/minimax-m3-free: |
+  MiniMax M3 free via OpenCode Zen — no-cost newest code.
+opencode-zen/nemotron-3-ultra-free: |
+  Nemotron 3 Ultra free via OpenCode Zen — no-cost large code.
+opencode-zen/north-mini-code-free: |
+  North Mini Code free via OpenCode Zen — no-cost efficient code.
+opencode-zen/qwen3.5-plus: |
+  Qwen's 3.5 Plus via OpenCode Zen — enhanced code model.
+opencode-zen/qwen3.6-plus: |
+  Qwen's 3.6 Plus via OpenCode Zen — updated enhanced code.
+opencode-zen/qwen3.6-plus-free: |
+  Qwen's 3.6 Plus free via OpenCode Zen — no-cost enhanced code.
+openrouter/ai21/jamba-large-1.7: |
+  AI21's Jamba Large 1.7 via OpenRouter — hybrid transformer-Mamba
+  model for general tasks.
+openrouter/amazon/nova-2-lite-v1: |
+  Amazon's Nova 2 Lite v1 via OpenRouter — lightweight fast model.
+openrouter/amazon/nova-lite-v1: |
+  Amazon's Nova Lite v1 via OpenRouter — efficient model.
+openrouter/amazon/nova-micro-v1: |
+  Amazon's Nova Micro v1 via OpenRouter — smallest, fastest.
+openrouter/amazon/nova-premier-v1: |
+  Amazon's Nova Premier v1 via OpenRouter — capable large model.
+openrouter/amazon/nova-pro-v1: |
+  Amazon's Nova Pro v1 via OpenRouter — mid-tier capable model.
+openrouter/anthropic/claude-3-haiku: |
+  Claude 3 Haiku via OpenRouter — fast, cost-effective for
+  simple tasks.
+openrouter/anthropic/claude-fable-5: |
+  Claude Fable 5 via OpenRouter — optimized for creative writing
+  and storytelling.
+openrouter/anthropic/claude-haiku-4.5: |
+  Claude Haiku 4.5 via OpenRouter — fast, cost-effective with
+  improvements.
+openrouter/anthropic/claude-opus-4: |
+  Claude Opus 4 via OpenRouter — top-tier reasoning for complex
+  analysis.
+openrouter/anthropic/claude-opus-4.1: |
+  Claude Opus 4.1 via OpenRouter — highly capable with improvements.
+openrouter/anthropic/claude-opus-4.5: |
+  Claude Opus 4.5 via OpenRouter — enhanced top-tier reasoning.
+openrouter/anthropic/claude-opus-4.6: |
+  Claude Opus 4.6 via OpenRouter — most capable model.
+openrouter/anthropic/claude-opus-4.6-fast: |
+  Claude Opus 4.6 fast via OpenRouter — quick top-tier.
+openrouter/anthropic/claude-opus-4.7: |
+  Claude Opus 4.7 via OpenRouter — latest flagship with advanced
+  reasoning.
+openrouter/anthropic/claude-opus-4.7-fast: |
+  Claude Opus 4.7 fast via OpenRouter — quick latest flagship.
+openrouter/anthropic/claude-opus-4.8: |
+  Claude Opus 4.8 via OpenRouter — highest capability.
+openrouter/anthropic/claude-opus-4.8-fast: |
+  Claude Opus 4.8 fast via OpenRouter — quick highest capability.
+openrouter/anthropic/claude-sonnet-4: |
+  Claude Sonnet 4 via OpenRouter — balanced model with strong
+  capabilities.
+openrouter/anthropic/claude-sonnet-4.5: |
+  Claude Sonnet 4.5 via OpenRouter — enhanced balanced model.
+openrouter/anthropic/claude-sonnet-4.6: |
+  Claude Sonnet 4.6 via OpenRouter — latest balanced model.
+openrouter/arcee-ai/trinity-large-thinking: |
+  Arcee AI's Trinity Large Thinking via OpenRouter — reasoning-focused
+  large model.
+openrouter/arcee-ai/trinity-mini: |
+  Arcee AI's Trinity Mini via OpenRouter — compact reasoning model.
+openrouter/arcee-ai/virtuoso-large: |
+  Arcee AI's Virtuoso Large via OpenRouter — large model for
+  complex tasks.
+openrouter/bytedance-seed/seed-1.6: |
+  ByteDance's Seed 1.6 via OpenRouter — general-purpose with
+  Chinese strength.
+openrouter/bytedance-seed/seed-1.6-flash: |
+  ByteDance's Seed 1.6 Flash via OpenRouter — fast variant.
+openrouter/bytedance-seed/seed-2.0-lite: |
+  ByteDance's Seed 2.0 Lite via OpenRouter — lightweight model.
+openrouter/bytedance-seed/seed-2.0-mini: |
+  ByteDance's Seed 2.0 Mini via OpenRouter — compact model.
+openrouter/cohere/command-r-08-2024: |
+  Cohere's Command R (Aug 2024) via OpenRouter — RAG-optimized
+  for retrieval tasks.
+openrouter/cohere/command-r-plus-08-2024: |
+  Cohere's Command R Plus (Aug 2024) via OpenRouter — larger
+  RAG-optimized model.
+openrouter/cohere/north-mini-code:free: |
+  Cohere's North Mini Code free via OpenRouter — no-cost code
+  model.
+openrouter/deepseek/deepseek-chat: |
+  DeepSeek Chat via OpenRouter — general-purpose with strong
+  coding.
+openrouter/deepseek/deepseek-chat-v3-0324: |
+  DeepSeek Chat V3 (Mar 24) via OpenRouter — dated general-purpose.
+openrouter/deepseek/deepseek-chat-v3.1: |
+  DeepSeek Chat V3.1 via OpenRouter — updated general-purpose.
+openrouter/deepseek/deepseek-r1: |
+  DeepSeek R1 via OpenRouter — reasoning model for complex tasks.
+openrouter/deepseek/deepseek-r1-0528: |
+  DeepSeek R1 (May 28) via OpenRouter — dated reasoning model.
+openrouter/deepseek/deepseek-v3.1-terminus: |
+  DeepSeek V3.1 Terminus via OpenRouter — extended general-purpose.
+openrouter/deepseek/deepseek-v3.2: |
+  DeepSeek V3.2 via OpenRouter — updated general-purpose model.
+openrouter/deepseek/deepseek-v3.2-exp: |
+  DeepSeek V3.2 experimental via OpenRouter — experimental build.
+openrouter/deepseek/deepseek-v4-flash: |
+  DeepSeek V4 Flash via OpenRouter — fast latest generation.
+openrouter/deepseek/deepseek-v4-pro: |
+  DeepSeek V4 Pro via OpenRouter — high-capability latest.
+openrouter/google/gemini-2.5-flash: |
+  Gemini 2.5 Flash via OpenRouter — fast, efficient multimodal
+  with reasoning.
+openrouter/google/gemini-2.5-flash-lite: |
+  Gemini 2.5 Flash Lite via OpenRouter — lightweight efficient
+  model.
+openrouter/google/gemini-2.5-flash-lite-preview-09-2025: |
+  Gemini 2.5 Flash Lite preview (Sept 2025) via OpenRouter —
+  lightweight early access.
+openrouter/google/gemini-2.5-pro: |
+  Gemini 2.5 Pro via OpenRouter — flagship multimodal with 1M+
+  context.
+openrouter/google/gemini-2.5-pro-preview: |
+  Gemini 2.5 Pro preview via OpenRouter — early access flagship.
+openrouter/google/gemini-2.5-pro-preview-05-06: |
+  Gemini 2.5 Pro preview (May 6) via OpenRouter — dated early
+  access.
+openrouter/google/gemini-3-flash-preview: |
+  Gemini 3 Flash preview via OpenRouter — next-gen fast model.
+openrouter/google/gemini-3-pro-image: |
+  Gemini 3 Pro with image via OpenRouter — next-gen flagship
+  with vision.
+openrouter/google/gemini-3.1-flash-lite: |
+  Gemini 3.1 Flash Lite via OpenRouter — lightweight model.
+openrouter/google/gemini-3.1-flash-lite-preview: |
+  Gemini 3.1 Flash Lite preview via OpenRouter — early access
+  lightweight.
+openrouter/google/gemini-3.1-pro-preview: |
+  Gemini 3.1 Pro preview via OpenRouter — early access next-gen
+  flagship.
+openrouter/google/gemini-3.1-pro-preview-customtools: |
+  Gemini 3.1 Pro preview custom tools via OpenRouter — extensible
+  reasoning.
+openrouter/google/gemini-3.5-flash: |
+  Gemini 3.5 Flash via OpenRouter — latest fast multimodal.
+openrouter/google/gemma-3-12b-it: |
+  Google Gemma 3 12B instruct via OpenRouter — efficient
+  open-weight instruction.
+openrouter/google/gemma-3-27b-it: |
+  Google Gemma 3 27B instruct via OpenRouter — larger open-weight
+  instruction.
+openrouter/google/gemma-4-26b-a4b-it: |
+  Google Gemma 4 26B via OpenRouter — efficient open-weight.
+openrouter/google/gemma-4-26b-a4b-it:free: |
+  Google Gemma 4 26B free via OpenRouter — no-cost efficient
+  open-weight.
+openrouter/google/gemma-4-31b-it: |
+  Google Gemma 4 31B via OpenRouter — larger open-weight model.
+openrouter/google/gemma-4-31b-it:free: |
+  Google Gemma 4 31B free via OpenRouter — no-cost larger
+  open-weight.
+openrouter/ibm-granite/granite-4.1-8b: |
+  IBM's Granite 4.1 8B via OpenRouter — enterprise-focused
+  compact model.
+openrouter/inception/mercury-2: |
+  Inception's Mercury 2 via OpenRouter — efficient model for
+  various tasks.
+openrouter/inclusionai/ling-2.6-1t: |
+  Inclusion AI's Ling 2.6 1T via OpenRouter — large context
+  model.
+openrouter/inclusionai/ling-2.6-flash: |
+  Inclusion AI's Ling 2.6 Flash via OpenRouter — fast variant.
+openrouter/inclusionai/ring-2.6-1t: |
+  Inclusion AI's Ring 2.6 1T via OpenRouter — large context
+  variant.
+openrouter/kwaipilot/kat-coder-pro-v2: |
+  Kwaipilot's Kat Coder Pro v2 via OpenRouter — professional
+  code generation model.
+openrouter/liquid/lfm-2.5-1.2b-thinking:free: |
+  Liquid's LFM 2.5 1.2B thinking free via OpenRouter — no-cost
+  reasoning model.
+openrouter/meta-llama/llama-3.1-70b-instruct: |
+  LLaMA 3.1 70B instruct via OpenRouter — large open-weight
+  instruction model.
+openrouter/meta-llama/llama-3.1-8b-instruct: |
+  LLaMA 3.1 8B instruct via OpenRouter — compact open-weight
+  instruction.
+openrouter/meta-llama/llama-3.3-70b-instruct: |
+  LLaMA 3.3 70B instruct via OpenRouter — improved efficiency
+  and performance.
+openrouter/meta-llama/llama-3.3-70b-instruct:free: |
+  LLaMA 3.3 70B instruct free via OpenRouter — no-cost large
+  open-weight.
+openrouter/meta-llama/llama-4-maverick: |
+  LLaMA 4 Maverick via OpenRouter — efficient open-weight with
+  strong performance.
+openrouter/meta-llama/llama-4-scout: |
+  LLaMA 4 Scout via OpenRouter — compact variant with good
+  capabilities.
+openrouter/minimax/minimax-m2: |
+  MiniMax M2 via OpenRouter — efficient general-purpose.
+openrouter/minimax/minimax-m2.1: |
+  MiniMax M2.1 via OpenRouter — improved model.
+openrouter/minimax/minimax-m2.5: |
+  MiniMax M2.5 via OpenRouter — enhanced model.
+openrouter/minimax/minimax-m2.7: |
+  MiniMax M2.7 via OpenRouter — latest generation with reasoning.
+openrouter/minimax/minimax-m3: |
+  MiniMax M3 via OpenRouter — newest model.
+openrouter/mistralai/codestral-2508: |
+  Mistral Codestral (Aug 2025) via OpenRouter — code-specialized
+  model.
+openrouter/mistralai/devstral-2512: |
+  Mistral Devstral (Dec 2025) via OpenRouter — code-specialized
+  for development.
+openrouter/mistralai/ministral-14b-2512: |
+  Mistral Ministral 14B (Dec 2025) via OpenRouter — efficient
+  mid-tier.
+openrouter/mistralai/ministral-3b-2512: |
+  Mistral Ministral 3B (Dec 2025) via OpenRouter — small
+  efficient model.
+openrouter/mistralai/ministral-8b-2512: |
+  Mistral Ministral 8B (Dec 2025) via OpenRouter — compact
+  model for basic tasks.
+openrouter/mistralai/mistral-large: |
+  Mistral Large via OpenRouter — flagship with strong reasoning.
+openrouter/mistralai/mistral-large-2407: |
+  Mistral Large (July 2024) via OpenRouter — dated flagship.
+openrouter/mistralai/mistral-large-2512: |
+  Mistral Large (Dec 2025) via OpenRouter — latest flagship with
+  improvements.
+openrouter/mistralai/mistral-medium-3: |
+  Mistral Medium 3 via OpenRouter — balanced mid-tier model.
+openrouter/mistralai/mistral-medium-3-5: |
+  Mistral Medium 3.5 via OpenRouter — improved balanced model.
+openrouter/mistralai/mistral-medium-3.1: |
+  Mistral Medium 3.1 via OpenRouter — updated mid-tier.
+openrouter/mistralai/mistral-nemo: |
+  Mistral Nemo via OpenRouter — compact instruction model.
+openrouter/mistralai/mistral-saba: |
+  Mistral Saba via OpenRouter — specialized for certain languages.
+openrouter/mistralai/mistral-small-2603: |
+  Mistral Small (Mar 2026) via OpenRouter — latest efficient
+  lightweight model.
+openrouter/mistralai/mistral-small-3.2-24b-instruct: |
+  Mistral Small 3.2 24B instruct via OpenRouter — efficient
+  instruction model.
+openrouter/mistralai/mixtral-8x22b-instruct: |
+  Mistral Mixtral 8x22B instruct via OpenRouter — mixture of
+  experts for efficiency.
+openrouter/mistralai/voxtral-small-24b-2507: |
+  Mistral Voxtral Small 24B (July 2025) via OpenRouter — efficient
+  vision model.
+openrouter/moonshotai/kimi-k2: |
+  Kimi K2 via OpenRouter — reasoning model with good context.
+openrouter/moonshotai/kimi-k2-0905: |
+  Kimi K2 (Sept 2025) via OpenRouter — specific version.
+openrouter/moonshotai/kimi-k2-thinking: |
+  Kimi K2 thinking via OpenRouter — reasoning mode for complex
+  tasks.
+openrouter/moonshotai/kimi-k2.5: |
+  Kimi K2.5 via OpenRouter — improved reasoning model.
+openrouter/moonshotai/kimi-k2.6: |
+  Kimi K2.6 via OpenRouter — further improved reasoning.
+openrouter/moonshotai/kimi-k2.7-code: |
+  Kimi K2.7 code via OpenRouter — code-specialized reasoning.
+openrouter/nvidia/llama-3.3-nemotron-super-49b-v1.5: |
+  NVIDIA's LLaMA 3.3 Nemotron Super 49B v1.5 via OpenRouter —
+  optimized large model.
+openrouter/nvidia/nemotron-3-nano-30b-a3b: |
+  NVIDIA's Nemotron 3 Nano 30B via OpenRouter — compact efficient
+  inference.
+openrouter/nvidia/nemotron-3-nano-30b-a3b:free: |
+  NVIDIA's Nemotron 3 Nano 30B free via OpenRouter — no-cost
+  compact inference.
+openrouter/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free: |
+  NVIDIA's Nemotron 3 Nano Omni reasoning free via OpenRouter —
+  no-cost multimodal reasoning.
+openrouter/nvidia/nemotron-3-super-120b-a12b: |
+  NVIDIA's Nemotron 3 Super 120B via OpenRouter — large efficient
+  optimized model.
+openrouter/nvidia/nemotron-3-super-120b-a12b:free: |
+  NVIDIA's Nemotron 3 Super 120B free via OpenRouter — no-cost
+  large efficient.
+openrouter/nvidia/nemotron-3-ultra-550b-a55b: |
+  NVIDIA's Nemotron 3 Ultra 550B via OpenRouter — very large
+  capable model.
+openrouter/nvidia/nemotron-3-ultra-550b-a55b:free: |
+  NVIDIA's Nemotron 3 Ultra 550B free via OpenRouter — no-cost
+  very large model.
+openrouter/nvidia/nemotron-nano-12b-v2-vl:free: |
+  NVIDIA's Nemotron Nano 12B v2 VL free via OpenRouter — no-cost
+  multimodal nano.
+openrouter/nvidia/nemotron-nano-9b-v2:free: |
+  NVIDIA's Nemotron Nano 9B v2 free via OpenRouter — no-cost
+  nano model.
+openrouter/openai/gpt-4-turbo: |
+  GPT-4 Turbo via OpenRouter — fast, capable previous flagship.
+openrouter/openai/gpt-4-turbo-preview: |
+  GPT-4 Turbo preview via OpenRouter — earlier version.
+openrouter/openai/gpt-4.1: |
+  GPT-4.1 via OpenRouter — improved instruction following with
+  1M context.
+openrouter/openai/gpt-4.1-mini: |
+  GPT-4.1 Mini via OpenRouter — smaller, faster variant.
+openrouter/openai/gpt-4.1-nano: |
+  GPT-4.1 Nano via OpenRouter — most efficient variant.
+openrouter/openai/gpt-4o: |
+  GPT-4o via OpenRouter — flagship multimodal with vision, audio,
+  text.
+openrouter/openai/gpt-4o-2024-05-13: |
+  GPT-4o (May 2024) via OpenRouter — specific dated version.
+openrouter/openai/gpt-4o-2024-08-06: |
+  GPT-4o (Aug 2024) via OpenRouter — specific dated version.
+openrouter/openai/gpt-4o-2024-11-20: |
+  GPT-4o (Nov 2024) via OpenRouter — specific dated version.
+openrouter/openai/gpt-4o-mini: |
+  GPT-4o Mini via OpenRouter — smaller, faster, cheaper variant.
+openrouter/openai/gpt-4o-mini-2024-07-18: |
+  GPT-4o Mini (July 2024) via OpenRouter — specific dated version.
+openrouter/openai/gpt-5: |
+  GPT-5 via OpenRouter — latest flagship with advanced reasoning.
+openrouter/openai/gpt-5-codex: |
+  GPT-5 Codex via OpenRouter — code-specialized variant.
+openrouter/openai/gpt-5-mini: |
+  GPT-5 Mini via OpenRouter — efficient GPT-5 variant.
+openrouter/openai/gpt-5-nano: |
+  GPT-5 Nano via OpenRouter — most efficient GPT-5.
+openrouter/openai/gpt-5-pro: |
+  GPT-5 Pro via OpenRouter — professional tier between standard
+  and max.
+openrouter/openai/gpt-5.1: |
+  GPT-5.1 via OpenRouter — updated flagship with improvements.
+openrouter/openai/gpt-5.1-chat: |
+  GPT-5.1 Chat via OpenRouter — chat-optimized variant.
+openrouter/openai/gpt-5.1-codex: |
+  GPT-5.1 Codex via OpenRouter — code-specialized updated.
+openrouter/openai/gpt-5.1-codex-max: |
+  GPT-5.1 Codex Max via OpenRouter — highest code capability.
+openrouter/openai/gpt-5.1-codex-mini: |
+  GPT-5.1 Codex Mini via OpenRouter — efficient code specialized.
+openrouter/openai/gpt-5.2: |
+  GPT-5.2 via OpenRouter — further improved flagship.
+openrouter/openai/gpt-5.2-chat: |
+  GPT-5.2 Chat via OpenRouter — chat-optimized further improved.
+openrouter/openai/gpt-5.2-codex: |
+  GPT-5.2 Codex via OpenRouter — code-specialized further improved.
+openrouter/openai/gpt-5.2-pro: |
+  GPT-5.2 Pro via OpenRouter — professional tier further improved.
+openrouter/openai/gpt-5.3-chat: |
+  GPT-5.3 Chat via OpenRouter — latest chat-optimized generation.
+openrouter/openai/gpt-5.3-codex: |
+  GPT-5.3 Codex via OpenRouter — latest code-specialized generation.
+openrouter/openai/gpt-5.4: |
+  GPT-5.4 via OpenRouter — latest in the series.
+openrouter/openai/gpt-5.4-mini: |
+  GPT-5.4 Mini via OpenRouter — efficient variant.
+openrouter/openai/gpt-5.4-nano: |
+  GPT-5.4 Nano via OpenRouter — most efficient in series.
+openrouter/openai/gpt-5.4-pro: |
+  GPT-5.4 Pro via OpenRouter — professional tier.
+openrouter/openai/gpt-5.5: |
+  GPT-5.5 via OpenRouter — latest production model.
+openrouter/openai/gpt-5.5-pro: |
+  GPT-5.5 Pro via OpenRouter — professional tier of latest.
+openrouter/openai/gpt-audio: |
+  GPT Audio via OpenRouter — audio processing model.
+openrouter/openai/gpt-audio-mini: |
+  GPT Audio Mini via OpenRouter — efficient audio model.
+openrouter/openai/gpt-chat-latest: |
+  GPT Chat latest via OpenRouter — always-up-to-date chat model.
+openrouter/openai/gpt-oss-120b: |
+  GPT open-source 120B via OpenRouter — large open-weight model.
+openrouter/openai/gpt-oss-120b:free: |
+  GPT open-source 120B free via OpenRouter — no-cost large
+  open-weight.
+openrouter/openai/gpt-oss-20b: |
+  GPT open-source 20B via OpenRouter — smaller open-weight model.
+openrouter/openai/gpt-oss-20b:free: |
+  GPT open-source 20B free via OpenRouter — no-cost smaller
+  open-weight.
+openrouter/openai/gpt-oss-safeguard-20b: |
+  GPT open-source safeguard 20B via OpenRouter — safety-tuned
+  small model.
+openrouter/openai/o1: |
+  OpenAI o1 via OpenRouter — reasoning model that thinks before
+  answering.
+openrouter/openai/o3: |
+  OpenAI o3 via OpenRouter — advanced reasoning model.
+openrouter/openai/o3-deep-research: |
+  OpenAI o3 deep research via OpenRouter — reasoning for
+  comprehensive research.
+openrouter/openai/o3-mini: |
+  OpenAI o3 Mini via OpenRouter — smaller, faster reasoning.
+openrouter/openai/o3-mini-high: |
+  OpenAI o3 Mini high via OpenRouter — higher capability mini.
+openrouter/openai/o3-pro: |
+  OpenAI o3 Pro via OpenRouter — professional-tier reasoning.
+openrouter/openai/o4-mini: |
+  OpenAI o4 Mini via OpenRouter — efficient reasoning with
+  multimodal.
+openrouter/openai/o4-mini-deep-research: |
+  OpenAI o4 Mini deep research via OpenRouter — efficient
+  research reasoning.
+openrouter/openai/o4-mini-high: |
+  OpenAI o4 Mini high via OpenRouter — higher capability mini.
+openrouter/openrouter/owl-alpha: |
+  OpenRouter Owl Alpha — meta-model for routing and selection.
+openrouter/poolside/laguna-m.1: |
+  Poolside's Laguna M.1 via OpenRouter — code-specialized model.
+openrouter/poolside/laguna-m.1:free: |
+  Poolside's Laguna M.1 free via OpenRouter — no-cost code model.
+openrouter/poolside/laguna-xs.2: |
+  Poolside's Laguna XS.2 via OpenRouter — small efficient code
+  model.
+openrouter/poolside/laguna-xs.2:free: |
+  Poolside's Laguna XS.2 free via OpenRouter — no-cost small
+  code.
+openrouter/qwen/qwen-2.5-72b-instruct: |
+  Qwen 2.5 72B instruct via OpenRouter — popular large open-weight
+  instruction model.
+openrouter/qwen/qwen-2.5-7b-instruct: |
+  Qwen 2.5 7B instruct via OpenRouter — compact open-weight
+  instruction.
+openrouter/qwen/qwen-plus: |
+  Qwen Plus via OpenRouter — enhanced open-weight model.
+openrouter/qwen/qwen-plus-2025-07-28: |
+  Qwen Plus (July 2025) via OpenRouter — specific dated version.
+openrouter/qwen/qwen-plus-2025-07-28:thinking: |
+  Qwen Plus thinking (July 2025) via OpenRouter — reasoning
+  variant.
+openrouter/qwen/qwen3-14b: |
+  Qwen 3 14B via OpenRouter — compact next-gen model.
+openrouter/qwen/qwen3-235b-a22b: |
+  Qwen 3 235B via OpenRouter — large open-weight with reasoning.
+openrouter/qwen/qwen3-235b-a22b-2507: |
+  Qwen 3 235B (July 2025) via OpenRouter — specific dated version.
+openrouter/qwen/qwen3-235b-a22b-thinking-2507: |
+  Qwen 3 235B thinking (July 2025) via OpenRouter — reasoning
+  variant.
+openrouter/qwen/qwen3-30b-a3b: |
+  Qwen 3 30B via OpenRouter — balanced next-gen model.
+openrouter/qwen/qwen3-30b-a3b-instruct-2507: |
+  Qwen 3 30B instruct (July 2025) via OpenRouter — instruction
+  tuned.
+openrouter/qwen/qwen3-30b-a3b-thinking-2507: |
+  Qwen 3 30B thinking (July 2025) via OpenRouter — reasoning
+  variant.
+openrouter/qwen/qwen3-32b: |
+  Qwen 3 32B via OpenRouter — balanced open-weight next-gen.
+openrouter/qwen/qwen3-8b: |
+  Qwen 3 8B via OpenRouter — compact next-gen model.
+openrouter/qwen/qwen3-coder: |
+  Qwen 3 Coder via OpenRouter — code-specialized base model.
+openrouter/qwen/qwen3-coder-30b-a3b-instruct: |
+  Qwen 3 coder 30B instruct via OpenRouter — code-specialized
+  instruction.
+openrouter/qwen/qwen3-coder-flash: |
+  Qwen 3 coder flash via OpenRouter — fast code generation.
+openrouter/qwen/qwen3-coder-next: |
+  Qwen 3 coder next via OpenRouter — next-gen code model.
+openrouter/qwen/qwen3-coder-plus: |
+  Qwen 3 coder plus via OpenRouter — enhanced code model.
+openrouter/qwen/qwen3-coder:free: |
+  Qwen 3 coder free via OpenRouter — no-cost code model.
+openrouter/qwen/qwen3-max: |
+  Qwen 3 Max via OpenRouter — largest and most capable Qwen 3.
+openrouter/qwen/qwen3-max-thinking: |
+  Qwen 3 Max thinking via OpenRouter — reasoning-enabled max.
+openrouter/qwen/qwen3-next-80b-a3b-instruct: |
+  Qwen 3 next 80B instruct via OpenRouter — next-gen instruction
+  model.
+openrouter/qwen/qwen3-next-80b-a3b-instruct:free: |
+  Qwen 3 next 80B instruct free via OpenRouter — no-cost next-gen.
+openrouter/qwen/qwen3-next-80b-a3b-thinking: |
+  Qwen 3 next 80B thinking via OpenRouter — reasoning-enabled
+  next-gen.
+openrouter/qwen/qwen3-vl-235b-a22b-instruct: |
+  Qwen 3 VL 235B instruct via OpenRouter — large multimodal
+  instruction.
+openrouter/qwen/qwen3-vl-235b-a22b-thinking: |
+  Qwen 3 VL 235B thinking via OpenRouter — large multimodal
+  reasoning.
+openrouter/qwen/qwen3-vl-30b-a3b-instruct: |
+  Qwen 3 VL 30B instruct via OpenRouter — efficient multimodal
+  instruction.
+openrouter/qwen/qwen3-vl-30b-a3b-thinking: |
+  Qwen 3 VL 30B thinking via OpenRouter — efficient multimodal
+  reasoning.
+openrouter/qwen/qwen3-vl-32b-instruct: |
+  Qwen 3 VL 32B instruct via OpenRouter — balanced multimodal.
+openrouter/qwen/qwen3-vl-8b-instruct: |
+  Qwen 3 VL 8B instruct via OpenRouter — compact multimodal.
+openrouter/qwen/qwen3-vl-8b-thinking: |
+  Qwen 3 VL 8B thinking via OpenRouter — compact multimodal
+  reasoning.
+openrouter/qwen/qwen3.5-122b-a10b: |
+  Qwen 3.5 122B via OpenRouter — large open-weight model.
+openrouter/qwen/qwen3.5-27b: |
+  Qwen 3.5 27B via OpenRouter — efficient open-weight model.
+openrouter/qwen/qwen3.5-35b-a3b: |
+  Qwen 3.5 35B via OpenRouter — balanced open-weight model.
+openrouter/qwen/qwen3.5-397b-a17b: |
+  Qwen 3.5 397B via OpenRouter — very large open-weight for
+  high-capability tasks.
+openrouter/qwen/qwen3.5-9b: |
+  Qwen 3.5 9B via OpenRouter — small efficient open-weight.
+openrouter/qwen/qwen3.5-flash-02-23: |
+  Qwen 3.5 Flash (Feb 23) via OpenRouter — specific dated fast
+  model.
+openrouter/qwen/qwen3.5-plus-02-15: |
+  Qwen 3.5 Plus (Feb 15) via OpenRouter — specific dated enhanced.
+openrouter/qwen/qwen3.5-plus-20260420: |
+  Qwen 3.5 Plus (April 2026) via OpenRouter — specific dated
+  enhanced.
+openrouter/qwen/qwen3.6-27b: |
+  Qwen 3.6 27B via OpenRouter — updated efficient model.
+openrouter/qwen/qwen3.6-35b-a3b: |
+  Qwen 3.6 35B via OpenRouter — updated balanced model.
+openrouter/qwen/qwen3.6-flash: |
+  Qwen 3.6 Flash via OpenRouter — fast updated model.
+openrouter/qwen/qwen3.6-max-preview: |
+  Qwen 3.6 Max preview via OpenRouter — early access largest
+  3.6 variant.
+openrouter/qwen/qwen3.6-plus: |
+  Qwen 3.6 Plus via OpenRouter — enhanced 3.6 variant.
+openrouter/qwen/qwen3.7-max: |
+  Qwen 3.7 Max via OpenRouter — largest 3.7 variant.
+openrouter/qwen/qwen3.7-plus: |
+  Qwen 3.7 Plus via OpenRouter — enhanced 3.7 variant.
+openrouter/relace/relace-search: |
+  Relace Search via OpenRouter — search-augmented model.
+openrouter/sakana/fugu-ultra: |
+  Sakana's Fugu Ultra via OpenRouter — specialized model.
+openrouter/stepfun/step-3.5-flash: |
+  Stepfun 3.5 Flash via OpenRouter — fast model with Chinese
+  language support.
+openrouter/stepfun/step-3.7-flash: |
+  Stepfun 3.7 Flash via OpenRouter — improved fast model.
+openrouter/tencent/hy3-preview: |
+  Tencent's Hy3 preview via OpenRouter — reasoning-optimized
+  model.
+openrouter/thedrummer/unslopnemo-12b: |
+  TheDrummer's UnslopNemo 12B via OpenRouter — community model.
+openrouter/upstage/solar-pro-3: |
+  Upstage's Solar Pro 3 via OpenRouter — reasoning-focused large
+  model.
+openrouter/x-ai/grok-4.20: |
+  xAI's Grok-4.20 via OpenRouter — large reasoning model with
+  real-time knowledge.
+openrouter/x-ai/grok-4.3: |
+  xAI's Grok-4.3 via OpenRouter — latest Grok with improvements.
+openrouter/x-ai/grok-build-0.1: |
+  xAI's Grok Build 0.1 via OpenRouter — experimental build.
+openrouter/xiaomi/mimo-v2.5: |
+  Xiaomi Mimo V2.5 via OpenRouter — updated multimodal model.
+openrouter/xiaomi/mimo-v2.5-pro: |
+  Xiaomi Mimo V2.5 Pro via OpenRouter — professional-tier
+  multimodal.
+openrouter/z-ai/glm-4.5: |
+  Zhipu's GLM-4.5 via OpenRouter — strong Chinese language model.
+openrouter/z-ai/glm-4.5-air: |
+  Zhipu's GLM-4.5 Air via OpenRouter — lightweight efficient
+  variant.
+openrouter/z-ai/glm-4.5v: |
+  Zhipu's GLM-4.5 Vision via OpenRouter — multimodal with Chinese
+  strength.
+openrouter/z-ai/glm-4.6: |
+  Zhipu's GLM-4.6 via OpenRouter — improved model with strong
+  Chinese.
+openrouter/z-ai/glm-4.6v: |
+  Zhipu's GLM-4.6 Vision via OpenRouter — multimodal improved.
+openrouter/z-ai/glm-4.7: |
+  Zhipu's GLM-4.7 via OpenRouter — updated model with reasoning.
+openrouter/z-ai/glm-4.7-flash: |
+  Zhipu's GLM-4.7 Flash via OpenRouter — fast variant.
+openrouter/z-ai/glm-5: |
+  Zhipu's GLM-5 via OpenRouter — flagship with advanced
+  capabilities.
+openrouter/z-ai/glm-5-turbo: |
+  Zhipu's GLM-5 Turbo via OpenRouter — fast flagship.
+openrouter/z-ai/glm-5.1: |
+  Zhipu's GLM-5.1 via OpenRouter — updated flagship.
+openrouter/z-ai/glm-5.2: |
+  Zhipu's GLM-5.2 via OpenRouter — latest version.
+openrouter/z-ai/glm-5v-turbo: |
+  Zhipu's GLM-5 Vision Turbo via OpenRouter — fast multimodal.
+qiniucloud/deepseek-v3.1: |
+  DeepSeek V3.1 via Qiniu Cloud — general-purpose with strong
+  coding.
+qiniucloud/deepseek/deepseek-v3.1-terminus: |
+  DeepSeek V3.1 Terminus via Qiniu Cloud — extended general-purpose.
+qiniucloud/doubao-seed-2.0-code: |
+  ByteDance Doubao Seed 2.0 code via Qiniu Cloud — code-specialized
+  variant.
+qiniucloud/doubao-seed-2.0-pro: |
+  ByteDance Doubao Seed 2.0 Pro via Qiniu Cloud — high-capability
+  variant.
+qiniucloud/glm-4.5: |
+  GLM-4.5 via Qiniu Cloud — strong Chinese language model.
+qiniucloud/minimax/minimax-m2: |
+  MiniMax M2 via Qiniu Cloud — efficient general-purpose.
+qiniucloud/minimax/minimax-m2.1: |
+  MiniMax M2.1 via Qiniu Cloud — improved model.
+qiniucloud/minimax/minimax-m2.5: |
+  MiniMax M2.5 via Qiniu Cloud — enhanced model.
+qiniucloud/moonshotai/kimi-k2-0905: |
+  Kimi K2 (Sept 2025) via Qiniu Cloud — specific version of
+  reasoning model.
+qiniucloud/moonshotai/kimi-k2-thinking: |
+  Kimi K2 thinking via Qiniu Cloud — reasoning mode.
+qiniucloud/qwen3-coder-480b-a35b-instruct: |
+  Qwen 3 coder 480B via Qiniu Cloud — large code-specialized
+  model.
+qiniucloud/z-ai/glm-4.6: |
+  Zhipu GLM-4.6 via Qiniu Cloud — strong Chinese model.
+qiniucloud/z-ai/glm-4.7: |
+  Zhipu GLM-4.7 via Qiniu Cloud — updated Chinese model.
+qiniucloud/z-ai/glm-5: |
+  Zhipu GLM-5 via Qiniu Cloud — flagship with advanced capabilities.
+scaleway/devstral-2-123b-instruct-2512: |
+  Mistral Devstral 2 123B instruct (Dec 2025) via Scaleway —
+  code-specialized large model.
+scaleway/gemma-3-27b-it: |
+  Google Gemma 3 27B instruct via Scaleway — large open-weight
+  instruction.
+scaleway/gemma-4-26b-a4b-it: |
+  Google Gemma 4 26B via Scaleway — efficient open-weight.
+scaleway/gpt-oss-120b: |
+  OpenAI open-source 120B via Scaleway — large open-weight on
+  cloud infrastructure.
+scaleway/llama-3.3-70b-instruct: |
+  LLaMA 3.3 70B instruct via Scaleway — strong open-weight on
+  cloud.
+scaleway/mistral-medium-3.5-128b: |
+  Mistral Medium 3.5 128B via Scaleway — large balanced model.
+scaleway/mistral-small-3.2-24b-instruct-2506: |
+  Mistral Small 3.2 24B instruct (June 2025) via Scaleway —
+  efficient instruction.
+scaleway/qwen3-235b-a22b-instruct-2507: |
+  Qwen 235B instruct (July 2025) via Scaleway — large instruction
+  model.
+scaleway/qwen3-coder-30b-a3b-instruct: |
+  Qwen 3 coder 30B instruct via Scaleway — code-specialized
+  instruction.
+scaleway/qwen3.5-397b-a17b: |
+  Qwen 3.5 397B via Scaleway — very large open-weight.
+scaleway/qwen3.6-35b-a3b: |
+  Qwen 3.6 35B via Scaleway — balanced updated model.
+scaleway/voxtral-small-24b-2507: |
+  Mistral Voxtral Small 24B (July 2025) via Scaleway — efficient
+  vision model.
+synthetic/hf:MiniMaxAI/MiniMax-M3: |
+  MiniMax M3 via HuggingFace synthetic — evaluation and testing.
+synthetic/hf:Qwen/Qwen3.5-397B-A17B: |
+  Qwen 3.5 397B via HuggingFace synthetic — large model testing.
+synthetic/hf:Qwen/Qwen3.6-27B: |
+  Qwen 3.6 27B via HuggingFace synthetic — testing variant.
+synthetic/hf:moonshotai/Kimi-K2.6: |
+  Kimi K2.6 via HuggingFace synthetic — reasoning model testing.
+synthetic/hf:nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4: |
+  NVIDIA Nemotron 3 Super 120B NVFP4 via HuggingFace synthetic —
+  quantized testing.
+synthetic/hf:openai/gpt-oss-120b: |
+  GPT open-source 120B via HuggingFace synthetic — large model
+  testing.
+synthetic/hf:zai-org/GLM-4.7: |
+  GLM-4.7 via HuggingFace synthetic — Chinese model testing.
+synthetic/hf:zai-org/GLM-4.7-Flash: |
+  GLM-4.7 Flash via HuggingFace synthetic — fast variant testing.
+synthetic/hf:zai-org/GLM-5.1: |
+  GLM-5.1 via HuggingFace synthetic — flagship testing.
+synthetic/hf:zai-org/GLM-5.2: |
+  GLM-5.2 via HuggingFace synthetic — latest version testing.
+synthetic/syn:large:text: |
+  Synthetic large text model — benchmarking large text tasks.
+synthetic/syn:large:vision: |
+  Synthetic large vision model — benchmarking large multimodal
+  tasks.
+synthetic/syn:small:text: |
+  Synthetic small text model — benchmarking small text tasks.
+synthetic/syn:small:vision: |
+  Synthetic small vision model — benchmarking small multimodal
+  tasks.
+venice/arcee-trinity-large-thinking: |
+  Arcee Trinity Large Thinking via Venice — privacy-focused
+  reasoning model.
+venice/claude-fable-5: |
+  Claude Fable 5 via Venice — privacy-focused creative writing.
+venice/claude-opus-4-5: |
+  Claude Opus 4.5 via Venice — privacy-focused top-tier reasoning.
+venice/claude-opus-4-6: |
+  Claude Opus 4.6 via Venice — privacy-focused most capable.
+venice/claude-opus-4-6-fast: |
+  Claude Opus 4.6 fast via Venice — privacy-focused quick
+  top-tier.
+venice/claude-opus-4-7: |
+  Claude Opus 4.7 via Venice — privacy-focused latest flagship.
+venice/claude-opus-4-7-fast: |
+  Claude Opus 4.7 fast via Venice — privacy-focused quick
+  latest.
+venice/claude-opus-4-8: |
+  Claude Opus 4.8 via Venice — privacy-focused highest capability.
+venice/claude-opus-4-8-fast: |
+  Claude Opus 4.8 fast via Venice — privacy-focused quick
+  highest.
+venice/claude-sonnet-4-5: |
+  Claude Sonnet 4.5 via Venice — privacy-focused balanced model.
+venice/claude-sonnet-4-6: |
+  Claude Sonnet 4.6 via Venice — privacy-focused latest balanced.
+venice/deepseek-v3.2: |
+  DeepSeek V3.2 via Venice — privacy-focused general-purpose.
+venice/deepseek-v4-flash: |
+  DeepSeek V4 Flash via Venice — privacy-focused fast inference.
+venice/deepseek-v4-pro: |
+  DeepSeek V4 Pro via Venice — privacy-focused high-capability.
+venice/e2ee-glm-5-2-p: |
+  End-to-end encrypted GLM-5.2 via Venice — maximum privacy for
+  Chinese model.
+venice/e2ee-qwen3-30b-a3b-p: |
+  End-to-end encrypted Qwen 30B via Venice — maximum privacy for
+  balanced model.
+venice/e2ee-qwen3-6-35b-a3b: |
+  End-to-end encrypted Qwen 35B via Venice — maximum privacy for
+  updated model.
+venice/e2ee-qwen3-vl-30b-a3b-p: |
+  End-to-end encrypted Qwen VL 30B via Venice — maximum privacy
+  for multimodal.
+venice/gemini-3-1-pro-preview: |
+  Gemini 3.1 Pro preview via Venice — privacy-focused early
+  access.
+venice/gemini-3-5-flash: |
+  Gemini 3.5 Flash via Venice — privacy-focused fast multimodal.
+venice/gemini-3-flash-preview: |
+  Gemini 3 Flash preview via Venice — privacy-focused next-gen.
+venice/gemma-4-uncensored: |
+  Gemma 4 uncensored via Venice — privacy-focused unfiltered
+  open-weight.
+venice/google-gemma-3-27b-it: |
+  Google Gemma 3 27B via Venice — privacy-focused large
+  open-weight.
+venice/google-gemma-4-26b-a4b-it: |
+  Google Gemma 4 26B via Venice — privacy-focused efficient
+  open-weight.
+venice/google-gemma-4-31b-it: |
+  Google Gemma 4 31B via Venice — privacy-focused larger
+  open-weight.
+venice/grok-4-20: |
+  Grok-4.20 via Venice — privacy-focused large reasoning model.
+venice/grok-4-3: |
+  Grok-4.3 via Venice — privacy-focused latest Grok.
+venice/grok-build-0-1: |
+  Grok Build 0.1 via Venice — privacy-focused experimental.
+venice/kimi-k2-5: |
+  Kimi K2.5 via Venice — privacy-focused reasoning model.
+venice/kimi-k2-6: |
+  Kimi K2.6 via Venice — privacy-focused improved reasoning.
+venice/kimi-k2-7-code: |
+  Kimi K2.7 code via Venice — privacy-focused code-specialized.
+venice/llama-3.2-3b: |
+  LLaMA 3.2 3B via Venice — privacy-focused compact model.
+venice/llama-3.3-70b: |
+  LLaMA 3.3 70B via Venice — privacy-focused strong open-weight.
+venice/mercury-2: |
+  Mercury 2 via Venice — privacy-focused efficient model.
+venice/minimax-m25: |
+  MiniMax M2.5 via Venice — privacy-focused enhanced model.
+venice/minimax-m27: |
+  MiniMax M2.7 via Venice — privacy-focused latest reasoning.
+venice/minimax-m3-preview: |
+  MiniMax M3 preview via Venice — privacy-focused newest model.
+venice/mistral-small-2603: |
+  Mistral Small (Mar 2026) via Venice — privacy-focused latest
+  efficient.
+venice/mistral-small-3-2-24b-instruct: |
+  Mistral Small 3.2 24B instruct via Venice — privacy-focused
+  efficient instruction.
+venice/nvidia-nemotron-3-nano-30b-a3b: |
+  Nemotron 3 Nano 30B via Venice — privacy-focused compact
+  inference.
+venice/nvidia-nemotron-3-ultra-550b-a55b: |
+  Nemotron 3 Ultra 550B via Venice — privacy-focused very large
+  model.
+venice/nvidia-nemotron-cascade-2-30b-a3b: |
+  Nemotron Cascade 2 30B via Venice — privacy-focused cascade
+  model.
+venice/olafangensan-glm-4.7-flash-heretic: |
+  GLM-4.7 Flash Heretic via Venice — privacy-focused unfiltered
+  variant.
+venice/openai-gpt-4o-2024-11-20: |
+  GPT-4o (Nov 2024) via Venice — privacy-focused specific version.
+venice/openai-gpt-4o-mini-2024-07-18: |
+  GPT-4o Mini (July 2024) via Venice — privacy-focused specific
+  version.
+venice/openai-gpt-52: |
+  GPT-5.2 via Venice — privacy-focused further improved flagship.
+venice/openai-gpt-52-codex: |
+  GPT-5.2 Codex via Venice — privacy-focused code-specialized
+  further improved.
+venice/openai-gpt-53-codex: |
+  GPT-5.3 Codex via Venice — privacy-focused latest code
+  generation.
+venice/openai-gpt-54: |
+  GPT-5.4 via Venice — privacy-focused latest in series.
+venice/openai-gpt-54-mini: |
+  GPT-5.4 Mini via Venice — privacy-focused efficient variant.
+venice/openai-gpt-54-pro: |
+  GPT-5.4 Pro via Venice — privacy-focused professional tier.
+venice/openai-gpt-55: |
+  GPT-5.5 via Venice — privacy-focused latest production model.
+venice/openai-gpt-55-pro: |
+  GPT-5.5 Pro via Venice — privacy-focused professional tier
+  of latest.
+venice/openai-gpt-oss-120b: |
+  GPT open-source 120B via Venice — privacy-focused large
+  open-weight.
+venice/qwen-3-6-plus: |
+  Qwen 3.6 Plus via Venice — privacy-focused enhanced variant.
+venice/qwen-3-7-max: |
+  Qwen 3.7 Max via Venice — privacy-focused largest 3.7.
+venice/qwen-3-7-plus: |
+  Qwen 3.7 Plus via Venice — privacy-focused enhanced 3.7.
+venice/qwen3-235b-a22b-instruct-2507: |
+  Qwen 235B instruct (July 2025) via Venice — privacy-focused
+  large instruction.
+venice/qwen3-235b-a22b-thinking-2507: |
+  Qwen 235B thinking (July 2025) via Venice — privacy-focused
+  large reasoning.
+venice/qwen3-5-35b-a3b: |
+  Qwen 3.5 35B via Venice — privacy-focused balanced open-weight.
+venice/qwen3-5-397b-a17b: |
+  Qwen 3.5 397B via Venice — privacy-focused very large open-weight.
+venice/qwen3-5-9b: |
+  Qwen 3.5 9B via Venice — privacy-focused small efficient.
+venice/qwen3-6-27b: |
+  Qwen 3.6 27B via Venice — privacy-focused updated efficient.
+venice/qwen3-coder-480b-a35b-instruct-turbo: |
+  Qwen 3 coder 480B turbo via Venice — privacy-focused large
+  code model.
+venice/qwen3-next-80b: |
+  Qwen 3 next 80B via Venice — privacy-focused next-gen model.
+venice/qwen3-vl-235b-a22b: |
+  Qwen 3 VL 235B via Venice — privacy-focused large multimodal.
+venice/venice-uncensored-1-2: |
+  Venice Uncensored 1.2 via Venice — privacy-focused unfiltered
+  general model.
+venice/venice-uncensored-role-play: |
+  Venice Uncensored Role Play via Venice — privacy-focused
+  unfiltered for creative.
+venice/xiaomi-mimo-v2-5: |
+  Xiaomi Mimo V2.5 via Venice — privacy-focused updated multimodal.
+venice/z-ai-glm-5-turbo: |
+  GLM-5 Turbo via Venice — privacy-focused fast flagship.
+venice/z-ai-glm-5v-turbo: |
+  GLM-5 Vision Turbo via Venice — privacy-focused fast multimodal.
+venice/zai-org-glm-4.6: |
+  GLM-4.6 via Venice — privacy-focused strong Chinese model.
+venice/zai-org-glm-4.7: |
+  GLM-4.7 via Venice — privacy-focused updated Chinese model.
+venice/zai-org-glm-4.7-flash: |
+  GLM-4.7 Flash via Venice — privacy-focused fast variant.
+venice/zai-org-glm-5: |
+  GLM-5 via Venice — privacy-focused flagship.
+venice/zai-org-glm-5-1: |
+  GLM-5.1 via Venice — privacy-focused updated flagship.
+venice/zai-org-glm-5-2: |
+  GLM-5.2 via Venice — privacy-focused latest version.
+vercel/alibaba/qwen-3-14b: |
+  Qwen 3 14B via Vercel — compact next-gen on serverless.
+vercel/alibaba/qwen-3-235b: |
+  Qwen 3 235B via Vercel — large next-gen on serverless.
+vercel/alibaba/qwen-3-30b: |
+  Qwen 3 30B via Vercel — balanced next-gen on serverless.
+vercel/alibaba/qwen-3-32b: |
+  Qwen 3 32B via Vercel — balanced open-weight next-gen.
+vercel/alibaba/qwen3-235b-a22b-thinking: |
+  Qwen 235B thinking via Vercel — reasoning on serverless.
+vercel/alibaba/qwen3-coder: |
+  Qwen 3 coder via Vercel — code-specialized on serverless.
+vercel/alibaba/qwen3-coder-30b-a3b: |
+  Qwen 3 coder 30B via Vercel — code-specialized balanced.
+vercel/alibaba/qwen3-coder-next: |
+  Qwen 3 coder next via Vercel — next-gen code on serverless.
+vercel/alibaba/qwen3-coder-plus: |
+  Qwen 3 coder plus via Vercel — enhanced code on serverless.
+vercel/alibaba/qwen3-max: |
+  Qwen 3 Max via Vercel — largest on serverless.
+vercel/alibaba/qwen3-max-preview: |
+  Qwen 3 Max preview via Vercel — early access largest.
+vercel/alibaba/qwen3-max-thinking: |
+  Qwen 3 Max thinking via Vercel — reasoning max on serverless.
+vercel/alibaba/qwen3-next-80b-a3b-instruct: |
+  Qwen 3 next 80B instruct via Vercel — next-gen instruction
+  on serverless.
+vercel/alibaba/qwen3-next-80b-a3b-thinking: |
+  Qwen 3 next 80B thinking via Vercel — reasoning next-gen
+  on serverless.
+vercel/alibaba/qwen3-vl-235b-a22b-instruct: |
+  Qwen 3 VL 235B instruct via Vercel — large multimodal on
+  serverless.
+vercel/alibaba/qwen3-vl-instruct: |
+  Qwen 3 VL instruct via Vercel — multimodal on serverless.
+vercel/alibaba/qwen3-vl-thinking: |
+  Qwen 3 VL thinking via Vercel — multimodal reasoning on
+  serverless.
+vercel/alibaba/qwen3.5-flash: |
+  Qwen 3.5 Flash via Vercel — fast on serverless.
+vercel/alibaba/qwen3.5-plus: |
+  Qwen 3.5 Plus via Vercel — enhanced on serverless.
+vercel/alibaba/qwen3.6-27b: |
+  Qwen 3.6 27B via Vercel — updated efficient on serverless.
+vercel/alibaba/qwen3.6-plus: |
+  Qwen 3.6 Plus via Vercel — enhanced on serverless.
+vercel/alibaba/qwen3.7-max: |
+  Qwen 3.7 Max via Vercel — largest on serverless.
+vercel/alibaba/qwen3.7-plus: |
+  Qwen 3.7 Plus via Vercel — enhanced on serverless.
+vercel/amazon/nova-2-lite: |
+  Amazon Nova 2 Lite via Vercel — lightweight fast on serverless.
+vercel/amazon/nova-lite: |
+  Amazon Nova Lite via Vercel — efficient on serverless.
+vercel/amazon/nova-micro: |
+  Amazon Nova Micro via Vercel — smallest, fastest on serverless.
+vercel/amazon/nova-pro: |
+  Amazon Nova Pro via Vercel — capable mid-tier on serverless.
+vercel/anthropic/claude-3-haiku: |
+  Claude 3 Haiku via Vercel — fast on serverless.
+vercel/anthropic/claude-3.5-haiku: |
+  Claude 3.5 Haiku via Vercel — improved fast on serverless.
+vercel/anthropic/claude-haiku-4.5: |
+  Claude Haiku 4.5 via Vercel — fast, cost-effective on serverless.
+vercel/anthropic/claude-opus-4: |
+  Claude Opus 4 via Vercel — top-tier on serverless.
+vercel/anthropic/claude-opus-4.1: |
+  Claude Opus 4.1 via Vercel — highly capable on serverless.
+vercel/anthropic/claude-opus-4.5: |
+  Claude Opus 4.5 via Vercel — enhanced top-tier on serverless.
+vercel/anthropic/claude-opus-4.6: |
+  Claude Opus 4.6 via Vercel — most capable on serverless.
+vercel/anthropic/claude-opus-4.7: |
+  Claude Opus 4.7 via Vercel — latest flagship on serverless.
+vercel/anthropic/claude-opus-4.8: |
+  Claude Opus 4.8 via Vercel — highest capability on serverless.
+vercel/anthropic/claude-sonnet-4: |
+  Claude Sonnet 4 via Vercel — balanced on serverless.
+vercel/anthropic/claude-sonnet-4.5: |
+  Claude Sonnet 4.5 via Vercel — enhanced balanced on serverless.
+vercel/anthropic/claude-sonnet-4.6: |
+  Claude Sonnet 4.6 via Vercel — latest balanced on serverless.
+vercel/arcee-ai/trinity-large-preview: |
+  Arcee Trinity Large preview via Vercel — reasoning on serverless.
+vercel/arcee-ai/trinity-large-thinking: |
+  Arcee Trinity Large Thinking via Vercel — deep reasoning on
+  serverless.
+vercel/arcee-ai/trinity-mini: |
+  Arcee Trinity Mini via Vercel — compact reasoning on serverless.
+vercel/bytedance/seed-1.6: |
+  ByteDance Seed 1.6 via Vercel — general-purpose on serverless.
+vercel/bytedance/seed-1.8: |
+  ByteDance Seed 1.8 via Vercel — improved general-purpose
+  on serverless.
+vercel/cohere/command-a: |
+  Cohere Command A via Vercel — enterprise chat on serverless.
+vercel/deepseek/deepseek-r1: |
+  DeepSeek R1 via Vercel — reasoning on serverless.
+vercel/deepseek/deepseek-v3: |
+  DeepSeek V3 via Vercel — general-purpose on serverless.
+vercel/deepseek/deepseek-v3.1: |
+  DeepSeek V3.1 via Vercel — updated general-purpose on
+  serverless.
+vercel/deepseek/deepseek-v3.1-terminus: |
+  DeepSeek V3.1 Terminus via Vercel — extended on serverless.
+vercel/deepseek/deepseek-v3.2: |
+  DeepSeek V3.2 via Vercel — updated on serverless.
+vercel/deepseek/deepseek-v3.2-thinking: |
+  DeepSeek V3.2 thinking via Vercel — reasoning on serverless.
+vercel/deepseek/deepseek-v4-flash: |
+  DeepSeek V4 Flash via Vercel — fast latest on serverless.
+vercel/deepseek/deepseek-v4-pro: |
+  DeepSeek V4 Pro via Vercel — high-capability on serverless.
+vercel/google/gemini-2.5-flash: |
+  Gemini 2.5 Flash via Vercel — fast, efficient on serverless.
+vercel/google/gemini-2.5-flash-lite: |
+  Gemini 2.5 Flash Lite via Vercel — lightweight on serverless.
+vercel/google/gemini-2.5-pro: |
+  Gemini 2.5 Pro via Vercel — flagship on serverless.
+vercel/google/gemini-3-flash: |
+  Gemini 3 Flash via Vercel — next-gen fast on serverless.
+vercel/google/gemini-3-pro-preview: |
+  Gemini 3 Pro preview via Vercel — next-gen flagship on
+  serverless.
+vercel/google/gemini-3.1-flash-lite: |
+  Gemini 3.1 Flash Lite via Vercel — lightweight on serverless.
+vercel/google/gemini-3.1-flash-lite-preview: |
+  Gemini 3.1 Flash Lite preview via Vercel — early access
+  on serverless.
+vercel/google/gemini-3.1-pro-preview: |
+  Gemini 3.1 Pro preview via Vercel — early access flagship
+  on serverless.
+vercel/google/gemini-3.5-flash: |
+  Gemini 3.5 Flash via Vercel — latest fast on serverless.
+vercel/google/gemma-4-26b-a4b-it: |
+  Gemma 4 26B via Vercel — efficient on serverless.
+vercel/google/gemma-4-31b-it: |
+  Gemma 4 31B via Vercel — larger on serverless.
+vercel/inception/mercury-2: |
+  Mercury 2 via Vercel — efficient on serverless.
+vercel/inception/mercury-coder-small: |
+  Mercury Coder Small via Vercel — compact code on serverless.
+vercel/interfaze/interfaze-beta: |
+  Interfaze Beta via Vercel — experimental on serverless.
+vercel/kwaipilot/kat-coder-pro-v1: |
+  Kat Coder Pro v1 via Vercel — professional code on serverless.
+vercel/kwaipilot/kat-coder-pro-v2: |
+  Kat Coder Pro v2 via Vercel — updated professional code
+  on serverless.
+vercel/meituan/longcat-flash-chat: |
+  Meituan Longcat Flash Chat via Vercel — fast chat on serverless.
+vercel/meituan/longcat-flash-thinking-2601: |
+  Meituan Longcat Flash Thinking (Jan 2026) via Vercel —
+  reasoning on serverless.
+vercel/meta/llama-3.1-70b: |
+  LLaMA 3.1 70B via Vercel — large open-weight on serverless.
+vercel/meta/llama-3.1-8b: |
+  LLaMA 3.1 8B via Vercel — compact open-weight on serverless.
+vercel/meta/llama-3.2-11b: |
+  LLaMA 3.2 11B via Vercel — compact multimodal on serverless.
+vercel/meta/llama-3.2-90b: |
+  LLaMA 3.2 90B via Vercel — large multimodal on serverless.
+vercel/meta/llama-3.3-70b: |
+  LLaMA 3.3 70B via Vercel — improved efficiency on serverless.
+vercel/meta/llama-4-maverick: |
+  LLaMA 4 Maverick via Vercel — efficient on serverless.
+vercel/meta/llama-4-scout: |
+  LLaMA 4 Scout via Vercel — compact on serverless.
+vercel/minimax/minimax-m2: |
+  MiniMax M2 via Vercel — efficient on serverless.
+vercel/minimax/minimax-m2.1: |
+  MiniMax M2.1 via Vercel — improved on serverless.
+vercel/minimax/minimax-m2.1-lightning: |
+  MiniMax M2.1 Lightning via Vercel — fast variant on serverless.
+vercel/minimax/minimax-m2.5: |
+  MiniMax M2.5 via Vercel — enhanced on serverless.
+vercel/minimax/minimax-m2.5-highspeed: |
+  MiniMax M2.5 highspeed via Vercel — fast enhanced on serverless.
+vercel/minimax/minimax-m2.7: |
+  MiniMax M2.7 via Vercel — latest on serverless.
+vercel/minimax/minimax-m2.7-highspeed: |
+  MiniMax M2.7 highspeed via Vercel — fast latest on serverless.
+vercel/minimax/minimax-m3: |
+  MiniMax M3 via Vercel — newest on serverless.
+vercel/mistral/codestral: |
+  Mistral Codestral via Vercel — code on serverless.
+vercel/mistral/devstral-2: |
+  Mistral Devstral 2 via Vercel — code-specialized on serverless.
+vercel/mistral/devstral-small: |
+  Mistral Devstral Small via Vercel — compact code on serverless.
+vercel/mistral/devstral-small-2: |
+  Mistral Devstral Small 2 via Vercel — updated compact code
+  on serverless.
+vercel/mistral/magistral-medium: |
+  Mistral Magistral Medium via Vercel — mid-tier on serverless.
+vercel/mistral/magistral-small: |
+  Mistral Magistral Small via Vercel — compact on serverless.
+vercel/mistral/ministral-14b: |
+  Mistral Ministral 14B via Vercel — efficient mid-tier on
+  serverless.
+vercel/mistral/ministral-3b: |
+  Mistral Ministral 3B via Vercel — small efficient on serverless.
+vercel/mistral/ministral-8b: |
+  Mistral Ministral 8B via Vercel — compact on serverless.
+vercel/mistral/mistral-large-3: |
+  Mistral Large 3 via Vercel — flagship on serverless.
+vercel/mistral/mistral-medium: |
+  Mistral Medium via Vercel — balanced mid-tier on serverless.
+vercel/mistral/mistral-medium-3.5: |
+  Mistral Medium 3.5 via Vercel — improved balanced on serverless.
+vercel/mistral/mistral-nemo: |
+  Mistral Nemo via Vercel — compact instruction on serverless.
+vercel/mistral/mistral-small: |
+  Mistral Small via Vercel — efficient lightweight on serverless.
+vercel/mistral/pixtral-12b: |
+  Mistral Pixtral 12B via Vercel — efficient vision on serverless.
+vercel/mistral/pixtral-large: |
+  Mistral Pixtral Large via Vercel — large vision on serverless.
+vercel/moonshotai/kimi-k2: |
+  Kimi K2 via Vercel — reasoning on serverless.
+vercel/moonshotai/kimi-k2-thinking: |
+  Kimi K2 thinking via Vercel — reasoning mode on serverless.
+vercel/moonshotai/kimi-k2.5: |
+  Kimi K2.5 via Vercel — improved reasoning on serverless.
+vercel/moonshotai/kimi-k2.6: |
+  Kimi K2.6 via Vercel — further improved on serverless.
+vercel/moonshotai/kimi-k2.7-code: |
+  Kimi K2.7 code via Vercel — code-specialized on serverless.
+vercel/moonshotai/kimi-k2.7-code-highspeed: |
+  Kimi K2.7 code highspeed via Vercel — fast code on serverless.
+vercel/nvidia/nemotron-3-nano-30b-a3b: |
+  Nemotron 3 Nano 30B via Vercel — compact on serverless.
+vercel/nvidia/nemotron-3-super-120b-a12b: |
+  Nemotron 3 Super 120B via Vercel — large efficient on serverless.
+vercel/nvidia/nemotron-3-ultra-550b-a55b: |
+  Nemotron 3 Ultra 550B via Vercel — very large on serverless.
+vercel/nvidia/nemotron-nano-12b-v2-vl: |
+  Nemotron Nano 12B v2 VL via Vercel — multimodal nano on
+  serverless.
+vercel/nvidia/nemotron-nano-9b-v2: |
+  Nemotron Nano 9B v2 via Vercel — nano on serverless.
+vercel/openai/gpt-3.5-turbo: |
+  GPT-3.5 Turbo via Vercel — legacy fast on serverless.
+vercel/openai/gpt-4-turbo: |
+  GPT-4 Turbo via Vercel — fast previous flagship on serverless.
+vercel/openai/gpt-4.1: |
+  GPT-4.1 via Vercel — improved on serverless.
+vercel/openai/gpt-4.1-mini: |
+  GPT-4.1 Mini via Vercel — smaller fast on serverless.
+vercel/openai/gpt-4.1-nano: |
+  GPT-4.1 Nano via Vercel — most efficient on serverless.
+vercel/openai/gpt-4o: |
+  GPT-4o via Vercel — flagship multimodal on serverless.
+vercel/openai/gpt-4o-mini: |
+  GPT-4o Mini via Vercel — smaller fast on serverless.
+vercel/openai/gpt-5: |
+  GPT-5 via Vercel — latest flagship on serverless.
+vercel/openai/gpt-5-chat: |
+  GPT-5 Chat via Vercel — chat-optimized on serverless.
+vercel/openai/gpt-5-codex: |
+  GPT-5 Codex via Vercel — code-specialized on serverless.
+vercel/openai/gpt-5-mini: |
+  GPT-5 Mini via Vercel — efficient on serverless.
+vercel/openai/gpt-5-nano: |
+  GPT-5 Nano via Vercel — most efficient on serverless.
+vercel/openai/gpt-5-pro: |
+  GPT-5 Pro via Vercel — professional tier on serverless.
+vercel/openai/gpt-5.1-codex: |
+  GPT-5.1 Codex via Vercel — code-specialized updated on
+  serverless.
+vercel/openai/gpt-5.1-codex-max: |
+  GPT-5.1 Codex Max via Vercel — highest code on serverless.
+vercel/openai/gpt-5.1-codex-mini: |
+  GPT-5.1 Codex Mini via Vercel — efficient code on serverless.
+vercel/openai/gpt-5.1-instant: |
+  GPT-5.1 Instant via Vercel — fast variant on serverless.
+vercel/openai/gpt-5.1-thinking: |
+  GPT-5.1 thinking via Vercel — reasoning on serverless.
+vercel/openai/gpt-5.2: |
+  GPT-5.2 via Vercel — further improved on serverless.
+vercel/openai/gpt-5.2-chat: |
+  GPT-5.2 Chat via Vercel — chat-optimized on serverless.
+vercel/openai/gpt-5.2-codex: |
+  GPT-5.2 Codex via Vercel — code-specialized on serverless.
+vercel/openai/gpt-5.2-pro: |
+  GPT-5.2 Pro via Vercel — professional tier on serverless.
+vercel/openai/gpt-5.3-chat: |
+  GPT-5.3 Chat via Vercel — latest chat on serverless.
+vercel/openai/gpt-5.3-codex: |
+  GPT-5.3 Codex via Vercel — latest code on serverless.
+vercel/openai/gpt-5.4: |
+  GPT-5.4 via Vercel — newest on serverless.
+vercel/openai/gpt-5.4-mini: |
+  GPT-5.4 Mini via Vercel — efficient on serverless.
+vercel/openai/gpt-5.4-nano: |
+  GPT-5.4 Nano via Vercel — most efficient on serverless.
+vercel/openai/gpt-5.4-pro: |
+  GPT-5.4 Pro via Vercel — professional tier on serverless.
+vercel/openai/gpt-5.5: |
+  GPT-5.5 via Vercel — latest production on serverless.
+vercel/openai/gpt-5.5-pro: |
+  GPT-5.5 Pro via Vercel — professional tier on serverless.
+vercel/openai/gpt-oss-120b: |
+  GPT open-source 120B via Vercel — large open-weight on
+  serverless.
+vercel/openai/gpt-oss-20b: |
+  GPT open-source 20B via Vercel — small open-weight on
+  serverless.
+vercel/openai/gpt-oss-safeguard-20b: |
+  GPT open-source safeguard 20B via Vercel — safety-tuned on
+  serverless.
+vercel/openai/o1: |
+  OpenAI o1 via Vercel — reasoning on serverless.
+vercel/openai/o3: |
+  OpenAI o3 via Vercel — advanced reasoning on serverless.
+vercel/openai/o3-deep-research: |
+  OpenAI o3 deep research via Vercel — research reasoning
+  on serverless.
+vercel/openai/o3-mini: |
+  OpenAI o3 Mini via Vercel — smaller reasoning on serverless.
+vercel/openai/o3-pro: |
+  OpenAI o3 Pro via Vercel — professional reasoning on
+  serverless.
+vercel/openai/o4-mini: |
+  OpenAI o4 Mini via Vercel — efficient reasoning on serverless.
+vercel/sakana/fugu-ultra: |
+  Sakana Fugu Ultra via Vercel — specialized on serverless.
+vercel/stepfun/step-3.5-flash: |
+  Stepfun 3.5 Flash via Vercel — fast Chinese on serverless.
+vercel/stepfun/step-3.7-flash: |
+  Stepfun 3.7 Flash via Vercel — improved fast on serverless.
+vercel/xai/grok-4.1-fast-non-reasoning: |
+  Grok-4.1 fast non-reasoning via Vercel — quick without
+  thinking on serverless.
+vercel/xai/grok-4.1-fast-reasoning: |
+  Grok-4.1 fast reasoning via Vercel — quick with thinking
+  on serverless.
+vercel/xai/grok-4.20-multi-agent: |
+  Grok-4.20 multi-agent via Vercel — coordination on serverless.
+vercel/xai/grok-4.20-multi-agent-beta: |
+  Grok-4.20 multi-agent beta via Vercel — experimental on
+  serverless.
+vercel/xai/grok-4.20-non-reasoning: |
+  Grok-4.20 non-reasoning via Vercel — without thinking on
+  serverless.
+vercel/xai/grok-4.20-non-reasoning-beta: |
+  Grok-4.20 non-reasoning beta via Vercel — experimental on
+  serverless.
+vercel/xai/grok-4.20-reasoning: |
+  Grok-4.20 reasoning via Vercel — thinking on serverless.
+vercel/xai/grok-4.20-reasoning-beta: |
+  Grok-4.20 reasoning beta via Vercel — experimental on
+  serverless.
+vercel/xai/grok-4.3: |
+  Grok-4.3 via Vercel — latest on serverless.
+vercel/xai/grok-build-0.1: |
+  Grok Build 0.1 via Vercel — experimental on serverless.
+vercel/xiaomi/mimo-v2-flash: |
+  Xiaomi Mimo V2 Flash via Vercel — fast on serverless.
+vercel/xiaomi/mimo-v2-pro: |
+  Xiaomi Mimo V2 Pro via Vercel — professional on serverless.
+vercel/xiaomi/mimo-v2.5: |
+  Xiaomi Mimo V2.5 via Vercel — updated on serverless.
+vercel/xiaomi/mimo-v2.5-pro: |
+  Xiaomi Mimo V2.5 Pro via Vercel — professional updated on
+  serverless.
+vercel/zai/glm-4.5: |
+  GLM-4.5 via Vercel — strong Chinese on serverless.
+vercel/zai/glm-4.5-air: |
+  GLM-4.5 Air via Vercel — lightweight on serverless.
+vercel/zai/glm-4.5v: |
+  GLM-4.5 Vision via Vercel — multimodal on serverless.
+vercel/zai/glm-4.6: |
+  GLM-4.6 via Vercel — improved Chinese on serverless.
+vercel/zai/glm-4.6v: |
+  GLM-4.6 Vision via Vercel — multimodal improved on serverless.
+vercel/zai/glm-4.6v-flash: |
+  GLM-4.6 Vision Flash via Vercel — fast multimodal on
+  serverless.
+vercel/zai/glm-4.7: |
+  GLM-4.7 via Vercel — updated on serverless.
+vercel/zai/glm-4.7-flash: |
+  GLM-4.7 Flash via Vercel — fast on serverless.
+vercel/zai/glm-4.7-flashx: |
+  GLM-4.7 FlashX via Vercel — enhanced fast on serverless.
+vercel/zai/glm-5: |
+  GLM-5 via Vercel — flagship on serverless.
+vercel/zai/glm-5-turbo: |
+  GLM-5 Turbo via Vercel — fast flagship on serverless.
+vercel/zai/glm-5.1: |
+  GLM-5.1 via Vercel — updated flagship on serverless.
+vercel/zai/glm-5.2: |
+  GLM-5.2 via Vercel — latest on serverless.
+vercel/zai/glm-5.2-fast: |
+  GLM-5.2 fast via Vercel — quick on serverless.
+vercel/zai/glm-5v-turbo: |
+  GLM-5 Vision Turbo via Vercel — fast multimodal on serverless.
+vertexai/claude-haiku-4-5-20251001: |
+  Claude Haiku 4.5 (Oct 2025) via Vertex AI — fast with GCP
+  enterprise features.
+vertexai/claude-opus-4-5-20251101: |
+  Claude Opus 4.5 (Nov 2025) via Vertex AI — enhanced top-tier
+  with GCP integration.
+vertexai/claude-opus-4-6: |
+  Claude Opus 4.6 via Vertex AI — most capable with GCP
+  compliance.
+vertexai/claude-sonnet-4-5-20250929: |
+  Claude Sonnet 4.5 (Sept 2025) via Vertex AI — balanced with
+  GCP features.
+vertexai/claude-sonnet-4-6: |
+  Claude Sonnet 4.6 via Vertex AI — latest balanced with GCP
+  integration.
+vertexai/gemini-2.5-flash: |
+  Gemini 2.5 Flash via Vertex AI — fast, efficient with GCP
+  infrastructure.
+vertexai/gemini-2.5-pro: |
+  Gemini 2.5 Pro via Vertex AI — flagship with GCP integration
+  and 1M+ context.
+vertexai/gemini-3-flash-preview: |
+  Gemini 3 Flash preview via Vertex AI — next-gen fast with
+  GCP.
+vertexai/gemini-3-pro-preview: |
+  Gemini 3 Pro preview via Vertex AI — next-gen flagship with
+  GCP.
+vertexai/gemini-3.1-pro-preview: |
+  Gemini 3.1 Pro preview via Vertex AI — early access next-gen
+  with GCP.
+vertexai/gemini-3.1-pro-preview-customtools: |
+  Gemini 3.1 Pro preview custom tools via Vertex AI — extensible
+  with GCP.
+xai/grok-4.20: |
+  xAI's Grok-4.20 direct — large reasoning model with real-time
+  knowledge.
+xai/grok-4.20-non-reasoning: |
+  xAI's Grok-4.20 non-reasoning direct — without extended
+  thinking mode.
+xai/grok-4.3: |
+  xAI's Grok-4.3 direct — latest Grok with improved reasoning.
+xai/grok-build-0.1: |
+  xAI's Grok Build 0.1 direct — experimental build with novel
+  capabilities.
+zai/glm-4.5: |
+  Zhipu's GLM-4.5 direct — strong Chinese language model.
+zai/glm-4.5-air: |
+  Zhipu's GLM-4.5 Air direct — lightweight efficient variant.
+zai/glm-4.5v: |
+  Zhipu's GLM-4.5 Vision direct — multimodal with Chinese
+  language strength.
+zai/glm-4.6: |
+  Zhipu's GLM-4.6 direct — improved model with strong Chinese.
+zai/glm-4.6v: |
+  Zhipu's GLM-4.6 Vision direct — multimodal improved variant.
+zai/glm-4.7: |
+  Zhipu's GLM-4.7 direct — updated model with enhanced reasoning.
+zai/glm-4.7-flash: |
+  Zhipu's GLM-4.7 Flash direct — fast variant.
+zai/glm-5: |
+  Zhipu's GLM-5 direct — flagship with advanced capabilities.
+zai/glm-5-turbo: |
+  Zhipu's GLM-5 Turbo direct — fast flagship variant.
+zai/glm-5.1: |
+  Zhipu's GLM-5.1 direct — updated flagship model.
+zai/glm-5.2: |
+  Zhipu's GLM-5.2 direct — latest version with improvements.
+zhipu/glm-4.5: |
+  Zhipu AI's GLM-4.5 — general-purpose model with strong Chinese
+  language understanding and generation.
+zhipu/glm-4.5-air: |
+  Zhipu AI's GLM-4.5 Air — lightweight, efficient variant for
+  basic tasks.
+zhipu/glm-4.5v: |
+  Zhipu AI's GLM-4.5 Vision — multimodal variant with image
+  understanding.
+zhipu/glm-4.6: |
+  Zhipu AI's GLM-4.6 — improved general-purpose model with
+  enhanced reasoning.
+zhipu/glm-4.6v: |
+  Zhipu AI's GLM-4.6 Vision — multimodal improved variant.
+zhipu/glm-4.7: |
+  Zhipu AI's GLM-4.7 — latest version with advanced capabilities.
+zhipu/glm-4.7-flash: |
+  Zhipu AI's GLM-4.7 Flash — fast, efficient variant.
+zhipu/glm-5: |
+  Zhipu AI's GLM-5 — flagship model with the strongest
+  capabilities across all tasks.
+zhipu/glm-5-turbo: |
+  Zhipu AI's GLM-5 Turbo — faster variant of flagship with
+  slightly reduced capabilities.
+zhipu/glm-5.1: |
+  Zhipu AI's GLM-5.1 — updated flagship with improved performance.
+zhipu/glm-5.2: |
+  Zhipu AI's GLM-5.2 — latest version with enhanced reasoning
+  and understanding.
+zhipu-coding/glm-4.5: |
+  Zhipu AI's GLM-4.5 for coding — general-purpose with Chinese
+  language optimized for code.
+zhipu-coding/glm-4.5-air: |
+  Zhipu AI's GLM-4.5 Air for coding — lightweight code model.
+zhipu-coding/glm-4.5v: |
+  Zhipu AI's GLM-4.5 Vision for coding — multimodal code model
+  with image understanding.
+zhipu-coding/glm-4.6: |
+  Zhipu AI's GLM-4.6 for coding — improved code model with
+  better quality.
+zhipu-coding/glm-4.6v: |
+  Zhipu AI's GLM-4.6 Vision for coding — improved multimodal
+  code model.
+zhipu-coding/glm-4.7: |
+  Zhipu AI's GLM-4.7 for coding — updated code model.
+zhipu-coding/glm-4.7-flash: |
+  Zhipu AI's GLM-4.7 Flash for coding — fast code model.
+zhipu-coding/glm-5: |
+  Zhipu AI's GLM-5 for coding — flagship code model with the
+  best code understanding and generation.
+zhipu-coding/glm-5-turbo: |
+  Zhipu AI's GLM-5 Turbo for coding — fast flagship code model.
+zhipu-coding/glm-5.1: |
+  Zhipu AI's GLM-5.1 for coding — updated flagship code model.
+zhipu-coding/glm-5.2: |
+  Zhipu AI's GLM-5.2 for coding — latest code model with
+  enhanced capabilities.

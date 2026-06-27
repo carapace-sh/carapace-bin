@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: completion
+description: Generate the autocompletion script for the specified shell
+documentation:
+    command: |
+        Generate shell completion scripts for Crush. Supports bash, zsh, fish,
+        and powershell. The output is printed to stdout and should be sourced
+        or saved to the appropriate completion directory for your shell.

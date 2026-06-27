@@ -1,0 +1,40 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: run
+aliases:
+- r
+description: Run a single non-interactive prompt
+flags:
+    -C, --continue: Continue the most recent session
+    -m, --model=: Model to use
+    -q, --quiet: Hide spinner
+    -s, --session=: Continue a previous session by ID
+    --small-model=: Small model to use
+    -v, --verbose: Show logs
+documentation:
+    command: |
+        Run a non-interactive prompt through the AI model. This is the
+        primary way to use Crush in scripting and automation contexts.
+        
+        Provide the prompt as positional arguments:
+        
+            crush run "explain this code"
+        
+        With `--model` (or `-m`), choose which model to use. The value
+        accepts either a model name or `provider/model` format to
+        disambiguate models with the same name across providers.
+    flag:
+        model: |
+            Model to use. Accepts `model` or `provider/model` format to
+            disambiguate models with the same name across providers.
+        quiet: |
+            Hide the spinner animation during model response. Useful for
+            scripting where terminal output should be clean.
+        session: |
+            Continue a previous session by providing its session ID. This
+            restores the conversation context from that session.
+        small-model: |
+            Small model to use for lightweight or summarization tasks.
+            If not provided, defaults to the configured small model for
+            the active provider.
+        verbose: |
+            Show detailed log output during prompt execution.

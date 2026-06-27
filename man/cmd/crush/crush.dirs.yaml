@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: dirs
+description: Show config and data directories
+documentation:
+    command: |
+        Print the paths Crush uses for configuration and data storage.
+        Useful for locating your [crush.json](https://charm.land/crush.json)
+        file or finding where sessions are stored.

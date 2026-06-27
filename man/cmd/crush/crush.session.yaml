@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: session
+aliases:
+- sessions
+- s
+description: Manage sessions
+documentation:
+    command: |
+        Manage Crush conversation sessions. Sessions store the history
+        of your interactions with AI models, allowing you to resume,
+        review, rename, or delete past conversations.
+        
+        Subcommands:
+        - `crush session list` — List all sessions
+        - `crush session show <id>` — Show session details
+        - `crush session last` — Show the most recent session
+        - `crush session delete <id>` — Delete a session
+        - `crush session rename <id> <title>` — Rename a session

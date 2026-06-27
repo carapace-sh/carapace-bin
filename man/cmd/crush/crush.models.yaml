@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: models
+description: List all available models from known providers
+documentation:
+    command: |
+        List every AI model available across all configured and known
+        providers. Each line shows the model in
+        `<provider>/<model-id>` format.
+        
+        Models come from two sources:
+        - **Configured providers** defined in your
+          [crush.json](https://charm.land/crush.json) config
+        - **Known providers** built into Crush's provider catalog
+        
+        Unconfigured providers are listed but marked as not configured.
+        Use `crush login` to authenticate with a provider.
+        
+        See the [crush://model](crush://model/) documentation for
+        descriptions of individual models.

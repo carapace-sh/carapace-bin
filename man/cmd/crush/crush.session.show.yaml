@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: show
+description: Show session details
+flags:
+    --json: output in JSON format
+documentation:
+    command: |
+        Show detailed information about a specific session, including
+        its title, creation time, and conversation history.
+    flag:
+        json: |
+            Output the session details in JSON format for programmatic use.

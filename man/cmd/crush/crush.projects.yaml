@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: projects
+description: List project directories
+flags:
+    --json: Output as JSON
+documentation:
+    command: |
+        List project directories that Crush knows about. Projects are
+        typically discovered from recent work or configured project paths.
+    flag:
+        json: |
+            Output the project list in JSON format for programmatic use.

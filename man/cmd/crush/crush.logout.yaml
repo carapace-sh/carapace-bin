@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: logout
+aliases:
+- signout
+description: Logout Crush from a platform
+flags:
+    -f, --force: Skip logout confirmation prompt
+documentation:
+    command: |
+        Log out of a platform that Crush is currently authenticated with.
+        Use `crush logout <platform>` to remove stored credentials for
+        that platform.
+    flag:
+        force: |
+            Skip the logout confirmation prompt and immediately clear
+            stored credentials.
