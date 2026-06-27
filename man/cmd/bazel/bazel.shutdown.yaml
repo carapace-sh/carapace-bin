@@ -1,5 +1,7 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: shutdown
 description: Stops the %{product} server.
+documentation:
+    command: Stop the Bazel server process. Shuts down the persistent Bazel server, releasing memory and file handles. Use `--iff_heap_size_greater_than` to conditionally shut down only when the JVM heap exceeds a threshold. Running `bazel shutdown` is useful for freeing resources without killing unrelated processes.
 flags:
     --iff_heap_size_greater_than=: Iff non-zero, then shutdown will only shut down the server if the total memory (in MB) consumed by the JVM exceeds this value.

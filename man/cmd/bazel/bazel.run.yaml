@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: run
 description: Runs the specified target.
+documentation:
+    command: Run the specified target. Builds the target and then executes it as a binary. Passes any remaining arguments after the target to the executed program. Useful for running tools, tests, or custom scripts built by Bazel.
 flags:
     --allow_analysis_cache_discard: If discarding the analysis cache due to a change in the build system, setting this
     --allow_one_action_on_resource_unavailable: If set, allow at least one action to run even if the resource is not enough or unavailable.

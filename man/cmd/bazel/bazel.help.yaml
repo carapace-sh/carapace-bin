@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: help
 description: Prints help for commands, or the index.
+documentation:
+    command: Print help for commands or the help index. With no arguments, lists all available commands. Specify a command name to get detailed help for that command, including its flags and usage.
 flags:
     --help_verbosity=: Select the verbosity of the help command.
     --short=: Show only the names of the options, not their types or meanings.

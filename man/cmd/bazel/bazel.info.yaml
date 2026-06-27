@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: info
 description: Displays runtime info about the %{product} server.
+documentation:
+    command: Display runtime information about the Bazel server and workspace. Shows paths for output_base, execution_root, workspace, and other configuration details. Useful for scripting and CI to discover environment settings.
 flags:
     --allow_analysis_cache_discard: If discarding the analysis cache due to a change in the build system, setting this
     --allow_one_action_on_resource_unavailable: If set, allow at least one action to run even if the resource is not enough or unavailable.

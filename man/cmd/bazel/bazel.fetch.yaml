@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: fetch
 description: Fetches external repositories that are prerequisites to the targets.
+documentation:
+    command: Fetch external repositories that are prerequisites to the targets. Downloads and caches remote dependencies defined in the WORKSPACE file. Useful for pre-fetching dependencies before running offline builds.
 flags:
     --all: Fetches all external repositories necessary for building any target or repository.
     --allow_analysis_cache_discard: If discarding the analysis cache due to a change in the build system, setting this

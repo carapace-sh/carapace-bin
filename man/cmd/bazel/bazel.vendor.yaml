@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: vendor
 description: Fetches external repositories into a folder specified by the flag --vendor_dir.
+documentation:
+    command: Fetch external repositories into a folder specified by `--vendor_dir`. Copies external dependency sources into the workspace for offline builds and version pinning. Useful for air-gapped environments or ensuring reproducible dependency snapshots.
 flags:
     --allow_analysis_cache_discard: If discarding the analysis cache due to a change in the build system, setting this
     --allow_one_action_on_resource_unavailable: If set, allow at least one action to run even if the resource is not enough or unavailable.

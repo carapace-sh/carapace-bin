@@ -3,6 +3,8 @@ name: bazel
 aliases:
     - bazelisk
 description: build system
+documentation:
+    command: Bazel is a multi-language build and test system from Google. It uses a declarative build description language (Starlark) to define build targets and their dependencies. Bazel supports C++, Java, Python, Go, Rust, and many other languages. It performs incremental builds and test execution based on a dependency graph, ensuring correctness through hermetic builds and reproducible outputs.
 flags:
     --autodetect_server_javabase: When --noautodetect_server_javabase is passed, Bazel does not fall back to the local JDK for running the bazel server and instead exits.
     --batch: If set, Bazel will be run as just a client process without a server, instead of in the standard client/server mode. This is deprecated and will be removed, please prefer shutting down the server explicitly if you wish to avoid lingering servers.
