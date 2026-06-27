@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: clean
 description: Removes output files and optionally stops the server.
+documentation:
+    command: Remove output files and optionally stop the Bazel server. Cleans build outputs, cached data, and intermediate files. With `--expunge` cleans the entire output tree, including the server working directory. Useful when recovering from corrupted state or freeing disk space.
 flags:
     --allow_analysis_cache_discard: If discarding the analysis cache due to a change in the build system, setting this
     --allow_one_action_on_resource_unavailable: If set, allow at least one action to run even if the resource is not enough or unavailable.

@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: aquery
 description: Analyzes the given targets and queries the action graph.
+documentation:
+    command: 'Analyze the build''s action graph. Displays detailed information about build actions, including inputs, outputs, command lines, environment variables, and execution strategies. Useful for debugging build issues, understanding what Bazel does to produce each output, and inspecting action caches. Supports multiple output formats: text, textproto, proto, streamed_proto, and jsonproto.'
 flags:
     --allow_analysis_cache_discard: If discarding the analysis cache due to a change in the build system, setting this
     --allow_one_action_on_resource_unavailable: If set, allow at least one action to run even if the resource is not enough or unavailable.

@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: dump
 description: Dumps the internal state of the %{product} server process.
+documentation:
+    command: Dump the internal state of the Bazel server process. Outputs the server's internal data structures including action caches, rule classes, and Skyframe graphs. Primarily a debugging tool for understanding Bazel's internal state.
 flags:
     --action_cache: Dump action cache content.
     --memory=: Dump the memory use of the given Skyframe node.

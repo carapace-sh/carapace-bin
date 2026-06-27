@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: query
 description: Executes a dependency graph query.
+documentation:
+    command: Execute a dependency graph query. Examines the target dependency graph using a custom query language. Supports filters, pattern matching, and traversal of dependencies and reverse dependencies. Results can be output in text, XML, or proto format.
 flags:
     --action_env=*: Specifies the set of environment variables available to actions with target
     --allow_analysis_failures: If true, an analysis failure of a rule target results in the target's propagation

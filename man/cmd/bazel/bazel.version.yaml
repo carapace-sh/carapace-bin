@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: version
 description: Prints version information for %{product}.
+documentation:
+    command: Print version information for Bazel. Displays the Bazel version number, build label, revision, and build timestamp. Use `--gnu_format` to output version info in a GNU-compatible format for scripts.
 flags:
     --gnu_format: If set, write the version to stdout using the conventions described in the GNU standards.
     --nognu_format: If set, write the version to stdout using the conventions described in the GNU standards.

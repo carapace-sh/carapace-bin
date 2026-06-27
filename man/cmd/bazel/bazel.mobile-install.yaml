@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: mobile-install
 description: Installs targets to mobile devices.
+documentation:
+    command: Install targets to mobile devices. Deploys Android application targets to connected devices or emulators. Supports incremental installation for faster iteration during development.
 flags:
     --adb=: adb binary to use for the 'mobile-install' command. If unspecified, the one in the Android SDK specified by the --android_sdk_channel command line option (or  the default SDK if --android_sdk_channel is not specified) is used.
     --adb_arg=*: Extra arguments to pass to adb. Usually used to designate a device to install to.

@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: config
 description: Displays details of configurations.
+documentation:
+    command: Display details of build configurations. Lists all known configuration IDs and their associated build options. Use `--dump_all` to show full configuration details instead of just IDs. Useful for debugging configuration transitions and platform mappings.
 flags:
     --allow_analysis_cache_discard: If discarding the analysis cache due to a change in the build system, setting this
     --allow_one_action_on_resource_unavailable: If set, allow at least one action to run even if the resource is not enough or unavailable.

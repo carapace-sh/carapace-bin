@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: coverage
 description: Generates code coverage report for specified test targets.
+documentation:
+    command: Generate code coverage reports for specified test targets. Runs tests under a coverage instrumentation tool (e.g. gcov, lcov, JaCoCo) and produces coverage data in lcov or baseline format. Combines building and testing with coverage collection. Requires `--combined_report=lcov` to produce a merged report.
 flags:
     --allow_analysis_cache_discard: If discarding the analysis cache due to a change in the build system, setting this
     --allow_one_action_on_resource_unavailable: If set, allow at least one action to run even if the resource is not enough or unavailable.

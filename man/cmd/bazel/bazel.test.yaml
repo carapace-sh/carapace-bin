@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: test
 description: Builds and runs the specified test targets.
+documentation:
+    command: Build and run the specified test targets. Compiles test binaries and executes them, reporting pass/fail results. Supports test filtering by size, tag, language, and timeout. Generates test logs, coverage data, and XML test summaries.
 flags:
     --allow_analysis_cache_discard: If discarding the analysis cache due to a change in the build system, setting this
     --allow_one_action_on_resource_unavailable: If set, allow at least one action to run even if the resource is not enough or unavailable.

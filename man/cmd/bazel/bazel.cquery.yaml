@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: cquery
 description: Loads, analyzes, and queries the specified targets w/ configurations.
+documentation:
+    command: Load, analyze, and query the specified targets with configuration info. Similar to `query` but includes configured target information after the analysis phase resolves transitions, platforms, and toolchains. Supports the same query expressions as `query` but operates on the configured target graph.
 flags:
     --allow_analysis_cache_discard: If discarding the analysis cache due to a change in the build system, setting this
     --allow_one_action_on_resource_unavailable: If set, allow at least one action to run even if the resource is not enough or unavailable.
