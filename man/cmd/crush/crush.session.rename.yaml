@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rename
+description: Rename a session
+flags:
+    --json: output in JSON format
+documentation:
+    command: |
+        Rename a session. Takes the session ID and a new title as
+        positional arguments. Use `crush session list` to find sessions.
+    flag:
+        json: |
+            Output the result in JSON format for programmatic use.

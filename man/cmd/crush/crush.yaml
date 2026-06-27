@@ -1,0 +1,49 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: crush
+description: A terminal-first AI assistant for software development
+flags:
+    -C, --continue: Continue the most recent session
+    --cwd=: Current working directory
+    --data-dir=: Custom crush data directory
+    -d, --debug: Debug
+    -h, --help: Help
+    --host=: Connect to a specific crush server host (for advanced users)
+    -s, --session=: Continue a previous session by ID
+    -y, --yolo: Automatically accept all permissions (dangerous mode)
+documentation:
+    command: |
+        Crush is a terminal-first AI assistant for software development. It
+        provides a conversational interface to AI models directly in the terminal.
+        
+        Crush runs plain prompts, manages sessions, and supports multiple AI
+        providers through a plugin architecture. It can be used interactively
+        or for non-interactive batch operations.
+        
+        See [crush run](crush://crush/run) to get started running prompts, or
+        [crush session](crush://crush/session) to manage conversation history.
+    flag:
+        continue: |
+            Continue the most recent session, re-establishing the conversation
+            context from where it left off. Equivalent to `crush run -C`.
+        cwd: |
+            Set the current working directory for the Crush session. Affects how
+            relative paths and project context are resolved.
+        data-dir: |
+            Override the default data directory where Crush stores sessions,
+            configuration, and cached provider data. Defaults to the platform-
+            specific config directory.
+        debug: |
+            Enable debug logging to stderr for troubleshooting.
+        help: |
+            Show help information for Crush commands.
+        host: |
+            Connect to a running Crush server instance. Accepts TCP addresses
+            (e.g. `localhost:8080`) or Unix socket paths. For advanced use cases
+            like running Crush as a remote agent.
+        session: |
+            Resume a specific session by its session ID. Use
+            `crush session list` to find available sessions.
+        yolo: |
+            Automatically approve all permission prompts without user
+            confirmation. This is a dangerous mode intended only for
+            fully automated or trusted environments.

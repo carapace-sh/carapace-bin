@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: last
+description: Show most recent session
+flags:
+    --json: output in JSON format
+documentation:
+    command: |
+        Display details about the most recent session. Useful for quickly
+        picking up where you left off.
+    flag:
+        json: |
+            Output the result in JSON format for programmatic use.

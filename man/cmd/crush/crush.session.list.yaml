@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+aliases:
+- ls
+description: List all sessions
+flags:
+    --json: output in JSON format
+documentation:
+    command: |
+        List all Crush sessions with their IDs and titles. Use the session
+        ID with `crush run -s <id>` or `crush session show <id>`.
+    flag:
+        json: |
+            Output the session list in JSON format for programmatic use.

@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: delete
+aliases:
+- rm
+description: Delete a session
+flags:
+    --json: output in JSON format
+documentation:
+    command: |
+        Delete a session by its session ID. Use `crush session list` to
+        find the ID of the session you want to remove.
+    flag:
+        json: |
+            Output the result in JSON format for programmatic use.

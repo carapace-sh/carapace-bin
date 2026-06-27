@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: update-providers
+description: Update providers
+flags:
+    --source=: Provider source to update (catwalk or hyper)
+documentation:
+    command: |
+        Update the provider catalog from a remote source. Fetches the
+        latest provider definitions and model lists from the specified
+        provider source.
+        
+        Optionally provide a path or URL to update from a custom location.
+    flag:
+        source: |
+            Provider source to update. Accepts `catwalk` or `hyper`.
+            Each source maintains its own provider catalog.

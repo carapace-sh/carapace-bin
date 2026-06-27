@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: logs
+description: View crush logs
+flags:
+    -f, --follow: Follow log output
+    -t, --tail=: Show only the last N lines default: 1000 for performance
+documentation:
+    command: |
+        View Crush's application logs for debugging and troubleshooting.
+        Logs include provider requests, tool calls, session events, and
+        any errors encountered during operation.
+    flag:
+        follow: |
+            Continuously tail new log entries as they are written.
+        tail: |
+            Show only the last N lines of the log file. Defaults to 1000
+            for performance with large log files.

@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: server
+description: Start the Crush server
+flags:
+    -H, --host=: Server host (TCP or Unix socket)
+documentation:
+    command: |
+        Start the Crush server for remote or multi-client access. The
+        server accepts connections from Crush clients, enabling Crush
+        to run as a daemon.
+        
+        Specify the host with a TCP address (e.g. `localhost:8080`) or
+        a Unix socket path.
+    flag:
+        host: |
+            Server host to bind to. Accepts TCP addresses like
+            `localhost:8080` or Unix socket paths.
