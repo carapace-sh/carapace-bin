@@ -1,0 +1,21 @@
+package cmd
+
+import (
+	"github.com/carapace-sh/carapace"
+	"github.com/spf13/cobra"
+)
+
+var rootCmd = &cobra.Command{
+	Use:   "test",
+	Short: "Perform tests on files and text",
+	Long:  "https://fishshell.com/docs/current/cmds/test.html",
+	Run:   func(cmd *cobra.Command, args []string) {},
+}
+
+func Execute() error {
+	return rootCmd.Execute()
+}
+
+func init() {
+	carapace.Gen(rootCmd).Standalone()
+}
