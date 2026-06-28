@@ -82,7 +82,8 @@ aurs:
       - carapace
     optdepends:
       - "carapace-aws-bin: for enriched aws completion"
-      - "carapace-ffmpeg-bin: for ffmpeg completion"
+      - "carapace-ffmpeg-bin: for FFmpeg completion"
+      - "carapace-magick-bin: for ImageMagick completion"
 
 nfpms:
   -
