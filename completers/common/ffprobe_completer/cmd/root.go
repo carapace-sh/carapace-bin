@@ -26,7 +26,7 @@ func init() {
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if _, err := exec.LookPath("carapace-ffprobe"); err == nil {
-				return bridge.ActionCarapace("carapace-ffprobe")
+				return bridge.ActionCarapace("carapace-ffmpeg", "ffprobe")
 			}
 			return bridge.ActionBridge("ffprobe")
 		}),
