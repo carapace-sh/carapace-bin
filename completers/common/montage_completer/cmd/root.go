@@ -9,9 +9,9 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:                "magick",
-	Short:              "convert between image formats as well as resize an image, blur, crop, despeckle, dither, draw on, flip, join, re-sample, and much more",
-	Long:               "https://imagemagick.org/",
+	Use:                "montage",
+	Short:              "create a composite image by combining several separate images",
+	Long:               "https://imagemagick.org/script/montage.php",
 	Run:                func(cmd *cobra.Command, args []string) {},
 	DisableFlagParsing: true,
 }
@@ -26,9 +26,9 @@ func init() {
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if _, err := exec.LookPath("carapace-magick"); err == nil {
-				return bridge.ActionCarapace("carapace-magick", "magick")
+				return bridge.ActionCarapace("carapace-magick", "montage")
 			}
-			return bridge.ActionBridge("magick")
+			return bridge.ActionBridge("montage")
 		}),
 	)
 }
