@@ -1,8 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: reverb:start [--host [HOST]] [--port [PORT]] [--hostname [HOSTNAME]] [--debug]
-description: Start the Reverb server
-flags:
-    --debug: Indicates whether debug messages should be displayed in the terminal
-    --host=: The IP address the server should bind to
-    --hostname=: The hostname the server is accessible from
-    --port=: The port the server should listen on

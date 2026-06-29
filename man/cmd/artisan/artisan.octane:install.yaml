@@ -1,5 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: octane:install [--server [SERVER]]
-description: Install the Octane components and resources
-flags:
-    --server=: The server that should be used to serve the application

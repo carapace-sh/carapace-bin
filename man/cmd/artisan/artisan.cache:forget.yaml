@@ -1,3 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: cache:forget <key> [<store>]
-description: Remove an item from the cache

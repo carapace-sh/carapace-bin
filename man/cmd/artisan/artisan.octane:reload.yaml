@@ -1,5 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: octane:reload [--server [SERVER]]
-description: Reload the Octane workers
-flags:
-    --server=: The server that is running the application

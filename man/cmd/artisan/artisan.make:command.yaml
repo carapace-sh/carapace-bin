@@ -1,9 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: make:command [-f|--force] [--command [COMMAND]] [--test] [--pest] [--phpunit] [--] <name>
-description: Create a new Artisan command
-flags:
-    --command=: The terminal command that will be used to invoke the class
-    --force: Create the class even if the console command already exists
-    --pest: Generate an accompanying Pest test for the Console command
-    --phpunit: Generate an accompanying PHPUnit test for the Console command
-    --test: Generate an accompanying Test test for the Console command

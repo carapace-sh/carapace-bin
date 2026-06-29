@@ -1,5 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: completion [--debug] [--] [<shell>]
-description: Dump the shell completion script
-flags:
-    --debug: Tail the completion debug log

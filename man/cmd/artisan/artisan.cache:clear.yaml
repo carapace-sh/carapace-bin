@@ -1,5 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: cache:clear [--tags [TAGS]] [--] [<store>]
-description: Flush the application cache
-flags:
-    --tags=: The cache tags you would like to clear

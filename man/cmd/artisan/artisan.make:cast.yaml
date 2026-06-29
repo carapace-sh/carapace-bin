@@ -1,6 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: make:cast [-f|--force] [--inbound] [--] <name>
-description: Create a new custom Eloquent cast class
-flags:
-    --force: Create the class even if the cast already exists
-    --inbound: Generate an inbound cast class

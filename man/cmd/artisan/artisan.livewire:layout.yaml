@@ -1,6 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: livewire:layout [--force] [--stub [STUB]]
-description: Create a new app layout file
-flags:
-    --force: ""
-    --stub=: If you have several stubs, stored in subfolders

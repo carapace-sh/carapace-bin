@@ -1,8 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: install:api [--composer [COMPOSER]] [--force] [--passport] [--without-migration-prompt]
-description: Create an API routes file and install Laravel Sanctum or Laravel Passport
-flags:
-    --composer=: Absolute path to the Composer binary which should be used to install packages
-    --force: Overwrite any existing API routes file
-    --passport: Install Laravel Passport instead of Laravel Sanctum
-    --without-migration-prompt: Do not prompt to run pending migrations

@@ -1,5 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: event:list [--event [EVENT]]
-description: List the application's events and listeners
-flags:
-    --event=: Filter the events by name

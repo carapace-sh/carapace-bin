@@ -1,6 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: db:monitor [--databases [DATABASES]] [--max [MAX]]
-description: Monitor the number of connections on the specified database
-flags:
-    --databases=: The database connections to monitor
-    --max=: The maximum number of connections that can be open before an event is dispatched

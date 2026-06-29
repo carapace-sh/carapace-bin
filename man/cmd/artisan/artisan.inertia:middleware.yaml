@@ -1,5 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: inertia:middleware [--force] [--] [<name>]
-description: Create a new Inertia middleware
-flags:
-    --force: Create the class even if the Middleware already exists

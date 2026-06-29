@@ -1,5 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: queue:prune-failed [--hours [HOURS]]
-description: Prune stale entries from the failed jobs table
-flags:
-    --hours=: The number of hours to retain failed jobs data

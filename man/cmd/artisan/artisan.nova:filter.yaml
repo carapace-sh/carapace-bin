@@ -1,6 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: nova:filter [--boolean] [--date] [--] <name>
-description: Create a new filter class
-flags:
-    --boolean: Indicates if the generated filter should be a boolean filter
-    --date: Indicates if the generated filter should be a date filter

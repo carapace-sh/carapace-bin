@@ -1,3 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: horizon:continue-supervisor <name>
-description: Instruct the supervisor to continue processing jobs

@@ -1,7 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: make:policy [-f|--force] [-m|--model [MODEL]] [-g|--guard [GUARD]] [--] <name>
-description: Create a new policy class
-flags:
-    --force: Create the class even if the policy already exists
-    --guard=: The guard that the policy relies on
-    --model=: The model that the policy applies to

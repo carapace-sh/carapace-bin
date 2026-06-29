@@ -1,7 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: dusk:fails [--browse] [--without-tty] [--pest]
-description: Run the failing Dusk tests from the last run and stop on failure
-flags:
-    --browse: Open a browser instead of using headless mode
-    --pest: Run the tests using Pest
-    --without-tty: Disable output to TTY

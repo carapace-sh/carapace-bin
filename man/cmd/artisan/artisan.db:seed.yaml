@@ -1,7 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: db:seed [--class [CLASS]] [--database [DATABASE]] [--force] [--] [<class>]
-description: Seed the database with records
-flags:
-    --class=: The class name of the root seeder
-    --database=: The database connection to seed
-    --force: Force the operation to run when in production

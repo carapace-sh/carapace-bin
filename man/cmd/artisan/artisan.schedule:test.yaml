@@ -1,5 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: schedule:test [--name [NAME]]
-description: Run a scheduled command
-flags:
-    --name=: The name of the scheduled command to run

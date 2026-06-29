@@ -1,6 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: make:class [-i|--invokable] [-f|--force] [--] <name>
-description: Create a new class
-flags:
-    --force: Create the class even if the class already exists
-    --invokable: Generate a single method, invokable class

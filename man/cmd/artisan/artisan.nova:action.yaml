@@ -1,6 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: nova:action [--destructive] [--queued] [--] <name>
-description: Create a new action class
-flags:
-    --destructive: Indicate that the action deletes / destroys resources
-    --queued: Indicates the action should be queued
