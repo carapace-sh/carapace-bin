@@ -59,6 +59,36 @@ jobs:
           FURY_TOKEN: ${{ secrets.FURY_TOKEN }}
           GORELEASER_GITHUB_TOKEN: ${{ secrets.GORELEASER_GITHUB_TOKEN }}
 
+  build-windows:
+    runs-on: windows-latest
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Generate
+        run: go generate ./cmd/...
+
+      - name: Build
+        run: go build -v -tags release,force_all ./cmd/...
+
+      - name: Test
+        run: go test -v ./cmd/...
+
+  build-macos:
+    runs-on: macos-latest
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Generate
+        run: go generate ./cmd/...
+
+      - name: Build
+        run: go build -v -tags release,force_all ./cmd/...
+
+      - name: Test
+        run: go test -v ./cmd/...
+
   doc:
     runs-on: ubuntu-latest
     container: ghcr.io/carapace-sh/mdbook
