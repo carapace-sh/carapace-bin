@@ -1,3 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: sail:add [<services>]
-description: Add a service to an existing Sail installation

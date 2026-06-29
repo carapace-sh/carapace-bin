@@ -1,5 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: make:event [-f|--force] [--] <name>
-description: Create a new event class
-flags:
-    --force: Create the class even if the event already exists

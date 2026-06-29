@@ -1,5 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: schedule:work [--run-output-file [RUN-OUTPUT-FILE]]
-description: Start the schedule worker
-flags:
-    --run-output-file=: The file to direct <info>schedule:run</info> output to

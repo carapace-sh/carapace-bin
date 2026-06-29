@@ -1,6 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: key:generate [--show] [--force]
-description: Set the application key
-flags:
-    --force: Force the operation to run when in production
-    --show: Display the key instead of modifying files

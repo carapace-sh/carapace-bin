@@ -1,5 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: inertia:start-ssr [--runtime [RUNTIME]]
-description: Start the Inertia SSR server
-flags:
-    --runtime=: The runtime to use (`node` or `bun`)

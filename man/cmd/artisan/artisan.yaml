@@ -1,3 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: artisan
-description: Artisan is the command line interface included with Laravel

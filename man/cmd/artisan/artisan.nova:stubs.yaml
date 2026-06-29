@@ -1,5 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: nova:stubs [--force]
-description: Publish all stubs that are available for customization
-flags:
-    --force: Overwrite any existing files

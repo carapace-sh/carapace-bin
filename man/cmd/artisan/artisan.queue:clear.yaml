@@ -1,6 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: queue:clear [--queue [QUEUE]] [--force] [--] [<connection>]
-description: Delete all of the jobs from the specified queue
-flags:
-    --force: Force the operation to run when in production
-    --queue=: The name of the queue to clear

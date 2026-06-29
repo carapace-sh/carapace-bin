@@ -1,9 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: livewire:touch [--force] [--inline] [--test] [--pest] [--stub [STUB]] [--] <name>
-description: Create a new Livewire component
-flags:
-    --force: ""
-    --inline: ""
-    --pest: ""
-    --stub=: ""
-    --test: ""

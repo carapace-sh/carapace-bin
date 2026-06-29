@@ -1,6 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: passport:keys [--force] [--length [LENGTH]]
-description: Create the encryption keys for API authentication
-flags:
-    --force: Overwrite keys they already exist
-    --length=: The length of the private key

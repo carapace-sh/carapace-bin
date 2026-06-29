@@ -1,6 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: telescope:prune [--hours [HOURS]] [--keep-exceptions]
-description: Prune stale entries from the Telescope database
-flags:
-    --hours=: The number of hours to retain Telescope data
-    --keep-exceptions: Retain exception data

@@ -1,7 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: make:enum [-s|--string] [-i|--int] [-f|--force] [--] <name>
-description: Create a new enum
-flags:
-    --force: Create the enum even if the enum already exists
-    --int: Generate an integer backed enum.
-    --string: Generate a string backed enum.

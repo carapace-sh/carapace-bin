@@ -1,5 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: sanctum:prune-expired [--hours [HOURS]]
-description: Prune tokens expired for more than specified number of hours
-flags:
-    --hours=: The number of hours to retain expired Sanctum tokens

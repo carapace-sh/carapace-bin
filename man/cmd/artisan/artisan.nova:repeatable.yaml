@@ -1,5 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: nova:repeatable [-m|--model MODEL] [--] <name>
-description: Create a new repeatable class
-flags:
-    --model=: The model class being represented.

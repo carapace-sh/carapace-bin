@@ -1,7 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: cashier:webhook [--disabled] [--url [URL]] [--api-version [API-VERSION]]
-description: Create the Stripe webhook to interact with Cashier.
-flags:
-    --api-version=: The Stripe API version the webhook should use
-    --disabled: Immediately disable the webhook after creation
-    --url=: The URL endpoint for the webhook

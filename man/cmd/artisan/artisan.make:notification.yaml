@@ -1,9 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: make:notification [-f|--force] [-m|--markdown [MARKDOWN]] [--test] [--pest] [--phpunit] [--] <name>
-description: Create a new notification class
-flags:
-    --force: Create the class even if the notification already exists
-    --markdown=: Create a new Markdown template for the notification
-    --pest: Generate an accompanying Pest test for the Notification
-    --phpunit: Generate an accompanying PHPUnit test for the Notification
-    --test: Generate an accompanying Test test for the Notification

@@ -1,5 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: tinker [--execute [EXECUTE]] [--] [<include>...]
-description: Interact with your application
-flags:
-    --execute=: Execute the given code using Tinker

@@ -1,7 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: livewire:publish [--assets] [--config] [--pagination]
-description: Publish Livewire configuration
-flags:
-    --assets: Indicates if Livewire's front-end assets should be published
-    --config: Indicates if Livewire's config file should be published
-    --pagination: Indicates if Livewire's pagination views should be published

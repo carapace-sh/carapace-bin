@@ -1,6 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: storage:link [--relative] [--force]
-description: Create the symbolic links configured for the application
-flags:
-    --force: Recreate existing symbolic links
-    --relative: Create the symbolic link using relative paths

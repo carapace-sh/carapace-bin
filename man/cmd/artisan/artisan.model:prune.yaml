@@ -1,9 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: model:prune [--model [MODEL]] [--except [EXCEPT]] [--path [PATH]] [--chunk [CHUNK]] [--pretend]
-description: Prune models that are no longer needed
-flags:
-    --chunk=: The number of models to retrieve per chunk of models to be deleted
-    --except=: Class names of the models to be excluded from pruning
-    --model=: Class names of the models to be pruned
-    --path=: Absolute path(s) to directories where models are located
-    --pretend: Display the number of prunable records found instead of deleting them

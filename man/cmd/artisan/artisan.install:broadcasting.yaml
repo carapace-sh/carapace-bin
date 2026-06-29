@@ -1,8 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: install:broadcasting [--composer [COMPOSER]] [--force] [--without-reverb] [--without-node]
-description: Create a broadcasting channel routes file
-flags:
-    --composer=: Absolute path to the Composer binary which should be used to install packages
-    --force: Overwrite any existing broadcasting routes file
-    --without-node: Do not prompt to install Node dependencies
-    --without-reverb: Do not prompt to install Laravel Reverb

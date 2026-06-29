@@ -1,6 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: make:observer [-f|--force] [-m|--model [MODEL]] [--] <name>
-description: Create a new observer class
-flags:
-    --force: Create the class even if the observer already exists
-    --model=: The model that the observer applies to
