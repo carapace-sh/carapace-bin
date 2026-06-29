@@ -10,10 +10,9 @@ import (
 var commit, date string
 var version = "develop"
 
-//go:generate go build -o ../carapace-generate/carapace-generate ../carapace-generate
-//go:generate ../carapace-generate/carapace-generate generate-all ../../completers
-//go:generate ../carapace-generate/carapace-generate macros --code github.com/carapace-sh/carapace-bin/pkg/actions github.com/carapace-sh/carapace-bridge/pkg/actions github.com/carapace-sh/carapace-jjlex/pkg/actions --output ../../pkg/actions/actions_generated.go
-//go:generate ../carapace-generate/carapace-generate conditions ../../pkg/conditions --output ../../pkg/conditions/conditions_generated.go
+//go:generate go run ../carapace-generate generate-all ../../completers
+//go:generate go run ../carapace-generate macros --code github.com/carapace-sh/carapace-bin/pkg/actions github.com/carapace-sh/carapace-bridge/pkg/actions github.com/carapace-sh/carapace-jjlex/pkg/actions --output ../../pkg/actions/actions_generated.go
+//go:generate go run ../carapace-generate conditions ../../pkg/conditions --output ../../pkg/conditions/conditions_generated.go
 func main() {
 	if strings.Contains(version, "SNAPSHOT") {
 		version += fmt.Sprintf(" (%v) [%v]", date, commit)
