@@ -11,10 +11,10 @@ import (
 //	email
 //	editor
 func ActionConfigNames() carapace.Action {
-	return carapace.ActionValues(
-		"name",
-		"email",
-		"editor",
+	return carapace.ActionValuesDescribed(
+		"name", "Git user name (user.name)",
+		"email", "Git user email (user.email)",
+		"editor", "Git editor (core.editor)",
 	)
 }
 
@@ -35,8 +35,8 @@ func ActionConfigValues(name string) carapace.Action {
 //	email
 //	editor
 func ActionUIConfigNames() carapace.Action {
-	return carapace.ActionValues(
-		"tui",
+	return carapace.ActionValuesDescribed(
+		"tui", "Use the interactive TUI for diff by default (but.ui.tui)",
 	)
 }
 
