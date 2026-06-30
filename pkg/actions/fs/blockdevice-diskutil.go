@@ -13,13 +13,13 @@ type blockdevicesDiskutil struct {
 	AllDisksAndPartitions []struct {
 		DeviceIdentifier string `plist:"DeviceIdentifier"`
 		Content          string `plist:"Content"`
-		Size             int    `plist:"Size"`
+		Size             int64  `plist:"Size"`
 		APFSVolumes      []struct {
 			DeviceIdentifier string `plist:"DeviceIdentifier"`
 			DiskUUID         string `plist:"DiskUUID"`
 			VolumeName       string `plist:"VolumeName"`
 			VolumeUUID       string `plist:"VolumeUUID"`
-			Size             int    `plist:"Size"`
+			Size             int64  `plist:"Size"`
 		} `plist:"APFSVolumes"`
 		Partitions []struct {
 			DeviceIdentifier string `plist:"DeviceIdentifier"`
@@ -27,17 +27,17 @@ type blockdevicesDiskutil struct {
 			DiskUUID         string `plist:"DiskUUID"`
 			VolumeName       string `plist:"VolumeName"`
 			VolumeUUID       string `plist:"VolumeUUID"`
-			Size             int    `plist:"Size"`
+			Size             int64  `plist:"Size"`
 		} `plist:"Partitions"`
 	} `plist:"AllDisksAndPartitions"`
 }
 
-func formatBlockSize(bytes int) string {
+func formatBlockSize(bytes int64) string {
 	const (
-		kiB = 1024
-		miB = kiB * 1024
-		giB = miB * 1024
-		tiB = giB * 1024
+		kiB int64 = 1024
+		miB       = kiB * 1024
+		giB       = miB * 1024
+		tiB       = giB * 1024
 	)
 	switch {
 	case bytes >= tiB:
