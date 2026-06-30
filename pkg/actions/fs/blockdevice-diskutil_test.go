@@ -38,7 +38,7 @@ func TestBlockDevicesDiskutil(t *testing.T) {
 
 func TestFormatBlockSize(t *testing.T) {
 	tests := []struct {
-		bytes    int
+		bytes    int64
 		expected string
 	}{
 		{500, "500B"},
