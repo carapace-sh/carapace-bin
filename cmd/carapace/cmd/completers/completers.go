@@ -261,6 +261,16 @@ func AddBridges(m completer.CompleterMap, parse bool) error {
 					Execute:     complete(name, bridge.ActionInshellisense(name)),
 				})
 			}
+		case "powershell":
+			for _, name := range bridges.Powershell() {
+				m[name] = append(m[name], completer.Completer{
+					Name:        name,
+					Description: description(name), // TODO
+					Group:       "bridge",
+					Variant:     "powershells",
+					Execute:     complete(name, bridge.ActionPowershell(name)),
+				})
+			}
 		case "zsh":
 			for _, name := range bridges.Zsh() {
 				m[name] = append(m[name], completer.Completer{
