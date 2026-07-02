@@ -20,10 +20,6 @@ func init() {
 	moveCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.AddCommand(moveCmd)
 
-	carapace.Gen(moveCmd).FlagCompletion(carapace.ActionMap{
-		"after": but.ActionTargets(),
-	})
-
 	carapace.Gen(moveCmd).PositionalCompletion(
 		but.ActionCommits(),
 		but.ActionTargets(),
