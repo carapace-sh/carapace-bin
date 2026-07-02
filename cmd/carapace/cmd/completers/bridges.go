@@ -91,11 +91,6 @@ func knownbridges() map[string]*completer.Completer {
 			Url:         "https://argoproj.github.io/cd/",
 			Variant:     "cobra",
 		},
-		"az": {
-			Description: "Azure Command-Line Interface",
-			Url:         "https://docs.microsoft.com/en-us/cli/azure/",
-			Variant:     "argcomplete",
-		},
 		"boundary": {
 			Description: "Boundary enables identity-based access management for dynamic infrastructure",
 			Url:         "https://www.boundaryproject.io/downloads",
