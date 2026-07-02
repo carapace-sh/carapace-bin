@@ -722,7 +722,7 @@ func ActionConfigValues(config string) carapace.Action {
 			"push.followTags":                     _bool,
 			"push.gpgSign":                        carapace.ActionValues("if-asked", "never", "true", "false").StyleF(style.ForKeyword),
 			"push.negotiate":                      _bool,
-			"push.pushOption":                     carapace.ActionValues().Usage("push options").UniqueList("\n"),
+			"push.pushOption":                     ActionPushOptions().Usage("push options").UniqueList("\n"),
 			"push.recurseSubmodules":              carapace.ActionValues("check", "on-demand", "only", "no"),
 			"push.useBitmaps":                     _bool,
 			"push.useForceIfIncludes":             _bool,

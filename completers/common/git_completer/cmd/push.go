@@ -64,7 +64,8 @@ func init() {
 				return carapace.ActionValues()
 			}
 		}),
-		"signed": carapace.ActionValues("yes", "no", "if-asked"),
+		"push-option": git.ActionPushOptions(),
+		"signed":      carapace.ActionValues("yes", "no", "if-asked"),
 	})
 
 	carapace.Gen(pushCmd).PositionalCompletion(

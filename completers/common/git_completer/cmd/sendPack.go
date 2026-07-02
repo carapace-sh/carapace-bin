@@ -4,7 +4,6 @@ import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/net"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
-	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
@@ -44,7 +43,7 @@ func init() {
 
 	carapace.Gen(sendPackCmd).FlagCompletion(carapace.ActionMap{
 		"force-with-lease": carapace.ActionValues(), // TODO ref:value completion
-		"push-option":      bridge.ActionCarapaceBin("git", "push").Split(),
+		"push-option":      git.ActionPushOptions(),
 		"signed":           carapace.ActionValues("true", "false", "if-asked").StyleF(style.ForKeyword),
 	})
 
