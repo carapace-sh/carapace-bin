@@ -35,6 +35,7 @@ func ActionConfigs() carapace.Action {
 			}
 
 			return carapace.ActionValues(vals...).
+				UidF(Uid("config")).
 				MultiPartsP(".", "<.*>", func(placeholder string, matches map[string]string) carapace.Action {
 					// TODO support more placeholders
 					switch placeholder {
@@ -51,7 +52,7 @@ func ActionConfigs() carapace.Action {
 					}
 				})
 		})
-	}).UidF(Uid("config"))
+	})
 }
 
 // ActionDateFormats completes date formats
