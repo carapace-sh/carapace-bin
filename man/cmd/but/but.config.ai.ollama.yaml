@@ -1,26 +1,20 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: unset
-description: Unset (remove) a user configuration value
+name: ollama
+description: Configure Ollama as the active AI provider
 documentation:
-    command: |
-        Unset (remove) a user configuration value.
+    command: |-
+        Configure Ollama as the active AI provider for local AI models.
 
-        Examples
-
-          but config user unset name
-          but config user unset --global email
+        No API key required — Ollama runs locally. Specify the endpoint (default `localhost:11434`) and model name. Used for AI-powered features such as commit message generation (`but commit --ai`) and branch summaries (`but branch show --ai`).
     flag:
         format: |-
             Explicitly control how output should be formatted.
 
             If unset and from a terminal, it defaults to human output, when redirected it's for shells.
         help: Print help (see a summary with '-h')
-        status-after: |-
-            After a mutation command completes, also output workspace status.
-
-            In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).
 flags:
-    -g, --global: Unset the global configuration instead of local
+    --endpoint=: Ollama endpoint in host:port form (for example, localhost:11434)
+    --model=: Preferred model name
     -h, --help: Print help (see more with '--help')
 completion:
     flag:
@@ -30,7 +24,3 @@ completion:
             - "shell\tThe output should be suitable for shells, and assigning the major result to variables so that it can be reused in subsequent CLI invocations"
             - "json\tOutput detailed information as JSON for tool consumption"
             - "none\tDo not output anything, like redirecting to /dev/null"
-    positional:
-        - - "name\tGit user name (user.name)"
-          - "email\tGit user email (user.email)"
-          - "editor\tGit editor (core.editor)"

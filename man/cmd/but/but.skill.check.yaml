@@ -1,39 +1,45 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: check
 description: Check if installed GitButler skills are up to date with the CLI version
-flags:
-    -g, --global: Only check global installations (in home directory)
-    -h, --help: Print help (see more with '--help')
-    -l, --local: Only check local installations (in current repository)
-    -u, --update: Automatically update any outdated skills found
 documentation:
-    command: |-
+    command: |
         Check if installed GitButler skills are up to date with the CLI version
 
-        Scans for installed skill files and compares their version with the current
-        CLI version. By default, checks both local (repository) and global installations.
+        Scans for installed skill files and compares their version with the current CLI version. By default, checks both local (repository) and global installations.
 
-        ## Examples
+        Examples
 
         Check all installed skills:
 
-        ```text
-        but skill check
-        ```
+          but skill check
 
         Check and automatically update outdated skills:
 
-        ```text
-        but skill check --update
-        ```
+          but skill check --update
 
         Check only global installations:
 
-        ```text
-        but skill check --global
-        ```
+          but skill check --global
     flag:
+        format: |-
+            Explicitly control how output should be formatted.
+
+            If unset and from a terminal, it defaults to human output, when redirected it's for shells.
         help: Print help (see a summary with '-h')
         status-after: |-
             After a mutation command completes, also output workspace status.
 
             In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).
+flags:
+    -g, --global: Only check global installations (in home directory)
+    -h, --help: Print help (see more with '--help')
+    -l, --local: Only check local installations (in current repository)
+    -u, --update: Automatically update any outdated skills found
+completion:
+    flag:
+        format:
+            - "human\tThe output to write is supposed to be for human consumption, and can be more verbose"
+            - "agent\tThe output is for an AI coding agent, rendered as human-readable text"
+            - "shell\tThe output should be suitable for shells, and assigning the major result to variables so that it can be reused in subsequent CLI invocations"
+            - "json\tOutput detailed information as JSON for tool consumption"
+            - "none\tDo not output anything, like redirecting to /dev/null"

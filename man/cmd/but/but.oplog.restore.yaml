@@ -1,20 +1,30 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: restore
-description: Restore to a specific oplog snapshot.
-flags:
-    -f, --force: Skip confirmation prompt
-    -h, --help: Print help (see more with '--help')
+description: Restore to a specific oplog snapshot
 documentation:
     command: |-
         Restore to a specific oplog snapshot.
 
-        This command allows you to revert the repository to a previous state
-        captured in an oplog snapshot.
+        This command allows you to revert the repository to a previous state captured in an oplog snapshot.
 
-        You need to provide the SHA of the oplog entry you want to restore to,
-        which you can find by running `but oplog` or `but oplog list`.
+        You need to provide the SHA of the oplog entry you want to restore to, which you can find by running but oplog or but oplog list.
     flag:
+        format: |-
+            Explicitly control how output should be formatted.
+
+            If unset and from a terminal, it defaults to human output, when redirected it's for shells.
         help: Print help (see a summary with '-h')
         status-after: |-
             After a mutation command completes, also output workspace status.
 
             In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).
+flags:
+    -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        format:
+            - "human\tThe output to write is supposed to be for human consumption, and can be more verbose"
+            - "agent\tThe output is for an AI coding agent, rendered as human-readable text"
+            - "shell\tThe output should be suitable for shells, and assigning the major result to variables so that it can be reused in subsequent CLI invocations"
+            - "json\tOutput detailed information as JSON for tool consumption"
+            - "none\tDo not output anything, like redirecting to /dev/null"

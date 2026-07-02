@@ -1,24 +1,40 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: new
 description: Create a new review for a branch. If no branch is specified, you will be prompted to select one. If there is only one branch without a review, you will be asked to confirm
+documentation:
+    command: |-
+        Create a new review for a branch.
+
+        If no branch is specified, you will be prompted to select one. If there is only one branch without a review, you will be asked to confirm. The review title and description can be provided via `--message`, `--file`, or `--default` to skip prompts.
+
+        For stacked branches, the PR targets the parent branch rather than the default branch.
+    flag:
+        format: |-
+            Explicitly control how output should be formatted.
+
+            If unset and from a terminal, it defaults to human output, when redirected it's for shells.
+        help: Print help (see a summary with '-h')
+        status-after: |-
+            After a mutation command completes, also output workspace status.
+
+            In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).
 flags:
+    --no-hooks: Bypass pre-push hooks
+    --no-verify: Bypass pre-push hooks
     -F, --file=: Read review title and description from file. The first line is the title, the rest is the description
     -d, --draft: Whether to create reviews as a draft
     -f, --with-force: Force push even if it's not fast-forward (defaults to true)
     -h, --help: Print help (see more with '--help')
     -m, --message=: review title and description. The first line is the title, the rest is the description
-    -r, --run-hooks: Run pre-push hooks (defaults to true)
     -s, --skip-force-push-protection: Skip force push protection checks
     -t, --default: Use the default content for the review title and description, skipping any prompts. If the branch contains only a single commit, the commit message will be used
 completion:
     flag:
         file:
             - $files
-    positional:
-        - []
-documentation:
-    flag:
-        help: Print help (see a summary with '-h')
-        status-after: |-
-            After a mutation command completes, also output workspace status.
-
-            In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).
+        format:
+            - "human\tThe output to write is supposed to be for human consumption, and can be more verbose"
+            - "agent\tThe output is for an AI coding agent, rendered as human-readable text"
+            - "shell\tThe output should be suitable for shells, and assigning the major result to variables so that it can be reused in subsequent CLI invocations"
+            - "json\tOutput detailed information as JSON for tool consumption"
+            - "none\tDo not output anything, like redirecting to /dev/null"

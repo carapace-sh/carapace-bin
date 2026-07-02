@@ -1,8 +1,43 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: commit
-description: Commit changes to a stack.
+description: Commit changes to a stack
+documentation:
+    command: |-
+        Commit changes to a stack.
+
+        The but commit command allows you to create a new commit on a specified branch (stack) with the current uncommitted changes.
+
+        If there is only one branch applied, it will commit to that branch by default.
+
+        If there are multiple branches applied, you must specify which branch to commit to, or if in interactive mode, you will be prompted to select one.
+
+        By default, all uncommitted changes and all changes already staged to that branch will be included in the commit. If you only want to commit the changes that are already staged to that branch, you can use the --only flag.
+
+        It will not commit changes staged to other branches.
+
+        Use but commit empty --before <target> or but commit empty --after <target> to insert a blank commit. This is useful for creating a placeholder commit that you can amend changes into later using but rub or but absorb.
+    flag:
+        diff: |-
+            Always show diff inside the editor.
+
+            By default the diff will be shown unless it's large. The diff will always be shown if --diff is passed, regardless of the size of the diff.
+        format: |-
+            Explicitly control how output should be formatted.
+
+            If unset and from a terminal, it defaults to human output, when redirected it's for shells.
+        help: Print help (see a summary with '-h')
+        status-after: |-
+            After a mutation command completes, also output workspace status.
+
+            In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).
 flags:
+    --after=: Insert the commit after this commit or branch
+    --before=: Insert the commit before this commit or branch
+    --diff: Always show diff inside the editor
     --message-file=: Read commit message from file
+    --no-diff: Never show the diff inside the editor
     --no-verify&: Bypass pre-commit hooks
+    -a, --all: No-op compatibility flag for git commit -a
     -c, --create: Whether to create a new branch for this commit. If the branch name given matches an existing branch, that branch will be used instead. If no branch name is given, a new branch with a generated name will be created
     -h, --help: Print help (see more with '--help')
     -i, --ai?: Generate commit message using AI with optional user summary. Use --ai by itself or --ai="your instructions" (equals sign required for value)
@@ -12,34 +47,11 @@ flags:
     -p, --changes=*: Uncommitted file or hunk CLI IDs to include in the commit. Can be specified multiple times or as comma-separated values. If not specified, all uncommitted changes (or changes staged to the target branch) are committed
 completion:
     flag:
+        format:
+            - "human\tThe output to write is supposed to be for human consumption, and can be more verbose"
+            - "agent\tThe output is for an AI coding agent, rendered as human-readable text"
+            - "shell\tThe output should be suitable for shells, and assigning the major result to variables so that it can be reused in subsequent CLI invocations"
+            - "json\tOutput detailed information as JSON for tool consumption"
+            - "none\tDo not output anything, like redirecting to /dev/null"
         message-file:
             - $files
-    positional:
-        - []
-documentation:
-    command: |-
-        Commit changes to a stack.
-
-        The `but commit` command allows you to create a new commit
-        on a specified branch (stack) with the current uncommitted changes.
-
-        If there is only one branch applied, it will commit to that branch by default.
-
-        If there are multiple branches applied, you must specify which branch to
-        commit to, or if in interactive mode, you will be prompted to select one.
-
-        By default, all uncommitted changes and all changes already staged to that
-        branch will be included in the commit. If you only want to commit the changes
-        that are already staged to that branch, you can use the `--only` flag.
-
-        It will not commit changes staged to other branches.
-
-        Use `but commit empty --before <target>` or `but commit empty --after <target>`
-        to insert a blank commit. This is useful for creating a placeholder
-        commit that you can amend changes into later using `but mark`, `but rub` or `but absorb`.
-    flag:
-        help: Print help (see a summary with '-h')
-        status-after: |-
-            After a mutation command completes, also output workspace status.
-
-            In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).

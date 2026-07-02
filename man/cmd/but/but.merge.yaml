@@ -1,32 +1,38 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: merge
-description: Merge a branch into your local target branch.
-flags:
-    -h, --help: Print help (see more with '--help')
+description: Merge a branch into your local target branch
 documentation:
-    command: |-
+    command: |
         Merge a branch into your local target branch.
 
-        If the target branch is local (`gb-local`), finds the local branch that the target
-        references (e.g., `gb-local/master` becomes `master`) and merges the specified
-        branch into that local branch. After merging, runs the equivalent of `but pull`
-        to update all branches.
+        If the target branch is local (gb-local), finds the local branch that the target references (e.g., gb-local/master becomes master) and merges the specified branch into that local branch. After merging, runs the equivalent of but pull to update all branches.
 
-        ## Examples
+        Examples
 
         Merge a branch by its CLI ID:
 
-        ```text
-        but merge bu
-        ```
+          but merge bu
 
         Merge a branch by name:
 
-        ```text
-        but merge my-feature-branch
-        ```
+          but merge my-feature-branch
     flag:
+        format: |-
+            Explicitly control how output should be formatted.
+
+            If unset and from a terminal, it defaults to human output, when redirected it's for shells.
         help: Print help (see a summary with '-h')
         status-after: |-
             After a mutation command completes, also output workspace status.
 
             In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).
+flags:
+    -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        format:
+            - "human\tThe output to write is supposed to be for human consumption, and can be more verbose"
+            - "agent\tThe output is for an AI coding agent, rendered as human-readable text"
+            - "shell\tThe output should be suitable for shells, and assigning the major result to variables so that it can be reused in subsequent CLI invocations"
+            - "json\tOutput detailed information as JSON for tool consumption"
+            - "none\tDo not output anything, like redirecting to /dev/null"

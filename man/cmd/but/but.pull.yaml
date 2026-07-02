@@ -1,23 +1,33 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: pull
-description: Updates all applied branches to be up to date with the target branch.
-flags:
-    -c, --check: Only check the status without updating (equivalent to the old but base check)
-    -h, --help: Print help (see more with '--help')
+description: Updates all applied branches to be up to date with the target branch
 documentation:
     command: |-
         Updates all applied branches to be up to date with the target branch.
 
-        This fetches the latest changes from the remote and rebases all applied branches
-        on top of the updated target branch.
+        This fetches the latest changes from the remote and rebases all applied branches on top of the updated target branch.
 
-        You should run this regularly to keep your branches up to date with the latest
-        changes from the main development line.
+        You should run this regularly to keep your branches up to date with the latest changes from the main development line.
 
-        You can run `but pull --check` first to see if your branches can be cleanly
-        merged into the target branch before running the update.
+        You can run but pull --check first to see if your branches can be cleanly merged into the target branch before running the update.
     flag:
+        format: |-
+            Explicitly control how output should be formatted.
+
+            If unset and from a terminal, it defaults to human output, when redirected it's for shells.
         help: Print help (see a summary with '-h')
         status-after: |-
             After a mutation command completes, also output workspace status.
 
             In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).
+flags:
+    -c, --check: Only check the status without updating (equivalent to the old but base check)
+    -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        format:
+            - "human\tThe output to write is supposed to be for human consumption, and can be more verbose"
+            - "agent\tThe output is for an AI coding agent, rendered as human-readable text"
+            - "shell\tThe output should be suitable for shells, and assigning the major result to variables so that it can be reused in subsequent CLI invocations"
+            - "json\tOutput detailed information as JSON for tool consumption"
+            - "none\tDo not output anything, like redirecting to /dev/null"

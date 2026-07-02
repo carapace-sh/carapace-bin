@@ -1,50 +1,52 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: config
-description: View and manage GitButler configuration.
-flags:
-    -h, --help: Print help (see more with '--help')
+description: View and manage GitButler configuration
 documentation:
-    command: |-
+    command: |
         View and manage GitButler configuration.
 
-        Without a subcommand, displays an overview of important settings including
-        user information, target branch, forge configuration, and AI setup.
+        Without a subcommand, displays an overview of important settings including user information, target branch, forge configuration, and AI setup.
 
-        ## Examples
+        Examples
 
         View configuration overview:
 
-        ```text
-        but config
-        ```
+          but config
 
         View/set user configuration:
 
-        ```text
-        but config user
-        but config user set name "John Doe"
-        but config user set email john@example.com
-        ```
+          but config user
+          but config user set name "John Doe"
+          but config user set email john@example.com
 
         View/set forge configuration:
 
-        ```text
-        but config forge
-        ```
+          but config forge
 
         View/set target branch:
 
-        ```text
-        but config target
-        ```
+          but config target
 
         View/set metrics:
 
-        ```text
-        but config metrics
-        ```
+          but config metrics
     flag:
+        format: |-
+            Explicitly control how output should be formatted.
+
+            If unset and from a terminal, it defaults to human output, when redirected it's for shells.
         help: Print help (see a summary with '-h')
         status-after: |-
             After a mutation command completes, also output workspace status.
 
             In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).
+flags:
+    -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        format:
+            - "human\tThe output to write is supposed to be for human consumption, and can be more verbose"
+            - "agent\tThe output is for an AI coding agent, rendered as human-readable text"
+            - "shell\tThe output should be suitable for shells, and assigning the major result to variables so that it can be reused in subsequent CLI invocations"
+            - "json\tOutput detailed information as JSON for tool consumption"
+            - "none\tDo not output anything, like redirecting to /dev/null"

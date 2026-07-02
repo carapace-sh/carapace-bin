@@ -1,43 +1,47 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: unapply
-description: Unapply a branch from the workspace.
-flags:
-    -f, --force: Force unapply without confirmation
-    -h, --help: Print help (see more with '--help')
+description: Unapply a branch from the workspace
 documentation:
-    command: |-
+    command: |
         Unapply a branch from the workspace.
 
-        If you want to unapply an applied branch from your workspace
-        (effectively stashing it) so you can work on other branches,
-        you can run `but unapply <branch-name>`.
+        If you want to unapply an applied branch from your workspace (effectively stashing it) so you can work on other branches, you can run but unapply <branch-name>.
 
-        This will remove the changes in that branch from your working
-        directory and you can re-apply it later when needed. You will then
-        see the branch as unapplied in `but branch list`.
+        This will remove the changes in that branch from your working directory and you can re-apply it later when needed. You will then see the branch as unapplied in but branch list.
 
         The identifier can be:
-        - A CLI ID pointing to a stack or branch (e.g., "bu" from `but status`)
+
+        - A CLI ID pointing to a stack or branch (e.g., "bu" from but status)
         - A branch name
 
-        If a branch name (or an identifier pointing to a branch) is provided,
-        the entire stack containing that branch will be unapplied.
+        If a branch name (or an identifier pointing to a branch) is provided, the entire stack containing that branch will be unapplied.
 
-        ## Examples
+        Examples
 
         Unapply by branch name:
 
-        ```text
-        but unapply my-feature-branch
-        ```
+          but unapply my-feature-branch
 
         Unapply by CLI ID:
 
-        ```text
-        but unapply bu
-        ```
+          but unapply bu
     flag:
+        format: |-
+            Explicitly control how output should be formatted.
+
+            If unset and from a terminal, it defaults to human output, when redirected it's for shells.
         help: Print help (see a summary with '-h')
         status-after: |-
             After a mutation command completes, also output workspace status.
 
             In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).
+flags:
+    -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        format:
+            - "human\tThe output to write is supposed to be for human consumption, and can be more verbose"
+            - "agent\tThe output is for an AI coding agent, rendered as human-readable text"
+            - "shell\tThe output should be suitable for shells, and assigning the major result to variables so that it can be reused in subsequent CLI invocations"
+            - "json\tOutput detailed information as JSON for tool consumption"
+            - "none\tDo not output anything, like redirecting to /dev/null"

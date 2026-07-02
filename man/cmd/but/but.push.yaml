@@ -1,28 +1,43 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: push
-description: Push changes in a branch to remote.
-flags:
-    -d, --dry-run: Show what would be pushed without actually pushing
-    -f, --with-force: Force push even if it's not fast-forward
-    -h, --help: Print help (see more with '--help')
-    -r, --run-hooks: Run pre-push hooks
-    -s, --skip-force-push-protection: Skip force push protection checks
+description: Push changes in a branch to remote
 documentation:
     command: |-
         Push changes in a branch to remote.
 
-        `but push` will update the remote with the latest commits from the
-        applied branch(es).
+        but push will update the remote with the latest commits from the applied branch(es).
 
         Without a branch ID:
+
         - Interactive mode: Lists all branches with unpushed commits and prompts for selection
         - Non-interactive mode: Automatically pushes all branches with unpushed commits
 
         With a branch ID:
-        - `but push bu` - push the branch with CLI ID "bu"
-        - `but push feature-branch` - push the branch named "feature-branch"
+
+        - but push bu - push the branch with CLI ID "bu"
+        - but push feature-branch - push the branch named "feature-branch"
     flag:
+        format: |-
+            Explicitly control how output should be formatted.
+
+            If unset and from a terminal, it defaults to human output, when redirected it's for shells.
         help: Print help (see a summary with '-h')
         status-after: |-
             After a mutation command completes, also output workspace status.
 
             In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).
+flags:
+    --no-hooks: Bypass pre-push hooks
+    --no-verify: Bypass pre-push hooks
+    -d, --dry-run: Show what would be pushed without actually pushing
+    -f, --with-force: Force push even if it's not fast-forward
+    -h, --help: Print help (see more with '--help')
+    -s, --skip-force-push-protection: Skip force push protection checks
+completion:
+    flag:
+        format:
+            - "human\tThe output to write is supposed to be for human consumption, and can be more verbose"
+            - "agent\tThe output is for an AI coding agent, rendered as human-readable text"
+            - "shell\tThe output should be suitable for shells, and assigning the major result to variables so that it can be reused in subsequent CLI invocations"
+            - "json\tOutput detailed information as JSON for tool consumption"
+            - "none\tDo not output anything, like redirecting to /dev/null"

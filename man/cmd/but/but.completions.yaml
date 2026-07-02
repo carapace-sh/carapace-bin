@@ -1,26 +1,15 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: unset
-description: Unset (remove) a user configuration value
+name: completions
+description: Generate but shell completions
 documentation:
-    command: |
-        Unset (remove) a user configuration value.
-
-        Examples
-
-          but config user unset name
-          but config user unset --global email
+    command: "Generate but shell completions.\n\nExamples\n\n  # bash, put in .bashrc or .bash_profile depending on system setup\n  eval \"$(but completions bash)\"\n  \n  # zsh, put in .zshrc\n  eval \"$(but completions zsh)\"\n  \n  # fish, put in config.fish\n  but completions fish | source\n"
     flag:
         format: |-
             Explicitly control how output should be formatted.
 
             If unset and from a terminal, it defaults to human output, when redirected it's for shells.
         help: Print help (see a summary with '-h')
-        status-after: |-
-            After a mutation command completes, also output workspace status.
-
-            In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).
 flags:
-    -g, --global: Unset the global configuration instead of local
     -h, --help: Print help (see more with '--help')
 completion:
     flag:
@@ -31,6 +20,8 @@ completion:
             - "json\tOutput detailed information as JSON for tool consumption"
             - "none\tDo not output anything, like redirecting to /dev/null"
     positional:
-        - - "name\tGit user name (user.name)"
-          - "email\tGit user email (user.email)"
-          - "editor\tGit editor (core.editor)"
+        - - bash
+          - elvish
+          - fish
+          - powershell
+          - zsh

@@ -1,5 +1,31 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: status
-description: Overview of the project workspace state.
+description: Overview of the project workspace state
+documentation:
+    command: |
+        Overview of the project workspace state.
+
+        This shows unstaged files, files staged to stacks, all applied branches (stacked or parallel), commits on each of those branches, upstream commits that are unintegrated, commit status (pushed or local), and base branch information.
+
+        Examples
+
+        Normal usage:
+
+          but status
+
+        Shorthand with listing files modified
+
+          but status -f
+    flag:
+        format: |-
+            Explicitly control how output should be formatted.
+
+            If unset and from a terminal, it defaults to human output, when redirected it's for shells.
+        help: Print help (see a summary with '-h')
+        status-after: |-
+            After a mutation command completes, also output workspace status.
+
+            In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).
 flags:
     --files&: Determines whether the committed files should be shown as well
     --no-hint: Disable hints about available commands at the end of output
@@ -8,31 +34,11 @@ flags:
     -r, --refresh-prs: Forces a sync of pull requests from the forge before showing status
     -u, --upstream: Show detailed list of upstream commits that haven't been integrated yet
     -v, --verbose: Show verbose output with commit author and timestamp
-documentation:
-    command: |-
-        Overview of the project workspace state.
-
-        This shows unstaged files, files staged to stacks, all applied
-        branches (stacked or parallel), commits on each of those branches,
-        upstream commits that are unintegrated, commit status (pushed or local),
-        and base branch information.
-
-        ## Examples
-
-        Normal usage:
-
-        ```text
-        but status
-        ```
-
-        Shorthand with listing files modified
-
-        ```text
-        but status -f
-        ```
+completion:
     flag:
-        help: Print help (see a summary with '-h')
-        status-after: |-
-            After a mutation command completes, also output workspace status.
-
-            In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).
+        format:
+            - "human\tThe output to write is supposed to be for human consumption, and can be more verbose"
+            - "agent\tThe output is for an AI coding agent, rendered as human-readable text"
+            - "shell\tThe output should be suitable for shells, and assigning the major result to variables so that it can be reused in subsequent CLI invocations"
+            - "json\tOutput detailed information as JSON for tool consumption"
+            - "none\tDo not output anything, like redirecting to /dev/null"

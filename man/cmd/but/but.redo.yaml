@@ -1,26 +1,18 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: unset
-description: Unset (remove) a user configuration value
+name: redo
+description: Redo the last undo
 documentation:
-    command: |
-        Unset (remove) a user configuration value.
+    command: |-
+        Redo the last undo.
 
-        Examples
-
-          but config user unset name
-          but config user unset --global email
+        Reverses the effect of the last `but undo` operation. Each redo creates a new oplog entry so you can always undo it again.
     flag:
         format: |-
             Explicitly control how output should be formatted.
 
             If unset and from a terminal, it defaults to human output, when redirected it's for shells.
         help: Print help (see a summary with '-h')
-        status-after: |-
-            After a mutation command completes, also output workspace status.
-
-            In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).
 flags:
-    -g, --global: Unset the global configuration instead of local
     -h, --help: Print help (see more with '--help')
 completion:
     flag:
@@ -30,7 +22,3 @@ completion:
             - "shell\tThe output should be suitable for shells, and assigning the major result to variables so that it can be reused in subsequent CLI invocations"
             - "json\tOutput detailed information as JSON for tool consumption"
             - "none\tDo not output anything, like redirecting to /dev/null"
-    positional:
-        - - "name\tGit user name (user.name)"
-          - "email\tGit user email (user.email)"
-          - "editor\tGit editor (core.editor)"

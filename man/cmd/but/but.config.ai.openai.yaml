@@ -1,26 +1,23 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: unset
-description: Unset (remove) a user configuration value
+name: openai
+description: Configure OpenAI as the active AI provider
 documentation:
-    command: |
-        Unset (remove) a user configuration value.
+    command: |-
+        Configure OpenAI as the active AI provider.
 
-        Examples
-
-          but config user unset name
-          but config user unset --global email
+        Supports custom OpenAI-compatible endpoints via `--endpoint`. Used for AI-powered features such as commit message generation (`but commit --ai`) and branch summaries (`but branch show --ai`).
     flag:
         format: |-
             Explicitly control how output should be formatted.
 
             If unset and from a terminal, it defaults to human output, when redirected it's for shells.
         help: Print help (see a summary with '-h')
-        status-after: |-
-            After a mutation command completes, also output workspace status.
-
-            In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).
 flags:
-    -g, --global: Unset the global configuration instead of local
+    --api-key-env=: Name of an environment variable holding the OpenAI API key
+    --api-key=: OpenAI API key. Prefer --api-key-env to avoid shell history exposure
+    --endpoint=: Optional custom OpenAI-compatible endpoint URL
+    --key-option=: Which credential source to use
+    --model=: Preferred model name (for example, gpt-5.4-nano)
     -h, --help: Print help (see more with '--help')
 completion:
     flag:
@@ -30,7 +27,6 @@ completion:
             - "shell\tThe output should be suitable for shells, and assigning the major result to variables so that it can be reused in subsequent CLI invocations"
             - "json\tOutput detailed information as JSON for tool consumption"
             - "none\tDo not output anything, like redirecting to /dev/null"
-    positional:
-        - - "name\tGit user name (user.name)"
-          - "email\tGit user email (user.email)"
-          - "editor\tGit editor (core.editor)"
+        key-option:
+            - bring-your-own
+            - butler-api

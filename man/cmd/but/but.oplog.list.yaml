@@ -1,23 +1,34 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: list
-description: List operation history.
-flags:
-    --since=: Start from this oplog SHA instead of the head
-    -h, --help: Print help (see more with '--help')
-    -s, --snapshot: Show only on-demand snapshot entries
+description: List operation history
 documentation:
     command: |-
         List operation history.
 
-        Displays a list of past operations performed in the repository,
-        including their timestamps and descriptions.
+        Displays a list of past operations performed in the repository, including their timestamps and descriptions.
 
-        This allows you to restore to any previous point in the history of the
-        project. All state is preserved in operations, including uncommitted changes.
+        This allows you to restore to any previous point in the history of the project. All state is preserved in operations, including uncommitted changes.
 
-        You can use `but oplog restore <oplog-sha>` to restore to a specific state.
+        You can use but oplog restore <oplog-sha> to restore to a specific state.
     flag:
+        format: |-
+            Explicitly control how output should be formatted.
+
+            If unset and from a terminal, it defaults to human output, when redirected it's for shells.
         help: Print help (see a summary with '-h')
         status-after: |-
             After a mutation command completes, also output workspace status.
 
             In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).
+flags:
+    --since=: Start from this oplog SHA instead of the head
+    -h, --help: Print help (see more with '--help')
+    -s, --snapshot: Show only on-demand snapshot entries
+completion:
+    flag:
+        format:
+            - "human\tThe output to write is supposed to be for human consumption, and can be more verbose"
+            - "agent\tThe output is for an AI coding agent, rendered as human-readable text"
+            - "shell\tThe output should be suitable for shells, and assigning the major result to variables so that it can be reused in subsequent CLI invocations"
+            - "json\tOutput detailed information as JSON for tool consumption"
+            - "none\tDo not output anything, like redirecting to /dev/null"

@@ -1,30 +1,45 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: teardown
-description: Exit GitButler mode and return to normal Git workflow.
-flags:
-    -h, --help: Print help (see more with '--help')
+description: Exit GitButler mode and return to normal Git workflow
 documentation:
-    command: |-
+    command: |
         Exit GitButler mode and return to normal Git workflow.
 
         This command:
+
         - Creates an oplog snapshot of the current state
         - Finds the first active branch and checks it out
+          - Alternatively, use --checkout-to <branch> to override this default
         - Cherry-picks any dangling commits from gitbutler/workspace
         - Provides instructions on how to return to GitButler mode
 
-        This is useful when you want to temporarily or permanently leave GitButler
-        management and work with standard Git commands.
+        This is useful when you want to temporarily or permanently leave GitButler management and work with standard Git commands.
 
-        ## Examples
+        Examples
 
         Exit GitButler mode:
 
-        ```text
-        but teardown
-        ```
+          but teardown
+
+          but teardown --checkout-to my-feature-branch
     flag:
+        format: |-
+            Explicitly control how output should be formatted.
+
+            If unset and from a terminal, it defaults to human output, when redirected it's for shells.
         help: Print help (see a summary with '-h')
         status-after: |-
             After a mutation command completes, also output workspace status.
 
             In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).
+flags:
+    -c, --checkout-to=: Explicit override for which local branch to checkout to
+    -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        format:
+            - "human\tThe output to write is supposed to be for human consumption, and can be more verbose"
+            - "agent\tThe output is for an AI coding agent, rendered as human-readable text"
+            - "shell\tThe output should be suitable for shells, and assigning the major result to variables so that it can be reused in subsequent CLI invocations"
+            - "json\tOutput detailed information as JSON for tool consumption"
+            - "none\tDo not output anything, like redirecting to /dev/null"
