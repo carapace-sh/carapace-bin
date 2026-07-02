@@ -8,7 +8,7 @@ import (
 
 var oplog_restoreCmd = &cobra.Command{
 	Use:   "restore",
-	Short: "Restore to a specific oplog snapshot.",
+	Short: "Restore to a specific oplog snapshot",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

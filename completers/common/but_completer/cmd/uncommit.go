@@ -8,7 +8,7 @@ import (
 
 var uncommitCmd = &cobra.Command{
 	Use:     "uncommit",
-	Short:   "Uncommit changes from a commit or file-in-commit to the unstaged area.",
+	Short:   "Uncommit changes from a commit or file-in-commit to the unstaged area",
 	Run:     func(cmd *cobra.Command, args []string) {},
 	GroupID: "editing commits",
 }
@@ -16,7 +16,8 @@ var uncommitCmd = &cobra.Command{
 func init() {
 	carapace.Gen(uncommitCmd).Standalone()
 
-	uncommitCmd.Flags().BoolP("discard", "d", false, "Discard the selected committed changes instead of moving them to unassigned")
+	uncommitCmd.Flags().Bool("diff", false, "Show the resulting uncommitted diff after uncommitting")
+	uncommitCmd.Flags().BoolP("discard", "d", false, "Discard the selected committed changes instead of moving them to uncommitted")
 	uncommitCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.AddCommand(uncommitCmd)
 

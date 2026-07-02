@@ -8,7 +8,7 @@ import (
 
 var commit_emptyCmd = &cobra.Command{
 	Use:   "empty",
-	Short: "Insert a blank commit before or after the specified commit.",
+	Short: "Insert a blank commit before or after the specified commit",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
@@ -18,6 +18,7 @@ func init() {
 	commit_emptyCmd.Flags().String("after", "", "Insert the blank commit after this commit or branch")
 	commit_emptyCmd.Flags().String("before", "", "Insert the blank commit before this commit or branch")
 	commit_emptyCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	commit_emptyCmd.Flags().StringP("message", "m", "", "Commit message for the inserted blank commit")
 	commitCmd.AddCommand(commit_emptyCmd)
 
 	carapace.Gen(commit_emptyCmd).FlagCompletion(carapace.ActionMap{

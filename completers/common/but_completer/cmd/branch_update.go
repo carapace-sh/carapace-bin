@@ -8,7 +8,7 @@ import (
 
 var branch_updateCmd = &cobra.Command{
 	Use:   "update",
-	Short: "Update your local branch with the content of its remote counterpart.",
+	Short: "Update your local branch with the content of its remote counterpart",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
