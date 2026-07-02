@@ -100,7 +100,7 @@ carapace-man man-to-md mycli
 
 ### `documentation.command`
 
-- **≤300 words** (complex commands with many flags or subtle behaviors may need more; the pager handles long content)
+- **≤300 words** as a default guideline — but complex CLIs (e.g. az, aws, gcloud) with many flags, accepted values, defaults, and parameter groups should have full docs faithful to the upstream source. The pager handles long content. Use judgment: don't truncate useful information for complex commands
 - First sentence: what the command does (imperative mood: "Create and start a new container")
 - Remaining: key behavior, common usage patterns, important caveats
 - Source from official upstream docs first, then man pages, then `--help`. Stay close to official wording for correctness; rephrase for consistency only
@@ -108,15 +108,16 @@ carapace-man man-to-md mycli
 
 ### `documentation.flag`
 
-- **≤200 words** (concise when possible, but complex flags need full explanation)
-- Only add when the spec's short description is insufficient
+- **≤200 words** as a default guideline — but complex CLIs (e.g. az, aws, gcloud) should include full flag documentation including accepted values, defaults, parameter groups, and value sources when available. Use judgment: don't truncate useful information for complex flags
+- Include flag docs when upstream documentation is available — don't skip just because the short description seems clear enough, especially for complex CLIs
 - Typical cases needing flag docs:
   - Complex value types (enum values, patterns, formats)
   - Non-obvious side effects or interactions with other flags
   - Flags where short description is missing or terse
   - Flags with subtle default behavior that differs from user expectation
 - Source from official upstream docs first, then man pages, then `--help`. Stay close to official wording for correctness; rephrase for consistency only
-- Most flags should have **no** flag doc entry
+- For simple CLIs, skip flag docs when the short description is already clear and sufficient
+- For complex CLIs (e.g. az, aws, gcloud), include flag docs whenever they are available from the upstream source, even if the short description seems sufficient — the extra context (accepted values, defaults, interactions) is valuable at the terminal
 - Use the flag name without leading dashes as the key (e.g. `restart` not `--restart`)
 
 ### Examples
@@ -131,7 +132,7 @@ documentation:
     container without starting it.
 ```
 
-Good `documentation.flag` (only because short description is terse):
+Good `documentation.flag` (short description is terse, doc adds context):
 ```yaml
 flags:
   --sig-proxy: Proxy received signals to the process
@@ -143,13 +144,13 @@ documentation:
       handle signals only on the client side.
 ```
 
-Most flags need **no** `documentation.flag` entry:
+For simple CLIs, flags with clear short descriptions can be left without docs:
 ```yaml
 flags:
   --detach: Run container in background and print container ID
   --interactive: Keep STDIN open even if not attached
   --tty: Allocate a pseudo-TTY
-# Short descriptions are clear — no flag docs needed
+# Short descriptions are clear — no flag docs needed for this simple CLI
 ```
 
 ## Workflow
@@ -163,8 +164,8 @@ For each completer:
    - Run `man-to-md <command>` for system man pages
    - If neither available, run `<command> --help`
    - Stay close to official wording; rephrase only for consistency and length
-4. **Write**: Fill in `documentation.command` entries — concise, accurate, grounded in real docs
-5. **Flag docs**: Only add `documentation.flag` entries where the short description is insufficient
+4. **Write**: Fill in `documentation.command` entries — accurate, grounded in real docs, full detail for complex CLIs
+5. **Flag docs**: Add `documentation.flag` entries when upstream documentation is available; for complex CLIs include all available docs, for simple CLIs skip flags where the short description is already clear
 6. **Validate**: Re-read edited files, check word counts, verify no `[AI]` prefixes remain
 7. **Preserve**: Never modify git, jj, or but docs — these are high-quality and should not be changed
 
@@ -194,7 +195,7 @@ documentation:
     flag-b: Extended description for flag-b only when needed.
 ```
 
-The `documentation` section is optional. Only include it when there's something meaningful to add beyond the short descriptions already in `flags`.
+The `documentation` section is optional. Include it when there's meaningful content beyond the short descriptions — for complex CLIs this means most commands and flags will have documentation.
 
 ## Cross-References
 
@@ -205,7 +206,7 @@ Use UID-style links in documentation text:
 
 ## Validation Checklist
 
-- [ ] `documentation.command` entries ≤ 300 words
-- [ ] `documentation.flag` entries ≤ 200 words and only where needed
+- [ ] `documentation.command` entries are full and faithful to upstream source for complex CLIs, reasonably concise for simple CLIs
+- [ ] `documentation.flag` entries are included when upstream docs are available, especially for complex CLIs
 - [ ] YAML parses without errors
 - [ ] No changes to git/, jj/, but/ docs
