@@ -36,6 +36,8 @@ func init() {
 	rootCmd.AddCommand(commitCmd)
 
 	carapace.Gen(commitCmd).FlagCompletion(carapace.ActionMap{
+		"after":  but.ActionTargets(),
+		"before": but.ActionTargets(),
 		"changes": carapace.Batch(
 			git.ActionChanges(git.ChangeOpts{}.Default()),
 			but.ActionCliIds(but.CliIdsOpts{Changes: true}),
