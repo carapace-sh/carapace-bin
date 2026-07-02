@@ -23,6 +23,7 @@ func init() {
 	showCmd.Flags().BoolP("ignore-space-change", "b", false, "Ignore changes in amount of whitespace when comparing lines")
 	showCmd.Flags().Bool("name-only", false, "For each path, show only its path")
 	showCmd.Flags().Bool("no-patch", false, "Do not show the patch")
+	showCmd.Flags().Bool("reversed", false, "Show revisions in the opposite order (older revisions first)")
 	showCmd.Flags().Bool("stat", false, "Show a histogram of the changes")
 	showCmd.Flags().BoolP("summary", "s", false, "For each path, show only whether it was modified, added, or deleted")
 	showCmd.Flags().StringP("template", "T", "", "Render each revision using the given template")

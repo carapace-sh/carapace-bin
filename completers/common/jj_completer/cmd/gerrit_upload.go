@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/carapace-sh/carapace-jjlex/pkg/actions/tools/jj"
 	"github.com/spf13/cobra"
 )
@@ -28,6 +29,7 @@ func init() {
 	gerrit_uploadCmd.Flags().StringP("message", "m", "", "A patch set description for the new patch set")
 	gerrit_uploadCmd.Flags().Bool("no-publish-comments", false, "Disables publishing of any draft comments for the given change")
 	gerrit_uploadCmd.Flags().String("notify", "", "Who to email notifications to (defaults to all)")
+	gerrit_uploadCmd.Flags().StringSliceP("option", "o", nil, "Send a `git push -o` option (can be repeated)")
 	gerrit_uploadCmd.Flags().Bool("private", false, "Marks the change as private")
 	gerrit_uploadCmd.Flags().Bool("publish-comments", false, "Publishes any draft comments for the given change")
 	gerrit_uploadCmd.Flags().Bool("ready", false, "Unmarks the change as WIP (work in progress)")
@@ -45,8 +47,8 @@ func init() {
 	gerrit_uploadCmd.Flag("revisions").Hidden = true
 	gerritCmd.AddCommand(gerrit_uploadCmd)
 
-	// TODO complete gerrit flags
 	carapace.Gen(gerrit_uploadCmd).FlagCompletion(carapace.ActionMap{
+		"option":    git.ActionPushOptions(),
 		"revision":  jj.ActionRevsets(jj.RevOpts{}.Default()).UniqueList(","),
 		"revisions": jj.ActionRevsets(jj.RevOpts{}.Default()).UniqueList(","),
 	})

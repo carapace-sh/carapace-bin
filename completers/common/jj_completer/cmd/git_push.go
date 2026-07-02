@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/carapace-sh/carapace-jjlex/pkg/actions/tools/jj"
 	"github.com/spf13/cobra"
 )
@@ -38,6 +39,7 @@ func init() {
 		"bookmark":  jj.ActionLocalBookmarks(),
 		"branch":    jj.ActionLocalBookmarks(),
 		"change":    carapace.ActionValues(), // TODO
+		"option":    git.ActionPushOptions(),
 		"remote":    jj.ActionRemotes(),
 		"revision":  jj.ActionRevsets(jj.RevOpts{}.Default()),
 		"revisions": jj.ActionRevsets(jj.RevOpts{}.Default()),
