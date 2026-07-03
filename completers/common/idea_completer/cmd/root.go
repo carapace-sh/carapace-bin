@@ -19,6 +19,9 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().String("column", "", "Move the cursor to the specified column in the opened file")
+	rootCmd.Flags().String("line", "", "Move the cursor to the specified line in the opened file")
+	rootCmd.Flags().Bool("temp-project", false, "Create a temporary project for the file(s) being opened")
 	rootCmd.Flags().Bool("wait", false, "Wait for the files to be closed before returning to the command prompt")
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.Batch(
