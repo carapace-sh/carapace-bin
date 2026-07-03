@@ -25,6 +25,7 @@ func init() {
 	rootCmd.Flags().Bool("help", false, "display this help and exit")
 	rootCmd.Flags().BoolS("i", "i", false, "omit the user's full name and remote host in short format")
 	rootCmd.Flags().BoolS("l", "l", false, "produce long format output for the specified USERs")
+	rootCmd.Flags().Bool("lookup", false, "attempt to canonicalize hostnames via DNS")
 	rootCmd.Flags().BoolS("p", "p", false, "omit the user's plan file in long format")
 	rootCmd.Flags().BoolS("q", "q", false, "omit the user's full name, remote host and idle time")
 	rootCmd.Flags().BoolS("s", "s", false, "do short format output, this is the default")

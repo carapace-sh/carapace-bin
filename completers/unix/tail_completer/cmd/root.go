@@ -31,6 +31,7 @@ func init() {
 	rootCmd.Flags().String("pid", "", "with -f, terminate after process ID, PID dies")
 	rootCmd.Flags().BoolP("quiet", "q", false, "never output headers giving file names")
 	rootCmd.Flags().Bool("retry", false, "keep trying to open a file if it is inaccessible")
+	rootCmd.Flags().Bool("silent", false, "never output headers giving file names")
 	rootCmd.Flags().StringP("sleep-interval", "s", "", "with -f, sleep for approximately N seconds")
 	rootCmd.Flags().BoolP("verbose", "v", false, "always output headers giving file names")
 	rootCmd.Flags().Bool("version", false, "output version information and exit")

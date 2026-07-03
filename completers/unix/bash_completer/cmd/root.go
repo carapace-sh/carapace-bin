@@ -20,6 +20,7 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().BoolS("c", "c", false, "commands are read from the first non-option argument command_string")
+	rootCmd.Flags().Bool("debug", false, "")
 	rootCmd.Flags().Bool("debugger", false, "Arrange for the debugger profile to be executed before the shell starts.")
 	rootCmd.Flags().Bool("dump-po-strings", false, "Equivalent to -D, but the output is in the GNU gettext po file format")
 	rootCmd.Flags().BoolP("dump-strings", "D", false, "A list of all double-quoted strings preceded by $ is printed on the standard output.")
@@ -30,6 +31,7 @@ func init() {
 	rootCmd.Flags().Bool("noprofile", false, "skip profile initialization files")
 	rootCmd.Flags().Bool("norc", false, "skip ~/.bashrc")
 	rootCmd.Flags().Bool("posix", false, "match posix behavior")
+	rootCmd.Flags().Bool("pretty-print", false, "")
 	rootCmd.Flags().BoolS("r", "r", false, "restricted shell")
 	rootCmd.Flags().String("rcfile", "", "execute commands from file instead of the default")
 	rootCmd.Flags().Bool("restricted", false, "The shell becomes restricted.")

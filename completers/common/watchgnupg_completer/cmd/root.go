@@ -19,8 +19,10 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().Bool("clock", false, "print only a millisecond timestamp")
 	rootCmd.Flags().Bool("force", false, "delete an already existing socket file")
 	rootCmd.Flags().Bool("help", false, "display this help and exit")
+	rootCmd.Flags().String("homedir", "", "use DIR for gpgconf's --homedir option")
 	rootCmd.Flags().Bool("tcp", false, "listen on a TCP port and optionally on a local socket")
 	rootCmd.Flags().Bool("time-only", false, "print only the time; not a full timestamp")
 	rootCmd.Flags().Bool("verbose", false, "enable extra informational output")

@@ -30,6 +30,7 @@ func init() {
 	rootCmd.Flags().BoolP("pager", "p", false, "display with pager")
 	rootCmd.Flags().BoolP("preserve-new-lines", "n", false, "preserve newlines in the output")
 	rootCmd.Flags().StringP("style", "s", "", "style name or JSON path")
+	rootCmd.Flags().BoolP("tui", "t", false, "display with tui")
 	rootCmd.Flags().StringP("width", "w", "", "word-wrap at width (set to 0 to disable)")
 	rootCmd.Flag("mouse").Hidden = true
 

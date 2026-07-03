@@ -29,6 +29,7 @@ func init() {
 	rootCmd.Flags().StringP("length", "n", "", "interpret only length bytes of input")
 	rootCmd.Flags().BoolP("no-squeezing", "v", false, "output identical lines")
 	rootCmd.Flags().BoolP("one-byte-char", "c", false, "one-byte character display")
+	rootCmd.Flags().BoolP("one-byte-hex", "X", false, "one-byte hexadecimal display")
 	rootCmd.Flags().BoolP("one-byte-octal", "b", false, "one-byte octal display")
 	rootCmd.Flags().StringP("skip", "s", "", "skip offset bytes from the beginning")
 	rootCmd.Flags().BoolP("two-bytes-decimal", "d", false, "two-byte decimal display")

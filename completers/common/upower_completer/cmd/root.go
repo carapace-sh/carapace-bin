@@ -19,6 +19,7 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().BoolP("battery", "b", false, "Dump all parameters for battery objects")
 	rootCmd.Flags().BoolP("dump", "d", false, "Dump all parameters for all objects")
 	rootCmd.Flags().BoolP("enumerate", "e", false, "Enumerate objects paths for devices")
 	rootCmd.Flags().BoolP("help", "h", false, "Show help options")

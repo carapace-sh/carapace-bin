@@ -77,6 +77,7 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 	rootCmd.Flags().StringP("width", "w", "", "set output width to COLS.  0 means no limit")
 	rootCmd.Flags().BoolS("x", "x", false, "list entries by lines instead of by columns")
+	rootCmd.Flags().BoolP("zero", "0", false, "end each output line with NUL, not newline")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"color":           carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),

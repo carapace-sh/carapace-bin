@@ -20,6 +20,7 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().BoolP("full", "l", false, "Do not ellipsize output")
 	rootCmd.Flags().BoolP("help", "h", false, "Show this help")
 	rootCmd.Flags().StringP("host", "H", "", "Operate on remote host")
 	rootCmd.Flags().StringP("machine", "M", "", "Operate on local container")

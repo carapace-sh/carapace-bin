@@ -29,6 +29,7 @@ func init() {
 	rootCmd.Flags().BoolP("old-style", "o", false, "old style output")
 	rootCmd.Flags().BoolP("pids", "p", false, "show the PID(s) of processes in WHAT")
 	rootCmd.Flags().BoolP("short", "s", false, "short format")
+	rootCmd.Flags().BoolP("terminal", "t", false, "show terminals")
 	rootCmd.Flags().BoolP("version", "V", false, "output version information and exit")
 
 	carapace.Gen(rootCmd).PositionalCompletion(
