@@ -1,0 +1,34 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: agent
+description: Set up GitButler for AI coding agents
+documentation:
+    command: |
+        Set up GitButler for AI coding agents.
+
+        Runs a guided setup wizard for installing GitButler agent skills and writing workflow steering instructions into supported agent instruction files.
+
+        Examples
+
+        Start the interactive setup wizard (but agent setup is equivalent):
+
+          but agent
+
+        Print the default generated steering text:
+
+          but agent setup --print
+    flag:
+        format: |-
+            Explicitly control how output should be formatted.
+
+            If unset and from a terminal, it defaults to human output, when redirected it's for shells.
+        help: Print help (see a summary with '-h')
+flags:
+    -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        format:
+            - "human\tThe output to write is supposed to be for human consumption, and can be more verbose"
+            - "agent\tThe output is for an AI coding agent, rendered as human-readable text"
+            - "shell\tThe output should be suitable for shells, and assigning the major result to variables so that it can be reused in subsequent CLI invocations"
+            - "json\tOutput detailed information as JSON for tool consumption"
+            - "none\tDo not output anything, like redirecting to /dev/null"

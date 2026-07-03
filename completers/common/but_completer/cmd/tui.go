@@ -7,7 +7,7 @@ import (
 
 var tuiCmd = &cobra.Command{
 	Use:     "tui",
-	Short:   "Show an interactive TUI.",
+	Short:   "Show an interactive TUI",
 	Run:     func(cmd *cobra.Command, args []string) {},
 	GroupID: "other commands",
 }

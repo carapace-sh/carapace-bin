@@ -8,7 +8,7 @@ import (
 
 var pickCmd = &cobra.Command{
 	Use:     "pick",
-	Short:   "Cherry-pick a commit from an unapplied branch into an applied virtual branch.",
+	Short:   "Cherry-pick a commit from an unapplied branch into an applied virtual branch",
 	Run:     func(cmd *cobra.Command, args []string) {},
 	GroupID: "branching and committing",
 }

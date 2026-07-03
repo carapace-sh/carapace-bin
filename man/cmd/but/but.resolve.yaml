@@ -1,26 +1,37 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: resolve
-description: Resolve conflicts in a commit.
-flags:
-    -h, --help: Print help (see more with '--help')
+description: Resolve conflicts in a commit
 documentation:
     command: |-
         Resolve conflicts in a commit.
 
-        When a commit is in a conflicted state (marked with conflicts during rebase),
-        use this command to enter resolution mode, resolve the conflicts, and finalize.
+        When a commit is in a conflicted state (marked with conflicts during rebase), use this command to enter resolution mode, resolve the conflicts, and finalize.
 
-        ## Workflow
+        Workflow
 
-        1. Enter resolution mode: `but resolve <commit-id>`
+        1. Enter resolution mode: but resolve <commit-id>
         2. Resolve conflicts in your editor (remove conflict markers)
-        3. Check remaining conflicts: `but resolve status`
-        4. Finalize resolution: `but resolve finish`
-           Or cancel: `but resolve cancel`
+        3. Check remaining conflicts: but resolve status
+        4. Finalize resolution: but resolve finish Or cancel: but resolve cancel
 
-        When in resolution mode, `but status` will also show that you're resolving conflicts.
+        When in resolution mode, but status will also show that you're resolving conflicts.
     flag:
+        format: |-
+            Explicitly control how output should be formatted.
+
+            If unset and from a terminal, it defaults to human output, when redirected it's for shells.
         help: Print help (see a summary with '-h')
         status-after: |-
             After a mutation command completes, also output workspace status.
 
             In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).
+flags:
+    -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        format:
+            - "human\tThe output to write is supposed to be for human consumption, and can be more verbose"
+            - "agent\tThe output is for an AI coding agent, rendered as human-readable text"
+            - "shell\tThe output should be suitable for shells, and assigning the major result to variables so that it can be reused in subsequent CLI invocations"
+            - "json\tOutput detailed information as JSON for tool consumption"
+            - "none\tDo not output anything, like redirecting to /dev/null"

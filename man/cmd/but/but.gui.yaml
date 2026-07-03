@@ -1,23 +1,37 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: gui
 aliases:
     - .
-description: Open the GitButler GUI for the current project.
-flags:
-    -h, --help: Print help (see more with '--help')
+description: Open the GitButler GUI for the current project
 documentation:
     command: |-
         Open the GitButler GUI for the current project.
 
-        Running `but gui` will launch the GitButler graphical user interface
-        in the current directory's GitButler project.
+        Running but gui will launch the GitButler graphical user interface in the current directory's GitButler project.
 
-        This provides a visual way to manage branches, commits, and uncommitted
-        changes, complementing the command-line interface.
+        This provides a visual way to manage branches, commits, and uncommitted changes, complementing the command-line interface.
 
-        You can also just run `but .` as a shorthand to open the GUI.
+        You can also just run but . as a shorthand to open the GUI.
     flag:
+        format: |-
+            Explicitly control how output should be formatted.
+
+            If unset and from a terminal, it defaults to human output, when redirected it's for shells.
         help: Print help (see a summary with '-h')
         status-after: |-
             After a mutation command completes, also output workspace status.
 
             In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).
+flags:
+    -h, --help: Print help (see more with '--help')
+    -n, --new-window: Open the project in a new application window
+completion:
+    flag:
+        format:
+            - "human\tThe output to write is supposed to be for human consumption, and can be more verbose"
+            - "agent\tThe output is for an AI coding agent, rendered as human-readable text"
+            - "shell\tThe output should be suitable for shells, and assigning the major result to variables so that it can be reused in subsequent CLI invocations"
+            - "json\tOutput detailed information as JSON for tool consumption"
+            - "none\tDo not output anything, like redirecting to /dev/null"
+    positional:
+        - - $files

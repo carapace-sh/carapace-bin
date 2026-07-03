@@ -1,0 +1,33 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: update
+description: Update your local branch with the content of its remote counterpart
+documentation:
+    command: |-
+        Update your local branch with the content of its remote counterpart.
+
+        This allows you to resolve the divergence between your local branch and its tracked remote in different ways.
+    flag:
+        format: |-
+            Explicitly control how output should be formatted.
+
+            If unset and from a terminal, it defaults to human output, when redirected it's for shells.
+        help: Print help (see a summary with '-h')
+flags:
+    --dry-run: Preview the resulting branch state without persisting changes
+    -h, --help: Print help (see more with '--help')
+    -i, --interactive: Open the generated integration script in an editor
+    -s, --strategy=: Strategy to use for the integration. If no strategy is specified, we default to pull-rebase
+    -v, --verbose: Show additional dry-run details like the current divergence
+completion:
+    flag:
+        format:
+            - "human\tThe output to write is supposed to be for human consumption, and can be more verbose"
+            - "agent\tThe output is for an AI coding agent, rendered as human-readable text"
+            - "shell\tThe output should be suitable for shells, and assigning the major result to variables so that it can be reused in subsequent CLI invocations"
+            - "json\tOutput detailed information as JSON for tool consumption"
+            - "none\tDo not output anything, like redirecting to /dev/null"
+        strategy:
+            - "pull-rebase\tRebuilds the branch picking first the commits on the remote, and then the commits on the local branch"
+            - "smart-squash\tTries to fold matching remote work into related local commits. This is done through matching Change IDs, and falling back to pull-rebase ordering otherwise"
+            - "merge\tKeeps your local history and merges the remote tip into it"
+            - "pick-remote\tRebuilds the branch picking only the commits on the remote"

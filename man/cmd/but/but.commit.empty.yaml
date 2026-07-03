@@ -1,51 +1,53 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: empty
-description: Insert a blank commit before or after the specified commit.
-flags:
-    --after=: Insert the blank commit after this commit or branch
-    --before=: Insert the blank commit before this commit or branch
-    -h, --help: Print help (see more with '--help')
+description: Insert a blank commit before or after the specified commit
 documentation:
-    command: |-
+    command: |
         Insert a blank commit before or after the specified commit.
 
-        This is useful for creating a placeholder commit that you can
-        then amend changes into later using `but mark`, `but rub` or `but absorb`.
+        This is useful for creating a placeholder commit that you can then amend changes into later using but rub or but absorb.
 
-        You can modify the empty commit message at any time using `but reword`.
+        You can provide a message with -m or modify it later using but reword.
 
-        This allows for a more Jujutsu style workflow where you create commits
-        first and then fill them in as you work. Create an empty commit, mark it
-        for auto-commit, and then just work on your changes. Write the commit
-        message whenever you prefer.
+        This allows for a more Jujutsu style workflow where you create commits first and then fill them in as you work. Create an empty commit and then rub or absorb changes into it whenever you prefer.
 
-        ## Examples
+        Examples
 
         Insert at the top of the first branch (no arguments):
 
-        ```text
-        but commit empty
-        ```
+          but commit empty
 
         Insert before a commit:
 
-        ```text
-        but commit empty ab
-        ```
+          but commit empty ab
 
         Explicitly insert before a commit:
 
-        ```text
-        but commit empty --before ab
-        ```
+          but commit empty --before ab
 
         Insert after a commit (at the top of the stack if target is a branch):
 
-        ```text
-        but commit empty --after ab
-        ```
+          but commit empty --after ab
     flag:
+        format: |-
+            Explicitly control how output should be formatted.
+
+            If unset and from a terminal, it defaults to human output, when redirected it's for shells.
         help: Print help (see a summary with '-h')
         status-after: |-
             After a mutation command completes, also output workspace status.
 
             In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).
+flags:
+    --after=: Insert the blank commit after this commit or branch
+    --before=: Insert the blank commit before this commit or branch
+    -h, --help: Print help (see more with '--help')
+    -m, --message=: Commit message for the inserted blank commit
+completion:
+    flag:
+        format:
+            - "human\tThe output to write is supposed to be for human consumption, and can be more verbose"
+            - "agent\tThe output is for an AI coding agent, rendered as human-readable text"
+            - "shell\tThe output should be suitable for shells, and assigning the major result to variables so that it can be reused in subsequent CLI invocations"
+            - "json\tOutput detailed information as JSON for tool consumption"
+            - "none\tDo not output anything, like redirecting to /dev/null"

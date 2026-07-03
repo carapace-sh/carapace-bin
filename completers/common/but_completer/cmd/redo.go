@@ -7,7 +7,7 @@ import (
 
 var redoCmd = &cobra.Command{
 	Use:     "redo",
-	Short:   "Redo the last undo.",
+	Short:   "Redo the last undo",
 	Run:     func(cmd *cobra.Command, args []string) {},
 	GroupID: "operation history",
 }

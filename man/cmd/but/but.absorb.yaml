@@ -1,9 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: absorb
-description: Amends changes into the appropriate commits where they belong.
-flags:
-    --dry-run: Show the absorption plan without making any changes
-    -h, --help: Print help (see more with '--help')
-    -n, --new: Create new commits, instead of amending existing ones. This is useful when you want to preserve existing commits and add new ones for the absorbed changes
+description: Amends changes into the appropriate commits where they belong
 documentation:
     command: |-
         Amends changes into the appropriate commits where they belong.
@@ -21,14 +18,25 @@ documentation:
         - If a Branch (stack) id is provided, absorb will be performed for all changes staged to that stack
         - If no source is provided, absorb is performed for all uncommitted changes
 
-        If `--dry-run` is specified, no changes will be made; instead, the absorption plan
-        (what changes would be absorbed by which commits) will be shown.
-
-        If `--new` is specified, new commits will be created for absorbed changes
-        instead of amending existing commits.
+        If --dry-run is specified, no changes will be made; instead, the absorption plan (what changes would be absorbed by which commits) will be shown.
     flag:
+        format: |-
+            Explicitly control how output should be formatted.
+
+            If unset and from a terminal, it defaults to human output, when redirected it's for shells.
         help: Print help (see a summary with '-h')
         status-after: |-
             After a mutation command completes, also output workspace status.
 
             In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).
+flags:
+    --dry-run: Show the absorption plan without making any changes
+    -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        format:
+            - "human\tThe output to write is supposed to be for human consumption, and can be more verbose"
+            - "agent\tThe output is for an AI coding agent, rendered as human-readable text"
+            - "shell\tThe output should be suitable for shells, and assigning the major result to variables so that it can be reused in subsequent CLI invocations"
+            - "json\tOutput detailed information as JSON for tool consumption"
+            - "none\tDo not output anything, like redirecting to /dev/null"

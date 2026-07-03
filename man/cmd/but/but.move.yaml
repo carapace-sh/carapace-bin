@@ -1,39 +1,73 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: move
-description: Move a commit to a different location in the stack.
-flags:
-    -a, --after: Move the commit after (above) the target instead of before (below)
-    -h, --help: Print help (see more with '--help')
+description: Move a commit or branch to a different location
 documentation:
-    command: |-
-        Move a commit to a different location in the stack.
+    command: |
+        Move a commit or branch to a different location.
 
-        By default, commits are moved to be before (below) the target.
-        Use `--after` to move the commit after (above) the target instead.
+        Commit moves:
 
-        When moving to a branch, the commit is placed at the top of that branch's stack.
+        - By default, commits are moved to be before (below) the target.
+        - Use --after to move the commit after (above) the target instead.
+        - Use comma-separated commit IDs to move multiple commits together.
+        - When moving to a branch, the commit is placed at the top of that branch's stack.
 
-        ## Examples
+        Branch moves:
+
+        - Move one branch on top of another to stack them.
+        - Move a branch to zz to tear it off (unstack it).
+
+        Examples
 
         Move a commit before another commit:
 
-        ```text
-        but move abc123 def456
-        ```
+          but move abc123 def456
+
+        Move multiple commits before another commit:
+
+          but move abc123,789abc def456
 
         Move a commit after another commit:
 
-        ```text
-        but move abc123 def456 --after
-        ```
+          but move abc123 def456 --after
+
+        Move multiple commits after another commit:
+
+          but move abc123,789abc def456 --after
 
         Move a commit to a different branch (places at top):
 
-        ```text
-        but move abc123 my-feature-branch
-        ```
+          but move abc123 my-feature-branch
+
+        Move multiple commits to a different branch (places at top):
+
+          but move abc123,789abc my-feature-branch
+
+        Stack one branch on top of another:
+
+          but move feature/frontend feature/backend
+
+        Tear off (unstack) a branch:
+
+          but move feature/frontend zz
     flag:
+        format: |-
+            Explicitly control how output should be formatted.
+
+            If unset and from a terminal, it defaults to human output, when redirected it's for shells.
         help: Print help (see a summary with '-h')
         status-after: |-
             After a mutation command completes, also output workspace status.
 
             In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).
+flags:
+    -a, --after: Move the commit after (above) the target instead of before (below). Only valid for commit-to-commit moves
+    -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        format:
+            - "human\tThe output to write is supposed to be for human consumption, and can be more verbose"
+            - "agent\tThe output is for an AI coding agent, rendered as human-readable text"
+            - "shell\tThe output should be suitable for shells, and assigning the major result to variables so that it can be reused in subsequent CLI invocations"
+            - "json\tOutput detailed information as JSON for tool consumption"
+            - "none\tDo not output anything, like redirecting to /dev/null"

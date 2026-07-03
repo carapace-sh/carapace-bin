@@ -8,7 +8,7 @@ import (
 
 var squashCmd = &cobra.Command{
 	Use:     "squash",
-	Short:   "Squash commits together.",
+	Short:   "Squash commits together",
 	Run:     func(cmd *cobra.Command, args []string) {},
 	GroupID: "editing commits",
 }

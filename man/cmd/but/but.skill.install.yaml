@@ -1,55 +1,53 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: install
 description: Install the GitButler CLI skill files for Coding agents
-flags:
-    -d, --detect: Automatically detect where to install by finding existing installation
-    -g, --global: Install the skill globally instead of in the current repository
-    -h, --help: Print help (see more with '--help')
-    -p, --path=: Custom path where to install the skill (relative to repository root or absolute). Outside a repository, relative paths require --global
 documentation:
-    command: |-
+    command: |
         Install the GitButler CLI skill files for Coding agents
 
-        By default, the command prompts you to choose installation scope first
-        (current repository or global home directory), then prompts you to
-        select a skill folder format (Claude Code, OpenCode, Codex, GitHub
-        Copilot, Cursor, Windsurf) unless you specify a custom path with --path.
-        When run outside a git repository, local scope is unavailable and the
-        default install location is global (home directory). You can still
-        install to a custom location with `--path` using an absolute or `~` path.
+        By default, the command prompts you to choose installation scope first (current repository or global home directory), then prompts you to select a skill folder format (Agent Skills / .agents, Claude Code, OpenCode, Codex, GitHub Copilot, Cursor, Windsurf) unless you specify a custom path with --path. When run outside a git repository, local scope is unavailable and the default install location is global (home directory). You can still install to a custom location with --path using an absolute or ~ path.
 
-        Use --global to install the skill in a global location instead of the
-        current repository.
+        Use --global to install the skill in a global location instead of the current repository.
 
         In non-interactive mode, specify --path or --detect.
 
-        ## Examples
+        Examples
 
         Install interactively (prompts for scope and format):
 
-        ```text
-        but skill install
-        ```
+          but skill install
 
         Install globally (prompts for format):
 
-        ```text
-        but skill install --global
-        ```
+          but skill install --global
 
         Install to a custom path:
 
-        ```text
-        but skill install --path .claude/skills/gitbutler
-        ```
+          but skill install --path .agents/skills/gitbutler
 
         Auto-detect installation location (update existing installation):
 
-        ```text
-        but skill install --detect
-        ```
+          but skill install --detect
     flag:
+        format: |-
+            Explicitly control how output should be formatted.
+
+            If unset and from a terminal, it defaults to human output, when redirected it's for shells.
         help: Print help (see a summary with '-h')
         status-after: |-
             After a mutation command completes, also output workspace status.
 
             In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).
+flags:
+    -d, --detect: Automatically detect where to install by finding existing installation
+    -g, --global: Install the skill globally instead of in the current repository
+    -h, --help: Print help (see more with '--help')
+    -p, --path=: Custom path where to install the skill (relative to repository root or absolute). Outside a repository, relative paths require --global
+completion:
+    flag:
+        format:
+            - "human\tThe output to write is supposed to be for human consumption, and can be more verbose"
+            - "agent\tThe output is for an AI coding agent, rendered as human-readable text"
+            - "shell\tThe output should be suitable for shells, and assigning the major result to variables so that it can be reused in subsequent CLI invocations"
+            - "json\tOutput detailed information as JSON for tool consumption"
+            - "none\tDo not output anything, like redirecting to /dev/null"

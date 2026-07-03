@@ -1,24 +1,40 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: reword
-description: Edit the commit message of the specified commit.
-flags:
-    -f, --format: Format the existing commit message to 72-char line wrapping without opening an editor
-    -h, --help: Print help (see more with '--help')
-    -m, --message=: The new commit message or branch name. If not provided, opens an editor
+description: Edit the commit message of the specified commit
 documentation:
     command: |-
         Edit the commit message of the specified commit.
 
-        You can easily change the commit message of any of your commits by
-        running `but reword <commit-id>` and providing a new message in the
-        editor.
+        You can easily change the commit message of any of your commits by running but reword <commit-id> and providing a new message in the editor.
 
-        This will rewrite the commit with the new message and then rebase any
-        dependent commits on top of it.
+        This will recreate the commit with the new message and then rebase any dependent commits on top of it.
 
-        You can also use `but reword <branch-id>` to rename the branch.
+        You can also use but reword <branch-id> to rename the branch.
     flag:
+        diff: |-
+            Always show diff inside the editor.
+
+            By default the diff will be shown unless it's large. The diff will always be shown if --diff is passed, regardless of the size of the diff.
+        format: |-
+            Explicitly control how output should be formatted.
+
+            If unset and from a terminal, it defaults to human output, when redirected it's for shells.
         help: Print help (see a summary with '-h')
         status-after: |-
             After a mutation command completes, also output workspace status.
 
             In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).
+flags:
+    --diff: Always show diff inside the editor
+    --no-diff: Never show the diff inside the editor
+    -f, --fix-formatting: Format the existing commit message to 72-char line wrapping without opening an editor
+    -h, --help: Print help (see more with '--help')
+    -m, --message=: The new commit message or branch name. If not provided, opens an editor
+completion:
+    flag:
+        format:
+            - "human\tThe output to write is supposed to be for human consumption, and can be more verbose"
+            - "agent\tThe output is for an AI coding agent, rendered as human-readable text"
+            - "shell\tThe output should be suitable for shells, and assigning the major result to variables so that it can be reused in subsequent CLI invocations"
+            - "json\tOutput detailed information as JSON for tool consumption"
+            - "none\tDo not output anything, like redirecting to /dev/null"

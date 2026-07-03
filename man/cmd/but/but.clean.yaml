@@ -1,0 +1,47 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: clean
+description: Remove empty branches from the workspace
+documentation:
+    command: |
+        Remove empty branches from the workspace.
+
+        A branch is considered empty if it has no local commits, no assigned changes, and (by default) no upstream-only commits.
+
+        The entire operation is recorded as a single oplog entry, so it can be undone with but undo.
+
+        Examples
+
+        Remove all empty branches:
+
+          but clean
+
+        Preview which branches would be removed:
+
+          but clean --dry-run
+
+        Pull latest changes first, then clean:
+
+          but clean --pull
+
+        Also remove branches that only have upstream commits:
+
+          but clean --include-upstream
+    flag:
+        format: |-
+            Explicitly control how output should be formatted.
+
+            If unset and from a terminal, it defaults to human output, when redirected it's for shells.
+        help: Print help (see a summary with '-h')
+flags:
+    --dry-run: Preview which branches would be removed without actually deleting them
+    --include-upstream: Also remove branches that have upstream-only commits but no local commits or changes
+    --pull: Pull latest changes from the remote before cleaning
+    -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        format:
+            - "human\tThe output to write is supposed to be for human consumption, and can be more verbose"
+            - "agent\tThe output is for an AI coding agent, rendered as human-readable text"
+            - "shell\tThe output should be suitable for shells, and assigning the major result to variables so that it can be reused in subsequent CLI invocations"
+            - "json\tOutput detailed information as JSON for tool consumption"
+            - "none\tDo not output anything, like redirecting to /dev/null"

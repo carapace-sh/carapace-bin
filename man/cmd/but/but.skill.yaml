@@ -1,36 +1,40 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: skill
-description: Manage Claude AI skills for GitButler.
-flags:
-    -h, --help: Print help (see more with '--help')
+description: Manage AI agent skills for GitButler
 documentation:
-    command: |-
-        Manage Claude AI skills for GitButler.
+    command: |
+        Manage AI agent skills for GitButler.
 
-        Skills provide enhanced AI capabilities for working with GitButler through
-        Claude Code and other AI assistants.
+        Skills provide enhanced AI capabilities for working with GitButler through Claude Code, Codex, and other AI assistants.
 
-        Use `but skill install` to install the GitButler skill files. By default,
-        it prompts for scope (repository or global home directory) and then format.
-        When run outside a git repository, local scope is unavailable and the
-        default install location is global (home directory). You can still
-        install to a custom location with `--path` using an absolute or `~` path.
+        Use but skill install to install the GitButler skill files. By default, it prompts for scope (repository or global home directory) and then format. When run outside a git repository, local scope is unavailable and the default install location is global (home directory). You can still install to a custom location with --path using an absolute or ~ path.
 
-        ## Examples
+        Examples
 
         Install interactively (prompts for scope and format):
 
-        ```text
-        but skill install
-        ```
+          but skill install
 
         Install the skill globally:
 
-        ```text
-        but skill install --global
-        ```
+          but skill install --global
     flag:
+        format: |-
+            Explicitly control how output should be formatted.
+
+            If unset and from a terminal, it defaults to human output, when redirected it's for shells.
         help: Print help (see a summary with '-h')
         status-after: |-
             After a mutation command completes, also output workspace status.
 
             In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).
+flags:
+    -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        format:
+            - "human\tThe output to write is supposed to be for human consumption, and can be more verbose"
+            - "agent\tThe output is for an AI coding agent, rendered as human-readable text"
+            - "shell\tThe output should be suitable for shells, and assigning the major result to variables so that it can be reused in subsequent CLI invocations"
+            - "json\tOutput detailed information as JSON for tool consumption"
+            - "none\tDo not output anything, like redirecting to /dev/null"

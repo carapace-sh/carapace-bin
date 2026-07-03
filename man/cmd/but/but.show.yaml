@@ -1,46 +1,49 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: show
-description: Shows detailed information about a commit or branch.
-flags:
-    -h, --help: Print help (see more with '--help')
-    -v, --verbose: Show full commit messages and files changed for each commit
+description: Shows detailed information about a commit or branch
 documentation:
-    command: |-
+    command: |
         Shows detailed information about a commit or branch.
 
-        When given a commit ID, displays the full commit message, author information,
-        committer information (if different from author), and the list of files modified.
+        When given a commit ID, displays the full commit message, author information, committer information (if different from author), and the list of files modified.
 
-        When given a branch name, displays the branch name and a list of all commits
-        on that branch. Use --verbose to show full commit messages and files changed.
+        When given a branch name, displays the branch name and a list of all commits on that branch. Use --verbose to show full commit messages and files changed.
 
-        ## Examples
+        Examples
 
         Show commit details by short commit ID:
 
-        ```text
-        but show a1b2c3d
-        ```
+          but show a1b2c3d
 
         Show commit details by CLI ID:
 
-        ```text
-        but show c5
-        ```
+          but show c5
 
         Show branch commits by branch name:
 
-        ```text
-        but show my-feature-branch
-        ```
+          but show my-feature-branch
 
         Show branch with full commit details:
 
-        ```text
-        but show my-feature-branch --verbose
-        ```
+          but show my-feature-branch --verbose
     flag:
+        format: |-
+            Explicitly control how output should be formatted.
+
+            If unset and from a terminal, it defaults to human output, when redirected it's for shells.
         help: Print help (see a summary with '-h')
         status-after: |-
             After a mutation command completes, also output workspace status.
 
             In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).
+flags:
+    -h, --help: Print help (see more with '--help')
+    -v, --verbose: Show full commit messages and files changed for each commit
+completion:
+    flag:
+        format:
+            - "human\tThe output to write is supposed to be for human consumption, and can be more verbose"
+            - "agent\tThe output is for an AI coding agent, rendered as human-readable text"
+            - "shell\tThe output should be suitable for shells, and assigning the major result to variables so that it can be reused in subsequent CLI invocations"
+            - "json\tOutput detailed information as JSON for tool consumption"
+            - "none\tDo not output anything, like redirecting to /dev/null"

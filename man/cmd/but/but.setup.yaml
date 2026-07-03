@@ -1,37 +1,46 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: setup
-description: Sets up a GitButler project from a git repository in the current directory.
-flags:
-    --init: Initialize a new git repository with an empty commit if one doesn't exist.
-    -h, --help: Print help (see more with '--help')
+description: Sets up a GitButler project from a git repository in the current directory
 documentation:
-    command: |-
+    command: |
         Sets up a GitButler project from a git repository in the current directory.
 
         This command will:
+
         - Add the repository to the global GitButler project registry
         - Switch to the gitbutler/workspace branch (if not already on it)
         - Set up a default target branch (the remote's HEAD)
         - Add a gb-local remote if no push remote exists
 
-        If you have an existing Git repository and want to start using GitButler
-        with it, you can run this command to set up the necessary configuration
-        and data structures.
+        If you have an existing Git repository and want to start using GitButler with it, you can run this command to set up the necessary configuration and data structures.
 
-        ## Examples
+        Examples
 
         Initialize a new git repository and set up GitButler:
 
-        ```text
-        but setup --init
-        ```
+          but setup --init
     flag:
+        format: |-
+            Explicitly control how output should be formatted.
+
+            If unset and from a terminal, it defaults to human output, when redirected it's for shells.
         help: Print help (see a summary with '-h')
         init: |-
             Initialize a new git repository with an empty commit if one doesn't exist.
 
-            This is useful when running in non-interactive environments (like CI/CD)
-            where you want to ensure a git repository exists before setting up GitButler.
+            This is useful when running in non-interactive environments (like CI/CD) where you want to ensure a git repository exists before setting up GitButler.
         status-after: |-
             After a mutation command completes, also output workspace status.
 
             In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).
+flags:
+    --init: Initialize a new git repository with an empty commit if one doesn't exist
+    -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        format:
+            - "human\tThe output to write is supposed to be for human consumption, and can be more verbose"
+            - "agent\tThe output is for an AI coding agent, rendered as human-readable text"
+            - "shell\tThe output should be suitable for shells, and assigning the major result to variables so that it can be reused in subsequent CLI invocations"
+            - "json\tOutput detailed information as JSON for tool consumption"
+            - "none\tDo not output anything, like redirecting to /dev/null"

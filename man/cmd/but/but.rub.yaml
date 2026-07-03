@@ -1,61 +1,63 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: rub
-description: Combines two entities together to perform an operation like amend, squash, stage, or move.
-flags:
-    -h, --help: Print help (see more with '--help')
+description: Combines two entities together to perform an operation like amend, squash, stage, or move
 documentation:
-    command: |-
+    command: |
         Combines two entities together to perform an operation like amend, squash, stage, or move.
 
-        The `rub` command is a simple verb that helps you do a number of editing
-        operations by doing combinations of two things.
+        The rub command is a simple verb that helps you do a number of editing operations by doing combinations of two things.
 
-        For example, you can "rub" a file onto a branch to stage that file to
-        the branch. You can also "rub" a commit onto another commit to squash
-        them together. You can rub a commit onto a branch to move that commit.
-        You can rub a file from one commit to another.
+        For example, you can "rub" a file onto a branch to stage that file to the branch. You can also "rub" a commit onto another commit to squash them together. You can rub a commit onto a branch to move that commit. You can rub a file from one commit to another.
 
-        ## Operations Matrix
+        Operations Matrix
 
         Each cell shows what happens when you rub SOURCE → TARGET:
 
-        ```text
-        SOURCE ↓ / TARGET →  │ zz (unassigned) │ Commit     │ Branch      │ Stack
-        ─────────────────────┼─────────────────┼────────────┼─────────────┼────────────
-        File/Hunk            │ Unstage         │ Amend      │ Stage       │ Stage
-        Commit               │ Undo            │ Squash     │ Move        │ -
-        Branch (all changes) │ Unstage all     │ Amend all  │ Reassign    │ Reassign
-        Stack (all changes)  │ Unstage all     │ -          │ Reassign    │ Reassign
-        Unassigned (zz)      │ -               │ Amend all  │ Stage all   │ Stage all
-        File-in-Commit       │ Uncommit        │ Move       │ Uncommit to │ -
-        ```
+          SOURCE ↓ / TARGET →  │ zz (uncommitted) │ Commit     │ Branch      │ Stack
+          ─────────────────────┼─────────────────┼────────────┼─────────────┼────────────
+          File/Hunk            │ Unstage         │ Amend      │ Stage       │ Stage
+          Commit               │ Undo            │ Squash     │ Move        │ -
+          Branch (all changes) │ Unstage all     │ Amend all  │ Reassign    │ Reassign
+          Stack (all changes)  │ Unstage all     │ -          │ Reassign    │ Reassign
+          Uncommitted (zz)     │ -               │ Amend all  │ Stage all   │ Stage all
+          File-in-Commit       │ Uncommit        │ Move       │ Uncommit to │ -
 
         Legend:
-        - `zz` is a special target meaning "unassigned" (no branch)
-        - `-` means the operation is not supported
+
+        - zz is a special target meaning "uncommitted" (no branch)
+        - - means the operation is not supported
         - "all changes" / "all" refers to all uncommitted changes from that source
 
-        ## Examples
+        Examples
 
         Squashing two commits into one (combining the commit messages):
 
-        ```text
-        but rub 3868155 abe3f53f
-        ```
+          but rub 3868155 abe3f53f
 
         Amending a commit with the contents of a modified file:
 
-        ```text
-        but rub README.md abe3f53f
-        ```
+          but rub README.md abe3f53f
 
         Moving a commit from one branch to another:
 
-        ```text
-        but rub 3868155 feature-branch
-        ```
+          but rub 3868155 feature-branch
     flag:
+        format: |-
+            Explicitly control how output should be formatted.
+
+            If unset and from a terminal, it defaults to human output, when redirected it's for shells.
         help: Print help (see a summary with '-h')
         status-after: |-
             After a mutation command completes, also output workspace status.
 
             In human mode, prints status after the command output. In JSON mode, wraps both in {"result": ..., "status": ...} on success, or {"result": ..., "status_error": ...} if the status query fails (in which case "status" is absent).
+flags:
+    -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        format:
+            - "human\tThe output to write is supposed to be for human consumption, and can be more verbose"
+            - "agent\tThe output is for an AI coding agent, rendered as human-readable text"
+            - "shell\tThe output should be suitable for shells, and assigning the major result to variables so that it can be reused in subsequent CLI invocations"
+            - "json\tOutput detailed information as JSON for tool consumption"
+            - "none\tDo not output anything, like redirecting to /dev/null"

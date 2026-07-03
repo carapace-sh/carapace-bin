@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: completions
+description: Generate but shell completions
+documentation:
+    command: "Generate but shell completions.\n\nExamples\n\n  # bash, put in .bashrc or .bash_profile depending on system setup\n  eval \"$(but completions bash)\"\n  \n  # zsh, put in .zshrc\n  eval \"$(but completions zsh)\"\n  \n  # fish, put in config.fish\n  but completions fish | source\n"
+    flag:
+        format: |-
+            Explicitly control how output should be formatted.
+
+            If unset and from a terminal, it defaults to human output, when redirected it's for shells.
+        help: Print help (see a summary with '-h')
+flags:
+    -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        format:
+            - "human\tThe output to write is supposed to be for human consumption, and can be more verbose"
+            - "agent\tThe output is for an AI coding agent, rendered as human-readable text"
+            - "shell\tThe output should be suitable for shells, and assigning the major result to variables so that it can be reused in subsequent CLI invocations"
+            - "json\tOutput detailed information as JSON for tool consumption"
+            - "none\tDo not output anything, like redirecting to /dev/null"
+    positional:
+        - - bash
+          - elvish
+          - fish
+          - powershell
+          - zsh
