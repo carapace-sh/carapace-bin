@@ -20,15 +20,18 @@ func init() {
 
 	rootCmd.Flags().BoolP("bytes", "c", false, "print the byte counts")
 	rootCmd.Flags().BoolP("chars", "m", false, "print the character counts")
+	rootCmd.Flags().Bool("debug", false, "indicate what line count acceleration is used")
 	rootCmd.Flags().String("files0-from", "", "read input from the files specified by")
 	rootCmd.Flags().Bool("help", false, "display this help and exit")
 	rootCmd.Flags().BoolP("lines", "l", false, "print the newline counts")
 	rootCmd.Flags().BoolP("max-line-length", "L", false, "print the maximum display width")
+	rootCmd.Flags().String("total", "", "when to print a line with total counts; WHEN can be: auto, always, only, never")
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 	rootCmd.Flags().BoolP("words", "w", false, "print the word counts")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"files0-from": carapace.ActionFiles(),
+		"total":       carapace.ActionValues("auto", "always", "only", "never"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

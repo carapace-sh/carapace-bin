@@ -25,7 +25,7 @@ func init() {
 	rootCmd.Flags().Bool("debug", false, "indicate which implementation used")
 	rootCmd.Flags().Bool("help", false, "display this help and exit")
 	rootCmd.Flags().Bool("ignore-missing", false, "don't fail or report status for missing files")
-	rootCmd.Flags().StringP("length", "l", "", "digest length in bits; must not exceed the max for the blake2 algorithm and must be a multiple of 8")
+	rootCmd.Flags().StringP("length", "l", "", "digest length in bits; must not exceed the max size and must be a multiple of 8 for blake2b; must be 224, 256, 384, or 512 for sha2 or sha3")
 	rootCmd.Flags().Bool("quiet", false, "don't print OK for each successfully verified file")
 	rootCmd.Flags().Bool("raw", false, "emit a raw binary digest, not hexadecimal")
 	rootCmd.Flags().Bool("status", false, "don't output anything, status code shows success")
@@ -48,6 +48,8 @@ func init() {
 			"sha256", "equivalent to sha256sum",
 			"sha384", "equivalent to sha384sum",
 			"sha512", "equivalent to sha512sum",
+			"sha2", "equivalent to sha{224,256,384,512}sum",
+			"sha3", "only available through cksum",
 			"blake2b", "equivalent to b2sum",
 			"sm3", "only available through cksum",
 		),

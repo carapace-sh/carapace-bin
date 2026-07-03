@@ -23,7 +23,7 @@ func init() {
 	rootCmd.Flags().Bool("help", false, "display this help and exit")
 	rootCmd.Flags().BoolP("keep-files", "k", false, "do not remove output files on errors")
 	rootCmd.Flags().StringP("prefix", "f", "", "use PREFIX instead of 'xx'")
-	rootCmd.Flags().StringP("quiet", "s", "", "do not print counts of output file sizes")
+	rootCmd.Flags().BoolP("quiet", "s", false, "do not print counts of output file sizes")
 	rootCmd.Flags().StringP("suffix-format", "b", "", "use sprintf FORMAT instead of %02d")
 	rootCmd.Flags().Bool("suppress-matched", false, "suppress the lines matching PATTERN")
 	rootCmd.Flags().Bool("version", false, "output version information and exit")

@@ -25,8 +25,13 @@ func init() {
 	rootCmd.Flags().BoolP("output-duplicates", "v", false, "do not use * to mark line suppression")
 	rootCmd.Flags().StringP("read-bytes", "N", "", "limit dump to BYTES input bytes")
 	rootCmd.Flags().StringP("skip-bytes", "j", "", "skip BYTES input bytes first")
+	rootCmd.Flags().StringP("strings", "S", "", "show only NUL terminated strings of at least BYTES (default 3) printable characters")
 	rootCmd.Flags().Bool("traditional", false, "accept arguments in third form above")
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
+	rootCmd.Flags().StringP("width", "w", "", "output BYTES bytes per output line; 32 is implied when BYTES is not specified")
+
+	rootCmd.Flag("strings").NoOptDefVal = "3"
+	rootCmd.Flag("width").NoOptDefVal = "32"
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"address-radix": carapace.ActionValuesDescribed(

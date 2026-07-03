@@ -21,6 +21,9 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().BoolP("all", "a", false, "print both online and offline CPUs (default for -e)")
+	rootCmd.Flags().String("annotate", "", "annotate columns with a tooltip (always|never|auto)")
+	rootCmd.Flags().String("arm-id", "", "print the known ARM implementers and their names")
+	rootCmd.Flags().String("arm-model", "", "print the name of the given ARM implementer and model")
 	rootCmd.Flags().BoolP("bytes", "B", false, "print sizes in bytes rather than in human readable format")
 	rootCmd.Flags().StringP("caches", "C", "", "info about caches in extended readable format")
 	rootCmd.Flags().StringP("extended", "e", "", "print out an extended readable format")
@@ -28,6 +31,7 @@ func init() {
 	rootCmd.Flags().BoolP("hex", "x", false, "print hexadecimal masks rather than lists of CPUs")
 	rootCmd.Flags().String("hierarchic", "", "use subsections in summary")
 	rootCmd.Flags().BoolP("json", "J", false, "use JSON for default or extended format")
+	rootCmd.Flags().BoolP("list-columns", "H", false, "list the available columns")
 	rootCmd.Flags().BoolP("offline", "c", false, "print offline CPUs only")
 	rootCmd.Flags().BoolP("online", "b", false, "print online CPUs only (default for -p)")
 	rootCmd.Flags().Bool("output-all", false, "print all available columns for -e, -p or -C")
@@ -37,12 +41,15 @@ func init() {
 	rootCmd.Flags().StringP("sysroot", "s", "", "use specified directory as system root")
 	rootCmd.Flags().BoolP("version", "V", false, "display version")
 
+	rootCmd.Flag("annotate").NoOptDefVal = " "
+	rootCmd.Flag("arm-id").NoOptDefVal = " "
 	rootCmd.Flag("caches").NoOptDefVal = " "
 	rootCmd.Flag("extended").NoOptDefVal = " "
 	rootCmd.Flag("hierarchic").NoOptDefVal = " "
 	rootCmd.Flag("parse").NoOptDefVal = " "
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"annotate":   carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
 		"caches":     ActionCacheColumns().UniqueList(","),
 		"extended":   ActionFormatColumns().UniqueList(","),
 		"hierarchic": carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),

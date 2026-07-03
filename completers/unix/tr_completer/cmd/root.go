@@ -18,6 +18,8 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().BoolS("C", "C", false, "use the complement of ARRAY1")
+	rootCmd.Flags().BoolP("complement", "c", false, "use the complement of ARRAY1")
 	rootCmd.Flags().BoolP("delete", "d", false, "delete characters in SET1, do not translate")
 	rootCmd.Flags().Bool("help", false, "display this help and exit")
 	rootCmd.Flags().BoolP("squeeze-repeats", "s", false, "replace each sequence of a repeated character")

@@ -26,6 +26,7 @@ func init() {
 	rootCmd.Flags().StringP("equexit", "q", "", "exit when output from command does not change")
 	rootCmd.Flags().BoolP("errexit", "e", false, "exit if command has a non-zero exit")
 	rootCmd.Flags().BoolP("exec", "x", false, "pass command to exec instead of \"sh -c\"")
+	rootCmd.Flags().BoolP("follow", "f", false, "follow the output and don't clear screen")
 	rootCmd.Flags().BoolP("help", "h", false, "display this help and exit")
 	rootCmd.Flags().StringP("interval", "n", "", "seconds to wait between updates")
 	rootCmd.Flags().BoolP("no-color", "C", false, "do not interpret ANSI color and style sequences")

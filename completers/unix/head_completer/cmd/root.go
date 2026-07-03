@@ -22,7 +22,6 @@ func init() {
 	rootCmd.Flags().Bool("help", false, "display this help and exit")
 	rootCmd.Flags().StringP("lines", "n", "", "print the first NUM lines instead of the first 10;")
 	rootCmd.Flags().BoolP("quiet", "q", false, "never print headers giving file names")
-	rootCmd.Flags().Bool("silent", false, "never print headers giving file names")
 	rootCmd.Flags().BoolP("verbose", "v", false, "always print headers giving file names")
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 	rootCmd.Flags().BoolP("zero-terminated", "z", false, "line delimiter is NUL, not newline")
