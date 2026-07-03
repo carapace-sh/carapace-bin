@@ -52,9 +52,9 @@ func init() {
 		"before":      time.ActionDate(),
 		"cwd":         carapace.ActionDirectories(),
 		"exclude-cwd": carapace.ActionDirectories(),
-		"filter-mode": carapace.ActionValues("global", "host", "session", "directory", "workspace", "session-preloa"),
+		"filter-mode": carapace.ActionValues("global", "host", "session", "directory", "workspace", "session-preload"),
 		"keymap-mode": carapace.ActionValues("emacs", "vim-normal", "vim-insert", "auto"),
-		"search-mode": carapace.ActionValues("prefix", "full-text", "fuzzy", "skim"),
+		"search-mode": carapace.ActionValues("prefix", "full-text", "fuzzy", "skim", "daemon-fuzzy"),
 		"timezone":    carapace.ActionValues(), // TODO
 		"tz":          carapace.ActionValues(), // TODO
 	})
