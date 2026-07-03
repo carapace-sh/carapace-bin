@@ -58,6 +58,7 @@ func init() {
 	rootCmd.Flags().String("generateCpuProfile", "", "Emit a v8 CPU profile of the compiler run for debugging.")
 	rootCmd.Flags().Bool("generateTrace", false, "Generates an event trace and a list of types.")
 	rootCmd.Flags().StringP("help", "h", "", "Print this message.")
+	rootCmd.Flags().Bool("ignoreConfig", false, "Ignore tsconfig.json files and treat all files as standalone modules.")
 	rootCmd.Flags().Bool("importHelpers", false, "Allow importing helper functions from tslib once per project, instead of including them per-file.")
 	rootCmd.Flags().Bool("importsNotUsedAsValues", false, "Specify emit/checking behavior for imports that are only used for types")
 	rootCmd.Flags().StringP("incremental", "i", "", "Enable incremental compilation")
@@ -102,6 +103,7 @@ func init() {
 	rootCmd.Flags().Bool("preserveSymlinks", false, "Disable resolving symlinks to their realpath. This correlates to the same flag in node.")
 	rootCmd.Flags().Bool("preserveWatchOutput", false, "Disable wiping the console in watch mode")
 	rootCmd.Flags().Bool("pretty", false, "Enable color and formatting in TypeScript's output to make compiler errors easier to read")
+	rootCmd.Flags().StringP("project", "p", "", "Compile the TypeScript project located at the specified path")
 	rootCmd.Flags().String("reactNamespace", "", "Specify the object invoked for `createElement`. This only applies when targeting `react` JSX emit.")
 	rootCmd.Flags().Bool("removeComments", false, "Disable emitting comments.")
 	rootCmd.Flags().Bool("resolveJsonModule", false, "Enable importing .json files")
@@ -144,6 +146,7 @@ func init() {
 		"newLine":          carapace.ActionValues("crlf", "lf"),
 		"outDir":           carapace.ActionDirectories(),
 		"outFile":          carapace.ActionFiles(),
+		"project":          carapace.ActionDirectories(),
 		"rootDir":          carapace.ActionDirectories(),
 		"rootDirs": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return carapace.ActionDirectories().NoSpace()

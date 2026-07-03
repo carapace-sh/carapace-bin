@@ -47,6 +47,7 @@ func init() {
 	rootCmd.Flags().StringP("theme", "t", "", "Theme to use for syntax highlighting")
 	rootCmd.Flags().StringP("width", "W", "", "Width of terminal window")
 	rootCmd.Flags().Bool("window", false, "Display window controls")
+	rootCmd.Flags().StringP("wrap", "w", "", "Wrap lines at a specific width")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"background":   color.ActionHexColors(),

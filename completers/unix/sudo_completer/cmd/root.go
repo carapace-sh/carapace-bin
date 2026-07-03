@@ -25,7 +25,10 @@ func init() {
 	rootCmd.Flags().BoolP("askpass", "A", false, "use a helper program for password prompting")
 	rootCmd.Flags().BoolP("background", "b", false, "run command in the background")
 	rootCmd.Flags().BoolP("bell", "B", false, "ring bell when prompting")
+	rootCmd.Flags().StringP("chdir", "D", "", "change the working directory to the specified directory")
+	rootCmd.Flags().StringP("chroot", "R", "", "change to the specified root directory before running the command")
 	rootCmd.Flags().StringP("close-from", "C", "", "close all file descriptors >= num")
+	rootCmd.Flags().StringP("command-timeout", "T", "", "time limit after which the command will be terminated")
 	rootCmd.Flags().BoolP("edit", "e", false, "edit files instead of running a command")
 	rootCmd.Flags().StringP("group", "g", "", "run command as the specified group name or ID")
 	rootCmd.Flags().BoolP("help", "h", false, "display help message and exit")
@@ -49,6 +52,8 @@ func init() {
 	rootCmd.Flag("preserve-env").NoOptDefVal = " "
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"chdir":        carapace.ActionDirectories(),
+		"chroot":       carapace.ActionDirectories(),
 		"group":        os.ActionGroups(),
 		"other-user":   os.ActionUsers(),
 		"preserve-env": os.ActionEnvironmentVariables().UniqueList(","),
