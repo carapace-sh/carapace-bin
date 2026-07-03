@@ -22,7 +22,7 @@ func init() {
 	rootCmd.Flags().BoolP("all", "a", false, "Process all packages")
 	rootCmd.Flags().StringP("config", "C", "", "Path to confdir (xbps.d)")
 	rootCmd.Flags().BoolP("debug", "d", false, "Debug mode shown to stderr")
-	rootCmd.Flags().BoolP("deps", "-x", false, "Also process dependencies for each package")
+	rootCmd.Flags().BoolP("deps", "x", false, "Also process dependencies for each package")
 	rootCmd.Flags().BoolP("force", "f", false, "Force package re-installation. If specified twice, all files will be overwritten.")
 	rootCmd.Flags().Bool("fulldeptree", false, "Full dependency tree for -x/--deps")
 	rootCmd.Flags().BoolP("help", "h", false, "Show usage")
