@@ -20,9 +20,14 @@ func init() {
 
 	rootCmd.Flags().String("apply-custom-presets", "", "custom preset")
 	rootCmd.Flags().String("bpp", "", "bit depth")
+	rootCmd.Flags().String("export_masks", "", "export masks")
 	rootCmd.Flags().String("height", "", "max height")
-	rootCmd.Flags().Bool("help,-h", false, "")
 	rootCmd.Flags().String("hq", "", "high quality resampling")
+	rootCmd.Flags().String("icc-file", "", "specify icc filename, default to NONE")
+	rootCmd.Flags().String("icc-intent", "", "specify icc intent, default to LAST")
+	rootCmd.Flags().String("icc-type", "", "specify icc type, default to NONE")
+	rootCmd.Flags().StringArray("import", nil, "specify input file or dir")
+	rootCmd.Flags().String("out-ext", "", "output extension, default from output destination or '.jpg'")
 	rootCmd.Flags().String("style", "", "style name")
 	rootCmd.Flags().Bool("style-overwrite", false, "")
 	rootCmd.Flags().String("upscale", "", "upscaling")
@@ -32,7 +37,10 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"apply-custom-presets": carapace.ActionValues("0", "1", "false", "true"),
+		"export_masks":         carapace.ActionValues("0", "1", "false", "true"),
 		"hq":                   carapace.ActionValues("0", "1", "false", "true"),
+		"icc-file":             carapace.ActionFiles(),
+		"import":               carapace.ActionFiles(),
 		"upscale":              carapace.ActionValues("0", "1", "false", "true"),
 	})
 

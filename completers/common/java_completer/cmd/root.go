@@ -24,28 +24,43 @@ func init() {
 	rootCmd.Flags().BoolS("?", "?", false, "print help message")
 	rootCmd.Flags().StringArrayS("D", "D", nil, "set a system property")
 	rootCmd.Flags().BoolS("X", "X", false, "print help on non-standard options")
+	rootCmd.Flags().String("add-modules", "", "root modules to resolve in addition to the initial module")
 	rootCmd.Flags().StringS("agentlib", "agentlib", "", "load native agent library")
 	rootCmd.Flags().StringS("agentpath", "agentpath", "", "load native agent library by full pathname")
+	rootCmd.Flags().String("class-path", "", "class search path of directories and zip/jar files")
 	rootCmd.Flags().StringS("classpath", "classpath", "", "class search path of directories and zip/jar files")
 	rootCmd.Flags().StringS("cp", "cp", "", "class search path of directories and zip/jar files")
 	rootCmd.Flags().BoolS("d32", "d32", false, "use a 32-bit data model if available")
 	rootCmd.Flags().BoolS("d64", "d64", false, "use a 64-bit data model if available")
 	rootCmd.Flags().StringS("da", "da", "", "disable assertions with specified granularity")
+	rootCmd.Flags().String("describe-module", "", "describe a module and exit")
+	rootCmd.Flags().Bool("disable-@files", false, "prevent further argument file expansion")
 	rootCmd.Flags().StringS("disableassertions", "disableassertions", "", "disable assertions with specified granularity")
 	rootCmd.Flags().BoolS("disablesystemassertions", "disablesystemassertions", false, "disable system assertions")
+	rootCmd.Flags().Bool("dry-run", false, "create VM and load main class but do not execute main method")
 	rootCmd.Flags().BoolS("dsa", "dsa", false, "disable system assertions")
 	rootCmd.Flags().StringS("ea", "ea", "", "enable assertions with specified granularity")
+	rootCmd.Flags().String("enable-native-access", "", "modules that are permitted to perform restricted native operations")
+	rootCmd.Flags().Bool("enable-preview", false, "allow classes to depend on preview features of this release")
 	rootCmd.Flags().StringS("enableassertions", "enableassertions", "", "enable assertions with specified granularity")
 	rootCmd.Flags().BoolS("enablesystemassertions", "enablesystemassertions", false, "enable system assertions")
 	rootCmd.Flags().BoolS("esa", "esa", false, "enable system assertions")
-	rootCmd.Flags().BoolS("help", "help", false, "print help message")
+	rootCmd.Flags().Bool("help", false, "print this help message to the output stream")
+	rootCmd.Flags().Bool("help-extra", false, "print help on extra options to the output stream")
 	rootCmd.Flags().StringS("jar", "jar", "", "jar file to execute")
 	rootCmd.Flags().StringS("javaagent", "javaagent", "", "load Java programming language agent, see java.lang.instrument")
-	rootCmd.Flags().BoolS("server", "server", false, "to select the \"server\" VM")
+	rootCmd.Flags().Bool("list-modules", false, "list observable modules and exit")
+	rootCmd.Flags().String("module", "", "execute the main class in a module")
+	rootCmd.Flags().String("module-path", "", "module path")
+	rootCmd.Flags().Bool("server", false, "to select the \"server\" VM")
+	rootCmd.Flags().Bool("show-module-resolution", false, "show module resolution output during startup")
+	rootCmd.Flags().Bool("show-version", false, "print product version to the output stream and continue")
 	rootCmd.Flags().BoolS("showversion", "showversion", false, "print product version and continue")
 	rootCmd.Flags().StringS("splash", "splash", "", "show splash screen with specified image")
+	rootCmd.Flags().String("upgrade-module-path", "", "module path to replace upgradeable modules")
+	rootCmd.Flags().Bool("validate-modules", false, "validate all modules and exit")
 	rootCmd.Flags().StringS("verbose", "verbose", "", "enable verbose output")
-	rootCmd.Flags().BoolS("version", "version", false, "print product version and exit")
+	rootCmd.Flags().Bool("version", false, "print product version to the output stream and exit")
 
 	rootCmd.Flags().StringArrayS("XX", "XX", nil, "Advanced options")
 	rootCmd.Flags().BoolS("Xbatch", "Xbatch", false, "disable background compilation")
@@ -147,6 +162,9 @@ func init() {
 				return carapace.ActionValues()
 			}
 		}),
+		"class-path": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
+			return carapace.ActionFiles().NoSpace()
+		}),
 		"classpath": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 			return carapace.ActionFiles().NoSpace()
 		}),
@@ -174,7 +192,13 @@ func init() {
 				return carapace.ActionValues()
 			}
 		}),
+		"module-path": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
+			return carapace.ActionFiles().NoSpace()
+		}),
 		"splash": carapace.ActionFiles(),
+		"upgrade-module-path": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
+			return carapace.ActionFiles().NoSpace()
+		}),
 		"verbose": carapace.ActionValuesDescribed(
 			"class", "Displays information about each loaded class",
 			"gc", "Displays information about each garbage collection (GC) event",

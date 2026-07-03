@@ -14,6 +14,7 @@ var parseCmd = &cobra.Command{
 func init() {
 	carapace.Gen(parseCmd).Standalone()
 
+	parseCmd.Flags().Bool("json", false, "Output as JSON")
 	parseCmd.Flags().Bool("no-dump", false, "Suppress printing")
 	rootCmd.AddCommand(parseCmd)
 }

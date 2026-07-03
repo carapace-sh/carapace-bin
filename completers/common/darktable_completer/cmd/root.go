@@ -22,8 +22,12 @@ func init() {
 	rootCmd.Flags().String("conf", "", "override config values")
 	rootCmd.Flags().String("configdir", "", "user config directory")
 	rootCmd.Flags().StringS("d", "d", "", "enable debug output")
+	rootCmd.Flags().String("d-signal", "", "specify the signal to debug")
+	rootCmd.Flags().String("d-signal-act", "", "specify the signal action to debug")
 	rootCmd.Flags().String("datadir", "", "data directory")
 	rootCmd.Flags().Bool("disable-opencl", false, "prevent OpenCL initialization")
+	rootCmd.Flags().String("dump-diff-pipe", "", "dump diff pipe for modules")
+	rootCmd.Flags().String("dumpdir", "", "dump directory")
 	rootCmd.Flags().BoolP("help", "h", false, "")
 	rootCmd.Flags().String("library", "", "library file")
 	rootCmd.Flags().String("localedir", "", "locale directory")
@@ -37,8 +41,9 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"cachedir":      carapace.ActionDirectories(),
 		"configdir":     carapace.ActionDirectories(),
-		"d":             carapace.ActionValues("all", "cache", "camctl", "camsupport", "control", "dev", "fswatch", "input", "lighttable", "lua", "masks", "memory", "nan", "opencl", "perf", "pwstorage", "print", "sql", "ioporder", "imageio"),
+		"d":             carapace.ActionValues("all", "cache", "camctl", "camsupport", "control", "dev", "fswatch", "input", "lighttable", "lua", "masks", "memory", "nan", "opencl", "perf", "pwstorage", "print", "sql", "ioporder", "imageio", "act_on", "expose", "params", "pipe", "signal", "tiling", "picker", "undo", "common", "verbose"),
 		"datadir":       carapace.ActionDirectories(),
+		"dumpdir":       carapace.ActionDirectories(),
 		"library":       carapace.ActionFiles(".db"),
 		"localedir":     carapace.ActionDirectories(),
 		"moduledir":     carapace.ActionDirectories(),

@@ -39,6 +39,7 @@ func init() {
 	rootCmd.Flags().Bool("disable-minification", false, "removed")
 	rootCmd.Flags().Bool("disable-per-crate-search", false, "disables generating the crate selector on the search box")
 	rootCmd.Flags().Bool("display-doctest-warnings", false, "show warnings that originate in doctests")
+	rootCmd.Flags().String("doctest-build-arg", "", "One argument (of possibly many) to pass to the test builder")
 	rootCmd.Flags().Bool("document-hidden-items", false, "document items that have doc(hidden)")
 	rootCmd.Flags().Bool("document-private-items", false, "document private items")
 	rootCmd.Flags().String("edition", "", "edition to use when compiling rust code")
@@ -53,11 +54,14 @@ func init() {
 	rootCmd.Flags().StringP("forbid", "F", "", "Set lint forbidden")
 	rootCmd.Flags().String("force-warn", "", "Set lint force-warn")
 	rootCmd.Flags().Bool("generate-link-to-definition", false, "Make the identifiers in the HTML source code pages navigable")
+	rootCmd.Flags().Bool("generate-macro-expansion", false, "generate expanded macros in the docs")
 	rootCmd.Flags().Bool("generate-redirect-map", false, "Generate JSON file at the top level instead of generating HTML redirection files")
 	rootCmd.Flags().BoolP("help", "h", false, "show this help message")
 	rootCmd.Flags().String("html-after-content", "", "files to include inline between the content and </body> of a rendered Markdown file")
 	rootCmd.Flags().String("html-before-content", "", "files to include inline between <body> and the content of a rendered Markdown file")
 	rootCmd.Flags().String("html-in-header", "", "files to include inline in the <head> section of a rendered Markdown file")
+	rootCmd.Flags().Bool("html-no-source", false, "don't generate HTML source code pages")
+	rootCmd.Flags().String("include-parts-dir", "", "path to doc.parts directory to merge into the output")
 	rootCmd.Flags().String("index-page", "", "Markdown file to be used as index page")
 	rootCmd.Flags().String("json", "", "Configure the structure of JSON diagnostics")
 	rootCmd.Flags().StringP("library-path", "L", "", "directory to add to crate search path")
@@ -66,13 +70,22 @@ func init() {
 	rootCmd.Flags().String("markdown-css", "", "CSS files to include via <link> in a rendered Markdown file")
 	rootCmd.Flags().Bool("markdown-no-toc", false, "don't include table of contents")
 	rootCmd.Flags().String("markdown-playground-url", "", "URL to send code snippets to")
+	rootCmd.Flags().String("merge", "", "control how doc parts are merged into the output")
+	rootCmd.Flags().String("merge-doctests", "", "whether to merge doctests from dependencies")
+	rootCmd.Flags().Bool("no-capture", false, "Don't capture stdout and stderr of tests")
+	rootCmd.Flags().Bool("no-defaults", false, "removed, see issue #44136")
 	rootCmd.Flags().Bool("no-run", false, "Compile doctests without running them")
 	rootCmd.Flags().Bool("nocapture", false, "Don't capture stdout and stderr of tests")
 	rootCmd.Flags().StringP("out-dir", "o", "", "which directory to place the output")
 	rootCmd.Flags().String("output", "", "Which directory to place the output")
 	rootCmd.Flags().StringP("output-format", "w", "", "the output type to write")
+	rootCmd.Flags().String("parts-out-dir", "", "path to output doc parts directory")
+	rootCmd.Flags().String("passes", "", "removed, see issue #44136")
 	rootCmd.Flags().String("persist-doctests", "", "Directory to persist doctest executables into")
 	rootCmd.Flags().String("playground-url", "", "URL to send code snippets to")
+	rootCmd.Flags().String("plugin-path", "", "directory to load plugins from")
+	rootCmd.Flags().String("plugins", "", "list of plugins to enable")
+	rootCmd.Flags().String("remap-path-prefix", "", "remap source path prefixes in output")
 	rootCmd.Flags().String("resource-suffix", "", "suffix to add to CSS and JavaScript files")
 	rootCmd.Flags().Bool("runtool", false, "The tool to run tests with when building for a different target than host")
 	rootCmd.Flags().Bool("runtool-arg", false, "One (of possibly many) arguments to pass to the runtool")
@@ -88,7 +101,10 @@ func init() {
 	rootCmd.Flags().Bool("test", false, "run code examples as tests")
 	rootCmd.Flags().String("test-args", "", "arguments to pass to the test runner")
 	rootCmd.Flags().String("test-builder", "", "The rustc-like binary to use as the test builder")
+	rootCmd.Flags().String("test-builder-wrapper", "", "wrapper to use for the test builder")
 	rootCmd.Flags().String("test-run-directory", "", "The working directory in which to run tests")
+	rootCmd.Flags().String("test-runtool", "", "The tool to run tests with when building for a different target than host")
+	rootCmd.Flags().String("test-runtool-arg", "", "One argument (of possibly many) to pass to the runtool")
 	rootCmd.Flags().String("theme", "", "additional themes which will be added to the generated docs")
 	rootCmd.Flags().BoolP("verbose", "v", false, "use verbose output")
 	rootCmd.Flags().BoolP("version", "V", false, "print rustdoc's version")
@@ -121,14 +137,19 @@ func init() {
 		"html-after-content":  carapace.ActionFiles().List(","),
 		"html-before-content": carapace.ActionFiles().List(","),
 		"html-in-header":      carapace.ActionFiles().List(","),
+		"include-parts-dir":   carapace.ActionDirectories(),
+		"index-page":          carapace.ActionFiles(),
 		// "json":                    carapace.ActionValues(),
 		"library-path":            carapace.ActionDirectories(),
 		"markdown-after-content":  carapace.ActionFiles().List(","),
 		"markdown-before-content": carapace.ActionFiles().List(","),
 		"markdown-css":            carapace.ActionFiles().List(","),
+		"merge":                   carapace.ActionValues("none", "shared", "finalize"),
+		"merge-doctests":          carapace.ActionValues("yes", "no", "auto"),
 		// "markdown-playground-url": carapace.ActionValues(),
 		"out-dir":          carapace.ActionDirectories(),
 		"output-format":    carapace.ActionValues("html"),
+		"parts-out-dir":    carapace.ActionDirectories(),
 		"persist-doctests": carapace.ActionDirectories(),
 		// "playground-url":     carapace.ActionValues(),
 		// "resource-suffix":    carapace.ActionValues(),

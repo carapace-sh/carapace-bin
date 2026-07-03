@@ -20,32 +20,41 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().BoolP("armor", "a", false, "create ascii armored output")
+	rootCmd.Flags().Bool("auto-key-import", false, "import missing key from a signature")
+	rootCmd.Flags().String("auto-key-locate", "", "use MECHANISMS to locate keys by mail address")
 	rootCmd.Flags().Bool("card-status", false, "print the card status")
 	rootCmd.Flags().Bool("change-passphrase", false, "change a passphrase")
 	rootCmd.Flags().Bool("change-pin", false, "change a card's PIN")
 	rootCmd.Flags().Bool("check-signatures", false, "list and check key signatures")
 	rootCmd.Flags().Bool("clear-sign", false, "make a clear text signature")
 	rootCmd.Flags().BoolP("decrypt", "d", false, "decrypt data (default)")
+	rootCmd.Flags().String("default-key", "", "use NAME as default secret key")
 	rootCmd.Flags().Bool("delete-keys", false, "remove keys from the public keyring")
 	rootCmd.Flags().Bool("delete-secret-keys", false, "remove keys from the secret keyring")
 	rootCmd.Flags().BoolP("detach-sign", "b", false, "make a detached signature")
+	rootCmd.Flags().Bool("disable-dirmngr", false, "disable all access to the dirmngr")
 	rootCmd.Flags().BoolP("dry-run", "n", false, "do not make any changes")
 	rootCmd.Flags().Bool("edit-card", false, "change data on a card")
 	rootCmd.Flags().Bool("edit-key", false, "sign or edit a key")
 	rootCmd.Flags().BoolP("encrypt", "e", false, "encrypt data")
+	rootCmd.Flags().String("encrypt-to", "", "encrypt to user ID NAME as well")
 	rootCmd.Flags().Bool("export", false, "export keys")
 	rootCmd.Flags().Bool("fingerprint", false, "list keys and fingerprints")
 	rootCmd.Flags().Bool("full-generate-key", false, "full featured key pair generation")
 	rootCmd.Flags().Bool("generate-key", false, "generate a new key pair")
 	rootCmd.Flags().Bool("generate-revocation", false, "generate a revocation certificate")
+	rootCmd.Flags().String("group", "", "set up email aliases")
 	rootCmd.Flags().Bool("import", false, "import/merge keys")
+	rootCmd.Flags().Bool("include-key-block", false, "include the public key in signatures")
 	rootCmd.Flags().BoolP("interactive", "i", false, "prompt before overwriting")
 	rootCmd.Flags().BoolP("list-keys", "k", false, "list keys")
 	rootCmd.Flags().BoolP("list-secret-keys", "K", false, "list secret keys")
 	rootCmd.Flags().Bool("list-signatures", false, "list keys and signatures")
 	rootCmd.Flags().StringP("local-user", "u", "", "use USER-ID to sign or decrypt")
+	rootCmd.Flags().String("log-file", "", "write server mode logs to FILE")
 	rootCmd.Flags().Bool("lsign-key", false, "sign a key locally")
 	rootCmd.Flags().Bool("openpgp", false, "use strict OpenPGP behavior")
+	rootCmd.Flags().String("options", "", "read options from FILE")
 	rootCmd.Flags().StringP("output", "o", "", "write output to FILE")
 	rootCmd.Flags().Bool("print-md", false, "print message digests")
 	rootCmd.Flags().Bool("quick-add-uid", false, "quickly add a new user-id")
@@ -55,6 +64,7 @@ func init() {
 	rootCmd.Flags().Bool("quick-revoke-uid", false, "quickly revoke a user-id")
 	rootCmd.Flags().Bool("quick-set-expire", false, "quickly set a new expiration date")
 	rootCmd.Flags().Bool("quick-sign-key", false, "quickly sign a key")
+	rootCmd.Flags().BoolP("quiet", "q", false, "be somewhat more quiet")
 	rootCmd.Flags().Bool("receive-keys", false, "import keys from a keyserver")
 	rootCmd.Flags().StringP("recipient", "r", "", "encrypt for USER-ID")
 	rootCmd.Flags().Bool("refresh-keys", false, "update all keys from a keyserver")
@@ -73,6 +83,8 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"local-user":  os.ActionUsers(),
+		"log-file":    carapace.ActionFiles(),
+		"options":     carapace.ActionFiles(),
 		"output":      carapace.ActionFiles(),
 		"recipient":   os.ActionUsers(),
 		"tofu-policy": carapace.ActionValues("auto", "good", "unknown", "bad", "ask"),
