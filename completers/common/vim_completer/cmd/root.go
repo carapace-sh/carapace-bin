@@ -50,7 +50,19 @@ func init() {
 	rootCmd.Flags().StringS("o", "o", "", "Open N windows")
 	rootCmd.Flags().StringS("p", "p", "", "Open N tab pages")
 	rootCmd.Flags().BoolS("r", "r", false, "List swap files or recover crashed session")
+	rootCmd.Flags().String("remote", "", "Edit <files> in a Vim server if possible")
+	rootCmd.Flags().String("remote-expr", "", "Evaluate <expr> in a Vim server and print result")
+	rootCmd.Flags().String("remote-send", "", "Send <keys> to a Vim server and exit")
+	rootCmd.Flags().Bool("remote-silent", false, "Same as --remote, do not complain if there is no server")
+	rootCmd.Flags().String("remote-tab", "", "As --remote but use tab page per file")
+	rootCmd.Flags().String("remote-tab-silent", "", "As --remote-silent but use tab page per file")
+	rootCmd.Flags().String("remote-tab-wait", "", "As --remote-wait but use tab page per file")
+	rootCmd.Flags().String("remote-tab-wait-silent", "", "As --remote-wait-silent but use tab page per file")
+	rootCmd.Flags().String("remote-wait", "", "As --remote but wait for files to have been edited")
+	rootCmd.Flags().String("remote-wait-silent", "", "Same as --remote-wait, do not complain if there is no server")
 	rootCmd.Flags().StringS("s", "s", "", "Read Normal mode commands from file <scriptin>")
+	rootCmd.Flags().Bool("serverlist", false, "List available Vim server names and exit")
+	rootCmd.Flags().String("servername", "", "Send to/become the Vim server <name>")
 	rootCmd.Flags().String("startuptime", "", "Write startup timing messages to <file>")
 	rootCmd.Flags().Bool("ttyfail", false, "Exit if input or output is not a terminal")
 	rootCmd.Flags().StringS("u", "u", "", "Use <vimrc> instead of any .vimrc")
@@ -61,14 +73,21 @@ func init() {
 	rootCmd.Flags().BoolS("y", "y", false, "Easy mode")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"S":           carapace.ActionFiles(),
-		"W":           carapace.ActionFiles(),
-		"i":           carapace.ActionFiles(),
-		"log":         carapace.ActionFiles(),
-		"s":           carapace.ActionFiles(),
-		"startuptime": carapace.ActionFiles(),
-		"u":           carapace.ActionFiles(),
-		"w":           carapace.ActionFiles(),
+		"S":                      carapace.ActionFiles(),
+		"W":                      carapace.ActionFiles(),
+		"i":                      carapace.ActionFiles(),
+		"log":                    carapace.ActionFiles(),
+		"remote":                 carapace.ActionFiles(),
+		"remote-tab":             carapace.ActionFiles(),
+		"remote-tab-silent":      carapace.ActionFiles(),
+		"remote-tab-wait":        carapace.ActionFiles(),
+		"remote-tab-wait-silent": carapace.ActionFiles(),
+		"remote-wait":            carapace.ActionFiles(),
+		"remote-wait-silent":     carapace.ActionFiles(),
+		"s":                      carapace.ActionFiles(),
+		"startuptime":            carapace.ActionFiles(),
+		"u":                      carapace.ActionFiles(),
+		"w":                      carapace.ActionFiles(),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

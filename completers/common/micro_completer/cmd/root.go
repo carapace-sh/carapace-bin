@@ -56,6 +56,7 @@ func init() {
 	rootCmd.Flags().StringS("plugin", "plugin", "", "Manage plugins")
 	rootCmd.Flags().StringS("pluginchannels", "pluginchannels", "", "")
 	rootCmd.Flags().StringS("pluginrepos", "pluginrepos", "", "")
+	rootCmd.Flags().BoolS("profile", "profile", false, "Enable CPU profiling (writes profile info to ./micro.prof)")
 	rootCmd.Flags().StringS("readonly", "readonly", "", "")
 	rootCmd.Flags().StringS("relativeruler", "relativeruler", "", "")
 	rootCmd.Flags().StringS("rmtrailingws", "rmtrailingws", "", "")
