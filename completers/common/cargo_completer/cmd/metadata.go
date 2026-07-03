@@ -7,9 +7,10 @@ import (
 )
 
 var metadataCmd = &cobra.Command{
-	Use:   "metadata",
-	Short: "Output the resolved dependencies of a package, the concrete used versions including overrides, in machine-readable format",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "metadata",
+	Short:   "Output the resolved dependencies of a package, the concrete used versions including overrides, in machine-readable format",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: groupFor("metadata"),
 }
 
 func init() {
