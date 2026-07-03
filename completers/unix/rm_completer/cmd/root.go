@@ -38,6 +38,7 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"interactive": carapace.ActionValuesDescribed(
 			"always", "prompt before every removal",
+			"never", "never prompt",
 			"once", "prompt when removing many files",
 		),
 		"preserve-root": carapace.ActionValues("all"),

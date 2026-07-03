@@ -19,6 +19,9 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().Bool("help", false, "display this help and exit")
+	rootCmd.Flags().Bool("version", false, "output version information and exit")
+
 	carapace.Gen(rootCmd).PositionalCompletion(
 		os.ActionUsers(),
 	)

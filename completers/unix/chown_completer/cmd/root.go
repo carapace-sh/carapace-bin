@@ -33,7 +33,7 @@ func init() {
 	rootCmd.Flags().Bool("quiet", false, "suppress most error messages")
 	rootCmd.Flags().BoolP("recursive", "R", false, "operate on files and directories recursively")
 	rootCmd.Flags().String("reference", "", "use RFILE's owner and group rather than specifying OWNER:GROUP values")
-	rootCmd.Flags().StringP("silent", "f", "", "suppress most error messages")
+	rootCmd.Flags().BoolP("silent", "f", false, "suppress most error messages")
 	rootCmd.Flags().BoolP("verbose", "v", false, "output a diagnostic for every file processed")
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 

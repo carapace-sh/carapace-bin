@@ -26,7 +26,7 @@ func init() {
 	rootCmd.Flags().BoolP("no-create", "c", false, "do not create any files")
 	rootCmd.Flags().BoolP("no-dereference", "h", false, "affect each symbolic link instead of any referenced file")
 	rootCmd.Flags().StringP("reference", "r", "", "use this file's times instead of current time")
-	rootCmd.Flags().StringS("t", "t", "", "use [[CC]YY]MMDDhhmm[.ss] instead of current time")
+	rootCmd.Flags().StringS("t", "t", "", "use specified time instead of current time, with a date-time format that differs from -d's")
 	rootCmd.Flags().String("time", "", "change the specified time")
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
