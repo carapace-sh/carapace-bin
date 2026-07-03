@@ -20,6 +20,7 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().StringS("C", "C", "", "Change to given directory before doing anything")
 	rootCmd.Flags().StringS("Z", "Z", "", "Unstable (nightly-only) flags to Cargo, see 'cargo -Z help'")
 	rootCmd.Flags().Bool("all-features", false, "Activate all available features")
 	rootCmd.Flags().String("color", "", "Coloring: auto, always, never")
@@ -37,8 +38,8 @@ func init() {
 	rootCmd.Flags().BoolP("quiet", "q", false, "Do not print cargo log messages")
 	rootCmd.Flags().BoolP("verbose", "v", false, "Use verbose output (-vv very verbose/build.rs output)")
 
-	// TODO more flags
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"C":     carapace.ActionDirectories(),
 		"Z":     cargo.ActionNightlyFlags(),
 		"color": carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
 		"features": carapace.ActionCallback(func(c carapace.Context) carapace.Action {

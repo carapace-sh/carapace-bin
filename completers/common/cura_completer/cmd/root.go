@@ -23,6 +23,7 @@ func init() {
 	rootCmd.Flags().Bool("headless", false, "Hides all GUI elements.")
 	rootCmd.Flags().BoolP("help", "h", false, "show help")
 	rootCmd.Flags().Bool("single-instance", false, "run a single instance only")
+	rootCmd.Flags().Bool("trigger-early-crash", false, "FOR TESTING ONLY. Trigger an early crash to show the crash dialog")
 	rootCmd.Flags().Bool("version", false, "show program's version number and exit")
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
