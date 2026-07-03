@@ -32,6 +32,7 @@ func addServerFlags(cmd *cobra.Command) {
 	cmd.Flags().StringS("listen", "listen", "", "address on which to listen for remote connections. If prefixed by 'unix;', the subsequent address is assumed to be a unix domain socket. Otherwise, TCP is used.")
 	cmd.Flags().StringS("listen.timeout", "listen.timeout", "", "when used with -listen, shut down the server when there are no connected clients for this duration")
 	cmd.Flags().StringS("logfile", "logfile", "", "filename to log to. if value is \"auto\", then logging to a default output file is enabled")
+	cmd.Flags().StringS("mcp.listen", "mcp.listen", "", "experimental: address on which to listen for model context protocol connections. If port is localhost:0, pick a random port in localhost instead.")
 	cmd.Flags().StringS("mode", "mode", "", "no effect")
 	cmd.Flags().StringS("port", "port", "", "port on which to run gopls for debugging purposes")
 	cmd.Flags().StringS("remote.debug", "remote.debug", "", "when used with -remote=auto, the -debug value used to start the daemon")
