@@ -22,6 +22,7 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().BoolP("bytes", "b", false, "print SIZE in bytes rather than in human readable format")
+	rootCmd.Flags().StringP("filter", "Q", "", "apply display filter")
 	rootCmd.Flags().BoolP("help", "h", false, "display this help")
 	rootCmd.Flags().BoolP("json", "J", false, "use JSON output format")
 	rootCmd.Flags().BoolP("list-columns", "H", false, "list the available columns")

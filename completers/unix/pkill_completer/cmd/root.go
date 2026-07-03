@@ -34,6 +34,7 @@ func init() {
 	rootCmd.Flags().BoolP("ignore-ancestors", "A", false, "exclude our ancestors from results")
 	rootCmd.Flags().BoolP("ignore-case", "i", false, "match case insensitively")
 	rootCmd.Flags().BoolP("logpidfile", "L", false, "fail if PID file is not locked")
+	rootCmd.Flags().BoolP("mrelease", "m", false, "release process memory immediately after kill")
 	rootCmd.Flags().BoolP("newest", "n", false, "select most recently started")
 	rootCmd.Flags().String("ns", "", "match the processes that belong to the same namespace as <pid>")
 	rootCmd.Flags().String("nslist", "", "list which namespaces will be considered for the --ns option.")
@@ -41,11 +42,13 @@ func init() {
 	rootCmd.Flags().BoolP("oldest", "o", false, "select least recently started")
 	rootCmd.Flags().StringP("parent", "P", "", "match only child processes of the given parent")
 	rootCmd.Flags().StringP("pgroup", "g", "", "match listed process group IDs")
+	rootCmd.Flags().StringP("pid", "p", "", "match process PIDs")
 	rootCmd.Flags().StringP("pidfile", "F", "", "read PIDs from file")
 	rootCmd.Flags().StringP("queue", "q", "", "integer value to be sent with the signal")
 	rootCmd.Flags().BoolP("require-handler", "H", false, "match only if signal handler is present")
 	rootCmd.Flags().StringP("runstates", "r", "", "match runstates [D,S,Z,...]")
 	rootCmd.Flags().StringP("session", "s", "", "match session IDs")
+	rootCmd.Flags().BoolP("shell-quote", "Q", false, "output the command line in shell-quoted form")
 	rootCmd.Flags().String("signal", "", "signal to send (either number or name)")
 	rootCmd.Flags().StringP("terminal", "t", "", "match by controlling terminal")
 	rootCmd.Flags().StringP("uid", "U", "", "match by real IDs")
@@ -56,6 +59,7 @@ func init() {
 		"euid":      os.ActionUsers(),
 		"group":     os.ActionGroups(),
 		"nslist":    carapace.ActionValues("ipc", "mnt", "net", "pid", "user", "uts").UniqueList(","),
+		"pid":       ps.ActionProcessIds().UniqueList(","),
 		"pidfile":   carapace.ActionFiles(),
 		"runstates": ps.ActionProcessStates().UniqueList(","),
 		"session":   os.ActionSessionIds().UniqueList(","),

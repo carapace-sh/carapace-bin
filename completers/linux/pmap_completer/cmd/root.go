@@ -32,6 +32,7 @@ func init() {
 	rootCmd.Flags().BoolP("read-rc", "c", false, "read the default rc")
 	rootCmd.Flags().StringP("read-rc-from", "C", "", "read the rc from file")
 	rootCmd.Flags().BoolP("show-path", "p", false, "show path in the mapping")
+	rootCmd.Flags().BoolP("use-kernel-name", "k", false, "use names provided by kernel")
 	rootCmd.Flags().BoolP("version", "V", false, "output version information and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{

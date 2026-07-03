@@ -20,6 +20,7 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().StringP("context", "Z", "", "kill only process(es) having context")
 	rootCmd.Flags().BoolP("exact", "e", false, "require exact match for very long names")
 	rootCmd.Flags().BoolP("ignore-case", "I", false, "case insensitive process name match")
 	rootCmd.Flags().BoolP("interactive", "i", false, "ask for confirmation before killing")

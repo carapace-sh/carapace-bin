@@ -19,10 +19,10 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolP("help", "u", false, "display this help")
+	rootCmd.Flags().BoolP("help", "h", false, "display this help")
 	rootCmd.Flags().BoolP("list-shells", "l", false, "print list of shells and exit")
 	rootCmd.Flags().StringP("shell", "s", "", "specify login shell")
-	rootCmd.Flags().BoolP("version", "v", false, "display version")
+	rootCmd.Flags().BoolP("version", "V", false, "display version")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"shell": os.ActionShells(),

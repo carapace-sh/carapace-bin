@@ -22,6 +22,7 @@ func init() {
 
 	rootCmd.Flags().StringP("cpu-list", "C", "", "only show counters for these CPUs")
 	rootCmd.Flags().BoolP("help", "h", false, "display this help")
+	rootCmd.Flags().StringP("input", "i", "", "read data from input file")
 	rootCmd.Flags().BoolP("json", "J", false, "use JSON output format")
 	rootCmd.Flags().BoolP("noheadings", "n", false, "don't print headings")
 	rootCmd.Flags().StringP("output", "o", "", "define which output columns to use")
@@ -32,6 +33,7 @@ func init() {
 	rootCmd.Flags().BoolP("version", "V", false, "display version")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"input":  carapace.ActionFiles(),
 		"output": action.ActionColumns().UniqueList(","),
 		"sort":   action.ActionColumns(),
 	})

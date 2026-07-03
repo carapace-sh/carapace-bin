@@ -26,6 +26,7 @@ func init() {
 	rootCmd.Flags().BoolP("filename", "n", false, "Print only 'filename'")
 	rootCmd.Flags().BoolP("help", "h", false, "Show this help")
 	rootCmd.Flags().BoolP("license", "l", false, "Print only 'license'")
+	rootCmd.Flags().BoolP("modname", "m", false, "Handle argument as module name instead of alias or filename")
 	rootCmd.Flags().BoolP("null", "0", false, "Use \\0 instead of \\n")
 	rootCmd.Flags().BoolP("parameters", "p", false, "Print only 'parm'")
 	rootCmd.Flags().StringP("set-version", "k", "", "Use VERSION instead of `uname -r`")

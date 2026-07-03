@@ -24,7 +24,7 @@ func init() {
 
 	rootCmd.Flags().BoolP("accum-time-toggle", "S", false, "Starts top with the last remembered 'S' state reversed.")
 	rootCmd.Flags().BoolP("apply-defaults", "A", false, "Run top with build defaults only, ignoring all configuration files except /etc/toprc.")
-	rootCmd.Flags().BoolP("batch", "b", false, "Starts top in Batch mode")
+	rootCmd.Flags().BoolP("batch-mode", "b", false, "run in non-interactive batch mode")
 	rootCmd.Flags().BoolP("cmdline-toggle", "c", false, "Starts top with the last remembered 'c' state reversed.")
 	rootCmd.Flags().StringP("delay", "d", "", "Specifies the delay between screen updates")
 	rootCmd.Flags().StringP("filter-any-user", "U", "", "Display only processes with a user id or user name matching that given.")

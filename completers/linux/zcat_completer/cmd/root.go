@@ -24,6 +24,7 @@ func init() {
 	rootCmd.Flags().BoolP("quiet", "q", false, "suppress all warnings")
 	rootCmd.Flags().BoolP("recursive", "r", false, "operate recursively on directories")
 	rootCmd.Flags().StringP("suffix", "S", "", "use suffix SUF on compressed files")
+	rootCmd.Flags().Bool("synchronous", false, "synchronous output (safer if system crashes, but slower)")
 	rootCmd.Flags().BoolP("test", "t", false, "test compressed file integrity")
 	rootCmd.Flags().BoolP("verbose", "v", false, "verbose mode")
 	rootCmd.Flags().Bool("version", false, "display version information and exit")

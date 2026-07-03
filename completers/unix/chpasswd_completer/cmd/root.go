@@ -22,11 +22,12 @@ func init() {
 	rootCmd.Flags().BoolP("encrypted", "e", false, "supplied passwords are encrypted")
 	rootCmd.Flags().BoolP("help", "h", false, "display this help message and exit")
 	rootCmd.Flags().BoolP("md5", "m", false, "encrypt the clear text password using the MD5 algorithm")
+	rootCmd.Flags().StringP("prefix", "P", "", "directory prefix")
 	rootCmd.Flags().StringP("root", "R", "", "directory to chroot into")
 	rootCmd.Flags().StringP("sha-rounds", "s", "", "number of rounds for the SHA or BCRYPT crypt algorithms")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"crypt-method": carapace.ActionValues("DES", "MD5", "NONE", "SHA256", "SHA512"),
+		"crypt-method": carapace.ActionValues("DES", "MD5", "NONE", "SHA256", "SHA512", "YESCRYPT"),
 		"root":         carapace.ActionDirectories(),
 	})
 }
