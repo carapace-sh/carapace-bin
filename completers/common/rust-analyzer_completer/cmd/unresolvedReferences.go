@@ -19,6 +19,10 @@ func init() {
 	unresolvedReferencesCmd.Flags().String("proc-macro-srv", "", "Run the proc-macro-srv binary at the specified path.")
 	rootCmd.AddCommand(unresolvedReferencesCmd)
 
+	carapace.Gen(unresolvedReferencesCmd).FlagCompletion(carapace.ActionMap{
+		"proc-macro-srv": carapace.ActionFiles(),
+	})
+
 	carapace.Gen(unresolvedReferencesCmd).PositionalCompletion(
 		carapace.ActionDirectories(),
 	)

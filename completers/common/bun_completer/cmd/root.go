@@ -110,8 +110,13 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"bunfile":           carapace.ActionFiles(".bun"),
 		"config":            carapace.ActionFiles(".toml"),
+		"cpu-prof-dir":      carapace.ActionDirectories(),
 		"cwd":               carapace.ActionDirectories(),
+		"dns-result-order":  carapace.ActionValues("verbatim", "ipv4first", "ipv6first"),
+		"env-file":          carapace.ActionFiles(),
 		"extension-order":   carapace.ActionValues(".tsx", ".ts", ".jsx", ".js", ".json").StyleF(style.ForPathExt).UniqueList(","),
+		"heap-prof-dir":     carapace.ActionDirectories(),
+		"import":            carapace.ActionFiles(),
 		"install":           carapace.ActionValues("auto", "force", "fallback").StyleF(style.ForKeyword),
 		"jsx-import-source": carapace.ActionValues("react"),
 		"jsx-runtime":       carapace.ActionValues("automatic", "classic"),
@@ -129,8 +134,11 @@ func init() {
 		}).UniqueList(","),
 		"platform":       carapace.ActionValues("bun", "browser", "node"),
 		"port":           net.ActionPorts(),
+		"preload":        carapace.ActionFiles(),
 		"public-dir":     carapace.ActionDirectories(),
+		"require":        carapace.ActionFiles(),
 		"server-bunfile": carapace.ActionValues(".server.bun"),
+		"shell":          carapace.ActionValues("bun", "system"),
 	})
 
 	carapace.Gen(rootCmd).PreInvoke(func(cmd *cobra.Command, flag *pflag.Flag, action carapace.Action) carapace.Action {

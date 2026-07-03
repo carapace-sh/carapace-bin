@@ -37,6 +37,11 @@ func init() {
 	analysisStatsCmd.Flags().Bool("with-deps", false, "Also analyze all dependencies")
 	rootCmd.AddCommand(analysisStatsCmd)
 
+	carapace.Gen(analysisStatsCmd).FlagCompletion(carapace.ActionMap{
+		"output":         carapace.ActionFiles(),
+		"proc-macro-srv": carapace.ActionFiles(),
+	})
+
 	carapace.Gen(analysisStatsCmd).PositionalCompletion(
 		carapace.ActionDirectories(),
 	)

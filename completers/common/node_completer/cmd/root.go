@@ -217,9 +217,10 @@ func init() {
 	rootCmd.Flags().Bool("zero-fill-buffers", false, "automatically zero-fill all newly allocated Buffer and SlowBuffer instances")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"cpu-prof-dir":   carapace.ActionDirectories(),
-		"diagnostic-dir": carapace.ActionDirectories(),
-		"disable-proto":  carapace.ActionValues("delete", "throw"),
+		"build-snapshot-config": carapace.ActionFiles(),
+		"cpu-prof-dir":          carapace.ActionDirectories(),
+		"diagnostic-dir":        carapace.ActionDirectories(),
+		"disable-proto":         carapace.ActionValues("delete", "throw"),
 		"dns-result-order": carapace.ActionValuesDescribed(
 			"ipv4first", "IPv4 addresses are placed before IPv6 addresses",
 			"ipv6first", "IPv6 addresses are placed before IPv4 addresses",

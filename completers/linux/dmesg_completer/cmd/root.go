@@ -60,6 +60,7 @@ func init() {
 		"console-level": action.ActionLogLevels(),
 		"facility":      action.ActionFacilities().UniqueList(","),
 		"file":          carapace.ActionFiles(),
+		"kmsg-file":     carapace.ActionFiles(),
 		"level":         action.ActionLogLevels().UniqueList(","),
 		"time-format":   carapace.ActionValues("delta", "reltime", "ctime", "notime", "iso"),
 	})

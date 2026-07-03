@@ -28,6 +28,10 @@ func init() {
 	rootCmd.Flags().Bool("verbose", false, "enable extra informational output")
 	rootCmd.Flags().Bool("version", false, "print version of the program and exit")
 
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"homedir": carapace.ActionDirectories(),
+	})
+
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.ActionMultiParts("://", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {

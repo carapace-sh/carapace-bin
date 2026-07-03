@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/net"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
@@ -66,6 +67,7 @@ func init() {
 		"log-file":      carapace.ActionFiles(),
 		"log-level":     carapace.ActionValues("error", "warn", "info", "debug", "trace").StyleF(style.ForLogLevel),
 		"log-target":    carapace.ActionValues("stdout", "stderr", "mixed", "file"),
+		"mcp-port":      net.ActionPorts(),
 		"mcp-transport": carapace.ActionValues("stdio", "http"),
 		"plugin-config": carapace.ActionFiles(),
 		"plugins":       carapace.ActionFiles(),

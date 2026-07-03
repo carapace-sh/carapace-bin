@@ -20,6 +20,10 @@ func init() {
 	primeCachesCmd.Flags().String("proc-macro-srv", "", "Run the proc-macro-srv binary at the specified path.")
 	rootCmd.AddCommand(primeCachesCmd)
 
+	carapace.Gen(primeCachesCmd).FlagCompletion(carapace.ActionMap{
+		"proc-macro-srv": carapace.ActionFiles(),
+	})
+
 	carapace.Gen(primeCachesCmd).PositionalCompletion(
 		carapace.ActionDirectories(),
 	)

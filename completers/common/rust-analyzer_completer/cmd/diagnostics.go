@@ -20,6 +20,11 @@ func init() {
 	diagnosticsCmd.Flags().String("severity", "", "The minimum severity.")
 	rootCmd.AddCommand(diagnosticsCmd)
 
+	carapace.Gen(diagnosticsCmd).FlagCompletion(carapace.ActionMap{
+		"proc-macro-srv": carapace.ActionFiles(),
+		"severity":       carapace.ActionValues("error", "warning", "weak", "hints"),
+	})
+
 	carapace.Gen(diagnosticsCmd).PositionalCompletion(
 		carapace.ActionDirectories(),
 	)

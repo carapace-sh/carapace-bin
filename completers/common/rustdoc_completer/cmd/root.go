@@ -151,6 +151,7 @@ func init() {
 		"output-format":    carapace.ActionValues("html"),
 		"parts-out-dir":    carapace.ActionDirectories(),
 		"persist-doctests": carapace.ActionDirectories(),
+		"plugin-path":      carapace.ActionDirectories(),
 		// "playground-url":     carapace.ActionValues(),
 		// "resource-suffix":    carapace.ActionValues(),
 		// "static-root-path":   carapace.ActionValues(),
@@ -158,7 +159,8 @@ func init() {
 		// "target":             carapace.ActionValues(),
 		// "test-args":          carapace.ActionValues(),
 		// "test-builder":       carapace.ActionValues(),
-		"test-run-directory": carapace.ActionDirectories(),
+		"test-builder-wrapper": carapace.ActionFiles(),
+		"test-run-directory":   carapace.ActionDirectories(),
 		// "theme":              carapace.ActionValues(),
 		"warn": rustdoc.ActionLints(),
 	})

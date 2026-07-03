@@ -20,6 +20,11 @@ func init() {
 	scipCmd.Flags().String("output", "", "The output path where the SCIP file will be written to. Defaults to `index.scip`.")
 	rootCmd.AddCommand(scipCmd)
 
+	carapace.Gen(scipCmd).FlagCompletion(carapace.ActionMap{
+		"config-path": carapace.ActionFiles(),
+		"output":      carapace.ActionFiles(),
+	})
+
 	carapace.Gen(scipCmd).PositionalCompletion(
 		carapace.ActionFiles(),
 	)

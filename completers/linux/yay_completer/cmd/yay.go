@@ -99,6 +99,30 @@ func init() {
 	yayCmd.Flags().Bool("topdown", false, "Shows repository's packages first and then AUR's")
 	yayCmd.Flags().Bool("useask", false, "Automatically resolve conflicts using pacman's ask flag")
 
+	carapace.Gen(yayCmd).FlagCompletion(carapace.ActionMap{
+		"answerclean":   carapace.ActionValues("Yes", "No", "All", "None", "Editor", "Diff"),
+		"answerdiff":    carapace.ActionValues("Yes", "No", "All", "None", "Editor", "Diff"),
+		"answeredit":    carapace.ActionValues("Yes", "No", "All", "None", "Editor", "Diff"),
+		"answerupgrade": carapace.ActionValues("Yes", "No", "All", "None", "Editor", "Diff"),
+		"builddir":      carapace.ActionDirectories(),
+		"cachedir":      carapace.ActionDirectories(),
+		"color":         carapace.ActionValues("auto", "always", "never"),
+		"config":        carapace.ActionFiles(),
+		"editor":        carapace.ActionExecutables(),
+		"git":           carapace.ActionExecutables(),
+		"gpg":           carapace.ActionExecutables(),
+		"gpgdir":        carapace.ActionDirectories(),
+		"hookdir":       carapace.ActionDirectories(),
+		"logfile":       carapace.ActionFiles(),
+		"makepkg":       carapace.ActionExecutables(),
+		"makepkgconf":   carapace.ActionFiles(),
+		"pacman":        carapace.ActionExecutables(),
+		"searchby":      carapace.ActionValues("name-desc", "name", "maintainer", "submitter", "depends", "makedepends", "optdepends", "checkdepends", "provides", "conflicts", "replaces", "groups", "keywords", "comaintainers"),
+		"sortby":        carapace.ActionValues("base", "modified", "name", "popularity", "submitted", "votes"),
+		"sudo":          carapace.ActionExecutables(),
+		"sysroot":       carapace.ActionDirectories(),
+	})
+
 	carapace.Gen(yayCmd).PositionalAnyCompletion(
 		yay.ActionPackageSearch().FilterArgs(),
 	)
