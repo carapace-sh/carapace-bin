@@ -17,6 +17,8 @@ func init() {
 
 	keyupCmd.Flags().Bool("clearmodifiers", false, "Clear modifiers before sending keystrokes")
 	keyupCmd.Flags().String("delay", "", "Delay between keystrokes")
+	keyupCmd.Flags().String("repeat", "", "How many times to repeat the key sequence")
+	keyupCmd.Flags().String("repeat-delay", "", "Delay in milliseconds between repetitions")
 	keyupCmd.Flags().String("window", "", "Send keystrokes to a specific window id")
 	rootCmd.AddCommand(keyupCmd)
 

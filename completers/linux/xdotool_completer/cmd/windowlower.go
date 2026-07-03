@@ -6,18 +6,18 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var windowraiseCmd = &cobra.Command{
-	Use:   "windowraise",
-	Short: "Raise the window to the top of the stack",
+var windowlowerCmd = &cobra.Command{
+	Use:   "windowlower",
+	Short: "Lower a window",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(windowraiseCmd).Standalone()
+	carapace.Gen(windowlowerCmd).Standalone()
 
-	rootCmd.AddCommand(windowraiseCmd)
+	rootCmd.AddCommand(windowlowerCmd)
 
-	carapace.Gen(windowraiseCmd).PositionalCompletion(
+	carapace.Gen(windowlowerCmd).PositionalCompletion(
 		xdotool.ActionWindows(),
 	)
 }

@@ -14,6 +14,8 @@ var execCmd = &cobra.Command{
 func init() {
 	carapace.Gen(execCmd).Standalone()
 
+	execCmd.Flags().String("args", "", "How many arguments to expect in the exec command")
 	execCmd.Flags().Bool("sync", false, "Block until the child process exits")
+	execCmd.Flags().String("terminator", "", "Specifies a terminator that marks the end of exec arguments")
 	rootCmd.AddCommand(execCmd)
 }

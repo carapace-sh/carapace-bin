@@ -14,6 +14,7 @@ var getwindowgeometryCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(getwindowgeometryCmd).Standalone()
+	getwindowgeometryCmd.Flags().String("prefix", "", "Use prefix for shell variable names (max 16 chars)")
 	getwindowgeometryCmd.Flags().Bool("shell", false, "Output values suitable for 'eval' in a shell")
 
 	rootCmd.AddCommand(getwindowgeometryCmd)

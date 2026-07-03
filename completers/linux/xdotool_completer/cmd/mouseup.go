@@ -17,8 +17,6 @@ func init() {
 	carapace.Gen(mouseupCmd).Standalone()
 
 	mouseupCmd.Flags().Bool("clearmodifiers", false, "Clear modifiers before clicking")
-	mouseupCmd.Flags().String("delay", "", "Specify how long, in milliseconds, to delay between clicks")
-	mouseupCmd.Flags().String("repeat", "", "Specify how many times to click")
 	mouseupCmd.Flags().String("window", "", "Specify a window to send a click to")
 	rootCmd.AddCommand(mouseupCmd)
 

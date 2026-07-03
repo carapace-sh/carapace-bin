@@ -14,8 +14,8 @@ var mousemoveRelativeCmd = &cobra.Command{
 func init() {
 	carapace.Gen(mousemoveRelativeCmd).Standalone()
 
-	mousemoveRelativeCmd.Flags().Bool("clearmodifiers", false, "See CLEARMODIFIERS")
-	mousemoveRelativeCmd.Flags().Bool("polar", false, "Use polar coordinates")
+	mousemoveRelativeCmd.Flags().BoolP("clearmodifiers", "c", false, "See CLEARMODIFIERS")
+	mousemoveRelativeCmd.Flags().BoolP("polar", "p", false, "Use polar coordinates")
 	mousemoveRelativeCmd.Flags().Bool("sync", false, "After sending the mouse move request, wait until the mouse is actually moved")
 	rootCmd.AddCommand(mousemoveRelativeCmd)
 }

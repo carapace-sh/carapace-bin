@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/xdotool"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,8 @@ func init() {
 
 	windowunmapCmd.Flags().Bool("sync", false, "After requesting the window unmap, wait until the window is actually unmapped (hidden)")
 	rootCmd.AddCommand(windowunmapCmd)
+
+	carapace.Gen(windowunmapCmd).PositionalCompletion(
+		xdotool.ActionWindows(),
+	)
 }

@@ -16,10 +16,16 @@ func init() {
 
 	rootCmd.AddCommand(defaultCmd)
 
-	carapace.Gen(loggingCmd).PositionalCompletion(
+	carapace.Gen(defaultCmd).PositionalCompletion(
 		carapace.ActionValues(
 			"allow",
 			"deny",
 			"reject",
-		))
+		),
+		carapace.ActionValues(
+			"incoming",
+			"outgoing",
+			"routed",
+		),
+	)
 }

@@ -19,7 +19,7 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().Bool("dry-run", false, "don't modify anything, just show the changes")
-	rootCmd.Flags().Bool("force", false, "")
+	rootCmd.Flags().Bool("force", false, "do not prompt for confirmation")
 	rootCmd.Flags().BoolP("help", "h", false, "show help message and exit")
 	rootCmd.Flags().Bool("version", false, "show program's version number and exit")
 }
