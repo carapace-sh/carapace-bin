@@ -21,6 +21,7 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().BoolS("f", "f", false, "refer to shell functions")
+	rootCmd.Flags().BoolS("m", "m", false, "take arguments as patterns")
 	rootCmd.Flags().BoolS("v", "v", false, "refer to shell variables")
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

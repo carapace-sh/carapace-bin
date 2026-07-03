@@ -19,8 +19,12 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolS("d", "d", false, "forget all remembered commands")
-	rootCmd.Flags().BoolS("r", "r", false, "remove all commands from hash table")
+	rootCmd.Flags().BoolS("L", "L", false, "print each hash table entry in the form of a call to hash")
+	rootCmd.Flags().BoolS("d", "d", false, "use the named directory hash table instead of the command hash table")
+	rootCmd.Flags().BoolS("f", "f", false, "cause the selected hash table to be fully rebuilt immediately")
+	rootCmd.Flags().BoolS("m", "m", false, "take arguments as patterns and print matching hash table elements")
+	rootCmd.Flags().BoolS("r", "r", false, "cause the selected hash table to be emptied")
+	rootCmd.Flags().BoolS("v", "v", false, "list hash table entries as they are added by explicit specification")
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
