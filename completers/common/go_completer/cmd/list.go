@@ -24,9 +24,15 @@ func init() {
 	listCmd.Flags().BoolS("find", "find", false, "identify the named packages but not resolve their dependencies")
 	listCmd.Flags().BoolS("json", "json", false, "print package data in JSON format")
 	listCmd.Flags().BoolS("m", "m", false, "list modules instead of packages")
+	listCmd.Flags().BoolS("retracted", "retracted", false, "report information about retracted module versions")
+	listCmd.Flags().StringS("reuse", "reuse", "", "reuse of old module info from a previous JSON output file")
 	listCmd.Flags().BoolS("test", "test", false, "report not only the named packages but also their test binaries")
 	listCmd.Flags().BoolS("u", "u", false, "add information about available upgrades")
 	listCmd.Flags().BoolS("versions", "versions", false, "set the Module's Versions field to list of all known versions")
 	common.AddBuildFlags(listCmd)
 	rootCmd.AddCommand(listCmd)
+
+	carapace.Gen(listCmd).FlagCompletion(carapace.ActionMap{
+		"reuse": carapace.ActionFiles(),
+	})
 }

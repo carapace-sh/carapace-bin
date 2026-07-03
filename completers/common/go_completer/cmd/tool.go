@@ -21,11 +21,16 @@ func init() {
 	toolCmd.Flags().SetInterspersed(false)
 
 	toolCmd.Flags().StringS("C", "C", "", "Change to dir before running the command")
+	toolCmd.Flags().BoolS("modcacherw", "modcacherw", false, "leave newly-created directories in the module cache read-write")
+	toolCmd.Flags().StringS("modfile", "modfile", "", "use an alternate go.mod file instead of the one in the module root directory")
 	toolCmd.Flags().BoolS("n", "n", false, "only print the command that would be executed")
+	toolCmd.Flags().StringS("overlay", "overlay", "", "read a JSON config file that provides an overlay for build operations")
 	rootCmd.AddCommand(toolCmd)
 
 	carapace.Gen(toolCmd).FlagCompletion(carapace.ActionMap{
-		"C": carapace.ActionDirectories(),
+		"C":       carapace.ActionDirectories(),
+		"modfile": carapace.ActionFiles(".mod"),
+		"overlay": carapace.ActionFiles(".json"),
 	})
 
 	carapace.Gen(toolCmd).PositionalCompletion(

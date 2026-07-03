@@ -17,9 +17,11 @@ func init() {
 	mod_tidyCmd.Flags().SetInterspersed(false)
 
 	mod_tidyCmd.Flags().StringS("compat", "compat", "", "preserve additional checksums needed for given version")
+	mod_tidyCmd.Flags().BoolS("diff", "diff", false, "print necessary changes as a unified diff without modifying files")
 	mod_tidyCmd.Flags().BoolS("e", "e", false, "attempt to proceed despite errors")
 	mod_tidyCmd.Flags().StringS("go", "go", "", "update the 'go' directive to given version")
 	mod_tidyCmd.Flags().BoolS("v", "v", false, "print information about removed modules")
+	mod_tidyCmd.Flags().BoolS("x", "x", false, "print the commands")
 	modCmd.AddCommand(mod_tidyCmd)
 
 	carapace.Gen(mod_tidyCmd).FlagCompletion(carapace.ActionMap{

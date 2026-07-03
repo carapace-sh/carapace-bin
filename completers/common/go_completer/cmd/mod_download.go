@@ -17,8 +17,13 @@ func init() {
 	mod_downloadCmd.Flags().SetInterspersed(false)
 
 	mod_downloadCmd.Flags().BoolS("json", "json", false, "print a sequence of JSON objects")
+	mod_downloadCmd.Flags().StringS("reuse", "reuse", "", "reuse of old module info from a previous JSON output file")
 	mod_downloadCmd.Flags().BoolS("x", "x", false, "print the commands download executes")
 	modCmd.AddCommand(mod_downloadCmd)
+
+	carapace.Gen(mod_downloadCmd).FlagCompletion(carapace.ActionMap{
+		"reuse": carapace.ActionFiles(),
+	})
 
 	carapace.Gen(mod_downloadCmd).PositionalCompletion(
 		carapace.Batch(
