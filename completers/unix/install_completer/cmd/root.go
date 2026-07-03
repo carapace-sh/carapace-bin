@@ -26,6 +26,7 @@ func init() {
 	rootCmd.Flags().BoolS("c", "c", false, "(ignored)")
 	rootCmd.Flags().BoolP("compare", "C", false, "compare each pair of source and destination files, and")
 	rootCmd.Flags().String("context", "", "like -Z, or if CTX is specified then set the")
+	rootCmd.Flags().Bool("debug", false, "explain how a file is copied")
 	rootCmd.Flags().BoolP("directory", "d", false, "treat all arguments as directory names; create all")
 	rootCmd.Flags().StringP("group", "g", "", "set group ownership, instead of process' current group")
 	rootCmd.Flags().Bool("help", false, "display this help and exit")
