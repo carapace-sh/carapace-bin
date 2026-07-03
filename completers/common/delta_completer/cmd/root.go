@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/delta"
+	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
@@ -28,7 +29,6 @@ func init() {
 	rootCmd.Flags().String("blame-separator-style", "", "Style string for the blame-separator-format")
 	rootCmd.Flags().String("blame-timestamp-format", "", "Format of `git blame` timestamp in raw git output received by delta")
 	rootCmd.Flags().String("blame-timestamp-output-format", "", "Format string for git blame timestamp output")
-	rootCmd.Flags().Bool("color-moved", false, "Enable support for Git's --color-moved feature")
 	rootCmd.Flags().Bool("color-only", false, "Do not alter the input structurally in any way")
 	rootCmd.Flags().String("commit-decoration-style", "", "Style string for the commit hash decoration")
 	rootCmd.Flags().String("commit-regex", "", "Regular expression used to identify the commit line when parsing git output")
@@ -123,7 +123,6 @@ func init() {
 	rootCmd.Flags().BoolP("version", "V", false, "Print version information")
 	rootCmd.Flags().String("whitespace-error-style", "", "Style string for whitespace errors")
 	rootCmd.Flags().StringP("width", "w", "", "The width of underline/overline decorations")
-	rootCmd.Flags().Bool("word-diff", false, "Highlight word-level differences in within-line diff")
 	rootCmd.Flags().String("word-diff-regex", "", "Regular expression defining a 'word' in within-line diff algorithm")
 	rootCmd.Flags().String("wrap-left-symbol", "", "End-of-line wrapped content symbol (left-aligned)")
 	rootCmd.Flags().String("wrap-max-lines", "", "How often a line should be wrapped if it does not fit")
@@ -134,19 +133,24 @@ func init() {
 
 	// TODO complete styles
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"24-bit-color":        carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
-		"config":              carapace.ActionFiles(),
-		"detect-dark-light":   carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
-		"generate-completion": carapace.ActionValues("bash", "elvish", "fish", "powershell", "zsh"),
-		"grep-output-type":    carapace.ActionValues("ripgrep", "classic"),
-		"inspect-raw-lines":   carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
+		"24-bit-color":          carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
+		"config":                carapace.ActionFiles(),
+		"detect-dark-light":     carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
+		"diff-args":             bridge.ActionCarapaceBin("git", "diff").Split(),
+		"generate-completion":   carapace.ActionValues("bash", "elvish", "fish", "powershell", "zsh"),
+		"grep-output-type":      carapace.ActionValues("ripgrep", "classic"),
+		"grep-separator-symbol": carapace.ActionValues(":", "-", "keep"),
+		"inspect-raw-lines":     carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
+		"line-fill-method":      carapace.ActionValues("ansi", "spaces"),
 		"pager": carapace.Batch(
 			carapace.ActionExecutables(),
 			carapace.ActionFiles(),
 		).ToA(),
-		"paging":       carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
-		"syntax-theme": delta.ActionSyntaxThemes(),
-		"true-color":   carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
+		"paging":         carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
+		"syntax-theme":   delta.ActionSyntaxThemes(),
+		"true-color":     carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
+		"width":          carapace.ActionValues("variable"),
+		"wrap-max-lines": carapace.ActionValues("unlimited"),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
