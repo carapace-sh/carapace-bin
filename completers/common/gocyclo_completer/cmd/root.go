@@ -21,10 +21,8 @@ func init() {
 	rootCmd.Flags().BoolS("avg", "avg", false, "show the average complexity over all functions")
 	rootCmd.Flags().BoolS("avg-short", "avg-short", false, "show the average complexity over all functions without a label")
 	rootCmd.Flags().StringS("ignore", "ignore", "", "exclude files matching the given regular expression")
-	rootCmd.Flags().StringS("over", "over", "", "show functions with complexity > N only")
-	rootCmd.Flags().StringS("top", "top", "", "show the top N most complex functions only")
-	rootCmd.Flags().BoolS("total", "total", false, "show the total complexity for all functions")
-	rootCmd.Flags().BoolS("total-short", "total-short", false, "show the total complexity for all functions without a label")
+	rootCmd.Flags().IntS("over", "over", 0, "show functions with complexity > N only")
+	rootCmd.Flags().IntS("top", "top", -1, "show the top N most complex functions only")
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionFiles(),

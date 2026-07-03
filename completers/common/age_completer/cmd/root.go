@@ -25,8 +25,10 @@ func init() {
 	rootCmd.Flags().StringArrayP("identity", "i", nil, "Use the identity file at PATH. Can be repeated.")
 	rootCmd.Flags().StringP("output", "o", "", "Write the result to the file at path OUTPUT.")
 	rootCmd.Flags().BoolP("passphrase", "p", false, "Encrypt with a passphrase.")
+	rootCmd.Flags().StringArrayP("plugin", "j", nil, "Use the data-less plugin with name NAME. Can be repeated.")
 	rootCmd.Flags().StringArrayP("recipient", "r", nil, "Encrypt to the specified RECIPIENT. Can be repeated.")
 	rootCmd.Flags().StringArrayP("recipients-file", "R", nil, "Encrypt to recipients listed at PATH. Can be repeated.")
+	rootCmd.Flags().Bool("version", false, "Print the version.")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"identity": carapace.Batch(

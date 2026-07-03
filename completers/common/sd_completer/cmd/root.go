@@ -19,6 +19,7 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().BoolP("across", "A", false, "Process each input as a whole rather than line by line")
 	rootCmd.Flags().BoolP("fixed-strings", "F", false, "Treat FIND and REPLACE_WITH args as literal strings")
 	rootCmd.Flags().StringP("flags", "f", "", "Regex flags. May be combined")
 	rootCmd.Flags().BoolP("help", "h", false, "Print help (see a summary with '-h')")
