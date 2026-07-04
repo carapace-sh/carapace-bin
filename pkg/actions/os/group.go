@@ -86,9 +86,7 @@ func ActionGroupMembers(group string) carapace.Action {
 			if output, err := c.Command("dscl", ".", "-read", "/Groups/"+group, "GroupMembership").Output(); err == nil {
 				line := strings.TrimSpace(string(output))
 				if prefix, members, ok := strings.Cut(line, ":"); ok && strings.TrimSpace(prefix) == "GroupMembership" {
-					for _, member := range strings.Fields(strings.TrimSpace(members)) {
-						vals = append(vals, member)
-					}
+					vals = append(vals, strings.Fields(strings.TrimSpace(members))...)
 				}
 			}
 		}
