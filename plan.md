@@ -89,7 +89,7 @@ Create Windows-specific completers for commands that ship with Windows. These ar
 | ✅ done | `rem` | Record comments in batch files | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/rem |
 | ✅ done | `path` | Display/set executable search path | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/path |
 | ✅ done | `assoc` | Display/modify file associations | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/assoc |
-| ☐ todo | `ftype` | Display/modify file type associations | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/ftype |
+| ✅ done | `ftype` | Display/modify file type associations | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/ftype |
 | ✅ done | `doskey` | Edit command lines, recall commands, create macros | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/doskey |
 | ✅ done | `pushd` | Push current directory and change | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/pushd |
 | ✅ done | `popd` | Pop directory from stack | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/popd |
@@ -105,7 +105,7 @@ Create Windows-specific completers for commands that ship with Windows. These ar
 | ✅ done | `replace` | Replace files | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/replace |
 | ✅ done | `expand` | Extract files from .cab archives | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/expand |
 | ✅ done | `makecab` | Create .cab archive | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/makecab |
-| ☐ todo | `extract` | Extract from cabinet (older) | — |
+| ✅ done | `extract` | Extract from cabinet (older) | — |
 | ✅ done | `compact` | Compress/uncompress files (NTFS) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/compact |
 | ✅ done | `cipher` | Encrypt/decrypt files (EFS) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/cipher |
 | ✅ done | `print` | Print a text file | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/print |
@@ -125,15 +125,15 @@ Create Windows-specific completers for commands that ship with Windows. These ar
 | ✅ done | `mountvol` | Create/delete volume mount points | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/mountvol |
 | ✅ done | `convert` | Convert FAT to NTFS | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/convert |
 | ✅ done | `defrag` | Defragment a volume | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/defrag |
-| ☐ todo | `recover` | Recover readable info from bad disk | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/recover |
+| ✅ done | `recover` | Recover readable info from bad disk | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/recover |
 | ✅ done | `vssadmin` | Volume Shadow Copy administration | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/vssadmin |
 | ✅ done | `bcdedit` | Boot configuration data editor | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/bcdedit |
-| ☐ todo | `bootcfg` | Configure boot entries (legacy) | — |
-| ☐ todo | `diskraid` | RAID configuration tool | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/diskraid |
+| ✅ done | `bootcfg` | Configure boot entries (legacy) | — |
+| ✅ done | `diskraid` | RAID configuration tool | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/diskraid |
 | ☐ todo | `fltMC` | Filter manager control (minifilters) | — |
-| ☐ todo | `chkntfs` | Check NTFS at boot | — |
-| ☐ todo | `pagefileconfig` | Page file configuration | — |
-| ☐ todo | `recover` | Recover readable data | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/recover |
+| ✅ done | `chkntfs` | Check NTFS at boot | — |
+| ✅ done | `pagefileconfig` | Page file configuration | — |
+| ✅ done | `recover` | Recover readable data | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/recover |
 
 ---
 
@@ -151,7 +151,7 @@ Create Windows-specific completers for commands that ship with Windows. These ar
 | ✅ done | `shutdown` | Shutdown/restart computer | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/shutdown |
 | ✅ done | `powercfg` | Power configuration settings | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/powercfg |
 | ✅ done | `driverquery` | List installed drivers | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/driverquery |
-| ☐ todo | `wmic` | WMI command-line interface | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/wmic |
+| ✅ done | `wmic` | WMI command-line interface | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/wmic |
 | ✅ done | `reg` | Registry editor command-line | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/reg |
 | ✅ done | `runas` | Run program as different user | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/runas |
 | ✅ done | `openfiles` | Query/display open files | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/openfiles |
@@ -165,9 +165,9 @@ Create Windows-specific completers for commands that ship with Windows. These ar
 | ✅ done | `shadow` | Shadow (monitor) another RDP session | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/shadow |
 | ✅ done | `tsdiscon` | Disconnect terminal session | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tsdiscon |
 | ✅ done | `tskill` | End process in session | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tskill |
-| ☐ todo | `tsprof` | Copy user config | — |
-| ☐ todo | `flattemp` | Enable/disable flat temp dirs | — |
-| ☐ todo | `bootcfg` | Configure boot entries | — |
+| ✅ done | `tsprof` | Copy user config | — |
+| ✅ done | `flattemp` | Enable/disable flat temp dirs | — |
+| ✅ done | `bootcfg` | Configure boot entries | — |
 
 ---
 
@@ -185,15 +185,15 @@ Create Windows-specific completers for commands that ship with Windows. These ar
 | ✅ done | `route` | Routing table (Windows variant) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/route |
 | ✅ done | `netstat` | Network statistics (Windows variant) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/netstat |
 | ✅ done | `hostname` | Display hostname (Windows variant, overrides common) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/hostname |
-| ☐ todo | `getmac` | Get MAC address | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/getmac |
+| ✅ done | `getmac` | Get MAC address | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/getmac |
 | ✅ done | `nbtstat` | NetBIOS statistics | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/nbtstat |
 | ☐ todo | `netdiag` | Network diagnostics | — |
-| ☐ todo | `portqry` | Port query tool | — |
+| ✅ done | `portqry` | Port query tool | — |
 | ✅ done | `dnscmd` | DNS server administration | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/dnscmd |
-| ☐ todo | `dsacls` | DS ACL management | — |
-| ☐ todo | `dcdiag` | Domain controller diagnostics | — |
-| ☐ todo | `repadmin` | AD replication administration | — |
-| ☐ todo | `nltest` | NLB/AD testing | — |
+| ✅ done | `dsacls` | DS ACL management | — |
+| ✅ done | `dcdiag` | Domain controller diagnostics | — |
+| ✅ done | `repadmin` | AD replication administration | — |
+| ✅ done | `nltest` | NLB/AD testing | — |
 | ✅ done | `dism` | Deployment Image Servicing and Management | https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/what-is-dism |
 
 ---
@@ -229,7 +229,7 @@ Create Windows-specific completers for commands that ship with Windows. These ar
 | ✅ done | `wt` | Windows Terminal | Already in `completers/common/wt_completer` |
 | ✅ done | `pwsh` | PowerShell 7+ (cross-platform) | https://learn.microsoft.com/en-us/powershell/scripting/developer/cmdlet-aliases |
 | ✅ done | `powershell` | Windows PowerShell 5.1 | https://learn.microsoft.com/en-us/powershell/scripting/developer/cmdlet-aliases |
-| ☐ todo | `dotnet` | .NET CLI | Already in common? Verify |
+| ✅ done | `dotnet` | .NET CLI | Already in common? Verify |
 | ✅ done | `azcopy` | Azure storage copy tool | https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10 |
 | ✅ done | `winsw` | Windows Service Wrapper | https://github.com/winsw/winsw |
 | ✅ done | `nssm` | Non-Sucking Service Manager | https://nssm.cc/ |
@@ -249,13 +249,13 @@ Create Windows-specific completers for commands that ship with Windows. These ar
 | ✅ done | `wevtutil` | Windows event log utility | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/wevtutil |
 | ✅ done | `eventvwr` | Event Viewer (MMC snap-in launcher) | — |
 | ✅ done | `perfmon` | Performance Monitor (MMC snap-in) | — |
-| ☐ todo | `wmic` | WMI (also in Phase 4) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/wmic |
+| ✅ done | `wmic` | WMI (also in Phase 4) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/wmic |
 | ✅ done | `dispdiag` | Display diagnostics | — |
 | ✅ done | `dxdiag` | DirectX diagnostics | — |
 | ☐ todo | `mdt` | Microsoft Deployment Toolkit | — |
-| ☐ todo | `logman` | Performance log (also in Phase 6) | — |
+| ✅ done | `logman` | Performance log (also in Phase 6) | — |
 | ✅ done | `tracerpt` | Convert trace logs to reports | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tracerpt |
-| ☐ todo | `getmac` | MAC address (also in Phase 5) | — |
+| ✅ done | `getmac` | MAC address (also in Phase 5) | — |
 
 ---
 
@@ -279,9 +279,9 @@ Create Windows-specific completers for commands that ship with Windows. These ar
 | ☐ todo | `qbasic` | QuickBASIC (legacy) | — |
 | ☐ todo | `backup` | Backup (legacy) | — |
 | ☐ todo | `restore` | Restore (legacy) | — |
-| ☐ todo | `lpq` | Print queue status | — |
-| ☐ todo | `lpr` | Print file to network printer | — |
-| ☐ todo | `ftype` | File type (also in Phase 2) | — |
+| ✅ done | `lpq` | Print queue status | — |
+| ✅ done | `lpr` | Print file to network printer | — |
+| ✅ done | `ftype` | File type (also in Phase 2) | — |
 
 ---
 
