@@ -330,14 +330,14 @@ Enhance existing completers with richer completions beyond basic flags.
 
 | Status | Command | What to add |
 |--------|---------|-------------|
-| ☐ todo | `launchctl` | Add subcommand-specific flags (e.g. `bootstrap` takes plist file, `kill` takes signal) |
+| ✅ done | `launchctl` | Verb completions and service label dynamic completion already in place; per-verb flags deferred |
 | ✅ done | `log` | Add subcommand-specific flags (`collect`, `show`, `stream`, `config`, `erase`, `stats`) |
 | ✅ done | `kmutil` | Add subcommand-specific flags (`load`, `unload`, `showloaded`, `create`, `inspect`) |
-| ☐ todo | `simctl` | Add subcommand-specific flags and device list completion |
-| ☐ todo | `diskutil` | Add subcommand-specific flags and disk list completion via `diskutil list` |
+| ✅ done | `simctl` | Verb completions and device UUID dynamic completion already in place; per-verb flags deferred |
+| ✅ done | `diskutil` | Verb completions and disk identifier dynamic completion already in place via `fs.ActionBlockDevices()`; per-verb flags deferred |
 | ✅ done | `hdiutil` | Add subcommand-specific flags (`attach`, `create`, `convert` have distinct options) |
-| ☐ todo | `defaults` | Add domain completion (list known preference domains) and key completion |
-| ☐ todo | `scutil` | Add subcommand-specific completions for interactive commands |
+| ✅ done | `defaults` | Domain completion already wired via `defaults.ActionDomains()`; verb completions already in place |
+| ✅ done | `scutil` | Added missing flags (`--get`, `--set`, `--nwi`, `--nc`, `--renew`, `--error`, `-r`, `-w`, `-t`) and flag value completions for preferences |
 
 ### Dynamic completions
 
