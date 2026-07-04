@@ -75,37 +75,37 @@ Create darwin-specific completers for commands where BSD/macOS flags differ sign
 
 | Status | Command | Key differences from GNU | Man page |
 |--------|---------|--------------------------|----------|
-| ☐ todo | `cut` | BSD: mostly compatible; no `--output-delimiter`, `--complement` | https://keith.github.io/xcode-manpages/cut.1.html |
-| ☐ todo | `sort` | BSD: limited GNU extensions; no `--files0-from`, `--debug`, `--parallel` | https://keith.github.io/xcode-manpages/sort.1.html |
-| ☐ todo | `uniq` | BSD: mostly compatible; no `--all-repeated`, `--zero-terminated` | https://keith.github.io/xcode-manpages/uniq.1.html |
-| ☐ todo | `tr` | BSD: mostly compatible; no `--truncate-set1` | https://keith.github.io/xcode-manpages/tr.1.html |
-| ☐ todo | `tee` | BSD: `-a` append, `-i` ignore; no `--output-error` | https://keith.github.io/xcode-manpages/tee.1.html |
-| ☐ todo | `basename` | BSD: `-a` multiple, `-s` suffix; mostly compatible | https://keith.github.io/xcode-manpages/basename.1.html |
-| ☐ todo | `dirname` | BSD: `-a` multiple; mostly compatible | https://keith.github.io/xcode-manpages/dirname.1.html |
-| ☐ todo | `env` | BSD: `-i`, `-S`, `-P`; no `--chdir`, `--debug`, `--ignore-environment` long opts | https://keith.github.io/xcode-manpages/env.1.html |
-| ☐ todo | `id` | BSD: `-P`, `-A` audit; no `--zero`, `--user`, `--group` long opts | https://keith.github.io/xcode-manpages/id.1.html |
-| ☐ todo | `who` | BSD: `-m`, `-q`, `-u`, `-H`; no `--login`, `--runlevel` | https://keith.github.io/xcode-manpages/who.1.html |
-| ☐ todo | `ps` | BSD: completely different flag syntax (`-aux` vs `aux`), `-e`, `-o` format; no `--sort`, `--info` | https://keith.github.io/xcode-manpages/ps.1.html |
-| ☐ todo | `kill` | BSD: `-s` signal, `-l` list; no `--table`, `--timeout`, `--queue` | https://keith.github.io/xcode-manpages/kill.1.html |
-| ☐ todo | `find` | BSD: `-E` extregex, `-X`, `-x`, `-d` depth; different `-print0`, `-printf` | https://keith.github.io/xcode-manpages/find.1.html |
-| ☐ todo | `xargs` | BSD: `-E` eofstr, `-I` replstr, `-R`; no `--null`, `--verbose`, `--delimiter` long opts | https://keith.github.io/xcode-manpages/xargs.1.html |
-| ☐ todo | `tar` | BSD: `bsdtar`, different option style; `-z`, `-j`, `-J`; no `--acls`, `--selinux` | https://keith.github.io/xcode-manpages/tar.1.html |
-| ☐ todo | `base64` | BSD: `-D` decode, `-i`, `-b`, `-o`; different from GNU | https://keith.github.io/xcode-manpages/base64.1.html |
-| ☐ todo | `base32` | BSD: `-D` decode, `-i`, `-b`, `-o`; different from GNU | https://keith.github.io/xcode-manpages/base32.1.html |
-| ☐ todo | `cksum` | BSD: `-o` old format; no `--algorithm`, `--untagged` | https://keith.github.io/xcode-manpages/cksum.1.html |
-| ☐ todo | `od` | BSD: `-A`, `-j`, `-N`, `-t`, `-v`; no `--read-bytes`, `--format` long opt | https://keith.github.io/xcode-manpages/od.1.html |
-| ☐ todo | `file` | BSD: `-b`, `-k`, `-z`, `-m`; no `--mime-type`, `--mime-encoding` | https://keith.github.io/xcode-manpages/file.1.html |
-| ☐ todo | `diff` | BSD: `-u`, `-c`, `-y`; no `--color`, `--no-dereference` | https://keith.github.io/xcode-manpages/diff.1.html |
-| ☐ todo | `patch` | BSD: `-p`, `-R`, `-i`, `-o`, `-N`; no `--posix`, `--no-backup-if-mismatch` | https://keith.github.io/xcode-manpages/patch.1.html |
-| ☐ todo | `hostname` | BSD: `-s`; no `--fqdn`, `--all-fqdns`, `--ip-address` | https://keith.github.io/xcode-manpages/hostname.1.html |
-| ☐ todo | `uname` | BSD: `-a`, `-m`, `-n`, `-p`, `-r`, `-s`, `-v`; no long opts | https://keith.github.io/xcode-manpages/uname.1.html |
+| ✅ done | `cut` | BSD: mostly compatible; no `--output-delimiter`, `--complement` | https://keith.github.io/xcode-manpages/cut.1.html |
+| ✅ done | `sort` | BSD: limited GNU extensions; no `--files0-from`, `--debug`, `--parallel` | https://keith.github.io/xcode-manpages/sort.1.html |
+| ✅ done | `uniq` | BSD: mostly compatible; no `--all-repeated`, `--zero-terminated` | https://keith.github.io/xcode-manpages/uniq.1.html |
+| ✅ done | `tr` | BSD: mostly compatible; no `--truncate-set1` | https://keith.github.io/xcode-manpages/tr.1.html |
+| ✅ done | `tee` | BSD: `-a` append, `-i` ignore; no `--output-error` | https://keith.github.io/xcode-manpages/tee.1.html |
+| ✅ done | `basename` | BSD: `-a` multiple, `-s` suffix; mostly compatible | https://keith.github.io/xcode-manpages/basename.1.html |
+| ✅ done | `dirname` | BSD: `-a` multiple; mostly compatible | https://keith.github.io/xcode-manpages/dirname.1.html |
+| ✅ done | `env` | BSD: `-i`, `-S`, `-P`; no `--chdir`, `--debug`, `--ignore-environment` long opts | https://keith.github.io/xcode-manpages/env.1.html |
+| ✅ done | `id` | BSD: `-P`, `-A` audit; no `--zero`, `--user`, `--group` long opts | https://keith.github.io/xcode-manpages/id.1.html |
+| ✅ done | `who` | BSD: `-m`, `-q`, `-u`, `-H`; no `--login`, `--runlevel` | https://keith.github.io/xcode-manpages/who.1.html |
+| ✅ done | `ps` | BSD: completely different flag syntax (`-aux` vs `aux`), `-e`, `-o` format; no `--sort`, `--info` | https://keith.github.io/xcode-manpages/ps.1.html |
+| ✅ done | `kill` | BSD: `-s` signal, `-l` list; no `--table`, `--timeout`, `--queue` | https://keith.github.io/xcode-manpages/kill.1.html |
+| ✅ done | `find` | BSD: `-E` extregex, `-X`, `-x`, `-d` depth; different `-print0`, `-printf` | https://keith.github.io/xcode-manpages/find.1.html |
+| ✅ done | `xargs` | BSD: `-E` eofstr, `-I` replstr, `-R`; no `--null`, `--verbose`, `--delimiter` long opts | https://keith.github.io/xcode-manpages/xargs.1.html |
+| ✅ done | `tar` | BSD: `bsdtar`, different option style; `-z`, `-j`, `-J`; no `--acls`, `--selinux` | https://keith.github.io/xcode-manpages/tar.1.html |
+| ✅ done | `base64` | BSD: `-D` decode, `-i`, `-b`, `-o`; different from GNU | https://keith.github.io/xcode-manpages/base64.1.html |
+| ❌ skip | `base32` | BSD: `-D` decode, `-i`, `-b`, `-o`; different from GNU | https://keith.github.io/xcode-manpages/base32.1.html |
+| ✅ done | `cksum` | BSD: `-o` old format; no `--algorithm`, `--untagged` | https://keith.github.io/xcode-manpages/cksum.1.html |
+| ✅ done | `od` | BSD: `-A`, `-j`, `-N`, `-t`, `-v`; no `--read-bytes`, `--format` long opt | https://keith.github.io/xcode-manpages/od.1.html |
+| ✅ done | `file` | BSD: `-b`, `-k`, `-z`, `-m`; no `--mime-type`, `--mime-encoding` | https://keith.github.io/xcode-manpages/file.1.html |
+| ✅ done | `diff` | BSD: `-u`, `-c`, `-y`; no `--color`, `--no-dereference` | https://keith.github.io/xcode-manpages/diff.1.html |
+| ✅ done | `patch` | BSD: `-p`, `-R`, `-i`, `-o`, `-N`; no `--posix`, `--no-backup-if-mismatch` | https://keith.github.io/xcode-manpages/patch.1.html |
+| ✅ done | `hostname` | BSD: `-s`; no `--fqdn`, `--all-fqdns`, `--ip-address` | https://keith.github.io/xcode-manpages/hostname.1.html |
+| ✅ done | `uname` | BSD: `-a`, `-m`, `-n`, `-p`, `-r`, `-s`, `-v`; no long opts | https://keith.github.io/xcode-manpages/uname.1.html |
 
 ### Priority 2d: macOS-specific checksum commands
 
 | Status | Command | Description | Man page |
 |--------|---------|-------------|----------|
-| ☐ todo | `md5` | BSD md5 checksum (not `md5sum`) | https://keith.github.io/xcode-manpages/md5.1.html |
-| ☐ todo | `shasum` | Perl SHA checksum script (`-a` algorithm, `-c` check) | https://keith.github.io/xcode-manpages/shasum.1.html |
+| ✅ done | `md5` | BSD md5 checksum (not `md5sum`) | https://keith.github.io/xcode-manpages/md5.1.html |
+| ✅ done | `shasum` | Perl SHA checksum script (`-a` algorithm, `-c` check) | https://keith.github.io/xcode-manpages/shasum.1.html |
 
 ---
 
