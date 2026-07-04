@@ -2,12 +2,22 @@ package os
 
 import (
 	"os"
+	"runtime"
 	"strconv"
 	"strings"
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace/pkg/style"
 )
+
+func isNonLoginShell(shell string) bool {
+	switch runtime.GOOS {
+	case "darwin":
+		return shell == "/usr/bin/false" || shell == "/usr/sbin/uucico"
+	default:
+		return shell == "/usr/bin/nologin" || shell == "/bin/false"
+	}
+}
 
 // ActionUsers completes system user names
 //
@@ -32,7 +42,7 @@ func ActionUsers() carapace.Action {
 					_style := style.Default
 					if id == "0" {
 						_style = style.Red
-					} else if shell != "/usr/bin/nologin" {
+					} else if !isNonLoginShell(shell) {
 						if _id, err := strconv.Atoi(id); err == nil && _id < 1000 {
 							_style = style.Yellow
 						} else {
