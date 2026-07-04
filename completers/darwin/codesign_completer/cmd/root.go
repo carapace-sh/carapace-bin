@@ -18,19 +18,13 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().StringP("bundle-identifier", "bundle-identifier", "", "Identifier to use for code signing")
-	rootCmd.Flags().StringP("certificate", "certificate", "", "Use the specified certificate")
-	rootCmd.Flags().BoolP("deep", "deep", false, "Sign all nested code")
-	rootCmd.Flags().BoolP("display", "display", false, "Display the code signature")
-	rootCmd.Flags().BoolP("entitlements", "entitlements", false, "Print the entitlements")
-	rootCmd.Flags().BoolP("force", "force", false, "Replace any existing signature")
-	rootCmd.Flags().BoolP("help", "h", false, "Display usage information")
-	rootCmd.Flags().BoolP("requirements", "requirements", false, "Print the requirements")
-	rootCmd.Flags().StringP("resource-rules", "resource-rules", "", "Use the specified resource rules plist")
-	rootCmd.Flags().BoolP("sign", "sign", false, "Sign the code with the given identity")
-	rootCmd.Flags().BoolP("strict", "strict", false, "Check the signature strictly")
-	rootCmd.Flags().BoolP("verbose", "verbose", false, "Verbose mode")
-	rootCmd.Flags().BoolP("verify", "verify", false, "Verify the code signature")
+	rootCmd.Flags().BoolP("display", "d", false, "Display the code signature")
+	rootCmd.Flags().BoolP("entitlements", "e", false, "Print the entitlements")
+	rootCmd.Flags().BoolP("force", "f", false, "Replace any existing signature")
+	rootCmd.Flags().StringP("identifier", "i", "", "Identifier to use for code signing")
+	rootCmd.Flags().StringP("requirements", "r", "", "Requirements for signing or verification")
+	rootCmd.Flags().StringP("sign", "s", "", "Sign the code with the given identity")
+	rootCmd.Flags().BoolP("verbose", "v", false, "Verbose mode (set multiple times for more verbosity)")
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

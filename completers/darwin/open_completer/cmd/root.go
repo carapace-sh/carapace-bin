@@ -19,19 +19,24 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().StringP("app", "a", "", "Open the file with the specified application")
-	rootCmd.Flags().StringP("args", "args", "", "Pass remaining arguments as arguments to the application")
 	rootCmd.Flags().StringP("bundle", "b", "", "Open the file with the specified bundle identifier")
-	rootCmd.Flags().StringP("env", "E", "", "Set the environment variable when launching the application")
-	rootCmd.Flags().BoolP("fresh", "F", false, "Launch the application fresh")
+	rootCmd.Flags().BoolP("fork", "f", false, "Open the file with the default application as a new fork")
+	rootCmd.Flags().BoolP("fresh", "F", false, "Launch the application fresh, that is, without restoring windows")
+	rootCmd.Flags().BoolP("help", "h", false, "Display usage information")
 	rootCmd.Flags().BoolP("hide", "g", false, "Do not bring the application to the foreground")
-	rootCmd.Flags().BoolP("new", "n", false, "Open a new instance of the application")
-	rootCmd.Flags().BoolP("print", "p", false, "Open the file with the default printing application")
-	rootCmd.Flags().BoolP("reveal", "R", false, "Reveal the file in the Finder")
-	rootCmd.Flags().StringP("stderr", "e", "", "Redirect stderr to the specified file")
-	rootCmd.Flags().StringP("stdin", "s", "", "Redirect stdin from the specified file")
-	rootCmd.Flags().StringP("stdout", "o", "", "Redirect stdout to the specified file")
-	rootCmd.Flags().BoolP("url", "u", false, "Treat the argument as a URL")
-	rootCmd.Flags().StringP("with", "W", "", "Open the file with the specified application")
+	rootCmd.Flags().BoolP("j", "j", false, "Launch the app hidden")
+	rootCmd.Flags().BoolP("new", "n", false, "Open a new instance of the application even if one is already running")
+	rootCmd.Flags().BoolP("reveal", "R", false, "Reveal the file in the Finder instead of opening it")
+	rootCmd.Flags().StringP("sdk", "s", "", "Choose an SDK when opening an application built for multiple platforms")
+	rootCmd.Flags().BoolP("text", "e", false, "Open the file with /Applications/TextEdit.app")
+	rootCmd.Flags().BoolP("text-editor", "t", false, "Open the file with the default text editor")
+	rootCmd.Flags().StringP("url", "u", "", "Open the specified URL")
+	rootCmd.Flags().BoolP("wait", "W", false, "Wait for the opened application to exit")
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"app":    carapace.ActionFiles(".app"),
+		"bundle": carapace.ActionValues(),
+	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

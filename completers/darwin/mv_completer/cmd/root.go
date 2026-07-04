@@ -19,9 +19,9 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().BoolP("force", "f", false, "Do not prompt for confirmation before overwriting the destination path")
+	rootCmd.Flags().BoolP("help", "h", false, "Display usage information")
 	rootCmd.Flags().BoolP("interactive", "i", false, "Cause mv to write a prompt to the standard error output before moving a file")
 	rootCmd.Flags().BoolP("no-clobber", "n", false, "Do not overwrite an existing file")
-	rootCmd.Flags().BoolP("preserve-extended-attributes", "p", false, "Preserve extended attributes and ACLs")
 	rootCmd.Flags().BoolP("verbose", "v", false, "Cause mv to be verbose, showing files after they are moved")
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())

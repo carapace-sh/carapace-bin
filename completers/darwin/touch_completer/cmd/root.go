@@ -18,9 +18,10 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().StringS("A", "A", "", "Adjust the access and modification times by the specified value")
 	rootCmd.Flags().BoolS("a", "a", false, "Change the access time of the file")
 	rootCmd.Flags().BoolS("c", "c", false, "Do not create the file if it does not exist")
-	rootCmd.Flags().StringS("d", "d", "", "Use the specified time instead of the current time")
+	rootCmd.Flags().StringS("d", "d", "", "Use the specified date instead of the current time")
 	rootCmd.Flags().BoolS("f", "f", false, "Attempt to force the update, even if the file permissions do not allow it")
 	rootCmd.Flags().BoolS("h", "h", false, "If the file is a symbolic link, change the times of the link itself")
 	rootCmd.Flags().BoolS("m", "m", false, "Change the modification time of the file")

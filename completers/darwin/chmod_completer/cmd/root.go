@@ -38,11 +38,15 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolS("H", "H", false, "If the file is a symbolic link, change the mode of the link itself")
-	rootCmd.Flags().BoolS("L", "L", false, "Traverse all symbolic links to directories")
+	rootCmd.Flags().BoolS("C", "C", false, "Compute and display canonical ACL for file")
+	rootCmd.Flags().BoolS("E", "E", false, "Read ACL information from stdin")
+	rootCmd.Flags().BoolS("H", "H", false, "If the file is a symbolic link, change the mode of the link itself (with -R)")
+	rootCmd.Flags().BoolS("L", "L", false, "Traverse all symbolic links to directories (with -R)")
 	rootCmd.Flags().BoolS("N", "N", false, "Clear all ACL entries for the file")
-	rootCmd.Flags().BoolS("P", "P", false, "Do not traverse any symbolic links to directories")
+	rootCmd.Flags().BoolS("P", "P", false, "Do not traverse any symbolic links to directories (with -R)")
 	rootCmd.Flags().BoolS("R", "R", false, "Recursively change file mode bits")
+	rootCmd.Flags().BoolS("f", "f", false, "Do not display a diagnostic message if chmod could not modify the mode")
+	rootCmd.Flags().BoolS("h", "h", false, "If the file is a symbolic link, change the mode of the link itself")
 	rootCmd.Flags().BoolS("v", "v", false, "Cause chmod to be verbose, showing files as the mode is modified")
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())

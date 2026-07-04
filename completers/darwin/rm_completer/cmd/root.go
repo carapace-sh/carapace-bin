@@ -18,13 +18,15 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolP("directory", "d", false, "Attempt to remove directories and files in their hierarchies, including empty directories")
+	rootCmd.Flags().BoolS("I", "I", false, "Request confirmation once if more than three files are being removed")
+	rootCmd.Flags().BoolS("R", "R", false, "Attempt to remove the file hierarchy rooted in each file argument")
+	rootCmd.Flags().BoolS("W", "W", false, "Attempt to undelete the named files")
+	rootCmd.Flags().BoolP("directory", "d", false, "Attempt to remove directories as well as other types of files")
 	rootCmd.Flags().BoolP("force", "f", false, "Attempt to remove the files without prompting for confirmation")
 	rootCmd.Flags().BoolP("interactive", "i", false, "Request confirmation before attempting to remove each file")
-	rootCmd.Flags().BoolP("overwrite", "P", false, "Overwrite regular files before deleting them")
-	rootCmd.Flags().BoolP("recursive", "R", false, "Attempt to remove the file hierarchy rooted in each file argument")
-	rootCmd.Flags().BoolP("recursive-alt", "r", false, "Attempt to remove the file hierarchy rooted in each file argument")
-	rootCmd.Flags().BoolP("verbose", "v", false, "Be verbose when carrying out actions")
+	rootCmd.Flags().BoolP("one-file-system", "x", false, "When removing a hierarchy, do not cross mount points")
+	rootCmd.Flags().BoolP("recursive", "r", false, "Equivalent to -R")
+	rootCmd.Flags().BoolP("verbose", "v", false, "Be verbose when deleting files, showing them as they are removed")
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

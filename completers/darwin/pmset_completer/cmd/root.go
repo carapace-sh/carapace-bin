@@ -18,31 +18,29 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolP("batt", "b", false, "Show battery status")
-	rootCmd.Flags().BoolP("chargers", "c", false, "Show charger status")
-	rootCmd.Flags().BoolP("custom", "c", false, "Show custom settings")
-	rootCmd.Flags().BoolP("help", "h", false, "Display usage information")
-	rootCmd.Flags().BoolP("live", "l", false, "Show live settings")
-	rootCmd.Flags().BoolP("touch", "t", false, "Touch the PM settings")
+	rootCmd.Flags().BoolP("ac", "a", false, "Apply settings to AC power")
+	rootCmd.Flags().BoolP("battery", "b", false, "Apply settings to battery power")
+	rootCmd.Flags().BoolP("charger", "c", false, "Apply settings to charger power")
+	rootCmd.Flags().BoolP("get", "g", false, "Get the current power management settings")
+	rootCmd.Flags().BoolP("ups", "u", false, "Apply settings to UPS power")
 
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.ActionValuesDescribed(
-			"-g", "Get the current power management settings",
-			"-g batt", "Show battery status",
-			"-g chargers", "Show charger status",
-			"-g custom", "Show custom settings",
-			"-g live", "Show live settings",
-			"-g assertions", "Show power assertions",
-			"-g log", "Show power management log",
-			"-g stats", "Show power management statistics",
-			"-g systemstate", "Show system power state",
-			"-g therm", "Show thermal warnings",
-			"-g thermlog", "Show thermal log",
-			"-g ac", "Show AC adapter information",
-			"-g pslog", "Show power source log",
-			"-g rawbatt", "Show raw battery data",
-			"-g uuid", "Show the current UUID",
-			"-g everything", "Show all available information",
+			"batt", "Show battery status",
+			"chargers", "Show charger status",
+			"custom", "Show custom settings",
+			"live", "Show live settings",
+			"assertions", "Show power assertions",
+			"log", "Show power management log",
+			"stats", "Show power management statistics",
+			"systemstate", "Show system power state",
+			"therm", "Show thermal warnings",
+			"thermlog", "Show thermal log",
+			"ac", "Show AC adapter information",
+			"pslog", "Show power source log",
+			"rawbatt", "Show raw battery data",
+			"uuid", "Show the current UUID",
+			"everything", "Show all available information",
 		),
 	)
 }

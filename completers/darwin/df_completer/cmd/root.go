@@ -18,7 +18,10 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().BoolP("512-blocks", "b", false, "Use 512-byte blocks")
+	rootCmd.Flags().BoolS("I", "I", false, "Include statistics on the number of free inodes")
 	rootCmd.Flags().BoolP("all", "a", false, "Show all mount points, including those that were mounted with MNT_IGNORE flag")
+	rootCmd.Flags().BoolP("gigabytes", "g", false, "Use 1073741824-byte (1-Gbyte) blocks")
 	rootCmd.Flags().BoolP("human-readable", "h", false, "Use unit suffixes: Byte, Kilobyte, Megabyte, Gigabyte, Terabyte and Petabyte")
 	rootCmd.Flags().BoolP("inode", "i", false, "Show the number of inodes, number of used inodes, and number of free inodes")
 	rootCmd.Flags().BoolP("kilobytes", "k", false, "Use 1024-byte (1-Kbyte) blocks, rather than the default")

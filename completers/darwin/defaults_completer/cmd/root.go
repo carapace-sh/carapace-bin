@@ -18,9 +18,8 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolP("current-host", "c", false, "Operate on the current host's defaults")
-	rootCmd.Flags().BoolP("host", "h", false, "Operate on a specified host's defaults")
-	rootCmd.Flags().Bool("version", false, "Print version information and exit")
+	rootCmd.Flags().Bool("currentHost", false, "Operate on the current host's defaults")
+	rootCmd.Flags().StringP("host", "host", "", "Operate on a specified host's defaults")
 
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.ActionValuesDescribed(
@@ -33,7 +32,7 @@ func init() {
 			"export", "Exports the domain as XML plist to stdout",
 			"domains", "Lists all domains",
 			"find", "Searches for a key in all domains",
-			"defaults", "Prints the defaults",
+			"help", "Display usage information",
 		),
 	)
 }

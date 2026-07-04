@@ -18,7 +18,9 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().BoolS("A", "A", false, "Display all files, not just directories")
 	rootCmd.Flags().BoolP("all", "a", false, "Display an entry for each file in a file hierarchy")
+	rootCmd.Flags().StringP("blocksize", "B", "", "Use the specified block size")
 	rootCmd.Flags().BoolP("bytes", "b", false, "Display bytes")
 	rootCmd.Flags().StringP("depth", "d", "", "Display all totals to the specified depth")
 	rootCmd.Flags().BoolP("human-readable", "h", false, "Use unit suffixes: Byte, Kilobyte, Megabyte, Gigabyte, Terabyte and Petabyte")
@@ -27,6 +29,7 @@ func init() {
 	rootCmd.Flags().BoolP("links", "l", false, "Calculate the block usage for symbolic links")
 	rootCmd.Flags().BoolP("megabytes", "m", false, "Use 1048576-byte (1-Mbyte) blocks")
 	rootCmd.Flags().BoolP("no-dereference", "P", false, "Do not follow symbolic links")
+	rootCmd.Flags().BoolP("no-traverse", "x", false, "Do not descend into directories that are on a different filesystem")
 	rootCmd.Flags().BoolP("separate-dirs", "S", false, "Display only a grand total for each directory specified")
 	rootCmd.Flags().BoolP("si", "H", false, "Use powers of 1000 for -h (SI units)")
 	rootCmd.Flags().BoolP("silent", "q", false, "Silence warnings about directories that cannot be read")

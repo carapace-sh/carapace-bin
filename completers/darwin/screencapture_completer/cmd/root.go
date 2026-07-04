@@ -18,26 +18,24 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().BoolS("C", "C", false, "Capture the cursor")
+	rootCmd.Flags().BoolS("M", "M", false, "Capture the menu bar")
+	rootCmd.Flags().BoolS("P", "P", false, "Capture the screen to the pasteboard")
+	rootCmd.Flags().BoolS("S", "S", false, "Capture the screen (not a window)")
+	rootCmd.Flags().StringS("T", "T", "", "Capture the whole screen after the specified delay (in seconds)")
+	rootCmd.Flags().BoolS("W", "W", false, "Capture a window interactively")
 	rootCmd.Flags().BoolP("clipboard", "c", false, "Force screen capture to go to the clipboard")
-	rootCmd.Flags().BoolP("cursor", "C", false, "Capture the cursor")
-	rootCmd.Flags().StringP("delay", "d", "", "Set delay before capture")
-	rootCmd.Flags().BoolP("display", "D", false, "Capture the display")
-	rootCmd.Flags().StringP("format", "t", "", "Set image format")
-	rootCmd.Flags().BoolP("help", "h", false, "Display usage information")
+	rootCmd.Flags().StringP("delay", "d", "", "Set delay before capture (in seconds)")
+	rootCmd.Flags().StringP("format", "t", "", "Set image format (png, jpg, tiff, pdf, gif)")
 	rootCmd.Flags().BoolP("interactive", "i", false, "Capture screen interactively")
-	rootCmd.Flags().BoolP("menu", "M", false, "Capture menu bar")
-	rootCmd.Flags().BoolP("mouse", "m", false, "Capture mouse cursor")
+	rootCmd.Flags().BoolS("m", "m", false, "Do not capture the mouse cursor")
 	rootCmd.Flags().BoolP("no-sound", "x", false, "Do not play sound")
-	rootCmd.Flags().StringP("output", "o", "", "Set output file")
-	rootCmd.Flags().StringP("quality", "q", "", "Set image quality")
-	rootCmd.Flags().BoolP("screen", "S", false, "Capture screen")
-	rootCmd.Flags().StringP("type", "T", "", "Set capture type")
-	rootCmd.Flags().BoolP("window", "w", false, "Capture window interactively")
-	rootCmd.Flags().StringP("window-id", "l", "", "Capture the window with the specified ID")
+	rootCmd.Flags().BoolP("open", "o", false, "Open the captured image in Preview")
+	rootCmd.Flags().BoolP("screen", "s", false, "Capture the screen only")
+	rootCmd.Flags().BoolP("window", "w", false, "Capture a window interactively")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"format": carapace.ActionValues("png", "jpg", "tiff", "pdf", "gif"),
-		"output": carapace.ActionFiles(),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())

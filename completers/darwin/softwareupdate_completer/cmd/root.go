@@ -18,30 +18,34 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolP("all", "a", false, "Install all available updates")
-	rootCmd.Flags().BoolP("available", "A", false, "List available updates only")
-	rootCmd.Flags().BoolP("clear-catalog", "c", false, "Clear the local catalog")
-	rootCmd.Flags().BoolP("download", "d", false, "Download updates without installing")
-	rootCmd.Flags().BoolP("dump-state", "s", false, "Dump state to log")
-	rootCmd.Flags().StringP("ignore", "i", "", "Ignore an update")
-	rootCmd.Flags().StringP("install", "i", "", "Install an update")
-	rootCmd.Flags().BoolP("list", "l", false, "List all available updates")
-	rootCmd.Flags().BoolP("list-full", "L", false, "List all available updates with full details")
-	rootCmd.Flags().BoolP("no-scan", "n", false, "Do not scan for updates")
-	rootCmd.Flags().StringP("reset-ignored", "r", "", "Reset ignored updates")
-	rootCmd.Flags().BoolP("restart", "r", false, "Restart after installation if required")
-	rootCmd.Flags().BoolP("schedule", "S", false, "Set or check the scheduled update setting")
-	rootCmd.Flags().BoolP("verbose", "v", false, "Verbose mode")
+	rootCmd.Flags().Bool("all", false, "Install all available updates")
+	rootCmd.Flags().Bool("background", false, "Background mode")
+	rootCmd.Flags().Bool("download", false, "Download updates without installing")
+	rootCmd.Flags().Bool("fetch-full-installer", false, "Fetch the full macOS installer")
+	rootCmd.Flags().Bool("help", false, "Display usage information")
+	rootCmd.Flags().Bool("install", false, "Install updates")
+	rootCmd.Flags().Bool("install-rosetta", false, "Install Rosetta")
+	rootCmd.Flags().Bool("list", false, "List all available updates")
+	rootCmd.Flags().Bool("list-full-installers", false, "List all available full installers")
+	rootCmd.Flags().Bool("os-only", false, "Only install OS updates")
+	rootCmd.Flags().Bool("recommended", false, "Install recommended updates only")
+	rootCmd.Flags().Bool("restart", false, "Restart after installation if required")
+	rootCmd.Flags().Bool("safari-only", false, "Only install Safari updates")
+	rootCmd.Flags().Bool("schedule", false, "Set or check the scheduled update setting")
+	rootCmd.Flags().Bool("stdinpass", false, "Read password from stdin")
+	rootCmd.Flags().Bool("user", false, "Interactive mode")
 
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.ActionValuesDescribed(
 			"--list", "List all available updates",
-			"--install", "Install an update",
+			"--install", "Install updates",
 			"--download", "Download updates without installing",
 			"--schedule", "Set or check the scheduled update setting",
-			"--clear-catalog", "Clear the local catalog",
-			"--ignore", "Ignore an update",
-			"--reset-ignored", "Reset ignored updates",
+			"--list-full-installers", "List all available full installers",
+			"--fetch-full-installer", "Fetch the full macOS installer",
+			"--install-rosetta", "Install Rosetta",
+			"--background", "Background mode",
+			"--help", "Display usage information",
 		),
 	)
 }

@@ -26,10 +26,7 @@ func init() {
 	rootCmd.Flags().StringP("out", "o", "", "Set output file")
 	rootCmd.Flags().StringP("resampleHeight", "Z", "", "Resample to specified height")
 	rootCmd.Flags().StringP("resampleHeightWidth", "z", "", "Resample to specified height and width")
-	rootCmd.Flags().StringP("resampleHeightWidthMax", "Z", "", "Resample so height and width are not greater than specified")
-	rootCmd.Flags().StringP("resampleWidth", "Z", "", "Resample to specified width")
 	rootCmd.Flags().StringP("rotate", "r", "", "Rotate by specified degrees")
-	rootCmd.Flags().BoolP("setProperty", "s", false, "Set the specified property")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"format": carapace.ActionValues("jpeg", "tiff", "png", "gif", "jp2", "pict", "bmp", "qtif", "psd", "sgi", "tga"),

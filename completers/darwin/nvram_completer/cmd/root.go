@@ -18,9 +18,9 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().BoolP("clear", "c", false, "Clear all firmware variables")
 	rootCmd.Flags().BoolP("delete", "d", false, "Delete the specified variable")
 	rootCmd.Flags().StringP("file", "f", "", "Use the specified file for input/output")
-	rootCmd.Flags().BoolP("help", "h", false, "Display usage information")
 	rootCmd.Flags().BoolP("print", "p", false, "Print all firmware variables")
 	rootCmd.Flags().BoolP("xml", "x", false, "Print in XML format")
 

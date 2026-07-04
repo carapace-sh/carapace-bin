@@ -19,15 +19,13 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().StringP("evaluate", "e", "", "Enter one line of a script")
-	rootCmd.Flags().StringP("flags", "s", "", "Set the flags for the script")
-	rootCmd.Flags().BoolP("interactive", "I", false, "Interactive mode")
+	rootCmd.Flags().StringP("flags", "s", "", "Set the flags for the script (e, h, o, or empty)")
+	rootCmd.Flags().BoolP("interactive", "i", false, "Interactive mode")
 	rootCmd.Flags().StringP("language", "l", "", "Override the language for any plain text scripts")
-	rootCmd.Flags().StringP("outputmode", "o", "", "Set the output mode")
-	rootCmd.Flags().BoolP("stdin", "i", false, "Read from stdin if no script is provided")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"language":   carapace.ActionValues("AppleScript", "JavaScript", "JXA", "Generic"),
-		"outputmode": carapace.ActionValues("text", "list", "record"),
+		"flags":    carapace.ActionValues("e", "h", "o", ""),
+		"language": carapace.ActionValues("AppleScript", "JavaScript", "JXA", "Generic"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
