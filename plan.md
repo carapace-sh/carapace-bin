@@ -117,16 +117,16 @@ Create new darwin completers for commands that only exist on macOS.
 
 | Status | Command | Description | Man page / URL |
 |--------|---------|-------------|----------------|
-| ☐ todo | `launchctl` | Control launchd services and daemons | https://keith.github.io/xcode-manpages/launchctl.1.html |
-| ☐ todo | `defaults` | Read/write user preferences (plist) | https://keith.github.io/xcode-manpages/defaults.1.html |
-| ☐ todo | `diskutil` | Disk partition/format/verify utility | https://keith.github.io/xcode-manpages/diskutil.8.html |
-| ☐ todo | `plutil` | Property list utility (convert, lint, extract) | https://keith.github.io/xcode-manpages/plutil.1.html |
-| ☐ todo | `hdiutil` | Create/attach/detach disk images | https://keith.github.io/xcode-manpages/hdiutil.1.html |
-| ☐ todo | `sw_vers` | Show macOS version info | https://keith.github.io/xcode-manpages/sw_vers.1.html |
-| ☐ todo | `softwareupdate` | Install macOS software updates | https://keith.github.io/xcode-manpages/softwareupdate.8.html |
-| ☐ todo | `system_profiler` | Report system hardware/software info | https://keith.github.io/xcode-manpages/system_profiler.8.html |
-| ☐ todo | `networksetup` | Configure network settings | https://keith.github.io/xcode-manpages/networksetup.8.html |
-| ☐ todo | `scutil` | System configuration utility | https://keith.github.io/xcode-manpages/scutil.1.html |
+| ✅ done | `launchctl` | Control launchd services and daemons | https://keith.github.io/xcode-manpages/launchctl.1.html |
+| ✅ done | `defaults` | Read/write user preferences (plist) | https://keith.github.io/xcode-manpages/defaults.1.html |
+| ✅ done | `diskutil` | Disk partition/format/verify utility | https://keith.github.io/xcode-manpages/diskutil.8.html |
+| ✅ done | `plutil` | Property list utility (convert, lint, extract) | https://keith.github.io/xcode-manpages/plutil.1.html |
+| ✅ done | `hdiutil` | Create/attach/detach disk images | https://keith.github.io/xcode-manpages/hdiutil.1.html |
+| ✅ done | `sw_vers` | Show macOS version info | https://keith.github.io/xcode-manpages/sw_vers.1.html |
+| ✅ done | `softwareupdate` | Install macOS software updates | https://keith.github.io/xcode-manpages/softwareupdate.8.html |
+| ✅ done | `system_profiler` | Report system hardware/software info | https://keith.github.io/xcode-manpages/system_profiler.8.html |
+| ✅ done | `networksetup` | Configure network settings | https://keith.github.io/xcode-manpages/networksetup.8.html |
+| ✅ done | `scutil` | System configuration utility | https://keith.github.io/xcode-manpages/scutil.1.html |
 
 ### Priority 3b: Directory services and user management
 
@@ -234,12 +234,12 @@ Create new darwin completers for commands that only exist on macOS.
 
 | Status | Command | Description | Man page / URL |
 |--------|---------|-------------|----------------|
-| ☐ todo | `open` | Open files/apps/URLs with default handler | https://keith.github.io/xcode-manpages/open.1.html |
-| ☐ todo | `pbcopy` | Copy to clipboard (pasteboard) | https://keith.github.io/xcode-manpages/pbcopy.1.html |
-| ☐ todo | `pbpaste` | Paste from clipboard | https://keith.github.io/xcode-manpages/pbpaste.1.html |
-| ☐ todo | `caffeinate` | Prevent system sleep | https://keith.github.io/xcode-manpages/caffeinate.1.html |
-| ☐ todo | `say` | Text-to-speech | https://keith.github.io/xcode-manpages/say.1.html |
-| ☐ todo | `osascript` | Execute AppleScript / OSA scripts | https://keith.github.io/xcode-manpages/osascript.1.html |
+| ✅ done | `open` | Open files/apps/URLs with default handler | https://keith.github.io/xcode-manpages/open.1.html |
+| ✅ done | `pbcopy` | Copy to clipboard (pasteboard) | https://keith.github.io/xcode-manpages/pbcopy.1.html |
+| ✅ done | `pbpaste` | Paste from clipboard | https://keith.github.io/xcode-manpages/pbpaste.1.html |
+| ✅ done | `caffeinate` | Prevent system sleep | https://keith.github.io/xcode-manpages/caffeinate.1.html |
+| ✅ done | `say` | Text-to-speech | https://keith.github.io/xcode-manpages/say.1.html |
+| ✅ done | `osascript` | Execute AppleScript / OSA scripts | https://keith.github.io/xcode-manpages/osascript.1.html |
 | ☐ todo | `screencapture` | Screen capture utility | https://keith.github.io/xcode-manpages/screencapture.1.html |
 | ☐ todo | `shortcuts` | Run/manage macOS Shortcuts | https://keith.github.io/xcode-manpages/shortcuts.1.html |
 | ☐ todo | `sips` | Scriptable image processing system | https://keith.github.io/xcode-manpages/sips.1.html |
