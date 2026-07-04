@@ -54,47 +54,47 @@ Create Windows-specific completers for commands that ship with Windows. These ar
 | ✅ done | `move` | Move files (Windows `mv`) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/move |
 | ✅ done | `del` | Delete files (Windows `rm`) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/del |
 | ✅ done | `ren` | Rename files (Windows `mv` for rename) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/ren |
-| ☐ todo | `mkdir` | Create directory (Windows variant) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/mkdir |
-| ☐ todo | `rmdir` | Remove directory (Windows variant) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/rmdir |
+| ✅ done | `mkdir` | Create directory (Windows variant) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/mkdir |
+| ✅ done | `rmdir` | Remove directory (Windows variant) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/rmdir |
 | ✅ done | `dir` | List directory (Windows `ls`) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/dir |
-| ☐ todo | `cd` | Change directory (Windows `cd`/`chdir`) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/cd |
+| ✅ done | `cd` | Change directory (Windows `cd`/`chdir`) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/cd |
 | ✅ done | `tree` | Display directory tree (Windows variant, overrides common) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tree |
 | ✅ done | `attrib` | Display/set file attributes (Windows `chmod`-adjacent) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/attrib |
 | ✅ done | `icacls` | Display/modify ACLs (Windows `chown`/`chmod`) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/icacls |
 | ✅ done | `where` | Locate commands (Windows `which`) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/where |
 | ✅ done | `more` | Page output (Windows variant, overrides common) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/more |
 | ✅ done | `sort` | Sort lines (Windows variant, differs from Unix sort) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/sort |
-| ☐ todo | `find` | Search for text (Windows variant, NOT Unix find) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/find |
+| ✅ done | `find` | Search for text (Windows variant, NOT Unix find) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/find |
 | ✅ done | `findstr` | Search for text with regex (Windows `grep`) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/findstr |
-| ☐ todo | `fc` | Compare files (Windows `diff`) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/fc |
-| ☐ todo | `comp` | Compare files byte-by-byte | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/comp |
+| ✅ done | `fc` | Compare files (Windows `diff`) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/fc |
+| ✅ done | `comp` | Compare files byte-by-byte | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/comp |
 | ✅ done | `clip` | Redirect to clipboard (Windows `pbcopy`) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/clip |
-| ☐ todo | `prompt` | Set command prompt string | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/prompt |
-| ☐ todo | `title` | Set console window title | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/title |
-| ☐ todo | `color` | Set console text color | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/color |
-| ☐ todo | `chcp` | Change active code page | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/chcp |
-| ☐ todo | `mode` | Configure console/serial/parallel ports | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/mode |
-| ☐ todo | `subst` | Associate path with drive letter | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/subst |
-| ☐ todo | `set` | Display/set environment variables | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/set |
-| ☐ todo | `ver` | Display Windows version | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/ver |
-| ☐ todo | `date` | Display/set date (Windows variant) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/date |
-| ☐ todo | `time` | Display/set time (Windows variant) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/time |
-| ☐ todo | `choice` | Prompt user for choice | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/choice |
-| ☐ todo | `timeout` | Wait for timeout/keypress | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/timeout |
-| ☐ todo | `pause` | Suspend processing | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/pause |
-| ☐ todo | `start` | Start program in new window | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/start |
-| ☐ todo | `call` | Call batch program | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/call |
+| ✅ done | `prompt` | Set command prompt string | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/prompt |
+| ✅ done | `title` | Set console window title | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/title |
+| ✅ done | `color` | Set console text color | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/color |
+| ✅ done | `chcp` | Change active code page | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/chcp |
+| ✅ done | `mode` | Configure console/serial/parallel ports | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/mode |
+| ✅ done | `subst` | Associate path with drive letter | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/subst |
+| ✅ done | `set` | Display/set environment variables | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/set |
+| ✅ done | `ver` | Display Windows version | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/ver |
+| ✅ done | `date` | Display/set date (Windows variant) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/date |
+| ✅ done | `time` | Display/set time (Windows variant) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/time |
+| ✅ done | `choice` | Prompt user for choice | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/choice |
+| ✅ done | `timeout` | Wait for timeout/keypress | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/timeout |
+| ✅ done | `pause` | Suspend processing | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/pause |
+| ✅ done | `start` | Start program in new window | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/start |
+| ✅ done | `call` | Call batch program | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/call |
 | ☐ todo | `exit` | Exit cmd.exe | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/exit |
-| ☐ todo | `echo` | Display messages (Windows variant) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/echo |
+| ✅ done | `echo` | Display messages (Windows variant) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/echo |
 | ☐ todo | `rem` | Record comments in batch files | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/rem |
-| ☐ todo | `path` | Display/set executable search path | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/path |
-| ☐ todo | `assoc` | Display/modify file associations | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/assoc |
+| ✅ done | `path` | Display/set executable search path | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/path |
+| ✅ done | `assoc` | Display/modify file associations | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/assoc |
 | ☐ todo | `ftype` | Display/modify file type associations | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/ftype |
-| ☐ todo | `doskey` | Edit command lines, recall commands, create macros | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/doskey |
-| ☐ todo | `pushd` | Push current directory and change | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/pushd |
-| ☐ todo | `popd` | Pop directory from stack | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/popd |
-| ☐ todo | `setlocal` | Start localization of environment | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/setlocal |
-| ☐ todo | `endlocal` | End localization of environment | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/endlocal |
+| ✅ done | `doskey` | Edit command lines, recall commands, create macros | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/doskey |
+| ✅ done | `pushd` | Push current directory and change | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/pushd |
+| ✅ done | `popd` | Pop directory from stack | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/popd |
+| ✅ done | `setlocal` | Start localization of environment | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/setlocal |
+| ✅ done | `endlocal` | End localization of environment | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/endlocal |
 
 ### Priority 2b: File copy/archive commands (System32)
 
@@ -141,19 +141,19 @@ Create Windows-specific completers for commands that ship with Windows. These ar
 
 | Status | Command | Description | Reference URL |
 |--------|---------|-------------|---------------|
-| ☐ todo | `tasklist` | List running processes (Windows `ps`) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tasklist |
-| ☐ todo | `taskkill` | End processes (Windows `kill`) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/taskkill |
-| ☐ todo | `sc` | Service control manager (query/start/stop) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/sc |
-| ☐ todo | `net` | Network/service commands (net start/stop/user/share) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/net |
-| ☐ todo | `schtasks` | Scheduled tasks (Windows `cron`/`at`) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/schtasks |
-| ☐ todo | `systeminfo` | Display system information | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/systeminfo |
-| ☐ todo | `whoami` | Display current user (Windows variant) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/whoami |
-| ☐ todo | `shutdown` | Shutdown/restart computer | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/shutdown |
-| ☐ todo | `powercfg` | Power configuration settings | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/powercfg |
-| ☐ todo | `driverquery` | List installed drivers | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/driverquery |
+| ✅ done | `tasklist` | List running processes (Windows `ps`) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tasklist |
+| ✅ done | `taskkill` | End processes (Windows `kill`) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/taskkill |
+| ✅ done | `sc` | Service control manager (query/start/stop) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/sc |
+| ✅ done | `net` | Network/service commands (net start/stop/user/share) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/net |
+| ✅ done | `schtasks` | Scheduled tasks (Windows `cron`/`at`) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/schtasks |
+| ✅ done | `systeminfo` | Display system information | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/systeminfo |
+| ✅ done | `whoami` | Display current user (Windows variant) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/whoami |
+| ✅ done | `shutdown` | Shutdown/restart computer | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/shutdown |
+| ✅ done | `powercfg` | Power configuration settings | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/powercfg |
+| ✅ done | `driverquery` | List installed drivers | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/driverquery |
 | ☐ todo | `wmic` | WMI command-line interface | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/wmic |
-| ☐ todo | `reg` | Registry editor command-line | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/reg |
-| ☐ todo | `runas` | Run program as different user | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/runas |
+| ✅ done | `reg` | Registry editor command-line | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/reg |
+| ✅ done | `runas` | Run program as different user | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/runas |
 | ☐ todo | `openfiles` | Query/display open files | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/openfiles |
 | ☐ todo | `qprocess` | Query processes | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/qprocess |
 | ☐ todo | `qwinsta` | Query sessions (RDP) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/qwinsta |
@@ -175,18 +175,18 @@ Create Windows-specific completers for commands that ship with Windows. These ar
 
 | Status | Command | Description | Reference URL |
 |--------|---------|-------------|---------------|
-| ☐ todo | `ipconfig` | IP configuration display/release/renew | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/ipconfig |
+| ✅ done | `ipconfig` | IP configuration display/release/renew | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/ipconfig |
 | ☐ todo | `netsh` | Network shell (extensive subcommands) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/netsh |
 | ☐ todo | `ping` | Ping (Windows variant, overrides common) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/ping |
-| ☐ todo | `tracert` | Trace route (Windows `traceroute`) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tracert |
-| ☐ todo | `pathping` | Path ping (ping + traceroute hybrid) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/pathping |
-| ☐ todo | `nslookup` | DNS lookup (Windows variant) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/nslookup |
-| ☐ todo | `arp` | ARP table (Windows variant) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/arp |
-| ☐ todo | `route` | Routing table (Windows variant) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/route |
-| ☐ todo | `netstat` | Network statistics (Windows variant) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/netstat |
+| ✅ done | `tracert` | Trace route (Windows `traceroute`) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tracert |
+| ✅ done | `pathping` | Path ping (ping + traceroute hybrid) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/pathping |
+| ✅ done | `nslookup` | DNS lookup (Windows variant) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/nslookup |
+| ✅ done | `arp` | ARP table (Windows variant) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/arp |
+| ✅ done | `route` | Routing table (Windows variant) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/route |
+| ✅ done | `netstat` | Network statistics (Windows variant) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/netstat |
 | ☐ todo | `hostname` | Display hostname (Windows variant, overrides common) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/hostname |
 | ☐ todo | `getmac` | Get MAC address | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/getmac |
-| ☐ todo | `nbtstat` | NetBIOS statistics | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/nbtstat |
+| ✅ done | `nbtstat` | NetBIOS statistics | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/nbtstat |
 | ☐ todo | `netdiag` | Network diagnostics | — |
 | ☐ todo | `portqry` | Port query tool | — |
 | ☐ todo | `dnscmd` | DNS server administration | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/dnscmd |
