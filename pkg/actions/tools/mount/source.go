@@ -36,6 +36,17 @@ func ActionSources() carapace.Action {
 					return carapace.ActionValues()
 				}
 			})
+		case "windows":
+			keyValues = carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
+				switch len(c.Parts) {
+				case 0:
+					return carapace.ActionValuesDescribed(
+						"VolumeGUID", "specifies device by volume GUID",
+					).Suffix("=")
+				default:
+					return carapace.ActionValues()
+				}
+			})
 		default:
 			keyValues = carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
 				switch len(c.Parts) {

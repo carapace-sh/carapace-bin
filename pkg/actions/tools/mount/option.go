@@ -36,6 +36,17 @@ func ActionMountOptions() carapace.Action {
 					"nobrowse", "This option indicates that the mount point should not be visible via the GUI.",
 					"nofollow", "Don't follow any symlinks in the provided mount-on directory.",
 				)
+			case "windows":
+				return carapace.ActionValuesDescribed(
+					"ro", "Mount the volume read-only.",
+					"rw", "Mount the volume read-write.",
+					"noexec", "Do not allow execution of any binaries on the mounted filesystem.",
+					"nosuid", "Do not allow set-user-identifier or set-group-identifier bits to take effect.",
+					"nodev", "Do not interpret character or block special devices on the filesystem.",
+					"noatime", "Do not update the file access time when reading from a file.",
+					"sync", "All I/O to the filesystem should be done synchronously.",
+					"async", "All I/O to the filesystem should be done asynchronously.",
+				)
 			default:
 				return carapace.ActionValuesDescribed(
 					"async", "All I/O to the filesystem should be done asynchronously.",

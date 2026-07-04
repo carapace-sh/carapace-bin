@@ -51,6 +51,14 @@ func ActionKillSignals() carapace.Action {
 				"XCPU", "CPU time limit exceeded", styles.CarapaceBin.KillSignalCore,
 				"XFSZ", "File size limit exceeded", styles.CarapaceBin.KillSignalCore,
 			)
+		case "windows":
+			return carapace.ActionStyledValuesDescribed(
+				"CTRL_C_EVENT", "Ctrl+C signal", styles.CarapaceBin.KillSignalTerm,
+				"CTRL_BREAK_EVENT", "Ctrl+Break signal", styles.CarapaceBin.KillSignalTerm,
+				"CTRL_CLOSE_EVENT", "Console window close", styles.CarapaceBin.KillSignalTerm,
+				"CTRL_LOGOFF_EVENT", "User logoff", styles.CarapaceBin.KillSignalTerm,
+				"CTRL_SHUTDOWN_EVENT", "System shutdown", styles.CarapaceBin.KillSignalTerm,
+			)
 		default:
 			return carapace.ActionStyledValuesDescribed(
 				"ABRT", "Abnormal termination", styles.CarapaceBin.KillSignalCore,
@@ -141,6 +149,13 @@ func ActionProcessStates() carapace.Action {
 				"T", "stopped",
 				"U", "uninterruptible wait (usually IO)",
 				"Z", "zombie: terminated but not reaped by its parent",
+			).Tag("process states").Uid("ps", "state")
+		case "windows":
+			return carapace.ActionValuesDescribed(
+				"Running", "process is running",
+				"Ready", "process is ready to run",
+				"Waiting", "process is waiting for a resource",
+				"Terminated", "process has terminated",
 			).Tag("process states").Uid("ps", "state")
 		default:
 			return carapace.ActionValuesDescribed(
