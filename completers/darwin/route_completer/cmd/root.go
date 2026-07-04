@@ -17,11 +17,21 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).Standalone()
-	rootCmd.Flags().BoolS("Debug|-d", "Debug|-d", false, "")
-	rootCmd.Flags().BoolS("Noresolve|-n", "Noresolve|-n", false, "")
-	rootCmd.Flags().BoolS("Quiet|-q", "Quiet|-q", false, "")
-	rootCmd.Flags().BoolS("Test|-t", "Test|-t", false, "")
-	rootCmd.Flags().BoolS("Verbose|-v", "Verbose|-v", false, "")
 
-	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionValues())
+	rootCmd.Flags().BoolS("d", "d", false, "Debug mode")
+	rootCmd.Flags().BoolS("n", "n", false, "Do not resolve host names")
+	rootCmd.Flags().BoolS("q", "q", false, "Quiet mode")
+	rootCmd.Flags().BoolS("t", "t", false, "Test mode (do not modify routing table)")
+	rootCmd.Flags().BoolS("v", "v", false, "Verbose mode")
+
+	carapace.Gen(rootCmd).PositionalCompletion(
+		carapace.ActionValuesDescribed(
+			"add", "Add a route",
+			"delete", "Delete a route",
+			"change", "Change a route",
+			"get", "Look up a route",
+			"flush", "Remove all routes",
+			"monitor", "Continuously monitor routing table changes",
+		),
+	)
 }

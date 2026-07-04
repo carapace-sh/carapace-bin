@@ -17,7 +17,16 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).Standalone()
-	rootCmd.Flags().BoolS("Help|-h", "Help|-h", false, "")
 
-	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionValues())
+	rootCmd.Flags().BoolS("h", "h", false, "Display help")
+
+	carapace.Gen(rootCmd).PositionalCompletion(
+		carapace.ActionValuesDescribed(
+			"restore", "Restore a disk image to a target",
+			"server", "Serve a source over the network",
+			"imagescan", "Scan an image for ASR",
+			"help", "Display help",
+			"version", "Display version",
+		),
+	)
 }

@@ -17,18 +17,19 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).Standalone()
-	rootCmd.Flags().BoolS("Debug|-d", "Debug|-d", false, "")
-	rootCmd.Flags().BoolS("E", "E", false, "")
-	rootCmd.Flags().BoolS("Extended|-x", "Extended|-x", false, "")
-	rootCmd.Flags().BoolS("Force|-f", "Force|-f", false, "")
-	rootCmd.Flags().BoolS("G|-g", "G|-g", false, "")
-	rootCmd.Flags().BoolS("Live|-l", "Live|-l", false, "")
-	rootCmd.Flags().BoolS("No|-n", "No|-n", false, "")
-	rootCmd.Flags().BoolS("Preen|-p", "Preen|-p", false, "")
-	rootCmd.Flags().BoolS("Quiet|-q", "Quiet|-q", false, "")
-	rootCmd.Flags().BoolS("Rebuild|-r", "Rebuild|-r", false, "")
-	rootCmd.Flags().BoolS("Snapshot|-S", "Snapshot|-S", false, "")
-	rootCmd.Flags().BoolS("Yes|-y", "Yes|-y", false, "")
+
+	rootCmd.Flags().BoolS("E", "E", false, "E flag")
+	rootCmd.Flags().BoolS("S", "S", false, "Snapshot")
+	rootCmd.Flags().BoolS("d", "d", false, "Debug output")
+	rootCmd.Flags().BoolS("f", "f", false, "Force")
+	rootCmd.Flags().BoolS("g", "g", false, "G flag")
+	rootCmd.Flags().BoolS("l", "l", false, "Live filesystem")
+	rootCmd.Flags().BoolS("n", "n", false, "Assume no to all questions")
+	rootCmd.Flags().BoolS("p", "p", false, "Preen mode (automatic repair)")
+	rootCmd.Flags().BoolS("q", "q", false, "Quiet mode")
+	rootCmd.Flags().BoolS("r", "r", false, "Rebuild catalog B-tree")
+	rootCmd.Flags().BoolS("x", "x", false, "Extended mode")
+	rootCmd.Flags().BoolS("y", "y", false, "Assume yes to all questions")
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

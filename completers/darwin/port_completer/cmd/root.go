@@ -46,7 +46,6 @@ func init() {
 			"destroot", "Destroot a port",
 			"archive", "Archive a port",
 			"unarchive", "Unarchive a port",
-			"install", "Install a port",
 		),
 	)
 }

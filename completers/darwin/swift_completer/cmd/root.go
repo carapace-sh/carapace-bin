@@ -17,8 +17,9 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).Standalone()
-	rootCmd.Flags().BoolS("Help|-h", "Help|-h", false, "")
-	rootCmd.Flags().BoolS("Version|-version", "Version|-version", false, "")
+
+	rootCmd.Flags().BoolP("help", "h", false, "Display usage information")
+	rootCmd.Flags().BoolP("version", "v", false, "Print version")
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

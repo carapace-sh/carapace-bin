@@ -17,16 +17,19 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).Standalone()
-	rootCmd.Flags().BoolS("All|-A", "All|-A", false, "")
-	rootCmd.Flags().StringS("Blocksize|-b", "Blocksize|-b", "", "")
-	rootCmd.Flags().BoolS("Container|-C", "Container|-C", false, "")
-	rootCmd.Flags().BoolS("Empty", "Empty", false, "")
-	rootCmd.Flags().BoolS("Interactive|-i", "Interactive|-i", false, "")
-	rootCmd.Flags().StringS("Name|-v", "Name|-v", "", "")
-	rootCmd.Flags().StringS("Options|-o", "Options|-o", "", "")
-	rootCmd.Flags().StringS("Quota|-q", "Quota|-q", "", "")
-	rootCmd.Flags().StringS("Reserve|-r", "Reserve|-r", "", "")
-	rootCmd.Flags().StringS("Volumesize|-s", "Volumesize|-s", "", "")
+
+	rootCmd.Flags().BoolS("A", "A", false, "Add all existing volumes")
+	rootCmd.Flags().BoolS("C", "C", false, "Create a new container")
+	rootCmd.Flags().BoolS("E", "E", false, "Enable encryption")
+
+	rootCmd.Flags().StringS("R", "R", "", "Volume role")
+	rootCmd.Flags().StringS("b", "b", "", "Block size")
+	rootCmd.Flags().StringS("i", "i", "", "Interactive")
+	rootCmd.Flags().StringS("o", "o", "", "Options")
+	rootCmd.Flags().StringS("q", "q", "", "Volume quota")
+	rootCmd.Flags().StringS("r", "r", "", "Volume reserve")
+	rootCmd.Flags().StringS("s", "s", "", "Volume size")
+	rootCmd.Flags().StringS("v", "v", "", "Volume name")
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

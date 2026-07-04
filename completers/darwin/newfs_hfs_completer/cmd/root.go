@@ -17,19 +17,21 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).Standalone()
-	rootCmd.Flags().StringS("Blocksize|-b", "Blocksize|-b", "", "")
-	rootCmd.Flags().BoolS("CaseSensitive|-s", "CaseSensitive|-s", false, "")
-	rootCmd.Flags().StringS("Clump|-c", "Clump|-c", "", "")
-	rootCmd.Flags().StringS("Cnid|-i", "Cnid|-i", "", "")
-	rootCmd.Flags().StringS("Gid|-G", "Gid|-G", "", "")
-	rootCmd.Flags().StringS("Journaldev|-D", "Journaldev|-D", "", "")
-	rootCmd.Flags().StringS("Journal|-J", "Journal|-J", "", "")
-	rootCmd.Flags().StringS("Mask|-M", "Mask|-M", "", "")
-	rootCmd.Flags().StringS("Name|-v", "Name|-v", "", "")
-	rootCmd.Flags().BoolS("No", "No", false, "")
-	rootCmd.Flags().StringS("Nodesize|-n", "Nodesize|-n", "", "")
-	rootCmd.Flags().BoolS("Preserve|-P", "Preserve|-P", false, "")
-	rootCmd.Flags().StringS("Uid|-U", "Uid|-U", "", "")
+
+	rootCmd.Flags().BoolS("N", "N", false, "Do not create filesystem (show parameters)")
+	rootCmd.Flags().BoolS("P", "P", false, "Preserve filesystem")
+	rootCmd.Flags().BoolS("s", "s", false, "Case-sensitive filesystem")
+
+	rootCmd.Flags().StringS("D", "D", "", "Journal device")
+	rootCmd.Flags().StringS("G", "G", "", "Group ID")
+	rootCmd.Flags().StringS("J", "J", "", "Journal size")
+	rootCmd.Flags().StringS("M", "M", "", "Access mask")
+	rootCmd.Flags().StringS("U", "U", "", "User ID")
+	rootCmd.Flags().StringS("b", "b", "", "Block size")
+	rootCmd.Flags().StringS("c", "c", "", "Clump size list")
+	rootCmd.Flags().StringS("i", "i", "", "First CNID")
+	rootCmd.Flags().StringS("n", "n", "", "Node size list")
+	rootCmd.Flags().StringS("v", "v", "", "Volume name")
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

@@ -17,12 +17,12 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).Standalone()
-	rootCmd.Flags().BoolS("All|-a", "All|-a", false, "")
-	rootCmd.Flags().BoolS("Header|-h", "Header|-h", false, "")
-	rootCmd.Flags().BoolS("Help|-h", "Help|-h", false, "")
-	rootCmd.Flags().BoolS("Libraries|-L", "Libraries|-L", false, "")
-	rootCmd.Flags().BoolS("Loadcommands|-l", "Loadcommands|-l", false, "")
-	rootCmd.Flags().BoolS("Verbose|-v", "Verbose|-v", false, "")
+
+	rootCmd.Flags().BoolS("L", "L", false, "Display shared libraries used")
+	rootCmd.Flags().BoolS("a", "a", false, "Display archive header")
+	rootCmd.Flags().BoolS("h", "h", false, "Display Mach-O header")
+	rootCmd.Flags().BoolS("l", "l", false, "Display load commands")
+	rootCmd.Flags().BoolS("v", "v", false, "Verbose mode")
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

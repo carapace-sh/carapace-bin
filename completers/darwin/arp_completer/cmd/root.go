@@ -17,12 +17,14 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).Standalone()
-	rootCmd.Flags().BoolS("All|-a", "All|-a", false, "")
-	rootCmd.Flags().BoolS("Delete|-d", "Delete|-d", false, "")
-	rootCmd.Flags().StringS("Interface|-i", "Interface|-i", "", "")
-	rootCmd.Flags().BoolS("List|-l", "List|-l", false, "")
-	rootCmd.Flags().BoolS("Numeric|-n", "Numeric|-n", false, "")
-	rootCmd.Flags().BoolS("Set|-s", "Set|-s", false, "")
 
-	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
+	rootCmd.Flags().BoolS("a", "a", false, "Display all ARP entries")
+	rootCmd.Flags().BoolS("d", "d", false, "Delete an ARP entry")
+	rootCmd.Flags().BoolS("l", "l", false, "Show link-layer address")
+	rootCmd.Flags().BoolS("n", "n", false, "Do not resolve host names")
+	rootCmd.Flags().BoolS("s", "s", false, "Set an ARP entry")
+
+	rootCmd.Flags().StringS("i", "i", "", "Specify interface")
+
+	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionValues())
 }

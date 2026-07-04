@@ -17,10 +17,11 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).Standalone()
-	rootCmd.Flags().StringS("Command|-o", "Command|-o", "", "")
-	rootCmd.Flags().BoolS("Help|-h", "Help|-h", false, "")
-	rootCmd.Flags().StringS("Source|-s", "Source|-s", "", "")
-	rootCmd.Flags().BoolS("Version|-v", "Version|-v", false, "")
+
+	rootCmd.Flags().StringP("command", "o", "", "Execute a debugger command")
+	rootCmd.Flags().BoolP("help", "h", false, "Display usage information")
+	rootCmd.Flags().StringP("source", "s", "", "Execute commands from a file")
+	rootCmd.Flags().BoolP("version", "v", false, "Print version")
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

@@ -17,15 +17,16 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).Standalone()
-	rootCmd.Flags().BoolS("All|-a", "All|-a", false, "")
-	rootCmd.Flags().BoolS("C|-C", "C|-C", false, "")
-	rootCmd.Flags().BoolS("Down|-d", "Down|-d", false, "")
-	rootCmd.Flags().BoolS("List|-l", "List|-l", false, "")
-	rootCmd.Flags().BoolS("L|-L", "L|-L", false, "")
-	rootCmd.Flags().BoolS("Mask|-m", "Mask|-m", false, "")
-	rootCmd.Flags().BoolS("Routing|-r", "Routing|-r", false, "")
-	rootCmd.Flags().BoolS("Up|-u", "Up|-u", false, "")
-	rootCmd.Flags().BoolS("Verbose|-v", "Verbose|-v", false, "")
 
-	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
+	rootCmd.Flags().BoolS("C", "C", false, "Show interface configuration")
+	rootCmd.Flags().BoolS("L", "L", false, "Show link-layer address lifetime")
+	rootCmd.Flags().BoolS("a", "a", false, "Display all interfaces")
+	rootCmd.Flags().BoolS("d", "d", false, "Display interfaces that are down")
+	rootCmd.Flags().BoolS("l", "l", false, "List interface names")
+	rootCmd.Flags().BoolS("m", "m", false, "Display all supported media types")
+	rootCmd.Flags().BoolS("r", "r", false, "Show additional reference count")
+	rootCmd.Flags().BoolS("u", "u", false, "Display interfaces that are up")
+	rootCmd.Flags().BoolS("v", "v", false, "Verbose mode")
+
+	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionValues())
 }

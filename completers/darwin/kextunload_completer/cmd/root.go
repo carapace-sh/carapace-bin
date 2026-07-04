@@ -17,8 +17,9 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).Standalone()
-	rootCmd.Flags().BoolS("Help|-h", "Help|-h", false, "")
-	rootCmd.Flags().BoolS("Verbose|-v", "Verbose|-v", false, "")
 
-	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
+	rootCmd.Flags().BoolS("h", "h", false, "Display help")
+	rootCmd.Flags().BoolS("v", "v", false, "Verbose mode")
+
+	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionDirectories())
 }
