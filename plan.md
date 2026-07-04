@@ -331,7 +331,7 @@ Enhance existing completers with richer completions beyond basic flags.
 | Status | Command | What to add |
 |--------|---------|-------------|
 | ☐ todo | `launchctl` | Add subcommand-specific flags (e.g. `bootstrap` takes plist file, `kill` takes signal) |
-| ☐ todo | `log` | Add subcommand-specific flags (`collect`, `show`, `stream`, `config`, `erase`) |
+| ✅ done | `log` | Add subcommand-specific flags (`collect`, `show`, `stream`, `config`, `erase`, `stats`) |
 | ☐ todo | `kmutil` | Add subcommand-specific flags (`load`, `unload`, `showloaded`, `create`, `inspect`, etc.) |
 | ☐ todo | `simctl` | Add subcommand-specific flags and device list completion |
 | ☐ todo | `diskutil` | Add subcommand-specific flags and disk list completion via `diskutil list` |

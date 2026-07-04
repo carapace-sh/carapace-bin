@@ -15,8 +15,11 @@ var rootCmd = &cobra.Command{
 func Execute() error {
 	return rootCmd.Execute()
 }
+
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionValues())
+	rootCmd.Flags().BoolP("help", "?", false, "Display help")
+	rootCmd.Flags().BoolP("quiet", "q", false, "Quiet mode")
+	rootCmd.Flags().BoolP("verbose", "v", false, "Verbose mode")
 }
