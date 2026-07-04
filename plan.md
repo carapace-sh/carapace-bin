@@ -116,18 +116,18 @@ Create Windows-specific completers for commands that ship with Windows. These ar
 
 | Status | Command | Description | Reference URL |
 |--------|---------|-------------|---------------|
-| ☐ todo | `diskpart` | Disk partitioning/scripting tool | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/diskpart |
-| ☐ todo | `format` | Format a volume | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/format |
-| ☐ todo | `chkdsk` | Check disk for errors | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/chkdsk |
-| ☐ todo | `label` | Create/change/delete volume label | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/label |
-| ☐ todo | `vol` | Display volume label and serial number | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/vol |
-| ☐ todo | `fsutil` | Filesystem utility (many subcommands) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/fsutil |
-| ☐ todo | `mountvol` | Create/delete volume mount points | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/mountvol |
-| ☐ todo | `convert` | Convert FAT to NTFS | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/convert |
-| ☐ todo | `defrag` | Defragment a volume | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/defrag |
+| ✅ done | `diskpart` | Disk partitioning/scripting tool | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/diskpart |
+| ✅ done | `format` | Format a volume | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/format |
+| ✅ done | `chkdsk` | Check disk for errors | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/chkdsk |
+| ✅ done | `label` | Create/change/delete volume label | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/label |
+| ✅ done | `vol` | Display volume label and serial number | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/vol |
+| ✅ done | `fsutil` | Filesystem utility (many subcommands) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/fsutil |
+| ✅ done | `mountvol` | Create/delete volume mount points | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/mountvol |
+| ✅ done | `convert` | Convert FAT to NTFS | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/convert |
+| ✅ done | `defrag` | Defragment a volume | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/defrag |
 | ☐ todo | `recover` | Recover readable info from bad disk | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/recover |
-| ☐ todo | `vssadmin` | Volume Shadow Copy administration | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/vssadmin |
-| ☐ todo | `bcdedit` | Boot configuration data editor | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/bcdedit |
+| ✅ done | `vssadmin` | Volume Shadow Copy administration | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/vssadmin |
+| ✅ done | `bcdedit` | Boot configuration data editor | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/bcdedit |
 | ☐ todo | `bootcfg` | Configure boot entries (legacy) | — |
 | ☐ todo | `diskraid` | RAID configuration tool | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/diskraid |
 | ☐ todo | `fltMC` | Filter manager control (minifilters) | — |
@@ -202,16 +202,16 @@ Create Windows-specific completers for commands that ship with Windows. These ar
 
 | Status | Command | Description | Reference URL |
 |--------|---------|-------------|---------------|
-| ☐ todo | `certutil` | Certificate utility (many subcommands) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/certutil |
+| ✅ done | `certutil` | Certificate utility (many subcommands) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/certutil |
 | ☐ todo | `cipher` | Encrypt/decrypt (EFS) — also in Phase 2 | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/cipher |
-| ☐ todo | `manage-bde` | Manage BitLocker Drive Encryption | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/manage-bde |
+| ✅ done | `manage-bde` | Manage BitLocker Drive Encryption | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/manage-bde |
 | ☐ todo | `repair-bde` | Repair BitLocker-encrypted drive | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/repair-bde |
 | ☐ todo | `bdehdcfg` | BitLocker drive preparation | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/bdehdcfg |
 | ☐ todo | `ksetup` | Kerberos setup | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/ksetup |
 | ☐ todo | `ktsetup` | Kerberos setup (alt) | — |
 | ☐ todo | `setspn` | Set service principal names | — |
-| ☐ todo | `gpupdate` | Update group policy | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/gpupdate |
-| ☐ todo | `gpresult` | Display group policy results | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/gpresult |
+| ✅ done | `gpupdate` | Update group policy | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/gpupdate |
+| ✅ done | `gpresult` | Display group policy results | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/gpresult |
 | ☐ todo | `auditpol` | Audit policy management | — |
 | ☐ todo | `lodctr` | Load performance counters | — |
 | ☐ todo | `unlodctr` | Unload performance counters | — |
@@ -227,15 +227,15 @@ Create Windows-specific completers for commands that ship with Windows. These ar
 |--------|---------|-------------|---------------|
 | ✅ done | `winget` | Windows Package Manager | Already in `completers/windows/winget_completer` |
 | ✅ done | `wt` | Windows Terminal | Already in `completers/common/wt_completer` |
-| ☐ todo | `pwsh` | PowerShell 7+ (cross-platform) | https://learn.microsoft.com/en-us/powershell/scripting/developer/cmdlet-aliases |
-| ☐ todo | `powershell` | Windows PowerShell 5.1 | https://learn.microsoft.com/en-us/powershell/scripting/developer/cmdlet-aliases |
+| ✅ done | `pwsh` | PowerShell 7+ (cross-platform) | https://learn.microsoft.com/en-us/powershell/scripting/developer/cmdlet-aliases |
+| ✅ done | `powershell` | Windows PowerShell 5.1 | https://learn.microsoft.com/en-us/powershell/scripting/developer/cmdlet-aliases |
 | ☐ todo | `dotnet` | .NET CLI | Already in common? Verify |
 | ☐ todo | `azcopy` | Azure storage copy tool | https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10 |
 | ☐ todo | `winsw` | Windows Service Wrapper | https://github.com/winsw/winsw |
 | ☐ todo | `nssm` | Non-Sucking Service Manager | https://nssm.cc/ |
-| ☐ todo | `choco` | Chocolatey package manager | https://docs.chocolatey.org/en-us/choco/ |
-| ☐ todo | `scoop` | Scoop package manager | https://scoop.sh/ |
-| ☐ todo | `sfc` | System File Checker | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/sfc |
+| ✅ done | `choco` | Chocolatey package manager | https://docs.chocolatey.org/en-us/choco/ |
+| ✅ done | `scoop` | Scoop package manager | https://scoop.sh/ |
+| ✅ done | `sfc` | System File Checker | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/sfc |
 | ☐ todo | `dism` | DISM (also in Phase 5) | https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/what-is-dism |
 | ☐ todo | `bcdboot` | Boot file creation/repair | https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/bcdboot-command-line-options |
 | ☐ todo | `sysprep` | System preparation tool | — |
@@ -246,12 +246,12 @@ Create Windows-specific completers for commands that ship with Windows. These ar
 
 | Status | Command | Description | Reference URL |
 |--------|---------|-------------|---------------|
-| ☐ todo | `wevtutil` | Windows event log utility | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/wevtutil |
+| ✅ done | `wevtutil` | Windows event log utility | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/wevtutil |
 | ☐ todo | `eventvwr` | Event Viewer (MMC snap-in launcher) | — |
 | ☐ todo | `perfmon` | Performance Monitor (MMC snap-in) | — |
 | ☐ todo | `wmic` | WMI (also in Phase 4) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/wmic |
 | ☐ todo | `dispdiag` | Display diagnostics | — |
-| ☐ todo | `dxdiag` | DirectX diagnostics | — |
+| ✅ done | `dxdiag` | DirectX diagnostics | — |
 | ☐ todo | `mdt` | Microsoft Deployment Toolkit | — |
 | ☐ todo | `logman` | Performance log (also in Phase 6) | — |
 | ☐ todo | `tracerpt` | Convert trace logs to reports | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tracerpt |
@@ -263,16 +263,16 @@ Create Windows-specific completers for commands that ship with Windows. These ar
 
 | Status | Command | Description | Reference URL |
 |--------|---------|-------------|---------------|
-| ☐ todo | `cmd` | Windows command interpreter | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/cmd |
-| ☐ todo | `cscript` | Windows script host (CLI) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/cscript |
+| ✅ done | `cmd` | Windows command interpreter | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/cmd |
+| ✅ done | `cscript` | Windows script host (CLI) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/cscript |
 | ☐ todo | `wscript` | Windows script host (GUI) | — |
 | ☐ todo | `mshta` | HTML application host | — |
-| ☐ todo | `forfiles` | Select files by date/mask for batch processing | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/forfiles |
+| ✅ done | `forfiles` | Select files by date/mask for batch processing | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/forfiles |
 | ☐ todo | `if` | Conditional processing (cmd builtin) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/if |
 | ☐ todo | `for` | Loop command (cmd builtin) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/for |
 | ☐ todo | `goto` | Jump to label (cmd builtin) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/goto |
 | ☐ todo | `shift` | Shift batch parameters | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/shift |
-| ☐ todo | `mklink` | Create symbolic/hard link (cmd builtin) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/mklink |
+| ✅ done | `mklink` | Create symbolic/hard link (cmd builtin) | https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/mklink |
 | ☐ todo | `debug` | Debug tool (legacy, 16-bit era) | — |
 | ☐ todo | `edit` | MS-DOS Editor (legacy) | — |
 | ☐ todo | `edlin` | Line editor (legacy) | — |
