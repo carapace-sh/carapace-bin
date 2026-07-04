@@ -30,6 +30,8 @@ func ActionDisplays() carapace.Action {
 				}
 				return carapace.ActionValues(vals...)
 			})
+		case "windows":
+			return carapace.ActionValues() // Windows doesn't use X display identifiers
 		default:
 			return carapace.ActionExecCommand("w", "-hsu")(func(output []byte) carapace.Action {
 				vals := make([]string, 0)

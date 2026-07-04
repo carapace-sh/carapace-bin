@@ -18,6 +18,8 @@ func ActionMounts() carapace.Action {
 		switch {
 		case runtime.GOOS == "darwin":
 			return actionMountsDarwin()
+		case runtime.GOOS == "windows":
+			return actionMountsWindows()
 		default:
 			return actionMountsProc()
 		}
@@ -54,6 +56,37 @@ func actionMountsDarwin() carapace.Action {
 					vals = append(vals, mountPoint, device)
 				}
 			}
+		}
+		return carapace.ActionValuesDescribed(vals...).StyleF(style.ForPath)
+	})
+}
+
+func actionMountsWindows() carapace.Action {
+	return carapace.ActionExecCommand("wmic", "logicaldisk", "get", "Caption,ProviderName", "/format:csv")(func(output []byte) carapace.Action {
+		lines := strings.Split(strings.ReplaceAll(string(output), "\r", ""), "\n")
+		if len(lines) < 2 {
+			return carapace.ActionValues()
+		}
+
+		header := strings.Split(lines[0], ",")
+		indexes := make(map[string]int)
+		for i, col := range header {
+			indexes[strings.TrimSpace(col)] = i
+		}
+
+		vals := make([]string, 0)
+		for _, line := range lines[1:] {
+			fields := strings.Split(line, ",")
+			if len(fields) < len(header) {
+				continue
+			}
+
+			caption := strings.TrimSpace(fields[indexes["Caption"]])
+			if caption == "" {
+				continue
+			}
+			provider := strings.TrimSpace(fields[indexes["ProviderName"]])
+			vals = append(vals, caption, provider)
 		}
 		return carapace.ActionValuesDescribed(vals...).StyleF(style.ForPath)
 	})

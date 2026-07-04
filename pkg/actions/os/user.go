@@ -25,6 +25,17 @@ func isNonLoginShell(shell string) bool {
 //	daemon (1)
 func ActionUsers() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		switch runtime.GOOS {
+		case "windows":
+			return actionUsersWindows()
+		default:
+			return actionUsersUnix()
+		}
+	}).Tag("users").Uid("os", "user")
+}
+
+func actionUsersUnix() carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		users := []string{}
 		if content, err := os.ReadFile("/etc/passwd"); err == nil {
 			for entry := range strings.SplitSeq(string(content), "\n") {
@@ -57,7 +68,30 @@ func ActionUsers() carapace.Action {
 			}
 		}
 		return carapace.ActionStyledValuesDescribed(users...)
-	}).Tag("users").Uid("os", "user")
+	})
+}
+
+func actionUsersWindows() carapace.Action {
+	return carapace.ActionExecCommand("net", "user")(func(output []byte) carapace.Action {
+		lines := strings.Split(strings.ReplaceAll(string(output), "\r", ""), "\n")
+		vals := make([]string, 0)
+		// net user output has header lines, then user names in columns, then footer
+		for i, line := range lines {
+			if i < 4 { // skip header lines
+				continue
+			}
+			trimmed := strings.TrimSpace(line)
+			if trimmed == "" || strings.HasPrefix(trimmed, "The command") {
+				continue
+			}
+			for _, user := range strings.Fields(line) {
+				if len(user) > 0 {
+					vals = append(vals, user, user, style.Blue)
+				}
+			}
+		}
+		return carapace.ActionStyledValuesDescribed(vals...)
+	})
 }
 
 // ActionUserGroup completes system user:group separately
