@@ -282,3 +282,80 @@ Create new darwin completers for commands that only exist on macOS.
 3. Implement darwin-specific logic (e.g. using `diskutil`, `dscl`, `defaults` commands)
 4. Run `go generate ./cmd/...` to regenerate macro map if public action was modified
 5. Build and test as above
+
+---
+
+## Phase 7: Core Public Actions — Darwin Improvements
+
+The following actions currently work on darwin via generic fallbacks but could be improved with darwin-native implementations.
+
+| Status | File | Action | What to do |
+|--------|------|--------|------------|
+| ☐ todo | `pkg/actions/os/group.go` | `ActionGroups` | Add `dscl` fallback for Directory Service groups not in `/etc/group` |
+| ☐ todo | `pkg/actions/os/kernel.go` | `ActionKernelModulesLoaded` | Add `kextstat` branch for darwin (parse kextstat output) |
+| ☐ todo | `pkg/actions/os/kernel.go` | `ActionKernelModules` | Return empty or `kmutil`-based list on darwin (no `/lib/modules`) |
+| ☐ todo | `pkg/actions/os/kernel.go` | `ActionKernelReleases` | Return empty on darwin (no `/lib/modules` directory) |
+| ☐ todo | `pkg/actions/os/font.go` | `ActionFontFamilies` | Add `system_profiler SPFontsDataType` fallback when `fc-list` is absent |
+| ☐ todo | `pkg/actions/os/display.go` | `ActionDisplays` | Verify `w` output parsing on darwin; consider `system_profiler SPDisplaysDataType` |
+| ☐ todo | `pkg/actions/os/sound.go` | `ActionSoundCards` | Currently uses `aplay` (Linux-only); add darwin branch returning empty or `system_profiler SPAudioDataType` |
+| ☐ todo | `pkg/actions/os/session.go` | `ActionSessionIds` | Verify `ps -A -o user,sess` works on darwin BSD ps |
+
+---
+
+## Phase 8: Missing Niche Commands
+
+Commands that were in the original plan but were skipped due to missing man pages or being very niche.
+
+| Status | Command | Description | Notes |
+|--------|---------|-------------|-------|
+| ☐ todo | `dtruss` | Trace system calls (DTrace wrapper) | No man page; check `dtruss -h` output |
+| ☐ todo | `opensnoop` | Trace file open operations (DTrace) | No man page; check `opensnoop -h` output |
+| ☐ todo | `systemextensionsctl` | Manage system extensions | No man page; check `--help` |
+| ☐ todo | `apfsctl` | APFS filesystem control | No man page |
+| ☐ todo | `blueutil` | Bluetooth control (third-party) | https://github.com/toy/blueutil |
+| ☐ todo | `createinstallmedia` | Create macOS install media | No man page; check `--help` |
+| ☐ todo | `startosinstall` | Start macOS OS install | No man page |
+| ☐ todo | `repair_packages` | Repair/reverify packages | No man page |
+| ☐ todo | `actool` | Asset catalog compiler | Has man page; niche Xcode tool |
+| ☐ todo | `ibtool` | Interface Builder compile tool | Has man page; niche Xcode tool |
+| ☐ todo | `dyld_info` | Dyld linker info | Has man page |
+
+---
+
+## Phase 9: Completer Quality Improvements
+
+Enhance existing completers with richer completions beyond basic flags.
+
+### Subcommand-level completions
+
+| Status | Command | What to add |
+|--------|---------|-------------|
+| ☐ todo | `launchctl` | Add subcommand-specific flags (e.g. `bootstrap` takes plist file, `kill` takes signal) |
+| ☐ todo | `log` | Add subcommand-specific flags (`collect`, `show`, `stream`, `config`, `erase`) |
+| ☐ todo | `kmutil` | Add subcommand-specific flags (`load`, `unload`, `showloaded`, `create`, `inspect`, etc.) |
+| ☐ todo | `simctl` | Add subcommand-specific flags and device list completion |
+| ☐ todo | `diskutil` | Add subcommand-specific flags and disk list completion via `diskutil list` |
+| ☐ todo | `hdiutil` | Add subcommand-specific flags (`attach`, `create`, `convert` have distinct options) |
+| ☐ todo | `defaults` | Add domain completion (list known preference domains) and key completion |
+| ☐ todo | `scutil` | Add subcommand-specific completions for interactive commands |
+
+### Dynamic completions
+
+| Status | Command | What to add |
+|--------|---------|-------------|
+| ☐ todo | `diskutil` | Complete disk identifiers (e.g. `disk0`, `disk0s1`) via `diskutil list` output |
+| ☐ todo | `launchctl` | Complete service labels via `launchctl list` output |
+| ☐ todo | `defaults` | Complete domain names via `defaults domains` output |
+| ☐ todo | `mdfind` | Complete saved search names |
+| ☐ todo | `simctl` | Complete device UUIDs via `xcrun simctl list` output |
+| ☐ todo | `security` | Complete keychain names via `security list-keychains` output |
+| ☐ todo | `softwareupdate` | Complete update item names from `--list` output |
+
+### Flag accuracy review
+
+| Status | Command | Issue |
+|--------|---------|-------|
+| ☐ todo | All darwin completers | Run each command with `--help` or `-h` to verify flags match actual behavior (not just man pages) |
+| ☐ todo | `screencapture` | Verify `-T` (delay) vs `-t` (format) — may need testing |
+| ☐ todo | `codesign` | `-v` is used for both verbose and verify — verify completion works correctly |
+| ☐ todo | `base64` | `-D` and `-d` both decode — verify behavior |
