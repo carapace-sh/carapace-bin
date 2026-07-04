@@ -358,3 +358,20 @@ Enhance existing completers with richer completions beyond basic flags.
 | ✅ done | `screencapture` | Fixed: `-T` is delay (seconds), `-t` is format — both correct. Added missing flags (`-b`, `-D`, `-J`, `-B`, `-p`, `-U`, `-R`, `-V`, `-a`) and fixed `-d` (display errors, not delay) and `-P` (open in Preview, not pasteboard) |
 | ✅ done | `codesign` | `-v` used for both verbose and verify — kept as single `verbose` flag with combined description. Added missing flags from man page (`-a`, `-o`, `-R`, `-D`, `--deep`, etc.) |
 | ✅ done | `base64` | Both `-D` and `-d` decode — confirmed correct. Added missing `-m` flag |
+
+---
+
+## Phase 10: Additional macOS Commands
+
+High-priority BSD/macOS commands identified as missing during final review.
+
+| Status | Command | Description | Man page |
+|--------|---------|-------------|----------|
+| ✅ done | `sysctl` | Read/write kernel state variables | https://keith.github.io/xcode-manpages/sysctl.8.html |
+| ✅ done | `top` | Display and update sorted information about processes | https://keith.github.io/xcode-manpages/top.1.html |
+| ✅ done | `dmesg` | Display the system message buffer | https://keith.github.io/xcode-manpages/dmesg.8.html |
+| ✅ done | `ioreg` | Display IOKit registry | https://keith.github.io/xcode-manpages/ioreg.8.html |
+| ✅ done | `vm_stat` | Show Mach virtual memory statistics | https://keith.github.io/xcode-manpages/vm_stat.1.html |
+| ✅ done | `hidutil` | HID device utility (key remapping) | https://developer.apple.com/library/archive/documentation/DeviceDrivers/Conceptual/HID/new_api_10.5_intro/chapter_2_section_5.html |
+| ✅ done | `fs_usage` | File system usage trace | https://keith.github.io/xcode-manpages/fs_usage.1.html |
+| ✅ done | `afplay` | Play audio files | https://keith.github.io/xcode-manpages/afplay.1.html |
