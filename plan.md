@@ -132,8 +132,8 @@ Create new darwin completers for commands that only exist on macOS.
 
 | Status | Command | Description | Man page / URL |
 |--------|---------|-------------|----------------|
-| ☐ todo | `dscl` | Directory Service command line | https://keith.github.io/xcode-manpages/dscl.1.html |
-| ☐ todo | `dscacheutil` | Directory Service cache utility | https://keith.github.io/xcode-manpages/dscacheutil.1.html |
+| ✅ done | `dscl` | Directory Service command line | https://keith.github.io/xcode-manpages/dscl.1.html |
+| ✅ done | `dscacheutil` | Directory Service cache utility | https://keith.github.io/xcode-manpages/dscacheutil.1.html |
 | ☐ todo | `sysadminctl` | System admin operations (user management) | https://developer.apple.com/library/archive/documentation/Darwin/Reference/ManPages/man8/sysadminctl.8.html |
 | ☐ todo | `systemsetup` | System configuration (hostname, timezone) | https://keith.github.io/xcode-manpages/systemsetup.8.html |
 
@@ -141,10 +141,10 @@ Create new darwin completers for commands that only exist on macOS.
 
 | Status | Command | Description | Man page / URL |
 |--------|---------|-------------|----------------|
-| ☐ todo | `pmset` | Power management settings | https://keith.github.io/xcode-manpages/pmset.1.html |
+| ✅ done | `pmset` | Power management settings | https://keith.github.io/xcode-manpages/pmset.1.html |
 | ☐ todo | `powermetrics` | Power/performance metrics | https://developer.apple.com/library/archive/documentation/Darwin/Reference/ManPages/man1/powermetrics.1.html |
-| ☐ todo | `nvram` | Read/write NVRAM firmware variables | https://keith.github.io/xcode-manpages/nvram.8.html |
-| ☐ todo | `bless` | Set bootable disk/volume | https://keith.github.io/xcode-manpages/bless.8.html |
+| ✅ done | `nvram` | Read/write NVRAM firmware variables | https://keith.github.io/xcode-manpages/nvram.8.html |
+| ✅ done | `bless` | Set bootable disk/volume | https://keith.github.io/xcode-manpages/bless.8.html |
 | ☐ todo | `fdesetup` | FileVault setup | https://keith.github.io/xcode-manpages/fdesetup.8.html |
 | ☐ todo | `profiles` | Install/remove configuration profiles | https://keith.github.io/xcode-manpages/profiles.8.html |
 | ☐ todo | `firmwarepasswd` | Set firmware password | https://developer.apple.com/library/archive/documentation/Darwin/Reference/ManPages/man8/firmwarepasswd.8.html |
@@ -153,10 +153,10 @@ Create new darwin completers for commands that only exist on macOS.
 
 | Status | Command | Description | Man page / URL |
 |--------|---------|-------------|----------------|
-| ☐ todo | `mdfind` | Spotlight search | https://keith.github.io/xcode-manpages/mdfind.1.html |
-| ☐ todo | `mdls` | List Spotlight metadata attributes | https://keith.github.io/xcode-manpages/mdls.1.html |
-| ☐ todo | `mdimport` | Import files into Spotlight index | https://keith.github.io/xcode-manpages/mdimport.1.html |
-| ☐ todo | `mdutil` | Manage Spotlight indexing | https://keith.github.io/xcode-manpages/mdutil.1.html |
+| ✅ done | `mdfind` | Spotlight search | https://keith.github.io/xcode-manpages/mdfind.1.html |
+| ✅ done | `mdls` | List Spotlight metadata attributes | https://keith.github.io/xcode-manpages/mdls.1.html |
+| ✅ done | `mdimport` | Import files into Spotlight index | https://keith.github.io/xcode-manpages/mdimport.1.html |
+| ✅ done | `mdutil` | Manage Spotlight indexing | https://keith.github.io/xcode-manpages/mdutil.1.html |
 
 ### Priority 3e: Filesystem and disk
 
@@ -211,16 +211,16 @@ Create new darwin completers for commands that only exist on macOS.
 
 | Status | Command | Description | Man page / URL |
 |--------|---------|-------------|----------------|
-| ☐ todo | `xcrun` | Run tool from Xcode active developer directory | https://keith.github.io/xcode-manpages/xcrun.1.html |
-| ☐ todo | `xcodebuild` | Build Xcode projects and workspaces | https://keith.github.io/xcode-manpages/xcodebuild.1.html |
-| ☐ todo | `xcode-select` | Switch active Xcode developer directory | https://keith.github.io/xcode-manpages/xcode-select.1.html |
-| ☐ todo | `simctl` | iOS Simulator control | https://keith.github.io/xcode-manpages/simctl.1.html |
-| ☐ todo | `xcode-select` | Switch Xcode path | https://keith.github.io/xcode-manpages/xcode-select.1.html |
+| ✅ done | `xcrun` | Run tool from Xcode active developer directory | https://keith.github.io/xcode-manpages/xcrun.1.html |
+| ✅ done | `xcodebuild` | Build Xcode projects and workspaces | https://keith.github.io/xcode-manpages/xcodebuild.1.html |
+| ✅ done | `xcode-select` | Switch active Xcode developer directory | https://keith.github.io/xcode-manpages/xcode-select.1.html |
+| ✅ done | `simctl` | iOS Simulator control | https://keith.github.io/xcode-manpages/simctl.1.html |
+| ✅ done | `xcode-select` | Switch Xcode path | https://keith.github.io/xcode-manpages/xcode-select.1.html |
 | ☐ todo | `swift` | Swift REPL / run Swift scripts | https://keith.github.io/xcode-manpages/swift.1.html |
 | ☐ todo | `swiftc` | Swift compiler | https://keith.github.io/xcode-manpages/swiftc.1.html |
 | ☐ todo | `lldb` | LLVM debugger | https://keith.github.io/xcode-manpages/lldb.1.html |
-| ☐ todo | `codesign` | Code signing tool | https://keith.github.io/xcode-manpages/codesign.1.html |
-| ☐ todo | `security` | Keychain and certificate management | https://keith.github.io/xcode-manpages/security.1.html |
+| ✅ done | `codesign` | Code signing tool | https://keith.github.io/xcode-manpages/codesign.1.html |
+| ✅ done | `security` | Keychain and certificate management | https://keith.github.io/xcode-manpages/security.1.html |
 | ☐ todo | `otool` | Object file display tool (Mach-O) | https://keith.github.io/xcode-manpages/otool.1.html |
 | ☐ todo | `install_name_tool` | Change dynamic shared library install names | https://keith.github.io/xcode-manpages/install_name_tool.1.html |
 | ☐ todo | `dyld_info` | Dyld linker info | https://keith.github.io/xcode-manpages/dyld_info.1.html |
@@ -240,10 +240,10 @@ Create new darwin completers for commands that only exist on macOS.
 | ✅ done | `caffeinate` | Prevent system sleep | https://keith.github.io/xcode-manpages/caffeinate.1.html |
 | ✅ done | `say` | Text-to-speech | https://keith.github.io/xcode-manpages/say.1.html |
 | ✅ done | `osascript` | Execute AppleScript / OSA scripts | https://keith.github.io/xcode-manpages/osascript.1.html |
-| ☐ todo | `screencapture` | Screen capture utility | https://keith.github.io/xcode-manpages/screencapture.1.html |
-| ☐ todo | `shortcuts` | Run/manage macOS Shortcuts | https://keith.github.io/xcode-manpages/shortcuts.1.html |
-| ☐ todo | `sips` | Scriptable image processing system | https://keith.github.io/xcode-manpages/sips.1.html |
-| ☐ todo | `textutil` | Convert text file formats (rtf, txt, html, doc) | https://keith.github.io/xcode-manpages/textutil.1.html |
+| ✅ done | `screencapture` | Screen capture utility | https://keith.github.io/xcode-manpages/screencapture.1.html |
+| ✅ done | `shortcuts` | Run/manage macOS Shortcuts | https://keith.github.io/xcode-manpages/shortcuts.1.html |
+| ✅ done | `sips` | Scriptable image processing system | https://keith.github.io/xcode-manpages/sips.1.html |
+| ✅ done | `textutil` | Convert text file formats (rtf, txt, html, doc) | https://keith.github.io/xcode-manpages/textutil.1.html |
 | ☐ todo | `sharing` | Manage file/web/screen sharing | https://keith.github.io/xcode-manpages/sharing.1.html |
 | ☐ todo | `blueutil` | Bluetooth control (third-party) | https://github.com/toy/blueutil |
 | ☐ todo | `automount` | Automount control (NFS) | https://keith.github.io/xcode-manpages/automount.8.html |
