@@ -18,9 +18,9 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolP("r", "r", false, "recursive search, display files in specified directory and subdirectories")
-	rootCmd.Flags().BoolP("q", "q", false, "quiet mode, return only exit code")
 	rootCmd.Flags().BoolP("f", "f", false, "show the results of the pattern in both upper and lower case")
+	rootCmd.Flags().BoolP("q", "q", false, "quiet mode, return only exit code")
+	rootCmd.Flags().BoolP("r", "r", false, "recursive search, display files in specified directory and subdirectories")
 	rootCmd.Flags().BoolP("t", "t", false, "display the file size, timestamp, and date")
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())

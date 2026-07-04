@@ -18,9 +18,9 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolP("insert", "insert", false, "new text is typed in the middle of old text")
-	rootCmd.Flags().BoolP("history", "history", false, "display all commands stored in memory")
-	rootCmd.Flags().BoolP("listsize", "listsize", false, "set maximum number of commands stored in memory")
-	rootCmd.Flags().BoolP("reinstall", "reinstall", false, "reinstall doskey")
-	rootCmd.Flags().BoolP("overstrike", "overstrike", false, "new text overwrites old text")
+	rootCmd.Flags().Bool("history", false, "display all commands stored in memory")
+	rootCmd.Flags().Bool("insert", false, "new text is typed in the middle of old text")
+	rootCmd.Flags().Bool("listsize", false, "set maximum number of commands stored in memory")
+	rootCmd.Flags().Bool("overstrike", false, "new text overwrites old text")
+	rootCmd.Flags().Bool("reinstall", false, "reinstall doskey")
 }

@@ -18,10 +18,10 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolP("q", "q", false, "suppress success messages")
 	rootCmd.Flags().BoolP("c", "c", false, "continue on access denied errors")
-	rootCmd.Flags().BoolP("t", "t", false, "operate recursively on files in directory and subdirectories")
 	rootCmd.Flags().BoolP("l", "l", false, "perform operation on a symbolic link vs. its target")
+	rootCmd.Flags().BoolP("q", "q", false, "suppress success messages")
+	rootCmd.Flags().BoolP("t", "t", false, "operate recursively on files in directory and subdirectories")
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

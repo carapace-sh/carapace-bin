@@ -18,7 +18,7 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolP("nh", "nh", false, "skip header row")
-	rootCmd.Flags().BoolP("si", "si", false, "display signed drivers")
+	rootCmd.Flags().Bool("nh", false, "skip header row")
+	rootCmd.Flags().Bool("si", false, "display signed drivers")
 	rootCmd.Flags().BoolP("v", "v", false, "display verbose information")
 }

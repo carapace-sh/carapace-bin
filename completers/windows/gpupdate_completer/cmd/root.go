@@ -18,5 +18,5 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolP("force", "force", false, "reapply all policy settings")
+	rootCmd.Flags().Bool("force", false, "reapply all policy settings")
 }

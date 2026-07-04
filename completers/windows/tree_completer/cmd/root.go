@@ -18,8 +18,8 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolP("f", "f", false, "display the names of the files in each directory")
 	rootCmd.Flags().BoolP("a", "a", false, "use text characters instead of graphic characters to show lines")
+	rootCmd.Flags().BoolP("f", "f", false, "display the names of the files in each directory")
 
 	carapace.Gen(rootCmd).PositionalCompletion(carapace.ActionDirectories())
 }
