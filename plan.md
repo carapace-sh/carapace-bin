@@ -59,17 +59,17 @@ Create darwin-specific completers for commands where BSD/macOS flags differ sign
 
 | Status | Command | Key differences from GNU | Man page |
 |--------|---------|--------------------------|----------|
-| ☐ todo | `touch` | BSD: `-t` time, `-r` reference, `-f` force; no `--date`, `--time=WORD` | https://keith.github.io/xcode-manpages/touch.1.html |
-| ☐ todo | `chmod` | BSD: `-H`/`-L`/`-P` symlink traversal, `-N` ACL, `-v` verbose; no `--reference` | https://keith.github.io/xcode-manpages/chmod.1.html |
-| ☐ todo | `chown` | BSD: `-H`/`-L`/`-P`, `-v` verbose, `-n` no-recurse; no `--from`, `--reference` | https://keith.github.io/xcode-manpages/chown.8.html |
-| ☐ todo | `chgrp` | BSD: `-H`/`-L`/`-P`, `-v` verbose, `-h`; no `--reference` | https://keith.github.io/xcode-manpages/chgrp.1.html |
-| ☐ todo | `ln` | BSD: `-h` no-follow, `-F` force hard-to-dirs, `-v` verbose; no `-T`, `--backup`, `--relative` | https://keith.github.io/xcode-manpages/ln.1.html |
-| ☐ todo | `mkdir` | BSD: `-v` verbose, `-m` mode, `-p` parents; no `-Z` (SELinux) | https://keith.github.io/xcode-manpages/mkdir.1.html |
-| ☐ todo | `rmdir` | BSD: `-v` verbose, `-p` parents; no `--ignore-fail-on-non-empty` | https://keith.github.io/xcode-manpages/rmdir.1.html |
-| ☐ todo | `head` | BSD: `-N` shorthand, `-c` bytes, `-n` lines; no `--zero-terminated`, `--verbose` | https://keith.github.io/xcode-manpages/head.1.html |
-| ☐ todo | `tail` | BSD: `-r` reverse, `-q`, `-v`; no `--follow=name`, `--retry`, `--max-unchanged-stats`, `--pid` | https://keith.github.io/xcode-manpages/tail.1.html |
-| ☐ todo | `cat` | BSD: `-e`, `-t`, `-v`, `-n`, `-s`, `-l`; no `-A`, `-E`, `-T`, `--show-all` | https://keith.github.io/xcode-manpages/cat.1.html |
-| ☐ todo | `wc` | BSD: `-l`, `-w`, `-c`, `-m`, `-L`; no `--files0-from`, `--total`, `--debug` | https://keith.github.io/xcode-manpages/wc.1.html |
+| ✅ done | `touch` | BSD: `-t` time, `-r` reference, `-f` force; no `--date`, `--time=WORD` | https://keith.github.io/xcode-manpages/touch.1.html |
+| ✅ done | `chmod` | BSD: `-H`/`-L`/`-P` symlink traversal, `-N` ACL, `-v` verbose; no `--reference` | https://keith.github.io/xcode-manpages/chmod.1.html |
+| ✅ done | `chown` | BSD: `-H`/`-L`/`-P`, `-v` verbose, `-n` no-recurse; no `--from`, `--reference` | https://keith.github.io/xcode-manpages/chown.8.html |
+| ✅ done | `chgrp` | BSD: `-H`/`-L`/`-P`, `-v` verbose, `-h`; no `--reference` | https://keith.github.io/xcode-manpages/chgrp.1.html |
+| ✅ done | `ln` | BSD: `-h` no-follow, `-F` force hard-to-dirs, `-v` verbose; no `-T`, `--backup`, `--relative` | https://keith.github.io/xcode-manpages/ln.1.html |
+| ✅ done | `mkdir` | BSD: `-v` verbose, `-m` mode, `-p` parents; no `-Z` (SELinux) | https://keith.github.io/xcode-manpages/mkdir.1.html |
+| ✅ done | `rmdir` | BSD: `-v` verbose, `-p` parents; no `--ignore-fail-on-non-empty` | https://keith.github.io/xcode-manpages/rmdir.1.html |
+| ✅ done | `head` | BSD: `-N` shorthand, `-c` bytes, `-n` lines; no `--zero-terminated`, `--verbose` | https://keith.github.io/xcode-manpages/head.1.html |
+| ✅ done | `tail` | BSD: `-r` reverse, `-q`, `-v`; no `--follow=name`, `--retry`, `--max-unchanged-stats`, `--pid` | https://keith.github.io/xcode-manpages/tail.1.html |
+| ✅ done | `cat` | BSD: `-e`, `-t`, `-v`, `-n`, `-s`, `-l`; no `-A`, `-E`, `-T`, `--show-all` | https://keith.github.io/xcode-manpages/cat.1.html |
+| ✅ done | `wc` | BSD: `-l`, `-w`, `-c`, `-m`, `-L`; no `--files0-from`, `--total`, `--debug` | https://keith.github.io/xcode-manpages/wc.1.html |
 
 ### Priority 2c: Minor divergence (assess whether needed)
 
