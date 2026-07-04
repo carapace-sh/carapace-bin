@@ -291,14 +291,14 @@ The following actions currently work on darwin via generic fallbacks but could b
 
 | Status | File | Action | What to do |
 |--------|------|--------|------------|
-| ☐ todo | `pkg/actions/os/group.go` | `ActionGroups` | Add `dscl` fallback for Directory Service groups not in `/etc/group` |
-| ☐ todo | `pkg/actions/os/kernel.go` | `ActionKernelModulesLoaded` | Add `kextstat` branch for darwin (parse kextstat output) |
-| ☐ todo | `pkg/actions/os/kernel.go` | `ActionKernelModules` | Return empty or `kmutil`-based list on darwin (no `/lib/modules`) |
-| ☐ todo | `pkg/actions/os/kernel.go` | `ActionKernelReleases` | Return empty on darwin (no `/lib/modules` directory) |
-| ☐ todo | `pkg/actions/os/font.go` | `ActionFontFamilies` | Add `system_profiler SPFontsDataType` fallback when `fc-list` is absent |
-| ☐ todo | `pkg/actions/os/display.go` | `ActionDisplays` | Verify `w` output parsing on darwin; consider `system_profiler SPDisplaysDataType` |
-| ☐ todo | `pkg/actions/os/sound.go` | `ActionSoundCards` | Currently uses `aplay` (Linux-only); add darwin branch returning empty or `system_profiler SPAudioDataType` |
-| ☐ todo | `pkg/actions/os/session.go` | `ActionSessionIds` | Verify `ps -A -o user,sess` works on darwin BSD ps |
+| ✅ done | `pkg/actions/os/group.go` | `ActionGroups` | Add `dscl` fallback for Directory Service groups not in `/etc/group` |
+| ✅ done | `pkg/actions/os/kernel.go` | `ActionKernelModulesLoaded` | Add `kextstat` branch for darwin (parse kextstat output) |
+| ✅ done | `pkg/actions/os/kernel.go` | `ActionKernelModules` | Scan `/Library/Extensions` and `/System/Library/Extensions` for `.kext` bundles on darwin |
+| ✅ done | `pkg/actions/os/kernel.go` | `ActionKernelReleases` | Return empty on darwin (no `/lib/modules` directory) |
+| ✅ done | `pkg/actions/os/font.go` | `ActionFontFamilies` | Add `system_profiler SPFontsDataType` fallback when `fc-list` is absent |
+| ✅ done | `pkg/actions/os/display.go` | `ActionDisplays` | Added darwin branch matching Xquartz/X11.app in `w` output |
+| ✅ done | `pkg/actions/os/sound.go` | `ActionSoundCards` | Added darwin branch using `system_profiler SPAudioDataType` |
+| ✅ done | `pkg/actions/os/session.go` | `ActionSessionIds` | Verified `ps -A -o user,sess` works on darwin BSD ps — no changes needed |
 
 ---
 
