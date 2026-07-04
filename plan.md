@@ -346,8 +346,8 @@ Enhance existing completers with richer completions beyond basic flags.
 | ✅ done | `diskutil` | Complete disk identifiers (e.g. `disk0`, `disk0s1`) via `diskutil list` output — already handled by `fs.ActionBlockDevices()` |
 | ✅ done | `launchctl` | Complete service labels via `launchctl list` output |
 | ✅ done | `defaults` | Complete domain names via `defaults domains` output |
-| ☐ todo | `mdfind` | Complete saved search names |
-| ☐ todo | `simctl` | Complete device UUIDs via `xcrun simctl list` output |
+| ✅ done | `mdfind` | Complete saved search names from `~/Library/Saved Searches/` |
+| ✅ done | `simctl` | Complete device UUIDs via `xcrun simctl list` output |
 | ✅ done | `security` | Complete keychain names via `security list-keychains` output |
 | ✅ done | `softwareupdate` | Complete update item names from `--list` output |
 

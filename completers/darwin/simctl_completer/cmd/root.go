@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/simctl"
 	"github.com/spf13/cobra"
 )
 
@@ -48,5 +49,9 @@ func init() {
 			"logic_test", "Run a logic test",
 			"copy_device_container", "Copy an app's container to the host",
 		),
+	)
+
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		simctl.ActionDevices(),
 	)
 }
