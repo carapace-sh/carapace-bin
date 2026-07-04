@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/yay"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -106,7 +107,7 @@ func init() {
 		"answerupgrade": carapace.ActionValues("Yes", "No", "All", "None", "Editor", "Diff"),
 		"builddir":      carapace.ActionDirectories(),
 		"cachedir":      carapace.ActionDirectories(),
-		"color":         carapace.ActionValues("auto", "always", "never"),
+		"color":         carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
 		"config":        carapace.ActionFiles(),
 		"editor":        carapace.ActionExecutables(),
 		"git":           carapace.ActionExecutables(),

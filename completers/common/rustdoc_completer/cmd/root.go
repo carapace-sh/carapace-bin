@@ -145,7 +145,7 @@ func init() {
 		"markdown-before-content": carapace.ActionFiles().List(","),
 		"markdown-css":            carapace.ActionFiles().List(","),
 		"merge":                   carapace.ActionValues("none", "shared", "finalize"),
-		"merge-doctests":          carapace.ActionValues("yes", "no", "auto"),
+		"merge-doctests":          carapace.ActionValues("yes", "no", "auto").StyleF(style.ForKeyword),
 		// "markdown-playground-url": carapace.ActionValues(),
 		"out-dir":          carapace.ActionDirectories(),
 		"output-format":    carapace.ActionValues("html"),

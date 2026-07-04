@@ -4,6 +4,7 @@ import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/net/http"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/pandoc"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -177,7 +178,7 @@ func init() {
 			}
 		}),
 		"resource-path":          carapace.ActionDirectories(),
-		"sandbox":                carapace.ActionValues("true", "false"),
+		"sandbox":                carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
 		"syntax-definition":      carapace.ActionFiles(),
 		"table-caption-position": carapace.ActionValues("above", "below"),
 		"template":               carapace.ActionFiles(),

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -36,12 +37,12 @@ func init() {
 	rootCmd.Flags().String("width", "", "max width")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"apply-custom-presets": carapace.ActionValues("0", "1", "false", "true"),
-		"export_masks":         carapace.ActionValues("0", "1", "false", "true"),
-		"hq":                   carapace.ActionValues("0", "1", "false", "true"),
+		"apply-custom-presets": carapace.ActionValues("0", "1", "false", "true").StyleF(style.ForKeyword),
+		"export_masks":         carapace.ActionValues("0", "1", "false", "true").StyleF(style.ForKeyword),
+		"hq":                   carapace.ActionValues("0", "1", "false", "true").StyleF(style.ForKeyword),
 		"icc-file":             carapace.ActionFiles(),
 		"import":               carapace.ActionFiles(),
-		"upscale":              carapace.ActionValues("0", "1", "false", "true"),
+		"upscale":              carapace.ActionValues("0", "1", "false", "true").StyleF(style.ForKeyword),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
