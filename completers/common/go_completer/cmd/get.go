@@ -19,7 +19,6 @@ func init() {
 	getCmd.Flags().SetInterspersed(false)
 
 	getCmd.Flags().BoolS("d", "d", false, "only download the source code needed to build")
-	getCmd.Flags().BoolS("insecure", "insecure", false, "permit using insecure schemes such as HTTP")
 	getCmd.Flags().BoolS("t", "t", false, "consider modules needed to build tests")
 	getCmd.Flags().StringS("tool", "tool", "", "add tool line to for each listed package")
 	getCmd.Flags().BoolS("u", "u", false, "update modules providing dependencies")

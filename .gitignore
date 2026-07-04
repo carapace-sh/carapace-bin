@@ -1,4 +1,5 @@
 /carapace
+/*_completer
 /cmd/carapace/carapace
 /cmd/carapace/carapace.exe
 /cmd/carapace/cmd/completers/description.go

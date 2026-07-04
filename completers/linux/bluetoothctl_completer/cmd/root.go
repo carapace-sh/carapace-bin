@@ -23,7 +23,9 @@ func init() {
 	rootCmd.Flags().StringP("agent", "a", "", "Register agent handler: <capability>")
 	rootCmd.Flags().BoolP("endpoints", "e", false, "Register media endpoints")
 	rootCmd.Flags().BoolP("help", "h", false, "Display help")
+	rootCmd.Flags().StringP("init-script", "s", "", "Init script file")
 	rootCmd.Flags().BoolP("monitor", "m", false, "Enable monitor output")
+	rootCmd.Flags().StringP("options", "o", "", "Specify dynamic options")
 	rootCmd.Flags().StringP("timeout", "t", "", "Timeout in seconds for non-interactive mode")
 	rootCmd.Flags().BoolP("version", "v", false, "Display version")
 

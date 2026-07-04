@@ -19,10 +19,11 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().Bool("Cached,", false, "format lines in the stage instead of the working dir")
 	rootCmd.Flags().String("binary", "", "path to clang-format")
+	rootCmd.Flags().Bool("cached", false, "format lines in the stage instead of the working dir")
 	rootCmd.Flags().String("commit", "", "default commit to use if none is specified")
 	rootCmd.Flags().Bool("diff", false, "print a diff instead of applying the changes")
+	rootCmd.Flags().Bool("diff_from_common_commit", false, "diff from common commit of two branches")
 	rootCmd.Flags().Bool("diffstat", false, "print a diffstat instead of applying the changes")
 	rootCmd.Flags().String("extensions", "", "comma-separated list of file extensions to format")
 	rootCmd.Flags().BoolP("force", "f", false, "allow changes to unstaged files")

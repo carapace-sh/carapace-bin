@@ -29,6 +29,7 @@ func init() {
 	rootCmd.Flags().BoolP("print-file-name", "f", false, "Print the name of the file before each string")
 	rootCmd.Flags().StringP("radix", "t", "", "Print the location of the string in base 8, 10 or 16")
 	rootCmd.Flags().StringP("target", "T", "", "Specify the binary file format")
+	rootCmd.Flags().StringP("unicode", "U", "", "Specify how to treat UTF-8 encoded unicode characters")
 	rootCmd.Flags().BoolP("version", "v", false, "Print the program's version number")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
@@ -45,6 +46,7 @@ func init() {
 			"d", "10",
 			"x", "16",
 		),
+		"unicode": carapace.ActionValues("default", "locale", "invalid", "hex", "escape", "highlight"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())

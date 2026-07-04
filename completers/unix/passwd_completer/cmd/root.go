@@ -28,15 +28,18 @@ func init() {
 	rootCmd.Flags().BoolP("lock", "l", false, "lock the password of the named account")
 	rootCmd.Flags().StringP("maxdays", "x", "", "set maximum number of days before password change to MAX_DAYS")
 	rootCmd.Flags().StringP("mindays", "n", "", "set minimum number of days before password change to MIN_DAYS")
+	rootCmd.Flags().StringP("prefix", "P", "", "directory prefix")
 	rootCmd.Flags().BoolP("quiet", "q", false, "quiet mode")
 	rootCmd.Flags().StringP("repository", "r", "", "change password in REPOSITORY repository")
 	rootCmd.Flags().StringP("root", "R", "", "directory to chroot into")
 	rootCmd.Flags().BoolP("status", "S", false, "report password status on the named account")
+	rootCmd.Flags().BoolP("stdin", "s", false, "read new token from stdin")
 	rootCmd.Flags().BoolP("unlock", "u", false, "unlock the password of the named account")
 	rootCmd.Flags().StringP("warndays", "w", "", "set expiration warning days to WARN_DAYS")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"root": carapace.ActionDirectories(),
+		"prefix": carapace.ActionDirectories(),
+		"root":   carapace.ActionDirectories(),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

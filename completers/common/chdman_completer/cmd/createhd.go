@@ -30,7 +30,7 @@ func init() {
 	createhdCmd.Flags().StringP("outputparent", "op", "", "parent file name for output CHD")
 	createhdCmd.Flags().StringP("sectorsize", "ss", "", "size of each hard disk sector")
 	createhdCmd.Flags().StringP("size", "s", "", "size of the output file")
-	createhdCmd.Flags().StringP("template", "t", "", "use hard disk template")
+	createhdCmd.Flags().StringP("template", "tp", "", "use hard disk template")
 	rootCmd.AddCommand(createhdCmd)
 
 	carapace.Gen(createhdCmd).FlagCompletion(carapace.ActionMap{

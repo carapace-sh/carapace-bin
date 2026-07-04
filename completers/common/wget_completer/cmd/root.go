@@ -145,6 +145,7 @@ func init() {
 	rootCmd.Flags().String("restrict-file-names", "", "restrict chars in file names to ones OS allows")
 	rootCmd.Flags().Bool("retr-symlinks", false, "when recursing, get linked-to files (not dir)")
 	rootCmd.Flags().Bool("retry-connrefused", false, "retry even if connection is refused")
+	rootCmd.Flags().Bool("retry-on-host-error", false, "retry if a DNS resolution error occurs")
 	rootCmd.Flags().String("retry-on-http-error", "", "comma-separated list of HTTP errors to retry")
 	rootCmd.Flags().String("save-cookies", "", "save cookies to FILE after session")
 	rootCmd.Flags().Bool("save-headers", false, "save the HTTP headers to file")

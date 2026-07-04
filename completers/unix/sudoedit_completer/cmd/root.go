@@ -25,6 +25,7 @@ func init() {
 	rootCmd.Flags().StringP("chdir", "D", "", "change the working directory before running command")
 	rootCmd.Flags().StringP("chroot", "R", "", "change the root directory before running command")
 	rootCmd.Flags().StringP("close-from", "C", "", "close all file descriptors >= num")
+	rootCmd.Flags().StringP("command-timeout", "T", "", "terminate command after the specified time limit")
 	rootCmd.Flags().StringP("group", "g", "", "run command as the specified group name or ID")
 	rootCmd.Flags().Bool("help", false, "display help message and exit")
 	rootCmd.Flags().StringP("host", "h", "", "run command on host (if supported by plugin)")

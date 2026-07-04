@@ -571,9 +571,6 @@ documentation:
       Ignore changes in amount of whitespace.  This ignores whitespace
       at line end, and considers all other sequences of one or
       more whitespace characters to be equivalent.
-    cc: |-
-      Produce dense combined diff output for merge commits.
-      Shortcut for `--diff-merges=dense-combined -p`.
     l: |-
       The `-M` and `-C` options involve some preliminary steps that
       can detect subsets of renames/copies cheaply, followed by an

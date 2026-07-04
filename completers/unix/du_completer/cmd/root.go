@@ -51,7 +51,7 @@ func init() {
 		"exclude-from": carapace.ActionFiles(),
 		"files0-from":  carapace.ActionFiles(),
 		"time":         carapace.ActionValues("access", "atime", "ctime", "status", "use"),
-		"time-style":   carapace.ActionValues("full-iso", "long-iso", "iso"),
+		"time-style":   carapace.ActionValues("full-iso", "iso", "locale", "long-iso"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())

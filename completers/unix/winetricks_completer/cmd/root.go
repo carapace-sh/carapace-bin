@@ -22,17 +22,24 @@ func init() {
 	rootCmd.Flags().String("country", "", "Set country code to CC and don't detect your IP address")
 	rootCmd.Flags().BoolP("ddrescue", "r", false, "Retry hard when caching scratched discs")
 	rootCmd.Flags().BoolP("force", "f", false, "Don't check whether packages were already installed")
-	rootCmd.Flags().Bool("gui", false, "Show gui diagnostics even when driven by commandline")
+	rootCmd.Flags().String("gui", "", "Show gui diagnostics even when driven by commandline (or set to kdialog or zenity)")
 	rootCmd.Flags().BoolP("help", "h", false, "Display this message and exit")
 	rootCmd.Flags().Bool("isolate", false, "Install each app or game in its own bottle (WINEPREFIX)")
 	rootCmd.Flags().BoolP("keep_isos", "k", false, "Cache isos (allows later installation without disc)")
 	rootCmd.Flags().Bool("no-clean", false, "Don't delete temp directories (useful during debugging)")
+	rootCmd.Flags().Bool("optin", false, "Opt in to reporting which verbs you use to the Winetricks maintainers")
+	rootCmd.Flags().Bool("optout", false, "Opt out of reporting which verbs you use to the Winetricks maintainers")
 	rootCmd.Flags().Bool("self-update", false, "Update this application to the last version")
 	rootCmd.Flags().BoolP("torify", "t", false, "Run downloads under torify, if available")
 	rootCmd.Flags().BoolP("unattended", "q", false, "Don't ask any questions, just install automatically")
+	rootCmd.Flags().Bool("update-rollback", false, "Rollback the last self update")
 	rootCmd.Flags().BoolP("verbose", "v", false, "Echo all commands as they are executed")
 	rootCmd.Flags().Bool("verify", false, "Run (automated) GUI tests for verbs, if available")
 	rootCmd.Flags().BoolP("version", "V", false, "Display version and exit")
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"gui": carapace.ActionValues("kdialog", "zenity"),
+	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
@@ -43,13 +50,13 @@ func init() {
 					case 0:
 						return carapace.ActionValuesDescribed(
 							"arch", "create wineprefix with 32 or 64 bit",
-							"wineprefix", "select WINEPREFIX",
+							"prefix", "select WINEPREFIX",
 						).Invoke(c).Suffix("=").ToA()
 					case 1:
 						switch c.Parts[0] {
 						case "arch":
 							return carapace.ActionValues("32", "64")
-						case "wineprefix":
+						case "prefix":
 							return winetricks.ActionPrefixes()
 
 						}

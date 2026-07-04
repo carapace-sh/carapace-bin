@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/xdotool"
 	"github.com/spf13/cobra"
 )
 
@@ -15,4 +16,8 @@ func init() {
 	carapace.Gen(windowraiseCmd).Standalone()
 
 	rootCmd.AddCommand(windowraiseCmd)
+
+	carapace.Gen(windowraiseCmd).PositionalCompletion(
+		xdotool.ActionWindows(),
+	)
 }

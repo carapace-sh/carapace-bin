@@ -17,6 +17,7 @@ func init() {
 	sshCacheCmd.Flags().String("add", "", "Manually add host to cache")
 	sshCacheCmd.Flags().Bool("clear", false, "Clear entire cache")
 	sshCacheCmd.Flags().String("expire-days", "", "Set custom expiration period")
+	sshCacheCmd.Flags().Bool("help", false, "show help")
 	sshCacheCmd.Flags().String("host", "", "Check if host is cached")
 	sshCacheCmd.Flags().String("remove", "", "Remove host from cache")
 	rootCmd.AddCommand(sshCacheCmd)

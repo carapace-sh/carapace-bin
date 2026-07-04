@@ -18,6 +18,7 @@ func init() {
 	generateCmd.Flags().StringS("C", "C", "", "Change to dir before running the command")
 	generateCmd.Flags().BoolS("n", "n", false, "print commands that would be executed")
 	generateCmd.Flags().StringS("run", "run", "", "specifies a regular expression to select matching directives")
+	generateCmd.Flags().StringS("skip", "skip", "", "specifies a regular expression to suppress matching directives")
 	generateCmd.Flags().BoolS("v", "v", false, "print the names of packages and files as they are processed")
 	generateCmd.Flags().BoolS("x", "x", false, "print commands as they are executed")
 	rootCmd.AddCommand(generateCmd)

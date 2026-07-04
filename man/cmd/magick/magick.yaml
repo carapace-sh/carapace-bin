@@ -393,7 +393,7 @@ commands:
         -verbose: print detailed information about the image
         -version: print version information
         -virtual-pixel*=: access method for pixels outside the boundaries of the image
-        -write-mask *=: associate a write mask with the image
+        -write-mask*=: associate a write mask with the image
     - name: composite
       description: overlap one image over another.
       flags:

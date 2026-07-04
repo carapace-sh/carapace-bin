@@ -20,7 +20,9 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().StringP("clientmax", "C", "", "Set the limit on non-root socket connections.")
 	rootCmd.Flags().StringP("confdir", "c", "", "This option changes the directory in which acpid looks for rule configuration files.")
+	rootCmd.Flags().BoolP("debug", "d", false, "Increase debugging level.")
 	rootCmd.Flags().StringP("dropaction", "r", "", "This  option  defines the pseudo-action which tells acpid to abort all processing of an event, including client notifications.")
 	rootCmd.Flags().StringP("eventfile", "e", "", "This option changes the event file  from  which  acpid  reads  events.")
 	rootCmd.Flags().BoolP("foreground", "f", false, "This option keeps acpid in the foreground by not forking at startup.")

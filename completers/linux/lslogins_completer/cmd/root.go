@@ -28,8 +28,11 @@ func init() {
 	rootCmd.Flags().BoolP("failed", "f", false, "display data about the users' last failed logins")
 	rootCmd.Flags().StringP("groups", "g", "", "display users belonging to a group in <groups>")
 	rootCmd.Flags().BoolP("help", "h", false, "display this help")
+	rootCmd.Flags().BoolP("json", "J", false, "display in JSON format mode")
 	rootCmd.Flags().BoolP("last", "L", false, "show info about the users' last login sessions")
-	rootCmd.Flags().String("lastlog", "", "set an alternate path for lastlog")
+	rootCmd.Flags().String("lastlog-file", "", "set an alternate path for lastlog")
+	rootCmd.Flags().String("lastlog2-file", "", "set an alternate path for lastlog2")
+	rootCmd.Flags().BoolP("list-columns", "H", false, "list the available columns")
 	rootCmd.Flags().StringP("logins", "l", "", "display only users from <logins>")
 	rootCmd.Flags().BoolP("newline", "n", false, "display each piece of information on a new line")
 	rootCmd.Flags().Bool("noheadings", false, "don't print headings")
@@ -39,6 +42,7 @@ func init() {
 	rootCmd.Flags().BoolP("print0", "z", false, "delimit user entries with a nul character")
 	rootCmd.Flags().BoolP("pwd", "p", false, "display information related to login by password.")
 	rootCmd.Flags().BoolP("raw", "r", false, "display in raw mode")
+	rootCmd.Flags().BoolP("shell", "y", false, "use column names to be usable as shell variable identifiers")
 	rootCmd.Flags().BoolP("supp-groups", "G", false, "display information about groups")
 	rootCmd.Flags().BoolP("system-accs", "s", false, "display system accounts")
 	rootCmd.Flags().String("time-format", "", "display dates in short, full or iso format")
@@ -47,13 +51,14 @@ func init() {
 	rootCmd.Flags().String("wtmp-file", "", "set an alternate path for wtmp")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"btmp-file":   carapace.ActionFiles(),
-		"groups":      os.ActionGroups().UniqueList(","),
-		"lastlog":     carapace.ActionFiles(),
-		"logins":      os.ActionUsers().UniqueList(","),
-		"output":      action.ActionColumns().UniqueList(","),
-		"time-format": carapace.ActionValues("short", "full", "iso"),
-		"wtmp-file":   carapace.ActionFiles(),
+		"btmp-file":     carapace.ActionFiles(),
+		"groups":        os.ActionGroups().UniqueList(","),
+		"lastlog-file":  carapace.ActionFiles(),
+		"lastlog2-file": carapace.ActionFiles(),
+		"logins":        os.ActionUsers().UniqueList(","),
+		"output":        action.ActionColumns().UniqueList(","),
+		"time-format":   carapace.ActionValues("short", "full", "iso"),
+		"wtmp-file":     carapace.ActionFiles(),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

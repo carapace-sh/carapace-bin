@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/delta"
+	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
@@ -20,6 +21,7 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().String("24-bit-color", "", "Deprecated: use --true-color")
 	rootCmd.Flags().String("blame-code-style", "", "Style string for the code section of a git blame line")
 	rootCmd.Flags().String("blame-format", "", "Format string for git blame commit metadata")
 	rootCmd.Flags().String("blame-palette", "", "Background colors used for git blame lines (space-separated string)")
@@ -31,8 +33,11 @@ func init() {
 	rootCmd.Flags().String("commit-decoration-style", "", "Style string for the commit hash decoration")
 	rootCmd.Flags().String("commit-regex", "", "Regular expression used to identify the commit line when parsing git output")
 	rootCmd.Flags().String("commit-style", "", "Style string for the commit hash line")
+	rootCmd.Flags().String("config", "", "Load the config file at PATH instead of ~/.gitconfig")
 	rootCmd.Flags().Bool("dark", false, "Use default colors appropriate for a dark terminal background")
 	rootCmd.Flags().String("default-language", "", "Default language used for syntax highlighting")
+	rootCmd.Flags().String("detect-dark-light", "", "Detect whether the terminal is dark or light by querying for its colors")
+	rootCmd.Flags().StringP("diff-args", "@", "", "Extra arguments to pass to `git diff` when using delta to diff two files")
 	rootCmd.Flags().Bool("diff-highlight", false, "Emulate diff-highlight")
 	rootCmd.Flags().Bool("diff-so-fancy", false, "Emulate diff-so-fancy")
 	rootCmd.Flags().String("diff-stat-align-width", "", "Width allocated for file paths in a diff stat section")
@@ -45,11 +50,15 @@ func init() {
 	rootCmd.Flags().String("file-renamed-label", "", "Text to display before a renamed file path")
 	rootCmd.Flags().String("file-style", "", "Style string for the file section")
 	rootCmd.Flags().String("file-transformation", "", "Sed-style command transforming file paths for display")
+	rootCmd.Flags().String("generate-completion", "", "Print completion file for the given shell")
 	rootCmd.Flags().String("grep-context-line-style", "", "Style string for non-matching lines of grep output")
 	rootCmd.Flags().String("grep-file-style", "", "Style string for file paths in grep output")
+	rootCmd.Flags().String("grep-header-decoration-style", "", "Style string for the header decoration in grep output")
+	rootCmd.Flags().String("grep-header-file-style", "", "Style string for the file path part of the header in grep output")
 	rootCmd.Flags().String("grep-line-number-style", "", "Style string for line numbers in grep output")
 	rootCmd.Flags().String("grep-match-line-style", "", "Style string for matching lines of grep output")
 	rootCmd.Flags().String("grep-match-word-style", "", "Style string for the matching substrings within a matching line of grep output")
+	rootCmd.Flags().String("grep-output-type", "", "Grep output format")
 	rootCmd.Flags().String("grep-separator-symbol", "", "Separator symbol printed after the file path and line number in grep output")
 	rootCmd.Flags().BoolP("help", "h", false, "Print help information")
 	rootCmd.Flags().String("hunk-header-decoration-style", "", "Style string for the hunk-header decoration")
@@ -79,6 +88,7 @@ func init() {
 	rootCmd.Flags().String("map-styles", "", "Map styles encountered in raw input to desired output styles")
 	rootCmd.Flags().String("max-line-distance", "", "Maximum line pair distance parameter in within-line diff algorithm")
 	rootCmd.Flags().String("max-line-length", "", "Truncate lines longer than this")
+	rootCmd.Flags().String("max-syntax-highlighting-length", "", "Stop syntax highlighting lines longer than this")
 	rootCmd.Flags().String("merge-conflict-begin-symbol", "", "String marking the beginning of a merge conflict region")
 	rootCmd.Flags().String("merge-conflict-end-symbol", "", "String marking the end of a merge conflict region")
 	rootCmd.Flags().String("merge-conflict-ours-diff-header-decoration-style", "", "Style string for the decoration of the header above the 'ours' merge conflict diff")
@@ -123,14 +133,24 @@ func init() {
 
 	// TODO complete styles
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"inspect-raw-lines": carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
+		"24-bit-color":          carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
+		"config":                carapace.ActionFiles(),
+		"detect-dark-light":     carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
+		"diff-args":             bridge.ActionCarapaceBin("git", "diff").Split(),
+		"generate-completion":   carapace.ActionValues("bash", "elvish", "fish", "powershell", "zsh"),
+		"grep-output-type":      carapace.ActionValues("ripgrep", "classic"),
+		"grep-separator-symbol": carapace.ActionValues(":", "-", "keep"),
+		"inspect-raw-lines":     carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
+		"line-fill-method":      carapace.ActionValues("ansi", "spaces"),
 		"pager": carapace.Batch(
 			carapace.ActionExecutables(),
 			carapace.ActionFiles(),
 		).ToA(),
-		"paging":       carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
-		"syntax-theme": delta.ActionSyntaxThemes(),
-		"true-color":   carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
+		"paging":         carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
+		"syntax-theme":   delta.ActionSyntaxThemes(),
+		"true-color":     carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
+		"width":          carapace.ActionValues("variable"),
+		"wrap-max-lines": carapace.ActionValues("unlimited"),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

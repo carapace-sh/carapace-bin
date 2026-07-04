@@ -19,7 +19,8 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().Bool("badnames", false, "do not check for bad names")
+	rootCmd.Flags().BoolP("add-subids-for-system", "F", false, "add entries to sub[ud]id even when adding a system user")
+	rootCmd.Flags().Bool("badname", false, "do not check for bad names")
 	rootCmd.Flags().StringP("base-dir", "b", "", "base directory for the home directory of the")
 	rootCmd.Flags().Bool("btrfs-subvolume-home", false, "use BTRFS subvolume for home directory")
 	rootCmd.Flags().StringP("comment", "c", "", "GECOS field of the new account")

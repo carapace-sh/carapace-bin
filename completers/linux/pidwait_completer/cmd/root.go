@@ -41,9 +41,11 @@ func init() {
 	rootCmd.Flags().BoolP("oldest", "o", false, "select least recently started")
 	rootCmd.Flags().StringP("parent", "P", "", "match only child processes of the given parent")
 	rootCmd.Flags().StringP("pgroup", "g", "", "match listed process group IDs")
+	rootCmd.Flags().StringP("pid", "p", "", "match process PIDs")
 	rootCmd.Flags().StringP("pidfile", "F", "", "read PIDs from file")
 	rootCmd.Flags().StringP("runstates", "r", "", "match runstates [D,S,Z,...]")
 	rootCmd.Flags().StringP("session", "s", "", "match session IDs")
+	rootCmd.Flags().BoolP("shell-quote", "Q", false, "output the command line in shell-quoted form")
 	rootCmd.Flags().String("signal", "", "signal to send (either number or name)")
 	rootCmd.Flags().StringP("terminal", "t", "", "match by controlling terminal")
 	rootCmd.Flags().StringP("uid", "U", "", "match by real IDs")
@@ -56,6 +58,7 @@ func init() {
 		"ns":        ps.ActionProcessIds(),
 		"nslist":    carapace.ActionValues("ipc", "mnt", "net", "pid", "user", "uts").UniqueList(","),
 		"parent":    ps.ActionProcessIds().UniqueList(","),
+		"pid":       ps.ActionProcessIds().UniqueList(","),
 		"pidfile":   carapace.ActionFiles(),
 		"runstates": ps.ActionProcessStates().UniqueList(","),
 		"session":   os.ActionSessionIds().UniqueList(","),

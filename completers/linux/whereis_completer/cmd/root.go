@@ -23,6 +23,7 @@ func init() {
 	rootCmd.Flags().BoolS("S", "S", false, "define sources lookup path")
 	rootCmd.Flags().BoolS("b", "b", false, "search only for binaries")
 	rootCmd.Flags().BoolS("f", "f", false, "terminate <dirs> argument list")
+	rootCmd.Flags().BoolS("g", "g", false, "interpret name as glob (pathnames pattern)")
 	rootCmd.Flags().BoolP("help", "h", false, "display this help")
 	rootCmd.Flags().BoolS("l", "l", false, "output effective lookup paths")
 	rootCmd.Flags().BoolS("m", "m", false, "search only for manuals and infos")

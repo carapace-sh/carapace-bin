@@ -22,6 +22,8 @@ func init() {
 	rootCmd.Flags().BoolS("L", "L", false, "force symbolic links to be followed")
 	rootCmd.Flags().BoolS("P", "P", false, "use the physical directory structure without following symbolic links")
 	rootCmd.Flags().BoolS("e", "e", false, "if the -P option is supplied, exit with a non-zero status if the current working directory cannot be determined successfully")
+	rootCmd.Flags().BoolS("q", "q", false, "suppress hook function chpwd and chpwd_functions")
+	rootCmd.Flags().BoolS("s", "s", false, "refuse to change the current directory if the target directory is not found in cdpath")
 
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.ActionDirectories(),

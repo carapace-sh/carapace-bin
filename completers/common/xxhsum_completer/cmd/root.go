@@ -24,7 +24,6 @@ func init() {
 	rootCmd.Flags().Bool("binary", false, "read in binary mode")
 	rootCmd.Flags().BoolP("check", "c", false, "read xxHash checksum from [files] and check them")
 	rootCmd.Flags().Bool("filelist", false, "generate hashes for files listed in [files]")
-	rootCmd.Flags().Bool("files-from", false, "generate hashes for files listed in [files]")
 	rootCmd.Flags().BoolP("help", "h", false, "display a long help page about advanced options")
 	rootCmd.Flags().StringS("i", "i", "", "number of times to run the benchmark (default: 3)")
 	rootCmd.Flags().Bool("ignore-missing", false, "don't fail or report status for missing files")

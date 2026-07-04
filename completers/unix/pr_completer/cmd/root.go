@@ -24,6 +24,7 @@ func init() {
 	rootCmd.Flags().StringP("date-format", "D", "", "use FORMAT for the header date")
 	rootCmd.Flags().BoolP("double-space", "d", false, "double space the output")
 	rootCmd.Flags().StringP("expand", "e", "", "expand input CHARs (TABs) to tab WIDTH (8)")
+	rootCmd.Flags().String("expand-tabs", "", "expand input CHARs (TABs) to tab WIDTH (8)")
 	rootCmd.Flags().StringS("first-line-number", "N", "", "start counting with NUMBER at 1st line of first page printed")
 	rootCmd.Flags().StringP("form-feed", "f", "", "use form feeds instead of newlines to separate pages")
 	rootCmd.Flags().StringP("header", "h", "", "use a centered HEADER instead of filename in page header")

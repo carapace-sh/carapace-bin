@@ -23,16 +23,17 @@ func init() {
 	rootCmd.Flags().BoolS("client", "client", false, "Generate a certificate for client authentication")
 	rootCmd.Flags().StringS("csr", "csr", "", "Generate a certificate based on the supplied CSR")
 	rootCmd.Flags().BoolS("ecdsa", "ecdsa", false, "Generate a certificate with an ECDSA key")
-	rootCmd.Flags().StringS("install", "install", "", "Install the local CA in the system trust store")
+	rootCmd.Flags().BoolS("help", "help", false, "Print help")
+	rootCmd.Flags().BoolS("install", "install", false, "Install the local CA in the system trust store")
 	rootCmd.Flags().StringS("key-file", "key-file", "", "Customize the output paths")
 	rootCmd.Flags().StringS("p12-file", "p12-file", "", "Customize the output paths")
 	rootCmd.Flags().BoolS("pkcs12", "pkcs12", false, "Generate a \".p12\" PKCS #12 file, also know as a \".pfx\" file")
-	rootCmd.Flags().StringS("uninstall", "uninstall", "", "Uninstall the local CA (but do not delete it)")
+	rootCmd.Flags().BoolS("uninstall", "uninstall", false, "Uninstall the local CA (but do not delete it)")
+	rootCmd.Flags().BoolS("version", "version", false, "Print version")
 
 	for _, f := range []string{
 		"CAROOT",
 		"client",
-		"csr",
 		"ecdsa",
 		"key-file",
 		"p12-file",

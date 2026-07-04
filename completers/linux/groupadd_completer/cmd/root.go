@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
 	"github.com/spf13/cobra"
 )
 
@@ -27,9 +28,11 @@ func init() {
 	rootCmd.Flags().StringP("prefix", "P", "", "directory prefix")
 	rootCmd.Flags().StringP("root", "R", "", "directory to chroot into")
 	rootCmd.Flags().BoolP("system", "r", false, "create a system account")
+	rootCmd.Flags().StringP("users", "U", "", "comma-separated list of users to add as members")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"prefix": carapace.ActionDirectories(),
 		"root":   carapace.ActionDirectories(),
+		"users":  os.ActionUsers().UniqueList(","),
 	})
 }

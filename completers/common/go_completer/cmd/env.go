@@ -18,6 +18,7 @@ func init() {
 	envCmd.Flags().SetInterspersed(false)
 
 	envCmd.Flags().StringS("C", "C", "", "Change to dir before running the command")
+	envCmd.Flags().BoolS("changed", "changed", false, "print only changed settings")
 	envCmd.Flags().BoolS("json", "json", false, "print the environment in JSON format")
 	envCmd.Flags().BoolS("u", "u", false, "unsets the default setting for the named environment variables")
 	envCmd.Flags().BoolS("w", "w", false, "changes the default settings of the named environment variables")

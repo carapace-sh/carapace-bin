@@ -23,19 +23,33 @@ func init() {
 	rootCmd.Flags().String("bs-hl-color", "", "Sets the color of backspace highlight segments.")
 	rootCmd.Flags().String("caps-lock-bs-hl-color", "", "Sets the color of backspace highlight segments when Caps Lock is active.")
 	rootCmd.Flags().String("caps-lock-key-hl-color", "", "Sets the color of the key press highlight segments when Caps Lock is active.")
+	rootCmd.Flags().Bool("clock", false, "Show time and date.")
 	rootCmd.Flags().StringP("color", "c", "", "Turn the screen into the given color instead of white.")
 	rootCmd.Flags().StringP("config", "C", "", "Path to the config file.")
 	rootCmd.Flags().BoolP("daemonize", "f", false, "Detach from the controlling terminal after locking.")
+	rootCmd.Flags().String("datestr", "", "The format string for the date. Defaults to '%a, %x'.")
 	rootCmd.Flags().BoolP("debug", "d", false, "Enable debugging output.")
 	rootCmd.Flags().BoolP("disable-caps-lock-text", "L", false, "Disable the Caps Lock text.")
+	rootCmd.Flags().String("effect-blur", "", "Blur images.")
+	rootCmd.Flags().String("effect-custom", "", "Apply a custom effect from a shared object or C source file.")
+	rootCmd.Flags().Bool("effect-greyscale", false, "Make images greyscale.")
+	rootCmd.Flags().String("effect-pixelate", "", "Pixelate images.")
+	rootCmd.Flags().String("effect-scale", "", "Scale images.")
+	rootCmd.Flags().String("effect-vignette", "", "Apply a vignette effect to images.")
+	rootCmd.Flags().String("fade-in", "", "Make the lock screen fade in instead of just popping in.")
 	rootCmd.Flags().String("font", "", "Sets the font of the text.")
 	rootCmd.Flags().String("font-size", "", "Sets a fixed font size for the indicator text.")
+	rootCmd.Flags().String("grace", "", "Password grace period. Don't require the password for the first N seconds.")
+	rootCmd.Flags().Bool("grace-no-mouse", false, "During the grace period, don't unlock on a mouse event.")
+	rootCmd.Flags().Bool("grace-no-touch", false, "During the grace period, don't unlock on a touch event.")
 	rootCmd.Flags().BoolP("help", "h", false, "Show help message and quit.")
 	rootCmd.Flags().BoolP("hide-keyboard-layout", "K", false, "Hide the current xkb layout while typing.")
 	rootCmd.Flags().BoolP("ignore-empty-password", "e", false, "When an empty password is provided, do not validate it.")
 	rootCmd.Flags().StringP("image", "i", "", "Display the given image, optionally only on the given output.")
+	rootCmd.Flags().Bool("indicator", false, "Always show the indicator.")
 	rootCmd.Flags().BoolP("indicator-caps-lock", "l", false, "Show the current Caps Lock state also on the indicator.")
 	rootCmd.Flags().Bool("indicator-idle-visible", false, "Sets the indicator to show even if idle.")
+	rootCmd.Flags().String("indicator-image", "", "Display the given image inside of the indicator.")
 	rootCmd.Flags().String("indicator-radius", "", "Sets the indicator radius.")
 	rootCmd.Flags().String("indicator-thickness", "", "Sets the indicator thickness.")
 	rootCmd.Flags().String("indicator-x-position", "", "Sets the horizontal position of the indicator.")
@@ -63,15 +77,20 @@ func init() {
 	rootCmd.Flags().String("ring-ver-color", "", "Sets the color of the ring of the indicator when verifying.")
 	rootCmd.Flags().String("ring-wrong-color", "", "Sets the color of the ring of the indicator when invalid.")
 	rootCmd.Flags().StringP("scaling", "s", "", "Image scaling mode: stretch, fill, fit, center, tile, solid_color.")
+	rootCmd.Flags().BoolP("screenshots", "S", false, "Use a screenshots as the background image.")
 	rootCmd.Flags().String("separator-color", "", "Sets the color of the lines that separate highlight segments.")
 	rootCmd.Flags().BoolP("show-failed-attempts", "F", false, "Show current count of failed authentication attempts.")
 	rootCmd.Flags().BoolP("show-keyboard-layout", "k", false, "Display the current xkb layout while typing.")
+	rootCmd.Flags().Bool("submit-on-touch", false, "Submit password in response to a touch event.")
 	rootCmd.Flags().String("text-caps-lock-color", "", "Sets the color of the text when Caps Lock is active.")
 	rootCmd.Flags().String("text-clear-color", "", "Sets the color of the text when cleared.")
 	rootCmd.Flags().String("text-color", "", "Sets the color of the text.")
 	rootCmd.Flags().String("text-ver-color", "", "Sets the color of the text when verifying.")
 	rootCmd.Flags().String("text-wrong-color", "", "Sets the color of the text when invalid.")
 	rootCmd.Flags().BoolP("tiling", "t", false, "Same as --scaling=tile.")
+	rootCmd.Flags().Bool("time-effects", false, "Measure the time it takes to run each effect.")
+	rootCmd.Flags().String("timestr", "", "The format string for the time. Defaults to '%T'.")
+	rootCmd.Flags().BoolP("trace", "T", false, "Enable tracing output.")
 	rootCmd.Flags().BoolP("version", "v", false, "Show the version number and quit.")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
@@ -80,7 +99,9 @@ func init() {
 		"caps-lock-key-hl-color": color.ActionHexColors(),
 		"color":                  color.ActionHexColors(),
 		"config":                 carapace.ActionFiles(),
+		"effect-custom":          carapace.ActionFiles(),
 		"font":                   os.ActionFontFamilies(),
+		"indicator-image":        carapace.ActionFiles(),
 		"inside-caps-lock-color": color.ActionHexColors(),
 		"inside-clear-color":     color.ActionHexColors(),
 		"inside-color":           color.ActionHexColors(),

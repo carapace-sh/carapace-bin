@@ -19,6 +19,7 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().BoolP("bytes", "b", false, "count bytes rather than columns")
+	rootCmd.Flags().BoolP("characters", "c", false, "count characters rather than columns")
 	rootCmd.Flags().Bool("help", false, "display this help and exit")
 	rootCmd.Flags().BoolP("spaces", "s", false, "break at spaces")
 	rootCmd.Flags().Bool("version", false, "output version information and exit")

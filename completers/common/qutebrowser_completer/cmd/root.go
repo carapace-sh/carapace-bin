@@ -24,6 +24,7 @@ func init() {
 	rootCmd.Flags().StringP("config-py", "C", "", "Path to config.py")
 	rootCmd.Flags().BoolP("debug", "d", false, "Turn on debugging options")
 	rootCmd.Flags().StringP("debug-flag", "D", "", "Pass name of debugging feature to be turned on")
+	rootCmd.Flags().String("desktop-file-name", "", "Set the base name of the desktop entry for this application")
 	rootCmd.Flags().Bool("enable-webengine-inspector", false, "Enable the web inspector")
 	rootCmd.Flags().Bool("force-color", false, "Force colored logging")
 	rootCmd.Flags().BoolP("help", "h", false, "show this help message and exit")
@@ -35,18 +36,22 @@ func init() {
 	rootCmd.Flags().Bool("nocolor", false, "Turn off colored logging")
 	rootCmd.Flags().Bool("nowindow", false, "Don't show the main window")
 	rootCmd.Flags().BoolP("override-restore", "R", false, "Don't restore a session even if one would be restored")
+	rootCmd.Flags().StringArray("qt-arg", nil, "Pass an argument with a value to Qt")
 	rootCmd.Flags().String("qt-flag", "", "Pass an argument to Qt as flag")
+	rootCmd.Flags().String("qt-wrapper", "", "Which Qt wrapper to use")
 	rootCmd.Flags().StringP("restore", "r", "", "Restore a named session")
 	rootCmd.Flags().String("target", "", "How URLs should be opened")
 	rootCmd.Flags().BoolP("temp-basedir", "T", false, "Use a temporary basedir")
+	rootCmd.Flags().Bool("untrusted-args", false, "Mark all following arguments as untrusted, which enforces that they are URLs/search terms (and not flags or commands)")
 	rootCmd.Flags().BoolP("version", "V", false, "Show version and quit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"backend":   carapace.ActionValues("webkit", "webengine"),
-		"basedir":   carapace.ActionDirectories(),
-		"config-py": carapace.ActionFiles(),
-		"loglevel":  carapace.ActionValues("critical", "error", "warning", "info", "debug", "vdebug").StyleF(style.ForLogLevel),
-		"target":    carapace.ActionValues("auto", "tab", "tab-bg", "tab-silent", "tab-bg-silent", "window"),
+		"backend":    carapace.ActionValues("webkit", "webengine"),
+		"basedir":    carapace.ActionDirectories(),
+		"config-py":  carapace.ActionFiles(),
+		"loglevel":   carapace.ActionValues("critical", "error", "warning", "info", "debug", "vdebug").StyleF(style.ForLogLevel),
+		"qt-wrapper": carapace.ActionValues("PyQt6", "PyQt5"),
+		"target":     carapace.ActionValues("auto", "tab", "tab-bg", "tab-silent", "tab-bg-silent", "window", "private-window"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

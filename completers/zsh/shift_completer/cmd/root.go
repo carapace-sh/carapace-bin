@@ -20,6 +20,8 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().BoolS("p", "p", false, "remove arguments from the end rather than the start of the array")
+
 	carapace.Gen(rootCmd).PositionalCompletion(
 		number.ActionRange(number.RangeOpts{Start: 1, End: 9}).
 			Usage("number of positions to shift"),

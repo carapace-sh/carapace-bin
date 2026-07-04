@@ -20,10 +20,20 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().String("explain", "", "Print the documentation for a given lint")
 	rootCmd.Flags().Bool("fix", false, "Automatically apply lint suggestions. This flag implies `--no-deps`")
+	rootCmd.Flags().Bool("frozen", false, "Require Cargo.lock and cache are up to date")
 	rootCmd.Flags().BoolP("help", "h", false, "Print this message")
+	rootCmd.Flags().Bool("locked", false, "Require Cargo.lock is up to date")
+	rootCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
 	rootCmd.Flags().Bool("no-deps", false, "Run Clippy only on the given crate, without linting the dependencies")
+	rootCmd.Flags().Bool("offline", false, "Run without accessing the network")
 	rootCmd.Flags().BoolP("version", "V", false, "Print version info and exit")
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"explain":       actionLintsAndCategories(),
+		"manifest-path": carapace.ActionFiles(),
+	})
 
 	carapace.Gen(rootCmd).DashAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {

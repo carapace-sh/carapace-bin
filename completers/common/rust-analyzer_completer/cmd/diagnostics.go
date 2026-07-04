@@ -16,7 +16,14 @@ func init() {
 
 	diagnosticsCmd.Flags().Bool("disable-build-scripts", false, "Don't run build scripts or load `OUT_DIR` values by running `cargo check` before analysis.")
 	diagnosticsCmd.Flags().Bool("disable-proc-macros", false, "Don't use expand proc macros.")
+	diagnosticsCmd.Flags().String("proc-macro-srv", "", "Run the proc-macro-srv binary at the specified path.")
+	diagnosticsCmd.Flags().String("severity", "", "The minimum severity.")
 	rootCmd.AddCommand(diagnosticsCmd)
+
+	carapace.Gen(diagnosticsCmd).FlagCompletion(carapace.ActionMap{
+		"proc-macro-srv": carapace.ActionFiles(),
+		"severity":       carapace.ActionValues("error", "warning", "weak", "hints"),
+	})
 
 	carapace.Gen(diagnosticsCmd).PositionalCompletion(
 		carapace.ActionDirectories(),

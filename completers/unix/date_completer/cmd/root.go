@@ -26,11 +26,12 @@ func init() {
 	rootCmd.Flags().Bool("help", false, "display this help and exit")
 	rootCmd.Flags().StringP("iso-8601", "I", "", "output date/time in ISO 8601 format")
 	rootCmd.Flags().StringP("reference", "r", "", "display the last modification time of FILE")
+	rootCmd.Flags().Bool("resolution", false, "output the available resolution of timestamps")
 	rootCmd.Flags().String("rfc-3339", "", "output date/time in RFC 3339 format.")
 	rootCmd.Flags().BoolP("rfc-email", "R", false, "output date and time in RFC 5322 format.")
 	rootCmd.Flags().StringP("set", "s", "", "set time described by STRING")
-	rootCmd.Flags().String("universal", "", "print or set Coordinated Universal Time (UTC)")
-	rootCmd.Flags().StringP("utc,", "u", "", "print or set Coordinated Universal Time (UTC)")
+	rootCmd.Flags().Bool("universal", false, "print or set Coordinated Universal Time (UTC)")
+	rootCmd.Flags().BoolP("utc", "u", false, "print or set Coordinated Universal Time (UTC)")
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{

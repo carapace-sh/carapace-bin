@@ -58,8 +58,10 @@ func init() {
 				).Filter(c.Args...)
 			}
 			return carapace.ActionValuesDescribed(
+				"array_expand_once", "expand array subscripts only once",
 				"assoc_expand_once", "expand associative array subscripts only once",
 				"autocd", "a command name is treated as a candidate for cd",
+				"bash_source_fullpath", "source uses full path for $BASH_SOURCE",
 				"cdable_vars", "a word that is not a directory is assumed to be a variable name",
 				"cdspell", "minor errors in the spelling of a directory are corrected",
 				"checkhash", "check whether a command found in the hash table exists",

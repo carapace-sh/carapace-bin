@@ -13,7 +13,7 @@ var getwindowfocusCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(getwindowfocusCmd).Standalone()
-	getwindowfocusCmd.Flags().BoolS("f", "f", false, "ignore WM_CLASS property")
+	getwindowfocusCmd.Flags().BoolS("f", "f", false, "Report the window with focus even if it is not a top-level window")
 
 	rootCmd.AddCommand(getwindowfocusCmd)
 }

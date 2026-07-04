@@ -26,10 +26,12 @@ func init() {
 	rootCmd.Flags().BoolP("help", "h", false, "display this help")
 	rootCmd.Flags().BoolP("json", "J", false, "use JSON output format")
 	rootCmd.Flags().Bool("no-discover-dynamic", false, "do not try to discover dynamic clocks")
+	rootCmd.Flags().Bool("no-discover-rtc", false, "do not try to discover RTCs")
 	rootCmd.Flags().BoolP("noheadings", "n", false, "don't print headings")
 	rootCmd.Flags().StringP("output", "o", "", "output columns")
 	rootCmd.Flags().Bool("output-all", false, "output all columns")
 	rootCmd.Flags().BoolP("raw", "r", false, "use raw output format")
+	rootCmd.Flags().StringP("rtc", "x", "", "also display specified RTC")
 	rootCmd.Flags().StringP("time", "t", "", "show current time of single clock")
 	rootCmd.Flags().BoolP("version", "V", false, "display version")
 
@@ -37,6 +39,7 @@ func init() {
 		"cpu-clock":     ps.ActionProcessIds(),
 		"dynamic-clock": carapace.ActionFiles(),
 		"output":        action.ActionColumns().UniqueList(","),
+		"rtc":           carapace.ActionFiles(),
 		"time":          action.ActionClocks(),
 	})
 }

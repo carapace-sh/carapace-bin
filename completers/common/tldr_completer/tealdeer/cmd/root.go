@@ -24,6 +24,9 @@ func init() {
 
 	rootCmd.Flags().BoolP("clear-cache", "c", false, "Clear the local cache")
 	rootCmd.Flags().String("color", "", "Control whether to use color")
+	rootCmd.Flags().String("config-path", "", "Override config file location")
+	rootCmd.Flags().Bool("edit-page", false, "Edit custom page with $EDITOR")
+	rootCmd.Flags().Bool("edit-patch", false, "Edit custom patch with $EDITOR")
 	rootCmd.Flags().BoolP("help", "h", false, "Print help information")
 	rootCmd.Flags().StringP("language", "L", "", "Override the language")
 	rootCmd.Flags().BoolP("list", "l", false, "List all commands in the cache")
@@ -39,10 +42,11 @@ func init() {
 	rootCmd.Flags().BoolP("version", "v", false, "Print the version")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"color":    carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
-		"language": os.ActionLanguages(),
-		"platform": carapace.ActionValues("linux", "macos"),
-		"render":   carapace.ActionFiles(),
+		"color":       carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
+		"config-path": carapace.ActionFiles(),
+		"language":    os.ActionLanguages(),
+		"platform":    carapace.ActionValues("android", "common", "freebsd", "linux", "macos", "netbsd", "openbsd", "sunos", "windows"),
+		"render":      carapace.ActionFiles(),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

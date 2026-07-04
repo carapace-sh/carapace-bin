@@ -20,12 +20,15 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().StringS("cpuprofile", "cpuprofile", "", "write CPU profile to this file")
+	rootCmd.Flags().StringS("f", "f", "", "format output records using template")
 	rootCmd.Flags().StringS("filter", "filter", "", "report only packages matching this regular expression")
 	rootCmd.Flags().BoolS("generated", "generated", false, "report dead functions in generated Go files")
+	rootCmd.Flags().BoolS("json", "json", false, "output JSON records")
 	rootCmd.Flags().BoolS("line", "line", false, "show output in a line-oriented format")
 	rootCmd.Flags().StringS("memprofile", "memprofile", "", "write memory profile to this file")
 	rootCmd.Flags().StringS("tags", "tags", "", "comma-separated list of extra build tags")
 	rootCmd.Flags().BoolS("test", "test", false, "include implicit test packages and executables")
+	rootCmd.Flags().StringS("whylive", "whylive", "", "show a path from main to the named function")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"cpuprofile": carapace.ActionFiles(),

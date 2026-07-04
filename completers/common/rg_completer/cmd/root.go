@@ -21,6 +21,7 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 	//TODO descriptions are a mess
 	rootCmd.Flags().StringP("after-context", "A", "", "Show NUM lines after each match")
+	rootCmd.Flags().Bool("auto-hybrid-regex", false, "DEPRECATED. Use --engine instead.")
 	rootCmd.Flags().StringP("before-context", "B", "", "Show NUM lines before each match")
 	rootCmd.Flags().Bool("binary", false, "Enabling this flag will cause ripgrep to search binary files")
 	rootCmd.Flags().Bool("block-buffered", false, "When enabled, ripgrep will use block buffering")
@@ -73,6 +74,7 @@ func init() {
 	rootCmd.Flags().BoolP("multiline", "U", false, "Enable matching across multiple lines")
 	rootCmd.Flags().Bool("multiline-dotall", false, "Enable \"dot all\" mode, which causes '.' to match line terminators")
 	rootCmd.Flags().Bool("no-config", false, "Never read configuration files")
+	rootCmd.Flags().Bool("no-context-separator", false, "Disable the context separator when printing context")
 	rootCmd.Flags().BoolP("no-filename", "I", false, "Never print the file path with the matched lines")
 	rootCmd.Flags().Bool("no-heading", false, "Don't group matches by each file")
 	rootCmd.Flags().Bool("no-ignore", false, "Don't respect ignore files (.gitignore, .ignore, etc.)")
@@ -107,6 +109,7 @@ func init() {
 	rootCmd.Flags().BoolP("search-zip", "z", false, "Search in compressed files")
 	rootCmd.Flags().BoolP("smart-case", "S", false, "Searches case insensitively if the pattern is all lowercase")
 	rootCmd.Flags().String("sort", "", "Sort results in ascending order")
+	rootCmd.Flags().Bool("sort-files", false, "DEPRECATED. Use --sort=path instead.")
 	rootCmd.Flags().String("sortr", "", "Sort results in descending order")
 	rootCmd.Flags().Bool("stats", false, "Print aggregate statistics about this ripgrep search")
 	rootCmd.Flags().Bool("stop-on-nonmatch", false, "Stop searching after a non-match")

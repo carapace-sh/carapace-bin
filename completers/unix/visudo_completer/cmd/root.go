@@ -21,6 +21,7 @@ func init() {
 	rootCmd.Flags().BoolP("check", "c", false, "check-only mode")
 	rootCmd.Flags().StringP("file", "f", "", "specify sudoers file location")
 	rootCmd.Flags().BoolP("help", "h", false, "display help message and exit")
+	rootCmd.Flags().BoolP("no-includes", "I", false, "do not edit include files")
 	rootCmd.Flags().BoolP("quiet", "q", false, "less verbose (quiet) syntax error messages")
 	rootCmd.Flags().BoolP("strict", "s", false, "strict syntax checking")
 	rootCmd.Flags().BoolP("version", "V", false, "display version information and exit")

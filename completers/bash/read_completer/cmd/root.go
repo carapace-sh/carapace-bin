@@ -19,7 +19,9 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().BoolS("E", "E", false, "use Readline to obtain the line and use the bash default completion instead of Readline's default completion")
 	rootCmd.Flags().StringS("N", "N", "", "read returns after reading exactly nchars characters")
+	rootCmd.Flags().StringS("a", "a", "", "assign the words read to sequential indices of the array variable ARRAY, starting at zero")
 	rootCmd.Flags().StringS("d", "d", "", "continue until the first character of delim is read instead of newline")
 	rootCmd.Flags().BoolS("e", "e", false, "use Readline to obtain the line in an interactive shell")
 	rootCmd.Flags().StringS("i", "i", "", "text is placed in the initial edit buffer as if it had been entered")

@@ -35,6 +35,7 @@ func init() {
 	rootCmd.Flags().BoolP("ignore-errors", "i", false, "Ignore errors from recipes.")
 	rootCmd.Flags().StringP("include-dir", "I", "", "Search DIRECTORY for included makefiles.")
 	rootCmd.Flags().StringP("jobs", "j", "", "Allow N jobs at once; infinite jobs with no arg.")
+	rootCmd.Flags().String("jobserver-style", "", "Select the style of jobserver to use.")
 	rootCmd.Flags().BoolP("just-print", "n", false, "Don't actually run any recipe; just print them.")
 	rootCmd.Flags().BoolP("keep-going", "k", false, "Keep going when some targets can't be made.")
 	rootCmd.Flags().StringP("load-average", "l", "", "Don't start multiple jobs unless load is below N.")
@@ -53,6 +54,7 @@ func init() {
 	rootCmd.Flags().BoolP("question", "q", false, "Run no recipe; exit status says if up to date.")
 	rootCmd.Flags().Bool("quiet", false, "Don't echo recipes.")
 	rootCmd.Flags().Bool("recon", false, "Don't actually run any recipe; just print them.")
+	rootCmd.Flags().String("shuffle", "", "Perform shuffle of prerequisites and goals.")
 	rootCmd.Flags().BoolP("silent", "s", false, "Don't echo recipes.")
 	rootCmd.Flags().Bool("stop", false, "Turns off -k.")
 	rootCmd.Flags().BoolP("touch", "t", false, "Touch targets instead of remaking them.")
@@ -62,14 +64,16 @@ func init() {
 	rootCmd.Flags().StringP("what-if", "W", "", "Consider FILE to be infinitely new.")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"assume-new":  carapace.ActionFiles(),
-		"assume-old":  carapace.ActionFiles(),
-		"directory":   carapace.ActionDirectories(),
-		"file":        carapace.ActionFiles(),
-		"include-dir": carapace.ActionDirectories(),
-		"new-file":    carapace.ActionFiles(),
-		"old-file":    carapace.ActionFiles(),
-		"what-if":     carapace.ActionFiles(),
+		"assume-new":      carapace.ActionFiles(),
+		"assume-old":      carapace.ActionFiles(),
+		"directory":       carapace.ActionDirectories(),
+		"file":            carapace.ActionFiles(),
+		"include-dir":     carapace.ActionDirectories(),
+		"jobserver-style": carapace.ActionValues("fifo", "pipe"),
+		"new-file":        carapace.ActionFiles(),
+		"old-file":        carapace.ActionFiles(),
+		"shuffle":         carapace.ActionValues("random", "reverse", "none"),
+		"what-if":         carapace.ActionFiles(),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

@@ -18,8 +18,8 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().StringS("b", "b", "", "Specify  fd  base  (TCP  mode only).")
 	rootCmd.Flags().String("faked", "", "Specify an alternative binary to use as faked.")
+	rootCmd.Flags().StringP("fd-base", "b", "", "Specify fd base (TCP mode only).")
 	rootCmd.Flags().BoolS("h", "h", false, "Display help.")
 	rootCmd.Flags().StringS("i", "i", "", "Load a fakeroot environment previously saved using -s from load-file.")
 	rootCmd.Flags().StringP("lib", "l", "", "Specify an alternative wrapper library.")
@@ -28,10 +28,11 @@ func init() {
 	rootCmd.Flags().BoolS("v", "v", false, "Display version.")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"faked": carapace.ActionFiles(),
-		"i":     carapace.ActionFiles(),
-		"lib":   carapace.ActionFiles(),
-		"s":     carapace.ActionFiles(),
+		"faked":   carapace.ActionFiles(),
+		"fd-base": carapace.ActionValues(),
+		"i":       carapace.ActionFiles(),
+		"lib":     carapace.ActionFiles(),
+		"s":       carapace.ActionFiles(),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

@@ -19,6 +19,7 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().BoolP("append", "a", false, "append the users mentioned by -U option to the group")
 	rootCmd.Flags().StringP("gid", "g", "", "change the group ID to GID")
 	rootCmd.Flags().BoolP("help", "h", false, "display this help message and exit")
 	rootCmd.Flags().StringP("new-name", "n", "", "change the name to NEW_GROUP")
@@ -26,9 +27,12 @@ func init() {
 	rootCmd.Flags().StringP("password", "p", "", "change the password to this (encrypted)")
 	rootCmd.Flags().StringP("prefix", "P", "", "prefix directory where are located the /etc/* files")
 	rootCmd.Flags().StringP("root", "R", "", "directory to chroot into")
+	rootCmd.Flags().StringP("users", "U", "", "comma-separated list of users to add as members")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"prefix": carapace.ActionDirectories(),
+		"root":   carapace.ActionDirectories(),
+		"users":  os.ActionUsers().UniqueList(","),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

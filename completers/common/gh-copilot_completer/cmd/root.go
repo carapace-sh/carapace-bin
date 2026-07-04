@@ -19,5 +19,6 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().BoolP("help", "h", false, "help for copilot")
+	rootCmd.Flags().Bool("remove", false, "Remove the downloaded Copilot CLI")
 	rootCmd.Flags().BoolP("version", "v", false, "version for copilot")
 }

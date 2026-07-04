@@ -26,6 +26,7 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 	rootCmd.Flags().SetInterspersed(false)
 
+	rootCmd.Flags().StringP("argv0", "a", "", "set the child process name to ARG")
 	rootCmd.Flags().String("block-signal", "", "block delivery of SIG signal(s) to COMMAND")
 	rootCmd.Flags().StringP("chdir", "C", "", "change working directory to DIR")
 	rootCmd.Flags().BoolP("debug", "v", false, "print verbose information for each processing step")

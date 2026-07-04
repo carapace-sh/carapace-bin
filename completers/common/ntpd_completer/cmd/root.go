@@ -36,6 +36,7 @@ func init() {
 	rootCmd.Flags().BoolS("b", "b", false, "Allow us to sync to broadcast servers")
 	rootCmd.Flags().StringS("c", "c", "", "configuration file name")
 	rootCmd.Flags().BoolS("d", "d", false, "Increase debug verbosity level")
+	rootCmd.Flags().String("dvar", "", "make ARG an ntp variable (RW|DEF)")
 	rootCmd.Flags().StringS("f", "f", "", "frequency drift file name")
 	rootCmd.Flags().BoolS("g", "g", false, "Allow the first adjustment to be Big")
 	rootCmd.Flags().StringS("i", "i", "", "Jail directory")
@@ -46,8 +47,10 @@ func init() {
 	rootCmd.Flags().BoolS("q", "q", false, "Set the time and quit")
 	rootCmd.Flags().StringS("r", "r", "", "Broadcast/propagation delay")
 	rootCmd.Flags().StringS("s", "s", "", "Statistics file location")
+	rootCmd.Flags().String("saveconfigquit", "", "Save parsed configuration and quit")
 	rootCmd.Flags().StringS("t", "t", "", "Trusted key number")
 	rootCmd.Flags().StringS("u", "u", "", "Run as userid (or userid:groupid)")
+	rootCmd.Flags().String("var", "", "make ARG an ntp variable (RW)")
 	rootCmd.Flags().StringS("w", "w", "", "Seconds to wait for first clock sync")
 	rootCmd.Flags().BoolS("x", "x", false, "Slew up to 600 seconds")
 

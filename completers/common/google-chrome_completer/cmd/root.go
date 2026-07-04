@@ -20,8 +20,11 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().String("app", "", "Runs URL in app mode")
+	rootCmd.Flags().String("enable-features", "", "Comma-separated list of features to enable")
+	rootCmd.Flags().Bool("force-dark-mode", false, "Force dark mode")
 	rootCmd.Flags().Bool("new-window", false, "If PATH or URL is given, open it in a new window.")
 	rootCmd.Flags().Bool("no-proxy-server", false, "Disables  the  proxy  server")
+	rootCmd.Flags().String("ozone-platform", "", "Specify the ozone platform to use")
 	rootCmd.Flags().String("password-store", "", "Set the password store to use")
 	rootCmd.Flags().Bool("proxy-auto-detect", false, "Autodetect proxy configuration")
 	rootCmd.Flags().String("proxy-pac-url", "", "Specify proxy autoconfiguration URL")
@@ -30,6 +33,7 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "Show version information.")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"ozone-platform": carapace.ActionValues("wayland", "x11"),
 		"password-store": carapace.ActionValues("basic", "gnome", "kwallet"),
 		"user-data-dir":  carapace.ActionDirectories(),
 	})

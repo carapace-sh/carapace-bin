@@ -21,6 +21,8 @@ func init() {
 	rootCmd.Flags().StringP("expression", "e", "", "evaluate expression")
 	rootCmd.Flags().StringP("file", "f", "", "evaluate contents of file")
 	rootCmd.Flags().BoolP("help", "h", false, "display this help and exit")
+	rootCmd.Flags().BoolP("interactive", "i", false, "force interactive mode")
+	rootCmd.Flags().String("max-recursion", "", "limit recursion depth")
 	rootCmd.Flags().BoolP("version", "V", false, "output version information and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{

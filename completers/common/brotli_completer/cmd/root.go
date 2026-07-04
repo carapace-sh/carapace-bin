@@ -30,7 +30,10 @@ func init() {
 	rootCmd.Flags().BoolS("8", "8", false, "compression level")
 	rootCmd.Flags().BoolS("9", "9", false, "compression level")
 	rootCmd.Flags().BoolP("best", "Z", false, "use best compression level (11) (default)")
+	rootCmd.Flags().StringP("comment", "C", "", "set comment; argument is base64-decoded first")
+	rootCmd.Flags().Bool("concatenated", false, "allows concatenated brotli streams as input")
 	rootCmd.Flags().BoolP("decompress", "d", false, "decompress")
+	rootCmd.Flags().StringP("dictionary", "D", "", "use FILE as raw (LZ77) dictionary")
 	rootCmd.Flags().BoolP("force", "f", false, "force output file overwrite")
 	rootCmd.Flags().BoolP("help", "h", false, "display this help and exit")
 	rootCmd.Flags().BoolP("keep", "k", false, "keep source file(s) (default)")
@@ -40,6 +43,7 @@ func init() {
 	rootCmd.Flags().StringP("output", "o", "", "output file (only if 1 input file)")
 	rootCmd.Flags().StringP("quality", "q", "", "compression level (0-11)")
 	rootCmd.Flags().BoolP("rm", "j", false, "remove source file(s)")
+	rootCmd.Flags().BoolP("squash", "s", false, "remove destination file if larger than source")
 	rootCmd.Flags().BoolP("stdout", "c", false, "write on standard output")
 	rootCmd.Flags().StringP("suffix", "S", "", "output file suffix (default:'.br')")
 	rootCmd.Flags().BoolP("test", "t", false, "test compressed file integrity")
@@ -47,8 +51,9 @@ func init() {
 	rootCmd.Flags().BoolP("version", "V", false, "display version and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"output":  carapace.ActionFiles(),
-		"quality": carapace.ActionValues("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"),
+		"dictionary": carapace.ActionFiles(),
+		"output":     carapace.ActionFiles(),
+		"quality":    carapace.ActionValues("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"),
 	})
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionFiles(),

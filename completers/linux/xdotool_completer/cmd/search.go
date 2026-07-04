@@ -27,9 +27,12 @@ func init() {
 	searchCmd.Flags().Bool("name", false, "Match against the window name.")
 	searchCmd.Flags().Bool("onlyvisible", false, "Show only visible windows in the results.")
 	searchCmd.Flags().String("pid", "", "Match windows that belong to a specific process id.")
+	searchCmd.Flags().String("prefix", "", "Use prefix for shell array name (max 16 chars)")
 	searchCmd.Flags().Bool("role", false, "Match against the window role.")
 	searchCmd.Flags().String("screen", "", "Select windows only on a specific screen.")
+	searchCmd.Flags().Bool("shell", false, "Print results as shell array")
 	searchCmd.Flags().Bool("sync", false, "Block until there are results.")
+	searchCmd.Flags().Bool("title", false, "Deprecated. Same as --name.")
 	rootCmd.AddCommand(searchCmd)
 
 	carapace.Gen(searchCmd).FlagCompletion(carapace.ActionMap{

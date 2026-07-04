@@ -21,13 +21,15 @@ func init() {
 	rootCmd.Flags().BoolP("aliases", "a", false, "alias names")
 	rootCmd.Flags().BoolP("domain", "d", false, "DNS domain name")
 	rootCmd.Flags().StringP("file", "F", "", "set host name or NIS domain name from FILE")
-	rootCmd.Flags().StringP("fqdn,", "f", "", "DNS host name or FQDN")
+	rootCmd.Flags().BoolP("fqdn", "f", false, "DNS host name or FQDN")
 	rootCmd.Flags().BoolP("help", "?", false, "give this help list")
 	rootCmd.Flags().BoolP("ip-addresses", "i", false, "addresses for the host name")
+	rootCmd.Flags().Bool("long", false, "DNS host name or FQDN")
+	rootCmd.Flags().Bool("nis", false, "NIS/YP domain name")
 	rootCmd.Flags().BoolP("short", "s", false, "short host name")
 	rootCmd.Flags().Bool("usage", false, "give a short usage message")
 	rootCmd.Flags().BoolP("version", "V", false, "print program version")
-	rootCmd.Flags().StringP("yp,", "y", "", "NIS/YP domain name")
+	rootCmd.Flags().BoolP("yp", "y", false, "NIS/YP domain name")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"file": carapace.ActionFiles(),

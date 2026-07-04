@@ -20,6 +20,7 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().StringP("abstraction", "a", "", "mixer abstraction level: none/basic")
+	rootCmd.Flags().BoolP("black-background", "B", false, "use the black background color")
 	rootCmd.Flags().StringP("card", "c", "", "sound card number or id")
 	rootCmd.Flags().StringP("config", "f", "", "configuration file")
 	rootCmd.Flags().StringP("device", "D", "", "mixer device name")

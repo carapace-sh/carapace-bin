@@ -35,6 +35,7 @@ func init() {
 	rootCmd.Flags().BoolP("quiet", "q", false, "disable messages")
 	rootCmd.Flags().BoolP("remove", "r", false, "Remove modules instead of inserting")
 	rootCmd.Flags().Bool("remove-dependencies", false, "Also remove modules depending on it")
+	rootCmd.Flags().Bool("remove-holders", false, "Also remove module holders (use together with -r)")
 	rootCmd.Flags().BoolP("resolve-alias", "R", false, "Only lookup and print alias and exit")
 	rootCmd.Flags().StringP("set-version", "S", "", "Use VERSION instead of `uname -r`")
 	rootCmd.Flags().Bool("show", false, "Same as --dry-run")
@@ -47,6 +48,7 @@ func init() {
 	rootCmd.Flags().BoolP("use-blacklist", "b", false, "Apply blacklist to resolved alias.")
 	rootCmd.Flags().BoolP("verbose", "v", false, "enables more messages")
 	rootCmd.Flags().BoolP("version", "V", false, "show version")
+	rootCmd.Flags().StringP("wait", "w", "", "When removing a module, wait up to MSEC for module's refcount to become 0")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"config":  carapace.ActionFiles(),

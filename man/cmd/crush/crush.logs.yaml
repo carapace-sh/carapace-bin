@@ -3,7 +3,7 @@ name: logs
 description: View crush logs
 flags:
     -f, --follow: Follow log output
-    -t, --tail=: Show only the last N lines default: 1000 for performance
+    -t, --tail=: "Show only the last N lines default: 1000 for performance"
 documentation:
     command: |
         View Crush's application logs for debugging and troubleshooting.

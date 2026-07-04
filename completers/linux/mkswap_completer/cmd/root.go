@@ -21,11 +21,16 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().BoolP("check", "c", false, "check bad blocks before creating the swap area")
+	rootCmd.Flags().StringP("endianness", "e", "", "specify the endianness to use (native, little or big)")
+	rootCmd.Flags().BoolP("file", "F", false, "create a swap file")
 	rootCmd.Flags().BoolP("force", "f", false, "allow swap size area be larger than device")
 	rootCmd.Flags().BoolP("help", "h", false, "display this help")
 	rootCmd.Flags().StringP("label", "L", "", "specify label")
 	rootCmd.Flags().String("lock", "", "use exclusive device lock (yes, no or nonblock)")
+	rootCmd.Flags().StringP("offset", "o", "", "specify the offset in the device")
 	rootCmd.Flags().StringP("pagesize", "p", "", "specify page size in bytes")
+	rootCmd.Flags().BoolP("quiet", "q", false, "suppress output and warning messages")
+	rootCmd.Flags().StringP("size", "s", "", "specify the size of a swap file in bytes")
 	rootCmd.Flags().StringP("swapversion", "v", "", "specify swap-space version number")
 	rootCmd.Flags().StringP("uuid", "U", "", "specify the uuid to use")
 	rootCmd.Flags().Bool("verbose", false, "verbose output")
@@ -34,7 +39,8 @@ func init() {
 	rootCmd.Flag("lock").NoOptDefVal = " "
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"lock": carapace.ActionValues("yes", "no", "nonblock").StyleF(style.ForKeyword),
+		"endianness": carapace.ActionValues("native", "little", "big"),
+		"lock":       carapace.ActionValues("yes", "no", "nonblock").StyleF(style.ForKeyword),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

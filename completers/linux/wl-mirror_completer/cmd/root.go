@@ -35,6 +35,7 @@ func init() {
 	rootCmd.Flags().StringSliceP("scaling", "s", nil, "scaling mode")
 	rootCmd.Flags().BoolP("show-cursor", "c", false, "show the cursor on the mirrored screen (default)")
 	rootCmd.Flags().BoolP("stream", "S", false, "accept a stream of additional options on stdin")
+	rootCmd.Flags().String("title", "", "specify a custom title N for the mirror window")
 	rootCmd.Flags().Bool("toggle-freeze", false, "toggle freeze state of screen capture")
 	rootCmd.Flags().StringP("transform", "t", "", "apply custom transform T")
 	rootCmd.Flags().Bool("unfreeze", false, "resume the screen capture after a freeze")

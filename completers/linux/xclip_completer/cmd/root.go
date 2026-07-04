@@ -21,6 +21,8 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().StringS("alt-text", "alt-text", "", "Specify alternative text for the STRING target atom")
+	rootCmd.Flags().BoolS("debug", "debug", false, "Garrulous verbiage (foreground)")
 	rootCmd.Flags().StringN("display", "d", "", "X display to use")
 	rootCmd.Flags().BoolN("filter", "f", false, "Print the text piped to standard in back to standard out")
 	rootCmd.Flags().BoolN("help", "h", false, "Show quick summary of options")
@@ -31,18 +33,21 @@ func init() {
 	rootCmd.Flags().BoolS("quiet", "quiet", false, "Run in the foreground, output information messages")
 	rootCmd.Flags().BoolN("rmlastnl", "r", false, "Remove any trailing newlines from the selection")
 	rootCmd.Flags().StringS("selection", "selection", "primary", "Specify which X selection to use")
+	rootCmd.Flags().BoolS("sensitive", "sensitive", false, "Only allow copied data to be pasted once")
 	rootCmd.Flags().BoolS("silent", "silent", true, "Fork into background to wait, output errors only")
 	rootCmd.Flags().StringN("target", "t", "TEXT", "Specify a specific data format with given target atom")
 	rootCmd.Flags().BoolS("verbose", "verbose", false, "Verbose output")
 	rootCmd.Flags().BoolS("version", "version", false, "Show version information")
+	rootCmd.Flags().IntS("wait", "wait", 0, "After first paste, wait N ms before clearing selection")
 
 	rootCmd.MarkFlagsMutuallyExclusive("in", "out")
 	rootCmd.MarkFlagsMutuallyExclusive("filter", "out")
 	rootCmd.MarkFlagsMutuallyExclusive("quiet", "silent", "verbose")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"alt-text":  carapace.ActionFiles(),
 		"display":   os.ActionDisplays(),
-		"selection": carapace.ActionValues("primary", "secondary", "clipboard"),
+		"selection": carapace.ActionValues("primary", "secondary", "clipboard", "buffer-cut"),
 		"target": carapace.Batch(
 			xclip.ActionTargets(),
 			carapace.ActionValues("TARGETS"),

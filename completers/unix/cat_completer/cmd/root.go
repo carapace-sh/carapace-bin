@@ -23,7 +23,7 @@ func init() {
 	rootCmd.Flags().BoolP("number", "n", false, "number all output lines")
 	rootCmd.Flags().BoolP("number-nonblank", "b", false, "number nonempty output lines, overrides -n")
 	rootCmd.Flags().BoolP("show-all", "A", false, "equivalent to -vET")
-	rootCmd.Flags().BoolP("show-ends", "E", false, "display $ at end of each line")
+	rootCmd.Flags().BoolP("show-ends", "E", false, "display $ or ^M$ at end of each line")
 	rootCmd.Flags().BoolP("show-nonprinting", "v", false, "use ^ and M- notation, except for LFD and TAB")
 	rootCmd.Flags().BoolP("show-tabs", "T", false, "display TAB characters as ^I")
 	rootCmd.Flags().BoolP("squeeze-blank", "s", false, "suppress repeated empty output lines")

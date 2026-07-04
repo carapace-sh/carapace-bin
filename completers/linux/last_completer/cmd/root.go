@@ -33,6 +33,7 @@ func init() {
 	rootCmd.Flags().StringP("present", "p", "", "display who were present at the specified time")
 	rootCmd.Flags().StringP("since", "s", "", "display the lines since the specified time")
 	rootCmd.Flags().BoolP("system", "x", false, "display system shutdown entries and run level changes")
+	rootCmd.Flags().BoolP("tab-separated", "T", false, "use tabs as delimiters")
 	rootCmd.Flags().String("time-format", "", "show timestamps in the specified <format>")
 	rootCmd.Flags().StringP("until", "t", "", "display the lines until the specified time")
 	rootCmd.Flags().BoolP("version", "V", false, "display version")

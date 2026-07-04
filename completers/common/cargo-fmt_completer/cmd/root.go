@@ -20,6 +20,7 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().Bool("all", false, "Format all packages (only usable in workspaces)")
+	rootCmd.Flags().Bool("check", false, "Run rustfmt in check mode")
 	rootCmd.Flags().BoolP("help", "h", false, "Prints help information")
 	rootCmd.Flags().String("manifest-path", "", "Specify path to Cargo.toml")
 	rootCmd.Flags().String("message-format", "", "Specify message-format: short|json|human")

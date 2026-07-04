@@ -26,6 +26,7 @@ func init() {
 	rootCmd.Flags().String("file", "", "comma-separated list of files to test")
 	rootCmd.Flags().String("func", "", "comma-separated functions list")
 	rootCmd.Flags().Bool("include-vendor", false, "include vendor directories for show coverage")
+	rootCmd.Flags().Float64("mincov", 100, "coverage threshold of the file to be displayed (in percent)")
 	rootCmd.Flags().Bool("summary", false, "only show summary for each file")
 	rootCmd.Flags().Bool("version", false, "get version")
 

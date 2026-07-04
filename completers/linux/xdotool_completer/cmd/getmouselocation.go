@@ -13,6 +13,7 @@ var getmouselocationCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(getmouselocationCmd).Standalone()
+	getmouselocationCmd.Flags().String("prefix", "", "Use prefix for shell variable names (max 16 chars)")
 	getmouselocationCmd.Flags().Bool("shell", false, "This makes getmouselocation output shell data you can eval")
 
 	rootCmd.AddCommand(getmouselocationCmd)

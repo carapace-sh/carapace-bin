@@ -27,8 +27,11 @@ func init() {
 	rootCmd.Flags().StringP("filter", "F", "", "Show only the commands matching the given filter")
 	rootCmd.Flags().BoolP("help", "h", false, "Print this help screen")
 	rootCmd.Flags().StringP("highlight-changes", "H", "", "Highlight new and old processes")
+	rootCmd.Flags().StringP("max-iterations", "n", "", "Exit htop after NUMBER iterations/frame updates")
 	rootCmd.Flags().BoolP("no-color", "C", false, "Use a monochrome color scheme")
-	rootCmd.Flags().BoolP("no-mouse", "m", false, "Disable the mouse")
+	rootCmd.Flags().Bool("no-function-bar", false, "Hide the function bar")
+	rootCmd.Flags().Bool("no-meters", false, "Hide meters")
+	rootCmd.Flags().BoolP("no-mouse", "M", false, "Disable the mouse")
 	rootCmd.Flags().BoolP("no-unicode", "U", false, "Do not use unicode but plain ASCII")
 	rootCmd.Flags().StringP("pid", "p", "", "Show only the given PIDs")
 	rootCmd.Flags().Bool("readonly", false, "Disable all system and process changing feature")
@@ -39,6 +42,7 @@ func init() {
 
 	rootCmd.Flag("drop-capabilities").NoOptDefVal = " "
 	rootCmd.Flag("highlight-changes").NoOptDefVal = " "
+	rootCmd.Flag("user").NoOptDefVal = " "
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"drop-capabilities": carapace.ActionValuesDescribed(

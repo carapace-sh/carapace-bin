@@ -21,10 +21,12 @@ func init() {
 	carapace.Gen(work_editCmd).Standalone()
 	work_editCmd.Flags().SetInterspersed(false)
 
+	work_editCmd.Flags().StringArrayS("dropgodebug", "dropgodebug", nil, "drop any existing godebug lines")
 	work_editCmd.Flags().StringArrayS("dropreplace", "dropreplace", nil, "drop a replacement")
 	work_editCmd.Flags().StringArrayS("dropuse", "dropuse", nil, "drop a use directive")
 	work_editCmd.Flags().BoolS("fmt", "fmt", false, "reformat the go.work file without making other changes")
 	work_editCmd.Flags().StringS("go", "go", "", "set the expected Go language version")
+	work_editCmd.Flags().StringArrayS("godebug", "godebug", nil, "add a godebug key=value line")
 	work_editCmd.Flags().BoolS("json", "json", false, "print the final go.work in JSON format")
 	work_editCmd.Flags().BoolS("print", "print", false, "print the final go.work in its text format")
 	work_editCmd.Flags().StringArrayS("replace", "replace", nil, "add a replacement")
@@ -32,6 +34,7 @@ func init() {
 	workCmd.AddCommand(work_editCmd)
 
 	carapace.Gen(work_editCmd).FlagCompletion(carapace.ActionMap{
+		"dropgodebug": golang.ActionGodebugKeys(),
 		"dropreplace": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) > 0 {
 				return golang.ActionWorkReplacements(c.Args[0])
@@ -44,7 +47,8 @@ func init() {
 			}
 			return golang.ActionWorkUses("")
 		}),
-		"go": golang.ActionVersions(),
+		"go":      golang.ActionVersions(),
+		"godebug": golang.ActionGodebugKeyValues(),
 		"replace": carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:

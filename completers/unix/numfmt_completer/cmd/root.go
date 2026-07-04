@@ -34,6 +34,7 @@ func init() {
 	rootCmd.Flags().String("suffix", "", "add SUFFIX to output numbers, and accept optional SUFFIX in input numbers")
 	rootCmd.Flags().String("to", "", "auto-scale output numbers to UNITs")
 	rootCmd.Flags().String("to-unit", "", "the output unit size (instead of the default 1)")
+	rootCmd.Flags().String("unit-separator", "", "insert SEP between number and unit on output, and accept an optional SEP in input numbers")
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 	rootCmd.Flags().BoolP("zero-terminated", "z", false, "line delimiter is NUL, not newline")
 

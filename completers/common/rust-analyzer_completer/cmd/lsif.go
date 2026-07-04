@@ -14,6 +14,7 @@ var lsifCmd = &cobra.Command{
 func init() {
 	carapace.Gen(lsifCmd).Standalone()
 
+	lsifCmd.Flags().Bool("exclude-vendored-libraries", false, "Exclude code from vendored libraries from the resulting index.")
 	rootCmd.AddCommand(lsifCmd)
 
 	carapace.Gen(lsifCmd).PositionalCompletion(

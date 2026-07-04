@@ -21,11 +21,15 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().String("add-runtime", "", "Register an additional OCI compatible runtime (default [])")
+	rootCmd.Flags().Bool("allow-direct-routing", false, "Allow remote access to published ports on locally-bound interfaces")
 	rootCmd.Flags().String("allow-nondistributable-artifacts", "", "Allow push of nondistributable artifacts to registry")
 	rootCmd.Flags().String("api-cors-header", "", "Set CORS headers in the Engine API")
 	rootCmd.Flags().String("authorization-plugin", "", "Authorization plugins to load")
 	rootCmd.Flags().String("bip", "", "Specify network bridge IP")
+	rootCmd.Flags().String("bip6", "", "IPv6 address for the default bridge")
 	rootCmd.Flags().StringP("bridge", "b", "", "Attach containers to a network bridge")
+	rootCmd.Flags().String("bridge-accept-fwmark", "", "In bridge networks, accept packets with this firewall mark")
+	rootCmd.Flags().String("cdi-spec-dir", "", "CDI specification directories to use")
 	rootCmd.Flags().String("cgroup-parent", "", "Set parent cgroup for all containers")
 	rootCmd.Flags().String("config-file", "", "Daemon configuration file (default \"/etc/docker/daemon.json\")")
 	rootCmd.Flags().String("containerd", "", "containerd grpc address")
@@ -41,6 +45,7 @@ func init() {
 	rootCmd.Flags().String("default-gateway", "", "Container default gateway IPv4 address")
 	rootCmd.Flags().String("default-gateway-v6", "", "Container default gateway IPv6 address")
 	rootCmd.Flags().String("default-ipc-mode", "", "Default mode for containers ipc (\"shareable\" | \"private\") (default \"private\")")
+	rootCmd.Flags().String("default-network-opt", "", "Default network options (default map[])")
 	rootCmd.Flags().String("default-runtime", "", "Default OCI runtime for containers (default \"runc\")")
 	rootCmd.Flags().String("default-shm-size", "", "Default shm size for containers (default 64MiB)")
 	rootCmd.Flags().String("default-ulimit", "", "Default ulimits for containers (default [])")
@@ -50,18 +55,23 @@ func init() {
 	rootCmd.Flags().String("exec-opt", "", "Runtime execution options")
 	rootCmd.Flags().String("exec-root", "", "Root directory for execution state files (default \"/var/run/docker\")")
 	rootCmd.Flags().Bool("experimental", false, "Enable experimental features")
+	rootCmd.Flags().String("feature", "", "Enable feature in the daemon (default map[])")
+	rootCmd.Flags().String("firewall-backend", "", "Firewall backend to use, iptables or nftables")
 	rootCmd.Flags().String("fixed-cidr", "", "IPv4 subnet for fixed IPs")
 	rootCmd.Flags().String("fixed-cidr-v6", "", "IPv6 subnet for fixed IPs")
 	rootCmd.Flags().StringP("group", "G", "", "Group for the unix socket (default \"docker\")")
 	rootCmd.Flags().Bool("help", false, "Print usage")
 	rootCmd.Flags().StringP("host", "H", "", "Daemon socket(s) to connect to")
 	rootCmd.Flags().String("host-gateway-ip", "", "IP address that the special 'host-gateway' string in --add-host resolves to. Defaults to the IP address of the default bridge")
+	rootCmd.Flags().String("http-proxy", "", "HTTP proxy URL to use for outgoing traffic")
+	rootCmd.Flags().String("https-proxy", "", "HTTPS proxy URL to use for outgoing traffic")
 	rootCmd.Flags().Bool("icc", false, "Enable inter-container communication (default true)")
 	rootCmd.Flags().Bool("init", false, "Run an init in the container to forward signals and reap processes")
 	rootCmd.Flags().String("init-path", "", "Path to the docker-init binary")
 	rootCmd.Flags().String("insecure-registry", "", "Enable insecure registry communication")
 	rootCmd.Flags().String("ip", "", "Default IP when binding container ports (default 0.0.0.0)")
 	rootCmd.Flags().Bool("ip-forward", false, "Enable net.ipv4.ip_forward (default true)")
+	rootCmd.Flags().Bool("ip-forward-no-drop", false, "Do not set the filter-FORWARD policy to DROP")
 	rootCmd.Flags().Bool("ip-masq", false, "Enable IP masquerading (default true)")
 	rootCmd.Flags().Bool("ip6tables", false, "Enable addition of ip6tables rules")
 	rootCmd.Flags().Bool("iptables", false, "Enable addition of iptables rules (default true)")
@@ -69,6 +79,7 @@ func init() {
 	rootCmd.Flags().String("label", "", "Set key=value labels to the daemon")
 	rootCmd.Flags().Bool("live-restore", false, "Enable live restore of docker when containers are still running")
 	rootCmd.Flags().String("log-driver", "", "Default driver for container logs (default \"json-file\")")
+	rootCmd.Flags().String("log-format", "", "Set the logging format (\"text\"|\"json\") (default \"text\")")
 	rootCmd.Flags().StringP("log-level", "l", "", "Set the logging level (\"debug\"|\"info\"|\"warn\"|\"error\"|\"fatal\") (default \"info\")")
 	rootCmd.Flags().String("log-opt", "", "Default log driver options for containers (default map[])")
 	rootCmd.Flags().String("max-concurrent-downloads", "", "Set the max concurrent downloads for each pull (default 3)")
@@ -78,7 +89,9 @@ func init() {
 	rootCmd.Flags().String("mtu", "", "Set the containers network MTU")
 	rootCmd.Flags().String("network-control-plane-mtu", "", "Network Control plane MTU (default 1500)")
 	rootCmd.Flags().Bool("no-new-privileges", false, "Set no-new-privileges by default for new containers")
+	rootCmd.Flags().String("no-proxy", "", "Comma-separated list of hosts or IP addresses for which the proxy is not used")
 	rootCmd.Flags().String("node-generic-resource", "", "Advertise user-defined resource")
+	rootCmd.Flags().String("nri-opts", "", "Node Resource Interface configuration (default \"\")")
 	rootCmd.Flags().String("oom-score-adjust", "", "Set the oom_score_adj for the daemon")
 	rootCmd.Flags().StringP("pidfile", "p", "", "Path to use for daemon PID file (default \"/var/run/docker.pid\")")
 	rootCmd.Flags().Bool("raw-logs", false, "Full timestamps without ANSI coloring")
@@ -98,6 +111,7 @@ func init() {
 	rootCmd.Flags().Bool("userland-proxy", false, "Use userland proxy for loopback traffic (default true)")
 	rootCmd.Flags().String("userland-proxy-path", "", "Path to the userland proxy binary")
 	rootCmd.Flags().String("userns-remap", "", "User/Group setting for user namespaces")
+	rootCmd.Flags().Bool("validate", false, "Validate daemon configuration and exit")
 	rootCmd.Flags().BoolP("version", "v", false, "Print version information and quit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
@@ -117,8 +131,10 @@ func init() {
 		"default-cgroupns-mode": carapace.ActionValues("host", "private"),
 		"default-ipc-mode":      carapace.ActionValues("shareable", "private"),
 		"exec-root":             carapace.ActionDirectories(),
+		"firewall-backend":      carapace.ActionValues("iptables", "nftables"),
 		"group":                 os.ActionGroups(),
 		"init-path":             carapace.ActionDirectories(),
+		"log-format":            carapace.ActionValues("text", "json"),
 		"log-level":             carapace.ActionValues("debug", "info", "warn", "error", "fatal").StyleF(style.ForLogLevel),
 		"pidfile":               carapace.ActionFiles(),
 		"userland-proxy-path":   carapace.ActionFiles(),

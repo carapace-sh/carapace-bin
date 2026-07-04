@@ -19,7 +19,9 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().StringS("ocagent", "ocagent", "", "the address of the ocagent (e.g. http://localhost:55678), or off (default \"off\")")
+	rootCmd.Flags().StringS("otel", "otel", "", "export telemetry to specified OpenTelemetry collector address (e.g. http://localhost:4318)")
 	rootCmd.Flags().StringS("profile.alloc", "profile.alloc", "", "write alloc profile to this file")
+	rootCmd.Flags().StringS("profile.block", "profile.block", "", "write block profile to this file")
 	rootCmd.Flags().StringS("profile.cpu", "profile.cpu", "", "write CPU profile to this file")
 	rootCmd.Flags().StringS("profile.mem", "profile.mem", "", "write memory profile to this file")
 	rootCmd.Flags().StringS("profile.trace", "profile.trace", "", "write trace log to this file")
@@ -30,6 +32,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"profile.alloc": carapace.ActionFiles(),
+		"profile.block": carapace.ActionFiles(),
 		"profile.cpu":   carapace.ActionFiles(),
 		"profile.mem":   carapace.ActionFiles(),
 		"profile.trace": carapace.ActionFiles(),

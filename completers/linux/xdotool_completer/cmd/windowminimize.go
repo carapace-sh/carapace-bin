@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/xdotool"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,8 @@ func init() {
 
 	windowminimizeCmd.Flags().Bool("sync", false, "After requesting the window minimize, wait until the window is actually minimized")
 	rootCmd.AddCommand(windowminimizeCmd)
+
+	carapace.Gen(windowminimizeCmd).PositionalCompletion(
+		xdotool.ActionWindows(),
+	)
 }

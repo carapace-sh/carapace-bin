@@ -27,6 +27,8 @@ func init() {
 	rootCmd.Flags().BoolS("a", "a", false, "listen on all network interfaces, not just localhost")
 	rootCmd.Flags().BoolS("d", "d", false, "use USB device (error if multiple devices connected)")
 	rootCmd.Flags().BoolS("e", "e", false, "use TCP/IP device (error if multiple TCP/IP devices available)")
+	rootCmd.Flags().Bool("exit-on-write-error", false, "exit if stdout is closed")
+	rootCmd.Flags().String("one-device", "", "only allowed with 'start-server' or 'server nodaemon'")
 	rootCmd.Flags().StringS("s", "s", "", "use device with given serial (overrides $ANDROID_SERIAL)")
 	rootCmd.Flags().StringS("t", "t", "", "use device with given transport id")
 

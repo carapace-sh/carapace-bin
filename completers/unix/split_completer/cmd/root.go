@@ -25,10 +25,12 @@ func init() {
 	rootCmd.Flags().String("filter", "", "write to shell COMMAND; file name is $FILE")
 	rootCmd.Flags().Bool("help", false, "display this help and exit")
 	rootCmd.Flags().String("hex-suffixes", "", "same as -x, but allow setting the start value")
+	rootCmd.Flag("hex-suffixes").NoOptDefVal = "0"
 	rootCmd.Flags().StringP("line-bytes", "C", "", "put at most SIZE bytes of records per output file")
 	rootCmd.Flags().StringP("lines", "l", "", "put NUMBER lines/records per output file")
 	rootCmd.Flags().StringP("number", "n", "", "generate CHUNKS output files; see explanation below")
 	rootCmd.Flags().String("numeric-suffixes", "", "same as -d, but allow setting the start value")
+	rootCmd.Flag("numeric-suffixes").NoOptDefVal = "0"
 	rootCmd.Flags().StringP("separator", "t", "", "use SEP instead of newline as the record separator;")
 	rootCmd.Flags().StringP("suffix-length", "a", "", "generate suffixes of length N (default 2)")
 	rootCmd.Flags().BoolP("unbuffered", "u", false, "immediately copy input to output with '-n r/...'")

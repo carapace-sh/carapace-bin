@@ -23,6 +23,7 @@ func init() {
 
 	rootCmd.PersistentFlags().StringS("C", "C", "", "Working directory for this command")
 	rootCmd.PersistentFlags().String("config", "", "User config file path")
+	rootCmd.PersistentFlags().String("config-set", "", "Override config with inline TOML")
 	rootCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.PersistentFlags().CountP("verbose", "v", "Verbose output (-v: hooks, templates; -vv: debug report)")
 	rootCmd.Flags().BoolP("version", "V", false, "Print version")

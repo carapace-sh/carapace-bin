@@ -18,7 +18,9 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().BoolP("absolute-offset", "a", false, "Make the x and y offset be relative to the top left terminal corner")
 	rootCmd.Flags().BoolP("blocks", "b", false, "Force block output")
+	rootCmd.Flags().BoolP("caption", "c", false, "Output the name of the file after displaying")
 	rootCmd.Flags().StringP("frame-rate", "f", "", "Play gif at the given frame rate")
 	rootCmd.Flags().StringP("height", "h", "", "Resize the image to a provided height")
 	rootCmd.Flags().Bool("help", false, "Prints help information")

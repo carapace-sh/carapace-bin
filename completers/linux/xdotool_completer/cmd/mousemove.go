@@ -16,11 +16,11 @@ var mousemoveCmd = &cobra.Command{
 func init() {
 	carapace.Gen(mousemoveCmd).Standalone()
 
-	mousemoveCmd.Flags().Bool("clearmodifiers", false, "See CLEARMODIFIERS")
+	mousemoveCmd.Flags().BoolP("clearmodifiers", "c", false, "See CLEARMODIFIERS")
 	mousemoveCmd.Flags().Bool("polar", false, "Use polar coordinates")
 	mousemoveCmd.Flags().String("screen", "", "Move the mouse to the specified screen to move to")
 	mousemoveCmd.Flags().Bool("sync", false, "After sending the mouse move request, wait until the mouse is actually moved")
-	mousemoveCmd.Flags().String("window", "", "Specify a window to move relative to")
+	mousemoveCmd.Flags().StringP("window", "w", "", "Specify a window to move relative to")
 	rootCmd.AddCommand(mousemoveCmd)
 
 	carapace.Gen(mousemoveCmd).FlagCompletion(carapace.ActionMap{
