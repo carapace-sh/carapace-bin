@@ -26,13 +26,14 @@ Add `runtime.GOOS` darwin branches to shared actions in `pkg/actions/`, followin
 | ✅ done | `pkg/actions/fs/filesystem.go` | `ActionFilesystemTypes` | Darwin filesystem list (apfs, hfs, etc.) |
 | ✅ done | `pkg/actions/tools/mount/source.go` | `ActionSources` | Darwin LABEL=/UUID= sources |
 | ✅ done | `pkg/actions/tools/mount/option.go` | `ActionMountOptions` | Darwin mount options |
-| ☐ todo | `pkg/actions/os/user.go` | `ActionUsers` | Verify darwin compatibility (may need `dscl` instead of `/etc/passwd`) |
-| ☐ todo | `pkg/actions/os/group.go` | `ActionGroups` | Verify darwin compatibility (may need `dscl` instead of `/etc/group`) |
+| ✅ done | `pkg/actions/os/user.go` | `ActionUsers` | Darwin: handles `/usr/bin/false` as nologin shell via `isNonLoginShell` |
+| ☐ todo | `pkg/actions/os/group.go` | `ActionGroups` | Uses `/etc/group` which exists on darwin |
 | ☐ todo | `pkg/actions/os/kernel.go` | `ActionKernelModules` | Darwin has no kernel modules in the Linux sense; may need `kextstat` or return empty |
-| ☐ todo | `pkg/actions/os/locale.go` | `ActionLocales` | Darwin uses different locale paths (`/usr/share/locale` vs `/usr/lib/locale`) |
-| ☐ todo | `pkg/actions/os/font.go` | `ActionFonts` | Verify darwin font paths (`~/Library/Fonts`, `/Library/Fonts`, `/System/Library/Fonts`) |
-| ☐ todo | `pkg/actions/os/display.go` | `ActionDisplays` | May need darwin-specific display detection |
-| ☐ todo | `pkg/actions/ps/` | process actions | Verify darwin `ps` output parsing compatibility |
+| ☐ todo | `pkg/actions/os/locale.go` | `ActionLocales` | Static list — works on darwin as-is |
+| ☐ todo | `pkg/actions/os/font.go` | `ActionFonts` | Uses `fc-list` — works on darwin if fontconfig installed |
+| ☐ todo | `pkg/actions/os/display.go` | `ActionDisplays` | Uses `w` command — works on darwin |
+| ✅ done | `pkg/actions/ps/ps.go` | `ActionKillSignals` | Darwin: EMT, INFO signals; no PWR/STKFLT |
+| ✅ done | `pkg/actions/ps/ps.go` | `ActionProcessStates` | Darwin: D,I,R,S,T,U,Z states |
 
 ---
 
@@ -44,15 +45,15 @@ Create darwin-specific completers for commands where BSD/macOS flags differ sign
 
 | Status | Command | Key differences from GNU | Man page |
 |--------|---------|--------------------------|----------|
-| ☐ todo | `ls` | BSD: `-G` color, `-e` ACL, `-O` flags, `-@` xattr, `-W` whiteouts; no `--author`, `--block-size`, `--dired`, `--time-style`, `--hyperlink`, `--quoting-style` | https://keith.github.io/xcode-manpages/ls.1.html |
-| ☐ todo | `stat` | BSD: `-f` format string (completely different specifiers: `%N`, `%z`, `%u`, `%g`), `-r` raw, `-L` follow; no `--format`, `--printf`, `--file-system` | https://keith.github.io/xcode-manpages/stat.1.html |
-| ☐ todo | `date` | BSD: `-j` don't set, `-f` input format, `-v` adjust value, `-r` seconds; no `--date`, `--iso-8601`, `--rfc-3339`, `--debug` | https://keith.github.io/xcode-manpages/date.1.html |
-| ☐ todo | `df` | BSD: `-g`, `-m`, `-h`, `-H`, `-i`; no `--output`, `--total`, `--block-size`, `--exclude-type` | https://keith.github.io/xcode-manpages/df.1.html |
-| ☐ todo | `du` | BSD: `-d` depth, `-t` threshold, `-h`, `-H`, `-c`; no `--apparent-size`, `--files0-from`, `--inodes`, `--time`, `--exclude` | https://keith.github.io/xcode-manpages/du.1.html |
-| ☐ todo | `cp` | BSD: `-c` clipboard, `-n` no-clobber, `-p` preserve, `-R`; no `--archive`, `--reflink`, `--sparse`, `--update`, `--parents` | https://keith.github.io/xcode-manpages/cp.1.html |
-| ☐ todo | `mv` | BSD: `-n` no-clobber; no `--backup`, `--exchange`, `--target-directory`, `--update`, `--debug` | https://keith.github.io/xcode-manpages/mv.1.html |
-| ☐ todo | `rm` | BSD: `-P` overwrite; no `--no-preserve-root`, `--one-file-system`, `--interactive=WHEN` | https://keith.github.io/xcode-manpages/rm.1.html |
-| ☐ todo | `dd` | BSD: no `iflag`/`oflag`; different `conv` options (`swab`, `block`, `unblock`); `iseq`, `oseq` | https://keith.github.io/xcode-manpages/dd.1.html |
+| ✅ done | `ls` | BSD: `-G` color, `-e` ACL, `-O` flags, `-@` xattr, `-W` whiteouts; no `--author`, `--block-size`, `--dired`, `--time-style`, `--hyperlink`, `--quoting-style` | https://keith.github.io/xcode-manpages/ls.1.html |
+| ✅ done | `stat` | BSD: `-f` format string (completely different specifiers: `%N`, `%z`, `%u`, `%g`), `-r` raw, `-L` follow; no `--format`, `--printf`, `--file-system` | https://keith.github.io/xcode-manpages/stat.1.html |
+| ✅ done | `date` | BSD: `-j` don't set, `-f` input format, `-v` adjust value, `-r` seconds; no `--date`, `--iso-8601`, `--rfc-3339`, `--debug` | https://keith.github.io/xcode-manpages/date.1.html |
+| ✅ done | `df` | BSD: `-g`, `-m`, `-h`, `-H`, `-i`; no `--output`, `--total`, `--block-size`, `--exclude-type` | https://keith.github.io/xcode-manpages/df.1.html |
+| ✅ done | `du` | BSD: `-d` depth, `-t` threshold, `-h`, `-H`, `-c`; no `--apparent-size`, `--files0-from`, `--inodes`, `--time`, `--exclude` | https://keith.github.io/xcode-manpages/du.1.html |
+| ✅ done | `cp` | BSD: `-c` clipboard, `-n` no-clobber, `-p` preserve, `-R`; no `--archive`, `--reflink`, `--sparse`, `--update`, `--parents` | https://keith.github.io/xcode-manpages/cp.1.html |
+| ✅ done | `mv` | BSD: `-n` no-clobber; no `--backup`, `--exchange`, `--target-directory`, `--update`, `--debug` | https://keith.github.io/xcode-manpages/mv.1.html |
+| ✅ done | `rm` | BSD: `-P` overwrite; no `--no-preserve-root`, `--one-file-system`, `--interactive=WHEN` | https://keith.github.io/xcode-manpages/rm.1.html |
+| ✅ done | `dd` | BSD: no `iflag`/`oflag`; different `conv` options (`swab`, `block`, `unblock`); `iseq`, `oseq` | https://keith.github.io/xcode-manpages/dd.1.html |
 
 ### Priority 2b: Moderate flag divergence
 
