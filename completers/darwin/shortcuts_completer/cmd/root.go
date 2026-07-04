@@ -15,18 +15,9 @@ var rootCmd = &cobra.Command{
 func Execute() error {
 	return rootCmd.Execute()
 }
+
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().BoolP("help", "h", false, "Display usage information")
-
-	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValuesDescribed(
-			"run", "Run a shortcut",
-			"list", "List shortcuts",
-			"view", "View a shortcut",
-			"sign", "Sign a shortcut file",
-			"create", "Create a shortcut from a .shortcut file",
-		),
-	)
 }
