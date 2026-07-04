@@ -335,7 +335,7 @@ Enhance existing completers with richer completions beyond basic flags.
 | ✅ done | `kmutil` | Add subcommand-specific flags (`load`, `unload`, `showloaded`, `create`, `inspect`) |
 | ☐ todo | `simctl` | Add subcommand-specific flags and device list completion |
 | ☐ todo | `diskutil` | Add subcommand-specific flags and disk list completion via `diskutil list` |
-| ☐ todo | `hdiutil` | Add subcommand-specific flags (`attach`, `create`, `convert` have distinct options) |
+| ✅ done | `hdiutil` | Add subcommand-specific flags (`attach`, `create`, `convert` have distinct options) |
 | ☐ todo | `defaults` | Add domain completion (list known preference domains) and key completion |
 | ☐ todo | `scutil` | Add subcommand-specific completions for interactive commands |
 
