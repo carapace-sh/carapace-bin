@@ -15,18 +15,21 @@ var rootCmd = &cobra.Command{
 func Execute() error {
 	return rootCmd.Execute()
 }
+
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().StringP("a", "a", "", "Add key value to query")
+	rootCmd.Flags().Bool("buckets", false, "Dump cache buckets with -cachedump")
+	rootCmd.Flags().Bool("cachedump", false, "Dump the cache contents")
+	rootCmd.Flags().Bool("configuration", false, "Show the current configuration")
+	rootCmd.Flags().StringP("entries", "e", "", "Limit cache dump to entries of category")
+	rootCmd.Flags().Bool("flushcache", false, "Flush the directory service cache")
 	rootCmd.Flags().BoolP("help", "h", false, "Display usage information")
+	rootCmd.Flags().StringP("q", "q", "", "Query the cache for category")
+	rootCmd.Flags().Bool("statistics", false, "Show cache statistics")
 
-	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValuesDescribed(
-			"-flushcache", "Flush the directory service cache",
-			"-statistics", "Show cache statistics",
-			"-q", "Query the cache",
-			"-configuration", "Show the current configuration",
-			"-cachedump", "Dump the cache contents",
-		),
-	)
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"q": carapace.ActionValues("user", "group", "host", "mount", "user_byuid", "group_bygid", "user_byname", "group_byname"),
+	})
 }
