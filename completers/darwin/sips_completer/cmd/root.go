@@ -19,9 +19,9 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().StringP("cropToHeightWidth", "c", "", "Crop to specified height and width")
-	rootCmd.Flags().BoolP("deleteProperty", "d", false, "Delete the specified property")
+	rootCmd.Flags().StringP("deleteProperty", "d", "", "Delete the specified property")
 	rootCmd.Flags().StringP("format", "s", "", "Set output format")
-	rootCmd.Flags().BoolP("getProperty", "g", false, "Get the specified property")
+	rootCmd.Flags().StringP("getProperty", "g", "", "Get the specified property")
 	rootCmd.Flags().BoolP("help", "h", false, "Display usage information")
 	rootCmd.Flags().StringP("out", "o", "", "Set output file")
 	rootCmd.Flags().StringP("resampleHeight", "Z", "", "Resample to specified height")

@@ -30,7 +30,7 @@ func init() {
 	rootCmd.Flags().BoolP("no-update", "n", false, "Do not update the cached statistics for any mounted filesystems")
 	rootCmd.Flags().BoolP("portability", "P", false, "Use 512-byte blocks and a strict POSIX format")
 	rootCmd.Flags().BoolP("si", "H", false, "Use powers of 1000 for -h (SI units)")
-	rootCmd.Flags().BoolP("type", "t", false, "Only show filesystems of the specified type")
+	rootCmd.Flags().StringP("type", "t", "", "Only show filesystems of the specified type")
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

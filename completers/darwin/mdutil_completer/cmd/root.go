@@ -20,9 +20,13 @@ func init() {
 
 	rootCmd.Flags().BoolP("erase", "E", false, "Erase the Spotlight index on the volume")
 	rootCmd.Flags().BoolP("help", "h", false, "Display usage information")
-	rootCmd.Flags().BoolP("index", "i", false, "Turn on/off indexing on the volume")
+	rootCmd.Flags().StringP("index", "i", "", "Turn on/off indexing on the volume")
 	rootCmd.Flags().BoolP("status", "s", false, "Print indexing status of the volume")
 	rootCmd.Flags().BoolP("verbose", "v", false, "Verbose mode")
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"index": carapace.ActionValues("on", "off"),
+	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionDirectories())
 }

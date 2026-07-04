@@ -26,7 +26,7 @@ func init() {
 	rootCmd.Flags().String("adminUser", "", "Administrator user name")
 	rootCmd.Flags().String("afpGuestAccess", "", "AFP guest access: on, off, or status")
 	rootCmd.Flags().String("automaticTime", "", "Automatic time: on, off, or status")
-	rootCmd.Flags().BoolP("deleteUser", "D", false, "Delete a user")
+	rootCmd.Flags().StringP("deleteUser", "D", "", "Delete a user")
 	rootCmd.Flags().String("filesystem", "", "Filesystem status")
 	rootCmd.Flags().String("fullName", "", "Full name for new user")
 	rootCmd.Flags().String("guestAccount", "", "Guest account: on, off, or status")

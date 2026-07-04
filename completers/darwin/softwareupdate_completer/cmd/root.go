@@ -43,7 +43,7 @@ func init() {
 	rootCmd.Flags().Bool("safari-only", false, "Only install Safari updates")
 	rootCmd.Flags().Bool("schedule", false, "Set or check the scheduled update setting")
 	rootCmd.Flags().Bool("stdinpass", false, "Read password from stdin")
-	rootCmd.Flags().Bool("user", false, "Local username to authenticate as an owner")
+	rootCmd.Flags().String("user", "", "Local username to authenticate as an owner")
 	rootCmd.Flags().Bool("verbose", false, "Enable verbose output")
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

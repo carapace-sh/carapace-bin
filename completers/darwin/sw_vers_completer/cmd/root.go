@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -19,13 +18,8 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().StringP("buildVersion", "buildVersion", "", "Print the build version")
-	rootCmd.Flags().StringP("productName", "productName", "", "Print the product name")
-	rootCmd.Flags().StringP("productVersion", "productVersion", "", "Print the product version")
+	rootCmd.Flags().BoolP("buildVersion", "buildVersion", false, "Print the build version")
+	rootCmd.Flags().BoolP("productName", "productName", false, "Print the product name")
+	rootCmd.Flags().BoolP("productVersion", "productVersion", false, "Print the product version")
 
-	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"buildVersion":   carapace.ActionValues().StyleF(style.ForKeyword),
-		"productName":    carapace.ActionValues().StyleF(style.ForKeyword),
-		"productVersion": carapace.ActionValues().StyleF(style.ForKeyword),
-	})
 }
