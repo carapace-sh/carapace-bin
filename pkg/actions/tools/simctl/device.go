@@ -40,7 +40,7 @@ func ActionDevices() carapace.Action {
 			}
 		}
 		return carapace.ActionValuesDescribed(vals...)
-	}).Tag("simulator devices").Uid("tools.simctl", "devices")
+	}).Tag("simulator devices").Uid("simctl", "devices")
 }
 
 // ActionDevicesByState completes iOS Simulator device UUIDs filtered by state
@@ -67,5 +67,5 @@ func ActionDevicesByState(state string) carapace.Action {
 			}
 		}
 		return carapace.ActionValuesDescribed(vals...)
-	}).Tag("simulator devices").Uid("tools.simctl", "devices")
+	}).Tag("simulator devices").Uid("simctl", "devices")
 }

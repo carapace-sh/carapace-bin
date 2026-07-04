@@ -24,5 +24,5 @@ func ActionKeychains() carapace.Action {
 			}
 		}
 		return carapace.ActionValuesDescribed(vals...)
-	}).Tag("keychains").Uid("tools.security", "keychains")
+	}).Tag("keychains").Uid("security", "keychains")
 }

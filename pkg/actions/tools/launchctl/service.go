@@ -23,5 +23,5 @@ func ActionServices() carapace.Action {
 			}
 		}
 		return carapace.ActionValues(vals...)
-	}).Tag("services").Uid("tools.launchctl", "services")
+	}).Tag("services").Uid("launchctl", "services")
 }

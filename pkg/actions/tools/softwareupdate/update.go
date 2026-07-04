@@ -25,5 +25,5 @@ func ActionUpdates() carapace.Action {
 			}
 		}
 		return carapace.ActionValues(vals...)
-	}).Tag("updates").Uid("tools.softwareupdate", "updates")
+	}).Tag("updates").Uid("softwareupdate", "updates")
 }

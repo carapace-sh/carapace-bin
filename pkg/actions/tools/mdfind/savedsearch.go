@@ -32,5 +32,5 @@ func ActionSavedSearches() carapace.Action {
 			}
 		}
 		return carapace.ActionValues(vals...)
-	}).Tag("saved searches").Uid("tools.mdfind", "savedsearches")
+	}).Tag("saved searches").Uid("mdfind", "savedsearches")
 }

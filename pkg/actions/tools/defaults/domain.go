@@ -21,5 +21,5 @@ func ActionDomains() carapace.Action {
 			}
 		}
 		return carapace.ActionValues(vals...)
-	}).Tag("domains").Uid("tools.defaults", "domains")
+	}).Tag("domains").Uid("defaults", "domains")
 }
