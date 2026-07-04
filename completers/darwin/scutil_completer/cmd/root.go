@@ -41,22 +41,4 @@ func init() {
 		"reach": carapace.ActionValues(),
 		"set":   carapace.ActionValues("ComputerName", "LocalHostName", "HostName"),
 	})
-
-	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValuesDescribed(
-			"add", "Add a new key-value pair",
-			"close", "Close a preference file",
-			"get", "Get the value of a key",
-			"list", "List available keys",
-			"notify", "Register for notification",
-			"open", "Open a preference file",
-			"quit", "Quit scutil",
-			"readFile", "Read a file",
-			"remove", "Remove a key",
-			"set", "Set the value of a key",
-			"show", "Show the value of a key or preference",
-			"wait", "Wait for notification",
-			"writeFile", "Write to a file",
-		),
-	)
 }

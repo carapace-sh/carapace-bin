@@ -15,18 +15,9 @@ var rootCmd = &cobra.Command{
 func Execute() error {
 	return rootCmd.Execute()
 }
+
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().BoolS("h", "h", false, "Display help")
-
-	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValuesDescribed(
-			"restore", "Restore a disk image to a target",
-			"server", "Serve a source over the network",
-			"imagescan", "Scan an image for ASR",
-			"help", "Display help",
-			"version", "Display version",
-		),
-	)
 }

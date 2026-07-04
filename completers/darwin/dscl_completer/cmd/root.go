@@ -29,18 +29,21 @@ func init() {
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.ActionValuesDescribed(
 			"localhost", "Local directory node",
+			"localonly", "Separate DirectoryService daemon with only the Local plugin",
 			"/Local/Default", "Local default directory",
 			"/Active Directory", "Active directory",
 			"/LDAPv3", "LDAP v3 directory",
-			"read", "Read a record",
+		),
+		carapace.ActionValuesDescribed(
+			"append", "Append to an attribute",
+			"change", "Change a value in an attribute",
 			"create", "Create a record or attribute",
 			"delete", "Delete a record or attribute",
 			"list", "List records",
-			"search", "Search for records",
-			"append", "Append to an attribute",
 			"merge", "Merge values into an attribute",
-			"change", "Change a value in an attribute",
+			"read", "Read a record",
 			"readall", "Read all records",
+			"search", "Search for records",
 		),
 	)
 }

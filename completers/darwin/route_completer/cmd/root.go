@@ -15,6 +15,7 @@ var rootCmd = &cobra.Command{
 func Execute() error {
 	return rootCmd.Execute()
 }
+
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
@@ -23,15 +24,4 @@ func init() {
 	rootCmd.Flags().BoolS("q", "q", false, "Quiet mode")
 	rootCmd.Flags().BoolS("t", "t", false, "Test mode (do not modify routing table)")
 	rootCmd.Flags().BoolS("v", "v", false, "Verbose mode")
-
-	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValuesDescribed(
-			"add", "Add a route",
-			"delete", "Delete a route",
-			"change", "Change a route",
-			"get", "Look up a route",
-			"flush", "Remove all routes",
-			"monitor", "Continuously monitor routing table changes",
-		),
-	)
 }

@@ -11,16 +11,7 @@ var activateCmd = &cobra.Command{
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
-var deactivateCmd = &cobra.Command{
-	Use:   "deactivate",
-	Short: "Deactivate the installed port",
-	Run:   func(cmd *cobra.Command, args []string) {},
-}
-
 func init() {
 	carapace.Gen(activateCmd).Standalone()
 	rootCmd.AddCommand(activateCmd)
-
-	carapace.Gen(deactivateCmd).Standalone()
-	rootCmd.AddCommand(deactivateCmd)
 }
