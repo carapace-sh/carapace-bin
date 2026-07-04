@@ -19,12 +19,12 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolS("D", "D", false, "Decode")
-	rootCmd.Flags().BoolS("d", "d", false, "Decode")
+	rootCmd.Flags().BoolS("D", "D", false, "Decode input (same as -d)")
+	rootCmd.Flags().StringS("b", "b", "", "Break encoded lines at count characters")
+	rootCmd.Flags().BoolS("d", "d", false, "Decode input")
 	rootCmd.Flags().BoolS("h", "h", false, "Display help")
-
-	rootCmd.Flags().StringS("b", "b", "", "Break at count characters")
 	rootCmd.Flags().StringS("i", "i", "", "Input file")
+	rootCmd.Flags().BoolS("m", "m", false, "Use Base64 encoding method (not traditional uuencode)")
 	rootCmd.Flags().StringS("o", "o", "", "Output file")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{

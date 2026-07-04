@@ -355,7 +355,6 @@ Enhance existing completers with richer completions beyond basic flags.
 
 | Status | Command | Issue |
 |--------|---------|-------|
-| ☐ todo | All darwin completers | Run each command with `--help` or `-h` to verify flags match actual behavior (not just man pages) |
-| ☐ todo | `screencapture` | Verify `-T` (delay) vs `-t` (format) — may need testing |
-| ☐ todo | `codesign` | `-v` is used for both verbose and verify — verify completion works correctly |
-| ☐ todo | `base64` | `-D` and `-d` both decode — verify behavior |
+| ✅ done | `screencapture` | Fixed: `-T` is delay (seconds), `-t` is format — both correct. Added missing flags (`-b`, `-D`, `-J`, `-B`, `-p`, `-U`, `-R`, `-V`, `-a`) and fixed `-d` (display errors, not delay) and `-P` (open in Preview, not pasteboard) |
+| ✅ done | `codesign` | `-v` used for both verbose and verify — kept as single `verbose` flag with combined description. Added missing flags from man page (`-a`, `-o`, `-R`, `-D`, `--deep`, etc.) |
+| ✅ done | `base64` | Both `-D` and `-d` decode — confirmed correct. Added missing `-m` flag |
