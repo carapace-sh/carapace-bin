@@ -29,8 +29,11 @@ let carapace_completer = {|spans|
     $spans | skip 1 | prepend ($spans.0%v)
   })
 
-  carapace $spans.0 nushell ...$spans
-  | from json
+  if ($spans | length) == 1 {
+    null
+  } else {
+    carapace $spans.0 nushell ...$spans | from json
+  }
 }
 
 mut current = (($env | default {} config).config | default {} completions)
