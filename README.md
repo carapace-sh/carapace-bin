@@ -1,7 +1,6 @@
 # carapace-bin
 
 [![PkgGoDev](https://pkg.go.dev/badge/github.com/carapace-sh/carapace-bin/pkg/actions)](https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions)
-[![GoReportCard](https://goreportcard.com/badge/github.com/carapace-sh/carapace-bin)](https://goreportcard.com/report/github.com/carapace-sh/carapace-bin)
 [![documentation](https://img.shields.io/badge/&zwnj;-documentation-blue?logo=gitbook)](https://carapace-sh.github.io/carapace-bin/)
 [![Completers](https://carapace-sh.github.io/carapace-bin/badge.svg)](https://carapace-sh.github.io/carapace-bin/completers.html)
 [![Macros](https://carapace-sh.github.io/carapace-bin/macros-badge.svg)](https://carapace-sh.github.io/carapace-bin/spec/macros.html)
