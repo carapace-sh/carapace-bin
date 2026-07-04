@@ -308,17 +308,17 @@ Commands that were in the original plan but were skipped due to missing man page
 
 | Status | Command | Description | Notes |
 |--------|---------|-------------|-------|
-| ☐ todo | `dtruss` | Trace system calls (DTrace wrapper) | No man page; check `dtruss -h` output |
-| ☐ todo | `opensnoop` | Trace file open operations (DTrace) | No man page; check `opensnoop -h` output |
-| ☐ todo | `systemextensionsctl` | Manage system extensions | No man page; check `--help` |
-| ☐ todo | `apfsctl` | APFS filesystem control | No man page |
-| ☐ todo | `blueutil` | Bluetooth control (third-party) | https://github.com/toy/blueutil |
-| ☐ todo | `createinstallmedia` | Create macOS install media | No man page; check `--help` |
-| ☐ todo | `startosinstall` | Start macOS OS install | No man page |
-| ☐ todo | `repair_packages` | Repair/reverify packages | No man page |
-| ☐ todo | `actool` | Asset catalog compiler | Has man page; niche Xcode tool |
-| ☐ todo | `ibtool` | Interface Builder compile tool | Has man page; niche Xcode tool |
-| ☐ todo | `dyld_info` | Dyld linker info | Has man page |
+| ✅ done | `dtruss` | Trace system calls (DTrace wrapper) | No man page; used `-h` output |
+| ✅ done | `opensnoop` | Trace file open operations (DTrace) | No man page; used `-h` output |
+| ✅ done | `systemextensionsctl` | Manage system extensions | No man page; used `--help` output |
+| ✅ done | `apfsctl` | APFS filesystem control | No man page; used Apple open-source test references |
+| ✅ done | `blueutil` | Bluetooth control (third-party) | https://github.com/toy/blueutil |
+| ✅ done | `createinstallmedia` | Create macOS install media | No man page; used Apple support docs |
+| ✅ done | `startosinstall` | Start macOS OS install | No man page; used Apple support docs |
+| ✅ done | `repair_packages` | Repair/reverify packages | No man page; used manpagez.com |
+| ✅ done | `actool` | Asset catalog compiler | Has man page; niche Xcode tool |
+| ✅ done | `ibtool` | Interface Builder compile tool | Has man page; niche Xcode tool |
+| ✅ done | `dyld_info` | Dyld linker info | Has man page |
 
 ---
 
