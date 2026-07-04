@@ -18,8 +18,8 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolP("s", "s", false, "remove all files and subdirectories in the specified directory")
 	rootCmd.Flags().BoolP("q", "q", false, "quiet mode, do not prompt for confirmation")
+	rootCmd.Flags().BoolP("s", "s", false, "remove all files and subdirectories in the specified directory")
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionDirectories())
 }

@@ -18,8 +18,8 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolP("y", "y", false, "suppress prompting to confirm overwriting")
 	rootCmd.Flags().BoolP("n", "n", false, "do not overwrite an existing file")
+	rootCmd.Flags().BoolP("y", "y", false, "suppress prompting to confirm overwriting")
 
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.ActionFiles(),

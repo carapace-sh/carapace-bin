@@ -19,7 +19,7 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().BoolP("b", "b", false, "start application without creating a new window")
-	rootCmd.Flags().BoolP("min", "min", false, "start window minimized")
-	rootCmd.Flags().BoolP("max", "max", false, "start window maximized")
-	rootCmd.Flags().BoolP("wait", "wait", false, "start application and wait for it to terminate")
+	rootCmd.Flags().Bool("max", false, "start window maximized")
+	rootCmd.Flags().Bool("min", false, "start window minimized")
+	rootCmd.Flags().Bool("wait", false, "start application and wait for it to terminate")
 }

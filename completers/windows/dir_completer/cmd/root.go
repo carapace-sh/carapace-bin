@@ -18,6 +18,7 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().BoolP("4", "4", false, "display four-digit year")
 	rootCmd.Flags().BoolP("a", "a", false, "display files with specified attributes")
 	rootCmd.Flags().BoolP("b", "b", false, "use bare format (no heading information or summary)")
 	rootCmd.Flags().BoolP("c", "c", false, "display the thousand separator in file sizes")
@@ -32,7 +33,6 @@ func init() {
 	rootCmd.Flags().BoolP("t", "t", false, "control which time field to display")
 	rootCmd.Flags().BoolP("w", "w", false, "display in wide list format")
 	rootCmd.Flags().BoolP("x", "x", false, "display short names for non-8.3 files")
-	rootCmd.Flags().BoolP("4", "4", false, "display four-digit year")
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionDirectories())
 }

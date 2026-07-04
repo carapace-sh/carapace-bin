@@ -20,6 +20,6 @@ func init() {
 
 	rootCmd.Flags().BoolP("f", "f", false, "fix errors on the disk")
 	rootCmd.Flags().BoolP("r", "r", false, "locate bad sectors and recover readable information")
-	rootCmd.Flags().BoolP("x", "x", false, "force the volume to dismount first")
 	rootCmd.Flags().BoolP("v", "v", false, "display cleanup messages")
+	rootCmd.Flags().BoolP("x", "x", false, "force the volume to dismount first")
 }

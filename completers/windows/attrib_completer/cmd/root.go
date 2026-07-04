@@ -18,8 +18,8 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolP("s", "s", false, "process files in the current directory and all subdirectories")
 	rootCmd.Flags().BoolP("d", "d", false, "process directories as well")
+	rootCmd.Flags().BoolP("s", "s", false, "process files in the current directory and all subdirectories")
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

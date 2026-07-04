@@ -18,6 +18,6 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolP("whql", "whql", false, "check WHQL signatures")
-	rootCmd.Flags().BoolP("dontskip", "dontskip", false, "do not skip warnings")
+	rootCmd.Flags().Bool("dontskip", false, "do not skip warnings")
+	rootCmd.Flags().Bool("whql", false, "check WHQL signatures")
 }

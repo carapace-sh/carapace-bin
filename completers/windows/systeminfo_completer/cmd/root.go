@@ -18,7 +18,7 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().Bool("fo", false, "specify output format (table, list, csv)")
+	rootCmd.Flags().Bool("nh", false, "no column headers in output")
 	rootCmd.Flags().BoolP("s", "s", false, "specify remote system to query")
-	rootCmd.Flags().BoolP("fo", "fo", false, "specify output format (table, list, csv)")
-	rootCmd.Flags().BoolP("nh", "nh", false, "no column headers in output")
 }

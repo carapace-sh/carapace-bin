@@ -18,5 +18,5 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolP("nobreak", "nobreak", false, "ignore key presses")
+	rootCmd.Flags().Bool("nobreak", false, "ignore key presses")
 }

@@ -18,6 +18,6 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolP("enabledelayedexpansion", "enabledelayedexpansion", false, "enable delayed environment variable expansion")
-	rootCmd.Flags().BoolP("enableextensions", "enableextensions", false, "enable command processor extensions")
+	rootCmd.Flags().Bool("enabledelayedexpansion", false, "enable delayed environment variable expansion")
+	rootCmd.Flags().Bool("enableextensions", false, "enable command processor extensions")
 }
