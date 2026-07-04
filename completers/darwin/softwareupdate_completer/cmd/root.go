@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/softwareupdate"
 	"github.com/spf13/cobra"
 )
 
@@ -47,5 +48,9 @@ func init() {
 			"--background", "Background mode",
 			"--help", "Display usage information",
 		),
+	)
+
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		softwareupdate.ActionUpdates(),
 	)
 }

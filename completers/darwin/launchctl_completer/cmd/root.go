@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/launchctl"
 	"github.com/spf13/cobra"
 )
 
@@ -50,5 +51,9 @@ func init() {
 			"userinfo", "Prints user information",
 			"service", "Look up a service name",
 		),
+	)
+
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		launchctl.ActionServices(),
 	)
 }

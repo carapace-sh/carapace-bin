@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/security"
 	"github.com/spf13/cobra"
 )
 
@@ -51,7 +52,10 @@ func init() {
 			"trust-settings", "Manage trust settings",
 			"cms", "Create or verify CMS messages",
 			"encode", "Encode/decode data",
-			"authorizationdb", "Authorization database operations",
 		),
+	)
+
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		security.ActionKeychains(),
 	)
 }

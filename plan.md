@@ -343,13 +343,13 @@ Enhance existing completers with richer completions beyond basic flags.
 
 | Status | Command | What to add |
 |--------|---------|-------------|
-| ☐ todo | `diskutil` | Complete disk identifiers (e.g. `disk0`, `disk0s1`) via `diskutil list` output |
-| ☐ todo | `launchctl` | Complete service labels via `launchctl list` output |
-| ☐ todo | `defaults` | Complete domain names via `defaults domains` output |
+| ✅ done | `diskutil` | Complete disk identifiers (e.g. `disk0`, `disk0s1`) via `diskutil list` output — already handled by `fs.ActionBlockDevices()` |
+| ✅ done | `launchctl` | Complete service labels via `launchctl list` output |
+| ✅ done | `defaults` | Complete domain names via `defaults domains` output |
 | ☐ todo | `mdfind` | Complete saved search names |
 | ☐ todo | `simctl` | Complete device UUIDs via `xcrun simctl list` output |
-| ☐ todo | `security` | Complete keychain names via `security list-keychains` output |
-| ☐ todo | `softwareupdate` | Complete update item names from `--list` output |
+| ✅ done | `security` | Complete keychain names via `security list-keychains` output |
+| ✅ done | `softwareupdate` | Complete update item names from `--list` output |
 
 ### Flag accuracy review
 

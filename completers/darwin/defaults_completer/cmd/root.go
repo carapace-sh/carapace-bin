@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/defaults"
 	"github.com/spf13/cobra"
 )
 
@@ -34,5 +35,9 @@ func init() {
 			"find", "Searches for a key in all domains",
 			"help", "Display usage information",
 		),
+	)
+
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		defaults.ActionDomains(),
 	)
 }
