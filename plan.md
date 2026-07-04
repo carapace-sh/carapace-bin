@@ -27,11 +27,11 @@ Add `runtime.GOOS` darwin branches to shared actions in `pkg/actions/`, followin
 | ✅ done | `pkg/actions/tools/mount/source.go` | `ActionSources` | Darwin LABEL=/UUID= sources |
 | ✅ done | `pkg/actions/tools/mount/option.go` | `ActionMountOptions` | Darwin mount options |
 | ✅ done | `pkg/actions/os/user.go` | `ActionUsers` | Darwin: handles `/usr/bin/false` as nologin shell via `isNonLoginShell` |
-| ☐ todo | `pkg/actions/os/group.go` | `ActionGroups` | Uses `/etc/group` which exists on darwin |
-| ☐ todo | `pkg/actions/os/kernel.go` | `ActionKernelModules` | Darwin has no kernel modules in the Linux sense; may need `kextstat` or return empty |
-| ☐ todo | `pkg/actions/os/locale.go` | `ActionLocales` | Static list — works on darwin as-is |
-| ☐ todo | `pkg/actions/os/font.go` | `ActionFonts` | Uses `fc-list` — works on darwin if fontconfig installed |
-| ☐ todo | `pkg/actions/os/display.go` | `ActionDisplays` | Uses `w` command — works on darwin |
+| ✅ done | `pkg/actions/os/group.go` | `ActionGroups` | Uses `/etc/group` which exists on darwin |
+| ✅ done | `pkg/actions/os/kernel.go` | `ActionKernelModules` | Darwin has no kernel modules in the Linux sense; may need `kextstat` or return empty |
+| ✅ done | `pkg/actions/os/locale.go` | `ActionLocales` | Static list — works on darwin as-is |
+| ✅ done | `pkg/actions/os/font.go` | `ActionFonts` | Uses `fc-list` — works on darwin if fontconfig installed |
+| ✅ done | `pkg/actions/os/display.go` | `ActionDisplays` | Uses `w` command — works on darwin |
 | ✅ done | `pkg/actions/ps/ps.go` | `ActionKillSignals` | Darwin: EMT, INFO signals; no PWR/STKFLT |
 | ✅ done | `pkg/actions/ps/ps.go` | `ActionProcessStates` | Darwin: D,I,R,S,T,U,Z states |
 
@@ -134,20 +134,20 @@ Create new darwin completers for commands that only exist on macOS.
 |--------|---------|-------------|----------------|
 | ✅ done | `dscl` | Directory Service command line | https://keith.github.io/xcode-manpages/dscl.1.html |
 | ✅ done | `dscacheutil` | Directory Service cache utility | https://keith.github.io/xcode-manpages/dscacheutil.1.html |
-| ☐ todo | `sysadminctl` | System admin operations (user management) | https://developer.apple.com/library/archive/documentation/Darwin/Reference/ManPages/man8/sysadminctl.8.html |
-| ☐ todo | `systemsetup` | System configuration (hostname, timezone) | https://keith.github.io/xcode-manpages/systemsetup.8.html |
+| ✅ done | `sysadminctl` | System admin operations (user management) | https://developer.apple.com/library/archive/documentation/Darwin/Reference/ManPages/man8/sysadminctl.8.html |
+| ✅ done | `systemsetup` | System configuration (hostname, timezone) | https://keith.github.io/xcode-manpages/systemsetup.8.html |
 
 ### Priority 3c: Power, boot, and security
 
 | Status | Command | Description | Man page / URL |
 |--------|---------|-------------|----------------|
 | ✅ done | `pmset` | Power management settings | https://keith.github.io/xcode-manpages/pmset.1.html |
-| ☐ todo | `powermetrics` | Power/performance metrics | https://developer.apple.com/library/archive/documentation/Darwin/Reference/ManPages/man1/powermetrics.1.html |
+| ✅ done | `powermetrics` | Power/performance metrics | https://developer.apple.com/library/archive/documentation/Darwin/Reference/ManPages/man1/powermetrics.1.html |
 | ✅ done | `nvram` | Read/write NVRAM firmware variables | https://keith.github.io/xcode-manpages/nvram.8.html |
 | ✅ done | `bless` | Set bootable disk/volume | https://keith.github.io/xcode-manpages/bless.8.html |
-| ☐ todo | `fdesetup` | FileVault setup | https://keith.github.io/xcode-manpages/fdesetup.8.html |
-| ☐ todo | `profiles` | Install/remove configuration profiles | https://keith.github.io/xcode-manpages/profiles.8.html |
-| ☐ todo | `firmwarepasswd` | Set firmware password | https://developer.apple.com/library/archive/documentation/Darwin/Reference/ManPages/man8/firmwarepasswd.8.html |
+| ✅ done | `fdesetup` | FileVault setup | https://keith.github.io/xcode-manpages/fdesetup.8.html |
+| ✅ done | `profiles` | Install/remove configuration profiles | https://keith.github.io/xcode-manpages/profiles.8.html |
+| ✅ done | `firmwarepasswd` | Set firmware password | https://developer.apple.com/library/archive/documentation/Darwin/Reference/ManPages/man8/firmwarepasswd.8.html |
 
 ### Priority 3d: Spotlight and search
 
@@ -162,48 +162,48 @@ Create new darwin completers for commands that only exist on macOS.
 
 | Status | Command | Description | Man page / URL |
 |--------|---------|-------------|----------------|
-| ☐ todo | `fsck` | File system consistency check (macOS) | https://keith.github.io/xcode-manpages/fsck.8.html |
-| ☐ todo | `fsck_apfs` | APFS filesystem consistency check | https://keith.github.io/xcode-manpages/fsck_apfs.8.html |
-| ☐ todo | `fsck_hfs` | HFS+ filesystem consistency check | https://keith.github.io/xcode-manpages/fsck_hfs.8.html |
-| ☐ todo | `fstyp` | Report filesystem type of a device | https://keith.github.io/xcode-manpages/fstyp.8.html |
-| ☐ todo | `newfs_apfs` | Create APFS filesystem | https://keith.github.io/xcode-manpages/newfs_apfs.8.html |
-| ☐ todo | `newfs_hfs` | Create HFS+ filesystem | https://keith.github.io/xcode-manpages/newfs_hfs.8.html |
-| ☐ todo | `asr` | Apple Software Restore | https://keith.github.io/xcode-manpages/asr.8.html |
-| ☐ todo | `apfsctl` | APFS filesystem control | — |
+| ✅ done | `fsck` | File system consistency check (macOS) | https://keith.github.io/xcode-manpages/fsck.8.html |
+| ✅ done | `fsck_apfs` | APFS filesystem consistency check | https://keith.github.io/xcode-manpages/fsck_apfs.8.html |
+| ✅ done | `fsck_hfs` | HFS+ filesystem consistency check | https://keith.github.io/xcode-manpages/fsck_hfs.8.html |
+| ✅ done | `fstyp` | Report filesystem type of a device | https://keith.github.io/xcode-manpages/fstyp.8.html |
+| ✅ done | `newfs_apfs` | Create APFS filesystem | https://keith.github.io/xcode-manpages/newfs_apfs.8.html |
+| ✅ done | `newfs_hfs` | Create HFS+ filesystem | https://keith.github.io/xcode-manpages/newfs_hfs.8.html |
+| ✅ done | `asr` | Apple Software Restore | https://keith.github.io/xcode-manpages/asr.8.html |
+| ✅ done | `apfsctl` | APFS filesystem control | — |
 
 ### Priority 3f: Network
 
 | Status | Command | Description | Man page / URL |
 |--------|---------|-------------|----------------|
-| ☐ todo | `airport` | Airport wireless utility | https://keith.github.io/xcode-manpages/airport.1.html |
-| ☐ todo | `wdutil` | Wi-Fi diagnostics utility | — |
-| ☐ todo | `ipconfig` | IP configuration (macOS variant) | https://keith.github.io/xcode-manpages/ipconfig.8.html |
-| ☐ todo | `ifconfig` | Interface config (BSD variant) | https://keith.github.io/xcode-manpages/ifconfig.8.html |
-| ☐ todo | `netstat` | Network stats (BSD variant) | https://keith.github.io/xcode-manpages/netstat.1.html |
-| ☐ todo | `route` | Routing table (BSD variant) | https://keith.github.io/xcode-manpages/route.8.html |
-| ☐ todo | `arp` | Address resolution protocol (BSD) | https://keith.github.io/xcode-manpages/arp.8.html |
-| ☐ todo | `traceroute` | Trace route (BSD variant) | https://keith.github.io/xcode-manpages/traceroute.8.html |
-| ☐ todo | `ping` | Ping (BSD variant) | https://keith.github.io/xcode-manpages/ping.8.html |
+| ✅ done | `airport` | Airport wireless utility | https://keith.github.io/xcode-manpages/airport.1.html |
+| ✅ done | `wdutil` | Wi-Fi diagnostics utility | — |
+| ✅ done | `ipconfig` | IP configuration (macOS variant) | https://keith.github.io/xcode-manpages/ipconfig.8.html |
+| ✅ done | `ifconfig` | Interface config (BSD variant) | https://keith.github.io/xcode-manpages/ifconfig.8.html |
+| ✅ done | `netstat` | Network stats (BSD variant) | https://keith.github.io/xcode-manpages/netstat.1.html |
+| ✅ done | `route` | Routing table (BSD variant) | https://keith.github.io/xcode-manpages/route.8.html |
+| ✅ done | `arp` | Address resolution protocol (BSD) | https://keith.github.io/xcode-manpages/arp.8.html |
+| ✅ done | `traceroute` | Trace route (BSD variant) | https://keith.github.io/xcode-manpages/traceroute.8.html |
+| ✅ done | `ping` | Ping (BSD variant) | https://keith.github.io/xcode-manpages/ping.8.html |
 
 ### Priority 3g: Logging and diagnostics
 
 | Status | Command | Description | Man page / URL |
 |--------|---------|-------------|----------------|
-| ☐ todo | `log` | Unified logging system (macOS) | https://keith.github.io/xcode-manpages/log.1.html |
-| ☐ todo | `dtrace` | Dynamic tracing framework | https://keith.github.io/xcode-manpages/dtrace.1.html |
-| ☐ todo | `dtruss` | Trace system calls (DTrace wrapper) | — |
-| ☐ todo | `opensnoop` | Trace file open operations (DTrace) | — |
-| ☐ todo | `powermetrics` | Power/performance metrics | — |
+| ✅ done | `log` | Unified logging system (macOS) | https://keith.github.io/xcode-manpages/log.1.html |
+| ✅ done | `dtrace` | Dynamic tracing framework | https://keith.github.io/xcode-manpages/dtrace.1.html |
+| ✅ done | `dtruss` | Trace system calls (DTrace wrapper) | — |
+| ✅ done | `opensnoop` | Trace file open operations (DTrace) | — |
+| ✅ done | `powermetrics` | Power/performance metrics | — |
 
 ### Priority 3h: Kernel extensions
 
 | Status | Command | Description | Man page / URL |
 |--------|---------|-------------|----------------|
-| ☐ todo | `kextstat` | List loaded kernel extensions | https://keith.github.io/xcode-manpages/kextstat.8.html |
-| ☐ todo | `kextload` | Load kernel extensions | https://keith.github.io/xcode-manpages/kextload.8.html |
-| ☐ todo | `kextunload` | Unload kernel extensions | https://keith.github.io/xcode-manpages/kextunload.8.html |
-| ☐ todo | `kmutil` | Kernel manager utility | https://keith.github.io/xcode-manpages/kmutil.8.html |
-| ☐ todo | `systemextensionsctl` | Manage system extensions | — |
+| ✅ done | `kextstat` | List loaded kernel extensions | https://keith.github.io/xcode-manpages/kextstat.8.html |
+| ✅ done | `kextload` | Load kernel extensions | https://keith.github.io/xcode-manpages/kextload.8.html |
+| ✅ done | `kextunload` | Unload kernel extensions | https://keith.github.io/xcode-manpages/kextunload.8.html |
+| ✅ done | `kmutil` | Kernel manager utility | https://keith.github.io/xcode-manpages/kmutil.8.html |
+| ✅ done | `systemextensionsctl` | Manage system extensions | — |
 
 ---
 
@@ -216,17 +216,17 @@ Create new darwin completers for commands that only exist on macOS.
 | ✅ done | `xcode-select` | Switch active Xcode developer directory | https://keith.github.io/xcode-manpages/xcode-select.1.html |
 | ✅ done | `simctl` | iOS Simulator control | https://keith.github.io/xcode-manpages/simctl.1.html |
 | ✅ done | `xcode-select` | Switch Xcode path | https://keith.github.io/xcode-manpages/xcode-select.1.html |
-| ☐ todo | `swift` | Swift REPL / run Swift scripts | https://keith.github.io/xcode-manpages/swift.1.html |
-| ☐ todo | `swiftc` | Swift compiler | https://keith.github.io/xcode-manpages/swiftc.1.html |
-| ☐ todo | `lldb` | LLVM debugger | https://keith.github.io/xcode-manpages/lldb.1.html |
+| ✅ done | `swift` | Swift REPL / run Swift scripts | https://keith.github.io/xcode-manpages/swift.1.html |
+| ✅ done | `swiftc` | Swift compiler | https://keith.github.io/xcode-manpages/swiftc.1.html |
+| ✅ done | `lldb` | LLVM debugger | https://keith.github.io/xcode-manpages/lldb.1.html |
 | ✅ done | `codesign` | Code signing tool | https://keith.github.io/xcode-manpages/codesign.1.html |
 | ✅ done | `security` | Keychain and certificate management | https://keith.github.io/xcode-manpages/security.1.html |
-| ☐ todo | `otool` | Object file display tool (Mach-O) | https://keith.github.io/xcode-manpages/otool.1.html |
-| ☐ todo | `install_name_tool` | Change dynamic shared library install names | https://keith.github.io/xcode-manpages/install_name_tool.1.html |
-| ☐ todo | `dyld_info` | Dyld linker info | https://keith.github.io/xcode-manpages/dyld_info.1.html |
-| ☐ todo | `agvtool` | Apple Generic Versioning tool | https://keith.github.io/xcode-manpages/agvtool.1.html |
-| ☐ todo | `ibtool` | Interface Builder compile tool | https://keith.github.io/xcode-manpages/ibtool.1.html |
-| ☐ todo | `actool` | Asset catalog compiler | https://keith.github.io/xcode-manpages/actool.1.html |
+| ✅ done | `otool` | Object file display tool (Mach-O) | https://keith.github.io/xcode-manpages/otool.1.html |
+| ✅ done | `install_name_tool` | Change dynamic shared library install names | https://keith.github.io/xcode-manpages/install_name_tool.1.html |
+| ✅ done | `dyld_info` | Dyld linker info | https://keith.github.io/xcode-manpages/dyld_info.1.html |
+| ✅ done | `agvtool` | Apple Generic Versioning tool | https://keith.github.io/xcode-manpages/agvtool.1.html |
+| ✅ done | `ibtool` | Interface Builder compile tool | https://keith.github.io/xcode-manpages/ibtool.1.html |
+| ✅ done | `actool` | Asset catalog compiler | https://keith.github.io/xcode-manpages/actool.1.html |
 
 ---
 
@@ -244,12 +244,12 @@ Create new darwin completers for commands that only exist on macOS.
 | ✅ done | `shortcuts` | Run/manage macOS Shortcuts | https://keith.github.io/xcode-manpages/shortcuts.1.html |
 | ✅ done | `sips` | Scriptable image processing system | https://keith.github.io/xcode-manpages/sips.1.html |
 | ✅ done | `textutil` | Convert text file formats (rtf, txt, html, doc) | https://keith.github.io/xcode-manpages/textutil.1.html |
-| ☐ todo | `sharing` | Manage file/web/screen sharing | https://keith.github.io/xcode-manpages/sharing.1.html |
-| ☐ todo | `blueutil` | Bluetooth control (third-party) | https://github.com/toy/blueutil |
-| ☐ todo | `automount` | Automount control (NFS) | https://keith.github.io/xcode-manpages/automount.8.html |
-| ☐ todo | `createinstallmedia` | Create macOS install media | — |
-| ☐ todo | `startosinstall` | Start macOS OS install | — |
-| ☐ todo | `repair_packages` | Repair/reverify packages | — |
+| ✅ done | `sharing` | Manage file/web/screen sharing | https://keith.github.io/xcode-manpages/sharing.1.html |
+| ✅ done | `blueutil` | Bluetooth control (third-party) | https://github.com/toy/blueutil |
+| ✅ done | `automount` | Automount control (NFS) | https://keith.github.io/xcode-manpages/automount.8.html |
+| ✅ done | `createinstallmedia` | Create macOS install media | — |
+| ✅ done | `startosinstall` | Start macOS OS install | — |
+| ✅ done | `repair_packages` | Repair/reverify packages | — |
 
 ---
 
@@ -258,8 +258,8 @@ Create new darwin completers for commands that only exist on macOS.
 | Status | Command | Description | Notes |
 |--------|---------|-------------|-------|
 | ✅ done | `brew` | Homebrew package manager | Already in `common/brew_completer` |
-| ☐ todo | `port` | MacPorts package manager | https://guide.macports.org/ |
-| ☐ todo | `mas` | Mac App Store CLI | https://github.com/mas-cli/mas |
+| ✅ done | `port` | MacPorts package manager | https://guide.macports.org/ |
+| ✅ done | `mas` | Mac App Store CLI | https://github.com/mas-cli/mas |
 
 ---
 
