@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -27,7 +28,7 @@ func init() {
 	operator_autopilotCmd.AddCommand(operator_autopilot_setConfigCmd)
 
 	carapace.Gen(operator_autopilot_setConfigCmd).FlagCompletion(carapace.ActionMap{
-		"cleanup-dead-servers":      carapace.ActionValues("true", "false"),
-		"disable-upgrade-migration": carapace.ActionValues("true", "false"),
+		"cleanup-dead-servers":      carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
+		"disable-upgrade-migration": carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
 	})
 }

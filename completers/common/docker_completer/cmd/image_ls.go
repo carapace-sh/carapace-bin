@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/docker"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -39,7 +40,7 @@ func init() {
 			case 1:
 				switch c.Parts[0] {
 				case "dangling":
-					return carapace.ActionValues("true", "false")
+					return carapace.ActionValues("true", "false").StyleF(style.ForKeyword)
 				case "before":
 					return docker.ActionRepositoryTags()
 				case "since":

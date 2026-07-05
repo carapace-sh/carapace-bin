@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
 )
 
 func ActionLogLevel() carapace.Action {
@@ -23,7 +24,7 @@ func ActionVersionFileStrategy() carapace.Action {
 }
 
 func ActionResolveEngines() carapace.Action {
-	return carapace.ActionValues("true", "false")
+	return carapace.ActionValues("true", "false").StyleF(style.ForKeyword)
 }
 
 func ActionLocalVersions() carapace.Action {

@@ -52,7 +52,7 @@ func init() {
 	rootCmd.Flags().String("warn-scope", "", "Enable or disable warning for ambiguous top-level scope")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"banner": carapace.ActionValues("yes", "no", "auto"),
+		"banner": carapace.ActionValues("yes", "no", "auto").StyleF(style.ForKeyword),
 		"bug-report": carapace.ActionValuesDescribed(
 			"rr", "Run julia inside rr record and upload the recorded trace.",
 			"rr-local", "Run julia inside rr record but do not upload the recorded trace.",

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -24,6 +25,6 @@ func init() {
 
 	// TODO flag completion
 	carapace.Gen(entity_searchCmd).FlagCompletion(carapace.ActionMap{
-		"reporting": carapace.ActionValues("true", "false"),
+		"reporting": carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
 	})
 }

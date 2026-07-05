@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -34,7 +35,7 @@ func init() {
 	rootCmd.Flags().BoolP("version", "V", false, "display version")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"cr-mode":    carapace.ActionValues("auto", "always", "never"),
+		"cr-mode":    carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
 		"log-in":     carapace.ActionFiles(),
 		"log-io":     carapace.ActionFiles(),
 		"log-out":    carapace.ActionFiles(),

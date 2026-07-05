@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -37,7 +38,7 @@ func init() {
 	rootCmd.AddCommand(hintsCmd)
 
 	carapace.Gen(hintsCmd).FlagCompletion(carapace.ActionMap{
-		"add-trailing-space":   carapace.ActionValues("auto", "always", "never"),
+		"add-trailing-space":   carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
 		"customize-processing": carapace.ActionFiles().Chdir("~/.config/kitty"),
 		"linenum-action":       carapace.ActionValues("self", "background", "os_window", "remote-control", "tab", "window"),
 		"multiple-joiner": carapace.ActionValuesDescribed(

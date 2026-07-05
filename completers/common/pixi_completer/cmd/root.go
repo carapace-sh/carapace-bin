@@ -6,6 +6,7 @@ import (
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 )
@@ -33,7 +34,7 @@ func init() {
 	rootCmd.Flags().BoolP("version", "V", false, "Print version")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"color": carapace.ActionValues("always", "never", "auto"),
+		"color": carapace.ActionValues("always", "never", "auto").StyleF(style.ForKeyword),
 	})
 
 	carapace.Gen(rootCmd).PreRun(func(cmd *cobra.Command, args []string) {

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -29,7 +30,7 @@ func init() {
 	// TODO flag completion
 	carapace.Gen(addCmd).FlagCompletion(carapace.ActionMap{
 		"config": carapace.ActionDirectories(),
-		"patch":  carapace.ActionValues("auto", "always", "never"),
+		"patch":  carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
 	})
 
 	// TODO devbox is currently hardcoded against `nixpkgs` alias which is implicitly added as prefix.

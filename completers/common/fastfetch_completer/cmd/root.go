@@ -7,6 +7,7 @@ import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/fastfetch"
 	"github.com/carapace-sh/carapace/pkg/execlog"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -63,7 +64,7 @@ func init() {
 					switch flag.Arg.Type {
 					case "bool":
 						rootCmd.Flags().BoolP(flag.Long, flag.Short, false, flag.Desc)
-						actionMap[flag.Long] = carapace.ActionValues("true", "false")
+						actionMap[flag.Long] = carapace.ActionValues("true", "false").StyleF(style.ForKeyword)
 
 					case "color":
 						rootCmd.Flags().StringP(flag.Long, flag.Short, "", flag.Desc)
