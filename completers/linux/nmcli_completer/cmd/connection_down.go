@@ -18,6 +18,24 @@ func init() {
 	connectionCmd.AddCommand(connection_downCmd)
 
 	carapace.Gen(connection_downCmd).PositionalCompletion(
-		net.ActionConnections(),
+		carapace.Batch(
+			carapace.ActionValues("id", "uuid", "path", "apath"),
+			net.ActionConnections(),
+		).ToA(),
+	)
+
+	carapace.Gen(connection_downCmd).PositionalAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if len(c.Args) > 0 {
+				switch c.Args[len(c.Args)-1] {
+				case "id", "uuid", "path", "apath":
+					return net.ActionConnections()
+				}
+			}
+			return carapace.Batch(
+				carapace.ActionValues("id", "uuid", "path", "apath"),
+				net.ActionConnections(),
+			).ToA()
+		}),
 	)
 }

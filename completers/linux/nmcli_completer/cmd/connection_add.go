@@ -78,7 +78,13 @@ func options() map[string]map[string]carapace.Action {
 			"autoconnect": action.ActionYesNo(),
 			"save":        action.ActionYesNo(),
 			"master":      carapace.ActionValues(),
+			"controller":  carapace.ActionValues(),
 			"slave-type":  carapace.ActionValues(),
+			"port-type":   carapace.ActionValues(),
+			"ip4":         carapace.ActionValues(),
+			"gw4":         carapace.ActionValues(),
+			"ip6":         carapace.ActionValues(),
+			"gw6":         carapace.ActionValues(),
 		},
 		"ethernet": {
 			"mac":        carapace.ActionValues(),
@@ -142,7 +148,8 @@ func options() map[string]map[string]carapace.Action {
 			"lacp-rate":     carapace.ActionValues("slow", "fast"),
 		},
 		"bond-slave": {
-			"master": carapace.ActionValues(),
+			"master":   carapace.ActionValues(),
+			"queue-id": carapace.ActionValues(),
 		},
 		"team": {
 			"config": carapace.ActionFiles(),
@@ -200,6 +207,7 @@ func options() map[string]map[string]carapace.Action {
 			"dev":     carapace.ActionValues(),
 			"mode":    carapace.ActionValues("psk", "eap"),
 			"cak":     carapace.ActionValues(),
+			"ckn":     carapace.ActionValues(),
 			"encrypt": action.ActionYesNo(),
 			"port":    carapace.ActionValues(),
 		},
@@ -217,6 +225,11 @@ func options() map[string]map[string]carapace.Action {
 			"source-port-max":  carapace.ActionValues(),
 			"destination-port": carapace.ActionValues(),
 		},
+		"geneve": {
+			"id":               carapace.ActionValues(),
+			"remote":           carapace.ActionValues(),
+			"destination-port": carapace.ActionValues(),
+		},
 		"wpan": {
 			"short-addr": carapace.ActionValues(),
 			"pan-id":     carapace.ActionValues(),
@@ -227,21 +240,42 @@ func options() map[string]map[string]carapace.Action {
 		"6lowpan": {
 			"dev": carapace.ActionValues(),
 		},
-		"dummy": {},
+		"loopback": {},
+		"dummy":    {},
+		"generic":  {},
+		"wireguard": {
+			"private-key": carapace.ActionValues(),
+			"listen-port": carapace.ActionValues(),
+			"fwmark":      carapace.ActionValues(),
+			"peer":        carapace.ActionValues(),
+		},
+		"veth": {
+			"peer": carapace.ActionValues(),
+		},
+		"vrf": {
+			"table": carapace.ActionValues(),
+		},
+		"hsr": {
+			"port1":    carapace.ActionValues(),
+			"port2":    carapace.ActionValues(),
+			"multi":    carapace.ActionValues(),
+			"protocol": carapace.ActionValues(),
+		},
+		"ipvlan": {
+			"dev":     carapace.ActionValues(),
+			"mode":    carapace.ActionValues("l2", "l3", "l3s"),
+			"private": action.ActionYesNo(),
+			"vepa":    action.ActionYesNo(),
+		},
+		"wifi-p2p": {
+			"peer": carapace.ActionValues(),
+		},
+		"ovs-bridge": {},
+		"ovs-port": {
+			"controller": carapace.ActionValues(),
+		},
+		"ovs-interface": {
+			"controller": carapace.ActionValues(),
+		},
 	}
 }
-
-/**
-  // TODO are these dependant on a specific option?
-
-  SLAVE_OPTIONS:
-    bridge:       [priority <0-63>]
-                  [path-cost <1-65535>]
-                  [hairpin yes|no]
-
-    team:         [config <file>|<raw JSON data>]
-
-  IP_OPTIONS:
-                  [ip4 <IPv4 address>] [gw4 <IPv4 gateway>]
-                  [ip6 <IPv6 address>] [gw6 <IPv6 gateway>]
-**/

@@ -18,6 +18,9 @@ func init() {
 	connectionCmd.AddCommand(connection_importCmd)
 
 	carapace.Gen(connection_importCmd).PositionalCompletion(
+		carapace.ActionValues("type"),
+		carapace.ActionValues("vpnc", "openvpn", "pptp", "openconnect", "openswan", "libreswan", "ssh", "l2tp", "iodine"),
+		carapace.ActionValues("file"),
 		carapace.ActionFiles(),
 	)
 }

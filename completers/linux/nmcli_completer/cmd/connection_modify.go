@@ -19,6 +19,10 @@ func init() {
 	connectionCmd.AddCommand(connection_modifyCmd)
 
 	carapace.Gen(connection_modifyCmd).PositionalCompletion(
+		carapace.Batch(
+			carapace.ActionValues("id", "uuid", "path"),
+			net.ActionConnections(),
+		).ToA(),
 		net.ActionConnections(),
 	)
 }

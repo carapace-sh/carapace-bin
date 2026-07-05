@@ -18,6 +18,24 @@ func init() {
 	connectionCmd.AddCommand(connection_deleteCmd)
 
 	carapace.Gen(connection_deleteCmd).PositionalCompletion(
-		net.ActionConnections(),
+		carapace.Batch(
+			carapace.ActionValues("id", "uuid", "path"),
+			net.ActionConnections(),
+		).ToA(),
+	)
+
+	carapace.Gen(connection_deleteCmd).PositionalAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if len(c.Args) > 0 {
+				switch c.Args[len(c.Args)-1] {
+				case "id", "uuid", "path":
+					return net.ActionConnections()
+				}
+			}
+			return carapace.Batch(
+				carapace.ActionValues("id", "uuid", "path"),
+				net.ActionConnections(),
+			).ToA()
+		}),
 	)
 }

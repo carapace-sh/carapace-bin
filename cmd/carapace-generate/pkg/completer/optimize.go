@@ -46,7 +46,7 @@ func Optimize(dir string) error {
 			return err
 		}
 
-		if filepath.Ext(path) == ".go" {
+		if filepath.Ext(path) == ".go" && !strings.HasSuffix(strings.TrimSuffix(path, ".go"), "_test") {
 			patched := importReplacer.Replace(string(content)) // TODO potential issues when prefix is used otherwise than import
 			if strings.HasSuffix(filepath.ToSlash(filepath.Dir(path)), "/cmd") {
 				switch filepath.Base(path) {
@@ -59,7 +59,7 @@ func Optimize(dir string) error {
 
 					initFuncs := make([]string, 0)
 					for _, entry := range entries {
-						if !entry.IsDir() && filepath.Ext(entry.Name()) == ".go" {
+						if !entry.IsDir() && filepath.Ext(entry.Name()) == ".go" && !strings.HasSuffix(strings.TrimSuffix(entry.Name(), ".go"), "_test") {
 							initFuncs = append(initFuncs, fmt.Sprintf("	init_%v()", strings.TrimSuffix(entry.Name(), ".go")))
 						}
 					}
