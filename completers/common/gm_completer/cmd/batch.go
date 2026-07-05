@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -26,11 +27,11 @@ func init() {
 	rootCmd.AddCommand(batchCmd)
 
 	carapace.Gen(batchCmd).FlagCompletion(carapace.ActionMap{
-		"echo":          carapace.ActionValues("on", "off"),
+		"echo":          carapace.ActionValues("on", "off").StyleF(style.ForKeyword),
 		"escape":        carapace.ActionValues("unix", "windows"),
-		"feedback":      carapace.ActionValues("on", "off"),
-		"stop-on-error": carapace.ActionValues("on", "off"),
-		"tap-mode":      carapace.ActionValues("on", "off"),
+		"feedback":      carapace.ActionValues("on", "off").StyleF(style.ForKeyword),
+		"stop-on-error": carapace.ActionValues("on", "off").StyleF(style.ForKeyword),
+		"tap-mode":      carapace.ActionValues("on", "off").StyleF(style.ForKeyword),
 	})
 
 	carapace.Gen(batchCmd).PositionalCompletion(carapace.ActionFiles())

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -18,6 +19,6 @@ func init() {
 
 	carapace.Gen(radioCmd).PositionalCompletion(
 		carapace.ActionValues("all", "wifi", "wwan"),
-		carapace.ActionValues("on", "off"),
+		carapace.ActionValues("on", "off").StyleF(style.ForKeyword),
 	)
 }

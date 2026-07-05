@@ -74,7 +74,7 @@ func init() {
 		}),
 		"locale":              os.ActionLocales(),
 		"log":                 carapace.ActionValues("critical", "error", "warn", "info", "debug", "trace", "off").StyleF(style.ForLogLevel),
-		"sync":                carapace.ActionValues("on", "off"),
+		"sync":                carapace.ActionValues("on", "off").StyleF(style.ForKeyword),
 		"uninstall-extension": action.ActionExtensions(rootCmd),
 		"user-data-dir":       carapace.ActionDirectories(),
 	})

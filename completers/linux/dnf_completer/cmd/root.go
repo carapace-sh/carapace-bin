@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -57,7 +58,7 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "Display the version of dnf5")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"color":       carapace.ActionValues("always", "never", "auto"),
+		"color":       carapace.ActionValues("always", "never", "auto").StyleF(style.ForKeyword),
 		"config":      carapace.ActionFiles(),
 		"forcearch":   carapace.ActionValues("i386", "i486", "i586", "i686", "x86_64", "aarch64", "armv7l", "ppc64", "ppc64le", "s390x"),
 		"installroot": carapace.ActionDirectories(),

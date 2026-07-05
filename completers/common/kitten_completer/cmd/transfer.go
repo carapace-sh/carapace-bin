@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -24,11 +25,11 @@ func init() {
 	rootCmd.AddCommand(transferCmd)
 
 	carapace.Gen(transferCmd).FlagCompletion(carapace.ActionMap{
-		"compress":        carapace.ActionValues("auto", "always", "never"),
-		"confirm-paths":   carapace.ActionValues("yes", "no"),
+		"compress":        carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
+		"confirm-paths":   carapace.ActionValues("yes", "no").StyleF(style.ForKeyword),
 		"direction":       carapace.ActionValues("download", "receive", "send", "upload"),
 		"mode":            carapace.ActionValues("normal", "mirror"),
-		"transmit-deltas": carapace.ActionValues("yes", "no"),
+		"transmit-deltas": carapace.ActionValues("yes", "no").StyleF(style.ForKeyword),
 	})
 
 	carapace.Gen(transferCmd).PositionalAnyCompletion(carapace.Batch(

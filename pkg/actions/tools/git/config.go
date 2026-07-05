@@ -149,10 +149,10 @@ func ActionConfigTypeOptions(t string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		switch t {
 		case "bool":
-			return carapace.ActionValues("true", "false")
+			return carapace.ActionValues("true", "false").StyleF(style.ForKeyword)
 		case "bool-or-int":
 			integers := carapace.ActionValues("1", "2", "3", "4", "5", "6", "7", "8", "9", "0").Invoke(c).Prefix(c.Value)
-			return integers.Merge(carapace.ActionValues("true", "false").Invoke(c)).ToA()
+			return integers.Merge(carapace.ActionValues("true", "false").StyleF(style.ForKeyword).Invoke(c)).ToA()
 		case "int":
 			return carapace.ActionValues("1", "2", "3", "4", "5", "6", "7", "8", "9", "0").Invoke(c).Prefix(c.Value).ToA()
 		case "path":
@@ -518,7 +518,7 @@ func ActionConfigValues(config string) carapace.Action {
 			"format.from":                 carapace.ActionValues().Usage("default From: address"),
 			"format.mboxrd":               _bool,
 			"format.noprefix":             _bool,
-			"format.numbered":             carapace.ActionValues("auto", "no"),
+			"format.numbered":             carapace.ActionValues("auto", "no").StyleF(style.ForKeyword),
 			"format.outputDirectory":      carapace.ActionDirectories(),
 			"format.pretty":               ActionPrettyFormats(),
 			"format.signOff":              _bool,
@@ -855,7 +855,7 @@ func ActionConfigValues(config string) carapace.Action {
 			"uploadpack.allowTipSHA1InWant":       _bool,
 			"uploadpack.hideRefs":                 carapace.ActionValues().Usage("refs to hide from upload-pack"),
 			"uploadpack.keepAlive":                carapace.ActionValues().Usage("keep alive time"),
-			"uploadpackfilter.allow":              carapace.ActionValues("always", "never"),
+			"uploadpackfilter.allow":              carapace.ActionValues("always", "never").StyleF(style.ForKeyword),
 			"uploadpackfilter.tree.maxDepth":      carapace.ActionValues().Usage("max depth for tree filter"),
 			"user.email":                          ActionAuthors().NoSpace(),
 			"user.name":                           ActionAuthors(),

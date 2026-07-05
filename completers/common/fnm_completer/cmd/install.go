@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -20,6 +21,6 @@ func init() {
 	rootCmd.AddCommand(installCmd)
 
 	carapace.Gen(installCmd).FlagCompletion(carapace.ActionMap{
-		"progress": carapace.ActionValues("auto", "never", "always"),
+		"progress": carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
 	})
 }

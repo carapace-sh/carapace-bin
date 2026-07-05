@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -30,7 +31,7 @@ func init() {
 	// TODO complete more flags
 	carapace.Gen(global_addCmd).FlagCompletion(carapace.ActionMap{
 		"config": carapace.ActionDirectories(),
-		"patch":  carapace.ActionValues("auto", "always", "never"),
+		"patch":  carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
 	})
 
 	// TODO positional completion

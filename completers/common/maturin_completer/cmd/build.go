@@ -4,6 +4,7 @@ import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/maturin_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/completers/common/maturin_completer/cmd/common"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -45,6 +46,6 @@ func init() {
 		"interpreter":        carapace.ActionFiles(),
 		"out":                carapace.ActionDirectories(),
 		"sbom-include":       carapace.ActionFiles(),
-		"strip":              carapace.ActionValues("true", "false"),
+		"strip":              carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
 	})
 }

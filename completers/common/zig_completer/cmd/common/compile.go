@@ -2,6 +2,7 @@ package common
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -223,7 +224,7 @@ func AddBuildOptions(cmd *cobra.Command) {
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
 		"build-id":                carapace.ActionValues("fast", "sha1", "tree", "md5", "uuid", "none"),
 		"cache-dir":               carapace.ActionDirectories(),
-		"color":                   carapace.ActionValues("auto", "off", "on"),
+		"color":                   carapace.ActionValues("auto", "off", "on").StyleF(style.ForKeyword),
 		"compress-debug-sections": carapace.ActionValues("none", "zlib", "zstd"),
 		"debug-rt":                carapace.ActionValues("Debug", "ReleaseFast", "ReleaseSafe", "ReleaseSmall"),
 		"dynamic-linker":          carapace.ActionFiles(),
@@ -298,7 +299,7 @@ func AddCompilerOptions(cmd *cobra.Command) {
 	cmd.Flags().Bool("verbose-cc", false, "Display C compiler invocations")
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
-		"color":             carapace.ActionValues("auto", "off", "on"),
+		"color":             carapace.ActionValues("auto", "off", "on").StyleF(style.ForKeyword),
 		"target":            carapace.ActionValues(),
 		"library-directory": carapace.ActionDirectories(),
 		"sysroot":           carapace.ActionDirectories(),

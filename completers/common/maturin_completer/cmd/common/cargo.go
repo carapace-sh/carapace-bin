@@ -4,6 +4,7 @@ import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/cargo"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/rust"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -31,7 +32,7 @@ func AddCargoFlags(cmd *cobra.Command) {
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
 		"Z":             cargo.ActionNightlyFlags(),
-		"color":         carapace.ActionValues("auto", "always", "never"),
+		"color":         carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
 		"features":      cargo.ActionFeatures("").UniqueList(","),
 		"manifest-path": carapace.ActionFiles(),
 		"target":        rust.ActionTargets(),

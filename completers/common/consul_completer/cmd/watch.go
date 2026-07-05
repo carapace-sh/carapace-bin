@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -29,7 +30,7 @@ func init() {
 
 	carapace.Gen(watchCmd).FlagCompletion(carapace.ActionMap{
 		// TODO complete flags
-		"passingonly": carapace.ActionValues("true", "false"),
+		"passingonly": carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
 		"type":        carapace.ActionValues("key", "keyprefix", "services", "nodes", "service", "checks", "event"),
 	})
 

@@ -2,6 +2,7 @@ package common
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -13,7 +14,7 @@ func AddCommonRebuildFlags(cmd *cobra.Command) {
 	cmd.Flags().StringP("diff", "d", "auto", "Whether to display a package diff")
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
-		"diff":     carapace.ActionValues("auto", "always", "never"),
+		"diff":     carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
 		"out-link": carapace.ActionFiles(),
 	})
 
