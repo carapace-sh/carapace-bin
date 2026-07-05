@@ -1,0 +1,17 @@
+package cmd
+
+import (
+	"github.com/carapace-sh/carapace"
+	"github.com/spf13/cobra"
+)
+
+var monitorCmd = &cobra.Command{
+	Use:   "monitor",
+	Short: "Continuously report changes to the routing information base",
+	Run:   func(cmd *cobra.Command, args []string) {},
+}
+
+func init() {
+	carapace.Gen(monitorCmd).Standalone()
+	rootCmd.AddCommand(monitorCmd)
+}

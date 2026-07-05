@@ -15,37 +15,24 @@ var rootCmd = &cobra.Command{
 func Execute() error {
 	return rootCmd.Execute()
 }
+
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolP("quiet", "q", false, "Quiet mode")
+	rootCmd.Flags().BoolP("auto-clean", "c", false, "Autoclean mode (clean after install)")
+	rootCmd.Flags().BoolP("binary-only", "b", false, "Binary-only mode (install from archives)")
+	rootCmd.Flags().BoolP("debug", "d", false, "Debug mode (implies -v)")
+	rootCmd.Flags().BoolP("dry-run", "y", false, "Dry run (compute steps but do not execute)")
+	rootCmd.Flags().BoolP("force", "f", false, "Force mode (ignore state file)")
+	rootCmd.Flags().BoolP("keep", "k", false, "Keep mode (do not autoclean)")
+	rootCmd.Flags().StringP("location", "D", "", "Change to directory before processing")
+	rootCmd.Flags().BoolP("no-follow-dependencies", "n", false, "Do not follow dependencies")
+	rootCmd.Flags().BoolP("noninteractive", "N", false, "Non-interactive mode")
+	rootCmd.Flags().BoolP("proceed", "p", false, "Proceed despite errors")
+	rootCmd.Flags().BoolP("quiet", "q", false, "Quiet mode (suppress informational messages)")
+	rootCmd.Flags().BoolP("source-only", "s", false, "Source-only mode (build from source)")
+	rootCmd.Flags().BoolP("trace", "t", false, "Enable trace mode debug facilities")
+	rootCmd.Flags().BoolP("uninstall-inactive", "u", false, "Uninstall inactive ports when upgrading")
+	rootCmd.Flags().BoolP("upgrade-dependents", "R", false, "Also upgrade dependents")
 	rootCmd.Flags().BoolP("verbose", "v", false, "Verbose mode")
-
-	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValuesDescribed(
-			"install", "Install a port",
-			"uninstall", "Uninstall a port",
-			"upgrade", "Upgrade a port",
-			"activate", "Activate a port",
-			"deactivate", "Deactivate a port",
-			"search", "Search for ports",
-			"list", "List available ports",
-			"info", "Show information about a port",
-			"deps", "Show dependencies of a port",
-			"variants", "Show variants of a port",
-			"contents", "Show contents of an installed port",
-			"location", "Show location of an installed port",
-			"installed", "List installed ports",
-			"outdated", "List outdated ports",
-			"sync", "Sync ports tree",
-			"selfupdate", "Update MacPorts and ports tree",
-			"clean", "Clean build files",
-			"fetch", "Fetch distfiles",
-			"build", "Build a port",
-			"test", "Test a port",
-			"destroot", "Destroot a port",
-			"archive", "Archive a port",
-			"unarchive", "Unarchive a port",
-		),
-	)
 }

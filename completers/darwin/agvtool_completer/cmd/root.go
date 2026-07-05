@@ -15,19 +15,12 @@ var rootCmd = &cobra.Command{
 func Execute() error {
 	return rootCmd.Execute()
 }
+
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().BoolP("help", "h", false, "Display usage information")
-
-	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValuesDescribed(
-			"new-version", "Set a new version number",
-			"vers", "Set version number",
-			"mvers", "Get marketing version",
-			"version", "Get version number",
-			"what-version", "Print current version",
-			"next-version", "Increment version number",
-		),
-	)
+	rootCmd.Flags().Bool("noscm", false, "Do not use source control")
+	rootCmd.Flags().Bool("usecvs", false, "Use CVS for source control")
+	rootCmd.Flags().Bool("usesvn", false, "Use Subversion for source control")
 }
