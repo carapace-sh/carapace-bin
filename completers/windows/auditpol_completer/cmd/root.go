@@ -17,16 +17,4 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).Standalone()
-
-	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValuesDescribed(
-			"get", "display the current audit policy",
-			"set", "set the audit policy",
-			"list", "list audit policy categories",
-			"backup", "backup the audit policy",
-			"restore", "restore the audit policy",
-			"clear", "clear the audit policy",
-			"remove", "remove a per-user audit policy",
-		),
-	)
 }

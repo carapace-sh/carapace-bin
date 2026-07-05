@@ -17,16 +17,4 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).Standalone()
-
-	rootCmd.Flags().BoolP("f", "f", false, "clear all gateway entries")
-	rootCmd.Flags().BoolP("p", "p", false, "make route persistent across reboots")
-
-	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValuesDescribed(
-			"add", "add a route",
-			"change", "modify an existing route",
-			"delete", "delete a route",
-			"print", "display the routing table",
-		),
-	)
 }

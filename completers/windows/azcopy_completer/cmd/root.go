@@ -17,18 +17,4 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).Standalone()
-
-	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValuesDescribed(
-			"copy", "copy data from source to destination",
-			"sync", "synchronize a directory to another",
-			"remove", "remove files or directories",
-			"list", "list entities in a resource",
-			"login", "login to Azure Active Directory",
-			"logout", "logout from Azure Active Directory",
-			"env", "show environment variables",
-			"jobs", "manage jobs",
-			"benchmark", "run a performance benchmark",
-		),
-	)
 }

@@ -17,16 +17,4 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).Standalone()
-
-	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValuesDescribed(
-			"upn", "display user principal name",
-			"fqdn", "display fully qualified domain name",
-			"logonid", "display logon ID",
-			"user", "display current user information",
-			"groups", "display group information",
-			"priv", "display privileges",
-			"all", "display all information",
-		),
-	)
 }

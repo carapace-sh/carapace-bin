@@ -17,12 +17,4 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).Standalone()
-
-	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValuesDescribed(
-			"query", "display opened files or directories",
-			"disconnect", "disconnect opened files or directories",
-			"local", "enable/disable local file list display",
-		),
-	)
 }

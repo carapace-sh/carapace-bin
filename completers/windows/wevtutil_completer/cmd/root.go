@@ -17,21 +17,4 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).Standalone()
-
-	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValuesDescribed(
-			"el", "enumerate event log names",
-			"gl", "get event log configuration",
-			"sl", "set event log configuration",
-			"ep", "enumerate event publishers",
-			"gp", "get event publisher metadata",
-			"im", "install event publisher manifest",
-			"um", "uninstall event publisher manifest",
-			"qe", "query events from an event log",
-			"ali", "get log names and aliases",
-			"epl", "export events to a file",
-			"ipl", "import events from a file",
-			"cl", "clear an event log",
-		),
-	)
 }

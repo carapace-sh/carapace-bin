@@ -16,7 +16,6 @@ var upgradeCmd = &cobra.Command{
 func init() {
 	carapace.Gen(upgradeCmd).Standalone()
 
-	upgradeCmd.Flags().Bool("-all", false, "Upgrade all installed packages to latest if available")
 	upgradeCmd.Flags().Bool("accept-package-agreements", false, "Accept all license agreements for packages")
 	upgradeCmd.Flags().Bool("accept-source-agreements", false, "Accept all source agreements during source operations")
 	upgradeCmd.Flags().String("authentication-account", "", "Specify the account to be used for authentication")
@@ -28,12 +27,10 @@ func init() {
 	upgradeCmd.Flags().Bool("include-pinned", false, "Upgrade packages even if they have a non-blocking pin")
 	upgradeCmd.Flags().Bool("include-unknown", false, "Upgrade packages even if their current version cannot be determined")
 	upgradeCmd.Flags().StringP("manifest", "m", "", "The path to the manifest of the package")
-	upgradeCmd.Flags().String("name", "", "Filter results by name       ")
-	upgradeCmd.Flags().Bool("pinned", false, "Upgrade packages even if they have a non-blocking pin")
+	upgradeCmd.Flags().String("name", "", "Filter results by name")
 	upgradeCmd.Flags().StringP("query", "q", "", "The query used to search for a package")
 	upgradeCmd.Flags().BoolP("recurse", "r", false, "Upgrade all installed packages to latest if available")
 	upgradeCmd.Flags().Bool("uninstall-previous", false, "Uninstall the previous version of the package during upgrade")
-	upgradeCmd.Flags().BoolP("unknown", "u", false, "Upgrade packages even if their current version cannot be determined")
 	rootCmd.AddCommand(upgradeCmd)
 
 	// TODO flag completion

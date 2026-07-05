@@ -17,17 +17,4 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).Standalone()
-
-	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValuesDescribed(
-			"all", "display full configuration information",
-			"release", "release the IP address",
-			"renew", "renew the IP address",
-			"flushdns", "purge the DNS resolver cache",
-			"registerdns", "initiate manual dynamic registration",
-			"displaydns", "display DNS resolver cache contents",
-			"showclassid", "display DHCP class ID for adapter",
-			"setclassid", "set DHCP class ID for adapter",
-		),
-	)
 }

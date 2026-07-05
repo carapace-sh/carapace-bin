@@ -17,16 +17,4 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).Standalone()
-
-	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValuesDescribed(
-			"install", "install the service",
-			"uninstall", "uninstall the service",
-			"start", "start the service",
-			"stop", "stop the service",
-			"restart", "restart the service",
-			"status", "query the service status",
-			"test", "run the executable in console mode",
-		),
-	)
 }

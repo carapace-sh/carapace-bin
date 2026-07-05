@@ -17,14 +17,4 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).Standalone()
-
-	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValuesDescribed(
-			"list", "list shadow copies, writers, providers, or volumes",
-			"delete", "delete shadow copies",
-			"resize", "resize shadow copy storage",
-			"revert", "revert a shadow copy",
-			"add", "add a shadow copy",
-		),
-	)
 }

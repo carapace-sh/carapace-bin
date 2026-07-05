@@ -17,25 +17,4 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).Standalone()
-
-	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValuesDescribed(
-			"query", "display service status",
-			"queryex", "display extended service status",
-			"start", "start a service",
-			"stop", "stop a service",
-			"pause", "pause a service",
-			"continue", "continue a paused service",
-			"config", "display service configuration",
-			"delete", "delete a service",
-			"create", "create a service",
-			"getdisplayname", "get display name",
-			"getkeyname", "get key name",
-			"enumdep", "enumerate dependent services",
-			"sdshow", "display security descriptor",
-			"sdset", "set security descriptor",
-			"lock", "lock service database",
-			"unlock", "unlock service database",
-		),
-	)
 }

@@ -17,23 +17,4 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).Standalone()
-
-	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValuesDescribed(
-			"install", "install a package",
-			"uninstall", "uninstall a package",
-			"update", "update packages or scoop itself",
-			"list", "list installed packages",
-			"search", "search for packages",
-			"info", "show package information",
-			"cache", "manage download cache",
-			"cleanup", "cleanup old versions",
-			"config", "manage configuration",
-			"home", "open package homepage",
-			"which", "find which shim an executable resolves to",
-			"shim", "manage shims",
-			"reset", "reset a package",
-			"bucket", "manage buckets",
-		),
-	)
 }

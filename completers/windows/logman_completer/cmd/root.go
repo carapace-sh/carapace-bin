@@ -17,15 +17,4 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).Standalone()
-
-	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValuesDescribed(
-			"create", "create a data collector",
-			"delete", "delete a data collector",
-			"query", "query data collector properties",
-			"start", "start a data collector",
-			"stop", "stop a data collector",
-			"update", "update a data collector",
-		),
-	)
 }

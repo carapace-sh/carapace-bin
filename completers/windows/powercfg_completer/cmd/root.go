@@ -17,22 +17,4 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).Standalone()
-
-	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValuesDescribed(
-			"list", "list all available power plans",
-			"query", "display contents of a power plan",
-			"change", "modify a setting in the current power plan",
-			"setactive", "make a power plan active",
-			"getactivescheme", "retrieve the active power plan",
-			"delete", "delete a power plan",
-			"duplicatescheme", "duplicate a power plan",
-			"import", "import a power plan from a file",
-			"export", "export a power plan to a file",
-			"aliases", "display aliases and corresponding identifiers",
-			"devicequery", "query devices that meet certain criteria",
-			"wakesources", "list devices that wake the system",
-			"lastwake", "report information about what woke the system",
-		),
-	)
 }

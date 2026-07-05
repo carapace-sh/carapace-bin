@@ -17,14 +17,4 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).Standalone()
-
-	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValuesDescribed(
-			"add", "add an SPN",
-			"delete", "delete an SPN",
-			"find", "find duplicate SPNs",
-			"list", "list SPNs for an account",
-			"query", "query SPNs for an account",
-		),
-	)
 }

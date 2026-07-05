@@ -17,17 +17,4 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).Standalone()
-
-	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValuesDescribed(
-			"info", "display server information",
-			"config", "display or modify server configuration",
-			"statistics", "display or clear server statistics",
-			"clear", "clear cache or statistics",
-			"restart", "restart the DNS server",
-			"zone", "manage zones",
-			"record", "manage resource records",
-			"directory", "manage directory partitions",
-		),
-	)
 }

@@ -17,22 +17,4 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).Standalone()
-
-	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValuesDescribed(
-			"setrealm", "set the Kerberos realm",
-			"delrealm", "delete the Kerberos realm",
-			"addkdc", "add a KDC address",
-			"delkdc", "delete a KDC address",
-			"addkpasswd", "add a Kerberos password server",
-			"delkpasswd", "delete a Kerberos password server",
-			"setencryptiontype", "set encryption type",
-			"dumpstate", "display current Kerberos configuration",
-			"addhost", "add a host-to-realm mapping",
-			"delhost", "delete a host-to-realm mapping",
-			"setcomputerpassword", "set the computer account password",
-			"mapuser", "map a Kerberos principal to an account",
-			"unmapuser", "remove a Kerberos principal mapping",
-		),
-	)
 }

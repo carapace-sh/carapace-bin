@@ -17,12 +17,4 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).Standalone()
-
-	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValuesDescribed(
-			"logon", "enable/disable logons",
-			"port", "change the listening port",
-			"user", "change user settings",
-		),
-	)
 }

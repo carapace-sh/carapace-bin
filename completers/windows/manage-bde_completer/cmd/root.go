@@ -17,21 +17,4 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).Standalone()
-
-	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValuesDescribed(
-			"status", "display BitLocker status",
-			"on", "enable BitLocker on a volume",
-			"off", "disable BitLocker on a volume",
-			"pause", "pause BitLocker on a volume",
-			"resume", "resume BitLocker on a volume",
-			"lock", "prevent access to BitLocker-encrypted data",
-			"unlock", "allow access to BitLocker-encrypted data",
-			"autounlock", "manage automatic unlocking",
-			"protectors", "manage protection methods",
-			"key", "manage BitLocker keys",
-			"upgrade", "upgrade BitLocker",
-			"wipe", "wipe free space",
-		),
-	)
 }

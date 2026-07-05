@@ -18,12 +18,10 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValuesDescribed(
-			"a", "display current ARP entries",
-			"g", "display current ARP entries (same as -a)",
-			"d", "delete an entry",
-			"s", "add a static entry",
-		),
-	)
+	rootCmd.Flags().BoolP("a", "a", false, "display current ARP entries")
+	rootCmd.Flags().BoolP("g", "g", false, "display current ARP entries (same as -a)")
+	rootCmd.Flags().BoolP("d", "d", false, "delete an entry")
+	rootCmd.Flags().BoolP("s", "s", false, "add a static entry")
+
+	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

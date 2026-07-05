@@ -17,15 +17,4 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).Standalone()
-
-	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValuesDescribed(
-			"list", "list mounted volumes",
-			"delete", "delete a mount point",
-			"noautodismount", "disable automount",
-			"autodismount", "enable automount",
-			"noserve", "disable direct mount",
-			"serve", "enable direct mount",
-		),
-	)
 }

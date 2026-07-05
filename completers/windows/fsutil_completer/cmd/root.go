@@ -17,23 +17,4 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).Standalone()
-
-	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValuesDescribed(
-			"8dot3name", "manage 8.3 short names",
-			"behavior", "query and set volume behavior",
-			"dirty", "query/set dirty bit",
-			"file", "file specific operations",
-			"fsinfo", "file system information",
-			"hardlink", "hardlink management",
-			"objectid", "object ID management",
-			"quota", "quota management",
-			"repair", "NTFS repair management",
-			"reparsepoint", "reparse point management",
-			"sparse", "sparse file control",
-			"transaction", "transaction management",
-			"usn", "USN journal management",
-			"volume", "volume management",
-		),
-	)
 }

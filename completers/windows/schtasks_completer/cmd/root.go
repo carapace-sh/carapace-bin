@@ -17,16 +17,4 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).Standalone()
-
-	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValuesDescribed(
-			"create", "create a new scheduled task",
-			"change", "change an existing scheduled task",
-			"run", "run a scheduled task immediately",
-			"end", "stop a running scheduled task",
-			"delete", "delete a scheduled task",
-			"query", "display scheduled tasks",
-			"show", "display information about a scheduled task",
-		),
-	)
 }
