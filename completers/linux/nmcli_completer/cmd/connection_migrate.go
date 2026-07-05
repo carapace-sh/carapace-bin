@@ -6,25 +6,26 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var connection_monitorCmd = &cobra.Command{
-	Use:   "monitor",
-	Short: "Monitor an existing connection profile",
+var connection_migrateCmd = &cobra.Command{
+	Use:   "migrate",
+	Short: "Migrate connection profiles to a different settings plugin",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(connection_monitorCmd).Standalone()
+	carapace.Gen(connection_migrateCmd).Standalone()
 
-	connectionCmd.AddCommand(connection_monitorCmd)
+	connection_migrateCmd.Flags().StringSlice("plugin", nil, "settings plugin to migrate to")
+	connectionCmd.AddCommand(connection_migrateCmd)
 
-	carapace.Gen(connection_monitorCmd).PositionalCompletion(
+	carapace.Gen(connection_migrateCmd).PositionalCompletion(
 		carapace.Batch(
 			carapace.ActionValues("id", "uuid", "path"),
 			net.ActionConnections(),
 		).ToA(),
 	)
 
-	carapace.Gen(connection_monitorCmd).PositionalAnyCompletion(
+	carapace.Gen(connection_migrateCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) > 0 {
 				switch c.Args[len(c.Args)-1] {
