@@ -1,0 +1,30 @@
+chardev: |
+  Use a named character device previously defined with `-chardev`. The device ID follows after the colon (e.g. `chardev:mychardev`). This is the most flexible option since the character device can be configured separately with its own backend type and options.
+file: |
+  Log output to a file. The file path follows after the colon (e.g. `file:/path/to/log`). Only supports output — input from the guest is discarded. Typically used for `-serial` or `-parallel` to capture console output.
+mon: |
+  Multiplexed character backend. Combines a monitor interface with the device on the same channel. Allows switching between the device and the QEMU monitor using Ctrl-A. Useful when only one serial port is available but monitor access is still needed.
+null: |
+  Discard all output and provide no input. A black hole device — anything the guest writes is silently dropped, and reads return EOF. Useful for disabling a serial or parallel port without removing it from the guest's device tree.
+none: |
+  No device allocated. The guest port is not connected to any backend. Different from `null` in that the guest may not even see the port as present.
+parport: |
+  Use a host parallel port (Linux only). The device path follows after the colon (e.g. `parport:/dev/parport0`). Provides direct access to the host's physical parallel port hardware.
+pipe: |
+  Named pipe (Windows only). Uses a Windows named pipe for communication. The pipe name follows after the colon.
+pty: |
+  Pseudo TTY (Linux only). Allocates a pseudo-terminal on the host and connects the guest serial port to it. QEMU prints the allocated PTY path at startup (e.g. `char device redirected to /dev/pts/3`). Useful for interactive serial console access via `screen` or `minicom`.
+serial: |
+  Use a host serial port (Linux only). The device path follows after the colon (e.g. `serial:/dev/ttyS0`). Provides direct access to the host's physical serial port hardware.
+spicevmc: |
+  SPICE virtual machine channel. Routes the character device through the SPICE protocol using the virtio-serial device. Requires a SPICE server to be configured with `-spice`. The channel name follows after the colon.
+stdio: |
+  Standard input/output (Unix only). Connects the guest serial port to QEMU's own stdin and stdout on the host. Useful for running QEMU in the foreground with direct serial console interaction.
+tcp: |
+  TCP socket. Connects to a remote host or listens for incoming connections. The address follows after the colon in `host:port` format (e.g. `tcp:localhost:4444`). Supports both client and server mode.
+udp: |
+  UDP socket. Sends and receives datagrams over the network. The address follows after the colon. Less commonly used due to UDP's unreliable nature.
+unix: |
+  Unix domain socket. The socket path follows after the colon (e.g. `unix:/tmp/qemu-serial.sock`). Supports both client and server mode. Preferred for local communication between QEMU and other processes on the same host.
+vc: |
+  Virtual console. The character device is connected to a virtual text console displayed in the graphical window. No additional argument needed. The virtual console is accessible via the QEMU monitor's `change vnc` command or SPICE.

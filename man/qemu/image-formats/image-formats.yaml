@@ -1,0 +1,82 @@
+blkdebug: |
+  Block debug filter driver. Injects errors and latency into I/O operations for testing. Allows configuring specific error patterns, such as failing every Nth read or introducing delays. Primarily used for testing guest resilience to storage failures.
+blklogwrites: |
+  Block log writes filter driver. Records all write operations to a log file, enabling replay of write workloads. Useful for crash recovery testing and write-ordering verification.
+blkverify: |
+  Block verify filter driver. Compares read results from two different block backends to verify they return identical data. Used for testing and validating block driver implementations.
+bochs: |
+  Bochs disk image format. The native image format of the Bochs PC emulator. Rarely used outside Bochs — limited to 2 GB images with fixed geometry. Consider raw or qcow2 instead.
+cloop: |
+  Compressed loop image format. Used by Knoppix and some other live Linux distributions for compressed read-only filesystem images. Cannot be written to — read-only access only.
+compress: |
+  Compressed image filter driver. Provides on-the-fly decompression for compressed qcow2 clusters. Transparent filter — the guest sees a normal block device while the underlying data is compressed.
+copy-before-write: |
+  Copy-before-write filter driver. Creates a point-in-time snapshot by copying original data before each write operation. Used internally by QEMU's blockdev-backup and snapshot-access features to maintain consistent backup images.
+copy-on-read: |
+  Copy-on-read filter driver. Copies data from a backing image to the overlay on every read, effectively pulling data up the backing chain. Useful for pre-populating an overlay image or migrating data from a slow backing store.
+dmg: |
+  Apple Disk Management image format. Read-only access to Apple DMG disk images. Commonly used for macOS installer images.
+file: |
+  Raw file on the host filesystem. The simplest block driver — the image file is an exact byte-for-byte representation of the guest disk. Supports POSIX AIO and mmap. Default for most use cases.
+ftp: |
+  FTP protocol block driver. Accesses remote disk images over FTP. Read-only. Generally slow due to FTP's lack of random access support — the entire image must be downloaded. Not recommended for production use.
+ftps: |
+  FTP over TLS block driver. Same as FTP but with TLS encryption. Read-only. Inherits FTP's limitations.
+gluster: |
+  GlusterFS block driver. Accesses disk images stored in a GlusterFS distributed storage cluster. Supports both TCP and Unix socket transports. Provides shared storage for live migration and multi-host access.
+host_cdrom: |
+  Host CD-ROM device. Provides direct access to the host's CD-ROM drive. Equivalent to `file` with CD-ROM-specific optimizations like media change detection.
+host_device: |
+  Host block device. Provides direct access to a host block device (e.g. `/dev/sda`). Bypasses the host page cache for direct I/O. Requires appropriate permissions on the host device.
+http: |
+  HTTP protocol block driver. Accesses remote disk images over HTTP. Read-only. Supports range requests for random access, making it more efficient than FTP for large images. Useful for accessing cloud-hosted images.
+https: |
+  HTTPS protocol block driver. Same as HTTP but with TLS encryption. Read-only.
+iscsi: |
+  iSCSI block driver. Connects to an iSCSI target on the network for block-level storage access. Supports read-write, CHAP authentication, and LUN discovery. Widely used in enterprise SAN environments.
+iser: |
+  iSER (iSCSI Extensions for RDMA) block driver. iSCSI over RDMA for high-performance, low-latency storage access over InfiniBand or RoCE networks. Requires RDMA-capable network hardware.
+luks: |
+  LUKS encrypted block driver. Provides transparent encryption/decryption of disk images using the LUKS (Linux Unified Key Setup) format. Supports AES-XTS and other cipher modes. The encryption key is provided via a `secret` object.
+nbd: |
+  Network Block Device protocol driver. Connects to a remote NBD server for block-level storage over TCP or Unix sockets. Supports read-write, TLS, and dirty bitmap queries. Commonly used with `qemu-nbd` for shared storage.
+nfs: |
+  NFS block driver. Accesses disk images on an NFS share using libnfs. Provides native NFS access without mounting on the host. Supports read-write and file locking.
+null-aio: |
+  Null AIO block driver. Discards all writes and returns zeroes on reads, using asynchronous I/O. A sink/source driver for benchmarking — all I/O completes instantly without touching storage.
+null-co: |
+  Null coroutine block driver. Same as null-aio but uses QEMU coroutines instead of Linux AIO. Discards all writes and returns zeroes on reads. Used for benchmarking and testing.
+nvme: |
+  NVMe block driver. Direct access to an NVMe controller on the host, bypassing the kernel block layer. Uses the NVMe user-space driver for low-latency, high-throughput access. Requires an NVMe device and appropriate permissions.
+parallels: |
+  Parallels disk image format. The native image format of Parallels Desktop for Mac. Supports read-write with sparse allocation.
+preallocate: |
+  Preallocate filter driver. Preallocates space for future writes to reduce fragmentation and improve write performance. Supports `off`, `metadata`, `falloc`, and `full` preallocation modes.
+qcow: |
+  Old QEMU Copy-On-Write format (version 1). The original QEMU image format with copy-on-write and encryption support. Limited to 2 GB images with basic features. Obsolete — use qcow2 instead.
+qcow2: |
+  QEMU Copy-On-Write format version 2. The primary QEMU disk image format. Supports sparse allocation, copy-on-write overlays, backing files, snapshots, encryption, compression, and dirty bitmaps. Scales to 64 TB. The recommended format for most use cases.
+qed: |
+  QEMU Enhanced Disk format. Designed as a simpler alternative to qcow2 with better performance through an on-disk metadata consistency model. Supports backing files and sparse allocation but lacks compression and encryption. Rarely used in practice.
+quorum: |
+  Quorum filter driver. Reads from multiple children and returns the value agreed upon by a majority (quorum). Provides fault tolerance by detecting and reporting corrupted data. Configurable quorum threshold and vote-based error correction.
+raw: |
+  Raw disk image. The simplest image format — the file is an exact byte-for-byte representation of the guest disk with no metadata or special features. Maximum compatibility across emulators and tools. No snapshots, compression, or copy-on-write support.
+replication: |
+  Replication filter driver. Supports continuous replication to a secondary QEMU instance for high-availability setups. Used in conjunction with COLO (COarse-grained LOck-stepping) virtual machines.
+snapshot-access: |
+  Snapshot access filter driver. Provides read-only access to a point-in-time snapshot of a block device, even as writes continue to the active image. Used internally by backup operations to maintain consistent view.
+ssh: |
+  SSH block driver. Accesses remote disk images over SSH/SFTP. Supports read-write with authentication via key files or SSH agent. Useful for accessing images on remote hosts without additional infrastructure.
+throttle: |
+  Throttle filter driver. Limits I/O bandwidth and operations per second for the guest. Configurable limits for read/write bps, iops, and burst allowances. Prevents a single VM from consuming all host storage bandwidth.
+vdi: |
+  VirtualBox Disk Image format (VDI). The native image format of Oracle VirtualBox. Supports sparse allocation and dynamic sizing. Compatible with VirtualBox for cross-hypervisor image sharing.
+vhdx: |
+  VHDX (Virtual Hard Disk v2) format. Microsoft's modern virtual disk format introduced with Hyper-V in Windows Server 2012. Supports large disks (up to 64 TB), block allocation tables, and metadata journals. Better performance and reliability than VHD.
+vmdk: |
+  VMware disk image format. The native image format of VMware products. Supports sparse (monolithicSparse), split (twoGbMaxExtentSparse), and flat variants. Widely used in VMware environments and compatible with many virtualization tools.
+vpc: |
+  VPC (Virtual PC) / VHD format. Microsoft's legacy virtual disk format used by Virtual PC and early Hyper-V. Limited to 2 TB. The VHDX format is the modern replacement. Still used for Azure blob storage compatibility.
+vvfat: |
+  Virtual VFAT filesystem. Presents a directory on the host as a FAT filesystem to the guest. Useful for sharing files between host and guest without network setup. Read-write supported but with limitations.
