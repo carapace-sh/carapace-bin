@@ -1,22 +1,15 @@
 ---
 name: qemu
 description: >
-  Use when working with QEMU — qemu-system-*, qemu-img, qemu-nbd, qemu-storage-daemon,
-  qemu-pr-helper, block drivers, machine types, CPU models, device emulation, networking,
-  display options, QMP protocol, and guest agent. Covers the complete QEMU command suite
-  for full-system emulation and virtualization, disk image management, block storage
-  infrastructure, and QMP/Guest Agent protocol commands. Triggers on: "qemu", "qemu-system",
-  "qemu-img", "qemu-nbd", "qemu-kvm", "kvm", "QEMU", "qcow2", "qcow", "qed", "virtio",
-  "virgl", "vhost-user", "VirtIO", "block driver", "machine type", "pc-i440fx", "pc-q35",
-  "q35", "SEV", "SEV-SNP", "TDX", "snapshot", "backing file", "NBD", "Network Block Device",
-  "qemu-storage-daemon", "qemu-pr-helper", "QMP", "QEMU Monitor Protocol", "guest agent",
-  "qemu-ga", "qemu-qmp-ref", "cpu model", "host passthrough", "SPICE", "VNC", "GTK",
-  "sdl", "-accel", "-machine", "-cpu", "-m", "-device", "-netdev", "-nic", "-drive",
-  "-blockdev", "-display", "-vga", "-audiodev", "-chardev", "-object", "-fw_cfg",
-  "-smbios", "-bios", "-kernel", "-initrd", "-append", "-gdb", "-S", "-snapshot",
-  "-overcommit", "-numa", "-smp", "-M", "-accel", "-enable-kvm", "-no-reboot",
-  "-no-shutdown", "-daemonize", "-rtc", "-icount", "-watchdog", "-name", "-uuid",
-  "-msg", "-qmp", "-hmp", "-migrate", "-incoming".
+  Use when working with QEMU — qemu-system-*, qemu-img, qemu-nbd,
+  qemu-storage-daemon, qemu-pr-helper, block drivers, machine types, CPU models,
+  device emulation, networking, display options, QMP protocol, and guest agent.
+  Triggers on: "qemu", "qemu-system", "qemu-img", "qemu-nbd", "qemu-kvm",
+  "QEMU", "qcow2", "qcow", "qed", "virtio", "virgl", "vhost-user", "VirtIO",
+  "block driver", "machine type", "SEV", "SEV-SNP", "TDX", "snapshot",
+  "backing file", "NBD", "Network Block Device", "QMP",
+  "QEMU Monitor Protocol", "guest agent", "qemu-ga", "cpu model",
+  "host passthrough", "SPICE", "VNC".
 user-invocable: true
 ---
 
