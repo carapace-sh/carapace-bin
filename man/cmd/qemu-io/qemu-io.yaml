@@ -1,0 +1,33 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: qemu-io
+description: QEMU disk exerciser
+flags:
+    --image-opts: treat file as option string
+    --object=: define an object such as 'secret' for passwords and/or encryption keys
+    -C, --copy-on-read: enable copy-on-read
+    -T, --trace=: specify tracing options
+    -U, --force-share: force shared permissions
+    -V, --version: output version information and exit
+    -c, --cmd=: execute command with its arguments from the given string
+    -d, --discard=: use the given discard mode for the image
+    -f, --format=: specifies the block driver to use
+    -h, --help: display this help and exit
+    -i, --aio=: use AIO mode (threads, native or io_uring)
+    -k, --native-aio: use kernel AIO implementation (Linux only, prefer use of -i)
+    -m, --misalign: misalign allocations for O_DIRECT
+    -n, --nocache: disable host cache, short for -t none
+    -r, --read-only: export read-only
+    -s, --snapshot: use snapshot file
+    -t, --cache=: use the given cache mode for the image
+
+documentation:
+  command: >-
+    Disk exerciser for QEMU block devices. Opens a disk image and provides
+    an interactive shell for issuing low-level I/O commands (read, write,
+    flush, etc.). Useful for debugging and testing block driver behavior.
+    Use `-c help` to list available commands.
+  flag:
+    aio: Set the asynchronous I/O backend. See [AIO modes](qemu://aio-modes).
+    cache: Set the cache mode for the image. See [cache modes](qemu://cache-modes).
+    format: Specify the block driver (image format). See [image formats](qemu://image-formats).
+    cmd: Execute an I/O command non-interactively and exit. Pass `help` to list available commands.

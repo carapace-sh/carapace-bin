@@ -1,0 +1,41 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: qemu-x86_64
+description: QEMU linux-user emulator (x86_64)
+flags:
+    -0=: forces target process argv[0] to be 'argv0'
+    -B=: set guest_base address to 'address'
+    -D=: write logs to 'logfile' (default stderr)
+    -E=: sets targets environment variable (var=value)
+    -L=: set the elf interpreter prefix to 'path'
+    -R=: reserve 'size' bytes for guest virtual address space
+    -U=: unsets targets environment variable
+    -cpu=: select CPU (-cpu help for list)
+    -d=: enable logging of specified items (use '-d help' for a list)
+    -dfilter=: filter logging based on address range
+    -g=: wait gdb connection to 'port'
+    -r=: set qemu uname release string to 'uname'
+    -s=: set the stack size to 'size' bytes
+    -t=: map target rt signals
+    --help: print this help
+    --jitdump: Generate a jit-${pid}.dump file for perf
+    --one-insn-per-tb: run with one guest instruction per emulated TB
+    --perfmap: Generate a /tmp/perf-${pid}.map file for perf
+    --plugin=: QEMU plugin options
+    --seed=: Seed for pseudo-random number generator
+    --strace: log system calls
+    --tb-size=: TCG translation block cache size
+    --trace=: specify tracing options
+    --version: display version information and exit
+
+documentation:
+  command: >-
+    Linux-user mode emulator for x86_64 guest binaries. Runs individual
+    Linux applications compiled for the guest architecture on the host
+    without emulating a full system. Translates system calls from the
+    guest ABI to the host ABI. Does not require root or KVM — uses
+    QEMU's TCG (Tiny Code Generator) for binary translation.
+  flag:
+    L: Set the path prefix for the guest's dynamic linker and shared libraries. Defaults to a QEMU-specific directory.
+    cpu: Select the CPU model to emulate. Pass `help` to list available models.
+    g: Wait for a GDB remote connection on the specified TCP port before starting execution. Useful for debugging guest binaries.
+    strace: Log all system calls made by the guest, similar to the host `strace` tool. Shows syscall name, arguments, and return values.
