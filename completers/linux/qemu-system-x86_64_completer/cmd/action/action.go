@@ -17,7 +17,7 @@ func ActionMachines(cmd *cobra.Command) carapace.Action {
 					return carapace.ActionMessage(err.Error())
 				}
 			}
-			return parseHelpOutput(output, "Supported machines are:", "machine types")
+			return parseHelpOutput(output, "Supported machines are:", "", "machine types")
 		})
 	})
 }
@@ -32,15 +32,19 @@ func ActionCpuModels(cmd *cobra.Command) carapace.Action {
 					return carapace.ActionMessage(err.Error())
 				}
 			}
-			return parseHelpOutput(output, "Available CPUs:", "cpu models")
+			return parseHelpOutput(output, "Available CPUs:", "Recognized CPUID flags:", "cpu models")
 		})
 	})
 }
 
-func parseHelpOutput(output []byte, skipLine string, tag string) carapace.Action {
+func parseHelpOutput(output []byte, skipLine string, stopLine string, tag string) carapace.Action {
 	lines := string(output)
 	values := make([]string, 0)
 	for _, line := range splitLines(lines) {
+		trimmed := trimSpaces(line)
+		if stopLine != "" && trimmed == stopLine {
+			break
+		}
 		if name, desc, ok := parseHelpLine(line, skipLine); ok {
 			values = append(values, name, desc)
 		}
