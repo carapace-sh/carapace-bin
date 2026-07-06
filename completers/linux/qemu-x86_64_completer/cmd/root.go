@@ -2,6 +2,8 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/linux/qemu-x86_64_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/qemu"
 	"github.com/spf13/cobra"
 )
 
@@ -43,6 +45,21 @@ func init() {
 	rootCmd.Flags().String("tb-size", "", "TCG translation block cache size")
 	rootCmd.Flags().String("trace", "", "[[enable=]<pattern>][,events=<file>][,file=<file>]")
 	rootCmd.Flags().Bool("version", false, "display version information and exit")
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"D": carapace.ActionFiles(),
+		"L": carapace.ActionDirectories(),
+		"cpu": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			if len(c.Parts) == 0 {
+				return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+					return action.ActionCpuModels(rootCmd).Suffix(",").NoSpace(',')
+				})
+			}
+			return qemu.ActionCpuFeatures().Prefix("+").Suffix(",").NoSpace(',')
+		}),
+		"d":      carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action { return qemu.ActionDebugItems() }),
+		"plugin": carapace.ActionFiles(".so"),
+	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.ActionFiles(),
