@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/linux/qemu-system-x86_64_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/qemu"
 	"github.com/spf13/cobra"
 )
 
@@ -135,11 +136,11 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"M":       carapace.ActionCallback(func(c carapace.Context) carapace.Action { return action.ActionMachines(rootCmd) }),
-		"accel":   action.ActionAccels(),
+		"accel":   qemu.ActionAccels(),
 		"bios":    carapace.ActionFiles(),
 		"cdrom":   carapace.ActionFiles(),
 		"cpu":     carapace.ActionCallback(func(c carapace.Context) carapace.Action { return action.ActionCpuModels(rootCmd) }),
-		"display": action.ActionDisplayTypes(),
+		"display": qemu.ActionDisplayTypes(),
 		"dtb":     carapace.ActionFiles(),
 		"fda":     carapace.ActionFiles(),
 		"fdb":     carapace.ActionFiles(),
@@ -147,7 +148,7 @@ func init() {
 		"gdb": carapace.ActionMultiPartsN(":", 3, func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				return action.ActionCharDevices()
+				return qemu.ActionCharDevices().Suffix(":").NoSpace(':')
 			case 1:
 				switch c.Parts[0] {
 				case "tcp":
@@ -177,7 +178,7 @@ func init() {
 		"monitor": carapace.ActionMultiPartsN(":", 2, func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				return action.ActionCharDevices()
+				return qemu.ActionCharDevices().Suffix(":").NoSpace(':')
 			default:
 				return carapace.ActionValues()
 			}
@@ -188,7 +189,7 @@ func init() {
 		"parallel": carapace.ActionMultiPartsN(":", 2, func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				return action.ActionCharDevices()
+				return qemu.ActionCharDevices().Suffix(":").NoSpace(':')
 			case 1:
 				switch c.Parts[0] {
 				case "file":
@@ -212,7 +213,7 @@ func init() {
 		"qmp": carapace.ActionMultiPartsN(":", 3, func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				return action.ActionCharDevices()
+				return qemu.ActionCharDevices().Suffix(":").NoSpace(':')
 			case 1:
 				switch c.Parts[0] {
 				case "tcp":
@@ -231,7 +232,7 @@ func init() {
 		"qmp-pretty": carapace.ActionMultiPartsN(":", 3, func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				return action.ActionCharDevices()
+				return qemu.ActionCharDevices().Suffix(":").NoSpace(':')
 			case 1:
 				switch c.Parts[0] {
 				case "tcp":
@@ -279,7 +280,7 @@ func init() {
 		"serial": carapace.ActionMultiPartsN(":", 2, func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				return action.ActionCharDevices()
+				return qemu.ActionCharDevices().Suffix(":").NoSpace(':')
 			case 1:
 				switch c.Parts[0] {
 				case "file":
@@ -303,9 +304,9 @@ func init() {
 		"trace":           carapace.ActionValues(),
 		"usbdevice":       carapace.ActionValues("tablet", "mouse", "keyboard", "host:", "bt:"),
 		"uuid":            carapace.ActionValues(),
-		"vga":             action.ActionVgaTypes(),
+		"vga":             qemu.ActionVgaTypes(),
 		"vnc":             carapace.ActionValues(),
-		"watchdog-action": action.ActionWatchdogActions(),
+		"watchdog-action": qemu.ActionWatchdogActions(),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
