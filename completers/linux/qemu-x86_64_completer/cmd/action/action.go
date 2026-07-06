@@ -9,20 +9,24 @@ import (
 func ActionCpuModels(cmd *cobra.Command) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		binaryName := cmd.Name()
-		return carapace.ActionExecCommand(binaryName, "-cpu", "help")(func(output []byte) carapace.Action {
-			lines := string(output)
-			values := make([]string, 0)
-			for _, line := range splitLines(lines) {
-				if name, desc, ok := parseCpuHelpLine(line); ok {
-					values = append(values, name, desc)
-				}
-			}
-			if len(values) == 0 {
-				return carapace.ActionValues()
-			}
-			return carapace.ActionValuesDescribed(values...).Tag("cpu models")
+		return carapace.ActionExecCommandE(binaryName, "-cpu", "help")(func(output []byte, err error) carapace.Action {
+			return parseHelpOutput(output, "Available CPUs:", "cpu models")
 		})
 	})
+}
+
+func parseHelpOutput(output []byte, skipLine string, tag string) carapace.Action {
+	lines := string(output)
+	values := make([]string, 0)
+	for _, line := range splitLines(lines) {
+		if name, desc, ok := parseHelpLine(line, skipLine); ok {
+			values = append(values, name, desc)
+		}
+	}
+	if len(values) == 0 {
+		return carapace.ActionValues()
+	}
+	return carapace.ActionValuesDescribed(values...).Tag(tag)
 }
 
 func splitLines(s string) []string {
@@ -40,10 +44,10 @@ func splitLines(s string) []string {
 	return lines
 }
 
-// parseCpuHelpLine parses a line like "  486                   (alias configured by machine type)"
-func parseCpuHelpLine(line string) (name, desc string, ok bool) {
+// parseHelpLine parses a line like "  486                   (alias configured by machine type)"
+func parseHelpLine(line string, skipLine string) (name, desc string, ok bool) {
 	trimmed := trimSpaces(line)
-	if trimmed == "" || trimmed == "Available CPUs:" {
+	if trimmed == "" || trimmed == skipLine {
 		return "", "", false
 	}
 	for i := 0; i < len(trimmed)-1; i++ {
