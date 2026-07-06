@@ -513,12 +513,20 @@ func init() {
 			})
 		}),
 		"sandbox": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			if len(c.Parts) == 0 {
+				return carapace.Batch(
+					carapace.ActionValues("on", "off"),
+					carapace.ActionValuesDescribed(
+						"obsolete", "allow obsolete system calls",
+						"elevateprivileges", "allow or deny privilege elevation",
+						"spawn", "allow or deny spawning new threads/processes",
+						"resourcecontrol", "allow or deny resource control",
+					).Suffix("=").NoSpace('='),
+				).ToA()
+			}
 			return carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
 				switch len(c.Parts) {
 				case 0:
-					if c.Value == "" {
-						return carapace.ActionValues("on", "off").Suffix(",").NoSpace(',')
-					}
 					return carapace.ActionValuesDescribed(
 						"obsolete", "allow obsolete system calls",
 						"elevateprivileges", "allow or deny privilege elevation",
