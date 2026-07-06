@@ -102,6 +102,7 @@ func init() {
 	rootCmd.Flags().StringArrayS("pflash", "pflash", nil, "use file as parallel flash image")
 	rootCmd.Flags().StringS("pidfile", "pidfile", "", "write process ID to a file")
 	rootCmd.Flags().StringS("plugin", "plugin", "", "load plugin")
+	rootCmd.Flags().Bool("preconfig", false, "pause QEMU before machine is initialized (experimental)")
 	rootCmd.Flags().StringS("prom-env", "prom-env", "", "set OpenBIOS PROM variables")
 	rootCmd.Flags().StringS("qmp", "qmp", "", "redirect QMP to host device")
 	rootCmd.Flags().StringS("qmp-pretty", "qmp-pretty", "", "redirect QMP with pretty-printing to host device")
@@ -133,13 +134,107 @@ func init() {
 	rootCmd.Flags().BoolS("win2k-hack", "win2k-hack", false, "use Windows 2000 boot hack")
 	rootCmd.Flags().BoolS("xen-attach", "xen-attach", false, "attach to Xen domain")
 	rootCmd.Flags().StringS("xen-domid", "xen-domid", "", "specify Xen domain ID")
+	rootCmd.Flags().BoolS("xen-domid-restrict", "xen-domid-restrict", false, "restrict set of available xen operations")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"M":       carapace.ActionCallback(func(c carapace.Context) carapace.Action { return action.ActionMachines(rootCmd) }),
-		"accel":   qemu.ActionAccels(),
-		"bios":    carapace.ActionFiles(),
-		"cdrom":   carapace.ActionFiles(),
-		"cpu":     carapace.ActionCallback(func(c carapace.Context) carapace.Action { return action.ActionCpuModels(rootCmd) }),
+		"M":     carapace.ActionCallback(func(c carapace.Context) carapace.Action { return action.ActionMachines(rootCmd) }),
+		"accel": qemu.ActionAccels(),
+		"action": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
+				switch len(c.Parts) {
+				case 0:
+					return carapace.ActionValuesDescribed(
+						"reboot", "action when guest reboots",
+						"shutdown", "action when guest shuts down",
+						"panic", "action when guest panics",
+						"watchdog", "action when watchdog fires",
+					).Suffix("=").NoSpace('=')
+				default:
+					switch c.Parts[0] {
+					case "reboot":
+						return carapace.ActionValues("reset", "shutdown")
+					case "shutdown":
+						return carapace.ActionValues("poweroff", "pause")
+					case "panic":
+						return carapace.ActionValues("pause", "shutdown", "exit-failure", "none")
+					case "watchdog":
+						return qemu.ActionWatchdogActions()
+					default:
+						return carapace.ActionValues()
+					}
+				}
+			})
+		}),
+		"bios": carapace.ActionFiles(),
+		"boot": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
+				switch len(c.Parts) {
+				case 0:
+					return carapace.ActionValuesDescribed(
+						"order", "boot drive order",
+						"once", "boot drive order for first boot",
+						"menu", "boot menu",
+						"splash", "splash image file",
+						"splash-time", "splash time in ms",
+						"reboot-timeout", "reboot timeout in ms",
+						"strict", "strict boot",
+					).Suffix("=").NoSpace('=')
+				default:
+					switch c.Parts[0] {
+					case "order", "once":
+						return qemu.ActionBootDrives()
+					case "menu", "strict":
+						return carapace.ActionValues("on", "off")
+					default:
+						return carapace.ActionValues()
+					}
+				}
+			})
+		}),
+		"cdrom": carapace.ActionFiles(),
+		"compat": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
+				switch len(c.Parts) {
+				case 0:
+					return carapace.ActionValuesDescribed(
+						"deprecated-input", "policy for deprecated input",
+						"deprecated-output", "policy for deprecated output",
+						"unstable-input", "policy for unstable input",
+						"unstable-output", "policy for unstable output",
+					).Suffix("=").NoSpace('=')
+				default:
+					switch c.Parts[0] {
+					case "deprecated-input":
+						return carapace.ActionValues("accept", "reject", "crash")
+					case "deprecated-output":
+						return carapace.ActionValues("accept", "hide")
+					case "unstable-input":
+						return carapace.ActionValues("accept", "reject", "crash")
+					case "unstable-output":
+						return carapace.ActionValues("accept", "hide")
+					default:
+						return carapace.ActionValues()
+					}
+				}
+			})
+		}),
+		"cpu": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			if len(c.Parts) == 0 {
+				return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+					return action.ActionCpuModels(rootCmd).Suffix(",").NoSpace(',')
+				})
+			}
+			return qemu.ActionCpuFeatures().Prefix("+").Suffix(",").NoSpace(',')
+		}),
+		"d": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action { return qemu.ActionDebugItems() }),
+		"debugcon": carapace.ActionMultiPartsN(":", 2, func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return qemu.ActionCharDevices().Suffix(":").NoSpace(':')
+			default:
+				return carapace.ActionValues()
+			}
+		}),
 		"display": qemu.ActionDisplayTypes(),
 		"dtb":     carapace.ActionFiles(),
 		"fda":     carapace.ActionFiles(),
@@ -164,17 +259,85 @@ func init() {
 				return carapace.ActionValues()
 			}
 		}),
-		"hda":      carapace.ActionFiles(),
-		"hdb":      carapace.ActionFiles(),
-		"hdc":      carapace.ActionFiles(),
-		"hdd":      carapace.ActionFiles(),
+		"hda": carapace.ActionFiles(),
+		"hdb": carapace.ActionFiles(),
+		"hdc": carapace.ActionFiles(),
+		"hdd": carapace.ActionFiles(),
+		"icount": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
+				switch len(c.Parts) {
+				case 0:
+					return carapace.ActionValuesDescribed(
+						"shift", "number of clock ticks per instruction (2^N)",
+						"align", "align host and virtual clocks",
+						"sleep", "real time CPU sleeping",
+						"rr", "record/replay mode",
+						"rrfile", "record/replay file",
+						"rrsnapshot", "record/replay snapshot name",
+					).Suffix("=").NoSpace('=')
+				default:
+					switch c.Parts[0] {
+					case "shift":
+						return carapace.ActionValues("auto")
+					case "align", "sleep":
+						return carapace.ActionValues("on", "off")
+					case "rr":
+						return carapace.ActionValues("record", "replay")
+					case "rrfile":
+						return carapace.ActionFiles()
+					default:
+						return carapace.ActionValues()
+					}
+				}
+			})
+		}),
+		"incoming": carapace.ActionValues("tcp:", "rdma:", "unix:", "fd:", "file:", "exec:", "defer").NoSpace(':'),
 		"initrd":   carapace.ActionFiles(),
 		"iscsi":    carapace.ActionValues(),
 		"kernel":   carapace.ActionFiles(),
 		"loadvm":   carapace.ActionValues(),
+		"m": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
+				switch len(c.Parts) {
+				case 0:
+					return carapace.ActionValuesDescribed(
+						"size", "initial amount of guest memory",
+						"slots", "number of hotplug slots",
+						"maxmem", "maximum amount of guest memory",
+					).Suffix("=").NoSpace('=')
+				default:
+					switch c.Parts[0] {
+					case "size", "maxmem":
+						return carapace.ActionValues("128M", "256M", "512M", "1G", "2G", "4G", "8G", "16G", "32G", "64G", "128G")
+					default:
+						return carapace.ActionValues()
+					}
+				}
+			})
+		}),
 		"machine":  carapace.ActionCallback(func(c carapace.Context) carapace.Action { return action.ActionMachines(rootCmd) }),
 		"mem-path": carapace.ActionDirectories(),
-		"mon":      carapace.ActionValues(),
+		"mon": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
+				switch len(c.Parts) {
+				case 0:
+					return carapace.ActionValuesDescribed(
+						"chardev", "character device name",
+						"mode", "monitor mode",
+						"pretty", "pretty-print JSON",
+					).Suffix("=").NoSpace('=')
+				default:
+					switch c.Parts[0] {
+					case "mode":
+						return carapace.ActionValues("readline", "control")
+					case "pretty":
+						return carapace.ActionValues("on", "off")
+					default:
+						return carapace.ActionValues()
+					}
+				}
+			})
+		}),
 		"monitor": carapace.ActionMultiPartsN(":", 2, func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
@@ -183,9 +346,64 @@ func init() {
 				return carapace.ActionValues()
 			}
 		}),
+		"msg": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
+				switch len(c.Parts) {
+				case 0:
+					return carapace.ActionValuesDescribed(
+						"timestamp", "enable timestamps",
+						"guest-name", "enable guest name prefix",
+					).Suffix("=").NoSpace('=')
+				default:
+					return carapace.ActionValues("on", "off")
+				}
+			})
+		}),
 		"mtdblock": carapace.ActionFiles(),
-		"name":     carapace.ActionValues(),
-		"nic":      carapace.ActionValues("user", "tap", "bridge", "socket", "vde", "none"),
+		"name": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
+				switch len(c.Parts) {
+				case 0:
+					return carapace.ActionValuesDescribed(
+						"process", "process name",
+						"debug-threads", "name individual threads",
+					).Suffix("=").NoSpace('=')
+				default:
+					switch c.Parts[0] {
+					case "debug-threads":
+						return carapace.ActionValues("on", "off")
+					default:
+						return carapace.ActionValues()
+					}
+				}
+			})
+		}),
+		"nic": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			if len(c.Parts) == 0 {
+				return qemu.ActionNetdevTypes().Suffix(",").NoSpace(',')
+			}
+			return carapace.ActionValues()
+		}),
+		"overcommit": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
+				switch len(c.Parts) {
+				case 0:
+					return carapace.ActionValuesDescribed(
+						"mem-lock", "memory lock support",
+						"cpu-pm", "CPU power management",
+					).Suffix("=").NoSpace('=')
+				default:
+					switch c.Parts[0] {
+					case "mem-lock":
+						return carapace.ActionValues("on", "off", "on-fault")
+					case "cpu-pm":
+						return carapace.ActionValues("on", "off")
+					default:
+						return carapace.ActionValues()
+					}
+				}
+			})
+		}),
 		"parallel": carapace.ActionMultiPartsN(":", 2, func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
@@ -249,7 +467,81 @@ func init() {
 			}
 		}),
 		"readconfig": carapace.ActionFiles(),
-		"sd":         carapace.ActionFiles(),
+		"rtc": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
+				switch len(c.Parts) {
+				case 0:
+					return carapace.ActionValuesDescribed(
+						"base", "RTC base time",
+						"clock", "RTC clock source",
+						"driftfix", "drift fix for clock ticks",
+					).Suffix("=").NoSpace('=')
+				default:
+					switch c.Parts[0] {
+					case "base":
+						return carapace.ActionValues("utc", "localtime")
+					case "clock":
+						return carapace.ActionValues("host", "rt", "vm")
+					case "driftfix":
+						return carapace.ActionValues("none", "slew")
+					default:
+						return carapace.ActionValues()
+					}
+				}
+			})
+		}),
+		"run-with": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
+				switch len(c.Parts) {
+				case 0:
+					return carapace.ActionValuesDescribed(
+						"async-teardown", "enable asynchronous teardown",
+						"chroot", "chroot to directory before starting VM",
+						"exit-with-parent", "exit when parent process exits",
+						"user", "switch to user before starting VM",
+					).Suffix("=").NoSpace('=')
+				default:
+					switch c.Parts[0] {
+					case "async-teardown", "exit-with-parent":
+						return carapace.ActionValues("on", "off")
+					case "chroot":
+						return carapace.ActionDirectories()
+					default:
+						return carapace.ActionValues()
+					}
+				}
+			})
+		}),
+		"sandbox": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
+				switch len(c.Parts) {
+				case 0:
+					if c.Value == "" {
+						return carapace.ActionValues("on", "off").Suffix(",").NoSpace(',')
+					}
+					return carapace.ActionValuesDescribed(
+						"obsolete", "allow obsolete system calls",
+						"elevateprivileges", "allow or deny privilege elevation",
+						"spawn", "allow or deny spawning new threads/processes",
+						"resourcecontrol", "allow or deny resource control",
+					).Suffix("=").NoSpace('=')
+				default:
+					switch c.Parts[0] {
+					case "obsolete":
+						return carapace.ActionValues("allow", "deny")
+					case "elevateprivileges":
+						return carapace.ActionValues("allow", "deny", "children")
+					case "spawn":
+						return carapace.ActionValues("allow", "deny")
+					case "resourcecontrol":
+						return carapace.ActionValues("allow", "deny")
+					default:
+						return carapace.ActionValues()
+					}
+				}
+			})
+		}),
+		"sd": carapace.ActionFiles(),
 		"semihosting-config": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
 				switch len(c.Parts) {
@@ -298,7 +590,27 @@ func init() {
 				return carapace.ActionValues()
 			}
 		}),
-		"smp":             carapace.ActionValues(),
+		"smp": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
+				switch len(c.Parts) {
+				case 0:
+					return carapace.ActionValuesDescribed(
+						"cpus", "total number of guest CPUs",
+						"maxcpus", "maximum CPUs including hotplug",
+						"sockets", "physical sockets",
+						"dies", "dies per socket",
+						"clusters", "clusters per die",
+						"modules", "modules per cluster",
+						"cores", "cores per module",
+						"threads", "threads per core",
+						"books", "books per drawer",
+						"drawers", "drawers",
+					).Suffix("=").NoSpace('=')
+				default:
+					return carapace.ActionValues()
+				}
+			})
+		}),
 		"spice":           carapace.ActionValues(),
 		"tpmdev":          carapace.ActionValues(),
 		"trace":           carapace.ActionValues(),
