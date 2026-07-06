@@ -1,6 +1,8 @@
 package action
 
 import (
+	"os/exec"
+
 	"github.com/carapace-sh/carapace"
 	"github.com/spf13/cobra"
 )
@@ -10,6 +12,11 @@ func ActionCpuModels(cmd *cobra.Command) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		binaryName := cmd.Name()
 		return carapace.ActionExecCommandE(binaryName, "-cpu", "help")(func(output []byte, err error) carapace.Action {
+			if err != nil {
+				if exitErr, ok := err.(*exec.ExitError); !ok || exitErr.ExitCode() != 1 {
+					return carapace.ActionMessage(err.Error())
+				}
+			}
 			return parseHelpOutput(output, "Available CPUs:", "cpu models")
 		})
 	})
