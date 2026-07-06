@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: compare
+description: Check if two images have the same contents
+flags:
+    --image-opts: treat FILE1 and FILE2 as option strings
+    --object=: defines QEMU user-creatable object
+    -F, --b-format=: specify FILE2 image format explicitly
+    -T, --cache=: 'images caching mode (default: writeback)'
+    -U, --force-share: open images in shared mode for concurrent access
+    -f, --a-format=: specify FILE1 image format explicitly
+    -p, --progress: display progress information
+    -q, --quiet: quiet mode
+    -s, --strict: strict mode, also check if sizes are equal
+
+documentation:
+  command: >-
+    Compare the contents of two disk images and report whether they are
+    identical. Returns exit code 0 if images match, 1 if they differ, or 2
+    on error. In strict mode (`-s`), images must also have the same virtual
+    size.
+  flag:
+    a-format: Explicitly specify the format of the first image (FILE1).
+    b-format: Explicitly specify the format of the second image (FILE2).
+    strict: Enable strict mode — images are considered different if their sizes do not match, even if the overlapping content is identical.
+    cache: Set the cache mode used to access both images. See [cache modes](qemu://cache-modes).

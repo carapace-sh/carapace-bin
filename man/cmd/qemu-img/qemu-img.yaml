@@ -1,0 +1,45 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: qemu-img
+description: QEMU disk image utility
+flags:
+    -T, --trace=: specify tracing options
+    -V, --version: display version info and exit
+    -h, --help: display help and exit
+commands:
+    - name: amend
+      description: Update format-specific options of the image
+    - name: bench
+      description: Run a simple image benchmark
+    - name: bitmap
+      description: Perform modifications of the persistent bitmap in the image
+    - name: check
+      description: Check basic image integrity
+    - name: commit
+      description: Commit image to its backing file
+    - name: compare
+      description: Check if two images have the same contents
+    - name: convert
+      description: Copy one or more images to another with optional format conversion
+    - name: create
+      description: Create and format a new image file
+    - name: dd
+      description: Copy input to output with optional format conversion
+    - name: info
+      description: Display information about the image
+    - name: map
+      description: Dump image metadata
+    - name: measure
+      description: Calculate the file size required for a new image
+    - name: rebase
+      description: Change the backing file of the image
+    - name: resize
+      description: Resize the image
+    - name: snapshot
+      description: List or manipulate snapshots in the image
+
+documentation:
+  command: >-
+    Disk image utility for QEMU. Creates, converts, inspects, and manipulates
+    QEMU disk images in formats including raw, qcow2, qed, vmdk, vhdx, and
+    vdi. Supports snapshot management, backing file chains, bitmap operations,
+    and image integrity checks.

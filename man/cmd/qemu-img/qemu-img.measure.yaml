@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: measure
+description: Calculate the file size required for a new image
+flags:
+    --image-opts: indicates that FILE is a complete image specification
+    --object=: defines QEMU user-creatable object
+    --output=: 'output format (default: human)'
+    -O, --target-format=: 'desired target/output image format (default: raw)'
+    -U, --force-share: open images in shared mode for concurrent access
+    -f, --format=: specify format of FILE explicitly
+    -l, --snapshot=: use this snapshot in FILE as source
+    -o, --target-format-options=: options specific to TARGET_FMT
+    -s, --size=: measure file size for given image size
+
+documentation:
+  command: >-
+    Calculate the disk space required to convert or create an image, without
+    actually writing it. Reports the required file size and, for qcow2, the
+    additional metadata overhead. Useful for pre-allocating storage.
+  flag:
+    target-format: Specify the output image format to measure for. See [image formats](qemu://image-formats). Default is raw.
+    format: Explicitly specify the source image format. Without this option, the format is probed automatically.
+    size: Measure the file size required for an image of the given virtual size, without a source file.

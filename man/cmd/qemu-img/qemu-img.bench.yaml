@@ -1,0 +1,33 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: bench
+description: Run a simple image benchmark
+flags:
+    --flush-interval=: issue flush after this number of requests
+    --image-opts: indicates that FILE is a complete image specification
+    --no-drain: do not wait when flushing pending requests
+    --object=: defines QEMU user-creatable object
+    --pattern=: write this pattern byte instead of zero
+    -S, --step-size=: each next request offset increment
+    -U, --force-share: open image in shared mode for concurrent access
+    -c, --count=: number of I/O requests to perform
+    -d, --depth=: number of requests to perform in parallel
+    -f, --format=: specify FILE format explicitly
+    -i, --aio=: async-io backend (threads, native, io_uring)
+    -n, --native: use native AIO backend if possible
+    -o, --offset=: start first request at this OFFSET
+    -q, --quiet: quiet mode
+    -s, --buffer-size=: size of each I/O request
+    -t, --cache=: 'cache mode for FILE (default: writeback)'
+    -w, --write: perform write test (default is read)
+
+documentation:
+  command: >-
+    Run a simple I/O benchmark on a disk image. Measures read or write
+    throughput with configurable request size, queue depth, and AIO backend.
+  flag:
+    aio: Set the asynchronous I/O backend. See [AIO modes](qemu://aio-modes).
+    cache: Set the cache mode used to access the disk image. See [cache modes](qemu://cache-modes).
+    count: Number of I/O requests to perform.
+    depth: Number of requests to issue in parallel (queue depth).
+    format: Explicitly specify the image format. Without this option, the format is probed automatically.
+    write: Perform a write benchmark instead of the default read benchmark.

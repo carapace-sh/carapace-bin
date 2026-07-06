@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: dd
+description: Copy input to output with optional format conversion
+flags:
+    --image-opts: treat INPUT as an option string
+    --object=: defines QEMU user-creatable object
+    -O, --output-format=: 'format of the OUTPUT (default: raw)'
+    -U, --force-share: open images in shared mode for concurrent access
+    -f, --format=: specify format for INPUT explicitly
+
+documentation:
+  command: >-
+    Copy the contents of an input disk image to an output image, similar to
+    `dd`. Supports format conversion between input and output. The `bs=`,
+    `count=`, `skip=`, and `obs=` operands can be given as positional
+    arguments.
+  flag:
+    format: Explicitly specify the input image format. Without this option, the format is probed automatically.
+    output-format: Specify the output image format. See [image formats](qemu://image-formats). Default is raw.

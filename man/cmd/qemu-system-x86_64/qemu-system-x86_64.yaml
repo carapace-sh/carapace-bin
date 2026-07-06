@@ -1,0 +1,150 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: qemu-system-x86_64
+description: QEMU system emulator
+flags:
+    -D=: log to file
+    -L=: BIOS/VGA BIOS directory
+    -M=: short form of -machine
+    -S: freeze CPU at startup
+    -accel=: select accelerator
+    -acpitable=: add ACPI table
+    -action=: set actions for events
+    -add-fd=: add a file descriptor to an fd set
+    -append=: use cmdline as kernel command line
+    -audio=: configure audio backend and hardware
+    -audiodev*=: add a new audio backend driver
+    -bios=: set the filename for the BIOS
+    -blockdev*=: define a new block driver node
+    -boot=: specify boot order
+    -cdrom=: use file as CD-ROM image
+    -chardev*=: add a character device backend
+    -compat=: set policy for handling unstable management interfaces
+    -cpu=: select CPU model
+    -d=: enable logging of specified items
+    -daemonize: daemonize the QEMU process after initialization
+    -debugcon=: redirect the debug console to host device
+    -device*=: add device driver
+    -dfilter=: limit logging to specified address range
+    -display=: select display type
+    -drive*=: use file as a drive image
+    -dtb=: use file as device tree blob
+    -dump-vmstate: dump vmstate to file
+    -echr=: set the escape character for the monitor
+    -enable-kvm: enable KVM full virtualization support
+    -enable-sync-profile: enable synchronization profiling
+    -fda=: use file as floppy disk 0 image
+    -fdb=: use file as floppy disk 1 image
+    -fsdev*=: define a new filesystem device
+    -full-screen: start in full screen
+    -fw_cfg=: add a fw_cfg item
+    -g=: wait for gdb connection on dev
+    -gdb=: wait for gdb connection on dev
+    -global=: set a global default for a driver property
+    -h: display help and exit
+    -hda=: use file as hard disk 0 image
+    -hdb=: use file as hard disk 1 image
+    -hdc=: use file as hard disk 2 image
+    -hdd=: use file as hard disk 3 image
+    -icount=: enable instruction counting for record/replay
+    -incoming=: configure incoming migration
+    -initrd=: use file as initial ramdisk
+    -iscsi=: use iSCSI as backing store
+    -jitdump: output jitdump data for perf
+    -k=: use keyboard layout language
+    -kernel=: use file as kernel image
+    -loadvm=: restore from named snapshot
+    -m=: configure guest RAM
+    -machine=: select emulated machine
+    -mem-path=: set the path for backing RAM file
+    -mem-prealloc: preallocate guest memory
+    -mon=: configure a monitor
+    -monitor=: redirect the monitor to host device
+    -msg=: control message format
+    -mtdblock=: use file as flash memory image
+    -name=: set the name of the guest
+    -net=: configure network device
+    -netdev*=: configure network backend
+    -nic=: configure default NIC
+    -no-fd-bootchk: disable boot signature checking for floppies
+    -no-reboot: exit instead of rebooting
+    -no-shutdown: don't exit on guest shutdown
+    -no-user-config: don't load user-provided config files
+    -nodefaults: don't create default devices
+    -nographic: disable graphical output
+    -numa*=: configure NUMA topology
+    -object*=: create a new object of type <type>
+    -only-migratable: only allow migratable devices
+    -option-rom=: add an option ROM
+    -overcommit=: set overcommit policy
+    -parallel=: redirect the parallel port to host device
+    -perfmap: output perfmap data for perf
+    -pflash*=: use file as parallel flash image
+    -pidfile=: write process ID to a file
+    -plugin=: load plugin
+    -prom-env=: set OpenBIOS PROM variables
+    -qmp-pretty=: redirect QMP with pretty-printing to host device
+    -qmp=: redirect QMP to host device
+    -readconfig=: read config from file
+    -rtc=: configure real-time clock
+    -run-with=: set isolation features
+    -s: shorthand for -gdb tcp::1234
+    -sandbox=: enable seccomp sandbox
+    -sd=: use file as Secure Digital card image
+    -seed=: seed for random number generator
+    -semihosting: enable semihosting
+    -semihosting-config=: configure semihosting
+    -serial*=: redirect the serial port to host device
+    -set=: set a driver property
+    -shim=: load a UEFI shim
+    -smbios=: add SMBIOS entry
+    -smp=: set the number of CPUs and CPU topology
+    -snapshot: write to temporary files
+    -spice=: configure SPICE server
+    -tpmdev=: configure TPM backend
+    -trace=: specify tracing options
+    -usb: enable USB emulation
+    -usbdevice=: add USB device
+    -uuid=: set the UUID of the guest
+    -version: display version information and exit
+    -vga=: select VGA type
+    -virtfs=: configure VirtFS export
+    -vnc=: configure VNC server
+    -watchdog-action=: set watchdog action
+    -win2k-hack: use Windows 2000 boot hack
+    -xen-attach: attach to Xen domain
+    -xen-domid=: specify Xen domain ID
+
+documentation:
+  command: >-
+    Full-system emulator for x86_64 guest architectures. Simulates a complete
+    PC system including CPU, memory, chipset, and peripherals, allowing
+    unmodified guest operating systems to run. Supports hardware acceleration
+    via KVM, Xen, or HVF for near-native performance.
+  flag:
+    machine: Select the emulated machine type. Run `-machine help` to list available machines.
+    accel: Select the hypervisor accelerator. See [accelerators](qemu://accels). Default is `tcg`.
+    cpu: Select the CPU model. Run `-cpu help` to list available models.
+    m: Configure guest RAM size. Accepts suffixes like M or G (e.g. `-m 2G`).
+    smp: Set the number of CPUs and CPU topology (sockets, cores, threads).
+    display: Select the display output type. See [display types](qemu://display-types).
+    vga: Select the VGA card type. See [VGA types](qemu://vga-types).
+    kernel: Load the specified file as the guest kernel, bypassing the normal boot sequence.
+    initrd: Load the specified file as the initial ramdisk for the guest kernel.
+    append: Use the given string as the kernel command line.
+    bios: Set the filename for the BIOS image instead of the compiled-in default.
+    boot: Specify the boot order as a string of drive letters (e.g. `order=dc` for CD-ROM then hard disk).
+    drive: Add a drive image with automatic board-level connection. Prefer `-blockdev` for explicit block topology.
+    blockdev: Define a block driver node with explicit connections. Preferred over `-drive` for complex storage setups.
+    netdev: Configure a network backend. The frontend NIC is connected automatically or via `-device`.
+    nic: Configure the default Network Interface Card.
+    monitor: Redirect the QEMU monitor to a character device. See [char devices](qemu://char-devices).
+    serial: Redirect the virtual serial port to a character device. See [char devices](qemu://char-devices).
+    parallel: Redirect the virtual parallel port to a character device. See [char devices](qemu://char-devices).
+    gdb: Wait for a GDB connection on the specified device. See [char devices](qemu://char-devices).
+    qmp: Redirect the QEMU Machine Protocol (QMP) to a character device. See [char devices](qemu://char-devices).
+    watchdog-action: Set the action to take when the watchdog timer expires. See [watchdog actions](qemu://watchdog-actions).
+    enable-kvm: Enable KVM full virtualization support. Shorthand for `-accel kvm`.
+    snapshot: Write to temporary files instead of the disk image, so the image is not modified.
+    daemonize: Daemonize the QEMU process after initialization. QEMU detaches from the terminal once startup is complete.
+    nographic: Disable graphical output. The guest serial port is redirected to the host console.
+    name: Set the name of the guest, visible in the window title and process list.

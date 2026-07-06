@@ -16,7 +16,7 @@ func ActionAccels() carapace.Action {
 		"nvmm", "NetBSD virtual machine monitor",
 		"nitro", "AWS Nitro Enclaves",
 		"mshv", "Microsoft Hyper-V",
-	).Tag("accelerators")
+	).Tag("accelerators").Uid("qemu", "accels")
 }
 
 // ActionAioModes completes QEMU AIO modes
@@ -28,7 +28,7 @@ func ActionAioModes() carapace.Action {
 		"threads", "pthreads based AIO",
 		"native", "Linux native AIO",
 		"io_uring", "Linux io_uring AIO",
-	).Tag("aio modes")
+	).Tag("aio modes").Uid("qemu", "aio-modes")
 }
 
 // ActionCacheModes completes QEMU cache modes
@@ -42,7 +42,7 @@ func ActionCacheModes() carapace.Action {
 		"writethrough", "write-through caching",
 		"directsync", "direct sync",
 		"unsafe", "unsafe caching",
-	).Tag("cache modes")
+	).Tag("cache modes").Uid("qemu", "cache-modes")
 }
 
 // ActionCharDevices completes QEMU character device backend types
@@ -66,7 +66,7 @@ func ActionCharDevices() carapace.Action {
 		"udp", "UDP socket",
 		"unix", "Unix domain socket",
 		"vc", "virtual console",
-	).Tag("char devices")
+	).Tag("char devices").Uid("qemu", "char-devices")
 }
 
 // ActionDisplayTypes completes QEMU display types
@@ -85,7 +85,7 @@ func ActionDisplayTypes() carapace.Action {
 		"none", "no display output",
 		"dbus", "D-Bus display",
 		"cocoa", "macOS Cocoa window",
-	).Tag("display types")
+	).Tag("display types").Uid("qemu", "display-types")
 }
 
 // ActionImageFormats completes supported QEMU image formats
@@ -135,7 +135,7 @@ func ActionImageFormats() carapace.Action {
 		"vmdk", "VMware disk image",
 		"vpc", "VPC (VHD) disk image",
 		"vvfat", "Virtual VFAT",
-	).Tag("image formats")
+	).Tag("image formats").Uid("qemu", "image-formats")
 }
 
 // ActionVgaTypes completes QEMU VGA types
@@ -152,7 +152,7 @@ func ActionVgaTypes() carapace.Action {
 		"tcx", "TCX (Sun)",
 		"cg3", "CG3 (Sun)",
 		"none", "no VGA",
-	).Tag("vga types")
+	).Tag("vga types").Uid("qemu", "vga-types")
 }
 
 // ActionWatchdogActions completes QEMU watchdog actions
@@ -168,5 +168,5 @@ func ActionWatchdogActions() carapace.Action {
 		"debug", "print debug message",
 		"none", "do nothing",
 		"inject-nmi", "inject an NMI into the guest",
-	).Tag("watchdog actions")
+	).Tag("watchdog actions").Uid("qemu", "watchdog-actions")
 }

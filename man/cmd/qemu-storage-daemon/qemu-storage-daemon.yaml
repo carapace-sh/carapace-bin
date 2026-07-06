@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: qemu-storage-daemon
+description: QEMU storage daemon
+flags:
+    --blockdev*=: configure a block backend
+    --chardev*=: configure a character device backend
+    --daemonize: daemonize the process, and have the parent exit once startup is complete
+    --export*=: export the specified block node
+    --monitor*=: configure a QMP monitor
+    --nbd-server=: start an NBD server for exporting block nodes
+    --object*=: create a new object of type <type>
+    --pidfile=: write process ID to a file after startup
+    -T, --trace=: specify tracing options
+    -V, --version: output version information and exit
+    -h, --help: display this help and exit
+
+documentation:
+  command: >-
+    Standalone storage daemon that exports QEMU block nodes via NBD, FUSE, or
+    vhost-user protocols without running a full VM. Configured through
+    command-line options defining block backends, character devices, exports,
+    and a QMP monitor for runtime management.

@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: qemu-pr-helper
+description: Persistent Reservation helper program for QEMU
+flags:
+    -T, --trace=: specify tracing options
+    -V, --version: output version information and exit
+    -d, --daemon: run in the background
+    -f, --pidfile=: PID file when running as a daemon
+    -g, --group=: group to drop privileges to
+    -h, --help: display this help and exit
+    -k, --socket=: path to the unix socket
+    -u, --user=: user to drop privileges to
+
+documentation:
+  command: >-
+    Helper daemon for SCSI Persistent Reservations. QEMU's virtual SCSI
+    devices delegate PR IN and PR OUT commands to this daemon, which
+    communicates with the host SCSI device. Runs as a daemon listening on
+    a Unix socket, and can drop privileges to a non-root user/group.

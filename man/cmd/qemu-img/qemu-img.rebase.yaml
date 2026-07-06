@@ -1,0 +1,30 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rebase
+description: Change the backing file of the image
+flags:
+    --image-opts: treat FILE as an option string
+    --object=: defines QEMU user-creatable object
+    -B, --backing-format=: specify format for BACKING_FILE explicitly
+    -T, --backing-cache=: 'BACKING_FILE cache mode (default: writeback)'
+    -U, --force-share: open image in shared mode for concurrent access
+    -b, --backing=: rebase onto this file
+    -c, --compress: compress image
+    -f, --format=: specify FILE format explicitly
+    -p, --progress: display progress information
+    -q, --quiet: quiet mode
+    -t, --cache=: 'cache mode for FILE (default: writeback)'
+    -u, --backing-unsafe: do not fail if BACKING_FILE can not be read
+
+documentation:
+  command: >-
+    Change the backing file of an overlay image. In safe mode (default), data
+    that differs between the old and new backing files is written into the
+    overlay so it remains consistent. In unsafe mode (`-u`), only the backing
+    file reference is changed without copying any data.
+  flag:
+    backing: Specify the new backing file to rebase onto.
+    backing-format: Explicitly specify the format of the new backing file.
+    backing-unsafe: Skip the safe rebase — just change the backing file pointer without adjusting overlay data.
+    backing-cache: Set the cache mode for accessing the new backing file. See [cache modes](qemu://cache-modes).
+    cache: Set the cache mode for the overlay image being rebased. See [cache modes](qemu://cache-modes).
+    compress: Compress the image data written during the rebase.

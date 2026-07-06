@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: snapshot
+description: List or manipulate snapshots in the image
+flags:
+    --image-opts: treat FILE as an option string
+    --object=: defines QEMU user-creatable object
+    -U, --force-share: open image in shared mode for concurrent access
+    -a, --apply=: apply named snapshot to the base
+    -c, --create=: create named snapshot
+    -d, --delete=: delete named snapshot
+    -f, --format=: specify FILE format explicitly
+    -l, --list: list snapshots in FILE
+    -q, --quiet: quiet mode
+
+documentation:
+  command: >-
+    List, create, apply, or delete internal snapshots stored in a disk image.
+    Snapshots capture the complete state of the image at a point in time and
+    can be restored later. Only qcow2, qed, and rbd images support internal
+    snapshots.
+  flag:
+    apply: Apply (restore) the named snapshot, reverting the image to its state at the time the snapshot was taken.
+    create: Create a new internal snapshot with the given name.
+    delete: Delete the named snapshot from the image.
+    list: List all snapshots in the image with their name, date, and VM clock time.
+    format: Explicitly specify the image format. Without this option, the format is probed automatically.

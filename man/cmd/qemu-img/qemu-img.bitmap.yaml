@@ -1,0 +1,34 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: bitmap
+description: Perform modifications of the persistent bitmap in the image
+flags:
+    --add: creates BITMAP in FILE
+    --clear: clears BITMAP in FILE
+    --disable: stops recording future edits to BITMAP in FILE
+    --enable: starts recording future edits to BITMAP in FILE
+    --image-opts: treat FILE as an option string
+    --merge=: merges contents of the SOURCE bitmap into BITMAP in FILE
+    --object=: defines QEMU user-creatable object
+    --remove: removes BITMAP from FILE
+    -F, --source-format=: specify format for SRC_FILE explicitly
+    -b, --source-file=: select alternative source file for --merge
+    -f, --format=: specify FILE format explicitly
+    -g, --granularity=: sets non-default granularity for the bitmap being added
+
+documentation:
+  command: >-
+    Modify persistent dirty bitmaps stored in a QEMU disk image (qcow2 only).
+    Supports adding, removing, enabling, disabling, clearing, and merging
+    bitmaps. Bitmaps track which sectors of the image have been modified and
+    are used for incremental backups.
+  flag:
+    add: Create a new persistent bitmap with the name given as the positional BITMAP argument.
+    clear: Clear (reset) the named bitmap, removing all recorded dirty sectors.
+    disable: Stop recording future edits to the named bitmap.
+    enable: Resume recording edits to the named bitmap.
+    merge: Merge the contents of a source bitmap into the named bitmap. Requires `--source-file`.
+    remove: Remove the named bitmap from the image entirely.
+    granularity: Set the granularity for a bitmap being added, in sectors. Default is the cluster size.
+    source-file: Specify the source file containing the bitmap to merge from.
+    source-format: Explicitly specify the format of the source file.
+    format: Explicitly specify the image format. Without this option, the format is probed automatically.
