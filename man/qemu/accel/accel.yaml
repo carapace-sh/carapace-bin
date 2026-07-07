@@ -1,0 +1,16 @@
+kvm: |
+  Linux Kernel-based Virtual Machine. Uses the host CPU's hardware virtualization extensions (Intel VT-x or AMD-V) to execute guest code directly, providing near-native performance. Requires KVM kernel modules loaded and appropriate permissions (typically `/dev/kvm` access). Default accelerator on Linux when available.
+tcg: |
+  Tiny Code Generator. Software emulation using QEMU's dynamic binary translation — translates guest instructions to host instructions at runtime. Works on any host without hardware virtualization support. Significantly slower than hardware-accelerated options. Supports all guest architectures.
+xen: |
+  Xen hypervisor. Uses the Xen hypervisor for virtualization, running QEMU as a device model (domU) alongside the Xen hypervisor. Requires a Xen-enabled host kernel.
+hvf: |
+  macOS Hypervisor.framework. Uses Apple's Hypervisor.framework to leverage the host CPU's hardware virtualization on macOS. Requires macOS 10.10 or later with a supporting CPU.
+whpx: |
+  Windows Hypervisor Platform. Uses Microsoft's Windows Hypervisor Platform API for hardware-accelerated virtualization on Windows. Requires Hyper-V to be enabled on the host.
+nvmm: |
+  NetBSD Virtual Machine Monitor. Uses NetBSD's NVMM driver for hardware-accelerated virtualization on NetBSD. Requires an NVMM-capable CPU and kernel support.
+nitro: |
+  AWS Nitro Enclaves. Uses the AWS Nitro Enclaves virtualization platform for creating isolated compute environments within Amazon EC2 instances.
+mshv: |
+  Microsoft Hyper-V. Directly uses the Microsoft Hyper-V hypervisor (mshv) on Linux for hardware-accelerated virtualization, bypassing KVM. Requires a Hyper-V host.

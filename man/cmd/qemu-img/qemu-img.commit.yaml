@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: commit
+description: Commit image to its backing file
+flags:
+    --image-opts: treat FILE as an option string
+    --object=: defines QEMU user-creatable object
+    -b, --base=: image in the backing chain to commit change to
+    -d, --drop: skip emptying FILE on completion
+    -f, --format=: specify FILE image format explicitly
+    -p, --progress: display progress information
+    -q, --quiet: quiet mode
+    -r, --rate-limit=: I/O rate limit, in bytes per second
+    -t, --cache=: 'image cache mode (default: writeback)'
+
+documentation:
+  command: >-
+    Commit the changes recorded in a snapshot or overlay image to its backing
+    file. By default, commits all changes down to the base of the backing
+    chain. Use `-b` to specify a particular backing image to commit into.
+  flag:
+    base: Specify the backing image in the chain to commit changes into. All changes between FILE and BASE are merged.
+    drop: After committing, skip emptying the overlay file (FILE). By default, FILE is reset to contain no data.
+    format: Explicitly specify the image format. Without this option, the format is probed automatically.
+    rate-limit: Limit the commit I/O rate to the given number of bytes per second.
+    cache: Set the cache mode used to access the disk image. See [cache modes](qemu://cache-mode).

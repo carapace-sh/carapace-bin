@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: qemu-keymap
+description: QEMU reverse keymap generator
+flags:
+    -f, --file=: 'set output file (default: stdout)'
+    -h, --help: print this text
+    -l, --layout=: 'set kbd layout (default: us)'
+    -m, --model=: 'set kbd model (default: pc105)'
+    -o, --options=: set kbd options
+    -v, --variant=: set kbd variant
+
+documentation:
+  command: >-
+    Generates QEMU reverse keymaps from XKB keymaps. The output can be used
+    with the QEMU `-k` command line option to set the keyboard layout for
+    the guest.

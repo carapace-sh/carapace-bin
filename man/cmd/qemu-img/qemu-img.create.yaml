@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create
+description: Create and format a new image file
+flags:
+    --object=: defines QEMU user-creatable object
+    -B, --backing-format=: specifies the format of BACKING_FILE
+    -b, --backing=: create target image to be a CoW on top of BACKING_FILE
+    -f, --format=: 'specifies the format of the new image (default: raw)'
+    -o, --options=: format-specific options
+    -q, --quiet: quiet mode
+    -u, --backing-unsafe: do not fail if BACKING_FILE can not be read
+
+documentation:
+  command: >-
+    Create a new disk image file of the specified format and size. Optionally
+    set up a backing file to create a copy-on-write overlay. The image size
+    is given as the positional argument and accepts suffixes like K, M, G, T.
+  flag:
+    format: Specify the image format for the new file. See [image formats](qemu://image-format). Default is raw.
+    backing: Set the specified file as the backing image, creating a CoW overlay.
+    backing-format: Explicitly specify the format of the backing file. Without this, the format is probed.
+    backing-unsafe: Skip verifying that the backing file is readable. Useful when the backing file is not yet available.

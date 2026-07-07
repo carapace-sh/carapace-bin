@@ -1,0 +1,14 @@
+reset: |
+  Reset the guest. Triggers a full guest reset equivalent to pressing the hardware reset button. All guest state is lost and the VM restarts from its initial configuration. The most forceful watchdog action.
+shutdown: |
+  Shutdown the guest. Sends an ACPI shutdown event to the guest, requesting a clean power-off. The guest OS must support ACPI and respond to the shutdown signal — if the guest is unresponsive, it will not shut down. Prefer this over `poweroff` for clean shutdowns.
+poweroff: |
+  Power off the guest. Immediately removes power from the virtual machine without giving the guest OS a chance to shut down cleanly. Equivalent to pulling the power cord. Use only when `shutdown` is ineffective and the guest cannot respond to ACPI events.
+pause: |
+  Pause the guest. Stops all CPU execution in the VM, freezing it in place. The VM state is preserved and can be resumed later with the QEMU monitor `cont` command. Useful for temporarily halting a misbehaving guest while investigating issues.
+debug: |
+  Print a debug message. Logs a debug message to the host when the watchdog timer expires, but takes no action against the guest. Useful for monitoring watchdog events during development without affecting the running VM.
+none: |
+  Do nothing. The watchdog timer expires but no action is taken. The guest continues running normally. Useful for testing watchdog configuration without side effects, or when the watchdog is used only for logging via `-msg timestamp`.
+inject-nmi: |
+  Inject an NMI into the guest. Sends a non-maskable interrupt (NMI) to the guest CPU. This typically causes a crash dump or panic in the guest OS, which can help debug hangs. Only useful if the guest OS is configured to handle NMIs (e.g. Linux with `unknown_nmi_panic`).

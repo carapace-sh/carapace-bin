@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: map
+description: Dump image metadata
+flags:
+    --image-opts: treat FILE as an option string
+    --max-length=: process at most LENGTH bytes
+    --object=: defines QEMU user-creatable object
+    --output=: 'specify output format name (default: human)'
+    -U, --force-share: open image in shared mode for concurrent access
+    -f, --format=: specify FILE format explicitly
+    -s, --start-offset=: start at the given OFFSET in the image
+
+documentation:
+  command: >-
+    Dump the metadata of a disk image, showing which offsets are allocated,
+    which are unallocated, and which refer to a backing file. Useful for
+    understanding image layout and sparse regions.
+  flag:
+    format: Explicitly specify the image format. Without this option, the format is probed automatically.
+    output: 'Output format: `human` (default), `json`, or `json2`.'
+    start-offset: Start the dump at the given byte offset in the image.
+    max-length: Process at most the given number of bytes from the starting offset.

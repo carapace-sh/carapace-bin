@@ -1,0 +1,6 @@
+threads: |
+  Pthreads-based asynchronous I/O. Uses the POSIX threading library to perform I/O operations in separate threads. The default AIO mode on most platforms. Works everywhere but may have higher overhead than native alternatives due to thread scheduling and context switching.
+native: |
+  Linux native asynchronous I/O. Uses the Linux `io_submit`/`io_getevents` system calls for true asynchronous disk I/O without thread overhead. Only available on Linux. Requires the `libaio` library. Better performance than threads for workloads with many concurrent I/O operations, especially on rotational media.
+io_uring: |
+  Linux io_uring asynchronous I/O. Uses the modern Linux io_uring interface (kernel 5.1+) for high-performance asynchronous I/O. Generally the fastest AIO mode on modern Linux kernels — lower overhead than both threads and native AIO thanks to shared ring buffers and batched submission. Requires kernel 5.1 or later.

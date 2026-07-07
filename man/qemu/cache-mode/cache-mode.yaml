@@ -1,0 +1,10 @@
+none: |
+  No caching. Data is read from and written directly to disk on every I/O operation. The host page cache is completely bypassed. Safest option for data integrity but slowest performance. Use when guest data consistency is critical and the host may crash unexpectedly.
+writeback: |
+  Write-back caching (default). Writes are acknowledged to the guest as soon as they reach the host page cache, before being flushed to physical disk. Read performance is improved by caching. Data may be lost if the host crashes before cache is flushed. This is the default cache mode for most QEMU operations.
+writethrough: |
+  Write-through caching. Writes are acknowledged only after reaching physical disk, ensuring data integrity. Reads are still cached for performance. Slower write performance than writeback but safer — no data loss on host crash. Good compromise for workloads that need write integrity without full read penalty.
+directsync: |
+  Direct sync. Similar to writethrough but bypasses the host page cache entirely for writes. Each write goes directly to disk and is acknowledged only after completion. Provides the strongest data integrity guarantees. Slowest cache mode for writes. Use when absolute write safety is required and the host may experience power failures.
+unsafe: |
+  Unsafe caching. Caches everything in memory and ignores flush requests from the guest. Fastest performance but offers no data integrity — a host crash or power failure will lose all unflushed data. Only suitable for temporary or disposable data where performance matters more than persistence, such as build caches or temporary install images.

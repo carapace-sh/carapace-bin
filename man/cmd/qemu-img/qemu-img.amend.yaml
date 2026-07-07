@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: amend
+description: Update format-specific options of the image
+flags:
+    --force: allow certain unsafe operations
+    --image-opts: treat FILE as an option string
+    --object=: defines QEMU user-creatable object
+    -f, --format=: specify FILE format explicitly
+    -o, --options=: FMT-specific format options (required)
+    -p, --progress: show operation progress
+    -q, --quiet: quiet mode
+    -t, --cache=: 'cache mode for FILE (default: writeback)'
+
+documentation:
+  command: >-
+    Update format-specific options of an existing disk image. The options to
+    amend are specified via `-o` and are format-dependent. Requires the image
+    format to be specified with `-f` if it cannot be auto-detected.
+  flag:
+    force: Allow certain unsafe amend operations that would normally be rejected.
+    image-opts: Treat the positional FILE argument as a full set of image option strings instead of a plain filename.
+    format: Explicitly specify the image format. Without this option, the format is probed automatically.
+    options: Format-specific options to amend, in the form `key=value` separated by commas. Required.
+    cache: Set the cache mode used to access the disk image. See [cache modes](qemu://cache-mode).

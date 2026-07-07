@@ -1,0 +1,50 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: convert
+description: Copy one or more images to another with optional format conversion
+flags:
+    --bitmaps: also copy any persistent bitmaps present in source
+    --image-opts: treat each SRC_FILE as an option string
+    --object=: defines QEMU user-creatable object
+    --salvage: ignore errors on input
+    --skip-broken-bitmaps: skip any broken bitmaps
+    --target-image-opts: treat TGT_FILE as an option string
+    --target-is-zero: indicates that the target volume is pre-zeroed
+    -C, --copy-range-offloading: try to use copy offloading
+    -F, --backing-format=: specifies the format of BACKING_FILE
+    -O, --target-format=: 'specify TGT_FILE image format (default: raw)'
+    -S, --sparse-size=: sparse size
+    -T, --source-cache=: source image(s) cache mode
+    -U, --force-share: open images in shared mode for concurrent access
+    -W, --oob-writes: enable out-of-order writes to improve performance
+    -b, --backing=: create target image to be a CoW on top of BACKING_FILE
+    -c, --compress: create compressed output image (qcow and qcow2 formats only)
+    -f, --format=: specify format of all SRC_FILEs explicitly
+    -l, --snapshot=: specify source snapshot
+    -m, --parallel=: 'specify parallelism (default: 8)'
+    -n, --no-create: omit target volume creation
+    -o, --target-format-options=: TGT_FMT-specific options
+    -p, --progress: display progress information
+    -q, --quiet: quiet mode
+    -r, --rate-limit=: I/O rate limit, in bytes per second
+    -t, --target-cache=: cache mode when opening output image
+
+documentation:
+  command: >-
+    Convert one or more source disk images to a target image, optionally
+    changing the format. Supports format conversion, compression, copy
+    offloading, parallel I/O, and backing file setup. Multiple source images
+    are concatenated in order.
+  flag:
+    compress: Write a compressed target image. Only supported for qcow and qcow2 formats.
+    target-format: Specify the output image format. See [image formats](qemu://image-format). Default is raw.
+    format: Explicitly specify the format of all source images. Without this option, the format is probed automatically.
+    backing: Create the target image as a copy-on-write overlay on top of the specified backing file.
+    backing-format: Specify the format of the backing file referenced by `-b`.
+    source-cache: Set the cache mode for reading source images. See [cache modes](qemu://cache-mode).
+    target-cache: Set the cache mode for writing the target image. See [cache modes](qemu://cache-mode).
+    parallel: Number of parallel coroutines for the conversion process. Default is 8.
+    copy-range-offloading: Use copy offloading (copy_file_range) to reduce CPU usage when source and target are both raw on the same filesystem.
+    oob-writes: Enable out-of-order writes to improve performance when converting to a target that supports it.
+    bitmaps: Copy persistent bitmaps from the source image to the target.
+    no-create: Skip creating the target volume — assume it already exists.
+    rate-limit: Limit the conversion I/O rate to the given number of bytes per second.

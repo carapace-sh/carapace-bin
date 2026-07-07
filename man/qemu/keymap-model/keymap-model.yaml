@@ -1,0 +1,4 @@
+pc105: |
+  Generic 105-key PC keyboard. The default keyboard model for most international layouts. Includes the additional keys found on European/ISO keyboards (e.g. the key between left Shift and Z on QWERTZ layouts). The standard model for QEMU keyboard mapping.
+pc104: |
+  Generic 104-key PC keyboard. Standard US keyboard layout without the additional ISO key. Use for US-only keyboards without the extra key between left Shift and Z.

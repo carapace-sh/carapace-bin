@@ -1,0 +1,20 @@
+gtk: |
+  GTK window. Opens a graphical display in a GTK window on the host. Supports keyboard and mouse input, clipboard integration, and window resizing. The default graphical display on Linux systems with a desktop environment.
+sdl: |
+  SDL window. Opens a graphical display in an SDL (Simple DirectMedia Layer) window. Supports keyboard and mouse input. Available on Linux, macOS, and Windows. An alternative to GTK with slightly different rendering behavior.
+egl-headless: |
+  EGL headless rendering. Renders using OpenGL via EGL without displaying any window on the host. Useful for GPU-accelerated rendering to offscreen buffers, such as for remote desktop protocols or virtual GPU setups that forward frames to clients.
+"gl=on": |
+  OpenGL rendering. Enables OpenGL-accelerated rendering within the display backend. Improves performance for 3D workloads by using the host GPU. Requires a display backend that supports OpenGL (GTK or SDL with GL support).
+"gl=core": |
+  OpenGL core profile. Uses OpenGL core profile for rendering instead of the compatibility profile. Required for some modern OpenGL features. May not work with older guest drivers that rely on legacy OpenGL features.
+"gl=es": |
+  OpenGL ES. Uses OpenGL ES (Embedded Systems) profile for rendering, a subset of OpenGL designed for embedded and mobile devices. Useful for VirGL rendering on certain GPU configurations.
+curses: |
+  Curses/ncurses interface. Renders the VGA text output in the terminal using ncurses. Only displays text mode — graphical mode output is lost. Lightweight option for console-only access without X11 or Wayland. Requires the host terminal to support ncurses.
+none: |
+  No display output. Disables all graphical output entirely. The guest still has a VGA device but its output is not shown anywhere. Combine with `-serial` or `-monitor` for text-based interaction. Useful for headless VMs.
+dbus: |
+  D-Bus display. Exports the display via D-Bus, allowing other applications on the host to connect and render the display. Integrates with GNOME's remote desktop infrastructure. Supports clipboard, keyboard, and mouse via D-Bus interfaces.
+cocoa: |
+  macOS Cocoa window. Opens a graphical display in a native macOS Cocoa window. The default graphical display on macOS. Supports keyboard and mouse input, and native macOS window management.

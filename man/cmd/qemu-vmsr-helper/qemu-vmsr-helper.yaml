@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: qemu-vmsr-helper
+description: Virtual MSR helper program for QEMU
+flags:
+    -T, --trace=: specify tracing options
+    -V, --version: output version information and exit
+    -d, --daemon: run in the background
+    -f, --pidfile=: PID file when running as a daemon
+    -g, --group=: group to drop privileges to
+    -h, --help: display this help and exit
+    -k, --socket=: path to the unix socket
+    -u, --user=: user to drop privileges to
+
+documentation:
+  command: >-
+    Helper daemon for virtual MSR (Model-Specific Register) access. Used by
+    QEMU guests that need direct MSR read/write access (e.g. for SGX
+    enclave attestation on Intel platforms). Runs as a daemon listening on
+    a Unix socket and can drop privileges to a non-root user/group.

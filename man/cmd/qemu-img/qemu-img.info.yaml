@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: info
+description: Display information about the image
+flags:
+    --backing-chain: display information about the backing chain
+    --image-opts: treat FILE as an option string
+    --limits: show detected block limits
+    --object=: defines QEMU user-creatable object
+    --output=: 'specify output format (default: human)'
+    -U, --force-share: open image in shared mode for concurrent access
+    -f, --format=: specify FILE image format explicitly
+    -t, --cache=: 'cache mode for FILE (default: writeback)'
+
+documentation:
+  command: >-
+    Display information about a disk image including its format, virtual size,
+    cluster size, disk size, and snapshot list. With `--backing-chain`, shows
+    information for each image in the backing chain.
+  flag:
+    backing-chain: Show information for every image in the backing chain, from the top image down to the base.
+    format: Explicitly specify the image format. Without this option, the format is probed automatically.
+    output: 'Output format: `human` (default) or `json`.'
+    cache: Set the cache mode used to access the disk image. See [cache modes](qemu://cache-mode).

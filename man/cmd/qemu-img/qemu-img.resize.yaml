@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: resize
+description: Resize the image
+flags:
+    --image-opts: treat FILE as an option string
+    --object=: defines QEMU user-creatable object
+    --preallocation=: specify FMT-specific preallocation type for the new areas
+    --shrink: allow operation when the new size is smaller than the original
+    -f, --format=: specify FILE format explicitly
+    -q, --quiet: quiet mode
+
+documentation:
+  command: >-
+    Change the virtual size of a disk image. The new size is given as the
+    positional argument and accepts suffixes like K, M, G, T. Shrinking an
+    image requires `--shrink` and may cause data loss if the new size is
+    smaller than the existing data.
+  flag:
+    format: Explicitly specify the image format. Without this option, the format is probed automatically.
+    preallocation: Specify the preallocation mode for new areas of the image. Supported values are format-dependent (e.g. `off`, `metadata`, `falloc`, `full` for qcow2).
+    shrink: Allow the image to be shrunk. Without this flag, shrinking is rejected for safety.

@@ -360,7 +360,7 @@ Unique identifiers providing context for completion values:
 
 - **Uid** — creates a static identifier from path segments
 - **UidF** — creates a dynamic identifier per completion value (e.g. `git://local-branch/main` identifies a specific branch). Use it when the display value alone is insufficient, or when you need to embed additional context as query parameters
-- **QueryF** — identifies what kind of completion is being requested (e.g. `git://local-branches` indicates the current position seeks local git branches). This enables result updates with additional queries later
+- **QueryF** — identifies what kind of completion is being requested (e.g. `git://local-branch` indicates the current position seeks local git branches). This enables result updates with additional queries later
 
 ```go
 // Static UID
@@ -372,7 +372,7 @@ carapace.ActionValuesDescribed(vals...).UidF(func(s string, uc uid.Context) (*ur
 })
 
 // Query identifying the completion kind
-.QueryF(Uid("local-branches"))  // e.g. git://local-branches
+.QueryF(Uid("local-branch"))  // e.g. git://local-branch
 ```
 
 **Set Uid before Suffix/Prefix/NoSpace.** The UID identifies the completion values — modifiers like `.Suffix("=")` or `.Prefix("<")` change the display/insertion format but should not affect the identity. Chaining `.Suffix()` before `.Uid()` can leak suffix characters into the UID's value context.

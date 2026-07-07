@@ -1,0 +1,10 @@
+a: |
+  First floppy drive (fd0). The guest BIOS searches this drive for a bootable floppy disk during the boot sequence.
+b: |
+  Second floppy drive (fd1). Rarely used for booting — most systems only have one floppy. Available as a secondary floppy device.
+c: |
+  First hard disk (hd0). The most common boot device for operating systems installed on a hard drive or SSD image.
+d: |
+  CD-ROM drive. Boots from the first CD-ROM device. Commonly used for installing operating systems from ISO images.
+n: |
+  Network boot. Performs a PXE (Preboot eXecution Environment) boot from the network, loading a boot image via TFTP. Requires a configured network backend that supports PXE (e.g. user-mode networking with TFTP setup, or a TAP network with a DHCP/PXE server).

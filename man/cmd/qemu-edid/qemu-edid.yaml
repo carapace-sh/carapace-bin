@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: qemu-edid
+description: QEMU EDID test tool
+flags:
+    -X, --maxx=: set maximum width
+    -Y, --maxy=: set maximum height
+    -d, --dpi=: set display resolution
+    -h, --help: print this text
+    -n, --name=: set monitor name
+    -o, --output=: set output file (stdout by default)
+    -s, --serial=: set monitor serial
+    -v, --vendor=: set monitor vendor (three letters)
+    -x, --prefx=: set preferred width
+    -y, --prefy=: set preferred height
+
+documentation:
+  command: >-
+    Test tool for the QEMU EDID generator. Generates an EDID blob describing
+    a virtual monitor with the specified parameters. Typically piped into
+    `edid-decode` to verify the generator output.

@@ -1,0 +1,26 @@
+user: |
+  User-mode networking (SLIRP stack). Provides NAT-based network access without root privileges or host configuration. The guest receives IP 10.0.2.15 via built-in DHCP, with DNS proxy and optional port forwarding (`hostfwd=tcp::2222-:22`). Simplest backend for basic connectivity. Limited performance — no ICMP/ping support, and all traffic goes through QEMU's userspace stack.
+tap: |
+  Host TAP network backend. Creates a TAP device on the host for high-performance bridged networking. Requires the `tun` kernel module and access to `/dev/net/tun`. Supports `vhost=on` for kernel-side virtio processing (better throughput and lower latency). Optional `script` and `downscript` parameters run host scripts to configure the TAP interface (default: `/etc/qemu-ifup` and `/etc/qemu-ifdown`). The most common backend for production VMs.
+bridge: |
+  Host TAP connected to a bridge. Uses the `qemu-bridge-helper` setuid binary to automatically attach a TAP device to a host bridge (default: `virbr0`). Simpler than manual TAP setup — no custom scripts needed. The helper manages TAP creation and bridge attachment with appropriate permissions.
+passt: |
+  passt network backend. Uses the `passt` daemon for user-plane NAT without SLIRP's limitations. Supports IPv6, ICMP/ping, and better performance than user-mode. A modern replacement for SLIRP that requires `passt` to be installed on the host. Provides namespace-based network isolation.
+l2tpv3: |
+  L2TPv3 pseudowire. Transports Ethernet frames over an L2TPv3 tunnel between two QEMU instances or network endpoints. No special privileges needed — uses standard UDP sockets. Useful for connecting VMs across network boundaries without a VPN or dedicated link. Configured with source/destination addresses and optional cookie/session IDs.
+vde: |
+  VDE (Virtual Distributed Ethernet) switch. Connects the guest to a VDE switch for flexible virtual network topologies. Requires `vde_switch` running on the host. Useful for creating complex multi-VM network setups without root access or physical network configuration.
+af-xdp: |
+  AF_XDP socket backend. Uses the kernel's AF_XDP interface for high-performance zero-copy packet processing. Bypasses the kernel network stack entirely for minimal latency and maximum throughput. Requires kernel support for `CONFIG_XDP_SOCKETS` and an XDP-capable NIC. Best suited for workloads requiring极致 network performance.
+socket: |
+  Socket network backend (legacy). Connects VMs via TCP or Unix domain sockets for direct host-to-host or VM-to-VM communication. Supports listen (server) mode, connect (client) mode, and multicast. Being superseded by `stream` and `dgram` backends for new configurations.
+stream: |
+  Stream socket network backend. Uses TCP or Unix stream sockets for connection-oriented communication between QEMU instances. Replaces the legacy `socket` backend for stream-based use cases. Supports server (listen) and client (connect) modes.
+dgram: |
+  Datagram socket network backend. Uses UDP sockets for connectionless communication between QEMU instances. Supports point-to-point and multicast configurations. Replaces the legacy `socket` backend for datagram-based use cases.
+vhost-user: |
+  vhost-user network backend. Provides a virtio data path to a userspace process (e.g. DPDK, OVS-DPDK, VPP) over a Unix domain socket. The external process handles packet processing while QEMU provides the control path. Offers very high throughput and low latency for software-defined networking. Requires a chardev socket for the vhost-user connection.
+vhost-vdpa: |
+  vhost-vDPA network backend. Connects to a hardware or software vDPA (virtio Data Path Acceleration) device via the kernel vDPA framework. Provides near-line-rate performance with minimal host CPU usage by offloading the virtio data path to hardware or kernel subsystems. Requires a vDPA-capable device and kernel support.
+hubport: |
+  Hub port network backend. Connects the guest to a QEMU network hub, allowing multiple VMs to share a broadcast domain. Hub ports can be used to create simple virtual LANs without a host bridge. Primarily for internal QEMU networking topology management.

@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: check
+description: Check basic image integrity
+flags:
+    --image-opts: treat FILE as an option string
+    --object=: defines QEMU user-creatable object
+    --output=: 'output format (default: human)'
+    -T, --cache=: 'cache mode (default: writeback)'
+    -U, --force-share: open image in shared mode for concurrent access
+    -f, --format=: specifies the format of the image explicitly
+    -q, --quiet: quiet mode
+    -r, --repair=: repair errors of the given category
+
+documentation:
+  command: >-
+    Perform a consistency check on a disk image. Reports errors such as
+    leaked clusters, corruptions, and reference count mismatches. For qcow2
+    images, also checks the L1/L2 table structure and refcount tables. Use
+    `-r leaks` or `-r all` to repair fixable errors.
+  flag:
+    format: Explicitly specify the image format. Without this option, the format is probed automatically.
+    repair: Try to repair errors of the given category (`leaks` or `all`). Only for qcow2 images.
+    output: 'Output format for the check report: `human` (default) or `json`.'
+    cache: Set the cache mode used to access the disk image. See [cache modes](qemu://cache-mode).

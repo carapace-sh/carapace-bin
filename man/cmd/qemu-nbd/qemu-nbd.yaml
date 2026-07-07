@@ -1,0 +1,60 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: qemu-nbd
+description: QEMU Disk Network Block Device Utility
+flags:
+    --aio=: set AIO mode (native, io_uring or threads)
+    --cache=: set cache mode used to access the disk image
+    --detect-zeroes=: set detect-zeroes mode (off, on, unmap)
+    --discard=: set discard mode (ignore, unmap)
+    --fork: fork off the server process and exit the parent once the server is running
+    --handshake-limit=: limit client's handshake to N seconds (default 10)
+    --image-opts: treat FILE as a full set of image options
+    --object=: define an object such as 'secret' for providing passwords and/or encryption keys
+    --pid-file=: store the server's process ID in the given file
+    --tls-authz=: use id of an earlier --object to provide authorization
+    --tls-creds=: use id of an earlier --object to provide TLS
+    --tls-hostname=: override hostname used to check x509 certificate
+    -A, --allocation-depth: expose the allocation depth
+    -B, --bitmap=: expose a persistent dirty bitmap
+    -D, --description=: export a human-readable description
+    -L, --list: list exports available from another NBD server
+    -T, --trace=: specify tracing options
+    -V, --version: output version information and exit
+    -b, --bind=: interface to bind to (default `0.0.0.0')
+    -c, --connect=: connect FILE to the local NBD device DEV
+    -d, --disconnect: disconnect the specified device
+    -e, --shared=: device can be shared by NUM clients (default '1')
+    -f, --format=: set image format (raw, qcow2, ...)
+    -h, --help: display this help and exit
+    -k, --socket=: path to the unix socket
+    -l, --load-snapshot=: load an internal snapshot inside FILE
+    -n, --nocache: disable host cache
+    -o, --offset=: offset into the image
+    -p, --port=: port to listen on (default `10809')
+    -r, --read-only: export read-only
+    -s, --snapshot: use FILE as an external snapshot
+    -t, --persistent: don't exit on the last connection
+    -v, --verbose: display extra debugging information
+    -x, --export-name=: expose export by name (default is empty string)
+
+documentation:
+  command: >-
+    Export a QEMU disk image over the Network Block Device (NBD) protocol.
+    Can serve images via TCP or Unix domain sockets, and connect/disconnect
+    local NBD devices. Supports TLS, persistent dirty bitmaps, allocation
+    depth, and multiple simultaneous clients.
+  flag:
+    aio: Set the asynchronous I/O backend. See [AIO modes](qemu://aio-mode).
+    cache: Set the cache mode used to access the disk image. See [cache modes](qemu://cache-mode).
+    format: Set the disk image format. See [image formats](qemu://image-format). Without this option, the format is probed automatically.
+    bind: Network interface to bind the NBD server to. Default is `0.0.0.0`.
+    port: TCP port to listen on. Default is 10809.
+    socket: Path to a Unix domain socket for the NBD server. Use instead of TCP.
+    connect: Connect the specified NBD device to the image file, then exit.
+    disconnect: Disconnect the specified NBD device.
+    persistent: Keep the server running after the last client disconnects.
+    read-only: Export the image in read-only mode.
+    export-name: Set the NBD export name. Clients must request this name to access the image.
+    bitmap: Expose a persistent dirty bitmap from the image as an NBD metadata context.
+    allocation-depth: Expose allocation depth information as an NBD metadata context.
+    list: Connect to another NBD server and list its available exports, then exit.

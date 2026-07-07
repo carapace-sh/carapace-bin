@@ -1,0 +1,16 @@
+cirrus: |
+  Cirrus Logic GD5446. A legacy VGA-compatible card with 2D acceleration (bitblt). Supported by most guest operating systems including older Windows and Linux. Obsolete — not recommended for new setups due to limited resolution support and known bugs. Use `std` or `virtio` instead.
+std: |
+  Standard VGA. A basic VGA card with VESA BIOS Extensions supporting high resolutions and color depths. Default for most QEMU machine types. Good compatibility with all guest operating systems. No 2D or 3D acceleration.
+vmware: |
+  VMware SVGA-II. A VGA card compatible with VMware's SVGA2 specification. Provides 2D acceleration and resolutions up to the host's display limit. Requires VMware guest drivers (`vmwgfx`) in the guest for acceleration. Good choice for Linux guests with VMware tools installed.
+virtio: |
+  VirtIO GPU. A paravirtualized GPU using the virtio framework. Offers significantly better performance than emulated VGA cards, especially for 2D operations. Supports 3D acceleration via VirGL when `gl=on` is set on the display. Requires virtio-gpu drivers in the guest. The recommended choice for modern Linux guests.
+qxl: |
+  QXL (SPICE). A paravirtualized GPU designed for use with the SPICE protocol. Supports 2D acceleration and multiple monitors via the SPICE remote display protocol. Requires QXL/SPICE guest drivers. Primarily used in SPICE-based virtual desktop environments.
+tcx: |
+  TCX (Sun). A frame buffer used on Sun SPARC workstations. Only relevant for `qemu-system-sparc` guests. Provides 8-bit or 24-bit color at fixed resolutions.
+cg3: |
+  CG3 (Sun). A monochrome or low-color frame buffer used on older Sun SPARC workstations. Only relevant for `qemu-system-sparc` guests. Very basic display with limited resolution and color depth.
+none: |
+  No VGA card. Disables the VGA device entirely. The guest has no graphical display. Useful for headless servers or when display output is handled by a different device (e.g. virtio-gpu added via `-device`).
