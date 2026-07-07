@@ -1,0 +1,622 @@
+3dnow: |
+  AMD 3DNow! SIMD instruction set. Provides single-precision floating-point SIMD operations on AMD processors. Obsolete — superseded by SSE and AVX.
+3dnowext: |
+  Extended 3DNow! Additional SIMD instructions added in later AMD processors. Obsolete.
+3dnowprefetch: |
+  3DNow! prefetch instructions. Provides software prefetch hints for data and instructions. Still useful on AMD processors even without full 3DNow! support.
+abm: |
+  Advanced Bit Manipulation (LZCNT + POPCNT). Provides leading-zero count and population count instructions. Broadly supported on modern CPUs.
+ace2: |
+  Advanced Cryptography Engine v2. VIA PadLock security engine. Rarely used outside VIA processors.
+ace2-en: |
+  Advanced Cryptography Engine v2 enabled. VIA PadLock feature flag.
+acpi: |
+  ACPI (Advanced Configuration and Power Interface) support. Indicates the CPU supports ACPI power management features.
+adx: |
+  Multi-Precision Add-Carry Instruction Extensions (ADCX/ADOX). Improves performance of big-integer arithmetic for cryptographic operations.
+aes: |
+  AES (Advanced Encryption Standard) instruction set (AES-NI). Hardware acceleration for AES encryption/decryption. Essential for VMs running encrypted workloads.
+amd-no-ssb: |
+  AMD no Speculative Store Bypass. Indicates the AMD CPU is not affected by the Spectre variant 4 (Speculative Store Bypass) vulnerability.
+amd-psfd: |
+  AMD Predictive Store Forwarding Disable. Allows disabling Predictive Store Forwarding to mitigate certain side-channel attacks on AMD processors.
+amd-ssbd: |
+  AMD Speculative Store Bypass Disable. Provides the SPEC_CTRL mechanism to mitigate Spectre variant 4 on AMD processors.
+amd-stibp: |
+  AMD Single Thread Indirect Branch Predictor. Allows controlling the indirect branch predictor across SMT threads on AMD processors.
+amx-avx512: |
+  Intel AMX with AVX-512 extensions. Advanced Matrix Extensions operating on AVX-512 tile registers. Very recent Intel feature for AI/ML workloads.
+amx-bf16: |
+  Intel AMX BF16 (bfloat16). Advanced Matrix Extensions with brain floating-point 16-bit support for AI training and inference. Available on Sapphire Rapids and later.
+amx-bf16-alias: |
+  AMX BF16 alias. Alternative name for AMX BF16 feature detection.
+amx-complex: |
+  Intel AMX complex number operations. Advanced Matrix Extensions with complex number support for AI computations.
+amx-complex-alias: |
+  AMX complex alias. Alternative name for AMX complex feature detection.
+amx-fp16: |
+  Intel AMX FP16 (half-precision). Advanced Matrix Extensions with IEEE 754 half-precision floating-point support for ML workloads.
+amx-fp16-alias: |
+  AMX FP16 alias. Alternative name for AMX FP16 feature detection.
+amx-fp8: |
+  Intel AMX FP8 (8-bit floating-point). Advanced Matrix Extensions with FP8 support for next-generation AI training. Available on Granite Rapids and later.
+amx-int8: |
+  Intel AMX INT8 (8-bit integer). Advanced Matrix Extensions with 8-bit integer matrix operations for inference workloads. Available on Sapphire Rapids and later.
+amx-int8-alias: |
+  AMX INT8 alias. Alternative name for AMX INT8 feature detection.
+amx-movrs: |
+  Intel AMX MOVRS instruction. AMX tile register move with row stride.
+amx-tf32: |
+  Intel AMX TF32 (TensorFloat-32). Advanced Matrix Extensions with TF32 format support for AI training on NVIDIA-compatible precision.
+amx-tile: |
+  Intel AMX TILE configuration. Base AMX tile configuration support required by all other AMX features. Must be enabled to use any AMX instructions.
+apic: |
+  Advanced Programmable Interrupt Controller. On-chip local APIC support for interrupt handling in SMP systems. Present on all modern x86 CPUs.
+apx-nci-ndd-nf: |
+  Intel APX (Advanced Performance Extensions) NDD (New Data Dispensable) NF (New Flags). Extended x86 instruction set with new register file.
+apxf: |
+  Intel APX flag feature. Part of the Advanced Performance Extensions providing additional x86 registers and instruction encodings.
+arat: |
+  Always Running APIC Timer. The local APIC timer continues running even in deep C-states, ensuring reliable timer interrupts for the guest OS.
+arch-capabilities: |
+  Architectural Capabilities MSR (IA32_ARCH_CAPABILITIES). Provides a model-specific register enumerating which microarchitectural side-channel mitigations are present. Used by guest OSes to determine which vulnerabilities apply.
+arch-lbr: |
+  Architectural Last Branch Record. Intel LBR with architecturally defined format, consistent across CPU generations. Superior to model-specific LBR for profiling tools.
+auto-ibrs: |
+  Automatic IBRS (Indirect Branch Restricted Speculation). CPU automatically enables IBRS mode, reducing the need for explicit IBRS MSR writes. Available on newer Intel processors.
+avic: |
+  AMD Advanced Virtual Interrupt Controller. AMD's hardware-accelerated virtual APIC for KVM, reducing VM exits for interrupt delivery.
+avx: |
+  Advanced Vector Extensions (AVX). 256-bit SIMD instruction set for floating-point and integer operations. Foundation for AVX2 and AVX-512.
+avx-ifma: |
+  AVX Integer Fused Multiply-Add. AVX instructions for integer fused multiply-add operations. Useful for cryptographic computations.
+avx-ne-convert: |
+  AVX NE (Neural Engine) Convert. Instructions for converting between FP16, BF16, and FP32 formats for AI/ML workloads.
+avx-vnni: |
+  AVX Vector Neural Network Instructions. 256-bit variant of VNNI providing INT8 dot product acceleration for inference on AVX-only CPUs (without AVX-512).
+avx-vnni-int16: |
+  AVX VNNI INT16. 16-bit integer variant of VNNI for neural network inference with higher precision than INT8.
+avx-vnni-int8: |
+  AVX VNNI INT8. 8-bit integer dot product instructions for neural network inference on AVX2-capable CPUs.
+avx10: |
+  AVX-10 instruction set. Intel's unified AVX-10 instruction set supporting 128-bit, 256-bit, and 512-bit vector widths. Supersedes the fragmented AVX-512 family.
+avx10-128: |
+  AVX-10 with 128-bit vector width. Subset of AVX-10 instructions operating on 128-bit (XMM) registers.
+avx10-256: |
+  AVX-10 with 256-bit vector width. Subset of AVX-10 instructions operating on 256-bit (YMM) registers.
+avx10-512: |
+  AVX-10 with 512-bit vector width. Full AVX-10 instruction set operating on 512-bit (ZMM) registers.
+avx10-vnni-int: |
+  AVX-10 VNNI integer instructions. Vector neural network instructions available under the AVX-10 umbrella.
+avx2: |
+  Advanced Vector Extensions 2 (AVX2). 256-bit SIMD with most AVX-512 integer operations extended to 256-bit. The most widely supported advanced SIMD set on modern x86 CPUs.
+avx512-4fmaps: |
+  AVX-512 4FMAPS (Fused Multiply Accumulation Packed Single). Single-precision fused multiply-accumulate instructions for AI workloads. Available on Cooper Lake only.
+avx512-4vnniw: |
+  AVX-512 4VNNIW (Vector Neural Network Instructions Word). 16-bit integer dot product for neural networks. Available on Cooper Lake only.
+avx512-bf16: |
+  AVX-512 BF16 (bfloat16). Brain floating-point 16-bit operations for AI training and inference. Available on Cooper Lake and later.
+avx512-fp16: |
+  AVX-512 FP16 (half-precision). IEEE 754 half-precision floating-point SIMD operations. Available on Sapphire Rapids and later.
+avx512-vp2intersect: |
+  AVX-512 VP2INTERSECT. Instructions for computing intersection of two pairs of 32-bit element vectors. Used for database and search operations.
+avx512-vpopcntdq: |
+  AVX-512 VPOPCNTDQ. Population count instructions for 64-bit elements in ZMM registers. Useful for big-integer and bit manipulation operations.
+avx512bitalg: |
+  AVX-512 BITALG. Bit-level algorithm instructions including popcount for bytes/words and bit-shuffle operations.
+avx512bw: |
+  AVX-512 BW (Byte and Word). Extends AVX-512 to byte and word granularity operations. Essential for string processing and text operations. Most commonly required AVX-512 subset.
+avx512cd: |
+  AVX-512 CD (Conflict Detection). Instructions for detecting conflicting memory accesses at cache-line granularity. Used for parallelizing code with potential hash collisions.
+avx512dq: |
+  AVX-512 DQ (Doubleword and Quadword). Extends AVX-512 with integer and broadcast operations for 32/64-bit elements.
+avx512er: |
+  AVX-512 ER (Exponential and Reciprocal). Approximate exponential and reciprocal instructions. Available on Xeon Phi (Knights Mill) only.
+avx512f: |
+  AVX-512 F (Foundation). The base AVX-512 instruction set. All other AVX-512 subsets depend on this. Provides 512-bit register file (ZMM), opmask registers, and foundational instructions.
+avx512ifma: |
+  AVX-512 IFMA (Integer Fused Multiply-Add). 52-bit and 64-bit integer fused multiply-add instructions. Used for cryptographic and big-integer operations.
+avx512pf: |
+  AVX-512 PF (Prefetch). Gather prefetch instructions for AVX-512. Available on Xeon Phi (Knights Landing/Mill) only.
+avx512vbmi: |
+  AVX-512 VMBI (Vector Byte Manipulation Instructions). Instructions for byte-level permutation and manipulation. Useful for string processing and codecs.
+avx512vbmi2: |
+  AVX-512 VMBI2. Additional byte manipulation instructions including load-unpack and pack-store operations. Available on Ice Lake and later.
+avx512vl: |
+  AVX-512 VL (Vector Length Extensions). Down-scales AVX-512 instructions to 128-bit (XMM) and 256-bit (YMM) registers. Allows using AVX-512 instructions without the 512-bit width penalty (frequency throttling).
+avx512vnni: |
+  AVX-512 VNNI (Vector Neural Network Instructions). INT8/INT16 dot product acceleration for inference workloads. The AVX-512 variant of VNNI.
+bhi-ctrl: |
+  BHI (Branch History Injection) control. Provides mechanisms to mitigate the BHI/Cross-Branch Spectre variant on Intel processors. Available on newer microcodes.
+bhi-no: |
+  Not vulnerable to Branch History Injection (BHI). Indicates the CPU is not affected by the BHI side-channel attack.
+bmi1: |
+  Bit Manipulation Instructions 1. Provides ANDN, BLSI, BLSMSK, BLSR instructions for efficient bit-level operations. Widely supported on modern CPUs.
+bmi2: |
+  Bit Manipulation Instructions 2. Provides PDEP, PEXT, RORX, BZHI, SARX, SHLX, SHRX instructions. PDEP/PEXT are especially useful for bitboard algorithms and compression.
+bus-lock-detect: |
+  Bus lock detection. Allows the OS to detect and penalize bus-locked split-lock accesses that degrade performance for other cores. Available on Ice Lake and later.
+cet-ibt: |
+  Control-flow Enforcement Technology — Indirect Branch Tracking (CET-IBT). Hardware enforcement that indirect branch targets must start with an ENDBR64 instruction. Mitigates ROP/JOP attacks.
+cet-ss: |
+  Control-flow Enforcement Technology — Shadow Stack (CET-SS). Hardware-maintained shadow stack for return address verification. Mitigates return-oriented programming (ROP) attacks.
+cid: |
+  Context ID. Provides the ability to assign a context ID for PEBS (Processor Event-Based Sampling) profiling. Useful for VM profiling.
+cldemote: |
+  Cache line demote. Allows software to demote a cache line from the L2 to L3 cache, freeing L2 space for more frequently used data.
+clflush: |
+  CLFLUSH (Cache Line Flush). Flushes a cache line from all levels of the cache hierarchy. Available on all modern x86 CPUs.
+clflushopt: |
+  CLFLUSHOPT (Cache Line Flush Optimized). Improved cache flush that can execute out-of-order and in parallel with other CLFLUSHOPT operations. Prefer over CLFLUSH when available.
+clwb: |
+  CLWB (Cache Line Write Back). Writes back a modified cache line to memory without invalidating it from the cache. Useful for persistent memory programming.
+clzero: |
+  CLZERO (Cache Line Zero). AMD instruction that zeros a cache line without reading it from memory. Useful for initializing memory regions efficiently.
+cmov: |
+  Conditional move instructions (CMOVcc). Enables conditional moves without branches, avoiding branch mispredictions. Present on all modern x86 CPUs.
+cmp-legacy: |
+  CMP legacy mode. AMD feature for legacy comparison operation behavior.
+cmpccxadd: |
+  CMPccXADD instruction. Atomically compares and conditionally adds a value, reducing the need for compare-exchange loops. Available on recent Intel processors.
+core-capability: |
+  Core capability reporting. Provides information about core-level capabilities and vulnerabilities.
+cr8legacy: |
+  CR8 legacy access. AMD feature allowing CR8 (Task Priority Register) access via the legacy CR8 register mapping.
+cx16: |
+  CMPXCHG16B (Compare and Exchange 16 Bytes). Atomic 128-bit compare-and-swap operation. Required by some guest OS kernels and useful for lock-free data structures.
+cx8: |
+  CMPXCHG8B (Compare and Exchange 8 Bytes). Atomic 64-bit compare-and-swap. Present on all modern x86 CPUs since the Pentium.
+dca: |
+  Direct Cache Access (DCA). Allows prefetching data directly into the CPU cache from I/O devices. Used with some NICs for low-latency network processing.
+ddpd-u: |
+  DDPD (Deferred Page Descriptor Update). Optimization for page table entry updates.
+de: |
+  Debugging Extensions. Provides debug registers (DR0-DR7) and debug exceptions. Present on all modern x86 CPUs.
+decodeassists: |
+  Decode assists. AMD feature for hardware-assisted instruction decode in SVM nested virtualization.
+ds: |
+  Debug Store. Intel feature for branch trace storage and PEBS (Processor Event-Based Sampling) profiling.
+ds-cpl: |
+  Debug Store CPL (Current Privilege Level). Filtered debug store data based on privilege level.
+dtes64: |
+  Debug Store 64-bit. 64-bit width for the DS (Debug Store) save area, required for modern PEBS profiling.
+eraps: |
+  Enhanced REP MOVSB/STOSB. Indicates the CPU supports enhanced fast string operations using the REP prefix for large memory copies. Useful for guest memory operations.
+erms: |
+  Enhanced REP MOVSB/STOSB. Indicates the CPU implements REP MOVSB/STOSB with performance comparable to ERMS-aware software. Enables faster `memcpy`/`memset` implementations in the guest.
+est: |
+  Enhanced SpeedStep. Intel power management feature for dynamic frequency scaling.
+extapic: |
+  Extended APIC (x2APIC). Extended APIC register space and MSRs for systems with more than 255 CPUs.
+f16c: |
+  F16C (Half-Precision Floating-Point Conversion). Instructions for converting between half-precision (FP16) and single-precision (FP32) floating-point values.
+fb-clear: |
+  Fill buffer clear. Mitigation for certain MDS (Microarchitectural Data Sampling) vulnerabilities by clearing fill buffers on VM entry.
+fbsdp-no: |
+  Not affected by FBSDP (Fill Buffer Stale Data Pointer) vulnerability.
+fdp-excptn-only: |
+  FDP exception only. Intel FPU data pointer is only updated on exceptions, reducing the overhead of FPU state management.
+flush-l1d: |
+  Flush L1D cache. MSR control to flush the L1 data cache on VM entry, mitigating L1TF (Foreshadow) attacks.
+flushbyasid: |
+  Flush by ASID. AMD SVM feature for TLB flush operations scoped to a specific ASID, avoiding global TLB flushes.
+fma: |
+  FMA3 (Fused Multiply-Add 3-operand). 256-bit fused multiply-add instructions operating on three 128/256-bit registers. Critical for HPC and scientific computing.
+fma4: |
+  FMA4 (Fused Multiply-Add 4-operand). AMD's 4-operand fused multiply-add variant. Less efficient than FMA3 and not widely adopted.
+fpu: |
+  x87 FPU (Floating-Point Unit). Legacy x87 floating-point coprocessor. Present on all modern x86 CPUs. Required for legacy floating-point code.
+fred: |
+  FRED (Flexible Return and Event Delivery). Intel's redesigned exception/interrupt delivery mechanism with a simpler stack layout and improved security. Available on Granite Rapids and later.
+fs-gs-base-ns: |
+  FSGSBASE non-serializing. Non-serializing variant of FSGSBASE instructions for better performance when reading/writing FS/GS base addresses.
+fsgsbase: |
+  FSGSBASE instructions. Allows direct read/write of FS and GS base addresses from user mode (RDFSBASE, RDGSBASE, WRFSBASE, WRGSBASE). Useful for thread-local storage and per-CPU data.
+fsrc: |
+  Fast Short REP CMPSB/SCASB. Intel optimization for short string comparison operations.
+fsrm: |
+  Fast Short REP MOVSB. Intel optimization indicating REP MOVSB is fast even for short moves (previously software used different code paths for small vs. large copies).
+fsrs: |
+  Fast Short REP STOSB. Intel optimization indicating REP STOSB is fast even for short store operations.
+full-width-write: |
+  Full-width write. AMD FPU feature for full-width writes to FPU registers without partial register stalls.
+fxsr: |
+  FXSAVE/FXRSTOR instructions. Faster FPU/SSE state save and restore compared to legacy FSAVE. Present on all modern x86 CPUs.
+fxsr-opt: |
+  FXSR optimized. AMD optimization for FXSAVE/FXRSTOR that avoids saving the FPU opcode and data pointer.
+fzrm: |
+  Fast Zero-length REP MOVSB. Intel optimization indicating REP MOVSB is fast even for zero-length moves.
+gds-no: |
+  Not affected by Gather Data Sampling (GDS) vulnerability. Indicates the CPU is not susceptible to the GDS side-channel attack.
+gfni: |
+  GFNI (Galois Field New Instructions). Instructions for Galois Field arithmetic, primarily used for AES-GCM and erasure coding. Operates on XMM/YMM/ZMM registers.
+gmet: |
+  Global MET (Memory Encryption Technology). AMD feature for encrypted VM state across SEV guests.
+hle: |
+  Hardware Lock Elision (HLE). Intel TSX feature that elides lock acquisition when no contention exists, enabling lock-free execution of critical sections. Deprecated on most newer CPUs.
+ht: |
+  Hyper-Threading Technology (HTT). Intel's simultaneous multithreading (SMT) allowing two threads per core. Present on most Intel CPUs since the Pentium 4.
+hypervisor: |
+  Hypervisor present bit. CPUID flag indicating the guest is running under a hypervisor. Automatically set by KVM and other hypervisors.
+ia64: |
+  Itanium architecture. Legacy CPUID feature flag from Intel Itanium processors. Not relevant for modern x86 VMs.
+ibpb: |
+  Indirect Branch Predictor Barrier (IBPB). Mitigation that prevents the indirect branch predictor state from being used after a context switch. Critical for Spectre variant 2 (ret2spec) mitigation.
+ibpb-brtype: |
+  IBPB with branch type. Enhanced IBPB that also clears branch type predictions. Stronger mitigation for certain Spectre variant 2 attack vectors.
+ibrs: |
+  Indirect Branch Restricted Speculation (IBRS). Mitigation that restricts indirect branch prediction when enabled. Part of the Spectre variant 2 mitigation toolkit.
+ibrs-all: |
+  IBRS all. Indicates IBRS is effective across all privilege levels without requiring re-enablement after VM exit.
+ibs: |
+  Instruction Based Sampling (IBS). AMD's hardware profiling feature for precise instruction-level performance analysis.
+intel-psfd: |
+  Intel Predictive Store Forwarding Disable. Allows disabling Predictive Store Forwarding to mitigate certain side-channel attacks on Intel processors.
+intel-pt: |
+  Intel Processor Trace (PT). Hardware tracing facility that records control flow with low overhead. Used for profiling, debugging, and coverage analysis.
+intel-pt-lip: |
+  Intel PT Lip (Linear Instruction Pointer). Indicates Intel PT generates linear instruction pointer packets for accurate IP tracing.
+invpcid: |
+  INVPCID (Invalidate Process-Context Identifier). Instruction for TLB invalidation scoped to a specific PCID without global flush. Improves performance for KVM guest TLB management.
+invtsc: |
+  Invariant TSC. Time Stamp Counter runs at a constant rate regardless of CPU frequency. Essential for accurate timekeeping and migration-safe TSC in VMs.
+ipred-ctrl: |
+  IPRED (Indirect Predictor) control. Provides mechanisms to control indirect branch predictor behavior for security mitigations.
+its-no: |
+  Not affected by Indirect Target Selection (ITS) vulnerability.
+kvm-asyncpf: |
+  KVM async page fault. Allows KVM to deliver page fault completion notifications asynchronously, avoiding VM exits for completed page faults.
+kvm-asyncpf-int: |
+  KVM async page fault interrupt. Uses interrupts instead of VM exits for async page fault delivery, reducing overhead.
+kvm-asyncpf-vmexit: |
+  KVM async page fault VM exit. Uses VM exits for async page fault notifications. The original async PF mechanism.
+kvm-hint-dedicated: |
+  KVM hint dedicated vCPU. Hints to the guest that the vCPU is running on a dedicated physical CPU, allowing the guest OS to skip unnecessary IPIs and scheduling optimizations.
+kvm-mmu: |
+  KVM MMU features. Indicates KVM MMU is available for hardware-assisted guest page table management.
+kvm-msi-ext-dest-id: |
+  KVM MSI extended destination ID. Supports extended destination IDs in MSI interrupts for systems with more than 256 CPUs.
+kvm-nopiodelay: |
+  KVM no PIO delay. Disables the artificial delay KVM adds to PIO instructions, speeding up legacy I/O port access.
+kvm-poll-control: |
+  KVM poll control. Allows the guest to disable host-side polling in KVM, reducing CPU usage when the guest is idle.
+kvm-pv-eoi: |
+  KVM paravirtualized End-Of-Interrupt. Avoids VM exits for APIC EOI by using a shared memory page between guest and host.
+kvm-pv-ipi: |
+  KVM paravirtualized IPI (Inter-Processor Interrupt). Faster IPI delivery using hypercalls instead of emulated APIC writes.
+kvm-pv-sched-yield: |
+  KVM paravirtualized sched yield. Allows the guest to hint to the host scheduler that another vCPU should be scheduled, reducing IPI latency.
+kvm-pv-tlb-flush: |
+  KVM paravirtualized TLB flush. Uses hypercalls for TLB flushing instead of VM exits, reducing the overhead of TLB shootdowns.
+kvm-pv-unhalt: |
+  KVM paravirtualized unhalt. Allows the guest to exit HLT state more efficiently when a vCPU becomes runnable.
+kvm-steal-time: |
+  KVM steal time accounting. Reports the time a vCPU was runnable but not scheduled on a physical CPU. Enables the guest to account for CPU steal in scheduling decisions.
+kvmclock: |
+  KVM paravirtualized clock. Stable clocksource provided by KVM that is migration-safe and unaffected by TSC frequency changes. The recommended clocksource for KVM guests.
+kvmclock-stable-bit: |
+  KVM clock stable bit. Indicates that the KVM paravirtualized clock remains stable across CPU frequency changes and sleep states.
+la57: |
+  5-level paging (57-bit virtual addresses). Extends the virtual address space from 256 TiB to 128 PiB. Required for workloads needing more than 256 TiB of virtual address space.
+lahf-lm: |
+  LAHF/SAHF in long mode. Enables the LAHF and SAHF instructions in 64-bit mode, which were previously unavailable. Useful for some JIT compilers.
+lam: |
+  Linear Address Masking (LAM). Allows software to use unused bits in 64-bit linear addresses for metadata (pointer tagging). Available on Sapphire Rapids and later.
+lbrv: |
+  Last Branch Record Virtualization. AMD SVM feature that virtualizes the LBR (Last Branch Record) facility for nested virtualization.
+lfence-always-serializing: |
+  LFENCE always serializing. AMD feature where LFENCE is a serializing instruction, enabling it as a Spectre mitigation barrier.
+lkgs: |
+  LKGS (Load Kernel GS Base). Intel instruction for safely loading the GS base address in kernel mode without modifying user-mode GS.
+lm: |
+  Long mode (64-bit). Indicates the CPU supports AMD64/Intel 64 64-bit operation mode. Present on all modern x86-64 CPUs.
+lwp: |
+  Lightweight Profiling (LWP). AMD hardware profiling feature for low-overhead performance monitoring. Rarely used.
+mca: |
+  Machine Check Architecture. Hardware error reporting mechanism for detecting and recovering from hardware faults. Present on all modern CPUs.
+mcdt-no: |
+  Not affected by MCDT (Microarchitectural Cookied Data Transfer) vulnerability.
+mce: |
+  Machine Check Exception. Allows the CPU to signal hardware errors via exceptions. Required for reliable error reporting.
+md-clear: |
+  MD_CLEAR (VERW instruction). Instruction that clears microarchitectural buffers to mitigate Microarchitectural Data Sampling (MDS) vulnerabilities (ZombieLoad, RIDL, Fallout).
+mds-no: |
+  Not affected by Microarchitectural Data Sampling (MDS). Indicates the CPU is not susceptible to MDS attacks.
+misalignsse: |
+  Misaligned SSE support. AMD feature allowing SSE instructions to operate on misaligned data without raising alignment faults.
+mmx: |
+  MMX (Multimedia Extensions). Legacy 64-bit SIMD instruction set using MM registers (aliased to x87 FPU stack). Obsolete — superseded by SSE/AVX.
+mmxext: |
+  Extended MMX. AMD's additional MMX instructions (EMMS and extended SSE/MMX operations).
+monitor: |
+  MONITOR/MWAIT instructions. Allows the CPU to enter an optimized wait state while monitoring a memory address for writes. Used by guest OS for C-state management.
+movbe: |
+  MOVBE (Move Byte Swap). Instruction for loading and storing big-endian data with automatic byte swapping. Useful for network packet processing.
+movdir64b: |
+  MOVDIR64B (Direct Store 64 Bytes). Atomically writes 64 bytes to a memory-mapped I/O device without touching the cache. Used for high-speed device submission queues.
+movdiri: |
+  MOVDIRI (Direct Store Doubleword). Atomically writes 4 bytes to a memory-mapped I/O device without touching the cache.
+movrs: |
+  MOVRS instruction. Intel feature for reading repeatable store data.
+mpx: |
+  Memory Protection Extensions (MPX). Hardware bounds checking for pointer dereferences. Deprecated and removed from newer Intel CPUs.
+msr: |
+  Model Specific Registers (MSRs). Support for RDMSR/WRMSR instructions to access CPU-specific configuration and status registers.
+msr-imm: |
+  MSR immediate. AMD feature for immediate-value MSR access.
+mtrr: |
+  Memory Type Range Registers (MTRRs). Hardware mechanism for controlling caching behavior of physical memory regions. Required for proper guest BIOS/UEFI operation.
+no-nested-data-bp: |
+  No nested data breakpoints. Indicates the CPU does not generate debug exceptions for data breakpoints triggered by another debug exception handler.
+nodeid-msr: |
+  Node ID MSR. Provides MSR for identifying the NUMA node of the CPU.
+npt: |
+  Nested Page Tables (NPT). AMD SVM feature for hardware-assisted guest page table translation (equivalent to Intel EPT). Required for KVM on AMD.
+nrip-save: |
+  NRIP save. AMD SVM feature that saves the next RIP on VM exit, enabling proper instruction advancing after interception.
+null-sel-clr-base: |
+  Null selector clear base. AMD feature that clears the segment base when a null selector is loaded, matching Intel behavior.
+nx: |
+  NX (No-Execute) bit. Hardware support for marking memory pages as non-executable, a critical security feature for DEP (Data Execution Prevention).
+osvw: |
+  OS Visible Workaround (OSVW). AMD mechanism for communicating microcode workaround status to the OS, avoiding redundant mitigations.
+overflow-recov: |
+  Overflow recovery. AMD MCA feature for recovering from certain overflow conditions in machine check reporting.
+pae: |
+  Physical Address Extension (PAE). Extends physical address space to 36 bits (64 GiB). Required for NX bit support on 32-bit systems.
+pat: |
+  Page Attribute Table (PAT). Fine-grained control of caching behavior per-page, complementing MTRRs. Present on all modern x86 CPUs.
+pause-filter: |
+  PAUSE filter. AMD SVM feature that can intercept PAUSE instructions in a spin loop after a configurable threshold, helping detect spinlock contention.
+pbe: |
+  Pending Break Enable. Intel feature for signaling pending events while the CPU is in a sleep state.
+pbrsb-no: |
+  Not affected by PBRSB (Primary Branch Return Stack Buffer) vulnerability.
+pcid: |
+  Process-Context Identifiers (PCID). Tags TLB entries with a process context ID, allowing TLB entries from different processes to coexist. Avoids TLB flushes on context switches.
+pclmulqdq: |
+  PCLMULQDQ (Carry-Less Multiplication). Instructions for carry-less multiplication of 64-bit operands. Essential for AES-GCM (Galois/Counter Mode) and CRC computation.
+pcommit: |
+  PCOMMIT (Persistent Commit). Intel instruction for ensuring persistent memory stores are committed to durable storage. Withdrawn from the ISA.
+pdcm: |
+  Performance and Debug Capability MSR. Indicates the CPU supports the IA32_PERF_CAPABILITIES MSR for PEBS and LBR configuration.
+pdpe1gb: |
+  1 GiB pages (PDPE1GB). Supports 1 GiB huge pages in the page table, reducing TLB pressure for large memory mappings.
+perfctr-core: |
+  AMD core performance counters. Provides per-core performance monitoring counters for profiling.
+perfctr-nb: |
+  AMD Northbridge performance counters. Provides system-level performance counters for monitoring memory controller and HyperTransport activity.
+perfmon-v2: |
+  AMD Performance Monitoring version 2. Enhanced performance counter architecture with more counters and capabilities.
+pfthreshold: |
+  PAUSE filter threshold. AMD SVM feature for configuring the threshold at which PAUSE instructions trigger a VM exit.
+pge: |
+  Page Global Enable. Allows marking TLB entries as global so they are not flushed on CR3 reload. Reduces TLB miss rates for shared kernel mappings.
+phe: |
+  Platform Health Environment. VIA PadLock feature.
+phe-en: |
+  Platform Health Environment enabled. VIA PadLock feature.
+pks: |
+  Protection Keys for Supervisor (PKS). Extends protection keys to supervisor (kernel) pages, allowing kernel-mode access control without modifying page tables.
+pku: |
+  Protection Keys for User (PKU/PKeys). Allows user-space to control access to pages by key without modifying page tables. Uses the PKRU register.
+pmm: |
+  Platform Monitoring Mechanism. Intel feature.
+pmm-en: |
+  Platform Monitoring Mechanism enabled. Intel feature.
+pn: |
+  Processor Number. CPUID feature reporting the processor serial number.
+pni: |
+  Pending NMI Interrupt. Alternative name for certain feature detection.
+popcnt: |
+  POPCNT (Population Count). Instruction for counting the number of set bits in a register. Widely used for bit manipulation, hashing, and error correction.
+prefetchi: |
+  PREFETCHI instruction. Intel instruction for prefetching instruction cache lines.
+prefetchiti: |
+  PREFETCHIT0/PREFETCHIT1 instructions. Intel instruction cache prefetch hints for fine-grained instruction prefetching.
+pschange-mc-no: |
+  Not affected by Page Size Change Machine Check vulnerability.
+psdp-no: |
+  Not affected by PSDP vulnerability.
+pse: |
+  Page Size Extension (PSE). Supports 4 MiB (2 MiB with PAE) large pages. Present on all modern x86 CPUs.
+pse36: |
+  Page Size Extension 36-bit. Supports 4 MiB pages in 36-bit physical address space.
+rdctl-no: |
+  Not affected by RDCTL (Read Control) vulnerability.
+rdpid: |
+  RDPID (Read Processor ID). Reads the TSC_AUX MSR value without the overhead of RDMSR. Used for per-CPU data access in the kernel.
+rdrand: |
+  RDRAND (Read Random). Hardware random number generator instruction. Provides entropy from the CPU's on-chip RNG. Used for seeding software PRNGs.
+rdseed: |
+  RDSEED (Read Seed). Provides conditioned entropy from the CPU's TRNG. Stronger than RDRAND for seeding cryptographic PRNGs.
+rdtscp: |
+  RDTSCP (Read Time-Stamp Counter and Processor ID). Serializing variant of RDTSC that also reads the TSC_AUX value. Provides a stable ordering guarantee that RDTSC lacks.
+rfds-clear: |
+  Register File Data Sampling clear. Mitigation for RFDS (Register File Data Sampling) vulnerability.
+rfds-no: |
+  Not affected by Register File Data Sampling (RFDS) vulnerability.
+rrsba-ctrl: |
+  RRSBA (Restricted Return Stack Buffer Alternate) control. Provides control over restricted RSB alternate prediction behavior for Spectre mitigation.
+rsba: |
+  Restricted Return Stack Buffer Alternate. Indicates the CPU uses an alternate return predictor for certain return instructions.
+rtm: |
+  Restricted Transactional Memory (RTM). Intel TSX feature for hardware transactional memory using XBEGIN/XEND. Deprecated on most newer CPUs due to TAA vulnerability.
+sbdr-ssdp-no: |
+  Not affected by SBDR (Segment Base Dirty Read) and SSDP vulnerability.
+sbpb: |
+  Selective Branch Prediction Barrier. AMD mitigation for certain Spectre variant 2 attack vectors, providing a lighter-weight alternative to full IBPB.
+sep: |
+  SYSENTER/SYSEXIT instructions. Fast system call mechanism for 32-bit code. Present on all modern x86 CPUs.
+serialize: |
+  SERIALIZE instruction. Intel instruction that forces all prior instructions to complete before starting new instructions. Provides a lightweight full serialization point.
+sgx: |
+  Software Guard Extensions (SGX). Intel's trusted execution environment using Enclaves — isolated memory regions protected from the OS and other applications. Requires EPC (Enclave Page Cache) memory.
+sgx-aex-notify: |
+  SGX Asynchronous Exit (AEX) notification. Allows enclaves to be notified when an AEX occurs, enabling custom AEX handler logic.
+sgx-debug: |
+  SGX debug mode. Indicates the enclave supports debug mode with EDBGRD/EDBGWR instructions for development.
+sgx-edeccssa: |
+  SGX EDECCSSA (Enumerate Damage ECSSA). Allows enumerating the state of an enclave after an error for diagnostics.
+sgx-exinfo: |
+  SGX exception info. Provides additional exception information for SGX enclave exits.
+sgx-kss: |
+  SGX Key Separation and Sharing (KSS). Provides additional enclave measurement and signing key flexibility.
+sgx-mode64: |
+  SGX 64-bit mode. Indicates the enclave runs in 64-bit mode.
+sgx-provisionkey: |
+  SGX provisioning key. Allows the enclave to access the provisioning key for remote attestation.
+sgx-tokenkey: |
+  SGX token key. Allows the enclave to derive tokens for provisioning.
+sgx1: |
+  SGX version 1. Base SGX instruction set including ECREATE, EADD, EINIT, EENTER, EEXIT, and enclave management.
+sgx2: |
+  SGX version 2. Adds dynamic memory management for enclaves (EAUG, EMODPR, EMODT, EACCEPT). Allows enclaves to grow their memory at runtime.
+sgxlc: |
+  SGX Launch Control. Indicates the CPU supports SGX Launch Control, allowing the OS to configure the launch enclave policy.
+sha-ni: |
+  SHA-NI (SHA Extensions). Hardware acceleration for SHA-1 and SHA-256 hash computations. Improves performance of TLS and digital signature operations.
+sha512: |
+  SHA-512 instructions. Hardware acceleration for SHA-512 hash computations. Available on recent Intel processors.
+skinit: |
+  SKINIT (Secure Init). AMD SVM feature for securely initializing a trusted execution environment (similar to Intel TXT/TBOOT).
+skip-l1dfl-vmentry: |
+  Skip L1D flush on VM entry. Optimization that skips the L1TF mitigation flush when the host has not run untrusted code since the last VM exit.
+sm3: |
+  SM3 hash instructions. Chinese national cryptographic hash algorithm hardware acceleration.
+sm4: |
+  SM4 block cipher instructions. Chinese national cryptographic block cipher hardware acceleration.
+smap: |
+  SMAP (Supervisor Mode Access Prevention). Prevents the kernel from accidentally accessing user-space memory, mitigating certain kernel exploits. Important security feature.
+smep: |
+  SMEP (Supervisor Mode Execution Prevention). Prevents the kernel from executing user-space code, mitigating kernel return-to-user exploits. Important security feature.
+smx: |
+  Safer Mode Extensions (SMX). Intel TXT (Trusted Execution Technology) feature for measured launch and secure execution environments.
+spec-ctrl: |
+  SPEC_CTRL MSR (IA32_SPEC_CTRL). Provides the MSR for controlling IBRS, STIBP, and SSBD mitigation features. Essential for Spectre variant 2 mitigation.
+split-lock-detect: |
+  Split lock detection. Enables detection and optional penalization of split-lock accesses (atomic operations spanning cache lines) that degrade system performance.
+srso-no: |
+  Not affected by SRSO (Speculative Return Stack Overflow) vulnerability.
+srso-user-kernel-no: |
+  Not affected by SRSO cross-privilege (user/kernel) variant.
+ss: |
+  Self-Snoop. Indicates the CPU supports self-snooping of its own stores through the cache hierarchy.
+ssb-no: |
+  Not affected by Speculative Store Bypass (SSB / Spectre variant 4).
+ssbd: |
+  Speculative Store Bypass Disable (SSBD). Mitigation for Spectre variant 4 that prevents speculative stores from bypassing older stores.
+sse: |
+  Streaming SIMD Extensions (SSE). 128-bit SIMD instruction set with XMM registers. Foundation for all modern x86 SIMD. Present on all modern x86 CPUs.
+sse2: |
+  Streaming SIMD Extensions 2 (SSE2). Extends SSE with double-precision FP and integer SIMD operations. The baseline SIMD set for x86-64.
+sse4.1: |
+  SSE 4.1. Additional SIMD instructions including DPPS/DPPD (dot product), BLENDVPS (conditional blend), and rounding operations. Widely supported.
+sse4.2: |
+  SSE 4.2. Adds CRC32 instruction, string comparison (PCMPESTRI/PCMPSTRM), and population count (POPCNT). Required by many modern applications.
+sse4a: |
+  SSE 4a. AMD-specific SIMD extensions including EXTRQ, INSERTQ, and MOVNTSD. Rarely used outside AMD-optimized code.
+ssse3: |
+  Supplemental SSE 3 (SSSE3). Additional SIMD instructions for byte shuffling, absolute value, and sign operations. Used by media codecs and cryptography.
+stibp: |
+  Single Thread Indirect Branch Predictor. Mitigation that restricts indirect branch prediction across SMT sibling threads, preventing cross-thread Spectre attacks.
+stibp-always-on: |
+  STIBP always on. Indicates STIBP is always enabled on the CPU, even without explicit software opt-in.
+succor: |
+  Software Unconsumed Corrected Error Reporting. AMD MCA feature for reporting corrected errors that haven't been consumed by software.
+svm: |
+  AMD SVM (Secure Virtual Machine). AMD's hardware virtualization extensions (equivalent to Intel VT-x). Required for KVM on AMD processors.
+svm-lock: |
+  SVM lock. AMD feature for locking the SVM configuration to prevent unauthorized modification of virtualization settings.
+svme-addr-chk: |
+  SVM address check. AMD feature for additional address checking in SVM operations.
+syscall: |
+  SYSCALL/SYSRET instructions. Fast system call mechanism for 64-bit code. Present on all modern x86-64 CPUs.
+taa-no: |
+  Not affected by TSX Asynchronous Abort (TAA) vulnerability.
+tbm: |
+  Trailing Bit Manipulation. AMD instructions for detecting and manipulating trailing bits (BLCFILL, BLCI, etc.).
+tce: |
+  Translation Cache Extension. AMD feature for extended TLB capabilities.
+tm: |
+  Transactional Memory (TM). Intel TSX capability flag indicating HLE is supported.
+tm2: |
+  Transactional Memory 2 (TM2). Indicates RTM (Restricted Transactional Memory) is supported.
+topoext: |
+  AMD Topology Extensions. Provides extended CPU topology information (cores, compute units, nodes) via CPUID. Required for proper NUMA and SMT topology reporting in guests.
+tsa-l1-no: |
+  Not affected by TSA-L1 (Thread Shadow Address L1) vulnerability.
+tsa-sq-no: |
+  Not affected by TSA-SQ (Thread Shadow Address Store Queue) vulnerability.
+tsc: |
+  Time Stamp Counter (TSC). High-resolution per-CPU counter. Present on all modern x86 CPUs. Used for timing and performance measurement.
+tsc-adjust: |
+  TSC adjust MSR (IA32_TSC_ADJUST). Allows software to track TSC offsets applied by the OS or hypervisor without needing to read the TSC directly.
+tsc-deadline: |
+  TSC deadline timer. Local APIC timer mode that triggers an interrupt when the TSC reaches a specified deadline. More precise than the traditional APIC timer.
+tsc-scale: |
+  TSC scaling. AMD SVM feature that allows scaling the guest TSC frequency relative to the host TSC, enabling stable TSC across migration.
+tsx-ctrl: |
+  TSX control. Allows the OS to disable TSX (RTM) at runtime via the IA32_TSX_CTRL MSR. Used to mitigate TAA vulnerability.
+tsx-ldtrk: |
+  TSX LDTRK (Load Tracking). Intel instruction for tracking cache line loads in a transaction without adding them to the read set.
+umip: |
+  User Mode Instruction Prevention (UMIP). Prevents user-mode code from executing SGDT, SIDT, SLDT, STR, and SMSW instructions, reducing kernel address exposure.
+v-vmsave-vmload: |
+  Virtual VMSAVE/VMLOAD. AMD SVM feature that virtualizes VMSAVE/VMLOAD instructions for faster guest state management in nested virtualization.
+vaes: |
+  VAES (Vector AES). AVX-512 and AVX2 variants of AES-NI operating on 256/512-bit registers. Improves AES throughput for bulk encryption.
+verw-clear: |
+  VERW clear. Indicates the VERW instruction clears affected microarchitectural buffers, providing MDS mitigation.
+vgif: |
+  Virtual GIF (Global Interrupt Flag). AMD SVM feature that virtualizes the GIF flag, reducing VM exits for interrupt flag management.
+virt-ssbd: |
+  Virtual SSBD. AMD feature for virtualizing the Speculative Store Bypass Disable MSR for guest use.
+vmcb-clean: |
+  VMCB (Virtual Machine Control Block) clean bits. AMD SVM feature that indicates which VMCB fields have been modified, avoiding unnecessary state synchronization on VM entry.
+vme: |
+  Virtual 8086 Mode Extensions. Enhanced virtual 8086 mode support. Mostly relevant for legacy 16-bit guest code.
+vmx: |
+  Intel VMX (Virtual Machine Extensions). Intel's hardware virtualization extensions (equivalent to AMD SVM). Required for KVM on Intel processors.
+vnmi: |
+  Virtual NMI. AMD SVM feature for virtualizing non-maskable interrupts without VM exits.
+vpclmulqdq: |
+  VPCLMULQDQ (Vector Carry-Less Multiplication). AVX-512 and AVX2 variants of PCLMULQDQ operating on 256/512-bit registers. Improves carry-less multiplication throughput.
+waitpkg: |
+  WAITPKG (UMONITOR/UMWAIT/TPAUSE). User-mode instructions for monitoring and waiting on memory addresses, enabling efficient C-state entry from user space.
+wbnoinvd: |
+  WBNOINVD (Write Back and Do Not Invalidate Cache). Writes back all modified cache lines to memory but keeps them in the cache, unlike WBINVD which invalidates them.
+wdt: |
+  Watchdog Timer. AMD feature for a hardware watchdog timer.
+wrmsrns: |
+  WRMSRNS (Write MSR Non-Serializing). Non-serializing variant of WRMSR that avoids the serialization overhead of the standard WRMSR instruction.
+x2apic: |
+  x2APIC. Extended APIC with MSR-based interface supporting up to 2^32 logical processors (vs 255 with xAPIC). Required for large SMP guests.
+xcrypt: |
+  VIA PadLock xcrypt instruction. VIA's hardware encryption engine.
+xcrypt-en: |
+  VIA PadLock xcrypt enabled. VIA feature flag.
+xfd: |
+  Extended Feature Disable (XFD). Allows the OS to disable certain extended CPU features (like AMX) on a per-thread basis, preventing #NM exceptions from unsupported features.
+xgetbv1: |
+  XGETBV with ECX=1 support. Indicates the XGETBV instruction supports the expanded XCR0 (extended control register) for AVX-512 and AMX state.
+xop: |
+  XOP (eXtended Operations). AMD's 128-bit SIMD instruction set with 3-operand format. Largely superseded by AVX2. Rarely used.
+xsave: |
+  XSAVE/XRSTOR instructions. Saves and restores extended processor state (FPU, SSE, AVX, AVX-512, etc.) in a single operation. Required for context switching extended CPU state.
+xsavec: |
+  XSAVEC (Compacted XSAVE). Compacted form of XSAVE that omits unmodified state components, reducing save area size.
+xsaveerptr: |
+  XSAVE ER (Error Reporting) PTR. AMD feature for XSAVE error pointer reporting.
+xsaveopt: |
+  XSAVEOPT (Optimized XSAVE). Optimized XSAVE that only saves modified state components, reducing save time when most components are unchanged.
+xsaves: |
+  XSAVES/XRSTORS (Supervisor XSAVE). Compact XSAVE variant for supervisor-mode use, with access to supervisor state components.
+xstore: |
+  VIA PadLock xstore (RNG). VIA hardware random number generator.
+xstore-en: |
+  VIA PadLock xstore enabled. VIA RNG feature flag.
+xtpr: |
+  xTPR (Task Priority Register) update message. Intel feature for messaging the chipset about task priority changes.
+zero-fcs-fds: |
+  Zero FCS/FDS on FPU state save. Indicates the FPU code and data segment pointers are zeroed on FXSAVE, reducing information leakage.

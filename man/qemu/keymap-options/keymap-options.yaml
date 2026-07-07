@@ -1,0 +1,36 @@
+"grp:alt_shift_toggle": |
+  Alt+Shift toggle. Press Alt+Shift to switch between keyboard layouts. The most common layout switching shortcut on Windows and Linux desktops.
+"caps:escape": |
+  Caps Lock acts as Escape. Repurposes the Caps Lock key as an Escape key, popular with Vim and Emacs users. Reduces hand movement for the frequently-used Escape key.
+"caps:backspace": |
+  Caps Lock acts as Backspace. Repurposes Caps Lock as an additional Backspace key.
+"caps:super": |
+  Caps Lock acts as Super (Windows key). Repurposes Caps Lock as the Super/Windows key, useful for keyboards without a dedicated Super key.
+"caps:ctrl": |
+  Caps Lock acts as Ctrl. Repurposes Caps Lock as an additional Control key, popular with Emacs users and keyboard-heavy workflows.
+"ctrl:nocaps": |
+  Remove Caps Lock. Disables the Caps Lock key entirely without reassigning it.
+"grp:caps_toggle": |
+  Caps Lock toggles layout. Use Caps Lock to switch between keyboard layouts. Avoids conflicts with application-level Alt+Shift shortcuts.
+"grp:shifts_toggle": |
+  Both Shift keys toggle layout. Press both left and right Shift simultaneously to switch keyboard layouts.
+"grp:alt_caps_toggle": |
+  Alt+Caps Lock toggle. Press Alt+Caps Lock to switch layouts.
+"grp:win_space_toggle": |
+  Win+Space toggle. Press Super (Windows key) + Space to switch layouts. The default shortcut on modern Windows and some Linux desktops.
+"compose:ralt": |
+  Right Alt as Compose. Repurposes the right Alt key as a Compose key for entering accented and special characters via multi-key sequences.
+"compose:rwin": |
+  Right Super as Compose. Repurposes the right Windows/Super key as a Compose key.
+"compose:menu": |
+  Menu key as Compose. Repurposes the Menu (context) key as a Compose key.
+"lv3:ralt_switch": |
+  Right Alt as Level 3 shift. The right Alt key provides access to a third shift level (additional characters), common on international layouts.
+"lv3:rwin_switch": |
+  Right Super as Level 3 shift. The right Windows/Super key provides Level 3 shift access.
+"eurosign:e": |
+  Euro sign on E. Press the configured Level 3 shift + E to type the Euro sign (€).
+"eurosign:5": |
+  Euro sign on 5. Press the configured Level 3 shift + 5 to type the Euro sign (€).
+"nbsp:level3": |
+  Non-breaking space on Level 3 space. Press Level 3 shift + Space for a non-breaking space character.

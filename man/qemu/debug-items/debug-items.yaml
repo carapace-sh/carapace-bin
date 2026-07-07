@@ -1,0 +1,44 @@
+out_asm: |
+  Show generated host assembly code for each compiled Translation Block (TB). Displays the host machine code QEMU generates from the guest instructions. Useful for understanding what the TCG backend produces and verifying code generation.
+in_asm: |
+  Show target assembly code for each compiled Translation Block (TB). Displays the original guest instructions before translation. Useful for correlating guest code with TCG output.
+op: |
+  Show micro-operations (TCG ops) for each compiled Translation Block. These are the intermediate representation between guest instructions and host code. Useful for understanding QEMU's internal translation process.
+op_opt: |
+  Show micro-operations after TCG optimization. Displays the TCG ops after dead code elimination, constant folding, and other optimizations have been applied. Compare with `op` to see what the optimizer changed.
+op_ind: |
+  Show micro-operations before indirect lowering. Displays TCG ops before indirect operations (like indirect calls or branches) are lowered to their final form.
+op_plugin: |
+  Show micro-operations before TCG plugin injection. Displays the TCG ops before plugin instrumentation code is inserted. Useful for plugin developers to understand where instrumentation hooks are placed.
+int: |
+  Show interrupts and exceptions in short format. Logs when the guest CPU receives an interrupt or raises an exception, including the vector number and type. Essential for debugging interrupt handling issues.
+exec: |
+  Show trace before each executed Translation Block (TB). Logs each TB as it is about to execute, including its guest address. Very verbose — produces output for every TB execution. Useful for tracing guest execution flow.
+cpu: |
+  Show CPU register state before entering a Translation Block (TB). Dumps key CPU registers (general purpose, segment, flags) at the start of each TB. Combine with `fpu` or `vpu` to include FPU/SIMD registers. Very verbose output.
+fpu: |
+  Include FPU (floating-point unit) registers in the `cpu` logging output. Adds x87 FPU register state to the register dump produced by the `cpu` log item. Only meaningful when `cpu` is also enabled.
+mmu: |
+  Log MMU (Memory Management Unit) related activities. Reports page table walks, TLB misses, and address translations. Useful for debugging guest virtual memory issues or understanding memory access patterns.
+pcall: |
+  x86 only: show protected mode far calls, returns, and exceptions. Logs details of inter-privilege level calls (call gates, task switches, interrupt/exception handling) in protected mode. Essential for debugging x86 privilege level transitions.
+cpu_reset: |
+  Show CPU state before CPU resets. Dumps the full CPU register state whenever the guest CPU is reset (e.g. on reboot or initial startup). Useful for debugging boot sequences and reset handling.
+unimp: |
+  Log unimplemented functionality. Reports when QEMU encounters a guest operation that is not fully implemented, such as an unhandled MSR or CPUID leaf. These often indicate missing emulation features that may cause guest OS issues.
+guest_errors: |
+  Log when the guest OS does something invalid. Reports guest misbehavior such as writing to read-only MMIO regions, accessing invalid PCI configuration space, or using undefined CPU behavior. Helps identify guest driver or firmware bugs.
+page: |
+  Dump pages at the beginning of user-mode emulation. Logs the initial memory map when QEMU starts in user-mode (linux-user) emulation. Only relevant for `qemu-i386`, `qemu-x86_64`, and other user-mode emulators, not full-system emulation.
+nochain: |
+  Do not chain compiled Translation Blocks (TBs). Disables TB chaining, where QEMU links the end of one TB directly to the next to avoid returning to the main execution loop. Slows execution significantly but makes the `exec` log more useful since each TB execution goes through the dispatch loop.
+plugin: |
+  Output from TCG plugins. Logs instrumentation data produced by loaded TCG plugins. Only useful when a plugin is loaded via `-plugin`. See the QEMU plugin documentation for plugin-specific output formats.
+strace: |
+  Log every user-mode system call. Prints the syscall name, arguments, and return value for each system call the guest makes. Only relevant for user-mode (linux-user) emulation — similar to the host `strace` tool. Very verbose.
+tid: |
+  Open a separate log file per thread. Each QEMU vCPU thread writes its log output to a separate file (named `<logfile>.<tid>`). Useful when debugging multi-CPU guests where interleaved log output from different vCPUs is hard to follow.
+vpu: |
+  Include VPU (Vector Processing Unit / SIMD) registers in the `cpu` logging output. Adds SIMD register state (SSE/AVX on x86, NEON on ARM) to the register dump produced by the `cpu` log item. Only meaningful when `cpu` is also enabled.
+invalid_mem: |
+  Log invalid memory accesses. Reports when the guest attempts to access memory at an address that has no valid mapping. Helps debug guest null pointer dereferences, out-of-bounds accesses, and uninitialized memory usage.

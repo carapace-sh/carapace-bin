@@ -1,0 +1,8 @@
+nbd: |
+  Network Block Device export. Serves the block node over the NBD protocol, allowing remote clients to read and write the disk image over TCP or Unix domain sockets. The most common export type for remote block storage access. Requires `--nbd-server` to be configured on `qemu-storage-daemon`, or is served directly by `qemu-nbd`.
+fuse: |
+  Filesystem in Userspace (FUSE) export. Mounts the block node as a regular file on the host filesystem via FUSE. The exported file appears and behaves like a normal disk image file, but reads and writes are serviced by the QEMU block layer. Requires FUSE support in the host kernel and the `qemu-storage-daemon`.
+vhost-user-blk: |
+  vhost-user block device export. Exports the block node over a vhost-user Unix domain socket, enabling high-performance block I/O from a separate userspace process (e.g. SPDK, DPDK). The vhost protocol allows the consumer to access the virtio ring buffers directly with minimal host kernel involvement.
+vduse-blk: |
+  VDUSE (vDPA User) block device export. Creates a VDUSE block device that can be attached to the kernel vDPA bus, making it accessible to VMs via virtio VDPA. Bridges userspace block backends with the kernel vDPA framework. Requires a Linux kernel with VDUSE support (5.15+). After creation, the device must be attached to a vDPA management device using `vdpa(8)`.
