@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/linux/qemu-io_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/qemu"
 	"github.com/spf13/cobra"
 )
 
@@ -39,10 +39,10 @@ func init() {
 	rootCmd.Flags().BoolP("version", "V", false, "output version information and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"aio":     action.ActionAioModes(),
-		"cache":   action.ActionCacheModes(),
+		"aio":     qemu.ActionAioModes(),
+		"cache":   qemu.ActionCacheModes(),
 		"discard": carapace.ActionValues("ignore", "unmap"),
-		"format":  action.ActionImageFormats(),
+		"format":  qemu.ActionImageFormats(),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
