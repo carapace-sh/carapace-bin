@@ -18,13 +18,9 @@ func ActionColorNames() carapace.Action {
 		for _, line := range lines {
 			line = strings.TrimSpace(line)
 			if line != "" {
-				if fields := strings.Fields(line); len(fields) > 1 {
-					vals = append(vals, fields[0], strings.Join(fields[1:], " "))
-				} else {
-					vals = append(vals, line)
-				}
+				vals = append(vals, line)
 			}
 		}
-		return carapace.ActionValuesDescribed(vals...)
+		return carapace.ActionValues(vals...)
 	})
 }
