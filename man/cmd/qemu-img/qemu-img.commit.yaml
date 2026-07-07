@@ -22,4 +22,4 @@ documentation:
     drop: After committing, skip emptying the overlay file (FILE). By default, FILE is reset to contain no data.
     format: Explicitly specify the image format. Without this option, the format is probed automatically.
     rate-limit: Limit the commit I/O rate to the given number of bytes per second.
-    cache: Set the cache mode used to access the disk image. See [cache modes](qemu://cache-modes).
+    cache: Set the cache mode used to access the disk image. See [cache modes](qemu://cache-mode).

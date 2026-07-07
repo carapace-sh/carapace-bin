@@ -44,9 +44,9 @@ documentation:
     local NBD devices. Supports TLS, persistent dirty bitmaps, allocation
     depth, and multiple simultaneous clients.
   flag:
-    aio: Set the asynchronous I/O backend. See [AIO modes](qemu://aio-modes).
-    cache: Set the cache mode used to access the disk image. See [cache modes](qemu://cache-modes).
-    format: Set the disk image format. See [image formats](qemu://image-formats). Without this option, the format is probed automatically.
+    aio: Set the asynchronous I/O backend. See [AIO modes](qemu://aio-mode).
+    cache: Set the cache mode used to access the disk image. See [cache modes](qemu://cache-mode).
+    format: Set the disk image format. See [image formats](qemu://image-format). Without this option, the format is probed automatically.
     bind: Network interface to bind the NBD server to. Default is `0.0.0.0`.
     port: TCP port to listen on. Default is 10809.
     socket: Path to a Unix domain socket for the NBD server. Use instead of TCP.

@@ -21,5 +21,5 @@ func ActionNetdevTypes() carapace.Action {
 		"vhost-user", "vhost-user network",
 		"vhost-vdpa", "vhost-vDPA network",
 		"hubport", "hub port",
-	).Tag("netdev types").Uid("qemu", "netdev-types")
+	).Tag("netdev types").Uid("qemu", "netdev-type")
 }

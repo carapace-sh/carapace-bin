@@ -18,6 +18,6 @@ documentation:
     actually writing it. Reports the required file size and, for qcow2, the
     additional metadata overhead. Useful for pre-allocating storage.
   flag:
-    target-format: Specify the output image format to measure for. See [image formats](qemu://image-formats). Default is raw.
+    target-format: Specify the output image format to measure for. See [image formats](qemu://image-format). Default is raw.
     format: Explicitly specify the source image format. Without this option, the format is probed automatically.
     size: Measure the file size required for an image of the given virtual size, without a source file.

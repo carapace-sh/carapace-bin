@@ -36,12 +36,12 @@ documentation:
     are concatenated in order.
   flag:
     compress: Write a compressed target image. Only supported for qcow and qcow2 formats.
-    target-format: Specify the output image format. See [image formats](qemu://image-formats). Default is raw.
+    target-format: Specify the output image format. See [image formats](qemu://image-format). Default is raw.
     format: Explicitly specify the format of all source images. Without this option, the format is probed automatically.
     backing: Create the target image as a copy-on-write overlay on top of the specified backing file.
     backing-format: Specify the format of the backing file referenced by `-b`.
-    source-cache: Set the cache mode for reading source images. See [cache modes](qemu://cache-modes).
-    target-cache: Set the cache mode for writing the target image. See [cache modes](qemu://cache-modes).
+    source-cache: Set the cache mode for reading source images. See [cache modes](qemu://cache-mode).
+    target-cache: Set the cache mode for writing the target image. See [cache modes](qemu://cache-mode).
     parallel: Number of parallel coroutines for the conversion process. Default is 8.
     copy-range-offloading: Use copy offloading (copy_file_range) to reduce CPU usage when source and target are both raw on the same filesystem.
     oob-writes: Enable out-of-order writes to improve performance when converting to a target that supports it.

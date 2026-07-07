@@ -22,4 +22,4 @@ documentation:
     a-format: Explicitly specify the format of the first image (FILE1).
     b-format: Explicitly specify the format of the second image (FILE2).
     strict: Enable strict mode — images are considered different if their sizes do not match, even if the overlapping content is identical.
-    cache: Set the cache mode used to access both images. See [cache modes](qemu://cache-modes).
+    cache: Set the cache mode used to access both images. See [cache modes](qemu://cache-mode).

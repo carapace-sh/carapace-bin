@@ -21,4 +21,4 @@ documentation:
     format: Explicitly specify the image format. Without this option, the format is probed automatically.
     repair: Try to repair errors of the given category (`leaks` or `all`). Only for qcow2 images.
     output: 'Output format for the check report: `human` (default) or `json`.'
-    cache: Set the cache mode used to access the disk image. See [cache modes](qemu://cache-modes).
+    cache: Set the cache mode used to access the disk image. See [cache modes](qemu://cache-mode).

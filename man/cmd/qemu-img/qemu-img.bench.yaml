@@ -25,8 +25,8 @@ documentation:
     Run a simple I/O benchmark on a disk image. Measures read or write
     throughput with configurable request size, queue depth, and AIO backend.
   flag:
-    aio: Set the asynchronous I/O backend. See [AIO modes](qemu://aio-modes).
-    cache: Set the cache mode used to access the disk image. See [cache modes](qemu://cache-modes).
+    aio: Set the asynchronous I/O backend. See [AIO modes](qemu://aio-mode).
+    cache: Set the cache mode used to access the disk image. See [cache modes](qemu://cache-mode).
     count: Number of I/O requests to perform.
     depth: Number of requests to issue in parallel (queue depth).
     format: Explicitly specify the image format. Without this option, the format is probed automatically.

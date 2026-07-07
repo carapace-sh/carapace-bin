@@ -49,7 +49,7 @@ func ActionImageFormats() carapace.Action {
 		"vmdk", "VMware disk image",
 		"vpc", "VPC (VHD) disk image",
 		"vvfat", "Virtual VFAT",
-	).Tag("image formats").Uid("qemu", "image-formats")
+	).Tag("image formats").Uid("qemu", "image-format")
 }
 
 // ActionCacheModes completes QEMU cache modes
@@ -63,7 +63,7 @@ func ActionCacheModes() carapace.Action {
 		"writethrough", "write-through caching",
 		"directsync", "direct sync",
 		"unsafe", "unsafe caching",
-	).Tag("cache modes").Uid("qemu", "cache-modes")
+	).Tag("cache modes").Uid("qemu", "cache-mode")
 }
 
 // ActionAioModes completes QEMU AIO modes
@@ -75,7 +75,7 @@ func ActionAioModes() carapace.Action {
 		"threads", "pthreads based AIO",
 		"native", "Linux native AIO",
 		"io_uring", "Linux io_uring AIO",
-	).Tag("aio modes").Uid("qemu", "aio-modes")
+	).Tag("aio modes").Uid("qemu", "aio-mode")
 }
 
 // ActionExportTypes completes QEMU storage daemon export types
@@ -88,5 +88,5 @@ func ActionExportTypes() carapace.Action {
 		"fuse", "Filesystem in Userspace",
 		"vhost-user-blk", "vhost-user block device",
 		"vduse-blk", "VDUSE block device",
-	).Tag("export types").Uid("qemu", "export-types")
+	).Tag("export types").Uid("qemu", "export-type")
 }

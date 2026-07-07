@@ -122,12 +122,12 @@ documentation:
     via KVM, Xen, or HVF for near-native performance.
   flag:
     machine: Select the emulated machine type. Run `-machine help` to list available machines.
-    accel: Select the hypervisor accelerator. See [accelerators](qemu://accels). Default is `tcg`.
+    accel: Select the hypervisor accelerator. See [accelerators](qemu://accel). Default is `tcg`.
     cpu: Select the CPU model. Run `-cpu help` to list available models.
     m: Configure guest RAM size. Accepts suffixes like M or G (e.g. `-m 2G`).
     smp: Set the number of CPUs and CPU topology (sockets, cores, threads).
-    display: Select the display output type. See [display types](qemu://display-types).
-    vga: Select the VGA card type. See [VGA types](qemu://vga-types).
+    display: Select the display output type. See [display types](qemu://display-type).
+    vga: Select the VGA card type. See [VGA types](qemu://vga-type).
     kernel: Load the specified file as the guest kernel, bypassing the normal boot sequence.
     initrd: Load the specified file as the initial ramdisk for the guest kernel.
     append: Use the given string as the kernel command line.
@@ -137,12 +137,12 @@ documentation:
     blockdev: Define a block driver node with explicit connections. Preferred over `-drive` for complex storage setups.
     netdev: Configure a network backend. The frontend NIC is connected automatically or via `-device`.
     nic: Configure the default Network Interface Card.
-    monitor: Redirect the QEMU monitor to a character device. See [char devices](qemu://char-devices).
-    serial: Redirect the virtual serial port to a character device. See [char devices](qemu://char-devices).
-    parallel: Redirect the virtual parallel port to a character device. See [char devices](qemu://char-devices).
-    gdb: Wait for a GDB connection on the specified device. See [char devices](qemu://char-devices).
-    qmp: Redirect the QEMU Machine Protocol (QMP) to a character device. See [char devices](qemu://char-devices).
-    watchdog-action: Set the action to take when the watchdog timer expires. See [watchdog actions](qemu://watchdog-actions).
+    monitor: Redirect the QEMU monitor to a character device. See [char devices](qemu://char-device).
+    serial: Redirect the virtual serial port to a character device. See [char devices](qemu://char-device).
+    parallel: Redirect the virtual parallel port to a character device. See [char devices](qemu://char-device).
+    gdb: Wait for a GDB connection on the specified device. See [char devices](qemu://char-device).
+    qmp: Redirect the QEMU Machine Protocol (QMP) to a character device. See [char devices](qemu://char-device).
+    watchdog-action: Set the action to take when the watchdog timer expires. See [watchdog actions](qemu://watchdog-action).
     enable-kvm: Enable KVM full virtualization support. Shorthand for `-accel kvm`.
     snapshot: Write to temporary files instead of the disk image, so the image is not modified.
     daemonize: Daemonize the QEMU process after initialization. QEMU detaches from the terminal once startup is complete.

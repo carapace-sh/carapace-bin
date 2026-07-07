@@ -16,7 +16,7 @@ func ActionAccels() carapace.Action {
 		"nvmm", "NetBSD virtual machine monitor",
 		"nitro", "AWS Nitro Enclaves",
 		"mshv", "Microsoft Hyper-V",
-	).Tag("accelerators").Uid("qemu", "accels")
+	).Tag("accelerators").Uid("qemu", "accel")
 }
 
 // ActionBootDrives completes QEMU boot drive letters
@@ -30,7 +30,7 @@ func ActionBootDrives() carapace.Action {
 		"c", "hard disk",
 		"d", "CD-ROM",
 		"n", "network",
-	).Tag("boot drives").Uid("qemu", "boot-drives")
+	).Tag("boot drives").Uid("qemu", "boot-drive")
 }
 
 // ActionDebugItems completes QEMU debug log items
@@ -61,5 +61,5 @@ func ActionDebugItems() carapace.Action {
 		"tid", "open a separate log file per thread",
 		"vpu", "include VPU registers in the 'cpu' logging",
 		"invalid_mem", "log invalid memory accesses",
-	).Tag("debug items").Uid("qemu", "debug-items")
+	).Tag("debug items").Uid("qemu", "debug-item")
 }

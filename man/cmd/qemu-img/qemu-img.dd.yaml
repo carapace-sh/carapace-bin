@@ -16,4 +16,4 @@ documentation:
     arguments.
   flag:
     format: Explicitly specify the input image format. Without this option, the format is probed automatically.
-    output-format: Specify the output image format. See [image formats](qemu://image-formats). Default is raw.
+    output-format: Specify the output image format. See [image formats](qemu://image-format). Default is raw.

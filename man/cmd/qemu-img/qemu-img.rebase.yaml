@@ -25,6 +25,6 @@ documentation:
     backing: Specify the new backing file to rebase onto.
     backing-format: Explicitly specify the format of the new backing file.
     backing-unsafe: Skip the safe rebase — just change the backing file pointer without adjusting overlay data.
-    backing-cache: Set the cache mode for accessing the new backing file. See [cache modes](qemu://cache-modes).
-    cache: Set the cache mode for the overlay image being rebased. See [cache modes](qemu://cache-modes).
+    backing-cache: Set the cache mode for accessing the new backing file. See [cache modes](qemu://cache-mode).
+    cache: Set the cache mode for the overlay image being rebased. See [cache modes](qemu://cache-mode).
     compress: Compress the image data written during the rebase.

@@ -20,4 +20,4 @@ documentation:
     backing-chain: Show information for every image in the backing chain, from the top image down to the base.
     format: Explicitly specify the image format. Without this option, the format is probed automatically.
     output: 'Output format: `human` (default) or `json`.'
-    cache: Set the cache mode used to access the disk image. See [cache modes](qemu://cache-modes).
+    cache: Set the cache mode used to access the disk image. See [cache modes](qemu://cache-mode).

@@ -16,7 +16,7 @@ documentation:
     set up a backing file to create a copy-on-write overlay. The image size
     is given as the positional argument and accepts suffixes like K, M, G, T.
   flag:
-    format: Specify the image format for the new file. See [image formats](qemu://image-formats). Default is raw.
+    format: Specify the image format for the new file. See [image formats](qemu://image-format). Default is raw.
     backing: Set the specified file as the backing image, creating a CoW overlay.
     backing-format: Explicitly specify the format of the backing file. Without this, the format is probed.
     backing-unsafe: Skip verifying that the backing file is readable. Useful when the backing file is not yet available.

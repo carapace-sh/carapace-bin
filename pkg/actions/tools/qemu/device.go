@@ -23,7 +23,7 @@ func ActionCharDevices() carapace.Action {
 		"udp", "UDP socket",
 		"unix", "Unix domain socket",
 		"vc", "virtual console",
-	).Tag("char devices").Uid("qemu", "char-devices")
+	).Tag("char devices").Uid("qemu", "char-device")
 }
 
 // ActionDisplayTypes completes QEMU display types
@@ -42,7 +42,7 @@ func ActionDisplayTypes() carapace.Action {
 		"none", "no display output",
 		"dbus", "D-Bus display",
 		"cocoa", "macOS Cocoa window",
-	).Tag("display types").Uid("qemu", "display-types")
+	).Tag("display types").Uid("qemu", "display-type")
 }
 
 // ActionVgaTypes completes QEMU VGA types
@@ -60,7 +60,7 @@ func ActionVgaTypes() carapace.Action {
 		"tcx", "TCX (Sun)",
 		"cg3", "CG3 (Sun)",
 		"none", "no VGA",
-	).Tag("vga types").Uid("qemu", "vga-types")
+	).Tag("vga types").Uid("qemu", "vga-type")
 }
 
 // ActionWatchdogActions completes QEMU watchdog actions
@@ -76,5 +76,5 @@ func ActionWatchdogActions() carapace.Action {
 		"debug", "print debug message",
 		"none", "do nothing",
 		"inject-nmi", "inject an NMI into the guest",
-	).Tag("watchdog actions").Uid("qemu", "watchdog-actions")
+	).Tag("watchdog actions").Uid("qemu", "watchdog-action")
 }

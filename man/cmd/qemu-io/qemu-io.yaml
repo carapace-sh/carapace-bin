@@ -27,7 +27,7 @@ documentation:
     flush, etc.). Useful for debugging and testing block driver behavior.
     Use `-c help` to list available commands.
   flag:
-    aio: Set the asynchronous I/O backend. See [AIO modes](qemu://aio-modes).
-    cache: Set the cache mode for the image. See [cache modes](qemu://cache-modes).
-    format: Specify the block driver (image format). See [image formats](qemu://image-formats).
+    aio: Set the asynchronous I/O backend. See [AIO modes](qemu://aio-mode).
+    cache: Set the cache mode for the image. See [cache modes](qemu://cache-mode).
+    format: Specify the block driver (image format). See [image formats](qemu://image-format).
     cmd: Execute an I/O command non-interactively and exit. Pass `help` to list available commands.

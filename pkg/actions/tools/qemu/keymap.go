@@ -13,7 +13,7 @@ import (
 //	de (German)
 func ActionKeymapLayouts() carapace.Action {
 	return carapace.ActionExecCommand("awk", "/^! layout/{found=1; next} /^!/{found=0} found && NF{sub(/^[ \\t]+/, \"\"); print}", "/usr/share/X11/xkb/rules/base.lst")(func(output []byte) carapace.Action {
-		return parseXkbEntries(string(output)).Tag("layouts").Uid("qemu", "keymap-layouts")
+		return parseXkbEntries(string(output)).Tag("layouts").Uid("qemu", "keymap-layout")
 	})
 }
 
@@ -23,7 +23,7 @@ func ActionKeymapLayouts() carapace.Action {
 //	pc104 (Generic 104-key PC)
 func ActionKeymapModels() carapace.Action {
 	return carapace.ActionExecCommand("awk", "/^! model/{found=1; next} /^!/{found=0} found && NF{sub(/^[ \\t]+/, \"\"); print}", "/usr/share/X11/xkb/rules/base.lst")(func(output []byte) carapace.Action {
-		return parseXkbEntries(string(output)).Tag("models").Uid("qemu", "keymap-models")
+		return parseXkbEntries(string(output)).Tag("models").Uid("qemu", "keymap-model")
 	})
 }
 
@@ -38,7 +38,7 @@ func ActionKeymapVariants() carapace.Action {
 			layout = "us"
 		}
 		return carapace.ActionExecCommand("awk", fmt.Sprintf("/^! variant/{found=1; next} /^!/{found=0} found && NF && $2 ~ /^%s:/{sub(/^[ \\t]+/, \"\"); gsub(/ %s:/, \" \", $0); print}", layout, layout), "/usr/share/X11/xkb/rules/base.lst")(func(output []byte) carapace.Action {
-			return parseXkbEntries(string(output)).Tag("variants").Uid("qemu", "keymap-variants")
+			return parseXkbEntries(string(output)).Tag("variants").Uid("qemu", "keymap-variant")
 		})
 	})
 }
@@ -49,7 +49,7 @@ func ActionKeymapVariants() carapace.Action {
 //	caps:escape (Caps Lock acts as Escape)
 func ActionKeymapOptions() carapace.Action {
 	return carapace.ActionExecCommand("awk", "/^! option/{found=1; next} /^!/{found=0} found && NF{sub(/^[ \\t]+/, \"\"); print}", "/usr/share/X11/xkb/rules/base.lst")(func(output []byte) carapace.Action {
-		return parseXkbEntries(string(output)).Tag("options").Uid("qemu", "keymap-options")
+		return parseXkbEntries(string(output)).Tag("options").Uid("qemu", "keymap-option")
 	})
 }
 

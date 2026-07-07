@@ -21,4 +21,4 @@ documentation:
     image-opts: Treat the positional FILE argument as a full set of image option strings instead of a plain filename.
     format: Explicitly specify the image format. Without this option, the format is probed automatically.
     options: Format-specific options to amend, in the form `key=value` separated by commas. Required.
-    cache: Set the cache mode used to access the disk image. See [cache modes](qemu://cache-modes).
+    cache: Set the cache mode used to access the disk image. See [cache modes](qemu://cache-mode).

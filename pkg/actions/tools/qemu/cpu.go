@@ -319,5 +319,5 @@ func ActionCpuFeatures() carapace.Action {
 		"xstore-en",
 		"xtpr",
 		"zero-fcs-fds",
-	).Tag("cpu features").Uid("qemu", "cpu-features")
+	).Tag("cpu features").Uid("qemu", "cpu-feature")
 }
