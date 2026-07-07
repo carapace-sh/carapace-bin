@@ -26,4 +26,8 @@ func init() {
 			return git.ActionBundleHeads(c.Args[0])
 		}),
 	)
+
+	carapace.Gen(bundle_listHeadsCmd).DashAnyCompletion(
+		carapace.ActionPositional(bundle_listHeadsCmd),
+	)
 }
