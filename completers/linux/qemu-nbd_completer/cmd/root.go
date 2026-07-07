@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/linux/qemu-nbd_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/qemu"
 	"github.com/spf13/cobra"
 )
 
@@ -56,12 +56,12 @@ func init() {
 	rootCmd.Flags().BoolP("version", "V", false, "output version information and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"aio":           action.ActionAioModes(),
-		"cache":         action.ActionCacheModes(),
+		"aio":           qemu.ActionAioModes(),
+		"cache":         qemu.ActionCacheModes(),
 		"connect":       carapace.ActionFiles("/dev/nbd*"),
 		"detect-zeroes": carapace.ActionValues("off", "on", "unmap"),
 		"discard":       carapace.ActionValues("ignore", "unmap"),
-		"format":        action.ActionImageFormats(),
+		"format":        qemu.ActionImageFormats(),
 		"pid-file":      carapace.ActionFiles(),
 		"socket":        carapace.ActionFiles(),
 	})
