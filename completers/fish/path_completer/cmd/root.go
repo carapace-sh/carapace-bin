@@ -18,30 +18,4 @@ func Execute() error {
 
 func init() {
 	carapace.Gen(rootCmd).Standalone()
-
-	rootCmd.Flags().BoolS("C", "C", false, "center padding")
-	rootCmd.Flags().BoolS("E", "E", false, "remove extension")
-	rootCmd.Flags().BoolS("R", "R", false, "relative mtime")
-	rootCmd.Flags().BoolS("Z", "Z", false, "NUL-delimited output")
-	rootCmd.Flags().Bool("all", false, "return 0 if all paths pass")
-	rootCmd.Flags().Bool("center", false, "center padding")
-	rootCmd.Flags().BoolS("h", "h", false, "display help")
-	rootCmd.Flags().Bool("invert", false, "invert filter")
-	rootCmd.Flags().String("key", "", "sort key")
-	rootCmd.Flags().Bool("no-extension", false, "remove extension")
-	rootCmd.Flags().Bool("null-in", false, "NUL-delimited input")
-	rootCmd.Flags().Bool("null-out", false, "NUL-delimited output")
-	rootCmd.Flags().BoolS("q", "q", false, "suppress output")
-	rootCmd.Flags().Bool("quiet", false, "suppress output")
-	rootCmd.Flags().BoolS("r", "r", false, "reverse sort")
-	rootCmd.Flags().Bool("relative", false, "relative mtime")
-	rootCmd.Flags().Bool("reverse", false, "reverse sort")
-	rootCmd.Flags().BoolS("u", "u", false, "deduplicate")
-	rootCmd.Flags().Bool("unique", false, "deduplicate")
-	rootCmd.Flags().BoolS("v", "v", false, "invert filter")
-	rootCmd.Flags().BoolS("z", "z", false, "NUL-delimited input")
-
-	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"key": carapace.ActionValues("basename", "dirname", "path"),
-	})
 }

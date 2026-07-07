@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/shell"
 	"github.com/spf13/cobra"
 )
 
@@ -24,6 +25,13 @@ func init() {
 	rootCmd.Flags().Bool("save", false, "save to fish configuration directory")
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		carapace.ActionValues(),
+		carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return shell.ActionAliases()
+			default:
+				return carapace.ActionValues()
+			}
+		}),
 	)
 }

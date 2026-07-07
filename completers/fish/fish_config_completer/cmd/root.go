@@ -18,6 +18,4 @@ func Execute() error {
 
 func init() {
 	carapace.Gen(rootCmd).Standalone()
-
-	rootCmd.Flags().BoolS("h", "h", false, "display help")
 }

@@ -31,10 +31,15 @@ func init() {
 	rootCmd.Flags().Bool("path", false, "print path")
 	rootCmd.Flags().BoolS("q", "q", false, "suppress output")
 	rootCmd.Flags().Bool("query", false, "suppress output")
+	rootCmd.Flags().Bool("quiet", false, "suppress output")
 	rootCmd.Flags().BoolS("s", "s", false, "short output")
 	rootCmd.Flags().Bool("short", false, "short output")
 	rootCmd.Flags().BoolS("t", "t", false, "print type")
 	rootCmd.Flags().Bool("type", false, "print type")
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"color": carapace.ActionValues("always", "never", "auto"),
+	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionExecutables().FilterArgs(),

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/fish"
 	"github.com/spf13/cobra"
 )
 
@@ -37,4 +38,17 @@ func init() {
 	rootCmd.Flags().String("theme", "", "theme name")
 	rootCmd.Flags().StringS("u", "u", "", "underline style")
 	rootCmd.Flags().String("underline-color", "", "underline color")
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"b":               fish.ActionColorNames(),
+		"background":      fish.ActionColorNames(),
+		"f":               fish.ActionColorNames(),
+		"foreground":      fish.ActionColorNames(),
+		"u":               carapace.ActionValues("single", "double", "curly", "dotted", "dashed", "off"),
+		"underline-color": fish.ActionColorNames(),
+	})
+
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		fish.ActionColorNames(),
+	)
 }
