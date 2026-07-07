@@ -28,8 +28,20 @@ func init() {
 	})
 
 	carapace.Gen(ddCmd).PositionalAnyCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return carapace.ActionValues("bs=", "count=", "if=", "of=").NoSpace()
+		carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return carapace.ActionValues("bs=", "count=", "if=", "of=", "skip=").NoSpace()
+			case 1:
+				switch c.Parts[0] {
+				case "if", "of":
+					return carapace.ActionFiles()
+				default:
+					return carapace.ActionValues()
+				}
+			default:
+				return carapace.ActionValues()
+			}
 		}),
 	)
 }

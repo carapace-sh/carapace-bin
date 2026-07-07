@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/qemu"
 	"github.com/spf13/cobra"
 )
 
@@ -27,6 +28,10 @@ func init() {
 	rootCmd.Flags().StringP("variant", "v", "", "set kbd variant")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"file": carapace.ActionFiles(),
+		"file":    carapace.ActionFiles(),
+		"layout":  qemu.ActionKeymapLayouts(),
+		"model":   qemu.ActionKeymapModels(),
+		"options": qemu.ActionKeymapOptions(),
+		"variant": qemu.ActionKeymapVariants(),
 	})
 }
