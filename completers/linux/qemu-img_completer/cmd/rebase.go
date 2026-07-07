@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/linux/qemu-img_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/qemu"
 	"github.com/spf13/cobra"
 )
 
@@ -31,10 +31,10 @@ func init() {
 
 	carapace.Gen(rebaseCmd).FlagCompletion(carapace.ActionMap{
 		"backing":        carapace.ActionFiles(),
-		"backing-cache":  action.ActionCacheModes(),
-		"backing-format": action.ActionImageFormats(),
-		"cache":          action.ActionCacheModes(),
-		"format":         action.ActionImageFormats(),
+		"backing-cache":  qemu.ActionCacheModes(),
+		"backing-format": qemu.ActionImageFormats(),
+		"cache":          qemu.ActionCacheModes(),
+		"format":         qemu.ActionImageFormats(),
 	})
 
 	carapace.Gen(rebaseCmd).PositionalCompletion(

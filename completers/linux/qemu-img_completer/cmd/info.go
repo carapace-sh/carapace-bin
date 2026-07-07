@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/linux/qemu-img_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/qemu"
 	"github.com/spf13/cobra"
 )
 
@@ -26,8 +26,8 @@ func init() {
 	rootCmd.AddCommand(infoCmd)
 
 	carapace.Gen(infoCmd).FlagCompletion(carapace.ActionMap{
-		"cache":  action.ActionCacheModes(),
-		"format": action.ActionImageFormats(),
+		"cache":  qemu.ActionCacheModes(),
+		"format": qemu.ActionImageFormats(),
 		"output": carapace.ActionValues("human", "json"),
 	})
 
