@@ -39,10 +39,10 @@ func init() {
 	rootCmd.Flags().BoolP("version", "V", false, "output version information and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"aio":    action.ActionAioModes(),
-		"cache":  action.ActionCacheModes(),
+		"aio":     action.ActionAioModes(),
+		"cache":   action.ActionCacheModes(),
 		"discard": carapace.ActionValues("ignore", "unmap"),
-		"format": action.ActionImageFormats(),
+		"format":  action.ActionImageFormats(),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
