@@ -1,0 +1,18 @@
+package cmd
+
+import (
+	"github.com/carapace-sh/carapace"
+	"github.com/spf13/cobra"
+)
+
+var help_tagCmd = &cobra.Command{
+	Use:   "tag",
+	Short: "List tags, or create / delete one. A new tag points at HEAD",
+	Run:   func(cmd *cobra.Command, args []string) {},
+}
+
+func init() {
+	carapace.Gen(help_tagCmd).Standalone()
+
+	helpCmd.AddCommand(help_tagCmd)
+}
