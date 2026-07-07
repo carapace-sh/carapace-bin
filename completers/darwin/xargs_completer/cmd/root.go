@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
 
@@ -18,13 +19,9 @@ func Execute() error {
 
 func init() {
 	carapace.Gen(rootCmd).Standalone()
+	rootCmd.Flags().SetInterspersed(false)
 
 	rootCmd.Flags().BoolS("0", "0", false, "Input items are terminated by NUL")
-	rootCmd.Flags().BoolS("o", "o", false, "Reopen stdin as /dev/tty")
-	rootCmd.Flags().BoolS("p", "p", false, "Prompt before each command")
-	rootCmd.Flags().BoolS("r", "r", false, "Do not run if no input")
-	rootCmd.Flags().BoolS("t", "t", false, "Print command before executing")
-
 	rootCmd.Flags().StringS("E", "E", "", "Set EOF string")
 	rootCmd.Flags().StringS("I", "I", "", "Replace replstr in arguments")
 	rootCmd.Flags().StringS("J", "J", "", "Replace replstr in initial arguments")
@@ -33,7 +30,13 @@ func init() {
 	rootCmd.Flags().StringS("R", "R", "", "Number of replacements")
 	rootCmd.Flags().StringS("S", "S", "", "Replacement size")
 	rootCmd.Flags().StringS("n", "n", "", "Use at most number arguments per command")
+	rootCmd.Flags().BoolS("o", "o", false, "Reopen stdin as /dev/tty")
+	rootCmd.Flags().BoolS("p", "p", false, "Prompt before each command")
+	rootCmd.Flags().BoolS("r", "r", false, "Do not run if no input")
 	rootCmd.Flags().StringS("s", "s", "", "Maximum command line size")
+	rootCmd.Flags().BoolS("t", "t", false, "Print command before executing")
 
-	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		bridge.ActionCarapaceBin(),
+	)
 }
