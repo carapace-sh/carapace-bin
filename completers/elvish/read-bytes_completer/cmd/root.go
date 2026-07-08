@@ -2,14 +2,13 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
 	"github.com/spf13/cobra"
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "set-env",
-	Short: "Set an environment variable",
-	Long:  "https://elv.sh/ref/builtin.html#set-env",
+	Use:   "read-bytes",
+	Short: "Read bytes from stdin",
+	Long:  "https://elv.sh/ref/builtin.html#read-bytes",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
@@ -21,7 +20,6 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-		os.ActionEnvironmentVariables(),
-		carapace.ActionValues().Usage("value"),
+		carapace.ActionValues().Usage("number of bytes to read"),
 	)
 }

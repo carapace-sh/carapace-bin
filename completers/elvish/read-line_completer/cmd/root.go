@@ -6,9 +6,9 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "dirs",
-	Short: "Print the directory stack",
-	Long:  "https://elv.sh/ref/builtin.html#dirs",
+	Use:   "read-line",
+	Short: "Read a line from stdin",
+	Long:  "https://elv.sh/ref/builtin.html#read-line",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
@@ -18,8 +18,4 @@ func Execute() error {
 
 func init() {
 	carapace.Gen(rootCmd).Standalone()
-
-	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValues().Usage("directory"),
-	)
 }

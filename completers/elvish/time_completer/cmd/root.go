@@ -20,6 +20,8 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().StringS("on-end", "on-end", "", "callback with duration on end")
+
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		bridge.ActionCarapaceBin(),
 	)
