@@ -20,14 +20,15 @@ func init() {
 
 	carapace.Gen(tcpmetrics_showCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			switch c.Args[len(c.Args)-1] {
-			case "address":
-				return net.ActionIpv4Addresses()
-			case "dev":
-				return net.ActionDevices(net.IncludedDevices{Wifi: true, Ethernet: true})
-			default:
-				return carapace.ActionValues("address", "dev")
+			if len(c.Args) > 0 {
+				switch c.Args[len(c.Args)-1] {
+				case "address":
+					return net.ActionIpv4Addresses()
+				case "dev":
+					return net.ActionDevices(net.IncludedDevices{Wifi: true, Ethernet: true})
+				}
 			}
+			return carapace.ActionValues("address", "dev")
 		}),
 	)
 }

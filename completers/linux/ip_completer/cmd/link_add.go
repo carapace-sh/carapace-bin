@@ -29,22 +29,23 @@ func init() {
 
 	carapace.Gen(link_addCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			switch c.Args[len(c.Args)-1] {
-			case "dev":
-				return net.ActionDevices(net.IncludedDevices{Wifi: true, Ethernet: true})
-			case "type":
-				return action.ActionTypes()
-			case "master":
-				return net.ActionDevices(net.IncludedDevices{})
-			case "vrf":
-				return carapace.ActionValues()
-			case "netns":
-				return carapace.ActionValues()
-			case "address":
-				return carapace.ActionValues().NoSpace()
-			default:
-				return carapace.ActionValues("dev", "type", "master", "vrf", "netns", "address", "mtu", "up", "down", "group", "name")
+			if len(c.Args) > 0 {
+				switch c.Args[len(c.Args)-1] {
+				case "dev":
+					return net.ActionDevices(net.IncludedDevices{Wifi: true, Ethernet: true})
+				case "type":
+					return action.ActionTypes()
+				case "master":
+					return net.ActionDevices(net.IncludedDevices{})
+				case "vrf":
+					return carapace.ActionValues()
+				case "netns":
+					return carapace.ActionValues()
+				case "address":
+					return carapace.ActionValues().NoSpace()
+				}
 			}
+			return carapace.ActionValues("dev", "type", "master", "vrf", "netns", "address", "mtu", "up", "down", "group", "name")
 		}),
 	)
 }

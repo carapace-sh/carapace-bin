@@ -20,12 +20,13 @@ func init() {
 
 	carapace.Gen(maddress_deleteCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			switch c.Args[len(c.Args)-1] {
-			case "dev":
-				return net.ActionDevices(net.IncludedDevices{Wifi: true, Ethernet: true})
-			default:
-				return carapace.ActionValues("dev")
+			if len(c.Args) > 0 {
+				switch c.Args[len(c.Args)-1] {
+				case "dev":
+					return net.ActionDevices(net.IncludedDevices{Wifi: true, Ethernet: true})
+				}
 			}
+			return carapace.ActionValues("dev")
 		}),
 	)
 }

@@ -21,16 +21,17 @@ func init() {
 
 	carapace.Gen(address_showCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			switch c.Args[len(c.Args)-1] {
-			case "dev":
-				return net.ActionDevices(net.IncludedDevices{Wifi: true, Ethernet: true})
-			case "scope":
-				return carapace.ActionValues("global", "site", "link", "host", "nowhere")
-			case "type":
-				return action.ActionTypes()
-			default:
-				return carapace.ActionValues("dev", "scope", "to", "label", "up", "master", "nomaster", "type", "vrf")
+			if len(c.Args) > 0 {
+				switch c.Args[len(c.Args)-1] {
+				case "dev":
+					return net.ActionDevices(net.IncludedDevices{Wifi: true, Ethernet: true})
+				case "scope":
+					return carapace.ActionValues("global", "site", "link", "host", "nowhere")
+				case "type":
+					return action.ActionTypes()
+				}
 			}
+			return carapace.ActionValues("dev", "scope", "to", "label", "up", "master", "nomaster", "type", "vrf")
 		}),
 	)
 }
