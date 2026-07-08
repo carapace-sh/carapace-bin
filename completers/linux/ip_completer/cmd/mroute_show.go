@@ -20,18 +20,19 @@ func init() {
 
 	carapace.Gen(mroute_showCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			switch c.Args[len(c.Args)-1] {
-			case "iif":
-				return net.ActionDevices(net.IncludedDevices{Wifi: true, Ethernet: true})
-			case "table":
-				return carapace.ActionValues("local", "main", "default", "all")
-			case "to":
-				return net.ActionSubnets()
-			case "from":
-				return net.ActionSubnets()
-			default:
-				return carapace.ActionValues("to", "from", "iif", "table")
+			if len(c.Args) > 0 {
+				switch c.Args[len(c.Args)-1] {
+				case "iif":
+					return net.ActionDevices(net.IncludedDevices{Wifi: true, Ethernet: true})
+				case "table":
+					return carapace.ActionValues("local", "main", "default", "all")
+				case "to":
+					return net.ActionSubnets()
+				case "from":
+					return net.ActionSubnets()
+				}
 			}
+			return carapace.ActionValues("to", "from", "iif", "table")
 		}),
 	)
 }

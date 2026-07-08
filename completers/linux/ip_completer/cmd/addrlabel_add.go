@@ -19,16 +19,17 @@ func init() {
 
 	carapace.Gen(addrlabel_addCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			switch c.Args[len(c.Args)-1] {
-			case "prefix":
-				return net.ActionSubnets()
-			case "dev":
-				return net.ActionDevices(net.IncludedDevices{Wifi: true, Ethernet: true})
-			case "label":
-				return carapace.ActionValues()
-			default:
-				return carapace.ActionValues("prefix", "dev", "label")
+			if len(c.Args) > 0 {
+				switch c.Args[len(c.Args)-1] {
+				case "prefix":
+					return net.ActionSubnets()
+				case "dev":
+					return net.ActionDevices(net.IncludedDevices{Wifi: true, Ethernet: true})
+				case "label":
+					return carapace.ActionValues()
+				}
 			}
+			return carapace.ActionValues("prefix", "dev", "label")
 		}),
 	)
 }

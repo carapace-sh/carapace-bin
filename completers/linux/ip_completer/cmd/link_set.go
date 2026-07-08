@@ -24,30 +24,31 @@ func init() {
 
 	carapace.Gen(link_setCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			switch c.Args[len(c.Args)-1] {
-			case "dev":
-				return net.ActionDevices(net.IncludedDevices{Wifi: true, Ethernet: true})
-			case "master":
-				return net.ActionDevices(net.IncludedDevices{})
-			case "vrf":
-				return carapace.ActionValues()
-			case "netns":
-				return carapace.ActionValues()
-			case "address":
-				return carapace.ActionValues().NoSpace()
-			case "arp":
-				return carapace.ActionValues("on", "off")
-			case "multicast":
-				return carapace.ActionValues("on", "off")
-			case "dynamic":
-				return carapace.ActionValues("on", "off")
-			case "group":
-				return carapace.ActionValues()
-			case "type":
-				return action.ActionTypes()
-			default:
-				return carapace.ActionValues("up", "down", "dev", "master", "nomaster", "vrf", "mtu", "address", "arp", "multicast", "dynamic", "group", "name", "netns", "txqueuelen", "type")
+			if len(c.Args) > 0 {
+				switch c.Args[len(c.Args)-1] {
+				case "dev":
+					return net.ActionDevices(net.IncludedDevices{Wifi: true, Ethernet: true})
+				case "master":
+					return net.ActionDevices(net.IncludedDevices{})
+				case "vrf":
+					return carapace.ActionValues()
+				case "netns":
+					return carapace.ActionValues()
+				case "address":
+					return carapace.ActionValues().NoSpace()
+				case "arp":
+					return carapace.ActionValues("on", "off")
+				case "multicast":
+					return carapace.ActionValues("on", "off")
+				case "dynamic":
+					return carapace.ActionValues("on", "off")
+				case "group":
+					return carapace.ActionValues()
+				case "type":
+					return action.ActionTypes()
+				}
 			}
+			return carapace.ActionValues("up", "down", "dev", "master", "nomaster", "vrf", "mtu", "address", "arp", "multicast", "dynamic", "group", "name", "netns", "txqueuelen", "type")
 		}),
 	)
 }

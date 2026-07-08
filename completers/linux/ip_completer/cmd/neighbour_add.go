@@ -23,18 +23,19 @@ func init() {
 
 	carapace.Gen(neighbour_addCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			switch c.Args[len(c.Args)-1] {
-			case "dev":
-				return net.ActionDevices(net.IncludedDevices{Wifi: true, Ethernet: true})
-			case "lladdr":
-				return carapace.ActionValues().NoSpace()
-			case "nud":
-				return carapace.ActionValues("permanent", "noarp", "stale", "reachable", "none", "incomplete", "delay", "probe", "failed")
-			case "vrf":
-				return carapace.ActionValues()
-			default:
-				return carapace.ActionValues("dev", "lladdr", "nud", "proxy", "router", "use", "managed", "extern_learn", "extern_valid", "vrf", "nomaster")
+			if len(c.Args) > 0 {
+				switch c.Args[len(c.Args)-1] {
+				case "dev":
+					return net.ActionDevices(net.IncludedDevices{Wifi: true, Ethernet: true})
+				case "lladdr":
+					return carapace.ActionValues().NoSpace()
+				case "nud":
+					return carapace.ActionValues("permanent", "noarp", "stale", "reachable", "none", "incomplete", "delay", "probe", "failed")
+				case "vrf":
+					return carapace.ActionValues()
+				}
 			}
+			return carapace.ActionValues("dev", "lladdr", "nud", "proxy", "router", "use", "managed", "extern_learn", "extern_valid", "vrf", "nomaster")
 		}),
 	)
 }
