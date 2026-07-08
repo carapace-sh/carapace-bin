@@ -41,6 +41,30 @@ func init() {
 					return carapace.ActionValues("unicast", "blackhole", "unreachable", "prohibit", "nat")
 				case "nat":
 					return net.ActionIpv4Addresses()
+				case "dport":
+					return carapace.ActionValues()
+				case "fwmark":
+					return carapace.ActionValues()
+				case "goto":
+					return carapace.ActionValues()
+				case "priority":
+					return carapace.ActionValues()
+				case "protocol":
+					return carapace.ActionValues()
+				case "realms":
+					return carapace.ActionValues()
+				case "sport":
+					return carapace.ActionValues()
+				case "suppress_ifgroup":
+					return carapace.ActionValues()
+				case "suppress_prefixlength":
+					return carapace.ActionValues()
+				case "tos":
+					return carapace.ActionValues()
+				case "tun_id":
+					return carapace.ActionValues()
+				case "uidrange":
+					return carapace.ActionValues()
 				}
 			}
 			return carapace.ActionValues("not", "from", "to", "tos", "fwmark", "iif", "oif", "priority", "l3mdev", "uidrange", "ipproto", "sport", "dport", "tun_id", "table", "protocol", "nat", "realms", "goto", "type", "suppress_prefixlength", "suppress_ifgroup")

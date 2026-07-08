@@ -39,6 +39,26 @@ func init() {
 					return carapace.ActionValues("low", "medium", "high")
 				case "to":
 					return net.ActionSubnets()
+				case "congctl":
+					return carapace.ActionValues()
+				case "expires":
+					return carapace.ActionValues()
+				case "initcwnd":
+					return carapace.ActionValues()
+				case "metric":
+					return carapace.ActionValues()
+				case "mtu":
+					return carapace.ActionValues()
+				case "nexthop":
+					return carapace.ActionValues()
+				case "nhid":
+					return carapace.ActionValues()
+				case "rtt":
+					return carapace.ActionValues()
+				case "ttl-propagate":
+					return carapace.ActionValues()
+				case "window":
+					return carapace.ActionValues()
 				}
 			}
 			return carapace.ActionValues("to", "via", "dev", "src", "table", "scope", "proto", "metric", "mtu", "encap", "pref", "onlink", "nexthop", "nhid", "window", "rtt", "initcwnd", "congctl", "expires", "ttl-propagate")

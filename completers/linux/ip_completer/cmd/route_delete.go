@@ -40,6 +40,12 @@ func init() {
 					return carapace.ActionValues("mpls", "ip", "bpf", "seg6", "seg6local", "ioam6", "xfrm")
 				case "pref":
 					return carapace.ActionValues("low", "medium", "high")
+				case "metric":
+					return carapace.ActionValues()
+				case "nexthop":
+					return carapace.ActionValues()
+				case "nhid":
+					return carapace.ActionValues()
 				}
 			}
 			return carapace.ActionValues("to", "via", "dev", "src", "table", "scope", "proto", "metric", "encap", "pref", "nexthop", "nhid")

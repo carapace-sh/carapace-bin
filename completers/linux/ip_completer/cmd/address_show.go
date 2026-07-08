@@ -35,6 +35,8 @@ func init() {
 					return net.ActionDevices(net.IncludedDevices{})
 				case "type":
 					return action.ActionTypes()
+				case "label":
+					return carapace.ActionValues()
 				}
 			}
 			return carapace.ActionValues("dev", "scope", "to", "label", "up", "master", "nomaster", "type", "vrf")

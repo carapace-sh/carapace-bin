@@ -20,15 +20,33 @@ func init() {
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) > 0 {
 				switch c.Args[len(c.Args)-1] {
-				case "mode":
-					return carapace.ActionValues("ipip", "gre", "sit", "isatap", "vti", "ip6ip6", "ipip6", "ip6gre", "vti6", "any")
-				case "remote":
-					return carapace.ActionValues().NoSpace()
-				case "local":
-					return carapace.ActionValues().NoSpace()
 				case "dev":
 					return carapace.ActionValues()
+				case "dsfield":
+					return carapace.ActionValues()
 				case "encaplimit":
+					return carapace.ActionValues()
+				case "flowlabel":
+					return carapace.ActionValues()
+				case "hoplimit":
+					return carapace.ActionValues()
+				case "ikey":
+					return carapace.ActionValues()
+				case "key":
+					return carapace.ActionValues()
+				case "local":
+					return carapace.ActionValues().NoSpace()
+				case "mode":
+					return carapace.ActionValues("ipip", "gre", "sit", "isatap", "vti", "ip6ip6", "ipip6", "ip6gre", "vti6", "any")
+				case "okey":
+					return carapace.ActionValues()
+				case "remote":
+					return carapace.ActionValues().NoSpace()
+				case "tclass":
+					return carapace.ActionValues()
+				case "tos":
+					return carapace.ActionValues()
+				case "ttl":
 					return carapace.ActionValues()
 				}
 			}

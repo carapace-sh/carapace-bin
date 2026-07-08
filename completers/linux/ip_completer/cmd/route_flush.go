@@ -37,6 +37,8 @@ func init() {
 					return net.ActionSubnets()
 				case "from":
 					return net.ActionSubnets()
+				case "metric":
+					return carapace.ActionValues()
 				}
 			}
 			return carapace.ActionValues("to", "from", "via", "dev", "src", "table", "scope", "proto", "metric")

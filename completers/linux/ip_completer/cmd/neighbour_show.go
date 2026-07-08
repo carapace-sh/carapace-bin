@@ -30,6 +30,8 @@ func init() {
 					return carapace.ActionValues()
 				case "to":
 					return net.ActionIpv4Addresses()
+				case "lladdr":
+					return carapace.ActionValues().NoSpace()
 				}
 			}
 			return carapace.ActionValues("dev", "nud", "vrf", "to", "proxy", "unused", "nomaster")
