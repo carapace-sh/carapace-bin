@@ -26,4 +26,8 @@ func init() {
 	carapace.Gen(pruneCmd).PositionalAnyCompletion(
 		git.ActionRefs(git.RefOption{LocalBranches: true, Tags: true}),
 	)
+
+	carapace.Gen(pruneCmd).DashAnyCompletion(
+		carapace.ActionPositional(pruneCmd),
+	)
 }

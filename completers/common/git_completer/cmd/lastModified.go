@@ -28,4 +28,8 @@ func init() {
 			carapace.ActionFiles(),
 		).ToA(),
 	)
+
+	carapace.Gen(lastModifiedCmd).DashAnyCompletion(
+		carapace.ActionPositional(lastModifiedCmd),
+	)
 }

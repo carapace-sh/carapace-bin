@@ -31,4 +31,8 @@ func init() {
 	})
 
 	carapace.Gen(rmCmd).PositionalAnyCompletion(carapace.ActionFiles())
+
+	carapace.Gen(rmCmd).DashAnyCompletion(
+		carapace.ActionPositional(rmCmd),
+	)
 }

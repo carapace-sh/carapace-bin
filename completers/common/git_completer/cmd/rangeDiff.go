@@ -44,4 +44,8 @@ func init() {
 			return carapace.ActionValues()
 		}),
 	)
+
+	carapace.Gen(rangeDiffCmd).DashAnyCompletion(
+		carapace.ActionPositional(rangeDiffCmd),
+	)
 }

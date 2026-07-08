@@ -110,4 +110,8 @@ func init() {
 			git.ActionRefRanges(git.RefOption{}.Default()).UnlessF(condition.CompletingPath),
 		).ToA(),
 	)
+
+	carapace.Gen(shortlogCmd).DashAnyCompletion(
+		carapace.ActionPositional(shortlogCmd),
+	)
 }
