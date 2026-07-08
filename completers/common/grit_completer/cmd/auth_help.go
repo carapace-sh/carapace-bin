@@ -15,4 +15,12 @@ func init() {
 	carapace.Gen(auth_helpCmd).Standalone()
 
 	authCmd.AddCommand(auth_helpCmd)
+
+	carapace.Gen(auth_helpCmd).PositionalCompletion(
+		carapace.ActionCommands(authCmd),
+	)
+
+	carapace.Gen(auth_helpCmd).PositionalAnyCompletion(
+		carapace.ActionCommands(authCmd),
+	)
 }

@@ -15,4 +15,12 @@ func init() {
 	carapace.Gen(remote_helpCmd).Standalone()
 
 	remoteCmd.AddCommand(remote_helpCmd)
+
+	carapace.Gen(remote_helpCmd).PositionalCompletion(
+		carapace.ActionCommands(remoteCmd),
+	)
+
+	carapace.Gen(remote_helpCmd).PositionalAnyCompletion(
+		carapace.ActionCommands(remoteCmd),
+	)
 }

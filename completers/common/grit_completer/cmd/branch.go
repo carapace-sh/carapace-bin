@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,24 @@ func init() {
 	branchCmd.Flags().BoolP("delete", "d", false, "Delete the named branch instead of creating it")
 	branchCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.AddCommand(branchCmd)
+
+	carapace.Gen(branchCmd).PositionalAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if branchCmd.Flag("delete").Changed {
+				return git.ActionRefs(git.RefOption{LocalBranches: true, RemoteBranches: true}).FilterArgs()
+			}
+			switch len(c.Args) {
+			case 0:
+				return git.ActionRefs(git.RefOption{LocalBranches: true})
+			case 1:
+				return git.ActionRefs(git.RefOption{LocalBranches: true, RemoteBranches: true, Tags: true})
+			default:
+				return carapace.ActionValues()
+			}
+		}),
+	)
+
+	carapace.Gen(branchCmd).DashAnyCompletion(
+		carapace.ActionPositional(branchCmd),
+	)
 }

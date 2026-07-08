@@ -17,4 +17,8 @@ func init() {
 	initCmd.Flags().Bool("bare", false, "Create a bare repository (no working tree)")
 	initCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.AddCommand(initCmd)
+
+	carapace.Gen(initCmd).PositionalCompletion(
+		carapace.ActionDirectories(),
+	)
 }
