@@ -35,6 +35,8 @@ func init() {
 					return carapace.ActionValues()
 				case "type":
 					return action.ActionTypes()
+				case "group":
+					return carapace.ActionValues()
 				}
 			}
 			return carapace.ActionValues("dev", "up", "master", "nomaster", "vrf", "type", "group")

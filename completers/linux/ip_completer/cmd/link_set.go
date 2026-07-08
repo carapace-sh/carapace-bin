@@ -46,6 +46,12 @@ func init() {
 					return carapace.ActionValues()
 				case "type":
 					return action.ActionTypes()
+				case "mtu":
+					return carapace.ActionValues()
+				case "name":
+					return carapace.ActionValues().NoSpace()
+				case "txqueuelen":
+					return carapace.ActionValues()
 				}
 			}
 			return carapace.ActionValues("up", "down", "dev", "master", "nomaster", "vrf", "mtu", "address", "arp", "multicast", "dynamic", "group", "name", "netns", "txqueuelen", "type")

@@ -36,6 +36,10 @@ func init() {
 					return carapace.ActionValues("kernel", "boot", "static", "redirect")
 				case "to":
 					return net.ActionSubnets()
+				case "encap":
+					return carapace.ActionValues("mpls", "ip", "bpf", "seg6", "seg6local", "ioam6", "xfrm")
+				case "pref":
+					return carapace.ActionValues("low", "medium", "high")
 				}
 			}
 			return carapace.ActionValues("to", "via", "dev", "src", "table", "scope", "proto", "metric", "encap", "pref", "nexthop", "nhid")

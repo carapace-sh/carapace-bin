@@ -27,6 +27,12 @@ func init() {
 					return net.ActionDevices(net.IncludedDevices{Wifi: true, Ethernet: true})
 				case "scope":
 					return carapace.ActionValues("global", "site", "link", "host", "nowhere")
+				case "to":
+					return net.ActionSubnets()
+				case "master":
+					return net.ActionDevices(net.IncludedDevices{})
+				case "vrf":
+					return net.ActionDevices(net.IncludedDevices{})
 				case "type":
 					return action.ActionTypes()
 				}
