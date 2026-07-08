@@ -22,36 +22,40 @@ func init() {
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) > 0 {
 				switch c.Args[len(c.Args)-1] {
-				case "from":
-					return net.ActionSubnets()
-				case "to":
-					return net.ActionSubnets()
-				case "iif":
-					return net.ActionDevices(net.IncludedDevices{Wifi: true, Ethernet: true})
-				case "oif":
-					return net.ActionDevices(net.IncludedDevices{Wifi: true, Ethernet: true})
-				case "table":
-					return carapace.ActionValues("local", "main", "default", "all")
-				case "proto":
-					return carapace.ActionValues("kernel", "boot", "static")
-				case "not":
-					return carapace.ActionValues()
-				case "ipproto":
-					return action.ActionIpProtocols()
-				case "type":
-					return carapace.ActionValues("unicast", "blackhole", "unreachable", "prohibit", "nat")
-				case "nat":
-					return net.ActionIpv4Addresses()
 				case "dport":
 					return carapace.ActionValues()
+				case "dsfield":
+					return carapace.ActionValues()
+				case "from":
+					return net.ActionSubnets()
 				case "fwmark":
 					return carapace.ActionValues()
 				case "goto":
 					return carapace.ActionValues()
+				case "iif":
+					return net.ActionDevices(net.IncludedDevices{Wifi: true, Ethernet: true})
+				case "ipproto":
+					return action.ActionIpProtocols()
+				case "lookup":
+					return carapace.ActionValues("local", "main", "default", "all")
+				case "map-to":
+					return net.ActionIpv4Addresses()
+				case "nat":
+					return net.ActionIpv4Addresses()
+				case "not":
+					return carapace.ActionValues("from", "to", "tos", "dsfield", "fwmark", "iif", "oif", "priority", "preference", "order", "l3mdev", "uidrange", "ipproto", "sport", "dport", "tun_id")
+				case "oif":
+					return net.ActionDevices(net.IncludedDevices{Wifi: true, Ethernet: true})
+				case "order":
+					return carapace.ActionValues()
+				case "preference":
+					return carapace.ActionValues()
 				case "priority":
 					return carapace.ActionValues()
+				case "proto":
+					return carapace.ActionValues("kernel", "boot", "static")
 				case "protocol":
-					return carapace.ActionValues()
+					return carapace.ActionValues("kernel", "boot", "static")
 				case "realms":
 					return carapace.ActionValues()
 				case "sport":
@@ -60,15 +64,21 @@ func init() {
 					return carapace.ActionValues()
 				case "suppress_prefixlength":
 					return carapace.ActionValues()
+				case "table":
+					return carapace.ActionValues("local", "main", "default", "all")
+				case "to":
+					return net.ActionSubnets()
 				case "tos":
 					return carapace.ActionValues()
 				case "tun_id":
 					return carapace.ActionValues()
+				case "type":
+					return carapace.ActionValues("unicast", "blackhole", "unreachable", "prohibit", "nat")
 				case "uidrange":
 					return carapace.ActionValues()
 				}
 			}
-			return carapace.ActionValues("not", "from", "to", "tos", "fwmark", "iif", "oif", "priority", "l3mdev", "uidrange", "ipproto", "sport", "dport", "tun_id", "table", "protocol", "nat", "realms", "goto", "type", "suppress_prefixlength", "suppress_ifgroup")
+			return carapace.ActionValues("not", "from", "to", "tos", "dsfield", "fwmark", "iif", "oif", "priority", "preference", "order", "l3mdev", "uidrange", "ipproto", "sport", "dport", "tun_id", "table", "lookup", "protocol", "proto", "nat", "map-to", "realms", "goto", "type", "suppress_prefixlength", "suppress_ifgroup")
 		}),
 	)
 }

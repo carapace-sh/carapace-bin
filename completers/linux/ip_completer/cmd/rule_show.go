@@ -25,6 +25,8 @@ func init() {
 				switch c.Args[len(c.Args)-1] {
 				case "dport":
 					return carapace.ActionValues()
+				case "dsfield":
+					return carapace.ActionValues()
 				case "from":
 					return net.ActionSubnets()
 				case "fwmark":
@@ -34,16 +36,16 @@ func init() {
 				case "ipproto":
 					return action.ActionIpProtocols()
 				case "not":
-					return carapace.ActionValues()
+					return carapace.ActionValues("from", "to", "tos", "dsfield", "fwmark", "iif", "oif", "priority", "preference", "order", "l3mdev", "uidrange", "ipproto", "sport", "dport", "tun_id")
 				case "oif":
 					return net.ActionDevices(net.IncludedDevices{Wifi: true, Ethernet: true})
+				case "order":
+					return carapace.ActionValues()
+				case "preference":
+					return carapace.ActionValues()
 				case "priority":
 					return carapace.ActionValues()
 				case "sport":
-					return carapace.ActionValues()
-				case "suppress_ifgroup":
-					return carapace.ActionValues()
-				case "suppress_prefixlength":
 					return carapace.ActionValues()
 				case "to":
 					return net.ActionSubnets()
@@ -55,7 +57,7 @@ func init() {
 					return carapace.ActionValues()
 				}
 			}
-			return carapace.ActionValues("not", "from", "to", "tos", "fwmark", "iif", "oif", "priority", "l3mdev", "uidrange", "ipproto", "sport", "dport", "tun_id", "suppress_prefixlength", "suppress_ifgroup")
+			return carapace.ActionValues("not", "from", "to", "tos", "dsfield", "fwmark", "iif", "oif", "priority", "preference", "order", "l3mdev", "uidrange", "ipproto", "sport", "dport", "tun_id")
 		}),
 	)
 }
