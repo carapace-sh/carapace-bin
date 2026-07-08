@@ -1,13 +1,13 @@
 package cmd
 
 import (
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 	"github.com/spf13/cobra"
 )
 
 var address_showdumpCmd = &cobra.Command{
 	Use:   "showdump",
-	Short: "",
+	Short: "dump saved address data",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -1,14 +1,15 @@
 package cmd
 
 import (
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 	"github.com/spf13/cobra"
 )
 
 var maddressCmd = &cobra.Command{
-	Use:   "maddress",
-	Short: "multicast address",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "maddress",
+	Aliases: []string{"maddr"},
+	Short:   "multicast address",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
