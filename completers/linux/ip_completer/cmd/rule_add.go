@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/linux/ip_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/net"
 	"github.com/spf13/cobra"
 )
@@ -36,7 +37,7 @@ func init() {
 				case "not":
 					return carapace.ActionValues()
 				case "ipproto":
-					return net.ActionProtocols()
+					return action.ActionIpProtocols()
 				case "type":
 					return carapace.ActionValues("unicast", "blackhole", "unreachable", "prohibit", "nat")
 				case "nat":

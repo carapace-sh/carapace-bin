@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/linux/ip_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/net"
 	"github.com/spf13/cobra"
 )
@@ -31,7 +32,7 @@ func init() {
 				case "iif":
 					return net.ActionDevices(net.IncludedDevices{Wifi: true, Ethernet: true})
 				case "ipproto":
-					return net.ActionProtocols()
+					return action.ActionIpProtocols()
 				case "not":
 					return carapace.ActionValues()
 				case "oif":
