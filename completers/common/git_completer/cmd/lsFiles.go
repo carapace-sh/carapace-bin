@@ -100,4 +100,8 @@ func init() {
 			})
 		}),
 	)
+
+	carapace.Gen(lsFilesCmd).DashAnyCompletion(
+		carapace.ActionPositional(lsFilesCmd),
+	)
 }

@@ -17,4 +17,8 @@ func init() {
 	submoduleCmd.PersistentFlags().Bool("quiet", false, "Only print error messages")
 
 	rootCmd.AddCommand(submoduleCmd)
+
+	carapace.Gen(submoduleCmd).DashAnyCompletion(
+		carapace.ActionPositional(submoduleCmd),
+	)
 }

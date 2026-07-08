@@ -25,4 +25,8 @@ func init() {
 	carapace.Gen(urlParseCmd).PositionalAnyCompletion(
 		carapace.ActionValues(),
 	)
+
+	carapace.Gen(urlParseCmd).DashAnyCompletion(
+		carapace.ActionPositional(urlParseCmd),
+	)
 }

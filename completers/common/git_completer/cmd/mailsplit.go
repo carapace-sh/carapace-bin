@@ -30,4 +30,8 @@ func init() {
 	carapace.Gen(mailsplitCmd).PositionalAnyCompletion(
 		carapace.ActionDirectories(),
 	)
+
+	carapace.Gen(mailsplitCmd).DashAnyCompletion(
+		carapace.ActionPositional(mailsplitCmd),
+	)
 }

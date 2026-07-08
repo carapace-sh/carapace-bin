@@ -53,4 +53,8 @@ func init() {
 			}).MultiParts("/")
 		}),
 	)
+
+	carapace.Gen(showRefCmd).DashAnyCompletion(
+		carapace.ActionPositional(showRefCmd),
+	)
 }

@@ -52,4 +52,8 @@ func init() {
 			return git.ActionChanges(git.ChangeOpts{Unstaged: true}).FilterArgs()
 		}),
 	)
+
+	carapace.Gen(restoreCmd).DashAnyCompletion(
+		carapace.ActionPositional(restoreCmd),
+	)
 }

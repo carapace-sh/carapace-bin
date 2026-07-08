@@ -26,4 +26,8 @@ func init() {
 			carapace.ActionFiles(),
 		).ToA(),
 	)
+
+	carapace.Gen(mergeIndexCmd).DashAnyCompletion(
+		carapace.ActionPositional(mergeIndexCmd),
+	)
 }
