@@ -19,11 +19,17 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().StringP("bytes", "c", "", "Print the last n bytes of each file")
-	rootCmd.Flags().BoolP("follow", "f", false, "Follow the file as it grows")
+	rootCmd.Flags().StringP("follow", "f", "", "output appended data as the file grows")
 	rootCmd.Flags().StringP("lines", "n", "", "Print the last n lines of each file")
 	rootCmd.Flags().BoolP("quiet", "q", false, "Do not print headers indicating file names")
 	rootCmd.Flags().BoolP("reverse", "r", false, "Print the lines in reverse order")
 	rootCmd.Flags().BoolP("verbose", "v", false, "Print headers indicating file names")
+
+	rootCmd.Flag("follow").NoOptDefVal = "descriptor"
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"follow": carapace.ActionValues("descriptor", "name"),
+	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }
