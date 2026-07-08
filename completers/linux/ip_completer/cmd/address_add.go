@@ -1,9 +1,9 @@
 package cmd
 
 import (
-	"github.com/rsteube/carapace"
-	"github.com/rsteube/carapace-bin/completers/ip_completer/cmd/action"
-	"github.com/rsteube/carapace-bin/pkg/actions/net"
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/linux/ip_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/net"
 	"github.com/spf13/cobra"
 )
 
@@ -26,7 +26,7 @@ func init() {
 
 	carapace.Gen(address_addCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionConfFlags().Invoke(c).Filter(c.Args[2:]).ToA()
+			return action.ActionConfFlags().Invoke(c).Filter(c.Args[2:]...).ToA()
 		}),
 	)
 }

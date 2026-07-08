@@ -1,13 +1,13 @@
 package cmd
 
 import (
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 	"github.com/spf13/cobra"
 )
 
 var address_restoreCmd = &cobra.Command{
 	Use:   "restore",
-	Short: "",
+	Short: "restore address table from stdin",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

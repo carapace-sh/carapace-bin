@@ -1,14 +1,15 @@
 package cmd
 
 import (
-	"github.com/rsteube/carapace"
+	"github.com/carapace-sh/carapace"
 	"github.com/spf13/cobra"
 )
 
 var tunnelCmd = &cobra.Command{
-	Use:   "tunnel",
-	Short: "tunnel over IP",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "tunnel",
+	Aliases: []string{"tunl"},
+	Short:   "tunnel over IP",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
