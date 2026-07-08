@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "echo",
-	Short: "Print arguments",
+	Short: "Print arguments with trailing newline",
 	Long:  "https://elv.sh/ref/builtin.html#echo",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

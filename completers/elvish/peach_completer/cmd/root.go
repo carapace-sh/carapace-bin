@@ -2,14 +2,13 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
 	"github.com/spf13/cobra"
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "set-env",
-	Short: "Set an environment variable",
-	Long:  "https://elv.sh/ref/builtin.html#set-env",
+	Use:   "peach",
+	Short: "Apply a function to inputs in parallel",
+	Long:  "https://elv.sh/ref/builtin.html#peach",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
@@ -20,8 +19,9 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().StringS("num-workers", "num-workers", "", "number of parallel workers")
+
 	carapace.Gen(rootCmd).PositionalCompletion(
-		os.ActionEnvironmentVariables(),
-		carapace.ActionValues().Usage("value"),
+		carapace.ActionValues().Usage("function to apply"),
 	)
 }

@@ -19,6 +19,8 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().StringS("sep", "sep", " ", "separator to use between arguments")
+
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionValues().Usage("value to print"),
 	)
