@@ -3,7 +3,6 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
-	"github.com/carapace-sh/carapace/pkg/condition"
 	"github.com/spf13/cobra"
 )
 
@@ -23,15 +22,4 @@ func init() {
 	carapace.Gen(logCmd).FlagCompletion(carapace.ActionMap{
 		"before": git.ActionRefs(git.RefOption{}.Default()),
 	})
-
-	carapace.Gen(logCmd).PositionalAnyCompletion(
-		carapace.Batch(
-			carapace.ActionFiles(),
-			git.ActionRefRanges(git.RefOption{}.Default()).UnlessF(condition.CompletingPath),
-		).ToA(),
-	)
-
-	carapace.Gen(logCmd).DashAnyCompletion(
-		carapace.ActionFiles(),
-	)
 }

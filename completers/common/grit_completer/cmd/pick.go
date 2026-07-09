@@ -18,7 +18,7 @@ func init() {
 	pickCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.AddCommand(pickCmd)
 
-	carapace.Gen(pickCmd).PositionalAnyCompletion(
+	carapace.Gen(pickCmd).PositionalCompletion(
 		git.ActionRefRanges(git.RefOption{}.Default()),
 	)
 

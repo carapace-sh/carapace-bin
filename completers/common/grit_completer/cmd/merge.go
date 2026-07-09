@@ -18,7 +18,7 @@ func init() {
 	mergeCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.AddCommand(mergeCmd)
 
-	carapace.Gen(mergeCmd).PositionalAnyCompletion(
+	carapace.Gen(mergeCmd).PositionalCompletion(
 		git.ActionRefs(git.RefOption{
 			LocalBranches:  true,
 			RemoteBranches: true,

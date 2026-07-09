@@ -16,4 +16,8 @@ func init() {
 
 	managerCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.AddCommand(managerCmd)
+
+	carapace.Gen(managerCmd).PositionalCompletion(
+		carapace.ActionValues("get", "store", "erase"),
+	)
 }

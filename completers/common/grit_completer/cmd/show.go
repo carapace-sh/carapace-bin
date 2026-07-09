@@ -18,7 +18,7 @@ func init() {
 	showCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.AddCommand(showCmd)
 
-	carapace.Gen(showCmd).PositionalAnyCompletion(
+	carapace.Gen(showCmd).PositionalCompletion(
 		git.ActionRefs(git.RefOption{}.Default()),
 	)
 

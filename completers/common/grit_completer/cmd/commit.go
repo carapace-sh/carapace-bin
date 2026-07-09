@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
 )
 
@@ -19,12 +18,4 @@ func init() {
 	commitCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	commitCmd.Flags().StringP("message", "m", "", "Commit message")
 	rootCmd.AddCommand(commitCmd)
-
-	carapace.Gen(commitCmd).PositionalAnyCompletion(
-		git.ActionChanges(git.ChangeOpts{Staged: true, Unstaged: true}).FilterArgs(),
-	)
-
-	carapace.Gen(commitCmd).DashAnyCompletion(
-		carapace.ActionPositional(commitCmd),
-	)
 }
