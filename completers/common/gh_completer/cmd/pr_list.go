@@ -5,6 +5,7 @@ import (
 	"github.com/carapace-sh/carapace-bin/completers/common/gh_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
 	"github.com/carapace-sh/carapace-bin/pkg/styles"
+	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
 )
 
@@ -41,6 +42,7 @@ func init() {
 		"author":   gh.ActionUsers(gh.HostOpts{}),
 		"base":     action.ActionBranches(pr_listCmd),
 		"head":     action.ActionBranches(pr_listCmd),
+		"jq":       jq.ActionFilters(),
 		"json":     action.ActionPullRequestFields().UniqueList(","),
 		"label":    action.ActionLabels(pr_listCmd).UniqueList(","),
 		"state":    carapace.ActionValues("open", "closed", "merged", "all").StyleF(styles.Gh.ForState),

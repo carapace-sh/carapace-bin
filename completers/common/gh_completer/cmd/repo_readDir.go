@@ -4,6 +4,7 @@ import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/gh_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
+	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
 )
 
@@ -25,6 +26,7 @@ func init() {
 	repoCmd.AddCommand(repo_readDirCmd)
 
 	carapace.Gen(repo_readDirCmd).FlagCompletion(carapace.ActionMap{
+		"jq":   jq.ActionFilters(),
 		"json": gh.ActionReadDirFields().UniqueList(","),
 		"ref":  action.ActionBranches(repo_readDirCmd),
 		"repo": gh.ActionHostOwnerRepositories(),

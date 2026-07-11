@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
 )
 
@@ -27,4 +28,8 @@ func init() {
 	search_codeCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	search_codeCmd.Flags().BoolP("web", "w", false, "Open the search query in the web browser")
 	searchCmd.AddCommand(search_codeCmd)
+
+	carapace.Gen(search_codeCmd).FlagCompletion(carapace.ActionMap{
+		"jq": jq.ActionFilters(),
+	})
 }

@@ -4,6 +4,7 @@ import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/gh_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
+	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
@@ -29,6 +30,7 @@ func init() {
 	extensionCmd.AddCommand(extension_searchCmd)
 
 	carapace.Gen(extension_searchCmd).FlagCompletion(carapace.ActionMap{
+		"jq":      jq.ActionFilters(),
 		"json":    action.ActionSearchRepositoryFields().UniqueList(","),
 		"license": gh.ActionLicenses(gh.HostOpts{}).UniqueList(","),
 		"order":   carapace.ActionValues("asc", "desc").StyleF(style.ForKeyword),

@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/gh_completer/cmd/action"
+	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
 )
 
@@ -22,6 +23,7 @@ func init() {
 	issueCmd.AddCommand(issue_statusCmd)
 
 	carapace.Gen(issue_statusCmd).FlagCompletion(carapace.ActionMap{
+		"jq":   jq.ActionFilters(),
 		"json": action.ActionIssueFields().UniqueList(","),
 	})
 }

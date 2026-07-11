@@ -5,6 +5,7 @@ import (
 	"github.com/carapace-sh/carapace-bin/completers/common/gh_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/time"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
+	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
 )
 
@@ -46,6 +47,7 @@ func init() {
 	carapace.Gen(search_reposCmd).FlagCompletion(carapace.ActionMap{
 		"created":       action.ActionSearchRange(time.ActionDateTime(time.DateTimeOpts{Strict: true})),
 		"include-forks": carapace.ActionValues("false", "true", "only"),
+		"jq":            jq.ActionFilters(),
 		"json":          action.ActionSearchRepositoryFields().UniqueList(","),
 		"language":      gh.ActionLanguages(),
 		"license":       gh.ActionLicenses(gh.HostOpts{}).UniqueList(","),

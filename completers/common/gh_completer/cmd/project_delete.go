@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
+	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
 )
 
@@ -23,6 +24,7 @@ func init() {
 
 	carapace.Gen(project_deleteCmd).FlagCompletion(carapace.ActionMap{
 		"format": carapace.ActionValues("json"),
+		"jq":     jq.ActionFilters(),
 		"owner":  gh.ActionOwners(gh.HostOpts{}),
 	})
 

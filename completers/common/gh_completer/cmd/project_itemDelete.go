@@ -5,6 +5,7 @@ import (
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
+	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
 )
 
@@ -43,6 +44,7 @@ func init() {
 				Archived: false,
 			})
 		}),
+		"jq":    jq.ActionFilters(),
 		"owner": gh.ActionOwners(gh.HostOpts{}),
 	})
 

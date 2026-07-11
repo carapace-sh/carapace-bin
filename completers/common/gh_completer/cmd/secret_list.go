@@ -4,6 +4,7 @@ import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/gh_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
+	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
 )
 
@@ -29,6 +30,7 @@ func init() {
 	carapace.Gen(secret_listCmd).FlagCompletion(carapace.ActionMap{
 		"app":  carapace.ActionValues("actions", "agents", "codespaces", "dependabot"),
 		"env":  action.ActionEnvironments(secret_listCmd),
+		"jq":   jq.ActionFilters(),
 		"json": gh.ActionSecretFields().UniqueList(","),
 		"org":  gh.ActionOrganizations(gh.HostOpts{}),
 	})

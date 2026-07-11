@@ -7,6 +7,7 @@ import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/gh_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
+	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
 )
 
@@ -49,6 +50,7 @@ func init() {
 		"digest-alg":          carapace.ActionValues("sha256", "sha512"),
 		"format":              carapace.ActionValues("json"),
 		"hostname":            gh.ActionConfigHosts(),
+		"jq":                  jq.ActionFilters(),
 		"owner":               gh.ActionOrganizations(gh.HostOpts{}),
 		"repo":                gh.ActionHostOwnerRepositories(),
 		"signer-repo":         gh.ActionHostOwnerRepositories(),

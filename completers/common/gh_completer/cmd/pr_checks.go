@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/gh_completer/cmd/action"
+	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
 )
 
@@ -27,6 +28,7 @@ func init() {
 	prCmd.AddCommand(pr_checksCmd)
 
 	carapace.Gen(pr_checksCmd).FlagCompletion(carapace.ActionMap{
+		"jq":   jq.ActionFilters(),
 		"json": action.ActionPullRequestCheckFields().UniqueList(","),
 	})
 
