@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
 )
 
@@ -54,6 +55,10 @@ func init() {
 		"from-file":    carapace.ActionFiles(),
 		"library-path": carapace.ActionDirectories(),
 	})
+
+	carapace.Gen(rootCmd).PositionalCompletion(
+		jq.ActionFilters(),
+	)
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
