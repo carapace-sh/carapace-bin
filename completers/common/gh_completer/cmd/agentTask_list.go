@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
+	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
 )
 
@@ -23,6 +24,7 @@ func init() {
 	agentTaskCmd.AddCommand(agentTask_listCmd)
 
 	carapace.Gen(agentTask_listCmd).FlagCompletion(carapace.ActionMap{
+		"jq":   jq.ActionFilters(),
 		"json": gh.ActionSessionFields().UniqueList(","),
 	})
 }

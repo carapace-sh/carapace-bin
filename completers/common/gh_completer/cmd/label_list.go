@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
+	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
 )
 
@@ -27,6 +28,7 @@ func init() {
 	labelCmd.AddCommand(label_listCmd)
 
 	carapace.Gen(label_listCmd).FlagCompletion(carapace.ActionMap{
+		"jq":    jq.ActionFilters(),
 		"json":  gh.ActionLabelFields().UniqueList(","),
 		"order": carapace.ActionValues("asc", "desc"),
 		"sort":  carapace.ActionValues("created", "name"),

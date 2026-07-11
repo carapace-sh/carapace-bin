@@ -6,6 +6,7 @@ import (
 	"github.com/carapace-sh/carapace-bin/pkg/actions/time"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
 	"github.com/carapace-sh/carapace-bin/pkg/styles"
+	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
 )
 
@@ -66,6 +67,7 @@ func init() {
 		"commenter": gh.ActionUsers(gh.HostOpts{}),
 		"created":   action.ActionSearchRange(time.ActionDateTime(time.DateTimeOpts{Strict: true})),
 		"involves":  gh.ActionUsers(gh.HostOpts{}),
+		"jq":        jq.ActionFilters(),
 		"json":      action.ActionSearchIssueFields().UniqueList(","),
 		"label": action.ActionSearchMultiRepo(search_issuesCmd, func(cmd *cobra.Command) carapace.Action {
 			return action.ActionLabels(cmd).UniqueList(",")

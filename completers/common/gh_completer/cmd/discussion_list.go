@@ -5,6 +5,7 @@ import (
 	"github.com/carapace-sh/carapace-bin/completers/common/gh_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
 	"github.com/carapace-sh/carapace-bin/pkg/styles"
+	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
 )
 
@@ -39,6 +40,7 @@ func init() {
 	carapace.Gen(discussion_listCmd).FlagCompletion(carapace.ActionMap{
 		"author":   gh.ActionUsers(gh.HostOpts{}),
 		"category": action.ActionDiscussionCategories(discussion_listCmd),
+		"jq":       jq.ActionFilters(),
 		"json":     gh.ActionDiscussionListFields().UniqueList(","),
 		"label":    action.ActionLabels(discussion_listCmd).UniqueList(","),
 		"order":    carapace.ActionValues("asc", "desc"),

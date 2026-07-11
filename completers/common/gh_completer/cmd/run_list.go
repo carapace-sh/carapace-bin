@@ -5,6 +5,7 @@ import (
 	"github.com/carapace-sh/carapace-bin/completers/common/gh_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/time"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
+	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
 )
 
@@ -39,6 +40,7 @@ func init() {
 		}),
 		"created":  time.ActionDate(),
 		"event":    gh.ActionWorkflowEvents(),
+		"jq":       jq.ActionFilters(),
 		"json":     action.ActionRunFields(),
 		"status":   carapace.ActionValues("queued", "completed", "in_progress", "requested", "waiting", "pending", "action_required", "cancelled", "failure", "neutral", "skipped", "stale", "startup_failure", "success", "timed_out"),
 		"user":     gh.ActionUsers(gh.HostOpts{}),

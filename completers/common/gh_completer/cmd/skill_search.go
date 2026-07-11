@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
+	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
 )
 
@@ -24,6 +25,7 @@ func init() {
 	skillCmd.AddCommand(skill_searchCmd)
 
 	carapace.Gen(skill_searchCmd).FlagCompletion(carapace.ActionMap{
+		"jq":    jq.ActionFilters(),
 		"json":  carapace.ActionValues(), // TODO
 		"owner": gh.ActionOwners(gh.HostOpts{}),
 	})

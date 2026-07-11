@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/time"
+	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
 )
 
@@ -35,5 +36,6 @@ func init() {
 	// TODO missing flag completion
 	carapace.Gen(project_itemEditCmd).FlagCompletion(carapace.ActionMap{
 		"date": time.ActionDate(),
+		"jq":   jq.ActionFilters(),
 	})
 }
