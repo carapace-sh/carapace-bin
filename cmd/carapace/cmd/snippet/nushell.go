@@ -15,8 +15,10 @@ func Nushell(completers []string) string {
 let carapace_completer = {|spans|
   load-env {
   	CARAPACE_SHELL: 'nushell'
+  	CARAPACE_SHELL_ALIASES: (scope aliases | get name | uniq | str join "\n")
   	CARAPACE_SHELL_BUILTINS: (help commands | where category != "" | get name | each { split row " " | first } | uniq  | str join "\n")
   	CARAPACE_SHELL_FUNCTIONS: (help commands | where category == "" | get name | each { split row " " | first } | uniq  | str join "\n")
+  	CARAPACE_SHELL_VARIABLES: (scope variables | get name | uniq | str join "\n")
   }
 
   # if the current command is an alias, get it's expansion

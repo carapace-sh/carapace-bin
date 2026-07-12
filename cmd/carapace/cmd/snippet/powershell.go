@@ -16,6 +16,7 @@ $_carapace_completer = {
     [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingInvokeExpression", "", Scope="Function", Target="*")]
     param($wordToComplete, $commandAst, $cursorPosition)
     $env:CARAPACE_SHELL = "powershell"
+    $env:CARAPACE_SHELL_ALIASES = (Get-Alias | ForEach-Object { $_.Name } | Out-String).TrimEnd()
     $env:CARAPACE_SHELL_BUILTINS = (Get-Command -CommandType Builtin | ForEach-Object { $_.Name } | Out-String).TrimEnd()
     $env:CARAPACE_SHELL_FUNCTIONS = (Get-Command -CommandType Function | ForEach-Object { $_.Name } | Out-String).TrimEnd()
     $env:CARAPACE_SHELL_VARIABLES = (Get-Variable | ForEach-Object { $_.Name } | Out-String).TrimEnd()
