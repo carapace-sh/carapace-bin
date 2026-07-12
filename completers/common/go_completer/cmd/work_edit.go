@@ -30,6 +30,7 @@ func init() {
 	work_editCmd.Flags().BoolS("json", "json", false, "print the final go.work in JSON format")
 	work_editCmd.Flags().BoolS("print", "print", false, "print the final go.work in its text format")
 	work_editCmd.Flags().StringArrayS("replace", "replace", nil, "add a replacement")
+	work_editCmd.Flags().StringS("toolchain", "toolchain", "", "set the Go toolchain to use")
 	work_editCmd.Flags().StringArrayS("use", "use", nil, "add a use directive")
 	workCmd.AddCommand(work_editCmd)
 
@@ -65,6 +66,7 @@ func init() {
 				return carapace.ActionValues()
 			}
 		}),
+		"toolchain": golang.ActionVersions().Prefix("go"),
 		"use": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			path, err := util.FindReverse(c.Dir, "go.work")
 			if err != nil {
