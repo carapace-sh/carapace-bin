@@ -10,7 +10,6 @@ import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions"
 	spec "github.com/carapace-sh/carapace-spec"
-	"github.com/carapace-sh/carapace/pkg/execlog"
 	"github.com/spf13/cobra"
 )
 
@@ -25,12 +24,17 @@ var macroCmd = &cobra.Command{
 		case 1:
 			printMacro(args[0])
 		default:
-			mArgs := []string{"_carapace", "macro"}
-			mArgs = append(mArgs, args...)
-			mCmd := execlog.Command("carapace", mArgs...)
-			mCmd.Stdout = cmd.OutOrStdout()
-			mCmd.Stderr = cmd.ErrOrStderr()
-			mCmd.Run()
+			mCmd := &cobra.Command{
+				DisableFlagParsing: true,
+			}
+			carapace.Gen(mCmd).Standalone()
+			carapace.Gen(mCmd).PositionalAnyCompletion(
+				spec.NewAction([]string{"$carapace." + args[0]}).Parse(mCmd),
+			)
+			mCmd.SetArgs(append([]string{"_carapace", "export", ""}, args[1:]...))
+			mCmd.SetOut(cmd.OutOrStdout())
+			mCmd.SetErr(cmd.ErrOrStderr())
+			mCmd.Execute()
 		}
 	},
 }
@@ -67,7 +71,7 @@ func init() {
 
 	carapace.Gen(macroCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return spec.ActionMacro("$carapace." + c.Args[0]).Shift(1) // TODO macro prefix
+			return spec.NewAction([]string{"$carapace." + c.Args[0]}).Parse(macroCmd).Shift(1) // TODO macro prefix
 		}),
 	)
 }
@@ -93,9 +97,11 @@ func printMacros() {
 }
 
 func printMacro(name string) {
+	// extract macro name from full spec (e.g. "color.XtermColorNames ||| $filter([Green])")
+	macroName := strings.TrimSpace(strings.Split(name, " ||| ")[0])
 	// TODO implement this in spec.Macro
-	if m, ok := actions.Macros[name]; ok {
-		path := strings.Replace(name, ".", "/", -1)
+	if m, ok := actions.Macros[macroName]; ok {
+		path := strings.ReplaceAll(macroName, ".", "/")
 		signature := ""
 		if s := m.Signature(); s != "" {
 			signature = fmt.Sprintf("(%v)", s)
@@ -104,6 +110,6 @@ func printMacro(name string) {
 		fmt.Printf(`signature:   $carapace.%v%v
 description: %v
 reference:   https://pkg.go.dev/github.com/carapace-sh/carapace-bin/pkg/actions/%v#Action%v
-`, name, signature, m.Description, filepath.Dir(path), filepath.Base(path))
+`, macroName, signature, m.Description, filepath.Dir(path), filepath.Base(path))
 	}
 }

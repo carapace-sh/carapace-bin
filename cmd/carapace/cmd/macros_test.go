@@ -17,3 +17,14 @@ func TestMacros(t *testing.T) {
 				Usage("--macro [macro] [...args]"))
 	})
 }
+
+func TestMacroModifiers(t *testing.T) {
+	sandbox.Package(t, "github.com/carapace-sh/carapace-bin/cmd/carapace")(func(s *sandbox.Sandbox) {
+		s.Run("--macro", "color.XtermColorNames ||| $retain([Green, Grey])", "").
+			Expect(carapace.ActionStyledValues(
+				"Green", "color2",
+				"Grey", "color8",
+			).Tag("xterm colors").
+				Usage("--macro [macro] [...args]"))
+	})
+}
