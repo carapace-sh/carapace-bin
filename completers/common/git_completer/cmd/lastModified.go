@@ -16,10 +16,10 @@ var lastModifiedCmd = &cobra.Command{
 func init() {
 	carapace.Gen(lastModifiedCmd).Standalone()
 
-	lastModifiedCmd.Flags().String("max-depth", "", "Maximum tree depth to recurse")
-	lastModifiedCmd.Flags().BoolP("recursive", "r", false, "Recurse into subtrees")
-	lastModifiedCmd.Flags().BoolP("show-trees", "t", false, "Show tree entries when recursing into subtrees")
-	lastModifiedCmd.Flags().BoolS("z", "z", false, "Lines are separated with NUL character")
+	lastModifiedCmd.Flags().String("max-depth", "", "maximum tree depth to recurse")
+	lastModifiedCmd.Flags().BoolP("recursive", "r", false, "recurse into subtrees")
+	lastModifiedCmd.Flags().BoolP("show-trees", "t", false, "show tree entries when recursing into subtrees")
+	lastModifiedCmd.Flags().BoolS("z", "z", false, "lines are separated with NUL character")
 	rootCmd.AddCommand(lastModifiedCmd)
 
 	carapace.Gen(lastModifiedCmd).PositionalAnyCompletion(

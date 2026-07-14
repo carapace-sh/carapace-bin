@@ -13,8 +13,8 @@ var gui_citoolCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(gui_citoolCmd).Standalone()
-	gui_citoolCmd.Flags().Bool("amend", false, "Automatically enter the Amend Last Commit mode of the interface")
-	gui_citoolCmd.Flags().Bool("nocommit", false, "Behave as normal citool, but instead of making a commit simply terminate with a zero exit code")
+	gui_citoolCmd.Flags().Bool("amend", false, "automatically enter the Amend Last Commit mode of the interface")
+	gui_citoolCmd.Flags().Bool("nocommit", false, "behave as normal citool, but instead of making a commit simply terminate with a zero exit code")
 
 	guiCmd.AddCommand(gui_citoolCmd)
 }

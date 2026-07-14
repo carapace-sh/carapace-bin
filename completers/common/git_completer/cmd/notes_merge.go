@@ -15,11 +15,11 @@ var notes_mergeCmd = &cobra.Command{
 func init() {
 	carapace.Gen(notes_mergeCmd).Standalone()
 
-	notes_mergeCmd.Flags().Bool("abort", false, "Abort/reset an in-progress git notes merge")
-	notes_mergeCmd.Flags().Bool("commit", false, "Finalize an in-progress git notes merge")
-	notes_mergeCmd.Flags().BoolP("quiet", "q", false, "When merging notes, operate quietly")
-	notes_mergeCmd.Flags().StringP("strategy", "s", "", "Resolve notes conflicts using the given strategy")
-	notes_mergeCmd.Flags().BoolP("verbose", "v", false, "When merging notes, be more verbose")
+	notes_mergeCmd.Flags().Bool("abort", false, "abort/reset an in-progress git notes merge")
+	notes_mergeCmd.Flags().Bool("commit", false, "finalize an in-progress git notes merge")
+	notes_mergeCmd.Flags().BoolP("quiet", "q", false, "when merging notes, operate quietly")
+	notes_mergeCmd.Flags().StringP("strategy", "s", "", "resolve notes conflicts using the given strategy")
+	notes_mergeCmd.Flags().BoolP("verbose", "v", false, "when merging notes, be more verbose")
 	notesCmd.AddCommand(notes_mergeCmd)
 
 	notes_mergeCmd.MarkFlagsMutuallyExclusive("abort", "commit", "strategy")

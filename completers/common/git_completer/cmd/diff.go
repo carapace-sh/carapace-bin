@@ -21,10 +21,10 @@ func init() {
 	carapace.Gen(diffCmd).Standalone()
 
 	// TODO move into common flag groups
-	diffCmd.Flags().StringS("G", "G", "", "Look for differences whose patch text contains added/removed lines that match <regex>")
-	diffCmd.Flags().Bool("merge-base", false, "Use merge base instead of commit for comparison")
-	diffCmd.Flags().Bool("quiet", false, "Disable all output of the program")
-	diffCmd.Flags().Bool("staged", false, "Show diff between index and named commit")
+	diffCmd.Flags().StringS("G", "G", "", "look for differences whose patch text contains added/removed lines that match <regex>")
+	diffCmd.Flags().Bool("merge-base", false, "use merge base instead of commit for comparison")
+	diffCmd.Flags().Bool("quiet", false, "disable all output of the program")
+	diffCmd.Flags().Bool("staged", false, "show diff between index and named commit")
 	common.AddDiffFlags(diffCmd)
 	rootCmd.AddCommand(diffCmd)
 

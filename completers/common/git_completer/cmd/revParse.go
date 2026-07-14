@@ -39,7 +39,7 @@ func init() {
 	revParseCmd.Flags().Bool("local-env-vars", false, "list the GIT_* environment variables that are local to the repository")
 	revParseCmd.Flags().Bool("no-flags", false, "do not output flag parameters")
 	revParseCmd.Flags().Bool("no-revs", false, "do not output flags and parameters meant for git rev-list command")
-	revParseCmd.Flags().Bool("not", false, "prefix object names with ^ and strip ^ prefix from the object names that already have one.")
+	revParseCmd.Flags().Bool("not", false, "prefix object names with ^ and strip ^ prefix from the object names that already have one")
 	revParseCmd.Flags().String("output-object-format", "", "allow oids to be input from any object format that the current repository supports")
 	revParseCmd.Flags().Bool("parseopt", false, "use in option parsing mode")
 	revParseCmd.Flags().String("path-format", "", "controls the behavior of certain other options")

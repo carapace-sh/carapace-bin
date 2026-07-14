@@ -13,7 +13,7 @@ var submodule_syncCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(submodule_syncCmd).Standalone()
-	submodule_syncCmd.Flags().Bool("recursive", false, "")
+	submodule_syncCmd.Flags().Bool("recursive", false, "traverse nested submodules recursively")
 
 	submoduleCmd.AddCommand(submodule_syncCmd)
 

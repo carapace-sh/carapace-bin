@@ -15,8 +15,8 @@ var receivePackCmd = &cobra.Command{
 func init() {
 	carapace.Gen(receivePackCmd).Standalone()
 
-	receivePackCmd.Flags().Bool("http-backend-info-refs", false, "Used by git-http-backend to serve up requests")
-	receivePackCmd.Flags().Bool("skip-connectivity-check", false, "Bypasses the connectivity checks")
+	receivePackCmd.Flags().Bool("http-backend-info-refs", false, "used by git-http-backend to serve up requests")
+	receivePackCmd.Flags().Bool("skip-connectivity-check", false, "bypasses the connectivity checks")
 	rootCmd.AddCommand(receivePackCmd)
 
 	carapace.Gen(receivePackCmd).PositionalCompletion(

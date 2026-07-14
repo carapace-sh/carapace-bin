@@ -15,7 +15,7 @@ var gui_blameCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(gui_blameCmd).Standalone()
-	gui_blameCmd.Flags().String("line", "", "Loads annotations as described above and automatically scrolls the view")
+	gui_blameCmd.Flags().String("line", "", "loads annotations as described above and automatically scrolls the view")
 
 	guiCmd.AddCommand(gui_blameCmd)
 

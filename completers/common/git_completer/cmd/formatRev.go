@@ -16,12 +16,12 @@ var formatRevCmd = &cobra.Command{
 func init() {
 	carapace.Gen(formatRevCmd).Standalone()
 
-	formatRevCmd.Flags().String("format", "", "Pretty format to use")
-	formatRevCmd.Flags().StringArray("notes", nil, "Display notes for pretty format")
-	formatRevCmd.Flags().BoolP("null", "z", false, "Use NUL for input and output termination")
-	formatRevCmd.Flags().Bool("null-input", false, "Use NUL for input termination")
-	formatRevCmd.Flags().Bool("null-output", false, "Use NUL for output termination")
-	formatRevCmd.Flags().String("stdin-mode", "", "How revs are processed")
+	formatRevCmd.Flags().String("format", "", "pretty format to use")
+	formatRevCmd.Flags().StringArray("notes", nil, "display notes for pretty format")
+	formatRevCmd.Flags().BoolP("null", "z", false, "use NUL for input and output termination")
+	formatRevCmd.Flags().Bool("null-input", false, "use NUL for input termination")
+	formatRevCmd.Flags().Bool("null-output", false, "use NUL for output termination")
+	formatRevCmd.Flags().String("stdin-mode", "", "how revs are processed")
 	rootCmd.AddCommand(formatRevCmd)
 
 	formatRevCmd.Flag("notes").NoOptDefVal = " "

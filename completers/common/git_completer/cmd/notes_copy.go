@@ -15,8 +15,8 @@ var notes_copyCmd = &cobra.Command{
 func init() {
 	carapace.Gen(notes_copyCmd).Standalone()
 
-	notes_copyCmd.Flags().BoolP("force", "f", false, "Overwrite existing notes")
-	notes_copyCmd.Flags().Bool("stdin", false, "Also read the object names to remove notes from the standard input")
+	notes_copyCmd.Flags().BoolP("force", "f", false, "overwrite existing notes")
+	notes_copyCmd.Flags().Bool("stdin", false, "also read the object names to remove notes from the standard input")
 	notesCmd.AddCommand(notes_copyCmd)
 
 	carapace.Gen(notes_copyCmd).PositionalCompletion(

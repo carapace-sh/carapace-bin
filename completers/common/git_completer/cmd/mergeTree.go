@@ -16,13 +16,13 @@ var mergeTreeCmd = &cobra.Command{
 func init() {
 	carapace.Gen(mergeTreeCmd).Standalone()
 
-	mergeTreeCmd.Flags().Bool("allow-unrelated-histories", false, "Override common history check check and make the merge proceed anyway.")
-	mergeTreeCmd.Flags().String("merge-base", "", "Specify a merge-base for the merge")
-	mergeTreeCmd.Flags().Bool("messages", false, "Write any informational messages such as \"Auto-merging <path>\" or CONFLICT notices to the end of stdout")
-	mergeTreeCmd.Flags().Bool("name-only", false, "In the Conflicted file info section")
-	mergeTreeCmd.Flags().Bool("no-messages", false, "Do not write any informational messages such as \"Auto-merging <path>\" or CONFLICT notices to the end of stdout")
-	mergeTreeCmd.Flags().Bool("quiet", false, "Disable all output; only exit status matters")
-	mergeTreeCmd.Flags().BoolS("z", "z", false, "Do not quote filenames in the <Conflicted file info> section")
+	mergeTreeCmd.Flags().Bool("allow-unrelated-histories", false, "override common history check and make the merge proceed anyway")
+	mergeTreeCmd.Flags().String("merge-base", "", "specify a merge-base for the merge")
+	mergeTreeCmd.Flags().Bool("messages", false, "write any informational messages such as \"Auto-merging <path>\" or CONFLICT notices to the end of stdout")
+	mergeTreeCmd.Flags().Bool("name-only", false, "in the Conflicted file info section")
+	mergeTreeCmd.Flags().Bool("no-messages", false, "do not write any informational messages such as \"Auto-merging <path>\" or CONFLICT notices to the end of stdout")
+	mergeTreeCmd.Flags().Bool("quiet", false, "disable all output; only exit status matters")
+	mergeTreeCmd.Flags().BoolS("z", "z", false, "do not quote filenames in the <Conflicted file info> section")
 	rootCmd.AddCommand(mergeTreeCmd)
 
 	carapace.Gen(mergeTreeCmd).FlagCompletion(carapace.ActionMap{

@@ -19,10 +19,10 @@ var rangeDiffCmd = &cobra.Command{
 func init() {
 	carapace.Gen(rangeDiffCmd).Standalone()
 
-	rangeDiffCmd.Flags().String("creation-factor", "", "Set the creation/deletion cost fudge factor to <percent>")
-	rangeDiffCmd.Flags().Bool("no-dual-color", false, "Do not recreate the original diffs’ coloring")
-	rangeDiffCmd.Flags().String("no-notes", "", "This flag is passed to the git log progeram")
-	rangeDiffCmd.Flags().String("notes", "", "This flag is passed to the git log program")
+	rangeDiffCmd.Flags().String("creation-factor", "", "set the creation/deletion cost fudge factor to <percent>")
+	rangeDiffCmd.Flags().Bool("no-dual-color", false, "do not recreate the original diffs’ coloring")
+	rangeDiffCmd.Flags().String("no-notes", "", "this flag is passed to the git log progeram")
+	rangeDiffCmd.Flags().String("notes", "", "this flag is passed to the git log program")
 	common.AddDiffFlags(rangeDiffCmd)
 	rootCmd.AddCommand(rangeDiffCmd)
 

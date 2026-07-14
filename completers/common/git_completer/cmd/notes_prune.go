@@ -14,7 +14,7 @@ var notes_pruneCmd = &cobra.Command{
 func init() {
 	carapace.Gen(notes_pruneCmd).Standalone()
 
-	notes_pruneCmd.Flags().BoolP("dry-run", "n", false, "Do not remove anything, just report")
-	notes_pruneCmd.Flags().BoolP("verbose", "v", false, "When merging notes, be more verbose")
+	notes_pruneCmd.Flags().BoolP("dry-run", "n", false, "do not remove anything, just report")
+	notes_pruneCmd.Flags().BoolP("verbose", "v", false, "when merging notes, be more verbose")
 	notesCmd.AddCommand(notes_pruneCmd)
 }

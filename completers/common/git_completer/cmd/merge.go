@@ -28,7 +28,7 @@ func init() {
 	mergeCmd.Flags().Bool("ff", false, "allow fast-forward (default)")
 	mergeCmd.Flags().Bool("ff-only", false, "abort if fast-forward is not possible")
 	mergeCmd.Flags().StringP("file", "F", "", "read message from file")
-	mergeCmd.Flags().StringP("gpg-sign", "S", "", "GPG sign commit")
+	mergeCmd.Flags().StringP("gpg-sign", "S", "", "GPG-sign commits")
 	mergeCmd.Flags().String("into-name", "", "use <name> instead of the real target")
 	mergeCmd.Flags().String("log", "", "add (at most <n>) entries from shortlog to merge commit message")
 	mergeCmd.Flags().StringP("message", "m", "", "merge commit message")

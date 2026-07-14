@@ -14,9 +14,9 @@ var submodule_summaryCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(submodule_summaryCmd).Standalone()
-	submodule_summaryCmd.Flags().Bool("cached", false, "")
-	submodule_summaryCmd.Flags().Bool("files", false, "")
-	submodule_summaryCmd.Flags().String("summary-limit", "", "")
+	submodule_summaryCmd.Flags().Bool("cached", false, "use the index to determine the commit instead of HEAD")
+	submodule_summaryCmd.Flags().Bool("files", false, "compare the commit in the index with that in the submodule HEAD")
+	submodule_summaryCmd.Flags().String("summary-limit", "", "limit the summary size (number of commits shown in total)")
 
 	submoduleCmd.AddCommand(submodule_summaryCmd)
 

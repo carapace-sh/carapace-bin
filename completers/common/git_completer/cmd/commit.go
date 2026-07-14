@@ -32,7 +32,7 @@ func init() {
 	commitCmd.Flags().BoolP("edit", "e", false, "force edit of commit")
 	commitCmd.Flags().StringP("file", "F", "", "read message from file")
 	commitCmd.Flags().String("fixup", "", "use autosquash formatted message to fixup specified commit")
-	commitCmd.Flags().StringP("gpg-sign", "S", "", "GPG sign commit")
+	commitCmd.Flags().StringP("gpg-sign", "S", "", "GPG-sign commits")
 	commitCmd.Flags().BoolP("include", "i", false, "add specified files to index for commit")
 	commitCmd.Flags().Bool("interactive", false, "interactively add files")
 	commitCmd.Flags().Bool("long", false, "show status in long format (default)")

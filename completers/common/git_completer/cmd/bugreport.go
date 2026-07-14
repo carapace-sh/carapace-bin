@@ -15,10 +15,10 @@ var bugreportCmd = &cobra.Command{
 func init() {
 	carapace.Gen(bugreportCmd).Standalone()
 
-	bugreportCmd.Flags().String("diagnose", "", "Create a zip archive of supplemental information about the user’s machine")
-	bugreportCmd.Flags().Bool("no-diagnose", false, "Create a zip archive of supplemental information about the user’s machine")
-	bugreportCmd.Flags().StringP("output-directory", "o", "", "Place the resulting bug report file in <path> instead of the current directory")
-	bugreportCmd.Flags().StringP("suffix", "s", "", "Specify an alternate suffix for the bugreport name")
+	bugreportCmd.Flags().String("diagnose", "", "create a zip archive of supplemental information about the user’s machine")
+	bugreportCmd.Flags().Bool("no-diagnose", false, "create a zip archive of supplemental information about the user’s machine")
+	bugreportCmd.Flags().StringP("output-directory", "o", "", "place the resulting bug report file in <path> instead of the current directory")
+	bugreportCmd.Flags().StringP("suffix", "s", "", "specify an alternate suffix for the bugreport name")
 	rootCmd.AddCommand(bugreportCmd)
 
 	bugreportCmd.Flag("diagnose").NoOptDefVal = " "

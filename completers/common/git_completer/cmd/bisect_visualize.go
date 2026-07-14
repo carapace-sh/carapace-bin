@@ -14,8 +14,8 @@ var bisect_visualizeCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(bisect_visualizeCmd).Standalone()
-	bisect_visualizeCmd.Flags().Bool("p", false, "")
-	bisect_visualizeCmd.Flags().Bool("stat", false, "")
+	bisect_visualizeCmd.Flags().Bool("p", false, "show patches")
+	bisect_visualizeCmd.Flags().Bool("stat", false, "show diffstat")
 
 	bisectCmd.AddCommand(bisect_visualizeCmd)
 

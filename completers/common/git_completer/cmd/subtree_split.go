@@ -18,7 +18,7 @@ func init() {
 	subtree_splitCmd.Flags().String("annotate", "", "add <annotation> as a prefix to each commit message")
 	subtree_splitCmd.Flags().StringP("branch", "b", "", "create a new branch called <branch> that contains the new history")
 	subtree_splitCmd.Flags().Bool("ignore-joins", false, "regenerate the entire history")
-	subtree_splitCmd.Flags().StringP("message", "m", "", "Specify <message> as the commit message for the merge commit")
+	subtree_splitCmd.Flags().StringP("message", "m", "", "specify <message> as the commit message for the merge commit")
 	subtree_splitCmd.Flags().String("onto", "", "specify the commit ID <onto> to build history from")
 	subtree_splitCmd.Flags().Bool("rejoin", false, "merge the newly created synthetic history back into your main project")
 	subtreeCmd.AddCommand(subtree_splitCmd)
