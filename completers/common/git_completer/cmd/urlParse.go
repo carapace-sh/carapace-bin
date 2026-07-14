@@ -15,7 +15,7 @@ var urlParseCmd = &cobra.Command{
 func init() {
 	carapace.Gen(urlParseCmd).Standalone()
 
-	urlParseCmd.Flags().StringP("component", "c", "", "Which URL component to extract")
+	urlParseCmd.Flags().StringP("component", "c", "", "which URL component to extract")
 	rootCmd.AddCommand(urlParseCmd)
 
 	carapace.Gen(urlParseCmd).FlagCompletion(carapace.ActionMap{

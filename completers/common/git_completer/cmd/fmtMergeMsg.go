@@ -16,11 +16,11 @@ var fmtMergeMsgCmd = &cobra.Command{
 func init() {
 	carapace.Gen(fmtMergeMsgCmd).Standalone()
 
-	fmtMergeMsgCmd.Flags().StringP("file", "F", "", "Take the list of merged objects from <file> instead of stdin")
-	fmtMergeMsgCmd.Flags().String("into-name", "", "Prepare the merge message as if merging to the branch <branch>")
-	fmtMergeMsgCmd.Flags().String("log", "", "At most <n> commits from each merge parent will be used (20 if <n> is omitted)")
-	fmtMergeMsgCmd.Flags().StringP("message", "m", "", "Use <message> instead of the branch names for the first line of the log message")
-	fmtMergeMsgCmd.Flags().Bool("no-log", false, "Do not list one-line descriptions from the actual commits being merged")
+	fmtMergeMsgCmd.Flags().StringP("file", "F", "", "take the list of merged objects from <file> instead of stdin")
+	fmtMergeMsgCmd.Flags().String("into-name", "", "prepare the merge message as if merging to the branch <branch>")
+	fmtMergeMsgCmd.Flags().String("log", "", "at most <n> commits from each merge parent will be used (20 if <n> is omitted)")
+	fmtMergeMsgCmd.Flags().StringP("message", "m", "", "use <message> instead of the branch names for the first line of the log message")
+	fmtMergeMsgCmd.Flags().Bool("no-log", false, "do not list one-line descriptions from the actual commits being merged")
 	rootCmd.AddCommand(fmtMergeMsgCmd)
 
 	carapace.Gen(fmtMergeMsgCmd).FlagCompletion(carapace.ActionMap{

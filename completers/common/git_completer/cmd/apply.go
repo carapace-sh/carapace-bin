@@ -18,7 +18,7 @@ func init() {
 
 	applyCmd.Flags().BoolP("3way", "3", false, "attempt three-way merge, fall back on normal patch if that fails")
 	applyCmd.Flags().StringS("C", "C", "", "ensure at least <n> lines of context match")
-	applyCmd.Flags().Bool("allow-empty", false, "record the empty patch as an empty commit")
+	applyCmd.Flags().Bool("allow-empty", false, "don't return an error for patches containing no diff")
 	applyCmd.Flags().Bool("allow-overlap", false, "allow overlapping hunks")
 	applyCmd.Flags().Bool("apply", false, "also apply the patch (use with --stat/--summary/--check)")
 	applyCmd.Flags().String("build-fake-ancestor", "", "build a temporary index based on embedded index information")

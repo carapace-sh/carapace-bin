@@ -15,7 +15,7 @@ var subtree_pullCmd = &cobra.Command{
 func init() {
 	carapace.Gen(subtree_pullCmd).Standalone()
 
-	subtree_pullCmd.Flags().StringP("message", "m", "", "Specify <message> as the commit message for the merge commit")
+	subtree_pullCmd.Flags().StringP("message", "m", "", "specify <message> as the commit message for the merge commit")
 	subtree_pullCmd.Flags().Bool("squash", false, "produce only a single commit that contains all the differences")
 	subtreeCmd.AddCommand(subtree_pullCmd)
 

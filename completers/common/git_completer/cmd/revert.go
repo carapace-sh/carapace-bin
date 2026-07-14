@@ -21,7 +21,7 @@ func init() {
 	revertCmd.Flags().String("cleanup", "", "how to strip spaces and #comments from message")
 	revertCmd.Flags().Bool("continue", false, "resume revert or cherry-pick sequence")
 	revertCmd.Flags().BoolP("edit", "e", false, "edit the commit message")
-	revertCmd.Flags().StringP("gpg-sign", "S", "", "GPG sign commit")
+	revertCmd.Flags().StringP("gpg-sign", "S", "", "GPG-sign commits")
 	revertCmd.Flags().StringP("mainline", "m", "", "select mainline parent")
 	revertCmd.Flags().BoolP("no-commit", "n", false, "don't automatically commit")
 	revertCmd.Flags().Bool("quit", false, "end revert or cherry-pick sequence")

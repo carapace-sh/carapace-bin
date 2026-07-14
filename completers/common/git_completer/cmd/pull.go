@@ -33,7 +33,7 @@ func init() {
 	pullCmd.Flags().Bool("ff", false, "allow fast-forward")
 	pullCmd.Flags().Bool("ff-only", false, "abort if fast-forward is not possible")
 	pullCmd.Flags().BoolP("force", "f", false, "force overwrite of local branch")
-	pullCmd.Flags().StringP("gpg-sign", "S", "", "GPG sign commit")
+	pullCmd.Flags().StringP("gpg-sign", "S", "", "GPG-sign commits")
 	pullCmd.Flags().BoolP("ipv4", "4", false, "use IPv4 addresses only")
 	pullCmd.Flags().BoolP("ipv6", "6", false, "use IPv6 addresses only")
 	pullCmd.Flags().StringP("jobs", "j", "", "number of submodules pulled in parallel")

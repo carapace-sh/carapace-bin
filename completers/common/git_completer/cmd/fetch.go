@@ -19,7 +19,7 @@ func init() {
 
 	fetchCmd.Flags().Bool("all", false, "fetch from all remotes")
 	fetchCmd.Flags().BoolP("append", "a", false, "append to .git/FETCH_HEAD instead of overwriting")
-	fetchCmd.Flags().Bool("atomic", false, "Use an atomic transaction to update local refs")
+	fetchCmd.Flags().Bool("atomic", false, "use an atomic transaction to update local refs")
 	fetchCmd.Flags().Bool("auto-gc", false, "run git maintenance run --auto at the end")
 	fetchCmd.Flags().Bool("auto-maintenance", false, "run git maintenance run --auto at the end")
 	fetchCmd.Flags().String("deepen", "", "deepen history of shallow clone")
@@ -54,7 +54,7 @@ func init() {
 	fetchCmd.Flags().StringArray("shallow-exclude", nil, "deepen history of shallow clone, excluding rev")
 	fetchCmd.Flags().String("shallow-since", "", "deepen history of shallow repository based on time")
 	fetchCmd.Flags().Bool("show-forced-updates", false, "check for forced-updates on all updated branches")
-	fetchCmd.Flags().Bool("stdin", false, "Read refspecs, one per line, from stdin")
+	fetchCmd.Flags().Bool("stdin", false, "read refspecs, one per line, from stdin")
 	fetchCmd.Flags().String("submodule-prefix", "", "prepend <path> to paths printed in informative messages")
 	fetchCmd.Flags().BoolP("tags", "t", false, "fetch all tags and associated objects")
 	fetchCmd.Flags().Bool("unshallow", false, "convert to a complete repository")

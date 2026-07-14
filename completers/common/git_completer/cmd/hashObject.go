@@ -15,13 +15,13 @@ var hashObjectCmd = &cobra.Command{
 func init() {
 	carapace.Gen(hashObjectCmd).Standalone()
 
-	hashObjectCmd.Flags().Bool("literally", false, "Allow --stdin to hash any garbage into a loose object")
-	hashObjectCmd.Flags().Bool("no-filters", false, "Hash the contents as is")
-	hashObjectCmd.Flags().String("path", "", "Hash object as if it were located at the given path")
-	hashObjectCmd.Flags().Bool("stdin", false, "Read the object from standard input instead of from a file")
-	hashObjectCmd.Flags().Bool("stdin-paths", false, "Read file names from the standard input")
-	hashObjectCmd.Flags().StringS("t", "t", "", "Specify the type of object to be created")
-	hashObjectCmd.Flags().BoolS("w", "w", false, "Actually write the object into the object database")
+	hashObjectCmd.Flags().Bool("literally", false, "allow --stdin to hash any garbage into a loose object")
+	hashObjectCmd.Flags().Bool("no-filters", false, "hash the contents as is")
+	hashObjectCmd.Flags().String("path", "", "hash object as if it were located at the given path")
+	hashObjectCmd.Flags().Bool("stdin", false, "read the object from standard input instead of from a file")
+	hashObjectCmd.Flags().Bool("stdin-paths", false, "read file names from the standard input")
+	hashObjectCmd.Flags().StringS("t", "t", "", "specify the type of object to be created")
+	hashObjectCmd.Flags().BoolS("w", "w", false, "actually write the object into the object database")
 	rootCmd.AddCommand(hashObjectCmd)
 
 	carapace.Gen(hashObjectCmd).FlagCompletion(carapace.ActionMap{

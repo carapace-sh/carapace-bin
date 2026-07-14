@@ -15,10 +15,10 @@ var checkRefFormatCmd = &cobra.Command{
 func init() {
 	carapace.Gen(checkRefFormatCmd).Standalone()
 
-	checkRefFormatCmd.Flags().Bool("allow-onelevel", false, "Controls whether one-level refnames are accepted")
-	checkRefFormatCmd.Flags().Bool("branch", false, "Check for valid branch name")
-	checkRefFormatCmd.Flags().Bool("no-allow-onelevel", false, "Controls whether one-level refnames are accepted")
-	checkRefFormatCmd.Flags().Bool("normalize", false, "Normalize refname by removing any leading slash characters")
-	checkRefFormatCmd.Flags().Bool("refspec-pattern", false, "Interpret <refname> as a reference name pattern for a refspec")
+	checkRefFormatCmd.Flags().Bool("allow-onelevel", false, "controls whether one-level refnames are accepted")
+	checkRefFormatCmd.Flags().Bool("branch", false, "check for valid branch name")
+	checkRefFormatCmd.Flags().Bool("no-allow-onelevel", false, "controls whether one-level refnames are accepted")
+	checkRefFormatCmd.Flags().Bool("normalize", false, "normalize refname by removing any leading slash characters")
+	checkRefFormatCmd.Flags().Bool("refspec-pattern", false, "interpret <refname> as a reference name pattern for a refspec")
 	rootCmd.AddCommand(checkRefFormatCmd)
 }

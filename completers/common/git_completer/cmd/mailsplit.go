@@ -15,12 +15,12 @@ var mailsplitCmd = &cobra.Command{
 func init() {
 	carapace.Gen(mailsplitCmd).Standalone()
 
-	mailsplitCmd.Flags().BoolS("b", "b", false, "If any file doesn’t begin with a From line, assume it is a single mail message")
-	mailsplitCmd.Flags().StringS("d", "d", "", "Precision for the generated filenames")
-	mailsplitCmd.Flags().StringS("f", "f", "", "Skip the first <nn> numbers")
-	mailsplitCmd.Flags().Bool("keep-cr", false, "Do not remove \r from lines ending with \r\n")
-	mailsplitCmd.Flags().Bool("mboxrd", false, "Input is of the \"mboxrd\" format and \"^>+From \" line escaping is reversed")
-	mailsplitCmd.Flags().StringS("o", "o", "", "Directory in which to place the individual messages")
+	mailsplitCmd.Flags().BoolS("b", "b", false, "if any file doesn’t begin with a From line, assume it is a single mail message")
+	mailsplitCmd.Flags().StringS("d", "d", "", "precision for the generated filenames")
+	mailsplitCmd.Flags().StringS("f", "f", "", "skip the first <nn> numbers")
+	mailsplitCmd.Flags().Bool("keep-cr", false, "do not remove \r from lines ending with \r\n")
+	mailsplitCmd.Flags().Bool("mboxrd", false, "input is of the \"mboxrd\" format and \"^>+From \" line escaping is reversed")
+	mailsplitCmd.Flags().StringS("o", "o", "", "directory in which to place the individual messages")
 	rootCmd.AddCommand(mailsplitCmd)
 
 	carapace.Gen(mailsplitCmd).FlagCompletion(carapace.ActionMap{

@@ -15,11 +15,11 @@ var cvsserverCmd = &cobra.Command{
 func init() {
 	carapace.Gen(cvsserverCmd).Standalone()
 
-	cvsserverCmd.Flags().String("base-path", "", "Prepend path to requested CVSROOT")
-	cvsserverCmd.Flags().Bool("export-all", false, "Don’t check for gitcvs.enabled in config ")
-	cvsserverCmd.Flags().BoolP("help", "h", false, "Print usage information and exit")
-	cvsserverCmd.Flags().Bool("strict-paths", false, "Don’t allow recursing into subdirectories")
-	cvsserverCmd.Flags().BoolP("version", "V", false, "Print version information and exit")
+	cvsserverCmd.Flags().String("base-path", "", "prepend path to requested CVSROOT")
+	cvsserverCmd.Flags().Bool("export-all", false, "don’t check for gitcvs.enabled in config ")
+	cvsserverCmd.Flags().BoolP("help", "h", false, "print usage information and exit")
+	cvsserverCmd.Flags().Bool("strict-paths", false, "don’t allow recursing into subdirectories")
+	cvsserverCmd.Flags().BoolP("version", "V", false, "print version information and exit")
 	rootCmd.AddCommand(cvsserverCmd)
 
 	carapace.Gen(cvsserverCmd).PositionalAnyCompletion(

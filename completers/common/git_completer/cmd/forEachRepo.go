@@ -17,7 +17,7 @@ func init() {
 	carapace.Gen(forEachRepoCmd).Standalone()
 	forEachRepoCmd.Flags().SetInterspersed(false)
 
-	forEachRepoCmd.Flags().String("config", "", "use the given config variable as a multi-valued list storing absolute path names.")
+	forEachRepoCmd.Flags().String("config", "", "use the given config variable as a multi-valued list storing absolute path names")
 	forEachRepoCmd.Flags().Bool("keep-going", false, "continue with the remaining repositories if the command failed on a repository")
 	rootCmd.AddCommand(forEachRepoCmd)
 

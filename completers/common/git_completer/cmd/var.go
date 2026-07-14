@@ -15,7 +15,7 @@ var varCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(varCmd).Standalone()
-	varCmd.Flags().BoolS("l", "l", false, "Cause the logical variables to be listed")
+	varCmd.Flags().BoolS("l", "l", false, "cause the logical variables to be listed")
 
 	rootCmd.AddCommand(varCmd)
 

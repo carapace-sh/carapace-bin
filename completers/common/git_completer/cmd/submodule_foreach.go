@@ -13,7 +13,7 @@ var submodule_foreachCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(submodule_foreachCmd).Standalone()
-	submodule_foreachCmd.Flags().Bool("recursive", false, "")
+	submodule_foreachCmd.Flags().Bool("recursive", false, "traverse nested submodules recursively")
 
 	submoduleCmd.AddCommand(submodule_foreachCmd)
 }

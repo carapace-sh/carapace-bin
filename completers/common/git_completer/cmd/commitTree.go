@@ -18,7 +18,7 @@ func init() {
 	carapace.Gen(commitTreeCmd).Standalone()
 
 	commitTreeCmd.Flags().StringS("F", "F", "", "read commit log message from file")
-	commitTreeCmd.Flags().StringP("gpg-sign", "S", "", "GPG sign commit")
+	commitTreeCmd.Flags().StringP("gpg-sign", "S", "", "GPG-sign commits")
 	commitTreeCmd.Flags().StringS("m", "m", "", "commit message")
 	commitTreeCmd.Flags().Bool("no-gpg-sign", false, "do not GPG sign commit")
 	commitTreeCmd.Flags().StringSliceS("p", "p", nil, "id of a parent commit object")
