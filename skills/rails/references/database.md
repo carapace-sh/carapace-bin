@@ -216,3 +216,5 @@ When running inside a Rails engine, these `app:db:*` tasks delegate to the host 
 - For `rails dbconsole`, see [cli-commands.md](cli-commands.md).
 - For `rails test` subcommands including `test:db`, see [testing.md](testing.md).
 - For `railties:install:migrations`, see [rake-tasks.md](rake-tasks.md).
+- For `config/database.yml` format and multi-db configuration, see [configuration.md](configuration.md).
+- For `DATABASE_URL` env var precedence, see [environment.md](environment.md).

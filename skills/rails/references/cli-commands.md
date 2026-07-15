@@ -246,3 +246,5 @@ Inverse of `generate`. Uses the same generator classes. Same positional argument
 - For `rails db:*` subcommands, see [database.md](database.md).
 - For `rails test` subcommands, see [testing.md](testing.md).
 - For `rails log:clear`, `tmp:*`, `time:zones`, `action_mailbox:*`, etc., see [rake-tasks.md](rake-tasks.md).
+- For Rails configuration files and `config.*` options, see [configuration.md](configuration.md).
+- For `RAILS_ENV` and other environment variables, see [environment.md](environment.md).
