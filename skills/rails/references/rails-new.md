@@ -120,3 +120,4 @@ Options from `~/.railsrc` are prepended to every `rails new` invocation. Format:
 
 - For `rails generate` and `rails destroy`, see [generators.md](generators.md).
 - For the main CLI commands, see [cli-commands.md](cli-commands.md).
+- For `config/database.yml` format and adapter configurations, see [configuration.md](configuration.md).
