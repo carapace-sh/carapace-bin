@@ -1,10 +1,9 @@
-package action
+package herdr
 
 import (
 	"encoding/json"
 
 	"github.com/carapace-sh/carapace"
-	"github.com/spf13/cobra"
 )
 
 type tab struct {
@@ -22,11 +21,21 @@ type tabListResult struct {
 	Type string `json:"type"`
 }
 
-func ActionTabs(cmd *cobra.Command) carapace.Action {
+// TabOpts specifies options for completing tabs
+type TabOpts struct {
+	// Workspace filters tabs by workspace id
+	Workspace string
+}
+
+// ActionTabs completes tabs
+//
+//	tab-1 (Label)
+//	tab-2 (Label (focused))
+func ActionTabs(opts TabOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		args := []string{"tab", "list"}
-		if flag := cmd.Flag("workspace"); flag != nil && flag.Changed {
-			args = append(args, "--workspace", flag.Value.String())
+		if opts.Workspace != "" {
+			args = append(args, "--workspace", opts.Workspace)
 		}
 		return carapace.ActionExecCommand("herdr", args...)(func(output []byte) carapace.Action {
 			wrapper := struct {

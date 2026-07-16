@@ -1,4 +1,4 @@
-package action
+package herdr
 
 import (
 	"encoding/json"
@@ -21,6 +21,10 @@ type agentListResult struct {
 	Type   string  `json:"type"`
 }
 
+// ActionAgents completes agents
+//
+//	pane-1 (agent-name)
+//	agent-name (pane-1)
 func ActionAgents() carapace.Action {
 	return carapace.ActionExecCommand("herdr", "agent", "list")(func(output []byte) carapace.Action {
 		var result agentListResult

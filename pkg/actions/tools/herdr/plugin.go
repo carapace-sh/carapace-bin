@@ -1,4 +1,4 @@
-package action
+package herdr
 
 import (
 	"encoding/json"
@@ -18,6 +18,10 @@ type pluginListResult struct {
 	Type    string   `json:"type"`
 }
 
+// ActionPlugins completes plugins
+//
+//	plugin-1 (Plugin Name)
+//	plugin-2 (Plugin Name (disabled))
 func ActionPlugins() carapace.Action {
 	return carapace.ActionExecCommand("herdr", "plugin", "list", "--json")(func(output []byte) carapace.Action {
 		wrapper := struct {

@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/herdr_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/herdr"
 	"github.com/spf13/cobra"
 )
 
@@ -17,5 +17,5 @@ func init() {
 
 	pluginCmd.AddCommand(plugin_configDirCmd)
 
-	carapace.Gen(plugin_configDirCmd).PositionalCompletion(action.ActionPlugins())
+	carapace.Gen(plugin_configDirCmd).PositionalCompletion(herdr.ActionPlugins())
 }

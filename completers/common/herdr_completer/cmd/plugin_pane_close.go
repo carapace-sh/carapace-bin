@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/herdr_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/herdr"
 	"github.com/spf13/cobra"
 )
 
@@ -17,5 +17,5 @@ func init() {
 
 	plugin_paneCmd.AddCommand(plugin_pane_closeCmd)
 
-	carapace.Gen(plugin_pane_closeCmd).PositionalCompletion(action.ActionPanes(plugin_pane_closeCmd))
+	carapace.Gen(plugin_pane_closeCmd).PositionalCompletion(herdr.ActionPanes(herdr.PaneOpts{}))
 }

@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/herdr_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/herdr"
 	"github.com/spf13/cobra"
 )
 
@@ -20,7 +20,7 @@ func init() {
 	agent_waitCmd.MarkFlagRequired("status")
 	agentCmd.AddCommand(agent_waitCmd)
 
-	carapace.Gen(agent_waitCmd).PositionalCompletion(action.ActionAgents())
+	carapace.Gen(agent_waitCmd).PositionalCompletion(herdr.ActionAgents())
 
 	carapace.Gen(agent_waitCmd).FlagCompletion(carapace.ActionMap{
 		"status": carapace.ActionValues("idle", "working", "blocked", "unknown"),

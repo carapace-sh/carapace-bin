@@ -1,4 +1,4 @@
-package action
+package herdr
 
 import (
 	"strings"
@@ -6,6 +6,10 @@ import (
 	"github.com/carapace-sh/carapace"
 )
 
+// ActionIntegrations completes integrations
+//
+//	pi
+//	omp
 func ActionIntegrations() carapace.Action {
 	return carapace.ActionExecCommand("herdr", "integration", "status")(func(output []byte) carapace.Action {
 		vals := make([]string, 0)

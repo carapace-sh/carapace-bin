@@ -1,10 +1,9 @@
-package action
+package herdr
 
 import (
 	"encoding/json"
 
 	"github.com/carapace-sh/carapace"
-	"github.com/spf13/cobra"
 )
 
 type pane struct {
@@ -22,11 +21,21 @@ type paneListResult struct {
 	Type  string `json:"type"`
 }
 
-func ActionPanes(cmd *cobra.Command) carapace.Action {
+// PaneOpts specifies options for completing panes
+type PaneOpts struct {
+	// Workspace filters panes by workspace id
+	Workspace string
+}
+
+// ActionPanes completes panes
+//
+//	pane-1 (agent-name)
+//	pane-2 (running)
+func ActionPanes(opts PaneOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		args := []string{"pane", "list"}
-		if flag := cmd.Flag("workspace"); flag != nil && flag.Changed {
-			args = append(args, "--workspace", flag.Value.String())
+		if opts.Workspace != "" {
+			args = append(args, "--workspace", opts.Workspace)
 		}
 		return carapace.ActionExecCommand("herdr", args...)(func(output []byte) carapace.Action {
 			wrapper := struct {

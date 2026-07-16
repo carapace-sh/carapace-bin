@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/herdr_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/herdr"
 	"github.com/spf13/cobra"
 )
 
@@ -22,7 +22,7 @@ func init() {
 	agent_explainCmd.Flags().BoolP("verbose", "v", false, "")
 	agentCmd.AddCommand(agent_explainCmd)
 
-	carapace.Gen(agent_explainCmd).PositionalCompletion(action.ActionAgents())
+	carapace.Gen(agent_explainCmd).PositionalCompletion(herdr.ActionAgents())
 
 	carapace.Gen(agent_explainCmd).FlagCompletion(carapace.ActionMap{
 		"file":   carapace.ActionFiles(),

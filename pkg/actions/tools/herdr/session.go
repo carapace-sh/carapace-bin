@@ -1,4 +1,4 @@
-package action
+package herdr
 
 import (
 	"encoding/json"
@@ -13,6 +13,10 @@ type session struct {
 	SocketPath string `json:"socket_path"`
 }
 
+// ActionSessions completes sessions
+//
+//	default (running (default))
+//	other (stopped)
 func ActionSessions() carapace.Action {
 	return carapace.ActionExecCommand("herdr", "session", "list", "--json")(func(output []byte) carapace.Action {
 		wrapper := struct {

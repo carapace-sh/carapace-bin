@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/herdr_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/herdr"
 	"github.com/spf13/cobra"
 )
 
@@ -22,7 +22,7 @@ func init() {
 	pane_readCmd.Flags().String("source", "", "")
 	paneCmd.AddCommand(pane_readCmd)
 
-	carapace.Gen(pane_readCmd).PositionalCompletion(action.ActionPanes(pane_readCmd))
+	carapace.Gen(pane_readCmd).PositionalCompletion(herdr.ActionPanes(herdr.PaneOpts{}))
 
 	carapace.Gen(pane_readCmd).FlagCompletion(carapace.ActionMap{
 		"format": carapace.ActionValues("text", "ansi"),

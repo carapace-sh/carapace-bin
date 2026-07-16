@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/herdr_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/herdr"
 	"github.com/spf13/cobra"
 )
 
@@ -18,5 +18,5 @@ func init() {
 	session_deleteCmd.Flags().Bool("json", false, "")
 	sessionCmd.AddCommand(session_deleteCmd)
 
-	carapace.Gen(session_deleteCmd).PositionalCompletion(action.ActionSessions())
+	carapace.Gen(session_deleteCmd).PositionalCompletion(herdr.ActionSessions())
 }

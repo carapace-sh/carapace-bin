@@ -1,4 +1,4 @@
-package action
+package herdr
 
 import (
 	"encoding/json"
@@ -21,6 +21,10 @@ type workspaceListResult struct {
 	Type       string      `json:"type"`
 }
 
+// ActionWorkspaces completes workspaces
+//
+//	ws-1 (Label)
+//	ws-2 (Label (focused))
 func ActionWorkspaces() carapace.Action {
 	return carapace.ActionExecCommand("herdr", "workspace", "list")(func(output []byte) carapace.Action {
 		wrapper := struct {

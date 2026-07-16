@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/herdr_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/herdr"
 	"github.com/spf13/cobra"
 )
 
@@ -18,5 +18,5 @@ func init() {
 	agent_renameCmd.Flags().Bool("clear", false, "")
 	agentCmd.AddCommand(agent_renameCmd)
 
-	carapace.Gen(agent_renameCmd).PositionalCompletion(action.ActionAgents())
+	carapace.Gen(agent_renameCmd).PositionalCompletion(herdr.ActionAgents())
 }

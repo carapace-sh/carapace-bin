@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/herdr_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/herdr"
 	"github.com/spf13/cobra"
 )
 
@@ -23,7 +23,7 @@ func init() {
 	pane_reportAgentSessionCmd.Flags().String("source", "", "")
 	paneCmd.AddCommand(pane_reportAgentSessionCmd)
 
-	carapace.Gen(pane_reportAgentSessionCmd).PositionalCompletion(action.ActionPanes(pane_reportAgentSessionCmd))
+	carapace.Gen(pane_reportAgentSessionCmd).PositionalCompletion(herdr.ActionPanes(herdr.PaneOpts{}))
 
 	carapace.Gen(pane_reportAgentSessionCmd).FlagCompletion(carapace.ActionMap{
 		"agent-session-path": carapace.ActionFiles(),
