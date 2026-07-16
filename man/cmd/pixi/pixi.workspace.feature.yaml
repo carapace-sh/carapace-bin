@@ -1,3 +1,6 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: feature
 description: Commands to manage workspace features
+flags:
+    --config-file=: Load configuration from this file instead of searching system and user-level paths. Project-local `<project>/.pixi/config.toml` is still merged on top
+    --no-config: Don't read system or user-level configuration files. Project-local `<project>/.pixi/config.toml` is still loaded

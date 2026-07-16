@@ -5,10 +5,13 @@ flags:
     --auth-file=: Path to the file containing the authentication token
     --concurrent-downloads=: Max concurrent network requests, default is `50`
     --concurrent-solves=: Max concurrent solves, default is the number of CPUs
+    --no-hard-links: Disallow hard links during package installation
+    --no-ref-links: Disallow ref links (copy-on-write) during package installation
+    --no-symbolic-links: Disallow symbolic links during package installation
     --pinning-strategy=: Set pinning strategy
     --pypi-keyring-provider=: Specifies whether to use the keyring to look up credentials for PyPI
     --run-post-link-scripts: Run post-link scripts (insecure)
     --tls-no-verify: Do not verify the TLS certificate of the server
-    --tls-root-certs=: 'Which TLS root certificates to use: ''webpki'' (bundled Mozilla roots), ''native'' (system store), or ''all'' (both)'
+    --tls-root-certs=: "Which TLS root certificates to use: 'webpki' (bundled Mozilla roots) or 'system' (system store)"
     --use-environment-activation-cache: Use environment activation cache (experimental)
-    -e, --environment=!: The environment from which the shortcut should be added
+    -e, --environment!=: The environment from which the shortcut should be added

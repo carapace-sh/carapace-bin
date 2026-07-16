@@ -18,6 +18,7 @@ func init() {
 	config_appendCmd.Flags().BoolP("local", "l", false, "Operation on project-local configuration")
 	config_appendCmd.PersistentFlags().StringP("manifest-path", "m", "", "The path to `pixi.toml`, `pyproject.toml`, or the workspace directory")
 	config_appendCmd.Flags().BoolP("system", "s", false, "Operation on system configuration")
+	config_appendCmd.PersistentFlags().StringP("workspace", "w", "", "Name of the workspace")
 	configCmd.AddCommand(config_appendCmd)
 
 	carapace.Gen(config_appendCmd).FlagCompletion(carapace.ActionMap{

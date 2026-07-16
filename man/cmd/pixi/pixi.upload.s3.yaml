@@ -9,4 +9,4 @@ flags:
     --region=: The region of the S3 backend
     --secret-access-key=: The secret access key for the S3 bucket
     --session-token=: The session token for the S3 bucket
-    -c, --channel=!: The channel URL in the S3 bucket to upload the package to, e.g., `s3://my-bucket/my-channel`
+    -c, --channel!=: "The channel URL in the S3 bucket to upload the package to, e.g., `s3://my-bucket/my-channel`"

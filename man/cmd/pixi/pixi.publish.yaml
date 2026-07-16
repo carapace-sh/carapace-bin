@@ -1,0 +1,34 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: publish
+description: Build a conda package and publish it to a channel.
+flags:
+    --auth-file=: Path to the file containing the authentication token
+    --build-number=: An optional override for the package's build number
+    --build-platform=: The build platform to use for building (defaults to the current platform)
+    --build-string-prefix=: An optional prefix prepended to the auto-generated build string
+    --concurrent-downloads=: Max concurrent network requests, default is `50`
+    --concurrent-solves=: Max concurrent solves, default is the number of CPUs
+    --config-file=: Load configuration from this file instead of searching system and user-level paths. Project-local `<project>/.pixi/config.toml` is still merged on top
+    --force: Force overwrite existing packages
+    --generate-attestation: Generate sigstore attestation (prefix.dev only)
+    --no-config: Don't read system or user-level configuration files. Project-local `<project>/.pixi/config.toml` is still loaded
+    --no-hard-links: Disallow hard links during package installation
+    --no-ref-links: Disallow ref links (copy-on-write) during package installation
+    --no-symbolic-links: Disallow symbolic links during package installation
+    --package-format=: "Archive format and optional compression level, e.g. `conda`, `tar-bz2`, `conda:max`, `conda:15`, `tar-bz2:9`. Numeric ranges match rattler-build: -7..=22 for `.conda`, 1..=9 for `.tar.bz2`"
+    --path=: The path to a directory containing a package manifest, or to a specific manifest file
+    --pinning-strategy=: Set pinning strategy
+    --pypi-keyring-provider=: Specifies whether to use the keyring to look up credentials for PyPI
+    --run-post-link-scripts: Run post-link scripts (insecure)
+    --skip-existing=: Skip uploading packages that already exist at the target. This is enabled by default. Use `--no-skip-existing` to disable
+    --target-channel=: "The target channel to publish packages to. Accepts a URL (prefix.dev, anaconda.org, cloudsmith://, s3://, quetz://, artifactory://) or a local filesystem path / `file://` URL for an indexed local channel"
+    --target-dir=: The local filesystem path to copy the built package(s) into (no channel indexing)
+    --tls-no-verify: Do not verify the TLS certificate of the server
+    --tls-root-certs=: "Which TLS root certificates to use: 'webpki' (bundled Mozilla roots) or 'system' (system store)"
+    --to=: "The target channel to publish packages to. Accepts a URL (prefix.dev, anaconda.org, cloudsmith://, s3://, quetz://, artifactory://) or a local filesystem path / `file://` URL for an indexed local channel"
+    --use-environment-activation-cache: Use environment activation cache (experimental)
+    --variant*=: Override a build variant key with one or more values
+    -b, --build-dir=: The directory to use for incremental builds artifacts
+    -c, --clean: Whether to clean the build directory before building
+    -m, --variant-config*=: Path to an additional variant configuration YAML file
+    -t, --target-platform=: The target platform to build for (defaults to the current platform)

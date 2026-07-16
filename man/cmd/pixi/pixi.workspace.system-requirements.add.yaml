@@ -1,8 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: add
-aliases:
-    - a
-description: Adds an environment to the manifest file
-flags:
-    --family=: The Libc family, this can only be specified for requirement `other-libc`
-    -f, --feature=: The name of the feature to modify

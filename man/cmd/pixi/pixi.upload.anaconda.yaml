@@ -3,7 +3,7 @@ name: anaconda
 description: Options for uploading to a Anaconda.org server
 flags:
     -a, --api-key=: The Anaconda API key, if none is provided, the token is read from the keychain / auth-file
-    -c, --channel=*: The channel / label to upload the package to (e.g. main / rc)
+    -c, --channel*=: The channel / label to upload the package to (e.g. main / rc)
     -f, --force: Replace files on conflict
-    -o, --owner=!: The owner of the distribution (e.g. conda-forge or your username)
+    -o, --owner!=: The owner of the distribution (e.g. conda-forge or your username)
     -u, --url=: The URL to the Anaconda server

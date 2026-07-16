@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: register
+description: Commands to manage the registry of workspaces. Default command will add a new workspace

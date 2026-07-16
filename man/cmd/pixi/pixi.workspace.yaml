@@ -3,5 +3,6 @@ name: workspace
 aliases:
     - project
 description: Modify the workspace configuration file through the command line
-persistentflags:
+flags:
     -m, --manifest-path=: The path to `pixi.toml`, `pyproject.toml`, or the workspace directory
+    -w, --workspace=: Name of the workspace

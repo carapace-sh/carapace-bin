@@ -7,7 +7,7 @@ import (
 
 var help_upgradeCmd = &cobra.Command{
 	Use:   "upgrade",
-	Short: "Checks if there are newer versions of the dependencies and upgrades them in the lockfile and manifest file",
+	Short: "Checks if there are newer versions of the dependencies and upgrades them in the lock file and manifest file",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -5,16 +5,21 @@ flags:
     --auth-file=: Path to the file containing the authentication token
     --concurrent-downloads=: Max concurrent network requests, default is `50`
     --concurrent-solves=: Max concurrent solves, default is the number of CPUs
+    --config-file=: Load configuration from this file instead of searching system and user-level paths. Project-local `<project>/.pixi/config.toml` is still merged on top
     --json: Output the changes in JSON format
+    --no-config: Don't read system or user-level configuration files. Project-local `<project>/.pixi/config.toml` is still loaded
+    --no-hard-links: Disallow hard links during package installation
     --no-install: Don't install the (solve) environments needed for pypi-dependencies solving
+    --no-ref-links: Disallow ref links (copy-on-write) during package installation
+    --no-symbolic-links: Disallow symbolic links during package installation
     --pinning-strategy=: Set pinning strategy
     --pypi-keyring-provider=: Specifies whether to use the keyring to look up credentials for PyPI
     --run-post-link-scripts: Run post-link scripts (insecure)
     --tls-no-verify: Do not verify the TLS certificate of the server
-    --tls-root-certs=: 'Which TLS root certificates to use: ''webpki'' (bundled Mozilla roots), ''native'' (system store), or ''all'' (both)'
+    --tls-root-certs=: "Which TLS root certificates to use: 'webpki' (bundled Mozilla roots) or 'system' (system store)"
     --use-environment-activation-cache: Use environment activation cache (experimental)
-    -e, --environment=*: The environments to update. If none is specified, all environments are updated
-    -n, --dry-run: Don't actually write the lockfile or update any environment
-    -p, --platform=*: The platforms to update. If none is specified, all platforms are updated
-persistentflags:
+    -e, --environment*=: The environments to update. If none is specified, all environments are updated
     -m, --manifest-path=: The path to `pixi.toml`, `pyproject.toml`, or the workspace directory
+    -n, --dry-run: Don't actually write the lock file or update any environment
+    -p, --platform*=: The platforms to update. If none is specified, all platforms are updated. Accepts a workspace platform name; a bare conda subdir (e.g. `linux-64`) is also accepted so users don't have to declare a platform before targeting it
+    -w, --workspace=: Name of the workspace

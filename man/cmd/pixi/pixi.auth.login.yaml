@@ -3,9 +3,17 @@ name: login
 description: Store authentication information for a given host
 flags:
     --conda-token=: The token to use on anaconda.org / quetz authentication
+    --oauth: Use OAuth/OIDC authentication
+    --oauth-client-id=: OAuth client ID (defaults to "rattler")
+    --oauth-client-secret=: OAuth client secret (for confidential clients)
+    --oauth-flow=: "OAuth flow: device-code (default), auth-code, auto"
+    --oauth-issuer-url=: "OIDC issuer URL (defaults to <https://{host>)"
+    --oauth-redirect-uri=: "OAuth redirect URI (defaults to a random localhost port). Set this when the OAuth client on the `IdP` side is registered with a specific redirect URI such as `http://127.0.0.1:8000/auth/oidc`"
+    --oauth-scope*=: Additional OAuth scopes to request (repeatable)
     --password=: The password to use (for basic HTTP authentication)
     --s3-access-key-id=: The S3 access key ID
     --s3-secret-access-key=: The S3 secret access key
     --s3-session-token=: The S3 session token
     --token=: The token to use (for authentication with prefix.dev)
+    --user-agent=: User-Agent header used for requests
     --username=: The username to use (for basic HTTP authentication)
