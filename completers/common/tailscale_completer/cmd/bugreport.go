@@ -14,5 +14,7 @@ var bugreportCmd = &cobra.Command{
 func init() {
 	carapace.Gen(bugreportCmd).Standalone()
 
+	bugreportCmd.Flags().Bool("diagnose", false, "run additional in-depth checks")
+	bugreportCmd.Flags().Bool("record", false, "pause and then write another bugreport")
 	rootCmd.AddCommand(bugreportCmd)
 }

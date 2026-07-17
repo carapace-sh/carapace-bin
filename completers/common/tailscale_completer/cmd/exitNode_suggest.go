@@ -14,5 +14,6 @@ var exitNode_suggestCmd = &cobra.Command{
 func init() {
 	carapace.Gen(exitNode_suggestCmd).Standalone()
 
+	exitNode_suggestCmd.Flags().Bool("force-probe", false, "force a probe of exit nodes before suggesting")
 	exitNodeCmd.AddCommand(exitNode_suggestCmd)
 }

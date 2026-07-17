@@ -28,22 +28,28 @@ func init() {
 	upCmd.Flags().String("exit-node", "", "Tailscale exit node (IP, base name, or auto:any) for internet traffic")
 	upCmd.Flags().Bool("exit-node-allow-lan-access", false, "allow direct access to the local network when routing via an exit node")
 	upCmd.Flags().Bool("force-reauth", false, "force reauthentication")
+	upCmd.Flags().Bool("host-routes", true, "install host routes to other Tailscale nodes")
 	upCmd.Flags().String("hostname", "", "hostname to use instead of the one provided by the OS")
 	upCmd.Flags().String("id-token", "", "ID token from the identity provider for workload identity federation")
 	upCmd.Flags().Bool("json", false, "output in JSON format")
 	upCmd.Flags().String("login-server", "", "base URL of control server")
+	upCmd.Flags().String("netfilter-mode", "", "netfilter mode (one of on, nodivert, off)")
 	upCmd.Flags().String("operator", "", "Unix username to allow to operate on tailscaled without sudo")
 	upCmd.Flags().Bool("qr", false, "show QR code for login URLs")
 	upCmd.Flags().String("qr-format", "", "QR code formatting")
 	upCmd.Flags().Bool("report-posture", false, "allow management plane to gather device posture information")
 	upCmd.Flags().Bool("reset", false, "reset unspecified settings to their default values")
 	upCmd.Flags().Bool("shields-up", false, "don't allow incoming connections")
+	upCmd.Flags().Bool("snat-subnet-routes", false, "source NAT traffic to local routes advertised with --advertise-routes")
 	upCmd.Flags().Bool("ssh", false, "run an SSH server, permitting access per tailnet admin's declared policy")
+	upCmd.Flags().Bool("stateful-filtering", false, "apply stateful filtering to forwarded packets (subnet routers, exit nodes, and so on)")
 	upCmd.Flags().String("timeout", "", "maximum amount of time to wait for tailscaled to enter a Running state")
+	upCmd.Flags().Bool("unattended", false, "run in \"Unattended Mode\" where Tailscale keeps running even after the current GUI user logs out")
 	rootCmd.AddCommand(upCmd)
 
 	carapace.Gen(upCmd).FlagCompletion(carapace.ActionMap{
-		"accept-risk": carapace.ActionValues("lose-ssh", "mac-app-connector", "all"),
-		"qr-format":   carapace.ActionValues("ascii", "auto", "large", "small"),
+		"accept-risk":    carapace.ActionValues("lose-ssh", "mac-app-connector", "all"),
+		"netfilter-mode": carapace.ActionValues("on", "nodivert", "off"),
+		"qr-format":      carapace.ActionValues("ascii", "auto", "large", "small"),
 	})
 }

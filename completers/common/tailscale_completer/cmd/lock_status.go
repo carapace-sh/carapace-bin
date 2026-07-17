@@ -14,5 +14,6 @@ var lock_statusCmd = &cobra.Command{
 func init() {
 	carapace.Gen(lock_statusCmd).Standalone()
 
+	lock_statusCmd.Flags().Bool("json", false, "output in JSON format")
 	lockCmd.AddCommand(lock_statusCmd)
 }

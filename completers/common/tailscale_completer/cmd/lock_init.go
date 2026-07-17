@@ -16,6 +16,6 @@ func init() {
 
 	lock_initCmd.Flags().Bool("confirm", false, "do not prompt for confirmation")
 	lock_initCmd.Flags().Bool("gen-disablement-for-support", false, "generate and transmit a disablement secret for Tailscale support")
-	lock_initCmd.Flags().String("gen-disablements", "", "number of disablement secrets to generate")
+	lock_initCmd.Flags().Int("gen-disablements", 1, "number of disablement secrets to generate")
 	lockCmd.AddCommand(lock_initCmd)
 }
