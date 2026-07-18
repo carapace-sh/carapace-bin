@@ -19,7 +19,7 @@ var auditCmd = &cobra.Command{
 func init() {
 	carapace.Gen(auditCmd).Standalone()
 
-	auditCmd.Flags().Bool("arch", false, "Audit the given CPU architecture")
+	auditCmd.Flags().String("arch", "", "Audit the given CPU architecture")
 	auditCmd.Flags().Bool("audit-debug", false, "Enable debugging and profiling of audit methods")
 	auditCmd.Flags().Bool("cask", false, "Treat all named arguments as casks")
 	auditCmd.Flags().Bool("debug", false, "Display any debugging information")

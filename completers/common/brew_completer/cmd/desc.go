@@ -33,7 +33,7 @@ func init() {
 			if descCmd.Flag("eval-all").Changed {
 				return action.ActionSearch(descCmd)
 			}
-			return action.ActionList(uninstallCmd)
+			return action.ActionList(descCmd)
 		}).FilterArgs(),
 	)
 }
