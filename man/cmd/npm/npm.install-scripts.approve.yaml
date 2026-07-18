@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: approve
+description: Approve install scripts for specific dependencies

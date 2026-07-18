@@ -19,7 +19,7 @@ func ActionLocalConfigKeys() carapace.Action {
 //	registry
 //	prefix
 func ActionGlobalConfigKeys() carapace.Action {
-	return actionConfigKeys(false)
+	return actionConfigKeys(true)
 }
 
 func actionConfigKeys(global bool) carapace.Action {

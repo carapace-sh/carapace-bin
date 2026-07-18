@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: install-scripts
+description: Manage install-script approvals for dependencies
+persistentflags:
+    --allow-scripts-pin: write pinned entries when approving install scripts
+    --dry-run: only report what would be done
+    --json: output as json
+    -a, --all: act on all packages with pending install scripts

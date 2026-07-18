@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: query
+description: Retrieve a filtered list of packages
+flags:
+    --before=: only install packages available on or before the given date
+    --expect-results: whether or not to expect results from the command
+    --include-workspace-root: include the workspace root when workspaces are enabled
+    --min-release-age-exclude=*: package names or globs exempt from the min-release-age filter
+    --min-release-age=: only install packages available more than the given number of days ago
+    --package-lock-only: only use the package-lock.json
+    --workspaces: Enable running a command in the context fo all workspaces
+    -g, --global: operate in global mode
+    -w, --workspace=*: Enable running a command in the context of the given workspace
