@@ -18,7 +18,7 @@ func init() {
 	environmentCmd.Flags().Bool("help", false, "Show this message.")
 	environmentCmd.Flags().Bool("plain", false, "Generate plain output even when piped.")
 	environmentCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	environmentCmd.Flags().Bool("shell", false, "Generate a list of environment variables for the specified shell, or `--shell=auto` to detect the current shell.")
+	environmentCmd.Flags().String("shell", "", "Generate a list of environment variables for the specified shell, or `--shell=auto` to detect the current shell.")
 	environmentCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
 	rootCmd.AddCommand(environmentCmd)
 }
