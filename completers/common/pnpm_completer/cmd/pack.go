@@ -26,6 +26,8 @@ func init() {
 
 	carapace.Gen(packCmd).FlagCompletion(carapace.ActionMap{
 		"filter":           pnpm.ActionFilters(),
+		"out":              carapace.ActionFiles(),
 		"pack-destination": carapace.ActionDirectories(),
+		"pack-gzip-level":  carapace.ActionValues("0", "1", "2", "3", "4", "5", "6", "7", "8", "9"),
 	})
 }

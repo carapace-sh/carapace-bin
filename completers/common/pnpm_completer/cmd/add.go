@@ -62,9 +62,13 @@ func init() {
 	rootCmd.AddCommand(addCmd)
 
 	carapace.Gen(addCmd).FlagCompletion(carapace.ActionMap{
+		"cpu":               carapace.ActionValues("arm", "arm64", "ia32", "loong64", "mips", "mipsel", "ppc64", "riscv64", "s390", "s390x", "x64"),
 		"dir":               carapace.ActionDirectories(),
 		"filter":            pnpm.ActionFilters(),
+		"filter-prod":       pnpm.ActionFilters(),
+		"libc":              carapace.ActionValues("glibc", "musl"),
 		"loglevel":          pnpm.ActionLoglevels(),
+		"os":                carapace.ActionValues("aix", "android", "darwin", "freebsd", "linux", "openbsd", "sunos", "win32"),
 		"store-dir":         carapace.ActionDirectories(),
 		"virtual-store-dir": carapace.ActionDirectories(),
 	})
