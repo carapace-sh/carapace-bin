@@ -8,6 +8,8 @@ github.com/carapace-sh/carapace-jq v0.0.3 h1:DbVKss+jpg54McQNBg0WBFO60Vz+WwbRgjo
 github.com/carapace-sh/carapace-jq v0.0.3/go.mod h1:wF5p2OM8wgLQwULZp2PQXIo7AYiSWAHAn1bNBmkHKQE=
 github.com/carapace-sh/carapace-pflag v1.1.0 h1:uB33wch8ADjP878NadQnbZ5vyROcj/Ac+wUQKMcIrQM=
 github.com/carapace-sh/carapace-pflag v1.1.0/go.mod h1:McXfInJRrz4CZXVZOBLb0bTZqETkiAhM9Iw0y3An2Bg=
+github.com/carapace-sh/carapace-pnpm v0.0.2 h1:+hOrliH7O1bq1jonNbZPMbvijBafHxEP0b/N+74V75I=
+github.com/carapace-sh/carapace-pnpm v0.0.2/go.mod h1:f9I//SNUgRPSdU/qrZQf49lgOQMxUlX+0CJonGSCeCk=
 github.com/carapace-sh/carapace-selfupdate v0.0.10 h1:ZvutqGwVvSj6TmI/tLcort63JD6PaOG0ia6squwbTuo=
 github.com/carapace-sh/carapace-selfupdate v0.0.10/go.mod h1:4RavsY8l/RFtA9UXluUnEM5DF7zUkknMeRe/VN8QCGY=
 github.com/carapace-sh/carapace-shlex v1.1.1 h1:ccmNeetAYZOk4IcV36youFDsXusT9uCNW2Njkw+QS+Q=
