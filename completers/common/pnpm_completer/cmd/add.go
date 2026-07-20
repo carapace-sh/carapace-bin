@@ -6,7 +6,7 @@ import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/npm"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/pnpm"
+	"github.com/carapace-sh/carapace-pnpm/pkg/actions/tools/pnpm"
 	"github.com/carapace-sh/carapace/pkg/condition"
 	"github.com/spf13/cobra"
 )
