@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/carapace-sh/carapace-pnpm/pkg/actions/tools/pnpm"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
@@ -35,9 +36,10 @@ func init() {
 	rootCmd.AddCommand(publishCmd)
 
 	carapace.Gen(publishCmd).FlagCompletion(carapace.ActionMap{
-		"access":      carapace.ActionValues("public", "restricted").StyleF(style.ForKeyword),
-		"filter":      pnpm.ActionFilters(),
-		"filter-prod": pnpm.ActionFilters(),
+		"access":         carapace.ActionValues("public", "restricted").StyleF(style.ForKeyword),
+		"filter":         pnpm.ActionFilters(),
+		"filter-prod":    pnpm.ActionFilters(),
+		"publish-branch": git.ActionLocalBranches(),
 	})
 
 	carapace.Gen(publishCmd).PositionalCompletion(

@@ -46,6 +46,7 @@ func init() {
 		"filter-prod": pnpm.ActionFilters(),
 		"format":      carapace.ActionValues("table", "list", "json"),
 		"loglevel":    pnpm.ActionLoglevels(),
+		"sort-by":     carapace.ActionValues("name"),
 	})
 
 	carapace.Gen(outdatedCmd).PositionalAnyCompletion(
