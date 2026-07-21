@@ -14,7 +14,5 @@ var catFileCmd = &cobra.Command{
 func init() {
 	carapace.Gen(catFileCmd).Standalone()
 
-	catFileCmd.Flags().BoolP("help", "h", false, "Output usage information")
-
 	rootCmd.AddCommand(catFileCmd)
 }

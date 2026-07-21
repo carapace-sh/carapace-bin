@@ -14,7 +14,5 @@ var catIndexCmd = &cobra.Command{
 func init() {
 	carapace.Gen(catIndexCmd).Standalone()
 
-	catIndexCmd.Flags().BoolP("help", "h", false, "Output usage information")
-
 	rootCmd.AddCommand(catIndexCmd)
 }

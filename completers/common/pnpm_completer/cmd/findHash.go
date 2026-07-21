@@ -14,7 +14,5 @@ var findHashCmd = &cobra.Command{
 func init() {
 	carapace.Gen(findHashCmd).Standalone()
 
-	findHashCmd.Flags().BoolP("help", "h", false, "Output usage information")
-
 	rootCmd.AddCommand(findHashCmd)
 }
