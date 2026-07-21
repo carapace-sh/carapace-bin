@@ -14,7 +14,5 @@ var rootRootCmd = &cobra.Command{
 func init() {
 	carapace.Gen(rootRootCmd).Standalone()
 
-	rootRootCmd.Flags().BoolP("help", "h", false, "Output usage information")
-
 	rootCmd.AddCommand(rootRootCmd)
 }

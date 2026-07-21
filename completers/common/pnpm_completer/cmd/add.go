@@ -21,22 +21,16 @@ var addCmd = &cobra.Command{
 func init() {
 	carapace.Gen(addCmd).Standalone()
 
-	addCmd.Flags().Bool("aggregate-output", false, "Aggregate output from child processes that are run in parallel")
 	addCmd.Flags().String("allow-build", "", "List of package names that are allowed to run postinstall scripts")
 	addCmd.Flags().String("changed-files-ignore-pattern", "", "Defines files to ignore when filtering for changed projects since the specified commit/branch")
-	addCmd.Flags().Bool("color", false, "Controls colors in the output")
 	addCmd.Flags().Bool("config", false, "Save to configDependencies")
 	addCmd.Flags().String("cpu", "", "Override CPU architecture for optional native dependencies")
-	addCmd.Flags().StringP("dir", "C", "", "Change to directory <dir>")
 	addCmd.Flags().String("filter", "", "set filter")
 	addCmd.Flags().String("filter-prod", "", "Restricts the scope to package names matching the given pattern")
 	addCmd.Flags().BoolP("global", "g", false, "Install as a global package")
-	addCmd.Flags().BoolP("help", "h", false, "Output usage information")
 	addCmd.Flags().Bool("ignore-scripts", false, "Don't run lifecycle scripts")
 	addCmd.Flags().Bool("ignore-workspace-root-check", false, "Permit adding dependencies to the workspace root")
 	addCmd.Flags().String("libc", "", "Override libc for optional native dependencies")
-	addCmd.Flags().String("loglevel", "", "What level of logs to report")
-	addCmd.Flags().Bool("no-color", false, "Controls colors in the output")
 	addCmd.Flags().Bool("no-save-exact", false, "Do not install exact version")
 	addCmd.Flags().Bool("no-save-workspace-protocol", false, "Do not save packages from the workspace with a \"workspace:\" protocol")
 	addCmd.Flags().Bool("offline", false, "Trigger an error if any required dependencies are not available")
@@ -53,21 +47,16 @@ func init() {
 	addCmd.Flags().Bool("save-workspace-protocol", false, "Save packages from the workspace with a \"workspace:\" protocol")
 	addCmd.Flags().Bool("silent", false, "turn off all logging")
 	addCmd.Flags().String("store-dir", "", "The directory in which all the packages are saved on the disk")
-	addCmd.Flags().Bool("stream", false, "Stream output from child processes immediately")
 	addCmd.Flags().String("test-pattern", "", "Defines files related to tests")
-	addCmd.Flags().Bool("use-stderr", false, "Divert all output to stderr")
 	addCmd.Flags().String("virtual-store-dir", "", "The directory with links to the store")
 	addCmd.Flags().Bool("workspace", false, "Only adds the new dependency if it is found in the workspace")
-	addCmd.Flags().BoolP("workspace-root", "w", false, "Run the command on the root workspace project")
 	rootCmd.AddCommand(addCmd)
 
 	carapace.Gen(addCmd).FlagCompletion(carapace.ActionMap{
 		"cpu":               carapace.ActionValues("arm", "arm64", "ia32", "loong64", "mips", "mipsel", "ppc64", "riscv64", "s390", "s390x", "x64"),
-		"dir":               carapace.ActionDirectories(),
 		"filter":            pnpm.ActionFilters(),
 		"filter-prod":       pnpm.ActionFilters(),
 		"libc":              carapace.ActionValues("glibc", "musl"),
-		"loglevel":          pnpm.ActionLoglevels(),
 		"os":                carapace.ActionValues("aix", "android", "darwin", "freebsd", "linux", "openbsd", "sunos", "win32"),
 		"store-dir":         carapace.ActionDirectories(),
 		"virtual-store-dir": carapace.ActionDirectories(),

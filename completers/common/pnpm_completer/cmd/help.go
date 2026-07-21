@@ -14,7 +14,5 @@ var helpCmd = &cobra.Command{
 func init() {
 	carapace.Gen(helpCmd).Standalone()
 
-	helpCmd.Flags().BoolP("help", "h", false, "Output usage information")
-
 	rootCmd.AddCommand(helpCmd)
 }
