@@ -23,4 +23,8 @@ func init() {
 	carapace.Gen(execCmd).FlagCompletion(carapace.ActionMap{
 		"package": action.ActionPackages(execCmd),
 	})
+
+	carapace.Gen(execCmd).PositionalCompletion(
+		action.ActionPackages(execCmd),
+	)
 }

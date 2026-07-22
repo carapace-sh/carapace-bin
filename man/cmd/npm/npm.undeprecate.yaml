@@ -1,5 +1,5 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: hook
-description: Manage registry hooks
-persistentflags:
+name: undeprecate
+description: Undeprecate a version of a package
+flags:
     --otp=: one-time password

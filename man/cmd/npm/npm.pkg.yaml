@@ -1,6 +1,9 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: set-script
-description: Set tasks in the scripts section of package.json
+name: pkg
+description: Manage package.json
 flags:
     --workspaces: Enable running a command in the context fo all workspaces
     -w, --workspace=*: Enable running a command in the context of the given workspace
+persistentflags:
+    --json: output as json
+    -f, --force: remove various protections against unfortunate side effects

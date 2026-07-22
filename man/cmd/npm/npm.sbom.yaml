@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: sbom
+description: Generate a Software Bill of Materials (SBOM)
+flags:
+    --omit=: omit dependency type
+    --package-lock-only: ignore node-modules
+    --sbom-format=: SBOM format to use
+    --sbom-type=: type of package described by the generated SBOM
+    --workspaces: Enable running a command in the context fo all workspaces
+    -w, --workspace=*: Enable running a command in the context of the given workspace

@@ -1,5 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: add
-description: Add registry hook
-flags:
-    --type=: type of hook

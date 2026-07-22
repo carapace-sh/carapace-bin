@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: help-search
+description: Search npm help documentation
+flags:
+    -l, --long: Show extended information in the search output

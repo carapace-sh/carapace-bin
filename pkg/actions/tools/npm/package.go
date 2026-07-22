@@ -118,3 +118,79 @@ func loadPackageJson(c carapace.Context) (pj packageJson, err error) {
 	}
 	return
 }
+
+// ActionPackageJsonKeys completes keys of package.json using dot notation
+//
+//	name
+//	scripts.test
+func ActionPackageJsonKeys() carapace.Action {
+	return carapace.ActionMultiParts(".", func(c carapace.Context) carapace.Action {
+		return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			packageFile, err := util.FindReverse(c.Dir, "package.json")
+			if err != nil {
+				return carapace.ActionMessage(err.Error())
+			}
+
+			content, err := os.ReadFile(packageFile)
+			if err != nil {
+				return carapace.ActionMessage(err.Error())
+			}
+
+			var pkg map[string]any
+			if err := json.Unmarshal(content, &pkg); err != nil {
+				return carapace.ActionMessage(err.Error())
+			}
+
+			current := any(pkg)
+			for _, part := range c.Parts {
+				obj, ok := current.(map[string]any)
+				if !ok {
+					return carapace.ActionValues()
+				}
+				next, ok := obj[part]
+				if !ok {
+					return carapace.ActionValues()
+				}
+				current = next
+			}
+
+			obj, ok := current.(map[string]any)
+			if !ok {
+				return carapace.ActionValues()
+			}
+
+			vals := make([]string, 0, len(obj)*2)
+			hasNested := false
+			for key, value := range obj {
+				vals = append(vals, key, jsonType(value))
+				if _, ok := value.(map[string]any); ok {
+					hasNested = true
+				}
+			}
+			action := carapace.ActionValuesDescribed(vals...)
+			if hasNested {
+				action = action.NoSpace('.')
+			}
+			return action
+		})
+	}).Tag("package.json keys")
+}
+
+func jsonType(value any) string {
+	switch value.(type) {
+	case map[string]any:
+		return "object"
+	case []any:
+		return "array"
+	case string:
+		return "string"
+	case float64:
+		return "number"
+	case bool:
+		return "boolean"
+	case nil:
+		return "null"
+	default:
+		return fmt.Sprintf("%T", value)
+	}
+}
