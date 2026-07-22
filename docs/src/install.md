@@ -57,6 +57,14 @@ Install from [nixpkgs](https://search.nixos.org/packages?show=carapace)
 nix-shell -p carapace
 ```
 
+## Pixi
+
+Install from [conda-forge](https://anaconda.org/channels/conda-forge/packages/carapace/overview)
+
+```sh
+pixi global install carapace
+```
+
 ## PKGX
 
 Install from [pkgx.dev](https://pkgx.dev/pkgs/carapace.sh/)
