@@ -19,7 +19,10 @@ require (
 	gopkg.in/yaml.v3 v3.0.1
 )
 
-require github.com/pelletier/go-toml/v2 v2.4.2 // indirect
+require (
+	github.com/carapace-sh/carapace-pnpm v0.0.2 // indirect
+	github.com/pelletier/go-toml/v2 v2.4.2 // indirect
+)
 
 require (
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
