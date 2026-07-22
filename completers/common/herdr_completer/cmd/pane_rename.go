@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/herdr"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,6 @@ func init() {
 
 	pane_renameCmd.Flags().Bool("clear", false, "")
 	paneCmd.AddCommand(pane_renameCmd)
+
+	carapace.Gen(pane_renameCmd).PositionalCompletion(herdr.ActionPanes(herdr.PaneOpts{}))
 }

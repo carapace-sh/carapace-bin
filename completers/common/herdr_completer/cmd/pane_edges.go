@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/herdr"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,8 @@ func init() {
 	pane_edgesCmd.Flags().Bool("current", false, "")
 	pane_edgesCmd.Flags().String("pane", "", "")
 	paneCmd.AddCommand(pane_edgesCmd)
+
+	carapace.Gen(pane_edgesCmd).FlagCompletion(carapace.ActionMap{
+		"pane": herdr.ActionPanes(herdr.PaneOpts{}),
+	})
 }

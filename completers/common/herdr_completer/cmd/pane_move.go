@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/herdr"
 	"github.com/spf13/cobra"
 )
 
@@ -28,6 +29,10 @@ func init() {
 	paneCmd.AddCommand(pane_moveCmd)
 
 	carapace.Gen(pane_moveCmd).FlagCompletion(carapace.ActionMap{
-		"split": carapace.ActionValues("right", "down"),
+		"split":       carapace.ActionValues("right", "down"),
+		"tab":         herdr.ActionTabs(herdr.TabOpts{}),
+		"target-pane": herdr.ActionPanes(herdr.PaneOpts{}),
 	})
+
+	carapace.Gen(pane_moveCmd).PositionalCompletion(herdr.ActionPanes(herdr.PaneOpts{}))
 }

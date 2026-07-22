@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/herdr"
 	"github.com/spf13/cobra"
 )
 
@@ -20,4 +21,10 @@ func init() {
 	pane_zoomCmd.Flags().String("pane", "", "")
 	pane_zoomCmd.Flags().Bool("toggle", false, "")
 	paneCmd.AddCommand(pane_zoomCmd)
+
+	carapace.Gen(pane_zoomCmd).PositionalCompletion(herdr.ActionPanes(herdr.PaneOpts{}))
+
+	carapace.Gen(pane_zoomCmd).FlagCompletion(carapace.ActionMap{
+		"pane": herdr.ActionPanes(herdr.PaneOpts{}),
+	})
 }
