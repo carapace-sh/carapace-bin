@@ -2,6 +2,8 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/npm_completer/cmd/action"
+	"github.com/carapace-sh/carapace/pkg/condition"
 	"github.com/spf13/cobra"
 )
 
@@ -20,4 +22,11 @@ func init() {
 	addWorkspaceFlags(initCmd)
 
 	rootCmd.AddCommand(initCmd)
+
+	carapace.Gen(initCmd).PositionalCompletion(
+		carapace.Batch(
+			carapace.ActionFiles(),
+			action.ActionPackages(initCmd).UnlessF(condition.CompletingPath),
+		).ToA(),
+	)
 }
