@@ -3,7 +3,7 @@ module github.com/carapace-sh/carapace-bin
 go 1.26.2
 
 require (
-	github.com/carapace-sh/carapace v1.13.2
+	github.com/carapace-sh/carapace v1.13.3
 	github.com/carapace-sh/carapace-bridge v1.6.2
 	github.com/carapace-sh/carapace-jjlex v0.1.8
 	github.com/carapace-sh/carapace-jq v0.0.3
@@ -20,10 +20,7 @@ require (
 	gopkg.in/yaml.v3 v3.0.1
 )
 
-require (
-	github.com/carapace-sh/carapace-pnpm v0.0.2 // indirect
-	github.com/pelletier/go-toml/v2 v2.4.2 // indirect
-)
+require github.com/pelletier/go-toml/v2 v2.4.2 // indirect
 
 require (
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
