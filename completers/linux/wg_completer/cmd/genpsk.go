@@ -13,5 +13,6 @@ var genpskCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(genpskCmd).Standalone()
+
 	rootCmd.AddCommand(genpskCmd)
 }

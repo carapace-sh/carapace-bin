@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/linux/wg_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -13,9 +14,11 @@ var syncconfCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(syncconfCmd).Standalone()
+
 	rootCmd.AddCommand(syncconfCmd)
+
 	carapace.Gen(syncconfCmd).PositionalCompletion(
-		ActionInterfaces(),
+		action.ActionInterfaces(),
 		carapace.ActionFiles(),
 	)
 }

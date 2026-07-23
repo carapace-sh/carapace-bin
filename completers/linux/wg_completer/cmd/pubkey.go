@@ -13,5 +13,6 @@ var pubkeyCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(pubkeyCmd).Standalone()
+
 	rootCmd.AddCommand(pubkeyCmd)
 }

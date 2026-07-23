@@ -1,4 +1,4 @@
-package cmd
+package action
 
 import (
 	"strings"
@@ -6,7 +6,6 @@ import (
 	"github.com/carapace-sh/carapace"
 )
 
-// ActionInterfaces completes WireGuard interface names from `wg show interfaces`.
 func ActionInterfaces() carapace.Action {
 	return carapace.ActionExecCommand("wg", "show", "interfaces")(func(output []byte) carapace.Action {
 		lines := strings.Fields(string(output))

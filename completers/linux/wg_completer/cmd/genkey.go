@@ -13,5 +13,6 @@ var genkeyCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(genkeyCmd).Standalone()
+
 	rootCmd.AddCommand(genkeyCmd)
 }
