@@ -8,7 +8,7 @@ import (
 
 var remote_showCmd = &cobra.Command{
 	Use:   "show",
-	Short: "Give some inforemation about the remote",
+	Short: "Give some information about the remote",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
