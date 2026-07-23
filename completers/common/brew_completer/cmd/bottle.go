@@ -15,7 +15,7 @@ var bottleCmd = &cobra.Command{
 func init() {
 	carapace.Gen(bottleCmd).Standalone()
 
-	bottleCmd.Flags().Bool("committer", false, "Specify a committer name and email in `git`'s standard author format.")
+	bottleCmd.Flags().String("committer", "", "Specify a committer name and email in `git`'s standard author format.")
 	bottleCmd.Flags().Bool("debug", false, "Display any debugging information.")
 	bottleCmd.Flags().Bool("force-core-tap", false, "Build a bottle even if <formula> is not in `homebrew/core` or any installed taps.")
 	bottleCmd.Flags().Bool("help", false, "Show this message.")
@@ -27,8 +27,8 @@ func init() {
 	bottleCmd.Flags().Bool("no-rebuild", false, "If the formula specifies a rebuild version, remove it from the generated DSL.")
 	bottleCmd.Flags().Bool("only-json-tab", false, "When passed with `--json`, the tab will be written to the JSON file but not the bottle.")
 	bottleCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	bottleCmd.Flags().Bool("root-url", false, "Use the specified <URL> as the root of the bottle's URL instead of Homebrew's default.")
-	bottleCmd.Flags().Bool("root-url-using", false, "Use the specified download strategy class for downloading the bottle's URL instead of Homebrew's default.")
+	bottleCmd.Flags().String("root-url", "", "Use the specified <URL> as the root of the bottle's URL instead of Homebrew's default.")
+	bottleCmd.Flags().String("root-url-using", "", "Use the specified download strategy class for downloading the bottle's URL instead of Homebrew's default.")
 	bottleCmd.Flags().Bool("skip-relocation", false, "Do not check if the bottle can be marked as relocatable.")
 	bottleCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
 	bottleCmd.Flags().Bool("write", false, "Write changes to the formula file. A new commit will be generated unless `--no-commit` is passed.")

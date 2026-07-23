@@ -19,7 +19,7 @@ func init() {
 	vendorGemsCmd.Flags().Bool("help", false, "Show this message.")
 	vendorGemsCmd.Flags().Bool("no-commit", false, "Do not generate a new commit upon completion.")
 	vendorGemsCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	vendorGemsCmd.Flags().Bool("update", false, "Update the specified list of vendored gems to the latest version.")
+	vendorGemsCmd.Flags().String("update", "", "Update the specified list of vendored gems to the latest version.")
 	vendorGemsCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
 	rootCmd.AddCommand(vendorGemsCmd)
 }

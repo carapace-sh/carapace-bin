@@ -25,7 +25,7 @@ func init() {
 	lcCmd.Flags().Bool("newer-only", false, "Show the latest version only if it's newer than the formula/cask.")
 	lcCmd.Flags().Bool("quiet", false, "Suppress warnings, don't print a progress bar for JSON output.")
 	lcCmd.Flags().Bool("resources", false, "Also check resources for formulae.")
-	lcCmd.Flags().Bool("tap", false, "Check formulae and casks within the given tap, specified as <user>`/`<repo>.")
+	lcCmd.Flags().String("tap", "", "Check formulae and casks within the given tap, specified as <user>`/`<repo>.")
 	lcCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
 	rootCmd.AddCommand(lcCmd)
 }
