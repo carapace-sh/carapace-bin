@@ -12,6 +12,12 @@ var rootCmd = &cobra.Command{
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
+var updateCmd = &cobra.Command{
+	Use:   "update",
+	Short: "Update git-extras",
+	Run:   func(cmd *cobra.Command, args []string) {},
+}
+
 func Execute() error {
 	return rootCmd.Execute()
 }
@@ -20,4 +26,7 @@ func init() {
 
 	rootCmd.Flags().BoolP("help", "h", false, "Show this help")
 	rootCmd.Flags().BoolP("version", "v", false, "Show git-extras version number")
+
+	carapace.Gen(updateCmd).Standalone()
+	rootCmd.AddCommand(updateCmd)
 }
