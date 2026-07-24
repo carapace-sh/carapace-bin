@@ -5,15 +5,20 @@ flags:
     --auth-file=: Path to the file containing the authentication token
     --concurrent-downloads=: Max concurrent network requests, default is `50`
     --concurrent-solves=: Max concurrent solves, default is the number of CPUs
+    --config-file=: Load configuration from this file instead of searching system and user-level paths. Project-local `<project>/.pixi/config.toml` is still merged on top
     --format=: Which format to interpret the file as
+    --no-config: Don't read system or user-level configuration files. Project-local `<project>/.pixi/config.toml` is still loaded
+    --no-hard-links: Disallow hard links during package installation
+    --no-ref-links: Disallow ref links (copy-on-write) during package installation
+    --no-symbolic-links: Disallow symbolic links during package installation
     --pinning-strategy=: Set pinning strategy
     --pypi-keyring-provider=: Specifies whether to use the keyring to look up credentials for PyPI
     --run-post-link-scripts: Run post-link scripts (insecure)
     --tls-no-verify: Do not verify the TLS certificate of the server
-    --tls-root-certs=: 'Which TLS root certificates to use: ''webpki'' (bundled Mozilla roots), ''native'' (system store), or ''all'' (both)'
+    --tls-root-certs=: "Which TLS root certificates to use: 'webpki' (bundled Mozilla roots) or 'system' (system store)"
     --use-environment-activation-cache: Use environment activation cache (experimental)
     -e, --environment=: A name for the created environment
     -f, --feature=: A name for the created feature
-    -p, --platform=*: The platforms for the imported environment
-persistentflags:
     -m, --manifest-path=: The path to `pixi.toml`, `pyproject.toml`, or the workspace directory
+    -p, --platform*=: The platforms for the imported environment. Accepts a workspace platform name; a bare conda subdir (e.g. `linux-64`) is also accepted. Names that aren't yet declared get auto-added as subdir platforms
+    -w, --workspace=: Name of the workspace

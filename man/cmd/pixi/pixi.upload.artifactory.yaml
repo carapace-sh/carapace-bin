@@ -2,6 +2,6 @@
 name: artifactory
 description: Options for uploading to a Artifactory channel. Authentication is used from the keychain / auth-file
 flags:
-    -c, --channel=!: The URL to your channel
+    -c, --channel!=: The URL to your channel
     -t, --token=: Your Artifactory token
-    -u, --url=!: The URL to your Artifactory server
+    -u, --url!=: The URL to your Artifactory server

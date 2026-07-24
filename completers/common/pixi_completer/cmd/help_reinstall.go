@@ -7,7 +7,7 @@ import (
 
 var help_reinstallCmd = &cobra.Command{
 	Use:   "reinstall",
-	Short: "Re-install an environment, both updating the lockfile and re-installing the environment",
+	Short: "Re-install an environment, both updating the lock file and re-installing the environment",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

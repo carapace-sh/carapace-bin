@@ -3,8 +3,10 @@ name: lock
 description: Solve environment and update the lock file without installing the environments
 flags:
     --check: Check if any changes have been made to the lock file. If yes, exit with a non-zero code
+    --config-file=: Load configuration from this file instead of searching system and user-level paths. Project-local `<project>/.pixi/config.toml` is still merged on top
     --dry-run: Compute the lock file without writing to disk. Implies --no-install
     --json: Output the changes in JSON format
-    --no-install: Don't modify the environment, only modify the lock-file
-persistentflags:
+    --no-config: Don't read system or user-level configuration files. Project-local `<project>/.pixi/config.toml` is still loaded
+    --no-install: Don't modify the environment, only modify the lock file
     -m, --manifest-path=: The path to `pixi.toml`, `pyproject.toml`, or the workspace directory
+    -w, --workspace=: Name of the workspace

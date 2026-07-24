@@ -21,7 +21,7 @@ func init() {
 	upload_prefixCmd.Flags().Bool("generate-attestation", false, "Automatically generate attestation using cosign in CI. Mutually exclusive with --attestation")
 	upload_prefixCmd.Flags().BoolP("skip-existing", "s", false, "Skip upload if package already exists")
 	upload_prefixCmd.Flags().Bool("store-github-attestation", false, "Also store the generated attestation to GitHub's attestation API. Requires `GITHUB_TOKEN` environment variable and only works in GitHub Actions. The attestation will be associated with the current repository")
-	upload_prefixCmd.Flags().StringP("url", "u", "", "The URL to the prefix.dev server (only necessary for self-hosted instances)")
+	upload_prefixCmd.Flags().StringP("url", "u", "https://prefix.dev", "The URL to the prefix.dev server (only necessary for self-hosted instances)")
 	upload_prefixCmd.MarkFlagRequired("channel")
 	uploadCmd.AddCommand(upload_prefixCmd)
 

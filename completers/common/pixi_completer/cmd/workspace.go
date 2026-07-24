@@ -16,6 +16,7 @@ func init() {
 	carapace.Gen(workspaceCmd).Standalone()
 
 	workspaceCmd.PersistentFlags().StringP("manifest-path", "m", "", "The path to `pixi.toml`, `pyproject.toml`, or the workspace directory")
+	workspaceCmd.PersistentFlags().StringP("workspace", "w", "", "Name of the workspace")
 	rootCmd.AddCommand(workspaceCmd)
 
 	carapace.Gen(workspaceCmd).FlagCompletion(carapace.ActionMap{

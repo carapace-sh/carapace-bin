@@ -1,3 +1,3 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: upgrade
-description: Checks if there are newer versions of the dependencies and upgrades them in the lockfile and manifest file
+description: Checks if there are newer versions of the dependencies and upgrades them in the lock file and manifest file

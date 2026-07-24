@@ -4,6 +4,9 @@ description: Cleanup the environments
 flags:
     --activation-cache: Only remove the activation cache
     --build: Only remove the pixi-build cache
+    --config-file=: Load configuration from this file instead of searching system and user-level paths. Project-local `<project>/.pixi/config.toml` is still merged on top
+    --no-config: Don't read system or user-level configuration files. Project-local `<project>/.pixi/config.toml` is still loaded
+    --workspaces-registry: Only remove disassociated workspace registries
     -e, --environment=: The environment directory to remove
-persistentflags:
     -m, --manifest-path=: The path to `pixi.toml`, `pyproject.toml`, or the workspace directory
+    -w, --workspace=: Name of the workspace
