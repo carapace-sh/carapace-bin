@@ -12,6 +12,13 @@ func Oil(completers []string) string {
 	return fmt.Sprintf(`%v%v
 
 _carapace_completer() {
+  export CARAPACE_SHELL=oil
+  export CARAPACE_SHELL_ALIASES="$(alias | sed 's/alias //' | sed 's/=.*//')"
+  export CARAPACE_SHELL_BUILTINS="$(compgen -b)"
+  export CARAPACE_SHELL_FUNCTIONS="$(compgen -A function)"
+  export CARAPACE_SHELL_JOBS="$(jobs 2>/dev/null | while read -r line; do [[ $line =~ \[([0-9]+)\] ]] && echo "%%${BASH_REMATCH[1]}"; done)"
+  export CARAPACE_SHELL_VARIABLES="$(compgen -v)"
+
   local command="${COMP_WORDS[0]}"
   local compline="${COMP_LINE:0:${COMP_POINT}}"
   local IFS=$'\n'

@@ -27,8 +27,11 @@ func ActionEnvironmentVariables() carapace.Action {
 		return carapace.ActionValuesDescribed(vals...).Filter(
 			"CARAPACE_COMPLINE",
 			"CARAPACE_SHELL",
+			"CARAPACE_SHELL_ALIASES",
 			"CARAPACE_SHELL_BUILTINS",
 			"CARAPACE_SHELL_FUNCTIONS",
+			"CARAPACE_SHELL_JOBS",
+			"CARAPACE_SHELL_VARIABLES",
 		)
 	}).Tag("environment variables")
 }
