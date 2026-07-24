@@ -8,10 +8,10 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:                "set-env <name> <value>",
-	Short: "Set an environment variable",
-	Long:  "https://elv.sh/ref/builtin.html#set-env",
+	Short:              "Set an environment variable",
+	Long:               "https://elv.sh/ref/builtin.html#set-env",
 	DisableFlagParsing: true,
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Run:                func(cmd *cobra.Command, args []string) {},
 }
 
 func Execute() error {
@@ -19,6 +19,7 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).Standalone()
+	rootCmd.Flags().SetPrefix('&')
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		env.ActionNameValues(true),

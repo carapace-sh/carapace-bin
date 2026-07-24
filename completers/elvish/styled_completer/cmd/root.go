@@ -18,6 +18,7 @@ func Execute() error {
 
 func init() {
 	carapace.Gen(rootCmd).Standalone()
+	rootCmd.Flags().SetPrefix('&')
 
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.ActionValues().Usage("object to style"),

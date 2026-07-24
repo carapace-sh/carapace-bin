@@ -18,6 +18,7 @@ func Execute() error {
 
 func init() {
 	carapace.Gen(rootCmd).Standalone()
+	rootCmd.Flags().SetPrefix('&')
 
 	rootCmd.Flags().StringS("num-workers", "num-workers", "", "number of parallel workers")
 

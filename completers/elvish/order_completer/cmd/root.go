@@ -18,6 +18,7 @@ func Execute() error {
 
 func init() {
 	carapace.Gen(rootCmd).Standalone()
+	rootCmd.Flags().SetPrefix('&')
 
 	rootCmd.Flags().StringS("key", "key", "", "key function to apply to each element")
 	rootCmd.Flags().StringS("less-than", "less-than", "", "custom less-than comparator")

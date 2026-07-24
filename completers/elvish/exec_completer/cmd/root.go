@@ -20,6 +20,7 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 	rootCmd.Flags().SetInterspersed(false)
+	rootCmd.Flags().SetPrefix('&')
 
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.ActionExecutables(),

@@ -19,6 +19,7 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 	rootCmd.Flags().SetInterspersed(false)
+	rootCmd.Flags().SetPrefix('&')
 
 	rootCmd.Flags().StringS("ns", "ns", "", "namespace to evaluate in")
 	rootCmd.Flags().StringS("on-end", "on-end", "", "callback on evaluation end")

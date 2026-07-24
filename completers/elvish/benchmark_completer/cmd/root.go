@@ -18,6 +18,7 @@ func Execute() error {
 
 func init() {
 	carapace.Gen(rootCmd).Standalone()
+	rootCmd.Flags().SetPrefix('&')
 
 	rootCmd.Flags().StringS("min-runs", "min-runs", "5", "minimum number of runs")
 	rootCmd.Flags().StringS("min-time", "min-time", "1s", "minimum duration")

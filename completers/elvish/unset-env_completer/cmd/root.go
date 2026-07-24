@@ -7,11 +7,11 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "unset-env <name>",
-	Short: "Unset an environment variable",
-	Long:  "https://elv.sh/ref/builtin.html#unset-env",
+	Use:                "unset-env <name>",
+	Short:              "Unset an environment variable",
+	Long:               "https://elv.sh/ref/builtin.html#unset-env",
 	DisableFlagParsing: true,
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Run:                func(cmd *cobra.Command, args []string) {},
 }
 
 func Execute() error {
@@ -20,6 +20,7 @@ func Execute() error {
 
 func init() {
 	carapace.Gen(rootCmd).Standalone()
+	rootCmd.Flags().SetPrefix('&')
 
 	carapace.Gen(rootCmd).PositionalCompletion(
 		os.ActionEnvironmentVariables(),

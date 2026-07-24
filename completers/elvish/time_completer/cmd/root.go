@@ -19,6 +19,7 @@ func Execute() error {
 
 func init() {
 	carapace.Gen(rootCmd).Standalone()
+	rootCmd.Flags().SetPrefix('&')
 
 	rootCmd.Flags().StringS("on-end", "on-end", "", "callback with duration on end")
 

@@ -18,6 +18,7 @@ func Execute() error {
 
 func init() {
 	carapace.Gen(rootCmd).Standalone()
+	rootCmd.Flags().SetPrefix('&')
 
 	rootCmd.Flags().StringS("bg-color", "bg-color", "default", "background color")
 	rootCmd.Flags().BoolS("blink", "blink", false, "blink text")
