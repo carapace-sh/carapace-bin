@@ -2,8 +2,9 @@
 name: carapace
 description: >
   Use when working with carapace shell completion — integrating into CLIs, writing YAML specs,
-  creating custom actions, looking up macros, setting up shell completion, configuring
-  choices/bridges, using the MCP server, or adding man page documentation.
+  creating custom actions, building completion-aware lexers for DSLs, looking up macros,
+  setting up shell completion, configuring choices/bridges, using the MCP server, or adding
+  man page documentation.
 user-invocable: true
 ---
 
@@ -29,6 +30,7 @@ Load the reference that matches your task. When in doubt, load multiple referenc
 | Scrape spec, generate from source, Docker, supported frameworks, patch-and-container | [references/scrape.md](references/scrape.md) |
 | MCP server, complete tool, list_macros tool, codegen tool, JSON-RPC, stdio transport | [references/mcp.md](references/mcp.md) |
 | Man pages, carapace-man, UID documentation, YAML man pages, inline descriptions, scheme, host, path | [references/man.md](references/man.md) |
+| Lexer, parser, DSL completion, CompletionContext, ParseForCompletion, grammar package, completion-aware parser, argstream | [references/lexer.md](references/lexer.md) |
 
 ## Quick Guide
 
@@ -44,6 +46,7 @@ Load the reference that matches your task. When in doubt, load multiple referenc
 - **How do I generate a spec from CLI source code?** → [references/scrape.md](references/scrape.md)
 - **How do I use the MCP server?** → [references/mcp.md](references/mcp.md)
 - **How do I add inline documentation for completion values?** → [references/man.md](references/man.md)
+- **How do I build a lexer for a DSL value?** → [references/lexer.md](references/lexer.md)
 
 ## Cross-Project References
 

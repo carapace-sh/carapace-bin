@@ -178,8 +178,98 @@ The `carapace-man` tool provides subcommands:
 
 | Command | Description |
 |---------|-------------|
+| `<uid>` | Print rendered documentation for a UID |
 | `split <spec>` | Split a full YAML spec into per-subcommand files in `cmd/` |
-| `sync` | Sync man pages to the config directory |
+| `split-to <spec> <output-dir>` | Split a spec into per-subcommand files in a specific output directory |
+| `update <spec> <output-dir>` | Update `man/cmd/` docs from a fresh spec — runs spec-diff + split-to, preserving existing `documentation:` entries. Supports `--dry-run` |
+| `spec-diff <spec> <existing-dir>` | Diff a fresh spec against existing cmd docs to detect drift |
+| `man-to-md <command>` | Convert a system man page to markdown (`--section` for man page section). Falls back to `<command> --help` if no man page exists |
+| `sync` | Clone/pull repo and sync `cmd/` docs. `--cmd-source` to sync from a local `man/cmd/` directory |
+| `compile <spec> <output.db>` | Compile specs into a bbolt database (`--static`, `--man-dir` flags) |
+| `inspect <db> [uid]` | Inspect contents of a compiled bbolt database (list UIDs or render one) |
+
+### Update Workflow
+
+For each completer:
+
+1. **Update**: Run `carapace-man update` to refresh spec structure while preserving existing `documentation:` entries
+   ```bash
+   carapace <completer> spec | carapace-man update - man/cmd/<completer>
+   carapace-man update --dry-run /tmp/<completer>-spec.yaml man/cmd/<completer>
+   ```
+2. **Audit**: Check the diff output from `update` (or run `spec-diff` separately) to see what needs docs
+   ```bash
+   carapace <completer> spec > /tmp/<completer>-spec.yaml
+   carapace-man spec-diff /tmp/<completer>-spec.yaml man/cmd/<completer>
+   ```
+3. **Research**: For each subcommand needing `documentation.command`:
+   - Check the project's official documentation site first (most authoritative)
+   - Run `carapace-man man-to-md <command>` for system man pages
+   - If neither available, run `<command> --help`
+   - Stay close to official wording; rephrase only for consistency and length
+4. **Write**: Fill in `documentation.command` and `documentation.flag` entries
+5. **Validate**: Re-read edited files, verify no `[AI]` prefixes remain
+
+### Research Source Material
+
+Priority order for sourcing documentation:
+
+1. **Official upstream docs** — the project's own documentation site (e.g. docs.docker.com, docs.brew.sh, cli.github.com/manual). Closest to authoritative; rephrase for consistency but stay faithful to the original meaning and technical accuracy.
+2. **System man pages** — via `carapace-man man-to-md`. These are often derived from the upstream source and vetted by distributions.
+3. **`<command> --help`** — last resort. Help output is often incomplete or auto-generated.
+
+When rephrasing official docs:
+- Preserve technical accuracy — enum values, default behaviors, and interaction effects must match the source
+- Adjust tone and length to fit the skill's conventions (imperative mood, concise structure)
+- Merge multiple paragraphs into a coherent summary where the full detail isn't needed
+- Keep close to the original phrasing where it's already clear and concise — don't rewrite for the sake of rewriting
+
+## Documentation Standards
+
+### `documentation.command`
+
+- First sentence: what the command does (imperative mood: "Create and start a new container")
+- Remaining: key behavior, common usage patterns, important caveats
+- Source from official upstream docs first, then man pages, then `--help`. Stay close to official wording for correctness; rephrase for consistency only
+- Use UID cross-references where appropriate: `[git log](cmd://git/log)`, `[git-config](man://git-config/1)`
+
+```yaml
+documentation:
+  command: >-
+    Create and start a new container from an image. Configures the
+    container's filesystem, network, and resource constraints, then
+    executes the specified command. Use `docker create` to create a
+    container without starting it.
+```
+
+### `documentation.flag`
+
+- Use the flag name without leading dashes as the key (e.g. `restart` not `--restart`)
+- Include flag docs when upstream documentation is available — don't skip just because the short description seems clear enough, especially for complex CLIs
+- Typical cases needing flag docs:
+  - Complex value types (enum values, patterns, formats)
+  - Non-obvious side effects or interactions with other flags
+  - Flags where short description is missing or terse
+  - Flags with subtle default behavior that differs from user expectation
+- For simple CLIs, skip flag docs when the short description is already clear and sufficient
+
+```yaml
+flags:
+  --sig-proxy: Proxy received signals to the process
+documentation:
+  flag:
+    sig-proxy: >
+      When set (default), signals received by `docker run` are forwarded
+      to the container process. Disable with `--sig-proxy=false` to
+      handle signals only on the client side.
+```
+
+### High-Quality Docs
+
+These completers have high-quality documentation from official sources — use them as quality references:
+- **git**: sourced from official Git man pages
+- **jj**: auto-generated from Jujutsu CLI help output
+- **but**: auto-generated from GitButler CLI help output
 
 ## Related Skills
 
