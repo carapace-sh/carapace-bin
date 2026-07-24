@@ -7,9 +7,10 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "get-env",
+	Use:                "get-env <name>",
 	Short: "Get the value of an environment variable",
 	Long:  "https://elv.sh/ref/builtin.html#get-env",
+	DisableFlagParsing: true,
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
@@ -20,7 +21,7 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		os.ActionEnvironmentVariables().FilterArgs(),
+	carapace.Gen(rootCmd).PositionalCompletion(
+		os.ActionEnvironmentVariables(),
 	)
 }
