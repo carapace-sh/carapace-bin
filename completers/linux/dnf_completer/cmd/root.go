@@ -14,6 +14,11 @@ var rootCmd = &cobra.Command{
 }
 
 func Execute() error {
+	return ExecuteWithUse("dnf")
+}
+
+func ExecuteWithUse(use string) error {
+	rootCmd.Use = use
 	return rootCmd.Execute()
 }
 
