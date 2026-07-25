@@ -92,6 +92,7 @@ func ActionExecutables() carapace.Action {
 				// TODO which order?
 				ActionBuiltins(),
 				ActionFunctions(false),
+				ActionAliases(),
 				carapace.ActionExecutables(),
 				carapace.ActionFiles(),
 			).ToA()
