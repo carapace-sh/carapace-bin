@@ -220,7 +220,7 @@ This preserves all existing `documentation.command` and `documentation.flag` ent
 After running `update`:
 
 1. **Delete removed subcommand files** — manually remove YAML files for subcommands that no longer exist
-2. **Add `documentation.command` entries** — for new subcommands and any existing ones missing docs. See the man-docs skill for standards.
+2. **Add `documentation.command` entries** — for new subcommands and any existing ones missing docs. See [references/man.md](man.md) for standards.
 3. **Review `documentation.flag` entries** — new flags may need flag docs if their short description is insufficient
 
 ## Step 6: Build, Lint, Test
@@ -264,4 +264,4 @@ go test -v ./cmd/...
 | **references/macro.md** | Looking up macro signatures and formatting macro arguments |
 | **references/action.md** | Creating/modifying Go actions that become macros |
 | **references/man.md** | Man page documentation format and UID resolution |
-| **man-docs skill** | Documentation standards, `carapace-man update` workflow, `documentation.command`/`documentation.flag` guidelines |
+| **references/man.md** | Man page documentation format, `carapace-man update` workflow, `documentation.command`/`documentation.flag` guidelines |

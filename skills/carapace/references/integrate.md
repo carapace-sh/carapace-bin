@@ -364,7 +364,7 @@ Available bridge functions (all return `carapace.Action`):
 | `bridge.ActionClap(cmd ...string)` | Rust clap |
 | `bridge.ActionClick(cmd ...string)` | Python Click |
 | `bridge.ActionYargs(cmd ...string)` | Node.js yargs |
-| `bridge.ActionBridge(cmd ...string)` | Auto-detect via CARAPACE_BRIDGE env |
+| `bridge.ActionBridge(cmd ...string)` | Auto-detect via CARAPACE_BRIDGES env |
 
 ### Split and SplitP — Completing Command-String Flag Values
 
@@ -601,6 +601,30 @@ cmd.Flags().StringS("time", "t", "", "use specific time format")
 ```
 
 Available `*S` methods mirror the `*N` methods: `BoolS`, `CountS`, `IntS`, `StringS`, `StringSliceS`, `StringArrayS`, etc.
+
+### Argument Style
+
+`ArgumentStyle` is a bitmask on `Flag` that controls which argument variants are accepted. The zero value accepts all variants.
+
+| Constant | Value | Accepts | Example |
+|----------|-------|---------|---------|
+| `AcceptNext` | `1` | Argument as next arg (space-separated) | `-f arg` |
+| `AcceptDelimited` | `2` | Argument attached with delimiter | `-f=arg` |
+| `AcceptAttached` | `4` | Argument attached directly to flag | `-farg` |
+
+```go
+cmd.Flag("mode").ArgumentStyle = AcceptNext | AcceptDelimited // accept -m val and -m=val, but not -mval
+```
+
+### Custom Flag Prefix
+
+`FlagSet.SetPrefix` sets the flag prefix character (default `-`). This is useful for shells like elvish that use `&` instead of `-`:
+
+```go
+rootCmd.Flags().SetPrefix('&') // flags now look like &f, &&verbose, &&
+```
+
+The prefix controls token recognition, long/short disambiguation (`&&flag` vs `&f`), the terminator (`&&`), error messages, and usage output. `FlagSet.Prefix()` returns the active prefix (defaults to `-` for zero-value `FlagSet{}`).
 
 ### Non-POSIX Example
 

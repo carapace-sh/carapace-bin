@@ -84,6 +84,8 @@ flags:
   -short, -long: both shorthand
 ```
 
+> For the Go API (`SetPrefix`, `ArgumentStyle`, `Mode`), see [references/integrate.md](integrate.md).
+
 ## Parsing Modes
 
 | Mode | Behavior |
