@@ -299,6 +299,7 @@ const (
 	ExpectedClosingBrace
 	ExpectedComma
 	ExpectedKeyword // then, else, elif, end, catch, as
+	ExpectedFormatName
 	// ...
 )
 
@@ -312,9 +313,10 @@ type CompletionContext struct {
 	ValidOperators []ValidOperator `json:"validOperators,omitempty"`
 	ValidKeywords  []string        `json:"validKeywords,omitempty"`
 
-	PartialIdent  string `json:"partialIdent,omitempty"`
-	PartialString string `json:"partialString,omitempty"`
-	StringQuote   rune   `json:"stringQuote,omitempty"`
+	PartialIdent   string `json:"partialIdent,omitempty"`
+	PartialString  string `json:"partialString,omitempty"`
+	StringQuote    rune   `json:"stringQuote,omitempty"`
+	InStringInterp bool   `json:"inStringInterp,omitempty"`
 
 	Function *FunctionContext `json:"function,omitempty"`
 	Object   *ObjectContext  `json:"object,omitempty"`

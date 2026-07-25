@@ -242,9 +242,9 @@ func init() {
 
 | Skill | When to use instead of this skill |
 |-------|----------------------------------|
-| **references/spec.md** | Writing YAML user specs — the *source* format for conversion |
-| **references/macro.md** | Looking up macro signatures and formatting macro arguments in YAML |
-| **references/action.md** | Creating/modifying Go actions that become macros in the converted completer |
-| **references/scrape.md** | Generating YAML specs from CLI source code — typically the step *before* conversion |
-| **references/integrate.md** | Integrating carapace into an existing cobra app — use when the app already exists in Go |
-| **references/mcp.md** | Using the `codegen` and `list_macros` MCP tools during conversion |
+| [references/spec.md](spec.md) | Writing YAML user specs — the *source* format for conversion |
+| [references/macro.md](macro.md) | Looking up macro signatures and formatting macro arguments in YAML |
+| [references/action.md](action.md) | Creating/modifying Go actions that become macros in the converted completer |
+| [references/scrape.md](scrape.md) | Generating YAML specs from CLI source code — typically the step *before* conversion |
+| [references/integrate.md](integrate.md) | Integrating carapace into an existing cobra app — use when the app already exists in Go |
+| [references/mcp.md](mcp.md) | Using the `codegen` and `list_macros` MCP tools during conversion |
