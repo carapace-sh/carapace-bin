@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/brew_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,6 +18,7 @@ func init() {
 	instalCmd.Flags().Bool("HEAD", false, "If <formula> defines it, install the HEAD version, aka. main, trunk, unstable, master.")
 	instalCmd.Flags().Bool("adopt", false, "Adopt existing artifacts in the destination that are identical to those being installed. Cannot be combined with `--force`.")
 	instalCmd.Flags().String("appdir", "", "Target location for Applications (default: `/Applications`).")
+	instalCmd.Flags().Bool("as-dependency", false, "Install but mark as installed as a dependency.")
 	instalCmd.Flags().String("audio-unit-plugindir", "", "Target location for Audio Unit Plugins (default: `~/Library/Audio/Plug-Ins/Components`).")
 	instalCmd.Flags().Bool("binaries", false, "Disable/enable linking of helper executables (default: enabled).")
 	instalCmd.Flags().String("bottle-arch", "", "Optimise bottles for the specified architecture rather than the oldest architecture supported by the version of macOS the bottles are built on.")
@@ -29,7 +31,7 @@ func init() {
 	instalCmd.Flags().Bool("debug-symbols", false, "Generate debug symbols on build. Source will be retained in a cache directory.")
 	instalCmd.Flags().String("dictionarydir", "", "Target location for Dictionaries (default: `~/Library/Dictionaries`).")
 	instalCmd.Flags().Bool("display-times", false, "Print install times for each package at the end of the run.")
-	instalCmd.Flags().Bool("dry-run", false, "Show what would be installed, but do not actually install anything.")
+	instalCmd.Flags().BoolS("dry-run", "n", false, "Show what would be installed, but do not actually install anything.")
 	instalCmd.Flags().Bool("fetch-HEAD", false, "Fetch the upstream repository to detect if the HEAD installation of the formula is outdated. Otherwise, the repository's HEAD will only be checked for updates when a new stable or development version has been released.")
 	instalCmd.Flags().String("fontdir", "", "Target location for Fonts (default: `~/Library/Fonts`).")
 	instalCmd.Flags().Bool("force", false, "Install formulae without checking for previously installed keg-only or non-migrated versions. When installing casks, overwrite existing files (binaries and symlinks are excluded, unless originally from the same cask).")
@@ -46,6 +48,7 @@ func init() {
 	instalCmd.Flags().String("keyboard-layoutdir", "", "Target location for Keyboard Layouts (default: `/Library/Keyboard Layouts`).")
 	instalCmd.Flags().String("language", "", "Comma-separated list of language codes to prefer for cask installation. The first matching language is used, otherwise it reverts to the cask's default language. The default value is the language of your system.")
 	instalCmd.Flags().String("mdimporterdir", "", "Target location for Spotlight Plugins (default: `~/Library/Spotlight`).")
+	instalCmd.Flags().BoolS("no-ask", "y", false, "Do not ask for confirmation before downloading and installing.")
 	instalCmd.Flags().Bool("no-binaries", false, "Disable/enable linking of helper executables (default: enabled).")
 	instalCmd.Flags().Bool("no-quarantine", false, "Disable/enable quarantining of downloads (default: enabled).")
 	instalCmd.Flags().Bool("only-dependencies", false, "Install the dependencies with specified options but do not install the formula itself.")
@@ -58,10 +61,32 @@ func init() {
 	instalCmd.Flags().String("screen-saverdir", "", "Target location for Screen Savers (default: `~/Library/Screen Savers`).")
 	instalCmd.Flags().String("servicedir", "", "Target location for Services (default: `~/Library/Services`).")
 	instalCmd.Flags().Bool("skip-cask-deps", false, "Skip installing cask dependencies.")
+	instalCmd.Flags().Bool("skip-link", false, "Skip linking into prefix.")
 	instalCmd.Flags().Bool("skip-post-install", false, "Install but skip any post-install steps.")
 	instalCmd.Flags().Bool("verbose", false, "Print the verification and post-install steps.")
 	instalCmd.Flags().String("vst-plugindir", "", "Target location for VST Plugins (default: `~/Library/Audio/Plug-Ins/VST`).")
 	instalCmd.Flags().String("vst3-plugindir", "", "Target location for VST3 Plugins (default: `~/Library/Audio/Plug-Ins/VST3`).")
 	instalCmd.Flags().Bool("zap", false, "For use with `brew reinstall --cask`. Remove all files associated with a cask. *May remove files which are shared between applications.*")
 	rootCmd.AddCommand(instalCmd)
+
+	carapace.Gen(instalCmd).FlagCompletion(carapace.ActionMap{
+		"appdir":               carapace.ActionDirectories(),
+		"audio-unit-plugindir": carapace.ActionDirectories(),
+		"colorpickerdir":       carapace.ActionDirectories(),
+		"dictionarydir":        carapace.ActionDirectories(),
+		"fontdir":              carapace.ActionDirectories(),
+		"input-methoddir":      carapace.ActionDirectories(),
+		"internet-plugindir":   carapace.ActionDirectories(),
+		"mdimporterdir":        carapace.ActionDirectories(),
+		"prefpanedir":          carapace.ActionDirectories(),
+		"qlplugindir":          carapace.ActionDirectories(),
+		"screen-saverdir":      carapace.ActionDirectories(),
+		"servicedir":           carapace.ActionDirectories(),
+		"vst-plugindir":        carapace.ActionDirectories(),
+		"vst3-plugindir":       carapace.ActionDirectories(),
+	})
+
+	carapace.Gen(instalCmd).PositionalAnyCompletion(
+		action.ActionSearch(instalCmd),
+	)
 }

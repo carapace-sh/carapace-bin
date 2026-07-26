@@ -31,7 +31,7 @@ func init() {
 	testBotCmd.Flags().Bool("publish", false, "Publish built bottles.")
 	testBotCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
 	testBotCmd.Flags().Bool("skip-dependents", false, "Skip testing dependents.")
-	testBotCmd.Flags().Bool("tap", false, "Target tap repository (default: `homebrew/core`).")
+	testBotCmd.Flags().String("tap", "", "Target tap repository (default: `homebrew/core`).")
 	testBotCmd.Flags().Bool("testing-formulae", false, "Only test testing formulae.")
 	testBotCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
 	rootCmd.AddCommand(testBotCmd)
