@@ -240,6 +240,7 @@ func othersDescription(name string) string {
 		"cp":                       "Copy a file keeping its history",
 		"create-branch":            "Create branches",
 		"delete-branch":            "Delete branches",
+		"delete-gone-branches":     "Delete branches whose remote has been deleted",
 		"delete-merged-branches":   "Delete merged branches",
 		"delete-squashed-branches": "Delete branches that were squashed",
 		"delete-submodule":         "Delete submodules",
@@ -251,6 +252,7 @@ func othersDescription(name string) string {
 		"force-clone":              "overwrite local repositories with clone",
 		"fork":                     "Fork a repo on github",
 		"fresh-branch":             "Create fresh branches",
+		"get":                      "Clone a repository into a configured path",
 		"gh-pages":                 "Create the GitHub Pages branch",
 		"graft":                    "Merge and destroy a given branch",
 		"guilt":                    "calculate change between two revisions",
@@ -274,6 +276,7 @@ func othersDescription(name string) string {
 		"rebase-patch":             "Rebases a patch",
 		"release":                  "Commit, tag and push changes to the repository",
 		"rename-branch":            "rename local branch and push to remote",
+		"rename-file":              "Rename a file so Git recognizes the change",
 		"rename-remote":            "Rename a remote",
 		"rename-tag":               "Rename a tag",
 		"repl":                     "git read-eval-print-loop",
@@ -294,6 +297,8 @@ func othersDescription(name string) string {
 		"touch":                    "Touch and add file to the index",
 		"undo":                     "Remove latest commits",
 		"unlock":                   "Unlock a file excluded from version control",
+		"unwip":                    "Undo a Work In Progress commit",
 		"utimes":                   "Change files modification time to their last commit date",
+		"wip":                      "Create a Work In Progress commit",
 	}[name]
 }
