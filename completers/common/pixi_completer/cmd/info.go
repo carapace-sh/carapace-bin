@@ -23,6 +23,7 @@ func init() {
 	rootCmd.AddCommand(infoCmd)
 
 	carapace.Gen(infoCmd).FlagCompletion(carapace.ActionMap{
+		"config-file":   carapace.ActionFiles(),
 		"manifest-path": carapace.ActionFiles(),
 	})
 }

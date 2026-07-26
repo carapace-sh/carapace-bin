@@ -42,10 +42,12 @@ func init() {
 
 	carapace.Gen(upgradeCmd).FlagCompletion(carapace.ActionMap{
 		"auth-file":             carapace.ActionFiles(),
+		"config-file":           carapace.ActionFiles(),
 		"feature":               pixi.ActionFeatures(),
 		"manifest-path":         carapace.ActionFiles(),
 		"pinning-strategy":      carapace.ActionValues("semver", "minor", "major", "latest-up", "exact-version", "no-pin"),
 		"pypi-keyring-provider": carapace.ActionValues("disabled", "subprocess"),
+		"tls-root-certs":        carapace.ActionValues("webpki", "system"),
 	})
 
 	carapace.Gen(upgradeCmd).PositionalAnyCompletion(

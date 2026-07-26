@@ -39,5 +39,6 @@ func init() {
 		"pinning-strategy":      carapace.ActionValues("semver", "minor", "major", "latest-up", "exact-version", "no-pin"),
 		"pypi-keyring-provider": carapace.ActionValues("disabled", "subprocess"),
 		"sort-by":               carapace.ActionValues("size", "name"),
+		"tls-root-certs":        carapace.ActionValues("webpki", "system"),
 	})
 }

@@ -24,6 +24,7 @@ func init() {
 	workspace_exportCmd.AddCommand(workspace_export_condaEnvironmentCmd)
 
 	carapace.Gen(workspace_export_condaEnvironmentCmd).FlagCompletion(carapace.ActionMap{
+		"config-file": carapace.ActionFiles(),
 		"environment": pixi.ActionEnvironments(),
 		"platform":    pixi.ActionPlatforms(),
 	})

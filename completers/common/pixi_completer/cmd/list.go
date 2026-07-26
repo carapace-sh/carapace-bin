@@ -34,6 +34,7 @@ func init() {
 	rootCmd.AddCommand(listCmd)
 
 	carapace.Gen(listCmd).FlagCompletion(carapace.ActionMap{
+		"config-file":   carapace.ActionFiles(),
 		"environment":   pixi.ActionEnvironments(),
 		"manifest-path": carapace.ActionFiles(),
 		"platform":      pixi.ActionPlatforms(),

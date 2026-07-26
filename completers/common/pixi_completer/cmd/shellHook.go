@@ -47,10 +47,12 @@ func init() {
 	carapace.Gen(shellHookCmd).FlagCompletion(carapace.ActionMap{
 		"auth-file":             carapace.ActionFiles(),
 		"change-ps1":            carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
+		"config-file":           carapace.ActionFiles(),
 		"environment":           pixi.ActionEnvironments(),
 		"manifest-path":         carapace.ActionFiles(),
 		"pinning-strategy":      carapace.ActionValues("semver", "minor", "major", "latest-up", "exact-version", "no-pin"),
 		"pypi-keyring-provider": carapace.ActionValues("disabled", "subprocess"),
 		"shell":                 carapace.ActionValues("bash", "zsh", "xonsh", "cmd", "powershell", "fish", "nushell"),
+		"tls-root-certs":        carapace.ActionValues("webpki", "system"),
 	})
 }

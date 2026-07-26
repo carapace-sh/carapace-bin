@@ -53,10 +53,13 @@ func init() {
 
 	carapace.Gen(runCmd).FlagCompletion(carapace.ActionMap{
 		"auth-file":             carapace.ActionFiles(),
+		"config-file":           carapace.ActionFiles(),
 		"environment":           pixi.ActionEnvironments(),
 		"manifest-path":         carapace.ActionFiles(),
 		"pinning-strategy":      carapace.ActionValues("semver", "minor", "major", "latest-up", "exact-version", "no-pin"),
+		"platform":              pixi.ActionPlatforms(),
 		"pypi-keyring-provider": carapace.ActionValues("disabled", "subprocess"),
+		"tls-root-certs":        carapace.ActionValues("webpki", "system"),
 	})
 
 	carapace.Gen(runCmd).PositionalCompletion(

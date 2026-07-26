@@ -55,6 +55,7 @@ func init() {
 		"pypi-keyring-provider": carapace.ActionValues("disabled", "subprocess"),
 		"skip-existing":         carapace.ActionValues("true", "false"),
 		"target-dir":            carapace.ActionFiles(),
+		"tls-root-certs":        carapace.ActionValues("webpki", "system"),
 		"variant-config":        carapace.ActionFiles(),
 	})
 }
