@@ -78,6 +78,7 @@ func init() {
 		"fontdir":              carapace.ActionDirectories(),
 		"input-methoddir":      carapace.ActionDirectories(),
 		"internet-plugindir":   carapace.ActionDirectories(),
+		"keyboard-layoutdir":    carapace.ActionDirectories(),
 		"mdimporterdir":        carapace.ActionDirectories(),
 		"prefpanedir":          carapace.ActionDirectories(),
 		"qlplugindir":          carapace.ActionDirectories(),
