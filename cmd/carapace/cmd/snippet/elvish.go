@@ -16,6 +16,9 @@ func Elvish(completers []string) string {
 
 put %v | each {|c|
     set edit:completion:arg-completer[$c] = {|@arg|
+        set E:CARAPACE_SHELL = 'elvish'
+        set E:CARAPACE_SHELL_BUILTINS = (keys $builtin: | to-lines)
+
         carapace $c elvish (all $arg) | from-json | each {|completion|
     		put $completion[Messages] | all (one) | each {|m|
     			edit:notify (styled "error: " red)$m

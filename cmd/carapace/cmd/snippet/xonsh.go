@@ -20,6 +20,12 @@ def _carapace_completer(context):
     from json import loads
     from xonsh.completers.tools import sub_proc_get_output, RichCompletion
 
+    os.environ['CARAPACE_SHELL'] = 'xonsh'
+    os.environ['CARAPACE_SHELL_ALIASES'] = '\n'.join(__xonsh__.aliases.keys())
+    os.environ['CARAPACE_SHELL_BUILTINS'] = '\n'.join(__xonsh__.builtins.keys())
+    os.environ['CARAPACE_SHELL_FUNCTIONS'] = '\n'.join(__xonsh__.ctx.functions.keys())
+    os.environ['CARAPACE_SHELL_VARIABLES'] = '\n'.join(__xonsh__.env.keys())
+
     if context.command not in [%v]:
         return
 
