@@ -1,10 +1,9 @@
 package cmd
 
 import (
-	"strings"
-
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
+	"github.com/carapace-sh/carapace-bin/completers/common/git-bulk_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,29 +16,6 @@ var rootCmd = &cobra.Command{
 
 func Execute() error {
 	return rootCmd.Execute()
-}
-
-func actionBulkWorkspaces() carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return carapace.ActionExecCommandE("git", "config", "--global", "--get-regexp", "^bulkworkspaces\\.")(func(output []byte, err error) carapace.Action {
-			if err != nil {
-				return carapace.ActionValues()
-			}
-			vals := make([]string, 0)
-			for line := range strings.SplitSeq(string(output), "\n") {
-				line = strings.TrimSpace(line)
-				if line == "" {
-					continue
-				}
-				parts := strings.SplitN(line, " ", 2)
-				if len(parts) == 2 && strings.HasPrefix(parts[0], "bulkworkspaces.") {
-					name := strings.TrimPrefix(parts[0], "bulkworkspaces.")
-					vals = append(vals, name, parts[1])
-				}
-			}
-			return carapace.ActionValuesDescribed(vals...).Tag("workspaces")
-		})
-	})
 }
 
 func init() {
@@ -62,8 +38,8 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"addcurrent":      carapace.ActionValues(),
 		"addworkspace":    carapace.ActionValues(),
-		"removeworkspace": actionBulkWorkspaces(),
-		"workspace":       actionBulkWorkspaces(),
+		"removeworkspace": action.ActionBulkWorkspaces(),
+		"workspace":       action.ActionBulkWorkspaces(),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
