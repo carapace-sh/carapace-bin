@@ -13,12 +13,6 @@ var rootCmd = &cobra.Command{
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
-var finishCmd = &cobra.Command{
-	Use:   "finish",
-	Short: "Merge and delete a feature branch",
-	Run:   func(cmd *cobra.Command, args []string) {},
-}
-
 func Execute() error {
 	return rootCmd.Execute()
 }
@@ -35,9 +29,4 @@ func init() {
 		"from":   git.ActionRefs(git.RefOption{}.Default()),
 		"remote": git.ActionRemotes(),
 	})
-
-	finishCmd.Flags().Bool("help", false, "show help")
-	finishCmd.Flags().Bool("squash", false, "Squash merge on finish")
-	carapace.Gen(finishCmd).Standalone()
-	rootCmd.AddCommand(finishCmd)
 }
