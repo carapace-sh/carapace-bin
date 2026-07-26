@@ -4,6 +4,6 @@ description: Append a value to a list configuration key
 flags:
     -g, --global: Operation on global configuration
     -l, --local: Operation on project-local configuration
-    -s, --system: Operation on system configuration
-persistentflags:
     -m, --manifest-path=: The path to `pixi.toml`, `pyproject.toml`, or the workspace directory
+    -s, --system: Operation on system configuration
+    -w, --workspace=: Name of the workspace

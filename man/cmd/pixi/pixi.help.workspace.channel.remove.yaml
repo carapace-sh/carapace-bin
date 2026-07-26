@@ -1,3 +1,3 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: remove
-description: Remove channel(s) from the manifest and updates the lockfile
+description: Remove channel(s) from the manifest and updates the lock file

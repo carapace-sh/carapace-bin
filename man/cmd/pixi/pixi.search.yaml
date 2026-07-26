@@ -2,6 +2,12 @@
 name: search
 description: Search a conda package
 flags:
-    -c, --channel=*: The channels to consider as a name or a url. Multiple channels can be specified by using this field multiple times
-    -l, --limit=: Limit the number of search results
-    -p, --platform=: The platform to search for, defaults to current platform
+    --config-file=: Load configuration from this file instead of searching system and user-level paths. Project-local `<project>/.pixi/config.toml` is still merged on top
+    --json: Output in JSON format
+    --no-config: Don't read system or user-level configuration files. Project-local `<project>/.pixi/config.toml` is still loaded
+    -c, --channel*=: The channels to consider as a name or a url. Multiple channels can be specified by using this field multiple times
+    -l, --limit=: Limit the number of versions shown per package, -1 for no limit
+    -m, --manifest-path=: The path to `pixi.toml`, `pyproject.toml`, or the workspace directory
+    -n, --limit-packages=: Limit the number of packages shown, -1 for no limit
+    -p, --platform=: The platform to search packages for. By default, searches all platforms from the manifest (or all known platforms if no manifest is found). Accepts a workspace platform name; a bare conda subdir (e.g. `linux-64`) is also accepted
+    -w, --workspace=: Name of the workspace

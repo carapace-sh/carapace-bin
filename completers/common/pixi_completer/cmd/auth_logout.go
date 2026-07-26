@@ -14,5 +14,6 @@ var auth_logoutCmd = &cobra.Command{
 func init() {
 	carapace.Gen(auth_logoutCmd).Standalone()
 
+	auth_logoutCmd.Flags().Bool("all", false, "Remove every stored authentication entry (revoking OAuth tokens for each)")
 	authCmd.AddCommand(auth_logoutCmd)
 }

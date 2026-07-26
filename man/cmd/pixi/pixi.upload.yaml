@@ -2,4 +2,4 @@
 name: upload
 description: Upload conda packages to various channels
 flags:
-    --allow-insecure-host=*: List of hosts for which SSL certificate verification should be skipped
+    --allow-insecure-host*=: List of hosts for which SSL certificate verification should be skipped

@@ -16,7 +16,7 @@ func init() {
 	carapace.Gen(initCmd).Standalone()
 
 	initCmd.Flags().StringSliceP("channel", "c", nil, "Channel to use in the workspace")
-	initCmd.Flags().StringSlice("conda-pypi-map", nil, "Set a mapping between conda channels and pypi channels")
+	initCmd.Flags().String("conda-pypi-map", "", "Set conda↔PyPI mapping configuration")
 	initCmd.Flags().String("format", "", "The manifest format to create")
 	initCmd.Flags().StringP("import", "i", "", "Environment.yml file to bootstrap the workspace")
 	initCmd.Flags().StringSliceP("platform", "p", nil, "Platforms that the workspace supports")

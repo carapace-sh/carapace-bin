@@ -7,7 +7,7 @@ import (
 
 var help_workspace_channel_removeCmd = &cobra.Command{
 	Use:   "remove",
-	Short: "Remove channel(s) from the manifest and updates the lockfile",
+	Short: "Remove channel(s) from the manifest and updates the lock file",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

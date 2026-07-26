@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: remove
+aliases:
+    - rm
+description: Remove a workspace from registry

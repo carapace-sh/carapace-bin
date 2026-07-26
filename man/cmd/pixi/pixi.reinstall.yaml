@@ -1,19 +1,25 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: reinstall
-description: Re-install an environment, both updating the lockfile and re-installing the environment
+description: Re-install an environment, both updating the lock file and re-installing the environment
 flags:
     --auth-file=: Path to the file containing the authentication token
     --concurrent-downloads=: Max concurrent network requests, default is `50`
     --concurrent-solves=: Max concurrent solves, default is the number of CPUs
-    --frozen: Install the environment as defined in the lockfile, doesn't update lockfile if it isn't up-to-date with the manifest file
-    --locked: Check if lockfile is up-to-date before installing the environment, aborts when lockfile isn't up-to-date with the manifest file
+    --config-file=: Load configuration from this file instead of searching system and user-level paths. Project-local `<project>/.pixi/config.toml` is still merged on top
+    --frozen: Install the environment as defined in the lock file, doesn't update lock file if it isn't up-to-date with the manifest file
+    --locked: Check if lock file is up-to-date before installing the environment, aborts when lock file isn't up-to-date with the manifest file
+    --no-config: Don't read system or user-level configuration files. Project-local `<project>/.pixi/config.toml` is still loaded
+    --no-hard-links: Disallow hard links during package installation
+    --no-ref-links: Disallow ref links (copy-on-write) during package installation
+    --no-symbolic-links: Disallow symbolic links during package installation
     --pinning-strategy=: Set pinning strategy
     --pypi-keyring-provider=: Specifies whether to use the keyring to look up credentials for PyPI
     --run-post-link-scripts: Run post-link scripts (insecure)
     --tls-no-verify: Do not verify the TLS certificate of the server
-    --tls-root-certs=: 'Which TLS root certificates to use: ''webpki'' (bundled Mozilla roots), ''native'' (system store), or ''all'' (both)'
+    --tls-root-certs=: "Which TLS root certificates to use: 'webpki' (bundled Mozilla roots) or 'system' (system store)"
     --use-environment-activation-cache: Use environment activation cache (experimental)
     -a, --all: Install all environments
-    -e, --environment=*: The environment to install
-persistentflags:
+    -e, --environment*=: The environment to install
     -m, --manifest-path=: The path to `pixi.toml`, `pyproject.toml`, or the workspace directory
+    -p, --platform=: Re-install for the given platform; a warning is printed when it doesn't run on this machine
+    -w, --workspace=: Name of the workspace

@@ -3,3 +3,5 @@ name: list
 aliases:
     - ls
 description: List the platforms in the workspace file
+flags:
+    --json: Emit machine-readable JSON instead of the human view

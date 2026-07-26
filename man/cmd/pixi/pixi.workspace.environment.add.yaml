@@ -7,4 +7,4 @@ flags:
     --force: Update the manifest even if the environment already exists
     --no-default-feature: Don't include the default feature in the environment
     --solve-group=: The solve-group to add the environment to
-    -f, --feature=*: Features to add to the environment
+    -f, --feature*=: Features to add to the environment

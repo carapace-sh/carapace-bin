@@ -7,7 +7,7 @@ import (
 
 var help_workspace_channel_addCmd = &cobra.Command{
 	Use:   "add",
-	Short: "Adds a channel to the manifest and updates the lockfile",
+	Short: "Adds a channel to the manifest and updates the lock file",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

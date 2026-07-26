@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: move
+aliases:
+    - mv
+description: Reorder a workspace platform, changing its selection priority
+flags:
+    --after=: Move it directly after this platform
+    --before=: Move it directly before this platform
+    --no-install: Don't update the environment, only refresh the lock-file
+    --to-bottom: Move it to the bottom of the list (lowest selection priority)
+    --to-top: Move it to the top of the list (highest selection priority)

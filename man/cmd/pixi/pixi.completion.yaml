@@ -2,4 +2,4 @@
 name: completion
 description: Generates a completion script for a shell
 flags:
-    -s, --shell=!: The shell to generate a completion script for
+    -s, --shell!=: The shell to generate a completion script for

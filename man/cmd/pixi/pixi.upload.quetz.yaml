@@ -3,5 +3,5 @@ name: quetz
 description: Upload to a Quetz server. Authentication is used from the keychain / auth-file
 flags:
     -a, --api-key=: The Quetz API key, if none is provided, the token is read from the keychain / auth-file
-    -c, --channel=!: The URL to your channel
-    -u, --url=!: The URL to your Quetz server
+    -c, --channel!=: The URL to your channel
+    -u, --url!=: The URL to your Quetz server

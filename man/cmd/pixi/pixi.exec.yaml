@@ -9,14 +9,17 @@ flags:
     --concurrent-solves=: Max concurrent solves, default is the number of CPUs
     --force-reinstall: If specified a new environment is always created even if one already exists
     --list?: Before executing the command, list packages in the environment Specify `--list=some_regex` to filter the shown packages
+    --no-hard-links: Disallow hard links during package installation
     --no-modify-ps1: Disable modification of the PS1 prompt to indicate the temporary environment
+    --no-ref-links: Disallow ref links (copy-on-write) during package installation
+    --no-symbolic-links: Disallow symbolic links during package installation
     --pinning-strategy=: Set pinning strategy
     --pypi-keyring-provider=: Specifies whether to use the keyring to look up credentials for PyPI
     --run-post-link-scripts: Run post-link scripts (insecure)
     --tls-no-verify: Do not verify the TLS certificate of the server
-    --tls-root-certs=: 'Which TLS root certificates to use: ''webpki'' (bundled Mozilla roots), ''native'' (system store), or ''all'' (both)'
+    --tls-root-certs=: "Which TLS root certificates to use: 'webpki' (bundled Mozilla roots) or 'system' (system store)"
     --use-environment-activation-cache: Use environment activation cache (experimental)
-    -c, --channel=*: The channels to consider as a name or a url. Multiple channels can be specified by using this field multiple times
-    -p, --platform=: The platform to create the environment for
-    -s, --spec=*: Matchspecs of package to install. If this is not provided, the package is guessed from the command
-    -w, --with=*: Matchspecs of package to install, while also guessing a package from the command
+    -c, --channel*=: The channels to consider as a name or a url. Multiple channels can be specified by using this field multiple times
+    -p, --platform=: The platform to create the environment for. Defaults to the current machine's subdir. Accepts a workspace platform name or a bare conda subdir (e.g. `linux-64`); `pixi exec` runs outside any workspace so the value resolves to a conda subdir either way
+    -s, --spec*=: Matchspecs of package to install. If this is not provided, the package is guessed from the command
+    -w, --with*=: Matchspecs of package to install, while also guessing a package from the command

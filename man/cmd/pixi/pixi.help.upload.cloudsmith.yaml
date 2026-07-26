@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: cloudsmith
+description: Options for uploading to a Cloudsmith repository. Authentication is used from the keychain / auth-file

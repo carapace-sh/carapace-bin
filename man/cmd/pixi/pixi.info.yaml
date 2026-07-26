@@ -2,7 +2,9 @@
 name: info
 description: Information about the system, workspace and environments for the current machine
 flags:
+    --config-file=: Load configuration from this file instead of searching system and user-level paths. Project-local `<project>/.pixi/config.toml` is still merged on top
     --extended: Show cache and environment size
     --json: Whether to show the output as JSON or not
-persistentflags:
+    --no-config: Don't read system or user-level configuration files. Project-local `<project>/.pixi/config.toml` is still loaded
     -m, --manifest-path=: The path to `pixi.toml`, `pyproject.toml`, or the workspace directory
+    -w, --workspace=: Name of the workspace

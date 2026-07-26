@@ -25,7 +25,7 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.PersistentFlags().String("color", "", "Whether the log needs to be colored")
+	rootCmd.PersistentFlags().String("color", "auto", "Whether the log needs to be colored")
 	rootCmd.PersistentFlags().BoolP("help", "h", false, "Display help information")
 	rootCmd.Flags().Bool("list", false, "List all installed commands (built-in and extensions)")
 	rootCmd.PersistentFlags().Bool("no-progress", false, "Hide all progress bars, always turned on if stderr is not a terminal")

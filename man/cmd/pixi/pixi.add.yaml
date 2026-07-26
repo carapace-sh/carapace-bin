@@ -8,10 +8,16 @@ flags:
     --branch=: The git branch
     --concurrent-downloads=: Max concurrent network requests, default is `50`
     --concurrent-solves=: Max concurrent solves, default is the number of CPUs
+    --config-file=: Load configuration from this file instead of searching system and user-level paths. Project-local `<project>/.pixi/config.toml` is still merged on top
     --editable: Whether the pypi requirement should be editable
-    --frozen: Install the environment as defined in the lockfile, doesn't update lockfile if it isn't up-to-date with the manifest file
-    --locked: Check if lockfile is up-to-date before installing the environment, aborts when lockfile isn't up-to-date with the manifest file
-    --no-install: Don't modify the environment, only modify the lock-file
+    --frozen: Install the environment as defined in the lock file, doesn't update lock file if it isn't up-to-date with the manifest file
+    --index=: The PyPI index URL to use for this dependency. Only applicable when adding pypi dependencies
+    --locked: Check if lock file is up-to-date before installing the environment, aborts when lock file isn't up-to-date with the manifest file
+    --no-config: Don't read system or user-level configuration files. Project-local `<project>/.pixi/config.toml` is still loaded
+    --no-hard-links: Disallow hard links during package installation
+    --no-install: Don't modify the environment, only modify the lock file
+    --no-ref-links: Disallow ref links (copy-on-write) during package installation
+    --no-symbolic-links: Disallow symbolic links during package installation
     --pinning-strategy=: Set pinning strategy
     --pypi: The specified dependencies are pypi dependencies. Conflicts with `host` and `build`
     --pypi-keyring-provider=: Specifies whether to use the keyring to look up credentials for PyPI
@@ -19,11 +25,11 @@ flags:
     --run-post-link-scripts: Run post-link scripts (insecure)
     --tag=: The git tag
     --tls-no-verify: Do not verify the TLS certificate of the server
-    --tls-root-certs=: 'Which TLS root certificates to use: ''webpki'' (bundled Mozilla roots), ''native'' (system store), or ''all'' (both)'
+    --tls-root-certs=: "Which TLS root certificates to use: 'webpki' (bundled Mozilla roots) or 'system' (system store)"
     --use-environment-activation-cache: Use environment activation cache (experimental)
     -f, --feature=: The feature for which the dependency should be modified
     -g, --git=: The git url to use when adding a git dependency
-    -p, --platform=*: The platform for which the dependency should be modified
-    -s, --subdir=: The subdirectory of the git repository to use
-persistentflags:
     -m, --manifest-path=: The path to `pixi.toml`, `pyproject.toml`, or the workspace directory
+    -p, --platform*=: The platform for which the dependency should be modified. Must be the name of a platform already defined in the workspace
+    -s, --subdir=: The subdirectory of the git repository to use
+    -w, --workspace=: Name of the workspace

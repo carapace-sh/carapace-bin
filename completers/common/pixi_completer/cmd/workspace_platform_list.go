@@ -15,5 +15,6 @@ var workspace_platform_listCmd = &cobra.Command{
 func init() {
 	carapace.Gen(workspace_platform_listCmd).Standalone()
 
+	workspace_platform_listCmd.Flags().Bool("json", false, "Emit machine-readable JSON instead of the human view")
 	workspace_platformCmd.AddCommand(workspace_platform_listCmd)
 }

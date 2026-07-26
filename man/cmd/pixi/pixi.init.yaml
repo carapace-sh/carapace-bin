@@ -2,9 +2,9 @@
 name: init
 description: Creates a new workspace
 flags:
-    --conda-pypi-map=*: Set a mapping between conda channels and pypi channels
+    --conda-pypi-map=: Set conda↔PyPI mapping configuration
     --format=: The manifest format to create
-    -c, --channel=*: Channel to use in the workspace
+    -c, --channel*=: Channel to use in the workspace
     -i, --import=: Environment.yml file to bootstrap the workspace
-    -p, --platform=*: Platforms that the workspace supports
+    -p, --platform*=: Platforms that the workspace supports
     -s, --scm=: Source Control Management used for this workspace

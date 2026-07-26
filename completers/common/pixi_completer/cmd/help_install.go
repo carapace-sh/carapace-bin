@@ -7,7 +7,7 @@ import (
 
 var help_installCmd = &cobra.Command{
 	Use:   "install",
-	Short: "Install an environment, both updating the lockfile and installing the environment",
+	Short: "Install an environment, both updating the lock file and installing the environment",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

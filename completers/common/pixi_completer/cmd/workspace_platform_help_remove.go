@@ -7,7 +7,7 @@ import (
 
 var workspace_platform_help_removeCmd = &cobra.Command{
 	Use:   "remove",
-	Short: "Remove platform(s) from the workspace file and updates the lockfile",
+	Short: "Remove platform(s) from the workspace file and updates the lock file",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

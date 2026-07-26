@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: status
+description: Show stored authentication entries and non-secret token metadata
+flags:
+    --details: Show endpoint URLs, client ID, and other IdP-introspection fields that are only useful for debugging

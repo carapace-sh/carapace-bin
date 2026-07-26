@@ -15,7 +15,7 @@ func init() {
 	carapace.Gen(upload_s3Cmd).Standalone()
 
 	upload_s3Cmd.Flags().String("access-key-id", "", "The access key ID for the S3 bucket")
-	upload_s3Cmd.Flags().String("addressing-style", "", "How to address the bucket")
+	upload_s3Cmd.Flags().String("addressing-style", "virtual-host", "How to address the bucket")
 	upload_s3Cmd.Flags().StringP("channel", "c", "", "The channel URL in the S3 bucket to upload the package to, e.g., `s3://my-bucket/my-channel`")
 	upload_s3Cmd.Flags().String("endpoint-url", "", "The endpoint URL of the S3 backend")
 	upload_s3Cmd.Flags().Bool("force", false, "Replace files if it already exists")
