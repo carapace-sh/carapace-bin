@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/brew_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -20,4 +21,8 @@ func init() {
 	unpinCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
 	unpinCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
 	rootCmd.AddCommand(unpinCmd)
+
+	carapace.Gen(unpinCmd).PositionalAnyCompletion(
+		action.ActionList(unpinCmd).FilterArgs(),
+	)
 }

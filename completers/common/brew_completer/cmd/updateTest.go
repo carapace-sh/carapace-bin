@@ -15,8 +15,8 @@ var updateTestCmd = &cobra.Command{
 func init() {
 	carapace.Gen(updateTestCmd).Standalone()
 
-	updateTestCmd.Flags().Bool("before", false, "Use the commit at the specified <date> as the start commit.")
-	updateTestCmd.Flags().Bool("commit", false, "Use the specified <commit> as the start commit.")
+	updateTestCmd.Flags().String("before", "", "Use the commit at the specified <date> as the start commit.")
+	updateTestCmd.Flags().String("commit", "", "Use the specified <commit> as the start commit.")
 	updateTestCmd.Flags().Bool("debug", false, "Display any debugging information.")
 	updateTestCmd.Flags().Bool("help", false, "Show this message.")
 	updateTestCmd.Flags().Bool("keep-tmp", false, "Retain the temporary directory containing the new repository clone.")

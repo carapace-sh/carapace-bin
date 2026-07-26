@@ -19,7 +19,7 @@ var auditCmd = &cobra.Command{
 func init() {
 	carapace.Gen(auditCmd).Standalone()
 
-	auditCmd.Flags().Bool("arch", false, "Audit the given CPU architecture")
+	auditCmd.Flags().String("arch", "", "Audit the given CPU architecture")
 	auditCmd.Flags().Bool("audit-debug", false, "Enable debugging and profiling of audit methods")
 	auditCmd.Flags().Bool("cask", false, "Treat all named arguments as casks")
 	auditCmd.Flags().Bool("debug", false, "Display any debugging information")
@@ -49,7 +49,9 @@ func init() {
 
 	// TODO flag completion
 	carapace.Gen(auditCmd).FlagCompletion(carapace.ActionMap{
-		"tap": gh.ActionOwnerRepositories(gh.HostOpts{}),
+		"arch": carapace.ActionValues("x86_64", "arm64", "all"),
+		"os":   carapace.ActionValues("linux", "macos", "all"),
+		"tap":  gh.ActionOwnerRepositories(gh.HostOpts{}),
 	})
 
 	carapace.Gen(auditCmd).PositionalAnyCompletion(

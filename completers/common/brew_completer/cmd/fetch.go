@@ -17,8 +17,8 @@ func init() {
 	carapace.Gen(fetchCmd).Standalone()
 
 	fetchCmd.Flags().Bool("HEAD", false, "Fetch HEAD version instead of stable version.")
-	fetchCmd.Flags().Bool("arch", false, "Download for the given CPU architecture. (Pass `all` to download for all architectures.)")
-	fetchCmd.Flags().Bool("bottle-tag", false, "Download a bottle for given tag.")
+	fetchCmd.Flags().String("arch", "", "Download for the given CPU architecture. (Pass `all` to download for all architectures.)")
+	fetchCmd.Flags().String("bottle-tag", "", "Download a bottle for given tag.")
 	fetchCmd.Flags().Bool("build-bottle", false, "Download source packages (for eventual bottling) rather than a bottle.")
 	fetchCmd.Flags().Bool("build-from-source", false, "Download source packages rather than a bottle.")
 	fetchCmd.Flags().Bool("cask", false, "Treat all named arguments as casks.")
@@ -29,12 +29,18 @@ func init() {
 	fetchCmd.Flags().Bool("formula", false, "Treat all named arguments as formulae.")
 	fetchCmd.Flags().Bool("help", false, "Show this message.")
 	fetchCmd.Flags().Bool("no-quarantine", false, "Disable/enable quarantining of downloads (default: enabled).")
-	fetchCmd.Flags().Bool("os", false, "Download for the given operating system. (Pass `all` to download for all operating systems.)")
+	fetchCmd.Flags().String("os", "", "Download for the given operating system. (Pass `all` to download for all operating systems.)")
 	fetchCmd.Flags().Bool("quarantine", false, "Disable/enable quarantining of downloads (default: enabled).")
 	fetchCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
 	fetchCmd.Flags().Bool("retry", false, "Retry if downloading fails or re-download if the checksum of a previously cached version no longer matches. Tries at most 5 times with exponential backoff.")
 	fetchCmd.Flags().Bool("verbose", false, "Do a verbose VCS checkout, if the URL represents a VCS. This is useful for seeing if an existing VCS cache has been updated.")
 	rootCmd.AddCommand(fetchCmd)
+
+	carapace.Gen(fetchCmd).FlagCompletion(carapace.ActionMap{
+		"arch":       carapace.ActionValues("x86_64", "arm64", "all"),
+		"bottle-tag": carapace.ActionValues(),
+		"os":         carapace.ActionValues("linux", "macos", "all"),
+	})
 
 	carapace.Gen(fetchCmd).PositionalAnyCompletion(
 		action.ActionSearch(fetchCmd),

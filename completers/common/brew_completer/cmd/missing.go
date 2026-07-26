@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/brew_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,8 +18,12 @@ func init() {
 
 	missingCmd.Flags().Bool("debug", false, "Display any debugging information.")
 	missingCmd.Flags().Bool("help", false, "Show this message.")
-	missingCmd.Flags().Bool("hide", false, "Act as if none of the specified <hidden> are installed. <hidden> should be a comma-separated list of formulae.")
+	missingCmd.Flags().String("hide", "", "Act as if none of the specified <hidden> are installed. <hidden> should be a comma-separated list of formulae.")
 	missingCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
 	missingCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
 	rootCmd.AddCommand(missingCmd)
+
+	carapace.Gen(missingCmd).PositionalAnyCompletion(
+		action.ActionList(missingCmd).FilterArgs(),
+	)
 }

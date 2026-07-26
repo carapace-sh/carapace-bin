@@ -16,10 +16,10 @@ func init() {
 	carapace.Gen(rubyCmd).Standalone()
 
 	rubyCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	rubyCmd.Flags().BoolS("e", "e", false, "Execute the given text string as a script.")
+	rubyCmd.Flags().StringS("e", "e", "", "Execute the given text string as a script.")
 	rubyCmd.Flags().Bool("help", false, "Show this message.")
 	rubyCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	rubyCmd.Flags().BoolS("r", "r", false, "Load a library using `require`.")
+	rubyCmd.Flags().StringS("r", "r", "", "Load a library using `require`.")
 	rubyCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
 	rootCmd.AddCommand(rubyCmd)
 }

@@ -23,10 +23,10 @@ func init() {
 	testsCmd.Flags().Bool("generic", false, "Run only OS-agnostic tests.")
 	testsCmd.Flags().Bool("help", false, "Show this message.")
 	testsCmd.Flags().Bool("online", false, "Include tests that use the GitHub API and tests that use any of the taps for official external commands.")
-	testsCmd.Flags().Bool("only", false, "Run only <test_script>`_spec.rb`. Appending `:`<line_number> will start at a specific line.")
-	testsCmd.Flags().Bool("profile", false, "Run the test suite serially to find the <n> slowest tests.")
+	testsCmd.Flags().String("only", "", "Run only <test_script>`_spec.rb`. Appending `:`<line_number> will start at a specific line.")
+	testsCmd.Flags().String("profile", "", "Run the test suite serially to find the <n> slowest tests.")
 	testsCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	testsCmd.Flags().Bool("seed", false, "Randomise tests with the specified <value> instead of a random seed.")
+	testsCmd.Flags().String("seed", "", "Randomise tests with the specified <value> instead of a random seed.")
 	testsCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
 	rootCmd.AddCommand(testsCmd)
 }
