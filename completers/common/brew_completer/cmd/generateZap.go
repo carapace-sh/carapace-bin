@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/brew"
 	"github.com/spf13/cobra"
 )
 
@@ -20,4 +21,8 @@ func init() {
 	generateZapCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
 	generateZapCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
 	rootCmd.AddCommand(generateZapCmd)
+
+	carapace.Gen(generateZapCmd).PositionalAnyCompletion(
+		brew.ActionAllCasks(),
+	)
 }

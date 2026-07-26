@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
 	"github.com/spf13/cobra"
 )
 
@@ -35,4 +36,8 @@ func init() {
 	testBotCmd.Flags().Bool("testing-formulae", false, "Only test testing formulae.")
 	testBotCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
 	rootCmd.AddCommand(testBotCmd)
+
+	carapace.Gen(testBotCmd).FlagCompletion(carapace.ActionMap{
+		"tap": gh.ActionOwnerRepositories(gh.HostOpts{}),
+	})
 }

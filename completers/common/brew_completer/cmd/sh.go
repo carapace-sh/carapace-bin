@@ -22,4 +22,8 @@ func init() {
 	shCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
 	shCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
 	rootCmd.AddCommand(shCmd)
+
+	carapace.Gen(shCmd).FlagCompletion(carapace.ActionMap{
+		"env": carapace.ActionValues("std"),
+	})
 }

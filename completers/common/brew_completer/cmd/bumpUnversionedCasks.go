@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/brew"
 	"github.com/spf13/cobra"
 )
 
@@ -23,4 +24,15 @@ func init() {
 	bumpUnversionedCasksCmd.Flags().String("state-file", "", "File for caching state.")
 	bumpUnversionedCasksCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
 	rootCmd.AddCommand(bumpUnversionedCasksCmd)
+
+	carapace.Gen(bumpUnversionedCasksCmd).FlagCompletion(carapace.ActionMap{
+		"state-file": carapace.ActionFiles(),
+	})
+
+	carapace.Gen(bumpUnversionedCasksCmd).PositionalAnyCompletion(
+		carapace.Batch(
+			brew.ActionAllCasks(),
+			brew.ActionAllFormulae(),
+		).ToA().FilterArgs(),
+	)
 }

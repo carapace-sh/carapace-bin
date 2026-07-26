@@ -21,4 +21,8 @@ func init() {
 	environmentCmd.Flags().String("shell", "", "Generate a list of environment variables for the specified shell, or `--shell=auto` to detect the current shell.")
 	environmentCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
 	rootCmd.AddCommand(environmentCmd)
+
+	carapace.Gen(environmentCmd).FlagCompletion(carapace.ActionMap{
+		"shell": carapace.ActionValues("bash", "csh", "fish", "nu", "pwsh", "tcsh", "zsh", "auto"),
+	})
 }

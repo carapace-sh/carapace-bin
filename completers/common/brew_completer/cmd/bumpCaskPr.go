@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/brew"
 	"github.com/spf13/cobra"
 )
 
@@ -35,4 +36,8 @@ func init() {
 	bumpCaskPrCmd.Flags().String("version-intel", "", "Specify the new cask <version> for the Intel architecture.")
 	bumpCaskPrCmd.Flags().Bool("write-only", false, "Make the expected file modifications without taking any Git actions.")
 	rootCmd.AddCommand(bumpCaskPrCmd)
+
+	carapace.Gen(bumpCaskPrCmd).PositionalAnyCompletion(
+		brew.ActionAllCasks(),
+	)
 }

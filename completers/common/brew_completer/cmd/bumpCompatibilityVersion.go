@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/brew"
 	"github.com/spf13/cobra"
 )
 
@@ -22,4 +23,8 @@ func init() {
 	bumpCompatibilityVersionCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
 	bumpCompatibilityVersionCmd.Flags().Bool("write-only", false, "Make the expected file modifications without taking any Git actions.")
 	rootCmd.AddCommand(bumpCompatibilityVersionCmd)
+
+	carapace.Gen(bumpCompatibilityVersionCmd).PositionalAnyCompletion(
+		brew.ActionAllFormulae(),
+	)
 }

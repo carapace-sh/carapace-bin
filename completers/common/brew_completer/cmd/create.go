@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
 	"github.com/spf13/cobra"
 )
 
@@ -38,4 +39,8 @@ func init() {
 	createCmd.Flags().String("tap", "", "Generate the new formula within the given tap, specified as <user>`/`<repo>.")
 	createCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
 	rootCmd.AddCommand(createCmd)
+
+	carapace.Gen(createCmd).FlagCompletion(carapace.ActionMap{
+		"tap": gh.ActionOwnerRepositories(gh.HostOpts{}),
+	})
 }

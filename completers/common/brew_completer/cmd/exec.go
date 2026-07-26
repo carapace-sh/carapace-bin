@@ -21,4 +21,8 @@ func init() {
 	execCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
 	execCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
 	rootCmd.AddCommand(execCmd)
+
+	carapace.Gen(execCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(),
+	)
 }

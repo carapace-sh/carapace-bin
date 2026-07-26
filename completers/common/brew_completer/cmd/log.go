@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/brew_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -27,4 +28,8 @@ func init() {
 	logCmd.Flags().Bool("stat", false, "Also print diffstat from commit.")
 	logCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
 	rootCmd.AddCommand(logCmd)
+
+	carapace.Gen(logCmd).PositionalAnyCompletion(
+		action.ActionSearch(logCmd).FilterArgs(),
+	)
 }

@@ -20,4 +20,8 @@ func init() {
 	whichFormulaCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
 	whichFormulaCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
 	rootCmd.AddCommand(whichFormulaCmd)
+
+	carapace.Gen(whichFormulaCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(),
+	)
 }

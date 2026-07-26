@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/brew"
 	"github.com/spf13/cobra"
 )
 
@@ -22,4 +23,9 @@ func init() {
 	extractCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
 	extractCmd.Flags().String("version", "", "Extract the specified <version> of <formula> instead of the most recent.")
 	rootCmd.AddCommand(extractCmd)
+
+	carapace.Gen(extractCmd).PositionalCompletion(
+		brew.ActionAllFormulae(),
+		carapace.ActionValues(),
+	)
 }

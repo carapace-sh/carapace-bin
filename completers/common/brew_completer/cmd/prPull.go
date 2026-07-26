@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
 	"github.com/spf13/cobra"
 )
 
@@ -39,4 +40,8 @@ func init() {
 	prPullCmd.Flags().Bool("warn-on-upload-failure", false, "Warn instead of raising an error if the bottle upload fails. Useful for repairing bottle uploads that previously failed.")
 	prPullCmd.Flags().String("workflows", "", "Retrieve artifacts from the specified workflow (default: `tests.yml`). Can be a comma-separated list to include multiple workflows.")
 	rootCmd.AddCommand(prPullCmd)
+
+	carapace.Gen(prPullCmd).FlagCompletion(carapace.ActionMap{
+		"tap": gh.ActionOwnerRepositories(gh.HostOpts{}),
+	})
 }

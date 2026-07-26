@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/brew"
 	"github.com/spf13/cobra"
 )
 
@@ -40,4 +41,8 @@ func init() {
 	bumpFormulaPrCmd.Flags().String("version", "", "Use the specified <version> to override the value parsed from the URL or tag. Note that `--version=0` can be used to delete an existing version override from a formula if it has become redundant.")
 	bumpFormulaPrCmd.Flags().Bool("write-only", false, "Make the expected file modifications without taking any Git actions.")
 	rootCmd.AddCommand(bumpFormulaPrCmd)
+
+	carapace.Gen(bumpFormulaPrCmd).PositionalAnyCompletion(
+		brew.ActionAllFormulae(),
+	)
 }

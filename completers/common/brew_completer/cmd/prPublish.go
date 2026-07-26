@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
 	"github.com/spf13/cobra"
 )
 
@@ -26,4 +27,8 @@ func init() {
 	prPublishCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
 	prPublishCmd.Flags().String("workflow", "", "Target workflow filename (default: `publish-commit-bottles.yml`).")
 	rootCmd.AddCommand(prPublishCmd)
+
+	carapace.Gen(prPublishCmd).FlagCompletion(carapace.ActionMap{
+		"tap": gh.ActionOwnerRepositories(gh.HostOpts{}),
+	})
 }

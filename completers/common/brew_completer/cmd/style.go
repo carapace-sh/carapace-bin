@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/brew"
 	"github.com/spf13/cobra"
 )
 
@@ -26,4 +27,11 @@ func init() {
 	styleCmd.Flags().Bool("reset-cache", false, "Reset the RuboCop cache.")
 	styleCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
 	rootCmd.AddCommand(styleCmd)
+
+	carapace.Gen(styleCmd).PositionalAnyCompletion(
+		carapace.Batch(
+			brew.ActionAllCasks().Unless(styleCmd.Flag("formula").Changed),
+			brew.ActionAllFormulae().Unless(styleCmd.Flag("cask").Changed),
+		).ToA().FilterArgs(),
+	)
 }

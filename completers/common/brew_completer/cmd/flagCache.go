@@ -26,4 +26,10 @@ func init() {
 	flagCacheCmd.Flags().String("os", "", "Show cache file for the given operating system. (Pass `all` to show cache files for all operating systems.)")
 	flagCacheCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
 	flagCacheCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+
+	carapace.Gen(flagCacheCmd).FlagCompletion(carapace.ActionMap{
+		"arch":       carapace.ActionValues("x86_64", "arm64", "all"),
+		"bottle-tag": carapace.ActionValues(),
+		"os":         carapace.ActionValues("linux", "macos", "all"),
+	})
 }

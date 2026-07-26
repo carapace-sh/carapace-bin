@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/brew_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -28,4 +29,8 @@ func init() {
 	bumpCmd.Flags().String("start-with", "", "Letter or word that the list of package results should alphabetically follow.")
 	bumpCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
 	rootCmd.AddCommand(bumpCmd)
+
+	carapace.Gen(bumpCmd).PositionalAnyCompletion(
+		action.ActionSearch(bumpCmd).FilterArgs(),
+	)
 }

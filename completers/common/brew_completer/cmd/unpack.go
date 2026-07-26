@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/brew"
 	"github.com/spf13/cobra"
 )
 
@@ -24,4 +25,12 @@ func init() {
 	unpackCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
 	unpackCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
 	rootCmd.AddCommand(unpackCmd)
+
+	carapace.Gen(unpackCmd).FlagCompletion(carapace.ActionMap{
+		"destdir": carapace.ActionDirectories(),
+	})
+
+	carapace.Gen(unpackCmd).PositionalAnyCompletion(
+		brew.ActionAllFormulae(),
+	)
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
 	"github.com/spf13/cobra"
 )
 
@@ -28,4 +29,8 @@ func init() {
 	prAutomergeCmd.Flags().String("without-labels", "", "Pull requests must not have these labels (default: `do not merge`, `new formula`, `automerge-skip`, `pre-release`, `CI-published-bottle-commits`).")
 	prAutomergeCmd.Flags().String("workflow", "", "Workflow file to use with `brew pr-publish`.")
 	rootCmd.AddCommand(prAutomergeCmd)
+
+	carapace.Gen(prAutomergeCmd).FlagCompletion(carapace.ActionMap{
+		"tap": gh.ActionOwnerRepositories(gh.HostOpts{}),
+	})
 }

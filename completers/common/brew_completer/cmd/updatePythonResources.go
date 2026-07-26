@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/brew"
 	"github.com/spf13/cobra"
 )
 
@@ -27,4 +28,8 @@ func init() {
 	updatePythonResourcesCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
 	updatePythonResourcesCmd.Flags().String("version", "", "Use the specified <version> when finding resources for <formula>. If no version is specified, the current version for <formula> will be used.")
 	rootCmd.AddCommand(updatePythonResourcesCmd)
+
+	carapace.Gen(updatePythonResourcesCmd).PositionalAnyCompletion(
+		brew.ActionAllFormulae(),
+	)
 }

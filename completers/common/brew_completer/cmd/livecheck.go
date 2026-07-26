@@ -2,6 +2,8 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/brew_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
 	"github.com/spf13/cobra"
 )
 
@@ -29,4 +31,12 @@ func init() {
 	livecheckCmd.Flags().String("tap", "", "Check formulae and casks within the given tap, specified as <user>`/`<repo>.")
 	livecheckCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
 	rootCmd.AddCommand(livecheckCmd)
+
+	carapace.Gen(livecheckCmd).FlagCompletion(carapace.ActionMap{
+		"tap": gh.ActionOwnerRepositories(gh.HostOpts{}),
+	})
+
+	carapace.Gen(livecheckCmd).PositionalAnyCompletion(
+		action.ActionSearch(livecheckCmd).FilterArgs(),
+	)
 }

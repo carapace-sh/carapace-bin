@@ -21,4 +21,8 @@ func init() {
 	debuggerCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
 	debuggerCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
 	rootCmd.AddCommand(debuggerCmd)
+
+	carapace.Gen(debuggerCmd).PositionalAnyCompletion(
+		carapace.ActionCommands(rootCmd),
+	)
 }

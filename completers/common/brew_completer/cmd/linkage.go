@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/brew_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -24,4 +25,8 @@ func init() {
 	linkageCmd.Flags().Bool("test", false, "Show only missing libraries and exit with a non-zero status if any missing libraries are found.")
 	linkageCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
 	rootCmd.AddCommand(linkageCmd)
+
+	carapace.Gen(linkageCmd).PositionalAnyCompletion(
+		action.ActionList(linkageCmd).FilterArgs(),
+	)
 }

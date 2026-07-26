@@ -36,6 +36,12 @@ func init() {
 	fetchCmd.Flags().Bool("verbose", false, "Do a verbose VCS checkout, if the URL represents a VCS. This is useful for seeing if an existing VCS cache has been updated.")
 	rootCmd.AddCommand(fetchCmd)
 
+	carapace.Gen(fetchCmd).FlagCompletion(carapace.ActionMap{
+		"arch":       carapace.ActionValues("x86_64", "arm64", "all"),
+		"bottle-tag": carapace.ActionValues(),
+		"os":         carapace.ActionValues("linux", "macos", "all"),
+	})
+
 	carapace.Gen(fetchCmd).PositionalAnyCompletion(
 		action.ActionSearch(fetchCmd),
 	)

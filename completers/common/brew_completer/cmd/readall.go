@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/brew"
 	"github.com/spf13/cobra"
 )
 
@@ -26,4 +27,13 @@ func init() {
 	readallCmd.Flags().Bool("syntax", false, "Syntax-check all of Homebrew's Ruby files (if no <tap> is passed).")
 	readallCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
 	rootCmd.AddCommand(readallCmd)
+
+	carapace.Gen(readallCmd).FlagCompletion(carapace.ActionMap{
+		"arch": carapace.ActionValues("x86_64", "arm64", "all"),
+		"os":   carapace.ActionValues("linux", "macos", "all"),
+	})
+
+	carapace.Gen(readallCmd).PositionalAnyCompletion(
+		brew.ActionInstalledTaps().FilterArgs(),
+	)
 }

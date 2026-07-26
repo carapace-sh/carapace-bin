@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/brew_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -23,4 +24,8 @@ func init() {
 	gistLogsCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
 	gistLogsCmd.Flags().Bool("with-hostname", false, "Include the hostname in the Gist.")
 	rootCmd.AddCommand(gistLogsCmd)
+
+	carapace.Gen(gistLogsCmd).PositionalAnyCompletion(
+		action.ActionList(gistLogsCmd).FilterArgs(),
+	)
 }
