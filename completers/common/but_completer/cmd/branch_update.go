@@ -18,7 +18,7 @@ func init() {
 	branch_updateCmd.Flags().Bool("dry-run", false, "Preview the resulting branch state without persisting changes")
 	branch_updateCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	branch_updateCmd.Flags().BoolP("interactive", "i", false, "Open the generated integration script in an editor")
-	branch_updateCmd.Flags().StringP("strategy", "s", "", "Strategy to use for the integration. If no strategy is specified, we default to pull-rebase")
+	branch_updateCmd.Flags().StringP("strategy", "s", "pull-rebase", "Strategy to use for the integration. If no strategy is specified, we default to pull-rebase")
 	branch_updateCmd.Flags().BoolP("verbose", "v", false, "Show additional dry-run details like the current divergence")
 	branchCmd.AddCommand(branch_updateCmd)
 
