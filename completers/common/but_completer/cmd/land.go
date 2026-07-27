@@ -7,9 +7,10 @@ import (
 )
 
 var landCmd = &cobra.Command{
-	Use:   "land",
-	Short: "Land a branch directly onto the target branch",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "land",
+	Short:   "Land a branch directly onto the target branch",
+	Run:     func(cmd *cobra.Command, args []string) {},
+	GroupID: "server interactions",
 }
 
 func init() {

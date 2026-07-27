@@ -35,11 +35,14 @@ func init() {
 		&cobra.Group{ID: "server interactions"},
 		&cobra.Group{ID: "rules"},
 		&cobra.Group{ID: "other commands"},
+		&cobra.Group{ID: "alias"},
 	)
 
 	rootCmd.Flags().StringP("current-dir", "C", "", "Run as if but was started in PATH instead of the current working directory")
 	rootCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.PersistentFlags().String("format", "", "Explicitly control how output should be formatted")
+	rootCmd.PersistentFlags().String("log-file", "", "Log to this file instead of stderr")
+	rootCmd.PersistentFlags().CountP("trace", "", "Enable tracing for debug and performance information printed to stderr")
 	rootCmd.Flags().BoolP("version", "V", false, "Print version")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
@@ -51,6 +54,7 @@ func init() {
 			"json", "Output detailed information as JSON for tool consumption",
 			"none", "Do not output anything, like redirecting to /dev/null",
 		),
+		"log-file": carapace.ActionFiles(),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
