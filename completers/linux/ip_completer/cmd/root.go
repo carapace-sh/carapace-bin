@@ -8,6 +8,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "ip",
+	Long:  "https://linux.die.net/man/8/ip",
 	Short: "show / manipulate routing, network devices, interfaces and tunnels",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
