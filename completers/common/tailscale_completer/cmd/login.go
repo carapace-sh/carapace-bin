@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tailscale"
 	"github.com/spf13/cobra"
 )
 
@@ -45,6 +46,7 @@ func init() {
 	rootCmd.AddCommand(loginCmd)
 
 	carapace.Gen(loginCmd).FlagCompletion(carapace.ActionMap{
+		"exit-node":      tailscale.ActionExitNodes(),
 		"netfilter-mode": carapace.ActionValues("on", "nodivert", "off"),
 		"qr-format":      carapace.ActionValues("ascii", "auto", "large", "small"),
 	})

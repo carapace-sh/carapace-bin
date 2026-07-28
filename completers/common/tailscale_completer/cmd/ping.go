@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tailscale"
 	"github.com/spf13/cobra"
 )
 
@@ -23,4 +24,8 @@ func init() {
 	pingCmd.Flags().Bool("until-direct", true, "stop once a direct path is established")
 	pingCmd.Flags().Bool("verbose", false, "verbose output")
 	rootCmd.AddCommand(pingCmd)
+
+	carapace.Gen(pingCmd).PositionalCompletion(
+		tailscale.ActionHosts(),
+	)
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tailscale"
 	"github.com/spf13/cobra"
 )
 
@@ -15,4 +16,11 @@ func init() {
 	carapace.Gen(sshCmd).Standalone()
 
 	rootCmd.AddCommand(sshCmd)
+
+	carapace.Gen(sshCmd).PositionalCompletion(
+		carapace.Batch(
+			tailscale.ActionHosts(),
+			carapace.ActionFiles(),
+		).ToA(),
+	)
 }

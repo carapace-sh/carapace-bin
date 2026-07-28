@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tailscale"
 	"github.com/spf13/cobra"
 )
 
@@ -41,6 +42,7 @@ func init() {
 
 	carapace.Gen(setCmd).FlagCompletion(carapace.ActionMap{
 		"accept-risk":    carapace.ActionValues("lose-ssh", "mac-app-connector", "all"),
+		"exit-node":      tailscale.ActionExitNodes(),
 		"netfilter-mode": carapace.ActionValues("on", "nodivert", "off"),
 	})
 }

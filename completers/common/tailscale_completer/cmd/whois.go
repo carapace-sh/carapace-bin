@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tailscale"
 	"github.com/spf13/cobra"
 )
 
@@ -21,4 +22,8 @@ func init() {
 	carapace.Gen(whoisCmd).FlagCompletion(carapace.ActionMap{
 		"proto": carapace.ActionValues("tcp", "udp"),
 	})
+
+	carapace.Gen(whoisCmd).PositionalCompletion(
+		tailscale.ActionHosts(),
+	)
 }
