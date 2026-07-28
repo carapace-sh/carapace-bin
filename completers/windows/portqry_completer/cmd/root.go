@@ -19,7 +19,7 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().BoolP("n", "n", false, "skip name resolution")
-	rootCmd.Flags().BoolP("o", "o", false, "specify port(s) to query")
-	rootCmd.Flags().BoolP("p", "p", false, "specify protocol (TCP or UDP)")
-	rootCmd.Flags().BoolP("r", "r", false, "query range of ports")
+	rootCmd.Flags().StringP("o", "o", "", "specify port(s) to query")
+	rootCmd.Flags().StringP("p", "p", "", "specify protocol (TCP or UDP)")
+	rootCmd.Flags().StringP("r", "r", "", "query range of ports")
 }

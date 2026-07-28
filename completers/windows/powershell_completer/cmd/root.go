@@ -18,8 +18,8 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolP("command", "c", false, "execute a command string")
-	rootCmd.Flags().BoolP("file", "f", false, "execute a script file")
+	rootCmd.Flags().StringP("command", "c", "", "execute a command string")
+	rootCmd.Flags().StringP("file", "f", "", "execute a script file")
 	rootCmd.Flags().Bool("nologo", false, "do not display copyright banner")
 	rootCmd.Flags().Bool("noninteractive", false, "non-interactive mode")
 	rootCmd.Flags().Bool("noprofile", false, "do not load profile scripts")

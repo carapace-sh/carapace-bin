@@ -18,6 +18,6 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolP("p", "p", false, "specify the search path")
+	rootCmd.Flags().StringP("p", "p", "", "specify the search path")
 	rootCmd.Flags().BoolP("s", "s", false, "search subdirectories")
 }

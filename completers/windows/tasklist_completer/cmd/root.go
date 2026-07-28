@@ -18,7 +18,7 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolP("m", "m", false, "show module information for each process")
+	rootCmd.Flags().StringP("m", "m", "", "show module information for each process")
 	rootCmd.Flags().Bool("svc", false, "display services hosted in each process")
 	rootCmd.Flags().BoolP("v", "v", false, "display verbose task information")
 }

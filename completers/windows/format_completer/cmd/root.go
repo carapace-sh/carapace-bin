@@ -19,5 +19,5 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().BoolP("q", "q", false, "quick format")
-	rootCmd.Flags().BoolP("v", "v", false, "specify volume label")
+	rootCmd.Flags().StringP("v", "v", "", "specify volume label")
 }

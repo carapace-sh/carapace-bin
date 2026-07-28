@@ -25,5 +25,5 @@ func init() {
 	rootCmd.Flags().BoolP("p", "p", false, "turn off the local computer with no timeout or warning")
 	rootCmd.Flags().BoolP("r", "r", false, "restart the computer")
 	rootCmd.Flags().BoolP("s", "s", false, "shut down the computer")
-	rootCmd.Flags().BoolP("t", "t", false, "set shutdown timeout in seconds")
+	rootCmd.Flags().IntP("t", "t", 0, "set shutdown timeout in seconds")
 }

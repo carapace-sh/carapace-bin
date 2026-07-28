@@ -19,8 +19,8 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().BoolP("a", "a", false, "display current ARP entries")
-	rootCmd.Flags().BoolP("g", "g", false, "display current ARP entries (same as -a)")
 	rootCmd.Flags().BoolP("d", "d", false, "delete an entry")
+	rootCmd.Flags().BoolP("g", "g", false, "display current ARP entries (same as -a)")
 	rootCmd.Flags().BoolP("s", "s", false, "add a static entry")
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())

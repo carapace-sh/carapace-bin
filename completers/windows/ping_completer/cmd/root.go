@@ -20,10 +20,10 @@ func init() {
 
 	rootCmd.Flags().BoolP("a", "a", false, "resolve addresses to hostnames")
 	rootCmd.Flags().BoolP("f", "f", false, "set Don't Fragment flag in packet")
-	rootCmd.Flags().BoolP("i", "i", false, "set Time To Live")
-	rootCmd.Flags().BoolP("l", "l", false, "set send buffer size")
-	rootCmd.Flags().BoolP("n", "n", false, "number of echo requests to send")
+	rootCmd.Flags().IntP("i", "i", 0, "set Time To Live")
+	rootCmd.Flags().IntP("l", "l", 0, "set send buffer size")
+	rootCmd.Flags().IntP("n", "n", 0, "number of echo requests to send")
 	rootCmd.Flags().BoolP("t", "t", false, "ping the specified host until stopped")
-	rootCmd.Flags().BoolP("v", "v", false, "set Type Of Service")
-	rootCmd.Flags().BoolP("w", "w", false, "timeout in milliseconds to wait for each reply")
+	rootCmd.Flags().IntP("v", "v", 0, "set Type Of Service")
+	rootCmd.Flags().IntP("w", "w", 0, "timeout in milliseconds to wait for each reply")
 }

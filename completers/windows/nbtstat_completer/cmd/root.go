@@ -20,7 +20,7 @@ func init() {
 
 	rootCmd.Flags().BoolP("R", "R", false, "purge and reload the name cache")
 	rootCmd.Flags().BoolP("S", "S", false, "display sessions table with destination IP addresses")
-	rootCmd.Flags().BoolP("a", "a", false, "display remote computer name table")
+	rootCmd.Flags().StringP("a", "a", "", "display remote computer name table")
 	rootCmd.Flags().BoolP("n", "n", false, "display local computer name table")
 	rootCmd.Flags().BoolP("r", "r", false, "display name resolution statistics")
 	rootCmd.Flags().BoolP("s", "s", false, "display sessions table")

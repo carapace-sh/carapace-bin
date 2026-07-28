@@ -19,8 +19,8 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().BoolP("d", "d", false, "do not resolve addresses to hostnames")
-	rootCmd.Flags().BoolP("h", "h", false, "maximum number of hops")
+	rootCmd.Flags().IntP("h", "h", 0, "maximum number of hops")
 	rootCmd.Flags().BoolP("n", "n", false, "do not resolve addresses to hostnames")
-	rootCmd.Flags().BoolP("q", "q", false, "number of queries per hop")
-	rootCmd.Flags().BoolP("w", "w", false, "timeout for each reply")
+	rootCmd.Flags().IntP("q", "q", 0, "number of queries per hop")
+	rootCmd.Flags().IntP("w", "w", 0, "timeout for each reply")
 }
