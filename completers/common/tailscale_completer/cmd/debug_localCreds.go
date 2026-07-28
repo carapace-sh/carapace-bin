@@ -5,14 +5,14 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var debug_local_credsCmd = &cobra.Command{
+var debug_localCredsCmd = &cobra.Command{
 	Use:   "local-creds",
 	Short: "Print how to access Tailscale LocalAPI",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(debug_local_credsCmd).Standalone()
+	carapace.Gen(debug_localCredsCmd).Standalone()
 
-	debugCmd.AddCommand(debug_local_credsCmd)
+	debugCmd.AddCommand(debug_localCredsCmd)
 }

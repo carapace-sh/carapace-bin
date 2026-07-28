@@ -5,14 +5,14 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var debug_daemon_goroutinesCmd = &cobra.Command{
+var debug_daemonGoroutinesCmd = &cobra.Command{
 	Use:   "daemon-goroutines",
 	Short: "Print tailscaled's goroutines",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(debug_daemon_goroutinesCmd).Standalone()
+	carapace.Gen(debug_daemonGoroutinesCmd).Standalone()
 
-	debugCmd.AddCommand(debug_daemon_goroutinesCmd)
+	debugCmd.AddCommand(debug_daemonGoroutinesCmd)
 }

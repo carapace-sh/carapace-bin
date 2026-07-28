@@ -5,14 +5,14 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var debug_peer_relay_serversCmd = &cobra.Command{
+var debug_peerRelayServersCmd = &cobra.Command{
 	Use:   "peer-relay-servers",
 	Short: "Print the current set of candidate peer relay servers",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(debug_peer_relay_serversCmd).Standalone()
+	carapace.Gen(debug_peerRelayServersCmd).Standalone()
 
-	debugCmd.AddCommand(debug_peer_relay_serversCmd)
+	debugCmd.AddCommand(debug_peerRelayServersCmd)
 }

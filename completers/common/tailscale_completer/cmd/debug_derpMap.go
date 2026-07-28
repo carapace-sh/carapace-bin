@@ -5,14 +5,14 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var debug_derp_mapCmd = &cobra.Command{
+var debug_derpMapCmd = &cobra.Command{
 	Use:   "derp-map",
 	Short: "Print DERP map",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(debug_derp_mapCmd).Standalone()
+	carapace.Gen(debug_derpMapCmd).Standalone()
 
-	debugCmd.AddCommand(debug_derp_mapCmd)
+	debugCmd.AddCommand(debug_derpMapCmd)
 }

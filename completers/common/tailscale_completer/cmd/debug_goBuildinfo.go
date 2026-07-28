@@ -5,14 +5,14 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var debug_go_buildinfoCmd = &cobra.Command{
+var debug_goBuildinfoCmd = &cobra.Command{
 	Use:   "go-buildinfo",
 	Short: "Print Go's runtime/debug.BuildInfo",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(debug_go_buildinfoCmd).Standalone()
+	carapace.Gen(debug_goBuildinfoCmd).Standalone()
 
-	debugCmd.AddCommand(debug_go_buildinfoCmd)
+	debugCmd.AddCommand(debug_goBuildinfoCmd)
 }

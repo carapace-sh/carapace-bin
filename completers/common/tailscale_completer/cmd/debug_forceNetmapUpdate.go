@@ -5,14 +5,14 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var debug_force_netmap_updateCmd = &cobra.Command{
+var debug_forceNetmapUpdateCmd = &cobra.Command{
 	Use:   "force-netmap-update",
 	Short: "Force a full no-op netmap update (for load testing)",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(debug_force_netmap_updateCmd).Standalone()
+	carapace.Gen(debug_forceNetmapUpdateCmd).Standalone()
 
-	debugCmd.AddCommand(debug_force_netmap_updateCmd)
+	debugCmd.AddCommand(debug_forceNetmapUpdateCmd)
 }
