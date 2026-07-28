@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "tailscale",
 	Short: "The easiest, most secure way to use WireGuard",
+	Long: "https://tailscale.com",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
