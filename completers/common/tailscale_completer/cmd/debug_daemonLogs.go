@@ -14,5 +14,7 @@ var debug_daemonLogsCmd = &cobra.Command{
 func init() {
 	carapace.Gen(debug_daemonLogsCmd).Standalone()
 
+	debug_daemonLogsCmd.Flags().Bool("time", false, "include client time")
+	debug_daemonLogsCmd.Flags().Int("verbose", 0, "verbosity level")
 	debugCmd.AddCommand(debug_daemonLogsCmd)
 }

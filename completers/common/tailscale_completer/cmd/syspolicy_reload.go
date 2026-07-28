@@ -14,5 +14,6 @@ var syspolicy_reloadCmd = &cobra.Command{
 func init() {
 	carapace.Gen(syspolicy_reloadCmd).Standalone()
 
+	syspolicy_reloadCmd.Flags().Bool("json", false, "output in JSON format")
 	syspolicyCmd.AddCommand(syspolicy_reloadCmd)
 }

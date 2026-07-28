@@ -19,4 +19,9 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.PersistentFlags().String("socket", "", "path to tailscaled socket")
+	rootCmd.Flags().Bool("json-docs", false, "print JSON-encoded docs for all subcommands and flags")
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"socket": carapace.ActionFiles(),
+	})
 }

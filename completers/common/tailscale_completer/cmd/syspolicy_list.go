@@ -14,5 +14,6 @@ var syspolicy_listCmd = &cobra.Command{
 func init() {
 	carapace.Gen(syspolicy_listCmd).Standalone()
 
+	syspolicy_listCmd.Flags().Bool("json", false, "output in JSON format")
 	syspolicyCmd.AddCommand(syspolicy_listCmd)
 }

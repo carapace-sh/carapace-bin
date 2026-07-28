@@ -15,4 +15,8 @@ func init() {
 	carapace.Gen(debug_statCmd).Standalone()
 
 	debugCmd.AddCommand(debug_statCmd)
+
+	carapace.Gen(debug_statCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(),
+	)
 }

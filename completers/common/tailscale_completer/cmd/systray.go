@@ -14,5 +14,10 @@ var systrayCmd = &cobra.Command{
 func init() {
 	carapace.Gen(systrayCmd).Standalone()
 
+	systrayCmd.Flags().String("theme", "", "color theme for Tailscale icon")
 	rootCmd.AddCommand(systrayCmd)
+
+	carapace.Gen(systrayCmd).FlagCompletion(carapace.ActionMap{
+		"theme": carapace.ActionValues("dark", "dark:nobg", "light", "light:nobg"),
+	})
 }

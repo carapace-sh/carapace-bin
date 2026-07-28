@@ -25,8 +25,8 @@ func init() {
 	debug_watchIpnCmd.Flags().Bool("initial-outgoing-files", false, "include initial outgoing files")
 	debug_watchIpnCmd.Flags().Bool("initial-status", false, "include initial status")
 	debug_watchIpnCmd.Flags().Bool("initial-suggested-exit-node", false, "include initial suggested exit node")
-	debug_watchIpnCmd.Flags().Bool("peer-changes", false, "include peer changes")
-	debug_watchIpnCmd.Flags().Bool("peer-patches", false, "include peer patches")
+	debug_watchIpnCmd.Flags().Bool("peer-changes", true, "include peer changes")
+	debug_watchIpnCmd.Flags().Bool("peer-patches", true, "include peer patches")
 	debug_watchIpnCmd.Flags().Bool("peer-wireguard-state", false, "include peer WireGuard state")
 	debugCmd.AddCommand(debug_watchIpnCmd)
 }

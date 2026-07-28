@@ -14,5 +14,6 @@ var logoutCmd = &cobra.Command{
 func init() {
 	carapace.Gen(logoutCmd).Standalone()
 
+	logoutCmd.Flags().String("reason", "", "reason for the logout, if required by a policy")
 	rootCmd.AddCommand(logoutCmd)
 }

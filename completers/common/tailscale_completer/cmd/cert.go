@@ -19,4 +19,9 @@ func init() {
 	certCmd.Flags().String("min-validity", "", "ensure the certificate is valid for at least this duration")
 	certCmd.Flags().Bool("serve-demo", false, "serve on port :443 using the cert as a demo instead of writing files to disk")
 	rootCmd.AddCommand(certCmd)
+
+	carapace.Gen(certCmd).FlagCompletion(carapace.ActionMap{
+		"cert-file": carapace.ActionFiles(),
+		"key-file":  carapace.ActionFiles(),
+	})
 }

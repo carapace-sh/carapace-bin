@@ -20,4 +20,8 @@ func init() {
 	debug_ts2021Cmd.Flags().Bool("verbose", false, "verbose output")
 	debug_ts2021Cmd.Flags().Int("version", 0, "protocol version")
 	debugCmd.AddCommand(debug_ts2021Cmd)
+
+	carapace.Gen(debug_ts2021Cmd).FlagCompletion(carapace.ActionMap{
+		"dial-plan": carapace.ActionFiles(),
+	})
 }
