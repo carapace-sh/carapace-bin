@@ -42,7 +42,7 @@ func init() {
 					return carapace.ActionValues()
 				}
 			}
-			return carapace.ActionValues("to", "from", "via", "dev", "src", "table", "scope", "proto", "metric", "cache", "cloned")
+			return carapace.ActionValues("to", "from", "via", "dev", "src", "table", "scope", "proto", "metric", "cached", "cloned")
 		}),
 	)
 }
