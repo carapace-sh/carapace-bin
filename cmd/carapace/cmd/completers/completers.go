@@ -69,6 +69,7 @@ func AddCarapace(m completer.CompleterMap) {
 func RemoveShellBuiltins(m completer.CompleterMap) {
 	shellGroups := map[string]bool{
 		"bash": true,
+		"cmd":  true,
 		"fish": true,
 		"zsh":  true,
 	}
