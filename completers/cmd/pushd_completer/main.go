@@ -1,6 +1,6 @@
 package main
 
-import "github.com/carapace-sh/carapace-bin/completers/windows/pushd_completer/cmd"
+import "github.com/carapace-sh/carapace-bin/completers/cmd/pushd_completer/cmd"
 
 func main() {
 	cmd.Execute()
