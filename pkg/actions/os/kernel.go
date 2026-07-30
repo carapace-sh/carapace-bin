@@ -40,6 +40,25 @@ func ActionKernelModulesLoaded() carapace.Action {
 				}
 				return carapace.ActionValues(vals...)
 			}).Tag("kernel modules")
+		case "windows":
+			return carapace.ActionExecCommand("driverquery", "/fo", "csv", "/nh")(func(output []byte) carapace.Action {
+				lines := strings.Split(strings.ReplaceAll(string(output), "\r", ""), "\n")
+				vals := make([]string, 0)
+				for _, line := range lines {
+					if line == "" {
+						continue
+					}
+					// CSV format: "Display Name","Started","Start Mode","Link Date","Path"
+					fields := strings.Split(line, ",")
+					if len(fields) > 0 {
+						name := strings.Trim(fields[0], "\"")
+						if name != "" {
+							vals = append(vals, name)
+						}
+					}
+				}
+				return carapace.ActionValues(vals...)
+			}).Tag("drivers")
 		default:
 			return carapace.ActionExecCommand("lsmod")(func(output []byte) carapace.Action {
 				lines := strings.Split(string(output), "\n")
@@ -67,6 +86,8 @@ func ActionKernelModules(opts KernelModulesOpts) carapace.Action {
 		switch runtime.GOOS {
 		case "darwin":
 			return actionKernelModulesDarwin()
+		case "windows":
+			return actionKernelModulesWindows()
 		default:
 			if strings.TrimSpace(opts.Release) == "" {
 				var err error
@@ -116,13 +137,33 @@ func actionKernelModulesDarwin() carapace.Action {
 	})
 }
 
+func actionKernelModulesWindows() carapace.Action {
+	return carapace.ActionExecCommand("driverquery", "/fo", "csv", "/nh")(func(output []byte) carapace.Action {
+		lines := strings.Split(strings.ReplaceAll(string(output), "\r", ""), "\n")
+		vals := make([]string, 0)
+		for _, line := range lines {
+			if line == "" {
+				continue
+			}
+			fields := strings.Split(line, ",")
+			if len(fields) > 0 {
+				name := strings.Trim(fields[0], "\"")
+				if name != "" {
+					vals = append(vals, name)
+				}
+			}
+		}
+		return carapace.ActionValues(vals...)
+	}).Tag("drivers")
+}
+
 // ActionKernelReleases completes kernel releases
 //
 //	5.10.79-1-MANJARO
 //	5.4.159-1-MANJARO
 func ActionKernelReleases(basedir string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if runtime.GOOS == "darwin" {
+		if runtime.GOOS == "darwin" || runtime.GOOS == "windows" {
 			return carapace.ActionValues()
 		}
 

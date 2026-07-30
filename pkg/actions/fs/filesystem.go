@@ -29,6 +29,16 @@ func ActionFilesystemTypes() carapace.Action {
 				"udf", "Universal Disk Format",
 				"webdav", "WebDAV filesystem",
 			).Tag("filesystem types")
+		case "windows":
+			return carapace.ActionValuesDescribed(
+				"cdfs", "CD-ROM file system (ISO 9660)",
+				"exfat", "exFAT file system",
+				"fat", "FAT file system",
+				"fat32", "FAT32 file system",
+				"ntfs", "NTFS file system (default Windows filesystem)",
+				"refs", "Resilient File System (Windows Server)",
+				"udf", "Universal Disk Format",
+			).Tag("filesystem types")
 		default:
 			return carapace.ActionValuesDescribed(
 				"bfs", "is the native file system for the BeOS",

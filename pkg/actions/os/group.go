@@ -26,6 +26,17 @@ func groupStyle(id string) string {
 //	ssh (101)
 func ActionGroups() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		switch runtime.GOOS {
+		case "windows":
+			return actionGroupsWindows()
+		default:
+			return actionGroupsUnix()
+		}
+	}).Tag("groups").Uid("os", "group")
+}
+
+func actionGroupsUnix() carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		groups := []string{}
 		seen := make(map[string]bool)
 
@@ -59,7 +70,41 @@ func ActionGroups() carapace.Action {
 		}
 
 		return carapace.ActionStyledValuesDescribed(groups...)
-	}).Tag("groups").Uid("os", "group")
+	})
+}
+
+func actionGroupsWindows() carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		groups := make([]string, 0)
+		for _, cmd := range [][]string{
+			{"net", "localgroup"},
+			{"net", "group"},
+		} {
+			if output, err := c.Command(cmd[0], cmd[1:]...).Output(); err == nil {
+				lines := strings.Split(strings.ReplaceAll(string(output), "\r", ""), "\n")
+				skipHeader := true
+				for _, line := range lines {
+					trimmed := strings.TrimSpace(line)
+					if trimmed == "" {
+						skipHeader = false
+						continue
+					}
+					if skipHeader {
+						continue
+					}
+					if strings.HasPrefix(trimmed, "The command") || strings.HasPrefix(trimmed, "*") {
+						continue
+					}
+					for _, group := range strings.Fields(line) {
+						if len(group) > 0 {
+							groups = append(groups, group, group, style.Blue)
+						}
+					}
+				}
+			}
+		}
+		return carapace.ActionStyledValuesDescribed(groups...)
+	})
 }
 
 // ActionGroupMembers completes system group members
@@ -67,6 +112,17 @@ func ActionGroups() carapace.Action {
 //	root
 //	daemon
 func ActionGroupMembers(group string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		switch runtime.GOOS {
+		case "windows":
+			return actionGroupMembersWindows(c, group)
+		default:
+			return actionGroupMembersUnix(group)
+		}
+	})
+}
+
+func actionGroupMembersUnix(group string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		vals := []string{}
 		if content, err := os.ReadFile("/etc/group"); err == nil {
@@ -91,5 +147,35 @@ func ActionGroupMembers(group string) carapace.Action {
 			}
 		}
 		return carapace.ActionValues(vals...)
+	})
+}
+
+func actionGroupMembersWindows(c carapace.Context, group string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		if output, err := c.Command("net", "localgroup", group).Output(); err == nil {
+			lines := strings.Split(strings.ReplaceAll(string(output), "\r", ""), "\n")
+			vals := make([]string, 0)
+			skipHeader := true
+			for _, line := range lines {
+				trimmed := strings.TrimSpace(line)
+				if trimmed == "" {
+					skipHeader = false
+					continue
+				}
+				if skipHeader {
+					continue
+				}
+				if strings.HasPrefix(trimmed, "The command") || strings.HasPrefix(trimmed, "*") {
+					continue
+				}
+				for _, member := range strings.Fields(line) {
+					if len(member) > 0 {
+						vals = append(vals, member)
+					}
+				}
+			}
+			return carapace.ActionValues(vals...)
+		}
+		return carapace.ActionValues()
 	})
 }

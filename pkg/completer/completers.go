@@ -42,7 +42,7 @@ func (c Completers) Less(i, j int) bool { // TODO this needs testing (and likely
 
 		"bash":       -30,
 		"bash-ble":   -29,
-		"cmd-clink":  -28,
+		"cmd":        -28,
 		"elvish":     -27,
 		"fish":       -26,
 		"nushell":    -25,
@@ -73,7 +73,6 @@ func (c Completers) Less(i, j int) bool { // TODO this needs testing (and likely
 	switch b := os.Getenv("CARAPACE_SHELL"); b { // TODO public access of env in carapace
 	case "bash",
 		"bash-ble",
-		"cmd-clink",
 		"elvish",
 		"fish",
 		"nushell",
@@ -83,6 +82,8 @@ func (c Completers) Less(i, j int) bool { // TODO this needs testing (and likely
 		"xonsh",
 		"zsh":
 		groupPriority[b] = -35
+	case "cmd-clink":
+		groupPriority["cmd"] = -35
 	}
 
 	// TODO urks - this is getting a bit out of hand. use copy map? needs to still support `force_all` build tag

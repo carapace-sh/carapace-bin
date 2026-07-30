@@ -34,6 +34,7 @@ func init() {
 				// carapace-bin
 				"CARAPACE_EXCLUDES": "internal completers to exclude",
 				"CARAPACE_BRIDGES":  "implicit bridges",
+				"CARAPACE_BUILTINS": "enabled shell builtin groups",
 			},
 			VariableCompletion: map[string]carapace.Action{
 				// carapace
@@ -70,6 +71,12 @@ func init() {
 					"bash", "#d35673",
 					"fish", "#7ea8fc",
 					"inshellisense", style.Default,
+					"zsh", "#efda53",
+				).UniqueList(","),
+				"CARAPACE_BUILTINS": carapace.ActionStyledValues(
+					"bash", "#d35673",
+					"cmd", "#4ed6d6",
+					"fish", "#7ea8fc",
 					"zsh", "#efda53",
 				).UniqueList(","),
 				"CARAPACE_ZSH_STYLE_LIMIT": carapace.ActionValues(),

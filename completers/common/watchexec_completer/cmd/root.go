@@ -51,7 +51,7 @@ func init() {
 		"exts":           fs.ActionFilenameExtensions().UniqueList(","),
 		"on-busy-update": carapace.ActionValues("do-nothing", "queue", "restart", "signal"),
 		"shell":          os.ActionShells(),
-		"signal":         ps.ActionKillSignals(),
+		"signal":         ps.ActionKillSignals("linux"),
 		"watch":          carapace.ActionFiles(),
 	})
 

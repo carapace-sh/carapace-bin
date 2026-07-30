@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"runtime"
+
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/ps"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
@@ -31,7 +33,7 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"signal": ps.ActionKillSignals(),
+		"signal": ps.ActionKillSignals(runtime.GOOS),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

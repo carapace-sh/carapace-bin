@@ -1,6 +1,7 @@
 package fs
 
 import (
+	"encoding/json"
 	"os"
 	"runtime"
 	"strings"
@@ -18,6 +19,8 @@ func ActionMounts() carapace.Action {
 		switch {
 		case runtime.GOOS == "darwin":
 			return actionMountsDarwin()
+		case runtime.GOOS == "windows":
+			return actionMountsWindows()
 		default:
 			return actionMountsProc()
 		}
@@ -54,6 +57,27 @@ func actionMountsDarwin() carapace.Action {
 					vals = append(vals, mountPoint, device)
 				}
 			}
+		}
+		return carapace.ActionValuesDescribed(vals...).StyleF(style.ForPath)
+	})
+}
+
+func actionMountsWindows() carapace.Action {
+	return carapace.ActionExecCommand("powershell", "-NoProfile", "-Command", "Get-CimInstance -ClassName Win32_LogicalDisk -Property Caption,ProviderName | Select-Object Caption,ProviderName | ConvertTo-Json -Compress")(func(output []byte) carapace.Action {
+		var disks []struct {
+			Caption      string
+			ProviderName string
+		}
+		if err := json.Unmarshal(output, &disks); err != nil {
+			return carapace.ActionMessage(err.Error())
+		}
+
+		vals := make([]string, 0)
+		for _, d := range disks {
+			if d.Caption == "" {
+				continue
+			}
+			vals = append(vals, d.Caption, d.ProviderName)
 		}
 		return carapace.ActionValuesDescribed(vals...).StyleF(style.ForPath)
 	})

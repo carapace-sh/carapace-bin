@@ -49,7 +49,7 @@ func ActionSoundCards() carapace.Action {
 				return carapace.ActionValuesDescribed(vals...)
 			})
 		default:
-			return carapace.ActionValues()
+			return carapace.ActionValues() // Windows and other platforms: no standard sound card enumeration
 		}
 	}).Tag("soundcards")
 }
