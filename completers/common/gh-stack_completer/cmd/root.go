@@ -18,5 +18,11 @@ func Execute() error {
 
 func init() {
 	carapace.Gen(rootCmd).Standalone()
+	rootCmd.AddGroup(
+		&cobra.Group{ID: "stack", Title: "stack commands"},
+		&cobra.Group{ID: "nav", Title: "navigation commands"},
+		&cobra.Group{ID: "remote", Title: "remote commands"},
+		&cobra.Group{ID: "utils", Title: "utility commands"},
+	)
 
 }
