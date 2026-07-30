@@ -1,6 +1,7 @@
 package fs
 
 import (
+	"encoding/json"
 	"os"
 	"runtime"
 	"strings"
@@ -62,31 +63,21 @@ func actionMountsDarwin() carapace.Action {
 }
 
 func actionMountsWindows() carapace.Action {
-	return carapace.ActionExecCommand("wmic", "logicaldisk", "get", "Caption,ProviderName", "/format:csv")(func(output []byte) carapace.Action {
-		lines := strings.Split(strings.ReplaceAll(string(output), "\r", ""), "\n")
-		if len(lines) < 2 {
-			return carapace.ActionValues()
+	return carapace.ActionExecCommand("powershell", "-NoProfile", "-Command", "Get-CimInstance -ClassName Win32_LogicalDisk -Property Caption,ProviderName | Select-Object Caption,ProviderName | ConvertTo-Json -Compress")(func(output []byte) carapace.Action {
+		var disks []struct {
+			Caption      string
+			ProviderName string
 		}
-
-		header := strings.Split(lines[0], ",")
-		indexes := make(map[string]int)
-		for i, col := range header {
-			indexes[strings.TrimSpace(col)] = i
+		if err := json.Unmarshal(output, &disks); err != nil {
+			return carapace.ActionMessage(err.Error())
 		}
 
 		vals := make([]string, 0)
-		for _, line := range lines[1:] {
-			fields := strings.Split(line, ",")
-			if len(fields) < len(header) {
+		for _, d := range disks {
+			if d.Caption == "" {
 				continue
 			}
-
-			caption := strings.TrimSpace(fields[indexes["Caption"]])
-			if caption == "" {
-				continue
-			}
-			provider := strings.TrimSpace(fields[indexes["ProviderName"]])
-			vals = append(vals, caption, provider)
+			vals = append(vals, d.Caption, d.ProviderName)
 		}
 		return carapace.ActionValuesDescribed(vals...).StyleF(style.ForPath)
 	})

@@ -1,62 +1,57 @@
 package fs
 
 import (
-	"strings"
+	"encoding/json"
 
 	"github.com/carapace-sh/carapace"
 )
 
 func actionBlockdevicesWmic(f func(blockdevices []blockdevice) carapace.Action) carapace.Action {
-	return carapace.ActionExecCommand("wmic", "logicaldisk", "get", "DeviceID,Description,FileSystem,Size,DriveType", "/format:csv")(func(output []byte) carapace.Action {
-		lines := strings.Split(strings.ReplaceAll(string(output), "\r", ""), "\n")
-		if len(lines) < 2 {
-			return carapace.ActionValues()
+	return carapace.ActionExecCommand("powershell", "-NoProfile", "-Command", "Get-CimInstance -ClassName Win32_LogicalDisk -Property DeviceID,Description,FileSystem,Size,DriveType | Select-Object DeviceID,Description,FileSystem,Size,DriveType | ConvertTo-Json -Compress")(func(output []byte) carapace.Action {
+		var disks []struct {
+			DeviceID    string
+			Description string
+			FileSystem  string
+			Size        int64
+			DriveType   int
 		}
-
-		// CSV header: Node,DeviceID,Description,DriveType,FileSystem,Size
-		header := strings.Split(lines[0], ",")
-		indexes := make(map[string]int)
-		for i, col := range header {
-			indexes[strings.TrimSpace(col)] = i
+		if err := json.Unmarshal(output, &disks); err != nil {
+			return carapace.ActionMessage(err.Error())
 		}
 
 		devices := make([]blockdevice, 0)
-		for _, line := range lines[1:] {
-			fields := strings.Split(line, ",")
-			if len(fields) < len(header) {
+		for _, d := range disks {
+			if d.DeviceID == "" {
 				continue
 			}
-
-			deviceID := strings.TrimSpace(fields[indexes["DeviceID"]])
-			if deviceID == "" {
-				continue
-			}
-
-			size := strings.TrimSpace(fields[indexes["Size"]])
-			size = formatBlockSize(parseWmicSize(size))
-
 			devices = append(devices, blockdevice{
-				Kname:        deviceID,
-				Label:        strings.TrimSpace(fields[indexes["Description"]]),
-				Parttypename: strings.TrimSpace(fields[indexes["FileSystem"]]),
-				Path:         deviceID,
-				Size:         size,
-				Type:         strings.TrimSpace(fields[indexes["DriveType"]]),
+				Kname:        d.DeviceID,
+				Label:        d.Description,
+				Parttypename: d.FileSystem,
+				Path:         d.DeviceID,
+				Size:         formatBlockSize(d.Size),
+				Type:         formatDriveType(d.DriveType),
 			})
 		}
 		return f(devices)
 	})
 }
 
-func parseWmicSize(s string) int64 {
-	if s == "" {
-		return 0
+func formatDriveType(driveType int) string {
+	switch driveType {
+	case 1:
+		return "disk"
+	case 2:
+		return "removable"
+	case 3:
+		return "fixed"
+	case 4:
+		return "network"
+	case 5:
+		return "cd"
+	case 6:
+		return "ram"
+	default:
+		return "unknown"
 	}
-	var n int64
-	for _, c := range s {
-		if c >= '0' && c <= '9' {
-			n = n*10 + int64(c-'0')
-		}
-	}
-	return n
 }

@@ -27,7 +27,7 @@ func actionBlockdevices(f func(blockdevices []blockdevice) carapace.Action) cara
 			return actionBlockdevicesLsblk(f)
 		case condition.Executable("diskutil")(c): // darwin
 			return actionBlockdevicesDiskutil(f)
-		case condition.Executable("wmic")(c): // windows
+		case condition.Executable("powershell")(c): // windows
 			return actionBlockdevicesWmic(f)
 		default:
 			return carapace.ActionValues()
