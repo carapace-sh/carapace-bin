@@ -25,7 +25,7 @@ func init() {
 	rootCmd.Flags().StringS("s", "s", "", "Send the specified signal")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"s": ps.ActionKillSignals(),
+		"s": ps.ActionKillSignals(true),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(ps.ActionProcessIds())

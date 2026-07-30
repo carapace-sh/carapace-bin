@@ -22,7 +22,7 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-		ps.ActionKillSignals().Prefix("-"),
+		ps.ActionKillSignals(false).Prefix("-"),
 	)
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

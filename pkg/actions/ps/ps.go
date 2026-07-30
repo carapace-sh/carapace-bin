@@ -14,8 +14,18 @@ import (
 //
 //	ABRT (Abnormal termination)
 //	STOP (Stop process, unblockable)
-func ActionKillSignals() carapace.Action {
+//	CTRL_C_EVENT (Ctrl+C signal)
+func ActionKillSignals(native bool) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		if native && runtime.GOOS == "windows" {
+			return carapace.ActionStyledValuesDescribed(
+				"CTRL_C_EVENT", "Ctrl+C signal", styles.CarapaceBin.KillSignalTerm,
+				"CTRL_BREAK_EVENT", "Ctrl+Break signal", styles.CarapaceBin.KillSignalTerm,
+				"CTRL_CLOSE_EVENT", "Console window close", styles.CarapaceBin.KillSignalTerm,
+				"CTRL_LOGOFF_EVENT", "User logoff", styles.CarapaceBin.KillSignalTerm,
+				"CTRL_SHUTDOWN_EVENT", "System shutdown", styles.CarapaceBin.KillSignalTerm,
+			)
+		}
 		switch runtime.GOOS {
 		case "darwin":
 			return carapace.ActionStyledValuesDescribed(
@@ -50,14 +60,6 @@ func ActionKillSignals() carapace.Action {
 				"WINCH", "Window size change", styles.CarapaceBin.KillSignalIgn,
 				"XCPU", "CPU time limit exceeded", styles.CarapaceBin.KillSignalCore,
 				"XFSZ", "File size limit exceeded", styles.CarapaceBin.KillSignalCore,
-			)
-		case "windows":
-			return carapace.ActionStyledValuesDescribed(
-				"CTRL_C_EVENT", "Ctrl+C signal", styles.CarapaceBin.KillSignalTerm,
-				"CTRL_BREAK_EVENT", "Ctrl+Break signal", styles.CarapaceBin.KillSignalTerm,
-				"CTRL_CLOSE_EVENT", "Console window close", styles.CarapaceBin.KillSignalTerm,
-				"CTRL_LOGOFF_EVENT", "User logoff", styles.CarapaceBin.KillSignalTerm,
-				"CTRL_SHUTDOWN_EVENT", "System shutdown", styles.CarapaceBin.KillSignalTerm,
 			)
 		default:
 			return carapace.ActionStyledValuesDescribed(
@@ -96,6 +98,11 @@ func ActionKillSignals() carapace.Action {
 		}
 	}).Tag("kill signals").Uid("ps", "signal")
 }
+
+// ActionKillSignalsOS completes host-native kill signals
+//
+//	ABRT (Abnormal termination)
+//	CTRL_C_EVENT (Ctrl+C signal)
 
 // ActionProcessExecutables completes executable names of current processes
 //

@@ -31,7 +31,7 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"signal": ps.ActionKillSignals(),
+		"signal": ps.ActionKillSignals(true),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

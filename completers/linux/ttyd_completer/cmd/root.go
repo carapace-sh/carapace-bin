@@ -59,7 +59,7 @@ func init() {
 			carapace.ActionFiles(),
 		).ToA(),
 		"port":     net.ActionPorts(),
-		"signal":   ps.ActionKillSignals(),
+		"signal":   ps.ActionKillSignals(true),
 		"ssl-ca":   carapace.ActionFiles(),
 		"ssl-cert": carapace.ActionFiles(),
 		"ssl-key":  carapace.ActionFiles(),

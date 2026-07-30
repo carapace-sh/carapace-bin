@@ -36,6 +36,6 @@ func init() {
 			"1", "normal",
 			"2", "extra verbose",
 		),
-		"kill": ps.ActionKillSignals(),
+		"kill": ps.ActionKillSignals(true),
 	})
 }

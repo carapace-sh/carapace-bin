@@ -39,7 +39,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"ns":     ps.ActionProcessIds(),
-		"signal": ps.ActionKillSignals(),
+		"signal": ps.ActionKillSignals(true),
 		"user":   os.ActionUsers(),
 	})
 

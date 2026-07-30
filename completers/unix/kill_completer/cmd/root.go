@@ -33,15 +33,15 @@ func init() {
 	rootCmd.Flag("list").NoOptDefVal = " "
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"list":   ps.ActionKillSignals(),
-		"signal": ps.ActionKillSignals(),
+		"list":   ps.ActionKillSignals(true),
+		"signal": ps.ActionKillSignals(true),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if rootCmd.Flag("timeout").Changed {
 				// timout takes two arguments so when flag set assume first positional argument as the second flag value
-				return ps.ActionKillSignals()
+				return ps.ActionKillSignals(true)
 			} else {
 				return actionProcessIdsAndNames()
 			}

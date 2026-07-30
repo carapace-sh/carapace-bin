@@ -20,7 +20,7 @@ func init() {
 	containerCmd.AddCommand(container_killCmd)
 
 	carapace.Gen(container_killCmd).FlagCompletion(carapace.ActionMap{
-		"signal": ps.ActionKillSignals(),
+		"signal": ps.ActionKillSignals(false),
 	})
 
 	carapace.Gen(container_killCmd).PositionalAnyCompletion(docker.ActionContainers())

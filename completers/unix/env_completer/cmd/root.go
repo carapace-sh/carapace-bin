@@ -45,10 +45,10 @@ func init() {
 	rootCmd.Flag("ignore-signal").NoOptDefVal = " "
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"block-signal":   ps.ActionKillSignals(),
+		"block-signal":   ps.ActionKillSignals(true),
 		"chdir":          carapace.ActionDirectories(),
-		"default-signal": ps.ActionKillSignals(),
-		"ignore-signal":  ps.ActionKillSignals(),
+		"default-signal": ps.ActionKillSignals(true),
+		"ignore-signal":  ps.ActionKillSignals(true),
 		"unset":          os.ActionEnvironmentVariables(),
 	})
 
