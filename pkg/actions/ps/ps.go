@@ -21,6 +21,9 @@ import (
 //	carapace.ActionKillSignals("windows")
 func ActionKillSignals(goos string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		if goos == "" {
+			goos = runtime.GOOS
+		}
 		switch goos {
 		case "windows":
 			return carapace.ActionStyledValuesDescribed(
