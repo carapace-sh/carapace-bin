@@ -10,14 +10,19 @@ import (
 	"github.com/carapace-sh/carapace/third_party/github.com/mitchellh/go-ps"
 )
 
-// ActionKillSignals completes kill signals
+// ActionKillSignals completes kill signals for the given operating system.
 //
 //	ABRT (Abnormal termination)
 //	STOP (Stop process, unblockable)
 //	CTRL_C_EVENT (Ctrl+C signal)
-func ActionKillSignals(native bool) carapace.Action {
+//
+//	carapace.ActionKillSignals("linux")
+//	carapace.ActionKillSignals("darwin")
+//	carapace.ActionKillSignals("windows")
+func ActionKillSignals(goos string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if native && runtime.GOOS == "windows" {
+		switch goos {
+		case "windows":
 			return carapace.ActionStyledValuesDescribed(
 				"CTRL_C_EVENT", "Ctrl+C signal", styles.CarapaceBin.KillSignalTerm,
 				"CTRL_BREAK_EVENT", "Ctrl+Break signal", styles.CarapaceBin.KillSignalTerm,
@@ -25,8 +30,6 @@ func ActionKillSignals(native bool) carapace.Action {
 				"CTRL_LOGOFF_EVENT", "User logoff", styles.CarapaceBin.KillSignalTerm,
 				"CTRL_SHUTDOWN_EVENT", "System shutdown", styles.CarapaceBin.KillSignalTerm,
 			)
-		}
-		switch runtime.GOOS {
 		case "darwin":
 			return carapace.ActionStyledValuesDescribed(
 				"ABRT", "Abnormal termination", styles.CarapaceBin.KillSignalCore,
@@ -98,11 +101,6 @@ func ActionKillSignals(native bool) carapace.Action {
 		}
 	}).Tag("kill signals").Uid("ps", "signal")
 }
-
-// ActionKillSignalsOS completes host-native kill signals
-//
-//	ABRT (Abnormal termination)
-//	CTRL_C_EVENT (Ctrl+C signal)
 
 // ActionProcessExecutables completes executable names of current processes
 //

@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"runtime"
+
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/ps"
 	"github.com/spf13/cobra"
@@ -33,15 +35,15 @@ func init() {
 	rootCmd.Flag("list").NoOptDefVal = " "
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"list":   ps.ActionKillSignals(true),
-		"signal": ps.ActionKillSignals(true),
+		"list":   ps.ActionKillSignals(runtime.GOOS),
+		"signal": ps.ActionKillSignals(runtime.GOOS),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if rootCmd.Flag("timeout").Changed {
 				// timout takes two arguments so when flag set assume first positional argument as the second flag value
-				return ps.ActionKillSignals(true)
+				return ps.ActionKillSignals(runtime.GOOS)
 			} else {
 				return actionProcessIdsAndNames()
 			}

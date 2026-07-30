@@ -23,7 +23,7 @@ func init() {
 	containerCmd.AddCommand(container_stopCmd)
 
 	carapace.Gen(container_stopCmd).FlagCompletion(carapace.ActionMap{
-		"signal": ps.ActionKillSignals(false),
+		"signal": ps.ActionKillSignals("linux"),
 	})
 
 	carapace.Gen(container_stopCmd).PositionalAnyCompletion(

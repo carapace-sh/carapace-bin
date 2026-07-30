@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"runtime"
+
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/ps"
@@ -39,7 +41,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"ns":     ps.ActionProcessIds(),
-		"signal": ps.ActionKillSignals(true),
+		"signal": ps.ActionKillSignals(runtime.GOOS),
 		"user":   os.ActionUsers(),
 	})
 

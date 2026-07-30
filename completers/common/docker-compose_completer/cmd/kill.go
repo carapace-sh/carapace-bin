@@ -21,7 +21,7 @@ func init() {
 	rootCmd.AddCommand(killCmd)
 
 	carapace.Gen(killCmd).FlagCompletion(carapace.ActionMap{
-		"signal": ps.ActionKillSignals(false),
+		"signal": ps.ActionKillSignals("linux"),
 	})
 
 	carapace.Gen(killCmd).PositionalAnyCompletion(

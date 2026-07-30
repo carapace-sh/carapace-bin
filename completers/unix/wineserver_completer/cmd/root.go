@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"runtime"
+
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/ps"
 	"github.com/spf13/cobra"
@@ -36,6 +38,6 @@ func init() {
 			"1", "normal",
 			"2", "extra verbose",
 		),
-		"kill": ps.ActionKillSignals(true),
+		"kill": ps.ActionKillSignals(runtime.GOOS),
 	})
 }

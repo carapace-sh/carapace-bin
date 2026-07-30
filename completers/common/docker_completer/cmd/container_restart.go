@@ -23,7 +23,7 @@ func init() {
 	containerCmd.AddCommand(container_restartCmd)
 
 	carapace.Gen(container_restartCmd).FlagCompletion(carapace.ActionMap{
-		"signal": ps.ActionKillSignals(false),
+		"signal": ps.ActionKillSignals("linux"),
 	})
 
 	carapace.Gen(container_restartCmd).PositionalAnyCompletion(docker.ActionContainers())

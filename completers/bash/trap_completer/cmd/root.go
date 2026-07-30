@@ -26,7 +26,7 @@ func init() {
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.Batch(
-			ps.ActionKillSignals(false),
+			ps.ActionKillSignals("linux"),
 			carapace.ActionValuesDescribed(
 				"DEBUG", "executed before every simple command",
 				"ERR", "executed when a command's failure would cause the shell to exit",

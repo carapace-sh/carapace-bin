@@ -124,7 +124,7 @@ func init() {
 		"preset-mode": carapace.ActionValues("full", "enable-only", "disable-only"),
 		"property":    action.ActionProperties(rootCmd),
 		"root":        carapace.ActionDirectories(),
-		"signal":      ps.ActionKillSignals(true),
+		"signal":      ps.ActionKillSignals("linux"),
 		"state":       systemd.ActionStates(),
 		"timestamp": carapace.ActionValuesDescribed(
 			"pretty", "Day YYYY-MM-DD HH:MM:SS TZ",
