@@ -12,12 +12,13 @@ func Elvish(completers []string) string {
 		windowsSnippet = "\n    set edit:completion:arg-completer[$c.exe] = $edit:completion:arg-completer[$c]\n"
 	}
 
-	snippet := `%v
+	snippet := `use builtin
+%v
 
 put %v | each {|c|
     set edit:completion:arg-completer[$c] = {|@arg|
         set E:CARAPACE_SHELL = 'elvish'
-        set E:CARAPACE_SHELL_BUILTINS = (keys $builtin: | to-lines)
+        set E:CARAPACE_SHELL_BUILTINS = (keys $builtin: | to-lines | slurp)
 
         carapace $c elvish (all $arg) | from-json | each {|completion|
     		put $completion[Messages] | all (one) | each {|m|
