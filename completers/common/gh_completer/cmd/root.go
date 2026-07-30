@@ -58,6 +58,9 @@ func init() {
 
 		if extensions, err := action.Extensions(); err == nil {
 			for _, extension := range extensions {
+				if extension == "stack" {
+					rootCmd.RemoveCommand(stackCmd)
+				}
 				extensionCmd := &cobra.Command{
 					Use: extension,
 					// Short:              completers.Description("gh-" + extension), // TODO re-enable descriptions without import cycle

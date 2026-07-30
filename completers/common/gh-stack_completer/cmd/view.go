@@ -6,9 +6,10 @@ import (
 )
 
 var viewCmd = &cobra.Command{
-	Use:   "view",
-	Short: "View the current stack",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "view",
+	Short:   "View the current stack",
+	GroupID: "stack",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

@@ -6,9 +6,10 @@ import (
 )
 
 var switchCmd = &cobra.Command{
-	Use:   "switch",
-	Short: "Interactively switch to another branch in the stack",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "switch",
+	Short:   "Interactively switch to another branch in the stack",
+	GroupID: "nav",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

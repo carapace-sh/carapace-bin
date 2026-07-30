@@ -3,7 +3,10 @@ name: rebase [branch]
 description: Rebase a stack of branches
 flags:
     --abort: Abort rebase and restore all branches
+    --committer-date-is-author-date: Set the committer date to the author date during rebase
     --continue: Continue rebase after resolving conflicts
     --downstack: Only rebase branches from trunk to current branch
+    --no-trunk: Skip trunk. Only rebase stack branches onto each other
+    --preserve-dates: Alias for --committer-date-is-author-date
     --remote=: Remote to fetch from (defaults to auto-detected remote)
     --upstack: Only rebase branches from current branch to top

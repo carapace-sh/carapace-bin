@@ -1,3 +1,9 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: merge [<pr-or-branch>]
-description: Merge a stack of PRs
+name: merge [<stack-number> | <pr-number>]
+description: Merge a stack of pull requests
+flags:
+    --merge: Merge with a merge commit
+    --merge-method=: 'Merge method to use: merge, squash, or rebase'
+    --rebase: Rebase and merge
+    --squash: Squash and merge
+    -y, --yes: Merge without prompting for confirmation

@@ -6,9 +6,10 @@ import (
 )
 
 var feedbackCmd = &cobra.Command{
-	Use:   "feedback [title]",
-	Short: "Submit feedback for gh-stack",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "feedback [title]",
+	Short:   "Submit feedback for gh-stack",
+	GroupID: "utils",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

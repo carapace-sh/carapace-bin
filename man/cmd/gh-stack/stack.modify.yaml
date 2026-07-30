@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: modify
+description: Interactively restructure a stack
+flags:
+    --abort: Abort the modify session and restore the stack to its pre-modify state
+    --continue: Continue after resolving conflicts
