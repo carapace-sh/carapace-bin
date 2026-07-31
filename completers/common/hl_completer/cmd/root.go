@@ -2,9 +2,10 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
+
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/hl"
 )
 
 var rootCmd = &cobra.Command{
@@ -85,7 +86,7 @@ func init() {
 		"output-delimiter":    carapace.ActionValues("newline", "nul"),
 		"paging":              carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
 		"shell-completions":   carapace.ActionValues("bash", "elvish", "fish", "powershell", "zsh"),
-		"theme":               bridge.ActionCarapaceBin().Split(),
+		"theme":               hl.ActionThemes(),
 		"unix-timestamp-unit": carapace.ActionValues("auto", "s", "ms", "us", "ns"),
 	})
 
