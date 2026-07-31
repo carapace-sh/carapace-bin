@@ -15,7 +15,7 @@ var skill_installCmd = &cobra.Command{
 func init() {
 	carapace.Gen(skill_installCmd).Standalone()
 
-	skill_installCmd.Flags().BoolP("detect", "d", false, "Automatically detect where to install by finding existing installation")
+	skill_installCmd.Flags().BoolP("detect", "d", false, "Refresh existing installations in place, updating every GitButler skill found in the current scope (local before global)")
 	skill_installCmd.Flags().BoolP("global", "g", false, "Install the skill globally instead of in the current repository")
 	skill_installCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	skill_installCmd.Flags().StringP("path", "p", "", "Custom path where to install the skill (relative to repository root or absolute). Outside a repository, relative paths require --global")

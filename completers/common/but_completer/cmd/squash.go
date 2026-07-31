@@ -8,7 +8,7 @@ import (
 
 var squashCmd = &cobra.Command{
 	Use:     "squash",
-	Short:   "Squash commits together",
+	Short:   "Squash commits, branches, or changes",
 	Run:     func(cmd *cobra.Command, args []string) {},
 	GroupID: "editing commits",
 }
@@ -16,18 +16,23 @@ var squashCmd = &cobra.Command{
 func init() {
 	carapace.Gen(squashCmd).Standalone()
 
-	squashCmd.Flags().StringP("ai", "i", "", "Generate commit message using AI with optional user summary or instructions. Use --ai by itself or --ai=\"your instructions\" (equals sign required for value)")
-	squashCmd.Flags().BoolP("drop-message", "d", false, "Drop source commit messages and keep only the target commit's message")
+	squashCmd.Flags().Bool("allow-merged", false, "Allow targeting branches and commits that are already merged upstream")
 	squashCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
-	squashCmd.Flags().StringP("message", "m", "", "Provide a new commit message for the resulting commit")
-	squashCmd.Flag("ai").NoOptDefVal = " "
+	squashCmd.Flags().StringSliceP("message", "m", nil, "The message to use for the new commit")
+	squashCmd.Flags().Bool("no-message", false, "Creates the commit without a commit message")
+	squashCmd.Flags().StringP("target", "t", "", "The target to squash into")
+	squashCmd.Flags().Bool("use-source-message", false, "Use the message of the source(s)")
+	squashCmd.Flags().BoolP("use-target-message", "u", false, "Use the message of the target")
 	rootCmd.AddCommand(squashCmd)
 
-	carapace.Gen(squashCmd).PositionalCompletion(
-		carapace.Batch(
+	carapace.Gen(squashCmd).FlagCompletion(carapace.ActionMap{
+		"target": carapace.Batch(
 			but.ActionCommits(),
 			but.ActionCliIds(but.CliIdsOpts{Commits: true}),
 		).ToA(),
+	})
+
+	carapace.Gen(squashCmd).PositionalCompletion(
 		carapace.Batch(
 			but.ActionCommits(),
 			but.ActionCliIds(but.CliIdsOpts{Commits: true}),

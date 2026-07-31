@@ -38,23 +38,17 @@ func init() {
 		&cobra.Group{ID: "alias"},
 	)
 
-	rootCmd.Flags().StringP("current-dir", "C", "", "Run as if but was started in PATH instead of the current working directory")
+	rootCmd.Flags().StringP("current-dir", "C", ".", "Run as if but was started in PATH instead of the current working directory")
 	rootCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
-	rootCmd.PersistentFlags().String("format", "", "Explicitly control how output should be formatted")
+	rootCmd.PersistentFlags().Bool("json", false, "Output detailed information as JSON for tool consumption")
 	rootCmd.PersistentFlags().String("log-file", "", "Log to this file instead of stderr")
+	rootCmd.PersistentFlags().Bool("status-after", false, "Append workspace status when supported by a mutation command")
 	rootCmd.PersistentFlags().CountP("trace", "", "Enable tracing for debug and performance information printed to stderr")
 	rootCmd.Flags().BoolP("version", "V", false, "Print version")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"current-dir": carapace.ActionDirectories(),
-		"format": carapace.ActionValuesDescribed(
-			"human", "The output to write is supposed to be for human consumption, and can be more verbose",
-			"agent", "The output is for an AI coding agent, rendered as human-readable text",
-			"shell", "The output should be suitable for shells, and assigning the major result to variables so that it can be reused in subsequent CLI invocations",
-			"json", "Output detailed information as JSON for tool consumption",
-			"none", "Do not output anything, like redirecting to /dev/null",
-		),
-		"log-file": carapace.ActionFiles(),
+		"log-file":    carapace.ActionFiles(),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

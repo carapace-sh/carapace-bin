@@ -16,6 +16,7 @@ var rewordCmd = &cobra.Command{
 func init() {
 	carapace.Gen(rewordCmd).Standalone()
 
+	rewordCmd.Flags().Bool("allow-merged", false, "Allow targeting branches and commits that are already merged upstream")
 	rewordCmd.Flags().Bool("diff", false, "Always show diff inside the editor")
 	rewordCmd.Flags().BoolP("fix-formatting", "f", false, "Format the existing commit message to 72-char line wrapping without opening an editor")
 	rewordCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")

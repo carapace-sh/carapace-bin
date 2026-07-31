@@ -8,7 +8,7 @@ import (
 
 var moveCmd = &cobra.Command{
 	Use:     "move",
-	Short:   "Move a commit or branch to a different location",
+	Short:   "Move commits and changes around",
 	Run:     func(cmd *cobra.Command, args []string) {},
 	GroupID: "editing commits",
 }
@@ -16,12 +16,24 @@ var moveCmd = &cobra.Command{
 func init() {
 	carapace.Gen(moveCmd).Standalone()
 
-	moveCmd.Flags().BoolP("after", "a", false, "Move the commit after (above) the target instead of before (below). Only valid for commit-to-commit moves")
+	moveCmd.Flags().StringP("above", "A", "", "Place <SOURCES> above BRANCH_OR_COMMIT, which must be an applied branch or commit")
+	moveCmd.Flags().Bool("allow-merged", false, "Allow targeting branches and commits that are already merged upstream")
+	moveCmd.Flags().StringP("below", "B", "", "Place <SOURCES> below BRANCH_OR_COMMIT, which must be an applied branch or commit")
+	moveCmd.Flags().StringP("branch", "b", "", "Place <SOURCES> on the branch BRANCH")
 	moveCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	moveCmd.Flags().Bool("unstack", false, "Unstack <SOURCES> from their current stacks")
 	rootCmd.AddCommand(moveCmd)
 
+	carapace.Gen(moveCmd).FlagCompletion(carapace.ActionMap{
+		"above":  but.ActionTargets(),
+		"below":  but.ActionTargets(),
+		"branch": but.ActionLocalBranches(),
+	})
+
 	carapace.Gen(moveCmd).PositionalCompletion(
-		but.ActionCommits(),
-		but.ActionTargets(),
+		carapace.Batch(
+			but.ActionCommits(),
+			but.ActionCliIds(but.CliIdsOpts{Commits: true}),
+		).ToA(),
 	)
 }

@@ -3,13 +3,12 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/but"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
 )
 
 var commitCmd = &cobra.Command{
 	Use:     "commit",
-	Short:   "Commit changes to a stack",
+	Short:   "Create a commit",
 	Run:     func(cmd *cobra.Command, args []string) {},
 	GroupID: "branching and committing",
 }
@@ -17,35 +16,26 @@ var commitCmd = &cobra.Command{
 func init() {
 	carapace.Gen(commitCmd).Standalone()
 
-	commitCmd.Flags().String("after", "", "Insert the commit after this commit or branch")
-	commitCmd.Flags().StringP("ai", "i", "", "Generate commit message using AI with optional user summary. Use --ai by itself or --ai=\"your instructions\" (equals sign required for value)")
-	commitCmd.Flags().BoolP("all", "a", false, "No-op compatibility flag for git commit -a")
-	commitCmd.Flags().String("before", "", "Insert the commit before this commit or branch")
-	commitCmd.Flags().StringSliceP("changes", "p", nil, "Uncommitted file or hunk CLI IDs to include in the commit. Can be specified multiple times or as comma-separated values. If not specified, all uncommitted changes (or changes staged to the target branch) are committed")
-	commitCmd.Flags().BoolP("create", "c", false, "Whether to create a new branch for this commit. If the branch name given matches an existing branch, that branch will be used instead. If no branch name is given, a new branch with a generated name will be created")
-	commitCmd.Flags().Bool("diff", false, "Always show diff inside the editor")
+	commitCmd.Flags().StringP("above", "A", "", "Place the commit above BRANCH_OR_COMMIT, which must be an applied branch or commit")
+	commitCmd.Flags().Bool("allow-merged", false, "Allow targeting branches and commits that are already merged upstream")
+	commitCmd.Flags().StringP("below", "B", "", "Place the commit below BRANCH_OR_COMMIT, which must be an applied branch or commit")
+	commitCmd.Flags().StringP("branch", "b", "", "Place the commit on the branch BRANCH")
+	commitCmd.Flags().Bool("empty", false, "Forces the commit to be empty regardless of repository state")
 	commitCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
-	commitCmd.Flags().StringP("message", "m", "", "Commit message")
-	commitCmd.Flags().String("message-file", "", "Read commit message from file")
-	commitCmd.Flags().Bool("no-diff", false, "Never show the diff inside the editor")
-	commitCmd.Flags().BoolP("no-hooks", "n", false, "Bypass pre-commit hooks")
-	commitCmd.Flags().Bool("no-verify", false, "Bypass pre-commit hooks")
-	commitCmd.Flags().BoolP("only", "o", false, "Only commit staged files, not unstaged files")
-	commitCmd.Flag("ai").NoOptDefVal = " "
-	commitCmd.Flag("no-verify").Hidden = true
+	commitCmd.Flags().BoolP("interactive", "i", false, "Open the TUI to interactively select what to commit")
+	commitCmd.Flags().StringSliceP("message", "m", nil, "The message to use for the commit")
+	commitCmd.Flags().Bool("no-message", false, "Creates the commit without a commit message")
 	rootCmd.AddCommand(commitCmd)
 
 	carapace.Gen(commitCmd).FlagCompletion(carapace.ActionMap{
-		"after":  but.ActionTargets(),
-		"before": but.ActionTargets(),
-		"changes": carapace.Batch(
-			git.ActionChanges(git.ChangeOpts{}.Default()),
-			but.ActionCliIds(but.CliIdsOpts{Changes: true}),
-		).ToA().UniqueList(","), // TODO unique only filters one of change/cliId
-		"message-file": carapace.ActionFiles(),
+		"above":  but.ActionTargets(),
+		"below":  but.ActionTargets(),
+		"branch": but.ActionLocalBranches(),
 	})
 
 	carapace.Gen(commitCmd).PositionalCompletion(
-		but.ActionLocalBranches(),
+		carapace.Batch(
+			but.ActionCliIds(but.CliIdsOpts{Changes: true}),
+		).ToA().UniqueList(","),
 	)
 }

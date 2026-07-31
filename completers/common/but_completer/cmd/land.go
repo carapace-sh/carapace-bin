@@ -18,6 +18,7 @@ func init() {
 
 	landCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	landCmd.Flags().Bool("no-ff", false, "Always create a merge commit, even when the branch can be fast-forwarded")
+	landCmd.Flags().Bool("whole-stack", false, "Land the entire stack: BRANCH must be the top segment, and the segments below it are published to the target along with it")
 	landCmd.Flags().Bool("yes", false, "Skip the confirmation prompt")
 	rootCmd.AddCommand(landCmd)
 
