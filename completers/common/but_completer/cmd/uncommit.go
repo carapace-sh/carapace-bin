@@ -16,8 +16,7 @@ var uncommitCmd = &cobra.Command{
 func init() {
 	carapace.Gen(uncommitCmd).Standalone()
 
-	uncommitCmd.Flags().Bool("diff", false, "Show the resulting uncommitted diff after uncommitting")
-	uncommitCmd.Flags().BoolP("discard", "d", false, "Discard the selected committed changes instead of moving them to uncommitted")
+	uncommitCmd.Flags().Bool("allow-merged", false, "Allow targeting branches and commits that are already merged upstream")
 	uncommitCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.AddCommand(uncommitCmd)
 

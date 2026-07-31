@@ -16,6 +16,7 @@ var pushCmd = &cobra.Command{
 func init() {
 	carapace.Gen(pushCmd).Standalone()
 
+	pushCmd.Flags().Bool("allow-merged", false, "Allow targeting branches and commits that are already merged upstream")
 	pushCmd.Flags().BoolP("dry-run", "d", false, "Show what would be pushed without actually pushing")
 	pushCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	pushCmd.Flags().Bool("no-hooks", false, "Bypass pre-push hooks")
