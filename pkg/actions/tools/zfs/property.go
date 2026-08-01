@@ -1,6 +1,8 @@
 package zfs
 
 import (
+	"strings"
+
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace/pkg/style"
 )
@@ -228,31 +230,57 @@ func ActionPropertyAssignments() carapace.Action {
 	})
 }
 
+// ActionPoolFeatures completes ZFS pool feature flag names
+//
+//	feature@async_destroy (enabled)
+//	feature@encryption (enabled)
+func ActionPoolFeatures() carapace.Action {
+	return carapace.ActionExecCommand("zpool", "get", "-H", "all")(func(output []byte) carapace.Action {
+		lines := strings.Split(string(output), "\n")
+		seen := make(map[string]bool)
+		vals := make([]string, 0)
+
+		for _, line := range lines {
+			if fields := strings.Split(line, "\t"); len(fields) >= 3 {
+				name := fields[1]
+				if !strings.HasPrefix(name, "feature@") || seen[name] {
+					continue
+				}
+				seen[name] = true
+				vals = append(vals, name, fields[2])
+			}
+		}
+		return carapace.ActionValuesDescribed(vals...).Tag("pool features")
+	})
+}
+
 // ActionPoolProperties completes ZFS pool property names
 //
 //	autoexpand (automatically expand pool)
 //	autoreplace (automatically replace devices)
 func ActionPoolProperties() carapace.Action {
-	return carapace.ActionValuesDescribed(
-		"altroot", "alternate root directory",
-		"ashift", "pool sector size exponent",
-		"autoexpand", "automatically expand pool when devices are replaced",
-		"autoreplace", "automatically replace failed devices",
-		"autotrim", "automatic TRIM",
-		"bootfs", "default bootable dataset",
-		"cachefile", "pool cache file location",
-		"comment", "pool comment",
-		"compatibility", "feature compatibility",
-		"dedup_table_quota", "dedup table size quota",
-		"dedupditto", "deprecated, no effect",
-		"delegation", "allow delegated administration",
-		"failmode", "failure mode behavior",
-		"feature@...", "pool feature",
-		"listsnapshots", "include snapshots in zfs list",
-		"multihost", "multihost protection",
-		"readonly", "read-only pool import",
-		"version", "on-disk version",
-	).Tag("pool properties")
+	return carapace.Batch(
+		carapace.ActionValuesDescribed(
+			"altroot", "alternate root directory",
+			"ashift", "pool sector size exponent",
+			"autoexpand", "automatically expand pool when devices are replaced",
+			"autoreplace", "automatically replace failed devices",
+			"autotrim", "automatic TRIM",
+			"bootfs", "default bootable dataset",
+			"cachefile", "pool cache file location",
+			"comment", "pool comment",
+			"compatibility", "feature compatibility",
+			"dedup_table_quota", "dedup table size quota",
+			"dedupditto", "deprecated, no effect",
+			"delegation", "allow delegated administration",
+			"failmode", "failure mode behavior",
+			"listsnapshots", "include snapshots in zfs list",
+			"multihost", "multihost protection",
+			"readonly", "read-only pool import",
+			"version", "on-disk version",
+		).Tag("pool properties"),
+		ActionPoolFeatures(),
+	).ToA()
 }
 
 // ActionReadonlyPoolProperties completes read-only ZFS pool properties
@@ -289,6 +317,9 @@ func ActionReadonlyPoolProperties() carapace.Action {
 //	off
 func ActionPoolPropertyValues(property string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		if strings.HasPrefix(property, "feature@") {
+			return carapace.ActionValues("enabled", "disabled").StyleF(style.ForKeyword)
+		}
 		switch property {
 		case "altroot":
 			return carapace.ActionDirectories()
