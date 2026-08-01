@@ -19,7 +19,7 @@ func init() {
 
 	carapace.Gen(runCmd).PositionalCompletion(
 		carapace.Batch(
-			npm.ActionScripts(),
+			npm.ActionScripts().Suppress("package.json"),
 			carapace.ActionFiles(),
 		).ToA(),
 	)
