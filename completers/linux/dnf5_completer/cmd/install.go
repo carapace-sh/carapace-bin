@@ -16,12 +16,13 @@ var installCmd = &cobra.Command{
 func init() {
 	carapace.Gen(installCmd).Standalone()
 
-	installCmd.Flags().Bool("advisory", false, "Limit to packages specified by advisory")
+	installCmd.Flags().String("advisories", "", "Include content contained in advisories with specified name")
+	installCmd.Flags().String("advisory-severities", "", "Include content contained in advisories with specified severity")
 	installCmd.Flags().Bool("allow-downgrade", false, "Allow downgrade of dependencies for resolve of requested operation")
 	installCmd.Flags().Bool("allowerasing", false, "Allow removing of installed packages to resolve problems")
 	installCmd.Flags().Bool("bugfix", false, "Limit to packages specified by bugfix advisory")
-	installCmd.Flags().String("bz", "", "Limit to packages specified by Bugzilla ID")
-	installCmd.Flags().String("cve", "", "Limit to packages specified by CVE ID")
+	installCmd.Flags().String("bzs", "", "Include content contained in advisories that fix a Bugzilla ID")
+	installCmd.Flags().String("cves", "", "Include content contained in advisories that fix a CVE ID")
 	installCmd.Flags().Bool("downloadonly", false, "Only download packages for a transaction")
 	installCmd.Flags().Bool("enhancement", false, "Limit to packages specified by enhancement advisory")
 	installCmd.Flags().String("from-repo", "", "Select items only from specified repositories")
@@ -30,7 +31,6 @@ func init() {
 	installCmd.Flags().Bool("no-allow-downgrade", false, "Disable downgrade of dependencies for resolve of requested operation")
 	installCmd.Flags().Bool("offline", false, "Store the transaction to be performed offline")
 	installCmd.Flags().Bool("security", false, "Limit to packages specified by security advisory")
-	installCmd.Flags().String("severity", "", "Limit to packages specified by advisory severity")
 	installCmd.Flags().Bool("skip-broken", false, "Allow resolving of depsolve problems by skipping packages")
 	installCmd.Flags().Bool("skip-unavailable", false, "Allow skipping unavailable packages")
 	installCmd.Flags().String("store", "", "Store the current transaction in a directory at the specified path")
@@ -39,8 +39,9 @@ func init() {
 	rootCmd.AddCommand(installCmd)
 
 	carapace.Gen(installCmd).FlagCompletion(carapace.ActionMap{
-		"destdir": carapace.ActionDirectories(),
-		"store":   carapace.ActionDirectories(),
+		"advisory-severities": carapace.ActionValues("critical", "important", "moderate", "low", "none"),
+		"destdir":             carapace.ActionDirectories(),
+		"store":               carapace.ActionDirectories(),
 	})
 
 	carapace.Gen(installCmd).PositionalAnyCompletion(

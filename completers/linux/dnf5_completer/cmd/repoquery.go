@@ -15,16 +15,16 @@ var repoqueryCmd = &cobra.Command{
 func init() {
 	carapace.Gen(repoqueryCmd).Standalone()
 
-	repoqueryCmd.Flags().Bool("advisory", false, "Limit to packages specified by advisory")
-	repoqueryCmd.Flags().String("advisory-severity", "", "Limit to packages specified by advisory severity")
+	repoqueryCmd.Flags().String("advisories", "", "Include content contained in advisories with specified name")
+	repoqueryCmd.Flags().String("advisory-severities", "", "Include content contained in advisories with specified severity")
 	repoqueryCmd.Flags().Bool("all", false, "Query all packages")
 	repoqueryCmd.Flags().String("arch", "", "Limit by architectures")
 	repoqueryCmd.Flags().Bool("available", false, "Query available packages (default)")
 	repoqueryCmd.Flags().Bool("bugfix", false, "Limit to packages specified by bugfix advisory")
-	repoqueryCmd.Flags().String("bz", "", "Limit to packages specified by Bugzilla ID")
+	repoqueryCmd.Flags().String("bzs", "", "Include content contained in advisories that fix a Bugzilla ID")
 	repoqueryCmd.Flags().Bool("changelogs", false, "Display changelogs")
 	repoqueryCmd.Flags().Bool("conflicts", false, "Like --queryformat=%{conflicts}")
-	repoqueryCmd.Flags().String("cve", "", "Limit to packages specified by CVE ID")
+	repoqueryCmd.Flags().String("cves", "", "Include content contained in advisories that fix a CVE ID")
 	repoqueryCmd.Flags().Bool("depends", false, "Like --queryformat=%{depends}")
 	repoqueryCmd.Flags().Bool("disable-modular-filtering", false, "Include inactive module streams")
 	repoqueryCmd.Flags().Bool("duplicates", false, "Duplicate installed packages")
@@ -72,7 +72,8 @@ func init() {
 	rootCmd.AddCommand(repoqueryCmd)
 
 	carapace.Gen(repoqueryCmd).FlagCompletion(carapace.ActionMap{
-		"providers-of": carapace.ActionValues("conflicts", "depends", "enhances", "obsoletes", "provides", "recommends", "requires", "requires_pre", "suggests", "supplements"),
+		"advisory-severities": carapace.ActionValues("critical", "important", "moderate", "low", "none"),
+		"providers-of":        carapace.ActionValues("conflicts", "depends", "enhances", "obsoletes", "provides", "recommends", "requires", "requires_pre", "suggests", "supplements"),
 	})
 
 	carapace.Gen(repoqueryCmd).PositionalAnyCompletion(
