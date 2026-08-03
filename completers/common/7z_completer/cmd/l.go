@@ -21,4 +21,8 @@ func init() {
 	carapace.Gen(lCmd).PositionalCompletion(
 		carapace.ActionFiles(),
 	)
+
+	carapace.Gen(lCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(),
+	)
 }
