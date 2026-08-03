@@ -18,10 +18,6 @@ func init() {
 	addCommonFlagCompletions(lCmd)
 	rootCmd.AddCommand(lCmd)
 
-	carapace.Gen(lCmd).PositionalCompletion(
-		carapace.ActionFiles(),
-	)
-
 	carapace.Gen(lCmd).PositionalAnyCompletion(
 		carapace.ActionFiles(),
 	)
