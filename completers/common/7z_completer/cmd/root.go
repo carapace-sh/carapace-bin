@@ -71,33 +71,61 @@ func addCommonFlags(cmd *cobra.Command) {
 	cmd.Flags().BoolS("y", "y", false, "assume Yes on all queries")
 
 	cmd.Flag("ai").NoOptDefVal = " "
+	cmd.Flag("ai").OptargDelimiter = -1
 	cmd.Flag("ao").NoOptDefVal = " "
+	cmd.Flag("ao").OptargDelimiter = -1
 	cmd.Flag("ax").NoOptDefVal = " "
+	cmd.Flag("ax").OptargDelimiter = -1
 	cmd.Flag("bb").NoOptDefVal = " "
+	cmd.Flag("bb").OptargDelimiter = -1
 	cmd.Flag("bs").NoOptDefVal = " "
+	cmd.Flag("bs").OptargDelimiter = -1
 	cmd.Flag("i").NoOptDefVal = " "
+	cmd.Flag("i").OptargDelimiter = -1
 	cmd.Flag("m").NoOptDefVal = " "
+	cmd.Flag("m").OptargDelimiter = -1
 	cmd.Flag("o").NoOptDefVal = " "
+	cmd.Flag("o").OptargDelimiter = -1
 	cmd.Flag("p").NoOptDefVal = " "
+	cmd.Flag("p").OptargDelimiter = -1
 	cmd.Flag("r").NoOptDefVal = " "
+	cmd.Flag("r").OptargDelimiter = -1
 	cmd.Flag("sa").NoOptDefVal = " "
+	cmd.Flag("sa").OptargDelimiter = -1
 	cmd.Flag("scc").NoOptDefVal = " "
+	cmd.Flag("scc").OptargDelimiter = -1
 	cmd.Flag("scrc").NoOptDefVal = " "
+	cmd.Flag("scrc").OptargDelimiter = -1
 	cmd.Flag("scs").NoOptDefVal = " "
+	cmd.Flag("scs").OptargDelimiter = -1
 	cmd.Flag("seml").NoOptDefVal = " "
+	cmd.Flag("seml").OptargDelimiter = -1
 	cmd.Flag("sfx").NoOptDefVal = " "
+	cmd.Flag("sfx").OptargDelimiter = -1
 	cmd.Flag("si").NoOptDefVal = " "
+	cmd.Flag("si").OptargDelimiter = -1
 	cmd.Flag("slp").NoOptDefVal = " "
+	cmd.Flag("slp").OptargDelimiter = -1
 	cmd.Flag("sns").NoOptDefVal = " "
+	cmd.Flag("sns").OptargDelimiter = -1
 	cmd.Flag("spf").NoOptDefVal = " "
+	cmd.Flag("spf").OptargDelimiter = -1
 	cmd.Flag("ssc").NoOptDefVal = " "
+	cmd.Flag("ssc").OptargDelimiter = -1
 	cmd.Flag("stm").NoOptDefVal = " "
+	cmd.Flag("stm").OptargDelimiter = -1
 	cmd.Flag("stx").NoOptDefVal = " "
+	cmd.Flag("stx").OptargDelimiter = -1
 	cmd.Flag("t").NoOptDefVal = " "
+	cmd.Flag("t").OptargDelimiter = -1
 	cmd.Flag("u").NoOptDefVal = " "
+	cmd.Flag("u").OptargDelimiter = -1
 	cmd.Flag("v").NoOptDefVal = " "
+	cmd.Flag("v").OptargDelimiter = -1
 	cmd.Flag("w").NoOptDefVal = " "
+	cmd.Flag("w").OptargDelimiter = -1
 	cmd.Flag("x").NoOptDefVal = " "
+	cmd.Flag("x").OptargDelimiter = -1
 }
 
 // addCommonFlagCompletions registers flag completions for common switches.
