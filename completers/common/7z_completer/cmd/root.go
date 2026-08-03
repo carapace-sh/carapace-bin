@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/spf13/cobra"
+	"github.com/spf13/pflag"
 )
 
 var rootCmd = &cobra.Command{
@@ -71,61 +72,61 @@ func addCommonFlags(cmd *cobra.Command) {
 	cmd.Flags().BoolS("y", "y", false, "assume Yes on all queries")
 
 	cmd.Flag("ai").NoOptDefVal = " "
-	cmd.Flag("ai").OptargDelimiter = -1
+	cmd.Flag("ai").OptargDelimiter = pflag.DelimiterDisabled
 	cmd.Flag("ao").NoOptDefVal = " "
-	cmd.Flag("ao").OptargDelimiter = -1
+	cmd.Flag("ao").OptargDelimiter = pflag.DelimiterDisabled
 	cmd.Flag("ax").NoOptDefVal = " "
-	cmd.Flag("ax").OptargDelimiter = -1
+	cmd.Flag("ax").OptargDelimiter = pflag.DelimiterDisabled
 	cmd.Flag("bb").NoOptDefVal = " "
-	cmd.Flag("bb").OptargDelimiter = -1
+	cmd.Flag("bb").OptargDelimiter = pflag.DelimiterDisabled
 	cmd.Flag("bs").NoOptDefVal = " "
-	cmd.Flag("bs").OptargDelimiter = -1
+	cmd.Flag("bs").OptargDelimiter = pflag.DelimiterDisabled
 	cmd.Flag("i").NoOptDefVal = " "
-	cmd.Flag("i").OptargDelimiter = -1
+	cmd.Flag("i").OptargDelimiter = pflag.DelimiterDisabled
 	cmd.Flag("m").NoOptDefVal = " "
-	cmd.Flag("m").OptargDelimiter = -1
+	cmd.Flag("m").OptargDelimiter = pflag.DelimiterDisabled
 	cmd.Flag("o").NoOptDefVal = " "
-	cmd.Flag("o").OptargDelimiter = -1
+	cmd.Flag("o").OptargDelimiter = pflag.DelimiterDisabled
 	cmd.Flag("p").NoOptDefVal = " "
-	cmd.Flag("p").OptargDelimiter = -1
+	cmd.Flag("p").OptargDelimiter = pflag.DelimiterDisabled
 	cmd.Flag("r").NoOptDefVal = " "
-	cmd.Flag("r").OptargDelimiter = -1
+	cmd.Flag("r").OptargDelimiter = pflag.DelimiterDisabled
 	cmd.Flag("sa").NoOptDefVal = " "
-	cmd.Flag("sa").OptargDelimiter = -1
+	cmd.Flag("sa").OptargDelimiter = pflag.DelimiterDisabled
 	cmd.Flag("scc").NoOptDefVal = " "
-	cmd.Flag("scc").OptargDelimiter = -1
+	cmd.Flag("scc").OptargDelimiter = pflag.DelimiterDisabled
 	cmd.Flag("scrc").NoOptDefVal = " "
-	cmd.Flag("scrc").OptargDelimiter = -1
+	cmd.Flag("scrc").OptargDelimiter = pflag.DelimiterDisabled
 	cmd.Flag("scs").NoOptDefVal = " "
-	cmd.Flag("scs").OptargDelimiter = -1
+	cmd.Flag("scs").OptargDelimiter = pflag.DelimiterDisabled
 	cmd.Flag("seml").NoOptDefVal = " "
-	cmd.Flag("seml").OptargDelimiter = -1
+	cmd.Flag("seml").OptargDelimiter = pflag.DelimiterDisabled
 	cmd.Flag("sfx").NoOptDefVal = " "
-	cmd.Flag("sfx").OptargDelimiter = -1
+	cmd.Flag("sfx").OptargDelimiter = pflag.DelimiterDisabled
 	cmd.Flag("si").NoOptDefVal = " "
-	cmd.Flag("si").OptargDelimiter = -1
+	cmd.Flag("si").OptargDelimiter = pflag.DelimiterDisabled
 	cmd.Flag("slp").NoOptDefVal = " "
-	cmd.Flag("slp").OptargDelimiter = -1
+	cmd.Flag("slp").OptargDelimiter = pflag.DelimiterDisabled
 	cmd.Flag("sns").NoOptDefVal = " "
-	cmd.Flag("sns").OptargDelimiter = -1
+	cmd.Flag("sns").OptargDelimiter = pflag.DelimiterDisabled
 	cmd.Flag("spf").NoOptDefVal = " "
-	cmd.Flag("spf").OptargDelimiter = -1
+	cmd.Flag("spf").OptargDelimiter = pflag.DelimiterDisabled
 	cmd.Flag("ssc").NoOptDefVal = " "
-	cmd.Flag("ssc").OptargDelimiter = -1
+	cmd.Flag("ssc").OptargDelimiter = pflag.DelimiterDisabled
 	cmd.Flag("stm").NoOptDefVal = " "
-	cmd.Flag("stm").OptargDelimiter = -1
+	cmd.Flag("stm").OptargDelimiter = pflag.DelimiterDisabled
 	cmd.Flag("stx").NoOptDefVal = " "
-	cmd.Flag("stx").OptargDelimiter = -1
+	cmd.Flag("stx").OptargDelimiter = pflag.DelimiterDisabled
 	cmd.Flag("t").NoOptDefVal = " "
-	cmd.Flag("t").OptargDelimiter = -1
+	cmd.Flag("t").OptargDelimiter = pflag.DelimiterDisabled
 	cmd.Flag("u").NoOptDefVal = " "
-	cmd.Flag("u").OptargDelimiter = -1
+	cmd.Flag("u").OptargDelimiter = pflag.DelimiterDisabled
 	cmd.Flag("v").NoOptDefVal = " "
-	cmd.Flag("v").OptargDelimiter = -1
+	cmd.Flag("v").OptargDelimiter = pflag.DelimiterDisabled
 	cmd.Flag("w").NoOptDefVal = " "
-	cmd.Flag("w").OptargDelimiter = -1
+	cmd.Flag("w").OptargDelimiter = pflag.DelimiterDisabled
 	cmd.Flag("x").NoOptDefVal = " "
-	cmd.Flag("x").OptargDelimiter = -1
+	cmd.Flag("x").OptargDelimiter = pflag.DelimiterDisabled
 }
 
 // addCommonFlagCompletions registers flag completions for common switches.
