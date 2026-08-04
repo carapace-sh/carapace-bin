@@ -19,7 +19,7 @@ func init() {
 	pane_readCmd.Flags().String("format", "", "")
 	pane_readCmd.Flags().String("lines", "", "")
 	pane_readCmd.Flags().Bool("raw", false, "")
-	pane_readCmd.Flags().String("source", "", "")
+	pane_readCmd.Flags().String("source", "", "Terminal snapshot source (default: recent)")
 	paneCmd.AddCommand(pane_readCmd)
 
 	carapace.Gen(pane_readCmd).PositionalCompletion(herdr.ActionPanes(herdr.PaneOpts{}))

@@ -8,21 +8,20 @@ import (
 
 var agent_waitCmd = &cobra.Command{
 	Use:   "wait <target>",
-	Short: "Wait for an agent status",
+	Short: "Wait until an agent reaches one of the requested states",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(agent_waitCmd).Standalone()
 
-	agent_waitCmd.Flags().String("status", "", "")
-	agent_waitCmd.Flags().String("timeout", "", "")
-	agent_waitCmd.MarkFlagRequired("status")
+	agent_waitCmd.Flags().String("timeout", "", "Fail after this many milliseconds")
+	agent_waitCmd.Flags().StringSlice("until", nil, "State to match; repeat for more than one state")
 	agentCmd.AddCommand(agent_waitCmd)
 
 	carapace.Gen(agent_waitCmd).PositionalCompletion(herdr.ActionAgents())
 
 	carapace.Gen(agent_waitCmd).FlagCompletion(carapace.ActionMap{
-		"status": carapace.ActionValues("idle", "working", "blocked", "unknown"),
+		"until": carapace.ActionValues("idle", "working", "blocked", "done", "unknown"),
 	})
 }
