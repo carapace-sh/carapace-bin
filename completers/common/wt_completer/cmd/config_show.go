@@ -14,7 +14,12 @@ var config_showCmd = &cobra.Command{
 func init() {
 	carapace.Gen(config_showCmd).Standalone()
 
+	config_showCmd.Flags().String("format", "text", "Output format")
 	config_showCmd.Flags().Bool("full", false, "Run diagnostic checks (CI tools, commit generation, version)")
 	config_showCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	configCmd.AddCommand(config_showCmd)
+
+	carapace.Gen(config_showCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("text", "json"),
+	})
 }

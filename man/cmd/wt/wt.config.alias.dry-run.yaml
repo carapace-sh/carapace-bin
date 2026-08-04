@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: dry-run
+description: Preview an alias invocation with template expansion
+flags:
+    -h, --help: Print help (see more with '--help')

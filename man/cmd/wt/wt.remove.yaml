@@ -2,10 +2,11 @@
 name: remove
 description: Remove worktree; delete branch if merged
 flags:
+    -f, --force: Force worktree removal
+    -D, --force-delete: Delete unmerged branches
     --foreground: Run removal in foreground (block until complete)
+    --format=: Output format
+    -h, --help: Print help (see more with '--help')
     --no-delete-branch: Keep branch after removal
     --no-verify: Skip hooks
-    -D, --force-delete: Delete unmerged branches
-    -f, --force: Force worktree removal
-    -h, --help: Print help (see more with '--help')
     -y, --yes: Skip approval prompts

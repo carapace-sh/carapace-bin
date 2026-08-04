@@ -22,6 +22,7 @@ func init() {
 	switchCmd.Flags().Bool("clobber", false, "Remove stale paths at target")
 	switchCmd.Flags().BoolP("create", "c", false, "Create a new branch")
 	switchCmd.Flags().StringP("execute", "x", "", "Command to run after switch")
+	switchCmd.Flags().String("format", "", "Output format (text, json)")
 	switchCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	switchCmd.Flags().Bool("no-cd", false, "Skip directory change after switching")
 	switchCmd.Flags().Bool("no-verify", false, "Skip hooks")
@@ -35,6 +36,7 @@ func init() {
 			carapace.ActionExecutables(),
 			carapace.ActionFiles(),
 		).ToA(),
+		"format": carapace.ActionValues("text", "json"),
 	})
 
 	carapace.Gen(switchCmd).PositionalCompletion(

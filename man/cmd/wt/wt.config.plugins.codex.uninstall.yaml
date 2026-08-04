@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: uninstall
+description: Remove the Worktrunk marketplace from Codex
+flags:
+    -h, --help: Print help (see more with '--help')

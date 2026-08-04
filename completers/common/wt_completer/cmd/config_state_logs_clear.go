@@ -7,7 +7,7 @@ import (
 
 var config_state_logs_clearCmd = &cobra.Command{
 	Use:   "clear",
-	Short: "Clear background operation logs",
+	Short: "Clear all log files",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
@@ -16,4 +16,8 @@ func init() {
 
 	config_state_logs_clearCmd.Flags().BoolP("help", "h", false, "Print help")
 	config_state_logsCmd.AddCommand(config_state_logs_clearCmd)
+
+	carapace.Gen(config_state_logs_clearCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("text", "json"),
+	})
 }

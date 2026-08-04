@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: tether
+description: "[experimental] Run a command; kill its whole process tree when its worktree is removed"
+flags:
+    -h, --help: Print help (see more with '--help')

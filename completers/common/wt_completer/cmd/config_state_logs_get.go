@@ -8,7 +8,7 @@ import (
 
 var config_state_logs_getCmd = &cobra.Command{
 	Use:   "get",
-	Short: "Get log file paths",
+	Short: "List all log file paths",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
@@ -22,6 +22,7 @@ func init() {
 
 	carapace.Gen(config_state_logs_getCmd).FlagCompletion(carapace.ActionMap{
 		"branch": wt.ActionBranches(),
+		"format": carapace.ActionValues("text", "json"),
 		// TODO hook
 	})
 }

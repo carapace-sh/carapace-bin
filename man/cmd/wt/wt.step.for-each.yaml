@@ -1,5 +1,6 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: for-each
-description: '[experimental] Run command in each worktree'
+description: "[experimental] Run command in each worktree"
 flags:
+    --format=: Output format
     -h, --help: Print help (see more with '--help')

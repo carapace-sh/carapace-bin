@@ -3,8 +3,8 @@ name: list
 description: List worktrees and their status
 flags:
     --branches: Include branches without worktrees
-    --format=: Output format (table, json)
+    --format=: Output format
     --full: Show CI, diff analysis, and LLM summaries
+    -h, --help: Print help (see more with '--help')
     --progressive: Show fast info immediately, update with slow info
     --remotes: Include remote branches
-    -h, --help: Print help (see more with '--help')

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: profile
+description: Performance profile from a trace
+flags:
+    -h, --help: Print help (see more with '--help')

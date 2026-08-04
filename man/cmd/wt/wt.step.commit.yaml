@@ -2,8 +2,9 @@
 name: commit
 description: Stage and commit with LLM-generated message
 flags:
+    --format=: Output format
+    -h, --help: Print help (see more with '--help')
     --no-verify: Skip hooks
     --show-prompt: Show prompt without running LLM
-    --stage=: 'What to stage before committing [default: all]'
-    -h, --help: Print help (see more with '--help')
+    --stage=: What to stage before committing [default: all]
     -y, --yes: Skip approval prompts

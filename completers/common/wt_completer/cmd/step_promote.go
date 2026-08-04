@@ -15,8 +15,13 @@ var step_promoteCmd = &cobra.Command{
 func init() {
 	carapace.Gen(step_promoteCmd).Standalone()
 
+	step_promoteCmd.Flags().String("format", "", "Output format (text, json)")
 	step_promoteCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	stepCmd.AddCommand(step_promoteCmd)
+
+	carapace.Gen(step_promoteCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("text", "json"),
+	})
 
 	carapace.Gen(step_promoteCmd).PositionalCompletion(
 		wt.ActionBranches(),

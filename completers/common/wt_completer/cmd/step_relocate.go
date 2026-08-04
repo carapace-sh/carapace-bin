@@ -18,8 +18,13 @@ func init() {
 	step_relocateCmd.Flags().Bool("clobber", false, "Backup non-worktree paths at target locations")
 	step_relocateCmd.Flags().Bool("commit", false, "Commit uncommitted changes before relocating")
 	step_relocateCmd.Flags().Bool("dry-run", false, "Show what would be moved")
+	step_relocateCmd.Flags().String("format", "", "Output format (text, json)")
 	step_relocateCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	stepCmd.AddCommand(step_relocateCmd)
+
+	carapace.Gen(step_relocateCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("text", "json"),
+	})
 
 	carapace.Gen(step_relocateCmd).PositionalAnyCompletion(
 		wt.ActionBranches().FilterArgs(),

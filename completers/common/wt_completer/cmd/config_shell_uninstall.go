@@ -16,7 +16,6 @@ func init() {
 
 	config_shell_uninstallCmd.Flags().Bool("dry-run", false, "Show what would be changed")
 	config_shell_uninstallCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
-	config_shell_uninstallCmd.Flags().BoolP("yes", "y", false, "Skip confirmation prompt")
 	config_shellCmd.AddCommand(config_shell_uninstallCmd)
 
 	carapace.Gen(config_shell_uninstallCmd).PositionalCompletion(

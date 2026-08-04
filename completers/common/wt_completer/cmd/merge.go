@@ -16,6 +16,7 @@ var mergeCmd = &cobra.Command{
 func init() {
 	carapace.Gen(mergeCmd).Standalone()
 
+	mergeCmd.Flags().String("format", "", "Output format (text, json)")
 	mergeCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	mergeCmd.Flags().Bool("no-commit", false, "Skip commit and squash")
 	mergeCmd.Flags().Bool("no-ff", false, "Create a merge commit (no fast-forward)")
@@ -28,7 +29,12 @@ func init() {
 	rootCmd.AddCommand(mergeCmd)
 
 	carapace.Gen(mergeCmd).FlagCompletion(carapace.ActionMap{
-		"stage": carapace.ActionValues("all", "tracked", "none").StyleF(style.ForKeyword),
+		"format": carapace.ActionValues("text", "json"),
+		"stage": carapace.ActionValuesDescribed(
+			"all", "Stage everything: untracked files + unstaged tracked changes",
+			"tracked", "Stage tracked changes only (like git add -u)",
+			"none", "Stage nothing, commit only what's already in the index",
+		).StyleF(style.ForKeyword),
 	})
 
 	carapace.Gen(mergeCmd).PositionalCompletion(

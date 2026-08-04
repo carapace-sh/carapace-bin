@@ -1,5 +1,7 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: logs
-description: Background operation logs
+description: Operation and debug logs
+persistentflags:
+    --format=: Output format (text, json) [default: text]
 flags:
     -h, --help: Print help (see more with '--help')

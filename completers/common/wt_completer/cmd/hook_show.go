@@ -16,8 +16,13 @@ func init() {
 	carapace.Gen(hook_showCmd).Standalone()
 
 	hook_showCmd.Flags().Bool("expanded", false, "Show expanded commands with current variables")
+	hook_showCmd.Flags().String("format", "", "Output format (text, json)")
 	hook_showCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	hookCmd.AddCommand(hook_showCmd)
+
+	carapace.Gen(hook_showCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("text", "json"),
+	})
 
 	carapace.Gen(hook_showCmd).PositionalCompletion(
 		wt.ActionHookTypes(),

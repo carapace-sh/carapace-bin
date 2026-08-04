@@ -14,6 +14,11 @@ var config_state_markerCmd = &cobra.Command{
 func init() {
 	carapace.Gen(config_state_markerCmd).Standalone()
 
+	config_state_markerCmd.PersistentFlags().String("format", "text", "Output format (text, json) [default: text]")
 	config_state_markerCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	config_stateCmd.AddCommand(config_state_markerCmd)
+
+	carapace.Gen(config_state_markerCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("text", "json"),
+	})
 }

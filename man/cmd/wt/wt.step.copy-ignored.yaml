@@ -4,6 +4,8 @@ description: Copy gitignored files to another worktree
 flags:
     --dry-run: Show what would be copied
     --force: Overwrite existing files in destination
+    --format=: Output format
     --from=: Source worktree branch
-    --to=: Destination worktree branch
     -h, --help: Print help (see more with '--help')
+    --require-include: Require .worktreeinclude to copy anything
+    --to=: Destination worktree branch
