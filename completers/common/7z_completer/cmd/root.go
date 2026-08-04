@@ -20,118 +20,109 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	addCommonFlags(rootCmd)
-	addCommonFlagCompletions(rootCmd)
-}
+	rootCmd.PersistentFlags().StringS("ai", "ai", "", "include archive filenames")
+	rootCmd.PersistentFlags().BoolS("an", "an", false, "disable archive_name field")
+	rootCmd.PersistentFlags().StringS("ao", "ao", "", "set overwrite mode")
+	rootCmd.PersistentFlags().StringS("ax", "ax", "", "exclude archive filenames")
+	rootCmd.PersistentFlags().StringS("bb", "bb", "", "set output log level")
+	rootCmd.PersistentFlags().BoolS("bd", "bd", false, "disable progress indicator")
+	rootCmd.PersistentFlags().StringS("bs", "bs", "", "set output stream for output/error/progress")
+	rootCmd.PersistentFlags().BoolS("bt", "bt", false, "show execution time statistics")
+	rootCmd.PersistentFlags().StringS("i", "i", "", "include filenames")
+	rootCmd.PersistentFlags().StringS("m", "m", "", "set compression method")
+	rootCmd.PersistentFlags().StringS("o", "o", "", "set output directory")
+	rootCmd.PersistentFlags().StringS("p", "p", "", "set password")
+	rootCmd.PersistentFlags().StringS("r", "r", "", "recurse subdirectories")
+	rootCmd.PersistentFlags().StringS("sa", "sa", "", "set archive name mode")
+	rootCmd.PersistentFlags().StringS("scc", "scc", "", "set charset for console input/output")
+	rootCmd.PersistentFlags().StringS("scrc", "scrc", "", "set hash function")
+	rootCmd.PersistentFlags().StringS("scs", "scs", "", "set charset for list files")
+	rootCmd.PersistentFlags().BoolS("sdel", "sdel", false, "delete files after compression")
+	rootCmd.PersistentFlags().StringS("seml", "seml", "", "send archive by email")
+	rootCmd.PersistentFlags().StringS("sfx", "sfx", "", "create SFX archive")
+	rootCmd.PersistentFlags().StringS("si", "si", "", "read data from stdin")
+	rootCmd.PersistentFlags().StringS("slp", "slp", "", "set large pages mode")
+	rootCmd.PersistentFlags().BoolS("slt", "slt", false, "show technical information for l command")
+	rootCmd.PersistentFlags().BoolS("snh", "snh", false, "store hard links as links")
+	rootCmd.PersistentFlags().BoolS("sni", "sni", false, "store NT security information")
+	rootCmd.PersistentFlags().BoolS("snl", "snl", false, "store symbolic links as links")
+	rootCmd.PersistentFlags().StringS("sns", "sns", "", "store NTFS alternate streams")
+	rootCmd.PersistentFlags().BoolS("so", "so", false, "write data to stdout")
+	rootCmd.PersistentFlags().BoolS("spd", "spd", false, "disable wildcard matching for file names")
+	rootCmd.PersistentFlags().BoolS("spe", "spe", false, "eliminate duplication of root folder for extract command")
+	rootCmd.PersistentFlags().StringS("spf", "spf", "", "use fully qualified file paths")
+	rootCmd.PersistentFlags().StringS("ssc", "ssc", "", "set sensitive case mode")
+	rootCmd.PersistentFlags().BoolS("sse", "sse", false, "stop archive creating if input file cannot be opened")
+	rootCmd.PersistentFlags().BoolS("ssp", "ssp", false, "do not change Last Access Time of source files")
+	rootCmd.PersistentFlags().BoolS("ssw", "ssw", false, "compress shared files")
+	rootCmd.PersistentFlags().BoolS("stl", "stl", false, "set archive timestamp from the most recently modified file")
+	rootCmd.PersistentFlags().StringS("stm", "stm", "", "set CPU thread affinity mask")
+	rootCmd.PersistentFlags().StringS("stx", "stx", "", "exclude archive type")
+	rootCmd.PersistentFlags().StringS("t", "t", "", "set type of archive")
+	rootCmd.PersistentFlags().StringS("u", "u", "", "update options")
+	rootCmd.PersistentFlags().StringS("v", "v", "", "create volumes")
+	rootCmd.PersistentFlags().StringS("w", "w", "", "set working directory")
+	rootCmd.PersistentFlags().StringS("x", "x", "", "exclude filenames")
+	rootCmd.PersistentFlags().BoolS("y", "y", false, "assume Yes on all queries")
 
-// addCommonFlags registers switches shared across all 7z subcommands.
-func addCommonFlags(cmd *cobra.Command) {
-	cmd.Flags().StringS("ai", "ai", "", "include archive filenames")
-	cmd.Flags().BoolS("an", "an", false, "disable archive_name field")
-	cmd.Flags().StringS("ao", "ao", "", "set overwrite mode")
-	cmd.Flags().StringS("ax", "ax", "", "exclude archive filenames")
-	cmd.Flags().StringS("bb", "bb", "", "set output log level")
-	cmd.Flags().BoolS("bd", "bd", false, "disable progress indicator")
-	cmd.Flags().StringS("bs", "bs", "", "set output stream for output/error/progress")
-	cmd.Flags().BoolS("bt", "bt", false, "show execution time statistics")
-	cmd.Flags().StringS("i", "i", "", "include filenames")
-	cmd.Flags().StringS("m", "m", "", "set compression method")
-	cmd.Flags().StringS("o", "o", "", "set output directory")
-	cmd.Flags().StringS("p", "p", "", "set password")
-	cmd.Flags().StringS("r", "r", "", "recurse subdirectories")
-	cmd.Flags().StringS("sa", "sa", "", "set archive name mode")
-	cmd.Flags().StringS("scc", "scc", "", "set charset for console input/output")
-	cmd.Flags().StringS("scrc", "scrc", "", "set hash function")
-	cmd.Flags().StringS("scs", "scs", "", "set charset for list files")
-	cmd.Flags().BoolS("sdel", "sdel", false, "delete files after compression")
-	cmd.Flags().StringS("seml", "seml", "", "send archive by email")
-	cmd.Flags().StringS("sfx", "sfx", "", "create SFX archive")
-	cmd.Flags().StringS("si", "si", "", "read data from stdin")
-	cmd.Flags().StringS("slp", "slp", "", "set large pages mode")
-	cmd.Flags().BoolS("slt", "slt", false, "show technical information for l command")
-	cmd.Flags().BoolS("snh", "snh", false, "store hard links as links")
-	cmd.Flags().BoolS("sni", "sni", false, "store NT security information")
-	cmd.Flags().BoolS("snl", "snl", false, "store symbolic links as links")
-	cmd.Flags().StringS("sns", "sns", "", "store NTFS alternate streams")
-	cmd.Flags().BoolS("so", "so", false, "write data to stdout")
-	cmd.Flags().BoolS("spd", "spd", false, "disable wildcard matching for file names")
-	cmd.Flags().BoolS("spe", "spe", false, "eliminate duplication of root folder for extract command")
-	cmd.Flags().StringS("spf", "spf", "", "use fully qualified file paths")
-	cmd.Flags().StringS("ssc", "ssc", "", "set sensitive case mode")
-	cmd.Flags().BoolS("sse", "sse", false, "stop archive creating if input file cannot be opened")
-	cmd.Flags().BoolS("ssp", "ssp", false, "do not change Last Access Time of source files")
-	cmd.Flags().BoolS("ssw", "ssw", false, "compress shared files")
-	cmd.Flags().BoolS("stl", "stl", false, "set archive timestamp from the most recently modified file")
-	cmd.Flags().StringS("stm", "stm", "", "set CPU thread affinity mask")
-	cmd.Flags().StringS("stx", "stx", "", "exclude archive type")
-	cmd.Flags().StringS("t", "t", "", "set type of archive")
-	cmd.Flags().StringS("u", "u", "", "update options")
-	cmd.Flags().StringS("v", "v", "", "create volumes")
-	cmd.Flags().StringS("w", "w", "", "set working directory")
-	cmd.Flags().StringS("x", "x", "", "exclude filenames")
-	cmd.Flags().BoolS("y", "y", false, "assume Yes on all queries")
+	rootCmd.Flag("ai").NoOptDefVal = " "
+	rootCmd.Flag("ai").OptargDelimiter = pflag.DelimiterDisabled
+	rootCmd.Flag("ao").NoOptDefVal = " "
+	rootCmd.Flag("ao").OptargDelimiter = pflag.DelimiterDisabled
+	rootCmd.Flag("ax").NoOptDefVal = " "
+	rootCmd.Flag("ax").OptargDelimiter = pflag.DelimiterDisabled
+	rootCmd.Flag("bb").NoOptDefVal = " "
+	rootCmd.Flag("bb").OptargDelimiter = pflag.DelimiterDisabled
+	rootCmd.Flag("bs").NoOptDefVal = " "
+	rootCmd.Flag("bs").OptargDelimiter = pflag.DelimiterDisabled
+	rootCmd.Flag("i").NoOptDefVal = " "
+	rootCmd.Flag("i").OptargDelimiter = pflag.DelimiterDisabled
+	rootCmd.Flag("m").NoOptDefVal = " "
+	rootCmd.Flag("m").OptargDelimiter = pflag.DelimiterDisabled
+	rootCmd.Flag("o").NoOptDefVal = " "
+	rootCmd.Flag("o").OptargDelimiter = pflag.DelimiterDisabled
+	rootCmd.Flag("p").NoOptDefVal = " "
+	rootCmd.Flag("p").OptargDelimiter = pflag.DelimiterDisabled
+	rootCmd.Flag("r").NoOptDefVal = " "
+	rootCmd.Flag("r").OptargDelimiter = pflag.DelimiterDisabled
+	rootCmd.Flag("sa").NoOptDefVal = " "
+	rootCmd.Flag("sa").OptargDelimiter = pflag.DelimiterDisabled
+	rootCmd.Flag("scc").NoOptDefVal = " "
+	rootCmd.Flag("scc").OptargDelimiter = pflag.DelimiterDisabled
+	rootCmd.Flag("scrc").NoOptDefVal = " "
+	rootCmd.Flag("scrc").OptargDelimiter = pflag.DelimiterDisabled
+	rootCmd.Flag("scs").NoOptDefVal = " "
+	rootCmd.Flag("scs").OptargDelimiter = pflag.DelimiterDisabled
+	rootCmd.Flag("seml").NoOptDefVal = " "
+	rootCmd.Flag("seml").OptargDelimiter = pflag.DelimiterDisabled
+	rootCmd.Flag("sfx").NoOptDefVal = " "
+	rootCmd.Flag("sfx").OptargDelimiter = pflag.DelimiterDisabled
+	rootCmd.Flag("si").NoOptDefVal = " "
+	rootCmd.Flag("si").OptargDelimiter = pflag.DelimiterDisabled
+	rootCmd.Flag("slp").NoOptDefVal = " "
+	rootCmd.Flag("slp").OptargDelimiter = pflag.DelimiterDisabled
+	rootCmd.Flag("sns").NoOptDefVal = " "
+	rootCmd.Flag("sns").OptargDelimiter = pflag.DelimiterDisabled
+	rootCmd.Flag("spf").NoOptDefVal = " "
+	rootCmd.Flag("spf").OptargDelimiter = pflag.DelimiterDisabled
+	rootCmd.Flag("ssc").NoOptDefVal = " "
+	rootCmd.Flag("ssc").OptargDelimiter = pflag.DelimiterDisabled
+	rootCmd.Flag("stm").NoOptDefVal = " "
+	rootCmd.Flag("stm").OptargDelimiter = pflag.DelimiterDisabled
+	rootCmd.Flag("stx").NoOptDefVal = " "
+	rootCmd.Flag("stx").OptargDelimiter = pflag.DelimiterDisabled
+	rootCmd.Flag("t").NoOptDefVal = " "
+	rootCmd.Flag("t").OptargDelimiter = pflag.DelimiterDisabled
+	rootCmd.Flag("u").NoOptDefVal = " "
+	rootCmd.Flag("u").OptargDelimiter = pflag.DelimiterDisabled
+	rootCmd.Flag("v").NoOptDefVal = " "
+	rootCmd.Flag("v").OptargDelimiter = pflag.DelimiterDisabled
+	rootCmd.Flag("w").NoOptDefVal = " "
+	rootCmd.Flag("w").OptargDelimiter = pflag.DelimiterDisabled
+	rootCmd.Flag("x").NoOptDefVal = " "
+	rootCmd.Flag("x").OptargDelimiter = pflag.DelimiterDisabled
 
-	cmd.Flag("ai").NoOptDefVal = " "
-	cmd.Flag("ai").OptargDelimiter = pflag.DelimiterDisabled
-	cmd.Flag("ao").NoOptDefVal = " "
-	cmd.Flag("ao").OptargDelimiter = pflag.DelimiterDisabled
-	cmd.Flag("ax").NoOptDefVal = " "
-	cmd.Flag("ax").OptargDelimiter = pflag.DelimiterDisabled
-	cmd.Flag("bb").NoOptDefVal = " "
-	cmd.Flag("bb").OptargDelimiter = pflag.DelimiterDisabled
-	cmd.Flag("bs").NoOptDefVal = " "
-	cmd.Flag("bs").OptargDelimiter = pflag.DelimiterDisabled
-	cmd.Flag("i").NoOptDefVal = " "
-	cmd.Flag("i").OptargDelimiter = pflag.DelimiterDisabled
-	cmd.Flag("m").NoOptDefVal = " "
-	cmd.Flag("m").OptargDelimiter = pflag.DelimiterDisabled
-	cmd.Flag("o").NoOptDefVal = " "
-	cmd.Flag("o").OptargDelimiter = pflag.DelimiterDisabled
-	cmd.Flag("p").NoOptDefVal = " "
-	cmd.Flag("p").OptargDelimiter = pflag.DelimiterDisabled
-	cmd.Flag("r").NoOptDefVal = " "
-	cmd.Flag("r").OptargDelimiter = pflag.DelimiterDisabled
-	cmd.Flag("sa").NoOptDefVal = " "
-	cmd.Flag("sa").OptargDelimiter = pflag.DelimiterDisabled
-	cmd.Flag("scc").NoOptDefVal = " "
-	cmd.Flag("scc").OptargDelimiter = pflag.DelimiterDisabled
-	cmd.Flag("scrc").NoOptDefVal = " "
-	cmd.Flag("scrc").OptargDelimiter = pflag.DelimiterDisabled
-	cmd.Flag("scs").NoOptDefVal = " "
-	cmd.Flag("scs").OptargDelimiter = pflag.DelimiterDisabled
-	cmd.Flag("seml").NoOptDefVal = " "
-	cmd.Flag("seml").OptargDelimiter = pflag.DelimiterDisabled
-	cmd.Flag("sfx").NoOptDefVal = " "
-	cmd.Flag("sfx").OptargDelimiter = pflag.DelimiterDisabled
-	cmd.Flag("si").NoOptDefVal = " "
-	cmd.Flag("si").OptargDelimiter = pflag.DelimiterDisabled
-	cmd.Flag("slp").NoOptDefVal = " "
-	cmd.Flag("slp").OptargDelimiter = pflag.DelimiterDisabled
-	cmd.Flag("sns").NoOptDefVal = " "
-	cmd.Flag("sns").OptargDelimiter = pflag.DelimiterDisabled
-	cmd.Flag("spf").NoOptDefVal = " "
-	cmd.Flag("spf").OptargDelimiter = pflag.DelimiterDisabled
-	cmd.Flag("ssc").NoOptDefVal = " "
-	cmd.Flag("ssc").OptargDelimiter = pflag.DelimiterDisabled
-	cmd.Flag("stm").NoOptDefVal = " "
-	cmd.Flag("stm").OptargDelimiter = pflag.DelimiterDisabled
-	cmd.Flag("stx").NoOptDefVal = " "
-	cmd.Flag("stx").OptargDelimiter = pflag.DelimiterDisabled
-	cmd.Flag("t").NoOptDefVal = " "
-	cmd.Flag("t").OptargDelimiter = pflag.DelimiterDisabled
-	cmd.Flag("u").NoOptDefVal = " "
-	cmd.Flag("u").OptargDelimiter = pflag.DelimiterDisabled
-	cmd.Flag("v").NoOptDefVal = " "
-	cmd.Flag("v").OptargDelimiter = pflag.DelimiterDisabled
-	cmd.Flag("w").NoOptDefVal = " "
-	cmd.Flag("w").OptargDelimiter = pflag.DelimiterDisabled
-	cmd.Flag("x").NoOptDefVal = " "
-	cmd.Flag("x").OptargDelimiter = pflag.DelimiterDisabled
-}
-
-// addCommonFlagCompletions registers flag completions for common switches.
-func addCommonFlagCompletions(cmd *cobra.Command) {
-	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"ao":   carapace.ActionValues("a", "s", "t", "u"),
 		"bb":   carapace.ActionValues("0", "1", "2", "3"),
 		"o":    carapace.ActionDirectories(),

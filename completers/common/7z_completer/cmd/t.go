@@ -14,8 +14,6 @@ var tCmd = &cobra.Command{
 func init() {
 	carapace.Gen(tCmd).Standalone()
 
-	addCommonFlags(tCmd)
-	addCommonFlagCompletions(tCmd)
 	rootCmd.AddCommand(tCmd)
 
 	carapace.Gen(tCmd).PositionalAnyCompletion(
