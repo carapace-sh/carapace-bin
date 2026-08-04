@@ -3,7 +3,7 @@ module github.com/carapace-sh/carapace-bin
 go 1.26.2
 
 require (
-	github.com/carapace-sh/carapace v1.14.0
+	github.com/carapace-sh/carapace v1.15.0
 	github.com/carapace-sh/carapace-bridge v1.6.2
 	github.com/carapace-sh/carapace-jjlex v0.1.8
 	github.com/carapace-sh/carapace-jq v0.0.3
@@ -27,6 +27,6 @@ require (
 	github.com/kevinburke/ssh_config v1.4.0
 )
 
-replace github.com/spf13/pflag => github.com/carapace-sh/carapace-pflag v1.2.0
+replace github.com/spf13/pflag => github.com/carapace-sh/carapace-pflag v1.3.0
 
 replace github.com/kevinburke/ssh_config => github.com/carapace-sh/ssh_config v1.4.1-0.20260319075335-4f04016b8b4b
