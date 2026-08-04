@@ -46,7 +46,7 @@ var rootCmd = &cobra.Command{
     clear:      carapace --style 'carapace.Description='
 
   Bridges:
-    set-env CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense'
+    set-env CARAPACE_BRIDGES 'zsh,fish,bash,powershell,inshellisense'
 
   Shell parameter is optional and if left out carapace will try to detect it by parent process name.
   Some completions are cached at [%v/carapace].
