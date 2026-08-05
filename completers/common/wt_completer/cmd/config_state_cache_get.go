@@ -17,7 +17,4 @@ func init() {
 	config_state_cache_getCmd.Flags().BoolP("help", "h", false, "Print help")
 	config_state_cacheCmd.AddCommand(config_state_cache_getCmd)
 
-	carapace.Gen(config_state_cache_getCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("text", "json"),
-	})
 }

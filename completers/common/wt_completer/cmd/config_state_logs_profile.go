@@ -21,7 +21,4 @@ func init() {
 		carapace.ActionFiles(),
 	)
 
-	carapace.Gen(config_state_logs_profileCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("text", "json"),
-	})
 }

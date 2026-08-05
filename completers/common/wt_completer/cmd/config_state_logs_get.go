@@ -22,7 +22,6 @@ func init() {
 
 	carapace.Gen(config_state_logs_getCmd).FlagCompletion(carapace.ActionMap{
 		"branch": wt.ActionBranches(),
-		"format": carapace.ActionValues("text", "json"),
 		// TODO hook
 	})
 }
