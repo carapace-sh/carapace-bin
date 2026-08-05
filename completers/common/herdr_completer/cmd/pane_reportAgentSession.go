@@ -21,6 +21,8 @@ func init() {
 	pane_reportAgentSessionCmd.Flags().String("seq", "", "")
 	pane_reportAgentSessionCmd.Flags().String("session-start-source", "", "")
 	pane_reportAgentSessionCmd.Flags().String("source", "", "")
+	pane_reportAgentSessionCmd.MarkFlagRequired("agent")
+	pane_reportAgentSessionCmd.MarkFlagRequired("source")
 	paneCmd.AddCommand(pane_reportAgentSessionCmd)
 
 	carapace.Gen(pane_reportAgentSessionCmd).PositionalCompletion(herdr.ActionPanes(herdr.PaneOpts{}))

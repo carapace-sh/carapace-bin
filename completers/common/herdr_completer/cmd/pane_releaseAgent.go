@@ -18,6 +18,8 @@ func init() {
 	pane_releaseAgentCmd.Flags().String("agent", "", "")
 	pane_releaseAgentCmd.Flags().String("seq", "", "")
 	pane_releaseAgentCmd.Flags().String("source", "", "")
+	pane_releaseAgentCmd.MarkFlagRequired("agent")
+	pane_releaseAgentCmd.MarkFlagRequired("source")
 	paneCmd.AddCommand(pane_releaseAgentCmd)
 
 	carapace.Gen(pane_releaseAgentCmd).PositionalCompletion(herdr.ActionPanes(herdr.PaneOpts{}))
