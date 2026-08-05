@@ -22,4 +22,13 @@ func init() {
 	version_listCmd.Flags().StringP("output", "o", "", "Output Format [raw | repo]")
 	version_listCmd.Flags().StringP("sort", "s", "", "Sort Mode (asc | desc | off)")
 	versionCmd.AddCommand(version_listCmd)
+
+	carapace.Gen(version_listCmd).FlagCompletion(carapace.ActionMap{
+		"output": carapace.ActionValues("raw", "repo"),
+		"sort":   carapace.ActionValues("asc", "desc", "off"),
+	})
+
+	carapace.Gen(version_listCmd).PositionalCompletion(
+		carapace.ActionValues("k3d", "k3s", "k3d-proxy", "k3d-tools"),
+	)
 }

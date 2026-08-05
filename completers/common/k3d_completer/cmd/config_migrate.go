@@ -16,4 +16,9 @@ func init() {
 	carapace.Gen(config_migrateCmd).Standalone()
 
 	configCmd.AddCommand(config_migrateCmd)
+
+	carapace.Gen(config_migrateCmd).PositionalCompletion(
+		carapace.ActionFiles(),
+		carapace.ActionFiles(),
+	)
 }

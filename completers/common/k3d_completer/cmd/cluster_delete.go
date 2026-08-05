@@ -20,6 +20,10 @@ func init() {
 	cluster_deleteCmd.Flags().StringP("config", "c", "", "Path of a config file to use")
 	clusterCmd.AddCommand(cluster_deleteCmd)
 
+	carapace.Gen(cluster_deleteCmd).FlagCompletion(carapace.ActionMap{
+		"config": carapace.ActionFiles(),
+	})
+
 	carapace.Gen(cluster_deleteCmd).PositionalAnyCompletion(
 		k3d.ActionClusters().FilterArgs(),
 	)

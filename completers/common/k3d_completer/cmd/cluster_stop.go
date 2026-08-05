@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/k3d"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,8 @@ func init() {
 
 	cluster_stopCmd.Flags().BoolP("all", "a", false, "Stop all existing clusters")
 	clusterCmd.AddCommand(cluster_stopCmd)
+
+	carapace.Gen(cluster_stopCmd).PositionalAnyCompletion(
+		k3d.ActionClusters().FilterArgs(),
+	)
 }

@@ -27,4 +27,11 @@ func init() {
 	registry_createCmd.Flags().StringSliceP("volume", "v", []string{}, "Mount volumes into the registry node (Format: `[SOURCE:]DEST`")
 	registry_createCmd.Flag("cluster").Hidden = true
 	registryCmd.AddCommand(registry_createCmd)
+
+	carapace.Gen(registry_createCmd).FlagCompletion(carapace.ActionMap{
+		"image":            carapace.ActionValues(),
+		"port":             carapace.ActionValues(),
+		"proxy-remote-url": carapace.ActionValues(),
+		"volume":           carapace.ActionFiles(),
+	})
 }

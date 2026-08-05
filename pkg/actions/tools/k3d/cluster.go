@@ -25,6 +25,7 @@ func (c cluster) style() string {
 	}
 }
 
+// ActionClusters completes k3d clusters
 func ActionClusters() carapace.Action {
 	return carapace.ActionExecCommand("k3d", "cluster", "list", "--output", "json")(func(output []byte) carapace.Action {
 		var clusters []cluster

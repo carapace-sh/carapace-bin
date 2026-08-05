@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/k3d"
 	"github.com/spf13/cobra"
 )
 
@@ -22,4 +23,12 @@ func init() {
 	kubeconfig_mergeCmd.Flags().Bool("overwrite", false, "[Careful!] Overwrite existing file, ignoring its contents")
 	kubeconfig_mergeCmd.Flags().BoolP("update", "u", false, "Update conflicting fields in existing kubeconfig")
 	kubeconfigCmd.AddCommand(kubeconfig_mergeCmd)
+
+	carapace.Gen(kubeconfig_mergeCmd).FlagCompletion(carapace.ActionMap{
+		"output": carapace.ActionFiles(),
+	})
+
+	carapace.Gen(kubeconfig_mergeCmd).PositionalAnyCompletion(
+		k3d.ActionClusters().FilterArgs(),
+	)
 }

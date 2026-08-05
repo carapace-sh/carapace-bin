@@ -68,7 +68,7 @@ func init() {
 		"lb-config-override": carapace.ActionValues(),
 		"network":            carapace.ActionValues(),
 		"port":               carapace.ActionValues(),
-		"registry-config":    carapace.ActionValues(),
+		"registry-config":    carapace.ActionFiles(),
 		"registry-create":    carapace.ActionValues(),
 		"registry-use":       carapace.ActionValues(),
 		"runtime-label":      carapace.ActionValues(),
@@ -80,23 +80,4 @@ func init() {
 		"token":              carapace.ActionValues(),
 		"volume":             carapace.ActionValues(),
 	})
-}
-
-func x() {
-	// KEY[=VALUE][@NODEFILTER[;NODEFILTER...]]
-	carapace.ActionMultiPartsN("@", 2, func(c carapace.Context) carapace.Action {
-		switch len(c.Parts) {
-		case 0:
-			return carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
-				switch len(c.Parts) {
-				case 0:
-					return carapace.ActionValues("TODO:key")
-				default:
-					return carapace.ActionValues("TODO:value")
-				}
-			})
-		default:
-			return carapace.ActionValues("TODO:nodefilter").List(";")
-		}
-	}).List(",")
 }

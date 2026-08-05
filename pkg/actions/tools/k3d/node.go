@@ -51,6 +51,7 @@ func (n node) style() string {
 	return style.Carapace.KeywordNegative
 }
 
+// ActionNodes completes k3d nodes
 func ActionNodes(opts NodeOpts) carapace.Action {
 	return carapace.ActionExecCommand("k3d", "node", "list", "--output", "json")(func(output []byte) carapace.Action {
 		var nodes []node
@@ -68,10 +69,12 @@ func ActionNodes(opts NodeOpts) carapace.Action {
 	})
 }
 
+// ActionNodeGroups completes k3d node groups
 func ActionNodeGroups() carapace.Action {
 	return carapace.ActionValues("server", "servers", "agent", "agents", "loadbalancer", "all")
 }
 
+// ActionNodeFilter completes k3d node filters
 func ActionNodeFilter() carapace.Action { // TODO limit to specific cluster
 	return carapace.ActionMultiPartsN(":", 3, func(c carapace.Context) carapace.Action {
 		switch len(c.Parts) {

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/k3d"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,8 @@ func init() {
 
 	kubeconfig_getCmd.Flags().BoolP("all", "a", false, "Output kubeconfigs from all existing clusters")
 	kubeconfigCmd.AddCommand(kubeconfig_getCmd)
+
+	carapace.Gen(kubeconfig_getCmd).PositionalAnyCompletion(
+		k3d.ActionClusters().FilterArgs(),
+	)
 }

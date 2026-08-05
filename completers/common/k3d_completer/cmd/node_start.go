@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/k3d"
 	"github.com/spf13/cobra"
 )
 
@@ -15,4 +16,8 @@ func init() {
 	carapace.Gen(node_startCmd).Standalone()
 
 	nodeCmd.AddCommand(node_startCmd)
+
+	carapace.Gen(node_startCmd).PositionalCompletion(
+		k3d.ActionNodes(k3d.NodeOpts{Stopped: true}),
+	)
 }

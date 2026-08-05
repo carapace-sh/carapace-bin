@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/k3d"
 	"github.com/spf13/cobra"
 )
 
@@ -23,5 +24,7 @@ func init() {
 		"output": carapace.ActionValues("json", "yaml"),
 	})
 
-	// TODO positional
+	carapace.Gen(node_listCmd).PositionalAnyCompletion(
+		k3d.ActionNodes(k3d.NodeOpts{}.Default()).FilterArgs(),
+	)
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/k3d"
 	"github.com/spf13/cobra"
 )
 
@@ -20,4 +21,13 @@ func init() {
 	image_importCmd.Flags().BoolP("keep-tools", "t", false, "Do not delete the tools node after import")
 	image_importCmd.Flags().StringP("mode", "m", "", "Which method to use to import images into the cluster [auto, direct, tools]. See https://k3d.io/stable/usage/importing_images/")
 	imageCmd.AddCommand(image_importCmd)
+
+	carapace.Gen(image_importCmd).FlagCompletion(carapace.ActionMap{
+		"cluster": k3d.ActionClusters(),
+		"mode":    carapace.ActionValues("auto", "direct", "tools"),
+	})
+
+	carapace.Gen(image_importCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(),
+	)
 }

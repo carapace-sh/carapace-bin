@@ -18,4 +18,8 @@ func init() {
 	config_initCmd.Flags().BoolP("force", "f", false, "Force overwrite of target file")
 	config_initCmd.Flags().StringP("output", "o", "", "Write a default k3d config")
 	configCmd.AddCommand(config_initCmd)
+
+	carapace.Gen(config_initCmd).FlagCompletion(carapace.ActionMap{
+		"output": carapace.ActionFiles(),
+	})
 }
