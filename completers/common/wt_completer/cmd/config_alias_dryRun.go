@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,12 @@ func init() {
 
 	config_alias_dryRunCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	config_aliasCmd.AddCommand(config_alias_dryRunCmd)
+
+	carapace.Gen(config_alias_dryRunCmd).PositionalCompletion(
+		carapace.ActionValues(),
+	)
+
+	carapace.Gen(config_alias_dryRunCmd).DashAnyCompletion(
+		bridge.ActionCarapaceBin(),
+	)
 }

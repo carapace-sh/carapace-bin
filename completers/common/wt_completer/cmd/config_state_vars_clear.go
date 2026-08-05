@@ -23,4 +23,8 @@ func init() {
 	carapace.Gen(config_state_vars_clearCmd).FlagCompletion(carapace.ActionMap{
 		"branch": wt.ActionBranches(),
 	})
+
+	carapace.Gen(config_state_vars_clearCmd).PositionalCompletion(
+		carapace.ActionValues(),
+	)
 }

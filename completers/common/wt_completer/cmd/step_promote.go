@@ -24,6 +24,6 @@ func init() {
 	})
 
 	carapace.Gen(step_promoteCmd).PositionalCompletion(
-		wt.ActionBranches(),
+		wt.ActionWorktrees(),
 	)
 }

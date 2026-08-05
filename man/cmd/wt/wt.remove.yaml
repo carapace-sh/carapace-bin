@@ -2,11 +2,14 @@
 name: remove
 description: Remove worktree; delete branch if merged
 flags:
+    --delete-branch: Delete branch after removal (overrides config)
     -f, --force: Force worktree removal
     -D, --force-delete: Delete unmerged branches
     --foreground: Run removal in foreground (block until complete)
     --format=: Output format
     -h, --help: Print help (see more with '--help')
     --no-delete-branch: Keep branch after removal
-    --no-verify: Skip hooks
+    --no-hooks: Skip hooks
+    --no-verify: Skip hooks (deprecated alias for --no-hooks)
+    --reap: Kill processes started in the worktree [experimental]
     -y, --yes: Skip approval prompts

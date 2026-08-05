@@ -27,6 +27,6 @@ func init() {
 	})
 
 	carapace.Gen(step_relocateCmd).PositionalAnyCompletion(
-		wt.ActionBranches().FilterArgs(),
+		wt.ActionWorktrees().FilterArgs(),
 	)
 }

@@ -16,4 +16,8 @@ func init() {
 
 	config_alias_showCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	config_aliasCmd.AddCommand(config_alias_showCmd)
+
+	carapace.Gen(config_alias_showCmd).PositionalCompletion(
+		carapace.ActionValues(),
+	)
 }

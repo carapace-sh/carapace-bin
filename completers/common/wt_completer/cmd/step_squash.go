@@ -16,10 +16,12 @@ var step_squashCmd = &cobra.Command{
 func init() {
 	carapace.Gen(step_squashCmd).Standalone()
 
+	step_squashCmd.Flags().Bool("dry-run", false, "Preview prompt, command, and generated message without squashing")
 	step_squashCmd.Flags().String("format", "", "Output format (text, json)")
 	step_squashCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
-	step_squashCmd.Flags().Bool("no-verify", false, "Skip hooks")
-	step_squashCmd.Flags().Bool("show-prompt", false, "Show prompt without running LLM")
+	step_squashCmd.Flags().Bool("no-hooks", false, "Skip hooks")
+	step_squashCmd.Flags().Bool("no-verify", false, "Skip hooks (deprecated alias for --no-hooks)")
+	step_squashCmd.Flags().Bool("show-prompt", false, "Render prompt to stdout without running LLM")
 	step_squashCmd.Flags().String("stage", "", "What to stage before committing [default: all]")
 	step_squashCmd.Flags().BoolP("yes", "y", false, "Skip approval prompts")
 	stepCmd.AddCommand(step_squashCmd)
@@ -34,6 +36,6 @@ func init() {
 	})
 
 	carapace.Gen(step_squashCmd).PositionalCompletion(
-		wt.ActionBranches(), // TODO verify
+		wt.ActionBranches(),
 	)
 }

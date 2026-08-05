@@ -20,5 +20,4 @@ func init() {
 	carapace.Gen(config_state_logs_profileCmd).PositionalCompletion(
 		carapace.ActionFiles(),
 	)
-
 }

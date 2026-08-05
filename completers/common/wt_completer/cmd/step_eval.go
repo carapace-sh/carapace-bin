@@ -22,4 +22,8 @@ func init() {
 	carapace.Gen(step_evalCmd).FlagCompletion(carapace.ActionMap{
 		"format": carapace.ActionValues("text", "json"),
 	})
+
+	carapace.Gen(step_evalCmd).PositionalCompletion(
+		carapace.ActionValues(),
+	)
 }

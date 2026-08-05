@@ -16,15 +16,21 @@ var mergeCmd = &cobra.Command{
 func init() {
 	carapace.Gen(mergeCmd).Standalone()
 
+	mergeCmd.Flags().Bool("commit", false, "Force commit and squash")
+	mergeCmd.Flags().Bool("ff", false, "Allow fast-forward (default)")
 	mergeCmd.Flags().String("format", "", "Output format (text, json)")
 	mergeCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	mergeCmd.Flags().Bool("no-commit", false, "Skip commit and squash")
 	mergeCmd.Flags().Bool("no-ff", false, "Create a merge commit (no fast-forward)")
-	mergeCmd.Flags().Bool("no-rebase", false, "Skip rebase (fail if not already rebased)")
+	mergeCmd.Flags().Bool("no-hooks", false, "Skip hooks")
+	mergeCmd.Flags().Bool("no-rebase", false, "Skip rebase; require the target to fast-forward to the resulting tip")
 	mergeCmd.Flags().Bool("no-remove", false, "Keep worktree after merge")
 	mergeCmd.Flags().Bool("no-squash", false, "Skip commit squashing")
-	mergeCmd.Flags().Bool("no-verify", false, "Skip hooks")
+	mergeCmd.Flags().Bool("no-verify", false, "Skip hooks (deprecated alias for --no-hooks)")
+	mergeCmd.Flags().Bool("rebase", false, "Force rebasing onto target")
+	mergeCmd.Flags().Bool("remove", false, "Force worktree removal after merge")
 	mergeCmd.Flags().String("stage", "", "What to stage before committing [default: all]")
+	mergeCmd.Flags().Bool("verify", false, "Force running hooks")
 	mergeCmd.Flags().BoolP("yes", "y", false, "Skip approval prompts")
 	rootCmd.AddCommand(mergeCmd)
 
@@ -38,6 +44,6 @@ func init() {
 	})
 
 	carapace.Gen(mergeCmd).PositionalCompletion(
-		wt.ActionBranches(), // TODO what are valid targets? (likely only local worktrees)
+		wt.ActionBranches(),
 	)
 }

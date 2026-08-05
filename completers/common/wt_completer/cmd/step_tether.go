@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,8 @@ func init() {
 
 	step_tetherCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	stepCmd.AddCommand(step_tetherCmd)
+
+	carapace.Gen(step_tetherCmd).DashAnyCompletion(
+		bridge.ActionCarapaceBin(),
+	)
 }

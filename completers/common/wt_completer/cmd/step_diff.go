@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/wt"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
@@ -16,8 +17,13 @@ var step_diffCmd = &cobra.Command{
 func init() {
 	carapace.Gen(step_diffCmd).Standalone()
 
+	step_diffCmd.Flags().StringP("branch", "b", "", "Branch to operate on (defaults to current worktree)")
 	step_diffCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	stepCmd.AddCommand(step_diffCmd)
+
+	carapace.Gen(step_diffCmd).FlagCompletion(carapace.ActionMap{
+		"branch": wt.ActionWorktrees(),
+	})
 
 	carapace.Gen(step_diffCmd).PositionalCompletion(
 		git.ActionRefs(git.RefOption{}.Default()),

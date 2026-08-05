@@ -2,4 +2,5 @@
 name: diff
 description: Show all changes since branching
 flags:
+    -b, --branch=: Branch to operate on (defaults to current worktree)
     -h, --help: Print help (see more with '--help')

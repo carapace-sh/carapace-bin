@@ -4,7 +4,8 @@ description: List worktrees and their status
 flags:
     --branches: Include branches without worktrees
     --format=: Output format
-    --full: Show CI, diff analysis, and LLM summaries
+    --full: Show CI status and LLM summaries
     -h, --help: Print help (see more with '--help')
+    --no-progressive: Force buffered rendering
     --progressive: Show fast info immediately, update with slow info
     --remotes: Include remote branches

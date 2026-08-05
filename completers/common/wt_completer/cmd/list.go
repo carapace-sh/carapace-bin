@@ -16,8 +16,9 @@ func init() {
 
 	listCmd.Flags().Bool("branches", false, "Include branches without worktrees")
 	listCmd.Flags().String("format", "", "Output format (table, json)")
-	listCmd.Flags().Bool("full", false, "Show CI, diff analysis, and LLM summaries")
+	listCmd.Flags().Bool("full", false, "Show CI status and LLM summaries")
 	listCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	listCmd.Flags().Bool("no-progressive", false, "Force buffered rendering")
 	listCmd.Flags().Bool("progressive", false, "Show fast info immediately, update with slow info")
 	listCmd.Flags().Bool("remotes", false, "Include remote branches")
 	rootCmd.AddCommand(listCmd)

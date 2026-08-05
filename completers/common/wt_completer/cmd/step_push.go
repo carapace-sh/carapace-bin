@@ -15,6 +15,7 @@ var step_pushCmd = &cobra.Command{
 func init() {
 	carapace.Gen(step_pushCmd).Standalone()
 
+	step_pushCmd.Flags().Bool("ff", false, "Allow fast-forward (default)")
 	step_pushCmd.Flags().String("format", "", "Output format (text, json)")
 	step_pushCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	step_pushCmd.Flags().Bool("no-ff", false, "Create a merge commit (no fast-forward)")
