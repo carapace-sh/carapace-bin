@@ -17,11 +17,19 @@ func init() {
 
 	newCmd.Flags().StringSlice("after", nil, "Insert the new change after the given commit(s)")
 	newCmd.Flags().StringSlice("before", nil, "Insert the new change before the given commit(s)")
+	newCmd.Flags().StringSliceS("d", "d", nil, "")
+	newCmd.Flags().Bool("edit", false, "No-op flag to pair with --no-edit")
 	newCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	newCmd.Flags().StringSliceP("insert-after", "A", nil, "Insert the new change after the given commit(s)")
 	newCmd.Flags().StringSliceP("insert-before", "B", nil, "Insert the new change before the given commit(s)")
 	newCmd.Flags().StringSliceP("message", "m", nil, "The change description to use")
 	newCmd.Flags().Bool("no-edit", false, "Do not edit the newly created change")
+	newCmd.Flags().StringSliceS("o", "o", nil, "")
+	newCmd.Flags().StringSliceS("r", "r", nil, "")
+	newCmd.Flag("d").Hidden = true
+	newCmd.Flag("edit").Hidden = true
+	newCmd.Flag("o").Hidden = true
+	newCmd.Flag("r").Hidden = true
 	rootCmd.AddCommand(newCmd)
 
 	carapace.Gen(newCmd).FlagCompletion(carapace.ActionMap{

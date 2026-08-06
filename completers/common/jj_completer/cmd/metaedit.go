@@ -20,9 +20,11 @@ func init() {
 	metaeditCmd.Flags().Bool("force-rewrite", false, "Rewrite the commit, even if no other metadata changed")
 	metaeditCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	metaeditCmd.Flags().StringSliceP("message", "m", nil, "Update the change description")
+	metaeditCmd.Flags().StringSliceS("r", "r", nil, "")
 	metaeditCmd.Flags().Bool("update-author", false, "Update the author to the configured user")
 	metaeditCmd.Flags().Bool("update-author-timestamp", false, "Update the author timestamp")
 	metaeditCmd.Flags().Bool("update-change-id", false, "Generate a new change-id")
+	metaeditCmd.Flag("r").Hidden = true
 	rootCmd.AddCommand(metaeditCmd)
 
 	carapace.Gen(metaeditCmd).PositionalAnyCompletion(

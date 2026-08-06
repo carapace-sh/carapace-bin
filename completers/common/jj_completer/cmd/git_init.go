@@ -18,10 +18,12 @@ func init() {
 	git_initCmd.Flags().String("git-repo", "", "Specifies a path to an **existing** git repository to be used as the backing git repo for the newly created `jj` repo")
 	git_initCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	git_initCmd.Flags().Bool("no-colocate", false, "Disable colocation of the Jujutsu repo with the git repo")
+	git_initCmd.Flags().String("object-hash", "", "Object hash algorithm for the newly created Git repository")
 	gitCmd.AddCommand(git_initCmd)
 
 	carapace.Gen(git_initCmd).FlagCompletion(carapace.ActionMap{
-		"git-repo": carapace.ActionDirectories(),
+		"git-repo":    carapace.ActionDirectories(),
+		"object-hash": carapace.ActionValues("sha1", "sha256"),
 	})
 
 	carapace.Gen(git_initCmd).PositionalCompletion(

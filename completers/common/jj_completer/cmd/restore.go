@@ -21,10 +21,12 @@ func init() {
 	restoreCmd.Flags().BoolP("interactive", "i", false, "Interactively choose which parts to restore")
 	restoreCmd.Flags().StringP("into", "t", "@", "Revision to restore into (destination)")
 	restoreCmd.Flags().Bool("restore-descendants", false, "Preserve the content (not the diff) when rebasing descendants")
+	restoreCmd.Flags().StringP("revision", "r", "", "Prints an error. DO NOT USE")
 	restoreCmd.Flags().String("to", "@", "Revision to restore into (destination)")
 	restoreCmd.Flags().String("tool", "", "Specify diff editor to be used (implies --interactive)")
 
 	restoreCmd.MarkFlagsMutuallyExclusive("into", "to")
+	restoreCmd.Flag("revision").Hidden = true
 
 	rootCmd.AddCommand(restoreCmd)
 

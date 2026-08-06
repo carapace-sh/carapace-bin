@@ -15,5 +15,7 @@ func init() {
 	carapace.Gen(arrangeCmd).Standalone()
 
 	arrangeCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	arrangeCmd.Flags().StringSliceS("r", "r", nil, "")
+	arrangeCmd.Flag("r").Hidden = true
 	rootCmd.AddCommand(arrangeCmd)
 }

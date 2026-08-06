@@ -4,6 +4,8 @@ github.com/carapace-sh/carapace-bridge v1.6.3 h1:BbKIM+f79SYCuO+Paoa6u4yNqeRXDAy
 github.com/carapace-sh/carapace-bridge v1.6.3/go.mod h1:vfTziQSfXGThQGVLYVquvpypqyJdHMJOdSM/ZeWmxw4=
 github.com/carapace-sh/carapace-jjlex v0.1.8 h1:+Pip1sOri76w4cBGVcMv+tLWzK24696rATlW9i5M7Z4=
 github.com/carapace-sh/carapace-jjlex v0.1.8/go.mod h1:rT0jaDX51zqHg7XHIMv+OQuBuYHvePQt8GCRPr2V9iU=
+github.com/carapace-sh/carapace-jjlex v0.1.9 h1:kw0CRP6QJtXSxgJq+vUfsDf8DUdFGmxGTyaB4byLl7k=
+github.com/carapace-sh/carapace-jjlex v0.1.9/go.mod h1:JVpZNvRHNcpiXhbe3zFqkzOwzJLL0JtIjHHEmnebHPk=
 github.com/carapace-sh/carapace-jq v0.0.3 h1:DbVKss+jpg54McQNBg0WBFO60Vz+WwbRgjoJWyGgETY=
 github.com/carapace-sh/carapace-jq v0.0.3/go.mod h1:wF5p2OM8wgLQwULZp2PQXIo7AYiSWAHAn1bNBmkHKQE=
 github.com/carapace-sh/carapace-pflag v1.3.0 h1:RT1xJ+2p4c2WqYXPZZA7zu2jIi6Vt+pmalZf75yFzBM=
@@ -30,6 +32,8 @@ github.com/pelletier/go-toml v1.9.5 h1:4yBQzkHv+7BHq2PQUZF3Mx0IYxG7LsP222s7Agd3v
 github.com/pelletier/go-toml v1.9.5/go.mod h1:u1nR/EPcESfeI/szUZKdtJ0xRNbUoANCkoOuaOx1Y+c=
 github.com/pelletier/go-toml/v2 v2.4.2 h1:M2fKKbmyvI+hGId/D0W64qDBMVhJnNR10O5gIbMc//Q=
 github.com/pelletier/go-toml/v2 v2.4.2/go.mod h1:2gIqNv+qfxSVS7cM2xJQKtLSTLUE9V8t9Stt+h56mCY=
+github.com/pelletier/go-toml/v2 v2.4.3 h1:GTRvJQutkOSftxIFD5xw9aepkYNuPWmVJpffdDPYVpY=
+github.com/pelletier/go-toml/v2 v2.4.3/go.mod h1:2gIqNv+qfxSVS7cM2xJQKtLSTLUE9V8t9Stt+h56mCY=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/russross/blackfriday/v2 v2.1.0/go.mod h1:+Rmxgy9KzJVeS9/2gXHxylqXiyQDYRxCVz55jmeOWTM=

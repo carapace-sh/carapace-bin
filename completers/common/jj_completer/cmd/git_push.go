@@ -16,21 +16,23 @@ var git_pushCmd = &cobra.Command{
 func init() {
 	carapace.Gen(git_pushCmd).Standalone()
 
-	git_pushCmd.Flags().Bool("all", false, "Push all bookmarks (including new bookmarks)")
+	git_pushCmd.Flags().Bool("all", false, "Push all bookmarks and tags (including new ones)")
+	git_pushCmd.Flags().Bool("allow-conflicts", false, "Allow pushing commits that contain conflicts")
 	git_pushCmd.Flags().Bool("allow-empty-description", false, "Allow pushing commits with empty descriptions")
 	git_pushCmd.Flags().Bool("allow-private", false, "Allow pushing commits that are private")
 	git_pushCmd.Flags().StringSliceP("bookmark", "b", nil, "Push only this bookmark, or bookmarks matching a pattern (can be repeated)")
 	git_pushCmd.Flags().StringSlice("branch", nil, "Push only this bookmark, or bookmarks matching a pattern (can be repeated)")
 	git_pushCmd.Flags().StringSliceP("change", "c", nil, "Push this commit by creating a bookmark (can be repeated)")
-	git_pushCmd.Flags().Bool("deleted", false, "Push all deleted bookmarks")
+	git_pushCmd.Flags().Bool("deleted", false, "Push all deleted bookmarks and tags")
 	git_pushCmd.Flags().Bool("dry-run", false, "Only display what will change on the remote")
 	git_pushCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	git_pushCmd.Flags().StringSlice("named", nil, "Specify a new bookmark name and a revision to push under that name, e.g. '--named myfeature=@'")
 	git_pushCmd.Flags().StringSliceP("option", "o", nil, "Git push options")
 	git_pushCmd.Flags().String("remote", "", "The remote to push to (only named remotes are supported)")
-	git_pushCmd.Flags().StringSliceP("revision", "r", nil, "Push bookmarks pointing to these commits (can be repeated)")
-	git_pushCmd.Flags().StringSlice("revisions", nil, "Push bookmarks pointing to these commits (can be repeated)")
-	git_pushCmd.Flags().Bool("tracked", false, "Push all tracked bookmarks")
+	git_pushCmd.Flags().StringSliceP("revision", "r", nil, "Push bookmarks and tags pointing to these commits (can be repeated)")
+	git_pushCmd.Flags().StringSlice("revisions", nil, "Push bookmarks and tags pointing to these commits (can be repeated)")
+	git_pushCmd.Flags().StringSliceP("tag", "t", nil, "Push only this tag, or tags matching a pattern (can be repeated)")
+	git_pushCmd.Flags().Bool("tracked", false, "Push all tracked bookmarks and tags")
 	git_pushCmd.Flag("branch").Hidden = true
 	git_pushCmd.Flag("revisions").Hidden = true
 	gitCmd.AddCommand(git_pushCmd)
@@ -43,5 +45,6 @@ func init() {
 		"remote":    jj.ActionRemotes(),
 		"revision":  jj.ActionRevsets(jj.RevOpts{}.Default()),
 		"revisions": jj.ActionRevsets(jj.RevOpts{}.Default()),
+		"tag":       jj.ActionTags(),
 	})
 }
