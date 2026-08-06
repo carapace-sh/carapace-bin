@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/carapace-sh/carapace-jjlex/pkg/actions/tools/jj"
 	"github.com/spf13/cobra"
 )
@@ -35,10 +36,7 @@ func init() {
 		"from":       jj.ActionRevsets(jj.RevOpts{}.Default()),
 		"into":       jj.ActionRevsets(jj.RevOpts{}.Default()),
 		"to":         jj.ActionRevsets(jj.RevOpts{}.Default()),
-		"tool": carapace.Batch(
-			carapace.ActionExecutables(),
-			carapace.ActionFiles(),
-		).ToA(),
+		"tool":       bridge.ActionCarapaceBin().Split(),
 	})
 
 	carapace.Gen(restoreCmd).PositionalAnyCompletion(
