@@ -26,9 +26,9 @@ func init() {
 	rootCmd.AddCommand(newCmd)
 
 	carapace.Gen(newCmd).FlagCompletion(carapace.ActionMap{
-		"edition":  carapace.ActionValues("2015", "2018"),
+		"edition":  carapace.ActionValues("2015", "2018", "2021", "2024"),
 		"registry": action.ActionRegistries(),
-		"vcs":      carapace.ActionValues("git", "hg", "pijul", "vcs", "none"),
+		"vcs":      carapace.ActionValues("git", "hg", "pijul", "fossil", "none"),
 	})
 
 	carapace.Gen(newCmd).PositionalCompletion(

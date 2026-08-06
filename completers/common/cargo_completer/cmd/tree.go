@@ -23,14 +23,14 @@ func init() {
 	treeCmd.Flags().StringSliceP("edges", "e", nil, "The kinds of dependencies to display")
 	treeCmd.Flags().StringSlice("exclude", nil, "Exclude specific workspace members")
 	treeCmd.Flags().StringSliceP("features", "F", nil, "Space or comma separated list of features to activate")
-	treeCmd.Flags().StringP("format", "f", "", "Format string used for printing dependencies")
+	treeCmd.Flags().StringP("format", "f", "{p}", "Format string used for printing dependencies")
 	treeCmd.Flags().BoolP("help", "h", false, "Print help")
 	treeCmd.Flags().StringSliceP("invert", "i", nil, "Invert the tree direction and focus on the given package")
-	treeCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
+	treeCmd.Flags().StringP("manifest-path", "m", "", "Path to Cargo.toml")
 	treeCmd.Flags().Bool("no-dedupe", false, "Do not de-duplicate (repeats all shared dependencies)")
 	treeCmd.Flags().Bool("no-default-features", false, "Do not activate the `default` feature")
 	treeCmd.Flags().StringSliceP("package", "p", nil, "Package to be used as the root of the tree")
-	treeCmd.Flags().String("prefix", "", "Change the prefix (indentation) of how each entry is displayed")
+	treeCmd.Flags().String("prefix", "indent", "Change the prefix (indentation) of how each entry is displayed")
 	treeCmd.Flags().StringSlice("prune", nil, "Prune the given package from the display of the dependency tree")
 	treeCmd.Flags().StringSlice("target", nil, "Filter dependencies matching the given target-triple (default host platform). Pass `all` to include all targets.")
 	treeCmd.Flags().Bool("workspace", false, "Display the tree for all packages in the workspace")
@@ -57,6 +57,7 @@ func init() {
 		"invert":        action.ActionDependencies(treeCmd, false),
 		"manifest-path": carapace.ActionFiles(),
 		"package":       action.ActionDependencies(treeCmd, false),
+		"prefix":        carapace.ActionValues("depth", "indent", "none"),
 		"prune":         action.ActionDependencies(treeCmd, false),
 	})
 }
