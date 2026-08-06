@@ -18,6 +18,6 @@ func ActionFeatures(path string) carapace.Action {
 				vals = append(vals, name, strings.Join(packages, ", "))
 			}
 		}
-		return carapace.ActionValuesDescribed(vals...)
+		return carapace.ActionValuesDescribed(vals...).Unique()
 	})
 }

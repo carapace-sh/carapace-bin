@@ -28,6 +28,6 @@ func ActionDependencies(opts DependencyOpts) carapace.Action {
 				}
 			}
 		}
-		return carapace.ActionValuesDescribed(vals...)
+		return carapace.ActionValuesDescribed(vals...).Unique()
 	})
 }
