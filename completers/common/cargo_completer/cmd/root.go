@@ -73,6 +73,16 @@ func init() {
 			re := regexp.MustCompile(`^    (?P<command>[^ ]+)( +(?P<description>.*))?$`)
 			for line := range strings.SplitSeq(string(output), "\n") {
 				if matches := re.FindStringSubmatch(line); matches != nil {
+					skip := false
+					for _, ec := range rootCmd.Commands() {
+						if ec.Name() == matches[1] {
+							skip = true
+							break
+						}
+					}
+					if skip {
+						continue
+					}
 					pluginCmd := &cobra.Command{
 						Use:                matches[1],
 						Short:              matches[3],
