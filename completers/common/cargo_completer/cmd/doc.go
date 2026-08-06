@@ -30,7 +30,7 @@ func init() {
 	docCmd.Flags().StringP("jobs", "j", "", "Number of parallel jobs, defaults to # of CPUs.")
 	docCmd.Flags().Bool("keep-going", false, "Do not abort the build as soon as there is an error")
 	docCmd.Flags().Bool("lib", false, "Document only this package's library")
-	docCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
+	docCmd.Flags().StringP("manifest-path", "m", "", "Path to Cargo.toml")
 	docCmd.Flags().StringSlice("message-format", nil, "Error format")
 	docCmd.Flags().Bool("no-default-features", false, "Do not activate the `default` feature")
 	docCmd.Flags().Bool("no-deps", false, "Don't build documentation for dependencies")

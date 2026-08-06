@@ -35,7 +35,7 @@ func init() {
 	buildCmd.Flags().StringP("jobs", "j", "", "Number of parallel jobs, defaults to # of CPUs.")
 	buildCmd.Flags().Bool("keep-going", false, "Do not abort the build as soon as there is an error")
 	buildCmd.Flags().Bool("lib", false, "Build only this package's library")
-	buildCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
+	buildCmd.Flags().StringP("manifest-path", "m", "", "Path to Cargo.toml")
 	buildCmd.Flags().StringSlice("message-format", nil, "Error format")
 	buildCmd.Flags().Bool("no-default-features", false, "Do not activate the `default` feature")
 	buildCmd.Flags().StringSliceP("package", "p", nil, "Package to build (see `cargo help pkgid`)")

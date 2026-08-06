@@ -31,7 +31,7 @@ func init() {
 	benchCmd.Flags().Bool("ignore-rust-version", false, "Ignore `rust-version` specification in packages")
 	benchCmd.Flags().StringP("jobs", "j", "", "Number of parallel jobs, defaults to # of CPUs.")
 	benchCmd.Flags().Bool("lib", false, "Benchmark only this package's library")
-	benchCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
+	benchCmd.Flags().StringP("manifest-path", "m", "", "Path to Cargo.toml")
 	benchCmd.Flags().StringSlice("message-format", nil, "Error format")
 	benchCmd.Flags().Bool("no-default-features", false, "Do not activate the `default` feature")
 	benchCmd.Flags().Bool("no-fail-fast", false, "Run all benchmarks regardless of failure")

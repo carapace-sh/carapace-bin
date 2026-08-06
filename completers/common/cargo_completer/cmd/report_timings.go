@@ -16,7 +16,7 @@ func init() {
 
 	report_timingsCmd.Flags().BoolP("help", "h", false, "Print help")
 	report_timingsCmd.Flags().String("id", "", "Session ID to report on")
-	report_timingsCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
+	report_timingsCmd.Flags().StringP("manifest-path", "m", "", "Path to Cargo.toml")
 	report_timingsCmd.Flags().Bool("open", false, "Opens the timing report in a browser")
 	reportCmd.AddCommand(report_timingsCmd)
 

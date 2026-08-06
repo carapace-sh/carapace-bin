@@ -31,7 +31,7 @@ func init() {
 	rustcCmd.Flags().StringP("jobs", "j", "", "Number of parallel jobs, defaults to # of CPUs.")
 	rustcCmd.Flags().Bool("keep-going", false, "Do not abort the build as soon as there is an error")
 	rustcCmd.Flags().Bool("lib", false, "Build only this package's library")
-	rustcCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
+	rustcCmd.Flags().StringP("manifest-path", "m", "", "Path to Cargo.toml")
 	rustcCmd.Flags().StringSlice("message-format", nil, "Error format")
 	rustcCmd.Flags().Bool("no-default-features", false, "Do not activate the `default` feature")
 	rustcCmd.Flags().StringP("package", "p", "", "Package to build")

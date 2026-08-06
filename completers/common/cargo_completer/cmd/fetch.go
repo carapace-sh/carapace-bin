@@ -16,7 +16,7 @@ func init() {
 	carapace.Gen(fetchCmd).Standalone()
 
 	fetchCmd.Flags().BoolP("help", "h", false, "Print help")
-	fetchCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
+	fetchCmd.Flags().StringP("manifest-path", "m", "", "Path to Cargo.toml")
 	fetchCmd.Flags().StringSlice("target", nil, "Fetch dependencies for the target triple")
 	rootCmd.AddCommand(fetchCmd)
 

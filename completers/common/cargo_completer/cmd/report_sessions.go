@@ -15,8 +15,8 @@ func init() {
 	carapace.Gen(report_sessionsCmd).Standalone()
 
 	report_sessionsCmd.Flags().BoolP("help", "h", false, "Print help")
-	report_sessionsCmd.Flags().String("limit", "", "Limit the number of results")
-	report_sessionsCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
+	report_sessionsCmd.Flags().String("limit", "10", "Limit the number of results")
+	report_sessionsCmd.Flags().StringP("manifest-path", "m", "", "Path to Cargo.toml")
 	reportCmd.AddCommand(report_sessionsCmd)
 
 	carapace.Gen(report_sessionsCmd).FlagCompletion(carapace.ActionMap{

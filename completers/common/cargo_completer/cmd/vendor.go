@@ -15,7 +15,7 @@ func init() {
 	carapace.Gen(vendorCmd).Standalone()
 
 	vendorCmd.Flags().BoolP("help", "h", false, "Print help")
-	vendorCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
+	vendorCmd.Flags().StringP("manifest-path", "m", "", "Path to Cargo.toml")
 	vendorCmd.Flags().Bool("no-delete", false, "Don't delete older crates in the vendor directory")
 	vendorCmd.Flags().Bool("respect-source-config", false, "Respect `[source]` config in `.cargo/config`")
 	vendorCmd.Flags().StringSliceP("sync", "s", nil, "Additional `Cargo.toml` to sync and vendor")
@@ -26,4 +26,8 @@ func init() {
 		"manifest-path": carapace.ActionFiles(),
 		"sync":          carapace.ActionFiles().List(","),
 	})
+
+	carapace.Gen(vendorCmd).PositionalAnyCompletion(
+		carapace.ActionDirectories(),
+	)
 }

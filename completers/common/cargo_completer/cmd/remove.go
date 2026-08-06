@@ -19,7 +19,7 @@ func init() {
 	removeCmd.Flags().Bool("dev", false, "Remove from dev-dependencies")
 	removeCmd.Flags().BoolP("dry-run", "n", false, "Don't actually write the manifest")
 	removeCmd.Flags().BoolP("help", "h", false, "Print help")
-	removeCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
+	removeCmd.Flags().StringP("manifest-path", "m", "", "Path to Cargo.toml")
 	removeCmd.Flags().StringP("package", "p", "", "Package to remove from")
 	removeCmd.Flags().String("target", "", "Remove from target-dependencies")
 	rootCmd.AddCommand(removeCmd)
