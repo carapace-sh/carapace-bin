@@ -15,17 +15,21 @@ import (
 	"github.com/carapace-sh/carapace/pkg/util"
 )
 
-type manifestJson struct {
-	Dependencies []struct {
-		Name string
-		Req  string
+type metadataJson struct {
+	Packages []struct {
+		Name         string
+		Version      string
+		Dependencies []struct {
+			Name string
+			Req  string
+		}
+		Features map[string][]string
+		Targets  []struct {
+			Name string
+			Kind []string
+		}
 	}
-	Features map[string][]string
-
-	Targets []struct {
-		Name string
-		Kind []string
-	}
+	WorkspaceMembers []string
 }
 
 type manifestToml struct {
@@ -42,11 +46,11 @@ func manifestLocation(cmd *cobra.Command) (string, error) {
 	return util.FindReverse("", "Cargo.toml")
 }
 
-func readManifest(cmd *cobra.Command, c carapace.Context) (m manifestJson, err error) {
+func readMetadata(cmd *cobra.Command, c carapace.Context) (m metadataJson, err error) {
 	var output []byte
 	var path string
 	if path, err = manifestLocation(cmd); err == nil {
-		if output, err = c.Command("cargo", "read-manifest", "--offline", "--manifest-path", path).Output(); err == nil {
+		if output, err = c.Command("cargo", "metadata", "--no-deps", "--format-version", "1", "--manifest-path", path).Output(); err == nil {
 			err = json.Unmarshal(output, &m)
 		}
 	}
@@ -107,9 +111,9 @@ func (t *TargetOpts) Includes(kinds []string) bool {
 	return false
 }
 
-func readManifestAction(cmd *cobra.Command, f func(m manifestJson, args []string) carapace.Action) carapace.Action {
+func readMetadataAction(cmd *cobra.Command, f func(m metadataJson, args []string) carapace.Action) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if m, err := readManifest(cmd, c); err != nil {
+		if m, err := readMetadata(cmd, c); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
 			return f(m, c.Args)
@@ -128,11 +132,13 @@ func parseManifestAction(cmd *cobra.Command, f func(m manifestToml, args []strin
 }
 
 func ActionTargets(cmd *cobra.Command, opts TargetOpts) carapace.Action {
-	return readManifestAction(cmd, func(m manifestJson, args []string) carapace.Action {
+	return readMetadataAction(cmd, func(m metadataJson, args []string) carapace.Action {
 		vals := make([]string, 0)
-		for _, target := range m.Targets {
-			if opts.Includes(target.Kind) {
-				vals = append(vals, target.Name, strings.Join(target.Kind, ", "))
+		for _, pkg := range m.Packages {
+			for _, target := range pkg.Targets {
+				if opts.Includes(target.Kind) {
+					vals = append(vals, target.Name, strings.Join(target.Kind, ", "))
+				}
 			}
 		}
 		return carapace.ActionValuesDescribed(vals...)
