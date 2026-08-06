@@ -18,8 +18,8 @@ func init() {
 
 	tag_setCmd.Flags().Bool("allow-move", false, "Allow moving existing tags")
 	tag_setCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
-	tag_setCmd.Flags().StringP("revision", "r", "", "Target revision to point to")
-	tag_setCmd.Flags().String("to", "", "Target revision to point to")
+	tag_setCmd.Flags().StringP("revision", "r", "@", "Target revision to point to")
+	tag_setCmd.Flags().String("to", "@", "Target revision to point to")
 	tagCmd.AddCommand(tag_setCmd)
 
 	carapace.Gen(tag_setCmd).FlagCompletion(carapace.ActionMap{

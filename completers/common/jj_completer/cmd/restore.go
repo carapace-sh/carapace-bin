@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/carapace-sh/carapace-jjlex/pkg/actions/tools/jj"
 	"github.com/spf13/cobra"
 )
@@ -21,10 +22,12 @@ func init() {
 	restoreCmd.Flags().BoolP("interactive", "i", false, "Interactively choose which parts to restore")
 	restoreCmd.Flags().StringP("into", "t", "@", "Revision to restore into (destination)")
 	restoreCmd.Flags().Bool("restore-descendants", false, "Preserve the content (not the diff) when rebasing descendants")
+	restoreCmd.Flags().StringP("revision", "r", "", "Prints an error. DO NOT USE")
 	restoreCmd.Flags().String("to", "@", "Revision to restore into (destination)")
 	restoreCmd.Flags().String("tool", "", "Specify diff editor to be used (implies --interactive)")
 
 	restoreCmd.MarkFlagsMutuallyExclusive("into", "to")
+	restoreCmd.Flag("revision").Hidden = true
 
 	rootCmd.AddCommand(restoreCmd)
 
@@ -33,10 +36,7 @@ func init() {
 		"from":       jj.ActionRevsets(jj.RevOpts{}.Default()),
 		"into":       jj.ActionRevsets(jj.RevOpts{}.Default()),
 		"to":         jj.ActionRevsets(jj.RevOpts{}.Default()),
-		"tool": carapace.Batch(
-			carapace.ActionExecutables(),
-			carapace.ActionFiles(),
-		).ToA(),
+		"tool":       bridge.ActionCarapaceBin().Split(),
 	})
 
 	carapace.Gen(restoreCmd).PositionalAnyCompletion(

@@ -18,7 +18,9 @@ func init() {
 	describeCmd.Flags().Bool("editor", false, "Open an editor to edit the change description")
 	describeCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	describeCmd.Flags().StringSliceP("message", "m", nil, "The change description to use (don't open editor)")
+	describeCmd.Flags().StringSliceS("r", "r", nil, "")
 	describeCmd.Flags().Bool("stdin", false, "Read the change description from stdin")
+	describeCmd.Flag("r").Hidden = true
 	rootCmd.AddCommand(describeCmd)
 
 	carapace.Gen(describeCmd).PositionalCompletion(

@@ -16,7 +16,7 @@ func init() {
 	carapace.Gen(operation_revertCmd).Standalone()
 
 	operation_revertCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
-	operation_revertCmd.Flags().StringSlice("what", nil, "What portions of the local state to restore (can be repeated)")
+	operation_revertCmd.Flags().StringSlice("what", []string{"repo", "remote-tracking"}, "What portions of the local state to restore (can be repeated)")
 	operationCmd.AddCommand(operation_revertCmd)
 
 	carapace.Gen(operation_revertCmd).FlagCompletion(carapace.ActionMap{

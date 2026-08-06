@@ -20,7 +20,8 @@ func init() {
 	git_fetchCmd.Flags().StringSliceP("branch", "b", nil, "Name of the branch to fetch (can be repeated)")
 	git_fetchCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	git_fetchCmd.Flags().StringSlice("remote", nil, "The remote to fetch from (only named remotes are supported, can be repeated)")
-	git_fetchCmd.Flags().Bool("tracked", false, "Fetch only tracked bookmarks")
+	git_fetchCmd.Flags().StringSliceP("tag", "t", nil, "Fetch only some of the tags (can be repeated)")
+	git_fetchCmd.Flags().Bool("tracked", false, "Fetch only tracked bookmarks and tags")
 	git_fetchCmd.Flag("bookmark").Hidden = true
 	gitCmd.AddCommand(git_fetchCmd)
 

@@ -20,7 +20,7 @@ func init() {
 	workspace_addCmd.Flags().String("name", "", "A name for the workspace")
 	workspace_addCmd.Flags().StringSliceP("revision", "r", nil, "A list of parent revisions for the working-copy commit of the newly created workspace. You may specify nothing, or any number of parents")
 	workspace_addCmd.Flags().StringSlice("revisions", nil, "A list of parent revisions for the working-copy commit of the newly created workspace. You may specify nothing, or any number of parents")
-	workspace_addCmd.Flags().String("sparse-patterns", "", "How to handle sparse patterns when creating a new workspace")
+	workspace_addCmd.Flags().String("sparse-patterns", "copy", "How to handle sparse patterns when creating a new workspace")
 	workspace_addCmd.Flag("revisions").Hidden = true
 	workspaceCmd.AddCommand(workspace_addCmd)
 
