@@ -62,7 +62,7 @@ Returns context‑aware, dynamic completions for shell commands.
 
 **How it works:**
 
-The first element in `args` is the command name (not a flag). The remaining elements are the arguments to complete, including the partial word being completed.
+The first element in `args` is the command name (not a flag). The remaining elements are the arguments to complete, including the partial word being completed. The command name is `args[0]` — it selects which completer to invoke. It is **not** stripped: the full `args` array (including `args[0]`) is passed through to the completer, so the CLI equivalent is `carapace <args[0]> export <args[0]> <args[1]> ...`. See the worked examples and CLI equivalents table below.
 
 The behavior depends on which optional parameters are provided:
 
@@ -119,13 +119,15 @@ The behavior depends on which optional parameters are provided:
 
 **CLI equivalents:**
 
-| Mode | CLI equivalent |
-|------|---------------|
-| Default | `carapace <cmd> export <args...>` |
-| Bridge only | `carapace <cmd>/<bridge> export <args...>` |
-| Executable + carapace-bin | `<executable> <cmd> export <args...>` |
-| Executable + carapace-bin/bridge | `<executable> <cmd>/<bridge> export <args...>` |
-| Executable + other bridge | Bridge action invoked directly with `executable` as target (e.g. cobra: `<executable> __complete <args...>`, carapace: `<executable> _carapace export <args...>`) |
+The command name (`args[0]`) appears **twice** in the CLI form: once as `<cmd>` to select the completer, and again as the first element of `<args...>` since the args array is passed verbatim. For example, `{"args": ["git", "checkout", ""]}` maps to `carapace git export git checkout ""`.
+
+| Mode | MCP input | CLI equivalent |
+|------|-----------|----------------|
+| Default | `{"args": ["git", "checkout", ""]}` | `carapace git export git checkout ""` |
+| Bridge only | `{"args": ["tail", ""], "bridge": "zsh"}` | `carapace tail/zsh export tail ""` |
+| Executable + carapace-bin | `{"args": ["git", ""], "executable": "/p/carapace", "bridge": "carapace-bin"}` | `/p/carapace git export git ""` |
+| Executable + carapace-bin/bridge | `{"args": ["git", ""], "executable": "/p/carapace", "bridge": "carapace-bin/cobra"}` | `/p/carapace git/cobra export git ""` |
+| Executable + other bridge | `{"args": ["myapp", ""], "executable": "/p/myapp", "bridge": "cobra"}` | cobra bridge calls `/p/myapp __complete myapp ""` directly |
 
 ### `complete_macro` — Macro Completion
 
