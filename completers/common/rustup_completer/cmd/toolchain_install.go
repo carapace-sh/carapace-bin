@@ -9,7 +9,7 @@ import (
 var toolchain_installCmd = &cobra.Command{
 	Use:     "install",
 	Short:   "Install or update the given toolchains, or by default the active toolchain",
-	Aliases: []string{"update", "add"},
+	Aliases: []string{"update", "up", "add"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
@@ -22,6 +22,8 @@ func init() {
 	toolchain_installCmd.Flags().Bool("force-non-host", false, "Install toolchains that require an emulator. See https://github.com/rust-lang/rustup/wiki/Non-host-toolchains")
 	toolchain_installCmd.Flags().BoolP("help", "h", false, "Print help")
 	toolchain_installCmd.Flags().Bool("no-self-update", false, "Don't perform self update when running the `rustup toolchain install` command")
+	toolchain_installCmd.Flags().Bool("no-update", false, "Don't try to update the installed toolchain")
+	toolchain_installCmd.Flags().Bool("override", false, "Set the installed toolchain as the override for the current directory")
 	toolchain_installCmd.Flags().String("profile", "", "")
 	toolchain_installCmd.Flags().StringSliceP("target", "t", nil, "Comma-separated list of targets to be added on installation")
 	toolchainCmd.AddCommand(toolchain_installCmd)

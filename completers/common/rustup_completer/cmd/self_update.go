@@ -6,9 +6,10 @@ import (
 )
 
 var self_updateCmd = &cobra.Command{
-	Use:   "update",
-	Short: "Download and install updates to rustup",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "update",
+	Short:   "Download and install updates to rustup",
+	Aliases: []string{"up"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
