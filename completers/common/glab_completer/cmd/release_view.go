@@ -7,7 +7,7 @@ import (
 )
 
 var release_viewCmd = &cobra.Command{
-	Use:   "view <tag>",
+	Use:   "view [<tag>]",
 	Short: "View information about a GitLab release.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
@@ -15,6 +15,8 @@ var release_viewCmd = &cobra.Command{
 func init() {
 	carapace.Gen(release_viewCmd).Standalone()
 
+	release_viewCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
+	release_viewCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
 	release_viewCmd.Flags().BoolP("web", "w", false, "Open the release in the browser.")
 	releaseCmd.AddCommand(release_viewCmd)
 

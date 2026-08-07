@@ -15,6 +15,7 @@ var repo_searchCmd = &cobra.Command{
 func init() {
 	carapace.Gen(repo_searchCmd).Standalone()
 
+	repo_searchCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
 	repo_searchCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
 	repo_searchCmd.Flags().StringP("page", "p", "", "Page number.")
 	repo_searchCmd.Flags().StringP("per-page", "P", "", "Number of items to list per page.")

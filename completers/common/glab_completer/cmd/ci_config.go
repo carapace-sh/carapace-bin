@@ -7,7 +7,7 @@ import (
 
 var ci_configCmd = &cobra.Command{
 	Use:   "config <command> [flags]",
-	Short: "Work with GitLab CI/CD configuration.",
+	Short: "View and inspect GitLab CI/CD configuration.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

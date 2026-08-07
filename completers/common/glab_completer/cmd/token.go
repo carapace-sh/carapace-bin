@@ -8,7 +8,7 @@ import (
 
 var tokenCmd = &cobra.Command{
 	Use:     "token",
-	Short:   "Manage personal, project, or group tokens",
+	Short:   "Manage personal, project, or group tokens.",
 	Aliases: []string{"token"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }

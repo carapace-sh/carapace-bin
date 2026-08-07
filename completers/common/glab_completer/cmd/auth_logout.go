@@ -8,7 +8,7 @@ import (
 
 var auth_logoutCmd = &cobra.Command{
 	Use:   "logout",
-	Short: "Logout from a GitLab instance.",
+	Short: "Log out from a GitLab instance.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

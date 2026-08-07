@@ -7,7 +7,7 @@ import (
 )
 
 var ci_retryCmd = &cobra.Command{
-	Use:   "retry <job-id>",
+	Use:   "retry [<job-id | job-name>]",
 	Short: "Retry a CI/CD job.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
@@ -15,7 +15,7 @@ var ci_retryCmd = &cobra.Command{
 func init() {
 	carapace.Gen(ci_retryCmd).Standalone()
 
-	ci_retryCmd.Flags().StringP("branch", "b", "", "The branch to search for the job. (default current branch)")
+	ci_retryCmd.Flags().StringP("branch", "b", "", "The branch to search for the job. Defaults to the current branch.")
 	ci_retryCmd.Flags().StringP("pipeline-id", "p", "", "The pipeline ID to search for the job.")
 	ciCmd.AddCommand(ci_retryCmd)
 

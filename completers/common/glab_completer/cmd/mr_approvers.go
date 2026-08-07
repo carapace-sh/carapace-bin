@@ -15,6 +15,8 @@ var mr_approversCmd = &cobra.Command{
 func init() {
 	carapace.Gen(mr_approversCmd).Standalone()
 
+	mr_approversCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
+	mr_approversCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
 	mrCmd.AddCommand(mr_approversCmd)
 
 	carapace.Gen(mr_approversCmd).PositionalCompletion(

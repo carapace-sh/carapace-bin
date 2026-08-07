@@ -16,11 +16,11 @@ var snippet_createCmd = &cobra.Command{
 func init() {
 	carapace.Gen(snippet_createCmd).Standalone()
 
-	snippet_createCmd.Flags().StringP("description", "d", "", "Description of the snippet.")
+	snippet_createCmd.Flags().StringP("description", "d", "", "Description of the snippet. Set to \"-\" to open an editor.")
 	snippet_createCmd.Flags().StringP("filename", "f", "", "Filename of the snippet in GitLab.")
 	snippet_createCmd.Flags().BoolP("personal", "p", false, "Create a personal snippet.")
 	snippet_createCmd.Flags().StringP("title", "t", "", "(required) Title of the snippet.")
-	snippet_createCmd.Flags().StringP("visibility", "v", "", "Limit by visibility: 'public', 'internal', or 'private'")
+	snippet_createCmd.Flags().StringP("visibility", "v", "", "Limit by visibility: 'public', 'internal', or 'private'.")
 	snippetCmd.AddCommand(snippet_createCmd)
 
 	carapace.Gen(snippet_createCmd).FlagCompletion(carapace.ActionMap{

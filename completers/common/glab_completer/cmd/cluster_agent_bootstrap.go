@@ -6,7 +6,7 @@ import (
 )
 
 var cluster_agent_bootstrapCmd = &cobra.Command{
-	Use:     "bootstrap agent-name [flags]",
+	Use:     "bootstrap <agent-name> [flags]",
 	Short:   "Bootstrap a GitLab Agent for Kubernetes in a project.",
 	Aliases: []string{"bs"},
 	Run:     func(cmd *cobra.Command, args []string) {},
@@ -15,8 +15,8 @@ var cluster_agent_bootstrapCmd = &cobra.Command{
 func init() {
 	carapace.Gen(cluster_agent_bootstrapCmd).Standalone()
 
-	cluster_agent_bootstrapCmd.Flags().String("commit-author-email", "", "The Git commit author email to use. Conflicts with the --use-api-commit-author flag.")
-	cluster_agent_bootstrapCmd.Flags().String("commit-author-name", "", "The Git commit author name to use. Conflicts with the --use-api-commit-author flag.")
+	cluster_agent_bootstrapCmd.Flags().String("commit-author-email", "", "The Git commit author email to use. Conflicts with '--use-api-commit-author'.")
+	cluster_agent_bootstrapCmd.Flags().String("commit-author-name", "", "The Git commit author name to use. Conflicts with '--use-api-commit-author'.")
 	cluster_agent_bootstrapCmd.Flags().Bool("create-environment", false, "Create an environment for the GitLab Agent.")
 	cluster_agent_bootstrapCmd.Flags().Bool("create-flux-environment", false, "Create an environment for FluxCD. Affects only the environment creation, not the use of Flux itself. Flux is always required for the bootstrap process.")
 	cluster_agent_bootstrapCmd.Flags().String("environment-flux-resource-path", "", "Flux resource path of the environment for the GitLab Agent.")
@@ -33,16 +33,16 @@ func init() {
 	cluster_agent_bootstrapCmd.Flags().String("helm-release-name", "", "Name of the Flux HelmRelease manifest.")
 	cluster_agent_bootstrapCmd.Flags().String("helm-release-namespace", "", "Namespace of the Flux HelmRelease manifest.")
 	cluster_agent_bootstrapCmd.Flags().String("helm-release-target-namespace", "", "Namespace of the GitLab Agent deployment.")
-	cluster_agent_bootstrapCmd.Flags().StringSlice("helm-release-values", nil, "Local path to values.yaml files")
-	cluster_agent_bootstrapCmd.Flags().StringSlice("helm-release-values-from", nil, "Kubernetes object reference that contains the values.yaml data key in the format '<kind>/<name>', where 'kind' must be one of: (Secret, ConfigMap)")
+	cluster_agent_bootstrapCmd.Flags().StringSlice("helm-release-values", nil, "Local path to values.yaml files. Multiple files can be comma-separated or specified by repeating the flag.")
+	cluster_agent_bootstrapCmd.Flags().StringSlice("helm-release-values-from", nil, "Kubernetes object reference that contains the values.yaml data key in the format '<kind>/<name>', where 'kind' must be one of: (Secret, ConfigMap). Multiple references can be comma-separated or specified by repeating the flag.")
 	cluster_agent_bootstrapCmd.Flags().String("helm-repository-address", "", "Address of the HelmRepository.")
 	cluster_agent_bootstrapCmd.Flags().String("helm-repository-filepath", "", "File path within the GitLab Agent project to commit the Flux HelmRepository to.")
 	cluster_agent_bootstrapCmd.Flags().String("helm-repository-name", "", "Name of the Flux HelmRepository manifest.")
 	cluster_agent_bootstrapCmd.Flags().String("helm-repository-namespace", "", "Namespace of the Flux HelmRepository manifest.")
-	cluster_agent_bootstrapCmd.Flags().StringP("manifest-branch", "b", "", "Branch to commit the Flux Manifests to. (default to the project default branch)")
+	cluster_agent_bootstrapCmd.Flags().StringP("manifest-branch", "b", "", "Branch to commit the Flux Manifests to. Defaults to the project default branch.")
 	cluster_agent_bootstrapCmd.Flags().StringP("manifest-path", "p", "", "Location of directory in Git repository for storing the GitLab Agent for Kubernetes Helm resources.")
 	cluster_agent_bootstrapCmd.Flags().Bool("no-reconcile", false, "Do not trigger Flux reconciliation for GitLab Agent for Kubernetes Flux resource.")
-	cluster_agent_bootstrapCmd.Flags().Bool("use-api-commit-author", false, "When creating Git commits use the user from the authenticated API request. Conflicts with the --commit-author-name and --commit-author-email flags.")
+	cluster_agent_bootstrapCmd.Flags().Bool("use-api-commit-author", false, "When creating Git commits use the user from the authenticated API request. Conflicts with '--commit-author-name' and '--commit-author-email'.")
 	cluster_agentCmd.AddCommand(cluster_agent_bootstrapCmd)
 
 	// TODO flag completion

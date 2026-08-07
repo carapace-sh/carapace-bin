@@ -7,7 +7,7 @@ import (
 
 var job_artifactCmd = &cobra.Command{
 	Use:     "artifact <refName> <jobName> [flags]",
-	Short:   "Download all artifacts from the last pipeline.",
+	Short:   "Download all artifacts from the most recent pipeline.",
 	Aliases: []string{"push"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }

@@ -16,8 +16,9 @@ func init() {
 	carapace.Gen(issue_board_viewCmd).Standalone()
 
 	issue_board_viewCmd.Flags().StringP("assignee", "a", "", "Filter board issues by assignee username.")
-	issue_board_viewCmd.Flags().StringSliceP("labels", "l", nil, "Filter board issues by labels, comma separated.")
+	issue_board_viewCmd.Flags().StringSliceP("labels", "l", nil, "Filter board issues by labels. Multiple labels can be comma-separated or specified by repeating the flag.")
 	issue_board_viewCmd.Flags().StringP("milestone", "m", "", "Filter board issues by milestone.")
+	issue_board_viewCmd.Flags().Bool("paginate", false, "Make additional HTTP requests to retrieve all board issues.")
 	issue_boardCmd.AddCommand(issue_board_viewCmd)
 
 	carapace.Gen(issue_board_viewCmd).FlagCompletion(carapace.ActionMap{

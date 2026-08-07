@@ -14,6 +14,8 @@ var deployKey_getCmd = &cobra.Command{
 func init() {
 	carapace.Gen(deployKey_getCmd).Standalone()
 
+	deployKey_getCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
+	deployKey_getCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
 	deployKeyCmd.AddCommand(deployKey_getCmd)
 
 	// TODO positional completion

@@ -7,7 +7,7 @@ import (
 
 var label_listCmd = &cobra.Command{
 	Use:     "list [flags]",
-	Short:   "List labels in the repository.",
+	Short:   "List labels in a project or group.",
 	Aliases: []string{"ls"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
@@ -16,6 +16,7 @@ func init() {
 	carapace.Gen(label_listCmd).Standalone()
 
 	label_listCmd.Flags().StringP("group", "g", "", "List labels for a group.")
+	label_listCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
 	label_listCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
 	label_listCmd.Flags().StringP("page", "p", "", "Page number.")
 	label_listCmd.Flags().StringP("per-page", "P", "", "Number of items to list per page.")

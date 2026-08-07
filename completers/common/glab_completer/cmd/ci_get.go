@@ -8,7 +8,7 @@ import (
 
 var ci_getCmd = &cobra.Command{
 	Use:     "get [flags]",
-	Short:   "Get JSON of a running CI/CD pipeline on the current or other specified branch.",
+	Short:   "Get the details of a CI/CD pipeline.",
 	Aliases: []string{"stats"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
@@ -16,12 +16,16 @@ var ci_getCmd = &cobra.Command{
 func init() {
 	carapace.Gen(ci_getCmd).Standalone()
 
-	ci_getCmd.Flags().StringP("branch", "b", "", "Check pipeline status for a branch. (default current branch)")
+	ci_getCmd.Flags().StringP("branch", "b", "", "Get the pipeline for a branch. Defaults to the current branch.")
+	ci_getCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
+	ci_getCmd.Flags().String("merge-request", "", "Show the pipeline for the given merge request <iid>.")
 	ci_getCmd.Flags().StringP("output", "F", "", "Format output. Options: text, json.")
 	ci_getCmd.Flags().StringP("output-format", "o", "", "Use output.")
-	ci_getCmd.Flags().StringP("pipeline-id", "p", "", "Provide pipeline ID.")
+	ci_getCmd.Flags().StringP("pipeline-id", "p", "", "Get the pipeline with the given <id>.")
+	ci_getCmd.Flags().StringP("status", "s", "", "Show only jobs in the given state. Passed through to the API's scope parameter.")
 	ci_getCmd.Flags().BoolP("with-job-details", "d", false, "Show extended job information.")
 	ci_getCmd.Flags().Bool("with-variables", false, "Show variables in pipeline. Requires the Maintainer role.")
+	ci_getCmd.Flag("output-format").Hidden = true
 	ci_getCmd.Flag("output-format").Hidden = true
 	ciCmd.AddCommand(ci_getCmd)
 

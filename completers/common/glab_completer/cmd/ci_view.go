@@ -7,8 +7,8 @@ import (
 )
 
 var ci_viewCmd = &cobra.Command{
-	Use:   "view [branch/tag]",
-	Short: "View, run, trace, log, and cancel CI/CD job's current pipeline.",
+	Use:   "view [<branch | tag>]",
+	Short: "View, run, retry, and cancel CI/CD pipeline jobs.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
@@ -16,7 +16,8 @@ func init() {
 	carapace.Gen(ci_viewCmd).Standalone()
 
 	ci_viewCmd.Flags().StringP("branch", "b", "", "Check pipeline status for a branch or tag. Defaults to the current branch.")
-	ci_viewCmd.Flags().BoolP("web", "w", false, "Open pipeline in a browser. Uses default browser, or browser specified in BROWSER variable.")
+	ci_viewCmd.Flags().StringP("pipelineid", "p", "", "Check pipeline status for a specific pipeline ID.")
+	ci_viewCmd.Flags().BoolP("web", "w", false, "Open pipeline in a browser. Uses the default browser, or the browser specified in the BROWSER environment variable.")
 	ciCmd.AddCommand(ci_viewCmd)
 
 	carapace.Gen(ci_viewCmd).FlagCompletion(carapace.ActionMap{

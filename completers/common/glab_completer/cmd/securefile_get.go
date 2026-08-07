@@ -6,8 +6,8 @@ import (
 )
 
 var securefile_getCmd = &cobra.Command{
-	Use:     "get <fileID>",
-	Short:   "Get details of a project secure file. (GitLab 18.0 and later)",
+	Use:     "get <id>",
+	Short:   "Get details of a secure file by ID.",
 	Aliases: []string{"show"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
@@ -15,6 +15,7 @@ var securefile_getCmd = &cobra.Command{
 func init() {
 	carapace.Gen(securefile_getCmd).Standalone()
 
+	securefile_getCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
 	securefileCmd.AddCommand(securefile_getCmd)
 
 	// TODO positional completion

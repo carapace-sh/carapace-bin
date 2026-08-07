@@ -16,6 +16,7 @@ func init() {
 	carapace.Gen(variable_getCmd).Standalone()
 
 	variable_getCmd.Flags().StringP("group", "g", "", "Get variable for a group.")
+	variable_getCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
 	variable_getCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
 	variable_getCmd.Flags().StringP("scope", "s", "", "The environment_scope of the variable. Values: all (*), or specific environments.")
 	variableCmd.AddCommand(variable_getCmd)

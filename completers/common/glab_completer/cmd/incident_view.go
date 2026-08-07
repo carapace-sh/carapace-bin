@@ -16,6 +16,7 @@ func init() {
 	carapace.Gen(incident_viewCmd).Standalone()
 
 	incident_viewCmd.Flags().BoolP("comments", "c", false, "Show incident comments and activities.")
+	incident_viewCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
 	incident_viewCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
 	incident_viewCmd.Flags().StringP("page", "p", "", "Page number.")
 	incident_viewCmd.Flags().StringP("per-page", "P", "", "Number of items to list per page.")

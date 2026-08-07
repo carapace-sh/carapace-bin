@@ -7,7 +7,7 @@ import (
 
 var duoCmd = &cobra.Command{
 	Use:   "duo <command> prompt",
-	Short: "Work with GitLab Duo",
+	Short: "Work with GitLab Duo.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

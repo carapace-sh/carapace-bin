@@ -7,7 +7,7 @@ import (
 
 var cluster_agent_token_revokeCmd = &cobra.Command{
 	Use:   "revoke <agent-id> <token-id>",
-	Short: "Revoke a token of an agent.",
+	Short: "Revoke an agent token.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

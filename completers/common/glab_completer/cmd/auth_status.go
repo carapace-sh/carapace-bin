@@ -15,7 +15,8 @@ var auth_statusCmd = &cobra.Command{
 func init() {
 	carapace.Gen(auth_statusCmd).Standalone()
 
-	auth_statusCmd.Flags().String("hostname", "", "Check a specific instance's authentication status.")
+	auth_statusCmd.Flags().BoolP("all", "a", false, "Check the authentication status of all configured instances.")
+	auth_statusCmd.Flags().String("hostname", "", "Check the authentication status of a specific instance.")
 	auth_statusCmd.Flags().BoolP("show-token", "t", false, "Display the authentication token.")
 	authCmd.AddCommand(auth_statusCmd)
 

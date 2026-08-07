@@ -8,15 +8,15 @@ import (
 
 var issue_updateCmd = &cobra.Command{
 	Use:   "update <id>",
-	Short: "Update issue",
+	Short: "Update issue.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(issue_updateCmd).Standalone()
 
-	issue_updateCmd.Flags().StringSliceP("assignee", "a", nil, "Assign users by username. Prefix with '!' or '-' to remove from existing assignees, or '+' to add new. Otherwise, replace existing assignees with these users.")
-	issue_updateCmd.Flags().BoolP("confidential", "c", false, "Make issue confidential")
+	issue_updateCmd.Flags().StringSliceP("assignee", "a", nil, "Assign users by username. Prefix with '!' or '-' to remove from existing assignees, or '+' to add new. Otherwise, replace existing assignees with these users. Multiple usernames can be comma-separated or specified by repeating the flag.")
+	issue_updateCmd.Flags().BoolP("confidential", "c", false, "Make issue confidential.")
 	issue_updateCmd.Flags().StringP("description", "d", "", "Issue description. Set to \"-\" to open an editor.")
 	issue_updateCmd.Flags().String("due-date", "", "A date in 'YYYY-MM-DD' format.")
 	issue_updateCmd.Flags().StringSliceP("label", "l", nil, "Add labels.")
