@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/glab_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,8 @@ func init() {
 
 	mr_note_updateCmd.Flags().StringP("message", "m", "", "New note body. If omitted, opens an editor or reads from stdin.")
 	mr_noteCmd.AddCommand(mr_note_updateCmd)
+
+	carapace.Gen(mr_note_updateCmd).PositionalAnyCompletion(
+		action.ActionMergeRequestsAndBranches(mr_note_updateCmd, ""),
+	)
 }

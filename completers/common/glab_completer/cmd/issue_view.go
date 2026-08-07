@@ -25,7 +25,11 @@ func init() {
 	issue_viewCmd.Flags().BoolP("web", "w", false, "Open issue in a browser. Uses the default browser, or the browser specified in the $BROWSER variable.")
 	issueCmd.AddCommand(issue_viewCmd)
 
+	carapace.Gen(issue_viewCmd).FlagCompletion(carapace.ActionMap{
+		"output": carapace.ActionValues("text", "json"),
+	})
+
 	carapace.Gen(issue_viewCmd).PositionalCompletion(
-		action.ActionIssues(issue_closeCmd, "opened"),
+		action.ActionIssues(issue_viewCmd, "opened"),
 	)
 }

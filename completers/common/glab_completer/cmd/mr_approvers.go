@@ -19,6 +19,10 @@ func init() {
 	mr_approversCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
 	mrCmd.AddCommand(mr_approversCmd)
 
+	carapace.Gen(mr_approversCmd).FlagCompletion(carapace.ActionMap{
+		"output": carapace.ActionValues("text", "json"),
+	})
+
 	carapace.Gen(mr_approversCmd).PositionalCompletion(
 		action.ActionMergeRequestsAndBranches(mr_approversCmd, ""),
 	)

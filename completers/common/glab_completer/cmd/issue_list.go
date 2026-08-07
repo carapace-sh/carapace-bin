@@ -44,8 +44,6 @@ func init() {
 	issue_listCmd.Flags().StringP("sort", "s", "", "Sort direction for --order field: asc or desc.")
 	issue_listCmd.Flag("mine").Hidden = true
 	issue_listCmd.Flag("opened").Hidden = true
-	issue_listCmd.Flag("opened").Hidden = true
-	issue_listCmd.Flag("mine").Hidden = true
 	issueCmd.AddCommand(issue_listCmd)
 
 	// TODO complete epic, iteration

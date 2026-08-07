@@ -48,8 +48,6 @@ func init() {
 	mr_listCmd.Flags().StringP("target-branch", "t", "", "Filter by target branch <name>.")
 	mr_listCmd.Flag("mine").Hidden = true
 	mr_listCmd.Flag("opened").Hidden = true
-	mr_listCmd.Flag("opened").Hidden = true
-	mr_listCmd.Flag("mine").Hidden = true
 	mrCmd.AddCommand(mr_listCmd)
 
 	carapace.Gen(mr_listCmd).FlagCompletion(carapace.ActionMap{
@@ -59,7 +57,7 @@ func init() {
 		"label":         action.ActionLabels(mr_listCmd).UniqueList(","),
 		"milestone":     action.ActionMilestones(mr_listCmd),
 		"not-label":     action.ActionLabels(mr_listCmd).UniqueList(","),
-		"order":         carapace.ActionValues("created_at", "title", "merged_at", "updated_at"),
+		"order":         carapace.ActionValues("created_at", "merged_at", "title", "updated_at", "priority", "label_priority", "milestone_due", "popularity"),
 		"repo":          action.ActionRepo(mr_listCmd),
 		"reviewer":      action.ActionProjectMembers(mr_listCmd).UniqueList(","),
 		"sort":          carapace.ActionValues("asc", "desc").StyleF(style.ForKeyword),
