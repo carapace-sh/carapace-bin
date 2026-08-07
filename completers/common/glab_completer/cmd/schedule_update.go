@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/glab_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -24,5 +25,10 @@ func init() {
 	schedule_updateCmd.Flags().StringSlice("update-variable", nil, "Pass updated variables to schedule in format <key>:<value>.")
 	scheduleCmd.AddCommand(schedule_updateCmd)
 
-	// TODO add completions
+	carapace.Gen(schedule_updateCmd).FlagCompletion(carapace.ActionMap{
+		"ref": carapace.Batch(
+			action.ActionBranches(schedule_updateCmd),
+			action.ActionTags(schedule_updateCmd),
+		).ToA(),
+	})
 }

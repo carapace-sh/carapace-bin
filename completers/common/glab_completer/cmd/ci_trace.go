@@ -19,8 +19,9 @@ func init() {
 	ci_traceCmd.Flags().StringP("pipeline-id", "p", "", "The pipeline ID to search for the job.")
 	ciCmd.AddCommand(ci_traceCmd)
 
-	carapace.Gen(ci_statusCmd).FlagCompletion(carapace.ActionMap{
-		"branch": action.ActionBranches(ci_statusCmd),
+	carapace.Gen(ci_traceCmd).FlagCompletion(carapace.ActionMap{
+		"branch":      action.ActionBranches(ci_traceCmd),
+		"pipeline-id": action.ActionPipelines(ci_traceCmd, ""),
 	})
 
 	// TODO complete job ids

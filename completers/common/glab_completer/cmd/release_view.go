@@ -20,6 +20,10 @@ func init() {
 	release_viewCmd.Flags().BoolP("web", "w", false, "Open the release in the browser.")
 	releaseCmd.AddCommand(release_viewCmd)
 
+	carapace.Gen(release_viewCmd).FlagCompletion(carapace.ActionMap{
+		"output": carapace.ActionValues("text", "json"),
+	})
+
 	carapace.Gen(release_viewCmd).PositionalCompletion(
 		action.ActionReleases(release_viewCmd),
 	)

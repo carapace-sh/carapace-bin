@@ -26,13 +26,14 @@ func init() {
 	ci_getCmd.Flags().BoolP("with-job-details", "d", false, "Show extended job information.")
 	ci_getCmd.Flags().Bool("with-variables", false, "Show variables in pipeline. Requires the Maintainer role.")
 	ci_getCmd.Flag("output-format").Hidden = true
-	ci_getCmd.Flag("output-format").Hidden = true
 	ciCmd.AddCommand(ci_getCmd)
 
 	carapace.Gen(ci_getCmd).FlagCompletion(carapace.ActionMap{
 		"branch":        action.ActionBranches(ci_getCmd),
+		"merge-request": action.ActionMergeRequests(ci_getCmd, "opened"),
 		"output":        carapace.ActionValues("text", "json"),
 		"output-format": carapace.ActionValues("text", "json"),
 		"pipeline-id":   action.ActionPipelines(ci_getCmd, ""),
+		"status":        carapace.ActionValues("running", "pending", "success", "failed", "canceled", "skipped", "created", "manual", "waiting_for_resource", "preparing", "scheduled"),
 	})
 }

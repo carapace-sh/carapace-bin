@@ -36,8 +36,10 @@ func init() {
 
 	// TODO complete new flags
 	carapace.Gen(ci_listCmd).FlagCompletion(carapace.ActionMap{
+		"order":   carapace.ActionValues("id", "status", "ref", "updated_at", "user_id"),
 		"orderBy": carapace.ActionValues("id", "status", "ref", "updated_at", "user_id"),
 		"output":  carapace.ActionValues("text", "json"),
+		"scope":   carapace.ActionValues("running", "pending", "finished", "branches", "tags"),
 		"sort":    carapace.ActionValues("asc", "desc"),
 		"status":  carapace.ActionValues("running", "pending", "success", "failed", "canceled", "skipped", "created", "manual", "waiting_for_resource", "preparing", "scheduled"),
 	})

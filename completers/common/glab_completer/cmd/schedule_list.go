@@ -19,4 +19,8 @@ func init() {
 	schedule_listCmd.Flags().StringP("page", "p", "", "Page number.")
 	schedule_listCmd.Flags().StringP("per-page", "P", "", "Number of items to list per page.")
 	scheduleCmd.AddCommand(schedule_listCmd)
+
+	carapace.Gen(schedule_listCmd).FlagCompletion(carapace.ActionMap{
+		"output": carapace.ActionValues("text", "json"),
+	})
 }

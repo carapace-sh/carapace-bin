@@ -21,10 +21,13 @@ func init() {
 	ciCmd.AddCommand(ci_lintCmd)
 
 	carapace.Gen(ci_lintCmd).FlagCompletion(carapace.ActionMap{
-		"ref": action.ActionBranches(ci_lintCmd), // TODO refs
+		"ref": carapace.Batch(
+			action.ActionBranches(ci_lintCmd),
+			action.ActionTags(ci_lintCmd),
+		).ToA(),
 	})
 
 	carapace.Gen(ci_lintCmd).PositionalCompletion(
-		carapace.ActionFiles(".gitlab-ci.yml"),
+		carapace.ActionFiles(".gitlab-ci.yml", ".gitlab-ci.yaml", ".yml", ".yaml"),
 	)
 }

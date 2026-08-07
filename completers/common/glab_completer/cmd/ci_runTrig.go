@@ -22,6 +22,6 @@ func init() {
 	ciCmd.AddCommand(ci_runTrigCmd)
 
 	carapace.Gen(ci_runTrigCmd).FlagCompletion(carapace.ActionMap{
-		"branch": action.ActionBranches(ci_runCmd),
+		"branch": action.ActionBranches(ci_runTrigCmd),
 	})
 }

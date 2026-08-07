@@ -24,7 +24,7 @@ func init() {
 		"group": action.ActionGroups(variable_deleteCmd),
 		"scope": carapace.Batch(
 			carapace.ActionValues("*"),
-			action.ActionEnvironments(variable_updateCmd),
+			action.ActionEnvironments(variable_deleteCmd),
 		).ToA(),
 	})
 

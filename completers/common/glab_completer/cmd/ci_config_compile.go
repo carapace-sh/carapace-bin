@@ -15,4 +15,8 @@ func init() {
 	carapace.Gen(ci_config_compileCmd).Standalone()
 
 	ci_configCmd.AddCommand(ci_config_compileCmd)
+
+	carapace.Gen(ci_config_compileCmd).PositionalCompletion(
+		carapace.ActionFiles(".gitlab-ci.yml", ".gitlab-ci.yaml"),
+	)
 }
