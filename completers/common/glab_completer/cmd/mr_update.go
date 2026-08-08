@@ -15,7 +15,7 @@ var mr_updateCmd = &cobra.Command{
 func init() {
 	carapace.Gen(mr_updateCmd).Standalone()
 
-	mr_updateCmd.Flags().StringSliceP("assignee", "a", nil, "Assign users via username. Prefix with '!' or '-' to remove from existing assignees, '+' to add. Otherwise, replace existing assignees with given users.")
+	mr_updateCmd.Flags().StringSliceP("assignee", "a", nil, "Assign users via username. Prefix with '!' or '-' to remove from existing assignees, '+' to add. Otherwise, replace existing assignees with given users. Multiple usernames can be comma-separated or specified by repeating the flag.")
 	mr_updateCmd.Flags().StringP("description", "d", "", "Merge request description. Set to \"-\" to open an editor.")
 	mr_updateCmd.Flags().Bool("draft", false, "Mark merge request as a draft.")
 	mr_updateCmd.Flags().BoolP("fill", "f", false, "Do not prompt for title or body, and just use commit info.")
@@ -25,7 +25,7 @@ func init() {
 	mr_updateCmd.Flags().StringP("milestone", "m", "", "Title of the milestone to assign. Set to \"\" or 0 to unassign.")
 	mr_updateCmd.Flags().BoolP("ready", "r", false, "Mark merge request as ready to be reviewed and merged.")
 	mr_updateCmd.Flags().Bool("remove-source-branch", false, "Toggles the removal of the source branch on merge.")
-	mr_updateCmd.Flags().StringSlice("reviewer", nil, "Request review from users by their usernames. Prefix with '!' or '-' to remove from existing reviewers, '+' to add. Otherwise, replace existing reviewers with given users.")
+	mr_updateCmd.Flags().StringSlice("reviewer", nil, "Request review from users by their usernames. Prefix with '!' or '-' to remove from existing reviewers, '+' to add. Otherwise, replace existing reviewers with given users. Multiple usernames can be comma-separated or specified by repeating the flag.")
 	mr_updateCmd.Flags().Bool("squash-before-merge", false, "Toggles the option to squash commits into a single commit when merging.")
 	mr_updateCmd.Flags().String("target-branch", "", "Set target branch.")
 	mr_updateCmd.Flags().StringP("title", "t", "", "Title of merge request.")

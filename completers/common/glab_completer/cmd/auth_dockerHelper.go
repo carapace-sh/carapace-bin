@@ -7,7 +7,7 @@ import (
 
 var auth_dockerHelperCmd = &cobra.Command{
 	Use:   "docker-helper",
-	Short: "A Docker credential helper for GitLab container registries",
+	Short: "A Docker credential helper for GitLab container registries.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

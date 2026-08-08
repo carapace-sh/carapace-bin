@@ -7,7 +7,7 @@ import (
 )
 
 var ci_triggerCmd = &cobra.Command{
-	Use:   "trigger <job-id>",
+	Use:   "trigger [<job-id | job-name>]",
 	Short: "Trigger a manual CI/CD job.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
@@ -15,7 +15,7 @@ var ci_triggerCmd = &cobra.Command{
 func init() {
 	carapace.Gen(ci_triggerCmd).Standalone()
 
-	ci_triggerCmd.Flags().StringP("branch", "b", "", "The branch to search for the job. (default current branch)")
+	ci_triggerCmd.Flags().StringP("branch", "b", "", "The branch to search for the job. Defaults to the current branch.")
 	ci_triggerCmd.Flags().StringP("pipeline-id", "p", "", "The pipeline ID to search for the job.")
 	ciCmd.AddCommand(ci_triggerCmd)
 

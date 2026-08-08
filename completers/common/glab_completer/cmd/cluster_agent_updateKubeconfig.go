@@ -7,7 +7,7 @@ import (
 
 var cluster_agent_updateKubeconfigCmd = &cobra.Command{
 	Use:   "update-kubeconfig [flags]",
-	Short: "Update selected kubeconfig.",
+	Short: "Update your kubeconfig for use with a GitLab Agent for Kubernetes.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
@@ -15,7 +15,7 @@ func init() {
 	carapace.Gen(cluster_agent_updateKubeconfigCmd).Standalone()
 
 	cluster_agent_updateKubeconfigCmd.Flags().StringP("agent", "a", "", "The numeric agent ID to create the kubeconfig entry for.")
-	cluster_agent_updateKubeconfigCmd.Flags().StringP("cache-mode", "c", "", "Mode to use for caching the token. Allowed values: keyring-filesystem-fallback, force-keyring, force-filesystem, no")
+	cluster_agent_updateKubeconfigCmd.Flags().StringP("cache-mode", "c", "", "Mode to use for caching the token. Allowed values: keyring-filesystem-fallback, force-keyring, force-filesystem, no.")
 	cluster_agent_updateKubeconfigCmd.Flags().Bool("check-revoked", false, "Check if a cached token is revoked. Requires an API call to GitLab, which adds latency every time a cached token is accessed.")
 	cluster_agent_updateKubeconfigCmd.Flags().String("kubeconfig", "", "Use a particular kubeconfig file.")
 	cluster_agent_updateKubeconfigCmd.Flags().String("token-expiry-duration", "", "Duration for generated token's validity. Minimum is 1 day. Expires at end of day, and ignores time.")

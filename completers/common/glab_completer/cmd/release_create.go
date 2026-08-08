@@ -17,7 +17,7 @@ func init() {
 
 	release_createCmd.Flags().StringP("assets-links", "a", "", "JSON string representation of assets links. See documentation for example.")
 	release_createCmd.Flags().String("experimental-notes-text-or-file", "", "(EXPERIMENTAL) Value to use as release notes. If a file exists with this value as path, its content will be used. Otherwise, the value itself will be used as text.")
-	release_createCmd.Flags().StringSliceP("milestone", "m", nil, "The title of each milestone the release is associated with.")
+	release_createCmd.Flags().StringSliceP("milestone", "m", nil, "The title of each milestone the release is associated with. Multiple milestones can be comma-separated or specified by repeating the flag.")
 	release_createCmd.Flags().StringP("name", "n", "", "The release name or title.")
 	release_createCmd.Flags().Bool("no-close-milestone", false, "Prevent closing milestones after creating the release.")
 	release_createCmd.Flags().Bool("no-update", false, "Prevent updating the existing release.")
@@ -29,6 +29,7 @@ func init() {
 	release_createCmd.Flags().StringP("released-at", "D", "", "ISO 8601 datetime when the release was ready. Defaults to the current datetime.")
 	release_createCmd.Flags().StringP("tag-message", "T", "", "Message to use if creating a new annotated tag.")
 	release_createCmd.Flags().Bool("use-package-registry", false, "Upload release assets to the generic package registry of the project. Overrides the GITLAB_RELEASE_ASSETS_USE_PACKAGE_REGISTRY environment variable.")
+	release_createCmd.Flag("experimental-notes-text-or-file").Hidden = true
 	release_createCmd.Flag("experimental-notes-text-or-file").Hidden = true
 	releaseCmd.AddCommand(release_createCmd)
 

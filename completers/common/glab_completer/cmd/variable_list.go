@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/glab_completer/cmd/action"
+	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
 )
 
@@ -18,6 +19,7 @@ func init() {
 
 	variable_listCmd.PersistentFlags().StringP("group", "g", "", "Select a group or subgroup. Ignored if a repository argument is set.")
 	variable_listCmd.Flags().BoolP("instance", "i", false, "Display instance variables.")
+	variable_listCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
 	variable_listCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
 	variable_listCmd.Flags().StringP("page", "p", "", "Page number.")
 	variable_listCmd.Flags().StringP("per-page", "P", "", "Number of items to list per page.")
@@ -25,7 +27,9 @@ func init() {
 	variableCmd.AddCommand(variable_listCmd)
 
 	carapace.Gen(variable_listCmd).FlagCompletion(carapace.ActionMap{
-		"group": action.ActionGroups(variable_listCmd),
-		"repo":  action.ActionRepo(variable_listCmd),
+		"group":  action.ActionGroups(variable_listCmd),
+		"jq":     jq.ActionFilters(),
+		"output": carapace.ActionValues("text", "json"),
+		"repo":   action.ActionRepo(variable_listCmd),
 	})
 }

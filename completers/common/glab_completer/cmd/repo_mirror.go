@@ -7,8 +7,8 @@ import (
 )
 
 var repo_mirrorCmd = &cobra.Command{
-	Use:   "mirror [ID | URL | PATH] [flags]",
-	Short: "Mirror a project or repository to the specified location, using pull or push methods.",
+	Use:   "mirror [<id | url | path>] [flags]",
+	Short: "Configure mirroring on an existing project to sync with a remote repository.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

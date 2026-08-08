@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/glab_completer/cmd/action"
+	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
 )
 
@@ -18,6 +19,7 @@ func init() {
 
 	token_listCmd.Flags().BoolP("active", "a", false, "List only the active tokens.")
 	token_listCmd.Flags().StringP("group", "g", "", "List group access tokens. Ignored if a user or repository argument is set.")
+	token_listCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
 	token_listCmd.Flags().StringP("output", "F", "", "Format output as: text, json. text provides a readable table, json outputs the tokens with metadata.")
 	token_listCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. Can use either `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format. Also accepts full URL or Git URL.")
 	token_listCmd.Flags().StringP("user", "U", "", "List personal access tokens. Use @me for the current user.")
@@ -26,6 +28,7 @@ func init() {
 	// TODO complete group
 	carapace.Gen(token_listCmd).FlagCompletion(carapace.ActionMap{
 		"group":  action.ActionGroups(token_listCmd),
+		"jq":     jq.ActionFilters(),
 		"output": carapace.ActionValues("text", "json"),
 		"repo":   action.ActionRepo(token_listCmd),
 		"user":   action.ActionUsers(token_listCmd),

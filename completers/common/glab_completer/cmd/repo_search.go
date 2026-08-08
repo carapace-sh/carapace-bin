@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
 )
 
@@ -15,6 +16,7 @@ var repo_searchCmd = &cobra.Command{
 func init() {
 	carapace.Gen(repo_searchCmd).Standalone()
 
+	repo_searchCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
 	repo_searchCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
 	repo_searchCmd.Flags().StringP("page", "p", "", "Page number.")
 	repo_searchCmd.Flags().StringP("per-page", "P", "", "Number of items to list per page.")
@@ -23,6 +25,7 @@ func init() {
 	repoCmd.AddCommand(repo_searchCmd)
 
 	carapace.Gen(repo_searchCmd).FlagCompletion(carapace.ActionMap{
+		"jq":     jq.ActionFilters(),
 		"output": carapace.ActionValues("text", "json"),
 	})
 }

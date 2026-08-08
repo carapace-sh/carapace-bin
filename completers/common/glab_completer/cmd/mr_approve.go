@@ -7,7 +7,7 @@ import (
 )
 
 var mr_approveCmd = &cobra.Command{
-	Use:   "approve {<id> | <branch>}",
+	Use:   "approve [<id | branch>]",
 	Short: "Approve merge requests.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

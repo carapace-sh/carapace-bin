@@ -3,11 +3,12 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/glab_completer/cmd/action"
+	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
 )
 
 var sshKey_getCmd = &cobra.Command{
-	Use:   "get <key-id>",
+	Use:   "get [<key-id>]",
 	Short: "Returns a single SSH key specified by the ID.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
@@ -15,9 +16,16 @@ var sshKey_getCmd = &cobra.Command{
 func init() {
 	carapace.Gen(sshKey_getCmd).Standalone()
 
+	sshKey_getCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
+	sshKey_getCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
 	sshKey_getCmd.Flags().StringP("page", "p", "", "Page number.")
 	sshKey_getCmd.Flags().StringP("per-page", "P", "", "Number of items to list per page.")
 	sshKeyCmd.AddCommand(sshKey_getCmd)
+
+	carapace.Gen(sshKey_getCmd).FlagCompletion(carapace.ActionMap{
+		"jq":     jq.ActionFilters(),
+		"output": carapace.ActionValues("text", "json"),
+	})
 
 	carapace.Gen(sshKey_getCmd).PositionalCompletion(
 		action.ActionSshKeyIds(sshKeyCmd),

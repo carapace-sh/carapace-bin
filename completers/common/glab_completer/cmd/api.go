@@ -16,12 +16,14 @@ var apiCmd = &cobra.Command{
 func init() {
 	carapace.Gen(apiCmd).Standalone()
 
-	apiCmd.Flags().StringSliceP("field", "F", nil, "Add a parameter of inferred type. Changes the default HTTP method to \"POST\".")
+	apiCmd.Flags().StringSliceP("field", "F", nil, "Add a parameter of inferred type. Using this flag changes the default HTTP method to POST.")
+	apiCmd.Flags().StringSlice("form", nil, "Add a multipart form field. To upload a file, prefix the value with @ followed by the file path. To read from standard input, use @- (at most once). Using this flag changes the default HTTP method to POST.")
 	apiCmd.Flags().StringSliceP("header", "H", nil, "Add an additional HTTP request header.")
-	apiCmd.Flags().String("hostname", "", "The GitLab hostname for the request. Defaults to 'gitlab.com', or the authenticated host in the current Git directory.")
+	apiCmd.Flags().String("hostname", "", "The GitLab hostname for the request. Defaults to gitlab.com, or the authenticated host in the current Git directory.")
 	apiCmd.Flags().BoolP("include", "i", false, "Include HTTP response headers in the output.")
 	apiCmd.Flags().String("input", "", "The file to use as the body for the HTTP request.")
 	apiCmd.Flags().StringP("method", "X", "", "The HTTP method for the request.")
+	apiCmd.Flags().String("output", "", "Format output as: json, ndjson.")
 	apiCmd.Flags().Bool("paginate", false, "Make additional HTTP requests to fetch all pages of results.")
 	apiCmd.Flags().StringSliceP("raw-field", "f", nil, "Add a string parameter.")
 	apiCmd.Flags().Bool("silent", false, "Do not print the response body.")
@@ -43,6 +45,7 @@ func init() {
 		"hostname": action.ActionConfigHosts(),
 		"input":    carapace.ActionFiles(),
 		"method":   http.ActionRequestMethods(),
+		"output":   carapace.ActionValues("json", "ndjson"),
 	})
 
 	carapace.Gen(apiCmd).PositionalCompletion(

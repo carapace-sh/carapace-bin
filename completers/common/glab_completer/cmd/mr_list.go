@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/glab_completer/cmd/action"
+	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
@@ -18,26 +19,32 @@ func init() {
 	carapace.Gen(mr_listCmd).Standalone()
 
 	mr_listCmd.Flags().BoolP("all", "A", false, "Get all merge requests.")
-	mr_listCmd.Flags().StringSliceP("assignee", "a", nil, "Get only merge requests assigned to users.")
+	mr_listCmd.Flags().StringSliceP("assignee", "a", nil, "Get only merge requests assigned to users. Multiple users can be comma-separated or specified by repeating the flag.")
 	mr_listCmd.Flags().String("author", "", "Filter merge request by author <username>.")
 	mr_listCmd.Flags().BoolP("closed", "c", false, "Get only closed merge requests.")
+	mr_listCmd.Flags().String("created-after", "", "Filter merge requests created after a certain date (ISO 8601 format).")
+	mr_listCmd.Flags().String("created-before", "", "Filter merge requests created before a certain date (ISO 8601 format).")
+	mr_listCmd.Flags().String("deployed-after", "", "Filter merge requests deployed after a certain date (ISO 8601 format).")
+	mr_listCmd.Flags().String("deployed-before", "", "Filter merge requests deployed before a certain date (ISO 8601 format).")
 	mr_listCmd.Flags().BoolP("draft", "d", false, "Filter by draft merge requests.")
+	mr_listCmd.Flags().String("environment", "", "Filter merge requests deployed to the given environment <name>.")
 	mr_listCmd.PersistentFlags().StringP("group", "g", "", "Select a group/subgroup. This option is ignored if a repo argument is set.")
-	mr_listCmd.Flags().StringSliceP("label", "l", nil, "Filter merge request by label <name>.")
+	mr_listCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
+	mr_listCmd.Flags().StringSliceP("label", "l", nil, "Filter merge request by label <name>. Multiple labels can be comma-separated or specified by repeating the flag.")
 	mr_listCmd.Flags().BoolP("merged", "M", false, "Get only merged merge requests.")
 	mr_listCmd.Flags().StringP("milestone", "m", "", "Filter merge request by milestone <id>.")
 	mr_listCmd.Flags().Bool("mine", false, "Get only merge requests assigned to me.")
 	mr_listCmd.Flags().Bool("not-draft", false, "Filter by non-draft merge requests.")
-	mr_listCmd.Flags().StringSlice("not-label", nil, "Filter merge requests by not having label <name>.")
+	mr_listCmd.Flags().StringSlice("not-label", nil, "Filter merge requests by not having label <name>. Multiple labels can be comma-separated or specified by repeating the flag.")
 	mr_listCmd.Flags().BoolP("opened", "O", false, "Get only open merge requests.")
-	mr_listCmd.Flags().StringP("order", "o", "", "Order merge requests by <field>. Order options: created_at, title, merged_at or updated_at.")
+	mr_listCmd.Flags().StringP("order", "o", "", "Order merge requests by <field>. Order options: created_at, updated_at, merged_at, title, priority, label_priority, milestone_due, and popularity.")
 	mr_listCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
 	mr_listCmd.Flags().StringP("page", "p", "", "Page number.")
 	mr_listCmd.Flags().StringP("per-page", "P", "", "Number of items to list per page.")
 	mr_listCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. Can use either `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format. Also accepts full URL or Git URL.")
-	mr_listCmd.Flags().StringSliceP("reviewer", "r", nil, "Get only merge requests with users as reviewer.")
+	mr_listCmd.Flags().StringSliceP("reviewer", "r", nil, "Get only merge requests with users as reviewer. Multiple users can be comma-separated or specified by repeating the flag.")
 	mr_listCmd.Flags().String("search", "", "Filter by <string> in title and description.")
-	mr_listCmd.Flags().StringP("sort", "S", "", "Sort merge requests by <field>. Sort options: asc, desc.")
+	mr_listCmd.Flags().StringP("sort", "S", "", "Sort direction for --order field: asc or desc.")
 	mr_listCmd.Flags().StringP("source-branch", "s", "", "Filter by source branch <name>.")
 	mr_listCmd.Flags().StringP("target-branch", "t", "", "Filter by target branch <name>.")
 	mr_listCmd.Flag("mine").Hidden = true
@@ -48,10 +55,11 @@ func init() {
 		"assignee":      action.ActionProjectMembers(mr_listCmd).UniqueList(","),
 		"author":        action.ActionUsers(mr_listCmd),
 		"group":         action.ActionGroups(mr_listCmd),
+		"jq":            jq.ActionFilters(),
 		"label":         action.ActionLabels(mr_listCmd).UniqueList(","),
 		"milestone":     action.ActionMilestones(mr_listCmd),
 		"not-label":     action.ActionLabels(mr_listCmd).UniqueList(","),
-		"order":         carapace.ActionValues("created_at", "title", "merged_at", "updated_at"),
+		"order":         carapace.ActionValues("created_at", "merged_at", "title", "updated_at", "priority", "label_priority", "milestone_due", "popularity"),
 		"repo":          action.ActionRepo(mr_listCmd),
 		"reviewer":      action.ActionProjectMembers(mr_listCmd).UniqueList(","),
 		"sort":          carapace.ActionValues("asc", "desc").StyleF(style.ForKeyword),

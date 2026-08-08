@@ -6,7 +6,7 @@ import (
 )
 
 var sshKey_deleteCmd = &cobra.Command{
-	Use:   "delete <key-id>",
+	Use:   "delete [<key-id>]",
 	Short: "Deletes a single SSH key specified by the ID.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

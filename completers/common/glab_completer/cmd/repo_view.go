@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/glab_completer/cmd/action"
+	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
 )
 
@@ -16,6 +17,7 @@ func init() {
 	carapace.Gen(repo_viewCmd).Standalone()
 
 	repo_viewCmd.Flags().StringP("branch", "b", "", "View a specific branch of the repository.")
+	repo_viewCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
 	repo_viewCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
 	repo_viewCmd.Flags().BoolP("web", "w", false, "Open a project in the browser.")
 	repoCmd.AddCommand(repo_viewCmd)
@@ -28,6 +30,7 @@ func init() {
 			}
 			return carapace.ActionValues()
 		}),
+		"jq":     jq.ActionFilters(),
 		"output": carapace.ActionValues("text", "json"),
 	})
 

@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/glab_completer/cmd/action"
+	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
 )
 
@@ -23,15 +24,16 @@ func init() {
 	issue_listCmd.Flags().BoolP("confidential", "C", false, "Filter by confidential issues.")
 	issue_listCmd.Flags().StringP("epic", "e", "", "List issues belonging to a given epic (requires --group, no pagination support).")
 	issue_listCmd.PersistentFlags().StringP("group", "g", "", "Select a group or subgroup. Ignored if a repo argument is set.")
-	issue_listCmd.Flags().String("in", "", "search in: title, description.")
+	issue_listCmd.Flags().String("in", "", "Search in: title, description.")
 	issue_listCmd.Flags().StringP("issue-type", "t", "", "Filter issue by its type. Options: issue, incident, test_case.")
 	issue_listCmd.Flags().StringP("iteration", "i", "", "Filter issue by iteration <id>.")
-	issue_listCmd.Flags().StringSliceP("label", "l", nil, "Filter issue by label <name>.")
+	issue_listCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
+	issue_listCmd.Flags().StringSliceP("label", "l", nil, "Filter issue by label <name>. Multiple labels can be comma-separated or specified by repeating the flag.")
 	issue_listCmd.Flags().StringP("milestone", "m", "", "Filter issue by milestone <id>.")
 	issue_listCmd.Flags().BoolP("mine", "M", false, "Filter only issues assigned to me.")
 	issue_listCmd.Flags().String("not-assignee", "", "Filter issue by not being assigned to <username>.")
 	issue_listCmd.Flags().String("not-author", "", "Filter issue by not being by author(s) <username>.")
-	issue_listCmd.Flags().StringSlice("not-label", nil, "Filter issue by lack of label <name>.")
+	issue_listCmd.Flags().StringSlice("not-label", nil, "Filter issue by lack of label <name>. Multiple labels can be comma-separated or specified by repeating the flag.")
 	issue_listCmd.Flags().BoolP("opened", "o", false, "Get only open issues.")
 	issue_listCmd.Flags().String("order", "", "Order issue by <field>. Order options: created_at, updated_at, priority, due_date, relative_position, label_priority, milestone_due, popularity, weight.")
 	issue_listCmd.Flags().StringP("output", "O", "", "Options: 'text' or 'json'.")
@@ -40,7 +42,7 @@ func init() {
 	issue_listCmd.Flags().StringP("per-page", "P", "", "Number of items to list per page.")
 	issue_listCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. Can use either `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format. Also accepts full URL or Git URL.")
 	issue_listCmd.Flags().String("search", "", "Search <string> in the fields defined by '--in'.")
-	issue_listCmd.Flags().String("sort", "", "Return issue sorted in asc or desc order.")
+	issue_listCmd.Flags().StringP("sort", "s", "", "Sort direction for --order field: asc or desc.")
 	issue_listCmd.Flag("mine").Hidden = true
 	issue_listCmd.Flag("opened").Hidden = true
 	issueCmd.AddCommand(issue_listCmd)
@@ -52,12 +54,14 @@ func init() {
 		"group":         action.ActionGroups(issue_listCmd),
 		"in":            carapace.ActionValues("title", "description").UniqueList(","),
 		"issue-type":    carapace.ActionValues("issue", "incident", "test_case"),
+		"jq":            jq.ActionFilters(),
 		"label":         action.ActionLabels(issue_listCmd).UniqueList(","),
 		"milestone":     action.ActionMilestones(issue_listCmd),
 		"not-assignee":  action.ActionProjectMembers(issue_listCmd).UniqueList(","),
 		"not-author":    action.ActionUsers(issue_listCmd).UniqueList(","),
 		"not-label":     action.ActionLabels(issue_listCmd).UniqueList(","),
 		"order":         carapace.ActionValues("created_at", "updated_at", "priority", "due_date", "relative_position", "label_priority", "milestone_due", "popularity", "weight"),
+		"output":        carapace.ActionValues("text", "json"),
 		"output-format": carapace.ActionValues("details", "ids", "urls"),
 		"sort":          carapace.ActionValues("asc", "desc"),
 	})

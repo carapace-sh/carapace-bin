@@ -14,5 +14,11 @@ var opentofu_state_listCmd = &cobra.Command{
 func init() {
 	carapace.Gen(opentofu_state_listCmd).Standalone()
 
+	opentofu_state_listCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
+	opentofu_state_listCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
 	opentofu_stateCmd.AddCommand(opentofu_state_listCmd)
+
+	carapace.Gen(opentofu_state_listCmd).FlagCompletion(carapace.ActionMap{
+		"output": carapace.ActionValues("text", "json"),
+	})
 }

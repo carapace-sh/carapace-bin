@@ -15,6 +15,6 @@ var issue_board_createCmd = &cobra.Command{
 func init() {
 	carapace.Gen(issue_board_createCmd).Standalone()
 
-	issue_board_createCmd.Flags().StringP("name", "n", "", "The name of the new board")
+	issue_board_createCmd.Flags().StringP("name", "n", "", "The name of the new board.")
 	issue_boardCmd.AddCommand(issue_board_createCmd)
 }
