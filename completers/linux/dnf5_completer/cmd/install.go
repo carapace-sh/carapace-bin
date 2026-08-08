@@ -40,7 +40,6 @@ func init() {
 
 	carapace.Gen(installCmd).FlagCompletion(carapace.ActionMap{
 		"advisory-severities": carapace.ActionValues("critical", "important", "moderate", "low", "none"),
-		"destdir":             carapace.ActionDirectories(),
 		"store":               carapace.ActionDirectories(),
 	})
 
