@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "k3d",
 	Short: "https://k3d.io/ -> Run k3s in Docker!",
+	Long:  "https://k3d.io/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
