@@ -7,9 +7,9 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func actionPackages(cmd *cobra.Command, listFlag string) carapace.Action {
+func actionPackages(cmd *cobra.Command, listFlag string, requireInput bool) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if len(c.Value) == 0 {
+		if requireInput && len(c.Value) == 0 {
 			return carapace.ActionMessage("package search needs at least one character")
 		}
 
@@ -36,9 +36,9 @@ func actionPackages(cmd *cobra.Command, listFlag string) carapace.Action {
 }
 
 func ActionPackageSearch(cmd *cobra.Command) carapace.Action {
-	return actionPackages(cmd, "--available")
+	return actionPackages(cmd, "--available", true)
 }
 
 func ActionInstalledPackages(cmd *cobra.Command) carapace.Action {
-	return actionPackages(cmd, "--installed")
+	return actionPackages(cmd, "--installed", false)
 }
