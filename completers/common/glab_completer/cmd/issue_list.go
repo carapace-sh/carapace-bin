@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/glab_completer/cmd/action"
+	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
 )
 
@@ -53,12 +54,14 @@ func init() {
 		"group":         action.ActionGroups(issue_listCmd),
 		"in":            carapace.ActionValues("title", "description").UniqueList(","),
 		"issue-type":    carapace.ActionValues("issue", "incident", "test_case"),
+		"jq":            jq.ActionFilters(),
 		"label":         action.ActionLabels(issue_listCmd).UniqueList(","),
 		"milestone":     action.ActionMilestones(issue_listCmd),
 		"not-assignee":  action.ActionProjectMembers(issue_listCmd).UniqueList(","),
 		"not-author":    action.ActionUsers(issue_listCmd).UniqueList(","),
 		"not-label":     action.ActionLabels(issue_listCmd).UniqueList(","),
 		"order":         carapace.ActionValues("created_at", "updated_at", "priority", "due_date", "relative_position", "label_priority", "milestone_due", "popularity", "weight"),
+		"output":        carapace.ActionValues("text", "json"),
 		"output-format": carapace.ActionValues("details", "ids", "urls"),
 		"sort":          carapace.ActionValues("asc", "desc"),
 	})

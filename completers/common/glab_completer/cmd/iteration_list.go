@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/glab_completer/cmd/action"
+	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
 )
 
@@ -25,6 +26,7 @@ func init() {
 
 	carapace.Gen(iteration_listCmd).FlagCompletion(carapace.ActionMap{
 		"group":  action.ActionGroups(iteration_listCmd),
+		"jq":     jq.ActionFilters(),
 		"output": carapace.ActionValues("text", "json"),
 	})
 }

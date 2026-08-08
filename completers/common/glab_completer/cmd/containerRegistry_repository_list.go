@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/glab_completer/cmd/action"
+	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
 )
 
@@ -28,6 +29,9 @@ func init() {
 	containerRegistry_repositoryCmd.AddCommand(containerRegistry_repository_listCmd)
 
 	carapace.Gen(containerRegistry_repository_listCmd).FlagCompletion(carapace.ActionMap{
-		"repo": action.ActionRepo(containerRegistry_repository_listCmd),
+		"group":  action.ActionGroups(containerRegistry_repository_listCmd),
+		"jq":     jq.ActionFilters(),
+		"output": carapace.ActionValues("text", "json"),
+		"repo":   action.ActionRepo(containerRegistry_repository_listCmd),
 	})
 }

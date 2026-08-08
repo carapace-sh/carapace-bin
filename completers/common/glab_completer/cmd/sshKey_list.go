@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
 )
 
@@ -20,4 +21,9 @@ func init() {
 	sshKey_listCmd.Flags().StringP("per-page", "P", "", "Number of items to list per page.")
 	sshKey_listCmd.Flags().Bool("show-id", false, "Shows IDs of SSH keys.")
 	sshKeyCmd.AddCommand(sshKey_listCmd)
+
+	carapace.Gen(sshKey_listCmd).FlagCompletion(carapace.ActionMap{
+		"jq":     jq.ActionFilters(),
+		"output": carapace.ActionValues("text", "json"),
+	})
 }

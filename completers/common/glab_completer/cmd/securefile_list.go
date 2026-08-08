@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
 )
 
@@ -19,4 +20,8 @@ func init() {
 	securefile_listCmd.Flags().StringP("page", "p", "", "Page number.")
 	securefile_listCmd.Flags().StringP("per-page", "P", "", "Number of items to list per page.")
 	securefileCmd.AddCommand(securefile_listCmd)
+
+	carapace.Gen(securefile_listCmd).FlagCompletion(carapace.ActionMap{
+		"jq": jq.ActionFilters(),
+	})
 }

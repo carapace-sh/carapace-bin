@@ -23,6 +23,8 @@ func init() {
 	variableCmd.AddCommand(variable_importCmd)
 
 	carapace.Gen(variable_importCmd).FlagCompletion(carapace.ActionMap{
-		"repo": action.ActionRepo(variable_importCmd),
+		"group":      action.ActionGroups(variable_importCmd),
+		"input-file": carapace.ActionFiles(),
+		"repo":       action.ActionRepo(variable_importCmd),
 	})
 }

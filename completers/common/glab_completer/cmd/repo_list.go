@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/glab_completer/cmd/action"
+	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
 )
 
@@ -33,6 +34,7 @@ func init() {
 	repoCmd.AddCommand(repo_listCmd)
 
 	carapace.Gen(repo_listCmd).FlagCompletion(carapace.ActionMap{
+		"jq":     jq.ActionFilters(),
 		"order":  carapace.ActionValues("id", "name", "path", "created_at", "updated_at", "last_activity_at", "repository_size", "storage_size", "packages_size", "wiki_size"),
 		"output": carapace.ActionValues("text", "json"),
 		"sort":   carapace.ActionValues("asc", "desc"),

@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/glab_completer/cmd/action"
+	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
@@ -54,6 +55,7 @@ func init() {
 		"assignee":      action.ActionProjectMembers(mr_listCmd).UniqueList(","),
 		"author":        action.ActionUsers(mr_listCmd),
 		"group":         action.ActionGroups(mr_listCmd),
+		"jq":            jq.ActionFilters(),
 		"label":         action.ActionLabels(mr_listCmd).UniqueList(","),
 		"milestone":     action.ActionMilestones(mr_listCmd),
 		"not-label":     action.ActionLabels(mr_listCmd).UniqueList(","),

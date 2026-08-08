@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
 )
 
@@ -22,6 +23,7 @@ func init() {
 	userCmd.AddCommand(user_eventsCmd)
 
 	carapace.Gen(user_eventsCmd).FlagCompletion(carapace.ActionMap{
+		"jq":     jq.ActionFilters(),
 		"output": carapace.ActionValues("text", "json"),
 	})
 }

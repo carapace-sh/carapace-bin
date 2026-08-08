@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
 )
 
@@ -23,4 +24,12 @@ func init() {
 	todo_listCmd.Flags().StringP("state", "s", "", "Filter by state: pending, done, all.")
 	todo_listCmd.Flags().StringP("type", "t", "", "Filter by target type: Issue, MergeRequest.")
 	todoCmd.AddCommand(todo_listCmd)
+
+	carapace.Gen(todo_listCmd).FlagCompletion(carapace.ActionMap{
+		"action": carapace.ActionValues("assigned", "mentioned", "build_failed", "marked", "approval_required", "directly_addressed"),
+		"jq":     jq.ActionFilters(),
+		"output": carapace.ActionValues("text", "json"),
+		"state":  carapace.ActionValues("pending", "done", "all"),
+		"type":   carapace.ActionValues("Issue", "MergeRequest"),
+	})
 }

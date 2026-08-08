@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
 )
 
@@ -20,4 +21,9 @@ func init() {
 	deployKey_listCmd.Flags().StringP("per-page", "P", "", "Number of items to list per page.")
 	deployKey_listCmd.Flags().Bool("show-id", false, "Shows IDs of deploy keys.")
 	deployKeyCmd.AddCommand(deployKey_listCmd)
+
+	carapace.Gen(deployKey_listCmd).FlagCompletion(carapace.ActionMap{
+		"jq":     jq.ActionFilters(),
+		"output": carapace.ActionValues("text", "json"),
+	})
 }

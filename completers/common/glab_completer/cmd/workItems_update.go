@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/glab_completer/cmd/action"
+	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
 )
 
@@ -29,6 +30,8 @@ func init() {
 	workItemsCmd.AddCommand(workItems_updateCmd)
 
 	carapace.Gen(workItems_updateCmd).FlagCompletion(carapace.ActionMap{
-		"repo": action.ActionRepo(workItems_updateCmd),
+		"jq":     jq.ActionFilters(),
+		"output": carapace.ActionValues("text", "json"),
+		"repo":   action.ActionRepo(workItems_updateCmd),
 	})
 }

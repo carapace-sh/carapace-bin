@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
 )
 
@@ -25,5 +26,6 @@ func init() {
 	// TODO flag completion
 	carapace.Gen(cluster_agent_getTokenCmd).FlagCompletion(carapace.ActionMap{
 		"cache-mode": carapace.ActionValues("keyring-filesystem-fallback", "force-keyring", "force-filesystem", "no"),
+		"jq":         jq.ActionFilters(),
 	})
 }

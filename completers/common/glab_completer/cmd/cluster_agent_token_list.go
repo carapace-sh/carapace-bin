@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
 )
 
@@ -19,6 +20,7 @@ func init() {
 	cluster_agent_tokenCmd.AddCommand(cluster_agent_token_listCmd)
 
 	carapace.Gen(cluster_agent_token_listCmd).FlagCompletion(carapace.ActionMap{
+		"jq":     jq.ActionFilters(),
 		"output": carapace.ActionValues("text", "json"),
 	})
 }

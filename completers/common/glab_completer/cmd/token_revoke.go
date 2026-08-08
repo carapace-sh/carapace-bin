@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/glab_completer/cmd/action"
+	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
 )
 
@@ -24,9 +25,11 @@ func init() {
 	tokenCmd.AddCommand(token_revokeCmd)
 
 	carapace.Gen(token_revokeCmd).FlagCompletion(carapace.ActionMap{
-		"group": action.ActionGroups(token_revokeCmd),
-		"repo":  action.ActionRepo(token_revokeCmd),
-		"user":  action.ActionUsers(token_revokeCmd),
+		"group":  action.ActionGroups(token_revokeCmd),
+		"jq":     jq.ActionFilters(),
+		"output": carapace.ActionValues("text", "json"),
+		"repo":   action.ActionRepo(token_revokeCmd),
+		"user":   action.ActionUsers(token_revokeCmd),
 	})
 
 	// TODO complete tokens
