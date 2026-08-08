@@ -15,6 +15,15 @@ func init() {
 	carapace.Gen(step_evalCmd).Standalone()
 
 	step_evalCmd.Flags().Bool("dry-run", false, "Show template variables and expanded result")
+	step_evalCmd.Flags().String("format", "", "Output format (text, json)")
 	step_evalCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	stepCmd.AddCommand(step_evalCmd)
+
+	carapace.Gen(step_evalCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("text", "json"),
+	})
+
+	carapace.Gen(step_evalCmd).PositionalCompletion(
+		carapace.ActionValues(),
+	)
 }

@@ -4,4 +4,3 @@ description: Remove shell integration from config files
 flags:
     --dry-run: Show what would be changed
     -h, --help: Print help (see more with '--help')
-    -y, --yes: Skip confirmation prompt

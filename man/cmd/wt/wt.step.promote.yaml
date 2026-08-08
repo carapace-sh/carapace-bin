@@ -1,5 +1,6 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: promote
-description: '[experimental] Put a branch into the main worktree'
+description: "[experimental] Put a branch into the main worktree"
 flags:
+    --format=: Output format
     -h, --help: Print help (see more with '--help')

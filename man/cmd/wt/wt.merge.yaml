@@ -2,12 +2,19 @@
 name: merge
 description: Merge current branch into target
 flags:
+    --commit: Force commit and squash
+    --ff: Allow fast-forward (default)
+    --format=: Output format
+    -h, --help: Print help (see more with '--help')
     --no-commit: Skip commit and squash
     --no-ff: Create a merge commit (no fast-forward)
-    --no-rebase: Skip rebase (fail if not already rebased)
+    --no-hooks: Skip hooks
+    --no-rebase: Skip rebase; require the target to fast-forward to the resulting tip
     --no-remove: Keep worktree after merge
     --no-squash: Skip commit squashing
-    --no-verify: Skip hooks
-    --stage=: 'What to stage before committing [default: all]'
-    -h, --help: Print help (see more with '--help')
+    --no-verify: Skip hooks (deprecated alias for --no-hooks)
+    --rebase: Force rebasing onto target
+    --remove: Force worktree removal after merge
+    --stage=: What to stage before committing [default: all]
+    --verify: Force running hooks
     -y, --yes: Skip approval prompts

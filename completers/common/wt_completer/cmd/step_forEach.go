@@ -15,8 +15,13 @@ var step_forEachCmd = &cobra.Command{
 func init() {
 	carapace.Gen(step_forEachCmd).Standalone()
 
+	step_forEachCmd.Flags().String("format", "", "Output format (text, json)")
 	step_forEachCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	stepCmd.AddCommand(step_forEachCmd)
+
+	carapace.Gen(step_forEachCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("text", "json"),
+	})
 
 	carapace.Gen(step_forEachCmd).DashAnyCompletion(
 		bridge.ActionCarapaceBin(),

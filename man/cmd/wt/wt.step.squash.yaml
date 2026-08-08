@@ -2,8 +2,11 @@
 name: squash
 description: Squash commits since branching
 flags:
-    --no-verify: Skip hooks
-    --show-prompt: Show prompt without running LLM
-    --stage=: 'What to stage before committing [default: all]'
+    --dry-run: Preview prompt, command, and generated message without squashing
+    --format=: Output format
     -h, --help: Print help (see more with '--help')
+    --no-hooks: Skip hooks
+    --no-verify: Skip hooks (deprecated alias for --no-hooks)
+    --show-prompt: Render prompt to stdout without running LLM
+    --stage=: What to stage before committing [default: all]
     -y, --yes: Skip approval prompts

@@ -17,13 +17,16 @@ func init() {
 
 	step_copyIgnoredCmd.Flags().Bool("dry-run", false, "Show what would be copied")
 	step_copyIgnoredCmd.Flags().Bool("force", false, "Overwrite existing files in destination")
+	step_copyIgnoredCmd.Flags().String("format", "", "Output format (text, json)")
 	step_copyIgnoredCmd.Flags().String("from", "", "Source worktree branch")
 	step_copyIgnoredCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	step_copyIgnoredCmd.Flags().Bool("require-include", false, "Require .worktreeinclude to copy anything")
 	step_copyIgnoredCmd.Flags().String("to", "", "Destination worktree branch")
 	stepCmd.AddCommand(step_copyIgnoredCmd)
 
 	carapace.Gen(step_copyIgnoredCmd).FlagCompletion(carapace.ActionMap{
-		"from": wt.ActionWorktrees(),
-		"to":   wt.ActionWorktrees(),
+		"format": carapace.ActionValues("text", "json"),
+		"from":   wt.ActionWorktrees(),
+		"to":     wt.ActionWorktrees(),
 	})
 }

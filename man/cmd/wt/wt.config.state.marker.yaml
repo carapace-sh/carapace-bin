@@ -1,5 +1,7 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: marker
 description: Branch markers
+persistentflags:
+    --format=: Output format (text, json) [default: text]
 flags:
     -h, --help: Print help (see more with '--help')

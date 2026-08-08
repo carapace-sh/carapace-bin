@@ -16,8 +16,13 @@ func init() {
 
 	step_pruneCmd.Flags().Bool("dry-run", false, "Show what would be removed")
 	step_pruneCmd.Flags().Bool("foreground", false, "Run removal in foreground (block until complete)")
+	step_pruneCmd.Flags().String("format", "", "Output format (text, json)")
 	step_pruneCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
-	step_pruneCmd.Flags().String("min-age", "", "Skip worktrees younger than this")
+	step_pruneCmd.Flags().String("min-age", "1d", "Skip worktrees younger than this")
 	step_pruneCmd.Flags().BoolP("yes", "y", false, "Skip approval prompts")
 	stepCmd.AddCommand(step_pruneCmd)
+
+	carapace.Gen(step_pruneCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("text", "json"),
+	})
 }

@@ -2,13 +2,17 @@
 name: switch
 description: Switch to a worktree; create if needed
 flags:
-    --branches: Include branches without worktrees (interactive picker)
-    --clobber: Remove stale paths at target
-    --no-cd: Skip directory change after switching
-    --no-verify: Skip hooks
-    --remotes: Include remote branches (interactive picker)
     -b, --base=: Base branch
+    --branches: Include branches without worktrees (interactive picker)
+    --cd: Change directory after switching
+    --clobber: Remove stale paths at target
     -c, --create: Create a new branch
-    -h, --help: Print help (see more with '--help')
     -x, --execute=: Command to run after switch
+    --format=: Output format
+    -h, --help: Print help (see more with '--help')
+    --no-cd: Skip directory change after switching
+    --no-hooks: Skip hooks
+    --no-verify: Skip hooks (deprecated alias for --no-hooks)
+    --prs: Include open PRs/MRs (interactive picker)
+    --remotes: Include remote branches (interactive picker)
     -y, --yes: Skip approval prompts

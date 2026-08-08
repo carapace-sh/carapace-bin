@@ -3,4 +3,4 @@ name: update
 description: Update deprecated config settings
 flags:
     -h, --help: Print help (see more with '--help')
-    -y, --yes: Skip confirmation prompt
+    --print: Print the migrated config to stdout instead of writing it

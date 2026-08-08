@@ -1,5 +1,0 @@
-# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: clear
-description: Clear the previous branch
-flags:
-    -h, --help: Print help

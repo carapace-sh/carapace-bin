@@ -21,6 +21,9 @@ func init() {
 
 	carapace.Gen(config_state_marker_setCmd).FlagCompletion(carapace.ActionMap{
 		"branch": wt.ActionBranches(),
-		// TODO hook
 	})
+
+	carapace.Gen(config_state_marker_setCmd).PositionalCompletion(
+		carapace.ActionValues(),
+	)
 }

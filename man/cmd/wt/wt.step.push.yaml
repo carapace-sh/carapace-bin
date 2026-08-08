@@ -2,5 +2,7 @@
 name: push
 description: Fast-forward target to current branch
 flags:
-    --no-ff: Create a merge commit (no fast-forward)
+    --ff: Allow fast-forward (default)
+    --format=: Output format
     -h, --help: Print help (see more with '--help')
+    --no-ff: Create a merge commit (no fast-forward)

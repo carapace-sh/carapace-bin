@@ -2,4 +2,5 @@
 name: rebase
 description: Rebase onto target
 flags:
+    --format=: Output format
     -h, --help: Print help (see more with '--help')

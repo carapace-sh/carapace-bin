@@ -3,4 +3,5 @@ name: show
 description: Show configured hooks
 flags:
     --expanded: Show expanded commands with current variables
+    --format=: Output format
     -h, --help: Print help (see more with '--help')

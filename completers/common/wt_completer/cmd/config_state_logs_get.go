@@ -8,7 +8,7 @@ import (
 
 var config_state_logs_getCmd = &cobra.Command{
 	Use:   "get",
-	Short: "Get log file paths",
+	Short: "List all log file paths",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

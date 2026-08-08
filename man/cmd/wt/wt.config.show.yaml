@@ -2,5 +2,6 @@
 name: show
 description: Show configuration files & locations
 flags:
+    --format=: Output format
     --full: Run diagnostic checks (CI tools, commit generation, version)
     -h, --help: Print help (see more with '--help')

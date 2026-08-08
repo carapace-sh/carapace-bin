@@ -17,6 +17,9 @@ func init() {
 	config_shell_installCmd.Flags().String("cmd", "", "Command name for shell integration (defaults to binary name)")
 	config_shell_installCmd.Flags().Bool("dry-run", false, "Show what would be changed")
 	config_shell_installCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
-	config_shell_installCmd.Flags().BoolP("yes", "y", false, "Skip confirmation prompt")
 	config_shellCmd.AddCommand(config_shell_installCmd)
+
+	carapace.Gen(config_shell_installCmd).PositionalCompletion(
+		carapace.ActionValues("bash", "fish", "nu", "zsh", "powershell"),
+	)
 }
