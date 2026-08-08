@@ -37,6 +37,6 @@ func ActionClusters() carapace.Action {
 		for _, c := range clusters {
 			vals = append(vals, c.Name, c.ImageVolume, c.style())
 		}
-		return carapace.ActionStyledValuesDescribed(vals...)
+		return carapace.ActionStyledValuesDescribed(vals...).Tag("clusters")
 	})
 }

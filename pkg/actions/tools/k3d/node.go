@@ -65,13 +65,13 @@ func ActionNodes(opts NodeOpts) carapace.Action {
 				vals = append(vals, n.Name, fmt.Sprintf("%v.%v", n.RuntimeLabels.K3dCluster, n.Role), n.style())
 			}
 		}
-		return carapace.ActionStyledValuesDescribed(vals...)
+		return carapace.ActionStyledValuesDescribed(vals...).Tag("nodes")
 	})
 }
 
 // ActionNodeGroups completes k3d node groups
 func ActionNodeGroups() carapace.Action {
-	return carapace.ActionValues("server", "servers", "agent", "agents", "loadbalancer", "all")
+	return carapace.ActionValues("server", "servers", "agent", "agents", "loadbalancer", "all").Tag("node groups")
 }
 
 // ActionNodeFilter completes k3d node filters
@@ -85,5 +85,5 @@ func ActionNodeFilter() carapace.Action { // TODO limit to specific cluster
 		default:
 			return carapace.ActionValues() // TODO suffix
 		}
-	})
+	}).Tag("node filters")
 }

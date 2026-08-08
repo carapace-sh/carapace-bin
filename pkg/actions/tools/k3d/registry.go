@@ -37,6 +37,6 @@ func ActionRegistries() carapace.Action {
 		for _, r := range registries {
 			vals = append(vals, r.Name, fmt.Sprintf("%v", r.RuntimeLabels.K3dCluster), r.style())
 		}
-		return carapace.ActionStyledValuesDescribed(vals...)
+		return carapace.ActionStyledValuesDescribed(vals...).Tag("registries")
 	})
 }
