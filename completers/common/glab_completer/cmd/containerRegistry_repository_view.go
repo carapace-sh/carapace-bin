@@ -20,4 +20,8 @@ func init() {
 	containerRegistry_repository_viewCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
 	containerRegistry_repository_viewCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
 	containerRegistry_repositoryCmd.AddCommand(containerRegistry_repository_viewCmd)
+
+	carapace.Gen(containerRegistry_repository_viewCmd).FlagCompletion(carapace.ActionMap{
+		"output": carapace.ActionValues("text", "json"),
+	})
 }

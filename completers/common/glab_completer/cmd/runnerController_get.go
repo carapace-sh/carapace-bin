@@ -17,4 +17,8 @@ func init() {
 	runnerController_getCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
 	runnerController_getCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
 	runnerControllerCmd.AddCommand(runnerController_getCmd)
+
+	carapace.Gen(runnerController_getCmd).FlagCompletion(carapace.ActionMap{
+		"output": carapace.ActionValues("text", "json"),
+	})
 }

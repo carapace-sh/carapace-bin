@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/glab_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -21,4 +22,10 @@ func init() {
 	stack_syncCmd.Flags().Bool("skip-mr-creation", false, "Skip creating merge requests for branches that don't have one yet.")
 	stack_syncCmd.Flags().Bool("update-base", false, "Rebase the stack onto the latest version of the base branch.")
 	stackCmd.AddCommand(stack_syncCmd)
+
+	carapace.Gen(stack_syncCmd).FlagCompletion(carapace.ActionMap{
+		"assignee": action.ActionProjectMembers(stack_syncCmd),
+		"label":    action.ActionLabels(stack_syncCmd),
+		"reviewer": action.ActionProjectMembers(stack_syncCmd),
+	})
 }

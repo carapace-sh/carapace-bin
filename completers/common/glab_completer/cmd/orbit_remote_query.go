@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/glab_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -19,4 +20,10 @@ func init() {
 	orbit_remote_queryCmd.Flags().String("response-format", "", "Server response format: `llm` (compact GOON/TOON for agents) or `raw` (structured JSON).")
 	orbit_remote_queryCmd.Flag("format").Hidden = true
 	orbit_remoteCmd.AddCommand(orbit_remote_queryCmd)
+
+	carapace.Gen(orbit_remote_queryCmd).FlagCompletion(carapace.ActionMap{
+		"format":          carapace.ActionValues("llm", "raw"),
+		"hostname":        action.ActionConfigHosts(),
+		"response-format": carapace.ActionValues("llm", "raw"),
+	})
 }

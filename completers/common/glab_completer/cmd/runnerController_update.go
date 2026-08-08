@@ -19,4 +19,9 @@ func init() {
 	runnerController_updateCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
 	runnerController_updateCmd.Flags().String("state", "", "State of the runner controller: disabled, enabled, dry_run.")
 	runnerControllerCmd.AddCommand(runnerController_updateCmd)
+
+	carapace.Gen(runnerController_updateCmd).FlagCompletion(carapace.ActionMap{
+		"output": carapace.ActionValues("text", "json"),
+		"state":  carapace.ActionValues("disabled", "enabled", "dry_run"),
+	})
 }

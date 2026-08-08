@@ -20,4 +20,8 @@ func init() {
 	cluster_agent_listCmd.Flags().StringP("page", "p", "", "Page number.")
 	cluster_agent_listCmd.Flags().StringP("per-page", "P", "", "Number of items to list per page.")
 	cluster_agentCmd.AddCommand(cluster_agent_listCmd)
+
+	carapace.Gen(cluster_agent_listCmd).FlagCompletion(carapace.ActionMap{
+		"output": carapace.ActionValues("text", "json"),
+	})
 }

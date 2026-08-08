@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/glab_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -26,4 +27,10 @@ func init() {
 	milestone_listCmd.Flags().String("state", "", "Return only 'active' or 'closed' milestones.")
 	milestone_listCmd.Flags().String("title", "", "Return only the milestones having the given title.")
 	milestoneCmd.AddCommand(milestone_listCmd)
+
+	carapace.Gen(milestone_listCmd).FlagCompletion(carapace.ActionMap{
+		"group":  action.ActionGroups(milestone_listCmd),
+		"output": carapace.ActionValues("text", "json"),
+		"state":  carapace.ActionValues("active", "closed"),
+	})
 }

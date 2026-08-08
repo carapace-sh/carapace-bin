@@ -21,6 +21,7 @@ func init() {
 	runnerCmd.AddCommand(runner_managersCmd)
 
 	carapace.Gen(runner_managersCmd).FlagCompletion(carapace.ActionMap{
-		"repo": action.ActionRepo(runner_managersCmd),
+		"output": carapace.ActionValues("text", "json"),
+		"repo":   action.ActionRepo(runner_managersCmd),
 	})
 }

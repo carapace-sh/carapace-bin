@@ -17,4 +17,8 @@ func init() {
 	repo_remote_addCmd.Flags().StringP("name", "n", "", "Name for the remote (default: first path component)")
 	repo_remote_addCmd.Flags().StringP("protocol", "p", "", "Git protocol: ssh, https (default: git_protocol config)")
 	repo_remoteCmd.AddCommand(repo_remote_addCmd)
+
+	carapace.Gen(repo_remote_addCmd).FlagCompletion(carapace.ActionMap{
+		"protocol": carapace.ActionValues("ssh", "https"),
+	})
 }

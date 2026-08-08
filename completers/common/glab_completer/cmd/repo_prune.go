@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/glab_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -19,4 +20,8 @@ func init() {
 	repo_pruneCmd.Flags().Bool("merged", false, "Use 'git branch --merged' instead of querying GitLab. Detects fast-forward merges only.")
 	repo_pruneCmd.Flags().BoolP("yes", "y", false, "Skip the confirmation prompt.")
 	repoCmd.AddCommand(repo_pruneCmd)
+
+	carapace.Gen(repo_pruneCmd).FlagCompletion(carapace.ActionMap{
+		"exclude": action.ActionBranches(repo_pruneCmd),
+	})
 }

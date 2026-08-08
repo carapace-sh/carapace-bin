@@ -45,6 +45,7 @@ func init() {
 		"hostname": action.ActionConfigHosts(),
 		"input":    carapace.ActionFiles(),
 		"method":   http.ActionRequestMethods(),
+		"output":   carapace.ActionValues("json", "ndjson"),
 	})
 
 	carapace.Gen(apiCmd).PositionalCompletion(

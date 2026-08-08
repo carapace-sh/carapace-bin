@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/glab_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -22,4 +23,9 @@ func init() {
 	milestone_editCmd.Flags().String("state", "", "State of the milestone. Can be 'activate' or 'close'.")
 	milestone_editCmd.Flags().String("title", "", "Title of the milestone.")
 	milestoneCmd.AddCommand(milestone_editCmd)
+
+	carapace.Gen(milestone_editCmd).FlagCompletion(carapace.ActionMap{
+		"group": action.ActionGroups(milestone_editCmd),
+		"state": carapace.ActionValues("activate", "close"),
+	})
 }

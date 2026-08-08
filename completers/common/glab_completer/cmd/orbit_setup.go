@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/glab_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -22,4 +23,9 @@ func init() {
 	orbit_setupCmd.Flags().Bool("upgrade", false, "Re-fetch the skill and update the local CLI binary in place.")
 	orbit_setupCmd.Flags().BoolP("yes", "y", false, "Skip every confirmation prompt.")
 	orbitCmd.AddCommand(orbit_setupCmd)
+
+	carapace.Gen(orbit_setupCmd).FlagCompletion(carapace.ActionMap{
+		"hostname": action.ActionConfigHosts(),
+		"path":     carapace.ActionDirectories(),
+	})
 }

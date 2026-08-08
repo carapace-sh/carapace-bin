@@ -17,4 +17,8 @@ func init() {
 	label_getCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
 	label_getCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
 	labelCmd.AddCommand(label_getCmd)
+
+	carapace.Gen(label_getCmd).FlagCompletion(carapace.ActionMap{
+		"output": carapace.ActionValues("text", "json"),
+	})
 }

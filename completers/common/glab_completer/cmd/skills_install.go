@@ -18,4 +18,8 @@ func init() {
 	skills_installCmd.Flags().BoolP("global", "g", false, "Install skills at user scope (~/.agents/skills/).")
 	skills_installCmd.Flags().String("path", "", "Install skills to the directory at <path>.")
 	skillsCmd.AddCommand(skills_installCmd)
+
+	carapace.Gen(skills_installCmd).FlagCompletion(carapace.ActionMap{
+		"path": carapace.ActionDirectories(),
+	})
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/glab_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -45,5 +46,9 @@ func init() {
 	cluster_agent_bootstrapCmd.Flags().Bool("use-api-commit-author", false, "When creating Git commits use the user from the authenticated API request. Conflicts with '--commit-author-name' and '--commit-author-email'.")
 	cluster_agentCmd.AddCommand(cluster_agent_bootstrapCmd)
 
-	// TODO flag completion
+	carapace.Gen(cluster_agent_bootstrapCmd).FlagCompletion(carapace.ActionMap{
+		"flux-source-type":    carapace.ActionValues("Git", "OCI", "Helm"),
+		"helm-release-values": carapace.ActionFiles(),
+		"manifest-branch":     action.ActionBranches(cluster_agent_bootstrapCmd),
+	})
 }

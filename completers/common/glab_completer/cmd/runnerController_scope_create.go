@@ -19,4 +19,8 @@ func init() {
 	runnerController_scope_createCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
 	runnerController_scope_createCmd.Flags().StringSlice("runner", nil, "Add a runner-level scope for the specified runner ID. Multiple IDs can be comma-separated or specified by repeating the flag.")
 	runnerController_scopeCmd.AddCommand(runnerController_scope_createCmd)
+
+	carapace.Gen(runnerController_scope_createCmd).FlagCompletion(carapace.ActionMap{
+		"output": carapace.ActionValues("text", "json"),
+	})
 }

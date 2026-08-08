@@ -19,4 +19,8 @@ func init() {
 	runnerController_token_listCmd.Flags().StringP("page", "p", "", "Page number.")
 	runnerController_token_listCmd.Flags().StringP("per-page", "P", "", "Number of items per page.")
 	runnerController_tokenCmd.AddCommand(runnerController_token_listCmd)
+
+	carapace.Gen(runnerController_token_listCmd).FlagCompletion(carapace.ActionMap{
+		"output": carapace.ActionValues("text", "json"),
+	})
 }

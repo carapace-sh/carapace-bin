@@ -2,6 +2,8 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/glab_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/color"
 	"github.com/spf13/cobra"
 )
 
@@ -21,4 +23,9 @@ func init() {
 	label_editCmd.Flags().StringP("priority", "p", "", "Label priority.")
 	label_editCmd.MarkFlagRequired("label-id")
 	labelCmd.AddCommand(label_editCmd)
+
+	carapace.Gen(label_editCmd).FlagCompletion(carapace.ActionMap{
+		"color":    color.ActionHexColors(),
+		"label-id": action.ActionLabels(label_editCmd),
+	})
 }

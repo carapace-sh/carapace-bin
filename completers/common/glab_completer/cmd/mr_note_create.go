@@ -24,6 +24,10 @@ func init() {
 	mr_note_createCmd.Flags().Bool("unique", false, "Don't create a note if a note with the same body already exists. Reads all merge request comments first.")
 	mr_noteCmd.AddCommand(mr_note_createCmd)
 
+	carapace.Gen(mr_note_createCmd).FlagCompletion(carapace.ActionMap{
+		"file": carapace.ActionFiles(),
+	})
+
 	carapace.Gen(mr_note_createCmd).PositionalAnyCompletion(
 		action.ActionMergeRequestsAndBranches(mr_note_createCmd, ""),
 	)

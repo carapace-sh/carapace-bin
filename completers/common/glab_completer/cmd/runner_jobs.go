@@ -26,6 +26,10 @@ func init() {
 	runnerCmd.AddCommand(runner_jobsCmd)
 
 	carapace.Gen(runner_jobsCmd).FlagCompletion(carapace.ActionMap{
-		"repo": action.ActionRepo(runner_jobsCmd),
+		"order-by": carapace.ActionValues("id"),
+		"output":   carapace.ActionValues("text", "json"),
+		"repo":     action.ActionRepo(runner_jobsCmd),
+		"sort":     carapace.ActionValues("asc", "desc"),
+		"status":   carapace.ActionValues("running", "success", "failed", "canceled"),
 	})
 }

@@ -22,4 +22,9 @@ func init() {
 	search_semanticCmd.Flags().StringP("query", "q", "", "Natural language search query.")
 	search_semanticCmd.MarkFlagRequired("query")
 	searchCmd.AddCommand(search_semanticCmd)
+
+	carapace.Gen(search_semanticCmd).FlagCompletion(carapace.ActionMap{
+		"directory-path": carapace.ActionDirectories(),
+		"output":         carapace.ActionValues("text", "json"),
+	})
 }

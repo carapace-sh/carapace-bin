@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/glab_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -19,4 +20,9 @@ func init() {
 	milestone_getCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
 	milestone_getCmd.Flags().String("project", "", "The ID or URL-encoded path of the project.")
 	milestoneCmd.AddCommand(milestone_getCmd)
+
+	carapace.Gen(milestone_getCmd).FlagCompletion(carapace.ActionMap{
+		"group":  action.ActionGroups(milestone_getCmd),
+		"output": carapace.ActionValues("text", "json"),
+	})
 }

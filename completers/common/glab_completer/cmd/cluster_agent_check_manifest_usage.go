@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/glab_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -23,5 +24,7 @@ func init() {
 	cluster_agent_check_manifest_usageCmd.MarkFlagRequired("group")
 	cluster_agentCmd.AddCommand(cluster_agent_check_manifest_usageCmd)
 
-	// TODO flag completion
+	carapace.Gen(cluster_agent_check_manifest_usageCmd).FlagCompletion(carapace.ActionMap{
+		"group": action.ActionGroups(cluster_agent_check_manifest_usageCmd),
+	})
 }

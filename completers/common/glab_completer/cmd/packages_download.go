@@ -25,4 +25,8 @@ func init() {
 	packages_downloadCmd.MarkFlagRequired("name")
 	packages_downloadCmd.MarkFlagRequired("version")
 	packagesCmd.AddCommand(packages_downloadCmd)
+
+	carapace.Gen(packages_downloadCmd).FlagCompletion(carapace.ActionMap{
+		"path": carapace.ActionFiles(),
+	})
 }

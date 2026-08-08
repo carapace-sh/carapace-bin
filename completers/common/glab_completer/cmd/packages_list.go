@@ -21,4 +21,8 @@ func init() {
 	packages_listCmd.Flags().StringP("page", "p", "", "Page number.")
 	packages_listCmd.Flags().StringP("per-page", "P", "", "Number of items to list per page.")
 	packagesCmd.AddCommand(packages_listCmd)
+
+	carapace.Gen(packages_listCmd).FlagCompletion(carapace.ActionMap{
+		"package-type": carapace.ActionValues("composer", "conan", "debian", "generic", "golang", "helm", "maven", "npm", "nuget", "pypi", "terraform_module"),
+	})
 }

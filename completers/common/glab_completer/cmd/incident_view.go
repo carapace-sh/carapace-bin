@@ -24,5 +24,7 @@ func init() {
 	incident_viewCmd.Flags().BoolP("web", "w", false, "Open incident in a browser. Uses the default browser, or the browser specified in the $BROWSER variable.")
 	incidentCmd.AddCommand(incident_viewCmd)
 
-	// TODO positional completion
+	carapace.Gen(incident_viewCmd).FlagCompletion(carapace.ActionMap{
+		"output": carapace.ActionValues("text", "json"),
+	})
 }
