@@ -1,0 +1,37 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pgxcli [DBNAME] [USERNAME]
+description: Interactive PostgreSQL command-line client for querying and managing databases.
+flags:
+    --debug: Enable debug mode for verbose logging.
+    -U, --user=: Username to connect to the postgres database.
+    -W, --password: Force password prompt
+    -d, --dbname=: database name to connect to.
+    -h, --host=: host address of the postgres database
+    -i, --interactive: Interactive connection mode
+    -p, --port=: port number at which the postgres server is listening
+    -u, --username=: Username to connect to the postgres database.
+    -w, --no-password: never prompt for the password
+persistentflags:
+    --help&: Print usage
+commands:
+    - name: completion
+      description: Generate the autocompletion script for the specified shell
+      commands:
+        - name: bash
+          description: Generate the autocompletion script for bash
+          flags:
+            --no-descriptions: disable completion descriptions
+        - name: fish
+          description: Generate the autocompletion script for fish
+          flags:
+            --no-descriptions: disable completion descriptions
+        - name: powershell
+          description: Generate the autocompletion script for powershell
+          flags:
+            --no-descriptions: disable completion descriptions
+        - name: zsh
+          description: Generate the autocompletion script for zsh
+          flags:
+            --no-descriptions: disable completion descriptions
+    - name: help [command]
+      description: Help about any command
