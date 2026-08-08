@@ -9,7 +9,8 @@ func BashBle(completers []string) string {
 	for i, completer := range completers {
 		completers[i] = fmt.Sprintf("%q", completer)
 	}
-	return fmt.Sprintf(`%v
+	return fmt.Sprintf(`[[ ${BASH_VERSION:-} == 3.* ]] && { printf 'Error: legacy bash is not supported\n' >&2; return 1; }
+%v
 
 %v
 _carapace_completer_ble() {
