@@ -51,8 +51,7 @@ func init() {
 	clusterCmd.AddCommand(cluster_createCmd)
 
 	carapace.Gen(cluster_createCmd).FlagCompletion(carapace.ActionMap{
-		"api-port": carapace.ActionValues(), // TODO
-		"config":   carapace.ActionFiles(),
+		"config": carapace.ActionFiles(),
 		"env": carapace.ActionMultiPartsN("@", 2, func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
@@ -61,24 +60,10 @@ func init() {
 				return k3d.ActionNodeFilter().List(";")
 			}
 		}),
-		"gpus":               carapace.ActionValues(), // TODO
-		"host-alias":         carapace.ActionValues(),
-		"image":              docker.ActionRepositoryTags(),
-		"k3s-arg":            carapace.ActionValues(),
-		"k3s-node-label":     carapace.ActionValues(),
-		"lb-config-override": carapace.ActionValues(),
-		"network":            docker.ActionNetworks(),
-		"port":               carapace.ActionValues(),
-		"registry-config":    carapace.ActionFiles(),
-		"registry-create":    carapace.ActionValues(),
-		"registry-use":       carapace.ActionValues(),
-		"runtime-label":      carapace.ActionValues(),
-		"runtime-ulimit":     carapace.ActionValues(),
-		"servers":            carapace.ActionValues(),
-		"servers-memory":     carapace.ActionValues(),
-		"subnet":             carapace.ActionValues(),
-		"timeout":            carapace.ActionValues(),
-		"token":              carapace.ActionValues(),
-		"volume":             carapace.ActionValues(),
+		"gpus":            carapace.ActionValues("all"),
+		"image":           docker.ActionRepositoryTags(),
+		"network":         docker.ActionNetworks(),
+		"registry-config": carapace.ActionFiles(),
+		"registry-use":    k3d.ActionRegistries(),
 	})
 }

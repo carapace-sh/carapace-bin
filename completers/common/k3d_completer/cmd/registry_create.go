@@ -30,10 +30,8 @@ func init() {
 	registryCmd.AddCommand(registry_createCmd)
 
 	carapace.Gen(registry_createCmd).FlagCompletion(carapace.ActionMap{
-		"default-network":  docker.ActionNetworks(),
-		"image":            docker.ActionRepositoryTags(),
-		"port":             carapace.ActionValues(),
-		"proxy-remote-url": carapace.ActionValues(),
-		"volume":           carapace.ActionFiles(),
+		"default-network": docker.ActionNetworks(),
+		"image":           docker.ActionRepositoryTags(),
+		"volume":          carapace.ActionFiles(),
 	})
 }
