@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/docker"
 	"github.com/spf13/cobra"
 )
 
@@ -29,7 +30,8 @@ func init() {
 	registryCmd.AddCommand(registry_createCmd)
 
 	carapace.Gen(registry_createCmd).FlagCompletion(carapace.ActionMap{
-		"image":            carapace.ActionValues(),
+		"default-network":  docker.ActionNetworks(),
+		"image":            docker.ActionRepositoryTags(),
 		"port":             carapace.ActionValues(),
 		"proxy-remote-url": carapace.ActionValues(),
 		"volume":           carapace.ActionFiles(),

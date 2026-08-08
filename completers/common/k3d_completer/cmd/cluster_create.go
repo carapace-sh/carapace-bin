@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/docker"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/k3d"
 	"github.com/spf13/cobra"
 )
@@ -62,11 +63,11 @@ func init() {
 		}),
 		"gpus":               carapace.ActionValues(), // TODO
 		"host-alias":         carapace.ActionValues(),
-		"image":              carapace.ActionValues(),
+		"image":              docker.ActionRepositoryTags(),
 		"k3s-arg":            carapace.ActionValues(),
 		"k3s-node-label":     carapace.ActionValues(),
 		"lb-config-override": carapace.ActionValues(),
-		"network":            carapace.ActionValues(),
+		"network":            docker.ActionNetworks(),
 		"port":               carapace.ActionValues(),
 		"registry-config":    carapace.ActionFiles(),
 		"registry-create":    carapace.ActionValues(),

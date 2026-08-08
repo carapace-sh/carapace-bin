@@ -2,6 +2,8 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/docker"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/k3d"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
@@ -30,12 +32,11 @@ func init() {
 	node_createCmd.Flags().Bool("wait", false, "Wait for the node(s) to be ready before returning.")
 	nodeCmd.AddCommand(node_createCmd)
 
-	// TODO
 	carapace.Gen(node_createCmd).FlagCompletion(carapace.ActionMap{
-		// "cluster":        carapace.ActionValues(),
-		// "image":          carapace.ActionValues(),
+		"cluster": k3d.ActionClusters(),
+		"image":   docker.ActionRepositoryTags(),
 		"k3s-arg": bridge.ActionCarapaceBin("k3s").Split(), // TODO verify
-		// "network":        carapace.ActionValues(),
-		"role": carapace.ActionValues("server", "agent"),
+		"network": docker.ActionNetworks(),
+		"role":    carapace.ActionValues("server", "agent"),
 	})
 }
