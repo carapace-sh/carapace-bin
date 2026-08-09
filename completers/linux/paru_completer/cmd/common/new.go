@@ -134,6 +134,14 @@ func AddNewFlags(cmd *cobra.Command) {
 		}),
 		"chrootpkgs": pacman.ActionPackages().UniqueList(","),
 		"clonedir":   carapace.ActionDirectories(),
+		"develfile":  carapace.ActionFiles(),
+		"editor": carapace.Batch(
+			carapace.ActionExecutables(),
+			carapace.ActionFiles(),
+		).ToA(),
+		"editorflags": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return bridge.ActionCarapaceBin(cmd.Flag("editor").Value.String()).Split()
+		}),
 		"fm": carapace.Batch(
 			carapace.ActionExecutables(),
 			carapace.ActionFiles(),
@@ -155,6 +163,7 @@ func AddNewFlags(cmd *cobra.Command) {
 		"gpgflags": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return bridge.ActionCarapaceBin("gpg").Split()
 		}),
+		"ignoredevel": pacman.ActionPackageSearch().UniqueList(","),
 		"makepkg":     carapace.ActionFiles(),
 		"makepkgconf": carapace.ActionFiles(),
 		"mflags": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
