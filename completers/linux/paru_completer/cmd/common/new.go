@@ -9,14 +9,14 @@ import (
 
 func AddNewFlags(cmd *cobra.Command) {
 	cmd.Flags().BoolP("aur", "a", false, "Assume targets are from the AUR")
-	cmd.Flags().String("aurrpcur", "", "Set an alternative URL for the AUR /rpc endpoint")
+	cmd.Flags().String("aurrpcurl", "", "Set an alternative URL for the AUR /rpc endpoint")
 	cmd.Flags().String("aururl", "", "Set an alternative AUR URL")
 	cmd.Flags().String("bat", "", "bat command to use")
 	cmd.Flags().Bool("batchinstall", false, "Build multiple AUR packages then install them together")
 	cmd.Flags().String("batflags", "", "Pass arguments to bat")
 	cmd.Flags().Bool("bottomup", false, "Shows AUR's packages first and then repository's")
 	cmd.Flags().String("builddir", "", "Directory used to download and run PKGBUILDs")
-	cmd.Flags().Bool("chroot", false, "Build packages in a chroot")
+	cmd.Flags().String("chroot", "", "Build packages in a chroot")
 	cmd.Flags().String("chrootflags", "", "Pass arguments to makechrootpkg")
 	cmd.Flags().String("chrootpkgs", "", "Install packages into the chroot before building")
 	cmd.Flags().Bool("cleanafter", false, "Remove package sources after install")
@@ -25,9 +25,7 @@ func AddNewFlags(cmd *cobra.Command) {
 	cmd.Flags().String("completioninterval", "", "Time in days to refresh completion cache")
 	cmd.Flags().Bool("devel", false, "Check development packages during sysupgrade")
 	cmd.Flags().String("develfile", "", "Path to the development package file")
-	cmd.Flags().Bool("develsuffixes", false, "Suffixes used to decide if a package is a devel package")
-	cmd.Flags().String("editor", "", "editor command to use")
-	cmd.Flags().String("editorflags", "", "Pass arguments to editor")
+	cmd.Flags().String("develsuffixes", "", "Suffixes used to decide if a package is a devel package")
 	cmd.Flags().Bool("failfast", false, "Exit as soon as building an AUR package fails")
 	cmd.Flags().String("fm", "", "File manager to use for PKGBUILD review")
 	cmd.Flags().String("fmflags", "", "Pass arguments to file manager")
@@ -35,13 +33,13 @@ func AddNewFlags(cmd *cobra.Command) {
 	cmd.Flags().String("gitflags", "", "Pass arguments to git")
 	cmd.Flags().String("gpg", "", "gpg command to use")
 	cmd.Flags().String("gpgflags", "", "Pass arguments to gpg")
-	cmd.Flags().Bool("ignoredevel", false, "Ignore devel upgrades for specified packages")
+	cmd.Flags().String("ignoredevel", "", "Ignore devel upgrades for specified packages")
 	cmd.Flags().Bool("installdebug", false, "Also install debug packages when a package provides them")
 	cmd.Flags().Bool("interactive", false, "Enable interactive package selection for -S, -R, -Ss and -Qs")
 	cmd.Flags().Bool("keeprepocache", false, "Keep old packages in the local repo")
 	cmd.Flags().Bool("keepsrc", false, "Keep src/ and pkg/ dirs after building packages")
 	cmd.Flags().String("limit", "", "Limits the number of items returned in a search")
-	cmd.Flags().Bool("localrepo", false, "Build packages into a local repo")
+	cmd.Flags().String("localrepo", "", "Build packages into a local repo")
 	cmd.Flags().String("makepkg", "", "makepkg command to use")
 	cmd.Flags().String("makepkgconf", "", "Specifies a makepkg.conf file to use")
 	cmd.Flags().String("mflags", "", "Pass arguments to makepkg")
@@ -77,22 +75,22 @@ func AddNewFlags(cmd *cobra.Command) {
 	cmd.Flags().Bool("pgpfetch", false, "Prompt to import PGP keys from PKGBUILDs")
 	cmd.Flags().Bool("pkgbuilds", false, "Assume targets are from pkgbuild repositories")
 	cmd.Flags().String("pkgctl", "", "pkgctl command to use")
-	cmd.Flags().Bool("provides", false, "Look for matching providers when searching for packages")
-	cmd.Flags().Bool("rebuild", false, "Always build target packages")
-	cmd.Flags().Bool("redownload", false, "Always download PKGBUILDs of targets")
+	cmd.Flags().String("provides", "", "Look for matching providers when searching for packages")
+	cmd.Flags().String("rebuild", "", "Always build target packages")
+	cmd.Flags().String("redownload", "", "Always download PKGBUILDs of targets")
 	cmd.Flags().BoolP("regex", "x", false, "Enable regex for aur search")
-	cmd.Flags().Bool("removemake", false, "Remove makedepends after install")
+	cmd.Flags().String("removemake", "", "Remove makedepends after install")
 	cmd.Flags().Bool("repo", false, "Assume targets are from the repositories")
 	cmd.Flags().Bool("review", false, "Don't skip the review process")
 	cmd.Flags().Bool("savechanges", false, "Commit changes to pkgbuilds made during review")
 	cmd.Flags().String("searchby", "", "Search for packages using a specified field")
-	cmd.Flags().Bool("sign", false, "Sign packages with gpg")
-	cmd.Flags().Bool("signdb", false, "Sign databases with gpg")
+	cmd.Flags().String("sign", "", "Sign packages with gpg")
+	cmd.Flags().String("signdb", "", "Sign databases with gpg")
 	cmd.Flags().Bool("skipreview", false, "Skip the review process")
 	cmd.Flags().String("sortby", "", "Sort AUR results by a specific field during search")
 	cmd.Flags().String("sudo", "", "sudo command to use")
 	cmd.Flags().String("sudoflags", "", "Pass arguments to sudo")
-	cmd.Flags().Bool("sudoloop", false, "Loop sudo calls in the background to avoid timeout")
+	cmd.Flags().String("sudoloop", "", "Loop sudo calls in the background to avoid timeout")
 	cmd.Flags().Bool("topdown", false, "Shows repository's packages first and then AUR's")
 	cmd.Flags().Bool("upgrademenu", false, "Show interactive menu to skip upgrades")
 	cmd.Flags().Bool("useask", false, "Automatically resolve conflicts using pacman's ask flag")
@@ -123,26 +121,21 @@ func AddNewFlags(cmd *cobra.Command) {
 	cmd.Flag("nouseask").Hidden = true
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
+		"aurrpcurl": carapace.ActionValues(),
 		"bat": carapace.Batch(
 			carapace.ActionExecutables(),
 			carapace.ActionFiles(),
 		).ToA(),
 		"batflags": bridge.ActionCarapaceBin("bat"),
 		"builddir": carapace.ActionDirectories(),
+		"chroot":   carapace.ActionDirectories(),
 		"chrootflags": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return bridge.ActionCarapaceBin("makechrootpkg").Split()
 		}),
-		"chrootpkgs": pacman.ActionPackages().UniqueList(","),
-		"clonedir":   carapace.ActionDirectories(),
-		"develfile":  carapace.ActionFiles(),
-		"editor": carapace.Batch(
-			carapace.ActionExecutables(),
-			carapace.ActionFiles(),
-		).ToA(),
-		"editorflags": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return bridge.ActionCarapaceBin(cmd.Flag("editor").Value.String()).Split()
-		}),
-		"fm": carapace.Batch(
+		"chrootpkgs":    pacman.ActionPackages().UniqueList(","),
+		"clonedir":      carapace.ActionDirectories(),
+		"develfile":     carapace.ActionFiles(),
+		"develsuffixes": carapace.ActionValues(), "fm": carapace.Batch(
 			carapace.ActionExecutables(),
 			carapace.ActionFiles(),
 		).ToA(),
@@ -164,12 +157,13 @@ func AddNewFlags(cmd *cobra.Command) {
 			return bridge.ActionCarapaceBin("gpg").Split()
 		}),
 		"ignoredevel": pacman.ActionPackageSearch().UniqueList(","),
+		"localrepo":   carapace.ActionValues(),
 		"makepkg":     carapace.ActionFiles(),
 		"makepkgconf": carapace.ActionFiles(),
 		"mflags": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return bridge.ActionCarapaceBin("makepgk").Split()
+			return bridge.ActionCarapaceBin("makepkg").Split()
 		}),
-		"mode": carapace.ActionValues("aur", "repo", "pkgbuilds"),
+		"mode": carapace.ActionValues("all", "aur", "pkgbuilds", "repo"),
 		"pacman": carapace.Batch(
 			carapace.ActionExecutables(),
 			carapace.ActionFiles(),
@@ -186,8 +180,14 @@ func AddNewFlags(cmd *cobra.Command) {
 			carapace.ActionExecutables(),
 			carapace.ActionFiles(),
 		).ToA(),
-		"searchby": carapace.ActionValues("name", "name-desc", "maintainer", "depends", "checkdepends", "makedepends", "optdepends"),
-		"sortby":   carapace.ActionValues("votes", "popularity", "id", "baseid", "name", "base", "submitted", "modified"),
+		"provides":   carapace.ActionValues("all", "no", "yes"),
+		"rebuild":    carapace.ActionValues("all", "no", "tree", "yes"),
+		"redownload": carapace.ActionValues("all", "no", "yes"),
+		"removemake": carapace.ActionValues("ask", "no", "yes"),
+		"searchby":   carapace.ActionValues("checkdepends", "comaintainers", "depends", "groups", "keywords", "maintainer", "makedepends", "name", "name-desc", "provides", "replaces", "submitter"),
+		"sign":       carapace.ActionValues(),
+		"signdb":     carapace.ActionValues(),
+		"sortby":     carapace.ActionValues("votes", "popularity", "id", "baseid", "name", "base", "submitted", "modified"),
 		"sudo": carapace.Batch(
 			carapace.ActionExecutables(),
 			carapace.ActionFiles(),
@@ -195,5 +195,6 @@ func AddNewFlags(cmd *cobra.Command) {
 		"sudoflags": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return bridge.ActionCarapaceBin("sudo").Split()
 		}),
+		"sudoloop": carapace.ActionValues(),
 	})
 }

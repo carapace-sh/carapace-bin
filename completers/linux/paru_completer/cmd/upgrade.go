@@ -4,6 +4,7 @@ import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/linux/paru_completer/cmd/common"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/pacman"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/paru"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
@@ -59,7 +60,7 @@ func init() {
 		"dbpath":      carapace.ActionFiles(),
 		"gpgdir":      carapace.ActionDirectories(),
 		"hookdir":     carapace.ActionDirectories(),
-		"ignore":      pacman.ActionPackageSearch().UniqueList(","),
+		"ignore":      paru.ActionPackageSearch().UniqueList(","),
 		"ignoregroup": pacman.ActionPackageGroups().UniqueList(","),
 		"logfile":     carapace.ActionFiles(),
 		"overwrite": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
