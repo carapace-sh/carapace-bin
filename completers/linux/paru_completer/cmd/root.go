@@ -22,7 +22,7 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolP("clean", "c", false, "Remove unneeded dependencies")
+	rootCmd.Flags().CountP("clean", "c", "Remove unneeded dependencies")
 	rootCmd.Flags().Bool("gendb", false, "Generates development package DB used for updating")
 	rootCmd.Flags().BoolP("help", "h", false, "show help")
 	rootCmd.Flags().BoolP("version", "V", false, "show version")
@@ -41,12 +41,14 @@ func init() {
 
 	embed.SubcommandsAsFlags(rootCmd,
 		buildCmd,
+		chrootctlCmd,
 		databaseCmd,
 		deptestCmd,
 		filesCmd,
 		getpkgbuildCmd,
 		queryCmd,
 		removeCmd,
+		repoctlCmd,
 		showCmd,
 		syncCmd,
 		upgradeCmd,
