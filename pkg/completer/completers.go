@@ -40,20 +40,6 @@ func (c Completers) Less(i, j int) bool { // TODO this needs testing (and likely
 
 		// CARAPACE_SHELL: -35 (see below)
 
-		"bash":       -30,
-		"bash-ble":   -29,
-		"cmd":        -28,
-		"elvish":     -27,
-		"fish":       -26,
-		"nushell":    -25,
-		"oil":        -24,
-		"powershell": -23,
-		"tcsh":       -22,
-		"xonsh":      -21,
-		"zsh":        -20,
-
-		// runtime.GOOS: -15 (see below)
-
 		"linux": -10,
 		"unix":  -9,
 
@@ -68,6 +54,21 @@ func (c Completers) Less(i, j int) bool { // TODO this needs testing (and likely
 		"common":  -1,
 		// TODO support pseudo os 'termux'?
 		"bridge": 1, // lower priority than anything internal
+
+		// other shells than the current one are only relevant
+		// for their own builtins - low priority to not shadow
+		// actual command completers (current shell is boosted above)
+		"bash":       2,
+		"bash-ble":   3,
+		"cmd":        4,
+		"elvish":     5,
+		"fish":       6,
+		"nushell":    7,
+		"oil":        8,
+		"powershell": 9,
+		"tcsh":       10,
+		"xonsh":      11,
+		"zsh":        12,
 	}
 
 	switch b := os.Getenv("CARAPACE_SHELL"); b { // TODO public access of env in carapace
