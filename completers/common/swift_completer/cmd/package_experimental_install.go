@@ -19,6 +19,7 @@ func init() {
 	common.AddPackageFlags(package_experimentalInstallCmd)
 
 	package_experimentalInstallCmd.Flags().BoolP("help", "h", false, "Show help information")
+	package_experimentalInstallCmd.Flags().String("product", "", "The name of the executable product to install")
 	package_experimentalInstallCmd.Flags().Bool("version", false, "Show the version")
 
 	packageCmd.AddCommand(package_experimentalInstallCmd)

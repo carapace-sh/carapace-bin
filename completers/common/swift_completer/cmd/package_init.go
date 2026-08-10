@@ -15,8 +15,8 @@ func init() {
 	carapace.Gen(package_initCmd).Standalone()
 	package_initCmd.Flags().SetInterspersed(false)
 
-	package_initCmd.Flags().Bool("disable-swift-testing", false, "Enable support for Swift Testing")
-	package_initCmd.Flags().Bool("disable-xctest", false, "Enable support for XCTest")
+	package_initCmd.Flags().Bool("disable-swift-testing", false, "Disable support for Swift Testing")
+	package_initCmd.Flags().Bool("disable-xctest", false, "Disable support for XCTest")
 	package_initCmd.Flags().Bool("enable-swift-testing", false, "Enable support for Swift Testing")
 	package_initCmd.Flags().Bool("enable-xctest", false, "Enable support for XCTest")
 	package_initCmd.Flags().BoolP("help", "h", false, "Show help information")

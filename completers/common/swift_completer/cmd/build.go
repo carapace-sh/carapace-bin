@@ -35,6 +35,26 @@ func init() {
 	buildCmd.Flags().String("target", "", "Build the specified target")
 	buildCmd.Flags().Bool("version", false, "Show the version")
 
+	buildCmd.Flags().String("sbom-filter", "", "Filter the SBOM components and dependencies by products and/or packages")
+	buildCmd.Flags().String("sbom-output-dir", "", "The absolute or relative directory path to generate the SBOM(s) in")
+	buildCmd.Flags().StringArray("sbom-spec", nil, "Set the SBOM specification and generate an SBOM")
+	buildCmd.Flags().Bool("sbom-warning-only", false, "Treat SBOM generation errors as warnings")
+
 	rootCmd.AddCommand(buildCmd)
 
+	carapace.Gen(buildCmd).FlagCompletion(carapace.ActionMap{
+		"product": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return carapace.ActionExecCommand("swift", "package", "describe", "--type", "json")(func(output []byte) carapace.Action {
+				return carapace.ActionValues()
+			})
+		}),
+		"sbom-filter":     carapace.ActionValues("all", "product", "package"),
+		"sbom-output-dir": carapace.ActionDirectories(),
+		"sbom-spec":       carapace.ActionValues("cyclonedx", "spdx", "cyclonedx1", "spdx3"),
+		"target": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return carapace.ActionExecCommand("swift", "package", "describe", "--type", "json")(func(output []byte) carapace.Action {
+				return carapace.ActionValues()
+			})
+		}),
+	})
 }
