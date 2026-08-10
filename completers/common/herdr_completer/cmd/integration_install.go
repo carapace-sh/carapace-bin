@@ -17,6 +17,6 @@ func init() {
 	integrationCmd.AddCommand(integration_installCmd)
 
 	carapace.Gen(integration_installCmd).PositionalCompletion(
-		carapace.ActionValues("pi", "omp", "claude", "codex", "copilot", "devin", "droid", "kimi", "opencode", "kilo", "hermes", "qodercli", "cursor"),
+		carapace.ActionValues("pi", "omp", "claude", "codex", "copilot", "devin", "droid", "kimi", "opencode", "kilo", "hermes", "qodercli", "cursor", "mastracode", "antigravity-cli", "grok"),
 	)
 }

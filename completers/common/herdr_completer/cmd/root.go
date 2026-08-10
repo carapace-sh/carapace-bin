@@ -26,6 +26,7 @@ func init() {
 	rootCmd.Flags().String("remote", "", "Attach through SSH to a remote Herdr server")
 	rootCmd.Flags().String("remote-keybindings", "", "Choose local or server keybindings for remote attach")
 	rootCmd.Flags().String("session", "", "Use or create a named persistent session")
+	rootCmd.Flags().Bool("skill", false, "Print the agent skill file and exit")
 	rootCmd.Flags().BoolP("version", "V", false, "Print version and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
