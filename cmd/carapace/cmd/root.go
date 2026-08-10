@@ -131,9 +131,12 @@ func Execute(version string) error {
 		if os.Args[1] == "carapace" {
 			os.Args[1] = "_carapace"
 		} else if len(os.Args) < 4 && os.Args[1] == "_carapace" {
-			shell := ps.DetermineShell()
-			if len(os.Args) > 2 {
+			var shell string
+			switch {
+			case len(os.Args) > 2:
 				shell = os.Args[2]
+			default:
+				shell = ps.DetermineShell()
 			}
 
 			if err := shim.Update(); err != nil {
