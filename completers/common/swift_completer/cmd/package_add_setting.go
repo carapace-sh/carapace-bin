@@ -16,7 +16,7 @@ func init() {
 	package_addSettingCmd.Flags().SetInterspersed(false)
 
 	package_addSettingCmd.Flags().BoolP("help", "h", false, "Show help information")
-	package_addSettingCmd.Flags().String("swift", "", "The Swift language setting(s) to add")
+	package_addSettingCmd.Flags().StringArray("swift", nil, "The Swift language setting(s) to add")
 	package_addSettingCmd.Flags().String("target", "", "The target to add the setting to")
 	package_addSettingCmd.Flags().Bool("version", false, "Show the version")
 
