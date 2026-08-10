@@ -17,6 +17,6 @@ func init() {
 	integrationCmd.AddCommand(integration_uninstallCmd)
 
 	carapace.Gen(integration_uninstallCmd).PositionalCompletion(
-		carapace.ActionValues("pi", "omp", "claude", "codex", "copilot", "devin", "droid", "kimi", "opencode", "kilo", "hermes", "qodercli", "cursor"),
+		carapace.ActionValues("pi", "omp", "claude", "codex", "copilot", "devin", "droid", "kimi", "opencode", "kilo", "hermes", "qodercli", "cursor", "mastracode", "antigravity-cli", "grok"),
 	)
 }
