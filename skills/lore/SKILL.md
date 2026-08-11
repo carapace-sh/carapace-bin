@@ -1,26 +1,23 @@
 ---
 name: lore
 description: >
-  Use when working with the Epic Games Lore CLI — a version control system for game
-  development. Covers the full command reference including repository, branch, revision,
-  file, auth, layer, link, lock, and operational commands. Triggers on: "lore", "lore CLI",
-  "Epic Games Lore", "lore command", "lore repository", "lore branch", "lore revision",
-  "lore file", "lore auth", "lore layer", "lore link", "lore lock", "lore status",
-  "lore clone", "lore commit", "lore sync", "lore push", "lore stage", "lore diff",
-  "lore history", "lore cherry-pick", "lore revert", "lore bisect", "lore merge",
-  "lore resolve", "lore dirty", "lore unstage", "lore reset", "lore obliterate",
-  "lore service", "lore notification", "lore completions", "lore shared-store",
-  "lore logfile", "lore login", "lore metadata", "lore dependency", "lore gc",
-  "lore verify", "lore dump", "lore store", "lore instance", "lore config",
-  "lore archive", "lore protect", "lore latest", "lore amend", "lore restore",
-  "lore find", "lore hash", "lore write", "lore info", "immutable store",
-  "split-write filesystem", "layer", "link", "shared store", "lore VCS".
+  Use when working with the Epic Games Lore version control system — a centralized VCS
+  designed for game development with binary-first content-addressed storage. Covers
+  architecture, core concepts, server deployment, CLI and server configuration, workflows,
+  and the full command reference. Triggers on: "lore", "Lore", "Epic Games Lore",
+  "loreserver", "version control system", "VCS", "content-addressed", "immutable store",
+  "mutable store", "BLAKE3", "Merkle tree", "FastCDC", "fragment", "partition",
+  "content-defined chunking", "split-write", "shared store", "revision", "branch",
+  "merge", "cherry-pick", "revert", "bisect", "layer", "link", "lock", "staging",
+  "dirty", "obliterate", "packfile", "LoreError", "config.toml", "cli.toml",
+  "lore://", "Lore server", "Lore CLI", "Lore configuration", "Lore FAQ",
+  "Lore roadmap", "Lore system design".
 user-invocable: true
 ---
 
-# Lore CLI In-Depth Reference
+# Lore In-Depth Reference
 
-A version control system from Epic Games for game development. Covers the full CLI command surface. Source: <https://epicgames.github.io/lore/reference/lore-cli-commands/>
+Lore is a centralized, binary-first, MIT-licensed version control system from Epic Games, designed for projects that combine code with large binary assets. Source: <https://epicgames.github.io/lore/>
 
 ## Sub-Resources
 
@@ -28,35 +25,32 @@ Load the reference that matches your task. When in doubt, load multiple referenc
 
 | Keywords | Reference |
 |----------|----------|
-| core concepts, VCS model, revision graph, branch model, immutable store, split-write, layer, link, shared store, fragment, blob, hash, identity | [references/core-concepts.md](references/core-concepts.md) |
-| repository, create, clone, delete, status, info, list, verify, dump, gc, store, immutable query, metadata, instance, config, update-path, remote | [references/repository.md](references/repository.md) |
-| branch, list, info, create, switch, push, merge, unresolve, into, start, restart, resolve, mine, theirs, abort, diff, archive, reset, protect, unprotect, latest | [references/branch.md](references/branch.md) |
-| revision, history, info, commit, amend, sync, bisect, start, end, diff, find, metadata, number, restore, cherry-pick, unresolve, restart, resolve, mine, theirs, abort, revert | [references/revision.md](references/revision.md) |
-| file, info, metadata, dependency, add, remove, list, tag, stage, dirty, move, copy, unstage, reset, purge, obliterate, history, diff, write, hash, address | [references/file.md](references/file.md) |
-| auth, login, logout, info, list, clear, token, layer, add, remove, list, link, add, remove, update, pin, logfile, lock, acquire, status, query, release | [references/auth-layer-link.md](references/auth-layer-link.md) |
-| status, clone, stage, dirty, unstage, reset, diff, history, commit, sync, push, service, run, start, stop, notification, subscribe, completions, shared-store, create, info, set-use-automatically, shell, shortcuts | [references/ops.md](references/ops.md) |
+| overview, what is Lore, design goals, non-goals, architecture, two subsystems, storage, version control, API-first, binary-first, centralized, offline-capable, replaceable backends, specification, open source, MIT | [references/overview.md](references/overview.md) |
+| core concepts, revision, branch, immutable store, mutable store, content addressing, BLAKE3, hash, context, address, partition, Merkle tree, revision state, node block, fragment, blob, chunking, FastCDC, fixed-size, compression, packfile, revision graph, parent, DAG, staging, dirty, staged anchor, sparse, view, .loreignore, lazy fetch, metadata, link, layer, lock, obliteration, shared store, instance | [references/core-concepts.md](references/core-concepts.md) |
+| setup, install, Lore CLI, prebuilt binary, build from source, loreserver, Docker, deploy, certificate, ports, durable storage, health check, demo mode, local server, quickstart, prerequisites | [references/setup.md](references/setup.md) |
+| configuration, config.toml, cli.toml, remote_url, identity, store, max_capacity, eviction, compaction, direct_write, shared_store_to_use, pager, loreserver config, --config, --env, config layering, default.toml, local.toml, environment, LORE__ env vars, server settings, QUIC, HTTP, gRPC, auth, JWT, JWKS, topology, plugins, hooks, telemetry, notification | [references/config.md](references/config.md) |
+| CLI reference, command tree, lore, repository, create, clone, status, info, list, delete, verify, dump, gc, store, metadata, instance, config, update-path, branch, list, create, switch, push, merge, unresolve, into, start, restart, resolve, mine, theirs, abort, diff, archive, reset, protect, unprotect, latest, revision, history, commit, amend, sync, bisect, diff, find, restore, cherry-pick, revert, file, info, stage, dirty, unstage, reset, obliterate, history, diff, write, hash, dependency, add, remove, list, auth, login, logout, clear, layer, add, remove, link, add, remove, update, list, lock, acquire, status, query, release, logfile, login, status, clone, stage, dirty, unstage, reset, diff, history, commit, sync, push, service, run, start, stop, notification, subscribe, completions, shared-store, create, info, set-use-automatically, global options | [references/cli.md](references/cli.md) |
+| workflow, quickstart, tutorial, create repository, stage, commit, push, clone, shared store, branch, switch, merge, resolve conflicts, sync, amend, cherry-pick, revert, bisect, restore, file history, diff, obliterate, view, sparse checkout, .loreignore, file locking, dependency, blame, find revision | [references/workflow.md](references/workflow.md) |
+| FAQ, roadmap, how is Lore different, Git vs Perforce, platforms, production readiness, locking, merge conflicts, security, contribute, license, desktop client, UEFN, 2026 roadmap, 2027 roadmap, VFS, VS Code plugin, edge instances, forks, governance | [references/faq-roadmap.md](references/faq-roadmap.md) |
 
 ## Quick Guide
 
-- **How do I create a new repository?** → [references/repository.md](references/repository.md)
-- **How do I clone a remote repository?** → [references/repository.md](references/repository.md)
-- **How do I create/switch branches?** → [references/branch.md](references/branch.md)
-- **How do I merge branches and resolve conflicts?** → [references/branch.md](references/branch.md)
-- **How do I commit changes?** → [references/revision.md](references/revision.md)
-- **How do I sync to a specific revision?** → [references/revision.md](references/revision.md)
-- **How do I stage/unstage files?** → [references/file.md](references/file.md)
-- **How do I view diffs and history?** → [references/file.md](references/file.md) and [references/revision.md](references/revision.md)
-- **How do I cherry-pick or revert a revision?** → [references/revision.md](references/revision.md)
-- **How do I authenticate with a remote server?** → [references/auth-layer-link.md](references/auth-layer-link.md)
-- **How do I add/remove layers?** → [references/auth-layer-link.md](references/auth-layer-link.md)
-- **How do I link repositories?** → [references/auth-layer-link.md](references/auth-layer-link.md)
-- **How do I acquire/release file locks?** → [references/auth-layer-link.md](references/auth-layer-link.md)
-- **How do I generate shell completions?** → [references/ops.md](references/ops.md)
-- **How do I start/stop the service process?** → [references/ops.md](references/ops.md)
-- **What is the conceptual model (revisions, branches, store)?** → [references/core-concepts.md](references/core-concepts.md)
-- **How do I add file dependencies?** → [references/file.md](references/file.md)
-- **How do I bisect revisions to find a change?** → [references/revision.md](references/revision.md)
-- **How do I manage metadata on repos/branches/revisions/files?** → [references/repository.md](references/repository.md), [references/branch.md](references/branch.md), [references/revision.md](references/revision.md), [references/file.md](references/file.md)
+- **What is Lore and what problem does it solve?** → [references/overview.md](references/overview.md)
+- **How does the revision graph and content addressing work?** → [references/core-concepts.md](references/core-concepts.md)
+- **How do I install the CLI and start a server?** → [references/setup.md](references/setup.md)
+- **How do I configure the CLI or server?** → [references/config.md](references/config.md)
+- **How do I create a repo, commit, branch, merge, and sync?** → [references/workflow.md](references/workflow.md)
+- **What CLI commands are available?** → [references/cli.md](references/cli.md)
+- **How is Lore different from Git/Perforce?** → [references/faq-roadmap.md](references/faq-roadmap.md)
+- **What is on the roadmap?** → [references/faq-roadmap.md](references/faq-roadmap.md)
+- **How do I deploy a persistent server with certificates?** → [references/setup.md](references/setup.md)
+- **How do I configure server settings, auth, topology, or telemetry?** → [references/config.md](references/config.md)
+- **How do I install shell completions?** → [references/setup.md](references/setup.md)
+- **How do I resolve merge conflicts?** → [references/workflow.md](references/workflow.md)
+- **How do I manage file locks?** → [references/workflow.md](references/workflow.md)
+- **How do I use links and layers?** → [references/core-concepts.md](references/core-concepts.md)
+- **How do I obliterate content?** → [references/core-concepts.md](references/core-concepts.md)
+- **How do I contribute to Lore?** → [references/faq-roadmap.md](references/faq-roadmap.md)
 
 ## Cross-Project References
 
