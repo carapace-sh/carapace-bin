@@ -18,4 +18,8 @@ func init() {
 	branch_merge_abortCmd.Flags().Bool("ignore-links", false, "Abort only the main repository merge, keeping link pin updates")
 	branch_merge_abortCmd.Flags().String("link", "", "Abort only a specific linked repository merge at the given mount path")
 	branch_mergeCmd.AddCommand(branch_merge_abortCmd)
+
+	carapace.Gen(branch_merge_abortCmd).FlagCompletion(carapace.ActionMap{
+		"link": carapace.ActionValues(),
+	})
 }

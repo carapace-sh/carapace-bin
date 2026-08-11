@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/lore_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -21,4 +22,11 @@ func init() {
 	file_writeCmd.Flags().String("revision", "", "Revision specifier")
 	file_writeCmd.MarkFlagRequired("output")
 	fileCmd.AddCommand(file_writeCmd)
+
+	carapace.Gen(file_writeCmd).FlagCompletion(carapace.ActionMap{
+		"address":  carapace.ActionValues(),
+		"output":   carapace.ActionFiles(),
+		"path":     carapace.ActionFiles(),
+		"revision": action.ActionRevisions(file_writeCmd),
+	})
 }

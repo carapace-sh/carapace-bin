@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/lore_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -20,4 +21,9 @@ func init() {
 	branch_switchCmd.Flags().Bool("local", false, "Keep last local latest revision, do not sync latest revision from remote (implied by offline mode)")
 	branch_switchCmd.Flags().Bool("reset", false, "Reset any local modified files to match the incoming revision")
 	branchCmd.AddCommand(branch_switchCmd)
+
+	carapace.Gen(branch_switchCmd).PositionalCompletion(
+		action.ActionBranches(branch_switchCmd),
+		action.ActionRevisions(branch_switchCmd),
+	)
 }

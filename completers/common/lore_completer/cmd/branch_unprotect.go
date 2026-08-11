@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/lore_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,8 @@ func init() {
 
 	branch_unprotectCmd.Flags().BoolP("help", "h", false, "Print help")
 	branchCmd.AddCommand(branch_unprotectCmd)
+
+	carapace.Gen(branch_unprotectCmd).PositionalCompletion(
+		action.ActionBranches(branch_unprotectCmd),
+	)
 }

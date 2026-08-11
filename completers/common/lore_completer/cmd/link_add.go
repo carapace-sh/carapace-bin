@@ -18,4 +18,8 @@ func init() {
 	link_addCmd.Flags().BoolP("help", "h", false, "Print help")
 	link_addCmd.Flags().String("pin", "", "Branch or specific revision to pin the link to, defaulting to latest on the main branch")
 	linkCmd.AddCommand(link_addCmd)
+
+	carapace.Gen(link_addCmd).FlagCompletion(carapace.ActionMap{
+		"pin": carapace.ActionValues(),
+	})
 }

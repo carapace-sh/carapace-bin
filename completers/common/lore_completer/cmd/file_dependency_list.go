@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/lore_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -21,4 +22,8 @@ func init() {
 	file_dependency_listCmd.Flags().String("revision", "", "Revision to query (defaults to staged/current)")
 	file_dependency_listCmd.Flags().StringSlice("tag", nil, "Filter by tag")
 	file_dependencyCmd.AddCommand(file_dependency_listCmd)
+
+	carapace.Gen(file_dependency_listCmd).FlagCompletion(carapace.ActionMap{
+		"revision": action.ActionRevisions(file_dependency_listCmd),
+	})
 }

@@ -17,4 +17,10 @@ func init() {
 	layer_addCmd.Flags().BoolP("help", "h", false, "Print help")
 	layer_addCmd.Flags().String("metadata", "", "Metadata key to use for matching revisions")
 	layerCmd.AddCommand(layer_addCmd)
+
+	carapace.Gen(layer_addCmd).PositionalCompletion(
+		carapace.ActionFiles(),
+		carapace.ActionValues(),
+		carapace.ActionFiles(),
+	)
 }

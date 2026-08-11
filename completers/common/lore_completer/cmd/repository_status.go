@@ -24,4 +24,12 @@ func init() {
 	repository_statusCmd.Flags().Bool("unstaged", false, "Alias for --scan (backward compatibility)")
 	repository_statusCmd.Flag("unstaged").Hidden = true
 	repositoryCmd.AddCommand(repository_statusCmd)
+
+	carapace.Gen(repository_statusCmd).FlagCompletion(carapace.ActionMap{
+		"targets": carapace.ActionFiles(),
+	})
+
+	carapace.Gen(repository_statusCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(),
+	)
 }

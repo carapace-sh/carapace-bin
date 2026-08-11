@@ -18,4 +18,9 @@ func init() {
 	file_obliterateCmd.Flags().BoolP("help", "h", false, "Print help")
 	file_obliterateCmd.Flags().String("path", "", "Path to a file")
 	fileCmd.AddCommand(file_obliterateCmd)
+
+	carapace.Gen(file_obliterateCmd).FlagCompletion(carapace.ActionMap{
+		"address": carapace.ActionValues(),
+		"path":    carapace.ActionFiles(),
+	})
 }

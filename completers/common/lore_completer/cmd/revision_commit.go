@@ -21,4 +21,15 @@ func init() {
 	revision_commitCmd.Flags().StringSlice("link-message", nil, "Per-link commit message. Takes two values: <path> <message>. Can be specified multiple times")
 	revision_commitCmd.Flags().Bool("stats", false, "Print stats")
 	revisionCmd.AddCommand(revision_commitCmd)
+
+	carapace.Gen(revision_commitCmd).FlagCompletion(carapace.ActionMap{
+		"layer":         carapace.ActionValues(),
+		"layer-message": carapace.ActionFiles(),
+		"link":          carapace.ActionValues(),
+		"link-message":  carapace.ActionFiles(),
+	})
+
+	carapace.Gen(revision_commitCmd).PositionalCompletion(
+		carapace.ActionValues(),
+	)
 }

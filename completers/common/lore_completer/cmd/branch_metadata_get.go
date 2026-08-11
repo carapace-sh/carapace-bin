@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/lore_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,8 @@ func init() {
 	branch_metadata_getCmd.Flags().String("branch", "", "Branch name (uses current branch if not specified)")
 	branch_metadata_getCmd.Flags().BoolP("help", "h", false, "Print help")
 	branch_metadataCmd.AddCommand(branch_metadata_getCmd)
+
+	carapace.Gen(branch_metadata_getCmd).FlagCompletion(carapace.ActionMap{
+		"branch": action.ActionBranches(branch_metadata_getCmd),
+	})
 }

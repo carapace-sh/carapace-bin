@@ -16,4 +16,8 @@ func init() {
 
 	link_removeCmd.Flags().BoolP("help", "h", false, "Print help")
 	linkCmd.AddCommand(link_removeCmd)
+
+	carapace.Gen(link_removeCmd).PositionalCompletion(
+		carapace.ActionFiles(),
+	)
 }

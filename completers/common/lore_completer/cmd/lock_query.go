@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/lore_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -19,4 +20,10 @@ func init() {
 	lock_queryCmd.Flags().String("owner", "", "Owner to query locks belonging to them")
 	lock_queryCmd.Flags().String("path", "", "Path to query lock information on")
 	lockCmd.AddCommand(lock_queryCmd)
+
+	carapace.Gen(lock_queryCmd).FlagCompletion(carapace.ActionMap{
+		"branch": action.ActionBranches(lock_queryCmd),
+		"owner":  action.ActionIdentities(lock_queryCmd),
+		"path":   carapace.ActionFiles(),
+	})
 }

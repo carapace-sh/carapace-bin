@@ -20,4 +20,12 @@ func init() {
 	repository_createCmd.Flags().String("shared-store-path", "", "Use this path rather than the system default as the shared store location")
 	repository_createCmd.Flags().Bool("use-shared-store", false, "Use the shared store rather than create a local immutable store")
 	repositoryCmd.AddCommand(repository_createCmd)
+
+	carapace.Gen(repository_createCmd).FlagCompletion(carapace.ActionMap{
+		"shared-store-path": carapace.ActionDirectories(),
+	})
+
+	carapace.Gen(repository_createCmd).PositionalCompletion(
+		carapace.ActionValues(), // remote url (e.g. lore://host:port/repo)
+	)
 }

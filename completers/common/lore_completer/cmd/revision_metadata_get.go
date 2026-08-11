@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/lore_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,8 @@ func init() {
 	revision_metadata_getCmd.Flags().BoolP("help", "h", false, "Print help")
 	revision_metadata_getCmd.Flags().String("revision", "", "Revision to get metadata for")
 	revision_metadataCmd.AddCommand(revision_metadata_getCmd)
+
+	carapace.Gen(revision_metadata_getCmd).FlagCompletion(carapace.ActionMap{
+		"revision": action.ActionRevisions(revision_metadata_getCmd),
+	})
 }

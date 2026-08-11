@@ -16,4 +16,8 @@ func init() {
 
 	service_stopCmd.Flags().BoolP("help", "h", false, "Print help")
 	serviceCmd.AddCommand(service_stopCmd)
+
+	carapace.Gen(service_stopCmd).PositionalCompletion(
+		carapace.ActionValues("all"),
+	)
 }

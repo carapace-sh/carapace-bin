@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/lore_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -22,4 +23,13 @@ func init() {
 	historyCmd.Flags().String("revision", "", "Start listing from the specified revision. If not specified, start listing from the current branch latest revision")
 	historyCmd.Flag("date").Hidden = true
 	rootCmd.AddCommand(historyCmd)
+
+	carapace.Gen(historyCmd).FlagCompletion(carapace.ActionMap{
+		"branch":   action.ActionBranches(historyCmd),
+		"revision": action.ActionRevisions(historyCmd),
+	})
+
+	carapace.Gen(historyCmd).PositionalCompletion(
+		carapace.ActionValues(), // LENGTH (number)
+	)
 }

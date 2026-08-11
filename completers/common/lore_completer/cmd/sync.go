@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/lore_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -23,4 +24,12 @@ func init() {
 	syncCmd.Flags().Bool("reset", false, "Reset any local modified files to match the incoming revision")
 	syncCmd.Flags().StringSlice("root-file", nil, "Root files for dependency-based selective sync (only sync changes for these files and their dependencies)")
 	rootCmd.AddCommand(syncCmd)
+
+	carapace.Gen(syncCmd).FlagCompletion(carapace.ActionMap{
+		"root-file": carapace.ActionFiles(),
+	})
+
+	carapace.Gen(syncCmd).PositionalCompletion(
+		action.ActionRevisions(syncCmd),
+	)
 }

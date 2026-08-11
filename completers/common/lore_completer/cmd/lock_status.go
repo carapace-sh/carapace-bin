@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/lore_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,12 @@ func init() {
 	lock_statusCmd.Flags().String("branch", "", "Branch where lock was acquired")
 	lock_statusCmd.Flags().BoolP("help", "h", false, "Print help")
 	lockCmd.AddCommand(lock_statusCmd)
+
+	carapace.Gen(lock_statusCmd).FlagCompletion(carapace.ActionMap{
+		"branch": action.ActionBranches(lock_statusCmd),
+	})
+
+	carapace.Gen(lock_statusCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(),
+	)
 }

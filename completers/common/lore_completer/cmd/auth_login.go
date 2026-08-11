@@ -20,4 +20,12 @@ func init() {
 	auth_loginCmd.Flags().String("token", "", "Token value for non-interactive login (requires --token-type)")
 	auth_loginCmd.Flags().String("token-type", "", "Token type for non-interactive login (e.g. \"api-key\", \"eg1\", \"lore\")")
 	authCmd.AddCommand(auth_loginCmd)
+
+	carapace.Gen(auth_loginCmd).FlagCompletion(carapace.ActionMap{
+		"token-type": carapace.ActionValues("api-key", "eg1", "lore"),
+	})
+
+	carapace.Gen(auth_loginCmd).PositionalCompletion(
+		carapace.ActionValues(), // remote-url
+	)
 }

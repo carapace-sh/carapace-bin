@@ -16,4 +16,8 @@ func init() {
 
 	repository_deleteCmd.Flags().BoolP("help", "h", false, "Print help")
 	repositoryCmd.AddCommand(repository_deleteCmd)
+
+	carapace.Gen(repository_deleteCmd).PositionalCompletion(
+		carapace.ActionValues(), // url
+	)
 }

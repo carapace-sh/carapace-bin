@@ -17,4 +17,8 @@ func init() {
 	file_dependency_removeCmd.Flags().BoolP("help", "h", false, "Print help")
 	file_dependency_removeCmd.Flags().StringSlice("tag", nil, "Remove only specific tags instead of entire edges")
 	file_dependencyCmd.AddCommand(file_dependency_removeCmd)
+
+	carapace.Gen(file_dependency_removeCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(),
+	)
 }

@@ -17,4 +17,12 @@ func init() {
 	branch_merge_unresolveCmd.Flags().BoolP("help", "h", false, "Print help")
 	branch_merge_unresolveCmd.Flags().String("targets", "", "Path to a targets file")
 	branch_mergeCmd.AddCommand(branch_merge_unresolveCmd)
+
+	carapace.Gen(branch_merge_unresolveCmd).FlagCompletion(carapace.ActionMap{
+		"targets": carapace.ActionFiles(),
+	})
+
+	carapace.Gen(branch_merge_unresolveCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(),
+	)
 }

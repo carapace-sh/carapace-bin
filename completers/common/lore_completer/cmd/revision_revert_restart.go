@@ -17,4 +17,12 @@ func init() {
 	revision_revert_restartCmd.Flags().BoolP("help", "h", false, "Print help")
 	revision_revert_restartCmd.Flags().String("targets", "", "Path to a targets file")
 	revision_revertCmd.AddCommand(revision_revert_restartCmd)
+
+	carapace.Gen(revision_revert_restartCmd).FlagCompletion(carapace.ActionMap{
+		"targets": carapace.ActionFiles(),
+	})
+
+	carapace.Gen(revision_revert_restartCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(),
+	)
 }

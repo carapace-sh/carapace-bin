@@ -52,4 +52,16 @@ func init() {
 	rootCmd.Flag("nocompress").Hidden = true
 	rootCmd.Flag("silent").Hidden = true
 	rootCmd.Flag("time").Hidden = true
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"compress-limit":   carapace.ActionValues(),
+		"file-count-limit": carapace.ActionValues(),
+		"file-size-limit":  carapace.ActionValues(),
+		"identity":         carapace.ActionValues(),
+		"log-level":        carapace.ActionValues("trace", "debug", "info", "warn", "error"),
+		"max-connections":  carapace.ActionValues(),
+		"max-threads":      carapace.ActionValues(),
+		"repository":       carapace.ActionDirectories(),
+		"search-limit":     carapace.ActionValues(),
+	})
 }

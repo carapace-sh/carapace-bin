@@ -16,4 +16,8 @@ func init() {
 
 	sharedStore_setUseAutomaticallyCmd.Flags().BoolP("help", "h", false, "Print help")
 	sharedStoreCmd.AddCommand(sharedStore_setUseAutomaticallyCmd)
+
+	carapace.Gen(sharedStore_setUseAutomaticallyCmd).PositionalCompletion(
+		carapace.ActionValues("true", "false"),
+	)
 }

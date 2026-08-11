@@ -16,4 +16,8 @@ func init() {
 
 	repository_listCmd.Flags().BoolP("help", "h", false, "Print help")
 	repositoryCmd.AddCommand(repository_listCmd)
+
+	carapace.Gen(repository_listCmd).PositionalCompletion(
+		carapace.ActionValues(), // url
+	)
 }

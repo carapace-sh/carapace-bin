@@ -18,4 +18,8 @@ func init() {
 	repository_verify_fragmentCmd.Flags().Bool("heal", false, "Attempt to heal if verification fails (remote only)")
 	repository_verify_fragmentCmd.Flags().BoolP("help", "h", false, "Print help")
 	repository_verifyCmd.AddCommand(repository_verify_fragmentCmd)
+
+	carapace.Gen(repository_verify_fragmentCmd).PositionalCompletion(
+		carapace.ActionValues(), // hash
+	)
 }

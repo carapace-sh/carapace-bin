@@ -17,4 +17,12 @@ func init() {
 	file_hashCmd.Flags().BoolP("help", "h", false, "Print help")
 	file_hashCmd.Flags().String("targets", "", "Path to a targets file")
 	fileCmd.AddCommand(file_hashCmd)
+
+	carapace.Gen(file_hashCmd).FlagCompletion(carapace.ActionMap{
+		"targets": carapace.ActionFiles(),
+	})
+
+	carapace.Gen(file_hashCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(),
+	)
 }

@@ -17,4 +17,12 @@ func init() {
 	unstageCmd.Flags().BoolP("help", "h", false, "Print help")
 	unstageCmd.Flags().String("targets", "", "Path to a targets file")
 	rootCmd.AddCommand(unstageCmd)
+
+	carapace.Gen(unstageCmd).FlagCompletion(carapace.ActionMap{
+		"targets": carapace.ActionFiles(),
+	})
+
+	carapace.Gen(unstageCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(),
+	)
 }

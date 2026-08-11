@@ -19,4 +19,13 @@ func init() {
 	file_stageCmd.Flags().Bool("scan", false, "Walk the filesystem under the given paths to detect modified, added, and deleted files")
 	file_stageCmd.Flags().String("targets", "", "Path to a targets file containing all the paths to all files")
 	fileCmd.AddCommand(file_stageCmd)
+
+	carapace.Gen(file_stageCmd).FlagCompletion(carapace.ActionMap{
+		"case":    carapace.ActionValues("error", "keep", "rename"),
+		"targets": carapace.ActionFiles(),
+	})
+
+	carapace.Gen(file_stageCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(),
+	)
 }

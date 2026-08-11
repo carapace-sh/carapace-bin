@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/lore_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -23,4 +24,14 @@ func init() {
 	diffCmd.Flags().String("target", "", "Optional signature of the target revision to diff to, by default the current file system state")
 	diffCmd.Flags().String("targets", "", "Path to a targets file containing all the paths to all files")
 	rootCmd.AddCommand(diffCmd)
+
+	carapace.Gen(diffCmd).FlagCompletion(carapace.ActionMap{
+		"source":  action.ActionRevisions(diffCmd),
+		"target":  action.ActionRevisions(diffCmd),
+		"targets": carapace.ActionFiles(),
+	})
+
+	carapace.Gen(diffCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(),
+	)
 }

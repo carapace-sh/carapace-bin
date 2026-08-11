@@ -17,4 +17,8 @@ func init() {
 	layer_removeCmd.Flags().BoolP("help", "h", false, "Print help")
 	layer_removeCmd.Flags().Bool("purge", false, "Also delete untracked files and all directories inside the layer mount")
 	layerCmd.AddCommand(layer_removeCmd)
+
+	carapace.Gen(layer_removeCmd).PositionalCompletion(
+		carapace.ActionFiles(),
+	)
 }

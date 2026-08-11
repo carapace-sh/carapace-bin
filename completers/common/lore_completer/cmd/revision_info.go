@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/lore_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -18,4 +19,8 @@ func init() {
 	revision_infoCmd.Flags().BoolP("help", "h", false, "Print help")
 	revision_infoCmd.Flags().Bool("metadata", false, "Show file metadata information")
 	revisionCmd.AddCommand(revision_infoCmd)
+
+	carapace.Gen(revision_infoCmd).PositionalCompletion(
+		action.ActionRevisions(revision_infoCmd),
+	)
 }

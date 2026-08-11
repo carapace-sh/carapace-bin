@@ -17,4 +17,12 @@ func init() {
 	revision_cherryPick_unresolveCmd.Flags().BoolP("help", "h", false, "Print help")
 	revision_cherryPick_unresolveCmd.Flags().String("targets", "", "Path to a targets file")
 	revision_cherryPickCmd.AddCommand(revision_cherryPick_unresolveCmd)
+
+	carapace.Gen(revision_cherryPick_unresolveCmd).FlagCompletion(carapace.ActionMap{
+		"targets": carapace.ActionFiles(),
+	})
+
+	carapace.Gen(revision_cherryPick_unresolveCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(),
+	)
 }

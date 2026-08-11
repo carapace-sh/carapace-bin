@@ -17,4 +17,8 @@ func init() {
 	repository_store_immutable_queryCmd.Flags().BoolP("help", "h", false, "Print help")
 	repository_store_immutable_queryCmd.Flags().Bool("recurse", false, "Recurse into subfragments")
 	repository_store_immutableCmd.AddCommand(repository_store_immutable_queryCmd)
+
+	carapace.Gen(repository_store_immutable_queryCmd).PositionalCompletion(
+		carapace.ActionValues(), // address
+	)
 }

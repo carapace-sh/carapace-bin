@@ -18,4 +18,8 @@ func init() {
 	file_dependency_addCmd.Flags().BoolP("help", "h", false, "Print help")
 	file_dependency_addCmd.Flags().StringSlice("tag", nil, "Tags to apply to all added dependency edges")
 	file_dependencyCmd.AddCommand(file_dependency_addCmd)
+
+	carapace.Gen(file_dependency_addCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(),
+	)
 }

@@ -18,4 +18,8 @@ func init() {
 	repository_verifyCmd.Flags().BoolP("help", "h", false, "Print help")
 	repository_verifyCmd.Flags().String("path", "", "Optional path in the repository to start verification from (for state verification)")
 	repositoryCmd.AddCommand(repository_verifyCmd)
+
+	carapace.Gen(repository_verifyCmd).FlagCompletion(carapace.ActionMap{
+		"path": carapace.ActionFiles(),
+	})
 }

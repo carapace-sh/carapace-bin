@@ -16,4 +16,8 @@ func init() {
 
 	notification_subscribeCmd.Flags().BoolP("help", "h", false, "Print help")
 	notificationCmd.AddCommand(notification_subscribeCmd)
+
+	carapace.Gen(notification_subscribeCmd).PositionalCompletion(
+		carapace.ActionValues(),
+	)
 }

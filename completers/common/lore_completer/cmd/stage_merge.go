@@ -17,4 +17,8 @@ func init() {
 	stage_mergeCmd.Flags().BoolP("help", "h", false, "Print help")
 	stage_mergeCmd.Flags().String("targets", "", "Path to a targets file containing all the paths to all files")
 	stageCmd.AddCommand(stage_mergeCmd)
+
+	carapace.Gen(stage_mergeCmd).FlagCompletion(carapace.ActionMap{
+		"targets": carapace.ActionFiles(),
+	})
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/lore_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -20,4 +21,14 @@ func init() {
 	file_resetCmd.Flags().String("revision", "", "Revision to reset files to")
 	file_resetCmd.Flags().String("targets", "", "Path to a targets file containing all the paths to all files")
 	fileCmd.AddCommand(file_resetCmd)
+
+	carapace.Gen(file_resetCmd).FlagCompletion(carapace.ActionMap{
+		"last-merged-from": action.ActionBranches(file_resetCmd),
+		"revision":         action.ActionRevisions(file_resetCmd),
+		"targets":          carapace.ActionFiles(),
+	})
+
+	carapace.Gen(file_resetCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(),
+	)
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/lore_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -33,4 +34,20 @@ func init() {
 	repository_cloneCmd.Flags().String("view", "", "Optional client side view filter file")
 	repository_cloneCmd.Flags().Bool("virtual", false, "Clone virtually using split-write filesystem")
 	repositoryCmd.AddCommand(repository_cloneCmd)
+
+	carapace.Gen(repository_cloneCmd).FlagCompletion(carapace.ActionMap{
+		"branch":            action.ActionBranches(repository_cloneCmd),
+		"layer":             carapace.ActionValues(),
+		"layer-metadata":    carapace.ActionValues(),
+		"prefetch":          carapace.ActionFiles(),
+		"revision":          action.ActionRevisions(repository_cloneCmd),
+		"root-file":         carapace.ActionFiles(),
+		"shared-store-path": carapace.ActionDirectories(),
+		"view":              carapace.ActionFiles(),
+	})
+
+	carapace.Gen(repository_cloneCmd).PositionalCompletion(
+		carapace.ActionValues(), // remote url (e.g. lore://host:port/repo)
+		carapace.ActionDirectories(),
+	)
 }

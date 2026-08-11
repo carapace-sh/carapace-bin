@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/lore_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -20,4 +21,9 @@ func init() {
 	revision_bisectCmd.MarkFlagRequired("end")
 	revision_bisectCmd.MarkFlagRequired("start")
 	revisionCmd.AddCommand(revision_bisectCmd)
+
+	carapace.Gen(revision_bisectCmd).FlagCompletion(carapace.ActionMap{
+		"end":   action.ActionRevisions(revision_bisectCmd),
+		"start": action.ActionRevisions(revision_bisectCmd),
+	})
 }

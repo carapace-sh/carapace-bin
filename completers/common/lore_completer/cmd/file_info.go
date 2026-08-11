@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/lore_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -20,4 +21,13 @@ func init() {
 	file_infoCmd.Flags().String("revision", "", "Revision to get info from")
 	file_infoCmd.Flags().String("targets", "", "Path to a targets file containing all the paths to all files")
 	fileCmd.AddCommand(file_infoCmd)
+
+	carapace.Gen(file_infoCmd).FlagCompletion(carapace.ActionMap{
+		"revision": action.ActionRevisions(file_infoCmd),
+		"targets":  carapace.ActionFiles(),
+	})
+
+	carapace.Gen(file_infoCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(),
+	)
 }

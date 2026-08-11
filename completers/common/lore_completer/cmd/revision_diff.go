@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/lore_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -19,4 +20,14 @@ func init() {
 	revision_diffCmd.Flags().String("target", "", "Target revision to compare, by default the current revision")
 	revision_diffCmd.Flags().String("targets", "", "Path to a targets file")
 	revisionCmd.AddCommand(revision_diffCmd)
+
+	carapace.Gen(revision_diffCmd).FlagCompletion(carapace.ActionMap{
+		"path":    carapace.ActionFiles(),
+		"target":  action.ActionRevisions(revision_diffCmd),
+		"targets": carapace.ActionFiles(),
+	})
+
+	carapace.Gen(revision_diffCmd).PositionalCompletion(
+		action.ActionRevisions(revision_diffCmd),
+	)
 }

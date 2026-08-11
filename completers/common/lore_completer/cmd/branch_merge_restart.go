@@ -17,4 +17,12 @@ func init() {
 	branch_merge_restartCmd.Flags().BoolP("help", "h", false, "Print help")
 	branch_merge_restartCmd.Flags().String("targets", "", "Path to a targets file")
 	branch_mergeCmd.AddCommand(branch_merge_restartCmd)
+
+	carapace.Gen(branch_merge_restartCmd).FlagCompletion(carapace.ActionMap{
+		"targets": carapace.ActionFiles(),
+	})
+
+	carapace.Gen(branch_merge_restartCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(),
+	)
 }

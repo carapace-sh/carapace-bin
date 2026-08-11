@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/lore_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -22,4 +23,12 @@ func init() {
 	branch_merge_startCmd.Flags().String("message", "", "Change the message for committing when no conflicts arise from the merge")
 	branch_merge_startCmd.Flags().Bool("no-commit", false, "Disable auto commits even if no conflicts arise from the merge")
 	branch_mergeCmd.AddCommand(branch_merge_startCmd)
+
+	carapace.Gen(branch_merge_startCmd).FlagCompletion(carapace.ActionMap{
+		"link": carapace.ActionValues(),
+	})
+
+	carapace.Gen(branch_merge_startCmd).PositionalCompletion(
+		action.ActionBranches(branch_merge_startCmd),
+	)
 }

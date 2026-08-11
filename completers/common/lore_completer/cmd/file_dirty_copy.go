@@ -16,4 +16,8 @@ func init() {
 
 	file_dirty_copyCmd.Flags().BoolP("help", "h", false, "Print help")
 	file_dirtyCmd.AddCommand(file_dirty_copyCmd)
+
+	carapace.Gen(file_dirty_copyCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(),
+	)
 }

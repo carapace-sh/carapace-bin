@@ -17,4 +17,12 @@ func init() {
 	file_dirtyCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	file_dirtyCmd.Flags().String("targets", "", "Path to a targets file containing all the paths to all files")
 	fileCmd.AddCommand(file_dirtyCmd)
+
+	carapace.Gen(file_dirtyCmd).FlagCompletion(carapace.ActionMap{
+		"targets": carapace.ActionFiles(),
+	})
+
+	carapace.Gen(file_dirtyCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(),
+	)
 }

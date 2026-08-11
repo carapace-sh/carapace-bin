@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/lore_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -18,4 +19,12 @@ func init() {
 	branch_diffCmd.Flags().BoolP("help", "h", false, "Print help")
 	branch_diffCmd.Flags().String("source", "", "Name of the source branch")
 	branchCmd.AddCommand(branch_diffCmd)
+
+	carapace.Gen(branch_diffCmd).FlagCompletion(carapace.ActionMap{
+		"source": action.ActionBranches(branch_diffCmd),
+	})
+
+	carapace.Gen(branch_diffCmd).PositionalCompletion(
+		action.ActionBranches(branch_diffCmd),
+	)
 }

@@ -16,4 +16,8 @@ func init() {
 
 	revision_find_numberCmd.Flags().BoolP("help", "h", false, "Print help")
 	revision_findCmd.AddCommand(revision_find_numberCmd)
+
+	carapace.Gen(revision_find_numberCmd).PositionalCompletion(
+		carapace.ActionValues(),
+	)
 }

@@ -17,4 +17,8 @@ func init() {
 	revision_amendCmd.Flags().BoolP("help", "h", false, "Print help")
 	revision_amendCmd.Flags().Bool("stats", false, "Print stats")
 	revisionCmd.AddCommand(revision_amendCmd)
+
+	carapace.Gen(revision_amendCmd).PositionalCompletion(
+		carapace.ActionValues(),
+	)
 }

@@ -24,4 +24,12 @@ func init() {
 	statusCmd.Flags().Bool("unstaged", false, "Alias for --scan (backward compatibility)")
 	statusCmd.Flag("unstaged").Hidden = true
 	rootCmd.AddCommand(statusCmd)
+
+	carapace.Gen(statusCmd).FlagCompletion(carapace.ActionMap{
+		"targets": carapace.ActionFiles(),
+	})
+
+	carapace.Gen(statusCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(),
+	)
 }

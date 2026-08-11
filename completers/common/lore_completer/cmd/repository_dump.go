@@ -19,4 +19,9 @@ func init() {
 	repository_dumpCmd.Flags().String("path", "", "Optional path in the repository to start dumping from")
 	repository_dumpCmd.Flags().String("revision", "", "Optional revision to dump")
 	repositoryCmd.AddCommand(repository_dumpCmd)
+
+	carapace.Gen(repository_dumpCmd).FlagCompletion(carapace.ActionMap{
+		"path":     carapace.ActionFiles(),
+		"revision": carapace.ActionValues(),
+	})
 }

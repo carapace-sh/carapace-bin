@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/lore_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -20,4 +21,13 @@ func init() {
 	file_historyCmd.Flags().Bool("oneline", false, "Output each revision on one line only")
 	file_historyCmd.Flags().String("revision", "", "Revision to start from")
 	fileCmd.AddCommand(file_historyCmd)
+
+	carapace.Gen(file_historyCmd).FlagCompletion(carapace.ActionMap{
+		"branch":   action.ActionBranches(file_historyCmd),
+		"revision": action.ActionRevisions(file_historyCmd),
+	})
+
+	carapace.Gen(file_historyCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(),
+	)
 }

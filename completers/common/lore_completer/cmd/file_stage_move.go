@@ -16,4 +16,8 @@ func init() {
 
 	file_stage_moveCmd.Flags().BoolP("help", "h", false, "Print help")
 	file_stageCmd.AddCommand(file_stage_moveCmd)
+
+	carapace.Gen(file_stage_moveCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(),
+	)
 }

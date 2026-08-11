@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/lore_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -18,4 +19,8 @@ func init() {
 	branch_mergeCmd.Flags().String("id", "", "ID of the source branch to merge into the current branch")
 	branch_mergeCmd.Flags().String("message", "", "Change the message for committing when no conflicts arise from the merge")
 	branchCmd.AddCommand(branch_mergeCmd)
+
+	carapace.Gen(branch_mergeCmd).PositionalCompletion(
+		action.ActionBranches(branch_mergeCmd),
+	)
 }

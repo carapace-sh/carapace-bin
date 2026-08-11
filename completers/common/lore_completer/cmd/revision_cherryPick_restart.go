@@ -17,4 +17,12 @@ func init() {
 	revision_cherryPick_restartCmd.Flags().BoolP("help", "h", false, "Print help")
 	revision_cherryPick_restartCmd.Flags().String("targets", "", "Path to a targets file")
 	revision_cherryPickCmd.AddCommand(revision_cherryPick_restartCmd)
+
+	carapace.Gen(revision_cherryPick_restartCmd).FlagCompletion(carapace.ActionMap{
+		"targets": carapace.ActionFiles(),
+	})
+
+	carapace.Gen(revision_cherryPick_restartCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(),
+	)
 }

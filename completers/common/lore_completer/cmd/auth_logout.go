@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/lore_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -19,4 +20,8 @@ func init() {
 	auth_logoutCmd.Flags().String("resource", "", "Resource ID to remove a specific authorization (e.g. \"urc-{id}\")")
 	auth_logoutCmd.Flags().String("user-id", "", "User ID to remove (omit to remove all identities)")
 	authCmd.AddCommand(auth_logoutCmd)
+
+	carapace.Gen(auth_logoutCmd).FlagCompletion(carapace.ActionMap{
+		"user-id": action.ActionIdentities(auth_logoutCmd),
+	})
 }
