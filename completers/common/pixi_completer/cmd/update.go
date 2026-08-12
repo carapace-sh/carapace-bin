@@ -22,6 +22,7 @@ func init() {
 	updateCmd.Flags().BoolP("dry-run", "n", false, "Don't actually write the lock file or update any environment")
 	updateCmd.Flags().StringSliceP("environment", "e", nil, "The environments to update. If none is specified, all environments are updated")
 	updateCmd.Flags().Bool("json", false, "Output the changes in JSON format")
+	updateCmd.Flags().Bool("offline", false, "Run without network access, using only cached data. Commands fail if data is missing from the cache. Pass `--offline=false` to override an `offline` setting from the configuration")
 	updateCmd.PersistentFlags().StringP("manifest-path", "m", "", "The path to `pixi.toml`, `pyproject.toml`, or the workspace directory")
 	updateCmd.Flags().Bool("no-config", false, "Don't read system or user-level configuration files. Project-local `<project>/.pixi/config.toml` is still loaded")
 	updateCmd.Flags().Bool("no-hard-links", false, "Disallow hard links during package installation")

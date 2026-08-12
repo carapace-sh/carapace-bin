@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/pixi"
 	"github.com/spf13/cobra"
 )
 
@@ -28,4 +29,8 @@ func init() {
 	workspace_platform_editCmd.Flags().String("subdir", "", "Set a new conda subdir for this platform")
 	workspace_platform_editCmd.Flags().String("windows", "", "Declare a `__win` virtual package at the given Windows version, e.g. `10`. Only valid on win subdirs")
 	workspace_platformCmd.AddCommand(workspace_platform_editCmd)
+
+	carapace.Gen(workspace_platform_editCmd).PositionalCompletion(
+		pixi.ActionPlatforms(),
+	)
 }

@@ -32,6 +32,7 @@ func init() {
 	runCmd.Flags().BoolS("h", "h", false, "")
 	runCmd.Flags().Bool("help", false, "")
 	runCmd.Flags().Bool("locked", false, "Check if lock file is up-to-date before installing the environment, aborts when lock file isn't up-to-date with the manifest file")
+	runCmd.Flags().Bool("offline", false, "Run without network access, using only cached data. Commands fail if data is missing from the cache. Pass `--offline=false` to override an `offline` setting from the configuration")
 	runCmd.PersistentFlags().StringP("manifest-path", "m", "", "The path to `pixi.toml`, `pyproject.toml`, or the workspace directory")
 	runCmd.Flags().Bool("no-completions", false, "Do not source the autocompletion scripts from the environment")
 	runCmd.Flags().Bool("no-config", false, "Don't read system or user-level configuration files. Project-local `<project>/.pixi/config.toml` is still loaded")
@@ -43,6 +44,7 @@ func init() {
 	runCmd.Flags().StringP("platform", "p", "", "Install and run in the environment for the given platform; a warning is printed when it doesn't run on this machine. Accepts a workspace platform name; a bare conda subdir (e.g. `linux-64`) is also accepted")
 	runCmd.Flags().String("pypi-keyring-provider", "", "Specifies whether to use the keyring to look up credentials for PyPI")
 	runCmd.Flags().Bool("run-post-link-scripts", false, "Run post-link scripts (insecure)")
+	runCmd.PersistentFlags().StringP("script", "s", "", "The path to a Python script containing PEP 723 metadata. Pixi run also accepts an HTTP(S) URL or '-' to read the script from stdin")
 	runCmd.Flags().Bool("skip-deps", false, "Don't run the dependencies of the task ('depends-on' field in the task definition)")
 	runCmd.Flags().Bool("templated", false, "Enable template rendering for the command arguments")
 	runCmd.Flags().Bool("tls-no-verify", false, "Do not verify the TLS certificate of the server")
@@ -59,6 +61,7 @@ func init() {
 		"pinning-strategy":      carapace.ActionValues("semver", "minor", "major", "latest-up", "exact-version", "no-pin"),
 		"platform":              pixi.ActionPlatforms(),
 		"pypi-keyring-provider": carapace.ActionValues("disabled", "subprocess"),
+		"script":                carapace.Batch(carapace.ActionFiles(".py"), carapace.ActionValues("-")).ToA(),
 		"tls-root-certs":        carapace.ActionValues("webpki", "system"),
 	})
 

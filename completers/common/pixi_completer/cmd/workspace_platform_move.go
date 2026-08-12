@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/pixi"
 	"github.com/spf13/cobra"
 )
 
@@ -21,4 +22,13 @@ func init() {
 	workspace_platform_moveCmd.Flags().Bool("to-bottom", false, "Move it to the bottom of the list (lowest selection priority)")
 	workspace_platform_moveCmd.Flags().Bool("to-top", false, "Move it to the top of the list (highest selection priority)")
 	workspace_platformCmd.AddCommand(workspace_platform_moveCmd)
+
+	carapace.Gen(workspace_platform_moveCmd).FlagCompletion(carapace.ActionMap{
+		"after":  pixi.ActionPlatforms(),
+		"before": pixi.ActionPlatforms(),
+	})
+
+	carapace.Gen(workspace_platform_moveCmd).PositionalCompletion(
+		pixi.ActionPlatforms(),
+	)
 }

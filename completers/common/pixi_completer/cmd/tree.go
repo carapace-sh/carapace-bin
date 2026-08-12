@@ -25,6 +25,7 @@ func init() {
 	treeCmd.Flags().Bool("no-config", false, "Don't read system or user-level configuration files. Project-local `<project>/.pixi/config.toml` is still loaded")
 	treeCmd.Flags().Bool("no-install", false, "Don't modify the environment, only modify the lock file")
 	treeCmd.Flags().StringP("platform", "p", "", "The platform to list packages for. Defaults to the platform best matching this machine. Accepts a workspace platform name; a bare conda subdir (e.g. `linux-64`) is also accepted")
+	treeCmd.PersistentFlags().StringP("script", "s", "", "The path to a Python script containing PEP 723 metadata. Pixi run also accepts an HTTP(S) URL or '-' to read the script from stdin")
 	treeCmd.PersistentFlags().StringP("workspace", "w", "", "Name of the workspace")
 	rootCmd.AddCommand(treeCmd)
 
@@ -33,5 +34,6 @@ func init() {
 		"environment":   pixi.ActionEnvironments(),
 		"manifest-path": carapace.ActionFiles(),
 		"platform":      pixi.ActionPlatforms(),
+		"script":        carapace.ActionFiles(".py"),
 	})
 }

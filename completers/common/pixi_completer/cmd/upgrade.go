@@ -20,11 +20,13 @@ func init() {
 	upgradeCmd.Flags().String("concurrent-solves", "", "Max concurrent solves, default is the number of CPUs")
 	upgradeCmd.Flags().String("config-file", "", "Load configuration from this file instead of searching system and user-level paths. Project-local `<project>/.pixi/config.toml` is still merged on top")
 	upgradeCmd.Flags().BoolP("dry-run", "n", false, "Only show the changes that would be made, without actually updating the manifest, lock file, or environment")
+	upgradeCmd.Flags().StringP("environment", "e", "", "The environment to upgrade")
 	upgradeCmd.Flags().StringSlice("exclude", nil, "The packages which should be excluded")
 	upgradeCmd.Flags().StringP("feature", "f", "", "The feature to update")
 	upgradeCmd.Flags().Bool("frozen", false, "Install the environment as defined in the lock file, doesn't update lock file if it isn't up-to-date with the manifest file")
 	upgradeCmd.Flags().Bool("json", false, "Output the changes in JSON format")
 	upgradeCmd.Flags().Bool("locked", false, "Check if lock file is up-to-date before installing the environment, aborts when lock file isn't up-to-date with the manifest file")
+	upgradeCmd.Flags().Bool("offline", false, "Run without network access, using only cached data. Commands fail if data is missing from the cache. Pass `--offline=false` to override an `offline` setting from the configuration")
 	upgradeCmd.PersistentFlags().StringP("manifest-path", "m", "", "The path to `pixi.toml`, `pyproject.toml`, or the workspace directory")
 	upgradeCmd.Flags().Bool("no-config", false, "Don't read system or user-level configuration files. Project-local `<project>/.pixi/config.toml` is still loaded")
 	upgradeCmd.Flags().Bool("no-hard-links", false, "Disallow hard links during package installation")
@@ -43,6 +45,7 @@ func init() {
 	carapace.Gen(upgradeCmd).FlagCompletion(carapace.ActionMap{
 		"auth-file":             carapace.ActionFiles(),
 		"config-file":           carapace.ActionFiles(),
+		"environment":           pixi.ActionEnvironments(),
 		"feature":               pixi.ActionFeatures(),
 		"manifest-path":         carapace.ActionFiles(),
 		"pinning-strategy":      carapace.ActionValues("semver", "minor", "major", "latest-up", "exact-version", "no-pin"),
