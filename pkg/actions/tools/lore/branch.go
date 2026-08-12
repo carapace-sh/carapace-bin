@@ -6,12 +6,15 @@ import (
 	"strings"
 
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/styles"
+	"github.com/carapace-sh/carapace/pkg/style"
 )
 
 type branchListEntry struct {
 	Name      string `json:"name"`
 	ID        string `json:"id"`
 	Latest    string `json:"latest"`
+	Location  string `json:"location"`
 	IsCurrent bool   `json:"isCurrent"`
 	Archived  bool   `json:"archived"`
 }
@@ -24,7 +27,8 @@ func ActionBranches(opts GlobalOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		args := append(opts.args(), "--json", "branch", "list")
 		return carapace.ActionExecCommand("lore", args...)(func(output []byte) carapace.Action {
-			var vals []string
+			local := carapace.Batch()
+			remote := carapace.Batch()
 			scanner := bufio.NewScanner(strings.NewReader(string(output)))
 			for scanner.Scan() {
 				line := strings.TrimSpace(scanner.Text())
@@ -43,18 +47,24 @@ func ActionBranches(opts GlobalOpts) carapace.Action {
 					continue
 				}
 				desc := entry.ID
+				s := styles.Lore.Branch
 				if entry.IsCurrent {
 					desc += " (current)"
+					s = styles.Lore.CurrentBranch
 				}
 				if entry.Archived {
 					desc += " (archived)"
+					s = style.Of(s, style.Dim)
 				}
-				vals = append(vals, entry.Name, desc)
+				a := carapace.ActionValuesDescribed(entry.Name, desc).Style(s)
+				if entry.Location == "remote" {
+					remote = append(remote, a.Tag("remote branches"))
+				} else {
+					local = append(local, a.Tag("local branches"))
+				}
 			}
-			if len(vals) == 0 {
-				return carapace.ActionValues()
-			}
-			return carapace.ActionValuesDescribed(vals...)
+			remote = append(remote, local...)
+			return remote.ToA()
 		})
-	}).Tag("branches")
+	})
 }

@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/styles"
 )
 
 type revisionHistoryEntry struct {
@@ -62,7 +63,7 @@ func ActionRevisions(opts RevisionOpts) carapace.Action {
 			if len(vals) == 0 {
 				return carapace.ActionValues()
 			}
-			return carapace.ActionValuesDescribed(vals...)
+			return carapace.ActionValuesDescribed(vals...).Style(styles.Lore.Revision)
 		})
 	}).Tag("revisions")
 }
