@@ -41,7 +41,8 @@ func init() {
 	addCmd.Flags().String("pypi-keyring-provider", "", "Specifies whether to use the keyring to look up credentials for PyPI")
 	addCmd.Flags().String("rev", "", "The git revision")
 	addCmd.Flags().Bool("run-post-link-scripts", false, "Run post-link scripts (insecure)")
-	addCmd.Flags().StringP("subdirectory", "s", "", "The subdirectory of the git repository to use")
+	addCmd.PersistentFlags().StringP("script", "s", "", "The path to a Python script containing PEP 723 metadata. Pixi run also accepts an HTTP(S) URL or '-' to read the script from stdin")
+	addCmd.Flags().String("subdirectory", "", "The subdirectory of the git repository to use")
 	addCmd.Flags().String("tag", "", "The git tag")
 	addCmd.Flags().Bool("tls-no-verify", false, "Do not verify the TLS certificate of the server")
 	addCmd.Flags().String("tls-root-certs", "", "Which TLS root certificates to use: 'webpki' (bundled Mozilla roots) or 'system' (system store)")
@@ -58,6 +59,7 @@ func init() {
 		"pinning-strategy":      carapace.ActionValues("semver", "minor", "major", "latest-up", "exact-version", "no-pin"),
 		"platform":              pixi.ActionPlatforms(),
 		"pypi-keyring-provider": carapace.ActionValues("disabled", "subprocess"),
+		"script":                carapace.ActionFiles(".py"),
 		"tls-root-certs":        carapace.ActionValues("webpki", "system"),
 	})
 

@@ -31,6 +31,7 @@ func init() {
 	lockCmd.Flags().String("pinning-strategy", "", "Set pinning strategy")
 	lockCmd.Flags().String("pypi-keyring-provider", "", "Specifies whether to use the keyring to look up credentials for PyPI")
 	lockCmd.Flags().Bool("run-post-link-scripts", false, "Run post-link scripts (insecure)")
+	lockCmd.PersistentFlags().StringP("script", "s", "", "The path to a Python script containing PEP 723 metadata. Pixi run also accepts an HTTP(S) URL or '-' to read the script from stdin")
 	lockCmd.Flags().Bool("tls-no-verify", false, "Do not verify the TLS certificate of the server")
 	lockCmd.Flags().String("tls-root-certs", "", "Which TLS root certificates to use: 'webpki' (bundled Mozilla roots) or 'system' (system store)")
 	lockCmd.Flags().Bool("use-environment-activation-cache", false, "Use environment activation cache (experimental)")
@@ -43,6 +44,7 @@ func init() {
 		"manifest-path":         carapace.ActionFiles(),
 		"pinning-strategy":      carapace.ActionValues("semver", "minor", "major", "latest-up", "exact-version", "no-pin"),
 		"pypi-keyring-provider": carapace.ActionValues("disabled", "subprocess"),
+		"script":                carapace.ActionFiles(".py"),
 		"tls-root-certs":        carapace.ActionValues("webpki", "system"),
 	})
 }

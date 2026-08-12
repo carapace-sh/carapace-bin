@@ -20,7 +20,8 @@ func init() {
 	initCmd.Flags().String("format", "", "The manifest format to create")
 	initCmd.Flags().StringP("import", "i", "", "Environment.yml file to bootstrap the workspace")
 	initCmd.Flags().StringSliceP("platform", "p", nil, "Platforms that the workspace supports")
-	initCmd.Flags().StringP("scm", "s", "", "Source Control Management used for this workspace")
+	initCmd.Flags().String("scm", "", "Source Control Management used for this workspace")
+	initCmd.Flags().StringP("script", "s", "", "Create a PEP 723 metadata block in a Python script")
 	rootCmd.AddCommand(initCmd)
 
 	carapace.Gen(initCmd).FlagCompletion(carapace.ActionMap{
@@ -28,5 +29,6 @@ func init() {
 		"import":   carapace.ActionFiles(),
 		"platform": pixi.ActionPlatforms(),
 		"scm":      carapace.ActionValues("github", "gitlab", "codeberg"),
+		"script":   carapace.ActionFiles(".py"),
 	})
 }
