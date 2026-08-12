@@ -7,7 +7,8 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "lore",
-	Short: "",
+	Short: "next-generation, open source version control system",
+	Long:  "https://lore.org/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

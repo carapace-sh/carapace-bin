@@ -8,7 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "apfsctl",
 	Short: "APFS filesystem control utility",
-	Long:  "APFS filesystem control utility for managing datasets, purgeable files, and dataless items.",
+	Long:  "https://en.wikipedia.org/wiki/Apple_File_System",
 	Run:   func(*cobra.Command, []string) {},
 }
 
