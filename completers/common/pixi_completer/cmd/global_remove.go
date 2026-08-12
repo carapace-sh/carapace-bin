@@ -23,6 +23,7 @@ func init() {
 	global_removeCmd.Flags().Bool("no-hard-links", false, "Disallow hard links during package installation")
 	global_removeCmd.Flags().Bool("no-ref-links", false, "Disallow ref links (copy-on-write) during package installation")
 	global_removeCmd.Flags().Bool("no-symbolic-links", false, "Disallow symbolic links during package installation")
+	global_removeCmd.Flags().Bool("offline", false, "Run without network access, using only cached data. Commands fail if data is missing from the cache. Pass `--offline=false` to override an `offline` setting from the configuration")
 	global_removeCmd.Flags().String("pinning-strategy", "", "Set pinning strategy")
 	global_removeCmd.Flags().String("pypi-keyring-provider", "", "Specifies whether to use the keyring to look up credentials for PyPI")
 	global_removeCmd.Flags().Bool("run-post-link-scripts", false, "Run post-link scripts (insecure)")

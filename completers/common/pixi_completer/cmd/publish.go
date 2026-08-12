@@ -23,18 +23,20 @@ func init() {
 	publishCmd.Flags().String("concurrent-downloads", "", "Max concurrent network requests, default is `50`")
 	publishCmd.Flags().String("concurrent-solves", "", "Max concurrent solves, default is the number of CPUs")
 	publishCmd.Flags().String("config-file", "", "Load configuration from this file instead of searching system and user-level paths. Project-local `<project>/.pixi/config.toml` is still merged on top")
+	publishCmd.Flags().Bool("dry-run", false, "Resolve and print the publish set without building or uploading")
 	publishCmd.Flags().Bool("force", false, "Force overwrite existing packages")
 	publishCmd.Flags().Bool("generate-attestation", false, "Generate sigstore attestation (prefix.dev only)")
 	publishCmd.Flags().Bool("no-config", false, "Don't read system or user-level configuration files. Project-local `<project>/.pixi/config.toml` is still loaded")
 	publishCmd.Flags().Bool("no-hard-links", false, "Disallow hard links during package installation")
 	publishCmd.Flags().Bool("no-ref-links", false, "Disallow ref links (copy-on-write) during package installation")
+	publishCmd.Flags().Bool("no-skip-existing", false, "Do not skip packages that already exist at the target")
 	publishCmd.Flags().Bool("no-symbolic-links", false, "Disallow symbolic links during package installation")
+	publishCmd.Flags().Bool("offline", false, "Run without network access, using only cached data. Commands fail if data is missing from the cache. Pass `--offline=false` to override an `offline` setting from the configuration")
 	publishCmd.Flags().String("package-format", "", "Archive format and optional compression level, e.g. `conda`, `tar-bz2`, `conda:max`, `conda:15`, `tar-bz2:9`. Numeric ranges match rattler-build: -7..=22 for `.conda`, 1..=9 for `.tar.bz2`")
 	publishCmd.Flags().String("path", "", "The path to a directory containing a package manifest, or to a specific manifest file")
 	publishCmd.Flags().String("pinning-strategy", "", "Set pinning strategy")
 	publishCmd.Flags().String("pypi-keyring-provider", "", "Specifies whether to use the keyring to look up credentials for PyPI")
 	publishCmd.Flags().Bool("run-post-link-scripts", false, "Run post-link scripts (insecure)")
-	publishCmd.Flags().String("skip-existing", "true", "Skip uploading packages that already exist at the target. This is enabled by default. Use `--no-skip-existing` to disable")
 	publishCmd.Flags().String("target-channel", "", "The target channel to publish packages to. Accepts a URL (prefix.dev, anaconda.org, cloudsmith://, s3://, quetz://, artifactory://) or a local filesystem path / `file://` URL for an indexed local channel")
 	publishCmd.Flags().String("target-dir", "", "The local filesystem path to copy the built package(s) into (no channel indexing)")
 	publishCmd.Flags().StringP("target-platform", "t", "linux-64", "The target platform to build for (defaults to the current platform)")
@@ -53,7 +55,6 @@ func init() {
 		"path":                  carapace.ActionFiles(),
 		"pinning-strategy":      carapace.ActionValues("semver", "minor", "major", "latest-up", "exact-version", "no-pin"),
 		"pypi-keyring-provider": carapace.ActionValues("disabled", "subprocess"),
-		"skip-existing":         carapace.ActionValues("true", "false"),
 		"target-dir":            carapace.ActionFiles(),
 		"tls-root-certs":        carapace.ActionValues("webpki", "system"),
 		"variant-config":        carapace.ActionFiles(),

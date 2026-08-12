@@ -30,6 +30,7 @@ func init() {
 	workspace_export_condaExplicitSpecCmd.Flags().Bool("no-install", false, "Don't modify the environment, only modify the lock file")
 	workspace_export_condaExplicitSpecCmd.Flags().Bool("no-ref-links", false, "Disallow ref links (copy-on-write) during package installation")
 	workspace_export_condaExplicitSpecCmd.Flags().Bool("no-symbolic-links", false, "Disallow symbolic links during package installation")
+	workspace_export_condaExplicitSpecCmd.Flags().Bool("offline", false, "Run without network access, using only cached data. Commands fail if data is missing from the cache. Pass `--offline=false` to override an `offline` setting from the configuration")
 	workspace_export_condaExplicitSpecCmd.Flags().String("pinning-strategy", "", "Set pinning strategy")
 	workspace_export_condaExplicitSpecCmd.Flags().StringSliceP("platform", "p", nil, "The platform to render. Can be repeated for multiple platforms. Defaults to all platforms available for selected environments")
 	workspace_export_condaExplicitSpecCmd.Flags().String("pypi-keyring-provider", "", "Specifies whether to use the keyring to look up credentials for PyPI")

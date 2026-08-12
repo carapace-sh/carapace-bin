@@ -21,10 +21,12 @@ func init() {
 	removeCmd.Flags().String("concurrent-downloads", "", "Max concurrent network requests, default is `50`")
 	removeCmd.Flags().String("concurrent-solves", "", "Max concurrent solves, default is the number of CPUs")
 	removeCmd.Flags().String("config-file", "", "Load configuration from this file instead of searching system and user-level paths. Project-local `<project>/.pixi/config.toml` is still merged on top")
+	removeCmd.Flags().StringP("environment", "e", "", "The environment for which the dependency should be modified. The dependency is written to the content defined inline on the environment, creating the environment if it does not exist")
 	removeCmd.Flags().StringP("feature", "f", "default", "The feature for which the dependency should be modified")
 	removeCmd.Flags().Bool("frozen", false, "Install the environment as defined in the lock file, doesn't update lock file if it isn't up-to-date with the manifest file")
 	removeCmd.Flags().StringP("git", "g", "", "The git url to use when adding a git dependency")
 	removeCmd.Flags().Bool("locked", false, "Check if lock file is up-to-date before installing the environment, aborts when lock file isn't up-to-date with the manifest file")
+	removeCmd.Flags().Bool("offline", false, "Run without network access, using only cached data. Commands fail if data is missing from the cache. Pass `--offline=false` to override an `offline` setting from the configuration")
 	removeCmd.PersistentFlags().StringP("manifest-path", "m", "", "The path to `pixi.toml`, `pyproject.toml`, or the workspace directory")
 	removeCmd.Flags().Bool("no-config", false, "Don't read system or user-level configuration files. Project-local `<project>/.pixi/config.toml` is still loaded")
 	removeCmd.Flags().Bool("no-hard-links", false, "Disallow hard links during package installation")
@@ -37,7 +39,7 @@ func init() {
 	removeCmd.Flags().String("pypi-keyring-provider", "", "Specifies whether to use the keyring to look up credentials for PyPI")
 	removeCmd.Flags().String("rev", "", "The git revision")
 	removeCmd.Flags().Bool("run-post-link-scripts", false, "Run post-link scripts (insecure)")
-	removeCmd.Flags().StringP("subdir", "s", "", "The subdirectory of the git repository to use")
+	removeCmd.Flags().StringP("subdirectory", "s", "", "The subdirectory of the git repository to use")
 	removeCmd.Flags().String("tag", "", "The git tag")
 	removeCmd.Flags().Bool("tls-no-verify", false, "Do not verify the TLS certificate of the server")
 	removeCmd.Flags().String("tls-root-certs", "", "Which TLS root certificates to use: 'webpki' (bundled Mozilla roots) or 'system' (system store)")
@@ -48,6 +50,7 @@ func init() {
 	carapace.Gen(removeCmd).FlagCompletion(carapace.ActionMap{
 		"auth-file":             carapace.ActionFiles(),
 		"config-file":           carapace.ActionFiles(),
+		"environment":           pixi.ActionEnvironments(),
 		"feature":               pixi.ActionFeatures(),
 		"manifest-path":         carapace.ActionFiles(),
 		"pinning-strategy":      carapace.ActionValues("semver", "minor", "major", "latest-up", "exact-version", "no-pin"),

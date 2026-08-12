@@ -23,13 +23,17 @@ func init() {
 	task_addCmd.Flags().StringSlice("depends-on", nil, "Depends on these other commands")
 	task_addCmd.Flags().String("description", "", "A description of the task to be added")
 	task_addCmd.Flags().StringSlice("env", nil, "The environment variable to set, use --env key=value multiple times for more than one variable")
+	task_addCmd.Flags().StringP("environment", "e", "", "The environment for which the task should be added. The task is written to the tasks defined inline on the environment, creating the environment if it does not exist")
 	task_addCmd.Flags().StringP("feature", "f", "", "The feature for which the task should be added")
 	task_addCmd.Flags().StringP("platform", "p", "", "The platform for which the task should be added")
 	taskCmd.AddCommand(task_addCmd)
 
 	carapace.Gen(task_addCmd).FlagCompletion(carapace.ActionMap{
-		"cwd":      carapace.ActionDirectories(),
-		"feature":  pixi.ActionFeatures(),
-		"platform": pixi.ActionPlatforms(),
+		"cwd":                 carapace.ActionDirectories(),
+		"default-environment": pixi.ActionEnvironments(),
+		"depends-on":          pixi.ActionTasks(),
+		"environment":         pixi.ActionEnvironments(),
+		"feature":             pixi.ActionFeatures(),
+		"platform":            pixi.ActionPlatforms(),
 	})
 }

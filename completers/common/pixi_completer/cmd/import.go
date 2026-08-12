@@ -22,6 +22,7 @@ func init() {
 	importCmd.Flags().StringP("environment", "e", "", "A name for the created environment")
 	importCmd.Flags().StringP("feature", "f", "", "A name for the created feature")
 	importCmd.Flags().String("format", "", "Which format to interpret the file as")
+	importCmd.Flags().Bool("offline", false, "Run without network access, using only cached data. Commands fail if data is missing from the cache. Pass `--offline=false` to override an `offline` setting from the configuration")
 	importCmd.PersistentFlags().StringP("manifest-path", "m", "", "The path to `pixi.toml`, `pyproject.toml`, or the workspace directory")
 	importCmd.Flags().Bool("no-config", false, "Don't read system or user-level configuration files. Project-local `<project>/.pixi/config.toml` is still loaded")
 	importCmd.Flags().Bool("no-hard-links", false, "Disallow hard links during package installation")

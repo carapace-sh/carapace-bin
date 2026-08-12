@@ -19,6 +19,7 @@ func init() {
 	workspace_channel_removeCmd.Flags().String("auth-file", "", "Path to the file containing the authentication token")
 	workspace_channel_removeCmd.Flags().String("concurrent-downloads", "", "Max concurrent network requests, default is `50`")
 	workspace_channel_removeCmd.Flags().String("concurrent-solves", "", "Max concurrent solves, default is the number of CPUs")
+	workspace_channel_removeCmd.Flags().StringP("environment", "e", "", "The environment to modify. The channel is written to the channels defined inline on the environment")
 	workspace_channel_removeCmd.Flags().StringP("feature", "f", "", "The name of the feature to modify")
 	workspace_channel_removeCmd.Flags().Bool("frozen", false, "Install the environment as defined in the lock file, doesn't update lock file if it isn't up-to-date with the manifest file")
 	workspace_channel_removeCmd.Flags().Bool("locked", false, "Check if lock file is up-to-date before installing the environment, aborts when lock file isn't up-to-date with the manifest file")
@@ -26,6 +27,7 @@ func init() {
 	workspace_channel_removeCmd.Flags().Bool("no-install", false, "Don't modify the environment, only modify the lock file")
 	workspace_channel_removeCmd.Flags().Bool("no-ref-links", false, "Disallow ref links (copy-on-write) during package installation")
 	workspace_channel_removeCmd.Flags().Bool("no-symbolic-links", false, "Disallow symbolic links during package installation")
+	workspace_channel_removeCmd.Flags().Bool("offline", false, "Run without network access, using only cached data. Commands fail if data is missing from the cache. Pass `--offline=false` to override an `offline` setting from the configuration")
 	workspace_channel_removeCmd.Flags().String("pinning-strategy", "", "Set pinning strategy")
 	workspace_channel_removeCmd.Flags().Bool("prepend", false, "Add the channel(s) to the beginning of the channels list, making them the highest priority")
 	workspace_channel_removeCmd.Flags().String("priority", "", "Specify the channel priority")
@@ -38,6 +40,7 @@ func init() {
 
 	carapace.Gen(workspace_channel_removeCmd).FlagCompletion(carapace.ActionMap{
 		"auth-file":             carapace.ActionFiles(),
+		"environment":           pixi.ActionEnvironments(),
 		"feature":               pixi.ActionFeatures(),
 		"pinning-strategy":      carapace.ActionValues("semver", "minor", "major", "latest-up", "exact-version", "no-pin"),
 		"pypi-keyring-provider": carapace.ActionValues("disabled", "subprocess"),

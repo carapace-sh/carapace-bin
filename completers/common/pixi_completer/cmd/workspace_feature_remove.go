@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/pixi"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,8 @@ func init() {
 	carapace.Gen(workspace_feature_removeCmd).Standalone()
 
 	workspace_featureCmd.AddCommand(workspace_feature_removeCmd)
+
+	carapace.Gen(workspace_feature_removeCmd).PositionalCompletion(
+		pixi.ActionFeatures(),
+	)
 }

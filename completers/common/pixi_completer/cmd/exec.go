@@ -28,6 +28,7 @@ func init() {
 	execCmd.Flags().Bool("no-modify-ps1", false, "Disable modification of the PS1 prompt to indicate the temporary environment")
 	execCmd.Flags().Bool("no-ref-links", false, "Disallow ref links (copy-on-write) during package installation")
 	execCmd.Flags().Bool("no-symbolic-links", false, "Disallow symbolic links during package installation")
+	execCmd.Flags().Bool("offline", false, "Run without network access, using only cached data. Commands fail if data is missing from the cache. Pass `--offline=false` to override an `offline` setting from the configuration")
 	execCmd.Flags().String("pinning-strategy", "", "Set pinning strategy")
 	execCmd.Flags().StringP("platform", "p", "", "The platform to create the environment for. Defaults to the current machine's subdir. Accepts a workspace platform name or a bare conda subdir (e.g. `linux-64`); `pixi exec` runs outside any workspace so the value resolves to a conda subdir either way")
 	execCmd.Flags().String("pypi-keyring-provider", "", "Specifies whether to use the keyring to look up credentials for PyPI")
