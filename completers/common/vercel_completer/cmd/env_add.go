@@ -28,6 +28,7 @@ func init() {
 	envCmd.AddCommand(env_addCmd)
 
 	carapace.Gen(env_addCmd).FlagCompletion(carapace.ActionMap{
+		"project":    action.ActionProjects(env_addCmd),
 		"visibility": carapace.ActionValues("auto", "encrypted", "plain"),
 	})
 

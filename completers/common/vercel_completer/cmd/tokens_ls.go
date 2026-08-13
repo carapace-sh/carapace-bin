@@ -20,4 +20,8 @@ func init() {
 	tokens_lsCmd.Flags().String("limit", "", "Number of results per page")
 
 	tokensCmd.AddCommand(tokens_lsCmd)
+
+	carapace.Gen(tokens_lsCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("plain", "json"),
+	})
 }

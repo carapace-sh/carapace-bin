@@ -23,6 +23,10 @@ func init() {
 
 	rootCmd.AddCommand(inspectCmd)
 
+	carapace.Gen(inspectCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("plain", "json"),
+	})
+
 	carapace.Gen(inspectCmd).PositionalCompletion(
 		action.ActionDeployments(inspectCmd),
 	)

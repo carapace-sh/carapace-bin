@@ -18,4 +18,8 @@ func init() {
 	teams_ssoCmd.Flags().Bool("json", false, "Output as JSON")
 
 	teamsCmd.AddCommand(teams_ssoCmd)
+
+	carapace.Gen(teams_ssoCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("plain", "json"),
+	})
 }

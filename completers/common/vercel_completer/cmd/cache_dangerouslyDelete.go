@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/vercel_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -21,4 +22,8 @@ func init() {
 	cache_dangerouslyDeleteCmd.Flags().Bool("yes", false, "Skip confirmation")
 
 	cacheCmd.AddCommand(cache_dangerouslyDeleteCmd)
+
+	carapace.Gen(cache_dangerouslyDeleteCmd).FlagCompletion(carapace.ActionMap{
+		"project": action.ActionProjects(cache_dangerouslyDeleteCmd),
+	})
 }

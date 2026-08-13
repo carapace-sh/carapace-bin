@@ -37,6 +37,8 @@ func init() {
 	carapace.Gen(logsCmd).FlagCompletion(carapace.ActionMap{
 		"environment": action.ActionEnvironments(),
 		"level":       carapace.ActionValues("error", "warning", "info", "fatal"),
+		"project":     action.ActionProjects(logsCmd),
+		"source":      carapace.ActionValues("serverless", "edge-function", "static"),
 	})
 
 	carapace.Gen(logsCmd).PositionalCompletion(

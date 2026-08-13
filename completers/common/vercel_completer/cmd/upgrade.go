@@ -22,4 +22,8 @@ func init() {
 	upgradeCmd.Flags().Bool("json", false, "Output as JSON")
 
 	rootCmd.AddCommand(upgradeCmd)
+
+	carapace.Gen(upgradeCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("plain", "json"),
+	})
 }

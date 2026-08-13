@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/vercel_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -20,4 +21,13 @@ func init() {
 	tokens_addCmd.Flags().String("project", "", "Project name or ID")
 
 	tokensCmd.AddCommand(tokens_addCmd)
+
+	carapace.Gen(tokens_addCmd).FlagCompletion(carapace.ActionMap{
+		"format":  carapace.ActionValues("plain", "json"),
+		"project": action.ActionProjects(tokens_addCmd),
+	})
+
+	carapace.Gen(tokens_addCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("plain", "json"),
+	})
 }

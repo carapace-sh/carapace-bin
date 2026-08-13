@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/vercel_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -21,4 +22,9 @@ func init() {
 	target_lsCmd.Flags().Bool("yes", false, "Skip confirmation")
 
 	targetCmd.AddCommand(target_lsCmd)
+
+	carapace.Gen(target_lsCmd).FlagCompletion(carapace.ActionMap{
+		"format":  carapace.ActionValues("plain", "json"),
+		"project": action.ActionProjects(target_lsCmd),
+	})
 }

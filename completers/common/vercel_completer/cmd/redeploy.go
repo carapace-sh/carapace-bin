@@ -20,6 +20,10 @@ func init() {
 
 	rootCmd.AddCommand(redeployCmd)
 
+	carapace.Gen(redeployCmd).FlagCompletion(carapace.ActionMap{
+		"target": carapace.ActionValues("preview", "prod"),
+	})
+
 	carapace.Gen(redeployCmd).PositionalCompletion(
 		action.ActionDeployments(redeployCmd),
 	)

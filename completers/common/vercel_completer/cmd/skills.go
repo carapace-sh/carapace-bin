@@ -20,6 +20,10 @@ func init() {
 
 	rootCmd.AddCommand(skillsCmd)
 
+	carapace.Gen(skillsCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("plain", "json"),
+	})
+
 	carapace.Gen(skillsCmd).PositionalCompletion(
 		carapace.ActionValues(),
 	)

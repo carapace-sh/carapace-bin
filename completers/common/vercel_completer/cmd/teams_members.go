@@ -21,4 +21,8 @@ func init() {
 	teams_membersCmd.Flags().String("next", "", "Show next page of results")
 
 	teamsCmd.AddCommand(teams_membersCmd)
+
+	carapace.Gen(teams_membersCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("plain", "json"),
+	})
 }

@@ -23,6 +23,11 @@ func init() {
 
 	envCmd.AddCommand(env_lsCmd)
 
+	carapace.Gen(env_lsCmd).FlagCompletion(carapace.ActionMap{
+		"format":  carapace.ActionValues("plain", "json"),
+		"project": action.ActionProjects(env_lsCmd),
+	})
+
 	carapace.Gen(env_lsCmd).PositionalCompletion(
 		action.ActionEnvironments(),
 		git.ActionRefs(git.RefOption{LocalBranches: true}),

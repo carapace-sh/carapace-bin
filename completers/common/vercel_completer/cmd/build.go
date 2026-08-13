@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/vercel_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -23,4 +24,9 @@ func init() {
 	buildCmd.Flags().BoolP("yes", "y", false, "Skip confirmation prompt")
 
 	rootCmd.AddCommand(buildCmd)
+
+	carapace.Gen(buildCmd).FlagCompletion(carapace.ActionMap{
+		"project": action.ActionProjects(buildCmd),
+		"target":  carapace.ActionValues("preview", "prod"),
+	})
 }

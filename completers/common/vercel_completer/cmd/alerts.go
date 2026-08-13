@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/vercel_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -25,4 +26,10 @@ func init() {
 	alertsCmd.Flags().String("until", "", "End of time range (ISO-8601)")
 
 	rootCmd.AddCommand(alertsCmd)
+
+	carapace.Gen(alertsCmd).FlagCompletion(carapace.ActionMap{
+		"format":  carapace.ActionValues("plain", "json"),
+		"project": action.ActionProjects(alertsCmd),
+		"type":    carapace.ActionValues("purge", "all"),
+	})
 }

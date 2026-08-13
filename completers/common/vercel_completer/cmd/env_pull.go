@@ -26,6 +26,7 @@ func init() {
 
 	carapace.Gen(env_pullCmd).FlagCompletion(carapace.ActionMap{
 		"environment": action.ActionEnvironments(),
+		"project":     action.ActionProjects(env_pullCmd),
 	})
 
 	carapace.Gen(env_pullCmd).PositionalCompletion(

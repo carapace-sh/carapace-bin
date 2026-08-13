@@ -19,4 +19,8 @@ func init() {
 	teams_requestCmd.Flags().Bool("json", false, "Output as JSON")
 
 	teamsCmd.AddCommand(teams_requestCmd)
+
+	carapace.Gen(teams_requestCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("plain", "json"),
+	})
 }

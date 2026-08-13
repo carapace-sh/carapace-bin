@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/vercel_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -20,6 +21,11 @@ func init() {
 	domains_verifyCmd.Flags().Bool("strict", false, "Strict mode")
 
 	domainsCmd.AddCommand(domains_verifyCmd)
+
+	carapace.Gen(domains_verifyCmd).FlagCompletion(carapace.ActionMap{
+		"format":  carapace.ActionValues("plain", "json"),
+		"project": action.ActionProjects(domains_verifyCmd),
+	})
 
 	carapace.Gen(domains_verifyCmd).PositionalCompletion(
 		carapace.ActionValues(),

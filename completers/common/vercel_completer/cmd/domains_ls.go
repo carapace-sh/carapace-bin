@@ -21,4 +21,8 @@ func init() {
 	domains_lsCmd.Flags().String("next", "", "Show next page of results")
 
 	domainsCmd.AddCommand(domains_lsCmd)
+
+	carapace.Gen(domains_lsCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("plain", "json"),
+	})
 }

@@ -23,4 +23,8 @@ func init() {
 	projects_lsCmd.Flags().Bool("update-required", false, "Show projects that require updating")
 
 	projectsCmd.AddCommand(projects_lsCmd)
+
+	carapace.Gen(projects_lsCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("plain", "json"),
+	})
 }

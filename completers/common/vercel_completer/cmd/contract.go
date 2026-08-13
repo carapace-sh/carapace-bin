@@ -18,4 +18,8 @@ func init() {
 	contractCmd.Flags().Bool("json", false, "Output as JSON")
 
 	rootCmd.AddCommand(contractCmd)
+
+	carapace.Gen(contractCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("plain", "json"),
+	})
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/vercel_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -19,4 +20,8 @@ func init() {
 	git_disconnectCmd.Flags().Bool("yes", false, "Skip confirmation")
 
 	gitCmd.AddCommand(git_disconnectCmd)
+
+	carapace.Gen(git_disconnectCmd).FlagCompletion(carapace.ActionMap{
+		"project": action.ActionProjects(git_disconnectCmd),
+	})
 }

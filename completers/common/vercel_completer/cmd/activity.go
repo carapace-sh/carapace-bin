@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/vercel_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -25,4 +26,10 @@ func init() {
 	activityCmd.Flags().String("until", "", "Show events before this date")
 
 	rootCmd.AddCommand(activityCmd)
+
+	carapace.Gen(activityCmd).FlagCompletion(carapace.ActionMap{
+		"format":  carapace.ActionValues("plain", "json"),
+		"project": action.ActionProjects(activityCmd),
+		"type":    carapace.ActionValues("deployment", "project", "domain", "dns", "cert", "env"),
+	})
 }

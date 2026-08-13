@@ -62,6 +62,7 @@ func init() {
 		"global-config": carapace.ActionDirectories(),
 		"local-config":  carapace.ActionFiles(),
 		"regions":       action.ActionRegions().UniqueList(","),
+		"target":        carapace.ActionValues("preview", "prod"),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

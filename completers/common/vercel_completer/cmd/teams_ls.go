@@ -21,4 +21,8 @@ func init() {
 	teams_lsCmd.Flags().String("next", "", "Show next page of results")
 
 	teamsCmd.AddCommand(teams_lsCmd)
+
+	carapace.Gen(teams_lsCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("plain", "json"),
+	})
 }

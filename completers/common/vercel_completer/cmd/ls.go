@@ -31,6 +31,11 @@ func init() {
 
 	rootCmd.AddCommand(lsCmd)
 
+	carapace.Gen(lsCmd).FlagCompletion(carapace.ActionMap{
+		"environment": action.ActionEnvironments(),
+		"format":      carapace.ActionValues("plain", "json"),
+	})
+
 	carapace.Gen(lsCmd).PositionalCompletion(
 		action.ActionProjects(lsCmd),
 	)
