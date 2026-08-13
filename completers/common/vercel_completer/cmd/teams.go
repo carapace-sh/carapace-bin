@@ -6,9 +6,10 @@ import (
 )
 
 var teamsCmd = &cobra.Command{
-	Use:   "teams",
-	Short: "Manages your teams",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "teams",
+	Aliases: []string{"team"},
+	Short:   "Manage Teams under your Vercel account",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

@@ -14,7 +14,21 @@ var certs_issueCmd = &cobra.Command{
 func init() {
 	carapace.Gen(certs_issueCmd).Standalone()
 
+	certs_issueCmd.Flags().String("ca", "", "CA certificate chain file")
+	certs_issueCmd.Flags().Bool("challenge-only", false, "Only show challenges needed to issue a cert")
+	certs_issueCmd.Flags().String("crt", "", "Certificate file")
+	certs_issueCmd.Flags().String("key", "", "Certificate key file")
+	certs_issueCmd.Flags().Bool("overwrite", false, "Overwrite existing certificate")
+
 	certsCmd.AddCommand(certs_issueCmd)
 
-	// TODO positional completion
+	carapace.Gen(certs_issueCmd).FlagCompletion(carapace.ActionMap{
+		"ca":  carapace.ActionFiles(),
+		"crt": carapace.ActionFiles(),
+		"key": carapace.ActionFiles(),
+	})
+
+	carapace.Gen(certs_issueCmd).PositionalCompletion(
+		carapace.ActionValues(),
+	)
 }

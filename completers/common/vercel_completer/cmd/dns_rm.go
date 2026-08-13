@@ -6,15 +6,20 @@ import (
 )
 
 var dns_rmCmd = &cobra.Command{
-	Use:   "rm",
-	Short: "Remove a DNS entry using its ID",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "rm",
+	Aliases: []string{"remove"},
+	Short:   "Remove a DNS entry using its ID",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(dns_rmCmd).Standalone()
 
+	dns_rmCmd.Flags().Bool("yes", false, "Skip confirmation")
+
 	dnsCmd.AddCommand(dns_rmCmd)
 
-	// TODO positional completion
+	carapace.Gen(dns_rmCmd).PositionalCompletion(
+		carapace.ActionValues(),
+	)
 }

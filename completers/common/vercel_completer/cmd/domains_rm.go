@@ -6,15 +6,20 @@ import (
 )
 
 var domains_rmCmd = &cobra.Command{
-	Use:   "rm",
-	Short: "Remove a domain",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "rm",
+	Aliases: []string{"remove"},
+	Short:   "Remove ownership of a domain name",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(domains_rmCmd).Standalone()
 
+	domains_rmCmd.Flags().Bool("yes", false, "Skip confirmation")
+
 	domainsCmd.AddCommand(domains_rmCmd)
 
-	// TODO positional completion
+	carapace.Gen(domains_rmCmd).PositionalCompletion(
+		carapace.ActionValues(),
+	)
 }

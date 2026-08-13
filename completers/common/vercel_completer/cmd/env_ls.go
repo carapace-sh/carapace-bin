@@ -9,14 +9,24 @@ import (
 
 var env_lsCmd = &cobra.Command{
 	Use:   "ls",
-	Short: "List all variables for the specified Environment",
+	Short: "List all Environment Variables for a Project",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(env_lsCmd).Standalone()
 
+	env_lsCmd.Flags().String("format", "", "Output format")
+	env_lsCmd.Flags().String("guidance", "", "Receive command suggestions")
+	env_lsCmd.Flags().Bool("json", false, "Output as JSON")
+	env_lsCmd.Flags().String("project", "", "Project name or ID")
+
 	envCmd.AddCommand(env_lsCmd)
+
+	carapace.Gen(env_lsCmd).FlagCompletion(carapace.ActionMap{
+		"format":  carapace.ActionValues("plain", "json"),
+		"project": action.ActionProjects(env_lsCmd),
+	})
 
 	carapace.Gen(env_lsCmd).PositionalCompletion(
 		action.ActionEnvironments(),

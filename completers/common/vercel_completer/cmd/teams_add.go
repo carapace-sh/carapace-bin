@@ -6,13 +6,17 @@ import (
 )
 
 var teams_addCmd = &cobra.Command{
-	Use:   "add",
-	Short: "Create a new team",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "add",
+	Aliases: []string{"create"},
+	Short:   "Create a new team",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(teams_addCmd).Standalone()
+
+	teams_addCmd.Flags().String("name", "", "Name of the team")
+	teams_addCmd.Flags().String("slug", "", "Slug for the team")
 
 	teamsCmd.AddCommand(teams_addCmd)
 }
