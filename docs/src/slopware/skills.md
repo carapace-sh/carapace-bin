@@ -14,5 +14,8 @@ crush
         └── SKILL.md
 ```
 
+> The [carapace skill] is the important one, most of the others are simply byproducts.
+
+[carapace skill]:./skills/carapace.md
 [skills folder]:https://github.com/charmbracelet/crush#agent-skills
 [skills]:https://agentskills.io/home

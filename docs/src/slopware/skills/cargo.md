@@ -5,11 +5,11 @@ Cargo — Rust's package manager.
 | reference                              | description                                          |
 |----------------------------------------|------------------------------------------------------|
 | [concepts][ref-concepts]               | package, crate, target, registry, cargo home          |
-| [manifest][ref-manifest]               | Cargo.toml, [package], [lib], crate-type               |
-| [dependencies][ref-dependencies]       | [dependencies], version requirements, git/path deps  |
-| [features][ref-features]               | [features], feature unification, resolver             |
-| [workspaces][ref-workspaces]           | [workspace], members, virtual manifest, inheritance   |
-| [profiles][ref-profiles]               | [profile.dev], opt-level, lto, panic, debug           |
+| [manifest][ref-manifest]               | Cargo.toml, package, lib, crate-type               |
+| [dependencies][ref-dependencies]       | dependencies, version requirements, git/path deps  |
+| [features][ref-features]               | features, feature unification, resolver             |
+| [workspaces][ref-workspaces]           | workspace, members, virtual manifest, inheritance   |
+| [profiles][ref-profiles]               | profile.dev, opt-level, lto, panic, debug           |
 | [build-scripts][ref-build-scripts]     | build.rs, build dependencies, OUT_DIR, cargo::rerun   |
 | [config][ref-config]                   | .cargo/config.toml, config hierarchy, rustflags       |
 | [registries][ref-registries]           | crates.io, custom registries, source replacement      |
