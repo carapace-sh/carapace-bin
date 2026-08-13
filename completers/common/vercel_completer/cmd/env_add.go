@@ -16,7 +16,20 @@ var env_addCmd = &cobra.Command{
 func init() {
 	carapace.Gen(env_addCmd).Standalone()
 
+	env_addCmd.Flags().Bool("force", false, "Force add the environment variable")
+	env_addCmd.Flags().String("guidance", "", "Receive command suggestions")
+	env_addCmd.Flags().Bool("no-sensitive", false, "Mark the environment variable as non-sensitive")
+	env_addCmd.Flags().String("project", "", "Project name or ID")
+	env_addCmd.Flags().Bool("sensitive", false, "Mark the environment variable as sensitive")
+	env_addCmd.Flags().String("value", "", "Value for the environment variable")
+	env_addCmd.Flags().String("visibility", "", "Visibility of the environment variable")
+	env_addCmd.Flags().Bool("yes", false, "Skip confirmation")
+
 	envCmd.AddCommand(env_addCmd)
+
+	carapace.Gen(env_addCmd).FlagCompletion(carapace.ActionMap{
+		"visibility": carapace.ActionValues("auto", "encrypted", "plain"),
+	})
 
 	carapace.Gen(env_addCmd).PositionalCompletion(
 		carapace.ActionValues(),

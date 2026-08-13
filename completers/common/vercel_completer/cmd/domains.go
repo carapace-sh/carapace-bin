@@ -6,9 +6,10 @@ import (
 )
 
 var domainsCmd = &cobra.Command{
-	Use:   "domains",
-	Short: "Manages your domain names",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "domains",
+	Aliases: []string{"domain"},
+	Short:   "Manage domains",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

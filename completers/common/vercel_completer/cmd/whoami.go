@@ -14,5 +14,8 @@ var whoamiCmd = &cobra.Command{
 func init() {
 	carapace.Gen(whoamiCmd).Standalone()
 
+	whoamiCmd.Flags().String("format", "", "Output format")
+	whoamiCmd.Flags().Bool("json", false, "Output as JSON")
+
 	rootCmd.AddCommand(whoamiCmd)
 }

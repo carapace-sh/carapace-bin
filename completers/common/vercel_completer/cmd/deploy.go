@@ -7,7 +7,7 @@ import (
 
 var deployCmd = &cobra.Command{
 	Use:   "deploy",
-	Short: "Performs a deployment",
+	Short: "Deploy your project to Vercel",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
