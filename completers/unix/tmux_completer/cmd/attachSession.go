@@ -7,9 +7,10 @@ import (
 )
 
 var attachSessionCmd = &cobra.Command{
-	Use:   "attach-session",
-	Short: "attach or switch to a session",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "attach-session",
+	Aliases: []string{"attach"},
+	Short:   "attach or switch to a session",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
@@ -17,7 +18,7 @@ func init() {
 
 	attachSessionCmd.Flags().BoolS("E", "E", false, "don't apply update-environment option")
 	attachSessionCmd.Flags().StringS("c", "c", "", "specify working directory for the session")
-	attachSessionCmd.Flags().BoolS("d", "d", false, "detach other clients attached to target session")
+	attachSessionCmd.Flags().BoolS("d", "d", false, "detach any other clients attached to the session")
 	attachSessionCmd.Flags().StringS("f", "f", "", "set client flags")
 	attachSessionCmd.Flags().BoolS("r", "r", false, "put the client into read-only mode")
 	attachSessionCmd.Flags().StringS("t", "t", "", "specify target session")
