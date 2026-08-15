@@ -7,9 +7,10 @@ import (
 )
 
 var installCiTestCmd = &cobra.Command{
-	Use:   "install-ci-test",
-	Short: "Install a project with a clean slate and run tests",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "install-ci-test",
+	Short:   "Install a project with a clean slate and run tests",
+	Aliases: []string{"cit", "clean-install-test", "sit"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

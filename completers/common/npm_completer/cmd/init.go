@@ -8,9 +8,10 @@ import (
 )
 
 var initCmd = &cobra.Command{
-	Use:   "init",
-	Short: "Create a package.json file",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "init",
+	Short:   "Create a package.json file",
+	Aliases: []string{"create", "innit"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

@@ -7,9 +7,10 @@ import (
 )
 
 var uninstallCmd = &cobra.Command{
-	Use:   "uninstall",
-	Short: "Remove a package",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "uninstall",
+	Short:   "Remove a package",
+	Aliases: []string{"r", "rm", "remove", "un", "unlink"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

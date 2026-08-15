@@ -7,9 +7,10 @@ import (
 )
 
 var viewCmd = &cobra.Command{
-	Use:   "view",
-	Short: "View registry info",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "view",
+	Short:   "View registry info",
+	Aliases: []string{"info", "show", "v"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

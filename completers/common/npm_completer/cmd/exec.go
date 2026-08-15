@@ -7,9 +7,10 @@ import (
 )
 
 var execCmd = &cobra.Command{
-	Use:   "exec",
-	Short: "Run a command from a local or remote npm package",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "exec",
+	Short:   "Run a command from a local or remote npm package",
+	Aliases: []string{"x"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

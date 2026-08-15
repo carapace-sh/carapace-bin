@@ -7,9 +7,10 @@ import (
 )
 
 var docsCmd = &cobra.Command{
-	Use:   "docs",
-	Short: "Open documentation for a package in a web browser",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "docs",
+	Short:   "Open documentation for a package in a web browser",
+	Aliases: []string{"home"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

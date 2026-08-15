@@ -6,9 +6,10 @@ import (
 )
 
 var loginCmd = &cobra.Command{
-	Use:   "login",
-	Short: "Add a registry user account",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "login",
+	Short:   "Add a registry user account",
+	Aliases: []string{"add-user", "adduser"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
