@@ -6,9 +6,10 @@ import (
 )
 
 var ownerCmd = &cobra.Command{
-	Use:   "owner",
-	Short: "Manage package owners",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "owner",
+	Short:   "Manage package owners",
+	Aliases: []string{"author"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

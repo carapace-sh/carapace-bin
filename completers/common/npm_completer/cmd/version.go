@@ -6,9 +6,10 @@ import (
 )
 
 var versionCmd = &cobra.Command{
-	Use:   "version",
-	Short: "Bump a package version",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "version",
+	Short:   "Bump a package version",
+	Aliases: []string{"verison"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

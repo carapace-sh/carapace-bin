@@ -8,9 +8,10 @@ import (
 )
 
 var linkCmd = &cobra.Command{
-	Use:   "link",
-	Short: "Symlink a package folder",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "link",
+	Short:   "Symlink a package folder",
+	Aliases: []string{"ln"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

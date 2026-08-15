@@ -6,9 +6,10 @@ import (
 )
 
 var configCmd = &cobra.Command{
-	Use:   "config",
-	Short: "Manage the npm configuration files",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "config",
+	Short:   "Manage the npm configuration files",
+	Aliases: []string{"c"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

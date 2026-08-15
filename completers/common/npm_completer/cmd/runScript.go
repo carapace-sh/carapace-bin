@@ -8,9 +8,9 @@ import (
 )
 
 var runScriptCmd = &cobra.Command{
-	Use:     "run-script",
+	Use:     "run",
 	Short:   "Run arbitrary package scripts",
-	Aliases: []string{"run"},
+	Aliases: []string{"rum", "run-script", "urn"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

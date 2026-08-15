@@ -7,9 +7,10 @@ import (
 )
 
 var ciCmd = &cobra.Command{
-	Use:   "ci",
-	Short: "Install a project with a clean slate",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "ci",
+	Short:   "Install a project with a clean slate",
+	Aliases: []string{"clean-install", "ic", "install-clean", "isntall-clean"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
