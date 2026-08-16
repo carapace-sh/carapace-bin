@@ -7,7 +7,7 @@ import (
 
 var request_dropCmd = &cobra.Command{
 	Use:   "drop",
-	Short: "Drop one more access requests from current identity.",
+	Short: "Drop one or more access requests from current identity.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
