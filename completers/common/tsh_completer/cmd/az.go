@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
 
@@ -16,12 +15,6 @@ func init() {
 	carapace.Gen(azCmd).Standalone()
 
 	azCmd.Flags().String("app", "", "Optional name of the Azure application to use if logged into multiple.")
+	azCmd.Flags().String("azure-identity", "", "(For Azure CLI access only) Azure managed identity name.")
 	rootCmd.AddCommand(azCmd)
-
-	azCmd.Flags().SetInterspersed(false)
-
-	// TODO proxy the az command
-	carapace.Gen(azCmd).PositionalAnyCompletion(
-		bridge.ActionCarapaceBin("az"),
-	)
 }

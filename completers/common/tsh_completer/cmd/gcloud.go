@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
 
@@ -17,12 +16,6 @@ func init() {
 	carapace.Gen(gcloudCmd).Standalone()
 
 	gcloudCmd.Flags().String("app", "", "Optional name of the GCP application to use if logged into multiple.")
+	gcloudCmd.Flags().String("gcp-service-account", "", "(For GCP CLI access only) GCP service account name.")
 	rootCmd.AddCommand(gcloudCmd)
-
-	gcloudCmd.Flags().SetInterspersed(false)
-
-	// TODO proxy the gcloud command
-	carapace.Gen(gcloudCmd).PositionalAnyCompletion(
-		bridge.ActionCarapaceBin("gcloud"),
-	)
 }
