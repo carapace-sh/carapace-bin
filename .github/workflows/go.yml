@@ -45,7 +45,32 @@ jobs:
         run: go install honnef.co/go/tools/cmd/staticcheck@latest && staticcheck ./...
 
       - name: "carapace-lint"
-        run: go run ./cmd/carapace-lint completers/*/*/cmd/*.go
+        run: |
+          go run ./cmd/carapace-lint --sarif carapace-lint.sarif completers/*/*/cmd/*.go
+          echo "LINT_EXIT=$?" >> "$GITHUB_ENV"
+          exit 0
+
+      - name: Upload SARIF file
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: carapace-lint-sarif
+          path: carapace-lint.sarif
+          retention-days: 1
+
+      - name: Upload SARIF to GitHub
+        if: always()
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: carapace-lint.sarif
+
+      - name: Check lint exit code
+        if: always()
+        run: |
+          if [ "${LINT_EXIT:-0}" != "0" ]; then
+            echo "carapace-lint failed with exit code ${LINT_EXIT}"
+            exit 1
+          fi
 
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v7
