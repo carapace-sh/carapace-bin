@@ -21,6 +21,6 @@ func init() {
 	rootCmd.Flags().Bool("help", false, "Show usage information")
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValues("list", "create", "destroy", "start", "stop", "status", "update", "login", "root-login", "run", "show-ip", "show-host-key"),
+		carapace.ActionValues("list", "create", "destroy", "restart", "start", "stop", "terminate", "status", "update", "login", "root-login", "run", "show-ip", "show-host-key"),
 	)
 }

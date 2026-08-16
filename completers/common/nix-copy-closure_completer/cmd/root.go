@@ -19,6 +19,7 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().Bool("dry-run", false, "Perform a dry run without actually copying")
 	rootCmd.Flags().Bool("from", false, "Copy closure from remote machine to local machine")
 	rootCmd.Flags().Bool("gzip", false, "Enable compression of the SSH connection")
 	rootCmd.Flags().Bool("help", false, "Show usage information")

@@ -21,7 +21,10 @@ func init() {
 
 	rootCmd.Flags().Bool("help", false, "Show usage information")
 	rootCmd.Flags().Bool("no-out-link", false, "Do not create a symlink to the output path")
+	rootCmd.Flags().StringSlice("option", nil, "Set Nix configuration option")
 	rootCmd.Flags().Bool("show-trace", false, "Show the stack trace on evaluation errors")
+
+	rootCmd.Flag("option").Nargs = 2
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		nix.ActionPaths(),

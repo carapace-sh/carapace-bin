@@ -18,6 +18,7 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().StringP("attr", "A", "", "Fetch from a Nix expression attribute path")
 	rootCmd.Flags().Bool("executable", false, "Set the executable bit on the downloaded file")
 	rootCmd.Flags().Bool("help", false, "Show usage information")
 	rootCmd.Flags().String("name", "", "Override the name of the file in the Nix store")

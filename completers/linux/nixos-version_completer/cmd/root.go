@@ -18,7 +18,9 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().Bool("configuration-revision", false, "Show the configuration revision if available")
 	rootCmd.Flags().Bool("hash", false, "Print the NixOS version hash")
 	rootCmd.Flags().Bool("help", false, "Show usage information")
+	rootCmd.Flags().Bool("json", false, "Print a JSON representation of the versions")
 	rootCmd.Flags().Bool("revision", false, "Print the NixOS version revision")
 }

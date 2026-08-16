@@ -18,12 +18,32 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().StringP("attr", "A", "", "Attribute name to build from the Nix file")
+	rootCmd.Flags().String("channel", "", "Path to the nixos channel to copy")
 	rootCmd.Flags().Bool("chroot", false, "Chroot into the target root")
+	rootCmd.Flags().StringP("closure", "", "", "Pre-built system path to use (same as --system)")
+	rootCmd.Flags().StringP("file", "f", "", "Path to Nix file")
+	rootCmd.Flags().String("flake", "", "Flake URI")
 	rootCmd.Flags().Bool("help", false, "Show usage information")
+	rootCmd.Flags().Bool("impure", false, "Allow impure builds")
+	rootCmd.Flags().Bool("keep-going", false, "Keep building on failure")
+	rootCmd.Flags().Bool("no-bootloader", false, "Skip bootloader installation")
+	rootCmd.Flags().Bool("no-channel-copy", false, "Skip copying the nixos channel to target")
+	rootCmd.Flags().Bool("no-root-password", false, "Skip setting root password")
+	rootCmd.Flags().StringSlice("option", nil, "Set Nix configuration option")
 	rootCmd.Flags().String("root", "", "Root directory to install to")
 	rootCmd.Flags().Bool("show-trace", false, "Show the stack trace on evaluation errors")
+	rootCmd.Flags().String("store-path", "", "Pre-built system path to use (same as --system)")
+	rootCmd.Flags().String("system", "", "Pre-built system path to use")
+
+	rootCmd.Flag("option").Nargs = 2
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"root": carapace.ActionDirectories(),
+		"channel":    carapace.ActionDirectories(),
+		"closure":    carapace.ActionFiles(),
+		"file":       carapace.ActionFiles(".nix"),
+		"root":       carapace.ActionDirectories(),
+		"store-path": carapace.ActionFiles(),
+		"system":     carapace.ActionFiles(),
 	})
 }

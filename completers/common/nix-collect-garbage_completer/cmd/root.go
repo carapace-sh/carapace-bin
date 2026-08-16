@@ -18,8 +18,8 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().Bool("delete-old", false, "Delete all old generations of profiles")
-	rootCmd.Flags().BoolP("delete-older-than", "d", false, "Delete all generations of profiles older than the specified amount")
+	rootCmd.Flags().BoolP("delete-old", "d", false, "Delete all old generations of profiles")
+	rootCmd.Flags().String("delete-older-than", "", "Delete all generations of profiles older than the specified amount")
 	rootCmd.Flags().Bool("dry-run", false, "Show what store paths would be built or downloaded")
 	rootCmd.Flags().Bool("help", false, "Show usage information")
 	rootCmd.Flags().String("max-freed", "", "Keep deleting paths until at least bytes have been deleted")

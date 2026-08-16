@@ -20,9 +20,10 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().Bool("confirm", false, "Confirm deployment")
-	rootCmd.Flags().BoolP("deployment", "d", false, "Deployment to use")
+	rootCmd.Flags().Bool("debug", false, "Turn on debugging output")
+	rootCmd.Flags().StringP("deployment", "d", "", "Deployment to use")
 	rootCmd.Flags().Bool("help", false, "Show usage information")
-	rootCmd.Flags().BoolP("state", "s", false, "Path to state file")
+	rootCmd.Flags().StringP("state", "s", "", "Path to state file")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"state": carapace.ActionFiles(),
