@@ -29,6 +29,7 @@ func ActionAnalyzers() carapace.Action {
 		"sigchanyzer", "check for unbuffered channel of os.Signal",
 		"slog", "check for invalid structured logging calls",
 		"stdmethods", "check signature of methods of well-known interfaces",
+		"stdversion", "report the use of standard library symbols that are too new for the Go version in force",
 		"stringintconv", "check for string(int) conversions",
 		"structtag", "check that struct field tags conform to reflect.StructTag.Get",
 		"testinggoroutine", "report calls to (*testing.T).Fatal from goroutines started by a test.",
