@@ -22,13 +22,14 @@ func init() {
 
 	rootCmd.Flags().BoolS("V", "V", false, "print version and exit")
 	rootCmd.Flags().BoolS("any", "any", false, "enable any analysis")
+	rootCmd.Flags().BoolS("atomictypes", "atomictypes", false, "enable atomictypes analysis")
 	rootCmd.Flags().BoolS("buildtag", "buildtag", false, "enable buildtag analysis")
 	rootCmd.Flags().StringS("c", "c", "", "display offending line with this many lines of context")
 	rootCmd.Flags().BoolS("diff", "diff", false, "display diffs instead of rewriting files")
+	rootCmd.Flags().BoolS("embedlit", "embedlit", false, "enable embedlit analysis")
 	rootCmd.Flags().BoolS("fix", "fix", false, "apply all suggested fixes")
 	rootCmd.Flags().StringS("fixtool", "fixtool", "", "select a different analysis tool")
 	rootCmd.Flags().BoolS("flags", "flags", false, "print analyzer flags in JSON")
-	rootCmd.Flags().BoolS("fmtappendf", "fmtappendf", false, "enable fmtappendf analysis")
 	rootCmd.Flags().StringS("force", "force", "", "force these fixes to run even if the code looks updated")
 	rootCmd.Flags().BoolS("forvar", "forvar", false, "enable forvar analysis")
 	rootCmd.Flags().StringS("go", "go", "", "go language version for files")
@@ -43,6 +44,7 @@ func init() {
 	rootCmd.Flags().StringS("r", "r", "", "restrict the rewrites to this comma-separated list")
 	rootCmd.Flags().BoolS("rangeint", "rangeint", false, "enable rangeint analysis")
 	rootCmd.Flags().BoolS("reflecttypefor", "reflecttypefor", false, "enable reflecttypefor analysis")
+	rootCmd.Flags().BoolS("slicesbackward", "slicesbackward", false, "enable slicesbackward analysis")
 	rootCmd.Flags().BoolS("slicescontains", "slicescontains", false, "enable slicescontains analysis")
 	rootCmd.Flags().BoolS("slicessort", "slicessort", false, "enable slicessort analysis")
 	rootCmd.Flags().BoolS("stditerators", "stditerators", false, "enable stditerators analysis")
@@ -51,7 +53,8 @@ func init() {
 	rootCmd.Flags().BoolS("stringscutprefix", "stringscutprefix", false, "enable stringscutprefix analysis")
 	rootCmd.Flags().BoolS("stringsseq", "stringsseq", false, "enable stringsseq analysis")
 	rootCmd.Flags().BoolS("testingcontext", "testingcontext", false, "enable testingcontext analysis")
-	rootCmd.Flags().BoolS("waitgroup", "waitgroup", false, "enable waitgroup analysis")
+	rootCmd.Flags().BoolS("unsafefuncs", "unsafefuncs", false, "enable unsafefuncs analysis")
+	rootCmd.Flags().BoolS("waitgroupgo", "waitgroupgo", false, "enable waitgroupgo analysis")
 	common.AddPackageBuildFlags(rootCmd)
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
