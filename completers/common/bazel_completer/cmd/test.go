@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/bazel"
 	"github.com/spf13/cobra"
 )
 
@@ -188,10 +189,10 @@ func init() {
 	testCmd.Flags().String("target_pattern_file", "", "If set, build will read patterns from the file named here, rather than on the command line. It is an error to specify a file here as well as command-line patterns.")
 	testCmd.Flags().Bool("test_keep_going", false, "When disabled, any non-passing test will cause the entire build to stop. By default all tests are run, even if some do not pass.")
 	testCmd.Flags().String("test_lang_filters", "", "Specifies a comma-separated list of test languages. Each language can be optionally preceded with '-' to specify excluded languages. Only those test targets will be found that are written in the specified languages. The name used for each language should be the same as the language prefix in the *_test rule, e.g. one of 'cc', 'java', 'py', etc. This option affects --build_tests_only behavior and the test command.")
-	testCmd.Flags().String("test_output", "", "Specifies desired output mode. Valid values are 'summary' to output only test status summary, 'errors' to also print test logs for failed tests, 'all' to print logs for all tests and 'streamed' to output logs for all tests in real time (this will force tests to be executed locally one at a time regardless of --test_strategy value).")
+	testCmd.Flags().String("test_output", "", "Specifies desired output mode. Not to be confused with `--test_summary` which controls")
 	testCmd.Flags().String("test_size_filters", "", "Specifies a comma-separated list of test sizes. Each size can be optionally preceded with '-' to specify excluded sizes. Only those test targets will be found that contain at least one included size and do not contain any excluded sizes. This option affects --build_tests_only behavior and the test command.")
 	testCmd.Flags().String("test_strategy", "", "Specifies which strategy to use when running tests.")
-	testCmd.Flags().String("test_summary", "", "Specifies the desired format of the test summary. Valid values are 'short' to print information only about tests executed, 'terse', to print information only about unsuccessful tests that were run, 'detailed' to print detailed information about failed test cases, 'testcase' to print summary in test case resolution, do not print detailed information about failed test cases and 'none' to omit the summary.")
+	testCmd.Flags().String("test_summary", "", "Specifies the desired format of the test summary. Valid values are;")
 	testCmd.Flags().String("test_tag_filters", "", "Specifies a comma-separated list of test tags. Each tag can be optionally preceded with '-' to specify excluded tags. Only those test targets will be found that contain at least one included tag and do not contain any excluded tags. This option affects --build_tests_only behavior and the test command.")
 	testCmd.Flags().String("test_timeout_filters", "", "Specifies a comma-separated list of test timeouts. Each timeout can be optionally preceded with '-' to specify excluded timeouts. Only those test targets will be found that contain at least one included timeout and do not contain any excluded timeouts. This option affects --build_tests_only behavior and the test command.")
 	testCmd.Flags().String("test_tmpdir", "", "Specifies the base temporary directory for 'bazel test' to use.")
@@ -201,4 +202,26 @@ func init() {
 	testCmd.Flags().Bool("verbose_test_summary", false, "If true, print additional information (timing, number of failed runs, etc) in the test summary.")
 	testCmd.Flags().String("version_window_for_dirty_node_gc", "", "Nodes that have been dirty for more than this many versions will be deleted from the graph upon the next update. Values must be non-negative long integers, or -1 indicating the maximum possible window.")
 	rootCmd.AddCommand(testCmd)
+
+	carapace.Gen(testCmd).FlagCompletion(carapace.ActionMap{
+		"execution_log_binary_file":                        carapace.ActionFiles(),
+		"execution_log_compact_file":                       carapace.ActionFiles(),
+		"execution_log_json_file":                          carapace.ActionFiles(),
+		"experimental_aquery_dump_after_build_output_file": carapace.ActionFiles(),
+		"experimental_convenience_symlinks":                carapace.ActionValues("normal", "clean", "ignore", "log_only"),
+		"explain":                                          carapace.ActionFiles(),
+		"genrule_strategy":                                 carapace.ActionValues("remote", "worker", "sandboxed", "local"),
+		"output_filter":                                    carapace.ActionFiles(),
+		"remote_analysis_json_log":                         carapace.ActionFiles(),
+		"serialized_frontier_profile":                      carapace.ActionFiles(),
+		"spawn_strategy":                                   carapace.ActionValues("remote", "worker", "sandboxed", "local"),
+		"target_pattern_file":                              carapace.ActionFiles(),
+		"test_output":                                      carapace.ActionValues("summary", "errors", "all", "streamed"),
+		"test_summary":                                     carapace.ActionValues("short", "short_uncached", "terse", "detailed", "detailed_uncached", "testcase", "none"),
+		"test_tmpdir":                                      carapace.ActionFiles(),
+	})
+
+	carapace.Gen(testCmd).PositionalCompletion(
+		bazel.ActionTargets(),
+	)
 }
