@@ -15,7 +15,7 @@ var pub_runCmd = &cobra.Command{
 func init() {
 	carapace.Gen(pub_runCmd).Standalone()
 
-	pub_runCmd.Flags().StringP("directory", "C", "", "Run this in the directory<dir>.")
+	pub_runCmd.Flags().StringP("directory", "C", "", "Run this in the directory <dir>.")
 	pub_runCmd.Flags().Bool("enable-asserts", false, "Enable assert statements.")
 	pub_runCmd.Flags().String("enable-experiment", "", "Runs the executable in a VM with the given experiments enabled.")
 	pub_runCmd.Flags().BoolP("help", "h", false, "Print this usage information.")

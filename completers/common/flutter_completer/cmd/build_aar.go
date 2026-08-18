@@ -17,11 +17,11 @@ func init() {
 	build_aarCmd.Flags().String("build-number", "", "An identifier used as an internal version number.")
 	build_aarCmd.Flags().StringArray("dart-define", nil, "Additional key-value pairs that will be available as constants.")
 	build_aarCmd.Flags().Bool("debug", false, "Build a debug version of the current project.")
-	build_aarCmd.Flags().Bool("flavor", false, "Build a custom app flavor as defined by platform-specific build setup.")
+	build_aarCmd.Flags().String("flavor", "", "Build a custom app flavor as defined by platform-specific build setup.")
 	build_aarCmd.Flags().BoolP("help", "h", false, "Print this usage information.")
 	build_aarCmd.Flags().Bool("no-debug", false, "Do not build a debug version of the current project.")
 	build_aarCmd.Flags().Bool("no-null-assertions", false, "Do not perform additional null assertions on the boundaries of migrated and un-migrated code.")
-	build_aarCmd.Flags().Bool("no-obfuscate", false, "In a release build, this flag does not removes identifiers and replaces them with randomized values for the purposes of source code obfuscation.")
+	build_aarCmd.Flags().Bool("no-obfuscate", false, "In a release build, this flag does not remove identifiers and replaces them with randomized values for the purposes of source code obfuscation.")
 	build_aarCmd.Flags().Bool("no-pub", false, "Do not run \"flutter pub get\" before executing this command.")
 	build_aarCmd.Flags().Bool("no-release", false, "Do not build a release version of the current project.")
 	build_aarCmd.Flags().Bool("no-track-widget-creation", false, "Do not track widget creation locations.")
@@ -38,7 +38,8 @@ func init() {
 	buildCmd.AddCommand(build_aarCmd)
 
 	carapace.Gen(build_aarCmd).FlagCompletion(carapace.ActionMap{
-		"output-dir":      carapace.ActionDirectories(),
-		"target-platform": carapace.ActionValues("android-arm", "android-arm64", "android-x86", "android-x64"),
+		"output-dir":       carapace.ActionDirectories(),
+		"split-debug-info": carapace.ActionDirectories(),
+		"target-platform":  carapace.ActionValues("android-arm", "android-arm64", "android-x64"),
 	})
 }
