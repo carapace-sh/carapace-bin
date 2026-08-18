@@ -19,11 +19,11 @@ func init() {
 	build_apkCmd.Flags().String("build-number", "", "An identifier used as an internal version number.")
 	build_apkCmd.Flags().StringArray("dart-define", nil, "Additional key-value pairs that will be available as constants.")
 	build_apkCmd.Flags().Bool("debug", false, "Build a debug version of your app.")
-	build_apkCmd.Flags().Bool("flavor", false, "Build a custom app flavor as defined by platform-specific build setup.")
+	build_apkCmd.Flags().String("flavor", "", "Build a custom app flavor as defined by platform-specific build setup.")
 	build_apkCmd.Flags().BoolP("help", "h", false, "Print this usage information.")
 	build_apkCmd.Flags().Bool("no-analyze-size", false, "Do not produce additional profile information for artifact output size.")
 	build_apkCmd.Flags().Bool("no-null-assertions", false, "Do not perform additional null assertions on the boundaries of migrated and un-migrated code.")
-	build_apkCmd.Flags().Bool("no-obfuscate", false, "In a release build, this flag does not removes identifiers and replaces them with randomized values for the purposes of source code obfuscation.")
+	build_apkCmd.Flags().Bool("no-obfuscate", false, "In a release build, this flag does not remove identifiers and replaces them with randomized values for the purposes of source code obfuscation.")
 	build_apkCmd.Flags().Bool("no-pub", false, "Do not run \"flutter pub get\" before executing this command.")
 	build_apkCmd.Flags().Bool("no-track-widget-creation", false, "Do not track widget creation locations.")
 	build_apkCmd.Flags().Bool("no-tree-shake-icons", false, "Do not tree shake icon fonts so that only glyphs used by the application remain.")
@@ -41,7 +41,8 @@ func init() {
 	buildCmd.AddCommand(build_apkCmd)
 
 	carapace.Gen(build_apkCmd).FlagCompletion(carapace.ActionMap{
-		"target":          carapace.ActionFiles(".dart"),
-		"target-platform": carapace.ActionValues("android-arm", "android-arm64", "android-x86", "android-x64"),
+		"split-debug-info": carapace.ActionDirectories(),
+		"target":           carapace.ActionFiles(".dart"),
+		"target-platform":  carapace.ActionValues("android-arm", "android-arm64", "android-x64"),
 	})
 }

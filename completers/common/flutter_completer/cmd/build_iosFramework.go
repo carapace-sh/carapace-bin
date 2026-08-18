@@ -17,12 +17,12 @@ func init() {
 	build_iosFrameworkCmd.Flags().Bool("cocoapods", false, "Produce a Flutter.podspec instead of an engine Flutter.xcframework (recommended if host app uses CocoaPods).")
 	build_iosFrameworkCmd.Flags().StringArray("dart-define", nil, "Additional key-value pairs that will be available as constants.")
 	build_iosFrameworkCmd.Flags().Bool("debug", false, "Produce a framework for the debug build configuration.")
-	build_iosFrameworkCmd.Flags().Bool("flavor", false, "Build a custom app flavor as defined by platform-specific build setup.")
+	build_iosFrameworkCmd.Flags().String("flavor", "", "Build a custom app flavor as defined by platform-specific build setup.")
 	build_iosFrameworkCmd.Flags().BoolP("help", "h", false, "Print this usage information.")
 	build_iosFrameworkCmd.Flags().Bool("no-cocoapods", false, "Do not produce a Flutter.podspec instead of an engine Flutter.xcframework (recommended if host app uses CocoaPods).")
 	build_iosFrameworkCmd.Flags().Bool("no-debug", false, "Do not produce a framework for the debug build configuration.")
 	build_iosFrameworkCmd.Flags().Bool("no-null-assertions", false, "Do not perform additional null assertions on the boundaries of migrated and un-migrated code.")
-	build_iosFrameworkCmd.Flags().Bool("no-obfuscate", false, "In a release build, this flag does not removes identifiers and replaces them with randomized values for the purposes of source code obfuscation.")
+	build_iosFrameworkCmd.Flags().Bool("no-obfuscate", false, "In a release build, this flag does not remove identifiers and replaces them with randomized values for the purposes of source code obfuscation.")
 	build_iosFrameworkCmd.Flags().Bool("no-profile", false, "Do not produce a framework for the profile build configuration.")
 	build_iosFrameworkCmd.Flags().Bool("no-pub", false, "Do not run \"flutter pub get\" before executing this command.")
 	build_iosFrameworkCmd.Flags().Bool("no-release", false, "Do not produce a framework for the release build configuration.")
@@ -39,7 +39,8 @@ func init() {
 	buildCmd.AddCommand(build_iosFrameworkCmd)
 
 	carapace.Gen(build_iosFrameworkCmd).FlagCompletion(carapace.ActionMap{
-		"output": carapace.ActionDirectories(),
-		"target": carapace.ActionFiles(".dart"),
+		"output":           carapace.ActionDirectories(),
+		"split-debug-info": carapace.ActionDirectories(),
+		"target":           carapace.ActionFiles(".dart"),
 	})
 }

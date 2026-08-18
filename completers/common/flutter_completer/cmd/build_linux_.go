@@ -20,9 +20,9 @@ func init() {
 	build_linuxCmd.Flags().BoolP("help", "h", false, "Print this usage information.")
 	build_linuxCmd.Flags().Bool("no-analyze-size", false, "Whether to produce additional profile information for artifact output size.")
 	build_linuxCmd.Flags().Bool("no-null-assertions", false, "Do not perform additional null assertions on the boundaries of migrated and un-migrated code.")
-	build_linuxCmd.Flags().Bool("no-obfuscate", false, "In a release build, this flag does not removes identifiers and replaces them with randomized values.")
+	build_linuxCmd.Flags().Bool("no-obfuscate", false, "In a release build, this flag does not remove identifiers and replaces them with randomized values.")
 	build_linuxCmd.Flags().Bool("no-pub", false, "Do not run \"flutter pub get\" before executing this command.")
-	build_linuxCmd.Flags().Bool("no-track-widget-creation", false, "Do no track widget creation locations.")
+	build_linuxCmd.Flags().Bool("no-track-widget-creation", false, "Do not track widget creation locations.")
 	build_linuxCmd.Flags().Bool("no-tree-shake-icons", false, "Do not tree shake icon fonts so that only glyphs used by the application remain.")
 	build_linuxCmd.Flags().Bool("null-assertions", false, "Perform additional null assertions on the boundaries of migrated and un-migrated code.")
 	build_linuxCmd.Flags().Bool("obfuscate", false, "In a release build, this flag removes identifiers and replaces them with randomized values.")
@@ -38,7 +38,8 @@ func init() {
 	buildCmd.AddCommand(build_linuxCmd)
 
 	carapace.Gen(build_linuxCmd).FlagCompletion(carapace.ActionMap{
-		"target":          carapace.ActionFiles(".dart"),
-		"target-platform": carapace.ActionValues("linux-arm64", "linux-x64"),
+		"split-debug-info": carapace.ActionDirectories(),
+		"target":           carapace.ActionFiles(".dart"),
+		"target-platform":  carapace.ActionValues("linux-arm64", "linux-x64"),
 	})
 }
