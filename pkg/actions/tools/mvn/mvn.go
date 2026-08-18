@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"path/filepath"
 	"strings"
 
 	"github.com/carapace-sh/carapace/pkg/util"
@@ -43,18 +44,82 @@ func (a artifact) Location(repository string) string {
 	return fmt.Sprintf("%v/%v/%v/%v/%v-%v.jar", repository, strings.ReplaceAll(a.GroupId, ".", "/"), a.ArtifactId, a.Version, a.ArtifactId, a.Version)
 }
 
+type parent struct {
+	GroupId      string `xml:"groupId"`
+	ArtifactId   string `xml:"artifactId"`
+	Version      string `xml:"version"`
+	RelativePath string `xml:"relativePath"`
+}
+
+type profile struct {
+	XMLName xml.Name   `xml:"profile"`
+	Id      string     `xml:"id"`
+	Plugins []artifact `xml:"build>plugins>plugin"`
+}
+
 type project struct {
-	// TODO parent pom plugins
-	// TODO plugins locatad in pluginmanagement and profiles
-	XMLName  xml.Name   `xml:"project"`
-	Plugins  []artifact `xml:"build>plugins>plugin"`
-	Profiles []string   `xml:"profiles>profile>id"`
+	XMLName        xml.Name   `xml:"project"`
+	Parent         parent     `xml:"parent"`
+	Plugins        []artifact `xml:"build>plugins>plugin"`
+	ManagedPlugins []artifact `xml:"build>pluginManagement>plugins>plugin"`
+	Profiles       []profile  `xml:"profiles>profile"`
+}
+
+// profilesFromIds returns the list of profile ids for backward compatibility.
+func (p project) profileIds() []string {
+	ids := make([]string, len(p.Profiles))
+	for i, profile := range p.Profiles {
+		ids[i] = profile.Id
+	}
+	return ids
+}
+
+type settings struct {
+	XMLName         xml.Name `xml:"settings"`
+	LocalRepository string   `xml:"localRepository"`
 }
 
 func repositoryLocation() string {
-	// TODO environment variable / settings override
+	if repo := os.Getenv("MAVEN_REPO_LOCAL"); repo != "" {
+		return repo
+	}
 	if home, err := os.UserHomeDir(); err == nil {
-		return home + "/.m2/repository"
+		repo := home + "/.m2/repository"
+		if localRepo := localRepositoryFromSettings(home); localRepo != "" {
+			if filepath.IsAbs(localRepo) {
+				return localRepo
+			}
+			return filepath.Join(home, localRepo)
+		}
+		return repo
+	}
+	return ""
+}
+
+func localRepositoryFromSettings(home string) string {
+	for _, path := range []string{
+		home + "/.m2/settings.xml",
+		globalSettingsPath(),
+	} {
+		if path == "" {
+			continue
+		}
+		if content, err := os.ReadFile(path); err == nil {
+			var s settings
+			if xml.Unmarshal(content, &s) == nil && s.LocalRepository != "" {
+				return s.LocalRepository
+			}
+		}
+	}
+	return ""
+}
+
+func globalSettingsPath() string {
+	if mavenHome := os.Getenv("MAVEN_HOME"); mavenHome != "" {
+		return mavenHome + "/conf/settings.xml"
+	}
+	if mavenHome := os.Getenv("M2_HOME"); mavenHome != "" {
+		return mavenHome + "/conf/settings.xml"
 	}
 	return ""
 }
@@ -73,6 +138,36 @@ func loadProject(file string) (loadedProject *project, err error) {
 		err = xml.Unmarshal(content, &loadedProject)
 	}
 	return
+}
+
+// loadProjectWithParent loads a project and, if it has a parent with a
+// relativePath, loads the parent POM and merges its plugins.
+func loadProjectWithParent(file string) (*project, error) {
+	loadedProject, err := loadProject(file)
+	if err != nil {
+		return nil, err
+	}
+	if loadedProject.Parent.RelativePath != "" {
+		baseDir := filepath.Dir(locatePom(file))
+		parentPom := filepath.Join(baseDir, loadedProject.Parent.RelativePath)
+		if parentProject, err := loadProject(parentPom); err == nil && parentProject != nil {
+			loadedProject.Plugins = append(parentProject.Plugins, loadedProject.Plugins...)
+			loadedProject.ManagedPlugins = append(parentProject.ManagedPlugins, loadedProject.ManagedPlugins...)
+		}
+	}
+	return loadedProject, nil
+}
+
+// allPlugins returns plugins from build>plugins, build>pluginManagement,
+// and all profiles' build>plugins.
+func (p project) allPlugins() []artifact {
+	plugins := make([]artifact, 0, len(p.Plugins)+len(p.ManagedPlugins))
+	plugins = append(plugins, p.Plugins...)
+	plugins = append(plugins, p.ManagedPlugins...)
+	for _, profile := range p.Profiles {
+		plugins = append(plugins, profile.Plugins...)
+	}
+	return plugins
 }
 
 func loadPlugin(file string) (loadedPlugin *plugin) {
