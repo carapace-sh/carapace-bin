@@ -18,22 +18,27 @@ func init() {
 	cloneCmd.Flags().StringArrayP("authors-file", "A", []string{}, "Authors file")
 	cloneCmd.Flags().String("authors-prog", "", "Authors program")
 	cloneCmd.Flags().StringArrayP("branches", "b", []string{}, "Branches path")
+	cloneCmd.Flags().String("config-dir", "", "SVN configuration directory")
 	cloneCmd.Flags().Bool("follow-parent", false, "Follow parent")
 	cloneCmd.Flags().String("ignore-paths", "", "Regex of paths to ignore")
 	cloneCmd.Flags().String("ignore-refs", "", "Regex of SVN refs to ignore")
 	cloneCmd.Flags().String("include-paths", "", "Regex of paths to include")
 	cloneCmd.Flags().Bool("localtime", false, "Store Git commit times in local time zone")
 	cloneCmd.Flags().Int("log-window-size", 100, "Log window size")
-	cloneCmd.Flags().Bool("minimize-url", false, "Minimize URL")
+	cloneCmd.Flags().BoolP("minimize-url", "m", false, "Minimize URL")
+	cloneCmd.Flags().Bool("no-auth-cache", false, "Disable SVN authentication caching")
 	cloneCmd.Flags().Bool("no-checkout", false, "No checkout")
 	cloneCmd.Flags().Bool("no-metadata", false, "Disable metadata")
 	cloneCmd.Flags().Bool("no-minimize-url", false, "Do not minimize URL")
+	cloneCmd.Flags().Bool("noMetadata", false, "Disable metadata")
 	cloneCmd.Flags().String("placeholder-filename", "", "Placeholder filename")
 	cloneCmd.Flags().String("prefix", "", "Remote ref prefix")
 	cloneCmd.Flags().Bool("preserve-empty-dirs", false, "Preserve empty directories")
 	cloneCmd.Flags().BoolP("quiet", "q", false, "Quiet")
+	cloneCmd.Flags().Int("repack", 0, "Repack interval")
+	cloneCmd.Flags().String("repack-flags", "", "Flags to pass to repack")
 	cloneCmd.Flags().StringP("revision", "r", "", "Revision range")
-	cloneCmd.Flags().Bool("shared", false, "Shared repository")
+	cloneCmd.Flags().String("shared", "", "Shared repository")
 	cloneCmd.Flags().BoolP("stdlayout", "s", false, "Use standard layout")
 	cloneCmd.Flags().StringArrayP("tags", "t", []string{}, "Tags path")
 	cloneCmd.Flags().String("template", "", "Git template directory")
@@ -50,14 +55,17 @@ func init() {
 		"authors-file":         carapace.ActionFiles(),
 		"authors-prog":         carapace.ActionFiles(),
 		"branches":             carapace.ActionFiles(),
+		"config-dir":           carapace.ActionFiles(),
 		"ignore-paths":         carapace.ActionValues(),
 		"ignore-refs":          carapace.ActionValues(),
 		"include-paths":        carapace.ActionValues(),
 		"placeholder-filename": carapace.ActionFiles(),
+		"repack-flags":         carapace.ActionValues(),
 		"revision":             carapace.ActionValues(),
 		"tags":                 carapace.ActionFiles(),
 		"template":             carapace.ActionFiles(),
 		"trunk":                carapace.ActionFiles(),
+		"username":             carapace.ActionValues(),
 	})
 
 	carapace.Gen(cloneCmd).PositionalCompletion(

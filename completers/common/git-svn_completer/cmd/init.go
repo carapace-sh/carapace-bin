@@ -15,16 +15,18 @@ func init() {
 	carapace.Gen(initCmd).Standalone()
 
 	initCmd.Flags().StringArrayP("branches", "b", []string{}, "Branches path")
+	initCmd.Flags().String("config-dir", "", "SVN configuration directory")
 	initCmd.Flags().String("ignore-paths", "", "Regex of paths to ignore")
 	initCmd.Flags().String("ignore-refs", "", "Regex of SVN refs to ignore")
 	initCmd.Flags().String("include-paths", "", "Regex of paths to include")
-	initCmd.Flags().Bool("minimize-url", false, "Minimize URL")
+	initCmd.Flags().BoolP("minimize-url", "m", false, "Minimize URL")
+	initCmd.Flags().Bool("no-auth-cache", false, "Disable SVN authentication caching")
 	initCmd.Flags().Bool("no-metadata", false, "Disable metadata")
-	initCmd.Flags().BoolP("no-minimize-url", "m", false, "Do not minimize URL")
+	initCmd.Flags().Bool("no-minimize-url", false, "Do not minimize URL")
 	initCmd.Flags().String("prefix", "", "Remote ref prefix")
 	initCmd.Flags().String("rewrite-root", "", "Rewrite root URL")
 	initCmd.Flags().String("rewrite-uuid", "", "Rewrite UUID")
-	initCmd.Flags().Bool("shared", false, "Shared repository")
+	initCmd.Flags().String("shared", "", "Shared repository")
 	initCmd.Flags().BoolP("stdlayout", "s", false, "Use standard layout")
 	initCmd.Flags().StringArrayP("tags", "t", []string{}, "Tags path")
 	initCmd.Flags().String("template", "", "Git template directory")
@@ -36,12 +38,14 @@ func init() {
 
 	carapace.Gen(initCmd).FlagCompletion(carapace.ActionMap{
 		"branches":      carapace.ActionFiles(),
+		"config-dir":    carapace.ActionFiles(),
 		"ignore-paths":  carapace.ActionValues(),
 		"ignore-refs":   carapace.ActionValues(),
 		"include-paths": carapace.ActionValues(),
 		"tags":          carapace.ActionFiles(),
 		"template":      carapace.ActionFiles(),
 		"trunk":         carapace.ActionFiles(),
+		"username":      carapace.ActionValues(),
 	})
 
 	carapace.Gen(initCmd).PositionalCompletion(

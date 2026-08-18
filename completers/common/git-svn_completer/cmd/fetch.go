@@ -15,31 +15,39 @@ func init() {
 	carapace.Gen(fetchCmd).Standalone()
 
 	fetchCmd.Flags().Bool("add-author-from", false, "Add author from")
-	fetchCmd.Flags().BoolP("all", "all", false, "Fetch from all SVN remotes")
+	fetchCmd.Flags().Bool("all", false, "Fetch from all SVN remotes")
 	fetchCmd.Flags().StringArrayP("authors-file", "A", []string{}, "Authors file")
 	fetchCmd.Flags().String("authors-prog", "", "Authors program")
+	fetchCmd.Flags().String("config-dir", "", "SVN configuration directory")
 	fetchCmd.Flags().Bool("follow-parent", false, "Follow parent")
 	fetchCmd.Flags().String("ignore-paths", "", "Regex of paths to ignore")
 	fetchCmd.Flags().String("ignore-refs", "", "Regex of SVN refs to ignore")
 	fetchCmd.Flags().String("include-paths", "", "Regex of paths to include")
 	fetchCmd.Flags().Bool("localtime", false, "Store Git commit times in local time zone")
 	fetchCmd.Flags().Int("log-window-size", 100, "Log window size")
+	fetchCmd.Flags().Bool("no-auth-cache", false, "Disable SVN authentication caching")
 	fetchCmd.Flags().Bool("no-checkout", false, "No checkout")
 	fetchCmd.Flags().Bool("noMetadata", false, "Disable metadata")
 	fetchCmd.Flags().BoolP("parent", "p", false, "Fetch only from the SVN parent of the current HEAD")
 	fetchCmd.Flags().BoolP("quiet", "q", false, "Quiet")
+	fetchCmd.Flags().Int("repack", 0, "Repack interval")
+	fetchCmd.Flags().String("repack-flags", "", "Flags to pass to repack")
 	fetchCmd.Flags().StringP("revision", "r", "", "Revision range")
 	fetchCmd.Flags().Bool("use-log-author", false, "Use log author")
 	fetchCmd.Flags().Bool("useSvmProps", false, "Use SVM properties")
 	fetchCmd.Flags().Bool("useSvnsyncProps", false, "Use SVNSync properties")
+	fetchCmd.Flags().String("username", "", "SVN username")
 	rootCmd.AddCommand(fetchCmd)
 
 	carapace.Gen(fetchCmd).FlagCompletion(carapace.ActionMap{
 		"authors-file":  carapace.ActionFiles(),
 		"authors-prog":  carapace.ActionFiles(),
+		"config-dir":    carapace.ActionFiles(),
 		"ignore-paths":  carapace.ActionValues(),
 		"ignore-refs":   carapace.ActionValues(),
 		"include-paths": carapace.ActionValues(),
+		"repack-flags":  carapace.ActionValues(),
 		"revision":      carapace.ActionValues(),
+		"username":      carapace.ActionValues(),
 	})
 }

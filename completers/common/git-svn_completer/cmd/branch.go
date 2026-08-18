@@ -17,7 +17,7 @@ func init() {
 
 	branchCmd.Flags().String("commit-url", "", "Use the specified URL to connect to the destination SVN repository")
 	branchCmd.Flags().StringP("destination", "d", "", "Location of the branch in the SVN repository")
-	branchCmd.Flags().Bool("dry-run", false, "Dry run")
+	branchCmd.Flags().BoolP("dry-run", "n", false, "Dry run")
 	branchCmd.Flags().StringP("message", "m", "", "Commit message")
 	branchCmd.Flags().Bool("parents", false, "Create parent folders")
 	branchCmd.Flags().BoolP("tag", "t", false, "Create a tag instead of a branch")

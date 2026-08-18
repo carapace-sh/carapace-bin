@@ -18,7 +18,9 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.PersistentFlags().BoolP("version", "V", false, "Show version")
-	rootCmd.PersistentFlags().StringP("id", "i", "", "Set GIT_SVN_ID")
-	rootCmd.PersistentFlags().StringP("svn-remote", "R", "", "SVN remote to use")
+	rootCmd.Flags().BoolP("help", "h", false, "Show help")
+	rootCmd.Flags().StringP("id", "i", "", "Set GIT_SVN_ID")
+	rootCmd.Flags().Bool("minimize-connections", false, "Minimize SVN connections")
+	rootCmd.Flags().StringP("svn-remote", "R", "", "SVN remote to use")
+	rootCmd.Flags().BoolP("version", "V", false, "Show version")
 }

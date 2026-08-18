@@ -18,7 +18,8 @@ func init() {
 	rebaseCmd.Flags().Bool("all", false, "Fetch from all SVN remotes")
 	rebaseCmd.Flags().StringArrayP("authors-file", "A", []string{}, "Authors file")
 	rebaseCmd.Flags().String("authors-prog", "", "Authors program")
-	rebaseCmd.Flags().Bool("dry-run", false, "Dry run")
+	rebaseCmd.Flags().String("config-dir", "", "SVN configuration directory")
+	rebaseCmd.Flags().BoolP("dry-run", "n", false, "Dry run")
 	rebaseCmd.Flags().Bool("follow-parent", false, "Follow parent")
 	rebaseCmd.Flags().String("ignore-paths", "", "Regex of paths to ignore")
 	rebaseCmd.Flags().String("ignore-refs", "", "Regex of SVN refs to ignore")
@@ -27,24 +28,30 @@ func init() {
 	rebaseCmd.Flags().Bool("localtime", false, "Store Git commit times in local time zone")
 	rebaseCmd.Flags().Int("log-window-size", 100, "Log window size")
 	rebaseCmd.Flags().BoolP("merge", "m", false, "Merge")
-	rebaseCmd.Flags().BoolP("merge-all", "M", false, "Merge all")
+	rebaseCmd.Flags().Bool("no-auth-cache", false, "Disable SVN authentication caching")
 	rebaseCmd.Flags().Bool("no-checkout", false, "No checkout")
 	rebaseCmd.Flags().Bool("noMetadata", false, "Disable metadata")
 	rebaseCmd.Flags().BoolP("quiet", "q", false, "Quiet")
 	rebaseCmd.Flags().BoolP("rebase-merges", "p", false, "Rebase merges")
+	rebaseCmd.Flags().Int("repack", 0, "Repack interval")
+	rebaseCmd.Flags().String("repack-flags", "", "Flags to pass to repack")
 	rebaseCmd.Flags().StringP("strategy", "s", "", "Rebase strategy")
 	rebaseCmd.Flags().Bool("use-log-author", false, "Use log author")
 	rebaseCmd.Flags().Bool("useSvmProps", false, "Use SVM properties")
 	rebaseCmd.Flags().Bool("useSvnsyncProps", false, "Use SVNSync properties")
+	rebaseCmd.Flags().String("username", "", "SVN username")
 	rebaseCmd.Flags().BoolP("verbose", "v", false, "Verbose")
 	rootCmd.AddCommand(rebaseCmd)
 
 	carapace.Gen(rebaseCmd).FlagCompletion(carapace.ActionMap{
 		"authors-file":  carapace.ActionFiles(),
 		"authors-prog":  carapace.ActionFiles(),
+		"config-dir":    carapace.ActionFiles(),
 		"ignore-paths":  carapace.ActionValues(),
 		"ignore-refs":   carapace.ActionValues(),
 		"include-paths": carapace.ActionValues(),
+		"repack-flags":  carapace.ActionValues(),
 		"strategy":      carapace.ActionValues("recursive", "resolve", "ours", "theirs", "subtree"),
+		"username":      carapace.ActionValues(),
 	})
 }

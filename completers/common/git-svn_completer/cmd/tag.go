@@ -17,7 +17,7 @@ func init() {
 
 	tagCmd.Flags().String("commit-url", "", "Use the specified URL to connect to the destination SVN repository")
 	tagCmd.Flags().StringP("destination", "d", "", "Location of the tag in the SVN repository")
-	tagCmd.Flags().Bool("dry-run", false, "Dry run")
+	tagCmd.Flags().BoolP("dry-run", "n", false, "Dry run")
 	tagCmd.Flags().StringP("message", "m", "", "Commit message")
 	tagCmd.Flags().Bool("parents", false, "Create parent folders")
 	tagCmd.Flags().String("username", "", "SVN username to perform the commit as")
