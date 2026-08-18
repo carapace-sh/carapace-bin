@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/bazel"
 	"github.com/spf13/cobra"
 )
 
@@ -154,4 +155,17 @@ func init() {
 	queryCmd.Flags().Bool("xml:default_values", false, "If true, rule attributes whose value is not explicitly specified in the BUILD file are printed; otherwise they are omitted.")
 	queryCmd.Flags().Bool("xml:line_numbers", false, "If true, XML output contains line numbers. Disabling this option may make diffs easier to read.  This option is only applicable to --output=xml.")
 	rootCmd.AddCommand(queryCmd)
+
+	carapace.Gen(queryCmd).FlagCompletion(carapace.ActionMap{
+		"compilation_mode": carapace.ActionValues("fastbuild", "dbg", "opt"),
+		"experimental_exec_configuration_distinguisher": carapace.ActionValues("legacy", "fullhash", "off"),
+		"host_compilation_mode":                         carapace.ActionValues("fastbuild", "dbg", "opt"),
+		"include_config_fragments_provider":             carapace.ActionValues("off", "direct", "transitive"),
+		"order_output":                                  carapace.ActionValues("no", "deps", "auto", "full"),
+		"output":                                        carapace.ActionValues("build", "graph", "streamed_jsonproto", "label", "label_kind", "location", "maxrank", "minrank", "package", "proto", "streamed_proto", "xml"),
+	})
+
+	carapace.Gen(queryCmd).PositionalCompletion(
+		bazel.ActionTargets(),
+	)
 }
