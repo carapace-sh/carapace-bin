@@ -15,6 +15,7 @@ var rootCmd = &cobra.Command{
 func Execute() error {
 	return rootCmd.Execute()
 }
+
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
@@ -36,8 +37,4 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"state": carapace.ActionFiles(),
 	})
-
-	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValues("backup", "backup-status", "check", "clean-backups", "clone", "copy-closure", "create", "delete", "delete-generation", "delete-resources", "deploy", "destroy", "dump-nix-paths", "edit", "export", "import", "info", "list", "list-generations", "list-plugins", "modify", "mount", "reboot", "remove-backup", "rename", "restore", "rollback", "scp", "send-keys", "set-args", "show-arguments", "show-console-output", "show-option", "show-physical", "ssh", "ssh-for-each", "start", "stop", "unlock"),
-	)
 }
