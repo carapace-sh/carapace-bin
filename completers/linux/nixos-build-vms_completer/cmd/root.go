@@ -19,7 +19,7 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().Bool("help", false, "Show usage information")
+	rootCmd.Flags().BoolP("help", "h", false, "Show usage information")
 	rootCmd.Flags().Bool("no-out-link", false, "Do not create a symlink to the output path")
 	rootCmd.Flags().StringSlice("option", nil, "Set Nix configuration option")
 	rootCmd.Flags().Bool("show-trace", false, "Show the stack trace on evaluation errors")

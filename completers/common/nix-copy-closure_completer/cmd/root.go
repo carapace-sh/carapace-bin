@@ -26,6 +26,8 @@ func init() {
 	rootCmd.Flags().Bool("include-outputs", false, "Also copy outputs of store derivations included in the closure")
 	rootCmd.Flags().Bool("to", false, "Copy closure from local to remote machine")
 	rootCmd.Flags().BoolP("use-substitutes", "s", false, "Attempt to download missing store objects on target from substituters")
+	rootCmd.Flags().BoolP("verbose", "v", false, "Increase verbosity level")
+	rootCmd.Flags().Bool("version", false, "Print the Nix version number")
 
 	rootCmd.MarkFlagsMutuallyExclusive("to", "from")
 

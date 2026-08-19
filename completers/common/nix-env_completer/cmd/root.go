@@ -18,9 +18,10 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolP("attr", "A", false, "Interpret args as attribute paths")
+	rootCmd.Flags().StringP("attr", "A", "", "Interpret args as attribute paths")
+	rootCmd.Flags().Bool("attr-path", false, "Print attribute path")
 	rootCmd.Flags().BoolP("available", "a", false, "Query available packages")
-	rootCmd.Flags().Bool("compare-versions", false, "Compare installed vs available versions")
+	rootCmd.Flags().BoolP("compare-versions", "c", false, "Compare installed vs available versions")
 	rootCmd.Flags().Bool("delete-generations", false, "Delete profile generations")
 	rootCmd.Flags().Bool("description", false, "Print one-line description")
 	rootCmd.Flags().Bool("drv-path", false, "Print store derivation path")
@@ -30,6 +31,7 @@ func init() {
 	rootCmd.Flags().String("from-profile", "", "Copy from another profile")
 	rootCmd.Flags().Bool("help", false, "Show usage information")
 	rootCmd.Flags().BoolP("install", "i", false, "Add packages to user environment")
+	rootCmd.Flags().Bool("installed", false, "Operate on installed packages (default)")
 	rootCmd.Flags().Bool("json", false, "JSON output")
 	rootCmd.Flags().Bool("list-generations", false, "List profile generations")
 	rootCmd.Flags().Bool("meta", false, "Print all meta-attributes")

@@ -20,7 +20,7 @@ func init() {
 
 	rootCmd.Flags().BoolP("delete-old", "d", false, "Delete all old generations of profiles")
 	rootCmd.Flags().String("delete-older-than", "", "Delete all generations of profiles older than the specified amount")
-	rootCmd.Flags().Bool("dry-run", false, "Show what store paths would be built or downloaded")
+	rootCmd.Flags().Bool("dry-run", false, "Print what would be deleted without actually deleting")
 	rootCmd.Flags().Bool("help", false, "Show usage information")
 	rootCmd.Flags().String("max-freed", "", "Keep deleting paths until at least bytes have been deleted")
 }

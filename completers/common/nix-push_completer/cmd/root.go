@@ -19,15 +19,15 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().Bool("bzip2", false, "Use bzip2 compression")
+	rootCmd.Flags().Bool("bzip2", false, "Compress NARs using bzip2 instead of xz -9")
 	rootCmd.Flags().String("dest", "", "Destination directory")
-	rootCmd.Flags().Bool("force", false, "Force overwriting of existing files")
+	rootCmd.Flags().Bool("force", false, "Overwrite .narinfo files if they already exist")
 	rootCmd.Flags().Bool("help", false, "Show usage information")
-	rootCmd.Flags().Bool("link", false, "Create hard links instead of copying")
-	rootCmd.Flags().String("manifest", "", "Path to manifest file")
-	rootCmd.Flags().String("manifest-path", "", "Path to manifest file")
-	rootCmd.Flags().Bool("none", false, "Use no compression")
-	rootCmd.Flags().String("url-prefix", "", "URL prefix for the cache")
+	rootCmd.Flags().Bool("link", false, "Hard link files into the destination directory rather than copying")
+	rootCmd.Flags().Bool("manifest", false, "Force the generation of a manifest suitable for use by nix-pull")
+	rootCmd.Flags().String("manifest-path", "", "Like --manifest, but specify the manifest filename")
+	rootCmd.Flags().Bool("none", false, "Do not compress")
+	rootCmd.Flags().String("url-prefix", "", "Specify the prefix URL used in the Manifest")
 
 	rootCmd.MarkFlagsMutuallyExclusive("bzip2", "none")
 	rootCmd.MarkFlagsMutuallyExclusive("manifest", "manifest-path")

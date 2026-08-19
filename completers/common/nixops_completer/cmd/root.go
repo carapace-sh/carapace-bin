@@ -20,10 +20,19 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().Bool("confirm", false, "Confirm deployment")
+	rootCmd.Flags().String("cores", "", "Set NIX_BUILD_CORES environment variable in builders")
 	rootCmd.Flags().Bool("debug", false, "Turn on debugging output")
 	rootCmd.Flags().StringP("deployment", "d", "", "Deployment to use")
+	rootCmd.Flags().Bool("fallback", false, "Fall back on installation from source")
 	rootCmd.Flags().Bool("help", false, "Show usage information")
+	rootCmd.Flags().Bool("keep-failed", false, "Keep temporary directories of failed builds")
+	rootCmd.Flags().Bool("keep-going", false, "Keep going after failed builds")
+	rootCmd.Flags().String("max-jobs", "", "Set maximum number of concurrent Nix builds")
+	rootCmd.Flags().StringSlice("option", nil, "Set a Nix option")
+	rootCmd.Flags().Bool("read-only-mode", false, "Run Nix evaluations in read-only mode")
+	rootCmd.Flags().Bool("show-trace", false, "Print a Nix stack trace if evaluation fails")
 	rootCmd.Flags().StringP("state", "s", "", "Path to state file")
+	rootCmd.Flags().Bool("version", false, "Print NixOps's version number")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"state": carapace.ActionFiles(),

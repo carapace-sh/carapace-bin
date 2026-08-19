@@ -24,5 +24,7 @@ func init() {
 	rootCmd.Flags().Bool("set", false, "Set profile to contain exactly one derivation")
 	rootCmd.Flags().String("url", "", "URL of the package to install")
 
-	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{})
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"profile": carapace.ActionFiles(),
+	})
 }

@@ -21,7 +21,8 @@ func init() {
 	rootCmd.Flags().StringP("attr", "A", "", "Attribute name to build from the Nix file")
 	rootCmd.Flags().String("channel", "", "Path to the nixos channel to copy")
 	rootCmd.Flags().Bool("chroot", false, "Chroot into the target root")
-	rootCmd.Flags().StringP("closure", "", "", "Pre-built system path to use (same as --system)")
+	rootCmd.Flags().String("closure", "", "Pre-built system path to use (same as --system)")
+	rootCmd.Flags().Bool("debug", false, "Enable shell debug mode")
 	rootCmd.Flags().StringP("file", "f", "", "Path to Nix file")
 	rootCmd.Flags().String("flake", "", "Flake URI")
 	rootCmd.Flags().Bool("help", false, "Show usage information")
@@ -35,6 +36,7 @@ func init() {
 	rootCmd.Flags().Bool("show-trace", false, "Show the stack trace on evaluation errors")
 	rootCmd.Flags().String("store-path", "", "Pre-built system path to use (same as --system)")
 	rootCmd.Flags().String("system", "", "Pre-built system path to use")
+	rootCmd.Flags().BoolP("verbose", "v", false, "Increase verbosity")
 
 	rootCmd.Flag("option").Nargs = 2
 
