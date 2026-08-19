@@ -247,6 +247,7 @@ func init() {
 				return carapace.ActionValues()
 			}
 		}),
+		"system": nix.ActionSystems(),
 	})
 }
 
