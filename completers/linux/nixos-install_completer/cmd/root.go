@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix"
 	"github.com/spf13/cobra"
 )
 
@@ -41,9 +42,19 @@ func init() {
 	rootCmd.Flag("option").Nargs = 2
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"channel":    carapace.ActionDirectories(),
-		"closure":    carapace.ActionFiles(),
-		"file":       carapace.ActionFiles(".nix"),
+		"channel": carapace.ActionDirectories(),
+		"closure": carapace.ActionFiles(),
+		"file":    carapace.ActionFiles(".nix"),
+		"option": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return nix.ActionConfigKeys()
+			case 1:
+				return nix.ActionConfigValues(c.Parts[0])
+			default:
+				return carapace.ActionValues()
+			}
+		}),
 		"root":       carapace.ActionDirectories(),
 		"store-path": carapace.ActionFiles(),
 		"system":     carapace.ActionFiles(),

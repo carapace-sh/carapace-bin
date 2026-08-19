@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix"
 	"github.com/spf13/cobra"
 )
 
@@ -34,7 +35,19 @@ func init() {
 	rootCmd.PersistentFlags().StringP("state", "s", "", "Path to state file")
 	rootCmd.PersistentFlags().Bool("version", false, "Print NixOps's version number")
 
+	rootCmd.Flag("option").Nargs = 2
+
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"option": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return nix.ActionConfigKeys()
+			case 1:
+				return nix.ActionConfigValues(c.Parts[0])
+			default:
+				return carapace.ActionValues()
+			}
+		}),
 		"state": carapace.ActionFiles(),
 	})
 }

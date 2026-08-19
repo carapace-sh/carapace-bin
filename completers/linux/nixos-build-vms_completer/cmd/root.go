@@ -26,6 +26,19 @@ func init() {
 
 	rootCmd.Flag("option").Nargs = 2
 
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"option": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return nix.ActionConfigKeys()
+			case 1:
+				return nix.ActionConfigValues(c.Parts[0])
+			default:
+				return carapace.ActionValues()
+			}
+		}),
+	})
+
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		nix.ActionPaths(),
 	)
