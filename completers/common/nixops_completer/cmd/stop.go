@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var StopCmd = &cobra.Command{
+var stopCmd = &cobra.Command{
 	Use:   "stop",
-	Short: "Stop",
+	Short: "stop all machines in the deployment",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(StopCmd).Standalone()
-	rootCmd.AddCommand(StopCmd)
+	carapace.Gen(stopCmd).Standalone()
+	rootCmd.AddCommand(stopCmd)
 }

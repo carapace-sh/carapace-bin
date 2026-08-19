@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var ListGenerationsCmd = &cobra.Command{
+var listGenerationsCmd = &cobra.Command{
 	Use:   "list-generations",
-	Short: "List Generations",
+	Short: "list previous configurations for rollback",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(ListGenerationsCmd).Standalone()
-	rootCmd.AddCommand(ListGenerationsCmd)
+	carapace.Gen(listGenerationsCmd).Standalone()
+	rootCmd.AddCommand(listGenerationsCmd)
 }

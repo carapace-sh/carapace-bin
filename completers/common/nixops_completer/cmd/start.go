@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var StartCmd = &cobra.Command{
+var startCmd = &cobra.Command{
 	Use:   "start",
-	Short: "Start",
+	Short: "start all machines in the deployment",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(StartCmd).Standalone()
-	rootCmd.AddCommand(StartCmd)
+	carapace.Gen(startCmd).Standalone()
+	rootCmd.AddCommand(startCmd)
 }

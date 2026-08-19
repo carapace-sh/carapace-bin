@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var RemoveBackupCmd = &cobra.Command{
+var removeBackupCmd = &cobra.Command{
 	Use:   "remove-backup",
-	Short: "Remove Backup",
+	Short: "remove a given backup",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(RemoveBackupCmd).Standalone()
-	rootCmd.AddCommand(RemoveBackupCmd)
+	carapace.Gen(removeBackupCmd).Standalone()
+	rootCmd.AddCommand(removeBackupCmd)
 }

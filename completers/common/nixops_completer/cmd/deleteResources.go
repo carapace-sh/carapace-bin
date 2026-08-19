@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var DeleteResourcesCmd = &cobra.Command{
+var deleteResourcesCmd = &cobra.Command{
 	Use:   "delete-resources",
-	Short: "Delete Resources",
+	Short: "delete resources from the state file",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(DeleteResourcesCmd).Standalone()
-	rootCmd.AddCommand(DeleteResourcesCmd)
+	carapace.Gen(deleteResourcesCmd).Standalone()
+	rootCmd.AddCommand(deleteResourcesCmd)
 }

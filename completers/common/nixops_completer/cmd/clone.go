@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var CloneCmd = &cobra.Command{
+var cloneCmd = &cobra.Command{
 	Use:   "clone",
-	Short: "Clone",
+	Short: "clone an existing deployment",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(CloneCmd).Standalone()
-	rootCmd.AddCommand(CloneCmd)
+	carapace.Gen(cloneCmd).Standalone()
+	rootCmd.AddCommand(cloneCmd)
 }

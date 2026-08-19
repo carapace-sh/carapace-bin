@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var ListPluginsCmd = &cobra.Command{
+var listPluginsCmd = &cobra.Command{
 	Use:   "list-plugins",
-	Short: "List Plugins",
+	Short: "list available nixops plugins",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(ListPluginsCmd).Standalone()
-	rootCmd.AddCommand(ListPluginsCmd)
+	carapace.Gen(listPluginsCmd).Standalone()
+	rootCmd.AddCommand(listPluginsCmd)
 }

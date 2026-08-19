@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var RollbackCmd = &cobra.Command{
+var rollbackCmd = &cobra.Command{
 	Use:   "rollback",
-	Short: "Rollback",
+	Short: "roll back to a previous configuration",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(RollbackCmd).Standalone()
-	rootCmd.AddCommand(RollbackCmd)
+	carapace.Gen(rollbackCmd).Standalone()
+	rootCmd.AddCommand(rollbackCmd)
 }

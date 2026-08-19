@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var DeleteCmd = &cobra.Command{
+var deleteCmd = &cobra.Command{
 	Use:   "delete",
-	Short: "Delete",
+	Short: "delete a deployment",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(DeleteCmd).Standalone()
-	rootCmd.AddCommand(DeleteCmd)
+	carapace.Gen(deleteCmd).Standalone()
+	rootCmd.AddCommand(deleteCmd)
 }

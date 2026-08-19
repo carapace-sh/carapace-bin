@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var MountCmd = &cobra.Command{
+var mountCmd = &cobra.Command{
 	Use:   "mount",
-	Short: "Mount",
+	Short: "mount a directory from a machine via SSHFS",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(MountCmd).Standalone()
-	rootCmd.AddCommand(MountCmd)
+	carapace.Gen(mountCmd).Standalone()
+	rootCmd.AddCommand(mountCmd)
 }

@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var SshForEachCmd = &cobra.Command{
+var sshForEachCmd = &cobra.Command{
 	Use:   "ssh-for-each",
-	Short: "Ssh For Each",
+	Short: "execute a command on each machine via SSH",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(SshForEachCmd).Standalone()
-	rootCmd.AddCommand(SshForEachCmd)
+	carapace.Gen(sshForEachCmd).Standalone()
+	rootCmd.AddCommand(sshForEachCmd)
 }

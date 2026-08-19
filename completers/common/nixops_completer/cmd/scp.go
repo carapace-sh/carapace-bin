@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var ScpCmd = &cobra.Command{
+var scpCmd = &cobra.Command{
 	Use:   "scp",
-	Short: "Scp",
+	Short: "copy files to or from a machine via SCP",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(ScpCmd).Standalone()
-	rootCmd.AddCommand(ScpCmd)
+	carapace.Gen(scpCmd).Standalone()
+	rootCmd.AddCommand(scpCmd)
 }

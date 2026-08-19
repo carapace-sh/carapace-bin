@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var BackupCmd = &cobra.Command{
+var backupCmd = &cobra.Command{
 	Use:   "backup",
-	Short: "Backup",
+	Short: "make snapshots of persistent disks",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(BackupCmd).Standalone()
-	rootCmd.AddCommand(BackupCmd)
+	carapace.Gen(backupCmd).Standalone()
+	rootCmd.AddCommand(backupCmd)
 }

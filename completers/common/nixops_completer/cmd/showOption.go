@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var ShowOptionCmd = &cobra.Command{
+var showOptionCmd = &cobra.Command{
 	Use:   "show-option",
-	Short: "Show Option",
+	Short: "print the value of a configuration option",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(ShowOptionCmd).Standalone()
-	rootCmd.AddCommand(ShowOptionCmd)
+	carapace.Gen(showOptionCmd).Standalone()
+	rootCmd.AddCommand(showOptionCmd)
 }

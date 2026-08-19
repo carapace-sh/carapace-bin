@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var RestoreCmd = &cobra.Command{
+var restoreCmd = &cobra.Command{
 	Use:   "restore",
-	Short: "Restore",
+	Short: "restore machines from snapshots",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(RestoreCmd).Standalone()
-	rootCmd.AddCommand(RestoreCmd)
+	carapace.Gen(restoreCmd).Standalone()
+	rootCmd.AddCommand(restoreCmd)
 }

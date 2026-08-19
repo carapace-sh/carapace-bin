@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var ShowPhysicalCmd = &cobra.Command{
+var showPhysicalCmd = &cobra.Command{
 	Use:   "show-physical",
-	Short: "Show Physical",
+	Short: "print the physical network expression",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(ShowPhysicalCmd).Standalone()
-	rootCmd.AddCommand(ShowPhysicalCmd)
+	carapace.Gen(showPhysicalCmd).Standalone()
+	rootCmd.AddCommand(showPhysicalCmd)
 }

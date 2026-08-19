@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var ShowArgumentsCmd = &cobra.Command{
+var showArgumentsCmd = &cobra.Command{
 	Use:   "show-arguments",
-	Short: "Show Arguments",
+	Short: "print the arguments to the network expressions",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(ShowArgumentsCmd).Standalone()
-	rootCmd.AddCommand(ShowArgumentsCmd)
+	carapace.Gen(showArgumentsCmd).Standalone()
+	rootCmd.AddCommand(showArgumentsCmd)
 }

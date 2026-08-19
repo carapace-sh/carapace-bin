@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var SendKeysCmd = &cobra.Command{
+var sendKeysCmd = &cobra.Command{
 	Use:   "send-keys",
-	Short: "Send Keys",
+	Short: "send encryption keys",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(SendKeysCmd).Standalone()
-	rootCmd.AddCommand(SendKeysCmd)
+	carapace.Gen(sendKeysCmd).Standalone()
+	rootCmd.AddCommand(sendKeysCmd)
 }

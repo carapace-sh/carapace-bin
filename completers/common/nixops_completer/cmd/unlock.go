@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var UnlockCmd = &cobra.Command{
+var unlockCmd = &cobra.Command{
 	Use:   "unlock",
-	Short: "Unlock",
+	Short: "force unlock the deployment lock",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(UnlockCmd).Standalone()
-	rootCmd.AddCommand(UnlockCmd)
+	carapace.Gen(unlockCmd).Standalone()
+	rootCmd.AddCommand(unlockCmd)
 }

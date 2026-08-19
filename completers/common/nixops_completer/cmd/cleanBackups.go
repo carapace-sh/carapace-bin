@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var CleanBackupsCmd = &cobra.Command{
+var cleanBackupsCmd = &cobra.Command{
 	Use:   "clean-backups",
-	Short: "Clean Backups",
+	Short: "clean up old backups",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(CleanBackupsCmd).Standalone()
-	rootCmd.AddCommand(CleanBackupsCmd)
+	carapace.Gen(cleanBackupsCmd).Standalone()
+	rootCmd.AddCommand(cleanBackupsCmd)
 }

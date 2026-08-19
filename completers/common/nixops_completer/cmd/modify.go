@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var ModifyCmd = &cobra.Command{
+var modifyCmd = &cobra.Command{
 	Use:   "modify",
-	Short: "Modify",
+	Short: "modify an existing deployment",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(ModifyCmd).Standalone()
-	rootCmd.AddCommand(ModifyCmd)
+	carapace.Gen(modifyCmd).Standalone()
+	rootCmd.AddCommand(modifyCmd)
 }

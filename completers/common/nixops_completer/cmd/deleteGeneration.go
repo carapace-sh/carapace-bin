@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var DeleteGenerationCmd = &cobra.Command{
+var deleteGenerationCmd = &cobra.Command{
 	Use:   "delete-generation",
-	Short: "Delete Generation",
+	Short: "delete a previous configuration",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(DeleteGenerationCmd).Standalone()
-	rootCmd.AddCommand(DeleteGenerationCmd)
+	carapace.Gen(deleteGenerationCmd).Standalone()
+	rootCmd.AddCommand(deleteGenerationCmd)
 }

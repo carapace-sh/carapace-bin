@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var ShowConsoleOutputCmd = &cobra.Command{
+var showConsoleOutputCmd = &cobra.Command{
 	Use:   "show-console-output",
-	Short: "Show Console Output",
+	Short: "print the machine console output",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(ShowConsoleOutputCmd).Standalone()
-	rootCmd.AddCommand(ShowConsoleOutputCmd)
+	carapace.Gen(showConsoleOutputCmd).Standalone()
+	rootCmd.AddCommand(showConsoleOutputCmd)
 }

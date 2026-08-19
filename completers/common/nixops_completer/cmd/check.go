@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var CheckCmd = &cobra.Command{
+var checkCmd = &cobra.Command{
 	Use:   "check",
-	Short: "Check",
+	Short: "check the state of machines",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(CheckCmd).Standalone()
-	rootCmd.AddCommand(CheckCmd)
+	carapace.Gen(checkCmd).Standalone()
+	rootCmd.AddCommand(checkCmd)
 }

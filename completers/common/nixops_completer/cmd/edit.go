@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var EditCmd = &cobra.Command{
+var editCmd = &cobra.Command{
 	Use:   "edit",
-	Short: "Edit",
+	Short: "open the deployment spec in $EDITOR",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(EditCmd).Standalone()
-	rootCmd.AddCommand(EditCmd)
+	carapace.Gen(editCmd).Standalone()
+	rootCmd.AddCommand(editCmd)
 }

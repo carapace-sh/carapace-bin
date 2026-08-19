@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var SetArgsCmd = &cobra.Command{
+var setArgsCmd = &cobra.Command{
 	Use:   "set-args",
-	Short: "Set Args",
+	Short: "persistently set deployment arguments",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(SetArgsCmd).Standalone()
-	rootCmd.AddCommand(SetArgsCmd)
+	carapace.Gen(setArgsCmd).Standalone()
+	rootCmd.AddCommand(setArgsCmd)
 }

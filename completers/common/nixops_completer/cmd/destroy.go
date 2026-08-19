@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var DestroyCmd = &cobra.Command{
+var destroyCmd = &cobra.Command{
 	Use:   "destroy",
-	Short: "Destroy",
+	Short: "destroy all resources in the deployment",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(DestroyCmd).Standalone()
-	rootCmd.AddCommand(DestroyCmd)
+	carapace.Gen(destroyCmd).Standalone()
+	rootCmd.AddCommand(destroyCmd)
 }

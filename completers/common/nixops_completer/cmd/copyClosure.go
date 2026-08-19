@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var CopyClosureCmd = &cobra.Command{
+var copyClosureCmd = &cobra.Command{
 	Use:   "copy-closure",
-	Short: "Copy Closure",
+	Short: "copy closure to a target machine",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(CopyClosureCmd).Standalone()
-	rootCmd.AddCommand(CopyClosureCmd)
+	carapace.Gen(copyClosureCmd).Standalone()
+	rootCmd.AddCommand(copyClosureCmd)
 }

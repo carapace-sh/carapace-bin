@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var InfoCmd = &cobra.Command{
+var infoCmd = &cobra.Command{
 	Use:   "info",
-	Short: "Info",
+	Short: "show the state of the deployment",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(InfoCmd).Standalone()
-	rootCmd.AddCommand(InfoCmd)
+	carapace.Gen(infoCmd).Standalone()
+	rootCmd.AddCommand(infoCmd)
 }

@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var ListCmd = &cobra.Command{
+var listCmd = &cobra.Command{
 	Use:   "list",
-	Short: "List",
+	Short: "list all known deployments",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(ListCmd).Standalone()
-	rootCmd.AddCommand(ListCmd)
+	carapace.Gen(listCmd).Standalone()
+	rootCmd.AddCommand(listCmd)
 }

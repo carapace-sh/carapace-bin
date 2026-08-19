@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var RebootCmd = &cobra.Command{
+var rebootCmd = &cobra.Command{
 	Use:   "reboot",
-	Short: "Reboot",
+	Short: "reboot all machines in the deployment",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(RebootCmd).Standalone()
-	rootCmd.AddCommand(RebootCmd)
+	carapace.Gen(rebootCmd).Standalone()
+	rootCmd.AddCommand(rebootCmd)
 }

@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var DumpNixPathsCmd = &cobra.Command{
+var dumpNixPathsCmd = &cobra.Command{
 	Use:   "dump-nix-paths",
-	Short: "Dump Nix Paths",
+	Short: "dump Nix paths referenced in deployments",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(DumpNixPathsCmd).Standalone()
-	rootCmd.AddCommand(DumpNixPathsCmd)
+	carapace.Gen(dumpNixPathsCmd).Standalone()
+	rootCmd.AddCommand(dumpNixPathsCmd)
 }

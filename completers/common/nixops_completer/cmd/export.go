@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var ExportCmd = &cobra.Command{
+var exportCmd = &cobra.Command{
 	Use:   "export",
-	Short: "Export",
+	Short: "export the state of a deployment",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(ExportCmd).Standalone()
-	rootCmd.AddCommand(ExportCmd)
+	carapace.Gen(exportCmd).Standalone()
+	rootCmd.AddCommand(exportCmd)
 }

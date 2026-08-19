@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var SshCmd = &cobra.Command{
+var sshCmd = &cobra.Command{
 	Use:   "ssh",
-	Short: "Ssh",
+	Short: "login on a machine via SSH",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(SshCmd).Standalone()
-	rootCmd.AddCommand(SshCmd)
+	carapace.Gen(sshCmd).Standalone()
+	rootCmd.AddCommand(sshCmd)
 }

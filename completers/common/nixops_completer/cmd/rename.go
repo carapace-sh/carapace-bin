@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var RenameCmd = &cobra.Command{
+var renameCmd = &cobra.Command{
 	Use:   "rename",
-	Short: "Rename",
+	Short: "rename a machine in the network",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(RenameCmd).Standalone()
-	rootCmd.AddCommand(RenameCmd)
+	carapace.Gen(renameCmd).Standalone()
+	rootCmd.AddCommand(renameCmd)
 }

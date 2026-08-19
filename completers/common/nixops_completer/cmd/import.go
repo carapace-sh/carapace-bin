@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var ImportCmd = &cobra.Command{
+var importCmd = &cobra.Command{
 	Use:   "import",
-	Short: "Import",
+	Short: "import deployments into the state file",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(ImportCmd).Standalone()
-	rootCmd.AddCommand(ImportCmd)
+	carapace.Gen(importCmd).Standalone()
+	rootCmd.AddCommand(importCmd)
 }
