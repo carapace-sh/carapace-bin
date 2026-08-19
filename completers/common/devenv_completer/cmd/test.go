@@ -6,9 +6,10 @@ import (
 )
 
 var testCmd = &cobra.Command{
-	Use:   "test",
-	Short: "Run tests",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "test",
+	Aliases: []string{"ci"},
+	Short:   "Run tests",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

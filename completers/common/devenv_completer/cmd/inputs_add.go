@@ -15,7 +15,7 @@ var inputs_addCmd = &cobra.Command{
 func init() {
 	carapace.Gen(inputs_addCmd).Standalone()
 
-	inputs_addCmd.Flags().StringP("follows", "f", "", "What inputs should follow your inputs?")
+	inputs_addCmd.Flags().StringArrayP("follows", "f", nil, "What inputs should follow your inputs?")
 
 	inputsCmd.AddCommand(inputs_addCmd)
 

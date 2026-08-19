@@ -6,9 +6,10 @@ import (
 )
 
 var infoCmd = &cobra.Command{
-	Use:   "info",
-	Short: "Print information about this developer environment",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "info",
+	Aliases: []string{"show"},
+	Short:   "Print information about this developer environment",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

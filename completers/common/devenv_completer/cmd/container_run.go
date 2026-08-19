@@ -15,7 +15,7 @@ var container_runCmd = &cobra.Command{
 func init() {
 	carapace.Gen(container_runCmd).Standalone()
 
-	container_runCmd.Flags().String("copy-args", "", "")
+	container_runCmd.Flags().StringArray("copy-args", nil, "")
 
 	containerCmd.AddCommand(container_runCmd)
 
