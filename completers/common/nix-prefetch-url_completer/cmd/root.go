@@ -29,4 +29,9 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"type": carapace.ActionValues("md5", "sha1", "sha256", "sha512", "blake3"),
 	})
+
+	carapace.Gen(rootCmd).PositionalCompletion(
+		carapace.ActionValues(), // url
+		carapace.ActionValues(), // expected hash
+	)
 }

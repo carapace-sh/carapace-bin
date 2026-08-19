@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix"
 	"github.com/spf13/cobra"
 )
 
@@ -56,6 +57,12 @@ func init() {
 	rootCmd.Flags().Bool("xml", false, "XML output")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"file": carapace.ActionFiles(".nix"),
+		"file":         carapace.ActionFiles(".nix"),
+		"from-profile": carapace.ActionFiles(),
+		"profile":      carapace.ActionFiles(),
 	})
+
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		nix.ActionChannelPackages(),
+	)
 }
