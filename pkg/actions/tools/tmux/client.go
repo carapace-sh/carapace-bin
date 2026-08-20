@@ -1,6 +1,10 @@
 package tmux
 
-import "github.com/carapace-sh/carapace"
+import (
+	"strings"
+
+	"github.com/carapace-sh/carapace"
+)
 
 // ActionClientFlags completes client flags
 //
@@ -15,4 +19,25 @@ func ActionClientFlags() carapace.Action {
 		"read-only", "the client is read-only",
 		"wait-exit", "wait for an empty line input before exiting in control mode",
 	)
+}
+
+// ActionClients completes clients
+//
+//	/dev/pts/0: 0 (alacritty)
+//	/dev/pts/1: 1 (kitty)
+func ActionClients() carapace.Action {
+	return carapace.ActionExecCommand("tmux", "list-clients")(func(output []byte) carapace.Action {
+		lines := strings.Split(string(output), "\n")
+
+		vals := make([]string, 0)
+		for _, line := range lines {
+			if line == "" {
+				continue
+			}
+			if splitted := strings.SplitN(line, ": ", 2); len(splitted) == 2 {
+				vals = append(vals, splitted...)
+			}
+		}
+		return carapace.ActionValuesDescribed(vals...)
+	})
 }
