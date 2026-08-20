@@ -1,8 +1,30 @@
-package cmd
+package action
 
 import "github.com/carapace-sh/carapace"
 
-func actionModes() carapace.Action {
+// ActionDirections completes movement directions
+//
+//	left
+//	down
+//	up
+//	right
+func ActionDirections() carapace.Action {
+	return carapace.ActionValues("left", "down", "up", "right")
+}
+
+// ActionResizes completes resize directions
+//
+//	increase
+//	decrease
+func ActionResizes() carapace.Action {
+	return carapace.ActionValues("increase", "decrease")
+}
+
+// ActionModes completes zellij modes
+//
+//	normal (In `Normal` mode, input is always written to the terminal, except for the shortcuts leading to other modes)
+//	locked (In `Locked` mode, input is always written to the terminal and all shortcuts are disabled except the one leading back to normal mode)
+func ActionModes() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"normal", "In `Normal` mode, input is always written to the terminal, except for the shortcuts leading to other modes",
 		"locked", "In `Locked` mode, input is always written to the terminal and all shortcuts are disabled except the one leading back to normal mode",
