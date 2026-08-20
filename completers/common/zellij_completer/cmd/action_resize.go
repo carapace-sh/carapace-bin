@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/zellij_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -19,7 +20,7 @@ func init() {
 	actionCmd.AddCommand(action_resizeCmd)
 
 	carapace.Gen(action_resizeCmd).PositionalCompletion(
-		actionResizes(),
-		actionDirections(),
+		action.ActionResizes(),
+		action.ActionDirections(),
 	)
 }

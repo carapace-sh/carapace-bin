@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/zellij_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -18,5 +19,5 @@ func init() {
 	action_moveTabCmd.Flags().StringP("tab-id", "t", "", "Target a specific tab by ID")
 	actionCmd.AddCommand(action_moveTabCmd)
 
-	carapace.Gen(action_moveTabCmd).PositionalAnyCompletion(actionDirections())
+	carapace.Gen(action_moveTabCmd).PositionalAnyCompletion(action.ActionDirections())
 }

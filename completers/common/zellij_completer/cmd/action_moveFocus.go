@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/zellij_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,5 +18,5 @@ func init() {
 	action_moveFocusCmd.Flags().BoolP("help", "h", false, "Print help")
 	actionCmd.AddCommand(action_moveFocusCmd)
 
-	carapace.Gen(action_moveFocusCmd).PositionalAnyCompletion(actionDirections())
+	carapace.Gen(action_moveFocusCmd).PositionalAnyCompletion(action.ActionDirections())
 }
