@@ -47,6 +47,7 @@ func init() {
 	rootCmd.Flags().String("ad-queue-max-bytes", "", "Maximum approximate allowed size of the queue")
 	rootCmd.Flags().String("ad-queue-max-samples", "", "Maximum number samples of the queue")
 	rootCmd.Flags().String("ad-queue-max-secs", "", "Maximum number of seconds of media in the queue")
+	rootCmd.Flags().String("ad-spdif-dtshd", "", "If DTS is passed through, use DTS-HD")
 	rootCmd.Flags().String("af", "", "Specify a list of audio filters to  apply  to  the  audio stream")
 	rootCmd.Flags().String("af-add", "", "")
 	rootCmd.Flags().String("af-append", "", "")
@@ -75,6 +76,13 @@ func init() {
 	rootCmd.Flags().String("alsa-non-interleaved", "", "Allow output of non-interleaved formats")
 	rootCmd.Flags().String("alsa-periods", "", "Number of periods requested from the ALSA API")
 	rootCmd.Flags().String("alsa-resample", "", "Enable ALSA resampling plugin")
+	rootCmd.Flags().String("android-surface-size", "", "Set dimensions of the rendering surface used by the Android gpu context")
+	rootCmd.Flags().String("angle-d3d11-feature-level", "", "Selects a specific feature level when using the ANGLE backend with D3D11")
+	rootCmd.Flags().String("angle-d3d11-warp", "", "Use WARP (Windows Advanced Rasterization Platform) when using the ANGLE backend with D3D11")
+	rootCmd.Flags().String("angle-egl-windowing", "", "Use ANGLE's built in EGL windowing functions to create a swap chain")
+	rootCmd.Flags().String("angle-flip", "", "Enable flip-model presentation, which avoids unnecessarily copying the backbuffer by sharing surfaces with the DWM")
+	rootCmd.Flags().String("angle-renderer", "", "Forces a specific renderer when using the ANGLE backend")
+	rootCmd.Flags().String("angle-swapchain-length", "", "Set the maximum number of in-flight frames for the ANGLE backend swapchain")
 	rootCmd.Flags().String("ao", "", "Specify a priority list of audio output drivers to be used")
 	rootCmd.Flags().String("ao-add", "", "")
 	rootCmd.Flags().String("ao-append", "", "")
@@ -216,6 +224,9 @@ func init() {
 	rootCmd.Flags().String("clipboard-backends-toggle", "", "")
 	rootCmd.Flags().String("clipboard-monitor", "", "Enable clipboard monitoring so that the clipboard property can be observed for content changes")
 	rootCmd.Flags().String("clipboard-xwayland", "", "Enable X11 clipboard backend in suspected Wayland environments")
+	rootCmd.Flags().String("cocoa-cb-10bit-context", "", "Creates a 10bit capable pixel format for the context creation")
+	rootCmd.Flags().String("cocoa-cb-output-csp", "", "This sets the color space of the layer to activate the macOS color transformation")
+	rootCmd.Flags().String("cocoa-cb-sw-renderer", "", "Use the Apple Software Renderer when using cocoa-cb")
 	rootCmd.Flags().String("config", "", "")
 	rootCmd.Flags().String("config-dir", "", "Force a different configuration directory")
 	rootCmd.Flags().String("container-fps-override", "", "Override video framerate")
@@ -258,6 +269,13 @@ func init() {
 	rootCmd.Flags().String("cscale-wparam", "", "Configure the parameter for the window function given by --scale-window etc")
 	rootCmd.Flags().String("cscale-wtaper", "", "Kernel/window taper factor")
 	rootCmd.Flags().String("cuda-decode-device", "", "Choose the GPU device used for decoding when using the cuda or nvdec hwdecs with the OpenGL GPU backend, and with the cuda-copy or nvdec-copy hwdecs in all cases")
+	rootCmd.Flags().String("curl-buffer-size", "", "Size of the per-stream producer-side ring buffer that decouples the network thread from the consumer")
+	rootCmd.Flags().String("curl-connect-timeout", "", "TCP/TLS connect timeout in seconds")
+	rootCmd.Flags().String("curl-enabled", "", "Enable the libcurl-based network backend")
+	rootCmd.Flags().String("curl-http-version", "", "Select the maximum HTTP protocol version libcurl is allowed to negotiate")
+	rootCmd.Flags().String("curl-max-redirects", "", "Maximum number of HTTP redirects to follow before reporting an error")
+	rootCmd.Flags().String("curl-max-request-size", "", "For seekable streams, split the transfer into Range requests of at most this size")
+	rootCmd.Flags().String("curl-max-retries", "", "Number of times a single seekable transfer may be transparently re-attempted after a recoverable error")
 	rootCmd.Flags().String("cursor-autohide", "", "Make mouse cursor automatically hide after given number of milliseconds")
 	rootCmd.Flags().String("cursor-autohide-fs-only", "", "If this option is given, the cursor is always visible in windowed mode")
 	rootCmd.Flags().String("d3d11-adapter", "", "Select a specific D3D11 adapter to utilize for D3D11 rendering")
@@ -284,6 +302,7 @@ func init() {
 	rootCmd.Flags().String("demuxer-cache-unlink-files", "", "Whether or when to unlink cache files")
 	rootCmd.Flags().String("demuxer-cache-wait", "", "Before starting playback, read data until either the end of the file was reached, or the demuxer cache has reached maximum capacity")
 	rootCmd.Flags().String("demuxer-donate-buffer", "", "Whether to let the back buffer use part of the forward buffer")
+	rootCmd.Flags().String("demuxer-hysteresis-bytes", "", "Same as --demuxer-hysteresis-secs, but specifies the hysteresis in bytes of forward buffered data instead of seconds")
 	rootCmd.Flags().String("demuxer-hysteresis-secs", "", "Once the demuxer limit is reached (--demuxer-max-bytes, --demuxer-readahead-secs or --cache-secs), this value can be used to specify a hysteresis before the demuxer will buffer ahead again")
 	rootCmd.Flags().String("demuxer-lavf-allow-mimetype", "", "Allow deriving the format from the HTTP MIME type")
 	rootCmd.Flags().String("demuxer-lavf-analyzeduration", "", "Maximum length in seconds to analyze the stream properties")
@@ -394,6 +413,7 @@ func init() {
 	rootCmd.Flags().String("external-files-set", "", "")
 	rootCmd.Flags().String("external-files-toggle", "", "")
 	rootCmd.Flags().String("fbo-format", "", "Selects the internal format of textures used for FBOs")
+	rootCmd.Flags().String("flatten-editions", "", "Some container formats expose multiple programs or rendition groups, by default mpv respects the format and groups tracks into editions")
 	rootCmd.Flags().String("focus-on", "", "(macOS only) Focus the video window and make it the front most window on specific events")
 	rootCmd.Flags().String("force-media-title", "", "Force the contents of the media-title property to this value.")
 	rootCmd.Flags().String("force-render", "", "Forces mpv to always render frames regardless of the visibility of the window")
@@ -408,6 +428,7 @@ func init() {
 	rootCmd.Flags().String("fs-screen-name", "", "In multi-monitor configurations, this option tells mpv which screen to go fullscreen to based on the screen name from the video backend")
 	rootCmd.Flags().String("fullscreen", "", "Fullscreen playback")
 	rootCmd.Flags().String("gamma", "", "Adjust the gamma of the video signal")
+	rootCmd.Flags().String("gamma-auto", "", "Automatically corrects the gamma value depending on ambient lighting conditions")
 	rootCmd.Flags().String("gamma-factor", "", "Set an additional raw gamma factor")
 	rootCmd.Flags().String("gamut-mapping-mode", "", "Specifies the algorithm used for reducing the gamut of images for the target display, after any tone mapping is done")
 	rootCmd.Flags().String("gapless-audio", "", "Try to play consecutive audio files with no silence or disruption at the point of file change")
@@ -525,6 +546,7 @@ func init() {
 	rootCmd.Flags().String("input-ar-delay", "", "Delay in milliseconds before we start to autorepeat a key")
 	rootCmd.Flags().String("input-ar-rate", "", "Number of key presses to generate per second on autorepeat")
 	rootCmd.Flags().String("input-builtin-bindings", "", "Enable loading of built-in key bindings during start-up")
+	rootCmd.Flags().String("input-builtin-drag-and-drop", "", "Enable the built-in drag-and-drop behavior")
 	rootCmd.Flags().String("input-builtin-dragging", "", "Enable the built-in window-dragging behavior")
 	rootCmd.Flags().String("input-cmdlist", "", "Prints all commands that can be bound to keys")
 	rootCmd.Flags().String("input-commands", "", "Define a list of commands for mpv to run")
@@ -542,6 +564,7 @@ func init() {
 	rootCmd.Flags().String("input-default-bindings", "", "Enable default-level (\"weak\") key bindings")
 	rootCmd.Flags().String("input-doubleclick-time", "", "Time in milliseconds to recognize two consecutive button presses as a double-click")
 	rootCmd.Flags().String("input-dragging-deadzone", "", "Begin the built-in window dragging when the mouse moves outside a deadzone of N pixels while the mouse button is being held down")
+	rootCmd.Flags().String("input-gamepad", "", "Enable/disable SDL2 Gamepad support")
 	rootCmd.Flags().String("input-ime", "", "Enable keyboard input via an active input method (IME) connected to the VO")
 	rootCmd.Flags().String("input-ipc-client", "", "Connect a single IPC client to the given FD")
 	rootCmd.Flags().String("input-ipc-server", "", "Enable the IPC support and create the listening socket at the given path")
@@ -598,6 +621,16 @@ func init() {
 	rootCmd.Flags().String("loop-playlist", "", "Loops playback N times")
 	rootCmd.Flags().String("lut", "", "Specifies a custom LUT (in Adobe .cube format) to apply to the colors as part of color conversion")
 	rootCmd.Flags().String("lut-type", "", "Controls the interpretation of color values fed to and from the LUT specified as --lut")
+	rootCmd.Flags().String("macos-app-activation-policy", "", "Changes the App activation policy")
+	rootCmd.Flags().String("macos-bundle-path", "", "Prepend all given paths to the default Bundle PATH")
+	rootCmd.Flags().String("macos-force-dedicated-gpu", "", "Deactivates the automatic graphics switching and forces the dedicated GPU")
+	rootCmd.Flags().String("macos-fs-animation-duration", "", "Sets the fullscreen resize animation duration in ms")
+	rootCmd.Flags().String("macos-geometry-calculation", "", "This changes the rectangle which is used to calculate the screen position and size of the window")
+	rootCmd.Flags().String("macos-menu-shortcuts", "", "Enables the default menu bar shortcuts")
+	rootCmd.Flags().String("macos-render-timer", "", "Sets the mode for syncing the rendering of frames to the display's vertical refresh rate")
+	rootCmd.Flags().String("macos-title-bar-appearance", "", "Sets the appearance of the title bar")
+	rootCmd.Flags().String("macos-title-bar-color", "", "Sets the color of the title bar")
+	rootCmd.Flags().String("macos-title-bar-material", "", "Sets the material of the title bar")
 	rootCmd.Flags().String("mc", "", "Maximum A-V sync correction per frame")
 	rootCmd.Flags().String("media-controls", "", "(Windows only) Enable integration of media control interface SystemMediaTransportControls")
 	rootCmd.Flags().String("merge-files", "", "Pretend that all files passed to mpv are concatenated into a single, big file")
@@ -697,6 +730,7 @@ func init() {
 	rootCmd.Flags().String("osd-level", "", "Specifies which mode the OSD should start in")
 	rootCmd.Flags().String("osd-margin-x", "", "Left and right screen margin for the OSD in scaled pixels")
 	rootCmd.Flags().String("osd-margin-y", "", "Top and bottom screen margin for the OSD in scaled pixels")
+	rootCmd.Flags().String("osd-margin-y-offset", "", "Additional vertical offset added to the OSD margin, in scaled pixels")
 	rootCmd.Flags().String("osd-msg1", "", "Show this string as message on OSD with OSD level 1")
 	rootCmd.Flags().String("osd-msg2", "", "Similar to --osd-msg1, but for OSD level 2")
 	rootCmd.Flags().String("osd-msg3", "", "Similar to --osd-msg1, but for OSD level 3")
@@ -749,6 +783,7 @@ func init() {
 	rootCmd.Flags().String("playlist-exts-remove", "", "")
 	rootCmd.Flags().String("playlist-exts-set", "", "")
 	rootCmd.Flags().String("playlist-exts-toggle", "", "")
+	rootCmd.Flags().String("playlist-inherit-options", "", "Whether the per-file options of a playlist file are inherited by its items")
 	rootCmd.Flags().String("playlist-start", "", "Set which file on the internal playlist to start playback with")
 	rootCmd.Flags().String("prefetch-playlist", "", "Prefetch next playlist entry while playback of the current entry is ending")
 	rootCmd.Flags().String("priority", "", "Set process priority for mpv according to the predefined priorities available under Windows")
@@ -853,8 +888,10 @@ func init() {
 	rootCmd.Flags().String("secondary-sub-ass-override", "", "Control whether user secondary substyle overrides should be applied")
 	rootCmd.Flags().String("secondary-sub-delay", "", "Delays secondary subtitles by <sec> seconds")
 	rootCmd.Flags().String("secondary-sub-pos", "", "Specify the position of secondary subtitles on the screen")
+	rootCmd.Flags().String("secondary-sub-scale", "", "Factor for the secondary subtitle font size")
 	rootCmd.Flags().String("secondary-sub-visibility", "", "Can be used to disable display of secondary subtitles, but still select and decode them")
 	rootCmd.Flags().String("sharpen", "", "If set to a value other than 0, enable an unsharp masking filter")
+	rootCmd.Flags().String("show-dependent-tracks", "", "Show dependent tracks in the track list")
 	rootCmd.Flags().String("show-in-taskbar", "", "(Windows and X11 only) Show mpv in the taskbar")
 	rootCmd.Flags().String("show-profile", "", "Show the description and content of a profile")
 	rootCmd.Flags().String("shuffle", "", "Play files in random order")
@@ -1012,6 +1049,7 @@ func init() {
 	rootCmd.Flags().String("sub-line-spacing", "", "Set line spacing value for SSA/ASS renderer")
 	rootCmd.Flags().String("sub-margin-x", "", "Left and right screen margin for the subs in scaled pixels")
 	rootCmd.Flags().String("sub-margin-y", "", "Top and bottom screen margin for the subs in scaled pixels")
+	rootCmd.Flags().String("sub-margin-y-offset", "", "Additional vertical offset added to the subtitle margin, in scaled pixels")
 	rootCmd.Flags().String("sub-outline-color", "", "Color used for the sub font outline")
 	rootCmd.Flags().String("sub-outline-size", "", "Size of the sub font outline in scaled pixels")
 	rootCmd.Flags().String("sub-past-video-end", "", "After the last frame of video, if this option is enabled, subtitles will continue to update based on audio timestamps")
@@ -1292,6 +1330,7 @@ func init() {
 	rootCmd.Flags().String("wayland-edge-pixels-touch", "", "Defines the size of an edge border (default: 32) to initiate client side resizes events in the wayland contexts with touch events")
 	rootCmd.Flags().String("wayland-internal-vsync", "", "Controls whether to use mpv's internal vsync for Wayland-base video outputs")
 	rootCmd.Flags().String("wayland-present", "", "Enable the use of wayland's presentation time protocol for more accurate frame presentation if it is supported by the compositor")
+	rootCmd.Flags().String("wayland-session", "", "Set the wayland session name for window restoration")
 	rootCmd.Flags().String("wid", "", "This tells mpv to attach to an existing window")
 	rootCmd.Flags().String("window-affinity", "", "Controls the window affinity behavior of mpv")
 	rootCmd.Flags().String("window-corners", "", "Set the preference for window corner rounding")
@@ -1344,6 +1383,7 @@ func init() {
 		"ad":                                    mpv.ActionAudioDecoders().UniqueList(","),
 		"ad-lavc-downmix":                       ActionFlagCompletion("ad-lavc-downmix"),
 		"ad-queue-enable":                       ActionFlagCompletion("ad-queue-enable"),
+		"ad-spdif-dtshd":                        ActionFlagCompletion("ad-spdif-dtshd"),
 		"af":                                    mpv.ActionAudioFilters().List(","),
 		"aid":                                   ActionFlagCompletion("aid"),
 		"alang":                                 osAction.ActionLanguages().List(","),
@@ -1351,6 +1391,12 @@ func init() {
 		"alsa-ignore-chmap":                     ActionFlagCompletion("alsa-ignore-chmap"),
 		"alsa-non-interleaved":                  ActionFlagCompletion("alsa-non-interleaved"),
 		"alsa-resample":                         ActionFlagCompletion("alsa-resample"),
+		"angle-d3d11-feature-level":             carapace.ActionValues("11_0", "10_1", "10_0", "9_3"),
+		"angle-d3d11-warp":                      ActionFlagCompletion("angle-d3d11-warp"),
+		"angle-egl-windowing":                   ActionFlagCompletion("angle-egl-windowing"),
+		"angle-flip":                            ActionFlagCompletion("angle-flip"),
+		"angle-renderer":                        carapace.ActionValues("d3d9", "d3d11", "auto"),
+		"angle-swapchain-length":                ActionFlagCompletion("angle-swapchain-length"),
 		"ao":                                    mpv.ActionAudioOutputs().UniqueList(","),
 		"ao-null-broken-delay":                  ActionFlagCompletion("ao-null-broken-delay"),
 		"ao-null-broken-eof":                    ActionFlagCompletion("ao-null-broken-eof"),
@@ -1391,6 +1437,9 @@ func init() {
 		"cdda-skip":                             ActionFlagCompletion("cdda-skip"),
 		"chapters-file":                         carapace.ActionFiles(),
 		"clipboard-xwayland":                    ActionFlagCompletion("clipboard-xwayland"),
+		"cocoa-cb-10bit-context":                ActionFlagCompletion("cocoa-cb-10bit-context"),
+		"cocoa-cb-output-csp":                   ActionFlagCompletion("cocoa-cb-output-csp"),
+		"cocoa-cb-sw-renderer":                  ActionFlagCompletion("cocoa-cb-sw-renderer"),
 		"config":                                ActionFlagCompletion("config"),
 		"config-dir":                            carapace.ActionFiles(),
 		"cookies":                               ActionFlagCompletion("cookies"),
@@ -1400,6 +1449,13 @@ func init() {
 		"cover-art-auto":                        ActionFlagCompletion("cover-art-auto"),
 		"cover-art-files":                       carapace.ActionFiles().List(string(os.PathListSeparator)),
 		"cuda-decode-device":                    ActionFlagCompletion("cuda-decode-device"),
+		"curl-buffer-size":                      ActionFlagCompletion("curl-buffer-size"),
+		"curl-connect-timeout":                  ActionFlagCompletion("curl-connect-timeout"),
+		"curl-enabled":                          ActionFlagCompletion("curl-enabled"),
+		"curl-http-version":                     carapace.ActionValues("auto", "1.0", "1.1", "2", "2tls", "2-prior-knowledge", "3", "3only"),
+		"curl-max-redirects":                    ActionFlagCompletion("curl-max-redirects"),
+		"curl-max-request-size":                 ActionFlagCompletion("curl-max-request-size"),
+		"curl-max-retries":                      ActionFlagCompletion("curl-max-retries"),
 		"cursor-autohide":                       ActionFlagCompletion("cursor-autohide"),
 		"cursor-autohide-fs-only":               ActionFlagCompletion("cursor-autohide-fs-only"),
 		"d3d11-exclusive-fs":                    ActionFlagCompletion("d3d11-exclusive-fs"),
@@ -1413,6 +1469,7 @@ func init() {
 		"deband":                                ActionFlagCompletion("deband"),
 		"demuxer-cache-wait":                    ActionFlagCompletion("demuxer-cache-wait"),
 		"demuxer-donate-buffer":                 ActionFlagCompletion("demuxer-donate-buffer"),
+		"demuxer-hysteresis-bytes":              ActionFlagCompletion("demuxer-hysteresis-bytes"),
 		"demuxer-lavf-allow-mimetype":           ActionFlagCompletion("demuxer-lavf-allow-mimetype"),
 		"demuxer-lavf-hacks":                    ActionFlagCompletion("demuxer-lavf-hacks"),
 		"demuxer-lavf-linearize-timestamps":     ActionFlagCompletion("demuxer-lavf-linearize-timestamps"),
@@ -1439,6 +1496,7 @@ func init() {
 		"embeddedfonts":                         ActionFlagCompletion("embeddedfonts"),
 		"error-diffusion":                       ActionFlagCompletion("error-diffusion"),
 		"external-files":                        carapace.ActionFiles().List(string(os.PathListSeparator)),
+		"flatten-editions":                      ActionFlagCompletion("flatten-editions"),
 		"focus-on":                              ActionFlagCompletion("focus-on"),
 		"force-rgba-osd-rendering":              ActionFlagCompletion("force-rgba-osd-rendering"),
 		"force-seekable":                        ActionFlagCompletion("force-seekable"),
@@ -1448,6 +1506,7 @@ func init() {
 		"frames":                                ActionFlagCompletion("frames"),
 		"fs-screen":                             ActionFlagCompletion("fs-screen"),
 		"fullscreen":                            ActionFlagCompletion("fullscreen"),
+		"gamma-auto":                            ActionFlagCompletion("gamma-auto"),
 		"gamut-mapping-mode":                    ActionFlagCompletion("gamut-mapping-mode"),
 		"gapless-audio":                         ActionFlagCompletion("gapless-audio"),
 		"glsl-shaders":                          carapace.ActionFiles().List(string(os.PathListSeparator)),
@@ -1478,10 +1537,11 @@ func init() {
 		"include":                               carapace.ActionFiles(),
 		"index":                                 ActionFlagCompletion("index"),
 		"initial-audio-sync":                    ActionFlagCompletion("initial-audio-sync"),
-		"input-builtin-bindings":                ActionFlagCompletion("input-builtin-bindings"),
-		"input-conf":                            carapace.ActionFiles(),
+		"input-builtin-drag-and-drop":           ActionFlagCompletion("input-builtin-drag-and-drop"),
+		"input-builtin-dragging":                ActionFlagCompletion("input-builtin-dragging"),
 		"input-cursor":                          ActionFlagCompletion("input-cursor"),
 		"input-default-bindings":                ActionFlagCompletion("input-default-bindings"),
+		"input-gamepad":                         ActionFlagCompletion("input-gamepad"),
 		"input-ipc-server":                      carapace.ActionFiles(),
 		"input-media-keys":                      ActionFlagCompletion("input-media-keys"),
 		"input-right-alt-gr":                    ActionFlagCompletion("input-right-alt-gr"),
@@ -1510,6 +1570,16 @@ func init() {
 		"loop-playlist":                         ActionFlagCompletion("loop-playlist"),
 		"lut":                                   carapace.ActionFiles(),
 		"lut-type":                              ActionFlagCompletion("lut-type"),
+		"macos-app-activation-policy":           carapace.ActionValues("regular", "accessory", "prohibited"),
+		"macos-bundle-path":                     carapace.ActionDirectories().List(string(os.PathListSeparator)),
+		"macos-force-dedicated-gpu":             ActionFlagCompletion("macos-force-dedicated-gpu"),
+		"macos-fs-animation-duration":           ActionFlagCompletion("macos-fs-animation-duration"),
+		"macos-geometry-calculation":            carapace.ActionValues("visible", "whole"),
+		"macos-menu-shortcuts":                  ActionFlagCompletion("macos-menu-shortcuts"),
+		"macos-render-timer":                    ActionFlagCompletion("macos-render-timer"),
+		"macos-title-bar-appearance":            ActionFlagCompletion("macos-title-bar-appearance"),
+		"macos-title-bar-color":                 ActionFlagCompletion("macos-title-bar-color"),
+		"macos-title-bar-material":              ActionFlagCompletion("macos-title-bar-material"),
 		"merge-files":                           ActionFlagCompletion("merge-files"),
 		"msg-color":                             ActionFlagCompletion("msg-color"),
 		"msg-module":                            ActionFlagCompletion("msg-module"),
@@ -1546,6 +1616,7 @@ func init() {
 		"osd-italic":                            ActionFlagCompletion("osd-italic"),
 		"osd-justify":                           ActionFlagCompletion("osd-justify"),
 		"osd-level":                             carapace.ActionValues("0", "1", "2", "3", "help"),
+		"osd-margin-y-offset":                   ActionFlagCompletion("osd-margin-y-offset"),
 		"osd-on-seek":                           ActionFlagCompletion("osd-on-seek"),
 		"osd-scale-by-window":                   ActionFlagCompletion("osd-scale-by-window"),
 		"osd-shaper":                            ActionFlagCompletion("osd-shaper"),
@@ -1555,6 +1626,7 @@ func init() {
 		"play-direction":                        carapace.ActionValues("forward", "+", "backward", "-", "help"),
 		"player-operation-mode":                 ActionFlagCompletion("player-operation-mode"),
 		"playlist":                              carapace.ActionFiles(),
+		"playlist-inherit-options":              carapace.ActionValues("yes", "no", "current"),
 		"playlist-start":                        ActionFlagCompletion("playlist-start"),
 		"prefetch-playlist":                     ActionFlagCompletion("prefetch-playlist"),
 		"priority":                              ActionFlagCompletion("priority"),
@@ -1587,7 +1659,9 @@ func init() {
 		"scripts":                               carapace.ActionFiles().List(string(os.PathListSeparator)),
 		"sdr-adjust-gamma":                      ActionFlagCompletion("sdr-adjust-gamma"),
 		"secondary-sid":                         ActionFlagCompletion("secondary-sid"),
+		"secondary-sub-scale":                   ActionFlagCompletion("secondary-sub-scale"),
 		"secondary-sub-visibility":              ActionFlagCompletion("secondary-sub-visibility"),
+		"show-dependent-tracks":                 ActionFlagCompletion("show-dependent-tracks"),
 		"shuffle":                               ActionFlagCompletion("shuffle"),
 		"sid":                                   ActionFlagCompletion("sid"),
 		"sigmoid-upscaling":                     ActionFlagCompletion("sigmoid-upscaling"),
@@ -1625,6 +1699,7 @@ func init() {
 		"sub-hinting":                           ActionFlagCompletion("sub-hinting"),
 		"sub-italic":                            ActionFlagCompletion("sub-italic"),
 		"sub-justify":                           ActionFlagCompletion("sub-justify"),
+		"sub-margin-y-offset":                   ActionFlagCompletion("sub-margin-y-offset"),
 		"sub-past-video-end":                    ActionFlagCompletion("sub-past-video-end"),
 		"sub-scale-by-window":                   ActionFlagCompletion("sub-scale-by-window"),
 		"sub-scale-with-window":                 ActionFlagCompletion("sub-scale-with-window"),
@@ -1706,6 +1781,7 @@ func init() {
 		"wasapi-exclusive-buffer":               ActionFlagCompletion("wasapi-exclusive-buffer"),
 		"watch-later-directory":                 carapace.ActionFiles(),
 		"wayland-internal-vsync":                ActionFlagCompletion("wayland-internal-vsync"),
+		"wayland-session":                       ActionFlagCompletion("wayland-session"),
 		"window-affinity":                       ActionFlagCompletion("window-affinity"),
 		"window-corners":                        ActionFlagCompletion("window-corners"),
 		"window-dragging":                       ActionFlagCompletion("window-dragging"),
