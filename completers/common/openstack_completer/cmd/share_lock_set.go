@@ -14,7 +14,7 @@ var share_lock_setCmd = &cobra.Command{
 func init() {
 	carapace.Gen(share_lock_setCmd).Standalone()
 
-	share_lock_setCmd.Flags().String("reason", "", "Reason for the resource lock")
-	share_lock_setCmd.Flags().String("resource_action", "", "Resource action to set in the resource lock")
+	share_lock_setCmd.Flags().String("lock-reason", "", "Reason for the resource lock")
+	share_lock_setCmd.Flags().String("resource-action", "", "Resource action to set in the resource lock")
 	share_lockCmd.AddCommand(share_lock_setCmd)
 }

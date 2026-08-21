@@ -43,6 +43,5 @@ func init() {
 	image_setCmd.Flags().String("tag", "", "Set a tag on this image (repeat option to set multiple tags)")
 	image_setCmd.Flags().Bool("unhidden", false, "Unhide the image")
 	image_setCmd.Flags().Bool("unprotected", false, "Allow image to be deleted (default)")
-	image_setCmd.Flags().String("visibility", "", "==SUPPRESS==")
 	imageCmd.AddCommand(image_setCmd)
 }

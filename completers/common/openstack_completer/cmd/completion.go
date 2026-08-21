@@ -1148,11 +1148,11 @@ func init() {
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 	carapace.Gen(share_lock_listCmd).FlagCompletion(carapace.ActionMap{
-		"context":  carapace.ActionValues("user", "admin", "service"),
-		"format":   carapace.ActionValues("csv", "json", "table", "value", "yaml"),
-		"quote":    carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort_dir": carapace.ActionValues("asc", "desc"),
-		"sort_key": carapace.ActionValues("id", "created_at", "updated_at", "resource_id", "resource_type", "resource_action", "lock_reason"),
+		"format":       carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"lock-context": carapace.ActionValues("user", "admin", "service"),
+		"quote":        carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"sort-dir":     carapace.ActionValues("asc", "desc"),
+		"sort-key":     carapace.ActionValues("id", "created_at", "updated_at", "resource_id", "resource_type", "resource_action", "lock_reason"),
 	})
 	carapace.Gen(share_lock_showCmd).FlagCompletion(carapace.ActionMap{
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
