@@ -30,7 +30,7 @@ func init() {
 	share_qos_type_listCmd.Flags().Bool("sort-ascending", false, "sort the column(s) in ascending order")
 	share_qos_type_listCmd.Flags().String("sort-column", "", "specify the column(s) to sort the data (columns specified first have a priority, non-existing columns are ignored), can be repeated")
 	share_qos_type_listCmd.Flags().Bool("sort-descending", false, "sort the column(s) in descending order")
-	share_qos_type_listCmd.Flags().String("sort_dir", "", "Sort direction, available values are ('asc', 'desc').")
-	share_qos_type_listCmd.Flags().String("sort_key", "", "Key to be sorted with, available keys are ('id', 'name', 'created_at', 'updated_at').")
+	share_qos_type_listCmd.Flags().String("sort-dir", "", "Sort direction, available values are ('asc', 'desc').")
+	share_qos_type_listCmd.Flags().String("sort-key", "", "Key to be sorted with, available keys are ('id', 'name', 'created_at', 'updated_at').")
 	share_qos_typeCmd.AddCommand(share_qos_type_listCmd)
 }
