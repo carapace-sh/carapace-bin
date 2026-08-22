@@ -7,7 +7,7 @@ import (
 
 var homeCmd = &cobra.Command{
 	Use:   "home",
-	Short: "open the package homepage in a browser",
+	Short: "opens the app homepage",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

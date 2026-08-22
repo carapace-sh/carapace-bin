@@ -7,11 +7,12 @@ import (
 
 var infoCmd = &cobra.Command{
 	Use:   "info",
-	Short: "display package information",
+	Short: "display information about an app",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(infoCmd).Standalone()
+	infoCmd.Flags().BoolP("verbose", "v", false, "show full paths and URLs")
 	rootCmd.AddCommand(infoCmd)
 }

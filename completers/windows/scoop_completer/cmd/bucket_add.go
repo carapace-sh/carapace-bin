@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var searchCmd = &cobra.Command{
-	Use:   "search",
-	Short: "search available apps",
+var bucket_addCmd = &cobra.Command{
+	Use:   "add",
+	Short: "add a bucket",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(searchCmd).Standalone()
-	rootCmd.AddCommand(searchCmd)
+	carapace.Gen(bucket_addCmd).Standalone()
+	bucketCmd.AddCommand(bucket_addCmd)
 }
