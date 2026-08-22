@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -24,7 +25,7 @@ func init() {
 	bugreportCmd.Flag("diagnose").NoOptDefVal = " "
 
 	carapace.Gen(bugreportCmd).FlagCompletion(carapace.ActionMap{
-		"diagnose":         carapace.ActionValues("stats", "all"),
+		"diagnose":         carapace.ActionValues("stats", "all").StyleF(style.ForKeyword),
 		"output-directory": carapace.ActionDirectories(),
 	})
 }

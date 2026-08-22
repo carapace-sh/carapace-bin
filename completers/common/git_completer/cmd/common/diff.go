@@ -3,6 +3,7 @@ package common
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -126,7 +127,7 @@ func AddDiffFlags(cmd *cobra.Command) {
 		"color-moved-ws":     git.ActionColorMovedWsModes(),
 		"diff-algorithm":     git.ActionDiffAlgorithms(),
 		"follow":             carapace.ActionFiles(), // TODO complete files of specific revision/modified between commits?
-		"ignore-submodules":  carapace.ActionValues("none", "untracked", "dirty", "all"),
+		"ignore-submodules":  carapace.ActionValues("none", "untracked", "dirty", "all").StyleF(style.ForKeyword),
 		"output":             carapace.ActionFiles(),
 		"rotate-to":          carapace.ActionFiles(), // TODO complete files of specific revision/modified between commits?
 		"skip-to":            carapace.ActionFiles(), // TODO complete files of specific revision/modified between commits?

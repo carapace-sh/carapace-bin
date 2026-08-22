@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/zellij"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -42,10 +43,10 @@ func init() {
 	rootCmd.AddCommand(runCmd)
 
 	carapace.Gen(runCmd).FlagCompletion(carapace.ActionMap{
-		"borderless": carapace.ActionValues("true", "false"),
+		"borderless": carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
 		"cwd":        carapace.ActionDirectories(),
 		"direction":  zellij.ActionDirections(),
-		"pinned":     carapace.ActionValues("true", "false"),
+		"pinned":     carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
 		"tab-id":     zellij.ActionTabs(),
 	})
 }

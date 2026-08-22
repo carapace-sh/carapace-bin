@@ -4,6 +4,7 @@ import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/linux/nmcli_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/net"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -27,14 +28,14 @@ func init() {
 			if len(c.Args) > 0 && c.Args[len(c.Args)-1] == "autoconnect" {
 				return action.ActionYesNo()
 			}
-			return carapace.ActionValues("yes", "no", "up", "down", "reset")
+			return carapace.ActionValues("yes", "no", "up", "down", "reset").StyleF(style.ForKeyword)
 		}),
 		carapace.ActionValues("autoconnect", "managed"),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) > 0 && c.Args[len(c.Args)-1] == "autoconnect" {
 				return action.ActionYesNo()
 			}
-			return carapace.ActionValues("yes", "no", "up", "down", "reset")
+			return carapace.ActionValues("yes", "no", "up", "down", "reset").StyleF(style.ForKeyword)
 		}),
 	)
 }

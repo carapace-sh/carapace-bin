@@ -4,6 +4,7 @@ import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/linux/ip_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/net"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -37,11 +38,11 @@ func init() {
 				case "address":
 					return carapace.ActionValues().NoSpace()
 				case "arp":
-					return carapace.ActionValues("on", "off")
+					return carapace.ActionValues("on", "off").StyleF(style.ForKeyword)
 				case "multicast":
-					return carapace.ActionValues("on", "off")
+					return carapace.ActionValues("on", "off").StyleF(style.ForKeyword)
 				case "dynamic":
-					return carapace.ActionValues("on", "off")
+					return carapace.ActionValues("on", "off").StyleF(style.ForKeyword)
 				case "group":
 					return carapace.ActionValues()
 				case "type":

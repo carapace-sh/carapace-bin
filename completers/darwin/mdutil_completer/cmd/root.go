@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -25,7 +26,7 @@ func init() {
 	rootCmd.Flags().BoolP("verbose", "v", false, "Verbose mode")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"index": carapace.ActionValues("on", "off"),
+		"index": carapace.ActionValues("on", "off").StyleF(style.ForKeyword),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionDirectories())

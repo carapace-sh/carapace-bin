@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/qemu"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -25,7 +26,7 @@ func init() {
 
 	carapace.Gen(resizeCmd).FlagCompletion(carapace.ActionMap{
 		"format":        qemu.ActionImageFormats(),
-		"preallocation": carapace.ActionValues("off", "falloc", "full"),
+		"preallocation": carapace.ActionValues("off", "falloc", "full").StyleF(style.ForKeyword),
 	})
 
 	carapace.Gen(resizeCmd).PositionalCompletion(

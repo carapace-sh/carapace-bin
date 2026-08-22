@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/simctl"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -17,6 +18,6 @@ func init() {
 	rootCmd.AddCommand(logverboseCmd)
 	carapace.Gen(logverboseCmd).PositionalCompletion(
 		simctl.ActionDevices(),
-		carapace.ActionValues("enable", "disable"),
+		carapace.ActionValues("enable", "disable").StyleF(style.ForKeyword),
 	)
 }

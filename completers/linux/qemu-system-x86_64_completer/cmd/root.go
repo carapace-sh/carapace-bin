@@ -4,6 +4,7 @@ import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/linux/qemu-system-x86_64_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/qemu"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -184,7 +185,7 @@ func init() {
 					case "order", "once":
 						return qemu.ActionBootDrives()
 					case "menu", "strict":
-						return carapace.ActionValues("on", "off")
+						return carapace.ActionValues("on", "off").StyleF(style.ForKeyword)
 					default:
 						return carapace.ActionValues()
 					}
@@ -280,7 +281,7 @@ func init() {
 					case "shift":
 						return carapace.ActionValues("auto")
 					case "align", "sleep":
-						return carapace.ActionValues("on", "off")
+						return carapace.ActionValues("on", "off").StyleF(style.ForKeyword)
 					case "rr":
 						return carapace.ActionValues("record", "replay")
 					case "rrfile":
@@ -331,7 +332,7 @@ func init() {
 					case "mode":
 						return carapace.ActionValues("readline", "control")
 					case "pretty":
-						return carapace.ActionValues("on", "off")
+						return carapace.ActionValues("on", "off").StyleF(style.ForKeyword)
 					default:
 						return carapace.ActionValues()
 					}
@@ -355,7 +356,7 @@ func init() {
 						"guest-name", "enable guest name prefix",
 					).Suffix("=").NoSpace('=')
 				default:
-					return carapace.ActionValues("on", "off")
+					return carapace.ActionValues("on", "off").StyleF(style.ForKeyword)
 				}
 			})
 		}),
@@ -371,7 +372,7 @@ func init() {
 				default:
 					switch c.Parts[0] {
 					case "debug-threads":
-						return carapace.ActionValues("on", "off")
+						return carapace.ActionValues("on", "off").StyleF(style.ForKeyword)
 					default:
 						return carapace.ActionValues()
 					}
@@ -395,9 +396,9 @@ func init() {
 				default:
 					switch c.Parts[0] {
 					case "mem-lock":
-						return carapace.ActionValues("on", "off", "on-fault")
+						return carapace.ActionValues("on", "off", "on-fault").StyleF(style.ForKeyword)
 					case "cpu-pm":
-						return carapace.ActionValues("on", "off")
+						return carapace.ActionValues("on", "off").StyleF(style.ForKeyword)
 					default:
 						return carapace.ActionValues()
 					}
@@ -503,7 +504,7 @@ func init() {
 				default:
 					switch c.Parts[0] {
 					case "async-teardown", "exit-with-parent":
-						return carapace.ActionValues("on", "off")
+						return carapace.ActionValues("on", "off").StyleF(style.ForKeyword)
 					case "chroot":
 						return carapace.ActionDirectories()
 					default:
@@ -515,7 +516,7 @@ func init() {
 		"sandbox": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			if len(c.Parts) == 0 {
 				return carapace.Batch(
-					carapace.ActionValues("on", "off"),
+					carapace.ActionValues("on", "off").StyleF(style.ForKeyword),
 					carapace.ActionValuesDescribed(
 						"obsolete", "allow obsolete system calls",
 						"elevateprivileges", "allow or deny privilege elevation",
@@ -564,11 +565,11 @@ func init() {
 				default:
 					switch c.Parts[0] {
 					case "enable":
-						return carapace.ActionValues("on", "off")
+						return carapace.ActionValues("on", "off").StyleF(style.ForKeyword)
 					case "target":
 						return carapace.ActionValues("native", "gdb", "auto")
 					case "userspace":
-						return carapace.ActionValues("on", "off")
+						return carapace.ActionValues("on", "off").StyleF(style.ForKeyword)
 					case "chardev":
 						return carapace.ActionValues()
 					default:

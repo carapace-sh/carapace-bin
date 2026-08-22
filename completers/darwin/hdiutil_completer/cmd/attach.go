@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -43,7 +44,7 @@ func init() {
 	carapace.Gen(attachCmd).FlagCompletion(carapace.ActionMap{
 		"encryption": carapace.ActionValues("AES-128", "AES-256"),
 		"mount":      carapace.ActionValues("required", "optional", "suppressed"),
-		"owners":     carapace.ActionValues("on", "off"),
+		"owners":     carapace.ActionValues("on", "off").StyleF(style.ForKeyword),
 		"shadow":     carapace.ActionFiles(),
 	})
 

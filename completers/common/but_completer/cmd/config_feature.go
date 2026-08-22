@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -22,6 +23,6 @@ func init() {
 			"unapply-v3-pgm", "Use the V3 unapply compatibility mode",
 			"single-branch", "Enable single-branch mode",
 		),
-		carapace.ActionValues("enable", "disable"),
+		carapace.ActionValues("enable", "disable").StyleF(style.ForKeyword),
 	)
 }

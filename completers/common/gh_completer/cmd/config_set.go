@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/gh_completer/cmd/action"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -40,7 +41,7 @@ func init() {
 			case "editor":
 				return carapace.ActionValues("emacs", "micro", "nano", "nvim", "vi", "vim")
 			case "prompt":
-				return carapace.ActionValues("enabled", "disabled")
+				return carapace.ActionValues("enabled", "disabled").StyleF(style.ForKeyword)
 			case "pager":
 				return carapace.ActionValues("bat --style grid", "more", "most", "less")
 			case "http_unix_socket":

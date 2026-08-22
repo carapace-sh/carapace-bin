@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -17,7 +18,7 @@ func init() {
 	rootCmd.AddCommand(networkingCmd)
 
 	carapace.Gen(networkingCmd).PositionalCompletion(
-		carapace.ActionValues("on", "off", "connectivity"),
+		carapace.ActionValues("on", "off", "connectivity").StyleF(style.ForKeyword),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if c.Args[0] == "connectivity" {
 				return carapace.ActionValues("check")
