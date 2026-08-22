@@ -1,0 +1,18 @@
+package cmd
+
+import (
+	"github.com/carapace-sh/carapace"
+	"github.com/spf13/cobra"
+)
+
+var action_help_changeFloatingPaneCoordinatesCmd = &cobra.Command{
+	Use:   "change-floating-pane-coordinates",
+	Short: "",
+	Run:   func(cmd *cobra.Command, args []string) {},
+}
+
+func init() {
+	carapace.Gen(action_help_changeFloatingPaneCoordinatesCmd).Standalone()
+
+	action_helpCmd.AddCommand(action_help_changeFloatingPaneCoordinatesCmd)
+}
