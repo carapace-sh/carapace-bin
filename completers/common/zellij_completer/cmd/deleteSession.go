@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/zellij"
 	"github.com/spf13/cobra"
 )
 
@@ -18,4 +19,8 @@ func init() {
 	deleteSessionCmd.Flags().BoolP("force", "f", false, "Kill the session if it's running before deleting it")
 	deleteSessionCmd.Flags().BoolP("help", "h", false, "Print help")
 	rootCmd.AddCommand(deleteSessionCmd)
+
+	carapace.Gen(deleteSessionCmd).PositionalCompletion(
+		zellij.ActionSessions(),
+	)
 }

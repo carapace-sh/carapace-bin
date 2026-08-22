@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/zellij"
 	"github.com/spf13/cobra"
 )
 
@@ -27,6 +28,7 @@ func init() {
 
 	carapace.Gen(action_changeFloatingPaneCoordinatesCmd).FlagCompletion(carapace.ActionMap{
 		"borderless": carapace.ActionValues("true", "false"),
+		"pane-id":    zellij.ActionPanes(),
 		"pinned":     carapace.ActionValues("true", "false"),
 	})
 }

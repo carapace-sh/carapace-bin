@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/zellij"
 	"github.com/spf13/cobra"
 )
 
@@ -30,4 +31,8 @@ func init() {
 	carapace.Gen(attachCmd).FlagCompletion(carapace.ActionMap{
 		"ca-cert": carapace.ActionFiles(),
 	})
+
+	carapace.Gen(attachCmd).PositionalCompletion(
+		zellij.ActionSessions(),
+	)
 }

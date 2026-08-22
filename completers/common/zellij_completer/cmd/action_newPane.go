@@ -48,6 +48,8 @@ func init() {
 		"borderless": carapace.ActionValues("true", "false"),
 		"cwd":        carapace.ActionFiles(),
 		"direction":  zellij.ActionDirections(),
+		"pane-id":    zellij.ActionSelectablePanes(),
 		"pinned":     carapace.ActionValues("true", "false"),
+		"tab-id":     zellij.ActionTabs(),
 	})
 }

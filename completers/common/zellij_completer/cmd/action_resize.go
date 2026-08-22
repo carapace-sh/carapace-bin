@@ -19,6 +19,10 @@ func init() {
 	action_resizeCmd.Flags().StringP("pane-id", "p", "", "Target a specific pane by ID (eg. terminal_1, plugin_2, or 3)")
 	actionCmd.AddCommand(action_resizeCmd)
 
+	carapace.Gen(action_resizeCmd).FlagCompletion(carapace.ActionMap{
+		"pane-id": zellij.ActionSelectablePanes(),
+	})
+
 	carapace.Gen(action_resizeCmd).PositionalCompletion(
 		zellij.ActionResizes(),
 		zellij.ActionDirections(),

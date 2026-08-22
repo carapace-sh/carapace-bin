@@ -19,5 +19,9 @@ func init() {
 	action_movePaneCmd.Flags().StringP("pane-id", "p", "", "Target a specific pane by ID (eg. terminal_1, plugin_2, or 3)")
 	actionCmd.AddCommand(action_movePaneCmd)
 
+	carapace.Gen(action_movePaneCmd).FlagCompletion(carapace.ActionMap{
+		"pane-id": zellij.ActionSelectablePanes(),
+	})
+
 	carapace.Gen(action_movePaneCmd).PositionalAnyCompletion(zellij.ActionDirections())
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/zellij"
 	"github.com/spf13/cobra"
 )
 
@@ -40,5 +41,6 @@ func init() {
 		"layout":                  carapace.ActionFiles(),
 		"new-session-with-layout": carapace.ActionFiles(),
 		"server":                  carapace.ActionFiles(),
+		"session":                 zellij.ActionSessions(),
 	})
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/zellij"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,6 @@ func init() {
 
 	action_goToTabCmd.Flags().BoolP("help", "h", false, "Print help")
 	actionCmd.AddCommand(action_goToTabCmd)
+
+	carapace.Gen(action_goToTabCmd).PositionalAnyCompletion(zellij.ActionTabPositions())
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/zellij"
 	"github.com/spf13/cobra"
 )
 
@@ -27,5 +28,10 @@ func init() {
 		"cwd":        carapace.ActionFiles(),
 		"layout":     carapace.ActionFiles(),
 		"layout-dir": carapace.ActionFiles(),
+		"pane-id":    zellij.ActionPanes(),
 	})
+
+	carapace.Gen(action_switchSessionCmd).PositionalCompletion(
+		zellij.ActionSessions(),
+	)
 }

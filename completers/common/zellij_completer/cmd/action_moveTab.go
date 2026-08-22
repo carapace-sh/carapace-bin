@@ -19,5 +19,9 @@ func init() {
 	action_moveTabCmd.Flags().StringP("tab-id", "t", "", "Target a specific tab by ID")
 	actionCmd.AddCommand(action_moveTabCmd)
 
+	carapace.Gen(action_moveTabCmd).FlagCompletion(carapace.ActionMap{
+		"tab-id": zellij.ActionTabs(),
+	})
+
 	carapace.Gen(action_moveTabCmd).PositionalAnyCompletion(zellij.ActionDirections())
 }
