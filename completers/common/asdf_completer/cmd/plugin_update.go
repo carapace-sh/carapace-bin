@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/asdf_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,8 @@ func init() {
 
 	plugin_updateCmd.Flags().Bool("all", false, "Update all installed plugins")
 	pluginCmd.AddCommand(plugin_updateCmd)
+
+	carapace.Gen(plugin_updateCmd).PositionalCompletion(
+		action.ActionPlugins(),
+	)
 }
