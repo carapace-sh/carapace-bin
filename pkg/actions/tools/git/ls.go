@@ -54,7 +54,8 @@ func ActionRefFiles(ref string) carapace.Action {
 		}
 
 		path := fmt.Sprintf("%v/%v", relDir, filepath.Dir(c.Value))
-		if path := filepath.Dir(path); path == "." {
+		path = filepath.Dir(path)
+		if path == "." {
 			path = ""
 		} else {
 			path += "/"
