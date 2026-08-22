@@ -28,6 +28,9 @@ func ActionBuildTags() carapace.Action {
 		tags := make(map[string]bool)
 
 		filepath.Walk(filepath.Dir(root), func(path string, info fs.FileInfo, err error) error {
+			if err != nil {
+				return err
+			}
 			if !info.IsDir() && strings.HasSuffix(path, ".go") {
 				for _, tag := range readTags(path) {
 					tags[tag] = true
