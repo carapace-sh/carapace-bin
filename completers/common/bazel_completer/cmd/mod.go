@@ -157,4 +157,18 @@ func init() {
 	modCmd.Flags().Bool("verbose", false, "The queries will also display the reason why modules were resolved to their current version (if changed). Defaults to true only for the explain query.")
 	modCmd.Flags().Bool("verbose_visibility_errors", false, "If enabled, visibility errors include additional diagnostic information.")
 	rootCmd.AddCommand(modCmd)
+
+	carapace.Gen(modCmd).FlagCompletion(carapace.ActionMap{
+		"charset":          carapace.ActionValues("utf8", "ascii"),
+		"compilation_mode": carapace.ActionValues("fastbuild", "dbg", "opt"),
+		"experimental_exec_configuration_distinguisher": carapace.ActionValues("legacy", "fullhash", "off"),
+		"extension_info":                    carapace.ActionValues("hidden", "usages", "repos", "all"),
+		"host_compilation_mode":             carapace.ActionValues("fastbuild", "dbg", "opt"),
+		"include_config_fragments_provider": carapace.ActionValues("off", "direct", "transitive"),
+		"output":                            carapace.ActionValues("text", "json", "graph"),
+	})
+
+	carapace.Gen(modCmd).PositionalCompletion(
+		carapace.ActionValues("deps", "graph", "all_paths", "path", "explain", "show_repo", "show_extension", "dump_repo_mapping", "tidy"),
+	)
 }

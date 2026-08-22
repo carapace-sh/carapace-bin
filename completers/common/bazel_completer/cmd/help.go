@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"strings"
+
 	"github.com/carapace-sh/carapace"
 	"github.com/spf13/cobra"
 )
@@ -18,4 +20,27 @@ func init() {
 	helpCmd.Flags().StringP("long", "l", "", "Show full description of each option, instead of just its name.")
 	helpCmd.Flags().String("short", "", "Show only the names of the options, not their types or meanings.")
 	rootCmd.AddCommand(helpCmd)
+
+	carapace.Gen(helpCmd).PositionalAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return carapace.Batch(
+				carapace.ActionExecCommand("bazel", "help")(func(output []byte) carapace.Action {
+					lines := strings.Split(string(output), "\n")
+					vals := make([]string, 0)
+					for _, line := range lines {
+						line = strings.TrimSpace(line)
+						if line == "" || strings.HasPrefix(line, "Usage:") || strings.HasPrefix(line, "Getting") {
+							continue
+						}
+						fields := strings.Fields(line)
+						if len(fields) > 0 {
+							vals = append(vals, fields[0])
+						}
+					}
+					return carapace.ActionValues(vals...)
+				}),
+				carapace.ActionValues("startup_options", "target-syntax", "info-keys"),
+			).ToA()
+		}),
+	)
 }
