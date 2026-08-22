@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/asdf_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,14 @@ func init() {
 
 	installCmd.Flags().Bool("keep-download", false, "Whether or not to keep download directory after successful install")
 	rootCmd.AddCommand(installCmd)
+
+	carapace.Gen(installCmd).PositionalCompletion(
+		action.ActionPlugins(),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return carapace.Batch(
+				action.ActionAllVersions(c.Args[0]),
+				carapace.ActionValues("latest", "latest:"),
+			).ToA()
+		}),
+	)
 }

@@ -15,4 +15,8 @@ func init() {
 	carapace.Gen(whichCmd).Standalone()
 
 	rootCmd.AddCommand(whichCmd)
+
+	carapace.Gen(whichCmd).PositionalAnyCompletion(
+		carapace.ActionExecutables(),
+	)
 }

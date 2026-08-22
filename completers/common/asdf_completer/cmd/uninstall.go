@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/asdf_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -15,4 +16,9 @@ func init() {
 	carapace.Gen(uninstallCmd).Standalone()
 
 	rootCmd.AddCommand(uninstallCmd)
+
+	carapace.Gen(uninstallCmd).PositionalCompletion(
+		action.ActionPlugins(),
+		action.ActionInstalledVersions(""),
+	)
 }
