@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var searchCmd = &cobra.Command{
-	Use:   "search",
-	Short: "search available apps",
+var shim_rmCmd = &cobra.Command{
+	Use:   "rm",
+	Short: "remove shims",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(searchCmd).Standalone()
-	rootCmd.AddCommand(searchCmd)
+	carapace.Gen(shim_rmCmd).Standalone()
+	shimCmd.AddCommand(shim_rmCmd)
 }
