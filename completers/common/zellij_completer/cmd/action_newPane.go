@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/zellij_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/zellij"
 	"github.com/spf13/cobra"
 )
 
@@ -47,7 +47,7 @@ func init() {
 	carapace.Gen(action_newPaneCmd).FlagCompletion(carapace.ActionMap{
 		"borderless": carapace.ActionValues("true", "false"),
 		"cwd":        carapace.ActionFiles(),
-		"direction":  action.ActionDirections(),
+		"direction":  zellij.ActionDirections(),
 		"pinned":     carapace.ActionValues("true", "false"),
 	})
 }

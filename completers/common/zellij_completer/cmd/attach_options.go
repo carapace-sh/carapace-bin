@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/zellij_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/zellij"
 	"github.com/spf13/cobra"
 )
 
@@ -77,7 +77,7 @@ func init() {
 		"dangerously-enable-paste-buffer-read": carapace.ActionValues("true", "false"),
 		"default-cwd":                          carapace.ActionFiles(),
 		"default-layout":                       carapace.ActionFiles(),
-		"default-mode":                         action.ActionModes(),
+		"default-mode":                         zellij.ActionModes(),
 		"default-shell":                        carapace.ActionFiles(),
 		"disable-session-metadata":             carapace.ActionValues("true", "false"),
 		"focus-follows-mouse":                  carapace.ActionValues("true", "false"),

@@ -1,4 +1,4 @@
-package action
+package zellij
 
 import "github.com/carapace-sh/carapace"
 

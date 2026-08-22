@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/zellij_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/zellij"
 	"github.com/spf13/cobra"
 )
 
@@ -18,5 +18,5 @@ func init() {
 	action_switchModeCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	actionCmd.AddCommand(action_switchModeCmd)
 
-	carapace.Gen(action_switchModeCmd).PositionalAnyCompletion(action.ActionModes())
+	carapace.Gen(action_switchModeCmd).PositionalAnyCompletion(zellij.ActionModes())
 }

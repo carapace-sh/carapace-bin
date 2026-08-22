@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "zellij",
 	Short: "A terminal workspace with batteries included",
+	Long:  "https://zellij.dev/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
