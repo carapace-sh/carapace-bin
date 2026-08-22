@@ -7,9 +7,10 @@ import (
 )
 
 var bugsCmd = &cobra.Command{
-	Use:   "bugs",
-	Short: "Report bugs for a package in a web browser",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "bugs",
+	Short:   "Report bugs for a package in a web browser",
+	Aliases: []string{"issues"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

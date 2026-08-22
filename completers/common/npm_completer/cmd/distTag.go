@@ -6,9 +6,10 @@ import (
 )
 
 var distTagCmd = &cobra.Command{
-	Use:   "dist-tag",
-	Short: "Modify package distribution tags",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "dist-tag",
+	Short:   "Modify package distribution tags",
+	Aliases: []string{"dist-tags"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

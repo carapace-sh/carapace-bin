@@ -6,7 +6,7 @@ import (
 )
 
 var logoutCmd = &cobra.Command{
-	Use:   "login",
+	Use:   "logout",
 	Short: "Log out of the registry",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

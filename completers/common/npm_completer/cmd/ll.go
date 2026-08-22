@@ -7,9 +7,10 @@ import (
 )
 
 var llCmd = &cobra.Command{
-	Use:   "ll",
-	Short: "List installed packages",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "ll",
+	Short:   "List installed packages",
+	Aliases: []string{"la"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

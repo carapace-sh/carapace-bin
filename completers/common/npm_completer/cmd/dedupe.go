@@ -6,9 +6,10 @@ import (
 )
 
 var dedupeCmd = &cobra.Command{
-	Use:   "dedupe",
-	Short: "Reduce duplication in the package tree",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "dedupe",
+	Short:   "Reduce duplication in the package tree",
+	Aliases: []string{"ddp"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

@@ -8,9 +8,10 @@ import (
 )
 
 var installCmd = &cobra.Command{
-	Use:   "install",
-	Short: "Install a package",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "install",
+	Short:   "Install a package",
+	Aliases: []string{"add", "i", "in", "ins", "inst", "insta", "instal", "isnt", "isnta", "isntal", "isntall"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
