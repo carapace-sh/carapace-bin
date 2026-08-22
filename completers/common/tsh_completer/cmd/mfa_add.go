@@ -14,11 +14,7 @@ var mfa_addCmd = &cobra.Command{
 func init() {
 	carapace.Gen(mfa_addCmd).Standalone()
 
-	mfa_addCmd.Flags().String("name", "", "Name of the new MFA device")
-	mfa_addCmd.Flags().String("type", "", "Type of the new MFA device (TOTP, WEBAUTHN)")
+	mfa_addCmd.Flags().String("name", "", "Name of the new MFA device.")
+	mfa_addCmd.Flags().String("type", "", "Type of the new MFA device (TOTP, WEBAUTHN).")
 	mfaCmd.AddCommand(mfa_addCmd)
-
-	carapace.Gen(mfa_addCmd).FlagCompletion(carapace.ActionMap{
-		"type": carapace.ActionValues("TOTP", "WEBAUTHN"),
-	})
 }

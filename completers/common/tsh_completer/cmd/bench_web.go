@@ -7,7 +7,7 @@ import (
 
 var bench_webCmd = &cobra.Command{
 	Use:    "web",
-	Short:  "Run Web benchmark tests",
+	Short:  "Run Web benchmark tests.",
 	Hidden: true,
 	Run:    func(cmd *cobra.Command, args []string) {},
 }
