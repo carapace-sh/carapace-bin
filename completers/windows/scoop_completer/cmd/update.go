@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/windows/scoop_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -21,4 +22,8 @@ func init() {
 	updateCmd.Flags().BoolP("quiet", "q", false, "hide extraneous messages")
 	updateCmd.Flags().BoolP("skip-hash-check", "s", false, "skip hash validation")
 	rootCmd.AddCommand(updateCmd)
+
+	carapace.Gen(updateCmd).PositionalAnyCompletion(
+		action.ActionInstalledApps(),
+	)
 }

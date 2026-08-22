@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/windows/scoop_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -14,4 +15,8 @@ var shim_infoCmd = &cobra.Command{
 func init() {
 	carapace.Gen(shim_infoCmd).Standalone()
 	shimCmd.AddCommand(shim_infoCmd)
+
+	carapace.Gen(shim_infoCmd).PositionalCompletion(
+		action.ActionShims(),
+	)
 }
