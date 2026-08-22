@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/zellij"
 	"github.com/spf13/cobra"
 )
 
@@ -34,5 +35,6 @@ func init() {
 	carapace.Gen(pluginCmd).FlagCompletion(carapace.ActionMap{
 		"borderless": carapace.ActionValues("true", "false"),
 		"pinned":     carapace.ActionValues("true", "false"),
+		"tab-id":     zellij.ActionTabs(),
 	})
 }

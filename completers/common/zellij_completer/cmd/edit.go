@@ -39,6 +39,7 @@ func init() {
 		"cwd":        carapace.ActionFiles(),
 		"direction":  zellij.ActionDirections(),
 		"pinned":     carapace.ActionValues("true", "false"),
+		"tab-id":     zellij.ActionTabs(),
 	})
 
 	carapace.Gen(editCmd).PositionalAnyCompletion(

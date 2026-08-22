@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/zellij"
 	"github.com/spf13/cobra"
 )
 
@@ -22,6 +23,7 @@ func init() {
 	actionCmd.AddCommand(action_dumpScreenCmd)
 
 	carapace.Gen(action_dumpScreenCmd).FlagCompletion(carapace.ActionMap{
-		"path": carapace.ActionFiles(),
+		"pane-id": zellij.ActionSelectablePanes(),
+		"path":    carapace.ActionFiles(),
 	})
 }

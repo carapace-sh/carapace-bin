@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/zellij"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,8 @@ func init() {
 	action_hideFloatingPanesCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	action_hideFloatingPanesCmd.Flags().StringP("tab-id", "t", "", "")
 	actionCmd.AddCommand(action_hideFloatingPanesCmd)
+
+	carapace.Gen(action_hideFloatingPanesCmd).FlagCompletion(carapace.ActionMap{
+		"tab-id": zellij.ActionTabs(),
+	})
 }
