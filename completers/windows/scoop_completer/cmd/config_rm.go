@@ -6,17 +6,17 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var configCmd = &cobra.Command{
-	Use:   "config",
-	Short: "get or set configuration values",
+var config_rmCmd = &cobra.Command{
+	Use:   "rm",
+	Short: "remove a configuration setting",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(configCmd).Standalone()
-	rootCmd.AddCommand(configCmd)
+	carapace.Gen(config_rmCmd).Standalone()
+	configCmd.AddCommand(config_rmCmd)
 
-	carapace.Gen(configCmd).PositionalCompletion(
+	carapace.Gen(config_rmCmd).PositionalCompletion(
 		action.ActionConfigKeys(),
 	)
 }

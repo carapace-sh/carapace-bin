@@ -6,18 +6,18 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var infoCmd = &cobra.Command{
-	Use:   "info",
-	Short: "display information about an app",
+var holdCmd = &cobra.Command{
+	Use:   "hold",
+	Short: "hold an app to disable updates",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(infoCmd).Standalone()
-	infoCmd.Flags().BoolP("verbose", "v", false, "show full paths and URLs")
-	rootCmd.AddCommand(infoCmd)
+	carapace.Gen(holdCmd).Standalone()
+	holdCmd.Flags().BoolP("global", "g", false, "hold globally installed apps")
+	rootCmd.AddCommand(holdCmd)
 
-	carapace.Gen(infoCmd).PositionalCompletion(
+	carapace.Gen(holdCmd).PositionalAnyCompletion(
 		action.ActionInstalledApps(),
 	)
 }

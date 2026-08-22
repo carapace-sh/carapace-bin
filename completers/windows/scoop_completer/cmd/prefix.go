@@ -6,18 +6,17 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var infoCmd = &cobra.Command{
-	Use:   "info",
-	Short: "display information about an app",
+var prefixCmd = &cobra.Command{
+	Use:   "prefix",
+	Short: "returns the path to the specified app",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(infoCmd).Standalone()
-	infoCmd.Flags().BoolP("verbose", "v", false, "show full paths and URLs")
-	rootCmd.AddCommand(infoCmd)
+	carapace.Gen(prefixCmd).Standalone()
+	rootCmd.AddCommand(prefixCmd)
 
-	carapace.Gen(infoCmd).PositionalCompletion(
+	carapace.Gen(prefixCmd).PositionalCompletion(
 		action.ActionInstalledApps(),
 	)
 }
