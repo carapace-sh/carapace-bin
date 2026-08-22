@@ -15,7 +15,7 @@ func init() {
 	carapace.Gen(pub_depsCmd).Standalone()
 
 	pub_depsCmd.Flags().Bool("dev", false, "Include dev dependencies.")
-	pub_depsCmd.Flags().StringP("directory", "C", "", "Run this in the directory<dir>")
+	pub_depsCmd.Flags().StringP("directory", "C", "", "Run this in the directory <dir>.")
 	pub_depsCmd.Flags().Bool("executables", false, "List all available executables.")
 	pub_depsCmd.Flags().BoolP("help", "h", false, "Print this usage information.")
 	pub_depsCmd.Flags().Bool("json", false, "Output dependency information in a json format.")

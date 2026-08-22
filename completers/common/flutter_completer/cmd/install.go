@@ -18,7 +18,7 @@ func init() {
 	installCmd.Flags().String("device-timeout", "", "Time in seconds to wait for devices to attach.")
 	installCmd.Flags().String("device-user", "", "Identifier number for a user or work profile on Android only.")
 	installCmd.Flags().BoolP("help", "h", false, "Print this usage information.")
-	installCmd.Flags().Bool("no-uninstall-only", false, "Uninstall the app if already on the device.")
+	installCmd.Flags().Bool("no-uninstall-only", false, "Do not uninstall the app if already on the device.")
 	installCmd.Flags().Bool("uninstall-only", false, "Uninstall the app if already on the device.")
 	rootCmd.AddCommand(installCmd)
 
