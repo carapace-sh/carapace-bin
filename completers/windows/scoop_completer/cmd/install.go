@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/windows/scoop_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -24,4 +25,8 @@ func init() {
 	carapace.Gen(installCmd).FlagCompletion(carapace.ActionMap{
 		"arch": carapace.ActionValues("32bit", "64bit", "arm64"),
 	})
+
+	carapace.Gen(installCmd).PositionalAnyCompletion(
+		action.ActionInstalledApps(),
+	)
 }

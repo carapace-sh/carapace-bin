@@ -14,4 +14,8 @@ var helpCmd = &cobra.Command{
 func init() {
 	carapace.Gen(helpCmd).Standalone()
 	rootCmd.AddCommand(helpCmd)
+
+	carapace.Gen(helpCmd).PositionalCompletion(
+		carapace.ActionCommands(rootCmd),
+	)
 }
