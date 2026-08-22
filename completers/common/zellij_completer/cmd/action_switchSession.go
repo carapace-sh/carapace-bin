@@ -25,9 +25,9 @@ func init() {
 	actionCmd.AddCommand(action_switchSessionCmd)
 
 	carapace.Gen(action_switchSessionCmd).FlagCompletion(carapace.ActionMap{
-		"cwd":        carapace.ActionFiles(),
+		"cwd":        carapace.ActionDirectories(),
 		"layout":     carapace.ActionFiles(),
-		"layout-dir": carapace.ActionFiles(),
+		"layout-dir": carapace.ActionDirectories(),
 		"pane-id":    zellij.ActionPanes(),
 	})
 

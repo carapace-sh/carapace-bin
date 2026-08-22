@@ -30,8 +30,8 @@ func init() {
 	actionCmd.AddCommand(action_newTabCmd)
 
 	carapace.Gen(action_newTabCmd).FlagCompletion(carapace.ActionMap{
-		"cwd":        carapace.ActionFiles(),
+		"cwd":        carapace.ActionDirectories(),
 		"layout":     carapace.ActionFiles(),
-		"layout-dir": carapace.ActionFiles(),
+		"layout-dir": carapace.ActionDirectories(),
 	})
 }

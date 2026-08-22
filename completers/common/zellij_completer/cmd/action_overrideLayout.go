@@ -23,7 +23,7 @@ func init() {
 	actionCmd.AddCommand(action_overrideLayoutCmd)
 
 	carapace.Gen(action_overrideLayoutCmd).FlagCompletion(carapace.ActionMap{
-		"layout-dir": carapace.ActionFiles(),
+		"layout-dir": carapace.ActionDirectories(),
 	})
 
 	carapace.Gen(action_overrideLayoutCmd).PositionalAnyCompletion(

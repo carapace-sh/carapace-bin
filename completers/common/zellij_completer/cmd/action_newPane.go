@@ -46,7 +46,7 @@ func init() {
 
 	carapace.Gen(action_newPaneCmd).FlagCompletion(carapace.ActionMap{
 		"borderless": carapace.ActionValues("true", "false"),
-		"cwd":        carapace.ActionFiles(),
+		"cwd":        carapace.ActionDirectories(),
 		"direction":  zellij.ActionDirections(),
 		"pane-id":    zellij.ActionSelectablePanes(),
 		"pinned":     carapace.ActionValues("true", "false"),

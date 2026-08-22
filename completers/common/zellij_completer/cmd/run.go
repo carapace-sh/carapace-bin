@@ -43,7 +43,7 @@ func init() {
 
 	carapace.Gen(runCmd).FlagCompletion(carapace.ActionMap{
 		"borderless": carapace.ActionValues("true", "false"),
-		"cwd":        carapace.ActionFiles(),
+		"cwd":        carapace.ActionDirectories(),
 		"direction":  zellij.ActionDirections(),
 		"pinned":     carapace.ActionValues("true", "false"),
 		"tab-id":     zellij.ActionTabs(),

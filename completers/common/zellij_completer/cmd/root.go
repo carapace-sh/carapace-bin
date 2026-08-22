@@ -36,8 +36,8 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"config":                  carapace.ActionFiles(),
-		"config-dir":              carapace.ActionFiles(),
-		"data-dir":                carapace.ActionFiles(),
+		"config-dir":              carapace.ActionDirectories(),
+		"data-dir":                carapace.ActionDirectories(),
 		"layout":                  carapace.ActionFiles(),
 		"new-session-with-layout": carapace.ActionFiles(),
 		"server":                  carapace.ActionFiles(),

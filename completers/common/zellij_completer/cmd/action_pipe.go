@@ -30,6 +30,6 @@ func init() {
 	carapace.Gen(action_pipeCmd).FlagCompletion(carapace.ActionMap{
 		"floating-plugin": carapace.ActionValues("true", "false"),
 		"in-place-plugin": carapace.ActionValues("true", "false"),
-		"plugin-cwd":      carapace.ActionFiles(),
+		"plugin-cwd":      carapace.ActionDirectories(),
 	})
 }

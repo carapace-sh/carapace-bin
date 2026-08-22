@@ -26,7 +26,7 @@ func init() {
 	rootCmd.AddCommand(setupCmd)
 
 	carapace.Gen(setupCmd).FlagCompletion(carapace.ActionMap{
-		"dump-plugins":        carapace.ActionFiles(),
+		"dump-plugins":        carapace.ActionDirectories(),
 		"generate-auto-start": carapace.ActionValues("bash", "zsh", "fish", "powershell", "elvish"),
 		"generate-completion": carapace.ActionValues("bash", "zsh", "fish", "powershell", "elvish"),
 	})
