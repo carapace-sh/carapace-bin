@@ -5,6 +5,7 @@ import (
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -65,7 +66,7 @@ func init() {
 			}
 		}),
 		"push-option": git.ActionPushOptions(),
-		"signed":      carapace.ActionValues("yes", "no", "if-asked"),
+		"signed":      carapace.ActionValues("yes", "no", "if-asked").StyleF(style.ForKeyword),
 	})
 
 	carapace.Gen(pushCmd).PositionalCompletion(

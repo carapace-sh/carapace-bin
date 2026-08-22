@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -49,12 +50,12 @@ func init() {
 	rootCmd.Flags().String("userName", "", "User name")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"afpGuestAccess":               carapace.ActionValues("on", "off", "status"),
-		"automaticTime":                carapace.ActionValues("on", "off", "status"),
+		"afpGuestAccess":               carapace.ActionValues("on", "off", "status").StyleF(style.ForKeyword),
+		"automaticTime":                carapace.ActionValues("on", "off", "status").StyleF(style.ForKeyword),
 		"deleteUser":                   os.ActionUsers(),
-		"guestAccount":                 carapace.ActionValues("on", "off", "status"),
+		"guestAccount":                 carapace.ActionValues("on", "off", "status").StyleF(style.ForKeyword),
 		"secureTokenStatus":            os.ActionUsers(),
-		"smbGuestAccess":               carapace.ActionValues("on", "off", "status"),
-		"use12HourClockForLoginWindow": carapace.ActionValues("on", "off", "status"),
+		"smbGuestAccess":               carapace.ActionValues("on", "off", "status").StyleF(style.ForKeyword),
+		"use12HourClockForLoginWindow": carapace.ActionValues("on", "off", "status").StyleF(style.ForKeyword),
 	})
 }

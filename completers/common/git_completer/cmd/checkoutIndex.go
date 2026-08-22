@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -29,7 +30,7 @@ func init() {
 	rootCmd.AddCommand(checkoutIndexCmd)
 
 	carapace.Gen(checkoutIndexCmd).FlagCompletion(carapace.ActionMap{
-		"stage": carapace.ActionValues("1", "2", "3", "all"),
+		"stage": carapace.ActionValues("1", "2", "3", "all").StyleF(style.ForKeyword),
 	})
 
 	carapace.Gen(checkoutIndexCmd).PositionalAnyCompletion(

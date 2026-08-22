@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -18,6 +19,6 @@ func init() {
 	actionCmd.AddCommand(action_setPaneFrameStyleCmd)
 
 	carapace.Gen(action_setPaneFrameStyleCmd).PositionalAnyCompletion(
-		carapace.ActionValues("full", "titles", "none"),
+		carapace.ActionValues("full", "titles", "none").StyleF(style.ForKeyword),
 	)
 }

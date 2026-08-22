@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/qemu"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -63,9 +64,9 @@ func init() {
 						case "discard":
 							return carapace.ActionValues("ignore", "unmap").Suffix(",")
 						case "detect-zeroes":
-							return carapace.ActionValues("on", "off", "unmap").Suffix(",")
+							return carapace.ActionValues("on", "off", "unmap").Suffix(",").StyleF(style.ForKeyword)
 						case "cache.direct", "cache.no-flush", "force-share", "read-only", "auto-read-only":
-							return carapace.ActionValues("on", "off").Suffix(",")
+							return carapace.ActionValues("on", "off").Suffix(",").StyleF(style.ForKeyword)
 						default:
 							return carapace.ActionValues()
 						}
@@ -115,7 +116,7 @@ func init() {
 					case "addr.type":
 						return carapace.ActionValues("unix", "inet", "fd").Suffix(",")
 					case "writable", "growable", "allow-other":
-						return carapace.ActionValues("on", "off", "auto").Suffix(",")
+						return carapace.ActionValues("on", "off", "auto").Suffix(",").StyleF(style.ForKeyword)
 					case "mountpoint":
 						return carapace.ActionFiles().Suffix(",")
 					case "addr.path":
@@ -142,7 +143,7 @@ func init() {
 					case "mode":
 						return carapace.ActionValues("control", "readline").Suffix(",")
 					case "pretty":
-						return carapace.ActionValues("on", "off").Suffix(",")
+						return carapace.ActionValues("on", "off").Suffix(",").StyleF(style.ForKeyword)
 					default:
 						return carapace.ActionValues()
 					}

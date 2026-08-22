@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -19,6 +20,6 @@ func init() {
 	scalarCmd.AddCommand(scalar_reconfigureCmd)
 
 	carapace.Gen(scalar_reconfigureCmd).FlagCompletion(carapace.ActionMap{
-		"maintenance": carapace.ActionValues("enable", "disable", "keep"),
+		"maintenance": carapace.ActionValues("enable", "disable", "keep").StyleF(style.ForKeyword),
 	})
 }

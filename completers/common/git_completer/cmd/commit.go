@@ -6,6 +6,7 @@ import (
 	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -93,7 +94,7 @@ func init() {
 				).ToA()
 			}
 		}),
-		"untracked-files": carapace.ActionValues("all", "normal", "no"),
+		"untracked-files": carapace.ActionValues("all", "normal", "no").StyleF(style.ForKeyword),
 	})
 
 	carapace.Gen(commitCmd).PositionalAnyCompletion(

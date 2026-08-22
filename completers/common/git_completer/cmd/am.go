@@ -4,6 +4,7 @@ import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -60,7 +61,7 @@ func init() {
 
 	carapace.Gen(amCmd).FlagCompletion(carapace.ActionMap{
 		"directory":    carapace.ActionDirectories(),
-		"empty":        carapace.ActionValues("stop", "drop", "keep"),
+		"empty":        carapace.ActionValues("stop", "drop", "keep").StyleF(style.ForKeyword),
 		"exclude":      carapace.ActionDirectories(),
 		"gpg-sign":     os.ActionGpgKeyIds(),
 		"include":      carapace.ActionDirectories(),

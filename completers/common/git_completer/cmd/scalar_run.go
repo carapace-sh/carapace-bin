@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -18,6 +19,6 @@ func init() {
 	scalarCmd.AddCommand(scalar_runCmd)
 
 	carapace.Gen(scalar_runCmd).FlagCompletion(carapace.ActionMap{
-		"task": carapace.ActionValues("all", "config", "commit-graph", "fetch", "loose-objects", "pack-files"),
+		"task": carapace.ActionValues("all", "config", "commit-graph", "fetch", "loose-objects", "pack-files").StyleF(style.ForKeyword),
 	})
 }

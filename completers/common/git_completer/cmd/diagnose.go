@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -21,7 +22,7 @@ func init() {
 	rootCmd.AddCommand(diagnoseCmd)
 
 	carapace.Gen(diagnoseCmd).FlagCompletion(carapace.ActionMap{
-		"mode":             carapace.ActionValues("stats", "all"),
+		"mode":             carapace.ActionValues("stats", "all").StyleF(style.ForKeyword),
 		"output-directory": carapace.ActionDirectories(),
 	})
 }
