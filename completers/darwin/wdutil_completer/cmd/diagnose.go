@@ -16,6 +16,7 @@ func init() {
 	rootCmd.AddCommand(diagnoseCmd)
 
 	diagnoseCmd.Flags().StringP("output", "f", "", "Output directory path")
+	diagnoseCmd.Flags().BoolP("quiet", "q", false, "Suppress legal prompt and Finder window")
 
 	carapace.Gen(diagnoseCmd).FlagCompletion(carapace.ActionMap{
 		"output": carapace.ActionDirectories(),
