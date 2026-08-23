@@ -18,6 +18,8 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().BoolS("%", "%", false, "Distinguish dataless files with a '%' character")
+	rootCmd.Flags().BoolS(",", ",", false, "When -l is set, print file sizes grouped and separated by thousands")
 	rootCmd.Flags().BoolS("1", "1", false, "Force output to be one entry per line")
 	rootCmd.Flags().BoolS("@", "@", false, "Display extended attribute keys and sizes in long (-l) output")
 	rootCmd.Flags().BoolS("A", "A", false, "List all entries except for . and ..")
@@ -35,7 +37,7 @@ func init() {
 	rootCmd.Flags().BoolS("T", "T", false, "When used with the -l (lowercase letter ``ell'') option, display complete time information")
 	rootCmd.Flags().BoolS("U", "U", false, "Use time when file was created for sorting or printing")
 	rootCmd.Flags().BoolS("W", "W", false, "Display whiteouts when scanning for the -A or -a options")
-	rootCmd.Flags().BoolS("X", "X", false, "When sorting alphabetically, sort first by extension")
+	rootCmd.Flags().BoolS("X", "X", false, "When listing recursively, do not descend into directories that cross file system boundaries")
 	rootCmd.Flags().BoolS("a", "a", false, "List all entries including those starting with a dot .")
 	rootCmd.Flags().BoolS("b", "b", false, "Force printing of non-printable characters (as \\xxx) in file names")
 	rootCmd.Flags().BoolS("c", "c", false, "Use time when file status was last changed for sorting or printing")
@@ -59,7 +61,14 @@ func init() {
 	rootCmd.Flags().BoolS("v", "v", false, "Force unedited output, even if the output would use non-graphic characters")
 	rootCmd.Flags().BoolS("w", "w", false, "Force raw printing of non-printable characters")
 	rootCmd.Flags().BoolS("x", "x", false, "The same as -C, except that the multi-column output is produced with entries sorted across")
-	rootCmd.Flags().BoolS("y", "y", false, "When used with -l, the file flags are printed")
+	rootCmd.Flags().BoolS("y", "y", false, "When -t is set, sort alphabetical output in same order as time output")
+
+	rootCmd.Flags().StringS("D", "D", "", "Format for printing date/time in long (-l) output using strftime")
+	rootCmd.Flags().String("color", "", "Output colorization: always, auto, or never")
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"color": carapace.ActionValues("always", "auto", "never"),
+	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

@@ -21,7 +21,7 @@ func init() {
 	rootCmd.Flags().StringP("adjust", "v", "", "Adjust (add or subtract) the specified value from the current date")
 	rootCmd.Flags().StringP("format", "f", "", "Use fmt as the format string to parse the input (with -j)")
 	rootCmd.Flags().StringP("iso-8601", "I", "", "Output date/time in ISO 8601 format")
-	rootCmd.Flags().BoolP("j", "j", false, "Do not try to set the date")
+	rootCmd.Flags().BoolS("j", "j", false, "Do not try to set the date")
 	rootCmd.Flags().BoolP("no-adjust", "n", false, "Do not adjust the time if the clock is out of sync")
 	rootCmd.Flags().StringP("reference", "r", "", "Print the date and time of the file referenced by file")
 	rootCmd.Flags().BoolP("rfc-2822", "R", false, "Output date and time in RFC 2822 format")

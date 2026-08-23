@@ -21,7 +21,9 @@ func init() {
 	rootCmd.Flags().BoolP("help", "h", false, "Display usage information")
 	rootCmd.Flags().BoolP("install", "i", false, "Install the Xcode command line tools")
 	rootCmd.Flags().BoolP("print-path", "p", false, "Print the active Xcode developer directory")
+	rootCmd.Flags().BoolP("reset", "r", false, "Reset to the default command line tools path")
 	rootCmd.Flags().StringP("switch", "s", "", "Switch the active Xcode developer directory")
+	rootCmd.Flags().BoolP("version", "v", false, "Print the xcode-select version")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"switch": carapace.ActionDirectories(),
