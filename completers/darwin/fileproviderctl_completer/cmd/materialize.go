@@ -14,4 +14,7 @@ var materializeCmd = &cobra.Command{
 func init() {
 	carapace.Gen(materializeCmd).Standalone()
 	rootCmd.AddCommand(materializeCmd)
+	carapace.Gen(materializeCmd).PositionalCompletion(
+		carapace.ActionFiles(),
+	)
 }

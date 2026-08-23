@@ -14,4 +14,7 @@ var enumerateCmd = &cobra.Command{
 func init() {
 	carapace.Gen(enumerateCmd).Standalone()
 	rootCmd.AddCommand(enumerateCmd)
+	carapace.Gen(enumerateCmd).PositionalCompletion(
+		carapace.ActionValues(),
+	)
 }

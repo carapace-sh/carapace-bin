@@ -14,4 +14,7 @@ var validateCmd = &cobra.Command{
 func init() {
 	carapace.Gen(validateCmd).Standalone()
 	rootCmd.AddCommand(validateCmd)
+	carapace.Gen(validateCmd).PositionalCompletion(
+		carapace.ActionValues(),
+	)
 }
