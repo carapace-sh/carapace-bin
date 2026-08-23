@@ -25,7 +25,7 @@ func init() {
 	rootCmd.Flags().BoolP("verbose", "v", false, "Increase verbosity of output")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"binary": carapace.ActionFiles(),
-		"r":      carapace.ActionFiles(),
+		"binary":      carapace.ActionFiles(),
+		"requirement": carapace.ActionFiles(),
 	})
 }
