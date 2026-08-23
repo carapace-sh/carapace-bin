@@ -26,7 +26,7 @@ func init() {
 	rootCmd.Flags().Bool("live", false, "Continue searching as files are created/removed")
 	rootCmd.Flags().String("name", "", "Search for files with the specified name")
 	rootCmd.Flags().String("onlyin", "", "Search only in the specified directory")
-	rootCmd.Flags().BoolP("pl", "pl", false, "Output in plist format")
+	rootCmd.Flags().Bool("pl", false, "Output in plist format")
 	rootCmd.Flags().Bool("reprint", false, "Reprint results on live update")
 	rootCmd.Flags().StringS("s","s", "", "Show contents of smart folder <name>")
 

@@ -22,7 +22,7 @@ func init() {
 	rootCmd.Flags().String("change", "", "Change an install name")
 	rootCmd.Flags().StringP("delete_rpath", "delete_rpath", "", "Delete an rpath")
 	rootCmd.Flags().BoolP("help", "h", false, "Display usage information")
-	rootCmd.Flags().StringP("id", "id", "", "Set the install name")
+	rootCmd.Flags().String("id", "", "Set the install name")
 	rootCmd.Flags().String("rpath", "", "Change an rpath")
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
