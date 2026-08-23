@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/fs"
 	"github.com/spf13/cobra"
 )
 
@@ -49,5 +50,11 @@ func init() {
 	rootCmd.Flags().BoolS("h", "h", false, "If the file is a symbolic link, change the mode of the link itself")
 	rootCmd.Flags().BoolS("v", "v", false, "Cause chmod to be verbose, showing files as the mode is modified")
 
-	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
+	carapace.Gen(rootCmd).PositionalCompletion(
+		fs.ActionFileModes(),
+	)
+
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(),
+	)
 }

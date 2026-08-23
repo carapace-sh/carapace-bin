@@ -46,5 +46,23 @@ func init() {
 	rootCmd.Flags().StringS("j", "j", "", "Skip bytes")
 	rootCmd.Flags().StringS("t", "t", "", "Type")
 
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"A": carapace.ActionValuesDescribed(
+			"d", "decimal",
+			"n", "none",
+			"o", "octal",
+			"x", "hexadecimal",
+		),
+		"t": carapace.ActionValuesDescribed(
+			"a", "named character",
+			"c", "character (C-style escape)",
+			"d", "decimal",
+			"f", "floating-point number",
+			"o", "octal",
+			"u", "unsigned decimal",
+			"x", "hexadecimal",
+		),
+	})
+
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }
