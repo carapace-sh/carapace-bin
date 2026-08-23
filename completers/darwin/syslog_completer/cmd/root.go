@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/text"
 	"github.com/spf13/cobra"
 )
 
@@ -38,8 +39,9 @@ func init() {
 	rootCmd.Flags().StringP("wait", "w", "", "Wait for new log messages")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"dir":  carapace.ActionDirectories(),
-		"file": carapace.ActionFiles(),
+		"dir":      carapace.ActionDirectories(),
+		"encoding": text.ActionEncodings(),
+		"file":     carapace.ActionFiles(),
 		"level": carapace.ActionValuesDescribed(
 			"0", "Emergency",
 			"1", "Alert",

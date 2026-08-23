@@ -39,9 +39,30 @@ func init() {
 	rootCmd.Flags().String("workspace", "", "Build the specified workspace")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"configuration": carapace.ActionValues("Debug", "Release"),
-		"project":       carapace.ActionFiles(".xcodeproj"),
-		"workspace":     carapace.ActionFiles(".xcworkspace"),
+		"arch":            carapace.ActionValues("arm64", "x86_64"),
+		"configuration":   carapace.ActionValues("Debug", "Release"),
+		"derivedDataPath": carapace.ActionDirectories(),
+		"destination": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+				switch len(c.Parts) {
+				case 0:
+					return carapace.ActionValuesDescribed(
+						"generic/platform=iOS", "iOS",
+						"generic/platform=macOS", "macOS",
+						"generic/platform=tvOS", "tvOS",
+						"generic/platform=watchOS", "watchOS",
+						"platform=iOS Simulator", "iOS Simulator",
+						"platform=macOS,variant=Mac Catalyst", "macOS Catalyst",
+					)
+				default:
+					return carapace.ActionValues()
+				}
+			})
+		}),
+		"project":          carapace.ActionFiles(".xcodeproj"),
+		"resultBundlePath": carapace.ActionFiles(),
+		"sdk":              carapace.ActionValues("macosx", "iphoneos", "iphonesimulator", "appletvos", "appletvsimulator", "watchos", "watchsimulator", "xros", "xrsimulator"),
+		"workspace":        carapace.ActionFiles(".xcworkspace"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())

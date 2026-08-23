@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"strings"
+
 	"github.com/carapace-sh/carapace"
 	"github.com/spf13/cobra"
 )
@@ -43,8 +45,26 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"arch":         carapace.ActionValues("arm64", "arm64e", "x86_64", "x86_64h"),
 		"detached":     carapace.ActionFiles(),
-		"entitlements": carapace.ActionFiles(),
-		"sign":         carapace.ActionValues(),
+		"entitlements": carapace.ActionFiles(".plist"),
+		"options":      carapace.ActionValues("runtime", "kill", "hard", "host", "library", "resource", "executable", "internal"),
+		"requirements": carapace.ActionFiles(),
+		"sign": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return carapace.ActionExecCommand("security", "find-identity", "-v", "-p", "codesigning")(func(output []byte) carapace.Action {
+				lines := strings.Split(string(output), "\n")
+				vals := make([]string, 0)
+				for _, line := range lines {
+					if strings.Contains(line, "\"") {
+						if i := strings.Index(line, "\""); i != -1 {
+							if j := strings.LastIndex(line, "\""); j > i {
+								vals = append(vals, line[i+1:j])
+							}
+						}
+					}
+				}
+				return carapace.ActionValues(vals...)
+			})
+		}),
+		"test-requirement": carapace.ActionFiles(),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())

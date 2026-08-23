@@ -35,6 +35,11 @@ func init() {
 	rootCmd.Flags().BoolP("verbose", "v", false, "Verbose mode")
 	rootCmd.Flags().Bool("version", false, "Show the xcrun version")
 
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"sdk":       carapace.ActionValues("macosx", "iphoneos", "iphonesimulator", "appletvos", "appletvsimulator", "watchos", "watchsimulator", "xros", "xrsimulator"),
+		"toolchain": carapace.ActionValues("default", "com.apple.dt.toolchain.XcodeDefault", "swift", "org.swift.5220190702a"),
+	})
+
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return carapace.ActionFiles()
