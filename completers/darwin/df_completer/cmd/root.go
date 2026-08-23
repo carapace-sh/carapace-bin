@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/fs"
 	"github.com/spf13/cobra"
 )
 
@@ -31,6 +32,10 @@ func init() {
 	rootCmd.Flags().BoolP("portability", "P", false, "Use 512-byte blocks and a strict POSIX format")
 	rootCmd.Flags().BoolP("si", "H", false, "Use powers of 1000 for -h (SI units)")
 	rootCmd.Flags().StringP("type", "t", "", "Only show filesystems of the specified type")
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"type": fs.ActionFilesystemTypes(),
+	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

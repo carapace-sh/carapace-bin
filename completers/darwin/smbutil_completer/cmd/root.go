@@ -21,15 +21,4 @@ func init() {
 
 	rootCmd.Flags().BoolP("help", "h", false, "Print a short help message")
 	rootCmd.Flags().BoolP("verbose", "v", false, "Verbose output")
-
-	rootCmd.AddCommand(helpCmd)
-	rootCmd.AddCommand(lookupCmd)
-	rootCmd.AddCommand(statusCmd)
-	rootCmd.AddCommand(viewCmd)
-	rootCmd.AddCommand(identityCmd)
-	rootCmd.AddCommand(dfsCmd)
-	rootCmd.AddCommand(statsharesCmd)
-	rootCmd.AddCommand(multichannelCmd)
-	rootCmd.AddCommand(snapshotCmd)
-	rootCmd.AddCommand(smbstatCmd)
 }

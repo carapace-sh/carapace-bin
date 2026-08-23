@@ -7,7 +7,7 @@ import (
 
 var signoutCmd = &cobra.Command{
 	Use:   "signout",
-	Short: "Sign out of Mac App Store",
+	Short: "Sign out of the App Store",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -14,4 +14,7 @@ var lsCmd = &cobra.Command{
 func init() {
 	carapace.Gen(lsCmd).Standalone()
 	rootCmd.AddCommand(lsCmd)
+	carapace.Gen(lsCmd).PositionalCompletion(
+		carapace.ActionValues(),
+	)
 }

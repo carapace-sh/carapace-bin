@@ -13,6 +13,7 @@ var smbstatCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(smbstatCmd).Standalone()
+	rootCmd.AddCommand(smbstatCmd)
 
 	smbstatCmd.Flags().StringS("f", "f", "", "Output format")
 

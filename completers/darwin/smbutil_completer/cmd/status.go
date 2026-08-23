@@ -13,6 +13,7 @@ var statusCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(statusCmd).Standalone()
+	rootCmd.AddCommand(statusCmd)
 
 	statusCmd.Flags().BoolS("a", "a", false, "Display all NetBIOS names")
 	statusCmd.Flags().BoolS("e", "e", false, "Percent escape NetBIOS names")

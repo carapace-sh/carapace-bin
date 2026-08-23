@@ -25,5 +25,11 @@ func init() {
 	rootCmd.Flags().String("id", "", "Set the install name")
 	rootCmd.Flags().String("rpath", "", "Change an rpath")
 
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"add_rpath":    carapace.ActionDirectories(),
+		"delete_rpath": carapace.ActionDirectories(),
+		"rpath":        carapace.ActionDirectories(),
+	})
+
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

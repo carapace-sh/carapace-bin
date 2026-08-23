@@ -68,4 +68,12 @@ func init() {
 	rootCmd.Flags().StringS("x", "x", "", "Tab stops")
 	rootCmd.Flags().StringS("y", "y", "", "Max forward scroll")
 	rootCmd.Flags().StringS("z", "z", "", "Window size")
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"O": carapace.ActionFiles(),
+		"k": carapace.ActionFiles(),
+		"o": carapace.ActionFiles(),
+	})
+
+	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

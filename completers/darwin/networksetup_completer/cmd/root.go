@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/darwin/networksetup_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -53,4 +54,34 @@ func init() {
 	rootCmd.Flags().String("setv6manual", "", "Set IPv6 manual configuration for a network service")
 	rootCmd.Flags().String("setv6off", "", "Disable IPv6 for a network service")
 	rootCmd.Flags().String("setwebproxy", "", "Set web proxy for a network service")
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"getadditionalroutes":      action.ActionNetworkServices(),
+		"getairportnetwork":        action.ActionNetworkServices(),
+		"getdnsservers":            action.ActionNetworkServices(),
+		"getinfo":                  action.ActionNetworkServices(),
+		"getmacaddress":            action.ActionNetworkServices(),
+		"getnetworkserviceenabled": action.ActionNetworkServices(),
+		"getproxybypassdomains":    action.ActionNetworkServices(),
+		"getsecurewebproxy":        action.ActionNetworkServices(),
+		"getsocksfirewallproxy":    action.ActionNetworkServices(),
+		"getv6additionalroutes":    action.ActionNetworkServices(),
+		"getwebproxy":              action.ActionNetworkServices(),
+		"setadditionalroutes":      action.ActionNetworkServices(),
+		"setbootp":                 action.ActionNetworkServices(),
+		"setdhcp":                  action.ActionNetworkServices(),
+		"setdnsservers":            action.ActionNetworkServices(),
+		"setftpproxy":              action.ActionNetworkServices(),
+		"setmanual":                action.ActionNetworkServices(),
+		"setmanualwithdhcprouter":  action.ActionNetworkServices(),
+		"setnetworkserviceenabled": carapace.ActionValues("on", "off"),
+		"setproxybypassdomains":    action.ActionNetworkServices(),
+		"setsecurewebproxy":        action.ActionNetworkServices(),
+		"setsocksfirewallproxy":    action.ActionNetworkServices(),
+		"setv6automatic":           action.ActionNetworkServices(),
+		"setv6linklocal":           action.ActionNetworkServices(),
+		"setv6manual":              action.ActionNetworkServices(),
+		"setv6off":                 action.ActionNetworkServices(),
+		"setwebproxy":              action.ActionNetworkServices(),
+	})
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/net"
 	"github.com/spf13/cobra"
 )
 
@@ -39,4 +40,9 @@ func init() {
 	rootCmd.Flags().BoolS("w", "w", false, "Wait")
 	rootCmd.Flags().BoolS("x", "x", false, "Extended output")
 	rootCmd.Flags().BoolS("z", "z", false, "Zero NDP statistics")
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"I": net.ActionDevices(net.AllDevices),
+		"i": net.ActionDevices(net.AllDevices),
+	})
 }

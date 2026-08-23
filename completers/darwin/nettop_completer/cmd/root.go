@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/ps"
 	"github.com/spf13/cobra"
 )
 
@@ -32,4 +33,10 @@ func init() {
 	rootCmd.Flags().StringS("p", "p", "", "Process name or PID")
 	rootCmd.Flags().StringS("s", "s", "", "Refresh interval")
 	rootCmd.Flags().StringS("t", "t", "", "Type")
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"m": carapace.ActionValues("tcp", "udp", "scopt", "route"),
+		"p": ps.ActionProcessExecutables(),
+		"t": carapace.ActionValues("tcp", "udp", "scopt", "route"),
+	})
 }

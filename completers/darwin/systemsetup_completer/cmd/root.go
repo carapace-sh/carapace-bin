@@ -65,11 +65,15 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"setallowpowerbuttontosleep": carapace.ActionValues("on", "off").StyleF(style.ForKeyword),
+		"setcomputersleep":           carapace.ActionValues("Never", "1", "5", "10", "15", "30", "60", "120").StyleF(style.ForKeyword),
+		"setdisplaysleep":            carapace.ActionValues("Never", "1", "5", "10", "15", "30", "60", "120").StyleF(style.ForKeyword),
+		"setharddisksleep":           carapace.ActionValues("Never", "1", "5", "10", "15", "30", "60", "120").StyleF(style.ForKeyword),
 		"setremoteappleevents":       carapace.ActionValues("on", "off").StyleF(style.ForKeyword),
 		"setremotelogin":             carapace.ActionValues("on", "off").StyleF(style.ForKeyword),
 		"setremotemanagement":        carapace.ActionValues("on", "off").StyleF(style.ForKeyword),
 		"setrestartfreeze":           carapace.ActionValues("on", "off").StyleF(style.ForKeyword),
 		"setrestartpowerfailure":     carapace.ActionValues("on", "off").StyleF(style.ForKeyword),
+		"setsleep":                   carapace.ActionValues("Never", "1", "5", "10", "15", "30", "60", "120").StyleF(style.ForKeyword),
 		"setstartupdisk":             carapace.ActionDirectories(),
 		"setusingnetworktime":        carapace.ActionValues("on", "off").StyleF(style.ForKeyword),
 		"setwakeonmodem":             carapace.ActionValues("on", "off").StyleF(style.ForKeyword),

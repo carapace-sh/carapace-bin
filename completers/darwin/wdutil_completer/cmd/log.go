@@ -13,5 +13,7 @@ var logCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(logCmd).Standalone()
+	logCmd.Flags().Bool("system", false, "Enable/disable system logging")
+	logCmd.Flags().Bool("wifi", false, "Enable/disable Wi-Fi logging")
 	rootCmd.AddCommand(logCmd)
 }

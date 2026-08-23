@@ -18,4 +18,6 @@ func Execute() error {
 
 func init() {
 	carapace.Gen(rootCmd).Standalone()
+
+	rootCmd.Flags().BoolP("help", "h", false, "Display a friendly help message")
 }

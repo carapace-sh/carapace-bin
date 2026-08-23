@@ -13,6 +13,7 @@ var viewCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(viewCmd).Standalone()
+	rootCmd.AddCommand(viewCmd)
 
 	viewCmd.Flags().BoolS("A", "A", false, "Authorize only")
 	viewCmd.Flags().BoolS("G", "G", false, "Allow guest access")

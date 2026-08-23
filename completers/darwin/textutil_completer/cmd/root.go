@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/text"
 	"github.com/spf13/cobra"
 )
 
@@ -27,10 +28,11 @@ func init() {
 	rootCmd.Flags().String("output", "", "Output file")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"convert": carapace.ActionValues("txt", "html", "rtf", "rtfd", "doc", "wordml", "webarchive"),
-		"format":  carapace.ActionValues("txt", "html", "rtf", "rtfd", "doc", "wordml", "webarchive"),
-		"input":   carapace.ActionFiles(),
-		"output":  carapace.ActionFiles(),
+		"convert":  carapace.ActionValues("txt", "html", "rtf", "rtfd", "doc", "docx", "wordml", "webarchive", "odt", "word97"),
+		"encoding": text.ActionEncodings(),
+		"format":   carapace.ActionValues("txt", "html", "rtf", "rtfd", "doc", "docx", "wordml", "webarchive", "odt", "word97"),
+		"input":    carapace.ActionFiles(),
+		"output":   carapace.ActionFiles(),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())

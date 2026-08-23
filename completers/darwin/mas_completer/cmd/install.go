@@ -7,12 +7,13 @@ import (
 
 var installCmd = &cobra.Command{
 	Use:   "install",
-	Short: "Install an app",
+	Short: "Install previously gotten apps from the App Store",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(installCmd).Standalone()
-	installCmd.Flags().String("account", "", "Account to use for installation")
+	installCmd.Flags().Bool("bundle", false, "Process all app IDs as bundle IDs")
+	installCmd.Flags().Bool("force", false, "Force reinstall")
 	rootCmd.AddCommand(installCmd)
 }

@@ -2,6 +2,8 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/ps"
 	"github.com/spf13/cobra"
 )
 
@@ -47,4 +49,13 @@ func init() {
 	rootCmd.Flags().StringS("p", "p", "", "Select by PID")
 	rootCmd.Flags().StringS("t", "t", "", "Select by tty")
 	rootCmd.Flags().StringS("u", "u", "", "Select by effective user ID")
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"G": os.ActionGroups(),
+		"U": os.ActionUsers(),
+		"g": os.ActionGroups(),
+		"p": ps.ActionProcessIds(),
+		"t": carapace.ActionValues("console", "ttys", "pts"),
+		"u": os.ActionUsers(),
+	})
 }

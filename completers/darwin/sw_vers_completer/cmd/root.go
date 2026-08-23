@@ -19,8 +19,12 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().Bool("buildVersion", false, "Print the build version")
+	rootCmd.Flags().Bool("buildversion", false, "Print the build version (lowercase)")
 	rootCmd.Flags().Bool("productName", false, "Print the product name")
 	rootCmd.Flags().Bool("productVersion", false, "Print the product version")
 	rootCmd.Flags().Bool("productVersionExtra", false, "Print the product version extra")
+	rootCmd.Flags().Bool("productname", false, "Print the product name (lowercase)")
+	rootCmd.Flags().Bool("productversion", false, "Print the product version (lowercase)")
+	rootCmd.Flags().Bool("productversionextra", false, "Print the product version extra (lowercase)")
 
 }

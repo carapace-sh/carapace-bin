@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/net"
 	"github.com/spf13/cobra"
 )
 
@@ -25,6 +26,10 @@ func init() {
 	rootCmd.Flags().BoolS("s", "s", false, "Set an ARP entry")
 
 	rootCmd.Flags().StringS("i", "i", "", "Specify interface")
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"i": net.ActionDevices(net.AllDevices),
+	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionValues())
 }

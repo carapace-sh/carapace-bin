@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
 	"github.com/spf13/cobra"
 )
 
@@ -42,4 +43,11 @@ func init() {
 	rootCmd.Flags().StringS("r", "r", "", "Remote URL")
 	rootCmd.Flags().StringS("s", "s", "", "Stopwords")
 	rootCmd.Flags().BoolS("v", "v", false, "Verbose")
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"f": carapace.ActionFiles(),
+		"l": os.ActionLocales(),
+		"r": carapace.ActionValues(),
+		"s": carapace.ActionFiles(),
+	})
 }

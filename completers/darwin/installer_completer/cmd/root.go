@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
 	"github.com/spf13/cobra"
 )
 
@@ -43,6 +44,7 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"applyChoiceChangesXML":              carapace.ActionFiles(),
 		"file":                               carapace.ActionFiles(),
+		"lang":                               os.ActionLanguages(),
 		"pkg":                                carapace.ActionFiles(),
 		"showChoicesAfterApplyingChangesXML": carapace.ActionFiles(),
 	})

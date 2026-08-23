@@ -36,4 +36,8 @@ func init() {
 	rootCmd.Flags().StringS("s", "s", "", "Assume switch date for country_code")
 	rootCmd.Flags().BoolS("w", "w", false, "Print the number of the week")
 	rootCmd.Flags().BoolS("y", "y", false, "Display a calendar for the specified year")
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"m": carapace.ActionValues("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"),
+	})
 }
