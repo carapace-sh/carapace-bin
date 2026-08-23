@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/net"
 	"github.com/spf13/cobra"
 )
 
@@ -38,4 +39,8 @@ func init() {
 	rootCmd.Flags().StringS("t", "t", "", "Traffic class")
 	rootCmd.Flags().BoolS("v", "v", false, "Verbose")
 	rootCmd.Flags().StringS("w", "w", "", "Wait time")
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"g": net.ActionHosts(),
+	})
 }

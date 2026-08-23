@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/net"
 	"github.com/spf13/cobra"
 )
 
@@ -55,4 +56,9 @@ func init() {
 	rootCmd.Flags().BoolS("u", "u", false, "Unreachable")
 	rootCmd.Flags().BoolS("v", "v", false, "Version")
 	rootCmd.Flags().StringS("x", "x", "", "Reachable")
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"I": net.ActionDevices(net.AllDevices),
+		"f": carapace.ActionFiles(),
+	})
 }

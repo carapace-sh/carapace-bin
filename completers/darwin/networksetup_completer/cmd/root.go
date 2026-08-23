@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"strings"
+
 	"github.com/carapace-sh/carapace"
 	"github.com/spf13/cobra"
 )
@@ -53,4 +55,49 @@ func init() {
 	rootCmd.Flags().String("setv6manual", "", "Set IPv6 manual configuration for a network service")
 	rootCmd.Flags().String("setv6off", "", "Disable IPv6 for a network service")
 	rootCmd.Flags().String("setwebproxy", "", "Set web proxy for a network service")
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"getadditionalroutes":      actionNetworkServices(),
+		"getairportnetwork":        actionNetworkServices(),
+		"getdnsservers":            actionNetworkServices(),
+		"getinfo":                  actionNetworkServices(),
+		"getmacaddress":            actionNetworkServices(),
+		"getnetworkserviceenabled": actionNetworkServices(),
+		"getproxybypassdomains":    actionNetworkServices(),
+		"getsecurewebproxy":        actionNetworkServices(),
+		"getsocksfirewallproxy":    actionNetworkServices(),
+		"getv6additionalroutes":    actionNetworkServices(),
+		"getwebproxy":              actionNetworkServices(),
+		"setadditionalroutes":      actionNetworkServices(),
+		"setbootp":                 actionNetworkServices(),
+		"setdhcp":                  actionNetworkServices(),
+		"setdnsservers":            actionNetworkServices(),
+		"setftpproxy":              actionNetworkServices(),
+		"setmanual":                actionNetworkServices(),
+		"setmanualwithdhcprouter":  actionNetworkServices(),
+		"setnetworkserviceenabled": carapace.ActionValues("on", "off"),
+		"setproxybypassdomains":    actionNetworkServices(),
+		"setsecurewebproxy":        actionNetworkServices(),
+		"setsocksfirewallproxy":    actionNetworkServices(),
+		"setv6automatic":           actionNetworkServices(),
+		"setv6linklocal":           actionNetworkServices(),
+		"setv6manual":              actionNetworkServices(),
+		"setv6off":                 actionNetworkServices(),
+		"setwebproxy":              actionNetworkServices(),
+	})
+}
+
+func actionNetworkServices() carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		return carapace.ActionExecCommand("networksetup", "-listallnetworkservices")(func(output []byte) carapace.Action {
+			lines := strings.Split(string(output), "\n")
+			services := make([]string, 0)
+			for _, line := range lines {
+				if trimmed := strings.TrimSpace(line); trimmed != "" && !strings.HasPrefix(trimmed, "An asterisk") {
+					services = append(services, trimmed)
+				}
+			}
+			return carapace.ActionValues(services...)
+		})
+	}).Tag("network services")
 }

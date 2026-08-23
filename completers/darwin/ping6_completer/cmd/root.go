@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/net"
 	"github.com/spf13/cobra"
 )
 
@@ -51,4 +52,10 @@ func init() {
 	rootCmd.Flags().BoolS("v", "v", false, "Verbose output")
 	rootCmd.Flags().BoolS("w", "w", false, "Timeout")
 	rootCmd.Flags().StringS("z", "z", "", "Traffic class")
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"B": net.ActionDevices(net.AllDevices),
+		"I": net.ActionDevices(net.AllDevices),
+		"K": carapace.ActionValues("sig", "sig_ev", "sig_ev_ecn", "cnt", "cnt_ev", "cnt_ev_ecn"),
+	})
 }

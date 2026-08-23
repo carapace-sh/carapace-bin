@@ -27,5 +27,9 @@ func init() {
 	rootCmd.Flags().StringS("S", "S", "", "Process string")
 	rootCmd.Flags().StringS("u", "u", "", "Unset variable")
 
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"C": carapace.ActionDirectories(),
+	})
+
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

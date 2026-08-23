@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/net"
 	"github.com/spf13/cobra"
 )
 
@@ -44,6 +45,11 @@ func init() {
 	rootCmd.Flags().StringS("t", "t", "", "Type of service")
 	rootCmd.Flags().StringS("w", "w", "", "Wait time for response")
 	rootCmd.Flags().StringS("z", "z", "", "Pause between probes (milliseconds)")
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"P": carapace.ActionValues("UDP", "TCP", "ICMP", "GRE", "IPIP"),
+		"i": net.ActionDevices(net.AllDevices),
+	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionValues())
 }
