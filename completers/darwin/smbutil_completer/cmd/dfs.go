@@ -13,6 +13,7 @@ var dfsCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(dfsCmd).Standalone()
+	rootCmd.AddCommand(dfsCmd)
 
 	carapace.Gen(dfsCmd).PositionalCompletion(
 		carapace.ActionValues(),

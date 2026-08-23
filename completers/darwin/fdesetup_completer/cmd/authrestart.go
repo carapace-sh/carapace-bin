@@ -13,4 +13,5 @@ var authrestartCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(authrestartCmd).Standalone()
+	rootCmd.AddCommand(authrestartCmd)
 }

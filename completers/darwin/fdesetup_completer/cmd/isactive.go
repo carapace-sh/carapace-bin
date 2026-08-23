@@ -13,4 +13,5 @@ var isactiveCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(isactiveCmd).Standalone()
+	rootCmd.AddCommand(isactiveCmd)
 }

@@ -13,4 +13,5 @@ var validaterecoveryCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(validaterecoveryCmd).Standalone()
+	rootCmd.AddCommand(validaterecoveryCmd)
 }

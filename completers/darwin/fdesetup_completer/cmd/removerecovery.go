@@ -13,6 +13,7 @@ var removerecoveryCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(removerecoveryCmd).Standalone()
+	rootCmd.AddCommand(removerecoveryCmd)
 
 	removerecoveryCmd.Flags().Bool("verbose", false, "Enable verbose mode")
 }

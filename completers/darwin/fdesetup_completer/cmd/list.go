@@ -13,6 +13,7 @@ var listCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(listCmd).Standalone()
+	rootCmd.AddCommand(listCmd)
 
 	listCmd.Flags().Bool("extended", false, "Show extended information")
 	listCmd.Flags().Bool("offline", false, "Display offline, locked volumes")

@@ -13,4 +13,5 @@ var usingrecoverykeyCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(usingrecoverykeyCmd).Standalone()
+	rootCmd.AddCommand(usingrecoverykeyCmd)
 }

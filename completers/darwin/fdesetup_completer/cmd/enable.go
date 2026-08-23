@@ -14,6 +14,7 @@ var enableCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(enableCmd).Standalone()
+	rootCmd.AddCommand(enableCmd)
 
 	enableCmd.Flags().String("certificate", "", "Path to a DER encoded certificate file")
 	enableCmd.Flags().String("defer", "", "Defer enabling FileVault")

@@ -13,6 +13,7 @@ var statsharesCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(statsharesCmd).Standalone()
+	rootCmd.AddCommand(statsharesCmd)
 
 	statsharesCmd.Flags().BoolS("a", "a", false, "Print attributes of all mounted shares")
 	statsharesCmd.Flags().StringS("f", "f", "", "Output format")

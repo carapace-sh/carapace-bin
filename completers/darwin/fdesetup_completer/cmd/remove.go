@@ -14,6 +14,7 @@ var removeCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(removeCmd).Standalone()
+	rootCmd.AddCommand(removeCmd)
 
 	removeCmd.Flags().Bool("quiet", false, "No status during operation")
 	removeCmd.Flags().String("user", "", "Short user name")

@@ -13,6 +13,7 @@ var changerecoveryCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(changerecoveryCmd).Standalone()
+	rootCmd.AddCommand(changerecoveryCmd)
 
 	changerecoveryCmd.Flags().Bool("inputplist", false, "Read configuration from stdin")
 	changerecoveryCmd.Flags().Bool("institutional", false, "Specify an institutional recovery key")

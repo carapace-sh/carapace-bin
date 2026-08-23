@@ -13,6 +13,7 @@ var syncCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(syncCmd).Standalone()
+	rootCmd.AddCommand(syncCmd)
 
 	syncCmd.Flags().Bool("verbose", false, "Enable verbose mode")
 }

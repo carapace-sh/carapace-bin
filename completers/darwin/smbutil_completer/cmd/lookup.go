@@ -13,6 +13,7 @@ var lookupCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(lookupCmd).Standalone()
+	rootCmd.AddCommand(lookupCmd)
 
 	lookupCmd.Flags().BoolS("e", "e", false, "Unpercent escape NetBIOS names")
 	lookupCmd.Flags().StringS("t", "t", "", "NetBIOS name type")

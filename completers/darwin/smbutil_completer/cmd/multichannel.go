@@ -13,6 +13,7 @@ var multichannelCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(multichannelCmd).Standalone()
+	rootCmd.AddCommand(multichannelCmd)
 
 	multichannelCmd.Flags().BoolS("a", "a", false, "Print attributes of all mounted shares")
 	multichannelCmd.Flags().BoolS("c", "c", false, "Print client interface information")

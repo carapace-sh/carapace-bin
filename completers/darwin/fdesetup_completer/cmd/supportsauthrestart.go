@@ -13,4 +13,5 @@ var supportsauthrestartCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(supportsauthrestartCmd).Standalone()
+	rootCmd.AddCommand(supportsauthrestartCmd)
 }

@@ -13,4 +13,5 @@ var showdeferralinfoCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(showdeferralinfoCmd).Standalone()
+	rootCmd.AddCommand(showdeferralinfoCmd)
 }

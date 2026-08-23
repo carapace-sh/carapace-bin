@@ -13,6 +13,7 @@ var statusCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(statusCmd).Standalone()
+	rootCmd.AddCommand(statusCmd)
 
 	statusCmd.Flags().Bool("device", false, "Specify the device to check")
 	statusCmd.Flags().Bool("extended", false, "Show extended information")

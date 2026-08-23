@@ -13,6 +13,7 @@ var identityCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(identityCmd).Standalone()
+	rootCmd.AddCommand(identityCmd)
 
 	identityCmd.Flags().BoolS("N", "N", false, "Don't prompt for a password")
 

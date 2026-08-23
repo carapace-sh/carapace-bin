@@ -18,11 +18,4 @@ func Execute() error {
 
 func init() {
 	carapace.Gen(rootCmd).Standalone()
-
-	rootCmd.AddCommand(cleanCmd)
-	rootCmd.AddCommand(diagnoseCmd)
-	rootCmd.AddCommand(dumpCmd)
-	rootCmd.AddCommand(infoCmd)
-	rootCmd.AddCommand(logCmd)
-	rootCmd.AddCommand(privateMACCmd)
 }

@@ -14,6 +14,7 @@ var addCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(addCmd).Standalone()
+	rootCmd.AddCommand(addCmd)
 
 	addCmd.Flags().Bool("inputplist", false, "Read configuration from stdin")
 	addCmd.Flags().Bool("quiet", false, "No status during operation")

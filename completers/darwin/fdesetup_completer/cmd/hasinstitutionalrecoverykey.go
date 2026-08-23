@@ -13,4 +13,5 @@ var hasinstitutionalrecoverykeyCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(hasinstitutionalrecoverykeyCmd).Standalone()
+	rootCmd.AddCommand(hasinstitutionalrecoverykeyCmd)
 }
