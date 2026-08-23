@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/fs"
 	"github.com/spf13/cobra"
 )
 
@@ -18,18 +19,19 @@ var rootCmd = &cobra.Command{
 func Execute() error {
 	for i, arg := range os.Args {
 		if !strings.HasPrefix(arg, "-") || len(arg) < 2 {
-			continue
+			continue // skip non-flags
 		}
 		if arg == "--" {
-			break
+			break // no need for patching at dash positions
 		}
 		switch arg[1] {
 		case 'X', 'r', 's', 't', 'w', 'x':
 			switch i {
 			case len(os.Args) - 1:
-				continue
+				os.Args[i] = "--" // fake dash completion
+				os.Args = append(os.Args, arg)
 			default:
-				os.Args[i] = "-=" + arg[1:]
+				os.Args[i] = "a" + arg // patch with the implicit (a)ll to avoid parsing issues
 			}
 		}
 	}
@@ -49,5 +51,15 @@ func init() {
 	rootCmd.Flags().BoolS("h", "h", false, "If the file is a symbolic link, change the mode of the link itself")
 	rootCmd.Flags().BoolS("v", "v", false, "Cause chmod to be verbose, showing files as the mode is modified")
 
-	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
+	carapace.Gen(rootCmd).PositionalCompletion(
+		fs.ActionFileModes(),
+	)
+
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(),
+	)
+
+	carapace.Gen(rootCmd).DashAnyCompletion(
+		carapace.ActionPositional(rootCmd),
+	)
 }
