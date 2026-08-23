@@ -20,8 +20,8 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().Bool("auto", false, "Generate a small document for testing purposes")
-	rootCmd.Flags().Bool("catalogs", false, "Use the SGML catalog(s) from SGML_CATALOG_FILES")
 	rootCmd.Flags().Bool("c14n", false, "Use W3C XML Canonicalisation")
+	rootCmd.Flags().Bool("catalogs", false, "Use the SGML catalog(s) from SGML_CATALOG_FILES")
 	rootCmd.Flags().Bool("chkregister", false, "Turn on node registration")
 	rootCmd.Flags().Bool("compress", false, "Turn on gzip compression of output")
 	rootCmd.Flags().Bool("copy", false, "Test the internal copy implementation")
@@ -37,8 +37,8 @@ func init() {
 	rootCmd.Flags().Bool("html", false, "Use the HTML parser")
 	rootCmd.Flags().Bool("htmlout", false, "Output results as an HTML file")
 	rootCmd.Flags().Bool("insert", false, "Test for valid insertions")
-	rootCmd.Flags().Bool("loaddtd", false, "Fetch an external DTD")
 	rootCmd.Flags().Bool("load-trace", false, "Display all the documents loaded during processing")
+	rootCmd.Flags().Bool("loaddtd", false, "Fetch an external DTD")
 	rootCmd.Flags().String("maxmem", "", "Test the parser memory support")
 	rootCmd.Flags().Bool("memory", false, "Parse from memory")
 	rootCmd.Flags().Bool("noblanks", false, "Drop ignorable blank spaces")
@@ -66,8 +66,8 @@ func init() {
 	rootCmd.Flags().Bool("timing", false, "Output timing information")
 	rootCmd.Flags().Bool("version", false, "Version")
 	rootCmd.Flags().Bool("xinclude", false, "Do XInclude processing")
-	rootCmd.Flags().String("xpath", "", "Run an XPath expression")
 	rootCmd.Flags().Bool("xmlout", false, "Output results as XML")
+	rootCmd.Flags().String("xpath", "", "Run an XPath expression")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"encode":  carapace.ActionValues("UTF-8", "UTF-16", "ISO-8859-1", "ASCII", "US-ASCII"),

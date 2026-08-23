@@ -19,9 +19,9 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().BoolS("S", "S", false, "Simulate memory pressure")
 	rootCmd.Flags().StringS("l", "l", "", "Pressure level (warn or critical)")
 	rootCmd.Flags().StringS("p", "p", "", "Percent free")
-	rootCmd.Flags().BoolS("S", "S", false, "Simulate memory pressure")
 	rootCmd.Flags().StringS("s", "s", "", "Sleep seconds")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{

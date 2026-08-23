@@ -19,10 +19,10 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolS("e", "e", false, "Exclude specified list of pids and commands")
-	rootCmd.Flags().BoolS("j", "j", false, "Display output in JSON format")
-	rootCmd.Flags().BoolS("h", "h", false, "Display usage information")
 	rootCmd.Flags().StringS("R", "R", "", "Specify a raw trace file to process")
+	rootCmd.Flags().BoolS("e", "e", false, "Exclude specified list of pids and commands")
+	rootCmd.Flags().BoolS("h", "h", false, "Display usage information")
+	rootCmd.Flags().BoolS("j", "j", false, "Display output in JSON format")
 	rootCmd.Flags().StringS("t", "t", "", "Timeout in seconds")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{

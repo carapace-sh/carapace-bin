@@ -19,11 +19,11 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().BoolS("S", "S", false, "Set the system clock")
 	rootCmd.Flags().BoolS("d", "d", false, "Enable debug logging")
 	rootCmd.Flags().StringS("g", "g", "", "Gap between requests in milliseconds")
 	rootCmd.Flags().StringS("n", "n", "", "Number of DNS records to use")
 	rootCmd.Flags().BoolS("r", "r", false, "Bind the NTP reserved port")
-	rootCmd.Flags().BoolS("S", "S", false, "Set the system clock")
 	rootCmd.Flags().BoolS("s", "s", false, "Slew the system clock")
 	rootCmd.Flags().StringS("t", "t", "", "Maximum wait time in seconds")
 	rootCmd.Flags().StringS("z", "z", "", "Path to dump header state")

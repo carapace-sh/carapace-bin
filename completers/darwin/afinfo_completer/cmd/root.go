@@ -19,8 +19,8 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolS("h", "h", false, "Print help text")
 	rootCmd.Flags().BoolS("b", "b", false, "Brief info")
+	rootCmd.Flags().BoolS("h", "h", false, "Print help text")
 	rootCmd.Flags().BoolS("l", "l", false, "List info")
 	rootCmd.Flags().BoolS("r", "r", false, "Real time")
 }
