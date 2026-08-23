@@ -24,7 +24,7 @@ func init() {
 	rootCmd.Flags().BoolP("log", "l", false, "Show commands to be executed (with --run)")
 	rootCmd.Flags().BoolP("no-cache", "n", false, "Do not use the lookup cache")
 	rootCmd.Flags().BoolP("run", "r", false, "Find and execute the tool (default)")
-	rootCmd.Flags().StringP("sdk", "sdk", "", "Use the given SDK")
+	rootCmd.Flags().String("sdk", "", "Use the given SDK")
 	rootCmd.Flags().Bool("show-sdk-build-version", false, "Show selected SDK build version")
 	rootCmd.Flags().Bool("show-sdk-path", false, "Show selected SDK install path")
 	rootCmd.Flags().Bool("show-sdk-platform-path", false, "Show selected SDK platform path")

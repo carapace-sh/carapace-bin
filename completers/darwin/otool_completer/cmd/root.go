@@ -31,7 +31,7 @@ func init() {
 	rootCmd.Flags().BoolS("v", "v", false, "Verbose mode (disassemble with -t)")
 	rootCmd.Flags().Bool("version", false, "Display the version")
 
-	rootCmd.Flags().StringP("arch", "arch", "", "Specify architecture type")
+	rootCmd.Flags().String("arch", "", "Specify architecture type")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"arch": carapace.ActionValues("arm64", "arm64e", "x86_64", "x86_64h"),

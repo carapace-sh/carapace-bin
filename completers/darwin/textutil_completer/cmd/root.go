@@ -18,13 +18,13 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().StringP("convert", "convert", "", "Convert to the specified format")
-	rootCmd.Flags().StringP("encoding", "encoding", "", "Set the encoding")
-	rootCmd.Flags().StringP("format", "format", "", "Set the format")
+	rootCmd.Flags().String("convert", "", "Convert to the specified format")
+	rootCmd.Flags().String("encoding", "", "Set the encoding")
+	rootCmd.Flags().String("format", "", "Set the format")
 	rootCmd.Flags().BoolP("help", "h", false, "Display usage information")
-	rootCmd.Flags().BoolP("info", "info", false, "Print information about the file")
-	rootCmd.Flags().StringP("input", "input", "", "Input file")
-	rootCmd.Flags().StringP("output", "output", "", "Output file")
+	rootCmd.Flags().Bool("info", false, "Print information about the file")
+	rootCmd.Flags().String("input", "", "Input file")
+	rootCmd.Flags().String("output", "", "Output file")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"convert": carapace.ActionValues("txt", "html", "rtf", "rtfd", "doc", "wordml", "webarchive"),

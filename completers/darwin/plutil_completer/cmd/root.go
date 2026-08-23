@@ -19,18 +19,18 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().StringP("convert", "convert", "", "Convert the named file to the indicated format")
-	rootCmd.Flags().StringP("extract", "extract", "", "Extract the value at the given keypath from the property list")
+	rootCmd.Flags().String("convert", "", "Convert the named file to the indicated format")
+	rootCmd.Flags().String("extract", "", "Extract the value at the given keypath from the property list")
 	rootCmd.Flags().BoolP("help", "h", false, "Display usage information")
-	rootCmd.Flags().StringP("insert", "insert", "", "Insert a value into the property list at the given keypath")
-	rootCmd.Flags().StringP("key", "key", "", "Set the key for the operation")
-	rootCmd.Flags().BoolP("lint", "lint", false, "Verify that the named property list file is valid")
+	rootCmd.Flags().String("insert", "", "Insert a value into the property list at the given keypath")
+	rootCmd.Flags().String("key", "", "Set the key for the operation")
+	rootCmd.Flags().Bool("lint", false, "Verify that the named property list file is valid")
 	rootCmd.Flags().StringP("pkey", "p", "", "Print the value at the given keypath from the property list")
-	rootCmd.Flags().BoolP("raw", "raw", false, "Use raw output for print/extract")
-	rootCmd.Flags().BoolP("reformat", "reformat", false, "Reformat the named property list file")
-	rootCmd.Flags().StringP("remove", "remove", "", "Remove a value at the given keypath from the property list")
-	rootCmd.Flags().StringP("replace", "replace", "", "Replace a value in the property list at the given keypath")
-	rootCmd.Flags().StringP("type", "type", "", "Set the type for the operation")
+	rootCmd.Flags().Bool("raw", false, "Use raw output for print/extract")
+	rootCmd.Flags().Bool("reformat", false, "Reformat the named property list file")
+	rootCmd.Flags().String("remove", "", "Remove a value at the given keypath from the property list")
+	rootCmd.Flags().String("replace", "", "Replace a value in the property list at the given keypath")
+	rootCmd.Flags().String("type", "", "Set the type for the operation")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"convert": carapace.ActionValues("binary1", "xml1", "json", "objc", "swift").StyleF(style.ForKeyword),

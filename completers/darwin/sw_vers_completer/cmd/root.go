@@ -18,9 +18,9 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolP("buildVersion", "buildVersion", false, "Print the build version")
-	rootCmd.Flags().BoolP("productName", "productName", false, "Print the product name")
-	rootCmd.Flags().BoolP("productVersion", "productVersion", false, "Print the product version")
-	rootCmd.Flags().BoolP("productVersionExtra", "productVersionExtra", false, "Print the product version extra")
+	rootCmd.Flags().Bool("buildVersion", false, "Print the build version")
+	rootCmd.Flags().Bool("productName", false, "Print the product name")
+	rootCmd.Flags().Bool("productVersion", false, "Print the product version")
+	rootCmd.Flags().Bool("productVersionExtra", false, "Print the product version extra")
 
 }

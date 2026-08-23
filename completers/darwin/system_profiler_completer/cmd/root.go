@@ -18,12 +18,12 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().StringP("detailLevel", "detailLevel", "", "Set the detail level: mini, basic, or full")
-	rootCmd.Flags().StringP("file", "file", "", "Output to the specified file")
+	rootCmd.Flags().String("detailLevel", "", "Set the detail level: mini, basic, or full")
+	rootCmd.Flags().String("file", "", "Output to the specified file")
 	rootCmd.Flags().BoolP("help", "h", false, "Display usage information")
 	rootCmd.Flags().BoolP("list", "listDataTypes", false, "List available data types")
-	rootCmd.Flags().StringP("timeout", "timeout", "", "Set the timeout in seconds")
-	rootCmd.Flags().BoolP("xml", "xml", false, "Output as XML plist")
+	rootCmd.Flags().String("timeout", "", "Set the timeout in seconds")
+	rootCmd.Flags().Bool("xml", false, "Output as XML plist")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"detailLevel": carapace.ActionValues("mini", "basic", "full"),
