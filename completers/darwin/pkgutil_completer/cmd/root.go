@@ -49,14 +49,14 @@ func init() {
 	rootCmd.Flags().String("volume", "", "Perform all operations on the specified volume")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"bom":              carapace.ActionFiles(),
-		"check-signature":  carapace.ActionFiles(),
-		"expand":           carapace.ActionFiles(),
-		"file-info":        carapace.ActionFiles(),
-		"file-info-plist":  carapace.ActionFiles(),
-		"flatten":          carapace.ActionFiles(),
-		"learn":            carapace.ActionFiles(),
-		"payload-files":    carapace.ActionFiles(),
-		"volume":           carapace.ActionFiles(),
+		"bom":             carapace.ActionFiles(),
+		"check-signature": carapace.ActionFiles(),
+		"expand":          carapace.ActionFiles(),
+		"file-info":       carapace.ActionFiles(),
+		"file-info-plist": carapace.ActionFiles(),
+		"flatten":         carapace.ActionFiles(),
+		"learn":           carapace.ActionFiles(),
+		"payload-files":   carapace.ActionFiles(),
+		"volume":          carapace.ActionFiles(),
 	})
 }

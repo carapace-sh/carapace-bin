@@ -61,11 +61,11 @@ func init() {
 	rootCmd.Flags().String("zlibCompressionLevel", "", "Set the compression level (0-9) for PKZip")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"arch":                carapace.ActionValues("arm64", "x86_64"),
-		"bom":                 carapace.ActionFiles(),
-		"keepBinariesList":    carapace.ActionFiles(),
-		"keepBinariesPattern": carapace.ActionFiles(),
-		"outBom":              carapace.ActionFiles(),
+		"arch":                 carapace.ActionValues("arm64", "x86_64"),
+		"bom":                  carapace.ActionFiles(),
+		"keepBinariesList":     carapace.ActionFiles(),
+		"keepBinariesPattern":  carapace.ActionFiles(),
+		"outBom":               carapace.ActionFiles(),
 		"zlibCompressionLevel": carapace.ActionValues("0", "1", "2", "3", "4", "5", "6", "7", "8", "9"),
 	})
 

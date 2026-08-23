@@ -72,14 +72,14 @@ func init() {
 	rootCmd.Flags().String("z", "", "Post-rotate command")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"F": carapace.ActionFiles(),
-		"Q": carapace.ActionValues("in", "out", "inout"),
-		"T": carapace.ActionValues("aodv", "carp", "cnfp", "domain", "lmp", "pgm", "pgm_zmtp1", "ptp", "radius", "resp", "rpc", "rtcp", "rtp", "snmp", "someip", "tftp", "vat", "vxlan", "wb", "zmtp1"),
-		"i": net.ActionDevices(net.AllDevices),
-		"j": carapace.ActionValues("host", "host_lowprec", "host_hiprec", "adapter", "adapter_unsynced", "adapter_unbiased"),
-		"r": carapace.ActionFiles(),
+		"F":                    carapace.ActionFiles(),
+		"Q":                    carapace.ActionValues("in", "out", "inout"),
+		"T":                    carapace.ActionValues("aodv", "carp", "cnfp", "domain", "lmp", "pgm", "pgm_zmtp1", "ptp", "radius", "resp", "rpc", "rtcp", "rtp", "snmp", "someip", "tftp", "vat", "vxlan", "wb", "zmtp1"),
+		"i":                    net.ActionDevices(net.AllDevices),
+		"j":                    carapace.ActionValues("host", "host_lowprec", "host_hiprec", "adapter", "adapter_unsynced", "adapter_unbiased"),
+		"r":                    carapace.ActionFiles(),
 		"time-stamp-precision": carapace.ActionValues("micro", "nano"),
-		"w": carapace.ActionFiles(),
-		"y": carapace.ActionValues("en10mb", "en3mb", "linux_sll", "raw", "null"),
+		"w":                    carapace.ActionFiles(),
+		"y":                    carapace.ActionValues("en10mb", "en3mb", "linux_sll", "raw", "null"),
 	})
 }

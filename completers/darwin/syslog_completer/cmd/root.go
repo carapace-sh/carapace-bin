@@ -38,8 +38,8 @@ func init() {
 	rootCmd.Flags().StringP("wait", "w", "", "Wait for new log messages")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"dir":   carapace.ActionDirectories(),
-		"file":  carapace.ActionFiles(),
+		"dir":  carapace.ActionDirectories(),
+		"file": carapace.ActionFiles(),
 		"level": carapace.ActionValuesDescribed(
 			"0", "Emergency",
 			"1", "Alert",
