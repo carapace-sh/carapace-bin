@@ -7,9 +7,9 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "chpass",
-	Short: "add or change user database information",
-	Long:  "https://keith.github.io/xcode-manpages/chpass.1.html",
+	Use:   "dsenableroot",
+	Short: "enables or disables the root account",
+	Long:  "https://keith.github.io/xcode-manpages/dsenableroot.8.html",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
@@ -20,12 +20,12 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().StringS("l", "l", "", "Location of the directory node")
-	rootCmd.Flags().StringS("s", "s", "", "Shell to change to")
-	rootCmd.Flags().StringS("u", "u", "", "User name to use when authenticating")
+	rootCmd.Flags().BoolS("d", "d", false, "Disable the root account")
+	rootCmd.Flags().StringS("p", "p", "", "Password")
+	rootCmd.Flags().StringS("r", "r", "", "Root password")
+	rootCmd.Flags().StringS("u", "u", "", "Username")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"s": carapace.ActionFiles(),
 		"u": os.ActionUsers(),
 	})
 }
