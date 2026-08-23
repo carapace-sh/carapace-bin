@@ -5,10 +5,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func init() {
-	rootCmd.AddCommand(calculatedriftCmd)
-}
-
 var calculatedriftCmd = &cobra.Command{
 	Use:   "calculatedrift",
 	Short: "analyze backups and determine change between them",
@@ -17,4 +13,5 @@ var calculatedriftCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(calculatedriftCmd).Standalone()
+	rootCmd.AddCommand(calculatedriftCmd)
 }

@@ -5,10 +5,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func init() {
-	rootCmd.AddCommand(restoreCmd)
-}
-
 var restoreCmd = &cobra.Command{
 	Use:   "restore",
 	Short: "restore an item from a backup",
@@ -17,6 +13,7 @@ var restoreCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(restoreCmd).Standalone()
+	rootCmd.AddCommand(restoreCmd)
 
 	restoreCmd.Flags().BoolP("verbose", "v", false, "Verbose output")
 

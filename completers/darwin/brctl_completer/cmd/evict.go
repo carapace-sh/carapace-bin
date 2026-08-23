@@ -5,10 +5,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func init() {
-	rootCmd.AddCommand(evictCmd)
-}
-
 var evictCmd = &cobra.Command{
 	Use:   "evict",
 	Short: "evict the local copy of the document",
@@ -17,4 +13,5 @@ var evictCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(evictCmd).Standalone()
+	rootCmd.AddCommand(evictCmd)
 }

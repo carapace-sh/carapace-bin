@@ -5,10 +5,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func init() {
-	rootCmd.AddCommand(latestbackupCmd)
-}
-
 var latestbackupCmd = &cobra.Command{
 	Use:   "latestbackup",
 	Short: "list this computer's latest completed backup",
@@ -17,6 +13,7 @@ var latestbackupCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(latestbackupCmd).Standalone()
+	rootCmd.AddCommand(latestbackupCmd)
 
 	latestbackupCmd.Flags().StringP("destination", "d", "", "Destination volume to list backups from")
 	latestbackupCmd.Flags().BoolP("mount", "m", false, "Attempt to mount backups")

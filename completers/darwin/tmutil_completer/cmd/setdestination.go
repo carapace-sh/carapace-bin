@@ -5,10 +5,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func init() {
-	rootCmd.AddCommand(setdestinationCmd)
-}
-
 var setdestinationCmd = &cobra.Command{
 	Use:   "setdestination",
 	Short: "configure a backup destination",
@@ -17,6 +13,7 @@ var setdestinationCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(setdestinationCmd).Standalone()
+	rootCmd.AddCommand(setdestinationCmd)
 
 	setdestinationCmd.Flags().BoolP("add", "a", false, "Add to the list of destinations")
 	setdestinationCmd.Flags().BoolP("password", "p", false, "Enter password at interactive prompt")

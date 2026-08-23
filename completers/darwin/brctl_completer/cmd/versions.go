@@ -5,10 +5,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func init() {
-	rootCmd.AddCommand(versionsCmd)
-}
-
 var versionsCmd = &cobra.Command{
 	Use:   "versions",
 	Short: "list non-local versions of a document",
@@ -17,6 +13,7 @@ var versionsCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(versionsCmd).Standalone()
+	rootCmd.AddCommand(versionsCmd)
 
 	versionsCmd.Flags().Bool("all", false, "List all non-local versions including those that are locally cached")
 }

@@ -5,10 +5,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func init() {
-	rootCmd.AddCommand(monitorCmd)
-}
-
 var monitorCmd = &cobra.Command{
 	Use:   "monitor",
 	Short: "monitor a container using NSMetadataQuery",
@@ -17,6 +13,7 @@ var monitorCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(monitorCmd).Standalone()
+	rootCmd.AddCommand(monitorCmd)
 
 	monitorCmd.Flags().String("scope", "", "restrict the NSMDQ scope to DOCS, DATA, or BOTH")
 

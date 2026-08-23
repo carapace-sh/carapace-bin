@@ -5,10 +5,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func init() {
-	rootCmd.AddCommand(removedestinationCmd)
-}
-
 var removedestinationCmd = &cobra.Command{
 	Use:   "removedestination",
 	Short: "remove a destination from configuration",
@@ -17,4 +13,5 @@ var removedestinationCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(removedestinationCmd).Standalone()
+	rootCmd.AddCommand(removedestinationCmd)
 }

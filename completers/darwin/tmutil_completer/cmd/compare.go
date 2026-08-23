@@ -5,10 +5,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func init() {
-	rootCmd.AddCommand(compareCmd)
-}
-
 var compareCmd = &cobra.Command{
 	Use:   "compare",
 	Short: "perform a backup diff",
@@ -17,6 +13,7 @@ var compareCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(compareCmd).Standalone()
+	rootCmd.AddCommand(compareCmd)
 
 	compareCmd.Flags().String("D", "", "Limit traversal depth")
 	compareCmd.Flags().Bool("E", false, "Don't take exclusions into account")

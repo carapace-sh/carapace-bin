@@ -5,10 +5,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func init() {
-	rootCmd.AddCommand(setquotaCmd)
-}
-
 var setquotaCmd = &cobra.Command{
 	Use:   "setquota",
 	Short: "set the quota for a destination",
@@ -17,6 +13,7 @@ var setquotaCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(setquotaCmd).Standalone()
+	rootCmd.AddCommand(setquotaCmd)
 
 	carapace.Gen(setquotaCmd).PositionalCompletion(
 		carapace.ActionValues(),

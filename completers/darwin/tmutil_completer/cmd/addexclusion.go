@@ -5,10 +5,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func init() {
-	rootCmd.AddCommand(addexclusionCmd)
-}
-
 var addexclusionCmd = &cobra.Command{
 	Use:   "addexclusion",
 	Short: "configure an exclusion from Time Machine backups",
@@ -17,6 +13,7 @@ var addexclusionCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(addexclusionCmd).Standalone()
+	rootCmd.AddCommand(addexclusionCmd)
 
 	addexclusionCmd.Flags().BoolP("fixed-path", "p", false, "Configure fixed-path exclusion")
 	addexclusionCmd.Flags().BoolP("volume", "v", false, "Configure volume exclusion")

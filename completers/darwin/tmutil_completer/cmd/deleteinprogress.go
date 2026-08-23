@@ -5,10 +5,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func init() {
-	rootCmd.AddCommand(deleteinprogressCmd)
-}
-
 var deleteinprogressCmd = &cobra.Command{
 	Use:   "deleteinprogress",
 	Short: "delete all in-progress backups",
@@ -17,4 +13,5 @@ var deleteinprogressCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(deleteinprogressCmd).Standalone()
+	rootCmd.AddCommand(deleteinprogressCmd)
 }

@@ -5,10 +5,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func init() {
-	rootCmd.AddCommand(verifychecksumsCmd)
-}
-
 var verifychecksumsCmd = &cobra.Command{
 	Use:   "verifychecksums",
 	Short: "verify checksums of data in a backup",
@@ -17,6 +13,7 @@ var verifychecksumsCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(verifychecksumsCmd).Standalone()
+	rootCmd.AddCommand(verifychecksumsCmd)
 
 	carapace.Gen(verifychecksumsCmd).PositionalAnyCompletion(
 		carapace.ActionFiles(),

@@ -5,10 +5,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func init() {
-	rootCmd.AddCommand(uniquesizeCmd)
-}
-
 var uniquesizeCmd = &cobra.Command{
 	Use:   "uniquesize",
 	Short: "analyze a path's unique size in backups",
@@ -17,6 +13,7 @@ var uniquesizeCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(uniquesizeCmd).Standalone()
+	rootCmd.AddCommand(uniquesizeCmd)
 
 	carapace.Gen(uniquesizeCmd).PositionalAnyCompletion(
 		carapace.ActionFiles(),

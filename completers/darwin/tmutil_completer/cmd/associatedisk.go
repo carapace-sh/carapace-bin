@@ -5,10 +5,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func init() {
-	rootCmd.AddCommand(associatediskCmd)
-}
-
 var associatediskCmd = &cobra.Command{
 	Use:   "associatedisk",
 	Short: "bind a volume store directory to a local disk",
@@ -17,6 +13,7 @@ var associatediskCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(associatediskCmd).Standalone()
+	rootCmd.AddCommand(associatediskCmd)
 
 	carapace.Gen(associatediskCmd).PositionalCompletion(
 		carapace.ActionFiles(),

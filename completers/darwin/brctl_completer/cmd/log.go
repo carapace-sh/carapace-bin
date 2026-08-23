@@ -5,10 +5,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func init() {
-	rootCmd.AddCommand(logCmd)
-}
-
 var logCmd = &cobra.Command{
 	Use:   "log",
 	Short: "manage CloudDocs logging",
@@ -17,6 +13,7 @@ var logCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(logCmd).Standalone()
+	rootCmd.AddCommand(logCmd)
 
 	logCmd.Flags().Bool("color", false, "turn on or off color use")
 	logCmd.Flags().Bool("digest", false, "only print digest logs")

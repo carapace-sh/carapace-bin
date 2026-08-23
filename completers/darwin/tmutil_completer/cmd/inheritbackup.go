@@ -5,10 +5,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func init() {
-	rootCmd.AddCommand(inheritbackupCmd)
-}
-
 var inheritbackupCmd = &cobra.Command{
 	Use:   "inheritbackup",
 	Short: "claim a machine directory or sparsebundle",
@@ -17,4 +13,5 @@ var inheritbackupCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(inheritbackupCmd).Standalone()
+	rootCmd.AddCommand(inheritbackupCmd)
 }

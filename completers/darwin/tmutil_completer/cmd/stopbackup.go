@@ -5,10 +5,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func init() {
-	rootCmd.AddCommand(stopbackupCmd)
-}
-
 var stopbackupCmd = &cobra.Command{
 	Use:   "stopbackup",
 	Short: "cancel a backup in progress",
@@ -17,4 +13,5 @@ var stopbackupCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(stopbackupCmd).Standalone()
+	rootCmd.AddCommand(stopbackupCmd)
 }

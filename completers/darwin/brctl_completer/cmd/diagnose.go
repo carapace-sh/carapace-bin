@@ -5,10 +5,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func init() {
-	rootCmd.AddCommand(diagnoseCmd)
-}
-
 var diagnoseCmd = &cobra.Command{
 	Use:   "diagnose",
 	Short: "diagnose and collect logs",
@@ -17,6 +13,7 @@ var diagnoseCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(diagnoseCmd).Standalone()
+	rootCmd.AddCommand(diagnoseCmd)
 
 	diagnoseCmd.Flags().Bool("collect-mobile-documents", false, "collect mobile documents")
 	diagnoseCmd.Flags().String("name", "", "change the device name")

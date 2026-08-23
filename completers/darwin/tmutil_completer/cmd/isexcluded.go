@@ -5,10 +5,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func init() {
-	rootCmd.AddCommand(isexcludedCmd)
-}
-
 var isexcludedCmd = &cobra.Command{
 	Use:   "isexcluded",
 	Short: "determine if an item is excluded from backups",
@@ -17,6 +13,7 @@ var isexcludedCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(isexcludedCmd).Standalone()
+	rootCmd.AddCommand(isexcludedCmd)
 
 	isexcludedCmd.Flags().BoolP("xml", "X", false, "Print output in XML property list format")
 

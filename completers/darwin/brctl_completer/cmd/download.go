@@ -5,10 +5,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func init() {
-	rootCmd.AddCommand(downloadCmd)
-}
-
 var downloadCmd = &cobra.Command{
 	Use:   "download",
 	Short: "download a local copy of the document",
@@ -17,4 +13,5 @@ var downloadCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(downloadCmd).Standalone()
+	rootCmd.AddCommand(downloadCmd)
 }

@@ -5,10 +5,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func init() {
-	rootCmd.AddCommand(dumpCmd)
-}
-
 var dumpCmd = &cobra.Command{
 	Use:   "dump",
 	Short: "dump the CloudDocs database",
@@ -17,6 +13,7 @@ var dumpCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(dumpCmd).Standalone()
+	rootCmd.AddCommand(dumpCmd)
 
 	dumpCmd.Flags().String("database-path", "", "use the database at <db-path>")
 	dumpCmd.Flags().String("output", "", "redirect output to <file-path>")

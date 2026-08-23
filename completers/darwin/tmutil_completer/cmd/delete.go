@@ -5,10 +5,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func init() {
-	rootCmd.AddCommand(deleteCmd)
-}
-
 var deleteCmd = &cobra.Command{
 	Use:   "delete",
 	Short: "delete backups with the specified timestamp",
@@ -17,6 +13,7 @@ var deleteCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(deleteCmd).Standalone()
+	rootCmd.AddCommand(deleteCmd)
 
 	deleteCmd.Flags().StringP("destination", "d", "", "Backup mount point")
 	deleteCmd.Flags().StringP("path", "p", "", "Specific path to delete")

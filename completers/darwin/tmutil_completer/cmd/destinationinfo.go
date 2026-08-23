@@ -5,10 +5,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func init() {
-	rootCmd.AddCommand(destinationinfoCmd)
-}
-
 var destinationinfoCmd = &cobra.Command{
 	Use:   "destinationinfo",
 	Short: "print information about configured destinations",
@@ -17,6 +13,7 @@ var destinationinfoCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(destinationinfoCmd).Standalone()
+	rootCmd.AddCommand(destinationinfoCmd)
 
 	destinationinfoCmd.Flags().BoolP("xml", "X", false, "Print output in XML property list format")
 }

@@ -5,10 +5,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func init() {
-	rootCmd.AddCommand(listbackupsCmd)
-}
-
 var listbackupsCmd = &cobra.Command{
 	Use:   "listbackups",
 	Short: "list all of this computer's completed backups",
@@ -17,6 +13,7 @@ var listbackupsCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(listbackupsCmd).Standalone()
+	rootCmd.AddCommand(listbackupsCmd)
 
 	listbackupsCmd.Flags().StringP("destination", "d", "", "Destination volume to list backups from")
 	listbackupsCmd.Flags().BoolP("mount", "m", false, "Attempt to mount backups")

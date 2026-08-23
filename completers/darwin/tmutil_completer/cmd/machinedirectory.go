@@ -5,10 +5,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func init() {
-	rootCmd.AddCommand(machinedirectoryCmd)
-}
-
 var machinedirectoryCmd = &cobra.Command{
 	Use:   "machinedirectory",
 	Short: "print the path to the current machine directory",
@@ -17,4 +13,5 @@ var machinedirectoryCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(machinedirectoryCmd).Standalone()
+	rootCmd.AddCommand(machinedirectoryCmd)
 }

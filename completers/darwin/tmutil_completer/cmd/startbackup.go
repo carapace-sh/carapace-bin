@@ -5,10 +5,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func init() {
-	rootCmd.AddCommand(startbackupCmd)
-}
-
 var startbackupCmd = &cobra.Command{
 	Use:   "startbackup",
 	Short: "begin a backup",
@@ -17,6 +13,7 @@ var startbackupCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(startbackupCmd).Standalone()
+	rootCmd.AddCommand(startbackupCmd)
 
 	startbackupCmd.Flags().Bool("auto", false, "Run in a mode similar to system-scheduled backups")
 	startbackupCmd.Flags().BoolP("block", "b", false, "Wait until the backup is finished")
