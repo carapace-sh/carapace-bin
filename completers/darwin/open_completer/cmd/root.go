@@ -26,7 +26,7 @@ func init() {
 	rootCmd.Flags().BoolP("fresh", "F", false, "Launch the application fresh, without restoring windows")
 	rootCmd.Flags().BoolP("header", "h", false, "Search header file locations for headers matching the given filenames")
 	rootCmd.Flags().BoolP("hide", "g", false, "Do not bring the application to the foreground")
-	rootCmd.Flags().BoolS("j","j", false, "Launch the app hidden")
+	rootCmd.Flags().BoolS("j", "j", false, "Launch the app hidden")
 	rootCmd.Flags().BoolP("new", "n", false, "Open a new instance of the application even if one is already running")
 	rootCmd.Flags().BoolP("reveal", "R", false, "Reveal the file in the Finder instead of opening it")
 	rootCmd.Flags().StringP("sdk", "s", "", "For -h, partial or full SDK name to use")

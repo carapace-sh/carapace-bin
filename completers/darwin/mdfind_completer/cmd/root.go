@@ -19,7 +19,7 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolS("0","0", false, "Use NUL as a path separator")
+	rootCmd.Flags().BoolS("0", "0", false, "Use NUL as a path separator")
 	rootCmd.Flags().String("attr", "", "Fetches the value of the specified attribute")
 	rootCmd.Flags().Bool("count", false, "Show the count of matches")
 	rootCmd.Flags().BoolP("help", "h", false, "Display usage information")
@@ -28,7 +28,7 @@ func init() {
 	rootCmd.Flags().String("onlyin", "", "Search only in the specified directory")
 	rootCmd.Flags().Bool("pl", false, "Output in plist format")
 	rootCmd.Flags().Bool("reprint", false, "Reprint results on live update")
-	rootCmd.Flags().StringS("s","s", "", "Show contents of smart folder <name>")
+	rootCmd.Flags().StringS("s", "s", "", "Show contents of smart folder <name>")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"attr":   carapace.ActionValues(),
