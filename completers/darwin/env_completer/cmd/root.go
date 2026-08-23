@@ -21,6 +21,7 @@ func init() {
 
 	rootCmd.Flags().BoolS("0", "0", false, "End each output line with NUL")
 	rootCmd.Flags().BoolS("i", "i", false, "Start with empty environment")
+	rootCmd.Flags().BoolS("v", "v", false, "Print verbose information")
 
 	rootCmd.Flags().StringS("C", "C", "", "Change to directory")
 	rootCmd.Flags().StringS("P", "P", "", "Set PATH")
