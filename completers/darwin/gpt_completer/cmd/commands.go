@@ -85,15 +85,14 @@ func init() {
 	showCmd.Flags().BoolP("list", "l", false, "Show partition details")
 
 	carapace.Gen(addCmd).FlagCompletion(carapace.ActionMap{
-		"file": carapace.ActionFiles(),
-		"type": carapace.ActionValues(
-			"00000000-0000-0000-0000-000000000000",
-			"48465300-0000-11AA-AA11-00306543ECAC",
-			"7C3457EF-0000-11AA-AA11-00306543ECAC",
-		).Described(
-			"Unused",
-			"Apple HFS+",
-			"Apple APFS",
+		"type": carapace.ActionValuesDescribed(
+			"00000000-0000-0000-0000-000000000000", "Unused",
+			"48465300-0000-11AA-AA11-00306543ECAC", "Apple HFS+",
+			"7C3457EF-0000-11AA-AA11-00306543ECAC", "Apple APFS",
 		),
+	})
+
+	carapace.Gen(labelCmd).FlagCompletion(carapace.ActionMap{
+		"file": carapace.ActionFiles(),
 	})
 }

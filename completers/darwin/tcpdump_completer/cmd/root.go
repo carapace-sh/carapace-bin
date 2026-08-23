@@ -35,7 +35,7 @@ func init() {
 	rootCmd.Flags().Bool("O", false, "Do not run packet-matching code optimizer")
 	rootCmd.Flags().String("Q", "", "Choose send/receive direction")
 	rootCmd.Flags().Bool("S", false, "Print absolute TCP sequence numbers")
-	rootCmd.Flags().String("T", false, "Force packet type")
+	rootCmd.Flags().String("T", "", "Force packet type")
 	rootCmd.Flags().Bool("U", false, "Make output packet-buffered")
 	rootCmd.Flags().String("W", "", "Used with -C to limit number of files created")
 	rootCmd.Flags().Bool("X", false, "Print packets in hex and ASCII")
@@ -49,7 +49,7 @@ func init() {
 	rootCmd.Flags().Bool("h", false, "Print help")
 	rootCmd.Flags().String("i", "", "Listen on interface")
 	rootCmd.Flags().Bool("immediate-mode", false, "Capture in immediate mode")
-	rootCmd.Flags().Bool("j", false, "Set time stamp type")
+	rootCmd.Flags().String("j", "", "Set time stamp type")
 	rootCmd.Flags().String("k", "", "Metadata argument")
 	rootCmd.Flags().Bool("l", false, "Make stdout line buffered")
 	rootCmd.Flags().String("m", "", "Load SMI MIB module")
@@ -66,7 +66,7 @@ func init() {
 	rootCmd.Flags().String("time-stamp-precision", "", "Set time stamp precision")
 	rootCmd.Flags().Bool("u", false, "Print undecoded NFS handles")
 	rootCmd.Flags().Bool("v", false, "Verbose output")
-	rootCmd.Flags().Bool("w", false, "Write raw packets to file")
+	rootCmd.Flags().String("w", "", "Write raw packets to file")
 	rootCmd.Flags().Bool("x", false, "Print packets in hex")
 	rootCmd.Flags().String("y", "", "Set data link type")
 	rootCmd.Flags().String("z", "", "Post-rotate command")
@@ -74,9 +74,12 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"F": carapace.ActionFiles(),
 		"Q": carapace.ActionValues("in", "out", "inout"),
-		"i": net.ActionInterfaces(),
+		"T": carapace.ActionValues("aodv", "carp", "cnfp", "domain", "lmp", "pgm", "pgm_zmtp1", "ptp", "radius", "resp", "rpc", "rtcp", "rtp", "snmp", "someip", "tftp", "vat", "vxlan", "wb", "zmtp1"),
+		"i": net.ActionDevices(net.AllDevices),
+		"j": carapace.ActionValues("host", "host_lowprec", "host_hiprec", "adapter", "adapter_unsynced", "adapter_unbiased"),
 		"r": carapace.ActionFiles(),
 		"time-stamp-precision": carapace.ActionValues("micro", "nano"),
+		"w": carapace.ActionFiles(),
 		"y": carapace.ActionValues("en10mb", "en3mb", "linux_sll", "raw", "null"),
 	})
 }

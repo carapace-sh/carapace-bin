@@ -21,6 +21,7 @@ func init() {
 
 	rootCmd.Flags().Bool("C", false, "Capitalize variable names in C include style")
 	rootCmd.Flags().Bool("E", false, "Change character encoding to EBCDIC")
+	rootCmd.Flags().String("R", "", "When to revert operation")
 	rootCmd.Flags().Bool("autoskip", false, "Toggle autoskip: a single '*' replaces NUL-lines")
 	rootCmd.Flags().BoolP("bits", "b", false, "Switch to bits (binary digits) dump")
 	rootCmd.Flags().StringP("cols", "c", "", "Format octets per line")
@@ -34,8 +35,13 @@ func init() {
 	rootCmd.Flags().StringP("offset", "o", "", "Add offset to the displayed file position")
 	rootCmd.Flags().BoolP("plain", "p", false, "Output in PostScript continuous hex dump style")
 	rootCmd.Flags().BoolP("revert", "r", false, "Reverse operation: convert hex dump into binary")
-	rootCmd.Flags().BoolP("seek", "s", false, "Skip to the specified offset")
+	rootCmd.Flags().StringP("seek", "s", "", "Skip to the specified offset")
 	rootCmd.Flags().Bool("u", false, "Use upper case hex letters")
+	rootCmd.Flags().Bool("v", false, "Print version information")
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"R": carapace.ActionValues("never", "always", "auto"),
+	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionFiles(),
