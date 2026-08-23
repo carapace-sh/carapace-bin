@@ -18,13 +18,4 @@ func Execute() error {
 
 func init() {
 	carapace.Gen(rootCmd).Standalone()
-
-	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValuesDescribed(
-			"diagnose", "Run diagnostic tests",
-			"info", "Display Wi-Fi information",
-			"log", "Enable or disable logging",
-			"dump", "Dump Wi-Fi log buffer to file",
-		),
-	)
 }

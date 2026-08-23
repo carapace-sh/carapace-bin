@@ -18,14 +18,4 @@ func Execute() error {
 
 func init() {
 	carapace.Gen(rootCmd).Standalone()
-
-	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValuesDescribed(
-			"enumerate", "Run an interactive enumeration of the specified provider",
-			"ls", "Run an interactive enumeration of the specified provider",
-			"materialize", "Cause the specified item to be written on disk",
-			"validate", "Run the validation suite against the specified provider",
-			"dump", "Dump the state of the file provider subsystem",
-		),
-	)
 }

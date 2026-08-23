@@ -23,17 +23,4 @@ func init() {
 	rootCmd.Flags().String("p", "", "Change the number of partitions the GPT can accommodate")
 	rootCmd.Flags().Bool("r", false, "Open the device for reading only")
 	rootCmd.Flags().Bool("v", false, "Increase verbosity level")
-
-	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValuesDescribed(
-			"add", "Add a new partition to an existing table",
-			"create", "Create a new GPT",
-			"destroy", "Destroy the GPT",
-			"init", "Initialize a GPT",
-			"label", "Label a partition",
-			"recover", "Recover the GPT",
-			"remove", "Remove a partition from the table",
-			"show", "Show the partition table",
-		),
-	)
 }
