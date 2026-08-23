@@ -51,7 +51,7 @@ func init() {
 	rootCmd.Flags().String("hyperlink", "", "hyperlink file names; WHEN can be 'always'")
 	rootCmd.Flags().StringP("ignore", "I", "", "do not list implied entries matching shell PATTERN")
 	rootCmd.Flags().BoolP("ignore-backups", "B", false, "do not list implied entries ending with ~")
-	rootCmd.Flags().String("indicator-style", "p", "append indicator with style WORD to entry names:")
+	rootCmd.Flags().StringP("indicator-style", "p", "", "append indicator with style WORD to entry names")
 	rootCmd.Flags().BoolP("inode", "i", false, "print the index number of each file")
 	rootCmd.Flags().BoolP("kibibytes", "k", false, "default to 1024-byte blocks for disk usage;")
 	rootCmd.Flags().BoolS("l", "l", false, "use a long listing format")
@@ -82,11 +82,11 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"color":           carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
 		"format":          carapace.ActionValues("across", "horizontal", "single-column", "vertical", "commas", "long", "verbose"),
-		"hyperlink":       carapace.ActionValues("always", "auto", "none").StyleF(style.ForKeyword),
+		"hyperlink":       carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"indicator-style": carapace.ActionValues("classify", "file-type", "none", "slash"),
-		"quoting-style":   carapace.ActionValues("c", "clocale", "escape", "literal", "locale", "shell", "shell-always"),
-		"sort":            carapace.ActionValues("extension", "none", "size", "time", "version"),
-		"time":            carapace.ActionValues("access", "atime", "ctime", "status", "use"),
+		"quoting-style":   carapace.ActionValues("c", "clocale", "escape", "literal", "locale", "shell", "shell-always", "shell-escape", "shell-escape-always"),
+		"sort":            carapace.ActionValues("extension", "name", "none", "size", "time", "version", "width"),
+		"time":            carapace.ActionValues("access", "atime", "birth", "creation", "ctime", "mtime", "modification", "status", "use"),
 		"time-style":      carapace.ActionValues("full-iso", "iso", "locale", "long-iso"),
 	})
 
