@@ -17,4 +17,11 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).Standalone()
+
+	rootCmd.Flags().BoolP("help", "h", false, "Display usage information")
+	rootCmd.Flags().StringP("pboard", "p", "", "Specify pasteboard: general, ruler, find, or font")
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"pboard": carapace.ActionValues("general", "ruler", "find", "font"),
+	})
 }

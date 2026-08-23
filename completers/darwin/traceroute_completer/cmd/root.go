@@ -18,19 +18,23 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolS("A", "A", false, "Perform AS lookups")
+	rootCmd.Flags().BoolS("D", "D", false, "Use DCCP probes")
+	rootCmd.Flags().BoolS("F", "F", false, "Show firewalls")
 	rootCmd.Flags().BoolS("I", "I", false, "Use ICMP ECHO probes")
 	rootCmd.Flags().BoolS("N", "N", false, "Do not probe path MTU")
 	rootCmd.Flags().BoolS("S", "S", false, "Use TCP SYN probes")
 	rootCmd.Flags().BoolS("a", "a", false, "Perform AS lookups")
 	rootCmd.Flags().BoolS("d", "d", false, "Enable socket-level debugging")
 	rootCmd.Flags().BoolS("e", "e", false, "Display extended info")
-	rootCmd.Flags().BoolS("f", "f", false, "Show firewalls")
 	rootCmd.Flags().BoolS("n", "n", false, "Do not resolve host names")
 	rootCmd.Flags().BoolS("r", "r", false, "Do not use routing table")
 	rootCmd.Flags().BoolS("v", "v", false, "Verbose mode")
 	rootCmd.Flags().BoolS("x", "x", false, "Do not compute checksums")
 
+	rootCmd.Flags().StringS("A", "A", "", "AS server to look up AS numbers")
+	rootCmd.Flags().StringS("M", "M", "", "Set the initial TTL value")
+	rootCmd.Flags().StringS("P", "P", "", "Set the protocol (UDP, TCP, ICMP, GRE, IPIP, etc.)")
+	rootCmd.Flags().StringS("f", "f", "", "Set the initial TTL")
 	rootCmd.Flags().StringS("g", "g", "", "Source route gateway")
 	rootCmd.Flags().StringS("i", "i", "", "Specify interface")
 	rootCmd.Flags().StringS("m", "m", "", "Maximum TTL")
@@ -39,6 +43,7 @@ func init() {
 	rootCmd.Flags().StringS("s", "s", "", "Source address")
 	rootCmd.Flags().StringS("t", "t", "", "Type of service")
 	rootCmd.Flags().StringS("w", "w", "", "Wait time for response")
+	rootCmd.Flags().StringS("z", "z", "", "Pause between probes (milliseconds)")
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionValues())
 }

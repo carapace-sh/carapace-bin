@@ -18,7 +18,9 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().StringP("audio-device", "a", "", "Specify the audio device to use")
 	rootCmd.Flags().StringP("input", "f", "", "Convert the text file content to speech")
+	rootCmd.Flags().StringP("network-send", "n", "", "Send to a network instance (name:port)")
 	rootCmd.Flags().StringP("output", "o", "", "Specify the path for an audio file to be written")
 	rootCmd.Flags().StringP("rate", "r", "", "Set the speech rate in words per minute")
 	rootCmd.Flags().StringP("voice", "v", "", "Specify the voice to be used")
