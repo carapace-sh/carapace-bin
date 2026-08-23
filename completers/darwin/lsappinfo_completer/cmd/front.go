@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var versionCmd = &cobra.Command{
-	Use:   "version",
-	Short: "Print version number",
+var frontCmd = &cobra.Command{
+	Use:   "front",
+	Short: "Show the front application",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(versionCmd).Standalone()
-	rootCmd.AddCommand(versionCmd)
+	carapace.Gen(frontCmd).Standalone()
+	rootCmd.AddCommand(frontCmd)
 }

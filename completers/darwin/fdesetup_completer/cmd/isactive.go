@@ -5,13 +5,12 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var versionCmd = &cobra.Command{
-	Use:   "version",
-	Short: "Print version number",
+var isactiveCmd = &cobra.Command{
+	Use:   "isactive",
+	Short: "Check if the volume is encrypted",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(versionCmd).Standalone()
-	rootCmd.AddCommand(versionCmd)
+	carapace.Gen(isactiveCmd).Standalone()
 }

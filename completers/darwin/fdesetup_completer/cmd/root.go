@@ -15,8 +15,27 @@ var rootCmd = &cobra.Command{
 func Execute() error {
 	return rootCmd.Execute()
 }
+
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionValues())
+	rootCmd.AddCommand(helpCmd)
+	rootCmd.AddCommand(enableCmd)
+	rootCmd.AddCommand(disableCmd)
+	rootCmd.AddCommand(statusCmd)
+	rootCmd.AddCommand(addCmd)
+	rootCmd.AddCommand(removeCmd)
+	rootCmd.AddCommand(listCmd)
+	rootCmd.AddCommand(changerecoveryCmd)
+	rootCmd.AddCommand(removerecoveryCmd)
+	rootCmd.AddCommand(syncCmd)
+	rootCmd.AddCommand(haspersonalrecoverykeyCmd)
+	rootCmd.AddCommand(hasinstitutionalrecoverykeyCmd)
+	rootCmd.AddCommand(usingrecoverykeyCmd)
+	rootCmd.AddCommand(supportsauthrestartCmd)
+	rootCmd.AddCommand(authrestartCmd)
+	rootCmd.AddCommand(validaterecoveryCmd)
+	rootCmd.AddCommand(isactiveCmd)
+	rootCmd.AddCommand(showdeferralinfoCmd)
+	rootCmd.AddCommand(versionCmd)
 }

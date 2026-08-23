@@ -7,11 +7,10 @@ import (
 
 var versionCmd = &cobra.Command{
 	Use:   "version",
-	Short: "Print version number",
+	Short: "Print version",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(versionCmd).Standalone()
-	rootCmd.AddCommand(versionCmd)
 }
