@@ -27,6 +27,7 @@ func init() {
 	rootCmd.Flags().BoolS("all", "all", false, "Show all the documentation for the package")
 	rootCmd.Flags().BoolS("c", "c", false, "Respect case when matching symbols")
 	rootCmd.Flags().BoolS("cmd", "cmd", false, "Treat a command like a regular package")
+	rootCmd.Flags().BoolS("ex", "ex", false, "Include executable examples")
 	rootCmd.Flags().BoolS("http", "http", false, "Serve HTML docs over HTTP")
 	rootCmd.Flags().BoolS("short", "short", false, "One-line representation for each symbol")
 	rootCmd.Flags().BoolS("src", "src", false, "Show the full source code for the symbol")
