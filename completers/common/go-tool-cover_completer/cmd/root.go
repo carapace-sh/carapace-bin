@@ -19,6 +19,7 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 	rootCmd.Flags().SetInterspersed(false)
 
+	rootCmd.Flags().BoolS("V", "V", false, "print version and exit")
 	rootCmd.Flags().StringS("func", "func", "", "output coverage profile information for each function")
 	rootCmd.Flags().StringS("html", "html", "", "generate HTML representation of coverage profile")
 	rootCmd.Flags().StringS("mode", "mode", "", "coverage mode: set, count, atomic")

@@ -91,6 +91,7 @@ func init() {
 	rootCmd.Flags().BoolS("wb", "wb", false, "enable write barrier (default true)")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"D":            carapace.ActionDirectories(),
 		"I":            carapace.ActionDirectories(),
 		"asmhdr":       carapace.ActionFiles(),
 		"bench":        carapace.ActionFiles(),
@@ -99,6 +100,7 @@ func init() {
 		"cpuprofile":   carapace.ActionFiles(),
 		"embedcfg":     carapace.ActionFiles(),
 		"goversion":    golang.ActionVersions(),
+		"lang":         golang.ActionVersions(),
 		"linkobj":      carapace.ActionFiles(),
 		"memprofile":   carapace.ActionFiles(),
 		"mutexprofile": carapace.ActionFiles(),

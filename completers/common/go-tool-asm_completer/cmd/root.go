@@ -37,6 +37,7 @@ func init() {
 	rootCmd.Flags().BoolS("v", "v", false, "print debug output")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"D": carapace.ActionDirectories(),
 		"I": carapace.ActionDirectories(),
 		"d": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
@@ -60,7 +61,8 @@ func init() {
 				}
 			})
 		}),
-		"o": carapace.ActionFiles(),
+		"o":       carapace.ActionFiles(),
+		"spectre": carapace.ActionValues("all", "ret").UniqueList(","),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

@@ -83,15 +83,18 @@ func init() {
 
 	// TODO extldflags completion
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"B": carapace.ActionValues("gobuildid", "none"),
 		"H": carapace.ActionValues("windowsgui"), // TODO other header types
 		"I": carapace.Batch(
 			carapace.ActionExecutables(),
 			carapace.ActionFiles(),
 		).ToA(),
-		"L":          carapace.ActionDirectories(),
-		"benchmark":  carapace.ActionValues("mem", "cpu"),
-		"buildmode":  golang.ActionBuildmodes(),
-		"cpuprofile": carapace.ActionFiles(),
+		"L":               carapace.ActionDirectories(),
+		"benchmark":       carapace.ActionValues("mem", "cpu"),
+		"buildmode":       golang.ActionBuildmodes(),
+		"cpuprofile":      carapace.ActionFiles(),
+		"fipso":           carapace.ActionFiles(),
+		"capturehostobjs": carapace.ActionDirectories(),
 		"extar": carapace.Batch(
 			carapace.ActionExecutables(),
 			carapace.ActionFiles(),
@@ -102,13 +105,16 @@ func init() {
 		).ToA(),
 		"importcfg": carapace.ActionFiles(),
 		"libgcc": carapace.Batch(
+			carapace.ActionValues("none"),
 			carapace.ActionExecutables(),
 			carapace.ActionFiles(),
 		).ToA(),
 		"linkmode":   carapace.ActionValues("internal", "external", "auto").StyleF(style.ForKeyword),
 		"memprofile": carapace.ActionFiles(),
 		"o":          carapace.ActionFiles(),
+		"pluginpath": carapace.ActionValues(),
 		"r":          carapace.ActionDirectories().List(","),
+		"strictdups": carapace.ActionValuesDescribed("1", "warn", "2", "err"),
 		"tmpdir":     carapace.ActionDirectories(),
 	})
 }
