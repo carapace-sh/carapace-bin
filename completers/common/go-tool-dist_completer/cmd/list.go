@@ -14,8 +14,8 @@ var listCmd = &cobra.Command{
 func init() {
 	carapace.Gen(listCmd).Standalone()
 
-	listCmd.Flags().BoolS("json", "json", false, "produce JSON output")
 	listCmd.Flags().BoolS("broken", "broken", false, "include broken ports")
+	listCmd.Flags().BoolS("json", "json", false, "produce JSON output")
 	listCmd.Flags().BoolS("v", "v", false, "verbosity")
 
 	rootCmd.AddCommand(listCmd)

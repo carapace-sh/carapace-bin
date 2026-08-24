@@ -92,9 +92,8 @@ func init() {
 		"L":               carapace.ActionDirectories(),
 		"benchmark":       carapace.ActionValues("mem", "cpu"),
 		"buildmode":       golang.ActionBuildmodes(),
-		"cpuprofile":      carapace.ActionFiles(),
-		"fipso":           carapace.ActionFiles(),
 		"capturehostobjs": carapace.ActionDirectories(),
+		"cpuprofile":      carapace.ActionFiles(),
 		"extar": carapace.Batch(
 			carapace.ActionExecutables(),
 			carapace.ActionFiles(),
@@ -103,6 +102,7 @@ func init() {
 			carapace.ActionExecutables(),
 			carapace.ActionFiles(),
 		).ToA(),
+		"fipso": carapace.ActionFiles(),
 		"importcfg": carapace.ActionFiles(),
 		"libgcc": carapace.Batch(
 			carapace.ActionValues("none"),
