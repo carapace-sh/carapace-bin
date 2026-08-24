@@ -23,4 +23,8 @@ func init() {
 	importCmd.Flag("format").Hidden = true
 	importCmd.Flag("since").Hidden = true
 	rootCmd.AddCommand(importCmd)
+
+	carapace.Gen(importCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("entire", "git-ai"),
+	})
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
 	"github.com/spf13/cobra"
 )
 
@@ -23,4 +24,8 @@ func init() {
 	import_ghCmd.Flags().String("repo", "", "GitHub repository in OWNER/NAME form")
 	import_ghCmd.Flags().String("since", "", "Only import PRs merged on or after this date (YYYY-MM-DD)")
 	importCmd.AddCommand(import_ghCmd)
+
+	carapace.Gen(import_ghCmd).FlagCompletion(carapace.ActionMap{
+		"repo": gh.ActionOwnerRepositories(gh.HostOpts{}),
+	})
 }
