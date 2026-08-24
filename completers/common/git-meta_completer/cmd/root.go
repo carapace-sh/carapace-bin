@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "git-meta",
 	Short: "Structured metadata for Git data",
+	Long:  "https://git-meta.com/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
