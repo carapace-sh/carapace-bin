@@ -20,6 +20,8 @@ func init() {
 
 	astCheckCmd.Flags().String("color", "", "Enable or disable colored error messages")
 	astCheckCmd.Flags().BoolP("help", "h", false, "Print help")
+	astCheckCmd.Flags().BoolP("t", "t", false, "Output ZIR in text form to stdout")
+	astCheckCmd.Flags().Bool("zon", false, "Treat the input file as ZON, regardless of file extension")
 
 	carapace.Gen(astCheckCmd).FlagCompletion(carapace.ActionMap{
 		"color": carapace.ActionValues("auto", "off", "on").StyleF(style.ForKeyword),
