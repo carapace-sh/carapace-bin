@@ -17,6 +17,10 @@ func init() {
 	vetCmd.Flags().SetInterspersed(false)
 
 	vetCmd.Flags().StringS("vettool", "vettool", "", "select a different analysis tool")
+	vetCmd.Flags().BoolS("fix", "fix", false, "apply the first fix (if any) for each diagnostic")
+	vetCmd.Flags().BoolS("json", "json", false, "emit JSON output")
+	vetCmd.Flags().BoolS("diff", "diff", false, "print diffs")
+	vetCmd.Flags().StringS("c", "c", "", "display offending line with this many lines of context")
 	common.AddPackageBuildFlags(vetCmd)
 	rootCmd.AddCommand(vetCmd)
 

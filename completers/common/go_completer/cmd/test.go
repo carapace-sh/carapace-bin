@@ -49,6 +49,8 @@ func init() {
 	testCmd.Flags().BoolS("short", "short", false, "Tell long-running tests to shorten their run time")
 	testCmd.Flags().StringS("shuffle", "shuffle", "", "Randomize the execution order of tests and benchmarks")
 	testCmd.Flags().StringS("skip", "skip", "", "Run only those tests, examples, fuzz tests, and benchmarks that do not match the regular expression")
+	testCmd.Flags().BoolS("artifacts", "artifacts", false, "Save test artifacts in the directory specified by -outputdir")
+	testCmd.Flags().BoolS("v", "v", false, "Verbose output: log all tests as they are run")
 	testCmd.Flags().StringS("test.bench", "test.bench", "", "run only benchmarks matching regexp")
 	testCmd.Flags().BoolS("test.benchmem", "test.benchmem", false, "print memory allocations for benchmarks")
 	testCmd.Flags().StringS("test.benchtime", "test.benchtime", "", "run each benchmark for duration d or N times if `d` is of the form Nx")
@@ -85,7 +87,7 @@ func init() {
 	testCmd.Flags().StringS("timeout", "timeout", "", "If a test binary runs longer than duration d, panic")
 	testCmd.Flags().StringS("trace", "trace", "", "Write an execution trace to the specified file before exiting")
 	testCmd.Flags().StringS("vet", "vet", "", "Configure the invocation of \"go vet\" during \"go test\" to use the comma-separated list of vet checks")
-	common.AddBuildFlags(testCmd)
+	common.AddBuildFlagsMask(testCmd, common.OmitVFlag)
 	rootCmd.AddCommand(testCmd)
 
 	carapace.Gen(testCmd).FlagCompletion(carapace.ActionMap{

@@ -10,12 +10,16 @@ import (
 )
 
 func AddBuildFlags(cmd *cobra.Command) {
+	AddBuildFlagsMask(cmd, 0)
+}
+
+func AddBuildFlagsMask(cmd *cobra.Command, mask uint) {
 	cmd.Flags().BoolS("cover", "cover", false, "enable code coverage instrumentation")
 	cmd.Flags().StringS("coverpkg", "coverpkg", "", "apply coverage analysis to each package matching the patterns")
 	cmd.Flags().StringS("mod", "mod", "", "module download mode to use")
 	cmd.Flags().BoolS("modcacherw", "modcacherw", false, "leave newly-created directories in the module cache read-write")
 	cmd.Flags().StringS("modfile", "modfile", "", "read and possibly write an alternate go.mod file")
-	AddPackageBuildFlags(cmd)
+	AddPackageBuildFlagsMask(cmd, mask)
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
 		"coverpkg": golang.ActionPackages().UniqueList(","),
@@ -24,7 +28,22 @@ func AddBuildFlags(cmd *cobra.Command) {
 	})
 }
 
+func AddCoverFlags(cmd *cobra.Command) {
+	cmd.Flags().StringS("covermode", "covermode", "", "set the mode for coverage analysis")
+	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
+		"covermode": carapace.ActionValues("set", "count", "atomic"),
+	})
+}
+
+const (
+	OmitVFlag = 1 << iota
+)
+
 func AddPackageBuildFlags(cmd *cobra.Command) {
+	AddPackageBuildFlagsMask(cmd, 0)
+}
+
+func AddPackageBuildFlagsMask(cmd *cobra.Command, mask uint) {
 	cmd.Flags().StringS("C", "C", "", "Change to dir before running the command")
 	cmd.Flags().BoolS("asan", "asan", false, "enable interoperation with address sanitizer")
 	cmd.Flags().StringS("asmflags", "asmflags", "", "arguments to pass on each go tool asm invocation")
@@ -49,7 +68,9 @@ func AddPackageBuildFlags(cmd *cobra.Command) {
 	cmd.Flags().BoolS("trimpath", "trimpath", false, "remove all file system paths from the resulting executable")
 	cmd.Flags().BoolS("work", "work", false, "print the name of the temporary work directory")
 	cmd.Flags().BoolS("x", "x", false, "print the commands")
-	cmd.Flags().BoolS("v", "v", false, "print the names of packages as they are compiled")
+	if mask&OmitVFlag == 0 {
+		cmd.Flags().BoolS("v", "v", false, "print the names of packages as they are compiled")
+	}
 	cmd.Flags().Lookup("buildvcs").NoOptDefVal = "auto"
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
