@@ -18,7 +18,9 @@ func init() {
 	runCmd.Flags().SetInterspersed(false)
 
 	runCmd.Flags().StringS("exec", "exec", "", "invoke the binary using xprog")
+	runCmd.Flags().BoolS("json", "json", false, "Emit build output in JSON suitable for automated processing")
 	common.AddBuildFlags(runCmd)
+	common.AddCoverFlags(runCmd)
 	rootCmd.AddCommand(runCmd)
 
 	carapace.Gen(runCmd).PositionalCompletion(

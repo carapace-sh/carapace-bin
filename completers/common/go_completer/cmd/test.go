@@ -19,6 +19,7 @@ func init() {
 	carapace.Gen(testCmd).Standalone()
 	testCmd.Flags().SetInterspersed(false)
 
+	testCmd.Flags().BoolS("artifacts", "artifacts", false, "Save test artifacts in the directory specified by -outputdir")
 	testCmd.Flags().StringS("bench", "bench", "", "Run only those benchmarks matching a regular expression")
 	testCmd.Flags().BoolS("benchmem", "benchmem", false, "Print memory allocation statistics for benchmarks")
 	testCmd.Flags().StringS("benchtime", "benchtime", "", "Run enough iterations of each benchmark to take t")
@@ -84,8 +85,9 @@ func init() {
 	testCmd.Flags().BoolS("test.v", "test.v", false, "verbose: print additional output")
 	testCmd.Flags().StringS("timeout", "timeout", "", "If a test binary runs longer than duration d, panic")
 	testCmd.Flags().StringS("trace", "trace", "", "Write an execution trace to the specified file before exiting")
+	testCmd.Flags().BoolS("v", "v", false, "Verbose output: log all tests as they are run")
 	testCmd.Flags().StringS("vet", "vet", "", "Configure the invocation of \"go vet\" during \"go test\" to use the comma-separated list of vet checks")
-	common.AddBuildFlags(testCmd)
+	common.AddBuildFlagsMask(testCmd, common.OmitVFlag)
 	rootCmd.AddCommand(testCmd)
 
 	carapace.Gen(testCmd).FlagCompletion(carapace.ActionMap{

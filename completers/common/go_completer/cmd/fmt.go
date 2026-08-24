@@ -16,13 +16,14 @@ func init() {
 	fmtCmd.Flags().SetInterspersed(false)
 
 	fmtCmd.Flags().StringS("C", "C", "", "Change to dir before running the command")
-	fmtCmd.Flags().BoolS("mod", "mod", false, "set module download mode")
+	fmtCmd.Flags().StringS("mod", "mod", "", "set module download mode")
 	fmtCmd.Flags().BoolS("n", "n", false, "print commands that would be executed")
 	fmtCmd.Flags().BoolS("x", "x", false, "print commands as they are executed")
 	rootCmd.AddCommand(fmtCmd)
 
 	carapace.Gen(fmtCmd).FlagCompletion(carapace.ActionMap{
-		"C": carapace.ActionDirectories(),
+		"C":   carapace.ActionDirectories(),
+		"mod": carapace.ActionValues("readonly", "vendor"),
 	})
 
 	carapace.Gen(fmtCmd).PositionalAnyCompletion(
