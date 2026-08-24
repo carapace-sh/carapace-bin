@@ -102,7 +102,7 @@ func init() {
 			carapace.ActionExecutables(),
 			carapace.ActionFiles(),
 		).ToA(),
-		"fipso": carapace.ActionFiles(),
+		"fipso":     carapace.ActionFiles(),
 		"importcfg": carapace.ActionFiles(),
 		"libgcc": carapace.Batch(
 			carapace.ActionValues("none"),
