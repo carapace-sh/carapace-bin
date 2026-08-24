@@ -35,6 +35,7 @@ func init() {
 	rootCmd.Flags().BoolS("import_runtime_cgo", "import_runtime_cgo", false, "import runtime/cgo in generated code (default true)")
 	rootCmd.Flags().BoolS("import_syscall", "import_syscall", false, "import syscall in generated code (default true)")
 	rootCmd.Flags().StringS("importpath", "importpath", "", "import path of package being built (for comments in generated files)")
+	rootCmd.Flags().StringS("ldflags", "ldflags", "", "flags to pass to C linker")
 	rootCmd.Flags().StringS("objdir", "objdir", "", "object directory")
 	rootCmd.Flags().StringS("srcdir", "srcdir", "", "source directory")
 	rootCmd.Flags().StringS("trimpath", "trimpath", "", "applies supplied rewrites or trims prefixes to recorded source file paths")

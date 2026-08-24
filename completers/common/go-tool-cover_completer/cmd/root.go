@@ -25,7 +25,7 @@ func init() {
 	rootCmd.Flags().StringS("o", "o", "", "file for output")
 	rootCmd.Flags().StringS("outfilelist", "outfilelist", "", "file containing list of output files (one per line) if -pkgcfg is in use")
 	rootCmd.Flags().StringS("pkgcfg", "pkgcfg", "", "enable full-package instrumentation mode using params from specified config file")
-	rootCmd.Flags().StringS("var", "var", "", "name of coverage variable to generate (default \"GoCover\")")
+	rootCmd.Flags().StringS("var", "var", "", "name of coverage variable to generate")
 
 	rootCmd.MarkFlagsMutuallyExclusive("html", "func", "mode")
 
