@@ -42,12 +42,15 @@ func AddBuildOptions(cmd *cobra.Command) {
 	cmd.Flags().Lookup("emit-llvm-ir").NoOptDefVal = " "
 
 	// Global Compile Options
+	cmd.Flags().String("F", "", "Darwin: add search path for frameworks")
+	cmd.Flags().String("M", "", "Create a module based on the current per-module settings")
 	cmd.Flags().Bool("PIE", false, "Force-enable Position Independent Executable")
 	cmd.Flags().Bool("clang", false, "Force using Clang as the C/C++ compilation backend")
 	cmd.Flags().Bool("data-sections", false, "Places each data in a separate section")
 	cmd.Flags().String("dep", "", "Add an entry to the next module's import table")
 	cmd.Flags().Bool("dll-export-fns", false, "Mark exported functions as DLL exports (Windows)")
 	cmd.Flags().String("error-limit", "", "Set the maximum amount of distinct error values")
+	cmd.Flags().Bool("formatted-panics", false, "Enable formatted safety panics")
 	cmd.Flags().Bool("function-sections", false, "Places each function in a separate section")
 	cmd.Flags().String("libc", "", "Provide a file which specifies libc paths")
 	cmd.Flags().Bool("libllvm", false, "Force using the LLVM API in the codegen backend")
@@ -61,6 +64,7 @@ func AddBuildOptions(cmd *cobra.Command) {
 	cmd.Flags().Bool("no-clang", false, "Prevent using Clang as the C/C++ compilation backend")
 	cmd.Flags().Bool("no-data-sections", false, "All data go into same section")
 	cmd.Flags().Bool("no-dll-export-fns", false, "Force-disable marking exported functions as DLL exports")
+	cmd.Flags().Bool("no-formatted-panics", false, "Disable formatted safety panics")
 	cmd.Flags().Bool("no-function-sections", false, "All functions go into same section")
 	cmd.Flags().Bool("no-libllvm", false, "Prevent using the LLVM API in the codegen backend")
 	cmd.Flags().Bool("no-llvm", false, "Prevent using LLVM as the codegen backend")
@@ -70,6 +74,7 @@ func AddBuildOptions(cmd *cobra.Command) {
 	cmd.Flags().String("reference-trace", "", "Show num lines of reference trace per compile error")
 	cmd.Flags().Bool("structured-cfg", false, "Force SPIR-V kernels to use structured control flow")
 	cmd.Flags().Bool("time-report", false, "Send timing diagnostics to '--listen' clients")
+	cmd.Flags().String("x", "", "Treat subsequent input files as having type <language>")
 
 	cmd.Flags().Lookup("reference-trace").NoOptDefVal = " "
 
@@ -194,6 +199,12 @@ func AddBuildOptions(cmd *cobra.Command) {
 	cmd.Flags().String("needed-framework", "", "Darwin: link against framework (even if unused)")
 	cmd.Flags().StringSlice("needed-library", nil, "Link against system library (even if unused)")
 	cmd.Flags().StringSlice("rpath", nil, "Add directory to the runtime library search path")
+	cmd.Flags().Bool("search-dylibs-first", false, "Search for dynamic libs in all library search paths, then static libs")
+	cmd.Flags().Bool("search-dylibs-only", false, "Only search for dynamic libs")
+	cmd.Flags().Bool("search-path-first", false, "For each library search path, check for dynamic lib then static lib before proceeding to next path")
+	cmd.Flags().Bool("search-path-first-static", false, "For each library search path, check for static lib then dynamic lib before proceeding to next path")
+	cmd.Flags().Bool("search-static-first", false, "Search for static libs in all library search paths, then dynamic libs")
+	cmd.Flags().Bool("search-static-only", false, "Only search for static libs")
 	cmd.Flags().String("weak-framework", "", "Darwin: link against framework and mark it and all referenced symbols as weak")
 	cmd.Flags().StringSlice("weak-library", nil, "Link against system library marking it and all referenced symbols as weak")
 
@@ -247,6 +258,7 @@ func AddBuildOptions(cmd *cobra.Command) {
 		"listen":                  carapace.ActionValues("-"),
 		"lto-mode":                carapace.ActionValues("full", "thin"),
 		"mcmodel":                 carapace.ActionValues("default", "extreme", "kernel", "large", "medany", "medium", "medlow", "medmid", "normal", "small", "tiny"),
+		"mexec-model":             carapace.ActionValues("command", "reactor"),
 		"ofmt":                    carapace.ActionValues("elf", "c", "wasm", "coff", "macho", "spirv", "plan9"),
 		"optimize":                carapace.ActionValues("Debug", "ReleaseFast", "ReleaseSafe", "ReleaseSmall"),
 		"rcincludes":              carapace.ActionValues("any", "msvc", "gnu", "none"),
@@ -256,6 +268,7 @@ func AddBuildOptions(cmd *cobra.Command) {
 		"script":                  carapace.ActionFiles(),
 		"soname":                  carapace.ActionValues(),
 		"sort-section":            carapace.ActionValues("name", "alignment"),
+		"subsystem":               carapace.ActionValues("console", "windows", "posix", "native", "efi_application", "efi_boot_service_driver", "efi_rom", "efi_runtime_driver"),
 		"sysroot":                 carapace.ActionDirectories(),
 		"verbose-llvm-bc":         carapace.ActionFiles(),
 		"verbose-llvm-ir":         carapace.ActionFiles(),
@@ -268,6 +281,7 @@ func AddBuildOptions(cmd *cobra.Command) {
 func AddTestOptions(cmd *cobra.Command) {
 	cmd.Flags().StringSlice("test-cmd", nil, "Specify test execution command one arg at a time")
 	cmd.Flags().Bool("test-cmd-bin", false, "Appends test binary path to test cmd args")
+	cmd.Flags().Bool("test-execve", false, "Runs the test binary with execve if available instead of as a child process")
 	cmd.Flags().String("test-filter", "", "Skip tests that do not match any filter")
 	cmd.Flags().Bool("test-no-exec", false, "Compiles test binary without running it")
 	cmd.Flags().String("test-runner", "", "Specify a custom test runner")
