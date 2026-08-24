@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/git-meta_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -18,4 +19,9 @@ func init() {
 	getCmd.Flags().Bool("json", false, "Output as JSON")
 	getCmd.Flags().Bool("with-authorship", false, "Include authorship info (requires --json)")
 	rootCmd.AddCommand(getCmd)
+
+	carapace.Gen(getCmd).PositionalCompletion(
+		action.ActionTarget(),
+		carapace.ActionValues(),
+	)
 }

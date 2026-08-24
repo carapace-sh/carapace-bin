@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/git-meta_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -19,4 +20,14 @@ func init() {
 	setCmd.Flags().Bool("json", false, "Output as JSON")
 	setCmd.Flags().String("timestamp", "", "Override timestamp (milliseconds since epoch, for imports)")
 	rootCmd.AddCommand(setCmd)
+
+	carapace.Gen(setCmd).PositionalCompletion(
+		action.ActionTarget(),
+		carapace.ActionValues(),
+		carapace.ActionFiles(),
+	)
+
+	carapace.Gen(setCmd).FlagCompletion(carapace.ActionMap{
+		"file": carapace.ActionFiles(),
+	})
 }

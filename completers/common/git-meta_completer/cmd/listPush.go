@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/git-meta_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,10 @@ func init() {
 
 	listPushCmd.Flags().BoolP("help", "h", false, "Print help")
 	rootCmd.AddCommand(listPushCmd)
+
+	carapace.Gen(listPushCmd).PositionalCompletion(
+		action.ActionTarget(),
+		carapace.ActionValues(),
+		carapace.ActionValues(),
+	)
 }
