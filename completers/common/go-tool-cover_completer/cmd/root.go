@@ -38,4 +38,8 @@ func init() {
 		"outfilelist": carapace.ActionFiles(),
 		"pkgcfg":      carapace.ActionFiles(),
 	})
+
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(".go"),
+	)
 }

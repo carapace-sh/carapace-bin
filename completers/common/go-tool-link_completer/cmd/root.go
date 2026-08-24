@@ -117,4 +117,8 @@ func init() {
 		"strictdups": carapace.ActionValuesDescribed("1", "warn", "2", "err"),
 		"tmpdir":     carapace.ActionDirectories(),
 	})
+
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(),
+	)
 }

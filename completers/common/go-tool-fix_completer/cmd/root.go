@@ -58,7 +58,27 @@ func init() {
 	rootCmd.Flags().StringS("tags", "tags", "", "no effect (deprecated)")
 	rootCmd.Flags().BoolS("v", "v", false, "no effect (deprecated)")
 
+	carapace.Gen(rootCmd).PositionalCompletion(
+		carapace.Batch(
+			carapace.ActionValues("help").Tag("help topics"),
+			carapace.ActionFiles().Tag("config files"),
+		).ToA(),
+	)
+
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		carapace.ActionFiles(),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if c.Args[0] == "help" {
+				return carapace.ActionValues(
+					"any", "atomictypes", "buildtag", "embedlit", "errorsastype",
+					"forvar", "hostport", "inline", "mapsloop", "minmax",
+					"newexpr", "omitzero", "plusbuild", "rangeint",
+					"reflecttypefor", "slicesbackward", "slicescontains",
+					"slicessort", "stditerators", "stringsbuilder", "stringscut",
+					"stringscutprefix", "stringsseq", "testingcontext",
+					"unsafefuncs", "waitgroupgo",
+				)
+			}
+			return carapace.ActionFiles()
+		}),
 	)
 }
