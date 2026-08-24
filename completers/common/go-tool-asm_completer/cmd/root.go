@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/golang"
 	"github.com/spf13/cobra"
 )
 
@@ -37,14 +38,7 @@ func init() {
 	rootCmd.Flags().BoolS("v", "v", false, "print debug output")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"D": carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
-			switch len(c.Parts) {
-			case 0:
-				return carapace.ActionValues().Suffix("=")
-			default:
-				return carapace.ActionValues()
-			}
-		}),
+		"D": golang.ActionAsmPredefinedSymbolValues(),
 		"I": carapace.ActionDirectories(),
 		"d": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
