@@ -28,10 +28,7 @@ func init() {
 			"keep", "keep empty commits",
 			"abort", "abort if any commit becomes empty",
 		),
-		"update-refs": carapace.ActionValuesDescribed(
-			"branches", "all local branches will be rewritten",
-			"head", "only the current HEAD reference will be rewritten",
-		),
+		"update-refs": git.ActionUpdateRefsModes(),
 	})
 
 	carapace.Gen(fixupCmd).PositionalCompletion(

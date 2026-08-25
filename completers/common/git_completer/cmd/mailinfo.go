@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
 )
 
@@ -25,10 +26,6 @@ func init() {
 	rootCmd.AddCommand(mailinfoCmd)
 
 	carapace.Gen(mailinfoCmd).FlagCompletion(carapace.ActionMap{
-		"quoted-cr": carapace.ActionValuesDescribed(
-			"nowarn", "Git will do nothing when such a CRLF is found",
-			"warn", "Git will issue a warning for each message if such a CRLF is found",
-			"strip", "Git will convert those CRLF to LF",
-		),
+		"quoted-cr": git.ActionQuotedCrModes(),
 	})
 }

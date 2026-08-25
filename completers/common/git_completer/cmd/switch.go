@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -27,6 +28,7 @@ func init() {
 	switchCmd.Flags().BoolP("merge", "m", false, "perform a 3-way merge with the new branch")
 	switchCmd.Flags().Bool("no-guess", false, "do not second guess 'git switch <no-such-branch>'")
 	switchCmd.Flags().Bool("no-progress", false, "do not force progress reporting")
+	switchCmd.Flags().Bool("no-recurse-submodules", false, "disable recursive updating of submodules")
 	switchCmd.Flags().Bool("no-track", false, "do not set upstream info for new branch")
 	switchCmd.Flags().String("orphan", "", "new unparented branch")
 	switchCmd.Flags().Bool("overwrite-ignore", false, "update ignored files (default)")
@@ -39,10 +41,11 @@ func init() {
 	switchCmd.Flag("recurse-submodules").NoOptDefVal = " "
 
 	carapace.Gen(switchCmd).FlagCompletion(carapace.ActionMap{
-		"conflict":     carapace.ActionValues("merge", "diff3"),
-		"create":       git.ActionRefs(git.RefOption{LocalBranches: true}),
-		"force-create": git.ActionRefs(git.RefOption{LocalBranches: true}),
-		"orphan":       git.ActionRefs(git.RefOption{LocalBranches: true}),
+		"conflict":           carapace.ActionValues("merge", "diff3"),
+		"create":             git.ActionRefs(git.RefOption{LocalBranches: true}),
+		"force-create":       git.ActionRefs(git.RefOption{LocalBranches: true}),
+		"orphan":             git.ActionRefs(git.RefOption{LocalBranches: true}),
+		"recurse-submodules": carapace.ActionValues("yes", "on-demand").StyleF(style.ForKeyword),
 	})
 
 	carapace.Gen(switchCmd).PositionalCompletion(

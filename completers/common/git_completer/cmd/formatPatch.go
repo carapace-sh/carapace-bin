@@ -63,9 +63,13 @@ func init() {
 	rootCmd.AddCommand(formatPatchCmd)
 
 	carapace.Gen(formatPatchCmd).FlagCompletion(carapace.ActionMap{
-		"description-file": carapace.ActionFiles(),
-		"output-directory": carapace.ActionDirectories(),
-		"thread":           carapace.ActionValues("shallow", "deep"),
+		"base":                   git.ActionRefs(git.RefOption{}.Default()),
+		"cover-from-description": carapace.ActionValues("message", "short", "auto"),
+		"description-file":       carapace.ActionFiles(),
+		"interdiff":              git.ActionRefs(git.RefOption{}.Default()),
+		"output-directory":       carapace.ActionDirectories(),
+		"signature-file":         carapace.ActionFiles(),
+		"thread":                 carapace.ActionValues("shallow", "deep"),
 	})
 
 	carapace.Gen(formatPatchCmd).PositionalCompletion(

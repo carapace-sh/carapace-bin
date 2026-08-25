@@ -37,7 +37,14 @@ func init() {
 	amCmd.Flags().Bool("keep-cr", false, "pass --keep-cr flag to git-mailsplit for mbox format")
 	amCmd.Flags().Bool("keep-non-patch", false, "pass -b flag to git-mailinfo")
 	amCmd.Flags().BoolP("message-id", "m", false, "pass -m flag to git-mailinfo")
+	amCmd.Flags().Bool("no-3way", false, "do not fall back on 3way merging")
+	amCmd.Flags().Bool("no-gpg-sign", false, "do not GPG-sign commits")
 	amCmd.Flags().Bool("no-keep-cr", false, "do not pass --keep-cr flag to git-mailsplit independent of am.keepcr")
+	amCmd.Flags().Bool("no-message-id", false, "do not add the Message-ID header to the commit message")
+	amCmd.Flags().Bool("no-rerere-autoupdate", false, "do not update the index with reused conflict resolution")
+	amCmd.Flags().Bool("no-scissors", false, "ignore scissors lines")
+	amCmd.Flags().Bool("no-utf8", false, "pass -n flag to git-mailinfo")
+	amCmd.Flags().Bool("no-verify", false, "skip the pre-applypatch and applypatch-msg hooks")
 	amCmd.Flags().StringS("p", "p", "", "pass it through git-apply")
 	amCmd.Flags().String("patch-format", "", "format the patch(es) are in")
 	amCmd.Flags().BoolP("quiet", "q", false, "be quiet")
@@ -53,6 +60,7 @@ func init() {
 	amCmd.Flags().BoolP("signoff", "s", false, "add a Signed-off-by trailer to the commit message")
 	amCmd.Flags().Bool("skip", false, "skip the current patch")
 	amCmd.Flags().BoolP("utf8", "u", false, "recode into utf8 (default)")
+	amCmd.Flags().Bool("verify", false, "run the pre-applypatch and applypatch-msg hooks")
 	amCmd.Flags().String("whitespace", "", "pass it through git-apply")
 	rootCmd.AddCommand(amCmd)
 
@@ -60,17 +68,13 @@ func init() {
 	amCmd.Flag("show-current-patch").NoOptDefVal = " "
 
 	carapace.Gen(amCmd).FlagCompletion(carapace.ActionMap{
-		"directory":    carapace.ActionDirectories(),
-		"empty":        carapace.ActionValues("stop", "drop", "keep").StyleF(style.ForKeyword),
-		"exclude":      carapace.ActionDirectories(),
-		"gpg-sign":     os.ActionGpgKeyIds(),
-		"include":      carapace.ActionDirectories(),
-		"patch-format": carapace.ActionValues("mbox", "mboxrd", "stgit", "stgit-series", "hg"),
-		"quoted-cr": carapace.ActionValuesDescribed(
-			"nowarn", "Git will do nothing when such a CRLF is found.",
-			"warn", "Git will issue a warning for each message if such a CRLF is found.",
-			"strip", "Git will convert those CRLF to LF.",
-		),
+		"directory":          carapace.ActionDirectories(),
+		"empty":              carapace.ActionValues("stop", "drop", "keep").StyleF(style.ForKeyword),
+		"exclude":            carapace.ActionDirectories(),
+		"gpg-sign":           os.ActionGpgKeyIds(),
+		"include":            carapace.ActionDirectories(),
+		"patch-format":       carapace.ActionValues("mbox", "mboxrd", "stgit", "stgit-series", "hg"),
+		"quoted-cr":          git.ActionQuotedCrModes(),
 		"show-current-patch": carapace.ActionValues("diff", "raw"),
 		"whitespace":         git.ActionWhitespaceModes(),
 	})

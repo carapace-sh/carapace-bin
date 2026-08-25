@@ -19,6 +19,8 @@ func init() {
 
 	rebaseCmd.Flags().StringS("C", "C", "", "passed to 'git apply'")
 	rebaseCmd.Flags().Bool("abort", false, "abort and check out the original branch")
+	rebaseCmd.Flags().Bool("allow-empty", false, "allow commits with no diff to be rebased")
+	rebaseCmd.Flags().Bool("allow-empty-message", false, "allow commits with empty messages to be rebased")
 	rebaseCmd.Flags().Bool("apply", false, "use apply strategies to rebase")
 	rebaseCmd.Flags().Bool("autosquash", false, "move commits that begin with squash!/fixup! under -i")
 	rebaseCmd.Flags().Bool("autostash", false, "automatically stash/stash pop before and after")
@@ -35,9 +37,20 @@ func init() {
 	rebaseCmd.Flags().Bool("ignore-whitespace", false, "passed to 'git am'")
 	rebaseCmd.Flags().BoolP("interactive", "i", false, "let the user edit the list of commits to rebase")
 	rebaseCmd.Flags().Bool("keep-base", false, "use the merge-base of upstream and branch as the current base")
+	rebaseCmd.Flags().Bool("keep-empty", false, "keep commits that become empty")
 	rebaseCmd.Flags().BoolP("merge", "m", false, "use merging strategies to rebase")
+	rebaseCmd.Flags().Bool("no-autosquash", false, "do not move commits that begin with squash!/fixup! under -i")
+	rebaseCmd.Flags().Bool("no-autostash", false, "do not automatically stash/stash pop before and after")
 	rebaseCmd.Flags().Bool("no-ff", false, "cherry-pick all commits, even if unchanged")
+	rebaseCmd.Flags().Bool("no-fork-point", false, "do not use 'merge-base --fork-point' to refine upstream")
+	rebaseCmd.Flags().Bool("no-gpg-sign", false, "do not GPG-sign commits")
+	rebaseCmd.Flags().Bool("no-keep-empty", false, "do not keep commits that become empty")
+	rebaseCmd.Flags().Bool("no-reapply-cherry-picks", false, "do not apply changes already present upstream")
+	rebaseCmd.Flags().Bool("no-rebase-merges", false, "do not try to rebase merges")
+	rebaseCmd.Flags().Bool("no-rerere-autoupdate", false, "do not update the index with reused conflict resolution")
+	rebaseCmd.Flags().Bool("no-reschedule-failed-exec", false, "do not automatically re-schedule any `exec` that fails")
 	rebaseCmd.Flags().BoolP("no-stat", "n", false, "do not show diffstat of what changed upstream")
+	rebaseCmd.Flags().Bool("no-update-refs", false, "do not update branches that point to commits that are being rebased")
 	rebaseCmd.Flags().Bool("no-verify", false, "allow pre-rebase hook to run")
 	rebaseCmd.Flags().String("onto", "", "rebase onto given branch instead of upstream")
 	rebaseCmd.Flags().BoolP("quiet", "q", false, "be quiet. implies --no-stat")
@@ -66,6 +79,7 @@ func init() {
 
 	carapace.Gen(rebaseCmd).FlagCompletion(carapace.ActionMap{
 		"empty":         carapace.ActionValues("drop", "keep", "ask"),
+		"exec":          carapace.ActionFiles(),
 		"gpg-sign":      os.ActionGpgKeyIds(),
 		"onto":          git.ActionRefs(git.RefOption{}.Default()),
 		"rebase-merges": carapace.ActionValues("rebase-cousins", "no-rebase-cousins"),
@@ -73,6 +87,7 @@ func init() {
 		"strategy-option": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return git.ActionMergeStrategyOptions(rebaseCmd.Flag("strategy").Value.String())
 		}),
+		"trailer":    git.ActionTrailers(),
 		"whitespace": git.ActionWhitespaceModes(),
 	})
 

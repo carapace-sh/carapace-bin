@@ -2,7 +2,9 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/time"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -32,6 +34,9 @@ func init() {
 	cloneCmd.Flags().BoolP("no-checkout", "n", false, "don't create a checkout")
 	cloneCmd.Flags().Bool("no-hardlinks", false, "don't use local hardlinks, always copy")
 	cloneCmd.Flags().Bool("no-local", false, "override --local, as if file:/// URL was given")
+	cloneCmd.Flags().Bool("no-reject-shallow", false, "do not reject shallow repository")
+	cloneCmd.Flags().Bool("no-remote-submodules", false, "do not use remote-tracking branch for submodules")
+	cloneCmd.Flags().Bool("no-shallow-submodules", false, "do not clone submodules as shallow")
 	cloneCmd.Flags().Bool("no-single-branch", false, "clone history leading up to each branch")
 	cloneCmd.Flags().Bool("no-tags", false, "don't clone any tags, and make later fetches not to follow them")
 	cloneCmd.Flags().StringP("origin", "o", "", "use <name> instead of 'origin' to track upstream")
@@ -69,12 +74,27 @@ func init() {
 			}
 			return carapace.ActionValues()
 		}),
-		"filter":           git.ActionObjectFilters(),
-		"ref-format":       carapace.ActionValues("files", "flat", "tree"),
-		"revision":         git.ActionRefs(git.RefOption{}.Default()),
-		"separate-git-dir": carapace.ActionFiles(),
-		"server-option":    carapace.ActionValues(),
-		"template":         carapace.ActionDirectories(),
+		"config": carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return git.ActionConfigs().NoSpace()
+			default:
+				return git.ActionConfigValues(c.Parts[0])
+			}
+		}).UniqueList(" "),
+		"filter":             git.ActionObjectFilters(),
+		"recurse-submodules": carapace.ActionValues("yes", "on-demand").StyleF(style.ForKeyword),
+		"recursive":          carapace.ActionValues("yes", "on-demand").StyleF(style.ForKeyword),
+		"ref-format":         carapace.ActionValues("files", "flat", "tree"),
+		"reference":          carapace.ActionDirectories(),
+		"reference-if-able":  carapace.ActionDirectories(),
+		"revision":           git.ActionRefs(git.RefOption{}.Default()),
+		"separate-git-dir":   carapace.ActionFiles(),
+		"server-option":      carapace.ActionValues(),
+		"shallow-exclude":    git.ActionRefs(git.RefOption{}.Default()),
+		"shallow-since":      time.ActionDate(),
+		"template":           carapace.ActionDirectories(),
+		"upload-pack":        carapace.ActionFiles(),
 	})
 
 	carapace.Gen(cloneCmd).PositionalCompletion(

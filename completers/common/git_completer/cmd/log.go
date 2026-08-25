@@ -55,12 +55,9 @@ func init() {
 	logCmd.Flag("decorate").NoOptDefVal = "short"
 
 	carapace.Gen(logCmd).FlagCompletion(carapace.ActionMap{
-		"decorate": carapace.ActionValuesDescribed(
-			"short", "do not print ref prefixes",
-			"full", "print ref prefixes",
-			"auto", "short format when output to terminal",
-			"no", "no decoration",
-		),
+		"decorate":              git.ActionDecorateModes(),
+		"decorate-refs":         git.ActionRefs(git.RefOption{}.Default()),
+		"decorate-refs-exclude": git.ActionRefs(git.RefOption{}.Default()),
 		"diff-merges": carapace.ActionValuesDescribed(
 			"off", "Disable output of diffs for merge commits.",
 			"none", "Disable output of diffs for merge commits.",
@@ -76,6 +73,7 @@ func init() {
 			"dense-combined", "With this option the output produced by --diff-merges=combined is further compressed.",
 			"cc", "With this option the output produced by --diff-merges=combined is further compressed.",
 		),
+		"notes": git.ActionRefs(git.RefOption{}.Default()),
 	})
 
 	carapace.Gen(logCmd).PositionalAnyCompletion(

@@ -40,6 +40,7 @@ func init() {
 
 	carapace.Gen(catFileCmd).FlagCompletion(carapace.ActionMap{
 		"filter": git.ActionObjectFilters(),
+		"path":   carapace.ActionFiles(),
 	})
 	carapace.Gen(catFileCmd).PositionalCompletion(
 		carapace.ActionValues("blob", "tree", "commit", "tag"),

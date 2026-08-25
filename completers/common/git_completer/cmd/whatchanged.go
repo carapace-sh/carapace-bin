@@ -37,12 +37,7 @@ func init() {
 	whatchangedCmd.Flag("decorate").NoOptDefVal = "short"
 
 	carapace.Gen(whatchangedCmd).FlagCompletion(carapace.ActionMap{
-		"decorate": carapace.ActionValuesDescribed(
-			"short", "do not print ref prefixes",
-			"full", "print ref prefixes",
-			"auto", "short format when output to terminal",
-			"no", "no decoration",
-		),
+		"decorate": git.ActionDecorateModes(),
 	})
 
 	carapace.Gen(whatchangedCmd).PositionalAnyCompletion(

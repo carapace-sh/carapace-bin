@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/time"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
@@ -33,11 +34,16 @@ func init() {
 	fetchCmd.Flags().BoolP("keep", "k", false, "keep downloaded pack")
 	fetchCmd.Flags().BoolP("multiple", "m", false, "fetch from multiple remotes")
 	fetchCmd.Flags().Bool("negotiate-only", false, "do not fetch anything from the server")
+	fetchCmd.Flags().StringArray("negotiation-include", nil, "ensure that the commits at the given tips are always sent as \"have\" lines during fetch negotiation")
+	fetchCmd.Flags().StringArray("negotiation-restrict", nil, "report only commits reachable from the given tips as \"have\" lines during fetch negotiation")
 	fetchCmd.Flags().StringArray("negotiation-tip", nil, "report that we have only objects reachable from this object")
+	fetchCmd.Flags().Bool("no-all", false, "do not fetch from all remotes")
 	fetchCmd.Flags().Bool("no-auto-gc", false, "do not run git maintenance run --auto at the end")
 	fetchCmd.Flags().Bool("no-auto-maintenance", false, "do not run git maintenance run --auto at the end")
 	fetchCmd.Flags().Bool("no-recurse-submodules", false, "disable recursive fetching of submodules")
+	fetchCmd.Flags().Bool("no-show-forced-updates", false, "do not check if a branch is force-updated during fetch")
 	fetchCmd.Flags().BoolP("no-tags", "n", false, "disable automatic tag following")
+	fetchCmd.Flags().Bool("no-write-commit-graph", false, "do not write a commit-graph after fetching")
 	fetchCmd.Flags().Bool("no-write-fetch-head", false, "do not write the list of remote refs fetched")
 	fetchCmd.Flags().Bool("porcelain", false, "produce machine-readable output")
 	fetchCmd.Flags().Bool("prefetch", false, "place all refs into the refs/prefetch/ namespace")
@@ -69,8 +75,14 @@ func init() {
 
 	carapace.Gen(fetchCmd).FlagCompletion(carapace.ActionMap{
 		"filter":                     git.ActionObjectFilters(),
+		"negotiation-include":        git.ActionRefs(git.RefOption{}.Default()),
+		"negotiation-restrict":       git.ActionRefs(git.RefOption{}.Default()),
+		"negotiation-tip":            git.ActionRefs(git.RefOption{}.Default()),
 		"recurse-submodules":         carapace.ActionValues("yes", "on-demand").StyleF(style.ForKeyword),
 		"recurse-submodules-default": carapace.ActionValues("yes", "on-demand").StyleF(style.ForKeyword),
+		"shallow-exclude":            git.ActionRefs(git.RefOption{}.Default()),
+		"shallow-since":              time.ActionDate(),
+		"upload-pack":                carapace.ActionFiles(),
 	})
 
 	carapace.Gen(fetchCmd).PositionalAnyCompletion(
