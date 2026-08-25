@@ -21,10 +21,7 @@ func init() {
 	historyCmd.AddCommand(rewordCmd)
 
 	carapace.Gen(rewordCmd).FlagCompletion(carapace.ActionMap{
-		"update-refs": carapace.ActionValuesDescribed(
-			"branches", "all local branches will be rewritten",
-			"head", "only the current HEAD reference will be rewritten",
-		),
+		"update-refs": git.ActionUpdateRefsModes(),
 	})
 
 	carapace.Gen(rewordCmd).PositionalCompletion(

@@ -39,12 +39,7 @@ func init() {
 	showCmd.Flag("decorate").NoOptDefVal = "short"
 
 	carapace.Gen(showCmd).FlagCompletion(carapace.ActionMap{
-		"decorate": carapace.ActionValuesDescribed(
-			"short", "do not print ref prefixes",
-			"full", "print ref prefixes",
-			"auto", "short format when output to terminal",
-			"no", "no decoration",
-		),
+		"decorate":              git.ActionDecorateModes(),
 		"decorate-refs":         git.ActionRefs(git.RefOption{}.Default()),
 		"decorate-refs-exclude": git.ActionRefs(git.RefOption{}.Default()),
 	})

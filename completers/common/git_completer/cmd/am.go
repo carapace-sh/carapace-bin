@@ -68,17 +68,13 @@ func init() {
 	amCmd.Flag("show-current-patch").NoOptDefVal = " "
 
 	carapace.Gen(amCmd).FlagCompletion(carapace.ActionMap{
-		"directory":    carapace.ActionDirectories(),
-		"empty":        carapace.ActionValues("stop", "drop", "keep").StyleF(style.ForKeyword),
-		"exclude":      carapace.ActionDirectories(),
-		"gpg-sign":     os.ActionGpgKeyIds(),
-		"include":      carapace.ActionDirectories(),
-		"patch-format": carapace.ActionValues("mbox", "mboxrd", "stgit", "stgit-series", "hg"),
-		"quoted-cr": carapace.ActionValuesDescribed(
-			"nowarn", "Git will do nothing when such a CRLF is found.",
-			"warn", "Git will issue a warning for each message if such a CRLF is found.",
-			"strip", "Git will convert those CRLF to LF.",
-		),
+		"directory":          carapace.ActionDirectories(),
+		"empty":              carapace.ActionValues("stop", "drop", "keep").StyleF(style.ForKeyword),
+		"exclude":            carapace.ActionDirectories(),
+		"gpg-sign":           os.ActionGpgKeyIds(),
+		"include":            carapace.ActionDirectories(),
+		"patch-format":       carapace.ActionValues("mbox", "mboxrd", "stgit", "stgit-series", "hg"),
+		"quoted-cr":          git.ActionQuotedCrModes(),
 		"show-current-patch": carapace.ActionValues("diff", "raw"),
 		"whitespace":         git.ActionWhitespaceModes(),
 	})

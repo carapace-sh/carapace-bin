@@ -21,17 +21,6 @@ func AddPrettyFlags(cmd *cobra.Command) {
 		"encoding": text.ActionEncodings(),
 		"format":   git.ActionPrettyFormats(),
 		"notes":    git.ActionRefs(git.RefOption{}.Default()),
-		"pretty": carapace.ActionValues(
-			"email",
-			"format:",
-			"full",
-			"fuller",
-			"medium",
-			"oneline",
-			"raw",
-			"reference",
-			"short",
-			"tformat:",
-		), // TODO format: and tformat:
+		"pretty":   git.ActionPrettyFormats(),
 	})
 }

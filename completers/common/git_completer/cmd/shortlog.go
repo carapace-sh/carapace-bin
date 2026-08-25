@@ -99,7 +99,7 @@ func init() {
 				return carapace.ActionValues()
 			}
 		}),
-		"pretty": carapace.ActionValues("oneline", "short", "medium", "full", "fuller", "reference", "email", "raw", "format:"),
+		"pretty": git.ActionPrettyFormats(),
 		"since":  time.ActionDate(),
 		"until":  time.ActionDate(),
 	})

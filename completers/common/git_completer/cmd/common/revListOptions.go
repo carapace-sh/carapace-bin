@@ -191,8 +191,8 @@ func AddCommitFormattingOptions(cmd *cobra.Command) {
 		),
 		"encoding":          text.ActionEncodings(),
 		"expand-tabs":       carapace.ActionValues(), // TODO
-		"format":            carapace.ActionValues("oneline", "short", "medium", "full", "fuller", "reference", "email", "raw", "format:"),
-		"pretty":            carapace.ActionValues("oneline", "short", "medium", "full", "fuller", "reference", "email", "raw", "format:"),
+		"format":            git.ActionPrettyFormats(),
+		"pretty":            git.ActionPrettyFormats(),
 		"show-linear-break": carapace.ActionValues(), // TODO
 	})
 }
