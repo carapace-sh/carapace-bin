@@ -32,8 +32,10 @@ func init() {
 	pushCmd.Flags().BoolP("ipv4", "4", false, "use IPv4 addresses only")
 	pushCmd.Flags().BoolP("ipv6", "6", false, "use IPv6 addresses only")
 	pushCmd.Flags().Bool("mirror", false, "mirror all refs")
+	pushCmd.Flags().Bool("no-atomic", false, "do not request atomic transaction on remote side")
 	pushCmd.Flags().Bool("no-force-if-includes", false, "do not require remote updates to be integrated locally")
 	pushCmd.Flags().Bool("no-force-with-lease", false, "cancel all previous force-with-lease specifications")
+	pushCmd.Flags().Bool("no-recurse-submodules", false, "disable recursive pushing of submodules")
 	pushCmd.Flags().Bool("no-signed", false, "do not GPG sign the push")
 	pushCmd.Flags().Bool("no-thin", false, "do not use thin pack")
 	pushCmd.Flags().Bool("no-verify", false, "bypass pre-push hook")
@@ -50,6 +52,7 @@ func init() {
 	pushCmd.Flags().Bool("tags", false, "push tags (can't be used with --all or --mirror)")
 	pushCmd.Flags().Bool("thin", false, "use thin pack")
 	pushCmd.Flags().BoolP("verbose", "v", false, "be more verbose")
+	pushCmd.Flags().Bool("verify", false, "run the pre-push hook")
 	rootCmd.AddCommand(pushCmd)
 
 	pushCmd.Flag("force-with-lease").NoOptDefVal = " "

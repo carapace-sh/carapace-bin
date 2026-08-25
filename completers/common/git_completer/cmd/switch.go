@@ -27,6 +27,7 @@ func init() {
 	switchCmd.Flags().BoolP("merge", "m", false, "perform a 3-way merge with the new branch")
 	switchCmd.Flags().Bool("no-guess", false, "do not second guess 'git switch <no-such-branch>'")
 	switchCmd.Flags().Bool("no-progress", false, "do not force progress reporting")
+	switchCmd.Flags().Bool("no-recurse-submodules", false, "disable recursive updating of submodules")
 	switchCmd.Flags().Bool("no-track", false, "do not set upstream info for new branch")
 	switchCmd.Flags().String("orphan", "", "new unparented branch")
 	switchCmd.Flags().Bool("overwrite-ignore", false, "update ignored files (default)")

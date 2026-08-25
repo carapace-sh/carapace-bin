@@ -63,6 +63,7 @@ func init() {
 	commitCmd.Flags().StringSlice("trailer", nil, "add custom trailer(s)")
 	commitCmd.Flags().StringP("untracked-files", "u", "", "show untracked files")
 	commitCmd.Flags().BoolP("verbose", "v", false, "show diff in commit message template")
+	commitCmd.Flags().Bool("verify", false, "run pre-commit and commit-msg hooks")
 	common.AddPatchContextFlags(commitCmd)
 	rootCmd.AddCommand(commitCmd)
 

@@ -38,6 +38,7 @@ func init() {
 	branchCmd.Flags().Bool("no-color", false, "turn off branch colors, even when the configuration file gives the default to color output")
 	branchCmd.Flags().Bool("no-column", false, "do not display branch listing in columns")
 	branchCmd.Flags().String("no-contains", "", "only list branches which don't contain the specified commit (HEAD if not specified)")
+	branchCmd.Flags().Bool("no-create-reflog", false, "do not create the branch's reflog")
 	branchCmd.Flags().String("no-merged", "", "only list branches whose tips are not reachable from the specified commit (HEAD if not specified)")
 	branchCmd.Flags().Bool("no-track", false, "do not set up upstream configuration, even if branch.autoSetupMerge is true")
 	branchCmd.Flags().Bool("omit-empty", false, "do not print a newline after formatted refs")

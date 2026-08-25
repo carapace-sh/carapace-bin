@@ -44,6 +44,7 @@ func init() {
 	mergeCmd.Flags().Bool("no-signoff", false, "countermand an earlier --signoff")
 	mergeCmd.Flags().Bool("no-squash", false, "perform the merge and commit the result")
 	mergeCmd.Flags().BoolP("no-stat", "n", false, "do not show a diffstat at the end of the merge")
+	mergeCmd.Flags().Bool("no-summary", false, "do not show a summary of what was merged")
 	mergeCmd.Flags().Bool("no-verify", false, "bypass pre-merge-commit and commit-msg hooks")
 	mergeCmd.Flags().Bool("no-verify-signatures", false, "do not verify signatures")
 	mergeCmd.Flags().Bool("overwrite-ignore", false, "update ignored files (default)")
@@ -58,6 +59,7 @@ func init() {
 	mergeCmd.Flags().StringP("strategy-option", "X", "", "option for selected merge strategy")
 	mergeCmd.Flags().Bool("summary", false, "(synonym to --stat)")
 	mergeCmd.Flags().BoolP("verbose", "v", false, "be more verbose")
+	mergeCmd.Flags().Bool("verify", false, "run pre-merge-commit and commit-msg hooks")
 	mergeCmd.Flags().Bool("verify-signatures", false, "verify that the named commit has a valid GPG signature")
 	rootCmd.AddCommand(mergeCmd)
 

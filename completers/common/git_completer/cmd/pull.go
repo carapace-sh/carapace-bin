@@ -22,6 +22,7 @@ func init() {
 	pullCmd.Flags().Bool("all", false, "fetch from all remotes")
 	pullCmd.Flags().Bool("allow-unrelated-histories", false, "allow merging unrelated histories")
 	pullCmd.Flags().BoolP("append", "a", false, "append to .git/FETCH_HEAD instead of overwriting")
+	pullCmd.Flags().Bool("atomic", false, "use an atomic transaction to update local refs")
 	pullCmd.Flags().Bool("autostash", false, "automatically stash/stash pop before and after")
 	pullCmd.Flags().String("cleanup", "", "how to strip spaces and #comments from message")
 	pullCmd.Flags().Bool("commit", false, "perform a commit if the merge succeeds (default)")
@@ -32,6 +33,7 @@ func init() {
 	pullCmd.Flags().Bool("edit", false, "edit message before committing")
 	pullCmd.Flags().Bool("ff", false, "allow fast-forward")
 	pullCmd.Flags().Bool("ff-only", false, "abort if fast-forward is not possible")
+	pullCmd.Flags().StringArray("filter", nil, "object filtering")
 	pullCmd.Flags().BoolP("force", "f", false, "force overwrite of local branch")
 	pullCmd.Flags().StringP("gpg-sign", "S", "", "GPG-sign commits")
 	pullCmd.Flags().BoolP("ipv4", "4", false, "use IPv4 addresses only")
@@ -40,7 +42,12 @@ func init() {
 	pullCmd.Flags().BoolP("keep", "k", false, "keep downloaded pack")
 	pullCmd.Flags().String("log", "", "add (at most <n>) entries from shortlog to merge commit message")
 	pullCmd.Flags().BoolS("n", "n", false, "do not show a diffstat at the end of the merge")
+	pullCmd.Flags().Bool("negotiate-only", false, "do not fetch anything from the server")
+	pullCmd.Flags().StringArray("negotiation-include", nil, "ensure that the commits at the given tips are always sent as \"have\" lines during fetch negotiation")
+	pullCmd.Flags().StringArray("negotiation-restrict", nil, "report only commits reachable from the given tips as \"have\" lines during fetch negotiation")
 	pullCmd.Flags().StringArray("negotiation-tip", nil, "report that we have only objects reachable from this object")
+	pullCmd.Flags().Bool("no-all", false, "do not fetch from all remotes")
+	pullCmd.Flags().Bool("no-autostash", false, "do not automatically stash/stash pop before and after")
 	pullCmd.Flags().Bool("no-commit", false, "perform the merge but do not commit the result")
 	pullCmd.Flags().Bool("no-edit", false, "don't open an editor to change the commit message")
 	pullCmd.Flags().Bool("no-ff", false, "generate a merge commit even if the merge resol") // TODO
@@ -48,10 +55,16 @@ func init() {
 	pullCmd.Flags().Bool("no-log", false, "do not list one-line descriptions of the commit")
 	pullCmd.Flags().Bool("no-rebase", false, "do not perform a rebase after fetching")
 	pullCmd.Flags().Bool("no-recurse-submodules", false, "disable recursive fetching of submodules")
+	pullCmd.Flags().Bool("no-show-forced-updates", false, "do not check if a branch is force-updated during fetch")
+	pullCmd.Flags().Bool("no-signoff", false, "do not add a Signed-off-by: line")
 	pullCmd.Flags().Bool("no-squash", false, "merge and commit")
 	pullCmd.Flags().Bool("no-stat", false, "do not show diffstat at the end of the merge")
+	pullCmd.Flags().Bool("no-summary", false, "do not show a summary of what was merged")
 	pullCmd.Flags().Bool("no-tags", false, "disable automatic tag following")
+	pullCmd.Flags().Bool("no-verify", false, "do not verify pre-merge-commit and commit-msg hooks")
 	pullCmd.Flags().Bool("no-verify-signatures", false, "do not verify the commits being merged")
+	pullCmd.Flags().Bool("porcelain", false, "produce machine-readable output")
+	pullCmd.Flags().Bool("prefetch", false, "place all refs into the refs/prefetch/ namespace")
 	pullCmd.Flags().Bool("progress", false, "force progress reporting")
 	pullCmd.Flags().BoolP("prune", "p", false, "prune remote-tracking branches no longer on remote")
 	pullCmd.Flags().BoolP("quiet", "q", false, "be more quiet")
@@ -70,6 +83,7 @@ func init() {
 	pullCmd.Flags().StringArrayP("strategy", "s", nil, "merge strategy to use")
 	pullCmd.Flags().StringP("strategy-option", "X", "", "option for selected merge strategy")
 	pullCmd.Flags().Bool("submodule-prefix", false, "prepend <path> to paths printed in informative")
+	pullCmd.Flags().Bool("summary", false, "show a summary of what was merged")
 	pullCmd.Flags().BoolP("tags", "t", false, "fetch all tags and associated objects")
 	pullCmd.Flags().Bool("unshallow", false, "convert to a complete repository")
 	pullCmd.Flags().BoolP("update-head-ok", "u", false, "allow updates of current branch head")
@@ -84,6 +98,7 @@ func init() {
 
 	carapace.Gen(pullCmd).FlagCompletion(carapace.ActionMap{
 		"cleanup":         git.ActionCleanupModes(),
+		"filter":          git.ActionObjectFilters(),
 		"gpg-sign":        os.ActionGpgKeyIds(),
 		"negotiation-tip": git.ActionRefs(git.RefOption{}.Default()), // TODO refs ok here?
 		"rebase": carapace.ActionValuesDescribed(
