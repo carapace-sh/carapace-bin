@@ -26,5 +26,5 @@ func ActionModels() carapace.Action {
 			}
 		}
 		return carapace.ActionValuesDescribed(vals...)
-	})
+	}).Tag("models")
 }

@@ -24,5 +24,5 @@ func ActionPackages() carapace.Action {
 			}
 		}
 		return carapace.ActionValues(vals...)
-	})
+	}).Tag("packages")
 }

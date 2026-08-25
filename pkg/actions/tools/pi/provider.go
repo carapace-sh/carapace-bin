@@ -24,5 +24,5 @@ func ActionProviders() carapace.Action {
 		"openrouter", "OpenRouter",
 		"ollama", "Ollama",
 		"llamacpp", "llama.cpp",
-	)
+	).Tag("providers")
 }

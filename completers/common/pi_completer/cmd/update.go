@@ -25,11 +25,9 @@ func init() {
 	rootCmd.AddCommand(updateCmd)
 
 	carapace.Gen(updateCmd).PositionalCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return carapace.Batch(
-				carapace.ActionValues("self", "pi"),
-				pi.ActionPackages(),
-			).Invoke(c).Merge().ToA()
-		}),
+		carapace.Batch(
+			carapace.ActionValues("self", "pi"),
+			pi.ActionPackages(),
+		).ToA(),
 	)
 }
