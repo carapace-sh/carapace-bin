@@ -61,9 +61,10 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"append-system-prompt": carapace.ActionFiles(),
-		"export":               carapace.ActionFiles(),
-		"extension":            carapace.ActionFiles(),
-		"fork":                 carapace.ActionFiles(),
+		"exclude-tools":       pi.ActionTools(),
+		"export":              carapace.ActionFiles(),
+		"extension":           carapace.ActionFiles(),
+		"fork":                pi.ActionSessions(),
 		"list-models":         pi.ActionModels(),
 		"mode": carapace.ActionValues(
 			"text",
@@ -74,7 +75,7 @@ func init() {
 		"models":              pi.ActionModels(),
 		"prompt-template": carapace.ActionFiles(),
 		"provider":        pi.ActionProviders(),
-		"session":         carapace.ActionFiles(),
+		"session":         pi.ActionSessions(),
 		"session-dir":     carapace.ActionDirectories(),
 		"skill":           carapace.ActionFiles(),
 		"theme":           carapace.ActionFiles(),
@@ -87,6 +88,7 @@ func init() {
 			"xhigh",
 			"max",
 		),
+		"tools":     pi.ActionTools(),
 		"tui-mode": carapace.ActionValues(
 			"regular",
 			"fullscreen",
