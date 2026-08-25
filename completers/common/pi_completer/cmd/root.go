@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "pi",
 	Short: "AI coding agent",
+	Long:  "https://pi.dev/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
