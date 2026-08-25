@@ -15,6 +15,6 @@ func init() {
 	carapace.Gen(installCmd).Standalone()
 	installCmd.Flags().BoolP("approve", "a", false, "Trust project-local files for this command")
 	installCmd.Flags().BoolP("local", "l", false, "Install project-locally (.pi/settings.json)")
-	installCmd.Flags().Bool("no-approve", false, "Ignore project-local files for this command")
+	installCmd.Flags().BoolP("no-approve", "na", false, "Ignore project-local files for this command")
 	rootCmd.AddCommand(installCmd)
 }

@@ -15,6 +15,6 @@ func init() {
 	carapace.Gen(configCmd).Standalone()
 	configCmd.Flags().BoolP("approve", "a", false, "Trust project-local files for this command")
 	configCmd.Flags().BoolP("local", "l", false, "Edit project overrides (.pi/settings.json)")
-	configCmd.Flags().Bool("no-approve", false, "Ignore project-local files for this command")
+	configCmd.Flags().BoolP("no-approve", "na", false, "Ignore project-local files for this command")
 	rootCmd.AddCommand(configCmd)
 }

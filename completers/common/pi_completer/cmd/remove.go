@@ -17,7 +17,7 @@ func init() {
 	carapace.Gen(removeCmd).Standalone()
 	removeCmd.Flags().BoolP("approve", "a", false, "Trust project-local files for this command")
 	removeCmd.Flags().BoolP("local", "l", false, "Remove from project settings (.pi/settings.json)")
-	removeCmd.Flags().Bool("no-approve", false, "Ignore project-local files for this command")
+	removeCmd.Flags().BoolP("no-approve", "na", false, "Ignore project-local files for this command")
 	rootCmd.AddCommand(removeCmd)
 
 	carapace.Gen(removeCmd).PositionalAnyCompletion(

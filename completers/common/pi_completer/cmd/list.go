@@ -14,6 +14,6 @@ var listCmd = &cobra.Command{
 func init() {
 	carapace.Gen(listCmd).Standalone()
 	listCmd.Flags().BoolP("approve", "a", false, "Trust project-local files for this command")
-	listCmd.Flags().Bool("no-approve", false, "Ignore project-local files for this command")
+	listCmd.Flags().BoolP("no-approve", "na", false, "Ignore project-local files for this command")
 	rootCmd.AddCommand(listCmd)
 }

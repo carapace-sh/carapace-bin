@@ -20,7 +20,7 @@ func init() {
 	updateCmd.Flags().Bool("extensions", false, "Update installed packages only")
 	updateCmd.Flags().Bool("force", false, "Reinstall pi even if the current version is latest")
 	updateCmd.Flags().Bool("models", false, "Refresh model catalogs only")
-	updateCmd.Flags().Bool("no-approve", false, "Ignore project-local files for this command")
+	updateCmd.Flags().BoolP("no-approve", "na", false, "Ignore project-local files for this command")
 	updateCmd.Flags().Bool("self", false, "Update pi only")
 	rootCmd.AddCommand(updateCmd)
 
