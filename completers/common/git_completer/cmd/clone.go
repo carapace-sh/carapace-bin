@@ -2,7 +2,9 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/time"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -72,12 +74,27 @@ func init() {
 			}
 			return carapace.ActionValues()
 		}),
-		"filter":           git.ActionObjectFilters(),
-		"ref-format":       carapace.ActionValues("files", "flat", "tree"),
-		"revision":         git.ActionRefs(git.RefOption{}.Default()),
-		"separate-git-dir": carapace.ActionFiles(),
-		"server-option":    carapace.ActionValues(),
-		"template":         carapace.ActionDirectories(),
+		"config": carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return git.ActionConfigs().NoSpace()
+			default:
+				return carapace.ActionValues()
+			}
+		}).UniqueList(" "),
+		"filter":             git.ActionObjectFilters(),
+		"recurse-submodules": carapace.ActionValues("yes", "on-demand").StyleF(style.ForKeyword),
+		"recursive":          carapace.ActionValues("yes", "on-demand").StyleF(style.ForKeyword),
+		"ref-format":         carapace.ActionValues("files", "flat", "tree"),
+		"reference":          carapace.ActionDirectories(),
+		"reference-if-able":  carapace.ActionDirectories(),
+		"revision":           git.ActionRefs(git.RefOption{}.Default()),
+		"separate-git-dir":   carapace.ActionFiles(),
+		"server-option":      carapace.ActionValues(),
+		"shallow-exclude":    git.ActionRefs(git.RefOption{}.Default()),
+		"shallow-since":      time.ActionDate(),
+		"template":           carapace.ActionDirectories(),
+		"upload-pack":        carapace.ActionFiles(),
 	})
 
 	carapace.Gen(cloneCmd).PositionalCompletion(

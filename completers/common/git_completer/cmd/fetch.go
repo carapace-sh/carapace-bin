@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/time"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
@@ -74,8 +75,14 @@ func init() {
 
 	carapace.Gen(fetchCmd).FlagCompletion(carapace.ActionMap{
 		"filter":                     git.ActionObjectFilters(),
+		"negotiation-include":        git.ActionRefs(git.RefOption{}.Default()),
+		"negotiation-restrict":       git.ActionRefs(git.RefOption{}.Default()),
+		"negotiation-tip":            git.ActionRefs(git.RefOption{}.Default()),
 		"recurse-submodules":         carapace.ActionValues("yes", "on-demand").StyleF(style.ForKeyword),
 		"recurse-submodules-default": carapace.ActionValues("yes", "on-demand").StyleF(style.ForKeyword),
+		"shallow-exclude":            git.ActionRefs(git.RefOption{}.Default()),
+		"shallow-since":              time.ActionDate(),
+		"upload-pack":                carapace.ActionFiles(),
 	})
 
 	carapace.Gen(fetchCmd).PositionalAnyCompletion(

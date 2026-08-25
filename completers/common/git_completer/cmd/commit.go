@@ -4,6 +4,7 @@ import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/git_completer/cmd/common"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/time"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/carapace-sh/carapace/pkg/style"
@@ -71,7 +72,9 @@ func init() {
 	commitCmd.Flag("untracked-files").NoOptDefVal = " "
 
 	carapace.Gen(commitCmd).FlagCompletion(carapace.ActionMap{
+		"author":             git.ActionAuthors(),
 		"cleanup":            git.ActionCleanupModes(),
+		"date":               time.ActionDate(),
 		"file":               carapace.ActionFiles(),
 		"fixup":              git.ActionRefs(git.RefOption{}.Default()),
 		"gpg-sign":           os.ActionGpgKeyIds(),

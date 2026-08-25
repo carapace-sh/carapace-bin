@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
 )
 
@@ -33,11 +34,14 @@ func init() {
 	)
 
 	carapace.Gen(replaceCmd).FlagCompletion(carapace.ActionMap{
+		"edit": git.ActionRefs(git.RefOption{}.Default()),
 		"format": carapace.ActionValuesDescribed(
 			"short", "<replaced sha1>",
 			"medium", "<replaced sha1> → <replacement sha1>",
 			"long", "<replaced sha1> (<replaced type>) → <replacement sha1> (<replacement type>)",
 		),
+		"graft": git.ActionRefs(git.RefOption{}.Default()),
+		"list":  git.ActionRefs(git.RefOption{}.Default()),
 	})
 
 	// TODO positional completion

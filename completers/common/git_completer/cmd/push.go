@@ -60,6 +60,7 @@ func init() {
 	pushCmd.MarkFlagsMutuallyExclusive("set-upstream", "delete")
 
 	carapace.Gen(pushCmd).FlagCompletion(carapace.ActionMap{
+		"exec": carapace.ActionFiles(),
 		"force-with-lease": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0, 1:
@@ -68,8 +69,11 @@ func init() {
 				return carapace.ActionValues()
 			}
 		}),
-		"push-option": git.ActionPushOptions(),
-		"signed":      carapace.ActionValues("yes", "no", "if-asked").StyleF(style.ForKeyword),
+		"push-option":        git.ActionPushOptions(),
+		"receive-pack":       carapace.ActionFiles(),
+		"recurse-submodules": carapace.ActionValues("check", "on-demand", "only", "no").StyleF(style.ForKeyword),
+		"repo":               git.ActionRemotes(),
+		"signed":             carapace.ActionValues("yes", "no", "if-asked").StyleF(style.ForKeyword),
 	})
 
 	carapace.Gen(pushCmd).PositionalCompletion(

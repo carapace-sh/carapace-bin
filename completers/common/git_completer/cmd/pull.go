@@ -97,10 +97,12 @@ func init() {
 	pullCmd.Flag("gpg-sign").NoOptDefVal = " "
 
 	carapace.Gen(pullCmd).FlagCompletion(carapace.ActionMap{
-		"cleanup":         git.ActionCleanupModes(),
-		"filter":          git.ActionObjectFilters(),
-		"gpg-sign":        os.ActionGpgKeyIds(),
-		"negotiation-tip": git.ActionRefs(git.RefOption{}.Default()), // TODO refs ok here?
+		"cleanup":              git.ActionCleanupModes(),
+		"filter":               git.ActionObjectFilters(),
+		"gpg-sign":             os.ActionGpgKeyIds(),
+		"negotiation-include":  git.ActionRefs(git.RefOption{}.Default()),
+		"negotiation-restrict": git.ActionRefs(git.RefOption{}.Default()),
+		"negotiation-tip":      git.ActionRefs(git.RefOption{}.Default()), // TODO refs ok here?
 		"rebase": carapace.ActionValuesDescribed(
 			"false", "merge after fetching",
 			"interactive", "allow list of commits to be edited",
@@ -121,6 +123,7 @@ func init() {
 		"strategy-option": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return git.ActionMergeStrategyOptions(pullCmd.Flag("strategy").Value.String())
 		}),
+		"upload-pack": carapace.ActionFiles(),
 	})
 
 	carapace.Gen(pullCmd).PositionalCompletion(

@@ -46,6 +46,7 @@ func init() {
 
 	carapace.Gen(resetCmd).FlagCompletion(carapace.ActionMap{
 		"pathspec-from-file": carapace.ActionFiles(),
+		"recurse-submodules": carapace.ActionValues("yes", "on-demand").StyleF(style.ForKeyword),
 	})
 
 	carapace.Gen(resetCmd).PositionalCompletion(

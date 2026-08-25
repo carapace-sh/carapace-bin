@@ -52,6 +52,7 @@ func init() {
 	carapace.Gen(tagCmd).FlagCompletion(carapace.ActionMap{
 		"cleanup":     git.ActionCleanupModes(),
 		"color":       git.ActionColorModes(),
+		"column":      git.ActionColumnLayoutModes(),
 		"contains":    git.ActionRefs(git.RefOption{}.Default()),
 		"file":        carapace.ActionFiles(),
 		"local-user":  os.ActionGpgKeyIds(),
@@ -59,6 +60,19 @@ func init() {
 		"no-contains": git.ActionRefs(git.RefOption{}.Default()),
 		"no-merged":   git.ActionRefs(git.RefOption{}.Default()),
 		"points-at":   git.ActionRefs(git.RefOption{}.Default()),
+		"sort":        git.ActionFieldNames(),
+		"trailer": carapace.ActionMultiPartsN(":", 2, func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return carapace.ActionValues(
+					"Co-authored-by",
+					"Signed-off-by",
+					"Helped-by",
+				).Suffix(":")
+			default:
+				return git.ActionAuthors()
+			}
+		}),
 	})
 
 	carapace.Gen(tagCmd).PositionalAnyCompletion(

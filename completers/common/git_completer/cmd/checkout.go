@@ -59,6 +59,7 @@ func init() {
 		"conflict":           carapace.ActionValues("merge", "diff3"),
 		"orphan":             git.ActionRefs(git.RefOption{LocalBranches: true, RemoteBranches: true}),
 		"pathspec-from-file": carapace.ActionFiles(),
+		"recurse-submodules": carapace.ActionValues("yes", "on-demand").StyleF(style.ForKeyword),
 		"track":              carapace.ActionValues("direct", "inherit"),
 	})
 

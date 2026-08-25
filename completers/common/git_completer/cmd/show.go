@@ -45,6 +45,8 @@ func init() {
 			"auto", "short format when output to terminal",
 			"no", "no decoration",
 		),
+		"decorate-refs":         git.ActionRefs(git.RefOption{}.Default()),
+		"decorate-refs-exclude": git.ActionRefs(git.RefOption{}.Default()),
 	})
 
 	carapace.Gen(showCmd).PositionalAnyCompletion(

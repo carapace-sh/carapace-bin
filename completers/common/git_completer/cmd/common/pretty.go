@@ -3,6 +3,7 @@ package common
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/text"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
 )
 
@@ -18,8 +19,8 @@ func AddPrettyFlags(cmd *cobra.Command) {
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
 		"encoding": text.ActionEncodings(),
-		"format":   carapace.ActionValues(), // TODO formats
-		"notes":    carapace.ActionValues(), // TODO complete refs
+		"format":   git.ActionPrettyFormats(),
+		"notes":    git.ActionRefs(git.RefOption{}.Default()),
 		"pretty": carapace.ActionValues(
 			"email",
 			"format:",

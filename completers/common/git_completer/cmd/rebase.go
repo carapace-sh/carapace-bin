@@ -79,12 +79,25 @@ func init() {
 
 	carapace.Gen(rebaseCmd).FlagCompletion(carapace.ActionMap{
 		"empty":         carapace.ActionValues("drop", "keep", "ask"),
+		"exec":          carapace.ActionFiles(),
 		"gpg-sign":      os.ActionGpgKeyIds(),
 		"onto":          git.ActionRefs(git.RefOption{}.Default()),
 		"rebase-merges": carapace.ActionValues("rebase-cousins", "no-rebase-cousins"),
 		"strategy":      git.ActionMergeStrategies(),
 		"strategy-option": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return git.ActionMergeStrategyOptions(rebaseCmd.Flag("strategy").Value.String())
+		}),
+		"trailer": carapace.ActionMultiPartsN(":", 2, func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return carapace.ActionValues(
+					"Co-authored-by",
+					"Signed-off-by",
+					"Helped-by",
+				).Suffix(":")
+			default:
+				return git.ActionAuthors()
+			}
 		}),
 		"whitespace": git.ActionWhitespaceModes(),
 	})

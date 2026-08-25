@@ -126,6 +126,7 @@ func AddDiffFlags(cmd *cobra.Command) {
 		"color-moved":        git.ActionColorMovedModes(),
 		"color-moved-ws":     git.ActionColorMovedWsModes(),
 		"diff-algorithm":     git.ActionDiffAlgorithms(),
+		"diff-filter":        git.ActionDiffFilters().UniqueList(""),
 		"follow":             carapace.ActionFiles(), // TODO complete files of specific revision/modified between commits?
 		"ignore-submodules":  carapace.ActionValues("none", "untracked", "dirty", "all").StyleF(style.ForKeyword),
 		"output":             carapace.ActionFiles(),

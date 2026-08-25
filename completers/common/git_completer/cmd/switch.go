@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -40,10 +41,11 @@ func init() {
 	switchCmd.Flag("recurse-submodules").NoOptDefVal = " "
 
 	carapace.Gen(switchCmd).FlagCompletion(carapace.ActionMap{
-		"conflict":     carapace.ActionValues("merge", "diff3"),
-		"create":       git.ActionRefs(git.RefOption{LocalBranches: true}),
-		"force-create": git.ActionRefs(git.RefOption{LocalBranches: true}),
-		"orphan":       git.ActionRefs(git.RefOption{LocalBranches: true}),
+		"conflict":           carapace.ActionValues("merge", "diff3"),
+		"create":             git.ActionRefs(git.RefOption{LocalBranches: true}),
+		"force-create":       git.ActionRefs(git.RefOption{LocalBranches: true}),
+		"orphan":             git.ActionRefs(git.RefOption{LocalBranches: true}),
+		"recurse-submodules": carapace.ActionValues("yes", "on-demand").StyleF(style.ForKeyword),
 	})
 
 	carapace.Gen(switchCmd).PositionalCompletion(

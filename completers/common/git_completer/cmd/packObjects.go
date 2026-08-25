@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
 )
 
@@ -66,6 +67,7 @@ func init() {
 	rootCmd.AddCommand(packObjectsCmd)
 
 	carapace.Gen(packObjectsCmd).FlagCompletion(carapace.ActionMap{
+		"filter": git.ActionObjectFilters(),
 		"missing": carapace.ActionValuesDescribed(
 			"error", "stop with an error if a missing object is encountered",
 			"allow-any", "allow object traversal to continue if a missing object is encountered",

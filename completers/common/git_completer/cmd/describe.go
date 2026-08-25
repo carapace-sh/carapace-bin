@@ -36,6 +36,11 @@ func init() {
 	describeCmd.Flag("dirty").NoOptDefVal = "-dirty"
 	describeCmd.Flag("broken").NoOptDefVal = "-broken"
 
+	carapace.Gen(describeCmd).FlagCompletion(carapace.ActionMap{
+		"exclude": git.ActionTags(),
+		"match":   git.ActionTags(),
+	})
+
 	carapace.Gen(describeCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if describeCmd.Flag("dirty").Changed || describeCmd.Flag("broken").Changed {

@@ -2,6 +2,7 @@ package common
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/text"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/time"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
@@ -41,9 +42,9 @@ func AddCommitLimitingOptions(cmd *cobra.Command) {
 	cmd.Flags().StringP("max-count", "n", "", "limit the number of commits to output")
 	cmd.Flags().String("max-count-oldest", "", "limit the number of commits to output, picking the oldest N")
 	cmd.Flags().String("max-parents", "", "show only commits which have at most that many parent commits")
+	cmd.Flags().Bool("maximal-only", false, "restrict output to commits not reachable from other commits in the range")
 	cmd.Flags().Bool("merge", false, "show refs that touch files having a conflict and don't exist on all heads to merge")
 	cmd.Flags().Bool("merges", false, "print only merge commits")
-	cmd.Flags().Bool("maximal-only", false, "restrict output to commits not reachable from other commits in the range")
 	cmd.Flags().String("min-age", "", "limit the commits output to specified time range")
 	cmd.Flags().String("min-parents", "", "show only commits which have at least that many parent commits")
 	cmd.Flags().Bool("no-max-parents", false, "reset max-parents limit")
@@ -188,7 +189,7 @@ func AddCommitFormattingOptions(cmd *cobra.Command) {
 			"format:%c", "show the date in your system locale’s preferred format",
 			"default", "the default format",
 		),
-		"encoding":          carapace.ActionValues(), // TODO
+		"encoding":          text.ActionEncodings(),
 		"expand-tabs":       carapace.ActionValues(), // TODO
 		"format":            carapace.ActionValues("oneline", "short", "medium", "full", "fuller", "reference", "email", "raw", "format:"),
 		"pretty":            carapace.ActionValues("oneline", "short", "medium", "full", "fuller", "reference", "email", "raw", "format:"),
@@ -218,7 +219,7 @@ func AddObjectTraversalOptions(cmd *cobra.Command) {
 	cmd.Flags().Bool("unpacked", false, "print the object IDs that are not in packs")
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
-		"filter": carapace.ActionValues(), // TODO
+		"filter": git.ActionObjectFilters(),
 		"missing": carapace.ActionValues(
 			"error", "requests that rev-list stop with an error if a missing object is encountered",
 			"allow-any", "allow object traversal to continue if a missing object is encountered",
