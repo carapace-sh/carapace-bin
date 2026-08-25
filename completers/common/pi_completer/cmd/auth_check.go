@@ -23,6 +23,7 @@ func init() {
 	authCmd.AddCommand(auth_checkCmd)
 
 	carapace.Gen(auth_checkCmd).FlagCompletion(carapace.ActionMap{
+		"model":    pi.ActionModels(),
 		"provider": pi.ActionProviders(),
 	})
 }

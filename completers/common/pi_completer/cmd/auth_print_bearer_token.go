@@ -21,6 +21,8 @@ func init() {
 	authCmd.AddCommand(auth_print_bearer_tokenCmd)
 
 	carapace.Gen(auth_print_bearer_tokenCmd).FlagCompletion(carapace.ActionMap{
-		"provider": pi.ActionProviders(),
+		"min-expiry": carapace.ActionValues("30m", "1h", "2h", "6h", "12h", "24h"),
+		"model":      pi.ActionModels(),
+		"provider":   pi.ActionProviders(),
 	})
 }

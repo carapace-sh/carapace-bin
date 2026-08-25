@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/pi"
 	"github.com/spf13/cobra"
 )
 
@@ -22,4 +23,9 @@ func init() {
 	updateCmd.Flags().Bool("no-approve", false, "Ignore project-local files for this command")
 	updateCmd.Flags().Bool("self", false, "Update pi only")
 	rootCmd.AddCommand(updateCmd)
+
+	carapace.Gen(updateCmd).PositionalCompletion(
+		carapace.ActionValues("self", "pi").UniqueList(","),
+		pi.ActionPackages(),
+	)
 }

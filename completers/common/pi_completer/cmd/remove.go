@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/pi"
 	"github.com/spf13/cobra"
 )
 
@@ -18,4 +19,8 @@ func init() {
 	removeCmd.Flags().BoolP("local", "l", false, "Remove from project settings (.pi/settings.json)")
 	removeCmd.Flags().Bool("no-approve", false, "Ignore project-local files for this command")
 	rootCmd.AddCommand(removeCmd)
+
+	carapace.Gen(removeCmd).PositionalAnyCompletion(
+		pi.ActionPackages(),
+	)
 }

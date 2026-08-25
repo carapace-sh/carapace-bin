@@ -27,7 +27,7 @@ func init() {
 	rootCmd.Flags().StringP("extension", "e", "", "Load an extension file")
 	rootCmd.Flags().String("fork", "", "Fork specific session into a new session")
 	rootCmd.Flags().BoolP("help", "h", false, "Show help")
-	rootCmd.Flags().Bool("list-models", false, "List available models (with optional fuzzy search)")
+	rootCmd.Flags().String("list-models", "", "List available models (with optional fuzzy search)")
 	rootCmd.Flags().String("mode", "", "Output mode")
 	rootCmd.Flags().String("model", "", "Model pattern or ID")
 	rootCmd.Flags().String("models", "", "Comma-separated model patterns for Ctrl+P cycling")
@@ -64,11 +64,14 @@ func init() {
 		"export":               carapace.ActionFiles(),
 		"extension":            carapace.ActionFiles(),
 		"fork":                 carapace.ActionFiles(),
+		"list-models":         pi.ActionModels(),
 		"mode": carapace.ActionValues(
 			"text",
 			"json",
 			"rpc",
 		),
+		"model":               pi.ActionModels(),
+		"models":              pi.ActionModels(),
 		"prompt-template": carapace.ActionFiles(),
 		"provider":        pi.ActionProviders(),
 		"session":         carapace.ActionFiles(),

@@ -20,6 +20,7 @@ func init() {
 	authCmd.AddCommand(auth_print_api_keyCmd)
 
 	carapace.Gen(auth_print_api_keyCmd).FlagCompletion(carapace.ActionMap{
+		"model":    pi.ActionModels(),
 		"provider": pi.ActionProviders(),
 	})
 }
