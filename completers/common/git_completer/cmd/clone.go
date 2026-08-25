@@ -79,7 +79,7 @@ func init() {
 			case 0:
 				return git.ActionConfigs().NoSpace()
 			default:
-				return carapace.ActionValues()
+				return git.ActionConfigValues(c.Parts[0])
 			}
 		}).UniqueList(" "),
 		"filter":             git.ActionObjectFilters(),

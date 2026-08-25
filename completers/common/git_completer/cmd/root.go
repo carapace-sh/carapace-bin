@@ -89,7 +89,7 @@ func init() {
 			case 0:
 				return git.ActionConfigs().NoSpace()
 			default:
-				return carapace.ActionValues()
+				return git.ActionConfigValues(c.Parts[0])
 			}
 		}).UniqueList(" "),
 		"config-env": carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
