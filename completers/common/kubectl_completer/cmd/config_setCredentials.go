@@ -33,7 +33,9 @@ func init() {
 	configCmd.AddCommand(config_setCredentialsCmd)
 
 	carapace.Gen(config_setCredentialsCmd).FlagCompletion(carapace.ActionMap{
-		"client-certificate": carapace.ActionFiles(),
-		"client-key":         carapace.ActionFiles(),
+		"auth-provider":         carapace.ActionValues("azure", "gcp", "oidc"),
+		"client-certificate":    carapace.ActionFiles(),
+		"client-key":            carapace.ActionFiles(),
+		"exec-interactive-mode": carapace.ActionValues("IfAvailable", "Required", "Never"),
 	})
 }
