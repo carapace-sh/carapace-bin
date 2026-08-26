@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"strings"
+	"time"
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/shim"
@@ -131,6 +132,18 @@ func Execute(version string) error {
 		if os.Args[1] == "carapace" {
 			os.Args[1] = "_carapace"
 		} else if len(os.Args) < 4 && os.Args[1] == "_carapace" {
+			// detect parent death and exit immediately (prevents orphaned process looping)
+			parentPid := os.Getppid()
+			go func() {
+				ticker := time.NewTicker(200 * time.Millisecond)
+				defer ticker.Stop()
+				for range ticker.C {
+					if os.Getppid() != parentPid {
+						os.Exit(0)
+					}
+				}
+			}()
+
 			var shell string
 			switch {
 			case len(os.Args) > 2:
