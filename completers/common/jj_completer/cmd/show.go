@@ -39,7 +39,7 @@ func init() {
 		"tool":     bridge.ActionCarapaceBin().Split(),
 	})
 
-	carapace.Gen(showCmd).PositionalCompletion(
-		jj.ActionRevsets(jj.RevOpts{}.Default()),
+	carapace.Gen(showCmd).PositionalAnyCompletion(
+		jj.ActionRevsets(jj.RevOpts{}.Default()).FilterArgs(),
 	)
 }

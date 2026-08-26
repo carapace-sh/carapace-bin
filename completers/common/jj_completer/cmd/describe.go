@@ -23,7 +23,7 @@ func init() {
 	describeCmd.Flag("r").Hidden = true
 	rootCmd.AddCommand(describeCmd)
 
-	carapace.Gen(describeCmd).PositionalCompletion(
-		jj.ActionRevsets(jj.RevOpts{}.Default()),
+	carapace.Gen(describeCmd).PositionalAnyCompletion(
+		jj.ActionRevsets(jj.RevOpts{}.Default()).FilterArgs(),
 	)
 }

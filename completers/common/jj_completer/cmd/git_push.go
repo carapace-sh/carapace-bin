@@ -40,7 +40,7 @@ func init() {
 	carapace.Gen(git_pushCmd).FlagCompletion(carapace.ActionMap{
 		"bookmark":  jj.ActionLocalBookmarks(),
 		"branch":    jj.ActionLocalBookmarks(),
-		"change":    carapace.ActionValues(), // TODO
+		"change":    jj.ActionRevsets(jj.RevOpts{}.Default()).UniqueList(","),
 		"option":    git.ActionPushOptions(),
 		"remote":    jj.ActionRemotes(),
 		"revision":  jj.ActionRevsets(jj.RevOpts{}.Default()),
