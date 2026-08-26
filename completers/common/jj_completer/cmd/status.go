@@ -18,7 +18,7 @@ func init() {
 	statusCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 
 	carapace.Gen(statusCmd).PositionalAnyCompletion(
-		jj.ActionFilesetPatterns(),
+		jj.ActionRevFiles("@"),
 	)
 
 	rootCmd.AddCommand(statusCmd)
