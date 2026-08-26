@@ -100,7 +100,6 @@ func AddDiffFlags(cmd *cobra.Command) {
 	cmd.Flags().BoolP("text", "a", false, "treat all files as text")
 	cmd.Flags().String("textconv", "", "allow external text conversion filters to be run when comparing binary files")
 	cmd.Flags().BoolP("theirs", "3", false, "compare with their branch")
-	cmd.Flags().BoolS("u", "u", false, "generate patch")
 	cmd.Flags().StringP("unified", "U", "", "generate diffs with <n> lines of context instead of the usual three")
 	cmd.Flags().String("word-diff", "", "show a word diff, using the <mode> to delimit changed words")
 	cmd.Flags().String("word-diff-regex", "", "use <regex> to decide what a word is")
