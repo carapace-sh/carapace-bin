@@ -36,6 +36,8 @@ func init() {
 	)
 
 	carapace.Gen(duplicateCmd).FlagCompletion(carapace.ActionMap{
+		"after":         jj.ActionRevsets(jj.RevOpts{}.Default()),
+		"before":        jj.ActionRevsets(jj.RevOpts{}.Default()),
 		"destination":   jj.ActionRevsets(jj.RevOpts{}.Default()),
 		"insert-after":  jj.ActionRevsets(jj.RevOpts{}.Default()),
 		"insert-before": jj.ActionRevsets(jj.RevOpts{}.Default()),

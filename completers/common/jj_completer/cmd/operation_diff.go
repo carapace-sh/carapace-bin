@@ -36,14 +36,14 @@ func init() {
 	operation_diffCmd.Flags().Bool("types", false, "For each path, show only its type before and after")
 	operationCmd.AddCommand(operation_diffCmd)
 
-	operation_diffCmd.MarkFlagsMutuallyExclusive("from", "to")
+	operation_diffCmd.MarkFlagsMutuallyExclusive("op", "operation")
 
-	// TODO from/to completion might be wrong
 	carapace.Gen(operation_diffCmd).FlagCompletion(carapace.ActionMap{
-		"from":            jj.ActionRevsets(jj.RevOpts{}.Default()),
+		"from":            jj.ActionOperations(100),
+		"op":              jj.ActionOperations(100),
 		"operation":       jj.ActionOperations(100),
 		"show-changes-in": jj.ActionRevsets(jj.RevOpts{}.Default()),
-		"to":              jj.ActionRevsets(jj.RevOpts{}.Default()),
+		"to":              jj.ActionOperations(100),
 		"tool":            bridge.ActionCarapaceBin().Split(),
 	})
 }
