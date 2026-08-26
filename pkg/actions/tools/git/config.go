@@ -171,11 +171,10 @@ func ActionConfigTypeOptions(t string) carapace.Action {
 //	true
 func ActionConfigValues(config string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		// TODO complete more configurations (see https://git-scm.com/docs/git-config)
+		// https://git-scm.com/docs/git-config
 		_bool := carapace.ActionValues("true", "false").StyleF(style.ForKeyword)
 		if a, ok := (carapace.ActionMap{
 			"add.ignoreErrors":                          _bool,
-			"add.interactive.useBuiltin":                _bool,
 			"advice.addEmbeddedRepo":                    _bool,
 			"advice.addEmptyPathspec":                   _bool,
 			"advice.addIgnoredFile":                     _bool,
@@ -387,31 +386,30 @@ func ActionConfigValues(config string) carapace.Action {
 				"writeout-only", "issues pagecache writeback requests",
 				"batch", "enables a mode that uses writeout-only flushes to stage multiple updates in the disk writeback cache",
 			),
-			"core.fsyncObjectFiles": _bool,
-			"core.gitProxy":         bridge.ActionCarapaceBin().Split(),
-			"core.hideDotFiles":     carapace.ActionValues("true", "false", "dotGitOnly").StyleF(style.ForKeyword),
-			"core.hooksPath":        carapace.ActionDirectories(),
-			"core.ignoreCase":       _bool,
-			"core.ignoreStat":       _bool,
-			"core.lockfilePid":      _bool,
-			"core.logAllRefUpdates": _bool,
-			"core.looseCompression": number.ActionRange(number.RangeOpts{Start: -1, End: 9}),
-			"core.maxTreeDepth":     carapace.ActionValues().Usage("maximum tree depth"),
-			"core.multiPackIndex":   _bool,
-			"core.notesRef":         ActionRefs(RefOption{}.Default()),
-			// "core.packedGitLimit":
-			// "core.packedGitWindowSize":
-			// "core.packedRefsTimeout":
-			"core.pager":             bridge.ActionCarapaceBin().Split(),
-			"core.precomposeUnicode": _bool,
-			"core.preferSymlinkRefs": _bool,
-			"core.preloadIndex":      _bool,
-			"core.protectHFS":        _bool,
-			"core.protectNTFS":       _bool,
-			"core.quotePath":         _bool,
-			// "core.repositoryFormatVersion":
-			"core.restrictinheritedhandles": carapace.ActionValues("auto", "true", "false").StyleF(style.ForKeyword),
-			"core.safecrlf":                 carapace.ActionValues("true", "false", "warn").StyleF(style.ForKeyword),
+			"core.fsyncObjectFiles":        _bool,
+			"core.gitProxy":                bridge.ActionCarapaceBin().Split(),
+			"core.hideDotFiles":            carapace.ActionValues("true", "false", "dotGitOnly").StyleF(style.ForKeyword),
+			"core.hooksPath":               carapace.ActionDirectories(),
+			"core.ignoreCase":              _bool,
+			"core.ignoreStat":              _bool,
+			"core.lockfilePid":             _bool,
+			"core.logAllRefUpdates":        _bool,
+			"core.looseCompression":        number.ActionRange(number.RangeOpts{Start: -1, End: 9}),
+			"core.maxTreeDepth":            carapace.ActionValues().Usage("maximum tree depth"),
+			"core.multiPackIndex":          _bool,
+			"core.notesRef":                ActionRefs(RefOption{}.Default()),
+			"core.packedGitLimit":          carapace.ActionValues().Usage("maximum number of bytes to pack for git"),
+			"core.packedGitWindowSize":     carapace.ActionValues().Usage("window size for packed git"),
+			"core.packedRefsTimeout":       carapace.ActionValues().Usage("timeout for packed refs"),
+			"core.pager":                   bridge.ActionCarapaceBin().Split(),
+			"core.precomposeUnicode":       _bool,
+			"core.preferSymlinkRefs":       _bool,
+			"core.preloadIndex":            _bool,
+			"core.protectHFS":              _bool,
+			"core.protectNTFS":             _bool,
+			"core.quotePath":               _bool,
+			"core.repositoryFormatVersion": carapace.ActionValues("0", "1").StyleF(style.ForKeyword),
+			"core.safecrlf":                carapace.ActionValues("true", "false", "warn").StyleF(style.ForKeyword),
 			"core.sharedRepository": carapace.Batch(
 				carapace.ActionValuesDescribed(
 					"group", "shareable between several users in a group",
@@ -467,7 +465,6 @@ func ActionConfigValues(config string) carapace.Action {
 			"diff.interHunkContext":         carapace.ActionValues().Usage("number of extra context lines between hunks"),
 			"diff.mnemonicPrefix":           _bool,
 			"diff.noPrefix":                 _bool,
-			"diff.noprefix":                 _bool,
 			"diff.orderFile":                carapace.ActionFiles(),
 			"diff.relative":                 _bool,
 			"diff.renameLimit":              carapace.ActionValues().Usage("number of files to consider when performing copy/rename detection"),
