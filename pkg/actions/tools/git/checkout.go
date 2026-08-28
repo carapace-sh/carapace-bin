@@ -31,12 +31,12 @@ func ActionPriorCheckouts() carapace.Action {
 			branches = append(branches, from)
 		}
 
-		// C source interprets @{-N} by walking reflog in reverse
-		// (object-name.c:1298-1299), so the Nth most recent checkout
-		// is the Nth from the end of our forward-sorted list.
+		// C source walks reflog in reverse (newest first), decrementing
+		// remaining until 0 (object-name.c:1243-1267). @{-1} is the from
+		// branch of the most recent checkout entry.
 		vals := make([]string, 0)
-		for i := len(branches) - 1; i >= 0; i-- {
-			vals = append(vals, fmt.Sprintf("%d", len(branches)-i), branches[i])
+		for i, branch := range branches {
+			vals = append(vals, fmt.Sprintf("%d", i+1), branch)
 		}
 		return carapace.ActionValuesDescribed(vals...).Style(styles.Git.Branch)
 	}).Tag("prior checkouts").UidF(func(s string, uc uid.Context) (*url.URL, error) {
