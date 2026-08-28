@@ -42,7 +42,7 @@ func ActionPriorCheckouts() carapace.Action {
 		}
 		vals := make([]string, 0)
 		for i, branch := range branches[:limit] {
-			vals = append(vals, fmt.Sprintf("%d", i+1), branch)
+			vals = append(vals, fmt.Sprintf("%02d", i+1), branch)
 		}
 		return carapace.ActionValuesDescribed(vals...).Style(styles.Git.Branch)
 	}).Tag("prior checkouts").UidF(func(s string, uc uid.Context) (*url.URL, error) {
