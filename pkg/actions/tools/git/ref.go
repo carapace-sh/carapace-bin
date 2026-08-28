@@ -40,6 +40,10 @@ func (o RefOption) Default() RefOption {
 //
 //	HEAD~1 (last commit msg)
 //	v0.0.1 (last commit msg)
+// ActionRefs completes refs (commits, branches, tags)
+//
+//	HEAD~1 (last commit msg)
+//	v0.0.1 (last commit msg)
 func ActionRefs(refOption RefOption) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if !strings.ContainsAny(c.Value, "~^@") {
@@ -78,6 +82,9 @@ func ActionRefs(refOption RefOption) carapace.Action {
 			case '^':
 				return ActionRefParents(c.Value[:index])
 			case '@':
+				if index == 0 && strings.HasPrefix(c.Value[index+1:], "{-") {
+					return carapace.ActionValues("1", "2", "3", "4", "5", "6", "7", "8", "9").Suffix("}").Style(style.Blue).Tag("prior checkout")
+				}
 				return carapace.Batch(
 					time.ActionDateTime(time.DateTimeOpts{}),
 					carapace.ActionValues("yesterday", "push", "upstream").Style(style.Blue).Suffix("}"),
