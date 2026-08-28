@@ -17,4 +17,8 @@ func init() {
 	agentlog_hookCmd.Flags().String("agent", "", "")
 	agentlog_hookCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	agentlogCmd.AddCommand(agentlog_hookCmd)
+
+	carapace.Gen(agentlog_hookCmd).FlagCompletion(carapace.ActionMap{
+		"agent": carapace.ActionValues("codex", "claude"),
+	})
 }

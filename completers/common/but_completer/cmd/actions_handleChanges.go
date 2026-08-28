@@ -22,4 +22,8 @@ func init() {
 	actions_handleChangesCmd.MarkFlagRequired("desc")
 	actions_handleChangesCmd.MarkFlagRequired("description")
 	actionsCmd.AddCommand(actions_handleChangesCmd)
+
+	carapace.Gen(actions_handleChangesCmd).FlagCompletion(carapace.ActionMap{
+		"handler": carapace.ActionValuesDescribed("simple", "Handles changes in a simple way"),
+	})
 }

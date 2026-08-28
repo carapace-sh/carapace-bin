@@ -21,4 +21,8 @@ func init() {
 	resolve_applyCmd.Flags().Bool("ours", false, "Take the ours side: the new base the commit was rebased onto")
 	resolve_applyCmd.Flags().Bool("theirs", false, "Take the theirs side: the commit's own version")
 	resolveCmd.AddCommand(resolve_applyCmd)
+
+	carapace.Gen(resolve_applyCmd).FlagCompletion(carapace.ActionMap{
+		"file": carapace.ActionFiles(),
+	})
 }

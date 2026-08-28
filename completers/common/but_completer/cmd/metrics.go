@@ -21,4 +21,15 @@ func init() {
 	metricsCmd.MarkFlagRequired("command-name")
 	metricsCmd.MarkFlagRequired("props")
 	rootCmd.AddCommand(metricsCmd)
+
+	carapace.Gen(metricsCmd).FlagCompletion(carapace.ActionMap{
+		"command-name": carapace.ActionValues(
+			"init", "absorb", "discard", "status", "tui", "stf", "uncommit", "amend",
+			"squash", "move", "diff", "diff2", "edit", "show", "commit", "commit-empty",
+			"push", "reword", "oplog-list", "oplog-snapshot", "restore", "undo", "redo",
+			"gui", "open", "base-fetch", "base-check", "pull", "branch-new", "branch-delete",
+			"branch-list", "branch-show", "branch-unapply", "branch-apply", "branch-update",
+			"branch-move", "branch-tear-off",
+		),
+	})
 }
