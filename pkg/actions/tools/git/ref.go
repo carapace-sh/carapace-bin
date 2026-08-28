@@ -82,7 +82,7 @@ func ActionRefs(refOption RefOption) carapace.Action {
 			case '^':
 				return ActionRefParents(c.Value[:index])
 			case '@':
-				if index == 0 {
+				if index == 0 && strings.HasPrefix(c.Value[index+1:], "{-") {
 					return ActionPriorCheckouts().Suffix("}").Prefix("{-")
 				}
 				return carapace.Batch(
