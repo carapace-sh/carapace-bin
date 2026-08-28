@@ -23,8 +23,8 @@ func init() {
 	carapace.Gen(repo_structureCmd).FlagCompletion(carapace.ActionMap{
 		"format": carapace.ActionValuesDescribed(
 			"table", "Outputs repository stats in a human-friendly table",
-			"keyvalue", "Each line of output contains a key-value pair for a repository stat",
-			"nul", "Similar to keyvalue, but uses a NUL character to delimit between key-value pairs",
+			"lines", "Each line of output contains a key-value pair for a repository stat",
+			"nul", "Similar to lines, but uses a NUL character to delimit between key-value pairs",
 		),
 	})
 }
