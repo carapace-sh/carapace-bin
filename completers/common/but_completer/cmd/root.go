@@ -41,10 +41,12 @@ func init() {
 	rootCmd.Flags().StringP("current-dir", "C", ".", "Run as if but was started in PATH instead of the current working directory")
 	rootCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.PersistentFlags().Bool("json", false, "Output detailed information as JSON for tool consumption")
-	rootCmd.PersistentFlags().String("log-file", "", "Log to this file instead of stderr")
+	rootCmd.Flags().String("log-file", "", "Log to this file instead of stderr")
 	rootCmd.PersistentFlags().Bool("status-after", false, "Append workspace status when supported by a mutation command")
-	rootCmd.PersistentFlags().CountP("trace", "", "Enable tracing for debug and performance information printed to stderr")
+	rootCmd.Flags().CountP("trace", "t", "Enable tracing for debug and performance information printed to stderr")
 	rootCmd.Flags().BoolP("version", "V", false, "Print version")
+	rootCmd.Flag("log-file").Hidden = true
+	rootCmd.Flag("trace").Hidden = true
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"current-dir": carapace.ActionDirectories(),

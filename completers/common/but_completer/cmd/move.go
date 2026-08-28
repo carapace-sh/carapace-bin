@@ -16,9 +16,9 @@ var moveCmd = &cobra.Command{
 func init() {
 	carapace.Gen(moveCmd).Standalone()
 
-	moveCmd.Flags().StringP("above", "A", "", "Place <SOURCES> above BRANCH_OR_COMMIT, which must be an applied branch or commit")
+	moveCmd.Flags().StringP("above", "A", "", "Place <SOURCES> above BRANCH_OR_COMMIT")
 	moveCmd.Flags().Bool("allow-merged", false, "Allow targeting branches and commits that are already merged upstream")
-	moveCmd.Flags().StringP("below", "B", "", "Place <SOURCES> below BRANCH_OR_COMMIT, which must be an applied branch or commit")
+	moveCmd.Flags().StringP("below", "B", "", "Place <SOURCES> below BRANCH_OR_COMMIT")
 	moveCmd.Flags().StringP("branch", "b", "", "Place <SOURCES> on the branch BRANCH")
 	moveCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	moveCmd.Flags().Bool("unstack", false, "Unstack <SOURCES> from their current stacks")
