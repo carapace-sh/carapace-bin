@@ -51,7 +51,7 @@ func init() {
 			}
 		}),
 		"exec":   carapace.ActionFiles(),
-		"format": carapace.ActionValues("tar", "zip"),
+		"format": carapace.ActionValues("tar", "tgz", "tar.gz", "zip"),
 		"mtime":  time.ActionDate(),
 		"output": carapace.ActionFiles(),
 		"remote": git.ActionRemotes(),

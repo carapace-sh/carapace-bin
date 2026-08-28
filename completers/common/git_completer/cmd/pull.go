@@ -107,7 +107,6 @@ func init() {
 			"false", "merge after fetching",
 			"interactive", "allow list of commits to be edited",
 			"merges", "try to rebase merges instead of skipping them",
-			"preserve", "rebase and preserve merges",
 			"true", "rebase after fetching",
 		),
 		"recurse-submodules": carapace.ActionValuesDescribed(

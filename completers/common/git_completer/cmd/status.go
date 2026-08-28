@@ -45,7 +45,7 @@ func init() {
 		"column":            carapace.ActionValues("always", "never").StyleF(style.ForKeyword),
 		"ignore-submodules": carapace.ActionValues("none", "untracked", "dirty", "all").StyleF(style.ForKeyword),
 		"ignored":           ActionIgnoredModes(),
-		"porcelain":         carapace.ActionValues("v1"),
+		"porcelain":         carapace.ActionValues("v1", "v2"),
 		"untracked-files":   ActionUntrackedFilesModes(),
 	})
 
