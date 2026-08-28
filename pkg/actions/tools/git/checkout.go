@@ -34,9 +34,15 @@ func ActionPriorCheckouts() carapace.Action {
 		// C source walks reflog in reverse (newest first), decrementing
 		// remaining until 0 (object-name.c:1243-1267). @{-1} is the from
 		// branch of the most recent checkout entry.
-		// Pad with leading zeros so @{-00}..@{-99} sorts consistently
+		// Pad with leading zeros so @{-00}..@{-99} sorts consistently.
+		// Limit to 99 entries as the C source only validates @{-N} for N > 0
+		// (object-name.c:1293) and formatting with %02d would break above 99.
+		limit := 99
+		if len(branches) < limit {
+			limit = len(branches)
+		}
 		vals := make([]string, 0)
-		for i, branch := range branches {
+		for i, branch := range branches[:limit] {
 			vals = append(vals, fmt.Sprintf("%02d", i+1), branch)
 		}
 		return carapace.ActionValuesDescribed(vals...).Style(styles.Git.Branch)
