@@ -147,6 +147,7 @@ func AddCommitOrderingOptions(cmd *cobra.Command) {
 // AddCommitFormattingOptions adds commit formatting options.
 //
 //	https://git-scm.com/docs/git-rev-list#_commit_formatting
+//
 // AddCommitFormattingOptions adds commit formatting options.
 //
 //	https://git-scm.com/docs/git-rev-list#_commit_formatting

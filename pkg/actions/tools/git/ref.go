@@ -40,6 +40,7 @@ func (o RefOption) Default() RefOption {
 //
 //	HEAD~1 (last commit msg)
 //	v0.0.1 (last commit msg)
+//
 // ActionRefs completes refs (commits, branches, tags)
 //
 //	HEAD~1 (last commit msg)
