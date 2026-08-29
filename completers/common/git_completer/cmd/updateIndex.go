@@ -15,6 +15,7 @@ var updateIndexCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(updateIndexCmd).Standalone()
+	updateIndexCmd.Flags().SetInterspersed(false)
 
 	updateIndexCmd.Flags().Bool("add", false, "if a specified file isn’t in the index already then it’s added")
 	updateIndexCmd.Flags().BoolP("again", "g", false, "runs git update-index itself on the paths whose index entries differ from HEAD")

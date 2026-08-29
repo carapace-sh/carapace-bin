@@ -14,6 +14,7 @@ var gcCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(gcCmd).Standalone()
+	gcCmd.Flags().SetInterspersed(false)
 
 	gcCmd.Flags().Bool("aggressive", false, "be more thorough (increased runtime)")
 	gcCmd.Flags().Bool("auto", false, "enable auto-gc mode")
