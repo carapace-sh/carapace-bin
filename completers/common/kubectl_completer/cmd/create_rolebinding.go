@@ -51,6 +51,7 @@ func init() {
 		}),
 		"serviceaccount": kubectl.ActionNamespaceServiceAccounts(),
 		"template":       carapace.ActionFiles(),
+		"user":           kubectl.ActionUsers(),
 		"validate":       kubectl.ActionValidationModes(),
 	})
 }

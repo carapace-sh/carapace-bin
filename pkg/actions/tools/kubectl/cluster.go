@@ -18,3 +18,16 @@ func ActionClusters() carapace.Action {
 		})
 	})
 }
+
+// ActionUsers completes users
+//
+//	user1
+//	user2
+func ActionUsers() carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		return carapace.ActionExecCommand("kubectl", "config", "get-users")(func(output []byte) carapace.Action {
+			lines := strings.Split(string(output), "\n")
+			return carapace.ActionValues(lines[1 : len(lines)-1]...)
+		})
+	})
+}

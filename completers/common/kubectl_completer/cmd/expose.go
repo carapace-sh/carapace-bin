@@ -45,12 +45,15 @@ func init() {
 	rootCmd.AddCommand(exposeCmd)
 
 	carapace.Gen(exposeCmd).FlagCompletion(carapace.ActionMap{
-		"dry-run":   kubectl.ActionDryRunModes(),
-		"filename":  carapace.ActionFiles(),
-		"kustomize": carapace.ActionDirectories(),
-		"output":    kubectl.ActionOutputFormats(),
-		"template":  carapace.ActionFiles(),
-		"type":      carapace.ActionValues("ClusterIP", "NodePort", "LoadBalancer", "ExternalName"),
+		"dry-run":          kubectl.ActionDryRunModes(),
+		"filename":         carapace.ActionFiles(),
+		"kustomize":        carapace.ActionDirectories(),
+		"output":           kubectl.ActionOutputFormats(),
+		"override-type":    carapace.ActionValues("json", "merge", "strategic"),
+		"protocol":         carapace.ActionValues("TCP", "UDP", "SCTP"),
+		"session-affinity": carapace.ActionValues("None", "ClientIP"),
+		"template":         carapace.ActionFiles(),
+		"type":             carapace.ActionValues("ClusterIP", "NodePort", "LoadBalancer", "ExternalName"),
 	})
 
 	carapace.Gen(exposeCmd).PositionalCompletion(
