@@ -8,7 +8,7 @@ import (
 
 var pickCmd = &cobra.Command{
 	Use:     "pick",
-	Short:   "Cherry-pick a commit from an unapplied branch into an applied virtual branch",
+	Short:   "Cherry-pick commits into an applied branch",
 	Run:     func(cmd *cobra.Command, args []string) {},
 	GroupID: "branching and committing",
 }
@@ -16,6 +16,10 @@ var pickCmd = &cobra.Command{
 func init() {
 	carapace.Gen(pickCmd).Standalone()
 
+	pickCmd.Flags().StringP("above", "A", "", "Place the picked commits above BRANCH_OR_COMMIT")
+	pickCmd.Flags().Bool("allow-merged", false, "Allow targeting branches and commits that are already merged upstream")
+	pickCmd.Flags().StringP("below", "B", "", "Place the picked commits below BRANCH_OR_COMMIT")
+	pickCmd.Flags().StringP("branch", "b", "", "Place the picked commits on the branch BRANCH")
 	pickCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.AddCommand(pickCmd)
 

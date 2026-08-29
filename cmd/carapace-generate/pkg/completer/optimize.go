@@ -8,6 +8,13 @@ import (
 	"strings"
 )
 
+func sanitizeFilename(name string) string {
+	if strings.HasPrefix(name, "_") {
+		return "UNDERSCORE" + name[1:]
+	}
+	return name
+}
+
 func Optimize(dir string) error {
 	source, err := filepath.Abs(dir)
 	if err != nil {
@@ -60,14 +67,14 @@ func Optimize(dir string) error {
 					initFuncs := make([]string, 0)
 					for _, entry := range entries {
 						if !entry.IsDir() && filepath.Ext(entry.Name()) == ".go" && !strings.HasSuffix(strings.TrimSuffix(entry.Name(), ".go"), "_test") {
-							initFuncs = append(initFuncs, fmt.Sprintf("	init_%v()", strings.TrimSuffix(entry.Name(), ".go")))
+							initFuncs = append(initFuncs, fmt.Sprintf("	init_%v()", strings.TrimSuffix(sanitizeFilename(entry.Name()), ".go")))
 						}
 					}
 					patched = strings.Replace(patched, "\nfunc Execute() error {", "\nfunc Execute() error {\n"+strings.Join(initFuncs, "\n"), 1)
-					patched = strings.Replace(patched, "\nfunc init() {", fmt.Sprintf("\nfunc init_%v() {", strings.TrimSuffix(info.Name(), ".go")), 1)
+					patched = strings.Replace(patched, "\nfunc init() {", fmt.Sprintf("\nfunc init_%v() {", strings.TrimSuffix(sanitizeFilename(info.Name()), ".go")), 1)
 
 				default:
-					patched = strings.Replace(patched, "\nfunc init() {", fmt.Sprintf("\nfunc init_%v() {", strings.TrimSuffix(info.Name(), ".go")), 1)
+					patched = strings.Replace(patched, "\nfunc init() {", fmt.Sprintf("\nfunc init_%v() {", strings.TrimSuffix(sanitizeFilename(info.Name()), ".go")), 1)
 					// initFuncs = append(initFuncs, fmt.Sprintf("	init_%v()", strings.TrimSuffix(file.Name(), ".go")))
 				}
 			}
@@ -75,6 +82,9 @@ func Optimize(dir string) error {
 		}
 
 		targetPath := filepath.Join(target, strings.TrimPrefix(path, source))
+		if strings.HasPrefix(filepath.Base(targetPath), "_") {
+			targetPath = filepath.Join(filepath.Dir(targetPath), sanitizeFilename(filepath.Base(targetPath)))
+		}
 		if err := os.MkdirAll(filepath.Dir(targetPath), os.ModePerm); err != nil {
 			return err
 		}
