@@ -21,12 +21,12 @@ func init() {
 	carapace.Gen(checkoutCmd).Standalone()
 
 	checkoutCmd.Flags().StringS("B", "B", "", "create/reset and checkout a branch")
+	checkoutCmd.Flags().Bool("auto-advance", false, "auto advance to the next file when selecting hunks interactively")
 	checkoutCmd.Flags().StringS("b", "b", "", "create and checkout a new branch")
 	checkoutCmd.Flags().String("conflict", "", "conflict style (merge or diff3)")
 	checkoutCmd.Flags().BoolP("detach", "d", false, "detach HEAD at named commit")
 	checkoutCmd.Flags().BoolP("force", "f", false, "force checkout (throw away local modifications)")
 	checkoutCmd.Flags().Bool("guess", false, "second guess 'git checkout <no-such-branch>' (default)")
-	checkoutCmd.Flags().Bool("auto-advance", false, "auto advance to the next file when selecting hunks interactively")
 	checkoutCmd.Flags().Bool("ignore-other-worktrees", false, "do not check if another worktree is holding the given ref")
 	checkoutCmd.Flags().Bool("ignore-skip-worktree-bits", false, "do not limit pathspecs to sparse entries only")
 	checkoutCmd.Flags().BoolS("l", "l", false, "create reflog for new branch")
