@@ -3,6 +3,7 @@ package http
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/net"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
 	"github.com/carapace-sh/carapace/pkg/style"
 )
@@ -100,8 +101,51 @@ func ActionRequestHeaderValues(header string) carapace.Action {
 			return carapace.ActionValues("100-continue")
 		case "Transfer-Encoding":
 			return ActionTransferEncodingTokens()
+		case "A-IM":
+			return ActionInstanceManipulations().UniqueList(",")
+		case "Accept-Charset":
+			return ActionCharsets().UniqueList(",")
+		case "Connection":
+			return ActionConnectionOptions().UniqueList(",")
+		case "From":
+			return carapace.ActionMultiPartsN("@", 2, func(c carapace.Context) carapace.Action {
+				switch len(c.Parts) {
+				case 0:
+					return carapace.ActionValues().Suffix("@")
+				default:
+					return ActionEmailDomains()
+				}
+			})
+		case "Host":
+			return net.ActionHosts()
+		case "If-Match":
+			return ActionETags().UniqueList(",")
+		case "If-None-Match":
+			return ActionETags().UniqueList(",")
+		case "If-Range":
+			return ActionETags()
+		case "Max-Forwards":
+			return carapace.ActionValues("10", "100")
+		case "Origin":
+			return net.ActionHosts()
+		case "Pragma":
+			return carapace.ActionValues("no-cache")
+		case "Prefer":
+			return ActionPreferTokens().UniqueList(",")
+		case "Range":
+			return ActionRangeUnits()
+		case "Referer":
+			return net.ActionHosts()
+		case "TE":
+			return ActionTEValues().UniqueList(",")
+		case "Trailer":
+			return ActionRequestHeaderNames().UniqueList(",")
+		case "Upgrade":
+			return ActionUpgradeTokens().UniqueList(",")
 		case "User-Agent":
 			return ActionUserAgents()
+		case "Warning":
+			return ActionWarningCodes()
 		default:
 			return carapace.ActionValues()
 		}
@@ -235,5 +279,184 @@ func ActionUserAgents() carapace.Action {
 		"curl/7.35.0", "Curl",
 		"Wget/1.15 (linux-gnu)", "Wget",
 		"Lynx/2.8.8pre.4 libwww-FM/2.14 SSL-MM/1.4.1 GNUTLS/2.12.23", "Lynx",
+	)
+}
+
+// ActionInstanceManipulations completes instance manipulations for A-IM header
+//
+//	vcdiff (Delta encoding using the VCDIFF format)
+//	gzip (Gzip compression)
+func ActionInstanceManipulations() carapace.Action {
+	return carapace.ActionValuesDescribed(
+		"vcdiff", "Delta encoding using the VCDIFF format",
+		"gzip", "Gzip compression",
+		"deflate", "Deflate compression",
+		"range", "Range requests",
+		"identity", "Identity (no transformation)",
+	)
+}
+
+// ActionCharsets completes character sets
+//
+//	utf-8 (Unicode (8-bit))
+//	iso-8859-1 (Latin alphabet No. 1)
+func ActionCharsets() carapace.Action {
+	return carapace.ActionValuesDescribed(
+		"utf-8", "Unicode (8-bit)",
+		"iso-8859-1", "Latin alphabet No. 1",
+		"windows-1252", "Western European (Windows)",
+		"iso-8859-15", "Latin alphabet No. 9",
+		"windows-1251", "Cyrillic (Windows)",
+		"iso-8859-2", "Latin alphabet No. 2",
+		"shift_jis", "Japanese (Shift-JIS)",
+		"euc-jp", "Japanese (EUC)",
+		"euc-kr", "Korean (EUC)",
+		"big5", "Traditional Chinese (Big5)",
+		"gb2312", "Simplified Chinese (GB2312)",
+		"koi8-r", "Russian (KOI8-R)",
+		"utf-16", "Unicode (16-bit)",
+		"utf-7", "Unicode (7-bit)",
+	)
+}
+
+// ActionConnectionOptions completes connection options
+//
+//	keep-alive (Persistent connection)
+//	close (Close connection after request)
+func ActionConnectionOptions() carapace.Action {
+	return carapace.ActionValuesDescribed(
+		"keep-alive", "Persistent connection",
+		"close", "Close connection after request",
+		"upgrade", "Upgrade to another protocol",
+	)
+}
+
+// ActionEmailDomains completes email domains
+//
+//	example.com (Example)
+//	gmail.com (Google)
+func ActionEmailDomains() carapace.Action {
+	return carapace.ActionValuesDescribed(
+		"example.com", "Example",
+		"gmail.com", "Google",
+		"outlook.com", "Microsoft",
+		"yahoo.com", "Yahoo",
+		"protonmail.com", "ProtonMail",
+		"icloud.com", "Apple",
+		"aol.com", "AOL",
+		"hotmail.com", "Microsoft",
+		"mail.com", "Mail.com",
+		"zoho.com", "Zoho",
+		"yandex.com", "Yandex",
+		"fastmail.com", "FastMail",
+		"tutanota.com", "Tuta",
+		"gmx.com", "GMX",
+	)
+}
+
+// ActionETags completes ETag values
+//
+//	"*" (Any resource)
+func ActionETags() carapace.Action {
+	return carapace.ActionValuesDescribed(
+		`"*"`, "Any resource",
+	)
+}
+
+// ActionPreferTokens completes Prefer header tokens
+//
+//	respond-async (Server should respond asynchronously)
+//	return=representation (Server should return a representation of the resource)
+func ActionPreferTokens() carapace.Action {
+	return carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
+		switch len(c.Parts) {
+		case 0:
+			return carapace.Batch(
+				carapace.ActionValuesDescribed(
+					"respond-async", "Server should respond asynchronously",
+				),
+				carapace.ActionValuesDescribed(
+					"return", "Server should return a representation of the resource",
+					"handling", "Server should handle the request strictly",
+					"wait", "Client is willing to wait for the specified number of seconds",
+				).Suffix("="),
+			).ToA()
+		case 1:
+			switch c.Parts[0] {
+			case "return":
+				return carapace.ActionValuesDescribed(
+					"representation", "Server should return a representation of the resource",
+					"minimal", "Server should return a minimal response",
+				)
+			case "handling":
+				return carapace.ActionValuesDescribed(
+					"strict", "Server should handle the request strictly",
+					"lenient", "Server should handle the request leniently",
+				)
+			case "wait":
+				return carapace.ActionValues("10", "30", "60")
+			default:
+				return carapace.ActionValues()
+			}
+		default:
+			return carapace.ActionValues()
+		}
+	})
+}
+
+// ActionRangeUnits completes Range header units
+//
+//	bytes= (Range in bytes)
+func ActionRangeUnits() carapace.Action {
+	return carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
+		switch len(c.Parts) {
+		case 0:
+			return carapace.ActionValuesDescribed(
+				"bytes", "Range in bytes",
+			).Suffix("=")
+		default:
+			return carapace.ActionValues("0-")
+		}
+	})
+}
+
+// ActionTEValues completes TE header values
+//
+//	trailers (Transfer-coding of the trailers)
+//	deflate (Deflate compression)
+func ActionTEValues() carapace.Action {
+	return carapace.ActionValuesDescribed(
+		"trailers", "Transfer-coding of the trailers",
+		"deflate", "Deflate compression",
+		"gzip", "Gzip compression",
+		"compress", "UNIX \"compress\" program method",
+	)
+}
+
+// ActionUpgradeTokens completes Upgrade header protocols
+//
+//	websocket (WebSocket protocol)
+//	h2c (HTTP/2 over cleartext TCP)
+func ActionUpgradeTokens() carapace.Action {
+	return carapace.ActionValuesDescribed(
+		"websocket", "WebSocket protocol",
+		"h2c", "HTTP/2 over cleartext TCP",
+		"TLS/1.0", "TLS version 1.0",
+		"HTTP/2.0", "HTTP version 2.0",
+	)
+}
+
+// ActionWarningCodes completes Warning header codes
+//
+//	110 (Response is stale)
+//	111 (Revalidation failed)
+func ActionWarningCodes() carapace.Action {
+	return carapace.ActionValuesDescribed(
+		"110", "Response is stale",
+		"111", "Revalidation failed",
+		"112", "Disconnected operation",
+		"113", "Heuristic expiration",
+		"199", "Miscellaneous warning",
+		"299", "Miscellaneous persistent warning",
 	)
 }
