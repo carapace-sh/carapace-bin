@@ -15,5 +15,12 @@ var agentCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(agentCmd).Standalone()
+
+	agentCmd.Flags().String("output-format", "", "Output format (json, stream-json)")
+
 	rootCmd.AddCommand(agentCmd)
+
+	carapace.Gen(agentCmd).FlagCompletion(carapace.ActionMap{
+		"output-format": carapace.ActionValues("json", "stream-json"),
+	})
 }

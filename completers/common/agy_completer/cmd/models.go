@@ -14,5 +14,12 @@ var modelsCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(modelsCmd).Standalone()
+
+	modelsCmd.Flags().String("output-format", "", "Output format (json, stream-json)")
+
 	rootCmd.AddCommand(modelsCmd)
+
+	carapace.Gen(modelsCmd).FlagCompletion(carapace.ActionMap{
+		"output-format": carapace.ActionValues("json", "stream-json"),
+	})
 }
