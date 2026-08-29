@@ -89,5 +89,10 @@ func ActionDependencyTypes() carapace.Action {
 		"iafter",
 		"ibefore",
 		"iprovide",
+		"providedby",
+		"keyword",
+		"config",
+		"reexport",
+		"broken",
 	).Tag("dependency types")
 }

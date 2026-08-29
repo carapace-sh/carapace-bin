@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/ps"
 	"github.com/spf13/cobra"
 )
 
@@ -66,7 +67,10 @@ func init() {
 		"oom-score-adj": carapace.ActionValues("-1000", "0", "1000"),
 		"pidfile":       carapace.ActionFiles(),
 		"retry":         carapace.ActionValues("1", "5", "10", "15", "30", "60"),
-		"signal":        carapace.ActionValues("HUP", "INT", "TERM", "KILL", "USR1", "USR2", "QUIT", "ALRM"),
+		"signal": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return ps.ActionKillSignals("linux").
+				Retain("ABRT", "ALRM", "BUS", "CHLD", "CONT", "FPE", "HUP", "ILL", "INT", "IO", "KILL", "PIPE", "PROF", "PWR", "QUIT", "SEGV", "STOP", "SYS", "TERM", "TRAP", "TSTP", "TTIN", "TTOU", "URG", "USR1", "USR2", "VTALRM", "WINCH", "XCPU", "XFSZ")
+		}),
 		"stderr":        carapace.ActionFiles(),
 		"stderr-logger": carapace.ActionFiles(),
 		"stdin":         carapace.ActionFiles(),

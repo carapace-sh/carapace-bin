@@ -36,4 +36,20 @@ func init() {
 		"runlevel": openrc.ActionRunlevels(),
 		"service":  openrc.ActionServices(),
 	})
+
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if len(c.Args) == 0 {
+				return openrc.ActionServices()
+			}
+			return carapace.ActionMultiParts("=", func(c2 carapace.Context) carapace.Action {
+				switch len(c2.Parts) {
+				case 0:
+					return carapace.ActionValues("=").NoSpace()
+				default:
+					return carapace.ActionValues()
+				}
+			})
+		}),
+	)
 }
