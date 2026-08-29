@@ -49,7 +49,7 @@ func ActionRunningProcesses(opts GlobalOpts) carapace.Action {
 		}
 
 		vals := make([]string, 0)
-		for _, line := range strings.Split(string(output), "\n") {
+		for line := range strings.SplitSeq(string(output), "\n") {
 			fields := strings.Fields(line)
 			if len(fields) < 2 {
 				continue

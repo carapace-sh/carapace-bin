@@ -2,12 +2,10 @@ package git
 
 import (
 	"fmt"
-	"net/url"
 	"strings"
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/styles"
-	"github.com/carapace-sh/carapace/pkg/uid"
 )
 
 // ActionPriorCheckouts completes prior checkout indices and their branch names
@@ -36,16 +34,11 @@ func ActionPriorCheckouts() carapace.Action {
 		// branch of the most recent checkout entry.
 		// Limit to 99 entries as the C source only validates @{-N} for N > 0
 		// (object-name.c:1293).
-		limit := 99
-		if len(branches) < limit {
-			limit = len(branches)
-		}
+		limit := min(len(branches), 99)
 		vals := make([]string, 0)
 		for i, branch := range branches[:limit] {
 			vals = append(vals, fmt.Sprintf("%02d", i+1), branch)
 		}
 		return carapace.ActionValuesDescribed(vals...).Style(styles.Git.Branch)
-	}).Tag("prior checkouts").UidF(func(s string, uc uid.Context) (*url.URL, error) {
-		return Uid("prior-checkout")(s, uc)
-	})
+	}).Tag("prior checkouts").UidF(Uid("prior-checkout"))
 }

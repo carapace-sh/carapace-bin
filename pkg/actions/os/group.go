@@ -95,7 +95,7 @@ func actionGroupsWindows() carapace.Action {
 					if strings.HasPrefix(trimmed, "The command") || strings.HasPrefix(trimmed, "*") {
 						continue
 					}
-					for _, group := range strings.Fields(line) {
+					for group := range strings.FieldsSeq(line) {
 						if len(group) > 0 {
 							groups = append(groups, group, group, style.Blue)
 						}
@@ -168,7 +168,7 @@ func actionGroupMembersWindows(c carapace.Context, group string) carapace.Action
 				if strings.HasPrefix(trimmed, "The command") || strings.HasPrefix(trimmed, "*") {
 					continue
 				}
-				for _, member := range strings.Fields(line) {
+				for member := range strings.FieldsSeq(line) {
 					if len(member) > 0 {
 						vals = append(vals, member)
 					}
