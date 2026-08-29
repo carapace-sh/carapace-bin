@@ -43,7 +43,7 @@ func init() {
 		"import-marks":           carapace.ActionFiles(),
 		"progress":               carapace.ActionValues(),
 		"reencode":               carapace.ActionValues("yes", "no", "abort").StyleF(style.ForKeyword),
-		"signed-tags":            carapace.ActionValues("verbatim", "warn", "warn-strip", "strip", "abort"),
+		"signed-tags":            carapace.ActionValues("abort", "strip", "verbatim", "warn-strip", "warn-verbatim"),
 		"tag-of-filtered-object": carapace.ActionValues("abort", "drop", "rewrite"),
 	})
 

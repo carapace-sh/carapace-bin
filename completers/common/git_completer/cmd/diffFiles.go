@@ -27,7 +27,6 @@ func init() {
 	diffFilesCmd.Flags().BoolS("q", "q", false, "remain silent even for nonexistent files")
 	diffFilesCmd.Flags().Bool("use-mailmap", false, "use mailmap file to map author and committer name")
 	common.AddDiffFlags(diffFilesCmd)
-	common.AddPrettyFlags(diffFilesCmd)
 	common.AddCommitLimitingOptions(diffFilesCmd)
 	common.AddHistorySimplificationOptions(diffFilesCmd)
 	common.AddBisectionHelperOptions(diffFilesCmd)

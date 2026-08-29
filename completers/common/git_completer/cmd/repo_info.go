@@ -26,7 +26,7 @@ func init() {
 
 	carapace.Gen(repo_infoCmd).FlagCompletion(carapace.ActionMap{
 		"format": carapace.ActionValuesDescribed(
-			"keyvalue", "use the = character as the delimiter",
+			"lines", "use the = character as the delimiter",
 			"nul", "use a newline character as the delimiter",
 		),
 	})

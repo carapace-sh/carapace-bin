@@ -16,10 +16,10 @@ import (
 //	/dev (dev)
 func ActionMounts() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		switch {
-		case runtime.GOOS == "darwin":
+		switch runtime.GOOS {
+		case "darwin":
 			return actionMountsDarwin()
-		case runtime.GOOS == "windows":
+		case "windows":
 			return actionMountsWindows()
 		default:
 			return actionMountsProc()
@@ -49,12 +49,9 @@ func actionMountsDarwin() carapace.Action {
 		lines := strings.Split(string(output), "\n")
 		vals := make([]string, 0)
 		for _, line := range lines {
-			if idx := strings.Index(line, " on "); idx != -1 {
-				rest := line[idx+4:]
-				if pIdx := strings.Index(rest, " ("); pIdx != -1 {
-					mountPoint := rest[:pIdx]
-					device := line[:idx]
-					vals = append(vals, mountPoint, device)
+			if beforeMount, after, ok := strings.Cut(line, " on "); ok {
+				if mountPoint, _, ok := strings.Cut(after, " ("); ok {
+					vals = append(vals, mountPoint, beforeMount)
 				}
 			}
 		}

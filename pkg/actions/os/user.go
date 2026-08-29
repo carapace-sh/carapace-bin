@@ -84,7 +84,7 @@ func actionUsersWindows() carapace.Action {
 			if trimmed == "" || strings.HasPrefix(trimmed, "The command") {
 				continue
 			}
-			for _, user := range strings.Fields(line) {
+			for user := range strings.FieldsSeq(line) {
 				if len(user) > 0 {
 					vals = append(vals, user, user, style.Blue)
 				}

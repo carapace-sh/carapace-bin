@@ -17,6 +17,7 @@ var revParseCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(revParseCmd).Standalone()
+	revParseCmd.Flags().SetInterspersed(false)
 
 	revParseCmd.Flags().String("abbrev-ref", "", "a non-ambiguous short name of the objects name")
 	revParseCmd.Flags().Bool("absolute-git-dir", false, "like --git-dir, but its output is always the canonicalized absolute path")

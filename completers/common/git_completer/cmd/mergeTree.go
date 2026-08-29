@@ -15,6 +15,7 @@ var mergeTreeCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(mergeTreeCmd).Standalone()
+	mergeTreeCmd.Flags().SetInterspersed(false)
 
 	mergeTreeCmd.Flags().Bool("allow-unrelated-histories", false, "override common history check and make the merge proceed anyway")
 	mergeTreeCmd.Flags().String("merge-base", "", "specify a merge-base for the merge")

@@ -64,7 +64,7 @@ func init() {
 
 	carapace.Gen(formatPatchCmd).FlagCompletion(carapace.ActionMap{
 		"base":                   git.ActionRefs(git.RefOption{}.Default()),
-		"cover-from-description": carapace.ActionValues("message", "short", "auto"),
+		"cover-from-description": carapace.ActionValues("auto", "default", "message", "none", "subject"),
 		"description-file":       carapace.ActionFiles(),
 		"interdiff":              git.ActionRefs(git.RefOption{}.Default()),
 		"output-directory":       carapace.ActionDirectories(),

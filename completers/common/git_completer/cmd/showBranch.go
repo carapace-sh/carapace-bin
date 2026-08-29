@@ -15,6 +15,7 @@ var showBranchCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(showBranchCmd).Standalone()
+	showBranchCmd.Flags().SetInterspersed(false)
 
 	showBranchCmd.Flags().BoolP("all", "a", false, "show remote-tracking and local branches")
 	showBranchCmd.Flags().String("color", "", "color '*!+-' corresponding to the branch")

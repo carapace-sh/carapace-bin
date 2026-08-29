@@ -78,7 +78,7 @@ func init() {
 	rebaseCmd.Flag("rebase-merges").NoOptDefVal = " "
 
 	carapace.Gen(rebaseCmd).FlagCompletion(carapace.ActionMap{
-		"empty":         carapace.ActionValues("drop", "keep", "ask"),
+		"empty":         carapace.ActionValues("drop", "keep", "stop"),
 		"exec":          carapace.ActionFiles(),
 		"gpg-sign":      os.ActionGpgKeyIds(),
 		"onto":          git.ActionRefs(git.RefOption{}.Default()),

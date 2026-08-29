@@ -50,7 +50,7 @@ func init() {
 	pullCmd.Flags().Bool("no-autostash", false, "do not automatically stash/stash pop before and after")
 	pullCmd.Flags().Bool("no-commit", false, "perform the merge but do not commit the result")
 	pullCmd.Flags().Bool("no-edit", false, "don't open an editor to change the commit message")
-	pullCmd.Flags().Bool("no-ff", false, "generate a merge commit even if the merge resol") // TODO
+	pullCmd.Flags().Bool("no-ff", false, "generate a merge commit even if the merge resolves as fast-forward")
 	pullCmd.Flags().Bool("no-gpg-sign", false, "don't GPG-sign the commit")
 	pullCmd.Flags().Bool("no-log", false, "do not list one-line descriptions of the commit")
 	pullCmd.Flags().Bool("no-rebase", false, "do not perform a rebase after fetching")
@@ -70,7 +70,7 @@ func init() {
 	pullCmd.Flags().BoolP("quiet", "q", false, "be more quiet")
 	pullCmd.Flags().StringP("rebase", "r", "", "incorporate changes by rebasing rather than merging")
 	pullCmd.Flags().String("recurse-submodules", "", "control for recursive fetching of submodules")
-	pullCmd.Flags().Bool("recurse-submodules-default", false, "provide internal temporary non-negative value f") // TODO
+	pullCmd.Flags().Bool("recurse-submodules-default", false, "provide internal temporary non-negative value for recursive fetching")
 	pullCmd.Flags().StringArray("refmap", nil, "specify fetch refmap")
 	pullCmd.Flags().StringP("server-option", "o", "", "option to transmit")
 	pullCmd.Flags().Bool("set-upstream", false, "set upstream for git pull/fetch")
@@ -107,7 +107,6 @@ func init() {
 			"false", "merge after fetching",
 			"interactive", "allow list of commits to be edited",
 			"merges", "try to rebase merges instead of skipping them",
-			"preserve", "rebase and preserve merges",
 			"true", "rebase after fetching",
 		),
 		"recurse-submodules": carapace.ActionValuesDescribed(

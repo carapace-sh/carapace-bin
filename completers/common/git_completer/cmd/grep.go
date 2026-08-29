@@ -15,6 +15,7 @@ var grepCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(grepCmd).Standalone()
+	grepCmd.Flags().SetInterspersed(false)
 
 	grepCmd.Flags().BoolS("H", "H", false, "show filenames")
 	grepCmd.Flags().BoolS("I", "I", false, "don't match patterns in binary files")

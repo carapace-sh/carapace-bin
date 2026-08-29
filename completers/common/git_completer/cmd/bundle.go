@@ -14,6 +14,7 @@ var bundleCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(bundleCmd).Standalone()
+	bundleCmd.Flags().SetInterspersed(false)
 	bundleCmd.Flags().BoolP("verbose", "v", false, "be verbose")
 
 	rootCmd.AddCommand(bundleCmd)

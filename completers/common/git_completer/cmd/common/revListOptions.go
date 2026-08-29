@@ -163,13 +163,18 @@ func AddCommitFormattingOptions(cmd *cobra.Command) {
 	cmd.Flags().Bool("no-abbrev-commit", false, "show the full 40-byte hexadecimal commit object name")
 	cmd.Flags().Bool("no-commit-header", false, "suppress the header line containing \"commit\"")
 	cmd.Flags().Bool("no-expand-tabs", false, "do not perform a tab expansion")
+	cmd.Flags().Bool("no-notes", false, "do not show notes")
 	cmd.Flags().Bool("oneline", false, "shorthand for \"--pretty=oneline --abbrev-commit\" used together")
 	cmd.Flags().Bool("parents", false, "print also the parents of the commit")
 	cmd.Flags().String("pretty", "", "pretty-print the contents of the commit logs in a given format")
 	cmd.Flags().Bool("relative-date", false, "synonym for --date=relative")
 	cmd.Flags().String("show-linear-break", "", "put a barrier in between branches in graph output")
 	cmd.Flags().Bool("show-signature", false, "check the validity of a signed commit object")
+	cmd.Flags().Bool("show-notes-by-default", false, "show the default notes")
 	cmd.Flags().Bool("timestamp", false, "print the raw commit timestamp")
+	cmd.Flags().StringArray("notes", nil, "show the notes that annotate the commit")
+
+	cmd.Flag("notes").NoOptDefVal = " "
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
 		"date": carapace.ActionValuesDescribed(
@@ -186,12 +191,13 @@ func AddCommitFormattingOptions(cmd *cobra.Command) {
 			"human", "shows the date in human readable format",
 			"unix", "shows the date as a Unix epoch timestamp (seconds since 1970)",
 			"format:", "feeds the given format to your system strftime",
-			"format:%c", "show the date in your system locale’s preferred format",
+			"format:%c", "show the date in your system locale's preferred format",
 			"default", "the default format",
 		),
 		"encoding":          text.ActionEncodings(),
 		"expand-tabs":       carapace.ActionValues(), // TODO
 		"format":            git.ActionPrettyFormats(),
+		"notes":             git.ActionRefs(git.RefOption{}.Default()),
 		"pretty":            git.ActionPrettyFormats(),
 		"show-linear-break": carapace.ActionValues(), // TODO
 	})

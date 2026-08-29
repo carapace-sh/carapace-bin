@@ -15,6 +15,7 @@ var lsRemoteCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(lsRemoteCmd).Standalone()
+	lsRemoteCmd.Flags().SetInterspersed(false)
 
 	lsRemoteCmd.Flags().BoolP("branches", "b", false, "limit to branches")
 	lsRemoteCmd.Flags().Bool("exit-code", false, "exit with exit code 2 if no matching refs are found")

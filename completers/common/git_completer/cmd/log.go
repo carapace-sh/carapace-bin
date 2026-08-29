@@ -35,10 +35,8 @@ func init() {
 	logCmd.Flags().Bool("no-decorate", false, "do not print out the ref names of any commits that are shown")
 	logCmd.Flags().Bool("no-diff-merges", false, "disable output of diffs for merge commits")
 	logCmd.Flags().Bool("no-mailmap", false, "do not use mailmap file to map author and committer names and email addresses to canonical real names and email addresses")
-	logCmd.Flags().Bool("no-notes", false, "do not show notes")
 	logCmd.Flags().Bool("no-relative", false, "do not show pathnames relative to the current directory")
 	logCmd.Flags().Bool("no-use-mailmap", false, "do not use mailmap file to map author and committer names and email addresses to canonical real names and email addresses")
-	logCmd.Flags().StringArray("notes", nil, "show the notes that annotate the commit")
 	logCmd.Flags().Bool("source", false, "print out the ref name given on the command line by which each commit was reached")
 	logCmd.Flags().BoolS("t", "t", false, "show the tree objects in the diff output")
 	logCmd.Flags().Bool("use-mailmap", false, "use mailmap file to map author and committer names and email addresses to canonical real names and email addresses")
@@ -73,7 +71,6 @@ func init() {
 			"dense-combined", "With this option the output produced by --diff-merges=combined is further compressed.",
 			"cc", "With this option the output produced by --diff-merges=combined is further compressed.",
 		),
-		"notes": git.ActionRefs(git.RefOption{}.Default()),
 	})
 
 	carapace.Gen(logCmd).PositionalAnyCompletion(

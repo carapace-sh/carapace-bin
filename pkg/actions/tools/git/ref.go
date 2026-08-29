@@ -78,6 +78,9 @@ func ActionRefs(refOption RefOption) carapace.Action {
 			case '^':
 				return ActionRefParents(c.Value[:index])
 			case '@':
+				if index == 0 && strings.HasPrefix(c.Value[index+1:], "{-") {
+					return ActionPriorCheckouts().Suffix("}").Prefix(c.Value[:index+1] + "{-")
+				}
 				return carapace.Batch(
 					time.ActionDateTime(time.DateTimeOpts{}),
 					carapace.ActionValues("yesterday", "push", "upstream").Style(style.Blue).Suffix("}"),
