@@ -15,11 +15,6 @@ using namespace System.Management.Automation.Language
 $_carapace_completer = {
     [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingInvokeExpression", "", Scope="Function", Target="*")]
     param($wordToComplete, $commandAst, $cursorPosition)
-    $env:CARAPACE_SHELL = "powershell"
-    $env:CARAPACE_SHELL_ALIASES = (Get-Alias | ForEach-Object { $_.Name } | Out-String).TrimEnd()
-    $env:CARAPACE_SHELL_BUILTINS = (Get-Command -CommandType Builtin | ForEach-Object { $_.Name } | Out-String).TrimEnd()
-    $env:CARAPACE_SHELL_FUNCTIONS = (Get-Command -CommandType Function | ForEach-Object { $_.Name } | Out-String).TrimEnd()
-    $env:CARAPACE_SHELL_VARIABLES = (Get-Variable | ForEach-Object { $_.Name } | Out-String).TrimEnd()
 
     $commandElements = $commandAst.CommandElements
 
@@ -47,10 +42,33 @@ $_carapace_completer = {
     }
 
     $completions = @(
-      if (!$wordToComplete) {
-        carapace ($elems[0] -replace ('\.exe$', '')) powershell $($elems| ForEach-Object {$_}) '' | ConvertFrom-Json | ForEach-Object { [CompletionResult]::new($_.CompletionText, $_.ListItemText.replace('` + "`" + `e[', "` + "`" + `e["), [CompletionResultType]::ParameterValue, $_.ToolTip.replace('` + "`" + `e[', "` + "`" + `e[")) }
-      } else {
-        carapace ($elems[0] -replace ('\.exe$', '')) powershell $($elems| ForEach-Object {$_}) | ConvertFrom-Json | ForEach-Object { [CompletionResult]::new($_.CompletionText, $_.ListItemText.replace('` + "`" + `e[', "` + "`" + `e["), [CompletionResultType]::ParameterValue, $_.ToolTip.replace('` + "`" + `e[', "` + "`" + `e[")) }
+      $old = @{
+        CARAPACE_SHELL = $env:CARAPACE_SHELL
+        CARAPACE_SHELL_ALIASES = $env:CARAPACE_SHELL_ALIASES
+        CARAPACE_SHELL_BUILTINS = $env:CARAPACE_SHELL_BUILTINS
+        CARAPACE_SHELL_FUNCTIONS = $env:CARAPACE_SHELL_FUNCTIONS
+        CARAPACE_SHELL_VARIABLES = $env:CARAPACE_SHELL_VARIABLES
+      }
+      try {
+        $env:CARAPACE_SHELL = "powershell"
+        $env:CARAPACE_SHELL_ALIASES = (Get-Alias | ForEach-Object { $_.Name } | Out-String).TrimEnd()
+        $env:CARAPACE_SHELL_BUILTINS = (Get-Command -CommandType Builtin | ForEach-Object { $_.Name } | Out-String).TrimEnd()
+        $env:CARAPACE_SHELL_FUNCTIONS = (Get-Command -CommandType Function | ForEach-Object { $_.Name } | Out-String).TrimEnd()
+        $env:CARAPACE_SHELL_VARIABLES = (Get-Variable | ForEach-Object { $_.Name } | Out-String).TrimEnd()
+
+        if (!$wordToComplete) {
+          carapace ($elems[0] -replace ('\.exe$', '')) powershell $($elems| ForEach-Object {$_}) '' | ConvertFrom-Json | ForEach-Object { [CompletionResult]::new($_.CompletionText, $_.ListItemText.replace('` + "`" + `e[', "` + "`" + `e["), [CompletionResultType]::ParameterValue, $_.ToolTip.replace('` + "`" + `e[', "` + "`" + `e[")) }
+        } else {
+          carapace ($elems[0] -replace ('\.exe$', '')) powershell $($elems| ForEach-Object {$_}) | ConvertFrom-Json | ForEach-Object { [CompletionResult]::new($_.CompletionText, $_.ListItemText.replace('` + "`" + `e[', "` + "`" + `e["), [CompletionResultType]::ParameterValue, $_.ToolTip.replace('` + "`" + `e[', "` + "`" + `e[")) }
+        }
+      } finally {
+        foreach ($kv in $old.GetEnumerator()) {
+          if ($null -eq $kv.Value) {
+            Remove-Item "env:$($kv.Key)" -ErrorAction SilentlyContinue
+          } else {
+            Set-Item "env:$($kv.Key)" $kv.Value
+          }
+        }
       }
     )
 

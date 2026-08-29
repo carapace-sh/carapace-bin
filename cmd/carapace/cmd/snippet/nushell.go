@@ -13,14 +13,6 @@ func Nushell(completers []string) string {
 	snippet := `%v%v
 
 let carapace_completer = {|spans|
-  load-env {
-  	CARAPACE_SHELL: 'nushell'
-  	CARAPACE_SHELL_ALIASES: (scope aliases | get name | uniq | str join "\n")
-  	CARAPACE_SHELL_BUILTINS: (help commands | where category != "" | get name | each { split row " " | first } | uniq  | str join "\n")
-  	CARAPACE_SHELL_FUNCTIONS: (help commands | where category == "" | get name | each { split row " " | first } | uniq  | str join "\n")
-  	CARAPACE_SHELL_VARIABLES: (scope variables | get name | uniq | str join "\n")
-  }
-
   # if the current command is an alias, get it's expansion
   let expanded_alias = (scope aliases | where name == $spans.0 | $in.0?.expansion?)
 
@@ -35,7 +27,15 @@ let carapace_completer = {|spans|
   if ($spans | length) == 1 {
     null
   } else {
-    carapace $spans.0 nushell ...$spans | from json
+    with-env {
+      CARAPACE_SHELL: 'nushell'
+      CARAPACE_SHELL_ALIASES: (scope aliases | get name | uniq | str join "\n")
+      CARAPACE_SHELL_BUILTINS: (help commands | where category != "" | get name | each { split row " " | first } | uniq  | str join "\n")
+      CARAPACE_SHELL_FUNCTIONS: (help commands | where category == "" | get name | each { split row " " | first } | uniq  | str join "\n")
+      CARAPACE_SHELL_VARIABLES: (scope variables | get name | uniq | str join "\n")
+    } {
+      carapace $spans.0 nushell ...$spans | from json
+    }
   }
 }
 
