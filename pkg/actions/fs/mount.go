@@ -49,12 +49,9 @@ func actionMountsDarwin() carapace.Action {
 		lines := strings.Split(string(output), "\n")
 		vals := make([]string, 0)
 		for _, line := range lines {
-			if _, after, ok := strings.Cut(line, " on "); ok {
-				rest := after
-				if before, _, ok := strings.Cut(rest, " ("); ok {
-					mountPoint := before
-					device := before
-					vals = append(vals, mountPoint, device)
+			if beforeMount, after, ok := strings.Cut(line, " on "); ok {
+				if mountPoint, _, ok := strings.Cut(after, " ("); ok {
+					vals = append(vals, mountPoint, beforeMount)
 				}
 			}
 		}
