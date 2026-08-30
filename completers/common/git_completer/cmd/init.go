@@ -7,6 +7,7 @@ import (
 
 var initCmd = &cobra.Command{
 	Use:     "init",
+	Aliases: []string{"init-db"},
 	Short:   "Create an empty Git repository or reinitialize an existing one",
 	Run:     func(cmd *cobra.Command, args []string) {},
 	GroupID: groups[group_main].ID,

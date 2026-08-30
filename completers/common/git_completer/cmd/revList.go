@@ -17,6 +17,7 @@ var revListCmd = &cobra.Command{
 func init() {
 	carapace.Gen(revListCmd).Standalone()
 
+	revListCmd.Flags().Bool("quiet", false, "don't print anything to standard output")
 	common.AddBisectionHelperOptions(revListCmd)
 	common.AddCommitFormattingOptions(revListCmd)
 	common.AddCommitLimitingOptions(revListCmd)

@@ -79,6 +79,7 @@ func init() {
 	rootCmd.Flags().BoolP("version", "v", false, "display version information")
 	rootCmd.Flags().String("work-tree", "", "path to working tree")
 
+	rootCmd.Flag("exec-path").NoOptDefVal = " "
 	rootCmd.Flag("list-cmds").NoOptDefVal = " "
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{

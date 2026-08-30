@@ -19,11 +19,14 @@ func init() {
 	difftoolCmd.Flags().BoolP("dir-diff", "d", false, "perform a full-directory diff")
 	difftoolCmd.Flags().StringP("extcmd", "x", "", "specify a custom command for viewing diffs")
 	difftoolCmd.Flags().BoolP("gui", "g", false, "use `diff.guitool` instead of `diff.tool`")
-	difftoolCmd.Flags().BoolP("no-prompt", "y", false, "do not prompt before launching a diff tool")
+	difftoolCmd.Flags().Bool("no-prompt", false, "do not prompt before launching a diff tool")
+	difftoolCmd.Flags().Bool("prompt", true, "prompt before launching a diff tool")
 	difftoolCmd.Flags().Bool("symlinks", false, "use symlinks in dir-diff mode")
 	difftoolCmd.Flags().StringP("tool", "t", "", "use the specified diff tool")
 	difftoolCmd.Flags().Bool("tool-help", false, "print a list of diff tools that may be used with `--tool`")
 	difftoolCmd.Flags().Bool("trust-exit-code", false, "exit when an invoked diff tool returns a non - zero exit code")
+	difftoolCmd.Flags().BoolP("y", "y", false, "synonym for --no-prompt")
+	difftoolCmd.Flag("prompt").Hidden = true
 
 	common.AddDiffFlags(difftoolCmd)
 	rootCmd.AddCommand(difftoolCmd)

@@ -20,8 +20,6 @@ func init() {
 	diffIndexCmd.Flags().StringS("G", "G", "", "look for differences whose patch text contains added/removed lines that match <regex>")
 	diffIndexCmd.Flags().BoolS("m", "m", false, "make git diff-index say that all non-checked-out files are up to date")
 	diffIndexCmd.Flags().Bool("merge-base", false, "use the merge base between <tree-ish> and HEAD")
-	diffIndexCmd.Flags().Bool("no-relative", false, "do not make the output relative")
-	diffIndexCmd.Flags().Bool("quiet", false, "disable all output of the program")
 	common.AddDiffFlags(diffIndexCmd)
 	rootCmd.AddCommand(diffIndexCmd)
 

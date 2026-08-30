@@ -53,7 +53,6 @@ func AddCommitLimitingOptions(cmd *cobra.Command) {
 	cmd.Flags().Bool("not", false, "reverses the meaning of the ^ prefix")
 	cmd.Flags().BoolP("perl-regexp", "P", false, "consider the limiting patterns to be Perl-compatible regular expressions")
 	cmd.Flags().String("progress", "", "show progress reports on stderr as objects are considered")
-	cmd.Flags().Bool("quiet", false, "don't print anything to standard output")
 	cmd.Flags().Bool("reflog", false, "pretend as if all reflog objects are listed on the command line")
 	cmd.Flags().BoolP("regexp-ignore-case", "i", false, "match the regular expression case insensitive")
 	cmd.Flags().StringArray("remotes", nil, "pretend as if all the refs in refs/remotes are listed on the command line")
