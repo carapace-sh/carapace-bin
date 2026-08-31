@@ -23,6 +23,7 @@ func init() {
 	forEachRefCmd.Flags().StringSlice("exclude", nil, "only list refs which do not match any excluded pattern(s)")
 	forEachRefCmd.Flags().String("format", "", "a string that interpolates %(fieldname) from a ref being shown")
 	forEachRefCmd.Flags().Bool("ignore-case", false, "sorting and filtering refs are case insensitive")
+	forEachRefCmd.Flags().Bool("include-root-refs", false, "also list root refs (refs pointing to root commits)")
 	forEachRefCmd.Flags().String("merged", "", "only list refs whose tips are reachable from the specified commit")
 	forEachRefCmd.Flags().String("no-contains", "", "only list refs which don’t contain the specified commit")
 	forEachRefCmd.Flags().String("no-merged", "", "only list refs whose tips are not reachable from the specified commit")
@@ -32,6 +33,7 @@ func init() {
 	forEachRefCmd.Flags().Bool("python", false, "quote strings for python")
 	forEachRefCmd.Flags().Bool("shell", false, "quote strings for shell ")
 	forEachRefCmd.Flags().StringSlice("sort", nil, "field name to sort on")
+	forEachRefCmd.Flags().String("start-after", "", "start listing refs after the given marker")
 	forEachRefCmd.Flags().Bool("stdin", false, "read patterns from standard input")
 	forEachRefCmd.Flags().Bool("tcl", false, "quote strings for tcl")
 	rootCmd.AddCommand(forEachRefCmd)
@@ -52,6 +54,7 @@ func init() {
 		"no-merged":   git.ActionRefs(git.RefOption{}.Default()),
 		"points-at":   git.ActionRefs(git.RefOption{}.Default()),
 		"sort":        git.ActionFieldNames(),
+		"start-after": git.ActionRefs(git.RefOption{}.Default()),
 	})
 
 	carapace.Gen(forEachRefCmd).PositionalAnyCompletion(

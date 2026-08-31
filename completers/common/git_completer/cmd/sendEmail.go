@@ -38,7 +38,9 @@ func init() {
 	sendEmailCmd.Flags().String("from", "", "email From:")
 	sendEmailCmd.Flags().String("header-cmd", "", "add headers via `<str> $patch_path`")
 	sendEmailCmd.Flags().String("identity", "", "use the sendemail.<id> options")
+	sendEmailCmd.Flags().String("imap-sent-folder", "", "IMAP folder where a copy of the emails should be sent")
 	sendEmailCmd.Flags().String("in-reply-to", "", "email \"In-Reply-To:\"")
+	sendEmailCmd.Flags().Bool("mailmap", false, "use mailmap file to map all email addresses to canonical name and email address")
 	sendEmailCmd.Flags().Bool("no-annotate", false, "do not review each patch in an editor")
 	sendEmailCmd.Flags().Bool("no-bcc", false, "clear the Bcc: list")
 	sendEmailCmd.Flags().Bool("no-cc", false, "clear the Cc: list")
@@ -46,6 +48,7 @@ func init() {
 	sendEmailCmd.Flags().Bool("no-chain-reply-to", false, "send all emails after the first as replies to the first")
 	sendEmailCmd.Flags().Bool("no-format-patch", false, "understand arguments as file names")
 	sendEmailCmd.Flags().Bool("no-header-cmd", false, "disable any header command in use")
+	sendEmailCmd.Flags().Bool("no-mailmap", false, "do not use mailmap file to map email addresses")
 	sendEmailCmd.Flags().Bool("no-signed-off-by-cc", false, "do not add emails from Signed-off-by trailers to the cc list")
 	sendEmailCmd.Flags().Bool("no-smtp-auth", false, "disable SMTP authentication")
 	sendEmailCmd.Flags().Bool("no-suppress-from", false, "do not suppress the From: address from the cc list")
@@ -54,6 +57,7 @@ func init() {
 	sendEmailCmd.Flags().Bool("no-to-cover", false, "do not add To: addresses from the cover letter")
 	sendEmailCmd.Flags().Bool("no-validate", false, "do not perform patch sanity checks")
 	sendEmailCmd.Flags().Bool("no-xmailer", false, "do not add the \"X-Mailer:\" header")
+	sendEmailCmd.Flags().Bool("outlook-id-fix", false, "fix Message-Id for Outlook SMTP servers")
 	sendEmailCmd.Flags().Bool("quiet", false, "output one line of info per email")
 	sendEmailCmd.Flags().String("relogin-delay", "", "wait <int> seconds before reconnecting to SMTP server")
 	sendEmailCmd.Flags().String("reply-to", "", "email \"Reply-To:\"")
@@ -69,6 +73,8 @@ func init() {
 	sendEmailCmd.Flags().String("smtp-server-port", "", "outgoing SMTP server port")
 	sendEmailCmd.Flags().Bool("smtp-ssl", false, "deprecated alias for --smtp-encryption ssl")
 	sendEmailCmd.Flags().String("smtp-ssl-cert-path", "", "path to ca-certificates (either directory or file)")
+	sendEmailCmd.Flags().String("smtp-ssl-client-cert", "", "path to the client certificate file")
+	sendEmailCmd.Flags().String("smtp-ssl-client-key", "", "path to the private key file for the client certificate")
 	sendEmailCmd.Flags().String("smtp-user", "", "username for SMTP-AUTH")
 	sendEmailCmd.Flags().String("subject", "", "email \"Subject:\"")
 	sendEmailCmd.Flags().String("suppress-cc", "", "specify category of recipients to suppress")
@@ -78,6 +84,8 @@ func init() {
 	sendEmailCmd.Flags().String("to-cmd", "", "email To: via `<str> $patch_path`")
 	sendEmailCmd.Flags().Bool("to-cover", false, "add To: addresses from the cover letter")
 	sendEmailCmd.Flags().String("transfer-encoding", "", "transfer encoding to use (quoted-printable, 8bit, base64)")
+	sendEmailCmd.Flags().Bool("translate-aliases", false, "translate aliases read from standard input")
+	sendEmailCmd.Flags().Bool("use-imap-only", false, "only copy emails to the IMAP folder instead of actually sending them")
 	sendEmailCmd.Flags().Bool("validate", false, "perform patch sanity checks")
 	sendEmailCmd.Flags().Bool("xmailer", false, "add the \"X-Mailer:\" header")
 	rootCmd.AddCommand(sendEmailCmd)
@@ -101,12 +109,14 @@ func init() {
 			"0", "disabled",
 			"1", "enabled",
 		).StyleF(style.ForKeyword),
-		"smtp-encryption":    carapace.ActionValues("ssl", "tls"),
-		"smtp-server-option": carapace.ActionValues(), // TODO
-		"smtp-server-port":   net.ActionPorts(),
-		"smtp-ssl-cert-path": carapace.ActionDirectories(),
-		"to-cmd":             bridge.ActionCarapaceBin().Split(),
-		"transfer-encoding":  carapace.ActionValues("7bit", "8bit", "quoted-printable", "base64", "auto"),
+		"smtp-encryption":      carapace.ActionValues("ssl", "tls"),
+		"smtp-server-option":   carapace.ActionValues(), // TODO
+		"smtp-server-port":     net.ActionPorts(),
+		"smtp-ssl-cert-path":   carapace.ActionDirectories(),
+		"smtp-ssl-client-cert": carapace.ActionFiles(),
+		"smtp-ssl-client-key":  carapace.ActionFiles(),
+		"to-cmd":               bridge.ActionCarapaceBin().Split(),
+		"transfer-encoding":    carapace.ActionValues("7bit", "8bit", "quoted-printable", "base64", "auto"),
 	})
 
 	carapace.Gen(sendEmailCmd).PositionalAnyCompletion(

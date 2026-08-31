@@ -15,6 +15,7 @@ var checkIgnoreCmd = &cobra.Command{
 func init() {
 	carapace.Gen(checkIgnoreCmd).Standalone()
 
+	checkIgnoreCmd.Flags().Bool("index", false, "opposite of --no-index")
 	checkIgnoreCmd.Flags().Bool("no-index", false, "ignore index when checking")
 	checkIgnoreCmd.Flags().BoolP("non-matching", "n", false, "show non-matching input paths")
 	checkIgnoreCmd.Flags().BoolP("quiet", "q", false, "suppress progress reporting")

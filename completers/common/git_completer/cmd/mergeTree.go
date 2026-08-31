@@ -23,6 +23,10 @@ func init() {
 	mergeTreeCmd.Flags().Bool("name-only", false, "in the Conflicted file info section")
 	mergeTreeCmd.Flags().Bool("no-messages", false, "do not write any informational messages such as \"Auto-merging <path>\" or CONFLICT notices to the end of stdout")
 	mergeTreeCmd.Flags().Bool("quiet", false, "disable all output; only exit status matters")
+	mergeTreeCmd.Flags().Bool("stdin", false, "perform multiple merges, one per line of input")
+	mergeTreeCmd.Flags().StringP("strategy-option", "X", "", "pass merge strategy specific option through")
+	mergeTreeCmd.Flags().Bool("trivial-merge", false, "do a trivial merge only")
+	mergeTreeCmd.Flags().Bool("write-tree", false, "do a real merge instead of a trivial merge")
 	mergeTreeCmd.Flags().BoolS("z", "z", false, "do not quote filenames in the <Conflicted file info> section")
 	rootCmd.AddCommand(mergeTreeCmd)
 

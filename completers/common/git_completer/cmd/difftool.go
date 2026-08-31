@@ -19,6 +19,7 @@ func init() {
 	difftoolCmd.Flags().BoolP("dir-diff", "d", false, "perform a full-directory diff")
 	difftoolCmd.Flags().StringP("extcmd", "x", "", "specify a custom command for viewing diffs")
 	difftoolCmd.Flags().BoolP("gui", "g", false, "use `diff.guitool` instead of `diff.tool`")
+	difftoolCmd.Flags().Bool("index", false, "opposite of --no-index")
 	difftoolCmd.Flags().Bool("no-prompt", false, "do not prompt before launching a diff tool")
 	difftoolCmd.Flags().Bool("prompt", true, "prompt before launching a diff tool")
 	difftoolCmd.Flags().Bool("symlinks", false, "use symlinks in dir-diff mode")

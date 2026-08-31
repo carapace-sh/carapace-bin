@@ -21,6 +21,7 @@ func init() {
 	carapace.Gen(showCmd).Standalone()
 
 	showCmd.Flags().StringArrayS("L", "L", nil, "process line range n,m in file, counting from 1")
+	showCmd.Flags().Bool("clear-decorations", false, "clear all previously-defined decoration filters")
 	showCmd.Flags().String("decorate", "", "decorate options")
 	showCmd.Flags().StringArray("decorate-refs", nil, "only decorate refs that match <pattern>")
 	showCmd.Flags().StringArray("decorate-refs-exclude", nil, "do not decorate refs that match <pattern>")

@@ -15,6 +15,7 @@ var uploadPackCmd = &cobra.Command{
 func init() {
 	carapace.Gen(uploadPackCmd).Standalone()
 
+	uploadPackCmd.Flags().Bool("advertise-refs", false, "only show refs advertised by the server")
 	uploadPackCmd.Flags().Bool("http-backend-info-refs", false, "used by git-http-backend(1) to serve up $GIT_URL/info/refs?service=git-upload-pack requests")
 	uploadPackCmd.Flags().Bool("stateless-rpc", false, "perform only a single read-write cycle with stdin and stdout")
 	uploadPackCmd.Flags().Bool("strict", false, "do not try <directory>/.git/ if <directory> is not a Git directory")

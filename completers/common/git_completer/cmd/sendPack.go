@@ -29,6 +29,7 @@ func init() {
 	sendPackCmd.Flags().Bool("mirror", false, "mirror all refs")
 	sendPackCmd.Flags().Bool("progress", false, "force progress reporting")
 	sendPackCmd.Flags().StringArray("push-option", nil, "pass the specified string as a push option")
+	sendPackCmd.Flags().BoolP("quiet", "q", false, "be more quiet")
 	sendPackCmd.Flags().String("receive-pack", "", "path to the git-receive-pack program on the remote end")
 	sendPackCmd.Flags().String("remote", "", "remote name")
 	sendPackCmd.Flags().String("signed", "", "GPG-sign the push request")

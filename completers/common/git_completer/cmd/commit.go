@@ -51,6 +51,7 @@ func init() {
 	commitCmd.Flags().Bool("pathspec-file-nul", false, "pathspec elements are separated with NUL character")
 	commitCmd.Flags().String("pathspec-from-file", "", "read pathspec from file")
 	commitCmd.Flags().Bool("porcelain", false, "machine-readable output")
+	commitCmd.Flags().Bool("post-rewrite", false, "opposite of --no-post-rewrite")
 	commitCmd.Flags().BoolP("quiet", "q", false, "suppress summary after successful commit")
 	commitCmd.Flags().StringP("reedit-message", "c", "", "reuse and edit message from specified commit")
 	commitCmd.Flags().Bool("reset-author", false, "the commit is authored by me now (used with -C/-c/--amend)")

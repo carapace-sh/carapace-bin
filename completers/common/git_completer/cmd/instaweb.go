@@ -20,6 +20,7 @@ func init() {
 	instawebCmd.Flags().StringP("browser", "b", "", "the browser to launch")
 	instawebCmd.Flags().StringP("httpd", "d", "", "the command to launch")
 	instawebCmd.Flags().BoolP("local", "l", false, "only bind on 127.0.0.1")
+	instawebCmd.Flags().StringP("module-path", "m", "", "module path")
 	instawebCmd.Flags().StringP("port", "p", "", "the port to bind to")
 	instawebCmd.Flags().Bool("restart", false, "restart the web server")
 	instawebCmd.Flags().Bool("start", false, "start the web server")
