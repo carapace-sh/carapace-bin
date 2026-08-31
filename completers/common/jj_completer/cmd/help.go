@@ -21,7 +21,15 @@ func init() {
 	helpCmd.MarkFlagsMutuallyExclusive("help", "keyword")
 
 	carapace.Gen(helpCmd).FlagCompletion(carapace.ActionMap{
-		"keyword": carapace.ActionValues("revsets", "tutorial"),
+		"keyword": carapace.ActionValuesDescribed(
+			"bookmarks", "Named pointers to revisions (similar to Git's branches)",
+			"config", "How and where to set configuration options",
+			"filesets", "A functional language for selecting a set of files",
+			"glossary", "Definitions of various terms",
+			"revsets", "A functional language for selecting a set of revision",
+			"templates", "A functional language to customize command output",
+			"tutorial", "Show a tutorial to get started with jj",
+		),
 	})
 
 	carapace.Gen(helpCmd).PositionalAnyCompletion(
