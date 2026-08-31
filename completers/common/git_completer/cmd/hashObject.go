@@ -15,6 +15,7 @@ var hashObjectCmd = &cobra.Command{
 func init() {
 	carapace.Gen(hashObjectCmd).Standalone()
 
+	hashObjectCmd.Flags().Bool("filters", false, "opposite of --no-filters")
 	hashObjectCmd.Flags().Bool("literally", false, "allow --stdin to hash any garbage into a loose object")
 	hashObjectCmd.Flags().Bool("no-filters", false, "hash the contents as is")
 	hashObjectCmd.Flags().String("path", "", "hash object as if it were located at the given path")

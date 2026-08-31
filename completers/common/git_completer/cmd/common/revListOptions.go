@@ -53,7 +53,6 @@ func AddCommitLimitingOptions(cmd *cobra.Command) {
 	cmd.Flags().Bool("not", false, "reverses the meaning of the ^ prefix")
 	cmd.Flags().BoolP("perl-regexp", "P", false, "consider the limiting patterns to be Perl-compatible regular expressions")
 	cmd.Flags().String("progress", "", "show progress reports on stderr as objects are considered")
-	cmd.Flags().Bool("quiet", false, "don't print anything to standard output")
 	cmd.Flags().Bool("reflog", false, "pretend as if all reflog objects are listed on the command line")
 	cmd.Flags().BoolP("regexp-ignore-case", "i", false, "match the regular expression case insensitive")
 	cmd.Flags().StringArray("remotes", nil, "pretend as if all the refs in refs/remotes are listed on the command line")
@@ -164,15 +163,15 @@ func AddCommitFormattingOptions(cmd *cobra.Command) {
 	cmd.Flags().Bool("no-commit-header", false, "suppress the header line containing \"commit\"")
 	cmd.Flags().Bool("no-expand-tabs", false, "do not perform a tab expansion")
 	cmd.Flags().Bool("no-notes", false, "do not show notes")
+	cmd.Flags().StringArray("notes", nil, "show the notes that annotate the commit")
 	cmd.Flags().Bool("oneline", false, "shorthand for \"--pretty=oneline --abbrev-commit\" used together")
 	cmd.Flags().Bool("parents", false, "print also the parents of the commit")
 	cmd.Flags().String("pretty", "", "pretty-print the contents of the commit logs in a given format")
 	cmd.Flags().Bool("relative-date", false, "synonym for --date=relative")
 	cmd.Flags().String("show-linear-break", "", "put a barrier in between branches in graph output")
-	cmd.Flags().Bool("show-signature", false, "check the validity of a signed commit object")
 	cmd.Flags().Bool("show-notes-by-default", false, "show the default notes")
+	cmd.Flags().Bool("show-signature", false, "check the validity of a signed commit object")
 	cmd.Flags().Bool("timestamp", false, "print the raw commit timestamp")
-	cmd.Flags().StringArray("notes", nil, "show the notes that annotate the commit")
 
 	cmd.Flag("notes").NoOptDefVal = " "
 

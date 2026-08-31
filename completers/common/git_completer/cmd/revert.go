@@ -19,6 +19,7 @@ func init() {
 
 	revertCmd.Flags().Bool("abort", false, "cancel revert or cherry-pick sequence")
 	revertCmd.Flags().String("cleanup", "", "how to strip spaces and #comments from message")
+	revertCmd.Flags().Bool("commit", false, "opposite of --no-commit")
 	revertCmd.Flags().Bool("continue", false, "resume revert or cherry-pick sequence")
 	revertCmd.Flags().BoolP("edit", "e", false, "edit the commit message")
 	revertCmd.Flags().StringP("gpg-sign", "S", "", "GPG-sign commits")
@@ -27,7 +28,6 @@ func init() {
 	revertCmd.Flags().Bool("no-edit", false, "do not open the editor")
 	revertCmd.Flags().Bool("no-gpg-sign", false, "do not GPG-sign commits")
 	revertCmd.Flags().Bool("no-rerere-autoupdate", false, "do not update the index with reused conflict resolution")
-	revertCmd.Flags().String("no-walk", "", "do not walk the commit graph")
 	revertCmd.Flags().Bool("quit", false, "end revert or cherry-pick sequence")
 	revertCmd.Flags().Bool("reference", false, "use the 'reference' format for merge commits")
 	revertCmd.Flags().Bool("rerere-autoupdate", false, "update the index with reused conflict resolution if possible")

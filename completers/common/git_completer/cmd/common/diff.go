@@ -38,7 +38,7 @@ func AddDiffFlags(cmd *cobra.Command) {
 	cmd.Flags().Bool("find-copies-harder", false, "inspect unmodified files as candidates for the source of copy")
 	cmd.Flags().String("find-object", "", "look for differences that change the number of occurrences of the specified object")
 	cmd.Flags().StringP("find-renames", "M", "", "detect renames")
-	cmd.Flags().String("follow", "", "continue listing the history of a file beyond renames")
+	cmd.Flags().Bool("follow", false, "continue listing the history of a file beyond renames")
 	cmd.Flags().Bool("full-index", false, "show the full pre- and post-image blob object names")
 	cmd.Flags().BoolP("function-context", "W", false, "show whole surrounding functions of changes")
 	cmd.Flags().Bool("histogram", false, "generate a diff using the \"histogram diff\" algorithm")
@@ -53,8 +53,10 @@ func AddDiffFlags(cmd *cobra.Command) {
 	cmd.Flags().String("inter-hunk-context", "", "show the context between diff hunks")
 	cmd.Flags().BoolP("irreversible-delete", "D", false, "omit the preimage for deletes")
 	cmd.Flags().Bool("ita-invisible-in-index", false, "this option makes the entry appear as a new file")
+	cmd.Flags().Bool("ita-visible-in-index", false, "treat 'git add -N' entries as real in the index")
 	cmd.Flags().StringS("l", "l", "", "prevent rename/copy detection from running if the number of rename/copy targets exceeds the specified number")
 	cmd.Flags().String("line-prefix", "", "prepend an additional prefix to every line of output")
+	cmd.Flags().String("max-depth", "", "maximum tree depth to recurse")
 	cmd.Flags().Bool("minimal", false, "spend extra time to make sure the smallest possible diff is produced")
 	cmd.Flags().Bool("name-only", false, "show only names of changed files")
 	cmd.Flags().Bool("name-status", false, "show only names and status of changed files")
@@ -62,15 +64,22 @@ func AddDiffFlags(cmd *cobra.Command) {
 	cmd.Flags().Bool("no-color", false, "turn off colored diff")
 	cmd.Flags().Bool("no-color-moved", false, "turn off move detection")
 	cmd.Flags().Bool("no-color-moved-ws", false, "do not ignore whitespace when performing move detection")
+	cmd.Flags().Bool("no-compact-summary", false, "do not output a condensed summary of extended header information")
+	cmd.Flags().Bool("no-exit-code", false, "do not make the program exit with codes similar to diff(1)")
 	cmd.Flags().Bool("no-ext-diff", false, "disallow external diff drivers")
+	cmd.Flags().Bool("no-find-copies-harder", false, "do not inspect unmodified files as candidates for the source of copy")
 	cmd.Flags().Bool("no-follow", false, "do not continue listing the history of a file beyond renames")
+	cmd.Flags().Bool("no-full-index", false, "do not show the full pre- and post-image blob object names")
 	cmd.Flags().Bool("no-indent-heuristic", false, "disable the indent heuristic")
 	cmd.Flags().Bool("no-index", false, "compare paths on the file system")
 	cmd.Flags().BoolP("no-patch", "s", false, "suppress diff output")
 	cmd.Flags().Bool("no-prefix", false, "do not show any source or destination prefix")
+	cmd.Flags().Bool("no-quiet", false, "do not disable all output of the program")
+	cmd.Flags().Bool("no-relative", false, "do not exclude changes outside the directory")
 	cmd.Flags().Bool("no-rename-empty", false, "whether to use empty blobs as rename source")
 	cmd.Flags().Bool("no-renames", false, "turn off rename detection")
-	cmd.Flags().String("no-textconv", "", "disallow external text conversion filters to be run when comparing binary files")
+	cmd.Flags().Bool("no-text", false, "do not treat all files as text")
+	cmd.Flags().Bool("no-textconv", false, "disallow external text conversion filters to be run when comparing binary files")
 	cmd.Flags().Bool("numstat", false, "similar to --stat, but shows number of added and deleted lines in decimal notation")
 	cmd.Flags().BoolP("ours", "2", false, "compare with our branch")
 	cmd.Flags().String("output", "", "output to a specific file instead of stdout")
@@ -83,6 +92,7 @@ func AddDiffFlags(cmd *cobra.Command) {
 	cmd.Flags().Bool("patience", false, "generate a diff using the \"patience diff\" algorithm")
 	cmd.Flags().Bool("pickaxe-all", false, "when -S or -G finds a change, show all the changes in that changeset")
 	cmd.Flags().Bool("pickaxe-regex", false, "treat the <string> given to -S as an extended POSIX regular expression to match")
+	cmd.Flags().Bool("quiet", false, "disable all output of the program")
 	cmd.Flags().Bool("raw", false, "generate the diff in raw format")
 	cmd.Flags().String("relative", "", "exclude changes outside the directory")
 	cmd.Flags().Bool("rename-empty", false, "whether to use empty blobs as rename source")
@@ -90,6 +100,7 @@ func AddDiffFlags(cmd *cobra.Command) {
 	cmd.Flags().Bool("shortstat", false, "output only the last line of the --stat format")
 	cmd.Flags().String("skip-to", "", "discard the files before the named <file> from the output")
 	cmd.Flags().String("src-prefix", "", "show the given source prefix instead of \"a/\"")
+	cmd.Flags().Bool("staged", false, "synonym for --cached (view the changes you staged)")
 	cmd.Flags().String("stat", "", "generate a diffstat")
 	cmd.Flags().String("stat-count", "", "generate diffstat with limited lines")
 	cmd.Flags().String("stat-graph-width", "", "generate diffstat with a given graph width")
@@ -119,6 +130,15 @@ func AddDiffFlags(cmd *cobra.Command) {
 	cmd.MarkFlagsMutuallyExclusive("follow", "no-follow")
 	cmd.MarkFlagsMutuallyExclusive("indent-heuristic", "no-indent-heuristic")
 	cmd.MarkFlagsMutuallyExclusive("patch", "no-patch")
+	cmd.MarkFlagsMutuallyExclusive("compact-summary", "no-compact-summary")
+	cmd.MarkFlagsMutuallyExclusive("exit-code", "no-exit-code")
+	cmd.MarkFlagsMutuallyExclusive("find-copies-harder", "no-find-copies-harder")
+	cmd.MarkFlagsMutuallyExclusive("full-index", "no-full-index")
+	cmd.MarkFlagsMutuallyExclusive("ita-invisible-in-index", "ita-visible-in-index")
+	cmd.MarkFlagsMutuallyExclusive("quiet", "no-quiet")
+	cmd.MarkFlagsMutuallyExclusive("relative", "no-relative")
+	cmd.MarkFlagsMutuallyExclusive("rename-empty", "no-rename-empty")
+	cmd.MarkFlagsMutuallyExclusive("text", "no-text")
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
 		"color":              git.ActionColorModes(),
@@ -126,8 +146,8 @@ func AddDiffFlags(cmd *cobra.Command) {
 		"color-moved-ws":     git.ActionColorMovedWsModes(),
 		"diff-algorithm":     git.ActionDiffAlgorithms(),
 		"diff-filter":        git.ActionDiffFilters().UniqueList(""),
-		"follow":             carapace.ActionFiles(), // TODO complete files of specific revision/modified between commits?
 		"ignore-submodules":  carapace.ActionValues("none", "untracked", "dirty", "all").StyleF(style.ForKeyword),
+		"max-depth":          carapace.ActionValues(),
 		"output":             carapace.ActionFiles(),
 		"rotate-to":          carapace.ActionFiles(), // TODO complete files of specific revision/modified between commits?
 		"skip-to":            carapace.ActionFiles(), // TODO complete files of specific revision/modified between commits?

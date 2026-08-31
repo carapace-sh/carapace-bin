@@ -26,6 +26,8 @@ func init() {
 	gcCmd.Flags().String("max-cruft-size", "", "maximum size of cruft pack")
 	gcCmd.Flags().String("prune", "", "prune unreferenced objects")
 	gcCmd.Flags().BoolP("quiet", "q", false, "suppress progress reporting")
+	gcCmd.Flags().Bool("skip-foreground-tasks", false, "skip maintenance tasks typically done in the foreground")
+	gcCmd.Flag("skip-foreground-tasks").Hidden = true
 	rootCmd.AddCommand(gcCmd)
 
 	gcCmd.Flag("prune").NoOptDefVal = " "

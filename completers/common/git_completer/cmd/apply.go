@@ -18,6 +18,7 @@ func init() {
 
 	applyCmd.Flags().BoolP("3way", "3", false, "attempt three-way merge, fall back on normal patch if that fails")
 	applyCmd.Flags().StringS("C", "C", "", "ensure at least <n> lines of context match")
+	applyCmd.Flags().Bool("add", false, "opposite of --no-add")
 	applyCmd.Flags().Bool("allow-empty", false, "don't return an error for patches containing no diff")
 	applyCmd.Flags().Bool("allow-overlap", false, "allow overlapping hunks")
 	applyCmd.Flags().Bool("apply", false, "also apply the patch (use with --stat/--summary/--check)")

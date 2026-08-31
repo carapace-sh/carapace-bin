@@ -16,12 +16,14 @@ func init() {
 	carapace.Gen(maintenance_runCmd).Standalone()
 
 	maintenance_runCmd.Flags().Bool("auto", false, "run tasks based on the state of the repository")
+	maintenance_runCmd.Flags().Bool("detach", false, "perform maintenance in the background")
 	maintenance_runCmd.Flags().Bool("quiet", false, "don't report progress or other information to stderr")
-	maintenance_runCmd.Flags().Bool("schedule", false, "run tasks based on frequency")
+	maintenance_runCmd.Flags().String("schedule", "", "run tasks based on frequency")
 	maintenance_runCmd.Flags().StringSlice("task", nil, "run a specific task")
 	maintenanceCmd.AddCommand(maintenance_runCmd)
 
 	carapace.Gen(maintenance_runCmd).FlagCompletion(carapace.ActionMap{
-		"task": git.ActionMaintenanceTasks(),
+		"schedule": carapace.ActionValues("hourly", "daily", "weekly"),
+		"task":     git.ActionMaintenanceTasks(),
 	})
 }

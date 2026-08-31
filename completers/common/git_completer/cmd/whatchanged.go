@@ -19,6 +19,7 @@ func init() {
 	carapace.Gen(whatchangedCmd).Standalone()
 
 	whatchangedCmd.Flags().StringArrayS("L", "L", nil, "trace the evolution of line range")
+	whatchangedCmd.Flags().Bool("clear-decorations", false, "clear all previously-defined decoration filters")
 	whatchangedCmd.Flags().String("decorate", "", "decorate options")
 	whatchangedCmd.Flags().StringArray("decorate-refs", nil, "only decorate refs that match <pattern>")
 	whatchangedCmd.Flags().StringArray("decorate-refs-exclude", nil, "do not decorate refs that match <pattern>")

@@ -23,8 +23,6 @@ func init() {
 	diffTreeCmd.Flags().BoolS("m", "m", false, "show differences for merge commits")
 	diffTreeCmd.Flags().Bool("merge-base", false, "use the merge base between the two <tree-ish>s as the \"before\" side")
 	diffTreeCmd.Flags().Bool("no-commit-id", false, "suppress commit ID output")
-	diffTreeCmd.Flags().Bool("no-relative", false, "do not show relative pathnames")
-	diffTreeCmd.Flags().Bool("quiet", false, "disable all output of the program")
 	diffTreeCmd.Flags().BoolS("r", "r", false, "recurse into sub-trees")
 	diffTreeCmd.Flags().Bool("root", false, "show the initial commit as a big creation event")
 	diffTreeCmd.Flags().Bool("stdin", false, "read from standard input")

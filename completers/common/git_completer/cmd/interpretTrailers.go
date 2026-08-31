@@ -15,7 +15,9 @@ var interpretTrailerCmd = &cobra.Command{
 func init() {
 	carapace.Gen(interpretTrailerCmd).Standalone()
 
+	interpretTrailerCmd.Flags().Bool("divider", false, "opposite of --no-divider")
 	interpretTrailerCmd.Flags().String("if-exists", "", "action if trailer already exists")
+	interpretTrailerCmd.Flags().String("if-missing", "", "action if trailer is missing")
 	interpretTrailerCmd.Flags().Bool("in-place", false, "edit files in place")
 	interpretTrailerCmd.Flags().Bool("no-divider", false, "do not treat --- specially")
 	interpretTrailerCmd.Flags().Bool("only-input", false, "do not apply config rules")
@@ -28,9 +30,10 @@ func init() {
 	rootCmd.AddCommand(interpretTrailerCmd)
 
 	carapace.Gen(interpretTrailerCmd).FlagCompletion(carapace.ActionMap{
-		"if-exists": carapace.ActionValues("addIfDifferent", "addIfDifferentNeighbor", "add", "replace", "doNothing"),
-		"trailer":   carapace.ActionValues("doNothing", "add"),
-		"where":     carapace.ActionValues("after", "before", "end", "start"),
+		"if-exists":  carapace.ActionValues("addIfDifferent", "addIfDifferentNeighbor", "add", "replace", "doNothing"),
+		"if-missing": carapace.ActionValues("add", "doNothing"),
+		"trailer":    carapace.ActionValues("doNothing", "add"),
+		"where":      carapace.ActionValues("after", "before", "end", "start"),
 	})
 
 	carapace.Gen(interpretTrailerCmd).PositionalAnyCompletion(

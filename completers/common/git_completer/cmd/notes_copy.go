@@ -15,6 +15,7 @@ var notes_copyCmd = &cobra.Command{
 func init() {
 	carapace.Gen(notes_copyCmd).Standalone()
 
+	notes_copyCmd.Flags().String("for-rewrite", "", "load rewriting config for <command> (implies --stdin)")
 	notes_copyCmd.Flags().BoolP("force", "f", false, "overwrite existing notes")
 	notes_copyCmd.Flags().Bool("stdin", false, "also read the object names to remove notes from the standard input")
 	notesCmd.AddCommand(notes_copyCmd)

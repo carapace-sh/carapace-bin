@@ -23,7 +23,6 @@ func init() {
 	diffFilesCmd.Flags().Bool("full-diff", false, "show full commit diffs")
 	diffFilesCmd.Flags().Bool("log-size", false, "print log message size in bytes before the message")
 	diffFilesCmd.Flags().Bool("mailmap", false, "use mailmap file to map author and committer name")
-	diffFilesCmd.Flags().Bool("no-relative", false, "do not show relative pathnames")
 	diffFilesCmd.Flags().BoolS("q", "q", false, "remain silent even for nonexistent files")
 	diffFilesCmd.Flags().Bool("use-mailmap", false, "use mailmap file to map author and committer name")
 	common.AddDiffFlags(diffFilesCmd)

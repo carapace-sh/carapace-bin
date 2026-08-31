@@ -14,5 +14,10 @@ var maintenance_registerCmd = &cobra.Command{
 func init() {
 	carapace.Gen(maintenance_registerCmd).Standalone()
 
+	maintenance_registerCmd.Flags().String("config-file", "", "use given config file")
 	maintenanceCmd.AddCommand(maintenance_registerCmd)
+
+	carapace.Gen(maintenance_registerCmd).FlagCompletion(carapace.ActionMap{
+		"config-file": carapace.ActionFiles(),
+	})
 }

@@ -22,15 +22,18 @@ func init() {
 	cloneCmd.Flags().Bool("bare", false, "create a bare repository")
 	cloneCmd.Flags().StringP("branch", "b", "", "checkout <branch> instead of the remote's HEAD")
 	cloneCmd.Flags().String("bundle-uri", "", "fetch additional objects from this URI")
+	cloneCmd.Flags().Bool("checkout", false, "opposite of --no-checkout")
 	cloneCmd.Flags().StringArrayP("config", "c", nil, "set config inside the new repository")
 	cloneCmd.Flags().String("depth", "", "create a shallow clone of that depth")
 	cloneCmd.Flags().Bool("dissociate", false, "use --reference only while cloning")
 	cloneCmd.Flags().StringArray("filter", nil, "object filtering")
+	cloneCmd.Flags().Bool("hardlinks", false, "opposite of --no-hardlinks")
 	cloneCmd.Flags().BoolP("ipv4", "4", false, "use IPv4 addresses only")
 	cloneCmd.Flags().BoolP("ipv6", "6", false, "use IPv6 addresses only")
 	cloneCmd.Flags().StringP("jobs", "j", "", "number of submodules cloned in parallel")
 	cloneCmd.Flags().BoolP("local", "l", false, "to clone from a local repository")
 	cloneCmd.Flags().Bool("mirror", false, "create a mirror repository (implies bare)")
+	cloneCmd.Flags().Bool("naked", false, "create a bare repository")
 	cloneCmd.Flags().BoolP("no-checkout", "n", false, "don't create a checkout")
 	cloneCmd.Flags().Bool("no-hardlinks", false, "don't use local hardlinks, always copy")
 	cloneCmd.Flags().Bool("no-local", false, "override --local, as if file:/// URL was given")
@@ -62,6 +65,7 @@ func init() {
 	cloneCmd.Flags().String("template", "", "directory from which templates will be used")
 	cloneCmd.Flags().StringP("upload-pack", "u", "", "path to git-upload-pack on the remote")
 	cloneCmd.Flags().BoolP("verbose", "v", false, "be more verbose")
+	cloneCmd.Flag("naked").Hidden = true
 	cloneCmd.Flag("recurse-submodules").NoOptDefVal = "."
 	cloneCmd.Flag("recursive").NoOptDefVal = "."
 

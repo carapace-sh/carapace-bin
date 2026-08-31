@@ -17,6 +17,7 @@ func init() {
 	carapace.Gen(checkoutIndexCmd).Standalone()
 
 	checkoutIndexCmd.Flags().BoolP("all", "a", false, "check out all files in the index")
+	checkoutIndexCmd.Flags().Bool("create", false, "opposite of --no-create")
 	checkoutIndexCmd.Flags().BoolP("force", "f", false, "force overwrite of existing files")
 	checkoutIndexCmd.Flags().Bool("ignore-skip-worktree-bits", false, "do not skip files with skip-worktree set")
 	checkoutIndexCmd.Flags().BoolP("index", "u", false, "update stat information in the index file")
