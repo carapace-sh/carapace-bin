@@ -55,6 +55,10 @@ func init() {
 			}
 			return gh.ActionProjectFields(opts)
 		}),
+		"id": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			projectId := project_itemEditCmd.Flag("project-id").Value.String()
+			return gh.ActionProjectNodeItems(gh.ProjectItemNodeOpts{ProjectId: projectId})
+		}),
 		"jq": jq.ActionFilters(),
 		"owner": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return gh.ActionOwners(gh.HostOpts{})

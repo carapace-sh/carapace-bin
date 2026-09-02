@@ -202,6 +202,58 @@ func actionOrganizationProjectItems(opts ProjectItemOpts) carapace.Action {
 		})
 }
 
+type ProjectItemNodeOpts struct {
+	Host      string
+	ProjectId string
+}
+
+func (o ProjectItemNodeOpts) Default() ProjectItemNodeOpts {
+	return o
+}
+
+func (o ProjectItemNodeOpts) repo() RepoOpts {
+	return RepoOpts{
+		Host: o.Host,
+	}
+}
+
+type projectNodeQuery struct {
+	Data struct {
+		Node struct {
+			ProjectV2 struct {
+				Items struct {
+					Nodes []struct {
+						Id         string
+						Type       string
+						IsArchived bool
+						Content    struct {
+							Title string
+						}
+					}
+				}
+			} `json:"... on ProjectV2"`
+		}
+	}
+}
+
+// ActionProjectNodeItems completes project items by project node ID
+//
+//	PVTI_lADOA48Fh84ABd_DzgBCG7c (Issue commands do not work with non-classic Projects)
+//	PVTI_lADOA48Fh84ABd_DzgBCHAo (Checkout branch for issue)
+func ActionProjectNodeItems(opts ProjectItemNodeOpts) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		var queryResult projectNodeQuery
+		return graphQlAction(opts.repo(), fmt.Sprintf(`node(id: "%v") { ... on ProjectV2 { items(first: 100) { nodes { id type isArchived content { ... on DraftIssue { title } ... on Issue { title } ... on PullRequest { title } } } } } }`, opts.ProjectId),
+			&queryResult, func() carapace.Action {
+				vals := make([]string, 0)
+				for _, item := range queryResult.Data.Node.ProjectV2.Items.Nodes {
+					vals = append(vals, item.Id, item.Content.Title)
+				}
+				return carapace.ActionValuesDescribed(vals...)
+			})
+	})
+}
+
 type ProjectFieldOpts struct {
 	Host    string
 	Owner   string
