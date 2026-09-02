@@ -5,14 +5,14 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var token_rmCmd = &cobra.Command{
-	Use:     "rm",
+var token_revokeCmd = &cobra.Command{
+	Use:     "revoke",
 	Short:   "remove an authentication token from the registry",
-	Aliases: []string{"delete", "revoke", "remove"},
+	Aliases: []string{"rm", "delete", "remove"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(token_rmCmd).Standalone()
-	tokenCmd.AddCommand(token_rmCmd)
+	carapace.Gen(token_revokeCmd).Standalone()
+	tokenCmd.AddCommand(token_revokeCmd)
 }
