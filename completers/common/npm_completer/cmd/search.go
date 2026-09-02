@@ -16,6 +16,7 @@ var searchCmd = &cobra.Command{
 func init() {
 	carapace.Gen(searchCmd).Standalone()
 	searchCmd.Flags().String("color", "always", "whether to show color in output")
+	searchCmd.Flags().Bool("description", false, "show the description in search")
 	searchCmd.Flags().Bool("json", false, "output as json")
 	searchCmd.Flags().BoolP("long", "l", false, "Search the registry for packages")
 	searchCmd.Flags().Bool("no-description", false, "hide descripton")
@@ -23,7 +24,9 @@ func init() {
 	searchCmd.Flags().BoolP("parseable", "p", false, "output parseable results")
 	searchCmd.Flags().Bool("prefer-offline", false, "bypass staleness checks for cached data")
 	searchCmd.Flags().Bool("prefer-online", false, "force staleness checks for cached data")
+	searchCmd.Flags().String("registry", "", "base URL of the npm registry")
 	searchCmd.Flags().String("searchexclude", "", "space separated options that limit the results")
+	searchCmd.Flags().Int("searchlimit", 20, "number of items to limit search results to")
 	searchCmd.Flags().String("searchopts", "", "space separated search options")
 
 	rootCmd.AddCommand(searchCmd)

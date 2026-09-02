@@ -16,13 +16,19 @@ func init() {
 	auditCmd.Flags().String("audit-level", "", "mnimum level of vulnerability level to exit with non-zero exit code")
 	auditCmd.Flags().Bool("dry-run", false, "only report what would be done")
 	auditCmd.Flags().BoolP("force", "f", false, "remove various protections against unfortunate side effects")
+	auditCmd.Flags().Bool("foreground-scripts", false, "run build scripts in the foreground process")
+	auditCmd.Flags().Bool("ignore-scripts", false, "do not run scripts specified in package.json")
+	auditCmd.Flags().String("include", "", "include dependency types to audit")
+	auditCmd.Flags().Bool("include-attestations", false, "include sigstore attestation bundles in audit output")
 	auditCmd.Flags().Bool("json", false, "output as json")
 	auditCmd.Flags().String("omit", "", "omit dependency type")
+	auditCmd.Flags().Bool("package-lock", false, "use package-lock.json")
 	auditCmd.Flags().Bool("package-lock-only", false, "ignore node-modules")
 	addWorkspaceFlags(auditCmd)
 
 	carapace.Gen(auditCmd).FlagCompletion(carapace.ActionMap{
 		"audit-level": carapace.ActionValues("info", "low", "moderate", "high", "critical", "none"),
+		"include":     carapace.ActionValues("prod", "dev", "optional", "peer"),
 		"omit":        carapace.ActionValues("dev", "optional", "peer"),
 	})
 
