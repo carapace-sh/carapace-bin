@@ -220,18 +220,16 @@ func (o ProjectItemNodeOpts) repo() RepoOpts {
 type projectNodeQuery struct {
 	Data struct {
 		Node struct {
-			ProjectV2 struct {
-				Items struct {
-					Nodes []struct {
-						Id         string
-						Type       string
-						IsArchived bool
-						Content    struct {
-							Title string
-						}
+			Items struct {
+				Nodes []struct {
+					Id         string
+					Type       string
+					IsArchived bool
+					Content    struct {
+						Title string
 					}
 				}
-			} `json:"... on ProjectV2"`
+			}
 		}
 	}
 }
@@ -246,7 +244,7 @@ func ActionProjectNodeItems(opts ProjectItemNodeOpts) carapace.Action {
 		return graphQlAction(opts.repo(), fmt.Sprintf(`node(id: "%v") { ... on ProjectV2 { items(first: 100) { nodes { id type isArchived content { ... on DraftIssue { title } ... on Issue { title } ... on PullRequest { title } } } } } }`, opts.ProjectId),
 			&queryResult, func() carapace.Action {
 				vals := make([]string, 0)
-				for _, item := range queryResult.Data.Node.ProjectV2.Items.Nodes {
+				for _, item := range queryResult.Data.Node.Items.Nodes {
 					vals = append(vals, item.Id, item.Content.Title)
 				}
 				return carapace.ActionValuesDescribed(vals...)
