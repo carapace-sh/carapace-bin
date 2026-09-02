@@ -17,6 +17,10 @@ var linkCmd = &cobra.Command{
 func init() {
 	carapace.Gen(linkCmd).Standalone()
 
+	linkCmd.Flags().Bool("allow-directory", false, "allow installing dependencies from directories")
+	linkCmd.Flags().Bool("allow-file", false, "allow installing dependencies from tarball files")
+	linkCmd.Flags().Bool("allow-git", false, "allow fetching dependencies from git references")
+	linkCmd.Flags().Bool("allow-remote", false, "allow fetching dependencies from urls")
 	linkCmd.Flags().Bool("audit", false, "Conduct security audit")
 	linkCmd.Flags().Bool("bin-links", false, "Create symlinks for package executables")
 	linkCmd.Flags().Bool("dry-run", false, "Only report changes")
@@ -24,6 +28,8 @@ func init() {
 	linkCmd.Flags().BoolP("global", "g", false, "operate in global mode")
 	linkCmd.Flags().Bool("global-style", false, "Use global layout")
 	linkCmd.Flags().Bool("ignore-scripts", false, "Disable scripts")
+	linkCmd.Flags().String("include", "", "include dependency types")
+	linkCmd.Flags().String("install-strategy", "", "strategy for installing packages in node_modules")
 	linkCmd.Flags().Bool("legacy-bundling", false, "Use legacy bundling")
 	linkCmd.Flags().Bool("no-save", false, "Prevents saving to `dependencies`")
 	linkCmd.Flags().StringArray("omit", []string{""}, "Exclude package")

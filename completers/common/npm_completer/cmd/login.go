@@ -13,6 +13,7 @@ var loginCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(loginCmd).Standalone()
+	loginCmd.Flags().String("auth-type", "", "authentication strategy")
 	loginCmd.Flags().String("scope", "", "associate with scope")
 
 	rootCmd.AddCommand(loginCmd)

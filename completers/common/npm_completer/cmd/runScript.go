@@ -16,6 +16,7 @@ var runScriptCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(runScriptCmd).Standalone()
+	runScriptCmd.Flags().Bool("foreground-scripts", false, "run build scripts in the foreground process")
 	runScriptCmd.Flags().Bool("if-present", false, "")
 	runScriptCmd.Flags().Bool("ignore-scripts", false, "do not run scripts specified in package.json")
 	runScriptCmd.Flags().String("script-shell", "", "shell to use for scripts")

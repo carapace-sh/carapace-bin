@@ -14,6 +14,7 @@ var getCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(getCmd).Standalone()
+	getCmd.Flags().Bool("long", false, "show extended information")
 
 	rootCmd.AddCommand(getCmd)
 

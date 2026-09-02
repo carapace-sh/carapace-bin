@@ -15,6 +15,7 @@ var denyScriptsCmd = &cobra.Command{
 func init() {
 	carapace.Gen(denyScriptsCmd).Standalone()
 	denyScriptsCmd.Flags().BoolP("all", "a", false, "act on all packages with pending install scripts")
+	denyScriptsCmd.Flags().Bool("allow-scripts-pending", false, "allow pending install scripts")
 	denyScriptsCmd.Flags().Bool("allow-scripts-pin", false, "write pinned entries when denying install scripts")
 	denyScriptsCmd.Flags().Bool("json", false, "output as json")
 

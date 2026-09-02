@@ -15,6 +15,9 @@ var pruneCmd = &cobra.Command{
 func init() {
 	carapace.Gen(pruneCmd).Standalone()
 	pruneCmd.Flags().Bool("dry-run", false, "only report changes")
+	pruneCmd.Flags().Bool("foreground-scripts", false, "run build scripts in the foreground process")
+	pruneCmd.Flags().Bool("ignore-scripts", false, "do not run scripts specified in package.json")
+	pruneCmd.Flags().String("include", "", "include dependency types")
 	pruneCmd.Flags().Bool("json", false, "output as json")
 	pruneCmd.Flags().StringArray("omit", []string{""}, "omit package type")
 	addWorkspaceFlags(pruneCmd)

@@ -14,6 +14,7 @@ var deprecateCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(deprecateCmd).Standalone()
+	deprecateCmd.Flags().Bool("dry-run", false, "only report changes")
 	deprecateCmd.Flags().String("otp", "", "one-time password")
 
 	rootCmd.AddCommand(deprecateCmd)

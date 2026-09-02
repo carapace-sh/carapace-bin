@@ -17,6 +17,8 @@ func init() {
 	findDupesCmd.Flags().Bool("fund", false, "Display funding message")
 	findDupesCmd.Flags().Bool("global-style", false, "Use global layout")
 	findDupesCmd.Flags().Bool("ignore-scripts", false, "Disable scripts")
+	findDupesCmd.Flags().String("include", "", "include dependency types")
+	findDupesCmd.Flags().String("install-strategy", "", "strategy for installing packages in node_modules")
 	findDupesCmd.Flags().Bool("legacy-bundling", false, "Use legacy bundling")
 	findDupesCmd.Flags().StringArray("omit", nil, "omit dependency type")
 	findDupesCmd.Flags().Bool("package-lock", false, "When false ignore package.lock")

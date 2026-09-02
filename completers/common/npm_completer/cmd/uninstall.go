@@ -15,6 +15,7 @@ var uninstallCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(uninstallCmd).Standalone()
+	uninstallCmd.Flags().BoolP("global", "g", false, "operate in global mode")
 	uninstallCmd.Flags().Bool("no-save", false, "Prevents saving to `dependencies`")
 	uninstallCmd.Flags().BoolP("save", "S", false, "Package will appear in your `dependencies`")
 	uninstallCmd.Flags().Bool("save-dev", false, "Package will appear in your `devDependencies`")
