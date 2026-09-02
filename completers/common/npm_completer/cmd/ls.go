@@ -18,6 +18,7 @@ func init() {
 	lsCmd.Flags().BoolP("all", "a", false, "show all outdated or installed packages")
 	lsCmd.Flags().String("depth", "", "depth to ge when recursing packages")
 	lsCmd.Flags().BoolP("global", "g", false, "operate in global mode")
+	lsCmd.Flags().String("include", "", "include dependency types")
 	lsCmd.Flags().Bool("json", false, "output as json")
 	lsCmd.Flags().Bool("link", false, "output only packages that are linked")
 	lsCmd.Flags().BoolP("long", "l", false, "show extended information")

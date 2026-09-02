@@ -15,6 +15,7 @@ var ownerCmd = &cobra.Command{
 func init() {
 	carapace.Gen(ownerCmd).Standalone()
 	ownerCmd.PersistentFlags().String("otp", "", "one-time password")
+	ownerCmd.PersistentFlags().String("registry", "", "base URL of the npm registry")
 
 	rootCmd.AddCommand(ownerCmd)
 }

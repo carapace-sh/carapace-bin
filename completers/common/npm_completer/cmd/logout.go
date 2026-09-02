@@ -13,6 +13,7 @@ var logoutCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(logoutCmd).Standalone()
+	logoutCmd.Flags().String("registry", "", "base URL of the npm registry")
 	logoutCmd.Flags().String("scope", "", "associate with scope")
 
 	rootCmd.AddCommand(logoutCmd)

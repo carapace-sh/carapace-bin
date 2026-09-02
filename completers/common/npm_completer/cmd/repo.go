@@ -15,6 +15,8 @@ var repoCmd = &cobra.Command{
 func init() {
 	carapace.Gen(repoCmd).Standalone()
 	repoCmd.Flags().String("browser", "", "browser to user")
+	repoCmd.Flags().Bool("no-browser", false, "print urls to terminal instead of opening browser")
+	repoCmd.Flags().String("registry", "", "base URL of the npm registry")
 	addWorkspaceFlags(repoCmd)
 
 	rootCmd.AddCommand(repoCmd)

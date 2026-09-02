@@ -15,5 +15,6 @@ func init() {
 	carapace.Gen(tokenCmd).Standalone()
 
 	tokenCmd.PersistentFlags().String("otp", "", "one-time password")
+	tokenCmd.PersistentFlags().String("registry", "", "base URL of the npm registry")
 	rootCmd.AddCommand(tokenCmd)
 }

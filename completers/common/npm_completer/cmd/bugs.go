@@ -16,6 +16,8 @@ var bugsCmd = &cobra.Command{
 func init() {
 	carapace.Gen(bugsCmd).Standalone()
 	bugsCmd.Flags().String("browser", "", "browser called to open websites")
+	bugsCmd.Flags().Bool("no-browser", false, "print urls to terminal instead of opening browser")
+	bugsCmd.Flags().String("registry", "", "base URL of the npm registry")
 
 	rootCmd.AddCommand(bugsCmd)
 

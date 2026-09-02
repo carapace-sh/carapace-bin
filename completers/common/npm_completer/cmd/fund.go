@@ -16,6 +16,7 @@ func init() {
 	carapace.Gen(fundCmd).Standalone()
 	fundCmd.Flags().String("browser", "", "browser to use")
 	fundCmd.Flags().Bool("json", false, "output as json")
+	fundCmd.Flags().Bool("no-browser", false, "print urls to terminal instead of opening browser")
 	fundCmd.Flags().Bool("unicode", false, "use unicode characters in output")
 	fundCmd.Flags().Int("which", 1, "index of funding source to open")
 	addWorkspaceFlags(fundCmd)

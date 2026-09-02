@@ -18,6 +18,7 @@ func init() {
 	uninstallCmd.Flags().BoolP("global", "g", false, "operate in global mode")
 	uninstallCmd.Flags().Bool("no-save", false, "Prevents saving to `dependencies`")
 	uninstallCmd.Flags().BoolP("save", "S", false, "Package will appear in your `dependencies`")
+	uninstallCmd.Flags().Bool("save-bundle", false, "Package will appear in your `bundleDependencies`")
 	uninstallCmd.Flags().Bool("save-dev", false, "Package will appear in your `devDependencies`")
 	uninstallCmd.Flags().Bool("save-optional", false, "Package will appear in your `optionalDependencies`")
 	uninstallCmd.Flags().Bool("save-peer", false, "Package will appear in your `peerDependencies`")

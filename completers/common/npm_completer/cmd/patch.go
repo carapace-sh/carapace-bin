@@ -19,6 +19,7 @@ func init() {
 	patchCmd.Flags().Bool("ignore-patch-failures", false, "don't fail if a patch can't be applied")
 	patchCmd.Flags().Bool("keep-edit-dir", false, "don't delete the edit directory after committing")
 	patchCmd.Flags().String("patches-dir", "", "directory where patch files are stored")
+	patchCmd.Flags().String("registry", "", "base URL of the npm registry")
 	patchCmd.Flags().String("to", "", "target version for patch update")
 
 	rootCmd.AddCommand(patchCmd)

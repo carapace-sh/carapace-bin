@@ -16,7 +16,7 @@ var diffCmd = &cobra.Command{
 func init() {
 	carapace.Gen(diffCmd).Standalone()
 	diffCmd.Flags().StringArray("diff", nil, "argument to compare")
-	diffCmd.Flags().String("diff-dest-prefix", "", "destination prefix to be used in output")
+	diffCmd.Flags().String("diff-dst-prefix", "", "destination prefix to be used in output")
 	diffCmd.Flags().Bool("diff-ignore-all-space", false, "ignore whitespace when comparing lines")
 	diffCmd.Flags().Bool("diff-name-only", false, "print only filenames")
 	diffCmd.Flags().Bool("diff-no-prefix", false, "do not show any source or destination prefix")
