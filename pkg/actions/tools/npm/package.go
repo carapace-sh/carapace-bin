@@ -122,11 +122,23 @@ func ActionPackumentFields(opts PackageOpts) carapace.Action {
 
 		return carapace.ActionExecCommand("npm", args...)(func(output []byte) carapace.Action {
 			var pkg map[string]any
-			if err := json.Unmarshal(output, &pkg); err != nil {
+			if err := json.Unmarshal(output, &pkg); err == nil {
+				fields := getCompletionFields(pkg, nil)
+				return carapace.ActionValues(fields...)
+			}
+
+			var pkgs []map[string]any
+			if err := json.Unmarshal(output, &pkgs); err != nil {
 				return carapace.ActionMessage(err.Error())
 			}
 
-			fields := getCompletionFields(pkg, nil)
+			merged := make(map[string]any)
+			for _, p := range pkgs {
+				for k, v := range p {
+					merged[k] = v
+				}
+			}
+			fields := getCompletionFields(merged, nil)
 			return carapace.ActionValues(fields...)
 		})
 	})
