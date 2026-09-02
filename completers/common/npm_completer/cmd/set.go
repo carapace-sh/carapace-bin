@@ -14,8 +14,14 @@ var setCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(setCmd).Standalone()
+	setCmd.Flags().BoolP("global", "g", false, "operate in global mode")
+	setCmd.Flags().String("location", "", "location of the config file to set in")
 
 	rootCmd.AddCommand(setCmd)
+
+	carapace.Gen(setCmd).FlagCompletion(carapace.ActionMap{
+		"location": carapace.ActionValues("user", "global", "project"),
+	})
 
 	carapace.Gen(setCmd).PositionalAnyCompletion(
 		carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {

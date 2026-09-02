@@ -108,6 +108,66 @@ type packageJson struct {
 	Workspaces []string
 }
 
+// ActionPackumentFields completes field names for a published package
+//
+//	name
+//	version
+//	description
+func ActionPackumentFields(opts PackageOpts) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		args := []string{"view", opts.Package, "--json"}
+		if opts.Registry != "" {
+			args = append(args, "--registry", opts.Registry)
+		}
+
+		return carapace.ActionExecCommand("npm", args...)(func(output []byte) carapace.Action {
+			var pkg map[string]any
+			if err := json.Unmarshal(output, &pkg); err == nil {
+				fields := getCompletionFields(pkg, nil)
+				return carapace.ActionValues(fields...)
+			}
+
+			var pkgs []map[string]any
+			if err := json.Unmarshal(output, &pkgs); err != nil {
+				return carapace.ActionMessage(err.Error())
+			}
+
+			merged := make(map[string]any)
+			for _, p := range pkgs {
+				for k, v := range p {
+					merged[k] = v
+				}
+			}
+			fields := getCompletionFields(merged, nil)
+			return carapace.ActionValues(fields...)
+		})
+	})
+}
+
+func getCompletionFields(d map[string]any, pref []string) []string {
+	var fields []string
+	for key, val := range d {
+		if len(key) > 0 && (key[0] == '_' || strings.Contains(key, ".")) {
+			continue
+		}
+		path := strings.Join(append(pref, key), ".")
+		fields = append(fields, path)
+		switch v := val.(type) {
+		case map[string]any:
+			fields = append(fields, getCompletionFields(v, append(pref, key))...)
+		case []any:
+			for i, item := range v {
+				idxPath := fmt.Sprintf("%s[%d]", path, i)
+				fields = append(fields, idxPath)
+				if m, ok := item.(map[string]any); ok {
+					fields = append(fields, getCompletionFields(m, append(pref, key))...)
+				}
+			}
+		}
+	}
+	return fields
+}
+
 func loadPackageJson(c carapace.Context) (pj packageJson, err error) {
 	var packageFile string
 	if packageFile, err = util.FindReverse(c.Dir, "package.json"); err == nil {

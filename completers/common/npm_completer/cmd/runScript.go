@@ -8,14 +8,15 @@ import (
 )
 
 var runScriptCmd = &cobra.Command{
-	Use:     "run-script",
+	Use:     "run",
 	Short:   "Run arbitrary package scripts",
-	Aliases: []string{"run"},
+	Aliases: []string{"rum", "run-script", "urn"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(runScriptCmd).Standalone()
+	runScriptCmd.Flags().Bool("foreground-scripts", false, "run build scripts in the foreground process")
 	runScriptCmd.Flags().Bool("if-present", false, "")
 	runScriptCmd.Flags().Bool("ignore-scripts", false, "do not run scripts specified in package.json")
 	runScriptCmd.Flags().String("script-shell", "", "shell to use for scripts")

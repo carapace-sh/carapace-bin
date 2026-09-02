@@ -7,14 +7,17 @@ import (
 )
 
 var docsCmd = &cobra.Command{
-	Use:   "docs",
-	Short: "Open documentation for a package in a web browser",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "docs",
+	Short:   "Open documentation for a package in a web browser",
+	Aliases: []string{"home"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(docsCmd).Standalone()
 	docsCmd.Flags().String("browser", "", "browser to use")
+	docsCmd.Flags().Bool("no-browser", false, "print urls to terminal instead of opening browser")
+	docsCmd.Flags().String("registry", "", "base URL of the npm registry")
 	addWorkspaceFlags(docsCmd)
 
 	rootCmd.AddCommand(docsCmd)

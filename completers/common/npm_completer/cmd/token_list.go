@@ -6,9 +6,10 @@ import (
 )
 
 var token_listCmd = &cobra.Command{
-	Use:   "list",
-	Short: "show a table of all active authentication tokens",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "list",
+	Short:   "show a table of all active authentication tokens",
+	Aliases: []string{"ls"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

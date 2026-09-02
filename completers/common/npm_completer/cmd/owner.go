@@ -6,14 +6,17 @@ import (
 )
 
 var ownerCmd = &cobra.Command{
-	Use:   "owner",
-	Short: "Manage package owners",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "owner",
+	Short:   "Manage package owners",
+	Aliases: []string{"author"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(ownerCmd).Standalone()
 	ownerCmd.PersistentFlags().String("otp", "", "one-time password")
+	ownerCmd.PersistentFlags().String("registry", "", "base URL of the npm registry")
+	addWorkspaceFlags(ownerCmd)
 
 	rootCmd.AddCommand(ownerCmd)
 }
