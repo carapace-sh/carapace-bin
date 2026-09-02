@@ -10,7 +10,7 @@ require (
 	github.com/carapace-sh/carapace-pnpm v0.0.2
 	github.com/carapace-sh/carapace-selfupdate v0.0.10
 	github.com/carapace-sh/carapace-shlex v1.1.1
-	github.com/carapace-sh/carapace-spec v1.8.0
+	github.com/carapace-sh/carapace-spec v1.8.1
 	github.com/micromdm/plist v0.3.0
 	github.com/pelletier/go-toml v1.9.5
 	github.com/spf13/cobra v1.10.2
