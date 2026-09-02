@@ -24,7 +24,7 @@ func ActionPackageSearch() carapace.Action {
 			}
 
 			lines := strings.Split(string(output), "\n")
-			r := regexp.MustCompile(`^(?P<group>[^/]+)/(?P<name>[^ ]+) (?P<version>[^ ]+)(?P<context>.*)$`)
+			r := regexp.MustCompile(`^(?P<group>[^ /]+)/(?P<name>[^ ]+) (?P<version>[^ ]+)(?P<context>.*)$`)
 
 			vals := make([]string, 0)
 			for i := 0; i < len(lines); i++ {
