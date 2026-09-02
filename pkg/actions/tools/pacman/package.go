@@ -26,13 +26,19 @@ func ActionPackageSearch() carapace.Action {
 			r := regexp.MustCompile(`^(?P<group>[^/]+)/(?P<name>[^ ]+) (?P<version>[^ ]+)(?P<context>.*)$`)
 
 			vals := make([]string, 0)
-			for i := 0; i < len(lines)-1; i += 2 {
+			for i := 0; i < len(lines); i++ {
 				if matches := r.FindStringSubmatch(lines[i]); matches != nil {
 					s := style.Default
 					if strings.Contains(matches[4], "[installed]") {
 						s = style.Blue
 					}
-					vals = append(vals, matches[2], strings.TrimSpace(lines[i+1]), s)
+
+					description := ""
+					if i+1 < len(lines) && !r.MatchString(lines[i+1]) && strings.TrimSpace(lines[i+1]) != "" {
+						description = strings.TrimSpace(lines[i+1])
+						i++
+					}
+					vals = append(vals, matches[2], description, s)
 				}
 			}
 			return carapace.ActionStyledValuesDescribed(vals...)
