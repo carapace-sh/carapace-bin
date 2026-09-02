@@ -18,10 +18,10 @@ func init() {
 	carapace.Gen(pr_editCmd).Standalone()
 
 	pr_editCmd.Flags().StringSlice("add-assignee", nil, "Add assigned users by their `login`. Use \"@me\" to assign yourself, or \"@copilot\" to assign Copilot.")
-	pr_editCmd.Flags().StringSlice("attach", nil, "Attach an image or video `file`, in '<file>#<image alt text>' format")
 	pr_editCmd.Flags().StringSlice("add-label", nil, "Add labels by `name`")
 	pr_editCmd.Flags().StringSlice("add-project", nil, "Add the pull request to projects by `title`")
 	pr_editCmd.Flags().StringSlice("add-reviewer", nil, "Add or re-request reviewers by their `login`. Use \"@copilot\" to request review from Copilot.")
+	pr_editCmd.Flags().StringSlice("attach", nil, "Attach an image or video `file`, in '<file>#<image alt text>' format")
 	pr_editCmd.Flags().StringP("base", "B", "", "Change the base `branch` for this pull request")
 	pr_editCmd.Flags().StringP("body", "b", "", "Set the new body.")
 	pr_editCmd.Flags().StringP("body-file", "F", "", "Read body text from `file` (use \"-\" to read from standard input)")
@@ -36,13 +36,13 @@ func init() {
 
 	carapace.Gen(pr_editCmd).FlagCompletion(carapace.ActionMap{
 		"add-assignee": action.ActionAssignableUsers(pr_editCmd).UniqueList(","),
-		"attach":       carapace.ActionFiles(),
 		"add-label":    action.ActionLabels(pr_editCmd).UniqueList(","),
 		"add-project":  action.ActionProjects(pr_editCmd, action.ProjectOpts{Open: true}),
 		"add-reviewer": carapace.Batch(
 			carapace.ActionValues("@copilot").Style(style.Yellow),
 			action.ActionAssignableUsers(pr_editCmd).UniqueList(","),
 		).ToA(),
+		"attach":    carapace.ActionFiles(),
 		"base":      action.ActionBranches(pr_editCmd),
 		"body":      action.ActionBody(pr_editCmd),
 		"body-file": carapace.ActionFiles(),

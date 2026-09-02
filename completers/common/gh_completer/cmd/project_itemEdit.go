@@ -43,10 +43,6 @@ func init() {
 	// TODO missing flag completion
 	carapace.Gen(project_itemEditCmd).FlagCompletion(carapace.ActionMap{
 		"date": time.ActionDate(),
-		"jq":   jq.ActionFilters(),
-		"owner": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return gh.ActionOwners(gh.HostOpts{})
-		}),
 		"field-id": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			projectNumber := project_itemEditCmd.Flag("project-id").Value.String()
 			owner := project_itemEditCmd.Flag("owner").Value.String()
@@ -58,6 +54,10 @@ func init() {
 				opts.Project = n
 			}
 			return gh.ActionProjectFields(opts)
+		}),
+		"jq": jq.ActionFilters(),
+		"owner": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return gh.ActionOwners(gh.HostOpts{})
 		}),
 	})
 }

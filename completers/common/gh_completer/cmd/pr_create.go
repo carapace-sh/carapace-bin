@@ -18,8 +18,8 @@ var pr_createCmd = &cobra.Command{
 func init() {
 	carapace.Gen(pr_createCmd).Standalone()
 
-	pr_createCmd.Flags().StringSlice("attach", nil, "Attach an image or video `file`, in '<file>#<image alt text>' format")
 	pr_createCmd.Flags().StringSliceP("assignee", "a", nil, "Assign people by their `login`. Use \"@me\" to self-assign.")
+	pr_createCmd.Flags().StringSlice("attach", nil, "Attach an image or video `file`, in '<file>#<image alt text>' format")
 	pr_createCmd.Flags().StringP("base", "B", "", "The `branch` into which you want your code merged")
 	pr_createCmd.Flags().StringP("body", "b", "", "Body for the pull request")
 	pr_createCmd.Flags().StringP("body-file", "F", "", "Read body text from `file` (use \"-\" to read from standard input)")

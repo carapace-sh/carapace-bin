@@ -17,12 +17,12 @@ func init() {
 	carapace.Gen(issue_editCmd).Standalone()
 
 	issue_editCmd.Flags().StringSlice("add-assignee", nil, "Add assigned users by their `login`. Use \"@me\" to assign yourself, or \"@copilot\" to assign Copilot.")
-	issue_editCmd.Flags().StringSlice("attach", nil, "Attach an image or video `file`, in '<file>#<image alt text>' format")
 	issue_editCmd.Flags().StringSlice("add-blocked-by", nil, "Add 'blocked by' relationships by issue `number` or URL")
 	issue_editCmd.Flags().StringSlice("add-blocking", nil, "Add 'blocking' relationships by issue `number` or URL")
 	issue_editCmd.Flags().StringSlice("add-label", nil, "Add labels by `name`")
 	issue_editCmd.Flags().StringSlice("add-project", nil, "Add the issue to projects by `title`")
 	issue_editCmd.Flags().StringSlice("add-sub-issue", nil, "Add sub-issues by `number` or URL")
+	issue_editCmd.Flags().StringSlice("attach", nil, "Attach an image or video `file`, in '<file>#<image alt text>' format")
 	issue_editCmd.Flags().StringP("body", "b", "", "Set the new body.")
 	issue_editCmd.Flags().StringP("body-file", "F", "", "Read body text from `file` (use \"-\" to read from standard input)")
 	issue_editCmd.Flags().StringP("milestone", "m", "", "Edit the milestone the issue belongs to by `name`")
@@ -42,12 +42,12 @@ func init() {
 
 	carapace.Gen(issue_editCmd).FlagCompletion(carapace.ActionMap{
 		"add-assignee":   action.ActionAssignableUsers(issue_editCmd).UniqueList(","),
-		"attach":         carapace.ActionFiles(),
 		"add-blocked-by": action.ActionIssues(issue_editCmd, action.IssueOpts{Open: true}),
 		"add-blocking":   action.ActionIssues(issue_editCmd, action.IssueOpts{Open: true}),
 		"add-label":      action.ActionLabels(issue_editCmd).UniqueList(","),
 		"add-project":    action.ActionProjects(issue_editCmd, action.ProjectOpts{Open: true}),
 		"add-sub-issue":  action.ActionIssues(issue_editCmd, action.IssueOpts{Open: true, Closed: true}),
+		"attach":         carapace.ActionFiles(),
 		"body":           action.ActionBody(issue_editCmd),
 		"body-file":      carapace.ActionFiles(),
 		"milestone":      action.ActionMilestones(issue_editCmd),
