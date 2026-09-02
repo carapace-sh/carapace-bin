@@ -19,6 +19,10 @@ func init() {
 
 	rootCmd.AddCommand(setCmd)
 
+	carapace.Gen(setCmd).FlagCompletion(carapace.ActionMap{
+		"location": carapace.ActionValues("user", "global", "project"),
+	})
+
 	carapace.Gen(setCmd).PositionalAnyCompletion(
 		carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {

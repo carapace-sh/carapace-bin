@@ -17,4 +17,8 @@ func init() {
 	loginCmd.Flags().String("scope", "", "associate with scope")
 
 	rootCmd.AddCommand(loginCmd)
+
+	carapace.Gen(loginCmd).FlagCompletion(carapace.ActionMap{
+		"auth-type": carapace.ActionValues("legacy", "web"),
+	})
 }

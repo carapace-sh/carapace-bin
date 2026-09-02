@@ -28,6 +28,8 @@ func init() {
 	rootCmd.AddCommand(findDupesCmd)
 
 	carapace.Gen(findDupesCmd).FlagCompletion(carapace.ActionMap{
-		"omit": carapace.ActionValues("dev", "optional", "peer"),
+		"include":          carapace.ActionValues("prod", "dev", "optional", "peer"),
+		"install-strategy": carapace.ActionValues("hoisted", "nested", "shallow", "linked"),
+		"omit":             carapace.ActionValues("dev", "optional", "peer"),
 	})
 }

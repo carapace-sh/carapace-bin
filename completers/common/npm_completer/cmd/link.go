@@ -45,7 +45,13 @@ func init() {
 	rootCmd.AddCommand(linkCmd)
 
 	carapace.Gen(linkCmd).FlagCompletion(carapace.ActionMap{
-		"omit": carapace.ActionValues("dev", "optional", "peer"),
+		"allow-directory":  carapace.ActionValues("all", "none", "root"),
+		"allow-file":       carapace.ActionValues("all", "none", "root"),
+		"allow-git":        carapace.ActionValues("all", "none", "root"),
+		"allow-remote":     carapace.ActionValues("all", "none", "root"),
+		"include":          carapace.ActionValues("prod", "dev", "optional", "peer"),
+		"install-strategy": carapace.ActionValues("hoisted", "nested", "shallow", "linked"),
+		"omit":             carapace.ActionValues("dev", "optional", "peer"),
 	})
 
 	carapace.Gen(linkCmd).PositionalCompletion(

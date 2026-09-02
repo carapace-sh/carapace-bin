@@ -15,10 +15,6 @@ var updateCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(updateCmd).Standalone()
-	updateCmd.Flags().Bool("allow-directory", false, "allow installing dependencies from directories")
-	updateCmd.Flags().Bool("allow-file", false, "allow installing dependencies from tarball files")
-	updateCmd.Flags().Bool("allow-git", false, "allow fetching dependencies from git references")
-	updateCmd.Flags().Bool("allow-remote", false, "allow fetching dependencies from urls")
 	updateCmd.Flags().StringArray("allow-scripts", nil, "packages whose install-time lifecycle scripts are allowed to run")
 	updateCmd.Flags().Bool("audit", false, "submit audit reports")
 	updateCmd.Flags().String("before", "", "only install versions available on or before the given date")
@@ -43,6 +39,12 @@ func init() {
 	addWorkspaceFlags(updateCmd)
 
 	rootCmd.AddCommand(updateCmd)
+
+	carapace.Gen(updateCmd).FlagCompletion(carapace.ActionMap{
+		"include":          carapace.ActionValues("prod", "dev", "optional", "peer"),
+		"install-strategy": carapace.ActionValues("hoisted", "nested", "shallow", "linked"),
+		"omit":             carapace.ActionValues("dev", "optional", "peer"),
+	})
 
 	carapace.Gen(updateCmd).PositionalAnyCompletion(
 		npm.ActionModules(), // TODO support global
