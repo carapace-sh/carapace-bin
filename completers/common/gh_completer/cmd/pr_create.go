@@ -18,6 +18,7 @@ var pr_createCmd = &cobra.Command{
 func init() {
 	carapace.Gen(pr_createCmd).Standalone()
 
+	pr_createCmd.Flags().StringSlice("attach", nil, "Attach an image or video `file`, in '<file>#<image alt text>' format")
 	pr_createCmd.Flags().StringSliceP("assignee", "a", nil, "Assign people by their `login`. Use \"@me\" to self-assign.")
 	pr_createCmd.Flags().StringP("base", "B", "", "The `branch` into which you want your code merged")
 	pr_createCmd.Flags().StringP("body", "b", "", "Body for the pull request")
@@ -42,6 +43,7 @@ func init() {
 
 	carapace.Gen(pr_createCmd).FlagCompletion(carapace.ActionMap{
 		"assignee":  action.ActionAssignableUsers(pr_createCmd).UniqueList(","),
+		"attach":    carapace.ActionFiles(),
 		"base":      action.ActionBranches(pr_createCmd),
 		"body":      action.ActionBody(pr_createCmd),
 		"body-file": carapace.ActionFiles(),

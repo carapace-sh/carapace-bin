@@ -16,6 +16,7 @@ var issue_commentCmd = &cobra.Command{
 func init() {
 	carapace.Gen(issue_commentCmd).Standalone()
 
+	issue_commentCmd.Flags().StringSlice("attach", nil, "Attach an image or video `file`, in '<file>#<image alt text>' format")
 	issue_commentCmd.Flags().StringP("body", "b", "", "The comment body `text`")
 	issue_commentCmd.Flags().StringP("body-file", "F", "", "Read body text from `file` (use \"-\" to read from standard input)")
 	issue_commentCmd.Flags().Bool("create-if-none", false, "Create a new comment if no comments are found. Can be used only with --edit-last")
@@ -27,6 +28,7 @@ func init() {
 	issueCmd.AddCommand(issue_commentCmd)
 
 	carapace.Gen(issue_commentCmd).FlagCompletion(carapace.ActionMap{
+		"attach":    carapace.ActionFiles(),
 		"body":      action.ActionBody(issue_commentCmd),
 		"body-file": carapace.ActionFiles(),
 	})

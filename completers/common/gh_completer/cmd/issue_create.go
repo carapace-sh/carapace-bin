@@ -17,6 +17,7 @@ var issue_createCmd = &cobra.Command{
 func init() {
 	carapace.Gen(issue_createCmd).Standalone()
 
+	issue_createCmd.Flags().StringSlice("attach", nil, "Attach an image or video `file`, in '<file>#<image alt text>' format")
 	issue_createCmd.Flags().StringSliceP("assignee", "a", nil, "Assign people by their `login`. Use \"@me\" to self-assign.")
 	issue_createCmd.Flags().StringSlice("blocked-by", nil, "Mark the new issue as blocked by these issue `numbers` or URLs")
 	issue_createCmd.Flags().StringSlice("blocking", nil, "Mark the new issue as blocking these issue `numbers` or URLs")
@@ -36,6 +37,7 @@ func init() {
 
 	carapace.Gen(issue_createCmd).FlagCompletion(carapace.ActionMap{
 		"assignee":   action.ActionAssignableUsers(issue_createCmd).UniqueList(","),
+		"attach":     carapace.ActionFiles(),
 		"blocked-by": action.ActionIssues(issue_createCmd, action.IssueOpts{Open: true}),
 		"blocking":   action.ActionIssues(issue_createCmd, action.IssueOpts{Open: true}),
 		"body":       action.ActionBody(issue_createCmd),

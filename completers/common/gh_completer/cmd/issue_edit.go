@@ -17,6 +17,7 @@ func init() {
 	carapace.Gen(issue_editCmd).Standalone()
 
 	issue_editCmd.Flags().StringSlice("add-assignee", nil, "Add assigned users by their `login`. Use \"@me\" to assign yourself, or \"@copilot\" to assign Copilot.")
+	issue_editCmd.Flags().StringSlice("attach", nil, "Attach an image or video `file`, in '<file>#<image alt text>' format")
 	issue_editCmd.Flags().StringSlice("add-blocked-by", nil, "Add 'blocked by' relationships by issue `number` or URL")
 	issue_editCmd.Flags().StringSlice("add-blocking", nil, "Add 'blocking' relationships by issue `number` or URL")
 	issue_editCmd.Flags().StringSlice("add-label", nil, "Add labels by `name`")
@@ -41,6 +42,7 @@ func init() {
 
 	carapace.Gen(issue_editCmd).FlagCompletion(carapace.ActionMap{
 		"add-assignee":   action.ActionAssignableUsers(issue_editCmd).UniqueList(","),
+		"attach":         carapace.ActionFiles(),
 		"add-blocked-by": action.ActionIssues(issue_editCmd, action.IssueOpts{Open: true}),
 		"add-blocking":   action.ActionIssues(issue_editCmd, action.IssueOpts{Open: true}),
 		"add-label":      action.ActionLabels(issue_editCmd).UniqueList(","),

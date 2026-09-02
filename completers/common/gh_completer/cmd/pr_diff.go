@@ -20,6 +20,7 @@ var pr_diffCmd = &cobra.Command{
 func init() {
 	carapace.Gen(pr_diffCmd).Standalone()
 
+	pr_diffCmd.Flags().Bool("allow-escape-sequences", false, "Allow printing terminal escape sequences")
 	pr_diffCmd.Flags().String("color", "", "Use color in diff output: {always|never|auto}")
 	pr_diffCmd.Flags().StringSliceP("exclude", "e", nil, "Exclude files matching glob `patterns` from the diff")
 	pr_diffCmd.Flags().Bool("name-only", false, "Display only names of changed files")

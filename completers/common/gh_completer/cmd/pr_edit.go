@@ -18,6 +18,7 @@ func init() {
 	carapace.Gen(pr_editCmd).Standalone()
 
 	pr_editCmd.Flags().StringSlice("add-assignee", nil, "Add assigned users by their `login`. Use \"@me\" to assign yourself, or \"@copilot\" to assign Copilot.")
+	pr_editCmd.Flags().StringSlice("attach", nil, "Attach an image or video `file`, in '<file>#<image alt text>' format")
 	pr_editCmd.Flags().StringSlice("add-label", nil, "Add labels by `name`")
 	pr_editCmd.Flags().StringSlice("add-project", nil, "Add the pull request to projects by `title`")
 	pr_editCmd.Flags().StringSlice("add-reviewer", nil, "Add or re-request reviewers by their `login`. Use \"@copilot\" to request review from Copilot.")
@@ -35,6 +36,7 @@ func init() {
 
 	carapace.Gen(pr_editCmd).FlagCompletion(carapace.ActionMap{
 		"add-assignee": action.ActionAssignableUsers(pr_editCmd).UniqueList(","),
+		"attach":       carapace.ActionFiles(),
 		"add-label":    action.ActionLabels(pr_editCmd).UniqueList(","),
 		"add-project":  action.ActionProjects(pr_editCmd, action.ProjectOpts{Open: true}),
 		"add-reviewer": carapace.Batch(

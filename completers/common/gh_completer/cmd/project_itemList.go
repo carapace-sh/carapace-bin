@@ -16,6 +16,8 @@ var project_itemListCmd = &cobra.Command{
 func init() {
 	carapace.Gen(project_itemListCmd).Standalone()
 
+	project_itemListCmd.Flags().StringSlice("field", nil, "Name of a field to show as an extra column")
+	project_itemListCmd.Flags().StringSlice("field-id", nil, "ID of a field to show as an extra column")
 	project_itemListCmd.Flags().String("format", "", "Output format: {json}")
 	project_itemListCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
 	project_itemListCmd.Flags().StringP("limit", "L", "", "Maximum number of items to fetch")
