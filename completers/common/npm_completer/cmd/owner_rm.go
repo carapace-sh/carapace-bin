@@ -7,9 +7,10 @@ import (
 )
 
 var owner_rmCmd = &cobra.Command{
-	Use:   "rm",
-	Short: "Remove a user from the package owner list",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "rm",
+	Short:   "Remove a user from the package owner list",
+	Aliases: []string{"remove"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

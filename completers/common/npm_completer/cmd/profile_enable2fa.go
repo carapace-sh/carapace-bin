@@ -6,9 +6,10 @@ import (
 )
 
 var profile_enable2faCmd = &cobra.Command{
-	Use:   "enable-2fa",
-	Short: "enable two-factor authorization",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "enable-2fa",
+	Short:   "enable two-factor authorization",
+	Aliases: []string{"enable-tfa", "enable2fa", "enabletfa"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

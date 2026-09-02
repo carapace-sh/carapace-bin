@@ -6,9 +6,10 @@ import (
 )
 
 var config_listCmd = &cobra.Command{
-	Use:   "list",
-	Short: "Show all the config settings",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "list",
+	Short:   "Show all the config settings",
+	Aliases: []string{"ls"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
