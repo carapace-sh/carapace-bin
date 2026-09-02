@@ -87,9 +87,9 @@ func init() {
 			return action.ActionOwnerRepositories(dummyCmd).NoSpace()
 		}),
 		"search-type": carapace.ActionValues("lexical", "semantic", "hybrid"),
-		"sort":       carapace.ActionValues("comments", "created", "interactions", "reactions", "reactions-+1", "reactions--1", "reactions-heart", "reactions-smile", "reactions-tada", "reactions-thinking_face", "updated"),
-		"state":      carapace.ActionValues("open", "closed").StyleF(styles.Gh.ForState),
-		"updated":    action.ActionSearchRange(time.ActionDateTime(time.DateTimeOpts{Strict: true})),
-		"visibility": carapace.ActionValues("public", "private", "internal").UniqueList(","),
+		"sort":        carapace.ActionValues("comments", "created", "interactions", "reactions", "reactions-+1", "reactions--1", "reactions-heart", "reactions-smile", "reactions-tada", "reactions-thinking_face", "updated"),
+		"state":       carapace.ActionValues("open", "closed").StyleF(styles.Gh.ForState),
+		"updated":     action.ActionSearchRange(time.ActionDateTime(time.DateTimeOpts{Strict: true})),
+		"visibility":  carapace.ActionValues("public", "private", "internal").UniqueList(","),
 	})
 }

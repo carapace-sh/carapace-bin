@@ -126,6 +126,11 @@ func actionOrganizationProjects(opts ProjectOpts) carapace.Action {
 //
 //	PVTI_lADOA48Fh84ABd_DzgBCG7c (Issue commands do not work with non-classic Projects)
 //	PVTI_lADOA48Fh84ABd_DzgBCHAo (Checkout branch for issue)
+//
+// ActionProjectItems completes project items
+//
+//	PVTI_lADOA48Fh84ABd_DzgBCG7c (Issue commands do not work with non-classic Projects)
+//	PVTI_lADOA48Fh84ABd_DzgBCHAo (Checkout branch for issue)
 func ActionProjectItems(opts ProjectItemOpts) carapace.Action {
 	return carapace.Batch(
 		actionUserProjectItems(opts),
@@ -154,6 +159,83 @@ func actionOrganizationProjectItems(opts ProjectItemOpts) carapace.Action {
 			vals := make([]string, 0)
 			for _, item := range queryResult.Data.Organization.ProjectV2.Items.Nodes {
 				vals = append(vals, item.Id, item.Content.Title) // TODO style for type/state
+			}
+			return carapace.ActionValuesDescribed(vals...)
+		})
+}
+
+type ProjectFieldOpts struct {
+	Host    string
+	Owner   string
+	Project int
+}
+
+func (o ProjectFieldOpts) Default() ProjectFieldOpts {
+	o.Owner = "@me"
+	return o
+}
+
+func (o ProjectFieldOpts) repo() RepoOpts {
+	return RepoOpts{
+		Host:  o.Host,
+		Owner: o.Owner,
+	}
+}
+
+type projectField struct {
+	Id   string
+	Name string
+}
+
+type projectFieldsQuery struct {
+	Data struct {
+		User struct {
+			ProjectV2 struct {
+				Fields struct {
+					Nodes []projectField
+				}
+			}
+		}
+		Organization struct {
+			ProjectV2 struct {
+				Fields struct {
+					Nodes []projectField
+				}
+			}
+		}
+	}
+}
+
+// ActionProjectFields completes project field IDs
+//
+//	PVTF_lADOA48Fh84ABd_DzgBCG7c (Status)
+//	PVTF_lADOA48Fh84ABd_DzgBCHAo (Priority)
+func ActionProjectFields(opts ProjectFieldOpts) carapace.Action {
+	return carapace.Batch(
+		actionUserProjectFields(opts),
+		actionOrganizationProjectFields(opts),
+	).ToA().Suppress("Could not resolve to")
+}
+
+func actionUserProjectFields(opts ProjectFieldOpts) carapace.Action {
+	var queryResult projectFieldsQuery
+	return graphQlAction(opts.repo(), fmt.Sprintf(`user(login: $owner) { projectV2(number: %v) { fields(first: 100) { nodes { id name } } } }`, opts.Project),
+		&queryResult, func() carapace.Action {
+			vals := make([]string, 0)
+			for _, field := range queryResult.Data.User.ProjectV2.Fields.Nodes {
+				vals = append(vals, field.Id, field.Name)
+			}
+			return carapace.ActionValuesDescribed(vals...)
+		})
+}
+
+func actionOrganizationProjectFields(opts ProjectFieldOpts) carapace.Action {
+	var queryResult projectFieldsQuery
+	return graphQlAction(opts.repo(), fmt.Sprintf(`organization(login: $owner) { projectV2(number: %v) { fields(first: 100) { nodes { id name } } } }`, opts.Project),
+		&queryResult, func() carapace.Action {
+			vals := make([]string, 0)
+			for _, field := range queryResult.Data.Organization.ProjectV2.Fields.Nodes {
+				vals = append(vals, field.Id, field.Name)
 			}
 			return carapace.ActionValuesDescribed(vals...)
 		})

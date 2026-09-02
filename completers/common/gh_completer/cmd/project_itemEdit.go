@@ -1,8 +1,11 @@
 package cmd
 
 import (
+	"strconv"
+
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/time"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
 	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
 )
@@ -41,5 +44,20 @@ func init() {
 	carapace.Gen(project_itemEditCmd).FlagCompletion(carapace.ActionMap{
 		"date": time.ActionDate(),
 		"jq":   jq.ActionFilters(),
+		"owner": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return gh.ActionOwners(gh.HostOpts{})
+		}),
+		"field-id": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			projectNumber := project_itemEditCmd.Flag("project-id").Value.String()
+			owner := project_itemEditCmd.Flag("owner").Value.String()
+			opts := gh.ProjectFieldOpts{
+				Owner:   owner,
+				Project: 0,
+			}
+			if n, err := strconv.Atoi(projectNumber); err == nil {
+				opts.Project = n
+			}
+			return gh.ActionProjectFields(opts)
+		}),
 	})
 }

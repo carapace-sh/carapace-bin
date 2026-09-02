@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"strconv"
+
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
 	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
@@ -27,6 +29,20 @@ func init() {
 	projectCmd.AddCommand(project_itemListCmd)
 
 	carapace.Gen(project_itemListCmd).FlagCompletion(carapace.ActionMap{
+		"field-id": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			owner := project_itemListCmd.Flag("owner").Value.String()
+			opts := gh.ProjectFieldOpts{
+				Owner:   owner,
+				Project: 0,
+			}
+			// project number is positional arg
+			if len(c.Args) > 0 {
+				if n, err := strconv.Atoi(c.Args[0]); err == nil {
+					opts.Project = n
+				}
+			}
+			return gh.ActionProjectFields(opts)
+		}),
 		"format": carapace.ActionValues("json"),
 		"jq":     jq.ActionFilters(),
 		"owner":  gh.ActionOwners(gh.HostOpts{}),
