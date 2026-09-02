@@ -9,6 +9,7 @@ import (
 )
 
 type project struct {
+	Id     string
 	Number int
 	Title  string
 	Closed bool
@@ -96,10 +97,47 @@ func ActionProjects(opts ProjectOpts) carapace.Action {
 	).ToA().Suppress("Could not resolve to")
 }
 
+// ActionProjectIds completes project IDs
+//
+//	PVT_kwDOA... (first project)
+//	PVT_kwDOA... (second project)
+func ActionProjectIds(opts ProjectOpts) carapace.Action {
+	return carapace.Batch(
+		actionUserProjectIds(opts),
+		actionOrganizationProjectIds(opts),
+	).ToA().Suppress("Could not resolve to")
+}
+
+func actionUserProjectIds(opts ProjectOpts) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		var queryResult projectsQuery
+		return graphQlAction(opts.repo(), `user(login: $owner) { projectsV2(first: 100) { nodes { id number title closed } } }`, &queryResult, func() carapace.Action {
+			vals := make([]string, 0)
+			for _, project := range queryResult.Data.User.ProjectsV2.Nodes {
+				vals = append(vals, project.Id, project.Title)
+			}
+			return carapace.ActionValuesDescribed(vals...)
+		})
+	})
+}
+
+func actionOrganizationProjectIds(opts ProjectOpts) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		var queryResult projectsQuery
+		return graphQlAction(opts.repo(), `organization(login: $owner) { projectsV2(first: 100) { nodes { id number title closed } } }`, &queryResult, func() carapace.Action {
+			vals := make([]string, 0)
+			for _, project := range queryResult.Data.Organization.ProjectsV2.Nodes {
+				vals = append(vals, project.Id, project.Title)
+			}
+			return carapace.ActionValuesDescribed(vals...)
+		})
+	})
+}
+
 func actionUserProjects(opts ProjectOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		var queryResult projectsQuery
-		return graphQlAction(opts.repo(), `user(login: $owner) { projectsV2(first: 100) { nodes { number title closed } } }`, &queryResult, func() carapace.Action {
+		return graphQlAction(opts.repo(), `user(login: $owner) { projectsV2(first: 100) { nodes { id number title closed } } }`, &queryResult, func() carapace.Action {
 			vals := make([]string, 0)
 			for _, project := range queryResult.Data.User.ProjectsV2.Nodes {
 				vals = append(vals, strconv.Itoa(project.Number), project.Title, style.ForKeyword(strconv.FormatBool(!project.Closed), c))
@@ -112,7 +150,7 @@ func actionUserProjects(opts ProjectOpts) carapace.Action {
 func actionOrganizationProjects(opts ProjectOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		var queryResult projectsQuery
-		return graphQlAction(opts.repo(), `organization(login: $owner) { projectsV2(first: 100) { nodes { number title closed } } }`, &queryResult, func() carapace.Action {
+		return graphQlAction(opts.repo(), `organization(login: $owner) { projectsV2(first: 100) { nodes { id number title closed } } }`, &queryResult, func() carapace.Action {
 			vals := make([]string, 0)
 			for _, project := range queryResult.Data.Organization.ProjectsV2.Nodes {
 				vals = append(vals, strconv.Itoa(project.Number), project.Title, style.ForKeyword(strconv.FormatBool(!project.Closed), c))
@@ -181,10 +219,10 @@ func (o ProjectFieldOpts) repo() RepoOpts {
 		Owner: o.Owner,
 	}
 }
-
-type projectField struct {
-	Id   string
-	Name string
+type projectFieldNode struct {
+	Typename string `json:"__typename"`
+	Id       string
+	Name     string
 }
 
 type projectFieldsQuery struct {
@@ -192,14 +230,14 @@ type projectFieldsQuery struct {
 		User struct {
 			ProjectV2 struct {
 				Fields struct {
-					Nodes []projectField
+					Nodes []projectFieldNode
 				}
 			}
 		}
 		Organization struct {
 			ProjectV2 struct {
 				Fields struct {
-					Nodes []projectField
+					Nodes []projectFieldNode
 				}
 			}
 		}
@@ -219,7 +257,7 @@ func ActionProjectFields(opts ProjectFieldOpts) carapace.Action {
 
 func actionUserProjectFields(opts ProjectFieldOpts) carapace.Action {
 	var queryResult projectFieldsQuery
-	return graphQlAction(opts.repo(), fmt.Sprintf(`user(login: $owner) { projectV2(number: %v) { fields(first: 100) { nodes { id name } } } }`, opts.Project),
+	return graphQlAction(opts.repo(), fmt.Sprintf(`user(login: $owner) { projectV2(number: %v) { fields(first: 100) { nodes { __typename ... on ProjectV2Field { id name } ... on ProjectV2SingleSelectField { id name } ... on ProjectV2IterationField { id name } ... on ProjectV2BuiltInField { id name } } } } }`, opts.Project),
 		&queryResult, func() carapace.Action {
 			vals := make([]string, 0)
 			for _, field := range queryResult.Data.User.ProjectV2.Fields.Nodes {
@@ -231,7 +269,7 @@ func actionUserProjectFields(opts ProjectFieldOpts) carapace.Action {
 
 func actionOrganizationProjectFields(opts ProjectFieldOpts) carapace.Action {
 	var queryResult projectFieldsQuery
-	return graphQlAction(opts.repo(), fmt.Sprintf(`organization(login: $owner) { projectV2(number: %v) { fields(first: 100) { nodes { id name } } } }`, opts.Project),
+	return graphQlAction(opts.repo(), fmt.Sprintf(`organization(login: $owner) { projectV2(number: %v) { fields(first: 100) { nodes { __typename ... on ProjectV2Field { id name } ... on ProjectV2SingleSelectField { id name } ... on ProjectV2IterationField { id name } ... on ProjectV2BuiltInField { id name } } } } }`, opts.Project),
 		&queryResult, func() carapace.Action {
 			vals := make([]string, 0)
 			for _, field := range queryResult.Data.Organization.ProjectV2.Fields.Nodes {
