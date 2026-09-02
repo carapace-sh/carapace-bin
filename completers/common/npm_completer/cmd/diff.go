@@ -25,6 +25,7 @@ func init() {
 	diffCmd.Flags().Int("diff-unified", 3, "numver of lines of context to print")
 	diffCmd.Flags().BoolP("global", "g", false, "operate globally")
 	diffCmd.Flags().String("tag", "latest", "tag to use when version is omitted")
+	addWorkspaceFlags(diffCmd)
 
 	rootCmd.AddCommand(diffCmd)
 

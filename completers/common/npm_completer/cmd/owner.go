@@ -16,6 +16,7 @@ func init() {
 	carapace.Gen(ownerCmd).Standalone()
 	ownerCmd.PersistentFlags().String("otp", "", "one-time password")
 	ownerCmd.PersistentFlags().String("registry", "", "base URL of the npm registry")
+	addWorkspaceFlags(ownerCmd)
 
 	rootCmd.AddCommand(ownerCmd)
 }

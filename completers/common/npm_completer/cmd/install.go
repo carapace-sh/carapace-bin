@@ -36,7 +36,7 @@ func init() {
 	installCmd.Flags().String("libc", "", "Override libc of native modules to install")
 	installCmd.Flags().String("min-release-age", "", "Only install versions available more than the given number of days ago")
 	installCmd.Flags().StringArray("min-release-age-exclude", nil, "Packages exempt from the min-release-age filter")
-		installCmd.Flags().Bool("audit", false, "Conduct security audit")
+	installCmd.Flags().Bool("audit", false, "Conduct security audit")
 	installCmd.Flags().Bool("bin-links", false, "Create symlinks for package executables")
 	installCmd.Flags().Bool("fund", false, "Display funding message")
 	installCmd.Flags().Bool("no-audit", false, "Skip audit")
