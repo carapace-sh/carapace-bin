@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/npm_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/npm"
 	"github.com/spf13/cobra"
 )
 
@@ -19,7 +20,12 @@ func init() {
 	ownerCmd.AddCommand(owner_rmCmd)
 
 	carapace.Gen(owner_rmCmd).PositionalCompletion(
-		carapace.ActionValues(),
 		action.ActionPackageNames(owner_rmCmd),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if len(c.Args) < 1 {
+				return carapace.ActionValues()
+			}
+			return npm.ActionOwners(c.Args[0])
+		}),
 	)
 }
