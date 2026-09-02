@@ -257,7 +257,7 @@ func ActionProjectFields(opts ProjectFieldOpts) carapace.Action {
 
 func actionUserProjectFields(opts ProjectFieldOpts) carapace.Action {
 	var queryResult projectFieldsQuery
-	return graphQlAction(opts.repo(), fmt.Sprintf(`user(login: $owner) { projectV2(number: %v) { fields(first: 100) { nodes { __typename ... on ProjectV2Field { id name } ... on ProjectV2SingleSelectField { id name } ... on ProjectV2IterationField { id name } ... on ProjectV2BuiltInField { id name } } } } }`, opts.Project),
+	return graphQlAction(opts.repo(), fmt.Sprintf(`user(login: $owner) { projectV2(number: %v) { fields(first: 100) { nodes { __typename ... on ProjectV2Field { id name } ... on ProjectV2SingleSelectField { id name } ... on ProjectV2IterationField { id name } } } } }`, opts.Project),
 		&queryResult, func() carapace.Action {
 			vals := make([]string, 0)
 			for _, field := range queryResult.Data.User.ProjectV2.Fields.Nodes {
@@ -269,7 +269,7 @@ func actionUserProjectFields(opts ProjectFieldOpts) carapace.Action {
 
 func actionOrganizationProjectFields(opts ProjectFieldOpts) carapace.Action {
 	var queryResult projectFieldsQuery
-	return graphQlAction(opts.repo(), fmt.Sprintf(`organization(login: $owner) { projectV2(number: %v) { fields(first: 100) { nodes { __typename ... on ProjectV2Field { id name } ... on ProjectV2SingleSelectField { id name } ... on ProjectV2IterationField { id name } ... on ProjectV2BuiltInField { id name } } } } }`, opts.Project),
+	return graphQlAction(opts.repo(), fmt.Sprintf(`organization(login: $owner) { projectV2(number: %v) { fields(first: 100) { nodes { __typename ... on ProjectV2Field { id name } ... on ProjectV2SingleSelectField { id name } ... on ProjectV2IterationField { id name } } } } }`, opts.Project),
 		&queryResult, func() carapace.Action {
 			vals := make([]string, 0)
 			for _, field := range queryResult.Data.Organization.ProjectV2.Fields.Nodes {
