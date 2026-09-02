@@ -17,7 +17,7 @@ var skill_listCmd = &cobra.Command{
 func init() {
 	carapace.Gen(skill_listCmd).Standalone()
 
-	skill_listCmd.Flags().String("agent", "", "Filter by target agent: {github-copilot|claude-code|cursor|codex|gemini-cli|antigravity|adal|amp|augment|bob|cline|codebuddy|command-code|continue|cortex|crush|deepagents|droid|firebender|goose|iflow-cli|junie|kilo|kimi-cli|kiro-cli|kode|mcpjam|mistral-vibe|mux|neovate|openclaw|opencode|openhands|pi|pochi|qoder|qwen-code|replit|roo|trae|trae-cn|universal|warp|windsurf|zencoder}")
+	skill_listCmd.Flags().String("agent", "", "Filter by target agent: {github-copilot|claude-code|cursor|codex|gemini-cli|antigravity|antigravity-cli|antigravity2.0|adal|amp|augment|bob|cline|codebuddy|command-code|continue|cortex|crush|deepagents|devin|droid|firebender|goose|grok|iflow-cli|junie|kilo|kimi-cli|kiro-cli|kode|mcpjam|mistral-vibe|mux|neovate|openclaw|opencode|openhands|pi|pochi|qoder|qwen-code|replit|roo|trae|trae-cn|universal|warp|zencoder}")
 	skill_listCmd.Flags().String("dir", "", "Scan a custom directory for installed skills")
 	skill_listCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
 	skill_listCmd.Flags().StringSlice("json", nil, "Output JSON with the specified `fields`")

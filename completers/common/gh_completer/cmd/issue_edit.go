@@ -22,6 +22,7 @@ func init() {
 	issue_editCmd.Flags().StringSlice("add-label", nil, "Add labels by `name`")
 	issue_editCmd.Flags().StringSlice("add-project", nil, "Add the issue to projects by `title`")
 	issue_editCmd.Flags().StringSlice("add-sub-issue", nil, "Add sub-issues by `number` or URL")
+	issue_editCmd.Flags().StringSlice("attach", nil, "Attach an image or video `file`, in '<file>#<image alt text>' format")
 	issue_editCmd.Flags().StringP("body", "b", "", "Set the new body.")
 	issue_editCmd.Flags().StringP("body-file", "F", "", "Read body text from `file` (use \"-\" to read from standard input)")
 	issue_editCmd.Flags().StringP("milestone", "m", "", "Edit the milestone the issue belongs to by `name`")
@@ -46,6 +47,7 @@ func init() {
 		"add-label":      action.ActionLabels(issue_editCmd).UniqueList(","),
 		"add-project":    action.ActionProjects(issue_editCmd, action.ProjectOpts{Open: true}),
 		"add-sub-issue":  action.ActionIssues(issue_editCmd, action.IssueOpts{Open: true, Closed: true}),
+		"attach":         carapace.ActionFiles(),
 		"body":           action.ActionBody(issue_editCmd),
 		"body-file":      carapace.ActionFiles(),
 		"milestone":      action.ActionMilestones(issue_editCmd),

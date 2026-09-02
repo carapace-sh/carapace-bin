@@ -16,6 +16,7 @@ var release_downloadCmd = &cobra.Command{
 func init() {
 	carapace.Gen(release_downloadCmd).Standalone()
 
+	release_downloadCmd.Flags().Bool("allow-escape-sequences", false, "Allow printing terminal escape sequences when writing an asset to standard output")
 	release_downloadCmd.Flags().StringP("archive", "A", "", "Download the source code archive in the specified `format` (zip or tar.gz)")
 	release_downloadCmd.Flags().Bool("clobber", false, "Overwrite existing files of the same name")
 	release_downloadCmd.Flags().StringP("dir", "D", "", "The `directory` to download files into")
