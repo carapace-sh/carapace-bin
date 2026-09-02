@@ -15,9 +15,13 @@ var rebuildCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(rebuildCmd).Standalone()
+	rebuildCmd.Flags().StringArray("allow-scripts", nil, "packages whose install-time lifecycle scripts are allowed to run")
 	rebuildCmd.Flags().Bool("bin-links", false, "crete symlinks for package executables")
+	rebuildCmd.Flags().Bool("dangerously-allow-all-scripts", false, "bypass the allowScripts policy entirely")
+	rebuildCmd.Flags().Bool("foreground-scripts", false, "run build scripts in the foreground process")
 	rebuildCmd.Flags().BoolP("global", "g", false, "operate globally")
 	rebuildCmd.Flags().Bool("ignore-scripts", false, "do not run scripts specified in package.json")
+	rebuildCmd.Flags().Bool("strict-allow-scripts", false, "turn install-script policy from warning into error")
 	addWorkspaceFlags(rebuildCmd)
 
 	rootCmd.AddCommand(rebuildCmd)
