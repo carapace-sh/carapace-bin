@@ -1,8 +1,6 @@
 package cmd
 
 import (
-	"strconv"
-
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/time"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
@@ -44,16 +42,8 @@ func init() {
 	carapace.Gen(project_itemEditCmd).FlagCompletion(carapace.ActionMap{
 		"date": time.ActionDate(),
 		"field-id": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			projectNumber := project_itemEditCmd.Flag("project-id").Value.String()
-			owner := project_itemEditCmd.Flag("owner").Value.String()
-			opts := gh.ProjectFieldOpts{
-				Owner:   owner,
-				Project: 0,
-			}
-			if n, err := strconv.Atoi(projectNumber); err == nil {
-				opts.Project = n
-			}
-			return gh.ActionProjectFields(opts)
+			projectId := project_itemEditCmd.Flag("project-id").Value.String()
+			return gh.ActionProjectNodeFields(gh.ProjectFieldNodeOpts{ProjectId: projectId})
 		}),
 		"id": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			projectId := project_itemEditCmd.Flag("project-id").Value.String()

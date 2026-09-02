@@ -252,6 +252,49 @@ func ActionProjectNodeItems(opts ProjectItemNodeOpts) carapace.Action {
 	})
 }
 
+type ProjectFieldNodeOpts struct {
+	Host      string
+	ProjectId string
+}
+
+func (o ProjectFieldNodeOpts) Default() ProjectFieldNodeOpts {
+	return o
+}
+
+func (o ProjectFieldNodeOpts) repo() RepoOpts {
+	return RepoOpts{
+		Host: o.Host,
+	}
+}
+
+type projectFieldNodeQuery struct {
+	Data struct {
+		Node struct {
+			Fields struct {
+				Nodes []projectFieldNode
+			}
+		}
+	}
+}
+
+// ActionProjectNodeFields completes project field IDs by project node ID
+//
+//	PVTF_lADOA48Fh84ABd_DzgBCG7c (Status)
+//	PVTF_lADOA48Fh84ABd_DzgBCHAo (Priority)
+func ActionProjectNodeFields(opts ProjectFieldNodeOpts) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		var queryResult projectFieldNodeQuery
+		return graphQlAction(opts.repo(), fmt.Sprintf(`node(id: "%v") { ... on ProjectV2 { fields(first: 100) { nodes { __typename ... on ProjectV2Field { id name } ... on ProjectV2SingleSelectField { id name } ... on ProjectV2IterationField { id name } } } } }`, opts.ProjectId),
+			&queryResult, func() carapace.Action {
+				vals := make([]string, 0)
+				for _, field := range queryResult.Data.Node.Fields.Nodes {
+					vals = append(vals, field.Id, field.Name)
+				}
+				return carapace.ActionValuesDescribed(vals...)
+			})
+	})
+}
+
 type ProjectFieldOpts struct {
 	Host    string
 	Owner   string
@@ -269,6 +312,7 @@ func (o ProjectFieldOpts) repo() RepoOpts {
 		Owner: o.Owner,
 	}
 }
+
 type projectFieldNode struct {
 	Typename string `json:"__typename"`
 	Id       string
