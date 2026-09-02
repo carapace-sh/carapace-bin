@@ -39,16 +39,32 @@ func ActionPackageNames(registry string) carapace.Action {
 		}
 
 		return carapace.ActionExecCommand("npm", args...)(func(output []byte) carapace.Action {
-			lines := strings.Split(string(output), "\n")
-
-			vals := make([]string, 0)
-			for _, line := range lines[:len(lines)-1] {
-				fields := strings.Split(line, "\t")
-				vals = append(vals, fields[0], fields[1])
-			}
-			return carapace.ActionValuesDescribed(vals...)
+			return carapace.ActionValuesDescribed(parseSearchOutput(output)...)
 		})
 	})
+}
+
+// parseSearchOutput converts `npm search --parseable` output into the
+// value/description pairs ActionValuesDescribed expects. Each line is
+// tab-separated (name, description, author, date, version, ...), but npm omits
+// trailing empty fields, so a package with no description yields a line with
+// only the name. Guard the description lookup so such a line does not panic.
+func parseSearchOutput(output []byte) []string {
+	lines := strings.Split(string(output), "\n")
+
+	vals := make([]string, 0)
+	for _, line := range lines {
+		if line == "" {
+			continue
+		}
+		fields := strings.Split(line, "\t")
+		description := ""
+		if len(fields) > 1 {
+			description = fields[1]
+		}
+		vals = append(vals, fields[0], description)
+	}
+	return vals
 }
 
 type PackageOpts struct {
