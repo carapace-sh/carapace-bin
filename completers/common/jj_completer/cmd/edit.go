@@ -16,6 +16,8 @@ func init() {
 	carapace.Gen(editCmd).Standalone()
 
 	editCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	editCmd.Flags().StringS("r", "r", "", "")
+	editCmd.Flag("r").Hidden = true
 	rootCmd.AddCommand(editCmd)
 
 	carapace.Gen(editCmd).PositionalCompletion(
