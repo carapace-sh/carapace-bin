@@ -15,7 +15,8 @@ func init() {
 	carapace.Gen(debug_stackedTableCmd).Standalone()
 
 	debug_stackedTableCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
-	debug_stackedTableCmd.Flags().Uint32P("key-size", "n", 0, "Key size in bytes")
+	debug_stackedTableCmd.Flags().StringP("key-size", "n", "", "Key size in bytes")
+	debug_stackedTableCmd.MarkFlagRequired("key-size")
 	debugCmd.AddCommand(debug_stackedTableCmd)
 
 	carapace.Gen(debug_stackedTableCmd).PositionalCompletion(
