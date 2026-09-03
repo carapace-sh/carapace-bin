@@ -15,6 +15,6 @@ func init() {
 	carapace.Gen(debug_indexChangedPathsCmd).Standalone()
 
 	debug_indexChangedPathsCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
-	debug_indexChangedPathsCmd.Flags().Uint32P("limit", "n", 4294967295, "Limit number of revisions to index")
+	debug_indexChangedPathsCmd.Flags().StringP("limit", "n", "4294967295", "Limit number of revisions to index")
 	debugCmd.AddCommand(debug_indexChangedPathsCmd)
 }

@@ -38,13 +38,11 @@ func init() {
 	gerrit_uploadCmd.Flags().Bool("remove-private", false, "Unmarks the change as private")
 	gerrit_uploadCmd.Flags().StringSlice("reviewer", nil, "Add these emails as a reviewer (can be repeated)")
 	gerrit_uploadCmd.Flags().StringSliceP("revision", "r", nil, "The revset, selecting which revisions are sent in to Gerrit")
-	gerrit_uploadCmd.Flags().StringSlice("revisions", nil, "The revset, selecting which revisions are sent in to Gerrit")
 	gerrit_uploadCmd.Flags().Bool("skip-validation", false, "When --submit is provided, skip performing validations")
 	gerrit_uploadCmd.Flags().Bool("submit", false, "Directly submit the changes, bypassing code review")
 	gerrit_uploadCmd.Flags().String("topic", "", "Applies a topic to the change")
 	gerrit_uploadCmd.Flags().String("trace", "", "For debugging Gerrit")
 	gerrit_uploadCmd.Flags().Bool("wip", false, "Marks the change as WIP (work in progress)")
-	gerrit_uploadCmd.Flag("revisions").Hidden = true
 	gerritCmd.AddCommand(gerrit_uploadCmd)
 
 	carapace.Gen(gerrit_uploadCmd).FlagCompletion(carapace.ActionMap{
@@ -54,8 +52,7 @@ func init() {
 			"owner-reviewers", "Only the change owner and reviewers will be notified",
 			"all", "All relevant users, including owner, reviewers, cc'd, users that have starred the change, and users who have configured a watch on files in the change",
 		),
-		"option":    git.ActionPushOptions(),
-		"revision":  jj.ActionRevsets(jj.RevOpts{}.Default()).UniqueList(","),
-		"revisions": jj.ActionRevsets(jj.RevOpts{}.Default()).UniqueList(","),
+		"option":   git.ActionPushOptions(),
+		"revision": jj.ActionRevsets(jj.RevOpts{}.Default()).UniqueList(","),
 	})
 }
