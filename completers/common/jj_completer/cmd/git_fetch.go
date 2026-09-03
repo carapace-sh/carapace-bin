@@ -42,5 +42,6 @@ func init() {
 		"bookmark": actionBookmarks,
 		"branch":   actionBookmarks,
 		"remote":   jj.ActionRemotes(),
+		"tag":      jj.ActionTags(),
 	})
 }

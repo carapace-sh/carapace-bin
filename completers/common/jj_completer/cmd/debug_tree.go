@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-jjlex/pkg/actions/tools/jj"
 	"github.com/spf13/cobra"
 )
 
@@ -19,4 +20,9 @@ func init() {
 	debug_treeCmd.Flags().String("id", "", "")
 	debug_treeCmd.Flags().StringP("revision", "r", "", "")
 	debugCmd.AddCommand(debug_treeCmd)
+
+	carapace.Gen(debug_treeCmd).FlagCompletion(carapace.ActionMap{
+		"id":       jj.ActionRevsets(jj.RevOpts{}.Default()),
+		"revision": jj.ActionRevsets(jj.RevOpts{}.Default()),
+	})
 }

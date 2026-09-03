@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-jjlex/pkg/actions/tools/jj"
 	"github.com/spf13/cobra"
 )
 
@@ -18,4 +19,8 @@ func init() {
 	debug_revsetCmd.Flags().Bool("no-optimize", false, "Do not rewrite expression to optimized form")
 	debug_revsetCmd.Flags().Bool("no-resolve", false, "Do not resolve and evaluate expression")
 	debugCmd.AddCommand(debug_revsetCmd)
+
+	carapace.Gen(debug_revsetCmd).PositionalCompletion(
+		jj.ActionRevsets(jj.RevOpts{}.Default()),
+	)
 }

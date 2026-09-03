@@ -41,6 +41,12 @@ func init() {
 			return git.ActionLsRemoteRefs(git.LsRemoteRefOption{Url: c.Args[0], Branches: true})
 		}),
 		"object-hash": carapace.ActionValues("sha1", "sha256"),
+		"tag": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if len(c.Args) == 0 {
+				return carapace.ActionValues()
+			}
+			return git.ActionLsRemoteRefs(git.LsRemoteRefOption{Url: c.Args[0], Tags: true})
+		}),
 	})
 
 	carapace.Gen(git_cloneCmd).PositionalCompletion(

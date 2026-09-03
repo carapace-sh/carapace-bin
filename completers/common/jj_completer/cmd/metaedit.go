@@ -27,6 +27,11 @@ func init() {
 	metaeditCmd.Flag("r").Hidden = true
 	rootCmd.AddCommand(metaeditCmd)
 
+	carapace.Gen(metaeditCmd).FlagCompletion(carapace.ActionMap{
+		"author":           jj.ActionAuthors(),
+		"author-timestamp": jj.ActionDatePatterns(),
+	})
+
 	carapace.Gen(metaeditCmd).PositionalAnyCompletion(
 		jj.ActionRevsets(jj.RevOpts{}.Default()),
 	)

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-jjlex/pkg/actions/tools/jj"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,8 @@ func init() {
 
 	debug_templateCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	debugCmd.AddCommand(debug_templateCmd)
+
+	carapace.Gen(debug_templateCmd).PositionalCompletion(
+		jj.ActionTemplates(),
+	)
 }
