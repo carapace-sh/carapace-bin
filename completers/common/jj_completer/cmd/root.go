@@ -39,11 +39,9 @@ func init() {
 	rootCmd.PersistentFlags().Bool("no-pager", false, "Disable the pager")
 	rootCmd.PersistentFlags().Bool("quiet", false, "Silence non-primary command output")
 	rootCmd.PersistentFlags().StringP("repository", "R", "", "Path to repository to operate on")
-	rootCmd.PersistentFlags().BoolP("verbose", "v", false, "Enable verbose logging")
 	rootCmd.Flags().BoolP("version", "V", false, "Print version")
 
 	rootCmd.MarkFlagsMutuallyExclusive("at-op", "at-operation")
-	rootCmd.MarkFlagsMutuallyExclusive("quiet", "verbose")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"at-op":        jj.ActionOperations(100),

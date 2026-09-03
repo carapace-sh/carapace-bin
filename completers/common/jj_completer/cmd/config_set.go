@@ -16,11 +16,16 @@ var config_setCmd = &cobra.Command{
 func init() {
 	carapace.Gen(config_setCmd).Standalone()
 
+	config_setCmd.Flags().String("file", "", "Target the config file specified by the given path")
 	config_setCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	config_setCmd.Flags().Bool("repo", false, "Target the repo-level config")
 	config_setCmd.Flags().Bool("user", false, "Target the user-level config")
 	config_setCmd.Flags().Bool("workspace", false, "Target the workspace-level config")
 	configCmd.AddCommand(config_setCmd)
+
+	carapace.Gen(config_setCmd).FlagCompletion(carapace.ActionMap{
+		"file": carapace.ActionFiles(),
+	})
 
 	carapace.Gen(config_setCmd).PositionalCompletion(
 		jj.ActionConfigs(true).MultiParts("."),

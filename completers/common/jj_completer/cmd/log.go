@@ -25,7 +25,7 @@ func init() {
 	logCmd.Flags().Bool("ignore-space-change", false, "Ignore changes in amount of whitespace when comparing lines")
 	logCmd.Flags().StringP("limit", "n", "", "Limit number of revisions to show")
 	logCmd.Flags().Bool("name-only", false, "For each path, show only its path")
-	logCmd.Flags().BoolP("no-graph", "G", false, "Don't show the graph, show a flat list of revisions")
+	logCmd.Flags().BoolP("no-graph", "G", false, "Show a flat list of revisions instead of a graph")
 	logCmd.Flags().BoolP("patch", "p", false, "Show patch")
 	logCmd.Flags().Bool("reversed", false, "Show revisions in the opposite order (older revisions first)")
 	logCmd.Flags().StringSliceP("revision", "r", []string{"builtin_log()"}, "Which revisions to show")

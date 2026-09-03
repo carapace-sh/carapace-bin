@@ -1,0 +1,24 @@
+package cmd
+
+import (
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-jjlex/pkg/actions/tools/jj"
+	"github.com/spf13/cobra"
+)
+
+var debug_templateCmd = &cobra.Command{
+	Use:   "template",
+	Short: "Parse a template",
+	Run:   func(cmd *cobra.Command, args []string) {},
+}
+
+func init() {
+	carapace.Gen(debug_templateCmd).Standalone()
+
+	debug_templateCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	debugCmd.AddCommand(debug_templateCmd)
+
+	carapace.Gen(debug_templateCmd).PositionalCompletion(
+		jj.ActionTemplates(),
+	)
+}

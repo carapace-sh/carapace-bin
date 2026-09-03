@@ -25,7 +25,9 @@ func init() {
 	revertCmd.Flags().StringSliceP("onto", "o", nil, "The revision(s) to apply the reverse changes on top of")
 	revertCmd.Flags().StringSliceP("revision", "r", nil, "The revision(s) to apply the reverse of")
 	revertCmd.Flags().StringSlice("revisions", nil, "The revision(s) to apply the reverse of")
+	revertCmd.MarkFlagRequired("revision")
 	revertCmd.Flag("revisions").Hidden = true
+	revertCmd.MarkFlagRequired("revisions")
 	rootCmd.AddCommand(revertCmd)
 
 	revertCmd.MarkFlagsMutuallyExclusive("onto", "insert-after", "insert-before", "after", "before", "destination")
