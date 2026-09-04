@@ -76,7 +76,12 @@ func init() {
 		}),
 		"strategy": git.ActionMergeStrategies(),
 		"strategy-option": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return git.ActionMergeStrategyOptions(mergeCmd.Flag("strategy").Value.String())
+			values, _ := mergeCmd.Flags().GetStringArray("strategy")
+			batch := carapace.Batch()
+			for _, s := range values {
+				batch = append(batch, git.ActionMergeStrategyOptions(s))
+			}
+			return batch.ToA()
 		}),
 	})
 

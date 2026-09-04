@@ -120,7 +120,12 @@ func init() {
 		"shallow-since":   time.ActionDate(),
 		"strategy":        git.ActionMergeStrategies(),
 		"strategy-option": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return git.ActionMergeStrategyOptions(pullCmd.Flag("strategy").Value.String())
+			values, _ := pullCmd.Flags().GetStringArray("strategy")
+			batch := carapace.Batch()
+			for _, s := range values {
+				batch = append(batch, git.ActionMergeStrategyOptions(s))
+			}
+			return batch.ToA()
 		}),
 		"upload-pack": carapace.ActionFiles(),
 	})
