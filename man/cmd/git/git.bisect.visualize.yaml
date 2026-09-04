@@ -1,8 +1,18 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: visualize
 aliases:
-- view
+  - view
 description: show bisect status in gitk
 flags:
-  --p: ''
-  --stat: ''
+  --p: show patches
+  --stat: show diffstat
+documentation:
+  flag:
+    p: |-
+      These flags are passed to the *git apply* (see
+      [git-apply](cmd://git/apply)) program that applies the patch.
+      
+      Valid \<action\> for the `--whitespace` option are: `nowarn`, `warn`, `fix`, `error`, and `error-all`.
+    stat: |-
+      Instead of applying the patch, output diffstat for the
+      input.  Turns off "apply".

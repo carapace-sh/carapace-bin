@@ -13,7 +13,8 @@ documentation:
     The working tree, along with this metadata, is called a "worktree".
 
     This new worktree is called a "linked worktree" as opposed to the "main
-    worktree" prepared by [git-init](cmd://git/init) or [git-clone](cmd://git/clone).
+    worktree" prepared by [git-init](cmd: |-
+      //git/init) or [git-clone](cmd://git/clone).
     A repository has one main worktree (if it's not a bare repository) and
     zero or more linked worktrees. When you are done with a linked worktree,
     remove it with `git worktree remove`.
@@ -41,3 +42,4 @@ documentation:
     administrative files from being pruned by issuing the `git worktree lock`
     command, optionally specifying `--reason` to explain why the worktree is
     locked.
+

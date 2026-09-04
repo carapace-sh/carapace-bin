@@ -1,7 +1,5 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: unregister
 description: Unregister a repository from Scalar
-
 documentation:
-  command: >-
-    Remove the specified repository from the list of repositories registered with Scalar and stop the scheduled background maintenance.
+  command: Remove the specified repository from the list of repositories registered with Scalar and stop the scheduled background maintenance.

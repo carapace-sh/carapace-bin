@@ -2,18 +2,18 @@
 name: update
 description: Update the registered submodule
 flags:
-  --checkout: Checkout commit of superproject as detached HEAD
-  --depth=: Create a shallow clone
-  --init: Initialize all submodules
-  --jobs=: Clone new submodules in parallel
-  --merge: Merge commit of superproject into submodule
-  --no-recommend-shallow: Ignore configured shallow recommendation
-  --rebase: Rebase current branch onto commit of superproject
-  --recommend-shallow: Initial clone will use recommended configuration
-  --recursive: Traverse submodules recursively
+  --checkout: checkout commit of superproject as detached HEAD
+  --depth=: create a shallow clone
+  --init: initialize all submodules
+  --jobs=: clone new submodules in parallel
+  --merge: merge commit of superproject into submodule
+  --no-recommend-shallow: ignore configured shallow recommendation
+  --rebase: rebase current branch onto commit of superproject
+  --recommend-shallow: initial clone will use recommended configuration
+  --recursive: traverse submodules recursively
   --reference=: reference repository
-  --remote: Use submodules's remote tracking branch to update
-  -N, --no-Fetch: Don't fetch from remote
+  --remote: use submodules's remote tracking branch to update
+  -N, --no-Fetch: don't fetch from remote
   -f, --force: throw away local changes
 documentation:
   command: |-
@@ -100,7 +100,10 @@ documentation:
       submodule, even if the commit listed in the index of the
       containing repository matches the commit checked out in the
       submodule.
-    init: "Initialize all submodules for which `git submodule init` has not been\ncalled so far before updating. \tThis option is only valid for the `update`\ncommand."
+    init: |-
+      Initialize all submodules for which `git submodule init` has not been
+      called so far before updating. 	This option is only valid for the `update`
+      command.
     jobs: |-
       Clone new submodules in parallel with _<n>_ jobs.
       This option is only valid for the `update` command.
@@ -127,6 +130,12 @@ documentation:
       to resolve these failures with [git-rebase](cmd://git/rebase).
       If the key `submodule.<name>.update` is set to `rebase`, this option is
       implicit.
+    recommend-shallow: |-
+      Recommend or not shallow cloning of submodules.
+      This option is only valid for the `update` command.
+      The initial clone of a submodule will use the recommended
+      `submodule.<name>.shallow` as provided by the `.gitmodules` file
+      by default. To ignore the suggestions use `--no-recommend-shallow`.
     recursive: |-
       Traverse submodules recursively. This option is only valid for `foreach`,
       `update`, `status` and `sync` commands. The operation is performed not
@@ -169,9 +178,4 @@ documentation:
       to distribute the default upstream branch with the superproject and
       `branch.<name>.merge` if you want a more native feel while working in
       the submodule itself.
-    recommend-shallow: |-
-      Recommend or not shallow cloning of submodules.
-      This option is only valid for the `update` command.
-      The initial clone of a submodule will use the recommended
-      `submodule.<name>.shallow` as provided by the `.gitmodules` file
-      by default. To ignore the suggestions use `--no-recommend-shallow`.
+    no-Fetch: don't fetch from remote

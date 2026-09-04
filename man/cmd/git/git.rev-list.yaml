@@ -3,172 +3,119 @@ name: rev-list
 description: Lists commit objects in reverse chronological order
 group: low-level interrogator
 flags:
-  --abbrev-commit: Show a prefix that names the object uniquely
-  --after=: Show commits more recent than a specific date
-  --all: Pretend as if all the refs in refs/ are listed on the command line
-  --all-match: Limit output to ones matching all given --grep
-  --alternate-refs: Pretend as if all alternate ref tips are listed on the command line
-  --ancestry-path?: Only display commits in that range that are ancestors of <commit>, descendants of <commit>, or <commit> itself
-  --author-date-order: Show commits in the author timestamp order
-  --author=: Limit output to ones with matching author header
-  --basic-regexp: Consider the limiting patterns to be basic regular expressions
-  --before=: Show commits older than a specific date.
-  --bisect: Limit output to the one commit object which is roughly halfway between included and excluded commits
-  --bisect-all: This outputs all the commit objects between the included and excluded commits
-  --bisect-vars: This calculates the same as --bisect, except that refs in refs/bisect/ are not used
-  --boundary: Output excluded boundary commits
-  --branches?: Pretend as if all the refs in refs/heads are listed on the command line
-  --cherry: A synonym for --right-only --cherry-mark --no-merges
-  --cherry-mark: Like --cherry-pick but mark commits rather than omitting them
-  --cherry-pick: Omit any commit that introduces the same change as another commit
-  --children: Print also the children of the commit
-  --commit-header: Overrides a previous --no-commit-header
-  --committer=: Limit output to ones with matching committer header
-  --count: Only print a number stating how many commits would have been listed
-  --date-order: Show commits in the commit timestamp order
-  --date=: Date format
-  --dense: Only the selected commits are shown, plus some to have a meaningful history
-  --disk-usage?: Suppress normal output and print disk usage
-  --do-walk: Overrides a previous --no-walk
-  --encoding=: Re-code the commit log message in given encoding
-  --exclude-first-parent-only: For excluded commits follow only the first parent commit upon merge
-  --exclude-hidden?: Do not include refs that would be hidden
-  --exclude-promisor-objects: Prefilter object traversal at promisor boundary
-  --exclude=: Do not include matching refs the next option would consider
-  --expand-tabs=: Perform a tab expansion
-  --filter-print-omitted: Print a list of the objects omitted by the filter
-  --filter-provided-objects: Filter the list of explicitly provided objects
-  --filter=: Omits objects from the list of printed objects
-  --first-parent: For included commits follow only the first parent commit upon merge
-  --format=: Pretty-print the contents of the commit logs in a given format
-  --full-history: Same as the default mode, but does not prune some history
-  --glob=: Pretend as if all matching refs are listed on the command line
-  --graph: Draw a text-based graphical representation of the commit history
-  --grep-reflog=: Limit output to ones with matching reflog entries
-  --grep=: Limit output to ones with matching log message
-  --header: Print the contents of the commit in raw-format
-  --ignore-missing: Pretend as if the bad input was not given
-  --in-commit-order: Print tree and blob ids in order of the commits
-  --indexed-objects: Pretend as if all trees and blobs used by the index are listed on the command line
-  --invert-grep: Limit output to ones with non-matching log message
-  --left-only: List only commits on the left side of a symmetric difference
-  --left-right: Mark which side of a symmetric difference a commit is reachable from
-  --max-age=: Limit the commits output to specified time range
-  --max-parents=: Show only commits which have at most that many parent commits
-  --merge: Show refs that touch files having a conflict and don’t exist on all heads to merge
-  --merges: Print only merge commits
-  --min-age=: Limit the commits output to specified time range
-  --min-parents=: Show only commits which have at least that many parent commits
-  --missing=: Specify how missing objects are handled
-  --no-abbrev-commit: Show the full 40-byte hexadecimal commit object name
-  --no-commit-header: Suppress the header line containing "commit"
-  --no-expand-tabs: Do not perform a tab expansion
-  --no-filter: Turn off any previous --filter= argument
-  --no-max-parents: Reset max-partents limit
-  --no-merges: Do not print commits with more than one parent
-  --no-min-parents: Reset min-parents limit
-  --no-object-names: Do not print the names of the object IDs that are found
-  --no-walk=: Only show the given commits, but do not traverse their ancestors
-  --not: Reverses the meaning of the ^ prefix
-  --object-names: Print the names of the object IDs that are found
-  --objects: Print the object IDs of any object referenced by the listed commits
-  --objects-edge: Similar to --objects, but also print the IDs of excluded commits
-  --objects-edge-aggressive: Similar to --objects-edge, but it tries harder to find excluded commits
-  --oneline: This is a shorthand for "--pretty=oneline --abbrev-commit" used together
-  --parents: Print also the parents of the commit
-  --pretty?: Pretty-print the contents of the commit logs in a given format
-  --progress=: Show progress reports on stderr as objects are considered
-  --quiet: Don’t print anything to standard output
-  --reflog: Pretend as if all reflog objects are listed on the command line
-  --relative-date: Synonym for --date=relative
-  --remotes?: Pretend as if all the refs in refs/remotes are listed on the command line
-  --remove-empty: Stop when a given path disappears from the tree
-  --reverse: Output the commits in reverse order
-  --right-only: List only commits on the right side of a symmetric difference
-  --show-linear-break=: Put a barrier in between branches in graph output
-  --show-pulls: Include also any merge commits that are not TREESAME to the first parent but are TREESAME to a later parent
-  --show-signature: Check the validity of a signed commit object
-  --simplify-by-decoration: Commits that are referred by some branch or tag are selected
-  --simplify-merges: Additional option to --full-history to remove some needless merges from the resulting history
-  --since-as-filter=: Show all commits more recent than a specific date
-  --since=: Show commits more recent than a specific date
-  --single-worktree: Examine the current working tree only
-  --skip=: Skip number commits before starting to show the commit output
-  --sparse: All commits in the simplified history are shown
-  --stdin: Read arguments from standard input as well
-  --tags?: Pretend as if all the refs in refs/tags are listed on the command line
-  --timestamp: Print the raw commit timestamp
-  --topo-order: Avoid showing commits on multiple lines of history intermixed
-  --unpacked: Print the object IDs that are not in packs
-  --until=: Show commits older than a specific date.
-  --use-bitmap-index: Try to speed up the traversal using the pack bitmap index
-  -E, --extended-regexp: Consider the limiting patterns to be extended regular expressions
-  -F, --fixed-strings: Consider the limiting patterns to be fixed strings
-  -P, --perl-regexp: Consider the limiting patterns to be Perl-compatible regular expressions
-  -g, --walk-reflogs: Walk reflog entries from the most recent one to older ones
-  -i, --regexp-ignore-case: Match the regular expression case insensitive
-  -n, --max-count=: Limit the number of commits to output
+  --abbrev-commit: show a prefix that names the object uniquely
+  --abbrev=: show only a partial prefix of the object name
+  --after=: show commits more recent than a specific date
+  --all: pretend as if all the refs in refs/ are listed on the command line
+  --all-match: limit output to ones matching all given --grep
+  --alternate-refs: pretend as if all alternate ref tips are listed on the command line
+  --ancestry-path?: only display commits in that range that are ancestors of <commit>, descendants of <commit>, or <commit> itself
+  --author-date-order: show commits in the author timestamp order
+  --author=*: limit output to ones with matching author header
+  --basic-regexp: consider the limiting patterns to be basic regular expressions
+  --before=: show commits older than a specific date
+  --bisect: limit output to the one commit object which is roughly halfway between included and excluded commits
+  --bisect-all: output all the commit objects between the included and excluded commits
+  --bisect-vars: calculate the same as --bisect, except that refs in refs/bisect/ are not used
+  --boundary: output excluded boundary commits
+  --branches?*: pretend as if all the refs in refs/heads are listed on the command line
+  --cherry: a synonym for --right-only --cherry-mark --no-merges
+  --cherry-mark: like --cherry-pick but mark commits rather than omitting them
+  --cherry-pick: omit any commit that introduces the same change as another commit
+  --children: print also the children of the commit
+  --commit-header: overrides a previous --no-commit-header
+  --committer=*: limit output to ones with matching committer header
+  --count: only print a number stating how many commits would have been listed
+  --date-order: show commits in the commit timestamp order
+  --date=: date format
+  --dense: only the selected commits are shown, plus some to have a meaningful history
+  --disk-usage?: suppress normal output and print disk usage
+  --do-walk: overrides a previous --no-walk
+  --encoding=: re-code the commit log message in given encoding
+  --exclude-first-parent-only: for excluded commits follow only the first parent commit upon merge
+  --exclude-hidden?: do not include refs that would be hidden
+  --exclude-promisor-objects: prefilter object traversal at promisor boundary
+  --exclude=*: do not include matching refs the next option would consider
+  --expand-tabs=: perform a tab expansion
+  --filter-print-omitted: print a list of the objects omitted by the filter
+  --filter-provided-objects: filter the list of explicitly provided objects
+  --filter=: omit objects from the list of printed objects
+  --first-parent: for included commits follow only the first parent commit upon merge
+  --format=: pretty-print the contents of the commit logs in a given format
+  --full-history: same as the default mode, but does not prune some history
+  --glob=*: pretend as if all matching refs are listed on the command line
+  --graph: draw a text-based graphical representation of the commit history
+  --graph-lane-limit=: limit the number of lanes in graph output
+  --grep-reflog=*: limit output to ones with matching reflog entries
+  --grep=*: limit output to ones with matching log message
+  --header: print the contents of the commit in raw-format
+  --ignore-missing: pretend as if the bad input was not given
+  --in-commit-order: print tree and blob ids in order of the commits
+  --indexed-objects: pretend as if all trees and blobs used by the index are listed on the command line
+  --invert-grep: limit output to ones with non-matching log message
+  --left-only: list only commits on the left side of a symmetric difference
+  --left-right: mark which side of a symmetric difference a commit is reachable from
+  --max-age=: limit the commits output to specified time range
+  --max-count-oldest=: limit the number of commits to output, picking the oldest N
+  --max-parents=: show only commits which have at most that many parent commits
+  --maximal-only: restrict output to commits not reachable from other commits in the range
+  --merge: show refs that touch files having a conflict and don't exist on all heads to merge
+  --merges: print only merge commits
+  --min-age=: limit the commits output to specified time range
+  --min-parents=: show only commits which have at least that many parent commits
+  --missing=: specify how missing objects are handled
+  --no-abbrev-commit: show the full 40-byte hexadecimal commit object name
+  --no-commit-header: suppress the header line containing "commit"
+  --no-expand-tabs: do not perform a tab expansion
+  --no-filter: turn off any previous --filter= argument
+  --no-max-parents: reset max-parents limit
+  --no-merges: do not print commits with more than one parent
+  --no-min-parents: reset min-parents limit
+  --no-notes: do not show notes
+  --no-object-names: do not print the names of the object IDs that are found
+  --no-walk=: only show the given commits, but do not traverse their ancestors
+  --not: reverses the meaning of the ^ prefix
+  --notes?*: show the notes that annotate the commit
+  --object-names: print the names of the object IDs that are found
+  --objects: print the object IDs of any object referenced by the listed commits
+  --objects-edge: similar to --objects, but also print the IDs of excluded commits
+  --objects-edge-aggressive: similar to --objects-edge, but tries harder to find excluded commits
+  --oneline: shorthand for "--pretty=oneline --abbrev-commit" used together
+  --parents: print also the parents of the commit
+  --pretty=: pretty-print the contents of the commit logs in a given format
+  --progress=: show progress reports on stderr as objects are considered
+  --quiet: don't print anything to standard output
+  --reflog: pretend as if all reflog objects are listed on the command line
+  --relative-date: synonym for --date=relative
+  --remotes?*: pretend as if all the refs in refs/remotes are listed on the command line
+  --remove-empty: stop when a given path disappears from the tree
+  --reverse: output the commits in reverse order
+  --right-only: list only commits on the right side of a symmetric difference
+  --show-linear-break=: put a barrier in between branches in graph output
+  --show-notes-by-default: show the default notes
+  --show-pulls: include also any merge commits that are not TREESAME to the first parent but are TREESAME to a later parent
+  --show-signature: check the validity of a signed commit object
+  --simplify-by-decoration: commits that are referred by some branch or tag are selected
+  --simplify-merges: additional option to --full-history to remove some needless merges from the resulting history
+  --since-as-filter=: show all commits more recent than a specific date
+  --since=: show commits more recent than a specific date
+  --single-worktree: examine the current working tree only
+  --skip=: skip number commits before starting to show the commit output
+  --sparse: all commits in the simplified history are shown
+  --stdin: read arguments from standard input as well
+  --tags?*: pretend as if all the refs in refs/tags are listed on the command line
+  --timestamp: print the raw commit timestamp
+  --topo-order: avoid showing commits on multiple lines of history intermixed
+  --unpacked: print the object IDs that are not in packs
+  --until=: show commits older than a specific date
+  --use-bitmap-index: try to speed up the traversal using the pack bitmap index
+  -E, --extended-regexp: consider the limiting patterns to be extended regular expressions
+  -F, --fixed-strings: consider the limiting patterns to be fixed strings
+  -P, --perl-regexp: consider the limiting patterns to be Perl-compatible regular expressions
+  -g, --walk-reflogs: walk reflog entries from the most recent one to older ones
+  -i, --regexp-ignore-case: match the regular expression case insensitive
+  -n, --max-count=: limit the number of commits to output
 documentation:
-  command: |-
-    :git-rev-list: 1
-    List commits that are reachable by following the `parent` links from the
-    given commit(s), but exclude commits that are reachable from the one(s)
-    given with a `^` in front of them.  The output is given in reverse
-    chronological order by default.
-
-    You can think of this as a set operation. Commits reachable from any of
-    the commits given on the command line form a set, and then commits reachable
-    from any of the ones given with '^' in front are subtracted from that
-    set.  The remaining commits are what comes out in the command's output.
-    Various other options and paths parameters can be used to further limit the
-    result.
-
-    Thus, the following command:
-
-    ```
-    $ git rev-list foo bar ^baz
-    ```
-
-    ```
-    $ git log foo bar ^baz
-    ```
-
-    means "list all the commits which are reachable from 'foo' or 'bar', but
-    not from 'baz'".
-
-    A special notation "`<commit1>..<commit2>`" can be used as a
-    short-hand for "`^<commit1> <commit2>`". For example, either of
-    the following may be used interchangeably:
-
-    ```
-    $ git rev-list origin..HEAD
-    $ git rev-list HEAD ^origin
-    ```
-
-    ```
-    $ git log origin..HEAD
-    $ git log HEAD ^origin
-    ```
-
-    Another special notation is "`<commit1>...<commit2>`" which is useful
-    for merges.  The resulting set of commits is the symmetric difference
-    between the two operands.  The following two commands are equivalent:
-
-    ```
-    $ git rev-list A B --not $(git merge-base --all A B)
-    $ git rev-list A...B
-    ```
-
-    ```
-    $ git log A B --not $(git merge-base --all A B)
-    $ git log A...B
-    ```
-
-    `rev-list` is an essential Git command, since it
-    provides the ability to build and traverse commit ancestry graphs. For
-    this reason, it has a lot of different options that enable it to be
-    used by commands as different as 'git bisect' and
-    'git repack'.
   flag:
     abbrev-commit: |-
       Instead of showing the full 40-byte hexadecimal commit object
@@ -344,6 +291,17 @@ documentation:
       stronger than `--missing=allow-promisor` because it limits the
       traversal, rather than just silencing errors about missing
       objects.
+    expand-tabs: |-
+      Perform a tab expansion (replace each tab with enough spaces
+      to fill to the next display column that is a multiple of _<n>_)
+      in the log message before showing it in the output.
+      `--expand-tabs` is a short-hand for `--expand-tabs=8`, and
+      `--no-expand-tabs` is a short-hand for `--expand-tabs=0`,
+      which disables tab expansion.
+
+      By default, tabs are expanded in pretty formats that indent the log
+      message by 4 spaces (i.e.  `medium`, which is the default, `full`,
+      and `fuller`).
     extended-regexp: |-
       Consider the limiting patterns to be extended regular expressions
       instead of the default basic regular expressions.
@@ -490,11 +448,11 @@ documentation:
       For example, if you have this topology:
 
       ```
-           y---b---b  branch B
-          / \ /
-         /   .
-        /   / \
-       o---x---a---a  branch A
+        y---b---b  branch B
+        / \ /
+       /   .
+       /   / \
+      o---x---a---a  branch A
       ```
 
       you would get an output like this:
@@ -510,6 +468,15 @@ documentation:
       -xxxxxxx... 1st on a
       ```
     max-count: Limit the output to the first _<number>_ commits that would be shown.
+    max-parents: |-
+      Show only commits which have at least (or at most) that many parent
+      commits. In particular, `--max-parents=1` is the same as `--no-merges`,
+      `--min-parents=2` is the same as `--merges`.  `--max-parents=0`
+      gives all root commits and `--min-parents=3` all octopus merges.
+
+      `--no-min-parents` and `--no-max-parents` reset these limits (to no limit)
+      again.  Equivalent forms are `--min-parents=0` (any commit has 0 or more
+      parents) and `--max-parents=-1` (negative numbers denote no upper limit).
     merge: |-
       Show commits touching conflicted paths in the range `HEAD...<other>`,
       where `<other>` is the first existing pseudoref in `MERGE_HEAD`,
@@ -702,20 +669,20 @@ documentation:
       Show no parents before all of its children are shown, and
       avoid showing commits on multiple lines of history
       intermixed.
-      
+
       For example, in a commit history like this:
-      
+
       ```
-      
-          ---1----2----4----7
+
+        ---1----2----4----7
       \	       \
-       3----5----6----8---
-      
+      3----5----6----8---
+
       ```
-      
+
       where the numbers denote the order of commit timestamps, `git rev-list` and friends with `--date-order` show the commits in the
       timestamp order: 8 7 6 5 4 3 2 1.
-      
+
       With `--topo-order`, they would show 8 6 5 3 7 4 2 1 (or 8 7 4 2 6 5
       3 1); some older commits are shown before newer ones in order to
       avoid showing the commits from two parallel development track mixed
@@ -740,23 +707,48 @@ documentation:
       as `ref@{<Nth>}` (where _<Nth>_ is the reverse-chronological index in the
       reflog) or as `ref@{<timestamp>}` (with the _<timestamp>_ for that entry),
       depending on a few rules:
-    expand-tabs: |-
-      Perform a tab expansion (replace each tab with enough spaces
-      to fill to the next display column that is a multiple of _<n>_)
-      in the log message before showing it in the output.
-      `--expand-tabs` is a short-hand for `--expand-tabs=8`, and
-      `--no-expand-tabs` is a short-hand for `--expand-tabs=0`,
-      which disables tab expansion.
+    abbrev: |-
+      Instead of using the default _7+1_ hexadecimal digits as the
+      abbreviated object name, use _<m>+1_ digits, where _<m>_ is at
+      least _<n>_ but ensures the commit object names are unique.
+      Note that 1 column
+      is used for a caret to mark the boundary commit.
+    author: |-
+      Override the commit author. Specify an explicit author using the
+      standard `A U Thor <author@example.com>` format. Otherwise _<author>_
+      is assumed to be a pattern and is used to search for an existing
+      commit by that author (i.e. `git rev-list --all -i --author=<author>`);
+      the commit author is then copied from the first such commit found.
+    no-notes: |-
+      Do not show notes. This negates the above `--notes` option, by
+      resetting the list of notes refs from which notes are shown.
+      Options are parsed in the order given on the command line, so e.g.
+      "`--notes --notes=foo --no-notes --notes=bar`" will only show notes
+      from `refs/notes/bar`.
+    show-notes-by-default: |-
+      Show the default notes unless options for displaying specific
+      notes are given.
+    remotes: |-
+      List or delete (if used with `-d`) the remote-tracking branches.
+      Combine with `--list` to match the optional pattern(s).
+    tags: |-
+      Instead of using only the annotated tags, use any tag
+      found in `refs/tags` namespace.  This option enables matching
+      a lightweight (non-annotated) tag.
+    ancestry-path: |-
+      only display commits in that range that are ancestors of <commit>, descendants of <commit>, or <commit> itself
+    branches: pretend as if all the refs in refs/heads are listed on the command line
+    graph-lane-limit: limit the number of lanes in graph output
+    left-only: list only commits on the left side of a symmetric difference
+    max-age: limit the commits output to specified time range
+    max-count-oldest: limit the number of commits to output, picking the oldest N
+    maximal-only: restrict output to commits not reachable from other commits in the range
+    min-parents: show only commits which have at least that many parent commits
+    no-min-parents: reset min-parents limit
+    no-walk: only show the given commits, but do not traverse their ancestors
+    notes: show the notes that annotate the commit
+    pretty: pretty-print the contents of the commit logs in a given format
+    show-linear-break: put a barrier in between branches in graph output
+    since: show commits more recent than a specific date
+    until: show commits older than a specific date
 
-      By default, tabs are expanded in pretty formats that indent the log
-      message by 4 spaces (i.e.  `medium`, which is the default, `full`,
-      and `fuller`).
-    max-parents: |-
-      Show only commits which have at least (or at most) that many parent
-      commits. In particular, `--max-parents=1` is the same as `--no-merges`,
-      `--min-parents=2` is the same as `--merges`.  `--max-parents=0`
-      gives all root commits and `--min-parents=3` all octopus merges.
-
-      `--no-min-parents` and `--no-max-parents` reset these limits (to no limit)
-      again.  Equivalent forms are `--min-parents=0` (any commit has 0 or more
-      parents) and `--max-parents=-1` (negative numbers denote no upper limit).

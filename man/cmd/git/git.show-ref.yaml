@@ -3,15 +3,16 @@ name: show-ref
 description: List references in a local repository
 group: low-level interrogator
 flags:
-  --abbrev=: use <n> digits to display SHA-1s
-  --exclude-existing=: show refs from stdin that aren't in local repository
-  --head: show the HEAD reference, even if it would be filtered out
-  --heads: only show heads (can be combined with tags)
-  --tags: only show tags (can be combined with heads)
-  --verify: stricter reference checking, requires exact ref path
-  -d, --dereference: dereference tags into object IDs
-  -q, --quiet: do not print results to stdout (useful with --verify)
-  -s, --hash=: only show SHA1 hash using <n> digits
+  --abbrev?: abbreviate the object name
+  --branches: limit to local branches
+  --exclude-existing?: make git show-ref act as a filter that reads refs from stdin
+  --exists: check whether the given reference exists
+  --head: show the HEAD reference
+  --tags: limit to local tags
+  --verify: enable stricter reference checking by requiring an exact ref path
+  -d, --dereference: dereference tags into object IDs as well
+  -q, --quiet: do not print any results to stdout
+  -s, --hash?: only show the OID, not the reference name
 documentation:
   command: |-
     Displays references available in a local repository along with the associated
@@ -31,3 +32,22 @@ documentation:
 
     Use of this utility is encouraged in favor of directly accessing files under
     the `.git` directory.
+  flag:
+    tags: |-
+      Instead of using only the annotated tags, use any tag
+      found in `refs/tags` namespace.  This option enables matching
+      a lightweight (non-annotated) tag.
+    verify: Verify the cryptographic signature of the given tags.
+    abbrev: |-
+      Instead of using the default _7+1_ hexadecimal digits as the
+      abbreviated object name, use _<m>+1_ digits, where _<m>_ is at
+      least _<n>_ but ensures the commit object names are unique.
+      Note that 1 column
+      is used for a caret to mark the boundary commit.
+    quiet: Be quiet. Only print error messages.
+    branches: limit to local branches
+    dereference: dereference tags into object IDs as well
+    exclude-existing: make git show-ref act as a filter that reads refs from stdin
+    exists: check whether the given reference exists
+    hash: only show the OID, not the reference name
+    head: show the HEAD reference

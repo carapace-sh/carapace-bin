@@ -1,6 +1,13 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: upload-pack
-description: send objects packed to the client
+description: Send objects packed back to git-fetch-pack
+group: low-level synching
+flags:
+  --advertise-refs: only show refs advertised by the server
+  --http-backend-info-refs: used by git-http-backend(1) to serve up $GIT_URL/info/refs?service=git-upload-pack requests
+  --stateless-rpc: perform only a single read-write cycle with stdin and stdout
+  --strict: do not try <directory>/.git/ if <directory> is not a Git directory
+  --timeout=: interrupt transfer after <n> seconds of inactivity
 documentation:
   command: |-
     Invoked by 'git fetch-pack', learns what
@@ -10,3 +17,13 @@ documentation:
     The UI for the protocol is on the 'git fetch-pack' side, and the
     program pair is meant to be used to pull updates from a remote
     repository.  For push operations, see 'git send-pack'.
+  flag:
+    timeout: |-
+      Timeout (in seconds) for specific client sub-requests. This includes
+      the time it takes for the server to process the sub-request and the
+      time spent waiting for the next client's request.
+    advertise-refs: only show refs advertised by the server
+    http-backend-info-refs: |-
+      used by git-http-backend(1) to serve up $GIT_URL/info/refs?service=git-upload-pack requests
+    stateless-rpc: perform only a single read-write cycle with stdin and stdout
+    strict: do not try <directory>/.git/ if <directory> is not a Git directory

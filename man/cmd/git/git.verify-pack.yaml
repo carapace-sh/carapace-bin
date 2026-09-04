@@ -3,12 +3,10 @@ name: verify-pack
 description: Validate packed Git archive files
 group: low-level interrogator
 flags:
-  -s, --stat-only: show statistics only
-  -v, --verbose: verbose
+  --object-format=: specify the hash algorithm to use
+  -s, --stat-only: only show the histogram of delta chain length
+  -v, --verbose: show the list of objects contained in the pack
 documentation:
-  command: |-
-    Read each idx file for packed Git archive given on the command line,
-    and verify the idx file and the corresponding pack file.
   flag:
     stat-only: |-
       Do not verify the pack contents; only show the histogram of delta
@@ -16,3 +14,17 @@ documentation:
     verbose: |-
       After verifying the pack, show the list of objects contained
       in the pack and a histogram of delta chain length.
+    object-format: |-
+      Specify the given object _<format>_ (hash algorithm) for the repository.  The valid
+      values are `sha1` and (if enabled) `sha256`.  `sha1` is the default.
+      
+      Note: At present, there is no interoperability between SHA-256
+      repositories and SHA-1 repositories.
+      
+      Historically, we warned that SHA-256 repositories may later need
+      backward incompatible changes when we introduce such interoperability
+      features. Today, we only expect compatible changes. Furthermore, if such
+      changes prove to be necessary, it can be expected that SHA-256 repositories
+      created with today's Git will be usable by future versions of Git
+      without data loss.
+

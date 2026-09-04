@@ -3,18 +3,18 @@ name: cvsexportcommit
 description: Export a single commit to a CVS checkout
 group: interaction
 flags:
-  -P: Force the parent commit, even if it is not a direct parent
-  -W: Tell cvsexportcommit that the current working directory is not only a Git checkout, but also the CVS checkout
-  -a: Add authorship information
-  -c: Commit automatically if the patch applied cleanly
-  -d: Set an alternative CVSROOT to use
-  -f: Force the merge even if the files are not up to date
-  -k: Reverse CVS keyword expansion in working CVS checkout before applying patch
-  -m: Prepend the commit message with the provided prefix
-  -p: Be pedantic (paranoid) when applying patches
-  -u: Update affected files from CVS repository before attempting export
-  -v: Verbose
-  -w: Specify the location of the CVS checkout to use for the export
+  -P: force the parent commit, even if it is not a direct parent
+  -W: tell cvsexportcommit that the current working directory is not only a Git checkout, but also the CVS checkout
+  -a: add authorship information
+  -c: commit automatically if the patch applied cleanly
+  -d: set an alternative CVSROOT to use
+  -f: force the merge even if the files are not up to date
+  -k: reverse CVS keyword expansion in working CVS checkout before applying patch
+  -m: prepend the commit message with the provided prefix
+  -p: be pedantic (paranoid) when applying patches
+  -u: update affected files from CVS repository before attempting export
+  -v: verbose
+  -w: specify the location of the CVS checkout to use for the export
 documentation:
   command: |-
     Exports a commit from Git to a CVS checkout, making it easier
@@ -32,3 +32,45 @@ documentation:
 
     If the commit is a merge commit, you must tell 'git cvsexportcommit' what
     parent the changeset should be done against.
+  flag:
+    a: |-
+      Attempt to auto-register archives at `http://mirrors.sourcecontrol.net`
+      This is particularly useful with the -D option.
+    c: |-
+      Pass a configuration parameter to the command. The value given will
+      override values from configuration files. The &lt;name&gt; is expected
+      in the same format as listed by *git config* (subkeys separated by
+      dots).
+      
+      Note that omitting the `=` in `git -c foo.bar ...` is allowed and sets
+      `foo.bar` to the boolean true value (just like `[foo]bar` would in a
+      config file). Including the equals but with an empty value (like
+      `git -c foo.bar= ...`) sets `foo.bar` to the empty string which
+      `git config --type=bool` will convert to `false`.
+    f: |-
+      Use the fast patchset import strategy. This can be significantly faster
+      for large trees, but cannot handle directory renames or permissions
+      changes. The default strategy is slow and safe.
+    k: |-
+      Skip move or rename actions which would lead to an error
+      condition. An error happens when a source is neither existing nor
+      controlled by Git, or when it would overwrite an existing
+      file unless `-f` is given.
+    m: |-
+      Show diffs for merge commits in the default format. This is
+      similar to `--diff-merges=on`, except `-m` will
+      produce no output unless `-p` is given as well.
+    p: |-
+      These flags are passed to the *git apply* (see
+      [git-apply](cmd://git/apply)) program that applies the patch.
+      
+      Valid \<action\> for the `--whitespace` option are: `nowarn`, `warn`, `fix`, `error`, and `error-all`.
+    v: Verbose output.
+    w: |-
+      Ignore whitespace when comparing the parent's version and
+      the child's to find where the lines came from.
+    P: force the parent commit, even if it is not a direct parent
+    W: |-
+      tell cvsexportcommit that the current working directory is not only a Git checkout, but also the CVS checkout
+    d: set an alternative CVSROOT to use
+    u: update affected files from CVS repository before attempting export

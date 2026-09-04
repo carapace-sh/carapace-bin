@@ -3,22 +3,23 @@ name: fetch-pack
 description: Receive missing objects from another repository
 group: low-level synching
 flags:
-  --all: Fetch all remote refs
-  --check-self-contained-and-connected: Output "connectivity-ok" if the received pack is self-contained and connected
-  --deepen-relative: Argument --depth specifies the number of commits from the current shallow boundary instead of from the tip of each remote branch history
-  --depth=: Limit fetching to ancestor-chains not longer than n
-  --exec=: Same as --upload-pack=<git-upload-pack>
-  --include-tag: If the remote side supports it, annotated tags objects will be downloaded on the same connection
-  --no-progress: Do not show the progress
-  --refetch: Skips negotiating commits with the server in order to fetch all matching objects
-  --shallow-exclude=: Deepen or shorten the history of a shallow repository to exclude commits reachable from a specified remote branch or tag
-  --shallow-since=: Deepen or shorten the history of a shallow repository to include all reachable commits after <date>
-  --stdin: Take the list of refs from stdin, one per line
-  --thin: Fetch a "thin" pack, which records objects in deltified form based on objects not included in the pack
-  --upload-pack=: Use this to specify the path to git-upload-pack on the remote side, if is not found on your $PATH
-  -k, --keep: Do not invoke git unpack-objects on received data, but create a single packfile out of it instead
-  -q, --quiet: Pass -q flag to git unpack-objects; this makes the cloning process less verbose
-  -v: Run verbosely
+  --all: fetch all remote refs
+  --check-self-contained-and-connected: output "connectivity-ok" if the received pack is self-contained and connected
+  --deepen-relative: argument --depth specifies the number of commits from the current shallow boundary instead of from the tip of each remote branch history
+  --depth=: limit fetching to ancestor-chains not longer than n
+  --diag-url: show the type of the remote
+  --exec=: same as --upload-pack=<git-upload-pack>
+  --include-tag: if the remote side supports it, annotated tags objects will be downloaded on the same connection
+  --no-progress: do not show the progress
+  --refetch: skips negotiating commits with the server in order to fetch all matching objects
+  --shallow-exclude=: deepen or shorten the history of a shallow repository to exclude commits reachable from a specified remote branch or tag
+  --shallow-since=: deepen or shorten the history of a shallow repository to include all reachable commits after <date>
+  --stdin: take the list of refs from stdin, one per line
+  --thin: fetch a "thin" pack, which records objects in deltified form based on objects not included in the pack
+  --upload-pack=: use this to specify the path to git-upload-pack on the remote side, if is not found on your $PATH
+  -k, --keep: do not invoke git unpack-objects on received data, but create a single packfile out of it instead
+  -q, --quiet: pass -q flag to git unpack-objects; this makes the cloning process less verbose
+  -v: run verbosely
 documentation:
   command: |-
     Usually you would want to use 'git fetch', which is a
@@ -33,3 +34,55 @@ documentation:
     This command degenerates to download everything to complete the
     asked refs from the remote side when the local side does not
     have a common ancestor commit.
+  flag:
+    all: |-
+      Update the index not only where the working tree has a file matching **\<pathspec\>**
+      but also where the index already has an entry.
+      This adds, modifies, and removes index entries to match the working tree.
+      
+      If no **\<pathspec\>** is given when `-A` option is used,
+      all files in the entire working tree are updated
+      (old versions of Git used to limit the update to the current directory and its subdirectories).
+    depth: |-
+      Create a `shallow` clone with a history truncated to the
+      specified number of commits. Implies `--single-branch` unless
+      `--no-single-branch` is given to fetch the histories near the
+      tips of all branches. If you want to clone submodules shallowly,
+      also pass `--shallow-submodules`.
+    exec: |-
+      Used with --remote to specify the path to the *git-upload-archive* on
+      the remote side.
+    no-progress: |-
+      Progress status is reported on the standard error stream
+      by default when it is attached to a terminal, unless `--quiet`
+      is specified. This flag enables progress reporting even if not
+      attached to a terminal, regardless of `--quiet`.
+    shallow-exclude: |-
+      Create a shallow clone with a history, excluding commits
+      reachable from a specified remote branch or tag.  This option
+      can be specified multiple times.
+    shallow-since: Create a shallow clone with a history after the specified time.
+    stdin: |-
+      The list of patterns is read from standard input instead of from
+      the argument list.
+    thin: |-
+      These options are passed to [git-send-pack](cmd://git/send-pack). A thin transfer
+      significantly reduces the amount of sent data when the sender and
+      receiver share many of the same objects in common. The default is
+      `--thin`.
+    upload-pack: |-
+      Specify a non-default path for the command run on the other end when the
+      repository to clone from is accessed via ssh.
+    v: Verbose output.
+    keep: |-
+      Pass `-k` flag to *git mailinfo* (see
+      [git-mailinfo](cmd://git/mailinfo)).
+    quiet: Be quiet. Only print error messages.
+    check-self-contained-and-connected: output "connectivity-ok" if the received pack is self-contained and connected
+    deepen-relative: |-
+      argument --depth specifies the number of commits from the current shallow boundary instead of from the tip of each remote branch history
+    diag-url: show the type of the remote
+    include-tag: |-
+      if the remote side supports it, annotated tags objects will be downloaded on the same connection
+    refetch: |-
+      skips negotiating commits with the server in order to fetch all matching objects

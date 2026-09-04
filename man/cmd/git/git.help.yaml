@@ -3,17 +3,19 @@ name: help
 description: Display help information about Git
 group: interrogator
 flags:
-  --developer-interfaces: Print list of file formats, protocols and other developer interfaces documentation
-  --no-aliases: Exclude the listing of configured aliases
-  --no-external-commands: Exclude the listing of external "git-*" commands found in the $PATH
-  --user-interfaces: Prints a list of the repository, command and file interfaces documentation
-  --verbose: Print description for all recognized commands
-  -a, --all: Prints all the available commands on the standard output
-  -c, --config: List all available configuration variables
-  -g, --guides: Prints a list of the Git concept guides on the standard output
-  -i, --info: Display manual page for the command in the info format
-  -m, --man: Display manual page for the command in the man format
-  -w, --web: Display manual page for the command in the web (HTML) format
+  --aliases: show aliases in --all
+  --developer-interfaces: print list of file formats, protocols and other developer interfaces documentation
+  --external-commands: show external commands in --all
+  --no-aliases: exclude the listing of configured aliases
+  --no-external-commands: exclude the listing of external "git-*" commands found in the $PATH
+  --user-interfaces: prints a list of the repository, command and file interfaces documentation
+  --verbose: print description for all recognized commands
+  -a, --all: prints all the available commands on the standard output
+  -c, --config: list all available configuration variables
+  -g, --guides: prints a list of the Git concept guides on the standard output
+  -i, --info: display manual page for the command in the info format
+  -m, --man: display manual page for the command in the man format
+  -w, --web: display manual page for the command in the web (HTML) format
 documentation:
   command: |-
     With no options and no '<command>' or '<doc>' given, the synopsis of the 'git'
@@ -41,3 +43,39 @@ documentation:
     To display the [git](man://git/1) man page, use `git help git`.
 
     This page can be displayed with `git help help` or `git help --help`.
+  flag:
+    verbose: Be verbose.
+    all: |-
+      Update the index not only where the working tree has a file matching **\<pathspec\>**
+      but also where the index already has an entry.
+      This adds, modifies, and removes index entries to match the working tree.
+      
+      If no **\<pathspec\>** is given when `-A` option is used,
+      all files in the entire working tree are updated
+      (old versions of Git used to limit the update to the current directory and its subdirectories).
+    config: |-
+      Set a configuration variable in the newly-created repository;
+      this takes effect immediately after the repository is
+      initialized, but before the remote history is fetched or any
+      files checked out.  The _<key>_ is in the same format as expected by
+      [git-config](cmd://git/config) (e.g., `core.eol=true`). If multiple
+      values are given for the same key, each value will be written to
+      the config file. This makes it safe, for example, to add
+      additional fetch refspecs to the origin remote.
+      
+      Due to limitations of the current implementation, some configuration
+      variables do not take effect until after the initial fetch and checkout.
+      Configuration variables known to not take effect are:
+      `remote.<name>.mirror` and `remote.<name>.tagOpt`.  Use the
+      corresponding `--mirror` and `--no-tags` options instead.
+    aliases: show aliases in --all
+    developer-interfaces: |-
+      print list of file formats, protocols and other developer interfaces documentation
+    external-commands: show external commands in --all
+    guides: prints a list of the Git concept guides on the standard output
+    info: display manual page for the command in the info format
+    man: display manual page for the command in the man format
+    no-aliases: exclude the listing of configured aliases
+    no-external-commands: exclude the listing of external "git-*" commands found in the $PATH
+    user-interfaces: prints a list of the repository, command and file interfaces documentation
+    web: display manual page for the command in the web (HTML) format

@@ -1,2 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: subtree
-description: merge and split subtrees
+description: Merge subtrees together and split repository into subtrees
+persistentflags:
+  --no-gpg-sign: do not GPG-sign commits
+  -P, --prefix=: Specify the path in the repository to the subtree you want to manipulate
+  -S, --gpg-sign?: GPG-sign commits
+  -d, --debug: Produce even more unnecessary output messages on stderr
+  -q, --quiet: Suppress unnecessary output messages on stderr

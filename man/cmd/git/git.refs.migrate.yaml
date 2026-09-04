@@ -3,6 +3,7 @@ name: migrate
 description: Migrate ref store between different formats
 flags:
   --dry-run: perform the migration, but do not modify the repository
+  --no-reflog: do not migrate reflogs
   --ref-format=: the ref format to migrate the ref store to
 documentation:
   command: Migrate ref store between different formats.
@@ -23,3 +24,4 @@ documentation:
       `reftable`;; for the reftable format.
 
       This is the default.
+    no-reflog: do not migrate reflogs

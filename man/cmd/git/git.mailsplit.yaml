@@ -3,12 +3,12 @@ name: mailsplit
 description: Simple UNIX mbox splitter program
 group: low-level helper
 flags:
-  --keep-cr: "Do not remove \r from lines ending with \r\n"
-  --mboxrd: Input is of the "mboxrd" format and "^>+From " line escaping is reversed
-  -b: If any file doesn’t begin with a From line, assume it is a single mail message
-  -d=: Precision for the generated filenames
-  -f=: Skip the first <nn> numbers
-  -o=: Directory in which to place the individual messages
+  --keep-cr: "do not remove \r from lines ending with \r\n"
+  --mboxrd: input is of the "mboxrd" format and "^>+From " line escaping is reversed
+  -b: if any file doesn’t begin with a From line, assume it is a single mail message
+  -d=: precision for the generated filenames
+  -f=: skip the first <nn> numbers
+  -o=: directory in which to place the individual messages
 documentation:
   command: |-
     Splits a mbox file or a Maildir into a list of files: "0001" "0002" ..  in the
@@ -16,3 +16,24 @@ documentation:
 
     IMPORTANT: Maildir splitting relies upon filenames being sorted to output
     patches in the correct order.
+  flag:
+    b: |-
+      Show blank SHA-1 for boundary commits.  This can also
+      be controlled via the `blame.blankBoundary` config option. c: `Use` the same output mode as [git-annotate](man://git-annotate/1) (Default: off).
+    f: |-
+      Use the fast patchset import strategy. This can be significantly faster
+      for large trees, but cannot handle directory renames or permissions
+      changes. The default strategy is slow and safe.
+    keep-cr: |-
+      With `--keep-cr`, call [git-mailsplit](cmd://git/mailsplit)
+      with the same option, to prevent it from stripping CR at the end of
+      lines. `am.keepcr` configuration variable can be used to specify the
+      default behaviour.  `--no-keep-cr` is useful to override `am.keepcr`.
+    o: |-
+      Use this for compatibility with old-style branch names used by earlier
+      versions of *git archimport*. Old-style branch names were
+      category--branch, whereas new-style branch names are
+      archive,category--branch--version. In both cases, names given on the
+      command-line will override the automatically-generated ones.
+    d: precision for the generated filenames
+    mboxrd: input is of the "mboxrd" format and "^>+From " line escaping is reversed

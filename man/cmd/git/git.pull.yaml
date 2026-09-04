@@ -5,34 +5,63 @@ group: main
 flags:
   --all: fetch from all remotes
   --allow-unrelated-histories: allow merging unrelated histories
+  --atomic: use an atomic transaction to update local refs
   --autostash: automatically stash/stash pop before and after
   --cleanup=: 'how to strip spaces and #comments from message'
   --commit: perform a commit if the merge succeeds (default)
+  --compact-summary: show a condensed summary of extended header information
   --deepen=: deepen history of shallow clone
   --depth=: deepen history of shallow clone
   --dry-run: dry run
   --edit: edit message before committing
   --ff: allow fast-forward
   --ff-only: abort if fast-forward is not possible
+  --filter=*: object filtering
   --log=: add (at most <n>) entries from shortlog to merge commit message
-  --negotiation-tip=: report that we have only objects reachable from this object
+  --negotiate-only: do not fetch anything from the server
+  --negotiation-include=*: ensure that the commits at the given tips are always sent as "have" lines during fetch negotiation
+  --negotiation-restrict=*: report only commits reachable from the given tips as "have" lines during fetch negotiation
+  --negotiation-tip=*: report that we have only objects reachable from this object
+  --no-all: do not fetch from all remotes
+  --no-autostash: do not automatically stash/stash pop before and after
+  --no-commit: perform the merge but do not commit the result
+  --no-edit: don't open an editor to change the commit message
+  --no-ff: generate a merge commit even if the merge resolves as fast-forward
+  --no-gpg-sign: don't GPG-sign the commit
+  --no-log: do not list one-line descriptions of the commit
+  --no-rebase: do not perform a rebase after fetching
+  --no-recurse-submodules: disable recursive fetching of submodules
+  --no-show-forced-updates: do not check if a branch is force-updated during fetch
+  --no-signoff: 'do not add a Signed-off-by: line'
+  --no-squash: merge and commit
+  --no-stat: do not show diffstat at the end of the merge
+  --no-summary: do not show a summary of what was merged
+  --no-tags: disable automatic tag following
+  --no-verify: do not verify pre-merge-commit and commit-msg hooks
+  --no-verify-signatures: do not verify the commits being merged
+  --porcelain: produce machine-readable output
+  --prefetch: place all refs into the refs/prefetch/ namespace
   --progress: force progress reporting
+  --recurse-submodules-default: provide internal temporary non-negative value for recursive fetching
   --recurse-submodules=: control for recursive fetching of submodules
-  --refmap=: specify fetch refmap
+  --refmap=*: specify fetch refmap
   --set-upstream: set upstream for git pull/fetch
-  --shallow-exclude=: deepen history of shallow clone, excluding rev
+  --shallow-exclude=*: deepen history of shallow clone, excluding rev
   --shallow-since=: deepen history of shallow repository based on time
   --show-forced-updates: check for forced-updates on all updated branches
   --signoff=: 'add Signed-off-by:'
   --squash: create a single commit instead of doing a merge
   --stat: show a diffstat at the end of the merge
+  --submodule-prefix: prepend <path> to paths printed in informative
+  --summary: show a summary of what was merged
   --unshallow: convert to a complete repository
   --update-shallow: accept refs that update .git/shallow
   --upload-pack=: path to upload pack on remote end
+  --verify: verify pre-merge-commit and commit-msg hooks
   --verify-signatures: verify that the named commit has a valid GPG signature
   -4, --ipv4: use IPv4 addresses only
   -6, --ipv6: use IPv6 addresses only
-  -S, --gpg-sign=: GPG sign commit
+  -S, --gpg-sign?: GPG-sign commits
   -X, --strategy-option=: option for selected merge strategy
   -a, --append: append to .git/FETCH_HEAD instead of overwriting
   -f, --force: force overwrite of local branch
@@ -43,35 +72,16 @@ flags:
   -p, --prune: prune remote-tracking branches no longer on remote
   -q, --quiet: be more quiet
   -r, --rebase=: incorporate changes by rebasing rather than merging
-  -s, --strategy=: merge strategy to use
+  -s, --strategy=*: merge strategy to use
   -t, --tags: fetch all tags and associated objects
+  -u, --update-head-ok: allow updates of current branch head
   -v, --verbose: be more verbose
 documentation:
-  command: |-
-    Integrate changes from a remote repository into the current branch.
-
-    First, `git pull` runs `git fetch` with the same arguments
-    (excluding merge options) to fetch remote branch(es).
-    Then it decides which remote branch to integrate: if you run `git pull`
-    with no arguments this defaults to the upstream
-    for the current branch.
-    Then it integrates that branch into the current branch.
-
-    There are 4 main options for integrating the remote branch:
-
-    1. `git pull --ff-only` will only do "fast-forward" updates: it
-       fails if your local branch has diverged from the remote branch.
-       This is the default.
-    2. `git pull --rebase` runs `git rebase`
-    3. `git pull --no-rebase` runs `git merge. 4. `git pull --squash` runs `git merge --squash
-
-    You can also set the configuration options `pull.rebase`, `pull.squash`,
-    or `pull.ff` with your preferred behaviour.
-
-    If there's a merge conflict during the merge or rebase that you don't
-    want to handle, you can safely abort it with `git merge --abort` or
-    `git rebase --abort`.
   flag:
+    all: |-
+      Fetch all remotes, except for the ones that have the
+      `remote.<name>.skipFetchAll` configuration variable set.
+      This overrides the configuration variable `fetch.all`.
     allow-unrelated-histories: |-
       By default, `git merge` command refuses to merge histories
       that do not share a common ancestor.  This option can be
@@ -85,12 +95,33 @@ documentation:
       Append ref names and object names of fetched refs to the
       existing contents of `.git/FETCH_HEAD`.  Without this
       option old data in `.git/FETCH_HEAD` will be overwritten.
+    autostash: |-
+      Automatically create a temporary stash entry before the operation
+      begins, record it in the ref `MERGE_AUTOSTASH`
+      and apply it after the operation ends.  This means
+      that you can run the operation on a dirty worktree.  However, use
+      with care: the final stash application after a successful
+      merge might result in non-trivial conflicts.
     cleanup: |-
       This option determines how the merge message will be cleaned up before
       committing. See [git-commit](cmd://git/commit) for more details. In addition, if
       the _<mode>_ is given a value of `scissors`, scissors will be appended
       to `MERGE_MSG` before being passed on to the commit machinery in the
       case of a merge conflict.
+    commit: |-
+      Perform the merge and commit the result. This option can
+      be used to override `--no-commit`.
+
+      Only useful when merging.
+
+      With `--no-commit` perform the merge and stop just before creating
+      a merge commit, to give the user a chance to inspect and further
+      tweak the merge result before committing.
+
+      Note that fast-forward updates do not create a merge commit and
+      therefore there is no way to stop those merges with `--no-commit`.
+      Thus, if you want to ensure your branch is not changed or updated
+      by the merge command, use `--no-ff` with `--no-commit`.
     deepen: |-
       Similar to `--depth`, except it specifies the number of commits
       from the current shallow boundary instead of from the tip of
@@ -102,6 +133,40 @@ documentation:
       [git-clone](cmd://git/clone)), deepen or shorten the history to the specified
       number of commits. Tags for the deepened commits are not fetched.
     dry-run: Show what would be done, without making any changes.
+    edit: |-
+      Invoke an editor before committing successful mechanical merge to
+      further edit the auto-generated merge message, so that the user
+      can explain and justify the merge. The `--no-edit` option can be
+      used to accept the auto-generated message (this is generally
+      discouraged).
+
+      The `--edit` (or `-e`) option is still useful if you are
+      giving a draft message with the `-m` option from the command line
+      and want to edit it in the editor.
+
+      Older scripts may depend on the historical behaviour of not allowing the
+      user to edit the merge log message. They will see an editor opened when
+      they run `git merge`. To make it easier to adjust such scripts to the
+      updated behaviour, the environment variable `GIT_MERGE_AUTOEDIT` can be
+      set to `no` at the beginning of them.
+    ff: |-
+      When merging rather than rebasing, specifies how a merge is
+      handled when the merged-in history is already a descendant of
+      the current history.  If merging is requested, `--ff` is the
+      default unless merging an annotated (and possibly signed) tag
+      that is not stored in its natural place in the `refs/tags/`
+      hierarchy, in which case `--no-ff` is assumed.
+
+      With `--ff`, when possible resolve the merge as a fast-forward (only
+      update the branch pointer to match the merged branch; do not create a
+      merge commit).  When not possible (when the merged-in history is not a
+      descendant of the current history), create a merge commit.
+
+      With `--no-ff`, create a merge commit in all cases, even when the merge
+      could instead be resolved as a fast-forward.
+
+      With `--ff-only`, resolve the merge as a fast-forward when possible.
+      When not possible, refuse to merge and exit with a non-zero status.
     ff-only: |-
       Specifies how a merge is handled when the merged-in history is
       already a descendant of the current history.  `--ff` is the
@@ -118,6 +183,12 @@ documentation:
       refuse to update the local branch as discussed in the _<refspec>_ part below.
 
       This option overrides that check.
+    gpg-sign: |-
+      GPG-sign the resulting merge commit. The _<key-id>_ argument is
+      optional and defaults to the committer identity; if specified,
+      it must be stuck to the option without a space. `--no-gpg-sign`
+      is useful to countermand both `commit.gpgSign` configuration variable,
+      and earlier `--gpg-sign`.
     ipv4: Use IPv4 addresses only, ignoring IPv6 addresses.
     ipv6: Use IPv6 addresses only, ignoring IPv4 addresses.
     jobs: |-
@@ -133,6 +204,15 @@ documentation:
       Typically, parallel recursive and multi-remote fetches will be faster. By
       default fetches are performed sequentially, not in parallel.
     keep: Keep downloaded pack.
+    log: |-
+      In addition to branch names, populate the log message with
+      one-line descriptions from at most _<n>_ actual commits that are being
+      merged. See also [git-fmt-merge-msg](cmd://git/fmt-merge-msg).
+
+      Only useful when merging.
+
+      With `--no-log` do not list one-line descriptions from the
+      actual commits being merged.
     negotiation-tip: |-
       By default, Git will report, to the server, commits reachable
       from all local refs to find common commits in an attempt to
@@ -176,6 +256,21 @@ documentation:
       This is passed to both underlying [git-fetch](cmd://git/fetch) to squelch reporting of
       during transfer, and underlying [git-merge](cmd://git/merge) to squelch output during
       merging.
+    rebase: |-
+      This is shorthand for `--rebase=false`.
+
+      Options related to fetching
+    recurse-submodules: |-
+      This option controls if new commits of populated submodules should
+      be fetched, and if the working trees of active submodules should be
+      updated, too (see [git-fetch](cmd://git/fetch), [git-config](cmd://git/config) and
+      [gitmodules](man://gitmodules/5)).
+
+      If the checkout is done via rebase, local submodule commits are rebased as well.
+
+      If the update is done via merge, the submodule conflicts are resolved and checked out.
+
+      Options related to merging
     refmap: |-
       When fetching refs listed on the command line, use the
       specified refspec (can be given more than once) to map the
@@ -213,114 +308,6 @@ documentation:
       fetch. This can be disabled through `fetch.showForcedUpdates`, but
       the `--show-forced-updates` option guarantees this check occurs.
       See [git-config](cmd://git/config).
-    strategy: |-
-      Use the given merge strategy; can be supplied more than
-      once to specify them in the order they should be tried.
-      If there is no `-s` option, a built-in list of strategies
-      is used instead (`ort` when merging a single head,
-      `octopus` otherwise).
-    strategy-option: |-
-      Pass merge strategy specific option through to the merge
-      strategy.
-    tags: |-
-      Fetch all tags from the remote (i.e., fetch remote tags
-      `refs/tags/*` into local tags with the same name), in addition
-      to whatever else would otherwise be fetched.  Using this
-      option alone does not subject tags to pruning, even if `--prune`
-      is used (though tags may be pruned anyway if they are also the
-      destination of an explicit refspec; see `--prune`).
-    unshallow: |-
-      If the source repository is complete, convert a shallow
-      repository to a complete one, removing all the limitations
-      imposed by shallow repositories.
-
-      If the source repository is shallow, fetch as much as possible so that
-      the current repository has the same history as the source repository.
-    update-shallow: |-
-      By default when fetching from a shallow repository,
-      `git fetch` refuses refs that require updating
-      `.git/shallow`. This option updates `.git/shallow` and accepts such
-      refs.
-    verbose: Pass `--verbose` to [git-fetch](cmd://git/fetch) and [git-merge](cmd://git/merge).
-    all: |-
-      Fetch all remotes, except for the ones that have the
-      `remote.<name>.skipFetchAll` configuration variable set.
-      This overrides the configuration variable `fetch.all`.
-    autostash: |-
-      Automatically create a temporary stash entry before the operation
-      begins, record it in the ref `MERGE_AUTOSTASH`
-      and apply it after the operation ends.  This means
-      that you can run the operation on a dirty worktree.  However, use
-      with care: the final stash application after a successful
-      merge might result in non-trivial conflicts.
-    commit: |-
-      Perform the merge and commit the result. This option can
-      be used to override `--no-commit`.
-
-      Only useful when merging.
-
-      With `--no-commit` perform the merge and stop just before creating
-      a merge commit, to give the user a chance to inspect and further
-      tweak the merge result before committing.
-
-      Note that fast-forward updates do not create a merge commit and
-      therefore there is no way to stop those merges with `--no-commit`.
-      Thus, if you want to ensure your branch is not changed or updated
-      by the merge command, use `--no-ff` with `--no-commit`.
-    edit: |-
-      Invoke an editor before committing successful mechanical merge to
-      further edit the auto-generated merge message, so that the user
-      can explain and justify the merge. The `--no-edit` option can be
-      used to accept the auto-generated message (this is generally
-      discouraged).
-
-      The `--edit` (or `-e`) option is still useful if you are
-      giving a draft message with the `-m` option from the command line
-      and want to edit it in the editor.
-
-      Older scripts may depend on the historical behaviour of not allowing the
-      user to edit the merge log message. They will see an editor opened when
-      they run `git merge`. To make it easier to adjust such scripts to the
-      updated behaviour, the environment variable `GIT_MERGE_AUTOEDIT` can be
-      set to `no` at the beginning of them.
-    ff: |-
-      When merging rather than rebasing, specifies how a merge is
-      handled when the merged-in history is already a descendant of
-      the current history.  If merging is requested, `--ff` is the
-      default unless merging an annotated (and possibly signed) tag
-      that is not stored in its natural place in the `refs/tags/`
-      hierarchy, in which case `--no-ff` is assumed.
-
-      With `--ff`, when possible resolve the merge as a fast-forward (only
-      update the branch pointer to match the merged branch; do not create a
-      merge commit).  When not possible (when the merged-in history is not a
-      descendant of the current history), create a merge commit.
-
-      With `--no-ff`, create a merge commit in all cases, even when the merge
-      could instead be resolved as a fast-forward.
-
-      With `--ff-only`, resolve the merge as a fast-forward when possible.
-      When not possible, refuse to merge and exit with a non-zero status.
-    log: |-
-      In addition to branch names, populate the log message with
-      one-line descriptions from at most _<n>_ actual commits that are being
-      merged. See also [git-fmt-merge-msg](cmd://git/fmt-merge-msg).
-
-      Only useful when merging.
-
-      With `--no-log` do not list one-line descriptions from the
-      actual commits being merged.
-    recurse-submodules: |-
-      This option controls if new commits of populated submodules should
-      be fetched, and if the working trees of active submodules should be
-      updated, too (see [git-fetch](cmd://git/fetch), [git-config](cmd://git/config) and
-      [gitmodules](man://gitmodules/5)).
-
-      If the checkout is done via rebase, local submodule commits are rebased as well.
-
-      If the update is done via merge, the submodule conflicts are resolved and checked out.
-
-      Options related to merging
     signoff: |-
       Add a `Signed-off-by` trailer by the committer at the end of the commit
       log message.  The meaning of a signoff depends on the project
@@ -360,6 +347,36 @@ documentation:
 
       With `-n` or `--no-stat` do not show a diffstat at the end of the
       merge.
+    strategy: |-
+      Use the given merge strategy; can be supplied more than
+      once to specify them in the order they should be tried.
+      If there is no `-s` option, a built-in list of strategies
+      is used instead (`ort` when merging a single head,
+      `octopus` otherwise).
+    strategy-option: |-
+      Pass merge strategy specific option through to the merge
+      strategy.
+    tags: |-
+      Fetch all tags from the remote (i.e., fetch remote tags
+      `refs/tags/*` into local tags with the same name), in addition
+      to whatever else would otherwise be fetched.  Using this
+      option alone does not subject tags to pruning, even if `--prune`
+      is used (though tags may be pruned anyway if they are also the
+      destination of an explicit refspec; see `--prune`).
+    unshallow: |-
+      If the source repository is complete, convert a shallow
+      repository to a complete one, removing all the limitations
+      imposed by shallow repositories.
+
+      If the source repository is shallow, fetch as much as possible so that
+      the current repository has the same history as the source repository.
+    update-shallow: |-
+      By default when fetching from a shallow repository,
+      `git fetch` refuses refs that require updating
+      `.git/shallow`. This option updates `.git/shallow` and accepts such
+      refs.
+    verbose: |-
+      Pass `--verbose` to [git-fetch](cmd://git/fetch) and [git-merge](cmd://git/merge).
     verify-signatures: |-
       Verify that the tip commit of the side branch being merged is
       signed with a valid key, i.e. a key that has a valid uid: in the
@@ -368,13 +385,197 @@ documentation:
       with a valid key, the merge is aborted.
 
       Only useful when merging.
-    gpg-sign: |-
-      GPG-sign the resulting merge commit. The _<key-id>_ argument is
-      optional and defaults to the committer identity; if specified,
-      it must be stuck to the option without a space. `--no-gpg-sign`
-      is useful to countermand both `commit.gpgSign` configuration variable,
-      and earlier `--gpg-sign`.
-    rebase: |-
-      This is shorthand for `--rebase=false`.
+    atomic: |-
+      Use an atomic transaction on the remote side if available.
+      Either all refs are updated, or on error, no refs are updated.
+      If the server does not support atomic pushes the push will fail.
+    compact-summary: |-
+      Output a condensed summary of extended header information such
+      as file creations or deletions ("new" or "gone", optionally `+l`
+      if it's a symlink) and mode changes (`+x` or `-x` for adding
+      or removing executable bit respectively) in diffstat. The
+      information is put between the filename part and the graph
+      part. Implies `--stat`.
+    filter: |-
+      Use the partial clone feature and request that the server sends
+      a subset of reachable objects according to a given object filter.
+      When using `--filter`, the supplied _<filter-spec>_ is used for
+      the partial clone filter.
+      
+      If `--filter=auto` is used the filter specification is determined
+      automatically through the `promisor-remote` protocol (see
+      [gitprotocol-v2](man://gitprotocol-v2/5)) by combining the filter specifications
+      advertised by the server for the promisor remotes that the client
+      accepts (see the `promisor.acceptFromServer` configuration option in
+      [git-config](cmd://git/config)). This allows the server to suggest the optimal
+      filter for the available promisor remotes.
+      
+      As with other filter specifications, the "auto" value is persisted in
+      the configuration. This ensures that future fetches will continue to
+      adapt to the server's current recommendation.
+      
+      For details on all other available filter specifications, see the
+      `--filter=<filter-spec>` option in [git-rev-list](cmd://git/rev-list).
+      
+      For example, `--filter=blob:none` will filter out all blobs (file
+      contents) until needed by Git. Also, `--filter=blob:limit=<size>` will
+      filter out all blobs of size at least _<size>_.
+    n: |-
+      _<num>_ specifies how many lines from the annotation, if any,
+      are printed when using `-l`. Implies `--list`.
+      
+      The default is not to print any annotation lines.
+      If no number is given to `-n`, only the first line is printed.
+      If the tag is not annotated, the commit message is displayed instead.
+    no-all: |-
+      Update the index by adding new files that are unknown to the index and files modified in the working tree,
+      but ignore files that have been removed from the working tree.
+      This option is a no-op when no **\<pathspec\>** is used.
+      
+      This option is primarily to help users who are used to older versions of Git,
+      whose `git add <pathspec>...` was a synonym for `git add –no-all <pathspec>...`, i.e. ignored removed files.
+    no-autostash: |-
+      Automatically create a temporary stash entry before the operation
+      begins, record it in the ref `MERGE_AUTOSTASH`
+      and apply it after the operation ends.  This means
+      that you can run the operation on a dirty worktree.  However, use
+      with care: the final stash application after a successful
+      merge might result in non-trivial conflicts.
+    no-commit: |-
+      Usually `git cherry-pick` will create a new commit for each
+      cherry-picked commit. With `--no-commit`, the changes are applied
+      to the index and working tree but no commit is created, allowing
+      you to make further modifications before committing.
+    no-edit: |-
+      Use the selected commit message without launching an editor.
+      For example, `git commit --amend --no-edit` amends a commit
+      without changing its commit message.
+    no-ff: |-
+      When merging rather than rebasing, specifies how a merge is
+      handled when the merged-in history is already a descendant of
+      the current history.  If merging is requested, `--ff` is the
+      default unless merging an annotated (and possibly signed) tag
+      that is not stored in its natural place in the `refs/tags/`
+      hierarchy, in which case `--no-ff` is assumed.
+      
+      With `--ff`, when possible resolve the merge as a fast-forward (only
+      update the branch pointer to match the merged branch; do not create a
+      merge commit).  When not possible (when the merged-in history is not a
+      descendant of the current history), create a merge commit.
+      
+      With `--no-ff`, create a merge commit in all cases, even when the merge
+      could instead be resolved as a fast-forward.
+      
+      With `--ff-only`, resolve the merge as a fast-forward when possible.
+      When not possible, refuse to merge and exit with a non-zero status.
+    no-gpg-sign: |-
+      GPG-sign commits. The _<key-id>_ is optional and
+      defaults to the committer identity; if specified, it must be
+      stuck to the option without a space. `--no-gpg-sign` is useful to
+      countermand both `commit.gpgSign` configuration variable, and
+      earlier `--gpg-sign`.
+    no-log: |-
+      In addition to branch names, populate the log message with
+      one-line descriptions from at most _<n>_ actual commits that are being
+      merged. See also [git-fmt-merge-msg](cmd://git/fmt-merge-msg).
+      
+      Only useful when merging.
+      
+      With `--no-log` do not list one-line descriptions from the
+      actual commits being merged.
+    no-recurse-submodules: |-
+      Using `--recurse-submodules` will update the content of all active
+      submodules according to the commit recorded in the superproject. If
+      local modifications in a submodule would be overwritten the checkout
+      will fail unless `-f` is used. If nothing (or `--no-recurse-submodules`)
+      is used, submodules working trees will not be updated.
+      Just like [git-submodule](cmd://git/submodule), this will detach `HEAD` of the
+      submodule.
+    no-signoff: |-
+      Add a `Signed-off-by` trailer by the committer at the end of the commit
+      log message.  The meaning of a signoff depends on the project
+      to which you're committing.  For example, it may certify that
+      the committer has the rights to submit the work under the
+      project's license or agrees to some contributor representation,
+      such as a Developer Certificate of Origin.
+      (See https://developercertificate.org for the one used by the
+      Linux kernel and Git projects.)  Consult the documentation or
+      leadership of the project to which you're contributing to
+      understand how the signoffs are used in that project.
+      
+      The `--no-signoff` option can be used to countermand an earlier `--signoff`
+      option on the command line.
+      
+      Git does not (and will not) have a configuration variable to enable
+      the `--signoff` command line option by default; see the
+      `commit.signoff` entry in [gitfaq](man://gitfaq/7) for more details.
+    no-squash: |-
+      Produce the working tree and index state as if a real merge
+      happened (except for the merge information), but do not actually
+      make a commit, move the `HEAD`, or record `$GIT_DIR/MERGE_HEAD`
+      (to cause the next `git commit` command to create a merge
+      commit).  This allows you to create a single commit on top of
+      the current branch whose effect is the same as merging another
+      branch (or more in case of an octopus).
+      
+      With `--no-squash` perform the merge and commit the result. This
+      option can be used to override `--squash`.
+      
+      With `--squash`, `--commit` is not allowed, and will fail.
+      
+      Only useful when merging.
+    no-stat: |-
+      Show a diffstat at the end of the merge. The diffstat is also
+      controlled by the configuration option merge.stat.
+      
+      With `-n` or `--no-stat` do not show a diffstat at the end of the
+      merge.
+    no-tags: |-
+      Control whether or not tags will be cloned. When `--no-tags` is
+      given, the option will be become permanent by setting the
+      `remote.<remote>.tagOpt=--no-tags` configuration. This ensures that
+      future `git pull` and `git fetch` won't follow any tags. Subsequent
+      explicit tag fetches will still work (see [git-fetch](cmd://git/fetch)).
+      
+      By default, tags are cloned and passing `--tags` is thus typically a
+      no-op, unless it cancels out a previous `--no-tags`.
+      
+      Can be used in conjunction with `--single-branch` to clone and
+      maintain a branch with no references other than a single cloned
+      branch. This is useful e.g. to maintain minimal clones of the default
+      branch of some repository for search indexing.
+    no-verify: |-
+      By default, the pre-commit and commit-msg hooks are run. When any of
+      `--no-verify` or `-n` is given, these are bypassed. See also
+      [githooks](man://githooks/5).
+    no-verify-signatures: |-
+      Verify that the tip commit of the side branch being merged is
+      signed with a valid key, i.e. a key that has a valid uid: in the
+      default trust model, this means the signing key has been signed by
+      a trusted key.  If the tip commit of the side branch is not signed
+      with a valid key, the merge is aborted.
+      
+      Only useful when merging.
+    porcelain: Show in a format designed for machine consumption.
+    summary: |-
+      Instead of applying the patch, output a condensed
+      summary of information obtained from git diff extended
+      headers, such as creations, renames, and mode changes.
+      Turns off "apply".
+    upload-pack: |-
+      Specify a non-default path for the command run on the other end when the
+      repository to clone from is accessed via ssh.
+    verify: Verify the cryptographic signature of the given tags.
+    no-rebase: do not perform a rebase after fetching
+    no-summary: do not show a summary of what was merged
+    negotiate-only: do not fetch anything from the server
+    negotiation-include: |-
+      ensure that the commits at the given tips are always sent as "have" lines during fetch negotiation
+    negotiation-restrict: |-
+      report only commits reachable from the given tips as "have" lines during fetch negotiation
+    no-show-forced-updates: do not check if a branch is force-updated during fetch
+    prefetch: place all refs into the refs/prefetch/ namespace
+    recurse-submodules-default: provide internal temporary non-negative value for recursive fetching
+    submodule-prefix: prepend <path> to paths printed in informative
+    update-head-ok: allow updates of current branch head
 
-      Options related to fetching

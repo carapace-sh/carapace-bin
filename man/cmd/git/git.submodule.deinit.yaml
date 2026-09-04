@@ -19,7 +19,8 @@ documentation:
     be removed even if it contains local modifications.
 
     If you really want to remove a submodule from the repository and commit
-    that use [git-rm](cmd://git/rm) instead. See [gitsubmodules](man://gitsubmodules/7) for removal
+    that use [git-rm](cmd: |-
+      //git/rm) instead. See [gitsubmodules](man://gitsubmodules/7) for removal
     options.
   flag:
     all: |-
@@ -44,3 +45,4 @@ documentation:
       submodule, even if the commit listed in the index of the
       containing repository matches the commit checked out in the
       submodule.
+

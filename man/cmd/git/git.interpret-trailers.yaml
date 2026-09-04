@@ -1,6 +1,20 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: interpret-trailers
-description: add or parse structured information in commit messages
+description: Add or parse structured information in commit messages
+group: low-level helper
+flags:
+  --divider: opposite of --no-divider
+  --if-exists=: action if trailer already exists
+  --if-missing=: action if trailer is missing
+  --in-place: edit files in place
+  --no-divider: do not treat --- specially
+  --only-input: do not apply config rules
+  --only-trailers: output only the trailers
+  --parse: set parsing options
+  --trailer=*: trailer(s) to add
+  --trim-empty: trim empty trailers
+  --unfold: join whitespace-continued values
+  --where=: where to place the new trailer
 documentation:
   command: |-
     Add or parse _trailer_ lines that look similar to RFC 822 e-mail
@@ -93,8 +107,29 @@ documentation:
 
     ```
     key: This is a very long value, with spaces and
-      newlines in it.
+     newlines in it.
     ```
 
     Note that trailers do not follow (nor are they intended to follow) many of the
     rules for RFC 822 headers. For example they do not follow the encoding rule.
+  flag:
+    trailer: |-
+      Specify a (&lt;token&gt;, &lt;value&gt;) pair that should be applied as
+      a trailer. (e.g.
+      `git commit --trailer "Signed-off-by:C O Mitter \ <committer@example.com>" --trailer "Helped-by:C O Mitter \ <committer@example.com>"`
+      will add the "Signed-off-by" trailer and the "Helped-by" trailer to the
+      commit message.) The `trailer.*` configuration variables
+      ([git-interpret-trailers](cmd://git/interpret-trailers)) can be
+      used to define if a duplicated trailer is omitted, where in the run of
+      trailers each trailer would appear, and other details.
+    divider: opposite of --no-divider
+    if-exists: action if trailer already exists
+    if-missing: action if trailer is missing
+    in-place: edit files in place
+    no-divider: do not treat --- specially
+    only-input: do not apply config rules
+    only-trailers: output only the trailers
+    parse: set parsing options
+    trim-empty: trim empty trailers
+    unfold: join whitespace-continued values
+    where: where to place the new trailer

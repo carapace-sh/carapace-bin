@@ -28,3 +28,7 @@ documentation:
       does not require a checked out tree.
 
       If the repository is bare, `--no-checkout` is assumed.
+    term-bad: set term for new/bad
+    term-good: set term for old/good
+    term-new: set term for new/bad
+    term-old: set term for old/good

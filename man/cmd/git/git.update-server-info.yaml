@@ -11,3 +11,9 @@ documentation:
     $GIT_OBJECT_DIRECTORY/info directories to help clients discover
     what references and packs the server has.  This command
     generates such auxiliary files.
+  flag:
+    force: |-
+      Allow adding otherwise ignored files. The option is also used when
+      `submodule.<name>.ignore=all` is set, but you want to stage an
+      update of the submodule. The `path` to the submodule must be explicitly
+      specified.

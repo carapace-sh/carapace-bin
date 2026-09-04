@@ -1,34 +1,19 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: init
+aliases:
+  - init-db
 description: Create an empty Git repository or reinitialize an existing one
 group: main
 flags:
   --bare: create a bare repository
   --object-format=: specify the hash algorithm to use
+  --ref-format=: specify the reference format for the repository
   --separate-git-dir=: separate git dir from working tree
   --shared?: specify that the git repository is to be shared amongst several users
   --template=: directory from which templates will be used
   -b, --initial-branch=: override the name of the initial branch
   -q, --quiet: be quiet
 documentation:
-  command: |-
-    This command creates an empty Git repository - basically a `.git`
-    directory with subdirectories for `objects`, `refs/heads`,
-    `refs/tags`, and template files.  An initial branch without any
-    commits will be created (see the `--initial-branch` option below
-    for its name).
-
-    If the `GIT_DIR` environment variable is set then it specifies a path
-    to use instead of `./.git` for the base of the repository.
-
-    If the object storage directory is specified via the
-    `GIT_OBJECT_DIRECTORY` environment variable then the sha1 directories are created underneath; otherwise, the default `$GIT_DIR/objects`
-    directory is used.
-
-    Running `git init` in an existing repository is safe. It will not
-    overwrite things that are already there. The primary reason for
-    rerunning `git init` is to pick up newly added templates (or to move
-    the repository to another place if `--separate-git-dir` is given).
   flag:
     bare: |-
       Create a bare repository. If `GIT_DIR` environment is not set, it is set to the
@@ -67,3 +52,15 @@ documentation:
     template: |-
       Specify the directory from which templates will be used.  (See the "TEMPLATE
       DIRECTORY" section below.)
+    ref-format: |-
+      The ref format to migrate the ref store to. Can be one of:
+      
+      `files`;; for loose files with packed-refs.
+      
+      This is the default.
+      
+      `reftable`;; for the reftable format.
+      
+      This is the default.
+    shared: specify that the git repository is to be shared amongst several users
+

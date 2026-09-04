@@ -3,40 +3,45 @@ name: update-index
 description: Register file contents in the working tree to the index
 group: low-level manipulator
 flags:
-  --add: do not ignore new files
-  --assume-unchanged: mark files as "not changing"
-  --cacheinfo=: add the specified entry to the index
-  --chmod=: override the executable bit of the listed files
-  --clear-resolve-undo: (for porcelains) forget saved unresolved conflicts
-  --force-remove: remove named paths even if present in worktree
-  --force-untracked-cache: enable untracked cache without testing the filesystem
-  --force-write-index: write out the index even if is not flagged as changed
-  --fsmonitor: enable or disable file system monitor
-  --fsmonitor-valid: mark files as fsmonitor valid
-  --ignore-missing: ignore files missing from worktree
-  --ignore-skip-worktree-entries: do not touch index-only entries
-  --ignore-submodules: 'refresh: ignore submodules'
-  --index-info: add entries from standard input to the index
-  --index-version=: write index in this format
-  --info-only: add to index only; do not add content to object database
-  --no-assume-unchanged: clear assumed-unchanged bit
-  --no-fsmonitor-valid: clear fsmonitor valid bit
-  --no-skip-worktree: clear skip-worktree bit
-  --really-refresh: like --refresh, but ignore assume-unchanged setting
-  --refresh: refresh stat information
-  --remove: notice files missing from worktree
-  --replace: let files replace directories and vice-versa
-  --skip-worktree: mark files as "index-only"
-  --split-index: enable or disable split index
-  --stdin: read list of paths to be updated from standard input
-  --test-untracked-cache: test if the filesystem supports untracked cache
-  --unmerged: refresh even if index contains unmerged entries
-  --unresolve: 'repopulate stages #2 and #3 for the listed paths'
-  --untracked-cache: enable/disable untracked cache
-  --verbose: report actions to standard output
-  -g, --again: only update entries that differ from HEAD
-  -q: continue refresh even when index needs update
-  -z: 'with --stdin: input lines are terminated by null bytes'
+  --add: if a specified file isn’t in the index already then it’s added
+  --assume-unchanged: set the "assume unchanged" bit for paths
+  --cacheinfo=: directly insert the specified info into the index
+  --chmod=: set the execute permissions on the updated files
+  --clear-resolve-undo: forget saved unresolved conflicts
+  --force-remove: remove the file from the index even when the working directory still has such a file
+  --force-untracked-cache: same as --untracked-cache
+  --force-write-index: opposite of --no-force-write-index
+  --fsmonitor: enable files system monitor feature
+  --fsmonitor-valid: set the "fsmonitor valid" bit for paths
+  --ignore-missing: ignores missing files during a --refresh
+  --ignore-skip-worktree-entries: do not remove skip-worktree (AKA "index-only") entries
+  --ignore-submodules: do not try to update submodules
+  --index-info: read index information from stdin
+  --index-version=: write the resulting index out in the named on-disk format version
+  --info-only: just insert object IDs into the index for following files
+  --no-assume-unchanged: unset the "assume unchanged" bit for paths
+  --no-fsmonitor: disable files system monitor feature
+  --no-fsmonitor-valid: unset the "fsmonitor valid" bit for paths
+  --no-ignore-skip-worktree-entries: remove skip-worktree (AKA "index-only") entries
+  --no-skip-worktree: unset the "skip-worktree" bit for paths
+  --no-split-index: disable split index mode
+  --no-untracked-cache: disable untracked cache feature
+  --really-refresh: like --refresh, but checks stat information unconditionally
+  --refresh: looks at the current index and checks to see if merges or updates are needed
+  --remove: if a specified file is in the index but is missing then it’s removed
+  --replace: existing entries that conflict with the entry being added are automatically removed
+  --show-index-version: report the index format version used by the on-disk index file
+  --skip-worktree: set the "skip-worktree" bit for paths
+  --split-index: enable split index mode
+  --stdin: read a list of paths from the standard input
+  --test-untracked-cache: only perform tests on the working directory to make sure untracked cache can be used
+  --unmerged: continue if --refresh finds unmerged changes in the index
+  --unresolve: restores the unmerged or needs updating state of a file during a merge
+  --untracked-cache: enable untracked cache feature
+  --verbose: report what is being added and removed from the index
+  -g, --again: runs git update-index itself on the paths whose index entries differ from HEAD
+  -q: quiet
+  -z: paths are separated with NUL character instead of LF
 documentation:
   command: |-
     Modifies the index. Each file mentioned is updated into the index and
@@ -47,3 +52,63 @@ documentation:
 
     The way 'git update-index' handles files it is told about can be modified
     using the various options:
+  flag:
+    chmod: |-
+      Override the executable bit of the added files.  The executable
+      bit is only changed in the index, the files on disk are left
+      unchanged.
+    ignore-missing: |-
+      This option can only be used together with `--dry-run`. By using
+      this option the user can check if any of the given files would
+      be ignored, no matter if they are already present in the work
+      tree or not.
+    refresh: |-
+      Don't add the file(s), but only refresh their stat()
+      information in the index.
+    stdin: |-
+      The list of patterns is read from standard input instead of from
+      the argument list.
+    verbose: Be verbose.
+    z: |-
+      When `--numstat` has been given, do not munge pathnames,
+      but use a NUL-terminated machine-readable format.
+      
+      Without this option, pathnames with "unusual" characters are quoted as
+      explained for the configuration variable `core.quotePath` (see
+      [git-config](cmd://git/config)).
+    add: if a specified file isn’t in the index already then it’s added
+    again: runs git update-index itself on the paths whose index entries differ from HEAD
+    assume-unchanged: set the "assume unchanged" bit for paths
+    cacheinfo: directly insert the specified info into the index
+    clear-resolve-undo: forget saved unresolved conflicts
+    force-remove: |-
+      remove the file from the index even when the working directory still has such a file
+    force-untracked-cache: same as --untracked-cache
+    force-write-index: opposite of --no-force-write-index
+    fsmonitor: enable files system monitor feature
+    fsmonitor-valid: set the "fsmonitor valid" bit for paths
+    ignore-skip-worktree-entries: do not remove skip-worktree (AKA "index-only") entries
+    ignore-submodules: do not try to update submodules
+    index-info: read index information from stdin
+    index-version: write the resulting index out in the named on-disk format version
+    info-only: just insert object IDs into the index for following files
+    no-assume-unchanged: unset the "assume unchanged" bit for paths
+    no-fsmonitor: disable files system monitor feature
+    no-fsmonitor-valid: unset the "fsmonitor valid" bit for paths
+    no-ignore-skip-worktree-entries: remove skip-worktree (AKA "index-only") entries
+    no-skip-worktree: unset the "skip-worktree" bit for paths
+    no-split-index: disable split index mode
+    no-untracked-cache: disable untracked cache feature
+    q: quiet
+    really-refresh: like --refresh, but checks stat information unconditionally
+    remove: if a specified file is in the index but is missing then it’s removed
+    replace: |-
+      existing entries that conflict with the entry being added are automatically removed
+    show-index-version: report the index format version used by the on-disk index file
+    skip-worktree: set the "skip-worktree" bit for paths
+    split-index: enable split index mode
+    test-untracked-cache: |-
+      only perform tests on the working directory to make sure untracked cache can be used
+    unmerged: continue if --refresh finds unmerged changes in the index
+    unresolve: restores the unmerged or needs updating state of a file during a merge
+    untracked-cache: enable untracked cache feature

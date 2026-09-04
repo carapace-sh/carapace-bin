@@ -6,14 +6,6 @@ flags:
   -n, --dry-run: do not remove, show only
   -v, --verbose: report pruned working trees
 documentation:
-  command: |-
-    Remove worktree information in `$GIT_DIR/worktrees` for worktrees
-    whose working trees are missing.  Useful after manually removing
-    a working tree that is no longer needed (but use "git worktree
-    remove" next time you want to do so).  Also, if you _moved_ a
-    working tree elsewhere causing the worktree information to become
-    dangling, see "git worktree repair" to reconnect the worktree to
-    the new working tree location.
   flag:
     dry-run: |-
       With `prune`, do not remove anything; just report what it would
@@ -22,3 +14,11 @@ documentation:
       With `prune`, report all removals.
 
       With `list`, output additional information about worktrees (see below).
+    expire: |-
+      Prune entries older than the specified time. If this option is
+      not specified, the expiration time is taken from the
+      configuration setting `gc.reflogExpire`, which in turn
+      defaults to 90 days. `--expire=all` prunes entries regardless
+      of their age; `--expire=never` turns off pruning of reachable
+      entries (but see `--expire-unreachable`).
+

@@ -1,4 +1,4 @@
-no: |
+"no": |
   Do not ignore whitespace when performing move detection.
 ignore-space-at-eol: |
   Ignore changes in whitespace at end of line.

@@ -6,13 +6,20 @@ flags:
   --allow-unknown-type: allow -s and -t to work with broken/corrupt objects
   --batch-all-objects: show all objects with --batch or --batch-check
   --batch-check=: show info about objects fed from the standard input
+  --batch-command=: enter a batch mode on stdin that takes queries and returns results
   --batch=: show info and content of objects fed from the standard input
   --buffer: buffer --batch output
+  --filter=: omit objects from the list of printed objects (batch mode)
   --filters: for blob objects, run filters on object's content
   --follow-symlinks: follow in-tree symlinks (used with --batch or --batch-check)
+  --mailmap: use mailmap file to map author/committer names
+  --no-filter: do not omit objects from the list of printed objects
+  --no-mailmap: do not use mailmap file
+  --no-use-mailmap: do not use mailmap file
   --path=: use a specific path for --textconv/--filters
   --textconv: for blob objects, run textconv on object's content
   --unordered: do not order --batch-all-objects output
+  --use-mailmap: use mailmap file to map author/committer names
   -e: exit with zero when there's no error
   -p: pretty-print object's content
   -s: show object size
@@ -29,3 +36,70 @@ documentation:
     named on the command line.
 
     In batch mode, arguments are read from standard input.
+  flag:
+    e: |-
+      The next parameter is the pattern. This option has to be
+      used for patterns starting with `-` and should be used in
+      scripts passing user input to grep.  Multiple patterns are
+      combined by `or`.
+    filter: |-
+      Use the partial clone feature and request that the server sends
+      a subset of reachable objects according to a given object filter.
+      When using `--filter`, the supplied _<filter-spec>_ is used for
+      the partial clone filter.
+      
+      If `--filter=auto` is used the filter specification is determined
+      automatically through the `promisor-remote` protocol (see
+      [gitprotocol-v2](man://gitprotocol-v2/5)) by combining the filter specifications
+      advertised by the server for the promisor remotes that the client
+      accepts (see the `promisor.acceptFromServer` configuration option in
+      [git-config](cmd://git/config)). This allows the server to suggest the optimal
+      filter for the available promisor remotes.
+      
+      As with other filter specifications, the "auto" value is persisted in
+      the configuration. This ensures that future fetches will continue to
+      adapt to the server's current recommendation.
+      
+      For details on all other available filter specifications, see the
+      `--filter=<filter-spec>` option in [git-rev-list](cmd://git/rev-list).
+      
+      For example, `--filter=blob:none` will filter out all blobs (file
+      contents) until needed by Git. Also, `--filter=blob:limit=<size>` will
+      filter out all blobs of size at least _<size>_.
+    no-filter: Turn off any previous `--filter=` argument.
+    no-use-mailmap: |-
+      Use mailmap file to map author and committer names and email
+      addresses to canonical real names and email addresses. See
+      [git-shortlog](cmd://git/shortlog).
+    p: |-
+      These flags are passed to the *git apply* (see
+      [git-apply](cmd://git/apply)) program that applies the patch.
+      
+      Valid \<action\> for the `--whitespace` option are: `nowarn`, `warn`, `fix`, `error`, and `error-all`.
+    s: Suppress the author name and timestamp from the output.
+    t: Override the default tempdir.
+    textconv: |-
+      Allow (or disallow) external text conversion filters to be run
+      when comparing binary files. See [gitattributes](man://gitattributes/5) for
+      details. Because textconv filters are typically a one-way
+      conversion, the resulting diff is suitable for human
+      consumption, but cannot be applied. For this reason, textconv
+      filters are enabled by default only for [git-diff](cmd://git/diff) and
+      [git-log](cmd://git/log), but not for [git-format-patch](cmd://git/format-patch) or
+      diff plumbing commands.
+    use-mailmap: |-
+      Use mailmap file to map author and committer names and email
+      addresses to canonical real names and email addresses. See
+      [git-shortlog](cmd://git/shortlog).
+    allow-unknown-type: allow -s and -t to work with broken/corrupt objects
+    batch: show info and content of objects fed from the standard input
+    batch-all-objects: show all objects with --batch or --batch-check
+    batch-check: show info about objects fed from the standard input
+    batch-command: enter a batch mode on stdin that takes queries and returns results
+    buffer: buffer --batch output
+    filters: for blob objects, run filters on object's content
+    follow-symlinks: follow in-tree symlinks (used with --batch or --batch-check)
+    mailmap: use mailmap file to map author/committer names
+    no-mailmap: do not use mailmap file
+    path: use a specific path for --textconv/--filters
+    unordered: do not order --batch-all-objects output

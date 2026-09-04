@@ -2,11 +2,14 @@
 name: append
 description: Append to the notes of an existing object
 flags:
-  --allow-empty: Allow an empty note object to be stored
-  -C, --reuse-message=: Take the given blob object as the note message
-  -F, --file=: Take the note message from the given file
-  -c, --reedit-message=: Like -C, but with -c the editor is invoked
-  -m, --message=: Use the given note message
+  --allow-empty: allow an empty note object to be stored
+  --separator=: insert <paragraph-break> between paragraphs
+  --stripspace: remove unnecessary whitespace
+  -C, --reuse-message=: take the given blob object as the note message
+  -F, --file=: take the note message from the given file
+  -c, --reedit-message=: like -C, but with -c the editor is invoked
+  -e, --edit: edit note message in editor
+  -m, --message=: use the given note message
 documentation:
   flag:
     allow-empty: |-
@@ -27,3 +30,15 @@ documentation:
       note message. (Use `git notes copy <object>` instead to
       copy notes between objects.)  Implies `--no-stripspace` since
       the default behavior is to copy the message verbatim.
+    edit: |-
+      Open the diff vs. the index in an editor and let the user
+      edit it.  After the editor was closed, adjust the hunk headers
+      and apply the patch to the index.
+      
+      The intent of this option is to pick and choose lines of the patch to
+      apply, or even to modify the contents of lines to be staged. This can be
+      quicker and more flexible than using the interactive hunk selector.
+      However, it is easy to confuse oneself and create a patch that does not
+      apply to the index. See EDITING PATCHES below.
+    separator: insert <paragraph-break> between paragraphs
+    stripspace: remove unnecessary whitespace

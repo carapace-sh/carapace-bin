@@ -5,9 +5,14 @@ group: main
 flags:
   --aggressive: be more thorough (increased runtime)
   --auto: enable auto-gc mode
+  --cruft: pack unreferenced objects separately
+  --detach: detach auto-gc from terminal
+  --expire-to=: pack prefix to store a pack containing pruned objects
   --force: force running gc even if there may be another gc running
   --keep-largest-pack: repack all other packs except the largest pack
+  --max-cruft-size=: maximum size of cruft pack
   --prune?: prune unreferenced objects
+  --skip-foreground-tasks&: skip maintenance tasks typically done in the foreground
   -q, --quiet: suppress progress reporting
 documentation:
   command: |-
@@ -28,3 +33,35 @@ documentation:
     a one-off repository optimization, or e.g. to clean up a suboptimal
     mass-import. See the "PACKFILE OPTIMIZATION" section in
     [git-fast-import](cmd://git/fast-import) for more details on the import case.
+  flag:
+    detach: |-
+      Rather than checking out a branch to work on it, check out a
+      commit for inspection and discardable experiments.
+      This is the default behavior of `git checkout <commit>` when
+      _<commit>_ is not a branch name.  See the "DETACHED HEAD" section
+      below for details.
+    force: |-
+      Allow adding otherwise ignored files. The option is also used when
+      `submodule.<name>.ignore=all` is set, but you want to stage an
+      update of the submodule. The `path` to the submodule must be explicitly
+      specified.
+    prune: |-
+      Before fetching, remove any remote-tracking references that no
+      longer exist on the remote.  Tags are not subject to pruning
+      if they are fetched only because of the default tag
+      auto-following or due to a `--tags` option.  However, if tags
+      are fetched due to an explicit refspec (either on the command
+      line or in the remote configuration, for example if the remote
+      was cloned with the `--mirror` option), then they are also
+      subject to pruning. Supplying `--prune-tags` is a shorthand for
+      providing the tag refspec.
+      
+      See the PRUNING section below for more details.
+    quiet: Be quiet. Only print error messages.
+    aggressive: be more thorough (increased runtime)
+    auto: enable auto-gc mode
+    cruft: pack unreferenced objects separately
+    expire-to: pack prefix to store a pack containing pruned objects
+    keep-largest-pack: repack all other packs except the largest pack
+    max-cruft-size: maximum size of cruft pack
+    skip-foreground-tasks&: skip maintenance tasks typically done in the foreground

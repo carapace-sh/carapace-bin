@@ -10,9 +10,9 @@ documentation:
     This command parses the default configuration files for sets of configs like
     so:
 
-      [hook "linter"]
-        event = pre-commit
-        command = ~/bin/linter --cpp20
+     [hook "linter"]
+      event = pre-commit
+      command = ~/bin/linter --cpp20
 
     In this example, `[hook "linter"]` represents one script - `~/bin/linter --cpp20` - which can be shared by many repos, and even by many hook events, if
     appropriate.
@@ -20,12 +20,12 @@ documentation:
     To add an unrelated hook which runs on a different event, for example a
     spell-checker for your commit messages, you would write a configuration like so:
 
-      [hook "linter"]
-        event = pre-commit
-        command = ~/bin/linter --cpp20
-      [hook "spellcheck"]
-        event = commit-msg
-        command = ~/bin/spellchecker
+     [hook "linter"]
+      event = pre-commit
+      command = ~/bin/linter --cpp20
+     [hook "spellcheck"]
+      event = commit-msg
+      command = ~/bin/spellchecker
 
     With this config, when you run `git commit`, first `~/bin/linter --cpp20` will
     have a chance to check your files to be committed (during the `pre-commit` hook
@@ -41,10 +41,10 @@ documentation:
     So if you wanted your linter to run when you commit as well as when you push,
     you would configure it like so:
 
-      [hook "linter"]
-        event = pre-commit
-        event = pre-push
-        command = ~/bin/linter --cpp20
+     [hook "linter"]
+      event = pre-commit
+      event = pre-push
+      command = ~/bin/linter --cpp20
 
     With this config, `~/bin/linter --cpp20` would be run by Git before a commit is
     generated (during `pre-commit`) as well as before a push is performed (during
@@ -53,12 +53,12 @@ documentation:
     And if you wanted to run your linter as well as a secret-leak detector during
     only the "pre-commit" hook event, you would configure it instead like so:
 
-      [hook "linter"]
-        event = pre-commit
-        command = ~/bin/linter --cpp20
-      [hook "no-leaks"]
-        event = pre-commit
-        command = ~/bin/leak-detector
+     [hook "linter"]
+      event = pre-commit
+      command = ~/bin/linter --cpp20
+     [hook "no-leaks"]
+      event = pre-commit
+      command = ~/bin/leak-detector
 
     With this config, before a commit is generated (during `pre-commit`), Git would
     first start `~/bin/linter --cpp20` and second start `~/bin/leak-detector`. It

@@ -3,14 +3,14 @@ name: archimport
 description: Import a GNU Arch repository into Git
 group: interaction
 flags:
-  -D=: Follow merge ancestry and attempt to import trees that have been merged from.
-  -T: Many tags. Will create a tag for every commit, reflecting the commit name in the Arch repository.
-  -a: Attempt to auto-register archives at http://mirrors.sourcecontrol.net
-  -f: Use the fast patchset import strategy.
-  -h: Display usage.
-  -o: Use this for compatibility with old-style branch names used by earlier versions of git archimport.
-  -t=: Override the default tempdir.
-  -v: Verbose output.
+  -D=: follow merge ancestry and attempt to import trees that have been merged from.
+  -T: many tags. Will create a tag for every commit, reflecting the commit name in the Arch repository.
+  -a: attempt to auto-register archives at http://mirrors.sourcecontrol.net
+  -f: use the fast patchset import strategy.
+  -h: display usage.
+  -o: use this for compatibility with old-style branch names used by earlier versions of git archimport.
+  -t=: override the default tempdir.
+  -v: verbose output.
 documentation:
   command: |-
     Imports a project from one or more GNU Arch repositories.

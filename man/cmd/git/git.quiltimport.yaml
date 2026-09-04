@@ -4,7 +4,7 @@ description: Applies a quilt patchset onto the current branch
 group: interaction
 flags:
   --author=: author name and email address for patches without any
-  --keep-non-patch: Pass -b to git mailinfo
+  --keep-non-patch: pass -b to git mailinfo
   --patches=: path to the quilt patches
   --series=: path to the quilt series file
   -n, --dry-run: dry run
@@ -22,3 +22,18 @@ documentation:
 
     If a subject is not found in the patch description the patch name is
     preserved as the 1 line subject in the Git description.
+  flag:
+    author: |-
+      Override the commit author. Specify an explicit author using the
+      standard `A U Thor <author@example.com>` format. Otherwise _<author>_
+      is assumed to be a pattern and is used to search for an existing
+      commit by that author (i.e. `git rev-list --all -i --author=<author>`);
+      the commit author is then copied from the first such commit found.
+    keep-non-patch: |-
+      Pass `-b` flag to *git mailinfo* (see
+      [git-mailinfo](cmd://git/mailinfo)).
+    dry-run: |-
+      Don't actually add the file(s), just show if they exist and/or will
+      be ignored.
+    patches: path to the quilt patches
+    series: path to the quilt series file

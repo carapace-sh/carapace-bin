@@ -3,13 +3,14 @@ name: hash-object
 description: Compute object ID and optionally creates a blob from a file
 group: low-level manipulator
 flags:
-  --literally: just hash any random garbage to create corrupt objects for debugging Git
-  --no-filters: store file as is without filters
-  --path=: process file as it were from this path
-  --stdin: read the object from stdin
-  --stdin-paths: read file names from stdin
-  -t=: object type
-  -w: write the object into the object database
+  --filters: opposite of --no-filters
+  --literally: allow --stdin to hash any garbage into a loose object
+  --no-filters: hash the contents as is
+  --path=: hash object as if it were located at the given path
+  --stdin: read the object from standard input instead of from a file
+  --stdin-paths: read file names from the standard input
+  -t=: specify the type of object to be created
+  -w: actually write the object into the object database
 documentation:
   command: |-
     Computes the object ID value for an object with specified type
@@ -17,3 +18,16 @@ documentation:
     work tree), and optionally writes the resulting object into the
     object database.  Reports its object ID to its standard output.
     When <type> is not specified, it defaults to "blob".
+  flag:
+    stdin: |-
+      The list of patterns is read from standard input instead of from
+      the argument list.
+    t: Override the default tempdir.
+    w: |-
+      Ignore whitespace when comparing the parent's version and
+      the child's to find where the lines came from.
+    filters: opposite of --no-filters
+    literally: allow --stdin to hash any garbage into a loose object
+    no-filters: hash the contents as is
+    path: hash object as if it were located at the given path
+    stdin-paths: read file names from the standard input

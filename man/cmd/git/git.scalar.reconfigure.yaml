@@ -2,9 +2,17 @@
 name: reconfigure
 description: Reconfigure Scalar enlistment
 flags:
-    --all: reconfigure all enlistments
-    --maintenance=: maintenance mode
-
+  --all: reconfigure all enlistments
+  --maintenance=: maintenance mode
 documentation:
-  command: >-
-    After a Scalar upgrade, or when the configuration of a Scalar enlistment was somehow corrupted or changed by mistake, reconfigure the enlistment. Use `--all` to reconfigure all enlistments currently registered with Scalar.
+  command: After a Scalar upgrade, or when the configuration of a Scalar enlistment was somehow corrupted or changed by mistake, reconfigure the enlistment. Use `--all` to reconfigure all enlistments currently registered with Scalar.
+  flag:
+    all: |-
+      Update the index not only where the working tree has a file matching **\<pathspec\>**
+      but also where the index already has an entry.
+      This adds, modifies, and removes index entries to match the working tree.
+      
+      If no **\<pathspec\>** is given when `-A` option is used,
+      all files in the entire working tree are updated
+      (old versions of Git used to limit the update to the current directory and its subdirectories).
+    maintenance: maintenance mode

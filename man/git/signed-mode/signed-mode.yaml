@@ -1,0 +1,14 @@
+verbatim: |
+  Store the signature as-is in the commit or tag object.
+warn-verbatim: |
+  Warn if the signature does not verify, but store it as-is in the commit or tag object.
+warn-strip: |
+  Warn if the signature does not verify, and strip the signature from the commit or tag object.
+strip: |
+  Strip any signature from the commit or tag object.
+strip-if-invalid: |
+  Strip only invalid signatures, leaving valid ones intact.
+sign-if-invalid: |
+  Replace invalid signatures with newly created ones.
+abort: |
+  Abort the operation if the signature does not verify.

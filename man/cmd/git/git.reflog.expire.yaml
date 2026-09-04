@@ -2,15 +2,15 @@
 name: expire
 description: Prune older reflog entries
 flags:
-  --all: Process the reflogs of all references
-  --expire-unreachable=: Prune entries older than <time> that are not reachable from the current tip of the branch
-  --expire=: Prune entries older than the specified time
-  --rewrite: Adjust a reflogs "old" SHA-1 to be equal to the "new" SHA-1 field of the entry that now precedes it
-  --single-worktree: Limit the processing to reflogs from the current working tree only
-  --stale-fix: Prune any reflog entries that point to "broken commits"
-  --updateref: Update the reference to the value of the top reflog entry
-  --verbose: Print extra information on screen.
-  -n, --dry-run: Do not actually prune any entries
+  --all: process the reflogs of all references
+  --expire-unreachable=: prune entries older than <time> that are not reachable from the current tip of the branch
+  --expire=: prune entries older than the specified time
+  --rewrite: adjust a reflogs "old" SHA-1 to be equal to the "new" SHA-1 field of the entry that now precedes it
+  --single-worktree: limit the processing to reflogs from the current working tree only
+  --stale-fix: prune any reflog entries that point to "broken commits"
+  --updateref: update the reference to the value of the top reflog entry
+  --verbose: print extra information on screen
+  -n, --dry-run: do not actually prune any entries
 documentation:
   flag:
     all: Drop the reflogs of all references from all worktrees.

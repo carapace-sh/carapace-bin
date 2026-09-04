@@ -10,10 +10,15 @@ flags:
   --create-reflog: create a reflog
   --format=: format to use for the output
   --merged=: print only tags that are merged
+  --no-column: do not show tag list in columns
   --no-contains=: print only tags that don't contain the commit
+  --no-create-reflog: do not create a reflog
   --no-merged=: print only tags that are not merged
+  --no-sign: do not sign the annotated tag
+  --omit-empty: do not output empty tags
   --points-at=: print only tags of the object
-  --sort=: field name to sort on
+  --sort=*: field name to sort on
+  --trailer=*: add trailer to the tag message
   -F, --file=: read message from file
   -a, --annotate: annotated tag, needs a message
   -d, --delete: delete tags
@@ -27,41 +32,6 @@ flags:
   -u, --local-user=: use another key to sign the tag
   -v, --verify: verify tags
 documentation:
-  command: |-
-    Add a tag reference in `refs/tags/`, unless `-d`/`-l`/`-v` is given
-    to delete, list or verify tags.
-
-    Unless `-f` is given, the named tag must not yet exist.
-
-    If one of `-a`, `-s`, or `-u <key-id>` is passed, the command
-    creates a `tag` object, and requires a tag message.  Unless
-    `-m <msg>` or `-F <file>` is given, an editor is started for the user to type
-    in the tag message.
-
-    If `-m <msg>` or `-F <file>` or `--trailer <token>[=<value>]` is given
-    and `-a`, `-s`, and `-u <key-id>` are absent, `-a` is implied.
-
-    Otherwise, a tag reference that points directly at the given object
-    (i.e., a lightweight tag) is created.
-
-    A cryptographically signed tag object will be created when `-s` or
-    `-u <key-id>` is used. The signing backend (GPG, X.509, SSH, etc.) is
-    controlled by the `gpg.format` configuration variable, defaulting to
-    OpenPGP. When `-u <key-id>` is not used, the committer identity for
-    the current user is used to find the key for signing. The
-    configuration variable `gpg.program` is used to specify a custom
-    signing binary.
-
-    Tag objects (created with `-a`, `-s`, or `-u`) are called "annotated"
-    tags; they contain a creation date, the tagger name and e-mail, a
-    tagging message, and an optional cryptographic signature. Whereas a
-    "lightweight" tag is simply a name for an object (usually a commit
-    object).
-
-    Annotated tags are meant for release while lightweight tags are meant
-    for private or temporary object labels. For this reason, some git
-    commands for naming objects (like `git describe`) will ignore
-    lightweight tags by default.
   flag:
     annotate: Make an unsigned, annotated tag object
     cleanup: |-
@@ -70,6 +40,12 @@ documentation:
       `strip` mode is default. The `verbatim` mode does not change message at
       all, `whitespace` removes just leading/trailing whitespace lines and
       `strip` removes both whitespace and commentary.
+    column: |-
+      Display tag listing in columns. See configuration variable
+      `column.tag` for option syntax. `--column` and `--no-column`
+      without options are equivalent to `always` and `never` respectively.
+
+      This option is only applicable when listing tags without annotation lines.
     create-reflog: |-
       Create a reflog for the tag. To globally enable reflogs for tags, see
       `core.logAllRefUpdates` in [git-config](cmd://git/config).
@@ -114,7 +90,7 @@ documentation:
       concatenated as separate paragraphs.
       Implies `-a` if none of `-a`, `-s`, or `-u <key-id>`
       is given.
-    n: |-
+    "n": |-
       _<num>_ specifies how many lines from the annotation, if any,
       are printed when using `-l`. Implies `--list`.
 
@@ -140,9 +116,36 @@ documentation:
       variable if it exists, or lexicographic order otherwise. See
       [git-config](cmd://git/config).
     verify: Verify the cryptographic signature of the given tags.
-    column: |-
-      Display tag listing in columns. See configuration variable
-      `column.tag` for option syntax. `--column` and `--no-column`
+    contains: |-
+      Instead of finding the tag that predates the commit, find
+      the tag that comes after the commit, and thus contains it.
+      Automatically implies `--tags`.
+    no-column: |-
+      Display branch listing in columns. See configuration variable
+      `column.branch` for option syntax. `--column` and `--no-column`
       without options are equivalent to `always` and `never` respectively.
+      
+      This option is only applicable in non-verbose mode.
+    omit-empty: |-
+      Do not print a newline after formatted refs where the format expands
+      to the empty string.
+    points-at: Only list refs which points at the given object.
+    trailer: |-
+      Specify a (&lt;token&gt;, &lt;value&gt;) pair that should be applied as
+      a trailer. (e.g.
+      `git commit --trailer "Signed-off-by:C O Mitter \ <committer@example.com>" --trailer "Helped-by:C O Mitter \ <committer@example.com>"`
+      will add the "Signed-off-by" trailer and the "Helped-by" trailer to the
+      commit message.) The `trailer.*` configuration variables
+      ([git-interpret-trailers](cmd://git/interpret-trailers)) can be
+      used to define if a duplicated trailer is omitted, where in the run of
+      trailers each trailer would appear, and other details.
+    color: |-
+      Turn off branch colors, even when the configuration file gives the
+      default to color output.
+      Same as `--color=never`.
+    no-contains: print only tags that don't contain the commit
+    no-create-reflog: do not create a reflog
+    merged: print only tags that are merged
+    no-merged: print only tags that are not merged
+    no-sign: do not sign the annotated tag
 
-      This option is only applicable when listing tags without annotation lines.

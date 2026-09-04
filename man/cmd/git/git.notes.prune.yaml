@@ -2,8 +2,8 @@
 name: prune
 description: Remove all notes for non-existing/unreachable objects
 flags:
-  -n, --dry-run: Do not remove anything, just report
-  -v, --verbose: When merging notes, be more verbose
+  -n, --dry-run: do not remove anything, just report
+  -v, --verbose: when merging notes, be more verbose
 documentation:
   flag:
     dry-run: |-

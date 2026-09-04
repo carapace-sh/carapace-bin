@@ -1,6 +1,14 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: http-push
-description: push objects to a remote repository via HTTP
+description: Push objects over HTTP/DAV to another repository
+group: low-level synching
+flags:
+  --all: verify all objects in the entire local ref’s history exist
+  --dry-run: do everything except actually send the updates
+  --force: disable ancestor check
+  --verbose: report the list of objects being walked and successfully sent
+  -D: remove <ref> from remote repository
+  -d: remove <ref> from remote repository
 documentation:
   command: |-
     Sends missing objects to the remote repository, and updates the
@@ -9,3 +17,25 @@ documentation:
     *NOTE*: This command is temporarily disabled if your libcurl
     is older than 7.16, as the combination has been reported
     not to work and sometimes corrupts the repository.
+  flag:
+    D: |-
+      Follow merge ancestry and attempt to import trees that have been merged
+      from. Specify a depth greater than 1 if patch logs have been pruned.
+    all: |-
+      Update the index not only where the working tree has a file matching **\<pathspec\>**
+      but also where the index already has an entry.
+      This adds, modifies, and removes index entries to match the working tree.
+      
+      If no **\<pathspec\>** is given when `-A` option is used,
+      all files in the entire working tree are updated
+      (old versions of Git used to limit the update to the current directory and its subdirectories).
+    dry-run: |-
+      Don't actually add the file(s), just show if they exist and/or will
+      be ignored.
+    force: |-
+      Allow adding otherwise ignored files. The option is also used when
+      `submodule.<name>.ignore=all` is set, but you want to stage an
+      update of the submodule. The `path` to the submodule must be explicitly
+      specified.
+    verbose: Be verbose.
+    d: remove <ref> from remote repository

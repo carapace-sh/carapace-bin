@@ -1,3 +1,22 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: list
-description: list all hooks
+description: Print a list of hooks which will be run on <hook-name> event
+flags:
+  --allow-unknown-hook-name: allow running a hook with a non-native hook name
+  --no-allow-unknown-hook-name: do not allow running a hook with a non-native hook name
+  --no-show-scope: do not show the config scope that defined each hook
+  --show-scope: show the config scope that defined each hook
+  -z: use NUL as line terminator
+documentation:
+  flag:
+    z: |-
+      When `--numstat` has been given, do not munge pathnames,
+      but use a NUL-terminated machine-readable format.
+      
+      Without this option, pathnames with "unusual" characters are quoted as
+      explained for the configuration variable `core.quotePath` (see
+      [git-config](cmd://git/config)).
+    allow-unknown-hook-name: allow running a hook with a non-native hook name
+    no-allow-unknown-hook-name: do not allow running a hook with a non-native hook name
+    no-show-scope: do not show the config scope that defined each hook
+    show-scope: show the config scope that defined each hook

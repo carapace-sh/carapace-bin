@@ -3,14 +3,14 @@ name: replace
 description: Create, list, delete refs to replace objects
 group: manipulator
 flags:
-  --convert-graft-file: Creates graft commits for all entries in $GIT_DIR/info/grafts and deletes that file upon success
-  --edit=: Edit an object’s content interactively
-  --format=: When listing, use the specified <format>
-  --graft=: Create a graft commit
-  --raw: When editing, provide the raw object contents rather than pretty-printed ones
-  -d, --delete: Delete existing replace refs for the given objects
-  -f, --force: If an existing replace ref for the same object exists, it will be overwritten
-  -l, --list=: List replace refs for objects that match the given pattern
+  --convert-graft-file: creates graft commits for all entries in $GIT_DIR/info/grafts and deletes that file upon success
+  --edit=: edit an object’s content interactively
+  --format=: when listing, use the specified <format>
+  --graft=: create a graft commit
+  --raw: when editing, provide the raw object contents rather than pretty-printed ones
+  -d, --delete: delete existing replace refs for the given objects
+  -f, --force: if an existing replace ref for the same object exists, it will be overwritten
+  -l, --list=: list replace refs for objects that match the given pattern
 documentation:
   command: |-
     Adds a 'replace' reference in `refs/replace/` namespace.
@@ -50,3 +50,44 @@ documentation:
 
     The `GIT_NO_REPLACE_OBJECTS` environment variable can be set to
     achieve the same effect as the `--no-replace-objects` option.
+  flag:
+    edit: |-
+      Open the diff vs. the index in an editor and let the user
+      edit it.  After the editor was closed, adjust the hunk headers
+      and apply the patch to the index.
+      
+      The intent of this option is to pick and choose lines of the patch to
+      apply, or even to modify the contents of lines to be staged. This can be
+      quicker and more flexible than using the interactive hunk selector.
+      However, it is easy to confuse oneself and create a patch that does not
+      apply to the index. See EDITING PATCHES below.
+    format: |-
+      Format of the resulting archive. Possible values are `tar`, `zip`,
+      `tar.gz`, `tgz`, and any format defined using the configuration option
+      `tar.<format>.command`. If `--format` is not given, and the output file
+      is specified, the format is inferred from the filename if possible (e.g.
+      writing to `foo.zip` makes the output to be in the `zip` format).
+      Otherwise the output format is `tar`.
+    raw: |-
+      Generate the diff in raw format.
+      
+      This is the default.
+      
+      For each commit, show a summary of changes using the raw diff
+      format. See the "RAW OUTPUT FORMAT" section of
+      [git-diff](cmd://git/diff). This is different from showing the log
+      itself in raw format, which you can achieve with
+      `--format=raw`.
+    delete: |-
+      Delete a branch. The branch must be fully merged in its
+      upstream branch, or in `HEAD` if no upstream was set with
+      `--track` or `--set-upstream-to`.
+    force: |-
+      Allow adding otherwise ignored files. The option is also used when
+      `submodule.<name>.ignore=all` is set, but you want to stage an
+      update of the submodule. The `path` to the submodule must be explicitly
+      specified.
+    list: Show all available formats.
+    convert-graft-file: |-
+      creates graft commits for all entries in $GIT_DIR/info/grafts and deletes that file upon success
+    graft: create a graft commit

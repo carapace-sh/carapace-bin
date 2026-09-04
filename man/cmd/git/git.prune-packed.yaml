@@ -3,8 +3,8 @@ name: prune-packed
 description: Remove extra objects that are already in pack files
 group: low-level manipulator
 flags:
-  -n, --dry-run: dry run
-  -q, --quiet: be quiet
+  -n, --dry-run: only show objects that would have been removed
+  -q, --quiet: squelch the progress indicator
 documentation:
   command: |-
     This program searches the `$GIT_OBJECT_DIRECTORY` for all objects that currently
@@ -17,3 +17,8 @@ documentation:
 
     Packs are used to reduce the load on mirror systems, backup engines,
     disk storage, etc.
+  flag:
+    dry-run: |-
+      Don't actually add the file(s), just show if they exist and/or will
+      be ignored.
+    quiet: Be quiet. Only print error messages.

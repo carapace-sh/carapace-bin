@@ -10,9 +10,12 @@ documentation:
     based on.
 
     ```
-    stash@{0}: WIP on submit: 6ebd0e2... Update git-stash documentation
-    stash@{1}: On master: 9cc0589... Add git-stash
+    stash@{0}: |-
+      WIP on submit: 6ebd0e2... Update git-stash documentation
+    stash@{1}: |-
+      On master: 9cc0589... Add git-stash
     ```
 
     The command takes options applicable to the `git log`
     command to control what is shown and how. See [git-log](cmd://git/log).
+

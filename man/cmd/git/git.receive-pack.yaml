@@ -1,6 +1,10 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: receive-pack
-description: receive what is pushed into the repository
+description: Receive what is pushed into the repository
+group: low-level synching
+flags:
+  --http-backend-info-refs: used by git-http-backend to serve up requests
+  --skip-connectivity-check: bypasses the connectivity checks
 documentation:
   command: |-
     Invoked by 'git send-pack' and updates the repository with the
@@ -25,3 +29,6 @@ documentation:
 
     A number of other receive.* config options are available to tweak
     its behavior, see [git-config](cmd://git/config).
+  flag:
+    http-backend-info-refs: used by git-http-backend to serve up requests
+    skip-connectivity-check: bypasses the connectivity checks

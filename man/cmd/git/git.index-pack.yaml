@@ -2,6 +2,24 @@
 name: index-pack
 description: Build pack index file for an existing packed archive
 group: low-level manipulator
+flags:
+  --check-self-contained-and-connected: die if the pack contains broken links
+  --fix-thin: fix a "thin" pack produced by git pack-objects --thin
+  --fsck-objects?: die if the pack contains broken objects
+  --index-version=: force version for the generated pack index
+  --keep: create an empty .keep file before moving the index
+  --max-input-size=: die, if the pack is larger than <size>
+  --no-rev-index: do not generate a reverse index
+  --object-format=: specify the given object format (hash algorithm) for the pack
+  --progress-title: set the title of the progress bar
+  --promisor?: create a .promisor file for this pack
+  --rev-index: generate a reverse index
+  --stdin: read from stdin instead and write a copy to <pack-file>
+  --strict?: die, if the pack contains broken objects or links
+  --threads=: specifies the number of threads to spawn when resolving deltas
+  --verify: verify the pack without writing anything
+  -o=: write the generated pack index into the specified file
+  -v: be verbose about what is going on
 documentation:
   command: |-
     Reads a packed archive (.pack) from the specified file,
@@ -9,3 +27,42 @@ documentation:
     reverse-index (.rev) for the specified pack. The packed
     archive, together with the pack index, can then be placed in
     the objects/pack/ directory of a Git repository.
+  flag:
+    keep: |-
+      Pass `-k` flag to *git mailinfo* (see
+      [git-mailinfo](cmd://git/mailinfo)).
+    o: |-
+      Use this for compatibility with old-style branch names used by earlier
+      versions of *git archimport*. Old-style branch names were
+      category--branch, whereas new-style branch names are
+      archive,category--branch--version. In both cases, names given on the
+      command-line will override the automatically-generated ones.
+    object-format: |-
+      Specify the given object _<format>_ (hash algorithm) for the repository.  The valid
+      values are `sha1` and (if enabled) `sha256`.  `sha1` is the default.
+      
+      Note: At present, there is no interoperability between SHA-256
+      repositories and SHA-1 repositories.
+      
+      Historically, we warned that SHA-256 repositories may later need
+      backward incompatible changes when we introduce such interoperability
+      features. Today, we only expect compatible changes. Furthermore, if such
+      changes prove to be necessary, it can be expected that SHA-256 repositories
+      created with today's Git will be usable by future versions of Git
+      without data loss.
+    stdin: |-
+      The list of patterns is read from standard input instead of from
+      the argument list.
+    v: Verbose output.
+    verify: Verify the cryptographic signature of the given tags.
+    check-self-contained-and-connected: die if the pack contains broken links
+    fix-thin: fix a "thin" pack produced by git pack-objects --thin
+    fsck-objects: die if the pack contains broken objects
+    index-version: force version for the generated pack index
+    max-input-size: die, if the pack is larger than <size>
+    no-rev-index: do not generate a reverse index
+    progress-title: set the title of the progress bar
+    promisor: create a .promisor file for this pack
+    rev-index: generate a reverse index
+    strict: die, if the pack contains broken objects or links
+    threads: specifies the number of threads to spawn when resolving deltas

@@ -3,8 +3,20 @@ name: multi-pack-index
 description: Write and verify multi-pack-indexes
 group: low-level manipulator
 flags:
-  --batch-size=: during repack, collect pack-files of smaller size into a batch that is larger than this size
-  --object-dir=: object directory containing set of packfile and pack-index pairs
-  --progress: force progress reporting
+  --no-progress: turn progress off
+  --object-dir=: use given directory for the location of Git objects
+  --progress: turn progress on
 documentation:
   command: Write or verify a multi-pack-index (MIDX) file.
+  flag:
+    no-progress: |-
+      Progress status is reported on the standard error stream
+      by default when it is attached to a terminal, unless `--quiet`
+      is specified. This flag enables progress reporting even if not
+      attached to a terminal, regardless of `--quiet`.
+    progress: |-
+      Enable progress reporting on the standard error stream even if
+      not attached to a terminal. By default, progress status is
+      reported only when it is attached. You can't use `--progress`
+      together with `--porcelain` or `--incremental`.
+    object-dir: use given directory for the location of Git objects

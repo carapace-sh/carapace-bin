@@ -4,25 +4,25 @@ description: Salvage your data out of another SCM people love to hate
 group: interaction
 flags:
   -A=: CVS by default uses the Unix username when writing its commit logs
-  -C=: The Git repository to import to
-  -L=: Limit the number of commits imported
-  -M=: Attempt to detect merges based on the commit message with a custom regex
-  -P=: Instead of calling cvsps, read the provided cvsps output file
-  -R: Generate a $GIT_DIR/cvs-revisions file containing a mapping from CVS revision numbers to newly-created Git commit IDs
-  -S=: Skip paths matching the regex
-  -a: Import all commits, including recent ones
-  -d=: The root of the CVS archive
-  -h: Print a short usage message and exit
-  -i: 'Import-only: don’t perform a checkout after importing'
-  -k: 'Kill keywords: will extract files with -kk from the CVS archive to avoid noisy changesets'
-  -m: Attempt to detect merges based on the commit message
-  -o=: Import into a different branch
-  -p=: Additional options for cvsps
-  -r=: The Git remote to import this CVS repository into
-  -s=: Substitute the character "/" in branch names with <subst>
-  -u: Convert underscores in tag and branch names to dots
-  -v: 'Verbosity: let cvsimport report what it is doing'
-  -z=: Pass the timestamp fuzz factor to cvsps, in seconds
+  -C=: the Git repository to import to
+  -L=: limit the number of commits imported
+  -M=: attempt to detect merges based on the commit message with a custom regex
+  -P=: instead of calling cvsps, read the provided cvsps output file
+  -R: generate a $GIT_DIR/cvs-revisions file containing a mapping from CVS revision numbers to newly-created Git commit IDs
+  -S=: skip paths matching the regex
+  -a: import all commits, including recent ones
+  -d=: the root of the CVS archive
+  -h: print a short usage message and exit
+  -i: 'import-only: don’t perform a checkout after importing'
+  -k: 'kill keywords: will extract files with -kk from the CVS archive to avoid noisy changesets'
+  -m: attempt to detect merges based on the commit message
+  -o=: import into a different branch
+  -p=: additional options for cvsps
+  -r=: the Git remote to import this CVS repository into
+  -s=: substitute the character "/" in branch names with <subst>
+  -u: convert underscores in tag and branch names to dots
+  -v: 'verbosity: let cvsimport report what it is doing'
+  -z=: pass the timestamp fuzz factor to cvsps, in seconds
 documentation:
   command: |-
     *WARNING:* `git cvsimport` uses cvsps version 2, which is considered
@@ -52,3 +52,109 @@ documentation:
     probably want to make a bare clone of the imported repository,
     and use the clone as the shared repository.
     See [gitcvs-migration](man://gitcvs-migration/7).
+  flag:
+    C: |-
+      These flags are passed to the *git apply* (see
+      [git-apply](cmd://git/apply)) program that applies the patch.
+      
+      Valid \<action\> for the `--whitespace` option are: `nowarn`, `warn`, `fix`, `error`, and `error-all`.
+    L: |-
+      Annotate only the line range given by *&lt;start&gt;,&lt;end&gt;*, or by
+      the function name regex *&lt;funcname&gt;*. May be specified multiple
+      times. Overlapping ranges are allowed.
+      
+      *&lt;start&gt;* and *&lt;end&gt;* are optional. `-L <start>` or
+      `-L <start>,` spans from *&lt;start&gt;* to end of file. `-L ,<end>`
+      spans from start of file to *&lt;end&gt;*.
+      
+      *&lt;start&gt;* and *&lt;end&gt;* can take one of these forms:
+      
+      -   number
+      
+        If *&lt;start&gt;* or *&lt;end&gt;* is a number, it specifies an
+        absolute line number (lines count from 1).
+      
+      -   `/regex/`
+      
+        This form will use the first line matching the given POSIX regex. If
+        *&lt;start&gt;* is a regex, it will search from the end of the
+        previous `-L` range, if any, otherwise from the start of file. If
+        *&lt;start&gt;* is `^/regex/`, it will search from the start of
+        file. If *&lt;end&gt;* is a regex, it will search starting at the
+        line given by *&lt;start&gt;*.
+      
+      -   +offset or -offset
+      
+        This is only valid for *&lt;end&gt;* and will specify a number of
+        lines before or after the line given by *&lt;start&gt;*.
+      
+      If `:<funcname>` is given in place of *&lt;start&gt;* and *&lt;end&gt;*,
+      it is a regular expression that denotes the range from the first
+      funcname line that matches *&lt;funcname&gt;*, up to the next funcname
+      line. `:<funcname>` searches from the end of the previous `-L` range, if
+      any, otherwise from the start of file. `^:<funcname>` searches from the
+      start of file. The function names are determined in the same way as
+      `git diff` works out patch hunk headers (see *Defining a custom
+      hunk-header* in [gitattributes](man://gitattributes/5)).
+    M: |-
+      Detect moved or copied lines within a file. When a commit moves or
+      copies a block of lines (e.g. the original file has A and then B, and
+      the commit changes it to B and then A), the traditional *blame*
+      algorithm notices only half of the movement and typically blames the
+      lines that were moved up (i.e. B) to the parent and assigns blame to the
+      lines that were moved down (i.e. A) to the child commit. With this
+      option, both groups of lines are blamed on the parent by running extra
+      passes of inspection.
+      
+      &lt;num&gt; is optional but it is the lower bound on the number of
+      alphanumeric characters that Git must detect as moving/copying within a
+      file for it to associate those lines with the parent commit. The default
+      value is 20.
+    R: |-
+      Swap two inputs; that is, show differences from index or
+      on-disk file to tree contents.
+    S: |-
+      Use revisions from revs-file instead of calling
+      [git-rev-list](cmd://git/rev-list).
+    a: |-
+      Attempt to auto-register archives at `http://mirrors.sourcecontrol.net`
+      This is particularly useful with the -D option.
+    h: Display usage.
+    k: |-
+      Skip move or rename actions which would lead to an error
+      condition. An error happens when a source is neither existing nor
+      controlled by Git, or when it would overwrite an existing
+      file unless `-f` is given.
+    m: |-
+      Show diffs for merge commits in the default format. This is
+      similar to `--diff-merges=on`, except `-m` will
+      produce no output unless `-p` is given as well.
+    o: |-
+      Use this for compatibility with old-style branch names used by earlier
+      versions of *git archimport*. Old-style branch names were
+      category--branch, whereas new-style branch names are
+      archive,category--branch--version. In both cases, names given on the
+      command-line will override the automatically-generated ones.
+    p: |-
+      These flags are passed to the *git apply* (see
+      [git-apply](cmd://git/apply)) program that applies the patch.
+      
+      Valid \<action\> for the `--whitespace` option are: `nowarn`, `warn`, `fix`, `error`, and `error-all`.
+    r: |-
+      Allow recursive removal when a leading directory name is
+          given.
+    s: Suppress the author name and timestamp from the output.
+    v: Verbose output.
+    z: |-
+      When `--numstat` has been given, do not munge pathnames,
+      but use a NUL-terminated machine-readable format.
+      
+      Without this option, pathnames with "unusual" characters are quoted as
+      explained for the configuration variable `core.quotePath` (see
+      [git-config](cmd://git/config)).
+    A: CVS by default uses the Unix username when writing its commit logs
+    P: instead of calling cvsps, read the provided cvsps output file
+    d: the root of the CVS archive
+    i: |-
+      import-only: don’t perform a checkout after importing
+    u: convert underscores in tag and branch names to dots

@@ -9,8 +9,43 @@ flags:
   -b, --browser=: the browser to launch
   -d, --httpd=: the command to launch
   -l, --local: only bind on 127.0.0.1
+  -m, --module-path=: module path
   -p, --port=: the port to bind to
 documentation:
   command: |-
     A simple script to set up `gitweb` and a web server for browsing the local
     repository.
+  flag:
+    local: |-
+      When the repository to clone from is on a local machine,
+      this flag bypasses the normal "Git aware" transport
+      mechanism and clones the repository by making a copy of
+      `HEAD` and everything under objects and refs directories.
+      The files under `.git/objects/` directory are hardlinked
+      to save space when possible.
+      
+      If the repository is specified as a local path (e.g., `/path/to/repo`),
+      this is the default, and `--local` is essentially a no-op.  If the
+      repository is specified as a URL, then this flag is ignored (and we
+      never use the local optimizations).  Specifying `--no-local` will
+      override the default when `/path/to/repo` is given, using the regular
+      Git transport instead.
+      
+      If the repository's `$GIT_DIR/objects` has symbolic links or is a
+      symbolic link, the clone will fail. This is a security measure to
+      prevent the unintentional copying of files by dereferencing the symbolic
+      links.
+      
+      This option does not work with repositories owned by other users for security
+      reasons, and `--no-local` must be specified for the clone to succeed.
+      
+      *NOTE*: this operation can race with concurrent modification to the
+      source repository, similar to running `cp -r <src> <dst>` while modifying
+      _<src>_.
+    port: Listen on an alternative port.  Incompatible with `--inetd` option.
+    browser: the browser to launch
+    httpd: the command to launch
+    module-path: module path
+    restart: restart the web server
+    start: start the web server
+    stop: stop the web server

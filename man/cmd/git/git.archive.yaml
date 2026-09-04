@@ -3,22 +3,24 @@ name: archive
 description: Create an archive of files from a named tree
 group: main
 flags:
-  --add-file=: add untracked file to archive
+  --add-file=*: add untracked file to archive
+  --add-virtual-file=*: add untracked file to archive with given content
   --exec=: path to the remote git-upload-archive command
   --format=: archive format
+  --mtime=: set modification time for archive entries
   --prefix=: prepend prefix to each pathname in the archive
   --remote=: retrieve the archive from remote repository <repo>
   --worktree-attributes: read .gitattributes in working directory
-  '-0': set compression level
-  '-1': set compression level
-  '-2': set compression level
-  '-3': set compression level
-  '-4': set compression level
-  '-5': set compression level
-  '-6': set compression level
-  '-7': set compression level
-  '-8': set compression level
-  '-9': set compression level
+  "-0": set compression level
+  "-1": set compression level
+  "-2": set compression level
+  "-3": set compression level
+  "-4": set compression level
+  "-5": set compression level
+  "-6": set compression level
+  "-7": set compression level
+  "-8": set compression level
+  "-9": set compression level
   -l, --list: list supported archive formats
   -o, --output=: write the archive to this file
   -v, --verbose: report archived files on stderr
@@ -38,43 +40,43 @@ documentation:
     if the tar format is used; it can be extracted using 'git
     get-tar-commit-id'. In ZIP files it is stored as a file comment.
   flag:
-    '0': |
+    "0": |
       Specify compression level. Larger values allow the command to spend more
       time to compress to smaller size. Supported values are from `-0`
       (store-only) to `-9` (best ratio). Default is `-6` if not given.
-    '1': |
+    "1": |
       Specify compression level. Larger values allow the command to spend more
       time to compress to smaller size. Supported values are from `-0`
       (store-only) to `-9` (best ratio). Default is `-6` if not given.
-    '2': |
+    "2": |
       Specify compression level. Larger values allow the command to spend more
       time to compress to smaller size. Supported values are from `-0`
       (store-only) to `-9` (best ratio). Default is `-6` if not given.
-    '3': |
+    "3": |
       Specify compression level. Larger values allow the command to spend more
       time to compress to smaller size. Supported values are from `-0`
       (store-only) to `-9` (best ratio). Default is `-6` if not given.
-    '4': |
+    "4": |
       Specify compression level. Larger values allow the command to spend more
       time to compress to smaller size. Supported values are from `-0`
       (store-only) to `-9` (best ratio). Default is `-6` if not given.
-    '5': |
+    "5": |
       Specify compression level. Larger values allow the command to spend more
       time to compress to smaller size. Supported values are from `-0`
       (store-only) to `-9` (best ratio). Default is `-6` if not given.
-    '6': |
+    "6": |
       Specify compression level. Larger values allow the command to spend more
       time to compress to smaller size. Supported values are from `-0`
       (store-only) to `-9` (best ratio). Default is `-6` if not given.
-    '7': |
+    "7": |
       Specify compression level. Larger values allow the command to spend more
       time to compress to smaller size. Supported values are from `-0`
       (store-only) to `-9` (best ratio). Default is `-6` if not given.
-    '8': |
+    "8": |
       Specify compression level. Larger values allow the command to spend more
       time to compress to smaller size. Supported values are from `-0`
       (store-only) to `-9` (best ratio). Default is `-6` if not given.
-    '9': |
+    "9": |
       Specify compression level. Larger values allow the command to spend more
       time to compress to smaller size. Supported values are from `-0`
       (store-only) to `-9` (best ratio). Default is `-6` if not given.
@@ -112,3 +114,5 @@ documentation:
     worktree-attributes: |
       Look for attributes in .gitattributes files in the working tree as well
       (see [ATTRIBUTES](#ATTRIBUTES)).
+    add-virtual-file: add untracked file to archive with given content
+    mtime: set modification time for archive entries
