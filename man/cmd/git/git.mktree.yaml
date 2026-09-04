@@ -5,6 +5,8 @@ group: low-level manipulator
 flags:
   --batch: allow creation of more than one tree
   --missing: allow missing objects
+  --no-batch: do not allow creation of more than one tree
+  --no-missing: do not allow missing objects
   -z: input is NUL terminated
 documentation:
   command: |-
@@ -12,3 +14,41 @@ documentation:
     a tree object.  The order of the tree entries is normalized by mktree so
     pre-sorting the input is not required.  The object name of the tree object
     built is written to the standard output.
+  flag:
+    missing: |-
+      A debug option to help with future "partial clone" development.
+      This option specifies how missing objects are handled.
+      
+      The form `--missing=error` requests that rev-list stop with an error if
+      a missing object is encountered.  This is the default action.
+      
+      The form `--missing=allow-any` will allow object traversal to continue
+      if a missing object is encountered.  Missing objects will silently be
+      omitted from the results.
+      
+      The form `--missing=allow-promisor` is like `allow-any`, but will only
+      allow object traversal to continue for EXPECTED promisor missing objects.
+      Unexpected missing objects will raise an error.
+      
+      The form `--missing=print` is like `allow-any`, but will also print a
+      list of the missing objects.  Object IDs are prefixed with a *?* character.
+      
+      The form `--missing=print-info` is like `print`, but will also print additional
+      information about the missing object inferred from its containing object. The
+      information is all printed on the same line with the missing object ID in the
+      form: `?<oid> [<token>=<value>]...`. The `<token>=<value>` pairs containing
+      additional information are separated from each other by a _SP_. The value is
+      encoded in a token specific fashion, but _SP_ or _LF_ contained in value are always
+      expected to be represented in such a way that the resulting encoded value does
+      not have either of these two problematic bytes. Each `<token>=<value>` may be
+      one of the following:
+    z: |-
+      When `--numstat` has been given, do not munge pathnames,
+      but use a NUL-terminated machine-readable format.
+      
+      Without this option, pathnames with "unusual" characters are quoted as
+      explained for the configuration variable `core.quotePath` (see
+      [git-config](cmd://git/config)).
+    no-missing: do not allow missing objects
+    batch: allow creation of more than one tree
+    no-batch: do not allow creation of more than one tree

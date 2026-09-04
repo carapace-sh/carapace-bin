@@ -1,23 +1,62 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: fsck
+aliases:
+  - fsck-objects
 description: Verifies the connectivity and validity of the objects in the database
 group: interrogator
 flags:
-  --cache: Consider any object recorded in the index also as a head node for an unreachability trace
-  --connectivity-only: Check only the connectivity of reachable objects
-  --dangling: Print objects that exist but that are never directly used
-  --full: Check not just objects in GIT_OBJECT_DIRECTORY
-  --lost-found: Write dangling objects into .git/lost-found/commit/ or .git/lost-found/other/
-  --name-objects: Also display a name that describes how objects are reachable
-  --no-dangling: Do not print objects that exist but that are never directly used
-  --no-full: Check only objects in GIT_OBJECT_DIRECTORY
-  --no-progress: Do no report progress status
-  --no-reflogs: Do not consider commits that are referenced only by an entry in a reflog to be reachable
-  --progress: Report progress status
-  --root: Report root nodes
-  --strict: Enable more strict checking
-  --tags: Report tags
-  --unreachable: Print out objects that exist but that aren’t reachable from any of the reference nodes
-  --verbose: Be chatty
+  --cache: consider any object recorded in the index also as a head node for an unreachability trace
+  --connectivity-only: check only the connectivity of reachable objects
+  --dangling: print objects that exist but that are never directly used
+  --full: check not just objects in GIT_OBJECT_DIRECTORY
+  --lost-found: write dangling objects into .git/lost-found/commit/ or .git/lost-found/other/
+  --name-objects: also display a name that describes how objects are reachable
+  --no-dangling: do not print objects that exist but that are never directly used
+  --no-full: check only objects in GIT_OBJECT_DIRECTORY
+  --no-progress: do no report progress status
+  --no-reflogs: do not consider commits that are referenced only by an entry in a reflog to be reachable
+  --progress: report progress status
+  --references: check reference database consistency
+  --reflogs: make reflogs head nodes (default)
+  --root: report root nodes
+  --strict: enable more strict checking
+  --tags: report tags
+  --unreachable: print out objects that exist but that aren’t reachable from any of the reference nodes
+  --verbose: be chatty
 documentation:
   command: Verifies the connectivity and validity of the objects in the database.
+  flag:
+    no-progress: |-
+      Progress status is reported on the standard error stream
+      by default when it is attached to a terminal, unless `--quiet`
+      is specified. This flag enables progress reporting even if not
+      attached to a terminal, regardless of `--quiet`.
+    progress: |-
+      Enable progress reporting on the standard error stream even if
+      not attached to a terminal. By default, progress status is
+      reported only when it is attached. You can't use `--progress`
+      together with `--porcelain` or `--incremental`.
+    root: |-
+      Do not treat root commits as boundaries.  This can also be
+      controlled via the `blame.showRoot` config option.
+    tags: |-
+      Instead of using only the annotated tags, use any tag
+      found in `refs/tags` namespace.  This option enables matching
+      a lightweight (non-annotated) tag.
+    verbose: Be verbose.
+    cache: |-
+      consider any object recorded in the index also as a head node for an unreachability trace
+    connectivity-only: check only the connectivity of reachable objects
+    dangling: print objects that exist but that are never directly used
+    full: check not just objects in GIT_OBJECT_DIRECTORY
+    lost-found: write dangling objects into .git/lost-found/commit/ or .git/lost-found/other/
+    name-objects: also display a name that describes how objects are reachable
+    no-dangling: do not print objects that exist but that are never directly used
+    no-full: check only objects in GIT_OBJECT_DIRECTORY
+    no-reflogs: |-
+      do not consider commits that are referenced only by an entry in a reflog to be reachable
+    references: check reference database consistency
+    reflogs: make reflogs head nodes (default)
+    strict: enable more strict checking
+    unreachable: |-
+      print out objects that exist but that aren’t reachable from any of the reference nodes

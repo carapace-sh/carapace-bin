@@ -16,3 +16,11 @@ documentation:
     multiple columns. Each input line occupies one cell of the table. It
     is used internally by other git commands to format output into
     columns.
+  flag:
+    command: lookup config vars
+    indent: padding space on left border
+    mode: layout to use
+    nl: padding space on right border
+    padding: padding space between columns
+    raw-mode: layout to use
+    width: maximum width

@@ -1,0 +1,8 @@
+short: |
+  Do not print ref prefixes ("refs/heads/", "refs/tags/", and "refs/remotes/") before the referenced names.
+full: |
+  Print ref prefixes ("refs/heads/", "refs/tags/", and "refs/remotes/") before the referenced names.
+auto: |
+  Use the short format when output to a terminal, and the full format otherwise.
+"no": |
+  No decoration is shown.

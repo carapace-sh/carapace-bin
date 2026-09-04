@@ -1,2 +1,18 @@
-name: pull
-description: pull a subtree
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pull <repository> <remote-ref>
+description: Exactly like merge, but parallels git pull
+flags:
+  --squash: produce only a single commit that contains all the differences
+  -m, --message=: specify <message> as the commit message for the merge commit
+documentation:
+  flag:
+    squash: |-
+      Construct a commit message for use with `git rebase --autosquash`.
+      The commit message title is taken from the specified
+      commit with a prefix of "squash! ".  Can be used with additional
+      commit message options (`-m`/`-c`/`-C`/`-F`). See
+      [git-rebase](cmd://git/rebase) for details.
+    message: |-
+      Use the given note message (instead of prompting).
+      If multiple `-m` options are given, their values
+      are concatenated as separate paragraphs.

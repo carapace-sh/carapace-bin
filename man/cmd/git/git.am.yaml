@@ -4,25 +4,36 @@ description: Apply a series of patches from a mailbox
 group: main
 flags:
   --abort: restore the original branch and abort the patching operation
-  --committer-date-is-author-date: lie about committer date
+  --allow-empty: create an empty commit with the contents of the e-mail message as its log message
+  --committer-date-is-author-date: use the author date as committer date
   --continue: continue applying patches after resolving a conflict
   --directory=: pass it through git-apply
-  --exclude=: pass it through git-apply
-  --ignore-date: use current timestamp for author date
+  --empty=: how to handle empty patches
+  --exclude=*: pass it through git-apply
+  --ignore-date: use the committer date as author date
   --ignore-space-change: pass it through git-apply
   --ignore-whitespace: pass it through git-apply
-  --include=: pass it through git-apply
+  --include=*: pass it through git-apply
   --keep-cr: pass --keep-cr flag to git-mailsplit for mbox format
   --keep-non-patch: pass -b flag to git-mailinfo
+  --no-3way: do not fall back on 3way merging
+  --no-gpg-sign: do not GPG-sign commits
   --no-keep-cr: do not pass --keep-cr flag to git-mailsplit independent of am.keepcr
+  --no-message-id: do not add the Message-ID header to the commit message
+  --no-rerere-autoupdate: do not update the index with reused conflict resolution
+  --no-scissors: ignore scissors lines
+  --no-utf8: pass -n flag to git-mailinfo
+  --no-verify: skip the pre-applypatch and applypatch-msg hooks
   --patch-format=: format the patch(es) are in
   --quit: abort the patching operation but keep HEAD where it is
   --quoted-cr=: pass it through git-mailinfo
   --reject: pass it through git-apply
   --rerere-autoupdate: update the index with reused conflict resolution if possible
   --resolvemsg=: override error message when patch failure occurs
-  --show-current-patch?: show the patch being applied
+  --retry: try to apply the last conflicting patch again
+  --show-current-patch?: show the message at which git-am has stopped due to conflicts
   --skip: skip the current patch
+  --verify: run the pre-applypatch and applypatch-msg hooks
   --whitespace=: pass it through git-apply
   -3, --3way: allow fall back on 3way merging if needed
   -C=: pass it through git-apply
@@ -37,12 +48,6 @@ flags:
   -s, --signoff: add a Signed-off-by trailer to the commit message
   -u, --utf8: recode into utf8 (default)
 documentation:
-  command: |-
-    Splits mail messages in a mailbox into commit log messages,
-    authorship information, and patches, and applies them to the
-    current branch. You could think of it as a reverse operation
-    of [git-format-patch](cmd://git/format-patch) run on a branch with a straight
-    history without merges.
   flag:
     3way: |-
       When the patch does not apply cleanly, fall back on
@@ -214,3 +219,34 @@ documentation:
       [git-apply](cmd://git/apply)) program that applies the patch.
 
       Valid \<action\> for the `--whitespace` option are: `nowarn`, `warn`, `fix`, `error`, and `error-all`.
+    allow-empty: |-
+      Preserve commits that are empty (i.e. that do not change the tree)
+      in the output. The default is to drop such commits, requiring the
+      use of `--allow-empty` with `git commit` to create them explicitly.
+    empty: |-
+      How to handle commits that become empty after rebasing (because they contain a subset of already upstream changes). With `drop` (default), empty commits are removed. With `keep`, empty commits are retained. With `stop`, the rebase halts to let you choose. Note that commits which start empty are kept by default, and clean cherry-picks are detected and dropped as a preliminary step.
+    no-gpg-sign: |-
+      GPG-sign commits. The _<key-id>_ is optional and
+      defaults to the committer identity; if specified, it must be
+      stuck to the option without a space. `--no-gpg-sign` is useful to
+      countermand both `commit.gpgSign` configuration variable, and
+      earlier `--gpg-sign`.
+    no-rerere-autoupdate: |-
+      After the rerere mechanism reuses a recorded resolution on
+      the current conflict to update the files in the working
+      tree, allow it to also update the index with the result of
+      resolution.  `--no-rerere-autoupdate` is a good way to
+      double-check what [git-rerere](cmd://git/rerere) did and catch potential
+      mismerges, before committing the result to the index with a
+      separate [git-add](cmd://git/add).
+    no-verify: |-
+      By default, the pre-commit and commit-msg hooks are run. When any of
+      `--no-verify` or `-n` is given, these are bypassed. See also
+      [githooks](man://githooks/5).
+    verify: Verify the cryptographic signature of the given tags.
+    no-scissors: ignore scissors lines
+    no-3way: do not fall back on 3way merging
+    no-message-id: do not add the Message-ID header to the commit message
+    no-utf8: pass -n flag to git-mailinfo
+    retry: try to apply the last conflicting patch again
+

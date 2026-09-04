@@ -5,10 +5,18 @@ group: main
 flags:
   --all: push all refs
   --atomic: request atomic transaction on remote side
+  --branches: push all branches
   --exec=: receive pack program
   --follow-tags: push missing but relevant tags
+  --force-if-includes: require remote updates to be integrated locally
   --force-with-lease?: require old value of ref to be at this value
   --mirror: mirror all refs
+  --no-atomic: do not request atomic transaction on remote side
+  --no-force-if-includes: do not require remote updates to be integrated locally
+  --no-force-with-lease: cancel all previous force-with-lease specifications
+  --no-recurse-submodules: disable recursive pushing of submodules
+  --no-signed: do not GPG sign the push
+  --no-thin: do not use thin pack
   --no-verify: bypass pre-push hook
   --porcelain: machine-readable output
   --progress: force progress reporting
@@ -19,6 +27,7 @@ flags:
   --signed=: GPG sign the push
   --tags: push tags (can't be used with --all or --mirror)
   --thin: use thin pack
+  --verify: run the pre-push hook
   -4, --ipv4: use IPv4 addresses only
   -6, --ipv6: use IPv6 addresses only
   -d, --delete: delete refs
@@ -29,49 +38,11 @@ flags:
   -u, --set-upstream: set upstream for git pull/status
   -v, --verbose: be more verbose
 documentation:
-  command: |-
-    Updates one or more branches, tags, or other references in one or more
-    remote repositories from your local repository, and sends all necessary
-    data that isn't already on the remote.
-
-    The simplest way to push is `git push <remote> <branch>`.
-    `git push origin main` will push the local `main` branch to the `main`
-    branch on the remote named `origin`.
-
-    You can also push to multiple remotes at once by using a remote group.
-    A remote group is a named list of remotes configured via `remotes.<name>`
-    in your git config:
-
-    $ git config remotes.all-remotes "origin gitlab backup"
-
-    Then `git push all-remotes` will push to `origin`, `gitlab`, and
-    `backup` in turn, as if you had run `git push` against each one
-    individually.  Each remote is pushed independently using its own
-    push mapping configuration. There is a `remotes.<group>` entry in
-    the configuration file. (See [git-config](cmd://git/config)).
-
-    The `<repository>` argument defaults to the upstream for the current
-    branch, or `origin` if there's no configured upstream.
-
-    To decide which branches, tags, or other refs to push, Git uses
-    (in order of precedence):
-
-    1. The `<refspec>` argument(s) (for example `main` in `git push origin main`)
-       or the `--all`, `--mirror`, or `--tags` options
-    2. The `remote.<name>.push` configuration for the repository being pushed to
-    3. The `push.default` configuration. The default is `push.default=simple`,
-       which will push to a branch with the same name as the current branch.
-       See the CONFIGURATION section below for more on `push.default`.
-
-    `git push` may fail if you haven't set an upstream for the current branch,
-    depending on what `push.default` is set to.
-    See the UPSTREAM BRANCHES section below for more
-    on how to set and use upstreams.
-
-    You can make interesting things happen to a repository
-    every time you push into it, by setting up `hooks` there.  See
-    documentation for [git-receive-pack](cmd://git/receive-pack).
   flag:
+    atomic: |-
+      Use an atomic transaction on the remote side if available.
+      Either all refs are updated, or on error, no refs are updated.
+      If the server does not support atomic pushes the push will fail.
     delete: |-
       All listed refs are deleted from the remote repository. This is
       the same as prefixing all refs with a colon.
@@ -251,7 +222,7 @@ documentation:
       revisions to be pushed are available on a remote-tracking branch.
       Possible values are:
       **check**:
-              Git will verify that all submodule commits that
+          Git will verify that all submodule commits that
       changed in the revisions to be pushed are available on at least one
       remote of the submodule. If any commits are missing the push will
       be aborted and exit with non-zero status.
@@ -295,13 +266,35 @@ documentation:
       All refs under `refs/tags` are pushed, in
       addition to refspecs explicitly listed on the command
       line.
-    verbose: Run verbosely.
-    atomic: |-
-      Use an atomic transaction on the remote side if available.
-      Either all refs are updated, or on error, no refs are updated.
-      If the server does not support atomic pushes the push will fail.
     thin: |-
       These options are passed to [git-send-pack](cmd://git/send-pack). A thin transfer
       significantly reduces the amount of sent data when the sender and
       receiver share many of the same objects in common. The default is
       `--thin`.
+    verbose: Run verbosely.
+    all: |-
+      Update the index not only where the working tree has a file matching **\<pathspec\>**
+      but also where the index already has an entry.
+      This adds, modifies, and removes index entries to match the working tree.
+      
+      If no **\<pathspec\>** is given when `-A` option is used,
+      all files in the entire working tree are updated
+      (old versions of Git used to limit the update to the current directory and its subdirectories).
+    no-recurse-submodules: |-
+      Using `--recurse-submodules` will update the content of all active
+      submodules according to the commit recorded in the superproject. If
+      local modifications in a submodule would be overwritten the checkout
+      will fail unless `-f` is used. If nothing (or `--no-recurse-submodules`)
+      is used, submodules working trees will not be updated.
+      Just like [git-submodule](cmd://git/submodule), this will detach `HEAD` of the
+      submodule.
+    verify: Verify the cryptographic signature of the given tags.
+    no-atomic: do not request atomic transaction on remote side
+    no-thin: do not use thin pack
+    branches: push all branches
+    force-if-includes: require remote updates to be integrated locally
+    no-force-if-includes: do not require remote updates to be integrated locally
+    no-force-with-lease: cancel all previous force-with-lease specifications
+    no-signed: do not GPG sign the push
+    receive-pack: receive pack program
+

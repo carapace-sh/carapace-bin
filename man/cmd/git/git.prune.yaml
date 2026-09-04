@@ -25,3 +25,26 @@ documentation:
 
     Note that unreachable, packed objects will remain.  If this is
     not desired, see [git-repack](cmd://git/repack).
+  flag:
+    exclude-promisor-objects: |-
+      (For internal use only.)  Prefilter object traversal at
+      promisor boundary.  This is used with partial clone.  This is
+      stronger than `--missing=allow-promisor` because it limits the
+      traversal, rather than just silencing errors about missing
+      objects.
+    expire: |-
+      Prune entries older than the specified time. If this option is
+      not specified, the expiration time is taken from the
+      configuration setting `gc.reflogExpire`, which in turn
+      defaults to 90 days. `--expire=all` prunes entries regardless
+      of their age; `--expire=never` turns off pruning of reachable
+      entries (but see `--expire-unreachable`).
+    progress: |-
+      Enable progress reporting on the standard error stream even if
+      not attached to a terminal. By default, progress status is
+      reported only when it is attached. You can't use `--progress`
+      together with `--porcelain` or `--incremental`.
+    dry-run: |-
+      Don't actually add the file(s), just show if they exist and/or will
+      be ignored.
+    verbose: Report progress to stderr.

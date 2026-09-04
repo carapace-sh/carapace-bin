@@ -10,3 +10,5 @@ documentation:
 
     Note that `git --version` is identical to `git version` because the
     former is internally converted into the latter.
+  flag:
+    build-options: include additional information about how git was built

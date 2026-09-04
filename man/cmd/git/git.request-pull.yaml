@@ -15,3 +15,9 @@ documentation:
     `<start>` and the output asks it to integrate the changes you made
     since that commit, up to the commit named by `<end>`, by visiting
     the repository named by `<URL>`.
+  flag:
+    p: |-
+      These flags are passed to the *git apply* (see
+      [git-apply](cmd://git/apply)) program that applies the patch.
+      
+      Valid \<action\> for the `--whitespace` option are: `nowarn`, `warn`, `fix`, `error`, and `error-all`.

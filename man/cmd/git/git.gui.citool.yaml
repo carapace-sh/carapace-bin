@@ -2,5 +2,31 @@
 name: citool
 description: Start git gui and arrange to make exactly one commit before exiting and returning to the shell
 flags:
-  --amend: Automatically enter the Amend Last Commit mode of the interface
-  --nocommit: Behave as normal citool, but instead of making a commit simply terminate with a zero exit code
+  --amend: automatically enter the Amend Last Commit mode of the interface
+  --nocommit: behave as normal citool, but instead of making a commit simply terminate with a zero exit code
+documentation:
+  flag:
+    amend: |-
+      Replace the tip of the current branch by creating a new commit. The
+      recorded tree is prepared as usual (including the effect of the `-i` and
+      `-o` options and explicit pathspec), and the message from the original
+      commit is used as the starting point, instead of an empty message, when
+      no other message is specified from the command line via options such as
+      `-m`, `-F`, `-c`, etc. The new commit has the same parents and author as
+      the current one (the `--reset-author` option can countermand this).
+      
+      It is a rough equivalent for:
+      
+      ```sh
+      $ git reset --soft HEAD^
+      $ ... do something else to come up with the right tree ...
+      $ git commit -c ORIG_HEAD
+      ```
+      
+      but can be used to amend a merge commit.
+      
+      You should understand the implications of rewriting history if you amend
+      a commit that has already been published. (See the "RECOVERING FROM
+      UPSTREAM REBASE" section in [git-rebase](cmd://git/rebase).)
+    nocommit: |-
+      behave as normal citool, but instead of making a commit simply terminate with a zero exit code

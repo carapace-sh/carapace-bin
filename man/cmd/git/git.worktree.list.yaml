@@ -7,13 +7,6 @@ flags:
   -v, --verbose: show extended annotations and reasons, if available
   -z: terminate records with a NUL character
 documentation:
-  command: |-
-    List details of each worktree.  The main worktree is listed first,
-    followed by each of the linked worktrees.  The output details include
-    whether the worktree is bare, the revision currently checked out, the
-    branch currently checked out (or "detached HEAD" if none), "locked" if
-    the worktree is locked, "prunable" if the worktree can be pruned by the
-    `prune` command.
   flag:
     porcelain: |-
       With `list`, output in an easy-to-parse format for scripts.
@@ -29,3 +22,11 @@ documentation:
       `--porcelain` is specified with `list`. This makes it possible
       to parse the output when a worktree path contains a newline
       character.
+    expire: |-
+      Prune entries older than the specified time. If this option is
+      not specified, the expiration time is taken from the
+      configuration setting `gc.reflogExpire`, which in turn
+      defaults to 90 days. `--expire=all` prunes entries regardless
+      of their age; `--expire=never` turns off pruning of reachable
+      entries (but see `--expire-unreachable`).
+

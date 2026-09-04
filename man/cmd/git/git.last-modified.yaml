@@ -3,11 +3,24 @@ name: last-modified
 description: 'EXPERIMENTAL: Show when files were last modified'
 group: low-level interrogator
 flags:
-    --max-depth=: Maximum tree depth to recurse
-    -r, --recursive: Recurse into subtrees
-    -t, --show-trees: Show tree entries when recursing into subtrees
-    -z: Lines are separated with NUL character
-
+  --max-depth=: maximum tree depth to recurse
+  -r, --recursive: recurse into subtrees
+  -t, --show-trees: show tree entries when recursing into subtrees
+  -z: lines are separated with NUL character
 documentation:
-  command: >-
-    Show which commit last modified each of the relevant files and subdirectories. A commit renaming a path or changing its mode is also taken into account. THIS COMMAND IS EXPERIMENTAL; THE BEHAVIOR MAY CHANGE.
+  command: Show which commit last modified each of the relevant files and subdirectories. A commit renaming a path or changing its mode is also taken into account. THIS COMMAND IS EXPERIMENTAL; THE BEHAVIOR MAY CHANGE.
+  flag:
+    z: |-
+      When `--numstat` has been given, do not munge pathnames,
+      but use a NUL-terminated machine-readable format.
+      
+      Without this option, pathnames with "unusual" characters are quoted as
+      explained for the configuration variable `core.quotePath` (see
+      [git-config](cmd://git/config)).
+    recursive: |-
+      Traverse submodules recursively. This option is only valid for `foreach`,
+      `update`, `status` and `sync` commands. The operation is performed not
+      only in the submodules of the current repo, but also
+      in any nested submodules inside those submodules (and so on).
+    max-depth: maximum tree depth to recurse
+    show-trees: show tree entries when recursing into subtrees

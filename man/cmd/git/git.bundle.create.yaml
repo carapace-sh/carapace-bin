@@ -7,3 +7,19 @@ flags:
   --progress: show progress meter
   --version=: specify bundle format version
   -q, --quiet: do not show progress meter
+documentation:
+  flag:
+    progress: |-
+      Enable progress reporting on the standard error stream even if
+      not attached to a terminal. By default, progress status is
+      reported only when it is attached. You can't use `--progress`
+      together with `--porcelain` or `--incremental`.
+    version: |-
+      Prints the Git suite version that the *git* program came from.
+      
+      This option is internally converted to `git version ...` and accepts the
+      same options as the [git-version](cmd://git/version) command. If
+      `--help` is also given, it takes precedence over `--version`.
+    quiet: Be quiet. Only print error messages.
+    all-progress: show progress meter during object writing phase
+    all-progress-implied: similar to --all-progress when progress meter is shown

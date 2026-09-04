@@ -22,7 +22,8 @@ documentation:
 
     If you are only interested in changes of the currently initialized
     submodules with respect to the commit recorded in the index or the `HEAD`,
-    [git-status](cmd://git/status) and [git-diff](cmd://git/diff) will provide that information
+    [git-status](cmd: |-
+      //git/status) and [git-diff](cmd://git/diff) will provide that information
     too (and can also report changes to a submodule's work tree).
   flag:
     cached: |-
@@ -33,3 +34,4 @@ documentation:
       `update`, `status` and `sync` commands. The operation is performed not
       only in the submodules of the current repo, but also
       in any nested submodules inside those submodules (and so on).
+

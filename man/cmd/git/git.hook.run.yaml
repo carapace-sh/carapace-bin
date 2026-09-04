@@ -2,5 +2,20 @@
 name: run [--ignore-missing] [--to-stdin=<path>] <hook-name> [-- <hook-args>]
 description: Run git hooks
 flags:
+  --allow-unknown-hook-name: allow running a hook with a non-native hook name
   --ignore-missing: ignore any missing hook by quietly returning zero
   --to-stdin=: specify a file which will be streamed into the hook’s stdin
+  -j, --jobs=: number of hooks to run in parallel
+documentation:
+  flag:
+    ignore-missing: |-
+      This option can only be used together with `--dry-run`. By using
+      this option the user can check if any of the given files would
+      be ignored, no matter if they are already present in the work
+      tree or not.
+    jobs: |-
+      Clone new submodules in parallel with _<n>_ jobs.
+      This option is only valid for the `update` command.
+      Defaults to the `submodule.fetchJobs` option.
+    allow-unknown-hook-name: allow running a hook with a non-native hook name
+    to-stdin: specify a file which will be streamed into the hook’s stdin

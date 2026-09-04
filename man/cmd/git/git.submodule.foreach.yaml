@@ -2,7 +2,7 @@
 name: foreach
 description: Evaluates an arbitrary shell command in each checked out submodule
 flags:
-  --recursive: ''
+  --recursive: traverse nested submodules recursively
 documentation:
   command: |-
     Evaluate an arbitrary shell _<command>_ in each checked out submodule.

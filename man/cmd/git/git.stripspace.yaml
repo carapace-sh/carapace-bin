@@ -24,3 +24,6 @@ documentation:
     *NOTE*: This is intended for cleaning metadata. Prefer the `--whitespace=fix`
     mode of [git-apply](cmd://git/apply) for correcting whitespace of patches or files in
     the repository.
+  flag:
+    comment-lines: prepend comment character and space to each line
+    strip-comments: skip and remove all lines starting with comment character

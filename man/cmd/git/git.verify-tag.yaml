@@ -6,11 +6,16 @@ flags:
   --raw: print raw gpg status output
   -v, --verbose: print tag contents
 documentation:
-  command: |-
-    Validates the gpg signature created by `git tag` in the tag
-    objects listed on the command line.
   flag:
     raw: |-
       Print the raw gpg status output to standard error instead of the normal
       human-readable output.
     verbose: Print the contents of the tag object before validating it.
+    format: |-
+      Format of the resulting archive. Possible values are `tar`, `zip`,
+      `tar.gz`, `tgz`, and any format defined using the configuration option
+      `tar.<format>.command`. If `--format` is not given, and the output file
+      is specified, the format is inferred from the filename if possible (e.g.
+      writing to `foo.zip` makes the output to be in the `zip` format).
+      Otherwise the output format is `tar`.
+

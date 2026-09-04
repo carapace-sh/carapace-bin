@@ -1,8 +1,18 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: reword
-description: reword a commit message
+description: Rewrite the commit message of the specified commit
+flags:
+  --dry-run: perform a dry-run without updating any refs
+  --no-dry-run: do not perform a dry-run without updating any refs
+  --update-refs=: control which refs should be updated
 documentation:
   command: |-
     Rewrite the commit message of the specified commit. All the other
     details of this commit remain unchanged. This command will spawn an
     editor with the current message of that commit.
+  flag:
+    dry-run: |-
+      Don't actually add the file(s), just show if they exist and/or will
+      be ignored.
+    no-dry-run: do not perform a dry-run without updating any refs
+    update-refs: control which refs should be updated

@@ -3,6 +3,8 @@ name: mailinfo
 description: Extracts patch and authorship from a single e-mail message
 group: low-level helper
 flags:
+  --encoding=: re-code metadata to this encoding
+  --inbody-headers&: use headers in message's body
   --quoted-cr=: action when quoted CR is found
   --scissors: use scissors
   -b: keep non patch brackets in subject
@@ -18,3 +20,40 @@ documentation:
     written out to the standard output to be used by 'git am'
     to create a commit.  It is usually not necessary to use this
     command directly.  See [git-am](cmd://git/am) instead.
+  flag:
+    b: |-
+      Show blank SHA-1 for boundary commits.  This can also
+      be controlled via the `blame.blankBoundary` config option. c: `Use` the same output mode as [git-annotate](man://git-annotate/1) (Default: off).
+    encoding: |-
+      Commit objects record the character encoding used for the log message
+      in their encoding header; this option can be used to tell the
+      command to re-code the commit log message in the encoding
+      preferred by the user.  For non plumbing commands this
+      defaults to UTF-8. Note that if an object claims to be encoded
+      in `X` and we are outputting in `X`, we will output the object
+      verbatim; this means that invalid sequences in the original
+      commit may be copied to the output. Likewise, if iconv(3) fails
+      to convert the commit, we will quietly output the original
+      object verbatim.
+    k: |-
+      Skip move or rename actions which would lead to an error
+      condition. An error happens when a source is neither existing nor
+      controlled by Git, or when it would overwrite an existing
+      file unless `-f` is given.
+    n: |-
+      _<num>_ specifies how many lines from the annotation, if any,
+      are printed when using `-l`. Implies `--list`.
+      
+      The default is not to print any annotation lines.
+      If no number is given to `-n`, only the first line is printed.
+      If the tag is not annotated, the commit message is displayed instead.
+    quoted-cr: |-
+      This flag will be passed down to *git mailinfo* (see
+      [git-mailinfo](cmd://git/mailinfo)).
+    scissors: |-
+      Remove everything in body before a scissors line (see
+      [git-mailinfo](cmd://git/mailinfo)). Can be activated by default using
+      the `mailinfo.scissors` configuration variable.
+    inbody-headers&: use headers in message's body
+    message-id: copy Message-ID to the end of commit message
+    u: re-code metadata to i18n.commitEncoding

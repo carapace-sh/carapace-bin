@@ -3,44 +3,55 @@ name: pack-objects
 description: Create a packed archive of objects
 group: low-level manipulator
 flags:
-  --all: include objects reachable from any reference
-  --all-progress: show progress meter during object writing phase
-  --all-progress-implied: similar to --all-progress when progress meter is shown
-  --compression=: pack compression level
-  --delta-base-offset: use OFS_DELTA objects
-  --delta-islands: respect islands during delta compression
-  --depth=: maximum length of delta chain allowed in the resulting pack
-  --exclude-promisor-objects: do not pack objects in promisor packfiles
-  --filter=: object filtering
-  --honor-pack-keep: ignore packs that have companion .keep file
-  --include-tag: include tag objects that refer to objects to be packed
-  --incremental: ignore packed objects
-  --index-version=: write the pack index file in the specified idx format version
+  --all: pretend as if all refs under refs/ are specified to be included
+  --all-progress: progress report is displayed during the object count and compression phases
+  --all-progress-implied: this is used to imply --all-progress whenever progress display is activated
+  --compression=: specifies compression level for newly-compressed data in the generated pack
+  --cruft: packs unreachable objects into a separate "cruft" pack
+  --cruft-expiration=: eliminate objects from the cruft pack older than <approxidate>
+  --delta-base-offset: express the base object of a delta as offset in the stream
+  --delta-islands: restrict delta matches based on "islands"
+  --depth=: affect how the objects contained in the pack are stored using delta compression
+  --exclude-promisor-objects: omit objects that are known to be in the promisor remote
+  --exclude-promisor-objects-best-effort: best-effort omit objects that are known to be in the promisor remote
+  --filter=*: omit certain objects from the resulting packfile
+  --honor-pack-keep: ignore object already in a local pack that has a .keep file,
+  --include-tag: include unasked-for annotated tags if the object they reference was included in the resulting packfile
+  --incremental: ignore object already in a pack
+  --index-version=: force the version for the generated pack index
   --indexed-objects: include objects referred to by the index
-  --keep-pack=: ignore this pack
-  --keep-true-parents: do not hide commits by grafts
-  --keep-unreachable: keep unreachable objects
-  --local: ignore borrowed objects from alternate object store
-  --max-pack-size=: maximum size of each output pack file
-  --missing=: handling for missing objects
-  --non-empty: do not create an empty pack output
-  --pack-loose-unreachable: pack loose unreachable objects
-  --progress: show progress meter
-  --reflog: include objects referred by reflog entries
+  --keep-pack=*: ignore object already in given pack
+  --keep-true-parents: keep true parents even with grafts
+  --keep-unreachable: objects unreachable from the refs in named packs are added to the resulting pack
+  --local: 'object that is borrowed from an alternate object store '
+  --max-pack-size=: split the output packfile into multiple independent packfiles
+  --missing=: specify how missing objects are handled
+  --name-hash-version=: name hash version for pack index
+  --no-filter: turn off any previous --filter= argument
+  --no-reuse-delta: do not reuse existing deltas
+  --no-reuse-object: do not reuse existing object data at all
+  --no-sparse: disable "sparse" algorithm
+  --non-empty: only create a packed archive if it would contain at least one object
+  --pack-loose-unreachable: pack unreachable loose objects
+  --path-walk: sort objects by path for better compression
+  --progress: progress status is reported on the standard error stream
+  --reflog: pretend as if all objects mentioned by reflogs are specified to be included
   --reuse-delta: reuse existing deltas
-  --reuse-object: reuse existing objects
-  --revs: read revision arguments from standard input
-  --shallow: create packs suitable for shallow fetches
-  --sparse: use the sparse reachability algorithm
-  --stdout: output pack to stdout
-  --thin: create thin packs
-  --threads=: use threads when searching for best delta matches
-  --unpack-unreachable=: unpack unreachable objects newer than <time>
-  --unpacked: limit the objects to those that are not yet packed
+  --reuse-object: reuse existing object data
+  --revs: read the revision arguments from the standard input
+  --shallow: optimize a pack that will be provided to a client with a shallow repository
+  --sparse: enable "sparse" algorithm
+  --stdin-packs: read the basenames of packfiles from the standard input
+  --stdout: write the pack contents out to the standard output
+  --thin: create a "thin" pack by omitting the common objects between a sender and a receiver
+  --threads=: number of threads to spawn when searching for best delta matches
+  --unpack-unreachable: keep unreachable objects in loose form
+  --unpacked: limit the objects packed to those that are not already packed
+  --uri-protocol=: generate a corresponding pack index for each specified URI protocol
   --use-bitmap-index: use a bitmap index if available to speed up counting objects
-  --window-memory=: limit pack window by memory in addition to object limit
-  --window=: limit pack window by objects
-  --write-bitmap-index: write a bitmap index together with the pack index
+  --window-memory=: additional limit on top of --window
+  --window=: affect how the objects contained in the pack are stored using delta compression
+  --write-bitmap-index: write a bitmap index alongside the packfile
   -q, --quiet: do not show progress meter
 documentation:
   command: |-
@@ -69,3 +80,171 @@ documentation:
     one-object" format; this is typically done by the smart-pull
     commands when a pack is created on-the-fly for efficient network
     transport by their peers.
+  flag:
+    all: |-
+      Update the index not only where the working tree has a file matching **\<pathspec\>**
+      but also where the index already has an entry.
+      This adds, modifies, and removes index entries to match the working tree.
+      
+      If no **\<pathspec\>** is given when `-A` option is used,
+      all files in the entire working tree are updated
+      (old versions of Git used to limit the update to the current directory and its subdirectories).
+    depth: |-
+      Create a `shallow` clone with a history truncated to the
+      specified number of commits. Implies `--single-branch` unless
+      `--no-single-branch` is given to fetch the histories near the
+      tips of all branches. If you want to clone submodules shallowly,
+      also pass `--shallow-submodules`.
+    exclude-promisor-objects: |-
+      (For internal use only.)  Prefilter object traversal at
+      promisor boundary.  This is used with partial clone.  This is
+      stronger than `--missing=allow-promisor` because it limits the
+      traversal, rather than just silencing errors about missing
+      objects.
+    filter: |-
+      Use the partial clone feature and request that the server sends
+      a subset of reachable objects according to a given object filter.
+      When using `--filter`, the supplied _<filter-spec>_ is used for
+      the partial clone filter.
+      
+      If `--filter=auto` is used the filter specification is determined
+      automatically through the `promisor-remote` protocol (see
+      [gitprotocol-v2](man://gitprotocol-v2/5)) by combining the filter specifications
+      advertised by the server for the promisor remotes that the client
+      accepts (see the `promisor.acceptFromServer` configuration option in
+      [git-config](cmd://git/config)). This allows the server to suggest the optimal
+      filter for the available promisor remotes.
+      
+      As with other filter specifications, the "auto" value is persisted in
+      the configuration. This ensures that future fetches will continue to
+      adapt to the server's current recommendation.
+      
+      For details on all other available filter specifications, see the
+      `--filter=<filter-spec>` option in [git-rev-list](cmd://git/rev-list).
+      
+      For example, `--filter=blob:none` will filter out all blobs (file
+      contents) until needed by Git. Also, `--filter=blob:limit=<size>` will
+      filter out all blobs of size at least _<size>_.
+    incremental: |-
+      Show the result incrementally in a format designed for
+      machine consumption.
+    indexed-objects: |-
+      Pretend as if all trees and blobs used by the index are listed
+      on the command line.  Note that you probably want to use
+      `--objects`, too.
+    local: |-
+      When the repository to clone from is on a local machine,
+      this flag bypasses the normal "Git aware" transport
+      mechanism and clones the repository by making a copy of
+      `HEAD` and everything under objects and refs directories.
+      The files under `.git/objects/` directory are hardlinked
+      to save space when possible.
+      
+      If the repository is specified as a local path (e.g., `/path/to/repo`),
+      this is the default, and `--local` is essentially a no-op.  If the
+      repository is specified as a URL, then this flag is ignored (and we
+      never use the local optimizations).  Specifying `--no-local` will
+      override the default when `/path/to/repo` is given, using the regular
+      Git transport instead.
+      
+      If the repository's `$GIT_DIR/objects` has symbolic links or is a
+      symbolic link, the clone will fail. This is a security measure to
+      prevent the unintentional copying of files by dereferencing the symbolic
+      links.
+      
+      This option does not work with repositories owned by other users for security
+      reasons, and `--no-local` must be specified for the clone to succeed.
+      
+      *NOTE*: this operation can race with concurrent modification to the
+      source repository, similar to running `cp -r <src> <dst>` while modifying
+      _<src>_.
+    missing: |-
+      A debug option to help with future "partial clone" development.
+      This option specifies how missing objects are handled.
+      
+      The form `--missing=error` requests that rev-list stop with an error if
+      a missing object is encountered.  This is the default action.
+      
+      The form `--missing=allow-any` will allow object traversal to continue
+      if a missing object is encountered.  Missing objects will silently be
+      omitted from the results.
+      
+      The form `--missing=allow-promisor` is like `allow-any`, but will only
+      allow object traversal to continue for EXPECTED promisor missing objects.
+      Unexpected missing objects will raise an error.
+      
+      The form `--missing=print` is like `allow-any`, but will also print a
+      list of the missing objects.  Object IDs are prefixed with a *?* character.
+      
+      The form `--missing=print-info` is like `print`, but will also print additional
+      information about the missing object inferred from its containing object. The
+      information is all printed on the same line with the missing object ID in the
+      form: `?<oid> [<token>=<value>]...`. The `<token>=<value>` pairs containing
+      additional information are separated from each other by a _SP_. The value is
+      encoded in a token specific fashion, but _SP_ or _LF_ contained in value are always
+      expected to be represented in such a way that the resulting encoded value does
+      not have either of these two problematic bytes. Each `<token>=<value>` may be
+      one of the following:
+    no-filter: Turn off any previous `--filter=` argument.
+    progress: |-
+      Enable progress reporting on the standard error stream even if
+      not attached to a terminal. By default, progress status is
+      reported only when it is attached. You can't use `--progress`
+      together with `--porcelain` or `--incremental`.
+    reflog: |-
+      Pretend as if all objects mentioned by reflogs are listed on the
+      command line as _<commit>_.
+    sparse: |-
+      Employ a sparse-checkout, with only files in the toplevel
+      directory initially being present.  The
+      [git-sparse-checkout](cmd://git/sparse-checkout) command can be used to grow the
+      working directory as needed.
+    thin: |-
+      These options are passed to [git-send-pack](cmd://git/send-pack). A thin transfer
+      significantly reduces the amount of sent data when the sender and
+      receiver share many of the same objects in common. The default is
+      `--thin`.
+    unpacked: |-
+      Only useful with `--objects`; print the object IDs that are not
+      in packs.
+    use-bitmap-index: |-
+      Try to speed up the traversal using the pack bitmap index (if
+      one is available). Note that when traversing with `--objects`,
+      trees and blobs will not have their associated path printed.
+    quiet: Be quiet. Only print error messages.
+    no-sparse: disable "sparse" algorithm
+    all-progress: progress report is displayed during the object count and compression phases
+    all-progress-implied: this is used to imply --all-progress whenever progress display is activated
+    compression: specifies compression level for newly-compressed data in the generated pack
+    cruft: packs unreachable objects into a separate "cruft" pack
+    cruft-expiration: eliminate objects from the cruft pack older than <approxidate>
+    delta-base-offset: express the base object of a delta as offset in the stream
+    delta-islands: restrict delta matches based on "islands"
+    exclude-promisor-objects-best-effort: best-effort omit objects that are known to be in the promisor remote
+    honor-pack-keep: ignore object already in a local pack that has a .keep file,
+    include-tag: |-
+      include unasked-for annotated tags if the object they reference was included in the resulting packfile
+    index-version: force the version for the generated pack index
+    keep-pack: ignore object already in given pack
+    keep-true-parents: keep true parents even with grafts
+    keep-unreachable: |-
+      objects unreachable from the refs in named packs are added to the resulting pack
+    max-pack-size: split the output packfile into multiple independent packfiles
+    name-hash-version: name hash version for pack index
+    no-reuse-delta: do not reuse existing deltas
+    no-reuse-object: do not reuse existing object data at all
+    non-empty: only create a packed archive if it would contain at least one object
+    pack-loose-unreachable: pack unreachable loose objects
+    path-walk: sort objects by path for better compression
+    reuse-delta: reuse existing deltas
+    reuse-object: reuse existing object data
+    revs: read the revision arguments from the standard input
+    shallow: optimize a pack that will be provided to a client with a shallow repository
+    stdin-packs: read the basenames of packfiles from the standard input
+    stdout: write the pack contents out to the standard output
+    threads: number of threads to spawn when searching for best delta matches
+    unpack-unreachable: keep unreachable objects in loose form
+    uri-protocol: generate a corresponding pack index for each specified URI protocol
+    window: affect how the objects contained in the pack are stored using delta compression
+    window-memory: additional limit on top of --window
+    write-bitmap-index: write a bitmap index alongside the packfile

@@ -9,3 +9,6 @@ documentation:
   command: |-
     Counts the number of unpacked object files and disk space consumed by
     them, to help you decide when it is a good time to repack.
+  flag:
+    verbose: Report progress to stderr.
+    human-readable: print sizes in human readable format

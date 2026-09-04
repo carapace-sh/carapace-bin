@@ -4,23 +4,12 @@ description: Send a collection of patches from stdin to an IMAP folder
 group: interaction
 flags:
   --curl: use libcurl to communicate with the IMAP server
+  --list: list all folders on the IMAP server
   --no-curl: do not use libcurl to communicate with the IMAP server
+  -f, --folder=: specify the IMAP folder
   -q, --quiet: be more quiet
   -v, --verbose: be more verbose
 documentation:
-  command: |-
-    This command uploads a mailbox generated with `git format-patch`
-    into an IMAP drafts folder.  This allows patches to be sent as
-    other email is when using mail clients that cannot read mailbox
-    files directly. The command also works with any general mailbox
-    in which emails have the fields `From`, `Date`, and `Subject` in
-    that order.
-
-    Typical usage is something like:
-
-    ```
-    $ git format-patch --signoff --stdout --attach origin | git imap-send
-    ```
   flag:
     curl: |-
       Use libcurl to communicate with the IMAP server, unless tunneling
@@ -32,3 +21,6 @@ documentation:
       set.
     quiet: Be quiet.
     verbose: Be verbose.
+    list: Show all available formats.
+    folder: specify the IMAP folder
+

@@ -2,6 +2,12 @@
 name: unpack-objects
 description: Unpack objects from a packed archive
 group: low-level manipulator
+flags:
+  --max-input-size=: die, if the pack is larger than <size>
+  --strict: don’t write objects with broken content or links
+  -n: dry run
+  -q: suppress percentage progress
+  -r: try to recover objects  when unpacking a corrupt packfile
 documentation:
   command: |-
     Read a packed archive (.pack) from the standard input, expanding
@@ -14,3 +20,17 @@ documentation:
 
     See [git-repack](cmd://git/repack) for options to generate
     new packs and replace existing ones.
+  flag:
+    n: |-
+      _<num>_ specifies how many lines from the annotation, if any,
+      are printed when using `-l`. Implies `--list`.
+      
+      The default is not to print any annotation lines.
+      If no number is given to `-n`, only the first line is printed.
+      If the tag is not annotated, the commit message is displayed instead.
+    r: |-
+      Allow recursive removal when a leading directory name is
+          given.
+    max-input-size: die, if the pack is larger than <size>
+    q: suppress percentage progress
+    strict: don’t write objects with broken content or links

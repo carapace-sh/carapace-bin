@@ -2,9 +2,9 @@
 name: summary
 description: Show commit summary between the given commit and working tree
 flags:
-  --cached: ''
-  --files: ''
-  --summary-limit=: ''
+  --cached: use the index to determine the commit instead of HEAD
+  --files: compare the commit in the index with that in the submodule HEAD
+  --summary-limit=: limit the summary size (number of commits shown in total)
 documentation:
   command: |-
     Show commit summary between the given commit (defaults to `HEAD`) and

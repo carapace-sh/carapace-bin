@@ -3,13 +3,19 @@ name: repack
 description: Pack unpacked objects in a repository
 group: manipulator
 flags:
+  --combine-cruft-below-size=: combine cruft packs smaller than this size
   --cruft: same as -a, pack unreachable cruft objects separately
   --cruft-expiration=: with --cruft, expire objects older than this
   --depth=: limits the maximum delta depth
   --expire-to=: pack prefix to store a pack containing pruned objects
-  --keep-pack=: do not repack this pack
+  --filter-to=: pack prefix to store filtered-out objects
+  --filter=*: object filtering
+  --keep-pack=*: do not repack this pack
+  --max-cruft-size=: maximum size of each cruft pack
   --max-pack-size=: maximum size of each packfile
+  --name-hash-version=: name hash version for pack index
   --pack-kept-objects: repack objects in packs marked with .keep
+  --path-walk: pass --path-walk to git-pack-objects
   --threads=: limits the maximum number of threads
   --unpack-unreachable=: with -A, do not loosen objects older than this
   --window-memory=: same as the above, but limit memory size instead of entries count
@@ -24,7 +30,7 @@ flags:
   -i, --delta-islands: pass --delta-islands to git-pack-objects
   -k, --keep-unreachable: with -a, repack unreachable objects
   -l, --local: pass --local to git-pack-objects
-  -m, --write-midx: write a multi-pack index of the resulting packs
+  -m, --write-midx?: write a multi-pack index of the resulting packs
   -n: do not run git-update-server-info
   -q, --quiet: be quiet
 documentation:
@@ -39,3 +45,98 @@ documentation:
 
     Packs are used to reduce the load on mirror systems, backup
     engines, disk storage, etc.
+  flag:
+    a: |-
+      Attempt to auto-register archives at `http://mirrors.sourcecontrol.net`
+      This is particularly useful with the -D option.
+    depth: |-
+      Create a `shallow` clone with a history truncated to the
+      specified number of commits. Implies `--single-branch` unless
+      `--no-single-branch` is given to fetch the histories near the
+      tips of all branches. If you want to clone submodules shallowly,
+      also pass `--shallow-submodules`.
+    f: |-
+      Use the fast patchset import strategy. This can be significantly faster
+      for large trees, but cannot handle directory renames or permissions
+      changes. The default strategy is slow and safe.
+    filter: |-
+      Use the partial clone feature and request that the server sends
+      a subset of reachable objects according to a given object filter.
+      When using `--filter`, the supplied _<filter-spec>_ is used for
+      the partial clone filter.
+      
+      If `--filter=auto` is used the filter specification is determined
+      automatically through the `promisor-remote` protocol (see
+      [gitprotocol-v2](man://gitprotocol-v2/5)) by combining the filter specifications
+      advertised by the server for the promisor remotes that the client
+      accepts (see the `promisor.acceptFromServer` configuration option in
+      [git-config](cmd://git/config)). This allows the server to suggest the optimal
+      filter for the available promisor remotes.
+      
+      As with other filter specifications, the "auto" value is persisted in
+      the configuration. This ensures that future fetches will continue to
+      adapt to the server's current recommendation.
+      
+      For details on all other available filter specifications, see the
+      `--filter=<filter-spec>` option in [git-rev-list](cmd://git/rev-list).
+      
+      For example, `--filter=blob:none` will filter out all blobs (file
+      contents) until needed by Git. Also, `--filter=blob:limit=<size>` will
+      filter out all blobs of size at least _<size>_.
+    n: |-
+      _<num>_ specifies how many lines from the annotation, if any,
+      are printed when using `-l`. Implies `--list`.
+      
+      The default is not to print any annotation lines.
+      If no number is given to `-n`, only the first line is printed.
+      If the tag is not annotated, the commit message is displayed instead.
+    local: |-
+      When the repository to clone from is on a local machine,
+      this flag bypasses the normal "Git aware" transport
+      mechanism and clones the repository by making a copy of
+      `HEAD` and everything under objects and refs directories.
+      The files under `.git/objects/` directory are hardlinked
+      to save space when possible.
+      
+      If the repository is specified as a local path (e.g., `/path/to/repo`),
+      this is the default, and `--local` is essentially a no-op.  If the
+      repository is specified as a URL, then this flag is ignored (and we
+      never use the local optimizations).  Specifying `--no-local` will
+      override the default when `/path/to/repo` is given, using the regular
+      Git transport instead.
+      
+      If the repository's `$GIT_DIR/objects` has symbolic links or is a
+      symbolic link, the clone will fail. This is a security measure to
+      prevent the unintentional copying of files by dereferencing the symbolic
+      links.
+      
+      This option does not work with repositories owned by other users for security
+      reasons, and `--no-local` must be specified for the clone to succeed.
+      
+      *NOTE*: this operation can race with concurrent modification to the
+      source repository, similar to running `cp -r <src> <dst>` while modifying
+      _<src>_.
+    quiet: Be quiet. Only print error messages.
+    A: same as -a, and turn unreachable objects loose
+    F: pass --no-reuse-object to git-pack-objects
+    combine-cruft-below-size: combine cruft packs smaller than this size
+    cruft: same as -a, pack unreachable cruft objects separately
+    cruft-expiration: with --cruft, expire objects older than this
+    d: remove redundant packs, and run git-prune-packed
+    delta-islands: pass --delta-islands to git-pack-objects
+    expire-to: pack prefix to store a pack containing pruned objects
+    filter-to: pack prefix to store filtered-out objects
+    geometric: find a geometric progression with factor <N>
+    keep-pack: do not repack this pack
+    keep-unreachable: with -a, repack unreachable objects
+    max-cruft-size: maximum size of each cruft pack
+    max-pack-size: maximum size of each packfile
+    name-hash-version: name hash version for pack index
+    pack-kept-objects: repack objects in packs marked with .keep
+    path-walk: pass --path-walk to git-pack-objects
+    threads: limits the maximum number of threads
+    unpack-unreachable: with -A, do not loosen objects older than this
+    window: size of the window used for delta compression
+    window-memory: same as the above, but limit memory size instead of entries count
+    write-bitmap-index: write bitmap index
+    write-midx: write a multi-pack index of the resulting packs

@@ -3,67 +3,75 @@ name: send-email
 description: Send a collection of patches as email
 group: interaction
 flags:
-  --8bit-encoding=: Encoding to assume 8bit mails if undeclared
-  --annotate: Review each patch that will be sent in an editor.
-  --batch-size=: send max  message per connection.
-  --bcc*=: 'Email Bcc:'
-  --cc*=: 'Email Cc:'
-  --cc-cmd=: 'Email Cc: via `<str> $patch_path`.'
-  --cc-cover: 'Email Cc: addresses in the cover letter.'
-  --chain-reply-to: 'Chain In-Reply-To: fields. Default off.'
-  --compose: Open an editor for introduction.
-  --compose-encoding=: Encoding to assume for introduction.
-  --confirm=: Confirm recipients before sending;
-  --dry-run: Don't actually send the emails.
-  --dump-aliases: Dump configured aliases and exit.
-  --envelope-sender=: Email envelope sender.
-  --force: Send even if safety checks would prevent it.
-  --format-patch: understand any non optional arguments as
-  --from=: 'Email From:'
-  --header-cmd=: Add headers via `<str> $patch_path`.
-  --identity=: Use the sendemail.<id> options.
-  --in-reply-to=: Email "In-Reply-To:"
-  --no-annotate: Review each patch that will be sent in an editor.
-  --no-bcc: 'Email Bcc:'
-  --no-cc: 'Email Cc:'
-  --no-cc-cover: 'Email Cc: addresses in the cover letter.'
-  --no-chain-reply-to: 'Chain In-Reply-To: fields. Default off.'
-  --no-format-patch: understand any non optional arguments as
-  --no-header-cmd: Disable any header command in use.
-  --no-signed-off-by-cc: 'Send to Signed-off-by: addresses. Default on.'
-  --no-smtp-auth: Disable SMTP authentication. Shorthand for
-  --no-suppress-from: Send to self. Default off.
-  --no-thread: 'Use In-Reply-To: field. Default on.'
-  --no-to: 'Email To:'
-  --no-to-cover: 'Email To: addresses in the cover letter.'
-  --no-validate: Perform patch sanity checks. Default on.
-  --no-xmailer: Add "X-Mailer:" header (default).
-  --quiet: Output one line of info per email.
-  --relogin-delay=: delay seconds between two successive login.
-  --reply-to=: Email "Reply-To:"
-  --sendmail-cmd=: Command to run to send email.
-  --signed-off-by-cc: 'Send to Signed-off-by: addresses. Default on.'
-  --smtp-auth=: Space-separated list of allowed AUTH mechanisms, or
-  --smtp-debug=: Disable, enable Net::SMTP debug.
-  --smtp-domain=: The domain name sent to HELO/EHLO handshake
-  --smtp-encryption=: tls or ssl; anything else disables.
-  --smtp-pass=: Password for SMTP-AUTH; not necessary.
-  --smtp-server-option*=: Outgoing SMTP server option to use.
-  --smtp-server-port=: Outgoing SMTP server port.
-  --smtp-server=: Outgoing SMTP server to use. The port
-  --smtp-ssl: Deprecated. Use '--smtp-encryption ssl'.
-  --smtp-ssl-cert-path=: Path to ca-certificates (either directory or file).
-  --smtp-user=: Username for SMTP-AUTH.
-  --subject=: Email "Subject:"
-  --suppress-cc=: author, self, sob, cc, cccmd, body, bodycc, misc-by, all.
-  --suppress-from: Send to self. Default off.
-  --thread: 'Use In-Reply-To: field. Default on.'
-  --to-cmd=: 'Email To: via `<str> $patch_path`.'
-  --to-cover: 'Email To: addresses in the cover letter.'
-  --to=: 'Email To:'
-  --transfer-encoding=: Transfer encoding to use (quoted-printable, 8bit, base64)
-  --validate: Perform patch sanity checks. Default on.
-  --xmailer: Add "X-Mailer:" header (default).
+  --8bit-encoding=: encoding to assume 8bit mails if undeclared
+  --annotate: review each patch that will be sent in an editor
+  --batch-size=: send max <num> messages per connection
+  --bcc=*: 'email Bcc:'
+  --cc-cmd=: 'email Cc: via `<str> $patch_path`.'
+  --cc-cover: 'email Cc: addresses in the cover letter.'
+  --cc=*: 'email Cc:'
+  --chain-reply-to: send each email as a reply to the previous one
+  --compose: open an editor for introduction
+  --compose-encoding=: encoding to assume for introduction
+  --confirm=: confirm recipients before sending
+  --dry-run: don't actually send the emails
+  --dump-aliases: dump configured aliases and exit
+  --envelope-sender=: email envelope sender
+  --force: send even if safety checks would prevent it
+  --format-patch: understand arguments as format-patch output
+  --from=: 'email From:'
+  --header-cmd=: add headers via `<str> $patch_path`
+  --identity=: use the sendemail.<id> options
+  --imap-sent-folder=: IMAP folder where a copy of the emails should be sent
+  --in-reply-to=: email "In-Reply-To:"
+  --mailmap: use mailmap file to map all email addresses to canonical name and email address
+  --no-annotate: do not review each patch in an editor
+  --no-bcc: 'clear the Bcc: list'
+  --no-cc: 'clear the Cc: list'
+  --no-cc-cover: 'do not add Cc: addresses from the cover letter'
+  --no-chain-reply-to: send all emails after the first as replies to the first
+  --no-format-patch: understand arguments as file names
+  --no-header-cmd: disable any header command in use
+  --no-mailmap: do not use mailmap file to map email addresses
+  --no-signed-off-by-cc: do not add emails from Signed-off-by trailers to the cc list
+  --no-smtp-auth: disable SMTP authentication
+  --no-suppress-from: 'do not suppress the From: address from the cc list'
+  --no-thread: do not add In-Reply-To and References headers
+  --no-to: 'clear the To: list'
+  --no-to-cover: 'do not add To: addresses from the cover letter'
+  --no-validate: do not perform patch sanity checks
+  --no-xmailer: do not add the "X-Mailer:" header
+  --outlook-id-fix: fix Message-Id for Outlook SMTP servers
+  --quiet: output one line of info per email
+  --relogin-delay=: wait <int> seconds before reconnecting to SMTP server
+  --reply-to=: email "Reply-To:"
+  --sendmail-cmd=: command to run to send email
+  --signed-off-by-cc: add emails from Signed-off-by trailers to the cc list
+  --smtp-auth=: space-separated list of allowed AUTH mechanisms
+  --smtp-debug=: enable or disable Net::SMTP debug
+  --smtp-domain=: the domain name sent to HELO/EHLO handshake
+  --smtp-encryption=: tls or ssl; anything else disables
+  --smtp-pass=: password for SMTP-AUTH
+  --smtp-server-option=*: outgoing SMTP server option to use
+  --smtp-server-port=: outgoing SMTP server port
+  --smtp-server=: outgoing SMTP server to use
+  --smtp-ssl: deprecated alias for --smtp-encryption ssl
+  --smtp-ssl-cert-path=: path to ca-certificates (either directory or file)
+  --smtp-ssl-client-cert=: path to the client certificate file
+  --smtp-ssl-client-key=: path to the private key file for the client certificate
+  --smtp-user=: username for SMTP-AUTH
+  --subject=: email "Subject:"
+  --suppress-cc=: specify category of recipients to suppress
+  --suppress-from: 'suppress the From: address from the cc list'
+  --thread: add In-Reply-To and References headers
+  --to-cmd=: 'email To: via `<str> $patch_path`'
+  --to-cover: 'add To: addresses from the cover letter'
+  --to=*: 'email To:'
+  --transfer-encoding=: transfer encoding to use (quoted-printable, 8bit, base64)
+  --translate-aliases: translate aliases read from standard input
+  --use-imap-only: only copy emails to the IMAP folder instead of actually sending them
+  --validate: perform patch sanity checks
+  --xmailer: add the "X-Mailer:" header
 documentation:
   command: |-
     Takes the patches given on the command line and emails them out.
@@ -85,7 +93,110 @@ documentation:
     formatting are ignored.
 
     2. The original format used by Greg Kroah-Hartman's `send_lots_of_email.pl`
-       script
+     script
 
     This format expects the first line of the file to contain the `Cc:` value
     and the `Subject:` of the message as the second line.
+  flag:
+    annotate: Make an unsigned, annotated tag object
+    cc: |-
+      Produce dense combined diff output for merge commits.
+      Shortcut for `--diff-merges=dense-combined -p`.
+    dry-run: |-
+      Don't actually add the file(s), just show if they exist and/or will
+      be ignored.
+    force: |-
+      Allow adding otherwise ignored files. The option is also used when
+      `submodule.<name>.ignore=all` is set, but you want to stage an
+      update of the submodule. The `path` to the submodule must be explicitly
+      specified.
+    in-reply-to: |-
+      Make the first mail a reply to the specified Message-Id, so that
+      the patch series appears as a thread in mail clients. Subsequent
+      patches are replies to the previous one.
+    quiet: Be quiet. Only print error messages.
+    thread: |-
+      Enable message threading. With `shallow` (default), all patches
+      are replies to the first mail or cover letter. With `deep`, each
+      patch is a reply to the previous one, creating a deep thread.
+    no-annotate: do not review each patch in an editor
+    no-cc: |-
+      clear the Cc: list
+    no-thread: do not add In-Reply-To and References headers
+    8bit-encoding: encoding to assume 8bit mails if undeclared
+    batch-size: send max <num> messages per connection
+    bcc: |-
+      email Bcc:
+    cc-cmd: |-
+      email Cc: via `<str> $patch_path`.
+    cc-cover: |-
+      email Cc: addresses in the cover letter.
+    chain-reply-to: send each email as a reply to the previous one
+    compose: open an editor for introduction
+    compose-encoding: encoding to assume for introduction
+    confirm: confirm recipients before sending
+    dump-aliases: dump configured aliases and exit
+    envelope-sender: email envelope sender
+    format-patch: understand arguments as format-patch output
+    from: |-
+      email From:
+    header-cmd: add headers via `<str> $patch_path`
+    identity: use the sendemail.<id> options
+    imap-sent-folder: IMAP folder where a copy of the emails should be sent
+    mailmap: use mailmap file to map all email addresses to canonical name and email address
+    no-bcc: |-
+      clear the Bcc: list
+    no-cc-cover: |-
+      do not add Cc: addresses from the cover letter
+    no-chain-reply-to: send all emails after the first as replies to the first
+    no-format-patch: understand arguments as file names
+    no-header-cmd: disable any header command in use
+    no-mailmap: do not use mailmap file to map email addresses
+    no-signed-off-by-cc: do not add emails from Signed-off-by trailers to the cc list
+    no-smtp-auth: disable SMTP authentication
+    no-suppress-from: |-
+      do not suppress the From: address from the cc list
+    no-to: |-
+      clear the To: list
+    no-to-cover: |-
+      do not add To: addresses from the cover letter
+    no-validate: do not perform patch sanity checks
+    no-xmailer: |-
+      do not add the "X-Mailer:" header
+    outlook-id-fix: fix Message-Id for Outlook SMTP servers
+    relogin-delay: wait <int> seconds before reconnecting to SMTP server
+    reply-to: |-
+      email "Reply-To:"
+    sendmail-cmd: command to run to send email
+    signed-off-by-cc: add emails from Signed-off-by trailers to the cc list
+    smtp-auth: space-separated list of allowed AUTH mechanisms
+    smtp-debug: |-
+      enable or disable Net::SMTP debug
+    smtp-domain: the domain name sent to HELO/EHLO handshake
+    smtp-encryption: tls or ssl; anything else disables
+    smtp-pass: password for SMTP-AUTH
+    smtp-server: outgoing SMTP server to use
+    smtp-server-option: outgoing SMTP server option to use
+    smtp-server-port: outgoing SMTP server port
+    smtp-ssl: deprecated alias for --smtp-encryption ssl
+    smtp-ssl-cert-path: path to ca-certificates (either directory or file)
+    smtp-ssl-client-cert: path to the client certificate file
+    smtp-ssl-client-key: path to the private key file for the client certificate
+    smtp-user: username for SMTP-AUTH
+    subject: |-
+      email "Subject:"
+    suppress-cc: specify category of recipients to suppress
+    suppress-from: |-
+      suppress the From: address from the cc list
+    to: |-
+      email To:
+    to-cmd: |-
+      email To: via `<str> $patch_path`
+    to-cover: |-
+      add To: addresses from the cover letter
+    transfer-encoding: transfer encoding to use (quoted-printable, 8bit, base64)
+    translate-aliases: translate aliases read from standard input
+    use-imap-only: only copy emails to the IMAP folder instead of actually sending them
+    validate: perform patch sanity checks
+    xmailer: |-
+      add the "X-Mailer:" header

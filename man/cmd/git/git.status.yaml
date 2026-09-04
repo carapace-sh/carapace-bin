@@ -4,22 +4,22 @@ description: show the working tree status
 group: main
 flags:
   --ahead-behind: display detailed ahead/behind counts for the branch relative to its upstream branch
-  --column?: Display untracked files in columns.
-  --find-renames?: turn on rename detection, optionally setting the similarity threshold
-  --ignore-submodules?: Ignore changes to submodules when looking for changes.
-  --ignored?: Show ignored files as well
-  --long: Give the output in the long-format. This is the default.
+  --column?: display untracked files in columns
+  --ignore-submodules?: ignore changes to submodules when looking for changes
+  --ignored?: show ignored files as well
+  --long: give the output in the long-format (default)
   --no-ahead-behind: do not display detailed ahead/behind counts for the branch relative to its upstream branch
-  --no-column: Do not display untracked files in columns.
+  --no-column: do not display untracked files in columns
   --no-renames: turn off rename detection
-  --porcelain?: Give the output in an easy-to-parse format for scripts.
+  --porcelain?: give the output in an easy-to-parse format for scripts
   --renames: turn on rename detection
-  --show-stash: Show the number of entries currently stashed away.
-  -b, --branch: Show the branch and tracking info even in short-format.
-  -s, --short: Give the output in the short-format.
-  -u, --untracked-files=: Show untracked files
+  --show-stash: show the number of entries currently stashed away
+  -M, --find-renames?: turn on rename detection, optionally setting the similarity threshold
+  -b, --branch: show the branch and tracking info even in short-format
+  -s, --short: give the output in the short-format
+  -u, --untracked-files=: show untracked files
   -v, --verbose: also show the textual changes
-  -z: Terminate entries with NUL, instead of LF.
+  -z, --null: terminate entries with NUL instead of LF
 documentation:
   command: |-
     Displays paths that have differences between the index file and the
@@ -30,7 +30,14 @@ documentation:
     third are what you _could_ commit by running `git add` before running
     `git commit`.
   flag:
+    ahead-behind: |-
+      Display or do not display detailed ahead/behind counts for the
+      branch relative to its upstream branch.  Defaults to `true`.
     branch: Show the branch and tracking info even in short-format.
+    column: |-
+      Display untracked files in columns. See configuration variable
+      `column.status` for option syntax. `--column` and `--no-column without options are equivalent to `always` and `never
+      respectively.
     long: Give the output in the long-format. This is the default.
     no-ahead-behind: |-
       Display or do not display detailed ahead/behind counts for the
@@ -42,6 +49,9 @@ documentation:
     no-renames: |-
       Turn on/off rename detection regardless of user configuration.
       See also [git-diff](cmd://git/diff) `--no-renames`.
+    renames: |-
+      Turn on/off rename detection regardless of user configuration.
+      See also [git-diff](cmd://git/diff) `--no-renames`.
     short: Give the output in the short-format.
     show-stash: Show the number of entries currently stashed away.
     verbose: |-
@@ -50,16 +60,9 @@ documentation:
       (i.e., like the output of `git diff --cached`). If `-v` is specified
       twice, then also show the changes in the working tree that
       have not yet been staged (i.e., like the output of `git diff`).
-    z: |-
-      Terminate entries with _NUL_, instead of _LF_.  This implies
-      the `--porcelain=v1` output format if no other format is given.
-    ahead-behind: |-
-      Display or do not display detailed ahead/behind counts for the
-      branch relative to its upstream branch.  Defaults to `true`.
-    column: |-
-      Display untracked files in columns. See configuration variable
-      `column.status` for option syntax. `--column` and `--no-column without options are equivalent to `always` and `never
-      respectively.
-    renames: |-
-      Turn on/off rename detection regardless of user configuration.
-      See also [git-diff](cmd://git/diff) `--no-renames`.
+    porcelain: Show in a format designed for machine consumption.
+    find-renames: turn on rename detection, optionally setting the similarity threshold
+    ignore-submodules: ignore changes to submodules when looking for changes
+    ignored: show ignored files as well
+    "null": terminate entries with NUL instead of LF
+    untracked-files: show untracked files

@@ -3,7 +3,7 @@ name: var
 description: Show a Git logical variable
 group: low-level interrogator
 flags:
-  -l: Cause the logical variables to be listed
+  -l: cause the logical variables to be listed
 documentation:
   command: |-
     Prints a Git logical variable. Exits with code 1 if the variable has

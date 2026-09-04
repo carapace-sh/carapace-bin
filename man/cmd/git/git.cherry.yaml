@@ -12,9 +12,18 @@ documentation:
 
     The equivalence test is based on the diff, after removing whitespace
     and line numbers.  git-cherry therefore detects when commits have been
-    "copied" by means of [git-cherry-pick](cmd://git/cherry-pick), [git-am](cmd://git/am) or
+    "copied" by means of [git-cherry-pick](cmd: |-
+      //git/cherry-pick), [git-am](cmd://git/am) or
     [git-rebase](cmd://git/rebase).
 
     Outputs the SHA1 of every commit in `<limit>..<head>`, prefixed with
     `-` for commits that have an equivalent in <upstream>, and `+` for
     commits that do not.
+  flag:
+    abbrev: |-
+      Instead of using the default _7+1_ hexadecimal digits as the
+      abbreviated object name, use _<m>+1_ digits, where _<m>_ is at
+      least _<n>_ but ensures the commit object names are unique.
+      Note that 1 column
+      is used for a caret to mark the boundary commit.
+    verbose: Report progress to stderr.
