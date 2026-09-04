@@ -6,17 +6,17 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var homeCmd = &cobra.Command{
-	Use:   "home",
-	Short: "opens the app homepage",
+var cache_showCmd = &cobra.Command{
+	Use:   "show",
+	Short: "show cached files",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(homeCmd).Standalone()
-	rootCmd.AddCommand(homeCmd)
+	carapace.Gen(cache_showCmd).Standalone()
+	cacheCmd.AddCommand(cache_showCmd)
 
-	carapace.Gen(homeCmd).PositionalCompletion(
-		action.ActionAvailableApps(),
+	carapace.Gen(cache_showCmd).PositionalAnyCompletion(
+		action.ActionCachedApps(),
 	)
 }

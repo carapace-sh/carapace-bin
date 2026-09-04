@@ -6,17 +6,17 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var homeCmd = &cobra.Command{
-	Use:   "home",
-	Short: "opens the app homepage",
+var bucket_rmCmd = &cobra.Command{
+	Use:   "rm",
+	Short: "remove a bucket",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(homeCmd).Standalone()
-	rootCmd.AddCommand(homeCmd)
+	carapace.Gen(bucket_rmCmd).Standalone()
+	bucketCmd.AddCommand(bucket_rmCmd)
 
-	carapace.Gen(homeCmd).PositionalCompletion(
-		action.ActionAvailableApps(),
+	carapace.Gen(bucket_rmCmd).PositionalCompletion(
+		action.ActionInstalledBuckets(),
 	)
 }

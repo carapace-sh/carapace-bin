@@ -6,18 +6,17 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var infoCmd = &cobra.Command{
-	Use:   "info",
-	Short: "display information about an app",
+var catCmd = &cobra.Command{
+	Use:   "cat",
+	Short: "show content of specified manifest",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(infoCmd).Standalone()
-	infoCmd.Flags().BoolP("verbose", "v", false, "show full paths and URLs")
-	rootCmd.AddCommand(infoCmd)
+	carapace.Gen(catCmd).Standalone()
+	rootCmd.AddCommand(catCmd)
 
-	carapace.Gen(infoCmd).PositionalCompletion(
+	carapace.Gen(catCmd).PositionalCompletion(
 		action.ActionAvailableApps(),
 	)
 }
