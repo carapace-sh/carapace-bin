@@ -2,31 +2,18 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-pnpm/pkg/actions/tools/pnpm"
 	"github.com/spf13/cobra"
 )
 
 var testCmd = &cobra.Command{
-	Use:     "test",
-	Aliases: []string{"t"},
-	Short:   "Runs a package's test script, if one was provided",
-	GroupID: "run",
-	Run:     func(cmd *cobra.Command, args []string) {},
+	Use:   "test",
+	Short: "Runs a package's \"test\" script, if one was provided",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(testCmd).Standalone()
 
-	testCmd.Flags().String("changed-files-ignore-pattern", "", "Defines files to ignore when filtering for changed projects")
-	testCmd.Flags().String("filter", "", "set filter                                                packages except \"foo\"")
-	testCmd.Flags().String("filter-prod", "", "Restricts the scope to package names matching the given pattern")
-	testCmd.Flags().String("test-pattern", "", "Defines files related to tests")
+	testCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.AddCommand(testCmd)
-
-	carapace.Gen(testCmd).FlagCompletion(carapace.ActionMap{
-		"filter":      pnpm.ActionFilters(),
-		"filter-prod": pnpm.ActionFilters(),
-	})
-
-	// TODO positional completion
 }
