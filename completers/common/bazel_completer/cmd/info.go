@@ -1,9 +1,8 @@
 package cmd
 
 import (
-	"strings"
-
 	"github.com/carapace-sh/carapace"
+	bazel "github.com/carapace-sh/carapace-bin/pkg/actions/tools/bazel"
 	"github.com/spf13/cobra"
 )
 
@@ -220,16 +219,6 @@ func init() {
 	})
 
 	carapace.Gen(infoCmd).PositionalAnyCompletion(
-		carapace.ActionExecCommand("bazel", "help", "info-keys")(func(output []byte) carapace.Action {
-			lines := strings.Split(string(output), "\n")
-			vals := make([]string, 0)
-			for _, line := range lines {
-				if line == "" {
-					continue
-				}
-				vals = append(vals, strings.Fields(line)[0])
-			}
-			return carapace.ActionValues(vals...)
-		}),
+		bazel.ActionInfoKeys(),
 	)
 }
