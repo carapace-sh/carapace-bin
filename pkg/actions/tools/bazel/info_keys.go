@@ -8,8 +8,8 @@ import (
 
 // ActionInfoKeys completes info keys
 //
-//	announce_rc (Announce rc file options)
-//	build_path (Build path)
+//	bazel-bin (Configuration dependent directory for binaries)
+//	client-env (The specifications that need to be added to the project-specific rc file to freeze the current client environment)
 func ActionInfoKeys() carapace.Action {
 	return carapace.ActionExecCommand("bazel", "help", "info-keys")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
@@ -18,8 +18,9 @@ func ActionInfoKeys() carapace.Action {
 			if line == "" {
 				continue
 			}
-			vals = append(vals, strings.Fields(line)[0])
+			fields := strings.Fields(line)
+			vals = append(vals, fields[0], strings.Join(fields[1:], " "))
 		}
-		return carapace.ActionValues(vals...)
+		return carapace.ActionValuesDescribed(vals...)
 	}).Tag("info keys")
 }
