@@ -1,9 +1,8 @@
 package shim
 
 import (
-	"fmt"
 	"os"
-	"runtime"
+	"path/filepath"
 	"strings"
 
 	"github.com/carapace-sh/carapace"
@@ -15,8 +14,11 @@ func removeObsolete() error {
 	if err != nil {
 		return err
 	}
+	return removeObsoleteIn(configDir)
+}
 
-	entries, err := os.ReadDir(configDir + "/carapace/bin")
+func removeObsoleteIn(configDir string) error {
+	entries, err := os.ReadDir(filepath.Join(configDir, "carapace", "bin"))
 	if err != nil {
 		if !os.IsNotExist(err) {
 			return err
@@ -25,12 +27,9 @@ func removeObsolete() error {
 	}
 
 	for _, entry := range entries {
-		specPath := fmt.Sprintf("%v/carapace/specs/%v.yaml", configDir, strings.TrimSuffix(entry.Name(), ".exe"))
+		specPath := filepath.Join(configDir, "carapace", "specs", strings.TrimSuffix(entry.Name(), ".exe")+".yaml")
 		if _, err := os.Stat(specPath); os.IsNotExist(err) {
-			shimPath := fmt.Sprintf("%v/carapace/bin/%v", configDir, entry.Name())
-			if runtime.GOOS == "windows" {
-				shimPath += ".exe"
-			}
+			shimPath := filepath.Join(configDir, "carapace", "bin", entry.Name())
 
 			carapace.LOG.Printf("removing shim %#v", shimPath)
 			if err := os.Remove(shimPath); err != nil {
