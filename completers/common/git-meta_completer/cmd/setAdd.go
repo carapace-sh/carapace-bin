@@ -22,7 +22,5 @@ func init() {
 
 	carapace.Gen(setAddCmd).PositionalCompletion(
 		action.ActionTarget(),
-		carapace.ActionValues(),
-		carapace.ActionValues(),
 	)
 }

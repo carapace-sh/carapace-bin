@@ -16,8 +16,4 @@ func init() {
 
 	clearCmd.Flags().BoolP("help", "h", false, "Print help")
 	rootCmd.AddCommand(clearCmd)
-
-	carapace.Gen(clearCmd).PositionalCompletion(
-		carapace.ActionValues(),
-	)
 }

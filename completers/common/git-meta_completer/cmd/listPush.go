@@ -20,7 +20,5 @@ func init() {
 
 	carapace.Gen(listPushCmd).PositionalCompletion(
 		action.ActionTarget(),
-		carapace.ActionValues(),
-		carapace.ActionValues(),
 	)
 }

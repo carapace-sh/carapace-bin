@@ -6,7 +6,7 @@ import (
 )
 
 func ActionTarget() carapace.Action {
-	return carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
+	return carapace.ActionMultiPartsN(":", 2, func(c carapace.Context) carapace.Action {
 		switch len(c.Parts) {
 		case 0:
 			return carapace.ActionValuesDescribed(
@@ -16,7 +16,7 @@ func ActionTarget() carapace.Action {
 				"path", "path",
 				"project", "project",
 			).Suffix(":")
-		case 1:
+		default:
 			switch c.Parts[0] {
 			case "commit":
 				return git.ActionRefs(git.RefOption{}.Default())
@@ -27,8 +27,6 @@ func ActionTarget() carapace.Action {
 			default:
 				return carapace.ActionValues()
 			}
-		default:
-			return carapace.ActionValues()
 		}
 	})
 }
