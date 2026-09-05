@@ -21,13 +21,14 @@ func init() {
 	chooseBufferCmd.Flags().StringS("O", "O", "", "initial sort order")
 	chooseBufferCmd.Flags().BoolS("Z", "Z", false, "zoom the pane")
 	chooseBufferCmd.Flags().StringS("f", "f", "", "filter items")
+	chooseBufferCmd.Flags().BoolS("k", "k", false, "kill the pane when the mode is exited")
 	chooseBufferCmd.Flags().BoolS("r", "r", false, "reverse sort order")
-	chooseBufferCmd.Flags().StringS("t", "t", "", "specify target window")
+	chooseBufferCmd.Flags().StringS("t", "t", "", "specify target pane")
+	chooseBufferCmd.Flags().BoolS("y", "y", false, "disable confirmation prompts")
 	rootCmd.AddCommand(chooseBufferCmd)
 
-	// TODO formats
 	carapace.Gen(chooseBufferCmd).FlagCompletion(carapace.ActionMap{
-		"O": carapace.ActionValues("time", "name", "size"),
-		"t": tmux.ActionWindows(),
+		"O": carapace.ActionValues("creation", "name", "size"),
+		"t": tmux.ActionPanes(),
 	})
 }
