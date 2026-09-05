@@ -18,4 +18,13 @@ func init() {
 	helpCmd.Flags().StringP("long", "l", "", "Show full description of each option, instead of just its name.")
 	helpCmd.Flags().String("short", "", "Show only the names of the options, not their types or meanings.")
 	rootCmd.AddCommand(helpCmd)
+
+	carapace.Gen(helpCmd).PositionalAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return carapace.Batch(
+				carapace.ActionCommands(rootCmd),
+				carapace.ActionValues("startup_options", "target-syntax", "info-keys"),
+			).ToA()
+		}),
+	)
 }
