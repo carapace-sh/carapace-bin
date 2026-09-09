@@ -26,7 +26,7 @@ func init() {
 	createCmd.Flags().Bool("offline", false, "When \"flutter pub get\" is run by the create command, this runs it in offline mode.")
 	createCmd.Flags().String("org", "", "The organization responsible for your new Flutter project, in reverse domain name notation.")
 	createCmd.Flags().Bool("overwrite", false, "When performing operations, overwrite existing files.")
-	createCmd.Flags().String("platforms", "", "The platforms supported by this project.")
+	createCmd.Flags().StringSlice("platforms", nil, "The platforms supported by this project.")
 	createCmd.Flags().String("project-name", "", "The project name for this new Flutter project.")
 	createCmd.Flags().Bool("pub", false, "Run \"flutter pub get\" after the project has been created.")
 	createCmd.Flags().StringP("sample", "s", "", "Specifies the Flutter code sample to use as the \"main.dart\" for an application.")

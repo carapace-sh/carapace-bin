@@ -14,7 +14,7 @@ var build_bundleCmd = &cobra.Command{
 func init() {
 	carapace.Gen(build_bundleCmd).Standalone()
 
-	build_bundleCmd.Flags().String("asset-dir", "", "The output directory for the kernel_blob.bin file, the native snapshet, the assets, etc.")
+	build_bundleCmd.Flags().String("asset-dir", "", "The output directory for the kernel_blob.bin file, the native snapshot, the assets, etc.")
 	build_bundleCmd.Flags().String("build-number", "", "An identifier used as an internal version number.")
 	build_bundleCmd.Flags().Bool("debug", false, "Build a debug version of your app (default mode).")
 	build_bundleCmd.Flags().String("depfile", "", "A file path where a depfile will be written.")
@@ -35,6 +35,6 @@ func init() {
 		"asset-dir":       carapace.ActionDirectories(),
 		"depfile":         carapace.ActionFiles(),
 		"target":          carapace.ActionFiles(".dart"),
-		"target-platform": carapace.ActionValues("android-arm", "android-arm64", "android-x86", "android-x64"),
+		"target-platform": carapace.ActionValues("android-arm", "android-arm64", "android-x64", "ios", "darwin", "linux-x64", "linux-arm64", "linux-riscv64", "windows-x64", "windows-arm64"),
 	})
 }

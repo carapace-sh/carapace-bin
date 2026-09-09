@@ -24,9 +24,9 @@ func init() {
 	pub_outdatedCmd.Flags().Bool("no-color", false, "Do not color the output.")
 	pub_outdatedCmd.Flags().Bool("no-dependency-overrides", false, "Do not show resolutions with `dependency_overrides`.")
 	pub_outdatedCmd.Flags().Bool("no-dev-dependencies", false, "Do not take dev dependencies into account.")
-	pub_outdatedCmd.Flags().Bool("no-show-all", false, "Do not include dependencies that are already")
+	pub_outdatedCmd.Flags().Bool("no-show-all", false, "Do not include dependencies that are already up-to-date.")
 	pub_outdatedCmd.Flags().Bool("no-transitive", false, "Do not show transitive dependencies.")
-	pub_outdatedCmd.Flags().Bool("show-all", false, "Include dependencies that are already")
+	pub_outdatedCmd.Flags().Bool("show-all", false, "Include dependencies that are already up-to-date.")
 	pub_outdatedCmd.Flags().Bool("transitive", false, "Show transitive dependencies.")
 	pubCmd.AddCommand(pub_outdatedCmd)
 
