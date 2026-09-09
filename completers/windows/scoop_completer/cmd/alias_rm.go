@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var searchCmd = &cobra.Command{
-	Use:   "search",
-	Short: "search available apps",
+var alias_rmCmd = &cobra.Command{
+	Use:   "rm",
+	Short: "remove an alias",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(searchCmd).Standalone()
-	rootCmd.AddCommand(searchCmd)
+	carapace.Gen(alias_rmCmd).Standalone()
+	aliasCmd.AddCommand(alias_rmCmd)
 }

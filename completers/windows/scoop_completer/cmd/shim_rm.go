@@ -6,17 +6,17 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var homeCmd = &cobra.Command{
-	Use:   "home",
-	Short: "opens the app homepage",
+var shim_rmCmd = &cobra.Command{
+	Use:   "rm",
+	Short: "remove shims",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(homeCmd).Standalone()
-	rootCmd.AddCommand(homeCmd)
+	carapace.Gen(shim_rmCmd).Standalone()
+	shimCmd.AddCommand(shim_rmCmd)
 
-	carapace.Gen(homeCmd).PositionalCompletion(
-		action.ActionAvailableApps(),
+	carapace.Gen(shim_rmCmd).PositionalAnyCompletion(
+		action.ActionShims(),
 	)
 }
