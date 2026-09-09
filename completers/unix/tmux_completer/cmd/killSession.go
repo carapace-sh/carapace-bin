@@ -16,7 +16,9 @@ func init() {
 	carapace.Gen(killSessionCmd).Standalone()
 
 	killSessionCmd.Flags().BoolS("C", "C", false, "clear alerts (bell, activity, silence) in all windows linked to the session")
-	killSessionCmd.Flags().BoolS("a", "a", false, "kill all session except the one specified by -t")
+	killSessionCmd.Flags().BoolS("a", "a", false, "kill all sessions except the one specified by -t")
+	killSessionCmd.Flags().StringS("f", "f", "", "filter for sessions to kill")
+	killSessionCmd.Flags().BoolS("g", "g", false, "kill all sessions in the group")
 	killSessionCmd.Flags().StringS("t", "t", "", "specify target session")
 
 	rootCmd.AddCommand(killSessionCmd)
