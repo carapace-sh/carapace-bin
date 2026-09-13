@@ -52,7 +52,7 @@ $_carapace_completer = {
       try {
         $env:CARAPACE_SHELL = "powershell"
         $env:CARAPACE_SHELL_ALIASES = (Get-Alias | ForEach-Object { $_.Name } | Out-String).TrimEnd()
-        $env:CARAPACE_SHELL_BUILTINS = (Get-Command -CommandType Builtin | ForEach-Object { $_.Name } | Out-String).TrimEnd()
+        $env:CARAPACE_SHELL_BUILTINS = (Get-Command -CommandType Cmdlet | ForEach-Object { $_.Name } | Out-String).TrimEnd()
         $env:CARAPACE_SHELL_FUNCTIONS = (Get-Command -CommandType Function | ForEach-Object { $_.Name } | Out-String).TrimEnd()
         $env:CARAPACE_SHELL_VARIABLES = (Get-Variable | ForEach-Object { $_.Name } | Out-String).TrimEnd()
 
