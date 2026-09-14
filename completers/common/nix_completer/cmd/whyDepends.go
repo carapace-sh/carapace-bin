@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/nix_completer/cmd/common"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix"
 	"github.com/spf13/cobra"
 )
@@ -17,20 +18,15 @@ func init() {
 	carapace.Gen(whyDependsCmd).Standalone()
 
 	whyDependsCmd.Flags().BoolP("all", "a", false, "Show all edges in the dependency graph leading from package to dependency")
+	whyDependsCmd.Flags().Bool("derivation", false, "Operate on the store derivation rather than its outputs")
 	whyDependsCmd.Flags().Bool("precise", false, "For each edge in the dependency graph, show the files in the parent that cause the dependency")
 	rootCmd.AddCommand(whyDependsCmd)
 
-	addEvaluationFlags(whyDependsCmd)
-	addFlakeFlags(whyDependsCmd)
-	addLoggingFlags(whyDependsCmd)
+	common.AddEvaluationFlags(whyDependsCmd)
+	common.AddFlakeFlags(whyDependsCmd)
+	common.AddInterpretationFlags(whyDependsCmd)
+	common.AddLoggingFlags(whyDependsCmd)
 
-	carapace.Gen(whyDependsCmd).FlagCompletion(carapace.ActionMap{
-		"inputs-from": carapace.Batch(
-			carapace.ActionDirectories(),
-			nix.ActionFlakes(),
-		).ToA(),
-		"output-lock-file":    carapace.ActionFiles(),
-		"reference-lock-file": carapace.ActionFiles("lock"),
-	})
-	// TODO positional completion
+	carapace.Gen(whyDependsCmd).FlagCompletion(carapace.ActionMap{})
+	carapace.Gen(whyDependsCmd).PositionalAnyCompletion(nix.ActionInstallables())
 }

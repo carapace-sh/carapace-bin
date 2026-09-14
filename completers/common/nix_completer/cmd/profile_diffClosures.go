@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/nix_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
 
@@ -17,7 +18,7 @@ func init() {
 	profile_diffClosuresCmd.Flags().String("profile", "", "The profile to operate on")
 	profileCmd.AddCommand(profile_diffClosuresCmd)
 
-	addLoggingFlags(profile_diffClosuresCmd)
+	common.AddLoggingFlags(profile_diffClosuresCmd)
 
 	carapace.Gen(profile_diffClosuresCmd).FlagCompletion(carapace.ActionMap{
 		"profile": carapace.ActionDirectories(),

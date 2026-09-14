@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/nix_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
 
@@ -18,5 +19,5 @@ func init() {
 	store_gcCmd.Flags().String("max", "", "Stop after freeing n bytes of disk space")
 	storeCmd.AddCommand(store_gcCmd)
 
-	addLoggingFlags(store_gcCmd)
+	common.AddLoggingFlags(store_gcCmd)
 }

@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix"
+	"github.com/carapace-sh/carapace-bin/completers/common/nix_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
 
@@ -16,20 +16,13 @@ func init() {
 	carapace.Gen(flake_archiveCmd).Standalone()
 
 	flake_archiveCmd.Flags().Bool("dry-run", false, "Show what this command would do without doing it.")
-	flake_archiveCmd.Flags().Bool("json", false, "Produce output in JSON format")
+	flake_archiveCmd.Flags().Bool("no-check-sigs", false, "Do not require that paths are signed by trusted keys")
 	flake_archiveCmd.Flags().String("to", "", "URI of the destination Nix store")
 	flakeCmd.AddCommand(flake_archiveCmd)
 
-	addEvaluationFlags(flake_archiveCmd)
-	addFlakeFlags(flake_archiveCmd)
-	addLoggingFlags(flake_archiveCmd)
+	common.AddEvaluationFlags(flake_archiveCmd)
+	common.AddFlakeFlags(flake_archiveCmd)
+	common.AddLoggingFlags(flake_archiveCmd)
 
-	carapace.Gen(flake_archiveCmd).FlagCompletion(carapace.ActionMap{
-		"inputs-from": carapace.Batch(
-			carapace.ActionDirectories(),
-			nix.ActionFlakes(),
-		).ToA(),
-		"output-lock-file":    carapace.ActionFiles(),
-		"reference-lock-file": carapace.ActionFiles("lock"),
-	})
+	carapace.Gen(flake_archiveCmd).FlagCompletion(carapace.ActionMap{})
 }

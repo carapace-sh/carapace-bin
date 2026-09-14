@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/nix_completer/cmd/common"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix"
 	"github.com/spf13/cobra"
 )
@@ -18,19 +19,11 @@ func init() {
 
 	rootCmd.AddCommand(fmtCmd)
 
-	addEvaluationFlags(fmtCmd)
-	addFlakeFlags(fmtCmd)
-	addLoggingFlags(fmtCmd)
+	common.AddEvaluationFlags(fmtCmd)
+	common.AddFlakeFlags(fmtCmd)
+	common.AddInterpretationFlags(fmtCmd)
+	common.AddLoggingFlags(fmtCmd)
 
-	carapace.Gen(fmtCmd).FlagCompletion(carapace.ActionMap{
-		"inputs-from": carapace.Batch(
-			carapace.ActionDirectories(),
-			nix.ActionFlakes(),
-		).ToA(),
-		"output-lock-file":    carapace.ActionFiles(),
-		"reference-lock-file": carapace.ActionFiles("lock"),
-	})
-	carapace.Gen(fmtCmd).PositionalAnyCompletion(
-		carapace.ActionFiles(),
-	)
+	carapace.Gen(fmtCmd).FlagCompletion(carapace.ActionMap{})
+	carapace.Gen(fmtCmd).PositionalAnyCompletion(nix.ActionInstallables())
 }
