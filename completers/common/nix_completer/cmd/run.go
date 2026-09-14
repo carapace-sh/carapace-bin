@@ -2,6 +2,9 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/nix_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/completers/common/nix_completer/cmd/common"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix"
 	"github.com/spf13/cobra"
 )
@@ -18,17 +21,21 @@ func init() {
 
 	rootCmd.AddCommand(runCmd)
 
-	addEvaluationFlags(runCmd)
-	addFlakeFlags(runCmd)
-	addLoggingFlags(runCmd)
+	runCmd.Flags().BoolP("ignore-env", "i", false, "Clear the entire environment, except for those specified with --keep-env-var")
+	runCmd.Flags().StringP("keep-env-var", "k", "", "Keep the environment variable name, when using --ignore-env")
+	runCmd.Flags().String("set-env-var", "", "Sets an environment variable name with value")
+	runCmd.Flags().StringP("unset-env-var", "u", "", "Unset the environment variable name")
+	runCmd.Flag("set-env-var").Nargs = 2
+
+	common.AddEvaluationFlags(runCmd)
+	common.AddFlakeFlags(runCmd)
+	common.AddInterpretationFlags(runCmd)
+	common.AddLoggingFlags(runCmd)
 
 	carapace.Gen(runCmd).FlagCompletion(carapace.ActionMap{
-		"inputs-from": carapace.Batch(
-			carapace.ActionDirectories(),
-			nix.ActionFlakes(),
-		).ToA(),
-		"output-lock-file":    carapace.ActionFiles(),
-		"reference-lock-file": carapace.ActionFiles("lock"),
+		"keep-env-var":  os.ActionEnvironmentVariables(),
+		"set-env-var":   action.ActionSetEnvVar(),
+		"unset-env-var": os.ActionEnvironmentVariables(),
 	})
 	carapace.Gen(runCmd).PositionalCompletion(nix.ActionInstallables())
 }

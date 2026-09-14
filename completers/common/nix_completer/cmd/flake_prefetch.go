@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/nix_completer/cmd/common"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix"
 	"github.com/spf13/cobra"
 )
@@ -15,20 +16,11 @@ var flake_prefetchCmd = &cobra.Command{
 func init() {
 	carapace.Gen(flake_prefetchCmd).Standalone()
 
-	flake_prefetchCmd.Flags().Bool("json", false, "Produce output in JSON format")
+	common.AddEvaluationFlags(flake_prefetchCmd)
+	common.AddFlakeFlags(flake_prefetchCmd)
+	common.AddLoggingFlags(flake_prefetchCmd)
 
-	addEvaluationFlags(flake_prefetchCmd)
-	addFlakeFlags(flake_prefetchCmd)
-	addLoggingFlags(flake_prefetchCmd)
-
-	carapace.Gen(flake_prefetchCmd).FlagCompletion(carapace.ActionMap{
-		"inputs-from": carapace.Batch(
-			carapace.ActionDirectories(),
-			nix.ActionFlakes(),
-		).ToA(),
-		"output-lock-file":    carapace.ActionFiles(),
-		"reference-lock-file": carapace.ActionFiles("lock"),
-	})
+	carapace.Gen(flake_prefetchCmd).FlagCompletion(carapace.ActionMap{})
 	carapace.Gen(flake_prefetchCmd).PositionalCompletion(carapace.Batch(
 		carapace.ActionDirectories(),
 		nix.ActionFlakes(),

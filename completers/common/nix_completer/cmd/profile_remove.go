@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/nix_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
 
@@ -17,8 +18,8 @@ func init() {
 	profile_removeCmd.Flags().String("profile", "", "The profile to operate on")
 	profileCmd.AddCommand(profile_removeCmd)
 
-	addEvaluationFlags(profile_removeCmd)
-	addLoggingFlags(profile_removeCmd)
+	common.AddEvaluationFlags(profile_removeCmd)
+	common.AddLoggingFlags(profile_removeCmd)
 
 	carapace.Gen(profile_removeCmd).FlagCompletion(carapace.ActionMap{
 		"profile": carapace.ActionDirectories(),

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/nix_completer/cmd/common"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix"
 	"github.com/spf13/cobra"
 )
@@ -27,8 +28,8 @@ func init() {
 
 	flake_lockCmd.Flag("override-input").Nargs = 2
 
-	addEvaluationFlags(flake_lockCmd)
-	addLoggingFlags(flake_lockCmd)
+	common.AddEvaluationFlags(flake_lockCmd)
+	common.AddLoggingFlags(flake_lockCmd)
 
 	carapace.Gen(flake_lockCmd).FlagCompletion(carapace.ActionMap{
 		"inputs-from": carapace.Batch(

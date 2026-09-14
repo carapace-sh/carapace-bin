@@ -22,8 +22,9 @@ func init() {
 	rootCmd.AddGroup(
 		&cobra.Group{ID: "main", Title: "Main commands"},
 		&cobra.Group{ID: "infrequently used", Title: "Infrequently used commands"},
-		&cobra.Group{ID: "utility", Title: "Utility commands"},
-		&cobra.Group{ID: "troubleshooting", Title: "Troubleshooting commands"},
+		&cobra.Group{ID: "utility", Title: "Utility/scripting commands"},
+		&cobra.Group{ID: "troubleshooting", Title: "Commands for upgrading or troubleshooting your Nix installation"},
+		&cobra.Group{ID: "help", Title: "Help commands"},
 	)
 
 	rootCmd.Flags().Bool("accept-flake-config", false, "Enable the accept-flake-config setting")
@@ -53,7 +54,6 @@ func init() {
 	rootCmd.Flags().String("diff-hook", "", "Set the diff-hook setting")
 	rootCmd.Flags().String("download-attempts", "", "Set the download-attempts setting")
 	rootCmd.Flags().String("download-speed", "", "Set the download-speed setting")
-	rootCmd.Flags().Bool("enforce-determinism", false, "Enable the enforce-determinism setting")
 	rootCmd.Flags().Bool("eval-cache", false, "Enable the eval-cache setting")
 	rootCmd.Flags().String("experimental-features", "", "Set the experimental-features setting")
 	rootCmd.Flags().String("extra-access-tokens", "", "Append to the access-tokens setting")
@@ -113,7 +113,6 @@ func init() {
 	rootCmd.Flags().Bool("no-auto-optimise-store", false, "Disable the auto-optimise-store setting")
 	rootCmd.Flags().Bool("no-builders-use-substitutes", false, "Disable the builders-use-substitutes setting")
 	rootCmd.Flags().Bool("no-compress-build-log", false, "Disable the compress-build-log setting")
-	rootCmd.Flags().Bool("no-enforce-determinism", false, "Disable the enforce-determinism setting")
 	rootCmd.Flags().Bool("no-eval-cache", false, "Disable the eval-cache setting")
 	rootCmd.Flags().Bool("no-fallback", false, "Disable the fallback setting")
 	rootCmd.Flags().Bool("no-filter-syscalls", false, "Disable the filter-syscalls setting")
@@ -153,7 +152,6 @@ func init() {
 	rootCmd.Flags().Bool("pure-eval", false, "Enable the pure-eval setting")
 	rootCmd.Flags().Bool("quiet", false, "Decrease the logging verbosity level")
 	rootCmd.Flags().Bool("relaxed-sandbox", false, "Enable sandboxing, but allow builds to disable it")
-	rootCmd.Flags().String("repeat", "", "Set the repeat setting")
 	rootCmd.Flags().Bool("require-sigs", false, "Enable the require-sigs setting")
 	rootCmd.Flags().Bool("restrict-eval", false, "Enable the restrict-eval setting")
 	rootCmd.Flags().Bool("run-diff-hook", false, "Enable the run-diff-hook setting")
@@ -202,7 +200,6 @@ func init() {
 	rootCmd.MarkFlagsMutuallyExclusive("auto-optimise-store", "no-auto-optimise-store")
 	rootCmd.MarkFlagsMutuallyExclusive("builders-use-substitutes", "no-builders-use-substitutes")
 	rootCmd.MarkFlagsMutuallyExclusive("compress-build-log", "no-compress-build-log")
-	rootCmd.MarkFlagsMutuallyExclusive("enforce-determinism", "no-enforce-determinism")
 	rootCmd.MarkFlagsMutuallyExclusive("eval-cache", "no-eval-cache")
 	rootCmd.MarkFlagsMutuallyExclusive("fallback", "no-fallback")
 	rootCmd.MarkFlagsMutuallyExclusive("filter-syscalls", "no-filter-syscalls")
@@ -248,54 +245,5 @@ func init() {
 			}
 		}),
 		"system": nix.ActionSystems(),
-	})
-}
-
-func addEvaluationFlags(cmd *cobra.Command) {
-	cmd.Flags().StringSlice("arg", nil, "Pass the value expr as the argument name to Nix functions")
-	cmd.Flags().StringSlice("argstr", nil, "Pass the string string as the argument name to Nix functions")
-	cmd.Flags().Bool("debugger", false, "Start an interactive environment if evaluation fail")
-	cmd.Flags().String("eval-store", "", "The Nix store to use for evaluations")
-	cmd.Flags().Bool("impure", false, "Allow access to mutable paths and repositories")
-	cmd.Flags().BoolP("include", "I", false, "Add path to the list of locations used to look up <...> file names")
-	cmd.Flags().String("override-flake", "", "Override the flake registries, redirecting original-ref to resolved-ref")
-
-	cmd.Flag("arg").Nargs = 2
-	cmd.Flag("argstr").Nargs = 2
-}
-
-func addFlakeFlags(cmd *cobra.Command) {
-	cmd.Flags().Bool("commit-lock-file", false, "Commit changes to the flake's lock file")
-	cmd.Flags().String("inputs-from", "", "Use the inputs of the specified flake as registry entries")
-	cmd.Flags().Bool("no-registries", false, "Don't allow lookups in the flake registries")
-	cmd.Flags().Bool("no-update-lock-file", false, "Do not allow any updates to the flake's lock file")
-	cmd.Flags().Bool("no-write-lock-file", false, "Do not write the flake's newly generated lock file")
-	cmd.Flags().String("output-lock-file", "", "Write the given lock file instead of flake.lock")
-	cmd.Flags().String("override-input", "", "Override a specific flake input (e.g. dwarffs/nixpkgs)")
-	cmd.Flags().Bool("recreate-lock-file", false, "Recreate the flake's lock file from scratch")
-	cmd.Flags().String("reference-lock-file", "", "Read the given lock file instead of flake.lock")
-	cmd.Flags().String("update-input", "", "Update a specific flake input (ignoring its previous entry in the lock file")
-
-	cmd.Flag("override-input").Nargs = 2
-}
-
-func addInterpretationFlags(cmd *cobra.Command) {
-	cmd.Flags().String("expr", "", "Interpret installables as attribute paths relative to the Nix expression expr")
-	cmd.Flags().StringP("file", "f", "", "Interpret installables as attribute paths relative to the Nix expression stored in file")
-
-	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
-		"file": carapace.ActionFiles(),
-	})
-}
-
-func addLoggingFlags(cmd *cobra.Command) {
-	cmd.Flags().Bool("debug", false, "Set the logging verbosity level to 'debug'")
-	cmd.Flags().String("log-format", "", "Set the format of log output")
-	cmd.Flags().BoolP("print-build-logs", "L", false, "Print full build logs on standard error")
-	cmd.Flags().Bool("quiet", false, "Decrease the logging verbosity level")
-	cmd.Flags().BoolP("verbose", "v", false, "Increase the logging verbosity level")
-
-	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
-		"log-format": carapace.ActionValues("raw", "internal-json", "bar", "bar-with-logs"),
 	})
 }

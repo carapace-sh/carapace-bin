@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/nix_completer/cmd/common"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix"
 	"github.com/spf13/cobra"
 )
@@ -18,8 +19,8 @@ func init() {
 	registry_pinCmd.Flags().String("registry", "", "The registry to operate on")
 	registryCmd.AddCommand(registry_pinCmd)
 
-	addEvaluationFlags(registry_pinCmd)
-	addLoggingFlags(registry_pinCmd)
+	common.AddEvaluationFlags(registry_pinCmd)
+	common.AddLoggingFlags(registry_pinCmd)
 
 	carapace.Gen(registry_pinCmd).FlagCompletion(carapace.ActionMap{
 		"registry": carapace.ActionFiles(),

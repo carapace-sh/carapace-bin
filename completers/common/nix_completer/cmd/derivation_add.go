@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/nix_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
 
@@ -18,5 +19,5 @@ func init() {
 
 	derivationCmd.AddCommand(derivation_addCmd)
 
-	addLoggingFlags(derivation_addCmd)
+	common.AddLoggingFlags(derivation_addCmd)
 }
