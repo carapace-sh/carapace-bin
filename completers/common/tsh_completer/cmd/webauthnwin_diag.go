@@ -7,7 +7,7 @@ import (
 
 var webauthnwin_diagCmd = &cobra.Command{
 	Use:    "diag",
-	Short:  "Run windows webauthn diagnostics",
+	Short:  "Run windows webauthn diagnostics.",
 	Hidden: true,
 	Run:    func(cmd *cobra.Command, args []string) {},
 }
