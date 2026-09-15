@@ -29,6 +29,8 @@ func init() {
 
 	carapace.Gen(config_setCmd).PositionalCompletion(
 		jj.ActionConfigs(true).MultiParts("."),
-		// TODO values
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return jj.ActionConfigValues(c.Args[0])
+		}),
 	)
 }
