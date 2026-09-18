@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var listCmd = &cobra.Command{
+var bucket_listCmd = &cobra.Command{
 	Use:   "list",
-	Short: "list installed apps",
+	Short: "list all installed buckets",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(listCmd).Standalone()
-	rootCmd.AddCommand(listCmd)
+	carapace.Gen(bucket_listCmd).Standalone()
+	bucketCmd.AddCommand(bucket_listCmd)
 }

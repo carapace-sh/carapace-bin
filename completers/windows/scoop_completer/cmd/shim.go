@@ -7,11 +7,12 @@ import (
 
 var shimCmd = &cobra.Command{
 	Use:   "shim",
-	Short: "manage shims",
+	Short: "manipulate Scoop shims",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(shimCmd).Standalone()
+	shimCmd.Flags().BoolP("global", "g", false, "manipulate global shim(s)")
 	rootCmd.AddCommand(shimCmd)
 }
