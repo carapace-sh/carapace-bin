@@ -15,7 +15,7 @@ var volumesCmd = &cobra.Command{
 func init() {
 	carapace.Gen(volumesCmd).Standalone()
 
-	volumesCmd.Flags().String("format", "", "Format output using a custom template:")
+	volumesCmd.Flags().String("format", "table", "Format output using a custom template:")
 	volumesCmd.Flags().BoolP("quiet", "q", false, "Only display volume names")
 	rootCmd.AddCommand(volumesCmd)
 

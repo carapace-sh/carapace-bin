@@ -17,7 +17,9 @@ func init() {
 	bridge_transformations_createCmd.Flags().StringP("from", "f", "", "Existing transformation to copy (default: docker/compose-bridge-kubernetes)")
 	bridge_transformationsCmd.AddCommand(bridge_transformations_createCmd)
 
-	// TODO flag completion
+	carapace.Gen(bridge_transformations_createCmd).FlagCompletion(carapace.ActionMap{
+		"from": carapace.ActionValues("docker/compose-bridge-kubernetes"),
+	})
 
 	carapace.Gen(bridge_transformations_createCmd).PositionalCompletion(
 		carapace.ActionFiles(),

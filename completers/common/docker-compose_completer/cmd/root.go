@@ -2,6 +2,8 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/docker-compose_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/docker/compose"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/carapace-sh/carapace/pkg/traverse"
 	"github.com/spf13/cobra"
@@ -23,14 +25,14 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().Bool("all-resources", false, "Include all resources, even those not used by services")
-	rootCmd.Flags().String("ansi", "", "Control when to print ANSI control characters (\"never\"|\"always\"|\"auto\")")
+	rootCmd.Flags().String("ansi", "auto", "Control when to print ANSI control characters (\"never\"|\"always\"|\"auto\")")
 	rootCmd.Flags().Bool("compatibility", false, "Run compose in backward compatibility mode")
 	rootCmd.PersistentFlags().Bool("dry-run", false, "Execute command in dry run mode")
 	rootCmd.Flags().StringSlice("env-file", nil, "Specify an alternate environment file")
 	rootCmd.Flags().StringSliceP("file", "f", nil, "Compose configuration files")
 	rootCmd.Flags().StringSlice("insecure-registry", nil, "Use insecure registry to pull Compose OCI artifacts. Doesn't apply to images")
 	rootCmd.Flags().Bool("no-ansi", false, "Do not print ANSI control characters (DEPRECATED)")
-	rootCmd.Flags().String("parallel", "", "Control max parallelism, -1 for unlimited")
+	rootCmd.Flags().String("parallel", "-1", "Control max parallelism, -1 for unlimited")
 	rootCmd.Flags().StringSlice("profile", nil, "Specify a profile to enable")
 	rootCmd.Flags().String("progress", "", "Set type of progress output (auto, tty, plain, json, quiet)")
 	rootCmd.Flags().String("project-directory", "", "Specify an alternate working directory")
@@ -48,8 +50,10 @@ func init() {
 		"ansi":              carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
 		"env-file":          carapace.ActionFiles(),
 		"file":              carapace.ActionFiles(),
+		"profile":           action.ActionProfiles(rootCmd),
 		"progress":          carapace.ActionValues("auto", "tty", "plain", "quiet"),
 		"project-directory": carapace.ActionDirectories(),
+		"project-name":      compose.ActionProjects(),
 	})
 
 	carapace.Gen(rootCmd).PreInvoke(func(cmd *cobra.Command, flag *pflag.Flag, action carapace.Action) carapace.Action {

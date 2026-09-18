@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/docker-compose_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/docker"
 	"github.com/spf13/cobra"
 )
@@ -17,12 +18,13 @@ func init() {
 
 	commitCmd.Flags().StringP("author", "a", "", "Author (e.g., \"John Hannibal Smith <hannibal@a-team.com>\")")
 	commitCmd.Flags().StringP("change", "c", "", "Apply Dockerfile instruction to the created image")
-	commitCmd.Flags().String("index", "", "index of the container if service has multiple replicas.")
+	commitCmd.Flags().Int("index", 0, "index of the container if service has multiple replicas.")
 	commitCmd.Flags().StringP("message", "m", "", "Commit message")
-	commitCmd.Flags().BoolP("pause", "p", false, "Pause container during commit")
+	commitCmd.Flags().BoolP("pause", "p", true, "Pause container during commit")
 	rootCmd.AddCommand(commitCmd)
 
 	carapace.Gen(commitCmd).PositionalCompletion(
+		action.ActionServices(commitCmd),
 		docker.ActionRepositoryTags(),
 	)
 }

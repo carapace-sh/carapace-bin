@@ -16,6 +16,10 @@ type config struct {
 			Context    string
 			Dockerfile string
 		}
+		Ports []struct {
+			Published string
+			Target    uint32
+		}
 	}
 	Volumes map[string]struct {
 		Name string
@@ -118,8 +122,8 @@ func (o ContainerOpts) includeState(s string) bool {
 func ActionContainers(opts ContainerOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return actionExecCompose(opts.Files, "ps", "--format", "json", "--all")(func(output []byte) carapace.Action {
-			var containers []container
-			if err := json.Unmarshal(output, &containers); err != nil {
+			containers, err := unmarshalValues[container](output)
+			if err != nil {
 				return carapace.ActionMessage(err.Error())
 			}
 

@@ -15,7 +15,7 @@ var bridge_transformations_listCmd = &cobra.Command{
 func init() {
 	carapace.Gen(bridge_transformations_listCmd).Standalone()
 
-	bridge_transformations_listCmd.Flags().String("format", "", "Format the output. Values: [table | json]")
+	bridge_transformations_listCmd.Flags().String("format", "table", "Format the output. Values: [table | json]")
 	bridge_transformations_listCmd.Flags().BoolP("quiet", "q", false, "Only display transformer names")
 	bridge_transformationsCmd.AddCommand(bridge_transformations_listCmd)
 

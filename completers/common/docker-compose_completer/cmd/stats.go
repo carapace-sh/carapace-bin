@@ -21,6 +21,10 @@ func init() {
 	statsCmd.Flags().Bool("no-trunc", false, "Do not truncate output")
 	rootCmd.AddCommand(statsCmd)
 
+	carapace.Gen(statsCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("table", "json"),
+	})
+
 	carapace.Gen(statsCmd).PositionalCompletion(
 		action.ActionServices(statsCmd),
 	)

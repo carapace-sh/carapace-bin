@@ -20,7 +20,7 @@ func init() {
 	createCmd.Flags().Bool("force-recreate", false, "Recreate containers even if their configuration and image haven't changed")
 	createCmd.Flags().Bool("no-build", false, "Don't build an image, even if it's policy")
 	createCmd.Flags().Bool("no-recreate", false, "If containers already exist, don't recreate them. Incompatible with --force-recreate.")
-	createCmd.Flags().String("pull", "", "Pull image before running (\"always\"|\"missing\"|\"never\"|\"build\")")
+	createCmd.Flags().String("pull", "policy", "Pull image before running (\"always\"|\"missing\"|\"never\"|\"build\")")
 	createCmd.Flags().Bool("quiet-pull", false, "Pull without printing progress information")
 	createCmd.Flags().Bool("remove-orphans", false, "Remove containers for services not defined in the Compose file")
 	createCmd.Flags().StringSlice("scale", nil, "Scale SERVICE to NUM instances. Overrides the `scale` setting in the Compose file if present.")
@@ -29,6 +29,14 @@ func init() {
 
 	carapace.Gen(createCmd).FlagCompletion(carapace.ActionMap{
 		"pull": carapace.ActionValues("always", "missing", "never", "build").StyleF(style.ForKeyword),
+		"scale": carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return action.ActionServices(createCmd).Suffix("=")
+			default:
+				return carapace.ActionValues()
+			}
+		}),
 	})
 
 	carapace.Gen(createCmd).PositionalAnyCompletion(
