@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/env"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/docker"
 	"github.com/spf13/cobra"
 )
@@ -32,6 +33,7 @@ func init() {
 		"detach-keys": docker.ActionDetachKeys(),
 		"env":         env.ActionNameValues(false),
 		"env-file":    carapace.ActionFiles(),
+		"user":        os.ActionUsers(),
 	})
 
 	carapace.Gen(execCmd).PositionalCompletion(

@@ -2,9 +2,11 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/docker_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/env"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/docker"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -116,6 +118,7 @@ func init() {
 	container_runCmd.Flags().String("tmpfs", "", "Mount a tmpfs directory")
 	container_runCmd.Flags().BoolP("tty", "t", false, "Allocate a pseudo-TTY")
 	container_runCmd.Flags().String("ulimit", "", "Ulimit options")
+	container_runCmd.Flags().String("umask", "", "Set umask for the container")
 	container_runCmd.Flags().Bool("use-api-socket", false, "Bind mount Docker API socket and required auth")
 	container_runCmd.Flags().StringP("user", "u", "", "Username or UID (format: <name|uid>[:<group|gid>])")
 	container_runCmd.Flags().String("userns", "", "User namespace to use")
@@ -142,13 +145,17 @@ func init() {
 		"env":          env.ActionNameValues(false),
 		"env-file":     carapace.ActionFiles(),
 		"group-add":    os.ActionGroups(),
+		"ipc":          action.ActionIpcModes(),
 		"isolation":    carapace.ActionValues("default", "hyperv", "process"),
 		"label-file":   carapace.ActionFiles(),
+		"link":         action.ActionLinks(),
 		"log-driver":   docker.ActionLogDrivers(),
-		"network":      carapace.ActionValues("bridge", "container", "host", "none"),
-		"pid":          carapace.ActionValues("container", "host"),
-		"pull":         carapace.ActionValues("always", "missing", "never"),
+		"network":      action.ActionNetworkModes(),
+		"pid":          action.ActionPidModes(),
+		"pull":         carapace.ActionValues("always", "missing", "never").StyleF(style.ForKeyword),
+		"restart":      carapace.ActionValues("always", "no", "on-failure", "unless-stopped").StyleF(style.ForKeyword),
 		"user":         os.ActionUsers(),
+		"uts":          action.ActionUtsModes(),
 		"volume":       docker.ActionVolumes(),
 		"volumes-from": carapace.Batch(
 			docker.ActionContainers(),

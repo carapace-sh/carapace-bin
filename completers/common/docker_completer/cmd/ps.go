@@ -2,6 +2,8 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/docker"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -24,4 +26,62 @@ func init() {
 	psCmd.Flags().BoolP("quiet", "q", false, "Only display container IDs")
 	psCmd.Flags().BoolP("size", "s", false, "Display total file sizes")
 	rootCmd.AddCommand(psCmd)
+
+	carapace.Gen(psCmd).FlagCompletion(carapace.ActionMap{
+		"filter": carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return carapace.ActionValuesDescribed(
+					"ancestor", "Filters containers which share a given image as an ancestor",
+					"before", "Filters containers created before or after a given container ID or name",
+					"exited", "An integer representing the container’s exit code",
+					"expose", "Filters containers which publish or expose a given port",
+					"health", "Filters containers based on their healthcheck status",
+					"id", "Container’s ID",
+					"is-task", "Filters containers that are a “task” for a service",
+					"isolation", "Windows daemon only",
+					"label", "An arbitrary string representing either a key or a key-value pair",
+					"name", "Container’s name",
+					"network", "Filters running containers connected to a given network",
+					"publish", "Filters containers which publish or expose a given port",
+					"since", "Filters containers created before or after a given container ID or name",
+					"status", "Container status",
+					"volume", "	Filters running containers which have mounted a given volume or bind mount",
+				).Suffix("=")
+			default:
+				switch c.Parts[0] {
+				case "ancestor":
+					return docker.ActionRepositoryTags()
+				case "before":
+					return docker.ActionContainers()
+				case "expose":
+					return docker.ActionPorts()
+				case "health":
+					return carapace.ActionValues("starting", "healthy", "unhealthy", "none").StyleF(style.ForKeyword)
+				case "is-task":
+					return carapace.ActionValues("true", "false").StyleF(style.ForKeyword)
+				case "id":
+					return docker.ActionContainerIds()
+				case "isolation":
+					return carapace.ActionValues("default", "process", "hyperv")
+				case "name":
+					return docker.ActionContainers()
+				case "network":
+					return docker.ActionNetworks()
+				case "publish":
+					return docker.ActionPorts()
+				case "since":
+					return docker.ActionContainers()
+				case "status":
+					return carapace.ActionValues("created", "restarting", "removing", "running", "paused", "exited", "dead").StyleF(style.ForKeyword)
+				case "volume":
+					return docker.ActionVolumes()
+				case "label":
+					return docker.ActionContainerLabels()
+				default:
+					return carapace.ActionValues()
+				}
+			}
+		}),
+	})
 }

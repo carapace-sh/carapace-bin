@@ -19,4 +19,27 @@ func init() {
 	system_eventsCmd.Flags().String("since", "", "Show all events created since timestamp")
 	system_eventsCmd.Flags().String("until", "", "Stream events until this timestamp")
 	systemCmd.AddCommand(system_eventsCmd)
+
+	carapace.Gen(system_eventsCmd).FlagCompletion(carapace.ActionMap{
+		"filter": carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return carapace.ActionValuesDescribed(
+					"container", "Filter by container",
+					"event", "Filter by event type",
+					"image", "Filter by image",
+					"label", "Filter by label (key or key=value)",
+					"type", "Filter by object type",
+					"volume", "Filter by volume",
+				).Suffix("=")
+			default:
+				switch c.Parts[0] {
+				case "type":
+					return carapace.ActionValues("builder", "config", "container", "daemon", "image", "network", "node", "plugin", "secret", "service", "volume")
+				default:
+					return carapace.ActionValues()
+				}
+			}
+		}),
+	})
 }

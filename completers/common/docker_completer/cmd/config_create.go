@@ -18,6 +18,10 @@ func init() {
 	config_createCmd.Flags().String("template-driver", "", "Template driver")
 	configCmd.AddCommand(config_createCmd)
 
+	carapace.Gen(config_createCmd).FlagCompletion(carapace.ActionMap{
+		"template-driver": carapace.ActionValues("golang", "mustache", "none"),
+	})
+
 	carapace.Gen(config_createCmd).PositionalCompletion(
 		carapace.ActionValues(),
 		carapace.ActionFiles(),

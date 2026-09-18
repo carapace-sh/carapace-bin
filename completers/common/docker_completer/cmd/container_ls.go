@@ -28,7 +28,7 @@ func init() {
 	containerCmd.AddCommand(container_lsCmd)
 
 	carapace.Gen(container_lsCmd).FlagCompletion(carapace.ActionMap{
-		"filter": carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
+		"filter": carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
 				return carapace.ActionValuesDescribed(
@@ -47,8 +47,8 @@ func init() {
 					"since", "Filters containers created before or after a given container ID or name",
 					"status", "Container status",
 					"volume", "	Filters running containers which have mounted a given volume or bind mount",
-				).Invoke(c).Suffix("=").ToA()
-			case 1:
+				).Suffix("=")
+			default:
 				switch c.Parts[0] {
 				case "ancestor":
 					return docker.ActionRepositoryTags()
@@ -76,11 +76,11 @@ func init() {
 					return carapace.ActionValues("created", "restarting", "removing", "running", "paused", "exited", "dead").StyleF(style.ForKeyword)
 				case "volume":
 					return docker.ActionVolumes()
+				case "label":
+					return docker.ActionContainerLabels()
 				default:
 					return carapace.ActionValues()
 				}
-			default:
-				return carapace.ActionValues()
 			}
 		}),
 	})

@@ -19,4 +19,28 @@ func init() {
 	node_lsCmd.Flags().String("format", "", "Format output using a custom template:")
 	node_lsCmd.Flags().BoolP("quiet", "q", false, "Only display IDs")
 	nodeCmd.AddCommand(node_lsCmd)
+
+	carapace.Gen(node_lsCmd).FlagCompletion(carapace.ActionMap{
+		"filter": carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return carapace.ActionValuesDescribed(
+					"id", "Filter by ID",
+					"label", "Filter by label (key or key=value)",
+					"membership", "Filter by swarm membership",
+					"name", "Filter by name",
+					"role", "Filter by swarm role",
+				).Suffix("=")
+			default:
+				switch c.Parts[0] {
+				case "membership":
+					return carapace.ActionValues("pending", "accepted", "rejected")
+				case "role":
+					return carapace.ActionValues("manager", "worker")
+				default:
+					return carapace.ActionValues()
+				}
+			}
+		}),
+	})
 }

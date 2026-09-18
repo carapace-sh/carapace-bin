@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/docker"
 	"github.com/spf13/cobra"
 )
 
@@ -18,4 +19,8 @@ func init() {
 	context_createCmd.Flags().String("docker", "", "set the docker endpoint")
 	context_createCmd.Flags().String("from", "", "create context from a named context")
 	contextCmd.AddCommand(context_createCmd)
+
+	carapace.Gen(context_createCmd).FlagCompletion(carapace.ActionMap{
+		"from": docker.ActionContexts(),
+	})
 }

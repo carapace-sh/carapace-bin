@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -20,4 +21,23 @@ func init() {
 	searchCmd.Flags().String("limit", "", "Max number of search results")
 	searchCmd.Flags().Bool("no-trunc", false, "Don't truncate output")
 	rootCmd.AddCommand(searchCmd)
+
+	carapace.Gen(searchCmd).FlagCompletion(carapace.ActionMap{
+		"filter": carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return carapace.ActionValuesDescribed(
+					"is-official", "Filter by official images",
+					"stars", "Filter by star count",
+				).Suffix("=")
+			default:
+				switch c.Parts[0] {
+				case "is-official":
+					return carapace.ActionValues("true", "false").StyleF(style.ForKeyword)
+				default:
+					return carapace.ActionValues()
+				}
+			}
+		}),
+	})
 }

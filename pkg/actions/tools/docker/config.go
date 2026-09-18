@@ -17,3 +17,10 @@ func ActionConfigs() carapace.Action {
 		})
 	}).Tag("configs")
 }
+
+// ActionConfigLabels completes existing labels
+//
+//	key	value
+func ActionConfigLabels() carapace.Action {
+	return actionLabels("config", "ls", "--format", "{{.Labels}}").Tag("labels")
+}

@@ -20,6 +20,10 @@ func init() {
 	image_importCmd.Flags().String("platform", "", "Set platform if server is multi-platform capable")
 	imageCmd.AddCommand(image_importCmd)
 
+	carapace.Gen(image_importCmd).FlagCompletion(carapace.ActionMap{
+		"change": carapace.ActionValues("CMD", "ENTRYPOINT", "ENV", "EXPOSE", "ONBUILD", "USER", "VOLUME", "WORKDIR"),
+	})
+
 	carapace.Gen(image_importCmd).PositionalCompletion(
 		carapace.ActionFiles(),
 		docker.ActionRepositoryTags(),

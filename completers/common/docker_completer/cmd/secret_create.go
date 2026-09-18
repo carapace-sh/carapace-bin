@@ -20,6 +20,10 @@ func init() {
 	secret_createCmd.Flags().String("template-driver", "", "Template driver")
 	secretCmd.AddCommand(secret_createCmd)
 
+	carapace.Gen(secret_createCmd).FlagCompletion(carapace.ActionMap{
+		"template-driver": carapace.ActionValues("golang", "mustache", "none"),
+	})
+
 	carapace.Gen(secret_createCmd).PositionalCompletion(
 		docker.ActionSecrets(),
 		carapace.ActionFiles(),

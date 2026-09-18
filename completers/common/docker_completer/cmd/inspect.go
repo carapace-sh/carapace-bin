@@ -23,7 +23,10 @@ func init() {
 	inspectCmd.Flags().String("type", "", "Only inspect objects of the given type")
 	rootCmd.AddCommand(inspectCmd)
 
-	// TODO type completion
+	carapace.Gen(inspectCmd).FlagCompletion(carapace.ActionMap{
+		"type": carapace.ActionValues("builder", "config", "container", "image", "network", "node", "plugin", "secret", "service", "task", "volume"),
+	})
+
 	carapace.Gen(inspectCmd).PositionalAnyCompletion(
 		carapace.Batch(
 			docker.ActionContainers(),

@@ -18,6 +18,10 @@ func init() {
 	container_exportCmd.Flags().StringP("output", "o", "", "Write to a file, instead of STDOUT")
 	containerCmd.AddCommand(container_exportCmd)
 
+	carapace.Gen(container_exportCmd).FlagCompletion(carapace.ActionMap{
+		"output": carapace.ActionFiles(),
+	})
+
 	carapace.Gen(container_exportCmd).PositionalCompletion(
 		docker.ActionContainers(),
 	)

@@ -2,8 +2,10 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/env"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/docker"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -113,9 +115,24 @@ func init() {
 	serviceCmd.AddCommand(service_updateCmd)
 
 	carapace.Gen(service_updateCmd).FlagCompletion(carapace.ActionMap{
-		"group-add":  os.ActionGroups(),
-		"log-driver": docker.ActionLogDrivers(),
-		"user":       os.ActionUsers(),
+		"config-add":              docker.ActionConfigs(),
+		"config-rm":               docker.ActionConfigs(),
+		"endpoint-mode":           carapace.ActionValues("vip", "dnsrr"),
+		"env-add":                 env.ActionNameValues(false),
+		"group-add":               os.ActionGroups(),
+		"image":                   docker.ActionRepositoryTags(),
+		"isolation":               carapace.ActionValues("default", "hyperv", "process"),
+		"log-driver":              docker.ActionLogDrivers(),
+		"network-add":             docker.ActionNetworks(),
+		"network-rm":              docker.ActionNetworks(),
+		"restart-condition":       carapace.ActionValues("any", "none", "on-failure").StyleF(style.ForKeyword),
+		"rollback-failure-action": carapace.ActionValues("continue", "pause").StyleF(style.ForKeyword),
+		"rollback-order":          carapace.ActionValues("start-first", "stop-first"),
+		"secret-add":              docker.ActionSecrets(),
+		"secret-rm":               docker.ActionSecrets(),
+		"update-failure-action":   carapace.ActionValues("continue", "pause").StyleF(style.ForKeyword),
+		"update-order":            carapace.ActionValues("start-first", "stop-first"),
+		"user":                    os.ActionUsers(),
 	})
 
 	carapace.Gen(service_updateCmd).PositionalCompletion(
