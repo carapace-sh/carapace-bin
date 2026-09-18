@@ -50,9 +50,21 @@ func init() {
 		"env-from-file": carapace.ActionFiles(),
 		"pull":          carapace.ActionValues("always", "missing", "never").StyleF(style.ForKeyword),
 		"volume":        action.ActionVolumes(runCmd),
+		"workdir": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if len(c.Args) > 0 {
+				return action.ActionFiles(runCmd, c.Args[0], 0)
+			}
+			return carapace.ActionDirectories()
+		}),
 	})
 
 	carapace.Gen(runCmd).PositionalCompletion(
 		action.ActionServices(runCmd),
+	)
+
+	carapace.Gen(runCmd).PositionalAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return action.ActionFiles(runCmd, c.Args[0], 0)
+		}),
 	)
 }

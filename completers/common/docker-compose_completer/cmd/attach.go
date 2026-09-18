@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/docker-compose_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/docker"
 	"github.com/spf13/cobra"
 )
 
@@ -20,6 +21,10 @@ func init() {
 	attachCmd.Flags().Bool("no-stdin", false, "Do not attach STDIN")
 	attachCmd.Flags().Bool("sig-proxy", true, "Proxy all received signals to the process")
 	rootCmd.AddCommand(attachCmd)
+
+	carapace.Gen(attachCmd).FlagCompletion(carapace.ActionMap{
+		"detach-keys": docker.ActionDetachKeys(),
+	})
 
 	carapace.Gen(attachCmd).PositionalCompletion(
 		action.ActionServices(attachCmd).FilterArgs(),

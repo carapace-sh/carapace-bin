@@ -29,6 +29,14 @@ func init() {
 
 	carapace.Gen(createCmd).FlagCompletion(carapace.ActionMap{
 		"pull": carapace.ActionValues("always", "missing", "never", "build").StyleF(style.ForKeyword),
+		"scale": carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return action.ActionServices(createCmd).Invoke(c).Suffix("=").ToA()
+			default:
+				return carapace.ActionValues()
+			}
+		}),
 	})
 
 	carapace.Gen(createCmd).PositionalAnyCompletion(

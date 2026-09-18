@@ -21,6 +21,7 @@ func init() {
 	rootCmd.AddCommand(lsCmd)
 
 	carapace.Gen(lsCmd).FlagCompletion(carapace.ActionMap{
+		"filter": carapace.ActionValues("name"),
 		"format": carapace.ActionValues("table", "json"),
 	})
 }

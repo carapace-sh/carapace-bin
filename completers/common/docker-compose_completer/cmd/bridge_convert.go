@@ -21,8 +21,9 @@ func init() {
 	bridgeCmd.AddCommand(bridge_convertCmd)
 
 	carapace.Gen(bridge_convertCmd).FlagCompletion(carapace.ActionMap{
-		"output":    carapace.ActionDirectories(),
-		"templates": carapace.ActionDirectories(),
+		"output":         carapace.ActionDirectories(),
+		"templates":      carapace.ActionDirectories(),
+		"transformation": carapace.ActionValues("docker/compose-bridge-kubernetes"),
 		// TODO complete transformations
 	})
 }

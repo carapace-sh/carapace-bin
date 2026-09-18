@@ -2,6 +2,8 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/docker-compose_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/docker/compose"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/carapace-sh/carapace/pkg/traverse"
 	"github.com/spf13/cobra"
@@ -48,8 +50,10 @@ func init() {
 		"ansi":              carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
 		"env-file":          carapace.ActionFiles(),
 		"file":              carapace.ActionFiles(),
+		"profile":           action.ActionProfiles(rootCmd),
 		"progress":          carapace.ActionValues("auto", "tty", "plain", "quiet"),
 		"project-directory": carapace.ActionDirectories(),
+		"project-name":      compose.ActionProjects(),
 	})
 
 	carapace.Gen(rootCmd).PreInvoke(func(cmd *cobra.Command, flag *pflag.Flag, action carapace.Action) carapace.Action {

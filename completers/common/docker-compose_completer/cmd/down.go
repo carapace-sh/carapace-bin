@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/docker-compose_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -27,4 +28,8 @@ func init() {
 			"local", "Remove only images that don't have a custom tag set by the image field.",
 		),
 	})
+
+	carapace.Gen(downCmd).PositionalAnyCompletion(
+		action.ActionServices(downCmd).FilterArgs(),
+	)
 }
