@@ -1,8 +1,6 @@
 package compose
 
 import (
-	"encoding/json"
-
 	"github.com/carapace-sh/carapace"
 )
 
@@ -16,8 +14,8 @@ type project struct {
 //	carapace-bin (running)
 func ActionProjects() carapace.Action {
 	return carapace.ActionExecCommand("docker", "compose", "ls", "--format", "json")(func(output []byte) carapace.Action {
-		var projects []project
-		if err := json.Unmarshal(output, &projects); err != nil {
+		projects, err := unmarshalValues[project](output)
+		if err != nil {
 			return carapace.ActionMessage(err.Error())
 		}
 
