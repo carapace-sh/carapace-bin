@@ -7,7 +7,7 @@ import (
 
 var bench_kube_lsCmd = &cobra.Command{
 	Use:    "ls",
-	Short:  "Run a benchmark test to list Pods",
+	Short:  "Run a benchmark test to list Pods.",
 	Hidden: true,
 	Run:    func(cmd *cobra.Command, args []string) {},
 }

@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -15,13 +14,12 @@ var statusCmd = &cobra.Command{
 func init() {
 	carapace.Gen(statusCmd).Standalone()
 
-	statusCmd.Flags().StringP("format", "f", "", "Format output (text, json, yaml)")
-	statusCmd.Flags().Bool("no-verbose", false, "Show extra status information after successful login")
-	statusCmd.Flags().BoolP("verbose", "v", false, "Show extra status information after successful login")
+	statusCmd.Flags().Bool("client", false, "Show client information only (no server required).")
+	statusCmd.Flags().StringP("format", "f", "text", "Format output (text, json, yaml).")
+	statusCmd.Flags().Bool("no-client", false, "Show client information only (no server required).")
+	statusCmd.Flags().Bool("no-verbose", false, "Show extra status information after successful login.")
+	statusCmd.Flags().BoolP("verbose", "v", false, "Show extra status information after successful login.")
+	statusCmd.Flag("no-client").Hidden = true
 	statusCmd.Flag("no-verbose").Hidden = true
 	rootCmd.AddCommand(statusCmd)
-
-	carapace.Gen(statusCmd).FlagCompletion(carapace.ActionMap{
-		"format": tsh.ActionFormats(),
-	})
 }
