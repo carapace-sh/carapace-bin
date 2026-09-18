@@ -15,7 +15,7 @@ var exportCmd = &cobra.Command{
 func init() {
 	carapace.Gen(exportCmd).Standalone()
 
-	exportCmd.Flags().String("index", "", "index of the container if service has multiple replicas.")
+	exportCmd.Flags().Int("index", 0, "index of the container if service has multiple replicas.")
 	exportCmd.Flags().StringP("output", "o", "", "Write to a file, instead of STDOUT")
 	rootCmd.AddCommand(exportCmd)
 

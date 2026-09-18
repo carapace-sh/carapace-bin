@@ -16,6 +16,10 @@ type config struct {
 			Context    string
 			Dockerfile string
 		}
+		Ports []struct {
+			Published string
+			Target    uint32
+		}
 	}
 	Volumes map[string]struct {
 		Name string

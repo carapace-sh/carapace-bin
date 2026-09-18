@@ -15,7 +15,7 @@ var alpha_generateCmd = &cobra.Command{
 func init() {
 	carapace.Gen(alpha_generateCmd).Standalone()
 
-	alpha_generateCmd.Flags().String("format", "", "Format the output. Values: [yaml | json]")
+	alpha_generateCmd.Flags().String("format", "yaml", "Format the output. Values: [yaml | json]")
 	alpha_generateCmd.Flags().String("name", "", "Project name to set in the Compose file")
 	alpha_generateCmd.Flags().String("project-dir", "", "Directory to use for the project")
 	alphaCmd.AddCommand(alpha_generateCmd)

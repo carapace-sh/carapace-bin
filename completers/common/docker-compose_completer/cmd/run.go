@@ -24,20 +24,20 @@ func init() {
 	runCmd.Flags().String("entrypoint", "", "Override the entrypoint of the image")
 	runCmd.Flags().StringSliceP("env", "e", nil, "Set environment variables")
 	runCmd.Flags().StringSlice("env-from-file", nil, "Set environment variables from file")
-	runCmd.Flags().BoolP("interactive", "i", false, "Keep STDIN open even if not attached")
+	runCmd.Flags().BoolP("interactive", "i", true, "Keep STDIN open even if not attached")
 	runCmd.Flags().StringSliceP("label", "l", nil, "Add or override a label")
 	runCmd.Flags().String("name", "", "Assign a name to the container")
-	runCmd.Flags().BoolP("no-TTY", "T", false, "Disable pseudo-TTY allocation (default: auto-detected)")
 	runCmd.Flags().Bool("no-deps", false, "Don't start linked services")
+	runCmd.Flags().BoolP("no-tty", "T", true, "Disable pseudo-TTY allocation (default: auto-detected)")
 	runCmd.Flags().StringSliceP("publish", "p", nil, "Publish a container's port(s) to the host")
-	runCmd.Flags().String("pull", "", "Pull image before running (\"always\"|\"missing\"|\"never\")")
+	runCmd.Flags().String("pull", "policy", "Pull image before running (\"always\"|\"missing\"|\"never\")")
 	runCmd.Flags().BoolP("quiet", "q", false, "Don't print anything to STDOUT")
 	runCmd.Flags().Bool("quiet-build", false, "Suppress progress output from the build process")
 	runCmd.Flags().Bool("quiet-pull", false, "Pull without printing progress information")
 	runCmd.Flags().Bool("remove-orphans", false, "Remove containers for services not defined in the Compose file")
 	runCmd.Flags().Bool("rm", false, "Automatically remove the container when it exits")
 	runCmd.Flags().BoolP("service-ports", "P", false, "Run command with all service's ports enabled and mapped to the host")
-	runCmd.Flags().BoolP("tty", "t", false, "Allocate a pseudo-TTY")
+	runCmd.Flags().BoolP("tty", "t", true, "Allocate a pseudo-TTY")
 	runCmd.Flags().Bool("use-aliases", false, "Use the service's network useAliases in the network(s) the container connects to")
 	runCmd.Flags().StringP("user", "u", "", "Run as specified username or uid")
 	runCmd.Flags().StringSliceP("volume", "v", nil, "Bind mount a volume")
@@ -45,7 +45,6 @@ func init() {
 	runCmd.Flag("tty").Hidden = true
 	rootCmd.AddCommand(runCmd)
 
-	// TODO flag completion
 	carapace.Gen(runCmd).FlagCompletion(carapace.ActionMap{
 		"env":           env.ActionNameValues(false),
 		"env-from-file": carapace.ActionFiles(),

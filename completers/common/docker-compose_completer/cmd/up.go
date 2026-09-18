@@ -33,7 +33,7 @@ func init() {
 	upCmd.Flags().Bool("no-log-prefix", false, "Don't print prefix in logs")
 	upCmd.Flags().Bool("no-recreate", false, "If containers already exist, don't recreate them. Incompatible with --force-recreate.")
 	upCmd.Flags().Bool("no-start", false, "Don't start the services after creating them")
-	upCmd.Flags().String("pull", "", "Pull image before running (\"always\"|\"missing\"|\"never\")")
+	upCmd.Flags().String("pull", "policy", "Pull image before running (\"always\"|\"missing\"|\"never\")")
 	upCmd.Flags().Bool("quiet-build", false, "Suppress the build output")
 	upCmd.Flags().Bool("quiet-pull", false, "Pull without printing progress information")
 	upCmd.Flags().Bool("remove-orphans", false, "Remove containers for services not defined in the Compose file")
