@@ -22,5 +22,28 @@ func init() {
 	service_psCmd.Flags().BoolP("quiet", "q", false, "Only display task IDs")
 	serviceCmd.AddCommand(service_psCmd)
 
+	carapace.Gen(service_psCmd).FlagCompletion(carapace.ActionMap{
+		"filter": carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return carapace.ActionValuesDescribed(
+					"desired-state", "Filter by desired state of tasks",
+					"id", "Filter by ID",
+					"name", "Filter by name",
+					"node", "Filter by node",
+				).Suffix("=")
+			default:
+				switch c.Parts[0] {
+				case "desired-state":
+					return carapace.ActionValues("running", "shutdown", "accepted")
+				case "node":
+					return docker.ActionNodes()
+				default:
+					return carapace.ActionValues()
+				}
+			}
+		}),
+	})
+
 	carapace.Gen(service_psCmd).PositionalAnyCompletion(docker.ActionServices())
 }

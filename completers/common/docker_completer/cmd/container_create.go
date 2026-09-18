@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/docker_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/env"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/docker"
@@ -99,7 +100,7 @@ func init() {
 	container_createCmd.Flags().Bool("privileged", false, "Give extended privileges to this container")
 	container_createCmd.Flags().StringP("publish", "p", "", "Publish a container's port(s) to the host")
 	container_createCmd.Flags().BoolP("publish-all", "P", false, "Publish all exposed ports to random ports")
-	container_createCmd.Flags().String("pull", "", "Pull image before creating (\"always\", \"|missing\", \"never\")")
+	container_createCmd.Flags().String("pull", "", "Pull image before creating (\"always\", \"missing\", \"never\")")
 	container_createCmd.Flags().BoolP("quiet", "q", false, "Suppress the pull output")
 	container_createCmd.Flags().Bool("read-only", false, "Mount the container's root filesystem as read only")
 	container_createCmd.Flags().String("restart", "", "Restart policy to apply when a container exits")
@@ -114,6 +115,7 @@ func init() {
 	container_createCmd.Flags().String("tmpfs", "", "Mount a tmpfs directory")
 	container_createCmd.Flags().BoolP("tty", "t", false, "Allocate a pseudo-TTY")
 	container_createCmd.Flags().String("ulimit", "", "Ulimit options")
+	container_createCmd.Flags().String("umask", "", "Set umask for the container")
 	container_createCmd.Flags().Bool("use-api-socket", false, "Bind mount Docker API socket and required auth")
 	container_createCmd.Flags().StringP("user", "u", "", "Username or UID (format: <name|uid>[:<group|gid>])")
 	container_createCmd.Flags().String("userns", "", "User namespace to use")
@@ -139,13 +141,17 @@ func init() {
 		"env":          env.ActionNameValues(false),
 		"env-file":     carapace.ActionFiles(),
 		"group-add":    os.ActionGroups(),
+		"ipc":          action.ActionIpcModes(),
 		"isolation":    carapace.ActionValues("default", "hyperv", "process"),
 		"label-file":   carapace.ActionFiles(),
+		"link":         action.ActionLinks(),
 		"log-driver":   docker.ActionLogDrivers(),
-		"network":      carapace.ActionValues("bridge", "container", "host", "none"),
-		"pid":          carapace.ActionValues("container", "host"),
+		"network":      action.ActionNetworkModes(),
+		"pid":          action.ActionPidModes(),
 		"pull":         carapace.ActionValues("always", "missing", "never").StyleF(style.ForKeyword),
+		"restart":      carapace.ActionValues("always", "no", "on-failure", "unless-stopped").StyleF(style.ForKeyword),
 		"user":         os.ActionUsers(),
+		"uts":          action.ActionUtsModes(),
 	})
 
 	carapace.Gen(container_createCmd).PositionalCompletion(

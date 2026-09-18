@@ -18,3 +18,10 @@ func ActionNetworks() carapace.Action {
 		})
 	}).Tag("networks")
 }
+
+// ActionNetworkLabels completes existing labels
+//
+//	key	value
+func ActionNetworkLabels() carapace.Action {
+	return actionLabels("network", "ls", "--format", "{{.Labels}}").Tag("labels")
+}

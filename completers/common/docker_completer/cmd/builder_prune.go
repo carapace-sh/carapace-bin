@@ -19,4 +19,19 @@ func init() {
 	builder_pruneCmd.Flags().BoolP("force", "f", false, "Do not prompt for confirmation")
 	builder_pruneCmd.Flags().String("keep-storage", "", "Amount of disk space to keep for cache")
 	builderCmd.AddCommand(builder_pruneCmd)
+
+	carapace.Gen(builder_pruneCmd).FlagCompletion(carapace.ActionMap{
+		"filter": carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return carapace.ActionValuesDescribed(
+					"label", "Filter by label (key or key=value)",
+					"until", "Prune objects created before given duration",
+					"unused-for", "Prune cache older than given duration",
+				).Suffix("=")
+			default:
+				return carapace.ActionValues()
+			}
+		}),
+	})
 }

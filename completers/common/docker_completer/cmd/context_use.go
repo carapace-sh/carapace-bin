@@ -8,7 +8,7 @@ import (
 
 var context_useCmd = &cobra.Command{
 	Use:   "use CONTEXT",
-	Short: "Set the current docker context",
+	Short: "Set the default docker context",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

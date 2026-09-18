@@ -17,7 +17,7 @@ func init() {
 	carapace.Gen(container_cpCmd).Standalone()
 
 	container_cpCmd.Flags().BoolP("archive", "a", false, "Archive mode (copy all uid/gid information)")
-	container_cpCmd.Flags().BoolP("follow-link", "L", false, "Always follow symbol link in SRC_PATH")
+	container_cpCmd.Flags().BoolP("follow-link", "L", false, "Always follow symlinks in SRC_PATH")
 	container_cpCmd.Flags().BoolP("quiet", "q", false, "Suppress progress output during copy. Progress output is automatically suppressed if no terminal is attached")
 	containerCmd.AddCommand(container_cpCmd)
 

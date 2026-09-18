@@ -18,3 +18,10 @@ func ActionVolumes() carapace.Action {
 		}).Style(styles.Docker.Volume)
 	}).Tag("volumes")
 }
+
+// ActionVolumeLabels completes existing labels
+//
+//	key	value
+func ActionVolumeLabels() carapace.Action {
+	return actionLabels("volume", "ls", "--format", "{{.Labels}}").Tag("labels")
+}
