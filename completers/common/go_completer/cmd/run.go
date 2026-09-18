@@ -3,7 +3,6 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/go_completer/cmd/common"
-	"github.com/carapace-sh/carapace/pkg/util"
 	"github.com/spf13/cobra"
 )
 
@@ -23,12 +22,10 @@ func init() {
 	common.AddCoverFlags(runCmd)
 	rootCmd.AddCommand(runCmd)
 
-	carapace.Gen(runCmd).PositionalCompletion(
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			if util.HasPathPrefix(c.Value) {
-				return carapace.ActionDirectories()
-			}
-			return carapace.ActionValues()
-		}),
+	carapace.Gen(runCmd).PositionalAnyCompletion(
+		carapace.Batch(
+			carapace.ActionDirectories(),
+			carapace.ActionFiles(".go"),
+		).ToA(),
 	)
 }
