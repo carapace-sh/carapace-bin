@@ -33,4 +33,8 @@ func init() {
 		"env":         env.ActionNameValues(false),
 		"env-file":    carapace.ActionFiles(),
 	})
+
+	carapace.Gen(execCmd).PositionalCompletion(
+		docker.ActionContainers(),
+	)
 }
