@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debuginstall
+description: test Mercurial installation
+hidden: true
+flags:
+    -T, --template=: display with template
+documentation:
+    command: |
+        test Mercurial installation
+
+        Returns 0 on success.

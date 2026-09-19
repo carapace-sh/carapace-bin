@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugknown
+description: REPO ID...
+hidden: true
+documentation:
+    command: |
+        test whether node ids are known to a repo
+
+        Every ID must be a full-length hex node id string. Returns a list of 0s
+        and 1s indicating unknown/known.

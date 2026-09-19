@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugformat
+description: display format information about the current repository
+hidden: true
+flags:
+    -T, --template=: display with template
+documentation:
+    command: |
+        display format information about the current repository
+
+        Use --verbose to get extra information about current config value and
+        Mercurial default.
+
+        If patterns are specified, only format matching at least one of these
+        pattern will be displayed.

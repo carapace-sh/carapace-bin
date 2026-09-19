@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debug-revlog-stats
+description: display statistics about revlogs in the store
+hidden: true
+flags:
+    -T, --template=: display with template
+    -c, --changelog: Display changelog statistics
+    -f, --filelogs: Display filelogs statistics
+    -m, --manifest: Display manifest statistics
+documentation:
+    command: |
+        display statistics about revlogs in the store

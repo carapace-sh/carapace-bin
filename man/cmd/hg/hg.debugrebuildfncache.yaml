@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugrebuildfncache
+description: rebuild the fncache file
+hidden: true
+flags:
+    --only-data: only look for wrong .d files (much faster)
+documentation:
+    command: |
+        rebuild the fncache file

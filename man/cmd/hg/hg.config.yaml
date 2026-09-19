@@ -1,0 +1,56 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: config
+aliases:
+    - showconfig
+    - debugconfig
+description: show combined config settings from all hgrc files
+group: help
+flags:
+    --exp-all-known: show all known config option (EXPERIMENTAL)
+    --non-shared: edit non shared config
+    --shared: edit shared source repository config
+    --source: show source of configuration value
+    -T, --template=: display with template
+    -e, --edit: edit user config
+    -g, --global: edit global config
+    -l, --local: edit repository config
+    -u, --untrusted: show untrusted configuration options
+documentation:
+    command: |
+        show combined config settings from all hgrc files
+
+        With no arguments, print names and values of all config items.
+
+        With one argument of the form section.name, print just the value
+        of that config item.
+
+        With multiple arguments, print names and values of all config
+        items with matching section names or section.names.
+
+        With --edit, start an editor on the user-level config file. With
+        --global, edit the system-wide config file. With --local, edit the
+        repository-level config file.
+
+        With --source, the source (filename and line number) is printed
+        for each config item.
+
+        See `hg help config` for more information about config files.
+
+        .. container:: verbose
+
+          --non-shared flag is used to edit `.hg/hgrc-not-shared` config file.
+          This file is not shared across shares when in share-safe mode.
+
+          Template:
+
+          The following keywords are supported. See also `hg help templates`.
+
+          :name:    String. Config name.
+          :source:  String. Filename and line number where the item is defined.
+          :value:   String. Config value.
+
+          The --shared flag can be used to edit the config file of shared source
+          repository. It only works when you have shared using the experimental
+          share safe feature.
+
+        Returns 0 on success, 1 if NAME does not exist.

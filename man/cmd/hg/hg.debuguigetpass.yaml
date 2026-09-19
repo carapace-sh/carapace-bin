@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debuguigetpass
+description: show prompt to type password
+hidden: true
+flags:
+    -p, --prompt=: prompt text
+documentation:
+    command: |
+        show prompt to type password

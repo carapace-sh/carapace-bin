@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugobsolete
+description: create arbitrary obsolete marker
+hidden: true
+flags:
+    --delete=: delete markers specified by indices
+    --exclusive: restrict display to markers only relevant to REV
+    --flags=: markers flag
+    --index: display index of the marker
+    --record-parents: record parent information for the precursor
+    -T, --template=: display with template
+    -d, --date=: record the specified date as commit date
+    -r, --rev=*: display markers relevant to REV
+    -u, --user=: record the specified user as committer
+documentation:
+    command: |
+        create arbitrary obsolete marker
+
+        With no arguments, displays the list of obsolescence markers.

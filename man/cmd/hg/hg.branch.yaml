@@ -1,0 +1,37 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: branch
+description: set or show the current branch name
+group: change-organization
+flags:
+    -C, --clean: reset branch name to parent branch name
+    -f, --force: set branch name even if it shadows an existing branch
+    -r, --rev=*: change branches of the given revs (EXPERIMENTAL)
+documentation:
+    command: |
+        set or show the current branch name
+
+        .. note::
+
+           Branch names are permanent and global. Use `hg bookmark` to create a
+           light-weight bookmark instead. See `hg help glossary` for more
+           information about named branches and bookmarks.
+
+        With no argument, show the current branch name. With one argument,
+        set the working directory branch name (the branch will not exist
+        in the repository until the next commit). Standard practice
+        recommends that primary development take place on the 'default'
+        branch.
+
+        Unless -f/--force is specified, branch will not let you set a
+        branch name that already exists.
+
+        Use -C/--clean to reset the working directory branch to that of
+        the parent of the working directory, negating a previous branch
+        change.
+
+        Use the command `hg update` to switch to an existing branch. Use
+        `hg commit --close-branch` to mark this branch head as closed.
+        When all heads of a branch are closed, the branch will be
+        considered closed.
+
+        Returns 0 on success.

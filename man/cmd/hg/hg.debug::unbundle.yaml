@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debug::unbundle
+description: FILE...
+hidden: true
+documentation:
+    command: |
+        same as `hg unbundle`, but pretent to come from a push
+
+        This is useful to debug behavior and performance change in this case.

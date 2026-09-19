@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugmanifestfulltextcache
+description: show, clear or amend the contents of the manifest fulltext cache
+hidden: true
+flags:
+    --clear: clear the cache
+    -a, --add=*: add the given manifest nodes to the cache
+documentation:
+    command: |
+        show, clear or amend the contents of the manifest fulltext cache
