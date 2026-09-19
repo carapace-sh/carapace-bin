@@ -184,10 +184,6 @@ func addExtensionCommands(args []string) {
 				Run:                func(cmd *cobra.Command, args []string) {},
 			}
 
-			carapace.Gen(extensionCmd).PositionalAnyCompletion(
-				carapace.ActionFiles(),
-			)
-
 			rootCmd.AddCommand(extensionCmd)
 		}
 	}

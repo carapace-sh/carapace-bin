@@ -42,6 +42,7 @@ func init() {
 		"exclude": carapace.ActionFiles(),
 		"include": carapace.ActionFiles(),
 		"rev":     hg.ActionRevisions(),
+		"terse":   carapace.ActionValues("a", "c", "d", "i", "m", "r", "u"),
 	})
 
 	carapace.Gen(statusCmd).PositionalAnyCompletion(
