@@ -12,7 +12,7 @@ import (
 //	mirror
 func ActionPaths() carapace.Action {
 	return carapace.ActionExecCommand("hg", "paths", "-q")(func(output []byte) carapace.Action {
-		return carapace.ActionValues(lines(output)...).Tag("remote repositories")
+		return carapace.ActionValues(lines(output)...).Tag("remote repositories").UidF(Uid("remote")).QueryF(Uid("remote"))
 	})
 }
 
@@ -28,7 +28,7 @@ func ActionConfigKeys() carapace.Action {
 				vals = append(vals, key, value)
 			}
 		}
-		return carapace.ActionValuesDescribed(vals...).Tag("config")
+		return carapace.ActionValuesDescribed(vals...).Tag("config").UidF(Uid("config-key")).QueryF(Uid("config-key"))
 	})
 }
 
@@ -46,7 +46,7 @@ func ActionUsers() carapace.Action {
 				vals = append(vals, line)
 			}
 		}
-		return carapace.ActionValues(vals...).Tag("users")
+		return carapace.ActionValues(vals...).Tag("users").UidF(Uid("user")).QueryF(Uid("user"))
 	})
 }
 
@@ -66,7 +66,7 @@ func ActionMergeTools() carapace.Action {
 				}
 			}
 		}
-		return carapace.ActionValues(vals...).Tag("merge tools")
+		return carapace.ActionValues(vals...).Tag("merge tools").UidF(Uid("merge-tool")).QueryF(Uid("merge-tool"))
 	})
 }
 
@@ -85,6 +85,6 @@ func ActionTopics() carapace.Action {
 				vals = append(vals, name, strings.TrimSpace(desc))
 			}
 		}
-		return carapace.ActionValuesDescribed(vals...).Tag("topics")
+		return carapace.ActionValuesDescribed(vals...).Tag("topics").UidF(Uid("topic")).QueryF(Uid("topic"))
 	})
 }
