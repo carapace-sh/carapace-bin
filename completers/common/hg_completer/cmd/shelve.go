@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/hg_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/hg"
 	"github.com/spf13/cobra"
 )
 
@@ -36,15 +36,15 @@ func init() {
 	carapace.Gen(shelveCmd).FlagCompletion(carapace.ActionMap{
 		"exclude": carapace.ActionFiles(),
 		"include": carapace.ActionFiles(),
-		"name":    action.ActionShelves(),
+		"name":    hg.ActionShelves(),
 	})
 
 	carapace.Gen(shelveCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if shelveCmd.Flags().Changed("delete") || shelveCmd.Flags().Changed("patch") || shelveCmd.Flags().Changed("stat") {
-				return action.ActionShelves()
+				return hg.ActionShelves()
 			}
-			return carapace.Batch(action.ActionChangedFiles(), action.ActionUntrackedFiles()).ToA()
+			return carapace.Batch(hg.ActionChangedFiles(), hg.ActionUntrackedFiles()).ToA()
 		}),
 	)
 }

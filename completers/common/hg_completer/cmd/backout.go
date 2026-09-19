@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/hg_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/hg"
 	"github.com/spf13/cobra"
 )
 
@@ -35,12 +35,12 @@ func init() {
 		"exclude": carapace.ActionFiles(),
 		"include": carapace.ActionFiles(),
 		"logfile": carapace.ActionFiles(),
-		"parent":  action.ActionRevisions(),
-		"rev":     action.ActionRevisions(),
-		"tool":    action.ActionMergeTools(),
+		"parent":  hg.ActionRevisions(),
+		"rev":     hg.ActionRevisions(),
+		"tool":    hg.ActionMergeTools(),
 	})
 
 	carapace.Gen(backoutCmd).PositionalCompletion(
-		action.ActionRevisions(),
+		hg.ActionRevisions(),
 	)
 }

@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/hg_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/hg"
 	"github.com/spf13/cobra"
 )
 
@@ -35,6 +35,6 @@ func init() {
 	})
 
 	carapace.Gen(purgeCmd).PositionalAnyCompletion(
-		action.ActionUntrackedFiles(),
+		hg.ActionUntrackedFiles(),
 	)
 }

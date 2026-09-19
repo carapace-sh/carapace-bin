@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/hg_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/hg"
 	"github.com/spf13/cobra"
 )
 
@@ -27,13 +27,13 @@ func init() {
 	rootCmd.AddCommand(tagCmd)
 
 	carapace.Gen(tagCmd).FlagCompletion(carapace.ActionMap{
-		"rev": action.ActionRevisions(),
+		"rev": hg.ActionRevisions(),
 	})
 
 	carapace.Gen(tagCmd).PositionalCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if tagCmd.Flags().Changed("remove") {
-				return action.ActionTags()
+				return hg.ActionTags()
 			}
 			return carapace.ActionValues()
 		}),

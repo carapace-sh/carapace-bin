@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/hg_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/hg"
 	"github.com/spf13/cobra"
 )
 
@@ -29,10 +29,10 @@ func init() {
 	rootCmd.AddCommand(bundleCmd)
 
 	carapace.Gen(bundleCmd).FlagCompletion(carapace.ActionMap{
-		"base":      action.ActionRevisions(),
-		"branch":    action.ActionBranches(),
+		"base":      hg.ActionRevisions(),
+		"branch":    hg.ActionBranches(),
 		"remotecmd": carapace.ActionExecutables(),
-		"rev":       action.ActionRevisions(),
+		"rev":       hg.ActionRevisions(),
 		"ssh":       carapace.ActionExecutables(),
 	})
 }

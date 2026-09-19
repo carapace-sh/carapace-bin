@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/hg_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/hg"
 	"github.com/spf13/cobra"
 )
 
@@ -22,7 +22,7 @@ func init() {
 	rootCmd.AddCommand(debuggetbundleCmd)
 
 	carapace.Gen(debuggetbundleCmd).FlagCompletion(carapace.ActionMap{
-		"common": action.ActionRevisions(),
-		"head":   action.ActionRevisions(),
+		"common": hg.ActionRevisions(),
+		"head":   hg.ActionRevisions(),
 	})
 }
