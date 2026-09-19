@@ -4,6 +4,7 @@ import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/hg"
 	"github.com/spf13/cobra"
+	"github.com/spf13/pflag"
 )
 
 var rootCmd = &cobra.Command{
@@ -83,5 +84,9 @@ func init() {
 		"cwd":         carapace.ActionDirectories(),
 		"pager":       carapace.ActionValues("true", "false", "always", "auto", "never"),
 		"repository":  carapace.ActionFiles(),
+	})
+
+	carapace.Gen(rootCmd).PreInvoke(func(cmd *cobra.Command, _ *pflag.Flag, action carapace.Action) carapace.Action {
+		return action.Chdir(rootCmd.Flag("cwd").Value.String())
 	})
 }
