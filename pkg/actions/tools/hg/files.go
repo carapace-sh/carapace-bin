@@ -12,7 +12,7 @@ import (
 //	a.txt
 func ActionTrackedFiles() carapace.Action {
 	return carapace.ActionExecCommand("hg", "files", "-0")(func(output []byte) carapace.Action {
-		return carapace.ActionValues(nullSeparated(output)...).Tag("tracked files")
+		return carapace.ActionValues(nullSeparated(output)...).Tag("tracked files").UidF(Uid("tracked-file")).QueryF(Uid("tracked-file"))
 	})
 }
 
@@ -21,7 +21,7 @@ func ActionTrackedFiles() carapace.Action {
 //	b.txt
 func ActionUntrackedFiles() carapace.Action {
 	return carapace.ActionExecCommand("hg", "status", "-un")(func(output []byte) carapace.Action {
-		return carapace.ActionValues(lines(output)...).Tag("untracked files")
+		return carapace.ActionValues(lines(output)...).Tag("untracked files").UidF(Uid("untracked-file")).QueryF(Uid("untracked-file"))
 	})
 }
 
@@ -30,7 +30,7 @@ func ActionUntrackedFiles() carapace.Action {
 //	a.txt
 func ActionChangedFiles() carapace.Action {
 	return carapace.ActionExecCommand("hg", "status", "-qn")(func(output []byte) carapace.Action {
-		return carapace.ActionValues(lines(output)...).Tag("changed files")
+		return carapace.ActionValues(lines(output)...).Tag("changed files").UidF(Uid("changed-file")).QueryF(Uid("changed-file"))
 	})
 }
 
@@ -45,7 +45,7 @@ func ActionUnresolvedFiles() carapace.Action {
 				vals = append(vals, path)
 			}
 		}
-		return carapace.ActionValues(vals...).Tag("unresolved files")
+		return carapace.ActionValues(vals...).Tag("unresolved files").UidF(Uid("unresolved-file")).QueryF(Uid("unresolved-file"))
 	})
 }
 
