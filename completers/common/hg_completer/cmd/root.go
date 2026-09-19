@@ -1,8 +1,13 @@
 package cmd
 
 import (
+	"fmt"
+	"strings"
+
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/hg"
+	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
+	shlex "github.com/carapace-sh/carapace-shlex"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 )
@@ -25,6 +30,8 @@ const (
 	group_change_import_export
 	group_repository_maintenance
 	group_help
+	group_alias
+	group_extension
 )
 
 var groups = []*cobra.Group{
@@ -39,6 +46,8 @@ var groups = []*cobra.Group{
 	{ID: "import-export", Title: "Change import/export"},
 	{ID: "maintenance", Title: "Repository maintenance"},
 	{ID: "help", Title: "Help"},
+	{ID: "alias", Title: "Alias commands"},
+	{ID: "extension", Title: "Extension commands"},
 }
 
 func Execute() error {
@@ -89,4 +98,114 @@ func init() {
 	carapace.Gen(rootCmd).PreInvoke(func(cmd *cobra.Command, _ *pflag.Flag, action carapace.Action) carapace.Action {
 		return action.Chdir(rootCmd.Flag("cwd").Value.String())
 	})
+
+	carapace.Gen(rootCmd).PreRun(func(cmd *cobra.Command, args []string) {
+		if c, _, _ := rootCmd.Find(args); c == rootCmd && len(args) > 0 {
+			addAliasCompletion(args)
+			addExtensionCommands(args)
+		}
+	})
+}
+
+func addAliasCompletion(args []string) {
+	cmd := &cobra.Command{}
+	cmd.FParseErrWhitelist.UnknownFlags = true
+	cmd.Flags().String("cwd", "", "")
+	cmd.Flags().StringP("repository", "R", "", "")
+	cmd.ParseFlags(args[:len(args)-1])
+
+	aliases, err := hg.Aliases(cmd.Flag("cwd").Value.String(), cmd.Flag("repository").Value.String())
+	if err != nil {
+		carapace.LOG.Println(err.Error())
+		return
+	}
+
+	for key, value := range aliases {
+		if _, _, err := rootCmd.Find([]string{key}); err == nil {
+			continue // don't clobber existing commands
+		}
+
+		aliasCmd := &cobra.Command{
+			Use:                key,
+			Short:              fmt.Sprintf("alias for '%s'", value),
+			GroupID:            groups[group_alias].ID,
+			DisableFlagParsing: true,
+			Run:                func(cmd *cobra.Command, args []string) {},
+		}
+
+		rootCmd.AddCommand(aliasCmd)
+
+		switch {
+		case strings.HasPrefix(value, "!"): // shell alias
+			tokens, err := shlex.Split(strings.TrimPrefix(value, "!"))
+			if err != nil {
+				carapace.LOG.Println("failed to parse shell alias: " + err.Error())
+				continue
+			}
+			carapace.Gen(aliasCmd).PositionalAnyCompletion(
+				carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+					c.Args = append(tokens.CurrentPipeline().Words().Strings(), c.Args...)
+					return bridge.ActionCarapaceBin().Invoke(c).ToA()
+				}),
+			)
+
+		default: // mercurial alias
+			tokens, err := shlex.Split(value)
+			if err != nil {
+				carapace.LOG.Println("failed to parse alias: " + err.Error())
+				continue
+			}
+			carapace.Gen(aliasCmd).PositionalAnyCompletion(
+				carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+					c.Args = append(tokens.Words().Strings(), c.Args...)
+					return bridge.ActionCarapaceBin("hg").Invoke(c).ToA()
+				}),
+			)
+		}
+	}
+}
+
+func addExtensionCommands(args []string) {
+	hgArgs := append(globalArgs(args), "debugcomplete")
+	if output, err := (carapace.Context{}).Command("hg", hgArgs...).Output(); err != nil {
+		carapace.LOG.Println(err.Error())
+		return
+	} else {
+		for _, name := range strings.Fields(string(output)) {
+			if _, _, err := rootCmd.Find([]string{name}); err == nil {
+				continue // don't clobber existing commands
+			}
+
+			extensionCmd := &cobra.Command{
+				Use:                name,
+				Short:              "extension",
+				GroupID:            groups[group_extension].ID,
+				DisableFlagParsing: true,
+				Run:                func(cmd *cobra.Command, args []string) {},
+			}
+
+			carapace.Gen(extensionCmd).PositionalAnyCompletion(
+				carapace.ActionFiles(),
+			)
+
+			rootCmd.AddCommand(extensionCmd)
+		}
+	}
+}
+
+func globalArgs(args []string) []string {
+	cmd := &cobra.Command{}
+	cmd.FParseErrWhitelist.UnknownFlags = true
+	cmd.Flags().String("cwd", "", "")
+	cmd.Flags().StringP("repository", "R", "", "")
+	cmd.ParseFlags(args[:len(args)-1])
+
+	globalArgs := []string{}
+	if dir := cmd.Flag("cwd").Value.String(); dir != "" {
+		globalArgs = append(globalArgs, "--cwd", dir)
+	}
+	if repo := cmd.Flag("repository").Value.String(); repo != "" {
+		globalArgs = append(globalArgs, "--repository", repo)
+	}
+	return globalArgs
 }
