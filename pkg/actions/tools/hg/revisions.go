@@ -4,6 +4,7 @@ import (
 	"strings"
 
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/styles"
 )
 
 // ActionRevisions completes revisions, branches, bookmarks and tags
@@ -23,7 +24,7 @@ func ActionRevisions() carapace.Action {
 //	bm2 (5)
 func ActionBookmarks() carapace.Action {
 	return carapace.ActionExecCommand("hg", "bookmarks", "-T", "{bookmark}\\t{rev}\\n")(func(output []byte) carapace.Action {
-		return described(output).Tag("bookmarks").UidF(Uid("bookmark")).QueryF(Uid("bookmark"))
+		return described(output).Style(styles.Hg.Bookmark).Tag("bookmarks").UidF(Uid("bookmark")).QueryF(Uid("bookmark"))
 	})
 }
 
@@ -33,7 +34,7 @@ func ActionBookmarks() carapace.Action {
 //	feature (5)
 func ActionBranches() carapace.Action {
 	return carapace.ActionExecCommand("hg", "branches", "-T", "{branch}\\t{rev}\\n")(func(output []byte) carapace.Action {
-		return described(output).Tag("branches").UidF(Uid("branch")).QueryF(Uid("branch"))
+		return described(output).Style(styles.Hg.Branch).Tag("branches").UidF(Uid("branch")).QueryF(Uid("branch"))
 	})
 }
 
@@ -43,7 +44,7 @@ func ActionBranches() carapace.Action {
 //	v1.0 (0)
 func ActionTags() carapace.Action {
 	return carapace.ActionExecCommand("hg", "tags", "-T", "{tag}\\t{rev}\\n")(func(output []byte) carapace.Action {
-		return described(output).Tag("tags").UidF(Uid("tag")).QueryF(Uid("tag"))
+		return described(output).Style(styles.Hg.Tag).Tag("tags").UidF(Uid("tag")).QueryF(Uid("tag"))
 	})
 }
 
@@ -59,7 +60,7 @@ func ActionShelves() carapace.Action {
 				vals = append(vals, name)
 			}
 		}
-		return carapace.ActionValues(vals...).Tag("shelves").UidF(Uid("shelf")).QueryF(Uid("shelf"))
+		return carapace.ActionValues(vals...).Style(styles.Hg.Stash).Tag("shelves").UidF(Uid("shelf")).QueryF(Uid("shelf"))
 	})
 }
 
