@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: verify
+description: verify the integrity of the repository
+group: maintenance
+flags:
+    --full: perform more checks (EXPERIMENTAL)
+documentation:
+    command: |
+        verify the integrity of the repository
+
+        Verify the integrity of the current repository.
+
+        This will perform an extensive check of the repository's
+        integrity, validating the hashes and checksums of each entry in
+        the changelog, manifest, and tracked files, as well as the
+        integrity of their crosslinks and indices.
+
+        Please see https://mercurial-scm.org/wiki/RepositoryCorruption
+        for more information about recovery from corruption of the
+        repository.
+
+        For an alternative UI with a lot more control over the verification
+        process and better error reporting, try `hg help admin::verify`.
+
+        Returns 0 on success, 1 if errors are encountered.

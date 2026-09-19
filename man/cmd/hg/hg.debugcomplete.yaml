@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugcomplete
+description: returns the completion list associated with the given command
+hidden: true
+flags:
+    -o, --options: show the command options
+documentation:
+    command: |
+        returns the completion list associated with the given command

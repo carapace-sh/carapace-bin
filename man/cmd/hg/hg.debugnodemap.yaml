@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugnodemap
+description: -c|-m|FILE
+hidden: true
+flags:
+    --check: check that the data on disk data are correct.
+    --dir=: open directory manifest
+    --dump-disk: dump on-disk data on stdout
+    --dump-new: write a (new) persistent binary nodemap on stdout
+    --metadata: display the on disk meta data for the nodemap
+    -c, --changelog: open changelog
+    -m, --manifest: open manifest
+documentation:
+    command: |
+        write and inspect on disk nodemap

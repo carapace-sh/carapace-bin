@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugdirstate
+description: show the contents of the current dirstate
+hidden: true
+flags:
+    --all: display dirstate-v2 tree nodes that would not exist in v1
+    --dates: display the saved mtime
+    --datesort: sort by saved mtime
+    --docket: display the docket (metadata file) instead
+    --nodates: do not display the saved mtime (DEPRECATED)
+documentation:
+    command: |
+        show the contents of the current dirstate

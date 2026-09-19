@@ -1,0 +1,28 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: parents
+description: show the parents of the working directory or revision (DEPRECATED)
+group: navigation
+flags:
+    --style=: display using template map file (DEPRECATED)
+    -T, --template=: display with template
+    -r, --rev=: show parents of the specified revision
+documentation:
+    command: |
+        show the parents of the working directory or revision (DEPRECATED)
+
+        Print the working directory's parent revisions. If a revision is
+        given via -r/--rev, the parent of that revision will be printed.
+        If a file argument is given, the revision in which the file was
+        last changed (before the working directory revision or the
+        argument to --rev if given) is printed.
+
+        This command is equivalent to::
+
+            hg log -r "p1()+p2()" or
+            hg log -r "p1(REV)+p2(REV)" or
+            hg log -r "max(::p1() and file(FILE))+max(::p2() and file(FILE))" or
+            hg log -r "max(::p1(REV) and file(FILE))+max(::p2(REV) and file(FILE))"
+
+        See `hg summary` and `hg help revsets` for related information.
+
+        Returns 0 on success.

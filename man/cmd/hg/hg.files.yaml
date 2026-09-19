@@ -1,0 +1,63 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: files
+description: list tracked files
+group: working-dir
+flags:
+    -0, --print0: end filenames with NUL, for use with xargs
+    -I, --include=*: include names matching the given patterns
+    -S, --subrepos: recurse into subrepositories
+    -T, --template=: display with template
+    -X, --exclude=*: exclude names matching the given patterns
+    -r, --rev=: search the repository as it is in REV
+documentation:
+    command: |
+        list tracked files
+
+        Print files under Mercurial control in the working directory or
+        specified revision for given files (excluding removed files).
+        Files can be specified as filenames or filesets.
+
+        If no files are given to match, this command prints the names
+        of all files under Mercurial control.
+
+        .. container:: verbose
+
+          Template:
+
+          The following keywords are supported in addition to the common template
+          keywords and functions. See also `hg help templates`.
+
+          :flags:   String. Character denoting file's symlink and executable bits.
+          :path:    String. Repository-absolute path of the file.
+          :size:    Integer. Size of the file in bytes.
+
+          Examples:
+
+          - list all files under the current directory::
+
+              hg files .
+
+          - shows sizes and flags for current revision::
+
+              hg files -vr .
+
+          - list all files named README::
+
+              hg files -I "**/README"
+
+          - list all binary files::
+
+              hg files "set:binary()"
+
+          - find files containing a regular expression::
+
+              hg files "set:grep('bob')"
+
+          - search tracked file contents with xargs and grep::
+
+              hg files -0 | xargs -0 grep foo
+
+        See `hg help patterns` and `hg help filesets` for more information
+        on specifying file patterns.
+
+        Returns 0 if a match is found, 1 otherwise.

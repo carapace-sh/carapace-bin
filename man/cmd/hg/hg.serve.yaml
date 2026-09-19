@@ -1,0 +1,48 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: serve
+description: start stand-alone webserver
+group: remote
+flags:
+    --certificate=: SSL certificate file
+    --cmdserver=: for remote clients (ADVANCED)
+    --daemon-postexec=: used internally by daemon mode
+    --pid-file=: name of file to write process ID to
+    --prefix=: 'prefix path to serve from (default: server root)'
+    --print-url: start and print only the URL
+    --stdio: for remote clients (ADVANCED)
+    --style=: template style to use
+    --web-conf=: name of the hgweb config file (see 'hg help hgweb')
+    --webdir-conf=: name of the hgweb config file (DEPRECATED)
+    -6, --ipv6: use IPv6 instead of IPv4
+    -A, --accesslog=: name of access log file to write to
+    -E, --errorlog=: name of error log file to write to
+    -S, --subrepos: recurse into subrepositories
+    -a, --address=: 'address to listen on (default: all interfaces)'
+    -d, --daemon: run server in background
+    -n, --name=: 'name to show in web pages (default: working directory)'
+    -p, --port=: 'port to listen on (default: 8000)'
+    -t, --templates=: web templates to use
+documentation:
+    command: |
+        start stand-alone webserver
+
+        Start a local HTTP repository browser and pull server. You can use
+        this for ad-hoc sharing and browsing of repositories. It is
+        recommended to use a real web server to serve a repository for
+        longer periods of time.
+
+        Please note that the server does not implement access control.
+        This means that, by default, anybody can read from the server and
+        nobody can write to it by default. Set the `web.allow-push`
+        option to `*` to allow everybody to push to the server. You
+        should use a real web server if you need to authenticate users.
+
+        By default, the server logs accesses to stdout and errors to
+        stderr. Use the -A/--accesslog and -E/--errorlog options to log to
+        files.
+
+        To have the server choose a free port number to listen on, specify
+        a port number of 0; in this case, the server will print the port
+        number it uses.
+
+        Returns 0 on success.

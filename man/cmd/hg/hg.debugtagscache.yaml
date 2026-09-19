@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugtagscache
+description: display the contents of .hg/cache/hgtagsfnodes1
+hidden: true
+documentation:
+    command: |
+        display the contents of .hg/cache/hgtagsfnodes1

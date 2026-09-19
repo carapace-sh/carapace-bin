@@ -1,0 +1,38 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugsuccessorssets
+description: show set of successors for revision
+hidden: true
+flags:
+    --closest: return closest successors sets only
+documentation:
+    command: |
+        show set of successors for revision
+
+        A successors set of changeset A is a consistent group of revisions that
+        succeed A. It contains non-obsolete changesets only unless closests
+        successors set is set.
+
+        In most cases a changeset A has a single successors set containing a single
+        successor (changeset A replaced by A').
+
+        A changeset that is made obsolete with no successors are called "pruned".
+        Such changesets have no successors sets at all.
+
+        A changeset that has been "split" will have a successors set containing
+        more than one successor.
+
+        A changeset that has been rewritten in multiple different ways is called
+        "divergent". Such changesets have multiple successor sets (each of which
+        may also be split, i.e. have multiple successors).
+
+        Results are displayed as follows::
+
+            <rev1>
+                <successors-1A>
+            <rev2>
+                <successors-2A>
+                <successors-2B1> <successors-2B2> <successors-2B3>
+
+        Here rev2 has two possible (i.e. divergent) successors sets. The first
+        holds one element, whereas the second holds three (i.e. the changeset has
+        been split).

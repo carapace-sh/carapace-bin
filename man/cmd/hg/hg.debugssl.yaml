@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugssl
+description: test a secure connection to a server
+hidden: true
+documentation:
+    command: |
+        test a secure connection to a server
+
+        This builds the certificate chain for the server on Windows, installing the
+        missing intermediates and trusted root via Windows Update if necessary.  It
+        does nothing on other platforms.
+
+        If SOURCE is omitted, the 'default' path will be used.  If a URL is given,
+        that server is used. See `hg help urls` for more information.
+
+        If the update succeeds, retry the original operation.  Otherwise, the cause
+        of the SSL error is likely another issue.

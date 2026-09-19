@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugpushkey
+description: REPO NAMESPACE [KEY OLD NEW]
+hidden: true
+documentation:
+    command: |
+        access the pushkey key/value protocol
+
+        With two args, list the keys in the given namespace.
+
+        With five args, set a key to new if it currently is set to old.
+        Reports success or failure.

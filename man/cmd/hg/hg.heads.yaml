@@ -1,0 +1,35 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: heads
+description: show branch heads
+group: navigation
+flags:
+    --style=: display using template map file (DEPRECATED)
+    -T, --template=: display with template
+    -a, --active: show active branchheads only (DEPRECATED)
+    -c, --closed: show normal and closed branch heads
+    -r, --rev=: show only heads which are descendants of STARTREV
+    -t, --topo: show topological heads only
+documentation:
+    command: |
+        show branch heads
+
+        With no arguments, show all open branch heads in the repository.
+        Branch heads are changesets that have no descendants on the
+        same branch. They are where development generally takes place and
+        are the usual targets for update and merge operations.
+
+        If one or more REVs are given, only open branch heads on the
+        branches associated with the specified changesets are shown. This
+        means that you can use `hg heads .` to see the heads on the
+        currently checked-out branch.
+
+        If -c/--closed is specified, also show branch heads marked closed
+        (see `hg commit --close-branch`).
+
+        If STARTREV is specified, only those heads that are descendants of
+        STARTREV will be displayed.
+
+        If -t/--topo is specified, named branch mechanics will be ignored and only
+        topological heads (changesets with no children) will be shown.
+
+        Returns 0 if matching heads are found, 1 if not.

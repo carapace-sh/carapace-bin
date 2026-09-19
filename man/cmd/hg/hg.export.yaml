@@ -1,0 +1,88 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: export
+description: dump the header and diffs for one or more changesets
+group: import-export
+flags:
+    --binary: generate binary diffs in git mode (default)
+    --nodates: omit dates from diff headers
+    --switch-parent: diff against the second parent
+    -B, --bookmark=: export changes only reachable by given bookmark
+    -T, --template=: display with template
+    -a, --text: treat all files as text
+    -g, --git: 'use git extended diff format (DEFAULT: diff.git)'
+    -o, --output=: print output to file with formatted name
+    -r, --rev=*: revisions to export
+documentation:
+    command: |
+        dump the header and diffs for one or more changesets
+
+        Print the changeset header and diffs for one or more revisions.
+        If no revision is given, the parent of the working directory is used.
+
+        The information shown in the changeset header is: author, date,
+        branch name (if non-default), changeset hash, parent(s) and commit
+        comment.
+
+        .. note::
+
+           `hg export` may generate unexpected diff output for merge
+           changesets, as it will compare the merge changeset against its
+           first parent only.
+
+        Output may be to a file, in which case the name of the file is
+        given using a template string. See `hg help templates`. In addition
+        to the common template keywords, the following formatting rules are
+        supported:
+
+        :`%%`: literal "%" character
+        :`%H`: changeset hash (40 hexadecimal digits)
+        :`%N`: number of patches being generated
+        :`%R`: changeset revision number
+        :`%b`: basename of the exporting repository
+        :`%h`: short-form changeset hash (12 hexadecimal digits)
+        :`%m`: first line of the commit message (only alphanumeric characters)
+        :`%n`: zero-padded sequence number, starting at 1
+        :`%r`: zero-padded changeset revision number
+        :`\`: literal "\" character
+
+        Without the -a/--text option, export will avoid generating diffs
+        of files it detects as binary. With -a, export will generate a
+        diff anyway, probably with undesirable results.
+
+        With -B/--bookmark changesets reachable by the given bookmark are
+        selected.
+
+        Use the -g/--git option to generate diffs in the git extended diff
+        format. See `hg help diffs` for more information.
+
+        With the --switch-parent option, the diff will be against the
+        second parent. It can be useful to review a merge.
+
+        .. container:: verbose
+
+          Template:
+
+          The following keywords are supported in addition to the common template
+          keywords and functions. See also `hg help templates`.
+
+          :diff:    String. Diff content.
+          :parents: List of strings. Parent nodes of the changeset.
+
+          Examples:
+
+          - use export and import to transplant a bugfix to the current
+            branch::
+
+              hg export -r 9353 | hg import -
+
+          - export all the changesets between two revisions to a file with
+            rename information::
+
+              hg export --git -r 123:150 > changes.txt
+
+          - split outgoing changes into a series of patches with
+            descriptive names::
+
+              hg export -r "outgoing()" -o "%n-%m.patch"
+
+        Returns 0 on success.

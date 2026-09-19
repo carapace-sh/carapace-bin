@@ -6,10 +6,11 @@ import (
 )
 
 var debugFastUpgradeCmd = &cobra.Command{
-	Use:    "debug::fast-upgrade",
-	Short:  "",
-	Hidden: true,
-	Run:    func(cmd *cobra.Command, args []string) {},
+	Use:     "debug::fast-upgrade",
+	Short:   "",
+	Aliases: []string{"debug::fastupgrade"},
+	Hidden:  true,
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: continue
+description: resumes an interrupted operation (EXPERIMENTAL)
+group: change-manipulation
+flags:
+    -n, --dry-run: do not perform actions, just print output
+documentation:
+    command: |
+        resumes an interrupted operation (EXPERIMENTAL)
+
+        Finishes a multistep operation like graft, histedit, rebase, merge,
+        and unshelve if they are in an interrupted state.
+
+        use --dry-run/-n to dry run the command.

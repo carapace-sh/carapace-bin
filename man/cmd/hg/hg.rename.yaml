@@ -1,0 +1,36 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rename
+aliases:
+    - move
+    - mv
+description: rename files; equivalent of copy + remove
+group: working-dir
+flags:
+    --at-rev=: (un)mark renames in the given revision (EXPERIMENTAL)
+    --forget: unmark a destination file as renamed
+    -A, --after: record a rename that has already occurred
+    -I, --include=*: include names matching the given patterns
+    -X, --exclude=*: exclude names matching the given patterns
+    -f, --force: forcibly move over an existing managed file
+    -n, --dry-run: do not perform actions, just print output
+documentation:
+    command: |
+        rename files; equivalent of copy + remove
+
+        Mark dest as copies of sources; mark sources for deletion. If dest
+        is a directory, copies are put in that directory. If dest is a
+        file, there can only be one source.
+
+        By default, this command copies the contents of files as they
+        exist in the working directory. If invoked with -A/--after, the
+        operation is recorded, but no copying is performed.
+
+        To undo marking a destination file as renamed, use --forget. With that
+        option, all given (positional) arguments are unmarked as renames. The
+        destination file(s) will be left in place (still tracked). The source
+        file(s) will not be restored. Note that `hg rename --forget` behaves
+        the same way as `hg copy --forget`.
+
+        This command takes effect with the next commit by default.
+
+        Returns 0 on success, 1 if errors are encountered.
