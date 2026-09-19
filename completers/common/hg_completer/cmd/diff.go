@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/hg_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/hg"
 	"github.com/spf13/cobra"
 )
 
@@ -41,13 +41,13 @@ func init() {
 	rootCmd.AddCommand(diffCmd)
 
 	carapace.Gen(diffCmd).FlagCompletion(carapace.ActionMap{
-		"change":  action.ActionRevisions(),
+		"change":  hg.ActionRevisions(),
 		"exclude": carapace.ActionFiles(),
-		"from":    action.ActionRevisions(),
+		"from":    hg.ActionRevisions(),
 		"include": carapace.ActionFiles(),
-		"rev":     action.ActionRevisions(),
+		"rev":     hg.ActionRevisions(),
 		"root":    carapace.ActionDirectories(),
-		"to":      action.ActionRevisions(),
+		"to":      hg.ActionRevisions(),
 	})
 
 	carapace.Gen(diffCmd).PositionalAnyCompletion(
