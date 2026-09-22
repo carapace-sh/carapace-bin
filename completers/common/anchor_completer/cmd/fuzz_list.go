@@ -19,6 +19,6 @@ func init() {
 	fuzzCmd.AddCommand(fuzz_listCmd)
 
 	carapace.Gen(fuzz_listCmd).FlagCompletion(carapace.ActionMap{
-		"harness-dir": carapace.ActionFiles(),
+		"harness-dir": carapace.ActionDirectories(),
 	})
 }

@@ -23,6 +23,7 @@ func init() {
 	programCmd.AddCommand(program_setUpgradeAuthorityCmd)
 
 	carapace.Gen(program_setUpgradeAuthorityCmd).FlagCompletion(carapace.ActionMap{
-		"upgrade-authority": carapace.ActionFiles(),
+		"new-upgrade-authority-signer": carapace.ActionFiles(".json"),
+		"upgrade-authority":            carapace.ActionFiles(),
 	})
 }

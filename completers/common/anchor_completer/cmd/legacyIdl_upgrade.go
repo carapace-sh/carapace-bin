@@ -21,6 +21,6 @@ func init() {
 	legacyIdlCmd.AddCommand(legacyIdl_upgradeCmd)
 
 	carapace.Gen(legacyIdl_upgradeCmd).FlagCompletion(carapace.ActionMap{
-		"filepath": carapace.ActionFiles(),
+		"filepath": carapace.ActionFiles(".json"),
 	})
 }

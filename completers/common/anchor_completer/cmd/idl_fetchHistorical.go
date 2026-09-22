@@ -29,6 +29,6 @@ func init() {
 	idlCmd.AddCommand(idl_fetchHistoricalCmd)
 
 	carapace.Gen(idl_fetchHistoricalCmd).FlagCompletion(carapace.ActionMap{
-		"out-dir": carapace.ActionFiles(),
+		"out-dir": carapace.ActionDirectories(),
 	})
 }

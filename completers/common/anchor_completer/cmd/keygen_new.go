@@ -23,6 +23,7 @@ func init() {
 	keygenCmd.AddCommand(keygen_newCmd)
 
 	carapace.Gen(keygen_newCmd).FlagCompletion(carapace.ActionMap{
-		"outfile": carapace.ActionFiles(),
+		"outfile":    carapace.ActionFiles(),
+		"word-count": carapace.ActionValues("12", "15", "18", "21", "24"),
 	})
 }

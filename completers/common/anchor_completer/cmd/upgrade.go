@@ -22,6 +22,6 @@ func init() {
 	rootCmd.AddCommand(upgradeCmd)
 
 	carapace.Gen(upgradeCmd).PositionalCompletion(
-		carapace.ActionFiles(),
+		carapace.ActionFiles(".so"),
 	)
 }

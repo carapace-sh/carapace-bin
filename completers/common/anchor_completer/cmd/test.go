@@ -33,6 +33,7 @@ func init() {
 
 	carapace.Gen(testCmd).FlagCompletion(carapace.ActionMap{
 		"program-name": anchor.ActionPrograms(),
+		"run":          carapace.ActionFiles(),
 		"script":       anchor.ActionScripts(),
 		"validator": carapace.ActionValuesDescribed(
 			"surfpool", "Use Surfpool validator (default)",

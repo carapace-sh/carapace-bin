@@ -42,11 +42,12 @@ func init() {
 
 	carapace.Gen(fuzz_runCmd).FlagCompletion(carapace.ActionMap{
 		"binary-in":        carapace.ActionFiles(),
-		"corpus-in":        carapace.ActionFiles(),
-		"corpus-out":       carapace.ActionFiles(),
-		"crashes-meta-out": carapace.ActionFiles(),
-		"crashes-out":      carapace.ActionFiles(),
+		"corpus-in":        carapace.ActionDirectories(),
+		"corpus-out":       carapace.ActionDirectories(),
+		"crashes-meta-out": carapace.ActionDirectories(),
+		"crashes-out":      carapace.ActionDirectories(),
 		"lcov-out":         carapace.ActionFiles(),
+		"mode":             carapace.ActionValues("dry_run", "explore", "coverage", "reproduce", "corpus_merge"),
 		"program-so":       carapace.ActionFiles(".so"),
 		"replay":           carapace.ActionFiles(),
 		"symbols":          carapace.ActionFiles(),

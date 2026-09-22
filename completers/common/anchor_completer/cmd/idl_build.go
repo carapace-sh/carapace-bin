@@ -26,7 +26,7 @@ func init() {
 
 	carapace.Gen(idl_buildCmd).FlagCompletion(carapace.ActionMap{
 		"out":          carapace.ActionFiles(),
-		"out-ts":       carapace.ActionFiles(".json"),
+		"out-ts":       carapace.ActionFiles(".ts"),
 		"program-name": anchor.ActionPrograms(),
 	})
 }

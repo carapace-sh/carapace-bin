@@ -21,6 +21,6 @@ func init() {
 	legacyIdlCmd.AddCommand(legacyIdl_writeBufferCmd)
 
 	carapace.Gen(legacyIdl_writeBufferCmd).FlagCompletion(carapace.ActionMap{
-		"filepath": carapace.ActionFiles(),
+		"filepath": carapace.ActionFiles(".json"),
 	})
 }

@@ -21,7 +21,7 @@ func init() {
 	codamaCmd.AddCommand(codama_generateCmd)
 
 	carapace.Gen(codama_generateCmd).FlagCompletion(carapace.ActionMap{
-		"language": carapace.ActionValues("js", "js-umi", "rust", "go"),
-		"path":     carapace.ActionFiles(),
+		"language": carapace.ActionValues("js", "js-umi", "rust", "go").UniqueList(","),
+		"path":     carapace.ActionDirectories(),
 	})
 }

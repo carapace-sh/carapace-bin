@@ -21,8 +21,8 @@ func init() {
 	fuzzCmd.AddCommand(fuzz_cminCmd)
 
 	carapace.Gen(fuzz_cminCmd).FlagCompletion(carapace.ActionMap{
-		"corpus-in":  carapace.ActionFiles(),
-		"corpus-out": carapace.ActionFiles(),
+		"corpus-in":  carapace.ActionDirectories(),
+		"corpus-out": carapace.ActionDirectories(),
 	})
 
 	carapace.Gen(fuzz_cminCmd).PositionalCompletion(

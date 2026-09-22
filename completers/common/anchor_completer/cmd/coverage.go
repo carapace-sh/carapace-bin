@@ -20,4 +20,9 @@ func init() {
 	coverageCmd.Flags().Bool("skip-run", false, "Skip the build+test phase and generate coverage from existing traces")
 	coverageCmd.Flags().String("trace-dir", "target/coverage/traces", "Directory containing register trace files")
 	rootCmd.AddCommand(coverageCmd)
+
+	carapace.Gen(coverageCmd).FlagCompletion(carapace.ActionMap{
+		"output":    carapace.ActionFiles(),
+		"trace-dir": carapace.ActionDirectories(),
+	})
 }

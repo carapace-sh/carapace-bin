@@ -22,7 +22,7 @@ func init() {
 	fuzzCmd.AddCommand(fuzz_showCmd)
 
 	carapace.Gen(fuzz_showCmd).FlagCompletion(carapace.ActionMap{
-		"crash-meta-dir": carapace.ActionFiles(),
-		"crashes-dir":    carapace.ActionFiles(),
+		"crash-meta-dir": carapace.ActionDirectories(),
+		"crashes-dir":    carapace.ActionDirectories(),
 	})
 }
