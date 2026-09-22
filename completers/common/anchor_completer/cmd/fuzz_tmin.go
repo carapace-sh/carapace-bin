@@ -19,4 +19,8 @@ func init() {
 	fuzz_tminCmd.Flags().BoolP("help", "h", false, "Print help")
 	fuzz_tminCmd.Flags().Bool("release", false, "Build in release mode")
 	fuzzCmd.AddCommand(fuzz_tminCmd)
+
+	carapace.Gen(fuzz_tminCmd).FlagCompletion(carapace.ActionMap{
+		"crash-meta-dir": carapace.ActionFiles(),
+	})
 }

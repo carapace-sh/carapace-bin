@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/anchor"
 	"github.com/spf13/cobra"
 )
 
@@ -20,4 +21,13 @@ func init() {
 	program_writeBufferCmd.Flags().String("max-len", "", "Maximum transaction length")
 	program_writeBufferCmd.Flags().StringP("program-name", "p", "", "Program name to write (from workspace). Used when program_filepath is not provided")
 	programCmd.AddCommand(program_writeBufferCmd)
+
+	carapace.Gen(program_writeBufferCmd).FlagCompletion(carapace.ActionMap{
+		"buffer-authority": carapace.ActionFiles(),
+		"program-name":     anchor.ActionPrograms(),
+	})
+
+	carapace.Gen(program_writeBufferCmd).PositionalCompletion(
+		carapace.ActionFiles(".so"),
+	)
 }

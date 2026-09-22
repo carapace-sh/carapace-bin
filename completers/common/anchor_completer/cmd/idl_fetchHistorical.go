@@ -27,4 +27,8 @@ func init() {
 	idl_fetchHistoricalCmd.Flags().String("slot", "", "Fetch IDL at specific slot")
 	idl_fetchHistoricalCmd.Flags().Bool("verbose", false, "Print diagnostic progress messages")
 	idlCmd.AddCommand(idl_fetchHistoricalCmd)
+
+	carapace.Gen(idl_fetchHistoricalCmd).FlagCompletion(carapace.ActionMap{
+		"out-dir": carapace.ActionFiles(),
+	})
 }

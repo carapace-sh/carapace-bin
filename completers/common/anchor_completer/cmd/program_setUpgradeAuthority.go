@@ -21,4 +21,8 @@ func init() {
 	program_setUpgradeAuthorityCmd.Flags().Bool("skip-new-upgrade-authority-signer-check", false, "Skip new upgrade authority signer check. Allows setting authority with only current authority signature. WARNING: Less safe - use only if you're confident the pubkey is correct")
 	program_setUpgradeAuthorityCmd.Flags().String("upgrade-authority", "", "Current upgrade authority keypair (defaults to configured wallet)")
 	programCmd.AddCommand(program_setUpgradeAuthorityCmd)
+
+	carapace.Gen(program_setUpgradeAuthorityCmd).FlagCompletion(carapace.ActionMap{
+		"upgrade-authority": carapace.ActionFiles(),
+	})
 }

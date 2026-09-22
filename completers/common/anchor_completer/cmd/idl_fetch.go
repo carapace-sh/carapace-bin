@@ -18,4 +18,8 @@ func init() {
 	idl_fetchCmd.Flags().Bool("non-canonical", false, "Fetch non-canonical metadata account (third-party metadata)")
 	idl_fetchCmd.Flags().StringP("out", "o", "", "Output file for the IDL (stdout if not specified)")
 	idlCmd.AddCommand(idl_fetchCmd)
+
+	carapace.Gen(idl_fetchCmd).FlagCompletion(carapace.ActionMap{
+		"out": carapace.ActionFiles(),
+	})
 }

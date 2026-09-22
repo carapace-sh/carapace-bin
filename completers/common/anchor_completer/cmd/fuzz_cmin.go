@@ -19,4 +19,13 @@ func init() {
 	fuzz_cminCmd.Flags().BoolP("help", "h", false, "Print help")
 	fuzz_cminCmd.Flags().Bool("release", false, "Build in release mode")
 	fuzzCmd.AddCommand(fuzz_cminCmd)
+
+	carapace.Gen(fuzz_cminCmd).FlagCompletion(carapace.ActionMap{
+		"corpus-in":  carapace.ActionFiles(),
+		"corpus-out": carapace.ActionFiles(),
+	})
+
+	carapace.Gen(fuzz_cminCmd).PositionalCompletion(
+		carapace.ActionFiles(),
+	)
 }

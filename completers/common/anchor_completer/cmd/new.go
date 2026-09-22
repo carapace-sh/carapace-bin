@@ -19,4 +19,15 @@ func init() {
 	newCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	newCmd.Flags().StringP("template", "t", "multiple", "Rust program template to use")
 	rootCmd.AddCommand(newCmd)
+
+	carapace.Gen(newCmd).FlagCompletion(carapace.ActionMap{
+		"anchor-version": carapace.ActionValuesDescribed(
+			"v1", "Generate Anchor v1 templates",
+			"v2", "Generate Anchor v2 templates",
+		),
+		"template": carapace.ActionValuesDescribed(
+			"single", "Program with a single `lib.rs` file (not recommended for production)",
+			"multiple", "Program with multiple files for instructions, state... (recommended)",
+		),
+	})
 }

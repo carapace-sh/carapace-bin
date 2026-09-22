@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/anchor"
 	"github.com/spf13/cobra"
 )
 
@@ -20,4 +21,8 @@ func init() {
 	verifyCmd.Flags().String("program-name", "", "Name of the program to run the command on. Defaults to the package name")
 	verifyCmd.Flags().String("repo-url", "", "The URL of the repository to verify against. Conflicts with `--current-dir`")
 	rootCmd.AddCommand(verifyCmd)
+
+	carapace.Gen(verifyCmd).FlagCompletion(carapace.ActionMap{
+		"program-name": anchor.ActionPrograms(),
+	})
 }

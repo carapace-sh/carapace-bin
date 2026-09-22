@@ -16,4 +16,8 @@ func init() {
 
 	keygen_verifyCmd.Flags().BoolP("help", "h", false, "Print help")
 	keygenCmd.AddCommand(keygen_verifyCmd)
+
+	carapace.Gen(keygen_verifyCmd).PositionalCompletion(
+		carapace.ActionFiles(".json"),
+	)
 }

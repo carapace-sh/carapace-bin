@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/anchor"
 	"github.com/spf13/cobra"
 )
 
@@ -21,4 +22,9 @@ func init() {
 	deployCmd.Flags().StringP("program-name", "p", "", "Only deploy this program")
 	deployCmd.Flags().BoolP("verifiable", "v", false, "If true, deploy from path target/verifiable")
 	rootCmd.AddCommand(deployCmd)
+
+	carapace.Gen(deployCmd).FlagCompletion(carapace.ActionMap{
+		"program-keypair": carapace.ActionFiles(".json"),
+		"program-name":    anchor.ActionPrograms(),
+	})
 }

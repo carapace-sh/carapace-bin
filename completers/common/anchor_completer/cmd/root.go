@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/anchor"
 	"github.com/spf13/cobra"
 )
 
@@ -24,4 +25,10 @@ func init() {
 	rootCmd.PersistentFlags().String("provider.cluster", "", "Cluster override")
 	rootCmd.PersistentFlags().String("provider.wallet", "", "Wallet override")
 	rootCmd.Flags().BoolP("version", "V", false, "Print version")
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"commitment":       anchor.ActionCommitments(),
+		"provider.cluster": anchor.ActionClusters(),
+		"provider.wallet":  carapace.ActionFiles(".json"),
+	})
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/anchor"
 	"github.com/spf13/cobra"
 )
 
@@ -18,4 +19,8 @@ func init() {
 	expandCmd.Flags().StringP("program-name", "p", "", "Expand only this program")
 	expandCmd.Flags().Bool("stdout", false, "Write to stdout")
 	rootCmd.AddCommand(expandCmd)
+
+	carapace.Gen(expandCmd).FlagCompletion(carapace.ActionMap{
+		"program-name": anchor.ActionPrograms(),
+	})
 }

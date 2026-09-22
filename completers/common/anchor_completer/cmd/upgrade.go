@@ -20,4 +20,8 @@ func init() {
 	upgradeCmd.Flags().StringP("program-id", "p", "", "The program to upgrade")
 	upgradeCmd.MarkFlagRequired("program-id")
 	rootCmd.AddCommand(upgradeCmd)
+
+	carapace.Gen(upgradeCmd).PositionalCompletion(
+		carapace.ActionFiles(),
+	)
 }

@@ -25,4 +25,28 @@ func init() {
 	initCmd.Flags().StringP("template", "t", "multiple", "Rust program template to use")
 	initCmd.Flags().String("test-template", "litesvm", "Test template to use")
 	rootCmd.AddCommand(initCmd)
+
+	carapace.Gen(initCmd).FlagCompletion(carapace.ActionMap{
+		"anchor-version": carapace.ActionValuesDescribed(
+			"v1", "Generate Anchor v1 templates",
+			"v2", "Generate Anchor v2 templates",
+		),
+		"package-manager": carapace.ActionValuesDescribed(
+			"npm", "Use npm as the package manager",
+			"yarn", "Use yarn as the package manager",
+			"pnpm", "Use pnpm as the package manager",
+			"bun", "Use bun as the package manager",
+		),
+		"template": carapace.ActionValuesDescribed(
+			"single", "Program with a single `lib.rs` file (not recommended for production)",
+			"multiple", "Program with multiple files for instructions, state... (recommended)",
+		),
+		"test-template": carapace.ActionValuesDescribed(
+			"mocha", "Generate template for Mocha unit-test",
+			"jest", "Generate template for Jest unit-test",
+			"rust", "Generate template for Rust unit-test",
+			"mollusk", "Generate template for Mollusk Rust unit-test",
+			"litesvm", "Generate template for LiteSVM rust unit-test",
+		),
+	})
 }

@@ -39,4 +39,16 @@ func init() {
 	fuzz_runCmd.Flags().String("symbols", "", "Path to debug binary with DWARF symbols (for source-level coverage with --coverage)")
 	fuzz_runCmd.Flags().String("timeout", "", "Stop after N seconds")
 	fuzzCmd.AddCommand(fuzz_runCmd)
+
+	carapace.Gen(fuzz_runCmd).FlagCompletion(carapace.ActionMap{
+		"binary-in":        carapace.ActionFiles(),
+		"corpus-in":        carapace.ActionFiles(),
+		"corpus-out":       carapace.ActionFiles(),
+		"crashes-meta-out": carapace.ActionFiles(),
+		"crashes-out":      carapace.ActionFiles(),
+		"lcov-out":         carapace.ActionFiles(),
+		"program-so":       carapace.ActionFiles(".so"),
+		"replay":           carapace.ActionFiles(),
+		"symbols":          carapace.ActionFiles(),
+	})
 }

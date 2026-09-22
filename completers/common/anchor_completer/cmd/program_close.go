@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/anchor"
 	"github.com/spf13/cobra"
 )
 
@@ -20,4 +21,9 @@ func init() {
 	program_closeCmd.Flags().StringP("program-name", "p", "", "Program name to close (from workspace). Used when account is not provided")
 	program_closeCmd.Flags().String("recipient", "", "Recipient address for reclaimed lamports (defaults to authority)")
 	programCmd.AddCommand(program_closeCmd)
+
+	carapace.Gen(program_closeCmd).FlagCompletion(carapace.ActionMap{
+		"authority":    carapace.ActionFiles(),
+		"program-name": anchor.ActionPrograms(),
+	})
 }

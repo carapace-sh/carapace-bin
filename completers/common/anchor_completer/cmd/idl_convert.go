@@ -19,4 +19,12 @@ func init() {
 	idl_convertCmd.Flags().StringP("program-id", "p", "", "Program id to initialize IDL for. If not provided, discovers program ID from IDL")
 	idl_convertCmd.Flags().Bool("to-legacy", false, "Convert a current-spec IDL back to the legacy (pre Anchor v0.30) format. Without this flag the converter runs in the default direction (legacy -> current)")
 	idlCmd.AddCommand(idl_convertCmd)
+
+	carapace.Gen(idl_convertCmd).FlagCompletion(carapace.ActionMap{
+		"out": carapace.ActionFiles(),
+	})
+
+	carapace.Gen(idl_convertCmd).PositionalCompletion(
+		carapace.ActionFiles(),
+	)
 }

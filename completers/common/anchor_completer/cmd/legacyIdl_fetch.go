@@ -17,4 +17,8 @@ func init() {
 	legacyIdl_fetchCmd.Flags().BoolP("help", "h", false, "Print help")
 	legacyIdl_fetchCmd.Flags().StringP("out", "o", "", "Path to write the fetched IDL. Prints to stdout if omitted")
 	legacyIdlCmd.AddCommand(legacyIdl_fetchCmd)
+
+	carapace.Gen(legacyIdl_fetchCmd).FlagCompletion(carapace.ActionMap{
+		"out": carapace.ActionFiles(),
+	})
 }

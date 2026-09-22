@@ -19,4 +19,9 @@ func init() {
 	showAccountCmd.Flags().String("output", "", "Return information in specified output format")
 	showAccountCmd.Flags().StringP("output-file", "o", "", "Write the account data to this file")
 	rootCmd.AddCommand(showAccountCmd)
+
+	carapace.Gen(showAccountCmd).FlagCompletion(carapace.ActionMap{
+		"output":      carapace.ActionValues("json", "json-compact"),
+		"output-file": carapace.ActionFiles(),
+	})
 }

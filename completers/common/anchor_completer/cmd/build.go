@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/anchor"
 	"github.com/spf13/cobra"
 )
 
@@ -31,4 +32,10 @@ func init() {
 	buildCmd.Flags().String("tools-version", "v1.57", "Platform tools version to pass to `cargo build-sbf`")
 	buildCmd.Flags().BoolP("verifiable", "v", false, "True if the build artifact needs to be deterministic and verifiable")
 	rootCmd.AddCommand(buildCmd)
+
+	carapace.Gen(buildCmd).FlagCompletion(carapace.ActionMap{
+		"bootstrap":    carapace.ActionValues("none", "debian"),
+		"idl":          carapace.ActionFiles(".json"),
+		"program-name": anchor.ActionPrograms(),
+	})
 }

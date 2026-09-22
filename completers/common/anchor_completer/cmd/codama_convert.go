@@ -17,4 +17,8 @@ func init() {
 	codama_convertCmd.Flags().BoolP("help", "h", false, "Print help")
 	codama_convertCmd.Flags().StringP("out", "o", "", "Output file (stdout if not specified)")
 	codamaCmd.AddCommand(codama_convertCmd)
+
+	carapace.Gen(codama_convertCmd).FlagCompletion(carapace.ActionMap{
+		"out": carapace.ActionFiles(),
+	})
 }

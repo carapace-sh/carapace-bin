@@ -20,4 +20,8 @@ func init() {
 	idl_initCmd.Flags().String("priority-fee", "", "")
 	idl_initCmd.MarkFlagRequired("filepath")
 	idlCmd.AddCommand(idl_initCmd)
+
+	carapace.Gen(idl_initCmd).FlagCompletion(carapace.ActionMap{
+		"filepath": carapace.ActionFiles(".json"),
+	})
 }

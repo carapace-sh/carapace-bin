@@ -19,4 +19,8 @@ func init() {
 	legacyIdl_writeBufferCmd.Flags().String("priority-fee", "", "")
 	legacyIdl_writeBufferCmd.MarkFlagRequired("filepath")
 	legacyIdlCmd.AddCommand(legacyIdl_writeBufferCmd)
+
+	carapace.Gen(legacyIdl_writeBufferCmd).FlagCompletion(carapace.ActionMap{
+		"filepath": carapace.ActionFiles(),
+	})
 }

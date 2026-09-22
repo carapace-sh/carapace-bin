@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/anchor"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,8 @@ func init() {
 
 	runCmd.Flags().BoolP("help", "h", false, "Print help")
 	rootCmd.AddCommand(runCmd)
+
+	carapace.Gen(runCmd).PositionalCompletion(
+		anchor.ActionScripts(),
+	)
 }

@@ -19,4 +19,8 @@ func init() {
 	idl_createBufferCmd.Flags().String("priority-fee", "", "Priority fees in micro-lamports per compute unit")
 	idl_createBufferCmd.MarkFlagRequired("filepath")
 	idlCmd.AddCommand(idl_createBufferCmd)
+
+	carapace.Gen(idl_createBufferCmd).FlagCompletion(carapace.ActionMap{
+		"filepath": carapace.ActionFiles(".json"),
+	})
 }

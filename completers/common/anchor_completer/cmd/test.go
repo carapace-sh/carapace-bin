@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/anchor"
 	"github.com/spf13/cobra"
 )
 
@@ -29,4 +30,13 @@ func init() {
 	testCmd.Flags().Bool("skip-local-validator", false, "Flag to skip starting a local validator, if the configured cluster url is a localnet")
 	testCmd.Flags().String("validator", "surfpool", "Validator type to use for local testing")
 	rootCmd.AddCommand(testCmd)
+
+	carapace.Gen(testCmd).FlagCompletion(carapace.ActionMap{
+		"program-name": anchor.ActionPrograms(),
+		"script":       anchor.ActionScripts(),
+		"validator": carapace.ActionValuesDescribed(
+			"surfpool", "Use Surfpool validator (default)",
+			"legacy", "Use Solana test validator",
+		),
+	})
 }

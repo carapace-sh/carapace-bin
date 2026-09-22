@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/anchor"
 	"github.com/spf13/cobra"
 )
 
@@ -22,4 +23,10 @@ func init() {
 	idl_buildCmd.Flags().StringP("program-name", "p", "", "")
 	idl_buildCmd.Flags().Bool("skip-lint", false, "Do not check for safety comments")
 	idlCmd.AddCommand(idl_buildCmd)
+
+	carapace.Gen(idl_buildCmd).FlagCompletion(carapace.ActionMap{
+		"out":          carapace.ActionFiles(),
+		"out-ts":       carapace.ActionFiles(".json"),
+		"program-name": anchor.ActionPrograms(),
+	})
 }

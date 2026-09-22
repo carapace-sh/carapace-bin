@@ -17,4 +17,8 @@ func init() {
 	fuzz_listCmd.Flags().StringP("harness-dir", "C", "", "Use this directory instead of ./fuzz/<program_name>/")
 	fuzz_listCmd.Flags().BoolP("help", "h", false, "Print help")
 	fuzzCmd.AddCommand(fuzz_listCmd)
+
+	carapace.Gen(fuzz_listCmd).FlagCompletion(carapace.ActionMap{
+		"harness-dir": carapace.ActionFiles(),
+	})
 }

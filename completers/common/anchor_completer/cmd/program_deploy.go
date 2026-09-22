@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/anchor"
 	"github.com/spf13/cobra"
 )
 
@@ -25,4 +26,14 @@ func init() {
 	program_deployCmd.Flags().String("upgrade-authority", "", "Upgrade authority keypair (defaults to configured wallet)")
 	program_deployCmd.Flags().Bool("use-rpc", false, "Send write transactions through RPC instead of TPU")
 	programCmd.AddCommand(program_deployCmd)
+
+	carapace.Gen(program_deployCmd).FlagCompletion(carapace.ActionMap{
+		"program-keypair":   carapace.ActionFiles(".json"),
+		"program-name":      anchor.ActionPrograms(),
+		"upgrade-authority": carapace.ActionFiles(),
+	})
+
+	carapace.Gen(program_deployCmd).PositionalCompletion(
+		carapace.ActionFiles(".so"),
+	)
 }

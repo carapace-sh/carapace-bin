@@ -20,4 +20,8 @@ func init() {
 	keygen_recoverCmd.Flags().StringP("outfile", "o", "", "Path to recovered keypair file")
 	keygen_recoverCmd.Flags().Bool("skip-seed-phrase-validation", false, "Skip seed phrase validation")
 	keygenCmd.AddCommand(keygen_recoverCmd)
+
+	carapace.Gen(keygen_recoverCmd).FlagCompletion(carapace.ActionMap{
+		"outfile": carapace.ActionFiles(),
+	})
 }

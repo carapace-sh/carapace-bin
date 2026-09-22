@@ -19,4 +19,9 @@ func init() {
 	codama_generateCmd.Flags().StringP("path", "p", "clients", "Base output directory; per-language clients are written to `<path>/<language>`")
 	codama_generateCmd.MarkFlagRequired("language")
 	codamaCmd.AddCommand(codama_generateCmd)
+
+	carapace.Gen(codama_generateCmd).FlagCompletion(carapace.ActionMap{
+		"language": carapace.ActionValues("js", "js-umi", "rust", "go"),
+		"path":     carapace.ActionFiles(),
+	})
 }

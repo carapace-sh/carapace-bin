@@ -20,4 +20,9 @@ func init() {
 	fuzz_showCmd.Flags().Bool("regen", false, "Batch-regenerate .meta.json for all crashes (requires --replay)")
 	fuzz_showCmd.Flags().Bool("replay", false, "Actually replay the crash (requires compiled binary)")
 	fuzzCmd.AddCommand(fuzz_showCmd)
+
+	carapace.Gen(fuzz_showCmd).FlagCompletion(carapace.ActionMap{
+		"crash-meta-dir": carapace.ActionFiles(),
+		"crashes-dir":    carapace.ActionFiles(),
+	})
 }

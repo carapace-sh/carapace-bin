@@ -17,4 +17,12 @@ func init() {
 	idl_typeCmd.Flags().BoolP("help", "h", false, "Print help")
 	idl_typeCmd.Flags().StringP("out", "o", "", "Output file for the IDL (stdout if not specified)")
 	idlCmd.AddCommand(idl_typeCmd)
+
+	carapace.Gen(idl_typeCmd).FlagCompletion(carapace.ActionMap{
+		"out": carapace.ActionFiles(),
+	})
+
+	carapace.Gen(idl_typeCmd).PositionalCompletion(
+		carapace.ActionFiles(),
+	)
 }

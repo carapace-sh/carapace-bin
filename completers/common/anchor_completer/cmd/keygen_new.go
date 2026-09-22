@@ -21,4 +21,8 @@ func init() {
 	keygen_newCmd.Flags().Bool("silent", false, "Do not display the generated pubkey")
 	keygen_newCmd.Flags().StringP("word-count", "w", "12", "Number of words in the mnemonic phrase [possible values: 12, 15, 18, 21, 24]")
 	keygenCmd.AddCommand(keygen_newCmd)
+
+	carapace.Gen(keygen_newCmd).FlagCompletion(carapace.ActionMap{
+		"outfile": carapace.ActionFiles(),
+	})
 }

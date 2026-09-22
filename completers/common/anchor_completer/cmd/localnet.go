@@ -22,4 +22,11 @@ func init() {
 	localnetCmd.Flags().Bool("skip-lint", false, "True if the build should not fail even if there are no \"CHECK\" comments where normally required")
 	localnetCmd.Flags().String("validator", "surfpool", "Validator type to use for local testing")
 	rootCmd.AddCommand(localnetCmd)
+
+	carapace.Gen(localnetCmd).FlagCompletion(carapace.ActionMap{
+		"validator": carapace.ActionValuesDescribed(
+			"surfpool", "Use Surfpool validator (default)",
+			"legacy", "Use Solana test validator",
+		),
+	})
 }
