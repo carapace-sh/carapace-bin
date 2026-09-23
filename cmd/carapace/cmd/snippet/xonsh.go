@@ -31,8 +31,8 @@ def _carapace_completer(context):
         'carapace', context.command, 'xonsh', *[a.value for a in context.args], fix_prefix(context.prefix),
         CARAPACE_SHELL='xonsh',
         CARAPACE_SHELL_ALIASES='\n'.join(__xonsh__.aliases.keys()),
-        CARAPACE_SHELL_BUILTINS='\n'.join(__xonsh__.builtins.keys()),
-        CARAPACE_SHELL_FUNCTIONS='\n'.join(__xonsh__.ctx.functions.keys()),
+        CARAPACE_SHELL_BUILTINS='\n'.join(vars(__xonsh__.builtins).keys()),
+        CARAPACE_SHELL_FUNCTIONS='\n'.join(k for k, v in __xonsh__.ctx.items() if callable(v)),
         CARAPACE_SHELL_VARIABLES='\n'.join(__xonsh__.env.keys()),
     )
 
