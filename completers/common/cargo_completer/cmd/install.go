@@ -1,8 +1,11 @@
 package cmd
 
 import (
+	"strings"
+
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/cargo_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
 )
 
@@ -52,7 +55,13 @@ func init() {
 
 	// TODO missing flag completion
 	carapace.Gen(installCmd).FlagCompletion(carapace.ActionMap{
-		"bin":            action.ActionTargets(installCmd, action.TargetOpts{Bin: true}),
+		"bin": action.ActionTargets(installCmd, action.TargetOpts{Bin: true}),
+		"branch": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if f := installCmd.Flag("git"); f.Changed && strings.HasPrefix(f.Value.String(), "https://github.com/") {
+				return git.ActionLsRemoteRefs(git.LsRemoteRefOption{Url: f.Value.String(), Branches: true})
+			}
+			return carapace.ActionValues()
+		}),
 		"example":        action.ActionTargets(installCmd, action.TargetOpts{Example: true}),
 		"features":       action.ActionFeatures(installCmd).UniqueList(","),
 		"message-format": action.ActionMessageFormats(),
@@ -60,6 +69,12 @@ func init() {
 		"profile":        action.ActionProfiles(installCmd),
 		"registry":       action.ActionRegistries(),
 		"root":           carapace.ActionDirectories(),
-		"target-dir":     carapace.ActionDirectories(),
+		"tag": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if f := installCmd.Flag("git"); f.Changed && strings.HasPrefix(f.Value.String(), "https://github.com/") {
+				return git.ActionLsRemoteRefs(git.LsRemoteRefOption{Url: f.Value.String(), Tags: true})
+			}
+			return carapace.ActionValues()
+		}),
+		"target-dir": carapace.ActionDirectories(),
 	})
 }

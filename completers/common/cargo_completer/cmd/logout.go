@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/cargo_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,8 @@ func init() {
 	logoutCmd.Flags().BoolP("help", "h", false, "Print help")
 	logoutCmd.Flags().String("registry", "", "Registry to use")
 	rootCmd.AddCommand(logoutCmd)
+
+	carapace.Gen(logoutCmd).FlagCompletion(carapace.ActionMap{
+		"registry": action.ActionRegistries(),
+	})
 }

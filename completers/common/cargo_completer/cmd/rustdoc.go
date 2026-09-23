@@ -45,7 +45,6 @@ func init() {
 	rustdocCmd.Flags().Bool("unit-graph", false, "Output build graph in JSON (unstable)")
 	rootCmd.AddCommand(rustdocCmd)
 
-	// TODO flag completion
 	carapace.Gen(rustdocCmd).FlagCompletion(carapace.ActionMap{
 		"bench":          action.ActionTargets(rustdocCmd, action.TargetOpts{Bench: true}),
 		"bin":            action.ActionTargets(rustdocCmd, action.TargetOpts{Bin: true}),

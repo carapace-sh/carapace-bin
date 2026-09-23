@@ -46,7 +46,6 @@ func init() {
 	addCmd.Flags().String("target", "", "Add as dependency to the given target platform")
 	rootCmd.AddCommand(addCmd)
 
-	// TODO flag completion
 	carapace.Gen(addCmd).FlagCompletion(carapace.ActionMap{
 		"branch": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if f := addCmd.Flag("git"); f.Changed && strings.HasPrefix(f.Value.String(), "https://github.com/") {
@@ -67,6 +66,7 @@ func init() {
 		"manifest-path": carapace.ActionFiles(),
 		"package":       action.ActionDependencies(addCmd, true),
 		"path":          carapace.ActionDirectories(),
+		"registry":      action.ActionRegistries(),
 	})
 
 	carapace.Gen(addCmd).PositionalAnyCompletion(

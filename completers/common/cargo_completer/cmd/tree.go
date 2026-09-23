@@ -37,7 +37,6 @@ func init() {
 	treeCmd.Flag("duplicate").Hidden = true
 	rootCmd.AddCommand(treeCmd)
 
-	// TODO flag completion
 	carapace.Gen(treeCmd).FlagCompletion(carapace.ActionMap{
 		"charset": carapace.ActionValues("utf8", "ascii"),
 		"edges": carapace.ActionValues(
