@@ -64,6 +64,7 @@ func init() {
 		}),
 		"example":        action.ActionTargets(installCmd, action.TargetOpts{Example: true}),
 		"features":       action.ActionFeatures(installCmd).UniqueList(","),
+		"git":            git.ActionRepositorySearch(git.SearchOpts{}.Default()),
 		"message-format": action.ActionMessageFormats(),
 		"path":           carapace.ActionFiles(),
 		"profile":        action.ActionProfiles(installCmd),
