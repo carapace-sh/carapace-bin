@@ -264,3 +264,28 @@ func ActionInstalledPackages(root string) carapace.Action {
 		})
 	})
 }
+
+func ActionPackageSpec(cmd *cobra.Command) carapace.Action {
+	return readMetadataAction(cmd, func(m metadataJson, args []string) carapace.Action {
+		return carapace.ActionMultiParts("@", func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				vals := make([]string, 0)
+				for _, pkg := range m.Packages {
+					vals = append(vals, pkg.Name, pkg.Version)
+				}
+				return carapace.ActionValuesDescribed(vals...).Unique()
+			case 1:
+				vals := make([]string, 0)
+				for _, pkg := range m.Packages {
+					if pkg.Name == c.Parts[0] {
+						vals = append(vals, pkg.Version)
+					}
+				}
+				return carapace.ActionValues(vals...)
+			default:
+				return carapace.ActionValues()
+			}
+		})
+	})
+}

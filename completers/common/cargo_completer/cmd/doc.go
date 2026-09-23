@@ -35,6 +35,7 @@ func init() {
 	docCmd.Flags().Bool("no-default-features", false, "Do not activate the `default` feature")
 	docCmd.Flags().Bool("no-deps", false, "Don't build documentation for dependencies")
 	docCmd.Flags().Bool("open", false, "Opens the docs in a browser after the operation")
+	docCmd.Flags().String("output-format", "", "The output type to write (unstable)")
 	docCmd.Flags().StringSliceP("package", "p", nil, "Package to document")
 	docCmd.Flags().String("profile", "", "Build artifacts with the specified profile")
 	docCmd.Flags().BoolP("release", "r", false, "Build artifacts in release mode, with optimizations")
@@ -51,6 +52,7 @@ func init() {
 		"features":       action.ActionFeatures(docCmd).UniqueList(","),
 		"manifest-path":  carapace.ActionFiles(),
 		"message-format": action.ActionMessageFormats(),
+		"output-format":  carapace.ActionValues("html", "json"),
 		"package":        action.ActionDependencies(docCmd, true),
 		"profile":        action.ActionProfiles(docCmd),
 		"target-dir":     carapace.ActionDirectories(),
