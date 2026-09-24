@@ -20,18 +20,18 @@ func ActionAliasNames() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		names := make(map[string]struct{})
 
-		for _, path := range systemConfigPaths() {
+		for _, path := range systemConfigPaths(c) {
 			addAliasNames(path, names)
 		}
 
-		if path, exists := os.LookupEnv("WORKTRUNK_CONFIG_PATH"); exists && path != "" {
+		if path, ok := c.LookupEnv("WORKTRUNK_CONFIG_PATH"); ok && path != "" {
 			addAliasNames(path, names)
 		} else if base, err := traverse.XdgConfigHome(c); err == nil {
 			addAliasNames(filepath.Join(base, "worktrunk", "config.toml"), names)
 		}
 
 		if root, err := traverse.GitWorkTree(c); err == nil {
-			if path := projectConfigPath(root); path != "" {
+			if path := projectConfigPath(root, c); path != "" {
 				addAliasNames(path, names)
 			}
 		}
@@ -51,13 +51,13 @@ func addAliasNames(path string, names map[string]struct{}) {
 	}
 }
 
-func systemConfigPaths() []string {
-	if path, exists := os.LookupEnv("WORKTRUNK_SYSTEM_CONFIG_PATH"); exists && path != "" {
+func systemConfigPaths(c carapace.Context) []string {
+	if path, ok := c.LookupEnv("WORKTRUNK_SYSTEM_CONFIG_PATH"); ok && path != "" {
 		return []string{path}
 	}
 
 	var dirs []string
-	if dirsEnv := os.Getenv("XDG_CONFIG_DIRS"); dirsEnv != "" {
+	if dirsEnv := c.Getenv("XDG_CONFIG_DIRS"); dirsEnv != "" {
 		for _, dir := range strings.Split(dirsEnv, ":") {
 			if dir != "" {
 				dirs = append(dirs, dir)
@@ -69,7 +69,7 @@ func systemConfigPaths() []string {
 		case "darwin":
 			dirs = []string{"/Library/Application Support", "/etc/xdg"}
 		case "windows":
-			if programData := os.Getenv("PROGRAMDATA"); programData != "" {
+			if programData := c.Getenv("PROGRAMDATA"); programData != "" {
 				dirs = []string{programData}
 			}
 		default:
@@ -84,8 +84,8 @@ func systemConfigPaths() []string {
 	return paths
 }
 
-func projectConfigPath(root string) string {
-	if path, exists := os.LookupEnv("WORKTRUNK_PROJECT_CONFIG_PATH"); exists && path != "" {
+func projectConfigPath(root string, c carapace.Context) string {
+	if path, ok := c.LookupEnv("WORKTRUNK_PROJECT_CONFIG_PATH"); ok && path != "" {
 		if filepath.IsAbs(path) {
 			return path
 		}
