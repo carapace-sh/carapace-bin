@@ -7,7 +7,7 @@ import (
 
 var kube_credentialsCmd = &cobra.Command{
 	Use:    "credentials",
-	Short:  "Get credentials for kubectl access",
+	Short:  "Get credentials for kubectl access.",
 	Hidden: true,
 	Run:    func(cmd *cobra.Command, args []string) {},
 }

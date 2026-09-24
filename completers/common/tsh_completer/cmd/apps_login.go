@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -17,15 +16,17 @@ func init() {
 
 	apps_loginCmd.Flags().String("aws-role", "", "(For AWS CLI access only) Amazon IAM role ARN or role name.")
 	apps_loginCmd.Flags().String("azure-identity", "", "(For Azure CLI access only) Azure managed identity name.")
-	apps_loginCmd.Flags().StringP("cluster", "c", "", "Specify the Teleport cluster to connect")
+	apps_loginCmd.Flags().Bool("env", false, "(For AWS CLI access only) Obtain credentials as plain text in order to load into environments variables. Required when using per-session MFA.")
 	apps_loginCmd.Flags().String("gcp-service-account", "", "(For GCP CLI access only) GCP service account name.")
-	apps_loginCmd.Flags().Bool("no-quiet", false, "Quiet mode")
-	apps_loginCmd.Flags().BoolP("quiet", "q", false, "Quiet mode")
+	apps_loginCmd.Flags().BoolP("interactive", "T", false, "Prompt for AWS Roles interactively (--aws-role takes precedence).")
+	apps_loginCmd.Flags().Bool("no-env", false, "(For AWS CLI access only) Obtain credentials as plain text in order to load into environments variables. Required when using per-session MFA.")
+	apps_loginCmd.Flags().Bool("no-interactive", false, "Prompt for AWS Roles interactively (--aws-role takes precedence).")
+	apps_loginCmd.Flags().Bool("no-quiet", false, "Quiet mode.")
+	apps_loginCmd.Flags().BoolP("quiet", "q", false, "Quiet mode.")
+	apps_loginCmd.Flags().String("target-port", "", "Port to which connections made using this cert should be routed to. Valid only for multi-port TCP apps.")
+	apps_loginCmd.Flag("env").Hidden = true
+	apps_loginCmd.Flag("no-env").Hidden = true
+	apps_loginCmd.Flag("no-interactive").Hidden = true
 	apps_loginCmd.Flag("no-quiet").Hidden = true
 	appsCmd.AddCommand(apps_loginCmd)
-
-	// TODO flag completion
-	carapace.Gen(apps_loginCmd).FlagCompletion(carapace.ActionMap{
-		"cluster": tsh.ActionClusters(),
-	})
 }
