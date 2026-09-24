@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-pnpm/pkg/actions/tools/pnpm"
 	"github.com/spf13/cobra"
 )
 
@@ -15,19 +14,14 @@ var packCmd = &cobra.Command{
 func init() {
 	carapace.Gen(packCmd).Standalone()
 
-	packCmd.Flags().Bool("dry-run", false, "Do everything a pack would do except actually creating the tarball")
-	packCmd.Flags().String("filter", "", "Restrict the scope to package names matching the given pattern")
-	packCmd.Flags().Bool("json", false, "Log output in JSON format")
-	packCmd.Flags().String("out", "", "Customize the output tarball path (supports %s for name and %v for version)")
-	packCmd.Flags().String("pack-destination", "", "Directory in which pnpm pack will save tarballs")
-	packCmd.Flags().String("pack-gzip-level", "", "Custom gzip compression level for the tarball")
-	packCmd.Flags().BoolP("recursive", "r", false, "Pack all packages from the workspace")
+	packCmd.Flags().Bool("dry-run", false, "Do everything `pack` would do except writing the tarball to disk")
+	packCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	packCmd.Flags().Bool("json", false, "Print the packed tarball and its contents in JSON")
+	packCmd.Flags().Bool("no-skip-manifest-obfuscation", false, "Apply pnpm's normal packed-manifest filtering")
+	packCmd.Flags().String("out", "", "Customize the output path. `%s` expands to the package name and `%v` to the version, e.g. `%s.tgz` or `some-dir/%s-%v.tgz`")
+	packCmd.Flags().String("pack-destination", "", "Directory in which to save the tarball. Defaults to the current working directory")
+	packCmd.Flags().String("pack-gzip-level", "", "gzip compression level (`0`–`9`) for the tarball")
+	packCmd.Flags().Bool("skip-manifest-obfuscation", false, "Keep the original `packageManager` field and publish-lifecycle scripts in the packed manifest instead of stripping them")
+	packCmd.Flag("no-skip-manifest-obfuscation").Hidden = true
 	rootCmd.AddCommand(packCmd)
-
-	carapace.Gen(packCmd).FlagCompletion(carapace.ActionMap{
-		"filter":           pnpm.ActionFilters(),
-		"out":              carapace.ActionFiles(),
-		"pack-destination": carapace.ActionDirectories(),
-		"pack-gzip-level":  carapace.ActionValues("0", "1", "2", "3", "4", "5", "6", "7", "8", "9"),
-	})
 }

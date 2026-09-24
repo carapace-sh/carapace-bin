@@ -8,35 +8,24 @@ import (
 
 var removeCmd = &cobra.Command{
 	Use:     "remove",
-	Aliases: []string{"rm", "uninstall", "un"},
 	Short:   "Removes packages from `node_modules` and from the project's `package.json`",
-	GroupID: "manage",
+	Aliases: []string{"uninstall", "rm", "un", "uni"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(removeCmd).Standalone()
 
-	removeCmd.Flags().String("changed-files-ignore-pattern", "", "Defines files to ignore when filtering for changed projects since the specified commit/branch")
-	removeCmd.Flags().String("filter", "", "set filter")
-	removeCmd.Flags().String("filter-prod", "", "Restricts the scope to package names matching the given pattern")
-	removeCmd.Flags().Bool("global-dir", false, "Specify a custom directory to store global packages")
-	removeCmd.Flags().BoolP("recursive", "r", false, "Remove from every package found in subdirectories or from every workspace package")
+	removeCmd.Flags().BoolP("global", "g", false, "Remove the package from the global packages directory and unlink its bins")
+	removeCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	removeCmd.Flags().String("lockfile-dir", "", "The directory in which `pnpm-lock.yaml` is created. Several projects may share a single lockfile")
+	removeCmd.Flags().Bool("lockfile-only", false, "Dependencies are not removed from `node_modules`. Only the manifest and `pnpm-lock.yaml` are updated")
 	removeCmd.Flags().BoolP("save-dev", "D", false, "Remove the dependency only from \"devDependencies\"")
 	removeCmd.Flags().BoolP("save-optional", "O", false, "Remove the dependency only from \"optionalDependencies\"")
 	removeCmd.Flags().BoolP("save-prod", "P", false, "Remove the dependency only from \"dependencies\"")
-	removeCmd.Flags().String("test-pattern", "", "Defines files related to tests")
 	rootCmd.AddCommand(removeCmd)
 
-	carapace.Gen(removeCmd).FlagCompletion(carapace.ActionMap{
-		"filter":      pnpm.ActionFilters(),
-		"filter-prod": pnpm.ActionFilters(),
-	})
-
 	carapace.Gen(removeCmd).PositionalAnyCompletion(
-		carapace.Batch(
-			pnpm.ActionDependencies(),
-			pnpm.ActionWorkspaceDependencies(),
-		).ToA(),
+		pnpm.ActionDependencyNames(),
 	)
 }
