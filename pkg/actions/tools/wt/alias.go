@@ -3,6 +3,7 @@ package wt
 import (
 	"os"
 	"path/filepath"
+	"runtime"
 	"sort"
 	"strings"
 
@@ -19,6 +20,9 @@ func ActionAliasNames() carapace.Action {
 		return carapace.ActionExecCommandE("git", "rev-parse", "--show-toplevel")(func(output []byte, err error) carapace.Action {
 			paths := make(map[string]struct{})
 
+			for _, path := range systemConfigPaths() {
+				paths[path] = struct{}{}
+			}
 			if path := userConfigPath(); path != "" {
 				paths[path] = struct{}{}
 			}
@@ -53,6 +57,39 @@ func userConfigPath() string {
 		return filepath.Join(base, "worktrunk", "config.toml")
 	}
 	return ""
+}
+
+func systemConfigPaths() []string {
+	if path, exists := os.LookupEnv("WORKTRUNK_SYSTEM_CONFIG_PATH"); exists && path != "" {
+		return []string{path}
+	}
+
+	var dirs []string
+	if dirsEnv := os.Getenv("XDG_CONFIG_DIRS"); dirsEnv != "" {
+		for _, dir := range strings.Split(dirsEnv, ":") {
+			if dir != "" {
+				dirs = append(dirs, dir)
+			}
+		}
+	}
+	if len(dirs) == 0 {
+		switch runtime.GOOS {
+		case "darwin":
+			dirs = []string{"/Library/Application Support", "/etc/xdg"}
+		case "windows":
+			if programData := os.Getenv("PROGRAMDATA"); programData != "" {
+				dirs = []string{programData}
+			}
+		default:
+			dirs = []string{"/etc/xdg"}
+		}
+	}
+
+	paths := make([]string, 0, len(dirs))
+	for _, dir := range dirs {
+		paths = append(paths, filepath.Join(dir, "worktrunk", "config.toml"))
+	}
+	return paths
 }
 
 func projectConfigPath(root string) string {
