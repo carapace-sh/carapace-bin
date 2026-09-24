@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/traverse"
 	toml "github.com/pelletier/go-toml"
 )
 
@@ -17,46 +18,37 @@ import (
 //	wtpr
 func ActionAliasNames() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return carapace.ActionExecCommandE("git", "rev-parse", "--show-toplevel")(func(output []byte, err error) carapace.Action {
-			paths := make(map[string]struct{})
+		names := make(map[string]struct{})
 
-			for _, path := range systemConfigPaths() {
-				paths[path] = struct{}{}
-			}
-			if path := userConfigPath(); path != "" {
-				paths[path] = struct{}{}
-			}
-			if err == nil {
-				if path := projectConfigPath(strings.TrimSpace(string(output))); path != "" {
-					paths[path] = struct{}{}
-				}
-			}
+		for _, path := range systemConfigPaths() {
+			addAliasNames(path, names)
+		}
 
-			names := make(map[string]struct{})
-			for path := range paths {
-				for _, name := range aliasNames(path) {
-					names[name] = struct{}{}
-				}
-			}
+		if path, exists := os.LookupEnv("WORKTRUNK_CONFIG_PATH"); exists && path != "" {
+			addAliasNames(path, names)
+		} else if base, err := traverse.XdgConfigHome(c); err == nil {
+			addAliasNames(filepath.Join(base, "worktrunk", "config.toml"), names)
+		}
 
-			vals := make([]string, 0, len(names))
-			for name := range names {
-				vals = append(vals, name)
+		if root, err := traverse.GitWorkTree(c); err == nil {
+			if path := projectConfigPath(root); path != "" {
+				addAliasNames(path, names)
 			}
-			sort.Strings(vals)
-			return carapace.ActionValues(vals...).Tag("aliases")
-		})
+		}
+
+		vals := make([]string, 0, len(names))
+		for name := range names {
+			vals = append(vals, name)
+		}
+		sort.Strings(vals)
+		return carapace.ActionValues(vals...).Tag("aliases")
 	})
 }
 
-func userConfigPath() string {
-	if path, exists := os.LookupEnv("WORKTRUNK_CONFIG_PATH"); exists && path != "" {
-		return path
+func addAliasNames(path string, names map[string]struct{}) {
+	for _, name := range aliasNames(path) {
+		names[name] = struct{}{}
 	}
-	if base, err := os.UserConfigDir(); err == nil {
-		return filepath.Join(base, "worktrunk", "config.toml")
-	}
-	return ""
 }
 
 func systemConfigPaths() []string {
