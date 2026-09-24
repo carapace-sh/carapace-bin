@@ -15,12 +15,12 @@ var runCmd = &cobra.Command{
 func init() {
 	carapace.Gen(runCmd).Standalone()
 
-	runCmd.Flags().StringP("android-project-arg", "P", "", "Additional arguments specified as key=value that are passed directly to the gradle project via the -P flag.")
+	runCmd.Flags().StringArrayP("android-project-arg", "P", nil, "Additional arguments specified as key=value that are passed directly to the gradle project via the -P flag.")
 	runCmd.Flags().Bool("await-first-frame-when-tracing", false, "Wait for the first frame when tracing startup.")
 	runCmd.Flags().Bool("build", false, "If necessary, build the app before running.")
 	runCmd.Flags().Bool("cache-sksl", false, "Cache the shader in the SkSL format instead of in binary or GLSL formats.")
 	runCmd.Flags().StringArray("dart-define", nil, "Additional key-value pairs that will be available as constants.")
-	runCmd.Flags().StringP("dart-entrypoint-args", "a", "", "Pass a list of arguments to the Dart entrypoint at application startup.")
+	runCmd.Flags().StringArrayP("dart-entrypoint-args", "a", nil, "Pass a list of arguments to the Dart entrypoint at application startup.")
 	runCmd.Flags().String("dds-port", "", "When this value is provided, the Dart Development Service (DDS) will be bound to the provided port.")
 	runCmd.Flags().Bool("debug", false, "Build a debug version of your app (default mode).")
 	runCmd.Flags().String("device-timeout", "", "Time in seconds to wait for devices to attach.")
@@ -29,7 +29,7 @@ func init() {
 	runCmd.Flags().Bool("dump-skp-on-shader-compilation", false, "Automatically dump the skp that triggers new shader compilations.")
 	runCmd.Flags().Bool("enable-software-rendering", false, "Enable rendering using the Skia software backend.")
 	runCmd.Flags().Bool("endless-trace-buffer", false, "Enable tracing to an infinite buffer, instead of a ring buffer.")
-	runCmd.Flags().Bool("flavor", false, "Build a custom app flavor as defined by platform-specific build setup.")
+	runCmd.Flags().String("flavor", "", "Build a custom app flavor as defined by platform-specific build setup.")
 	runCmd.Flags().BoolP("help", "h", false, "Print this usage information.")
 	runCmd.Flags().String("host-vmservice-port", "", "When a device-side vmservice port is forwarded to a host-side port, use this value as the host port.")
 	runCmd.Flags().Bool("hot", false, "Run with support for hot reloading.")
@@ -47,7 +47,7 @@ func init() {
 	runCmd.Flags().Bool("pub", false, "Run \"flutter pub get\" before executing this command.")
 	runCmd.Flags().Bool("purge-persistent-cache", false, "Removes all existing persistent caches.")
 	runCmd.Flags().Bool("release", false, "Build a release version of your app.")
-	runCmd.Flags().Bool("route", false, "Which route to load when running the app.")
+	runCmd.Flags().String("route", "", "Which route to load when running the app.")
 	runCmd.Flags().Bool("skia-deterministic-rendering", false, "Provide completely deterministic (i.e. reproducible) Skia rendering.")
 	runCmd.Flags().Bool("start-paused", false, "Start in a paused mode and wait for a debugger to connect.")
 	runCmd.Flags().StringP("target", "t", "", "The main entry-point file of the application, as run on the device.")
@@ -58,7 +58,7 @@ func init() {
 	runCmd.Flags().String("use-application-binary", "", "Specify a pre-built application binary to use when running.")
 	runCmd.Flags().Bool("use-test-fonts", false, "Enable the \"Ahem\" font.")
 	runCmd.Flags().Bool("verbose-system-logs", false, "Include verbose logging from the Flutter engine.")
-	runCmd.Flags().Bool("web-renderer", false, "The renderer implementation to use when building for the web.")
+	runCmd.Flags().String("web-renderer", "", "The renderer implementation to use when building for the web.")
 	rootCmd.AddCommand(runCmd)
 
 	carapace.Gen(runCmd).FlagCompletion(carapace.ActionMap{
@@ -66,5 +66,10 @@ func init() {
 		"pid-file":               carapace.ActionFiles(),
 		"target":                 carapace.ActionFiles(".dart"),
 		"use-application-binary": carapace.ActionFiles(".apk", ".ipa"),
+		"web-renderer": carapace.ActionValuesDescribed(
+			"auto", "Use the HTML renderer on mobile devices, and CanvasKit on desktop devices.",
+			"canvaskit", "Always use the CanvasKit renderer.",
+			"html", "Always use the HTML renderer.",
+		),
 	})
 }

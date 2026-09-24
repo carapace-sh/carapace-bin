@@ -26,7 +26,7 @@ func init() {
 	build_webCmd.Flags().Bool("null-assertions", false, "Perform additional null assertions on the boundaries of migrated and un-migrated code.")
 	build_webCmd.Flags().Bool("profile", false, "Build a version of your app specialized for performance profiling.")
 	build_webCmd.Flags().Bool("pub", false, "Run \"flutter pub get\" before executing this command.")
-	build_webCmd.Flags().Bool("pwa-strategy", false, "val                    The caching strategy to be used by the PWA service worker.")
+	build_webCmd.Flags().String("pwa-strategy", "", "The caching strategy to be used by the PWA service worker.")
 	build_webCmd.Flags().Bool("release", false, "Build a release version of your app (default mode).")
 	build_webCmd.Flags().Bool("source-maps", false, "Generate a sourcemap file.")
 	build_webCmd.Flags().StringP("target", "t", "", "The main entry-point file of the application, as run on the device.")
