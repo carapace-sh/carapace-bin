@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/wt"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
 )
 
@@ -32,6 +32,6 @@ func init() {
 	})
 
 	carapace.Gen(removeCmd).PositionalAnyCompletion(
-		wt.ActionWorktrees().FilterArgs(),
+		git.ActionLocalBranches().FilterArgs(),
 	)
 }
