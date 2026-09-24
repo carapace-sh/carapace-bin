@@ -3,3 +3,14 @@ name: config
 description: Manage user & project configs
 flags:
     -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        C:
+            - $files
+        config:
+            - $files
+documentation:
+    command: |-
+        Manage user & project configs
+
+        Includes shell integration, hooks, and saved state.

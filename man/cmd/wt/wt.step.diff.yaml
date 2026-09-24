@@ -4,3 +4,14 @@ description: Show all changes since branching
 flags:
     -b, --branch=: Branch to operate on (defaults to current worktree)
     -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        C:
+            - $files
+        config:
+            - $files
+documentation:
+    command: |-
+        Show all changes since branching
+
+        Includes committed, staged, unstaged, and untracked files.

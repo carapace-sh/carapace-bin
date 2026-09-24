@@ -8,7 +8,7 @@ import (
 
 var step_forEachCmd = &cobra.Command{
 	Use:   "for-each",
-	Short: "[experimental] Run command in each worktree",
+	Short: "Run command in each worktree",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

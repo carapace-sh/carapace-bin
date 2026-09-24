@@ -4,3 +4,21 @@ description: Generate shell integration code
 flags:
     --cmd=: Command name for shell integration (defaults to binary name)
     -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        C:
+            - $files
+        config:
+            - $files
+    positional:
+        - - bash
+          - fish
+          - nu
+          - zsh
+          - powershell
+documentation:
+    flag:
+        cmd: |-
+            Command name for shell integration (defaults to binary name)
+
+            Use this to create shell integration for an alternate command name. For example, --cmd=git-wt creates a git-wt shell function instead of wt, useful on Windows where wt conflicts with Windows Terminal.

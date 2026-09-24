@@ -7,7 +7,7 @@ import (
 
 var config_plugins_codex_uninstallCmd = &cobra.Command{
 	Use:   "uninstall",
-	Short: "Remove the Worktrunk marketplace from Codex",
+	Short: "Remove the Worktrunk plugin",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

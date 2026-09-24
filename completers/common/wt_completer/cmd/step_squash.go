@@ -23,7 +23,6 @@ func init() {
 	step_squashCmd.Flags().Bool("no-verify", false, "Skip hooks (deprecated alias for --no-hooks)")
 	step_squashCmd.Flags().Bool("show-prompt", false, "Render prompt to stdout without running LLM")
 	step_squashCmd.Flags().String("stage", "", "What to stage before committing [default: all]")
-	step_squashCmd.Flags().BoolP("yes", "y", false, "Skip approval prompts")
 	stepCmd.AddCommand(step_squashCmd)
 
 	carapace.Gen(step_squashCmd).FlagCompletion(carapace.ActionMap{

@@ -3,3 +3,12 @@ name: get
 description: Show cache contents
 flags:
     -h, --help: Print help
+completion:
+    flag:
+        C:
+            - $files
+        config:
+            - $files
+        format:
+            - text
+            - json

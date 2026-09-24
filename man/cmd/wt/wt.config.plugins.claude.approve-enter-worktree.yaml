@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: approve-enter-worktree
+description: 'Internal: the plugin''s PermissionRequest hook, reading its payload from stdin'
+hidden: true
+flags:
+    -h, --help: Print help
+completion:
+    flag:
+        C:
+            - $files
+        config:
+            - $files

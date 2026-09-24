@@ -4,3 +4,15 @@ description: Remove shell integration from config files
 flags:
     --dry-run: Show what would be changed
     -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        C:
+            - $files
+        config:
+            - $files
+    positional:
+        - - bash
+          - fish
+          - nu
+          - zsh
+          - powershell

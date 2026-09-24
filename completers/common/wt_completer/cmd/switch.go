@@ -22,7 +22,7 @@ func init() {
 	switchCmd.Flags().Bool("cd", false, "Change directory after switching")
 	switchCmd.Flags().Bool("clobber", false, "Remove stale paths at target")
 	switchCmd.Flags().BoolP("create", "c", false, "Create a new branch")
-	switchCmd.Flags().StringP("execute", "x", "", "Command to run after switch")
+	switchCmd.Flags().StringP("execute", "x", "", "Program to run after switch")
 	switchCmd.Flags().String("format", "", "Output format (text, json)")
 	switchCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	switchCmd.Flags().Bool("no-cd", false, "Skip directory change after switching")
@@ -30,7 +30,6 @@ func init() {
 	switchCmd.Flags().Bool("no-verify", false, "Skip hooks (deprecated alias for --no-hooks)")
 	switchCmd.Flags().Bool("prs", false, "Include open PRs/MRs (interactive picker)")
 	switchCmd.Flags().Bool("remotes", false, "Include remote branches (interactive picker)")
-	switchCmd.Flags().BoolP("yes", "y", false, "Skip approval prompts")
 	rootCmd.AddCommand(switchCmd)
 
 	carapace.Gen(switchCmd).FlagCompletion(carapace.ActionMap{
@@ -43,34 +42,39 @@ func init() {
 	})
 
 	carapace.Gen(switchCmd).PositionalCompletion(
-		carapace.Batch(
-			carapace.ActionValuesDescribed(
-				"^", "default branch",
-				"@", "current branch/worktree",
-				"-", "previous worktree",
-			),
-			wt.ActionWorktrees(),
-			carapace.ActionMultiPartsN(":", 2, func(c carapace.Context) carapace.Action {
-				switch len(c.Parts) {
-				case 0:
-					return carapace.ActionValuesDescribed(
-						"pr", "pull requests",
-						"mr", "merge requests",
-					).Suffix(":")
-				default:
-					switch c.Parts[0] {
-					case "pr":
-						return gh.ActionPullRequests(gh.PullRequestOpts{
-							Owner: "{owner}",
-							Name:  "{repo}",
-						}.Default())
-					// TODO case "mr":
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if switchCmd.Flags().Changed("create") {
+				return carapace.ActionValues() // branch doesn't exist yet
+			}
+			return carapace.Batch(
+				carapace.ActionValuesDescribed(
+					"^", "default branch",
+					"@", "current branch/worktree",
+					"-", "previous worktree",
+				),
+				wt.ActionBranches(),
+				carapace.ActionMultiPartsN(":", 2, func(c carapace.Context) carapace.Action {
+					switch len(c.Parts) {
+					case 0:
+						return carapace.ActionValuesDescribed(
+							"pr", "pull requests",
+							"mr", "merge requests",
+						).Suffix(":")
 					default:
-						return carapace.ActionValues()
+						switch c.Parts[0] {
+						case "pr":
+							return gh.ActionPullRequests(gh.PullRequestOpts{
+								Owner: "{owner}",
+								Name:  "{repo}",
+							}.Default())
+						// TODO case "mr":
+						default:
+							return carapace.ActionValues()
+						}
 					}
-				}
-			}),
-		).ToA(),
+				}),
+			).ToA()
+		}),
 	)
 
 	carapace.Gen(switchCmd).DashAnyCompletion(

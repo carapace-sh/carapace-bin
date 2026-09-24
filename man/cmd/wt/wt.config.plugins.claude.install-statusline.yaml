@@ -3,3 +3,9 @@ name: install-statusline
 description: Configure the Claude Code statusline
 flags:
     -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        C:
+            - $files
+        config:
+            - $files

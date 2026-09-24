@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: approvals
+description: 'Deprecated: use wt config approvals instead'
+hidden: true
+flags:
+    -h, --help: Print help
+completion:
+    flag:
+        C:
+            - $files
+        config:
+            - $files

@@ -2,7 +2,24 @@
 name: push
 description: Fast-forward target to current branch
 flags:
-    --ff: Allow fast-forward (default)
-    --format=: Output format
-    -h, --help: Print help (see more with '--help')
+    --ff&: Allow fast-forward (default)
+    --format=:
+        description: Output format
+        default: text
     --no-ff: Create a merge commit (no fast-forward)
+    -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        C:
+            - $files
+        config:
+            - $files
+        format:
+            - text
+            - json
+documentation:
+    flag:
+        format: |-
+            Output format
+
+            JSON prints structured result to stdout after the push completes.

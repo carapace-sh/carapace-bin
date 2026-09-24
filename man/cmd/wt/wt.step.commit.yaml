@@ -2,12 +2,32 @@
 name: commit
 description: Stage and commit with LLM-generated message
 flags:
-    -b, --branch=: Branch to operate on (defaults to current worktree)
     --dry-run: Preview prompt, command, and generated message without committing
-    --format=: Output format
-    -h, --help: Print help (see more with '--help')
+    --format=:
+        description: Output format
+        default: text
     --no-hooks: Skip hooks
-    --no-verify: Skip hooks (deprecated alias for --no-hooks)
-    --show-prompt: Render prompt to stdout without running LLM
-    --stage=: What to stage before committing [default: all]
-    -y, --yes: Skip approval prompts
+    --no-verify&: Skip hooks (deprecated alias for --no-hooks)
+    --show-prompt&: Render prompt to stdout without running LLM
+    --stage=: 'What to stage before committing [default: all]'
+    -b, --branch=: Branch to operate on (defaults to current worktree)
+    -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        C:
+            - $files
+        config:
+            - $files
+        format:
+            - text
+            - json
+        stage:
+            - "all\tStage everything: untracked files + unstaged tracked changes"
+            - "tracked\tStage tracked changes only (like git add -u)"
+            - "none\tStage nothing, commit only what's already in the index"
+documentation:
+    flag:
+        format: |-
+            Output format
+
+            JSON prints structured result to stdout after the commit completes.

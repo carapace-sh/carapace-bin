@@ -4,8 +4,37 @@ description: Copy gitignored files to another worktree
 flags:
     --dry-run: Show what would be copied
     --force: Overwrite existing files in destination
-    --format=: Output format
+    --format=:
+        description: Output format
+        default: text
     --from=: Source worktree branch
-    -h, --help: Print help (see more with '--help')
     --require-include: Require .worktreeinclude to copy anything
     --to=: Destination worktree branch
+    -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        C:
+            - $files
+        config:
+            - $files
+        format:
+            - text
+            - json
+documentation:
+    command: |-
+        Copy gitignored files to another worktree
+
+        Eliminates cold starts by copying build caches and dependencies.
+    flag:
+        format: |-
+            Output format
+
+            JSON prints structured result to stdout after the copy completes.
+        from: |-
+            Source worktree branch
+
+            Defaults to primary worktree.
+        to: |-
+            Destination worktree branch
+
+            Defaults to current worktree.

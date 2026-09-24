@@ -2,5 +2,16 @@
 name: get
 description: Get all stored state
 flags:
-    --format=: Output format
+    --format=:
+        description: Output format
+        default: table
     -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        C:
+            - $files
+        config:
+            - $files
+        format:
+            - table
+            - json

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/wt"
 	"github.com/spf13/cobra"
 )
 
@@ -18,6 +19,6 @@ func init() {
 	config_aliasCmd.AddCommand(config_alias_showCmd)
 
 	carapace.Gen(config_alias_showCmd).PositionalCompletion(
-		carapace.ActionValues(),
+		wt.ActionAliasNames(),
 	)
 }

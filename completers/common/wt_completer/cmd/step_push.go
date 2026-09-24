@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/wt"
 	"github.com/spf13/cobra"
 )
 
@@ -26,6 +26,6 @@ func init() {
 	})
 
 	carapace.Gen(step_pushCmd).PositionalCompletion(
-		git.ActionRefs(git.RefOption{}.Default()),
+		wt.ActionBranches(),
 	)
 }

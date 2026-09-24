@@ -2,14 +2,42 @@
 name: remove
 description: Remove worktree; delete branch if merged
 flags:
-    --delete-branch: Delete branch after removal (overrides config)
-    -f, --force: Force worktree removal
-    -D, --force-delete: Delete unmerged branches
+    --delete-branch&: Delete branch after removal (overrides config [remove] delete-branch = false)
     --foreground: Run removal in foreground (block until complete)
-    --format=: Output format
-    -h, --help: Print help (see more with '--help')
+    --format=:
+        description: Output format
+        default: text
     --no-delete-branch: Keep branch after removal
     --no-hooks: Skip hooks
-    --no-verify: Skip hooks (deprecated alias for --no-hooks)
+    --no-verify&: Skip hooks (deprecated alias for --no-hooks)
     --reap: Kill processes started in the worktree [experimental]
-    -y, --yes: Skip approval prompts
+    -D, --force-delete: Delete unmerged branches
+    -f, --force: Force worktree removal
+    -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        C:
+            - $files
+        config:
+            - $files
+        format:
+            - text
+            - json
+documentation:
+    command: |-
+        Remove worktree; delete branch if merged
+
+        Defaults to the current worktree.
+    flag:
+        force: |-
+            Force worktree removal
+
+            Remove a dirty worktree, including staged, modified, and untracked files. Without this flag, removal fails if the worktree has any uncommitted changes.
+        format: |-
+            Output format
+
+            JSON prints structured result to stdout after removal completes.
+        reap: |-
+            Kill processes started in the worktree [experimental]
+
+            Before removal, terminate processes whose working directory is under the worktree — dev servers, watchers, language servers. Processes holding a controlling terminal (interactive shells, terminal editors) are left alone. Unix only.

@@ -7,7 +7,7 @@ import (
 
 var config_plugins_codex_installCmd = &cobra.Command{
 	Use:   "install",
-	Short: "Configure the Worktrunk marketplace in Codex",
+	Short: "Install the Worktrunk plugin",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

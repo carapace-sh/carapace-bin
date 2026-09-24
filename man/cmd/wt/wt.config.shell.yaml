@@ -3,3 +3,9 @@ name: shell
 description: Shell integration setup
 flags:
     -h, --help: Print help
+completion:
+    flag:
+        C:
+            - $files
+        config:
+            - $files

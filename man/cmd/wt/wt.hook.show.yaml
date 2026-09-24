@@ -3,5 +3,37 @@ name: show
 description: Show configured hooks
 flags:
     --expanded: Show expanded commands with current variables
-    --format=: Output format
+    --format=:
+        description: Output format
+        default: text
     -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        C:
+            - $files
+        config:
+            - $files
+        format:
+            - text
+            - json
+    positional:
+        - - pre-switch
+          - post-switch
+          - pre-start
+          - post-start
+          - pre-commit
+          - post-commit
+          - pre-merge
+          - post-merge
+          - pre-remove
+          - post-remove
+documentation:
+    command: |-
+        Show configured hooks
+
+        Lists user and project hooks. Project hooks show approval status (❯ = requires approval).
+    flag:
+        format: |-
+            Output format
+
+            JSON prints structured result to stdout — one record per configured command.
