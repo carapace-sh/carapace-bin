@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: manifest
+description: output the current or given revision of the project manifest
+group: maintenance
+flags:
+    --all: list files from all revisions
+    -T, --template=: display with template
+    -r, --rev=: revision to display
+documentation:
+    command: |
+        output the current or given revision of the project manifest
+
+        Print a list of version controlled files for the given revision.
+        If no revision is given, the first parent of the working directory
+        is used, or the null revision if no revision is checked out.
+
+        With -v, print file permissions, symlink and executable bits.
+        With --debug, print file revision hashes.
+
+        If option --all is specified, the list of all files from all revisions
+        is printed. This includes deleted and renamed files.
+
+        Returns 0 on success.

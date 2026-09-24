@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugwireargs
+description: REPO [OPTIONS]... [ONE [TWO]]
+hidden: true
+flags:
+    --five=: five
+    --four=: four
+    --insecure: do not verify server certificate (ignoring web.cacerts config)
+    --remotecmd=: specify hg command to run on the remote side
+    --three=: three
+    -e, --ssh=: specify ssh command to use

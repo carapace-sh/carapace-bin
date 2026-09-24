@@ -1,0 +1,41 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugbuilddag
+description: builds a repo with a given DAG from scratch in the current empty repo
+hidden: true
+flags:
+    --from-existing: continue from a non-empty repository
+    -m, --mergeable-file: add single file mergeable changes
+    -n, --new-file: add new file at each rev
+    -o, --overwritten-file: add single file all revs overwrite
+documentation:
+    command: |
+        builds a repo with a given DAG from scratch in the current empty repo
+
+        The description of the DAG is read from stdin if not given on the
+        command line.
+
+        Elements:
+
+         - "+n" is a linear run of n nodes based on the current default parent
+         - "." is a single node based on the current default parent
+         - "$" resets the default parent to null (implied at the start);
+               otherwise the default parent is always the last node created
+         - "<p" sets the default parent to the backref p
+         - "*p" is a fork at parent p, which is a backref
+         - "*p1/p2" is a merge of parents p1 and p2, which are backrefs
+         - "/p2" is a merge of the preceding node and p2
+         - ":tag" defines a local tag for the preceding node
+         - "@branch" sets the named branch for subsequent nodes
+         - "#...\n" is a comment up to the end of the line
+
+        Whitespace between the above elements is ignored.
+
+        A backref is either
+
+         - a number n, which references the node curr-n, where curr is the current
+           node, or
+         - the name of a local tag you placed earlier using ":tag", or
+         - empty to denote the default parent.
+
+        All string valued-elements are either strictly alphanumeric, or must
+        be enclosed in double quotes ("..."), with "\" as escape character.

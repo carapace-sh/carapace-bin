@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugbundle
+description: FILE
+hidden: true
+flags:
+    --part-type=: show only the named part type
+    --spec: print the bundlespec of the bundle
+    -a, --all: show all details
+documentation:
+    command: |
+        lists the contents of a bundle

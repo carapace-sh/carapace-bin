@@ -1,0 +1,100 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugdeltachain
+description: -c|-m|FILE
+hidden: true
+flags:
+    --all-info: compute all information unless specified otherwise
+    --dir=: open directory manifest
+    --dist-info: compute information related to base distance
+    --size-info: compute information related to deltas size
+    --sparse-info: compute information related to sparse read
+    -T, --template=: display with template
+    -c, --changelog: open changelog
+    -m, --manifest: open manifest
+    -r, --rev=*: restrict processing to these revlog revisions
+documentation:
+    command: |
+        dump information about delta chains in a revlog
+
+        Output can be templatized. Available template keywords are:
+
+        :`rev`:       revision number (or node)
+        :`p1`:        parent 1 revision number (for reference)
+        :`p2`:        parent 2 revision number (for reference)
+
+        :`chainid`:   delta chain identifier (numbered by unique base)
+        :`chainlen`:  delta chain length to this revision
+
+        :`prevrev`:   previous revision in delta chain
+        :`deltatype`: role of delta / how it was computed
+                        - base:  a full snapshot
+                        - snap:  an intermediate snapshot
+                        - p1:    a delta against the first parent
+                        - p2:    a delta against the second parent
+                        - skip1: a delta against the same base as p1
+                                  (when p1 has empty delta
+                        - skip2: a delta against the same base as p2
+                                  (when p2 has empty delta
+                        - prev:  a delta against the previous revision
+                        - other: a delta against an arbitrary revision
+
+        :`compsize`:  compressed size of revision
+        :`uncompsize`: uncompressed size of revision
+        :`chainsize`: total size of compressed revisions in chain
+        :`chainratio`: total chain size divided by uncompressed revision size
+                        (new delta chains typically start at ratio 2.00)
+
+        :`lindist`:   linear distance from base revision in delta chain to end
+                        of this revision
+        :`extradist`: total size of revisions not part of this delta chain from
+                        base of delta chain to end of this revision; a measurement
+                        of how much extra data we need to read/seek across to read
+                        the delta chain for this revision
+        :`extraratio`: extradist divided by chainsize; another representation of
+                        how much unrelated data is needed to load this delta chain
+
+        If the repository is configured to use the sparse read, additional keywords
+        are available:
+
+        :`readsize`:     total size of data read from the disk for a revision
+                           (sum of the sizes of all the blocks)
+        :`largestblock`: size of the largest block of data read from the disk
+        :`readdensity`:  density of useful bytes in the data read from the disk
+        :`srchunks`:  in how many data hunks the whole revision would be read
+
+        It is possible to select the information to be computed, this can provide a
+        noticeable speedup to the command in some cases.
+
+        Always computed:
+
+        - `rev`
+        - `p1`
+        - `p2`
+        - `chainid`
+        - `chainlen`
+        - `prevrev`
+        - `deltatype`
+
+        Computed with --no-size-info
+
+        - `compsize`
+        - `uncompsize`
+        - `chainsize`
+        - `chainratio`
+
+        Computed with --no-dist-info
+
+        - `lindist`
+        - `extradist`
+        - `extraratio`
+
+        Skipped with --no-sparse-info
+
+        - `readsize`
+        - `largestblock`
+        - `readdensity`
+        - `srchunks`
+
+        --
+
+        The sparse read can be enabled with experimental.sparse-read = True

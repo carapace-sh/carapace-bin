@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugp2copies
+description: dump copy information compared to p2
+hidden: true
+flags:
+    -r, --rev=: revision to debug
+documentation:
+    command: |
+        dump copy information compared to p2

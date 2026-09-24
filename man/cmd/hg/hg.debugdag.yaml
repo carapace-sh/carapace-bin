@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugdag
+description: format the changelog or an index DAG as a concise textual description
+hidden: true
+flags:
+    --dots: use dots for runs
+    -b, --branches: annotate with branch names
+    -s, --spaces: separate elements by spaces
+    -t, --tags: use tags as labels
+documentation:
+    command: |
+        format the changelog or an index DAG as a concise textual description
+
+        If you pass a revlog index, the revlog's DAG is emitted. If you list
+        revision numbers, they get labeled in the output as rN.
+
+        Otherwise, the changelog DAG of the current repo is emitted.

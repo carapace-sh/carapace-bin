@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: help
+description: show help for a given topic or a help overview
+group: help
+flags:
+    -c, --command: show only help for commands
+    -e, --extension: show only help for extensions
+    -k, --keyword: show topics matching keyword
+    -s, --system=*: show help for specific platform(s)
+documentation:
+    command: |
+        show help for a given topic or a help overview
+
+        With no arguments, print a list of commands with short help messages.
+
+        Given a topic, extension, or command name, print help for that
+        topic.
+
+        Returns 0 if successful.

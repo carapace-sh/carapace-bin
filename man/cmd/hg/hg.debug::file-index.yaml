@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debug::file-index
+description: inspect or manipulate the file index
+hidden: true
+flags:
+    --docket: dump docket file
+    --gc: run garbage collection
+    --tree: dump tree file
+    --vacuum: vacuum the tree file
+    -T, --template=: template for --docket
+    -p, --path=: look up path
+    -t, --token=: look up token
+documentation:
+    command: |
+        inspect or manipulate the file index
+
+        There are two options relating to cleaning up the file index:
+
+        * With --vacuum, this command rewrites the tree file more compactly, saving
+          the result with a different filename. This also happens automatically
+          during commit based on the config storage.fileindex.max-unused-percentage.
+
+        * With --gc, this command deletes old data files that are no longer needed,
+          such as the old tree file left behind by --vacuum. This also happens
+          automatically during every hg transaction, but only after a retention
+          period has elapsed and a certain number of transactions have occurred.

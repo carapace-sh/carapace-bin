@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugwalk
+description: show how files match on given patterns
+hidden: true
+flags:
+    -I, --include=*: include names matching the given patterns
+    -X, --exclude=*: exclude names matching the given patterns
+documentation:
+    command: |
+        show how files match on given patterns

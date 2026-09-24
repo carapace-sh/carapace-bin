@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugrename
+description: dump rename information
+hidden: true
+flags:
+    -r, --rev=: revision to debug
+documentation:
+    command: |
+        dump rename information

@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugextensions
+description: show information about active extensions
+hidden: true
+flags:
+    -T, --template=: display with template
+documentation:
+    command: |
+        show information about active extensions

@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: summary
+aliases:
+    - sum
+description: summarize working directory state
+group: working-dir
+flags:
+    --remote: check for push and pull
+documentation:
+    command: |
+        summarize working directory state
+
+        This generates a brief summary of the working directory state,
+        including parents, branch, commit status, phase and available updates.
+
+        With the --remote option, this will check the default paths for
+        incoming and outgoing changes. This can be time-consuming.
+
+        Returns 0 on success.

@@ -1,0 +1,52 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rollback
+description: roll back the last transaction (DANGEROUS) (DEPRECATED)
+group: maintenance
+flags:
+    -f, --force: ignore safety measures
+    -n, --dry-run: do not perform actions, just print output
+documentation:
+    command: |
+        roll back the last transaction (DANGEROUS) (DEPRECATED)
+
+        Please use `hg commit --amend` instead of rollback to correct
+        mistakes in the last commit.
+
+        This command should be used with care. There is only one level of
+        rollback, and there is no way to undo a rollback. It will also
+        restore the dirstate at the time of the last transaction, losing
+        any dirstate changes since that time. This command does not alter
+        the working directory.
+
+        Transactions are used to encapsulate the effects of all commands
+        that create new changesets or propagate existing changesets into a
+        repository.
+
+        .. container:: verbose
+
+          For example, the following commands are transactional, and their
+          effects can be rolled back:
+
+          - commit
+          - import
+          - pull
+          - push (with this repository as the destination)
+          - unbundle
+
+          To avoid permanent data loss, rollback will refuse to rollback a
+          commit transaction if it isn't checked out. Use --force to
+          override this protection.
+
+          The rollback command can be entirely disabled by setting the
+          `ui.rollback` configuration setting to false. If you're here
+          because you want to use rollback and it's disabled, you can
+          re-enable the command by setting `ui.rollback` to true.
+
+        This command is not intended for use on public repositories. Once
+        changes are visible for pull by other users, rolling a transaction
+        back locally is ineffective (someone else may already have pulled
+        the changes). Furthermore, a race is possible with readers of the
+        repository; for example an in-progress pull from the repository
+        may fail if a rollback is performed.
+
+        Returns 0 on success, 1 if no rollback data is available.

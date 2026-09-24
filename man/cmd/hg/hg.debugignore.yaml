@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugignore
+description: display the combined ignore pattern and information about ignored files
+hidden: true
+documentation:
+    command: |
+        display the combined ignore pattern and information about ignored files
+
+        With no argument display the combined ignore pattern.
+
+        Given space separated file names, shows if the given file is ignored and
+        if so, show the ignore rule (file and line number) that matched it.

@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugindexdot
+description: -c|-m|FILE
+hidden: true
+flags:
+    --common: also show common ancestors
+    --dir=: open directory manifest
+    -T, --template=: label template
+    -c, --changelog: open changelog
+    -i, --include=*: arbitrary graphviz statement to include
+    -m, --manifest: open manifest
+    -r, --rev=*: only show these revisions
+documentation:
+    command: |
+        dump an index DAG as a graphviz dot file
+
+        With -r/--rev, it dumps a graph that includes only those revs, with solid
+        edges for parent->child and dashed edges for ancestor->descendant paths.

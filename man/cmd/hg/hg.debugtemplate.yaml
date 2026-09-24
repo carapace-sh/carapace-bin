@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugtemplate
+description: parse and apply a template
+hidden: true
+flags:
+    -D, --define=*: define template keyword
+    -r, --rev=*: apply template on changesets
+documentation:
+    command: |
+        parse and apply a template
+
+        If -r/--rev is given, the template is processed as a log template and
+        applied to the given changesets. Otherwise, it is processed as a generic
+        template.
+
+        Use --verbose to print the parsed tree.

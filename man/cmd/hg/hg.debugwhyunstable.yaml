@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugwhyunstable
+description: REV
+hidden: true
+documentation:
+    command: |
+        explain instabilities of a changeset
