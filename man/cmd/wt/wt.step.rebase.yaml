@@ -2,5 +2,22 @@
 name: rebase
 description: Rebase onto target
 flags:
-    --format=: Output format
+    --format=:
+        description: Output format
+        default: text
     -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        C:
+            - $files
+        config:
+            - $files
+        format:
+            - text
+            - json
+documentation:
+    flag:
+        format: |-
+            Output format
+
+            JSON prints structured result to stdout after the rebase completes.

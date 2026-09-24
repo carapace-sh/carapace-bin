@@ -1,10 +1,22 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: prune
-description: "[experimental] Remove worktrees merged into the default branch"
+description: Remove worktrees and branches merged into the default branch
 flags:
     --dry-run: Show what would be removed
     --foreground: Run removal in foreground (block until complete)
-    --format=: Output format
+    --format=:
+        description: Output format
+        default: text
+    --min-age=:
+        description: Skip worktrees and branches younger than this
+        default: 1d
     -h, --help: Print help (see more with '--help')
-    --min-age=: Skip worktrees younger than this
-    -y, --yes: Skip approval prompts
+completion:
+    flag:
+        C:
+            - $files
+        config:
+            - $files
+        format:
+            - text
+            - json

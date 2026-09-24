@@ -1,6 +1,27 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: promote
-description: "[experimental] Put a branch into the main worktree"
+description: '[experimental] Swap a branch into the main worktree'
 flags:
-    --format=: Output format
+    --format=:
+        description: Output format
+        default: text
     -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        C:
+            - $files
+        config:
+            - $files
+        format:
+            - text
+            - json
+documentation:
+    command: |-
+        [experimental] Swap a branch into the main worktree
+
+        Exchanges branches and gitignored files between two worktrees.
+    flag:
+        format: |-
+            Output format
+
+            JSON prints structured result to stdout after the promote completes. The mismatch warning still appears on stderr in JSON mode (safety signal).

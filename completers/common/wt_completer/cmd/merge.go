@@ -9,7 +9,7 @@ import (
 
 var mergeCmd = &cobra.Command{
 	Use:   "merge",
-	Short: "Merge current branch into target",
+	Short: "Merge current branch into the target branch",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
@@ -29,9 +29,9 @@ func init() {
 	mergeCmd.Flags().Bool("no-verify", false, "Skip hooks (deprecated alias for --no-hooks)")
 	mergeCmd.Flags().Bool("rebase", false, "Force rebasing onto target")
 	mergeCmd.Flags().Bool("remove", false, "Force worktree removal after merge")
+	mergeCmd.Flags().Bool("squash", false, "Force commit squashing")
 	mergeCmd.Flags().String("stage", "", "What to stage before committing [default: all]")
 	mergeCmd.Flags().Bool("verify", false, "Force running hooks")
-	mergeCmd.Flags().BoolP("yes", "y", false, "Skip approval prompts")
 	rootCmd.AddCommand(mergeCmd)
 
 	carapace.Gen(mergeCmd).FlagCompletion(carapace.ActionMap{

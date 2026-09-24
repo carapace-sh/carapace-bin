@@ -10,40 +10,30 @@ import (
 	"github.com/carapace-sh/carapace/pkg/uid"
 )
 
+type worktreeList struct {
+	Items []worktree `json:"items"`
+}
+
 type worktree struct {
 	Branch string `json:"branch"`
-	Path   string `json:"path"`
-	Kind   string `json:"kind"`
-	Commit struct {
-		Sha       string `json:"sha"`
-		ShortSha  string `json:"short_sha"`
-		Message   string `json:"message"`
-		Timestamp int    `json:"timestamp"`
-	} `json:"commit"`
-	WorkingTree struct {
-		Staged    bool `json:"staged"`
-		Modified  bool `json:"modified"`
-		Untracked bool `json:"untracked"`
-		Renamed   bool `json:"renamed"`
-		Deleted   bool `json:"deleted"`
-		Diff      struct {
-			Added   int `json:"added"`
-			Deleted int `json:"deleted"`
-		} `json:"diff"`
-	} `json:"working_tree"`
-	MainState string `json:"main_state"`
-	Main      struct {
-		Ahead  int `json:"ahead"`
-		Behind int `json:"behind"`
-	} `json:"main"`
+	Head   struct {
+		Sha         string `json:"sha"`
+		ShortSha    string `json:"short_sha"`
+		Subject     string `json:"subject"`
+		CommittedAt string `json:"committed_at"`
+	} `json:"head"`
 	Worktree struct {
-		Detached bool `json:"detached"`
+		Path     string `json:"path"`
+		Main     bool   `json:"main"`
+		Current  bool   `json:"current"`
+		Previous bool   `json:"previous"`
+		Detached bool   `json:"detached"`
 	} `json:"worktree"`
-	IsMain     bool   `json:"is_main"`
-	IsCurrent  bool   `json:"is_current"`
-	IsPrevious bool   `json:"is_previous"`
-	Statusline string `json:"statusline"`
-	Symbols    string `json:"symbols"`
+	Display struct {
+		State      string `json:"state"`
+		Symbols    string `json:"symbols"`
+		Statusline string `json:"statusline"`
+	} `json:"display"`
 }
 
 // ActionWorktrees completes worktrees
@@ -52,16 +42,17 @@ type worktree struct {
 //	second (commit message)
 func ActionWorktrees() carapace.Action {
 	return carapace.ActionExecCommand("wt", "list", "--format", "json")(func(output []byte) carapace.Action {
-		var worktrees []worktree
-		if err := json.Unmarshal(output, &worktrees); err != nil {
+		var list worktreeList
+		if err := json.Unmarshal(output, &list); err != nil {
 			return carapace.ActionMessage(err.Error())
 		}
 
 		batch := carapace.Batch()
-		for _, wt := range worktrees {
-			batch = append(batch, carapace.ActionValuesDescribed(wt.Branch, wt.Commit.Message).
+		for _, wt := range list.Items {
+			worktree := wt
+			batch = append(batch, carapace.ActionValuesDescribed(worktree.Branch, worktree.Head.Subject).
 				UidF(func(s string, uc uid.Context) (*url.URL, error) {
-					return git.Uid("ref")(wt.Commit.ShortSha, uc)
+					return git.Uid("ref")(worktree.Head.ShortSha, uc)
 				}),
 			)
 		}

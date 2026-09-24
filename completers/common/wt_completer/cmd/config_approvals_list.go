@@ -14,6 +14,11 @@ var config_approvals_listCmd = &cobra.Command{
 func init() {
 	carapace.Gen(config_approvals_listCmd).Standalone()
 
+	config_approvals_listCmd.Flags().String("format", "", "Output format (text, json)")
 	config_approvals_listCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	config_approvalsCmd.AddCommand(config_approvals_listCmd)
+
+	carapace.Gen(config_approvals_listCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("text", "json"),
+	})
 }

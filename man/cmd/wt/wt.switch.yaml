@@ -2,17 +2,62 @@
 name: switch
 description: Switch to a worktree; create if needed
 flags:
-    -b, --base=: Base branch
-    --branches: Include branches without worktrees (interactive picker)
-    --cd: Change directory after switching
+    --branches: Include branches without worktrees
+    --cd&: Change directory after switching
     --clobber: Remove stale paths at target
-    -c, --create: Create a new branch
-    -x, --execute=: Command to run after switch
-    --format=: Output format
-    -h, --help: Print help (see more with '--help')
+    --format=:
+        description: Output format
+        default: text
     --no-cd: Skip directory change after switching
     --no-hooks: Skip hooks
-    --no-verify: Skip hooks (deprecated alias for --no-hooks)
-    --prs: Include open PRs/MRs (interactive picker)
-    --remotes: Include remote branches (interactive picker)
-    -y, --yes: Skip approval prompts
+    --no-verify&: Skip hooks (deprecated alias for --no-hooks)
+    --prs: Include open PRs/MRs
+    --remotes: Include remote branches
+    -b, --base=: Base branch
+    -c, --create: Create a new branch
+    -h, --help: Print help (see more with '--help')
+    -x, --execute=: Program to run after switch
+completion:
+    flag:
+        C:
+            - $files
+        config:
+            - $files
+        format:
+            - text
+            - json
+documentation:
+    flag:
+        base: |-
+            Base branch
+
+            Defaults to default branch. Supports the same shortcuts as the branch argument: ^, @, -, pr:{N}, mr:{N}.
+        execute: |-
+            Program to run after switch
+
+            Runs one external program after switching, with full terminal control. Arguments after -- go directly to that program without Worktrunk shell parsing. Program lookup and argument decoding follow the operating system. Shell syntax requires an explicit shell, for example -x sh -- -c 'npm install && npm test'. On Windows, shell shims need their extension (-x code.cmd) or an explicit shell such as -x cmd.exe -- /C code.
+
+            Without a branch argument, the interactive picker opens and the command runs against the selected worktree — so wt switch -x claude picks a worktree, then launches Claude Code there. With --no-cd, the program starts in the invoking directory instead.
+
+            Supports hook template variables ({{ branch }}, {{ worktree_path }}, etc.) and filters. {{ base }} and {{ base_worktree_path }} describe the source: the selected base with --create, or the invoking worktree when switching to an existing worktree.
+
+            A variable inside a shell body is substituted before that shell parses it, so a path with spaces splits into several arguments. Pass it as a separate argument instead — sh binds the first one to $0, so the path arrives as $1:
+
+              wt switch feature -x sh -- -c 'cd "$1" && npm test' sh '{{ worktree_path }}'
+
+            Especially useful with shell aliases:
+
+              alias wsc='wt switch --create -x claude'
+              wsc feature-branch -- 'Fix GH #322'
+
+            Then wsc feature-branch creates the worktree and launches Claude Code. Arguments after -- are passed to the command, so wsc feature -- 'Fix GH #322' runs claude 'Fix GH #322', starting Claude with a prompt.
+
+            Template example: -x code -- '{{ worktree_path }}' opens VS Code at the worktree, -x tmux -- new -s '{{ branch | sanitize }}' starts a tmux session named after the branch.
+        format: |-
+            Output format
+
+            JSON prints structured result to stdout. Designed for tool integration (e.g., Claude Code WorktreeCreate hooks).
+        no-cd: |-
+            Skip directory change after switching
+
+            Hooks still run normally. Useful when hooks handle navigation (e.g., tmux workflows) or for CI/automation. --execute also starts in the invoking directory. Use --cd to override.

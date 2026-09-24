@@ -3,9 +3,26 @@ name: list
 description: List worktrees and their status
 flags:
     --branches: Include branches without worktrees
-    --format=: Output format
+    --format=:
+        description: Output format
+        default: table
     --full: Show CI status and LLM summaries
-    -h, --help: Print help (see more with '--help')
-    --no-progressive: Force buffered rendering
+    --no-progressive&: Force buffered rendering
     --progressive: Show fast info immediately, update with slow info
     --remotes: Include remote branches
+    -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        C:
+            - $files
+        config:
+            - $files
+        format:
+            - table
+            - json
+documentation:
+    flag:
+        progressive: |-
+            Show fast info immediately, update with slow info
+
+            Displays local data (branches, paths, status) first, then updates with remote data (CI, upstream) as it arrives. Use --no-progressive to force buffered rendering. Auto-enabled for TTY.

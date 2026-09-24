@@ -1,9 +1,34 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: relocate
-description: "[experimental] Move worktrees to expected paths"
+description: '[experimental] Move worktrees to expected paths'
 flags:
     --clobber: Backup non-worktree paths at target locations
     --commit: Commit uncommitted changes before relocating
     --dry-run: Show what would be moved
-    --format=: Output format
+    --format=:
+        description: Output format
+        default: text
     -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        C:
+            - $files
+        config:
+            - $files
+        format:
+            - text
+            - json
+documentation:
+    command: |-
+        [experimental] Move worktrees to expected paths
+
+        Relocates worktrees whose path doesn't match the worktree-path template.
+    flag:
+        clobber: |-
+            Backup non-worktree paths at target locations
+
+            Moves blocking paths to <path>.bak.<timestamp>. If that name is taken, counts up (…-2, …-3, …) to a free name.
+        format: |-
+            Output format
+
+            JSON prints structured result to stdout after the relocate completes.

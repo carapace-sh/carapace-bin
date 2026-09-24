@@ -3,3 +3,9 @@ name: clear
 description: Clear the default branch cache
 flags:
     -h, --help: Print help
+completion:
+    flag:
+        C:
+            - $files
+        config:
+            - $files

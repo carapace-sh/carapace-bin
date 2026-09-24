@@ -4,10 +4,11 @@ import "github.com/carapace-sh/carapace"
 
 // ActionHookTypes completes hook types
 //
+//	post-commit
 //	post-create
-//	post-merge
 func ActionHookTypes() carapace.Action {
 	return carapace.ActionValues(
+		"post-commit",
 		"post-create",
 		"post-merge",
 		"post-remove",

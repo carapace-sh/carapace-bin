@@ -7,7 +7,7 @@ import (
 
 var config_state_varsCmd = &cobra.Command{
 	Use:   "vars",
-	Short: "[experimental] Custom variables per branch",
+	Short: "Custom variables per branch",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

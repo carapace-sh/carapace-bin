@@ -3,3 +3,9 @@ name: show
 description: Show an alias's template, or all aliases' templates
 flags:
     -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        C:
+            - $files
+        config:
+            - $files

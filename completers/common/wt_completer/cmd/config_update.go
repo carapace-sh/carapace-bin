@@ -15,6 +15,10 @@ func init() {
 	carapace.Gen(config_updateCmd).Standalone()
 
 	config_updateCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
-	config_updateCmd.Flags().Bool("print", false, "Print the migrated config to stdout instead of writing it")
+	config_updateCmd.Flags().String("output", "", "Output migrated config (- for stdout)")
 	configCmd.AddCommand(config_updateCmd)
+
+	carapace.Gen(config_updateCmd).FlagCompletion(carapace.ActionMap{
+		"output": carapace.ActionFiles(),
+	})
 }

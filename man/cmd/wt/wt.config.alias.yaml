@@ -3,3 +3,9 @@ name: alias
 description: Inspect and preview aliases
 flags:
     -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        C:
+            - $files
+        config:
+            - $files

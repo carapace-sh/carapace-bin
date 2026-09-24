@@ -3,3 +3,12 @@ name: clear
 description: Clear all log files
 flags:
     -h, --help: Print help
+completion:
+    flag:
+        C:
+            - $files
+        config:
+            - $files
+        format:
+            - text
+            - json

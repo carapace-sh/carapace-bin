@@ -3,5 +3,16 @@ name: list
 description: List all keys
 flags:
     --branch=: Target branch (defaults to current)
-    --format=: Output format
+    --format=:
+        description: Output format
+        default: text
     -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        C:
+            - $files
+        config:
+            - $files
+        format:
+            - text
+            - json

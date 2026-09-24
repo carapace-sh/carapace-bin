@@ -24,7 +24,6 @@ func init() {
 	step_commitCmd.Flags().Bool("no-verify", false, "Skip hooks (deprecated alias for --no-hooks)")
 	step_commitCmd.Flags().Bool("show-prompt", false, "Render prompt to stdout without running LLM")
 	step_commitCmd.Flags().String("stage", "", "What to stage before committing [default: all]")
-	step_commitCmd.Flags().BoolP("yes", "y", false, "Skip approval prompts")
 	stepCmd.AddCommand(step_commitCmd)
 
 	carapace.Gen(step_commitCmd).FlagCompletion(carapace.ActionMap{

@@ -1,5 +1,16 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: tether
-description: "[experimental] Run a command; kill its whole process tree when its worktree is removed"
+description: '[experimental] Run a command; kill its whole process tree when its worktree is removed'
 flags:
     -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        C:
+            - $files
+        config:
+            - $files
+documentation:
+    command: |-
+        [experimental] Run a command; kill its whole process tree when its worktree is removed
+
+        Teardown is automatic and needs no pre-remove hook; the group gets SIGTERM then SIGKILL.

@@ -2,6 +2,13 @@
 name: get
 description: List all log file paths
 flags:
-    --branch=: Target branch (defaults to current)
     -h, --help: Print help (see more with '--help')
-    --hook=: Get path for a specific log file
+completion:
+    flag:
+        C:
+            - $files
+        config:
+            - $files
+        format:
+            - text
+            - json

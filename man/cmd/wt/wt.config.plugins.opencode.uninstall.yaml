@@ -3,3 +3,9 @@ name: uninstall
 description: Remove the activity tracking plugin
 flags:
     -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        C:
+            - $files
+        config:
+            - $files

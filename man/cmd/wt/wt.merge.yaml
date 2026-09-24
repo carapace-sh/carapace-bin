@@ -1,20 +1,45 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: merge
-description: Merge current branch into target
+description: Merge current branch into the target branch
 flags:
-    --commit: Force commit and squash
-    --ff: Allow fast-forward (default)
-    --format=: Output format
-    -h, --help: Print help (see more with '--help')
+    --commit&: Force commit and squash
+    --ff&: Allow fast-forward (default)
+    --format=:
+        description: Output format
+        default: text
     --no-commit: Skip commit and squash
     --no-ff: Create a merge commit (no fast-forward)
     --no-hooks: Skip hooks
     --no-rebase: Skip rebase; require the target to fast-forward to the resulting tip
     --no-remove: Keep worktree after merge
     --no-squash: Skip commit squashing
-    --no-verify: Skip hooks (deprecated alias for --no-hooks)
-    --rebase: Force rebasing onto target
-    --remove: Force worktree removal after merge
-    --stage=: What to stage before committing [default: all]
-    --verify: Force running hooks
-    -y, --yes: Skip approval prompts
+    --no-verify&: Skip hooks (deprecated alias for --no-hooks)
+    --rebase&: Force rebasing onto target
+    --remove&: Force worktree removal after merge
+    --squash&: Force commit squashing
+    --stage=: 'What to stage before committing [default: all]'
+    --verify&: Force running hooks
+    -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        C:
+            - $files
+        config:
+            - $files
+        format:
+            - text
+            - json
+        stage:
+            - "all\tStage everything: untracked files + unstaged tracked changes"
+            - "tracked\tStage tracked changes only (like git add -u)"
+            - "none\tStage nothing, commit only what's already in the index"
+documentation:
+    command: |-
+        Merge current branch into the target branch
+
+        Squash & rebase, fast-forward the target branch, remove the worktree.
+    flag:
+        format: |-
+            Output format
+
+            JSON prints structured result to stdout after merge completes.

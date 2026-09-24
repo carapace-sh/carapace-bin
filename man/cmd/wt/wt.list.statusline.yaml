@@ -1,6 +1,19 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: statusline
-description: Single-line status for shell prompts
+description: Single-line status for the current worktree
 flags:
-    --format=: Output format (table, json, claude-code)
+    --claude-code&: 'Deprecated: use --format=claude-code'
+    --format=:
+        description: Output format
+        default: table
     -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        C:
+            - $files
+        config:
+            - $files
+        format:
+            - table
+            - json
+            - "claude-code\tClaude Code statusline mode (reads context from stdin)"
