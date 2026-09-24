@@ -27,7 +27,7 @@ documentation:
         clobber: |-
             Backup non-worktree paths at target locations
 
-            Moves blocking paths to <path>.bak.<timestamp>. If that name is taken, counts up (…-2, …-3, …) to a free name.
+            Moves blocking paths to <path>.bak.<timestamp>.
         format: |-
             Output format
 

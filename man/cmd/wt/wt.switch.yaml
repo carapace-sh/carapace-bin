@@ -37,7 +37,9 @@ documentation:
 
             Runs one external program after switching, with full terminal control. Arguments after -- go directly to that program without Worktrunk shell parsing. Program lookup and argument decoding follow the operating system. Shell syntax requires an explicit shell, for example -x sh -- -c 'npm install && npm test'. On Windows, shell shims need their extension (-x code.cmd) or an explicit shell such as -x cmd.exe -- /C code.
 
-            Without a branch argument, the interactive picker opens and the command runs against the selected worktree — so wt switch -x claude picks a worktree, then launches Claude Code there. With --no-cd, the program starts in the invoking directory instead.
+            Without a branch argument, the interactive picker opens and the command runs against the selected worktree — so wt switch -x claude picks a worktree, then launches Claude Code there.
+
+            The program starts in the worktree the switch selected, whether or not your shell follows it there: --no-cd governs only the shell.
 
             Supports hook template variables ({{ branch }}, {{ worktree_path }}, etc.) and filters. {{ base }} and {{ base_worktree_path }} describe the source: the selected base with --create, or the invoking worktree when switching to an existing worktree.
 
@@ -60,4 +62,4 @@ documentation:
         no-cd: |-
             Skip directory change after switching
 
-            Hooks still run normally. Useful when hooks handle navigation (e.g., tmux workflows) or for CI/automation. --execute also starts in the invoking directory. Use --cd to override.
+            Hooks still run normally, and an --execute program still starts in the worktree — only your shell stays put, so wt switch feature --no-cd -x code -- . opens the worktree in an editor and leaves your terminal where it was. Useful when hooks handle navigation (e.g., tmux workflows) or for CI/automation. Use --cd to override.
