@@ -14,6 +14,7 @@ var image_tagCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(image_tagCmd).Standalone()
+	image_tagCmd.Flags().SetInterspersed(false)
 
 	imageCmd.AddCommand(image_tagCmd)
 
