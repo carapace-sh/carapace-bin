@@ -17,6 +17,7 @@ var service_createCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(service_createCmd).Standalone()
+	service_createCmd.Flags().SetInterspersed(false)
 
 	service_createCmd.Flags().String("cap-add", "", "Add Linux capabilities")
 	service_createCmd.Flags().String("cap-drop", "", "Drop Linux capabilities")

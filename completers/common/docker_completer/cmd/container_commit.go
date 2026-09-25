@@ -14,6 +14,7 @@ var container_commitCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(container_commitCmd).Standalone()
+	container_commitCmd.Flags().SetInterspersed(false)
 
 	container_commitCmd.Flags().StringP("author", "a", "", "Author (e.g., \"John Hannibal Smith <hannibal@a-team.com>\")")
 	container_commitCmd.Flags().StringP("change", "c", "", "Apply Dockerfile instruction to the created image")

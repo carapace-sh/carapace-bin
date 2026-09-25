@@ -18,6 +18,7 @@ var container_createCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(container_createCmd).Standalone()
+	container_createCmd.Flags().SetInterspersed(false)
 
 	container_createCmd.Flags().String("add-host", "", "Add a custom host-to-IP mapping (host:ip)")
 	container_createCmd.Flags().String("annotation", "", "Add an annotation to the container (passed through to the OCI runtime)")

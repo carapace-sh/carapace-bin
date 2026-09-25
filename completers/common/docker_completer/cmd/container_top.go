@@ -14,6 +14,7 @@ var container_topCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(container_topCmd).Standalone()
+	container_topCmd.Flags().SetInterspersed(false)
 
 	containerCmd.AddCommand(container_topCmd)
 
