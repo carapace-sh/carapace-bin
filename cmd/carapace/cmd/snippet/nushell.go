@@ -24,19 +24,16 @@ let carapace_completer = {|spans|
     $spans | skip 1 | prepend ($spans.0%v)
   })
 
-  if ($spans | length) == 1 {
-    null
-  } else {
-    with-env {
-      CARAPACE_SHELL: 'nushell'
-      CARAPACE_SHELL_ALIASES: (scope aliases | get name | uniq | str join "\n")
-      CARAPACE_SHELL_BUILTINS: (help commands | where category != "" | get name | each { split row " " | first } | uniq  | str join "\n")
-      CARAPACE_SHELL_FUNCTIONS: (help commands | where category == "" | get name | each { split row " " | first } | uniq  | str join "\n")
-      CARAPACE_SHELL_VARIABLES: (scope variables | get name | uniq | str join "\n")
-    } {
-      carapace $spans.0 nushell ...$spans | from json
-    }
+  let result = with-env {
+    CARAPACE_SHELL: 'nushell'
+    CARAPACE_SHELL_ALIASES: (scope aliases | get name | uniq | str join "\n")
+    CARAPACE_SHELL_BUILTINS: (help commands | where category != "" | get name | each { split row " " | first } | uniq  | str join "\n")
+    CARAPACE_SHELL_FUNCTIONS: (help commands | where category == "" | get name | each { split row " " | first } | uniq  | str join "\n")
+    CARAPACE_SHELL_VARIABLES: (scope variables | get name | uniq | str join "\n")
+  } {
+    carapace $spans.0 nushell ...$spans | from json
   }
+  if ($result | is-empty) { null } else { $out }
 }
 
 mut current = (($env | default {} config).config | default {} completions)
