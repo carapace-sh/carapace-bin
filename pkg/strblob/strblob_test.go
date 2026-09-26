@@ -20,8 +20,8 @@ func TestBlobRoundtrip(t *testing.T) {
 	blob := Blob(mustEncode(t, vals))
 
 	for i, expected := range vals {
-		if got := blob(i, len(expected)); got != expected {
-			t.Errorf("blob(%d) = %q, want %q", i, got, expected)
+		if got := blob.Get(i, len(expected)); got != expected {
+			t.Errorf("blob.Get(%d) = %q, want %q", i, got, expected)
 		}
 	}
 }
@@ -31,8 +31,8 @@ func TestBlobMultiByteUTF8(t *testing.T) {
 	blob := Blob(mustEncode(t, vals))
 
 	for i, expected := range vals {
-		if got := blob(i, len(expected)); got != expected {
-			t.Errorf("blob(%d) = %q, want %q", i, got, expected)
+		if got := blob.Get(i, len(expected)); got != expected {
+			t.Errorf("blob.Get(%d) = %q, want %q", i, got, expected)
 		}
 	}
 }
@@ -42,24 +42,24 @@ func TestBlobBoundaries(t *testing.T) {
 	blob := Blob(mustEncode(t, vals))
 
 	// empty strings at boundaries
-	if got := blob(1, 0); got != "" {
-		t.Errorf("blob(1, 0) = %q, want empty", got)
+	if got := blob.Get(1, 0); got != "" {
+		t.Errorf("blob.Get(1, 0) = %q, want empty", got)
 	}
-	if got := blob(3, 0); got != "" {
-		t.Errorf("blob(3, 0) = %q, want empty", got)
+	if got := blob.Get(3, 0); got != "" {
+		t.Errorf("blob.Get(3, 0) = %q, want empty", got)
 	}
-	if got := blob(2, 2); got != "bc" {
-		t.Errorf("blob(2, 2) = %q, want %q", got, "bc")
+	if got := blob.Get(2, 2); got != "bc" {
+		t.Errorf("blob.Get(2, 2) = %q, want %q", got, "bc")
 	}
-	if got := blob(4, 3); got != "def" {
-		t.Errorf("blob(4, 3) = %q, want %q", got, "def")
+	if got := blob.Get(4, 3); got != "def" {
+		t.Errorf("blob.Get(4, 3) = %q, want %q", got, "def")
 	}
 }
 
 func TestBlobEmpty(t *testing.T) {
 	blob := Blob(mustEncode(t, []string{}))
-	if got := blob(0, 0); got != "" {
-		t.Errorf("blob(0, 0) = %q, want empty", got)
+	if got := blob.Get(0, 0); got != "" {
+		t.Errorf("blob.Get(0, 0) = %q, want empty", got)
 	}
 }
 
@@ -71,16 +71,16 @@ func TestBlobOutOfBounds(t *testing.T) {
 		{-1, 3}, {3, 0}, {4, 0}, {100, 1}, {1, -1}, {2, 5},
 	}
 	for _, c := range cases {
-		if got := blob(c.off, c.length); got != "" {
-			t.Errorf("blob(%d, %d) = %q, want empty", c.off, c.length, got)
+		if got := blob.Get(c.off, c.length); got != "" {
+			t.Errorf("blob.Get(%d, %d) = %q, want empty", c.off, c.length, got)
 		}
 	}
 }
 
 func TestBlobCorruptData(t *testing.T) {
 	blob := Blob("\x00not a zstd frame")
-	if got := blob(0, 3); got != "" {
-		t.Errorf("blob(0, 3) = %q, want empty", got)
+	if got := blob.Get(0, 3); got != "" {
+		t.Errorf("blob.Get(0, 3) = %q, want empty", got)
 	}
 
 	// valid zstd frame with truncated header
@@ -89,8 +89,8 @@ func TestBlobCorruptData(t *testing.T) {
 		t.Fatalf("Encode failed: %v", err)
 	}
 	blob = Blob(string(encoded[:len(encoded)/2]))
-	if got := blob(0, 5); got != "" {
-		t.Errorf("blob(0, 5) = %q, want empty", got)
+	if got := blob.Get(0, 5); got != "" {
+		t.Errorf("blob.Get(0, 5) = %q, want empty", got)
 	}
 }
 
@@ -103,8 +103,8 @@ func TestBlobLargeValues(t *testing.T) {
 	blob := Blob(mustEncode(t, vals))
 
 	for i, expected := range vals {
-		if got := blob(i, len(expected)); got != expected {
-			t.Errorf("blob(%d) mismatch (len %d, want %d)", i, len(got), len(expected))
+		if got := blob.Get(i, len(expected)); got != expected {
+			t.Errorf("blob.Get(%d) mismatch (len %d, want %d)", i, len(got), len(expected))
 		}
 	}
 }
