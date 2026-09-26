@@ -1,12 +1,12 @@
 // Package strblob provides lazy access to a compressed string table
 // embedded at build time.
 //
-// A blob is a zstd-compressed payload holding a offsets table followed by
-// the raw string bytes:
+// A blob is a deflate-compressed payload holding a lengths table followed
+// by the raw string bytes:
 //
-//	uvarint(n)              number of strings
-//	uvarint(n+1) times      offsets into the string data
-//	raw bytes               concatenated string data
+//	uvarint(n)          number of strings
+//	uvarint(n) times    byte length of each string
+//	raw bytes           concatenated string data
 //
 // Blob is intended for generated code: the build-time rewriter replaces
 // long string literals with lookups into a per-package blob so the literal
@@ -14,12 +14,14 @@
 package strblob
 
 import (
+	"bytes"
+	"compress/flate"
 	"encoding/binary"
 	"fmt"
+	"io"
+	"strings"
 	"sync"
 	"unsafe"
-
-	"github.com/klauspost/compress/zstd"
 )
 
 // Table serves substrings of a compressed blob.
@@ -80,7 +82,7 @@ func Decode(data string) ([]string, error) {
 }
 
 func decodeBlob(data string) (table []uint32, payload []byte, err error) {
-	decoded, err := zstdDecoder().DecodeAll([]byte(data), nil)
+	decoded, err := io.ReadAll(flate.NewReader(strings.NewReader(data)))
 	if err != nil {
 		return nil, nil, err
 	}
@@ -88,57 +90,55 @@ func decodeBlob(data string) (table []uint32, payload []byte, err error) {
 	if pos <= 0 {
 		return nil, nil, fmt.Errorf("strblob: malformed blob")
 	}
+	lengths := make([]uint32, count)
 	table = make([]uint32, count+1)
-	for i := range table {
+	for i := range lengths {
 		v, n := binary.Uvarint(decoded[pos:])
 		if n <= 0 {
 			return nil, nil, fmt.Errorf("strblob: malformed blob")
 		}
-		table[i] = uint32(v)
+		lengths[i] = uint32(v)
 		pos += n
 	}
 	if pos > len(decoded) {
 		return nil, nil, fmt.Errorf("strblob: malformed blob")
 	}
-	return table, decoded[pos:], nil
-}
-
-var (
-	decoder     *zstd.Decoder
-	decoderOnce sync.Once
-)
-
-func zstdDecoder() *zstd.Decoder {
-	decoderOnce.Do(func() {
-		decoder, _ = zstd.NewReader(nil)
-	})
-	return decoder
+	payload = decoded[pos:]
+	offset := uint32(0)
+	for i, length := range lengths {
+		table[i] = offset
+		offset += length
+	}
+	table[count] = offset
+	if int(offset) != len(payload) {
+		return nil, nil, fmt.Errorf("strblob: malformed blob")
+	}
+	return table, payload, nil
 }
 
 // Encode packs vals into a blob accepted by Blob.
 func Encode(vals []string) ([]byte, error) {
-	offsets := make([]uint64, len(vals)+1)
-	for i, val := range vals {
-		offsets[i+1] = offsets[i] + uint64(len(val))
-	}
-
-	header := make([]byte, 0, binary.MaxVarintLen64*(len(offsets)+1))
+	var header []byte
 	header = binary.AppendUvarint(header, uint64(len(vals)))
-	for _, offset := range offsets {
-		header = binary.AppendUvarint(header, offset)
-	}
-
-	payload := make([]byte, 0, len(header)+int(offsets[len(vals)]))
-	payload = append(payload, header...)
 	for _, val := range vals {
-		payload = append(payload, val...)
+		header = binary.AppendUvarint(header, uint64(len(val)))
 	}
 
-	encoder, err := zstd.NewWriter(nil, zstd.WithEncoderLevel(zstd.SpeedBestCompression))
+	var buf bytes.Buffer
+	writer, err := flate.NewWriter(&buf, flate.BestCompression)
 	if err != nil {
 		return nil, err
 	}
-	defer encoder.Close()
-
-	return encoder.EncodeAll(payload, nil), nil
+	if _, err := writer.Write(header); err != nil {
+		return nil, err
+	}
+	for _, val := range vals {
+		if _, err := writer.Write([]byte(val)); err != nil {
+			return nil, err
+		}
+	}
+	if err := writer.Close(); err != nil {
+		return nil, err
+	}
+	return buf.Bytes(), nil
 }

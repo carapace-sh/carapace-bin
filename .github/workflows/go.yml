@@ -26,6 +26,14 @@ jobs:
       - name: Generate
         run: go generate ./cmd/...
 
+      - name: Compress string literals
+        run: |
+          go run ./cmd/strcompress completers/common
+          go build ./completers/common/...
+          git add completers
+          go run ./cmd/strcompress completers/common
+          git diff --exit-code -- completers
+
       - name: Build
         run: ls cmd/ | xargs -I'{}' sh -c "cd ./cmd/{} && go install -v -tags force_all ."
 

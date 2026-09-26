@@ -3,6 +3,7 @@ before:
   hooks:
     - go mod download
     - go generate ./cmd/...
+    - go run ./cmd/strcompress completers/common
 builds:
   - id: default
     env:

@@ -1,7 +1,6 @@
 package strblob
 
 import (
-	"encoding/binary"
 	"strings"
 	"testing"
 )
@@ -110,31 +109,26 @@ func TestBlobLargeValues(t *testing.T) {
 }
 
 func TestBlobDedupedOffsets(t *testing.T) {
-	// offsets table must be strictly monotonic for consecutive entries
 	vals := []string{"x", "y", "z"}
-	encoded, err := Encode(vals)
+	decoded, err := Decode(mustEncode(t, vals))
 	if err != nil {
-		t.Fatalf("Encode failed: %v", err)
+		t.Fatalf("Decode failed: %v", err)
 	}
+	if len(decoded) != len(vals) {
+		t.Fatalf("Decode returned %d strings, want %d", len(decoded), len(vals))
+	}
+	for i, expected := range vals {
+		if decoded[i] != expected {
+			t.Errorf("Decode()[%d] = %q, want %q", i, decoded[i], expected)
+		}
+	}
+}
 
-	decoded, err := zstdDecoder().DecodeAll([]byte(encoded), nil)
-	if err != nil {
-		t.Fatalf("DecodeAll failed: %v", err)
+func TestDecodeMalformed(t *testing.T) {
+	if _, err := Decode("not a deflate stream"); err == nil {
+		t.Error("Decode of malformed data should fail")
 	}
-	count, pos := binary.Uvarint(decoded)
-	if count != uint64(len(vals)) {
-		t.Fatalf("count = %d, want %d", count, len(vals))
-	}
-	previous := uint64(0)
-	for i := 0; i <= int(count); i++ {
-		offset, n := binary.Uvarint(decoded[pos:])
-		if n <= 0 {
-			t.Fatalf("failed to read offset %d", i)
-		}
-		if offset < previous {
-			t.Errorf("offset %d = %d, before previous %d", i, offset, previous)
-		}
-		previous = offset
-		pos += n
+	if _, err := Decode(""); err == nil {
+		t.Error("Decode of empty data should fail")
 	}
 }

@@ -16,6 +16,8 @@ For carapace library concepts (actions, macros, specs, integration, scraping), s
 | `staticcheck ./...` | Static analysis |
 | `go run ./cmd/carapace-lint completers/*/*/cmd/*.go` | Alphabetical ordering linter |
 | `go run ./cmd/carapace-lint --fix-flags-order completers/*/*/cmd/*.go` | Auto-fix ordering |
+| `go run ./cmd/strcompress -stats completers/common` | String literal census (per-package compressible bytes) |
+| `go run ./cmd/strcompress completers/common` | Rewrite long string literals into compressed blob lookups (release builds only, see Gotchas) |
 
 No Makefile — orchestration is in `.github/workflows/go.yml`.
 
@@ -279,6 +281,7 @@ Compound values (e.g. `KEY=VALUE`, `user@host`, `repo/branch`) use `carapace.Act
 ## Gotchas
 
 - **`go generate` is mandatory** after adding/modifying public actions — the generated macro map won't update otherwise
+- **`strcompress` is release-only** — the repository keeps uncompressed sources as the source of truth; CI and goreleaser rewrite `completers/common` at build time (`strblob_generated.go` files are never committed). Re-running the tool on an already rewritten tree is a no-op that folds in newly added literals while keeping existing blob offsets stable.
 - **Flag alphabetical ordering** is enforced by carapace-lint, not Go tooling — CI will fail if you only run `go vet`/`staticcheck` locally
 - **Build with `-tags force_all`** during development or you'll miss platform-specific compilation errors
 - **The root command uses manual flag parsing** — it doesn't follow normal cobra patterns
