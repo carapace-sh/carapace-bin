@@ -11,7 +11,7 @@ func ActionProfiles(file string) carapace.Action {
 		if loadedProject, err := loadProject(file); err != nil {
 			return carapace.ActionMessage(err.Error())
 		} else {
-			return carapace.ActionValues(loadedProject.Profiles...)
+			return carapace.ActionValues(loadedProject.profileIds()...)
 		}
 	})
 }
