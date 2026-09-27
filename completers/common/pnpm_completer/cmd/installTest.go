@@ -9,6 +9,7 @@ var installTestCmd = &cobra.Command{
 	Use:     "install-test",
 	Short:   "Runs a `pnpm install` followed immediately by a `pnpm test`. Accepts the same arguments as `pnpm install`, plus `--no-bail` to continue running workspace tests after a failure",
 	Aliases: []string{"it"},
+	GroupID: "manage",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

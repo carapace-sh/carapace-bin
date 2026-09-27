@@ -6,9 +6,10 @@ import (
 )
 
 var storeCmd = &cobra.Command{
-	Use:   "store",
-	Short: "Managing the package store",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "store",
+	Short:   "Managing the package store",
+	GroupID: "store",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

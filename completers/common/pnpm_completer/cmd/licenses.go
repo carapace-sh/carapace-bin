@@ -9,6 +9,7 @@ var licensesCmd = &cobra.Command{
 	Use:     "licenses",
 	Short:   "Check the licenses of the installed packages",
 	Aliases: []string{"licences"},
+	GroupID: "review",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

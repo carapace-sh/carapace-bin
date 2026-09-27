@@ -10,6 +10,7 @@ var unlinkCmd = &cobra.Command{
 	Use:     "unlink",
 	Short:   "Removes links to a local package and reinstalls it",
 	Aliases: []string{"dislink"},
+	GroupID: "manage",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

@@ -10,6 +10,7 @@ var removeCmd = &cobra.Command{
 	Use:     "remove",
 	Short:   "Removes packages from `node_modules` and from the project's `package.json`",
 	Aliases: []string{"uninstall", "rm", "un", "uni"},
+	GroupID: "manage",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

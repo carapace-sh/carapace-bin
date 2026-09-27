@@ -10,6 +10,7 @@ var runCmd = &cobra.Command{
 	Use:     "run",
 	Short:   "Runs a defined package script",
 	Aliases: []string{"run-script"},
+	GroupID: "run",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

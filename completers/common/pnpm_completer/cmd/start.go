@@ -6,9 +6,10 @@ import (
 )
 
 var startCmd = &cobra.Command{
-	Use:   "start",
-	Short: "Runs an arbitrary command specified in the package's start property of its scripts object",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "start",
+	Short:   "Runs an arbitrary command specified in the package's start property of its scripts object",
+	GroupID: "run",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

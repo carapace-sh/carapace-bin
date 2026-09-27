@@ -6,9 +6,10 @@ import (
 )
 
 var stopCmd = &cobra.Command{
-	Use:   "stop",
-	Short: "Runs a package's \"stop\" script, if one was provided",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "stop",
+	Short:   "Runs a package's \"stop\" script, if one was provided",
+	GroupID: "run",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

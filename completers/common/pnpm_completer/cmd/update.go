@@ -10,6 +10,7 @@ var updateCmd = &cobra.Command{
 	Use:     "update",
 	Short:   "Update packages to their newest version based on the specified range",
 	Aliases: []string{"up", "upgrade"},
+	GroupID: "manage",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

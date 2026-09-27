@@ -9,6 +9,7 @@ var testCmd = &cobra.Command{
 	Use:     "test",
 	Short:   "Runs a package's \"test\" script, if one was provided",
 	Aliases: []string{"t", "tst"},
+	GroupID: "run",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

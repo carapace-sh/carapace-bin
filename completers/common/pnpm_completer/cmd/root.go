@@ -21,6 +21,14 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.AddGroup(
+		&cobra.Group{ID: "manage", Title: "Manage Commands"},
+		&cobra.Group{ID: "review", Title: "Review Commands"},
+		&cobra.Group{ID: "run", Title: "Run Commands"},
+		&cobra.Group{ID: "store", Title: "Store Commands"},
+		&cobra.Group{ID: "other", Title: "Other Commands"},
+	)
+
 	rootCmd.PersistentFlags().Bool("aggregate-output", false, "Hold each script's streamed output until the script exits, then print it as one block")
 	rootCmd.PersistentFlags().Bool("bail", false, "Stop a recursive command after the first failure")
 	rootCmd.PersistentFlags().StringSlice("changed-files-ignore-pattern", nil, "Glob patterns of changed files that the `[since]` `--filter` selector should ignore")

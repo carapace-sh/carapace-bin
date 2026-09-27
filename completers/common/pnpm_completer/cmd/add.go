@@ -11,9 +11,10 @@ import (
 )
 
 var addCmd = &cobra.Command{
-	Use:   "add",
-	Short: "Add a package",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "add",
+	Short:   "Add a package",
+	GroupID: "manage",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

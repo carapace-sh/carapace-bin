@@ -7,9 +7,10 @@ import (
 )
 
 var rbCmd = &cobra.Command{
-	Use:   "rb",
-	Short: "Rebuild a package",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "rb",
+	Short:   "Rebuild a package",
+	GroupID: "manage",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

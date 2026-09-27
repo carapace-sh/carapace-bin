@@ -9,6 +9,7 @@ var linkCmd = &cobra.Command{
 	Use:     "link",
 	Short:   "Links a local package as a dependency",
 	Aliases: []string{"ln"},
+	GroupID: "manage",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

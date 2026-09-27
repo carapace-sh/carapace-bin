@@ -6,9 +6,10 @@ import (
 )
 
 var importCmd = &cobra.Command{
-	Use:   "import",
-	Short: "Generates a pnpm-lock.yaml from an external lockfile",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "import",
+	Short:   "Generates a pnpm-lock.yaml from an external lockfile",
+	GroupID: "manage",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

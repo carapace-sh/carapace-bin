@@ -6,9 +6,10 @@ import (
 )
 
 var auditCmd = &cobra.Command{
-	Use:   "audit",
-	Short: "Checks for known security issues with the installed packages",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "audit",
+	Short:   "Checks for known security issues with the installed packages",
+	GroupID: "review",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

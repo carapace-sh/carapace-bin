@@ -9,6 +9,7 @@ import (
 var execCmd = &cobra.Command{
 	Use:                "exec",
 	Short:              "Run a shell command in the context of a project",
+	GroupID:            "run",
 	Run:                func(cmd *cobra.Command, args []string) {},
 	DisableFlagParsing: true,
 }

@@ -9,6 +9,7 @@ var installCmd = &cobra.Command{
 	Use:     "install",
 	Short:   "Install packages",
 	Aliases: []string{"i"},
+	GroupID: "manage",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

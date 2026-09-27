@@ -6,9 +6,10 @@ import (
 )
 
 var pruneCmd = &cobra.Command{
-	Use:   "prune",
-	Short: "Remove extraneous packages",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "prune",
+	Short:   "Remove extraneous packages",
+	GroupID: "manage",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

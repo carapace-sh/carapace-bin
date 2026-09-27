@@ -7,9 +7,10 @@ import (
 )
 
 var outdatedCmd = &cobra.Command{
-	Use:   "outdated",
-	Short: "Check for outdated package and GitHub Actions dependencies",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "outdated",
+	Short:   "Check for outdated package and GitHub Actions dependencies",
+	GroupID: "review",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
