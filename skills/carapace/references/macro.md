@@ -37,6 +37,8 @@ The `signature` field from `list_macros` encodes the argument type. The signatur
 | `[""]` | MacroV | Variadic string arguments |
 | `[false]` | MacroV | Variadic bool arguments |
 
+> An empty signature (`""`) is displayed as `—` (dash) in `carapace --macro` and MCP `list_macros` output.
+
 ### Struct Parameters (MacroI with struct)
 
 When the signature shows a struct like `{localbranches: false, tags: false}`, the macro accepts named parameters as YAML. This means:
@@ -55,19 +57,29 @@ When the signature shows a struct like `{localbranches: false, tags: false}`, th
 If a struct argument type implements a `Default()` method, it will be called when the macro is used without arguments. This allows the action to define sane defaults for boolean fields that would otherwise produce empty results:
 
 ```go
-type RefsOpts struct {
-    LocalBranches bool
+type RefOption struct {
+    LocalBranches  bool
     RemoteBranches bool
+    Heads          bool
     Tags           bool
+    Stashes        bool
+    Notes          bool
 }
 
-func (o RefsOpts) Default() RefsOpts {
-    o.LocalBranches = true  // sensible default instead of empty completion
+func (o RefOption) Default() RefOption {
+    o.LocalBranches = true
+    o.RemoteBranches = true
+    o.Heads = true
+    o.Tags = true
+    o.Stashes = true
+    o.Notes = false
     return o
 }
 ```
 
-Now `$_.Refs` (no arguments) behaves the same as `$_.Refs({localbranches: true})`.
+So `$_.Refs` (no arguments) completes local branches, remote branches, heads, tags, and stashes (everything enabled by `Default()` except notes) — not just a single field.
+
+Check the actual `Default()` of a macro's option struct (via its Go source or `carapace --macro <name>`) rather than assuming a single field.
 
 ### Signature Generation Details
 
@@ -272,7 +284,7 @@ Bridge actions from carapace-bin into the spec system:
 
 ```go
 spec.AddMacro("tools.git.Refs", spec.MacroN(
-    spec.ActionMacro("$carapace.bridge.ActionCarapaceBin(git)"),
+    spec.ActionMacro("$carapace.bridge.CarapaceBin(git)"),
 ))
 ```
 
@@ -329,6 +341,7 @@ Modifier macros are also listed by `list_macros` and follow the same type rules 
 | `$multiparts([/])` | MacroV | Split by delimiter |
 | `$nospace(/)` | MacroI | No space after character |
 | `$prefix(pre)` | MacroI | Prepend to values |
+| `$noprefix(pre)` | MacroI | Prevent common-prefix insertion (for given prefixes, or all) |
 | `$suffix(suf)` | MacroI | Append to values |
 | `$style(name)` | MacroI | Apply style |
 | `$tag(name)` | MacroI | Tag values |

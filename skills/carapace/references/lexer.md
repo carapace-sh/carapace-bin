@@ -58,8 +58,7 @@ carapace-<tool>/
     main.go                        # package main → cmd.Execute()
     cmd/
       root.go                      # carapace.Gen(rootCmd).Standalone(); spec.Register(rootCmd)
-      filter.go                    # "filter" subcommand: Parse(input) → JSON AST
-      filter-complete.go           # "filter-complete" subcommand: ParseForCompletion(input) → JSON
+      filter.go                    # "filter" subcommand (Parse → JSON AST) and "filter-complete" subcommand (ParseForCompletion → JSON)
   pkg/
     <grammar>/                     # Layer 1: grammar package (pure stdlib)
       scanner.go                   # Rune classification helpers

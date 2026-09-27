@@ -26,6 +26,7 @@ Add to top of spec file for schema validation:
 
 ```yaml
 name: mycmd
+aliases: [myc, mycmd-alias]
 description: My command description
 group: Some Group
 hidden: false
@@ -41,6 +42,8 @@ commands:
     flags:
       -x: exclusive flag
 ```
+
+> `name` may embed a usage string after the command name (e.g. `name: usage [-F file | -D dir]... [-f format] profile`). The command name for filename matching is taken up to the first space, so `usage ... profile` maps to the file `usage.yaml`.
 
 ## Flags
 
@@ -66,13 +69,28 @@ flags:
 
 ### Extended Format
 
-For `nargs` or other options, use object syntax:
+For `nargs` or `default`, use object syntax:
 
 ```yaml
 flags:
   --two-args=: {description: consumes two args, nargs: 2}
   --any-args=: {description: consumes multiple, nargs: -1}
+  --default-value=: {description: flag with default value, default: /tmp/out.txt}
 ```
+
+> Generated specs only use the object notation when `nargs` is set or `default` has a non-zero value; for zero-value defaults the plain string form is emitted.
+
+### Exclusive Flags
+
+`exclusiveflags` declares mutually exclusive flag groups (list of lists of flag names):
+
+```yaml
+exclusiveflags:
+  - [verbose, quiet]
+  - [json, yaml]
+```
+
+Flags referenced here must be defined in `flags` or `persistentflags` of the same command.
 
 ### Non-POSIX Shorthands
 
@@ -143,6 +161,7 @@ documentation:
   dash:
     - "Short option"
     - "Long option"
+  dashany: "Additional options"
 ```
 
 ## Macros
@@ -318,13 +337,12 @@ completion:
 > For macro formatting details, see the **references/macro.md** skill.
 
 - Generic bridge: `CarapaceBin`.
-- Framework bridges: `Argcomplete`, `Aws`, `Bash`, `Carapace`, `Clap`, `Click`, `Cobra`, `Complete`, `Gcloud`, `Inshellisense`, `JJ`, `Kingpin`, `Kitten`, `Urfavecli`, `UrfavecliV1`, `Yargs`.
-- Shell bridges: `Bash`, `Fish`, `Powershell`, `Zsh`.
+- Framework bridges: `Argcomplete`, `ArgcompleteV1`, `Aws`, `Bash`, `Carapace`, `CarapaceBin`, `Clap`, `Click`, `Cobra`, `Complete`, `Fish`, `Gcloud`, `Inshellisense`, `JJ`, `Kingpin`, `Kitten`, `Macro`, `Powershell`, `Typer`, `Urfavecli`, `UrfavecliV1`, `Yargs`, `Zsh`.
 
 ## Testing
 
 ```bash
-carapace _carapace           # reload specs
+source <(carapace _carapace bash)   # reload specs (adjust shell name)
 ```
 
 > For macro lookup and formatting, see the **references/macro.md** skill.

@@ -79,7 +79,7 @@ Public actions registered as macros so they are available in YAML user specs. Mu
 Register before `spec.Register`:
 
 ```go
-spec.AddMacro("Refs", spec.MacroN(ActionRefs))
+spec.AddMacro("Refs", spec.MacroI(ActionRefs)) // ActionRefs takes a RefOption argument
 spec.AddMacro("Branches", spec.MacroI(ActionBranches))
 spec.AddMacro("Sites", spec.MacroV(ActionSites))
 spec.Register(rootCmd)
@@ -358,7 +358,7 @@ The exception is actions that are inherently context-specific (e.g. inline `Acti
 
 Unique identifiers providing context for completion values:
 
-- **Uid** — creates a static identifier from path segments
+- **Uid** — `Action.Uid(scheme, host string, opts ...string)` builds a static identifier URL `scheme://host/path?opts` for the whole action
 - **UidF** — creates a dynamic identifier per completion value (e.g. `git://local-branch/main` identifies a specific branch). Use it when the display value alone is insufficient, or when you need to embed additional context as query parameters
 - **QueryF** — identifies what kind of completion is being requested (e.g. `git://local-branch` indicates the current position seeks local git branches). This enables result updates with additional queries later
 
@@ -366,13 +366,16 @@ Unique identifiers providing context for completion values:
 // Static UID
 carapace.ActionValues("value").Uid("git", "branch")
 
-// Dynamic UID per value
-carapace.ActionValuesDescribed(vals...).UidF(func(s string, uc uid.Context) (*url.URL, error) {
-	return Uid("local-branch")(s, uc)  // e.g. git://local-branch/main
-})
+// Dynamic UID per value — git.Uid is a package-local helper (pkg/actions/tools/git)
+// that embeds GIT_DIR/GIT_WORK_TREE context into the URL
+carapace.ActionValuesDescribed(vals...).UidF(git.Uid("local-branch")) // e.g. git://local-branch/main
+
+// Generic form without a package-local helper
+// (import "github.com/carapace-sh/carapace/pkg/uid")
+carapace.ActionValuesDescribed(vals...).UidF(uid.UidF("git", "local-branch"))
 
 // Query identifying the completion kind
-.QueryF(Uid("local-branch"))  // e.g. git://local-branch
+.QueryF(git.Uid("local-branch"))  // e.g. git://local-branch
 ```
 
 **Set Uid before Suffix/Prefix/NoSpace.** The UID identifies the completion values — modifiers like `.Suffix("=")` or `.Prefix("<")` change the display/insertion format but should not affect the identity. Chaining `.Suffix()` before `.Uid()` can leak suffix characters into the UID's value context.
@@ -638,4 +641,4 @@ func ActionConfigKeys(cmd *cobra.Command) carapace.Action {
 }
 ```
 
-These live in `cmd/action/` with package name `action`. They take `*cobra.Command` as first argument and delegate to shared actions in `pkg/actions/`.
+These live in the completer's own `cmd/action/` package (e.g. `completers/common/npm_completer/cmd/action/`) with package name `action`. They take `*cobra.Command` as first argument and delegate to shared actions in `pkg/actions/`.

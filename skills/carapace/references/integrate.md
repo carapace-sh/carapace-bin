@@ -361,10 +361,23 @@ Available bridge functions (all return `carapace.Action`):
 | `bridge.ActionFish(cmd ...string)` | Fish native completions |
 | `bridge.ActionZsh(cmd ...string)` | Zsh native completions |
 | `bridge.ActionArgcomplete(cmd ...string)` | Python argcomplete |
+| `bridge.ActionArgcompleteV1(cmd ...string)` | Python argcomplete (legacy, fd 8/9 — not on powershell/windows) |
 | `bridge.ActionClap(cmd ...string)` | Rust clap |
 | `bridge.ActionClick(cmd ...string)` | Python Click |
 | `bridge.ActionYargs(cmd ...string)` | Node.js yargs |
-| `bridge.ActionBridge(cmd ...string)` | Auto-detect via CARAPACE_BRIDGES env |
+| `bridge.ActionAws(cmd ...string)` | aws-cli |
+| `bridge.ActionComplete(cmd ...string)` | posener/complete |
+| `bridge.ActionGcloud(cmd ...string)` | Google Cloud SDK |
+| `bridge.ActionInshellisense(cmd ...string)` | inshellisense |
+| `bridge.ActionJJ(cmd ...string)` | Jujutsu VCS |
+| `bridge.ActionKingpin(cmd ...string)` | alecthomas/kingpin |
+| `bridge.ActionKitten(cmd ...string)` | kitty kitten |
+| `bridge.ActionPowershell(cmd ...string)` | PowerShell native completions |
+| `bridge.ActionTyper(cmd ...string)` | fastapi/typer |
+| `bridge.ActionUrfavecli(cmd ...string)` | urfave/cli |
+| `bridge.ActionUrfavecliV1(cmd ...string)` | urfave/cli (legacy) |
+| `bridge.ActionMacro(command ...string)` | registered macro (command string like `$carapace.tools.git.Refs`) |
+| `bridge.ActionBridge(cmd ...string)` | Auto-detect — choices first, then CARAPACE_BRIDGES env |
 
 ### Split and SplitP — Completing Command-String Flag Values
 
