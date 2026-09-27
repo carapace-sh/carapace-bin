@@ -14,5 +14,6 @@ var store_pathCmd = &cobra.Command{
 func init() {
 	carapace.Gen(store_pathCmd).Standalone()
 
+	store_pathCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	storeCmd.AddCommand(store_pathCmd)
 }

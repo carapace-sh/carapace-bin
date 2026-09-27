@@ -8,7 +8,7 @@ import (
 
 var outdatedCmd = &cobra.Command{
 	Use:     "outdated",
-	Short:   "Check for outdated packages",
+	Short:   "Check for outdated package and GitHub Actions dependencies",
 	GroupID: "review",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
@@ -16,29 +16,28 @@ var outdatedCmd = &cobra.Command{
 func init() {
 	carapace.Gen(outdatedCmd).Standalone()
 
-	outdatedCmd.Flags().String("changed-files-ignore-pattern", "", "Defines files to ignore when filtering for changed projects")
-	outdatedCmd.Flags().Bool("compatible", false, "Print only versions that satisfy specs in package.json")
+	outdatedCmd.Flags().Bool("compatible", false, "Print only versions that satisfy the ranges in package.json")
 	outdatedCmd.Flags().BoolP("dev", "D", false, "Check only \"devDependencies\"")
-	outdatedCmd.Flags().String("filter", "", "set filter")
-	outdatedCmd.Flags().String("filter-prod", "", "Restricts the scope to package names matching the given pattern")
-	outdatedCmd.Flags().String("format", "", "Output format (table, list, json)")
-	outdatedCmd.Flags().BoolP("global", "g", false, "List outdated globally installed packages")
-	outdatedCmd.Flags().Bool("long", false, "Show more details about the outdated packages")
+	outdatedCmd.Flags().String("format", "table", "Output format")
+	outdatedCmd.Flags().BoolP("global", "g", false, "Check globally installed packages")
+	outdatedCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	outdatedCmd.Flags().Bool("include-github-actions", false, "Also check GitHub Actions dependencies in workflow and action files")
+	outdatedCmd.Flags().Bool("json", false, "Shorthand for `--format json`")
+	outdatedCmd.Flags().Bool("long", false, "Print details about the outdated packages (homepage, deprecation notice)")
 	outdatedCmd.Flags().Bool("no-optional", false, "Don't check \"optionalDependencies\"")
+	outdatedCmd.Flags().Bool("no-table", false, "Shorthand for `--format list`. Good for small consoles")
+	outdatedCmd.Flags().Bool("optional", false, "Include \"optionalDependencies\"")
 	outdatedCmd.Flags().BoolP("prod", "P", false, "Check only \"dependencies\" and \"optionalDependencies\"")
-	outdatedCmd.Flags().BoolP("recursive", "r", false, "Check for outdated dependencies in every package found in subdirectories")
-	outdatedCmd.Flags().String("sort-by", "", "Sort outdated packages list")
-	outdatedCmd.Flags().String("test-pattern", "", "Defines files related to tests")
+	outdatedCmd.Flags().Bool("production", false, "Check only \"dependencies\" and \"optionalDependencies\"")
+	outdatedCmd.Flags().String("sort-by", "", "Sorting method. Currently only `name` is supported; the default sorts by the size of the version change, then by name")
 	rootCmd.AddCommand(outdatedCmd)
 
 	carapace.Gen(outdatedCmd).FlagCompletion(carapace.ActionMap{
-		"filter":      pnpm.ActionFilters(),
-		"filter-prod": pnpm.ActionFilters(),
-		"format":      carapace.ActionValues("table", "list", "json"),
-		"sort-by":     carapace.ActionValues("name"),
+		"format":  carapace.ActionValues("table", "list", "json"),
+		"sort-by": carapace.ActionValues("name"),
 	})
 
 	carapace.Gen(outdatedCmd).PositionalAnyCompletion(
-		pnpm.ActionDependencies(),
+		pnpm.ActionDependencyNames(),
 	)
 }

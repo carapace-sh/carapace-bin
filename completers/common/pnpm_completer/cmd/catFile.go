@@ -14,5 +14,6 @@ var catFileCmd = &cobra.Command{
 func init() {
 	carapace.Gen(catFileCmd).Standalone()
 
+	catFileCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.AddCommand(catFileCmd)
 }

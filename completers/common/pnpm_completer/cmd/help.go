@@ -7,7 +7,7 @@ import (
 
 var helpCmd = &cobra.Command{
 	Use:   "help",
-	Short: "Show help for pnpm",
+	Short: "Print this message or the help of the given subcommand(s)",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

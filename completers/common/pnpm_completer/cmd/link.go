@@ -2,14 +2,13 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-pnpm/pkg/actions/tools/pnpm"
 	"github.com/spf13/cobra"
 )
 
 var linkCmd = &cobra.Command{
 	Use:     "link",
+	Short:   "Links a local package as a dependency",
 	Aliases: []string{"ln"},
-	Short:   "Connect the local project to another one",
 	GroupID: "manage",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
@@ -17,12 +16,10 @@ var linkCmd = &cobra.Command{
 func init() {
 	carapace.Gen(linkCmd).Standalone()
 
+	linkCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.AddCommand(linkCmd)
 
 	carapace.Gen(linkCmd).PositionalCompletion(
-		carapace.Batch(
-			pnpm.ActionDependencyNames(),
-			carapace.ActionDirectories(),
-		).ToA(),
+		carapace.ActionDirectories(),
 	)
 }
