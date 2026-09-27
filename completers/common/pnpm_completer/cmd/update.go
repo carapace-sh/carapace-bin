@@ -48,4 +48,10 @@ func init() {
 	carapace.Gen(updateCmd).PositionalAnyCompletion(
 		pnpm.ActionDependencyNames(),
 	)
+
+	carapace.Gen(updateCmd).FlagCompletion(carapace.ActionMap{
+		"cpu":  carapace.ActionValues("arm", "arm64", "ia32", "loong64", "mips", "mipsel", "ppc64", "riscv64", "s390", "s390x", "x64"),
+		"libc": carapace.ActionValues("glibc", "musl"),
+		"os":   carapace.ActionValues("aix", "android", "darwin", "freebsd", "linux", "openbsd", "sunos", "win32"),
+	})
 }

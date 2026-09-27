@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/npm"
 	"github.com/spf13/cobra"
 )
 
@@ -22,4 +23,14 @@ func init() {
 	dlxCmd.Flags().StringSlice("package", nil, "The package to install before running the command. May be repeated. When omitted, the command name is the package")
 	dlxCmd.Flags().BoolP("shell-mode", "c", false, "Run the command inside of a shell. Uses `/bin/sh` on UNIX and `cmd.exe` on Windows")
 	rootCmd.AddCommand(dlxCmd)
+
+	carapace.Gen(dlxCmd).PositionalCompletion(
+		npm.ActionPackageSearch(""),
+	)
+
+	carapace.Gen(dlxCmd).FlagCompletion(carapace.ActionMap{
+		"cpu":  carapace.ActionValues("arm", "arm64", "ia32", "loong64", "mips", "mipsel", "ppc64", "riscv64", "s390", "s390x", "x64"),
+		"libc": carapace.ActionValues("glibc", "musl"),
+		"os":   carapace.ActionValues("aix", "android", "darwin", "freebsd", "linux", "openbsd", "sunos", "win32"),
+	})
 }

@@ -17,4 +17,8 @@ func init() {
 
 	linkCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.AddCommand(linkCmd)
+
+	carapace.Gen(linkCmd).PositionalCompletion(
+		carapace.ActionDirectories(),
+	)
 }

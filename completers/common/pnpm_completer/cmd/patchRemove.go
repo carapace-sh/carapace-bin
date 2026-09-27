@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-pnpm/pkg/actions/tools/pnpm"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,8 @@ func init() {
 
 	patchRemoveCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.AddCommand(patchRemoveCmd)
+
+	carapace.Gen(patchRemoveCmd).PositionalAnyCompletion(
+		pnpm.ActionDependencyNames(),
+	)
 }

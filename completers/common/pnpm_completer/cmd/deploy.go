@@ -62,4 +62,15 @@ func init() {
 	deployCmd.Flags().Bool("verify-deps-before-run-install", false, "Run the install already requested by `verifyDepsBeforeRun` without independently short-circuiting it as up to date")
 	deployCmd.Flag("verify-deps-before-run-install").Hidden = true
 	rootCmd.AddCommand(deployCmd)
+
+	carapace.Gen(deployCmd).PositionalCompletion(
+		carapace.ActionDirectories(),
+	)
+
+	carapace.Gen(deployCmd).FlagCompletion(carapace.ActionMap{
+		"cpu":         carapace.ActionValues("arm", "arm64", "ia32", "loong64", "mips", "mipsel", "ppc64", "riscv64", "s390", "s390x", "x64"),
+		"libc":        carapace.ActionValues("glibc", "musl"),
+		"node-linker": carapace.ActionValues("isolated", "hoisted", "pnp"),
+		"os":          carapace.ActionValues("aix", "android", "darwin", "freebsd", "linux", "openbsd", "sunos", "win32"),
+	})
 }

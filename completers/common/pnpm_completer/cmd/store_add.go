@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/npm"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,8 @@ func init() {
 
 	store_addCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	storeCmd.AddCommand(store_addCmd)
+
+	carapace.Gen(store_addCmd).PositionalAnyCompletion(
+		npm.ActionPackageSearch(""),
+	)
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/npm"
 	"github.com/spf13/cobra"
 )
 
@@ -20,4 +21,8 @@ func init() {
 	fetchCmd.Flags().BoolP("prod", "P", false, "")
 	fetchCmd.Flags().Bool("production", false, "")
 	rootCmd.AddCommand(fetchCmd)
+
+	carapace.Gen(fetchCmd).PositionalAnyCompletion(
+		npm.ActionPackageSearch(""),
+	)
 }

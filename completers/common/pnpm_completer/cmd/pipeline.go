@@ -72,4 +72,11 @@ func init() {
 	pipelineCmd.Flags().Bool("watch", false, "Watch a git repository and run the pipeline for every new revision of a branch, instead of running once against the current directory")
 	pipelineCmd.Flag("verify-deps-before-run-install").Hidden = true
 	rootCmd.AddCommand(pipelineCmd)
+
+	carapace.Gen(pipelineCmd).FlagCompletion(carapace.ActionMap{
+		"cpu":         carapace.ActionValues("arm", "arm64", "ia32", "loong64", "mips", "mipsel", "ppc64", "riscv64", "s390", "s390x", "x64"),
+		"libc":        carapace.ActionValues("glibc", "musl"),
+		"node-linker": carapace.ActionValues("isolated", "hoisted", "pnp"),
+		"os":          carapace.ActionValues("aix", "android", "darwin", "freebsd", "linux", "openbsd", "sunos", "win32"),
+	})
 }

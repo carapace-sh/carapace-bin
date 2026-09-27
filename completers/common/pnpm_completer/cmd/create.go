@@ -21,4 +21,10 @@ func init() {
 	createCmd.Flags().StringSlice("os", nil, "Operating systems whose platform-tagged optional dependencies the install should keep")
 	createCmd.Flags().BoolP("shell-mode", "c", false, "Run the command inside of a shell. Uses `/bin/sh` on UNIX and `cmd.exe` on Windows")
 	rootCmd.AddCommand(createCmd)
+
+	carapace.Gen(createCmd).FlagCompletion(carapace.ActionMap{
+		"cpu":  carapace.ActionValues("arm", "arm64", "ia32", "loong64", "mips", "mipsel", "ppc64", "riscv64", "s390", "s390x", "x64"),
+		"libc": carapace.ActionValues("glibc", "musl"),
+		"os":   carapace.ActionValues("aix", "android", "darwin", "freebsd", "linux", "openbsd", "sunos", "win32"),
+	})
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/npm"
 	"github.com/spf13/cobra"
 )
 
@@ -18,4 +19,11 @@ func init() {
 	unlinkCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	unlinkCmd.Flags().Bool("ignore-pnpmfile", false, "Disable pnpm hooks defined in `.pnpmfile.cjs`, including the pnpmfiles of config dependencies")
 	rootCmd.AddCommand(unlinkCmd)
+
+	carapace.Gen(unlinkCmd).PositionalCompletion(
+		carapace.Batch(
+			carapace.ActionDirectories(),
+			npm.ActionPackageSearch(""),
+		).ToA(),
+	)
 }

@@ -20,4 +20,8 @@ func init() {
 	configCmd.PersistentFlags().Bool("json", false, "Show all types of values in JSON format (not just objects and arrays)")
 	configCmd.PersistentFlags().String("location", "", "Which config to read or write: `project` for the project's config, `global` for the global config")
 	rootCmd.AddCommand(configCmd)
+
+	carapace.Gen(configCmd).FlagCompletion(carapace.ActionMap{
+		"location": carapace.ActionValues("global", "project"),
+	})
 }
