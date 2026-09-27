@@ -12,7 +12,10 @@ func Nushell(completers []string) string {
 	}
 	snippet := `%v%v
 
-let carapace_completer = {|spans|
+let carapace_completer = {|place|
+  # backwards compatible workaround for positional completer input, see nushell #18791
+  let spans = (if ($place | describe) =~ "record" { $place.command } else { $place })
+
   # if the current command is an alias, get it's expansion
   let expanded_alias = (scope aliases | where name == $spans.0 | $in.0?.expansion?)
 
