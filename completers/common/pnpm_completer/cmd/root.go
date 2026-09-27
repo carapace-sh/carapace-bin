@@ -11,6 +11,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "pnpm",
 	Short: "Package manager",
+	Long:  "https://pnpm.io/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
