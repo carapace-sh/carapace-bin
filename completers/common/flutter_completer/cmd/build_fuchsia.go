@@ -17,7 +17,7 @@ func init() {
 	build_fuchsiaCmd.Flags().StringArray("dart-define", nil, "Additional key-value pairs that will be available as constants.")
 	build_fuchsiaCmd.Flags().Bool("debug", false, "Build a debug version of your app.")
 	build_fuchsiaCmd.Flags().BoolP("help", "h", false, "Print this usage information.")
-	build_fuchsiaCmd.Flags().Bool("no-null-assertions", false, "Perform additional null assertions on the boundaries of migrated and un-migrated code.")
+	build_fuchsiaCmd.Flags().Bool("no-null-assertions", false, "Do not perform additional null assertions on the boundaries of migrated and un-migrated code.")
 	build_fuchsiaCmd.Flags().Bool("no-tree-shake-icons", false, "Do not tree shake icon fonts so that only glyphs used by the application remain.")
 	build_fuchsiaCmd.Flags().Bool("null-assertions", false, "Perform additional null assertions on the boundaries of migrated and un-migrated code.")
 	build_fuchsiaCmd.Flags().Bool("profile", false, "Build a version of your app specialized for performance profiling.")

@@ -15,7 +15,7 @@ var pub_upgradeCmd = &cobra.Command{
 func init() {
 	carapace.Gen(pub_upgradeCmd).Standalone()
 
-	pub_upgradeCmd.Flags().StringP("directory", "C", "", "Run this in the directory<dir>.")
+	pub_upgradeCmd.Flags().StringP("directory", "C", "", "Run this in the directory <dir>.")
 	pub_upgradeCmd.Flags().BoolP("dry-run", "n", false, "Report what dependencies would change but don't change any.")
 	pub_upgradeCmd.Flags().BoolP("help", "h", false, "Print this usage information.")
 	pub_upgradeCmd.Flags().Bool("major-versions", false, "Upgrades packages to their latest resolvable versions, and updates pubspec.yaml.")
