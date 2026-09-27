@@ -16,5 +16,6 @@ func init() {
 
 	cache_pruneCmd.Flags().Bool("ci", false, "Optimize the cache for persistence in a continuous integration environment, like GitHub Actions")
 	cache_pruneCmd.Flags().Bool("force", false, "Force removal of the cache, ignoring in-use checks")
+
 	cacheCmd.AddCommand(cache_pruneCmd)
 }

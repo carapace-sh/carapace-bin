@@ -37,13 +37,16 @@ func init() {
 	initCmd.Flags().Bool("script", false, "Create a script")
 	initCmd.Flags().String("vcs", "", "Initialize a version control system for the project")
 	initCmd.Flags().Bool("virtual", false, "Create a virtual project, rather than a package")
+
 	initCmd.Flag("application").Hidden = true
 	initCmd.Flag("backend").Hidden = true
 	initCmd.Flag("library").Hidden = true
 	initCmd.Flag("no-project").Hidden = true
 	initCmd.Flag("pin-python").Hidden = true
 	initCmd.Flag("virtual").Hidden = true
+
 	rootCmd.AddCommand(initCmd)
+
 	carapace.Gen(initCmd).FlagCompletion(carapace.ActionMap{
 		"author-from": carapace.ActionValuesDescribed(
 			"auto", "Fetch the author information from some sources (e.g., Git) automatically",
@@ -66,5 +69,6 @@ func init() {
 			"none", "Do not use any version control system",
 		),
 	})
+
 	carapace.Gen(initCmd).PositionalCompletion(carapace.ActionDirectories())
 }

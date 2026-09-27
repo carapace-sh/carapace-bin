@@ -101,6 +101,7 @@ func init() {
 	syncCmd.Flags().BoolP("upgrade", "U", false, "Allow package upgrades, ignoring pinned versions in any existing output file. Implies `--refresh`")
 	syncCmd.Flags().StringSlice("upgrade-group", nil, "Allow upgrades for all packages in a dependency group, ignoring pinned versions in any existing output file")
 	syncCmd.Flags().StringSliceP("upgrade-package", "P", nil, "Allow upgrades for a specific package, ignoring pinned versions in any existing output file. Implies `--refresh-package`")
+
 	syncCmd.Flag("binary").Hidden = true
 	syncCmd.Flag("build").Hidden = true
 	syncCmd.Flag("build-isolation").Hidden = true
@@ -127,7 +128,9 @@ func init() {
 	syncCmd.Flag("only-install-project").Hidden = true
 	syncCmd.Flag("only-install-workspace").Hidden = true
 	syncCmd.Flag("pre").Hidden = true
+
 	rootCmd.AddCommand(syncCmd)
+
 	carapace.Gen(syncCmd).FlagCompletion(carapace.ActionMap{
 		"extra":            uv.ActionExtras(),
 		"fork-strategy":    uv.ActionForkStrategies(),

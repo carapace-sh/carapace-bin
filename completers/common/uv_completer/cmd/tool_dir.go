@@ -15,5 +15,6 @@ func init() {
 	carapace.Gen(tool_dirCmd).Standalone()
 
 	tool_dirCmd.Flags().Bool("bin", false, "Show the directory into which `uv tool` will install executables.")
+
 	toolCmd.AddCommand(tool_dirCmd)
 }

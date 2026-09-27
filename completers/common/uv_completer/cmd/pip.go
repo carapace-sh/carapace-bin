@@ -16,6 +16,7 @@ func init() {
 
 	pipCmd.PersistentFlags().String("cert", "", "Path to a PEM-encoded CA certificate bundle")
 	rootCmd.AddCommand(pipCmd)
+
 	carapace.Gen(pipCmd).FlagCompletion(carapace.ActionMap{
 		"cert": carapace.ActionFiles(),
 	})

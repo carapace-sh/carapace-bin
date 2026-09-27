@@ -25,13 +25,17 @@ func init() {
 	python_listCmd.Flags().String("output-format", "text", "Select the output format")
 	python_listCmd.Flags().String("python-downloads-json-url", "", "URL pointing to JSON of custom Python installations")
 	python_listCmd.Flags().Bool("show-urls", false, "Show the URLs of available Python downloads")
+
 	python_listCmd.Flag("all_architectures").Hidden = true
+
 	pythonCmd.AddCommand(python_listCmd)
+
 	carapace.Gen(python_listCmd).FlagCompletion(carapace.ActionMap{
 		"output-format": carapace.ActionValuesDescribed(
 			"text", "Plain text (for humans)",
 			"json", "JSON (for computers)",
 		),
 	})
+
 	carapace.Gen(python_listCmd).PositionalCompletion(uv.ActionPythonInstallations(uv.InstallationsOpts{}))
 }

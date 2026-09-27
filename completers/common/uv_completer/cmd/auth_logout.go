@@ -17,7 +17,9 @@ func init() {
 
 	auth_logoutCmd.Flags().String("keyring-provider", "", "The keyring provider to use for storage of credentials")
 	auth_logoutCmd.Flags().StringP("username", "u", "", "The username to logout")
+
 	authCmd.AddCommand(auth_logoutCmd)
+
 	carapace.Gen(auth_logoutCmd).FlagCompletion(carapace.ActionMap{
 		"keyring-provider": uv.ActionKeyringProviders(),
 	})

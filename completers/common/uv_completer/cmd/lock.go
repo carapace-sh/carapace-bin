@@ -61,6 +61,7 @@ func init() {
 	lockCmd.Flags().BoolP("upgrade", "U", false, "Allow package upgrades, ignoring pinned versions in any existing output file. Implies `--refresh`")
 	lockCmd.Flags().StringSlice("upgrade-group", nil, "Allow upgrades for all packages in a dependency group, ignoring pinned versions in any existing output file")
 	lockCmd.Flags().StringSliceP("upgrade-package", "P", nil, "Allow upgrades for a specific package, ignoring pinned versions in any existing output file. Implies `--refresh-package`")
+
 	lockCmd.Flag("binary").Hidden = true
 	lockCmd.Flag("build").Hidden = true
 	lockCmd.Flag("build-isolation").Hidden = true
@@ -73,7 +74,9 @@ func init() {
 	lockCmd.Flag("no-refresh").Hidden = true
 	lockCmd.Flag("no-upgrade").Hidden = true
 	lockCmd.Flag("pre").Hidden = true
+
 	rootCmd.AddCommand(lockCmd)
+
 	carapace.Gen(lockCmd).FlagCompletion(carapace.ActionMap{
 		"fork-strategy":    uv.ActionForkStrategies(),
 		"index-strategy":   uv.ActionIndexStrategies(),

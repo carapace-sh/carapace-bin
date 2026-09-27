@@ -26,8 +26,11 @@ func init() {
 	publishCmd.Flags().StringP("token", "t", "", "The token for the upload")
 	publishCmd.Flags().String("trusted-publishing", "", "Configure trusted publishing")
 	publishCmd.Flags().StringP("username", "u", "", "The username for the upload")
+
 	publishCmd.Flag("skip-existing").Hidden = true
+
 	rootCmd.AddCommand(publishCmd)
+
 	carapace.Gen(publishCmd).FlagCompletion(carapace.ActionMap{
 		"keyring-provider": uv.ActionKeyringProviders(),
 		"trusted-publishing": carapace.ActionValuesDescribed(
@@ -36,5 +39,6 @@ func init() {
 			"never", "",
 		),
 	})
+
 	carapace.Gen(publishCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

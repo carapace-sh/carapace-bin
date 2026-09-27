@@ -20,6 +20,8 @@ func init() {
 	formatCmd.Flags().Bool("no-project", false, "Avoid discovering a project or workspace")
 	formatCmd.Flags().Bool("show-version", false, "Display the version of Ruff that will be used for formatting")
 	formatCmd.Flags().String("version", "", "The version of Ruff to use for formatting")
+
 	formatCmd.Flag("show-version").Hidden = true
+
 	rootCmd.AddCommand(formatCmd)
 }

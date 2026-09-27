@@ -18,6 +18,7 @@ func init() {
 	auth_helperCmd.Flags().String("protocol", "", "The credential helper protocol to use")
 	auth_helperCmd.MarkFlagRequired("protocol")
 	authCmd.AddCommand(auth_helperCmd)
+
 	carapace.Gen(auth_helperCmd).FlagCompletion(carapace.ActionMap{
 		"protocol": carapace.ActionValuesDescribed("bazel", "Bazel credential helper protocol as described in [the spec](https://github.com/bazelbuild/proposals/blob/main/designs/2022-06-07-bazel-credential-helpers.md)"),
 	})

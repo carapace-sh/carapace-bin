@@ -102,6 +102,7 @@ func init() {
 	pip_installCmd.Flags().StringSliceP("upgrade-package", "P", nil, "Allow upgrades for a specific package, ignoring pinned versions in any existing output file. Implies `--refresh-package`")
 	pip_installCmd.Flags().Bool("user", false, "")
 	pip_installCmd.Flags().Bool("verify-hashes", false, "")
+
 	pip_installCmd.Flag("build").Hidden = true
 	pip_installCmd.Flag("build-constraint").Hidden = true
 	pip_installCmd.Flag("build-isolation").Hidden = true
@@ -127,7 +128,9 @@ func init() {
 	pip_installCmd.Flag("pre").Hidden = true
 	pip_installCmd.Flag("requirement").Hidden = true
 	pip_installCmd.Flag("verify-hashes").Hidden = true
+
 	pipCmd.AddCommand(pip_installCmd)
+
 	carapace.Gen(pip_installCmd).FlagCompletion(carapace.ActionMap{
 		"build-constraint":  carapace.ActionFiles(),
 		"build-constraints": carapace.ActionFiles(),
@@ -208,5 +211,6 @@ func init() {
 			"xpu", "Use the PyTorch index for Intel XPU",
 		),
 	})
+
 	carapace.Gen(pip_installCmd).PositionalAnyCompletion(pip.ActionPackageSearch())
 }

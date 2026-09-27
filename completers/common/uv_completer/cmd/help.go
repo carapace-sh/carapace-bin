@@ -15,5 +15,6 @@ func init() {
 	carapace.Gen(helpCmd).Standalone()
 
 	helpCmd.Flags().Bool("no-pager", false, "Disable pager when printing help")
+
 	rootCmd.AddCommand(helpCmd)
 }

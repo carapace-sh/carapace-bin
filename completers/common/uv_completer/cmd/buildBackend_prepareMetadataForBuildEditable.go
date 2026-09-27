@@ -15,5 +15,6 @@ func init() {
 	carapace.Gen(buildBackend_prepareMetadataForBuildEditableCmd).Standalone()
 
 	buildBackendCmd.AddCommand(buildBackend_prepareMetadataForBuildEditableCmd)
+
 	carapace.Gen(buildBackend_prepareMetadataForBuildEditableCmd).PositionalCompletion(carapace.ActionFiles())
 }

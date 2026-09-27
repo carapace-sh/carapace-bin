@@ -15,9 +15,12 @@ func init() {
 	carapace.Gen(buildBackend_buildWheelCmd).Standalone()
 
 	buildBackend_buildWheelCmd.Flags().String("metadata-directory", "", "")
+
 	buildBackendCmd.AddCommand(buildBackend_buildWheelCmd)
+
 	carapace.Gen(buildBackend_buildWheelCmd).FlagCompletion(carapace.ActionMap{
 		"metadata-directory": carapace.ActionFiles(),
 	})
+
 	carapace.Gen(buildBackend_buildWheelCmd).PositionalCompletion(carapace.ActionFiles())
 }

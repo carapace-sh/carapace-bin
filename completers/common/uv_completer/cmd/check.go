@@ -88,6 +88,7 @@ func init() {
 	checkCmd.Flags().BoolP("upgrade", "U", false, "Allow package upgrades, ignoring pinned versions in any existing output file. Implies `--refresh`")
 	checkCmd.Flags().StringSlice("upgrade-group", nil, "Allow upgrades for all packages in a dependency group, ignoring pinned versions in any existing output file")
 	checkCmd.Flags().StringSliceP("upgrade-package", "P", nil, "Allow upgrades for a specific package, ignoring pinned versions in any existing output file. Implies `--refresh-package`")
+
 	checkCmd.Flag("binary").Hidden = true
 	checkCmd.Flag("build").Hidden = true
 	checkCmd.Flag("build-isolation").Hidden = true
@@ -106,7 +107,9 @@ func init() {
 	checkCmd.Flag("pre").Hidden = true
 	checkCmd.Flag("show-command").Hidden = true
 	checkCmd.Flag("show-version").Hidden = true
+
 	rootCmd.AddCommand(checkCmd)
+
 	carapace.Gen(checkCmd).FlagCompletion(carapace.ActionMap{
 		"extra":            uv.ActionExtras(),
 		"fork-strategy":    uv.ActionForkStrategies(),

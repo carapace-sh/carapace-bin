@@ -17,6 +17,8 @@ func init() {
 	carapace.Gen(cache_cleanCmd).Standalone()
 
 	cache_cleanCmd.Flags().Bool("force", false, "Force removal of the cache, ignoring in-use checks")
+
 	cacheCmd.AddCommand(cache_cleanCmd)
+
 	carapace.Gen(cache_cleanCmd).PositionalAnyCompletion(uv.ActionInstalledPackages())
 }

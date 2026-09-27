@@ -40,11 +40,14 @@ func init() {
 	pip_treeCmd.Flags().Bool("show-version-specifiers", false, "Show the version constraint(s) imposed on each package")
 	pip_treeCmd.Flags().Bool("strict", false, "Validate the Python environment, to detect packages with missing dependencies and other issues")
 	pip_treeCmd.Flags().Bool("system", false, "List packages in the system Python environment")
+
 	pip_treeCmd.Flag("disable-pip-version-check").Hidden = true
 	pip_treeCmd.Flag("no-strict").Hidden = true
 	pip_treeCmd.Flag("no-system").Hidden = true
 	pip_treeCmd.Flag("reverse").Hidden = true
+
 	pipCmd.AddCommand(pip_treeCmd)
+
 	carapace.Gen(pip_treeCmd).FlagCompletion(carapace.ActionMap{
 		"index-strategy":   uv.ActionIndexStrategies(),
 		"keyring-provider": uv.ActionKeyringProviders(),

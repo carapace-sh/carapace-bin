@@ -25,7 +25,9 @@ func init() {
 	upgradeCmd.Flags().StringP("index-url", "i", "", "(Deprecated: use `--default-index` instead) The URL of the Python package index (by default: <https://pypi.org/simple>)")
 	upgradeCmd.Flags().String("keyring-provider", "", "Attempt to use `keyring` for authentication for index URLs")
 	upgradeCmd.Flags().Bool("no-index", false, "Ignore the registry index (e.g., PyPI), instead relying on direct URL dependencies and those provided via `--find-links`")
+
 	rootCmd.AddCommand(upgradeCmd)
+
 	carapace.Gen(upgradeCmd).FlagCompletion(carapace.ActionMap{
 		"index-strategy":   uv.ActionIndexStrategies(),
 		"keyring-provider": uv.ActionKeyringProviders(),

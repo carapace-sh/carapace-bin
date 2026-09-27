@@ -28,11 +28,14 @@ func init() {
 	pip_uninstallCmd.Flags().Bool("system", false, "Use the system Python to uninstall packages")
 	pip_uninstallCmd.Flags().StringP("target", "t", "", "Uninstall packages from the specified `--target` directory")
 	pip_uninstallCmd.Flags().BoolP("yes", "y", false, "Don't ask for confirmation of uninstall deletions")
+
 	pip_uninstallCmd.Flag("disable-pip-version-check").Hidden = true
 	pip_uninstallCmd.Flag("no-system").Hidden = true
 	pip_uninstallCmd.Flag("requirement").Hidden = true
 	pip_uninstallCmd.Flag("yes").Hidden = true
+
 	pipCmd.AddCommand(pip_uninstallCmd)
+
 	carapace.Gen(pip_uninstallCmd).FlagCompletion(carapace.ActionMap{
 		"keyring-provider": uv.ActionKeyringProviders(),
 		"prefix":           carapace.ActionDirectories(),
@@ -41,5 +44,6 @@ func init() {
 		"requirements":     carapace.ActionFiles(),
 		"target":           carapace.ActionDirectories(),
 	})
+
 	carapace.Gen(pip_uninstallCmd).PositionalAnyCompletion(uv.ActionInstalledPackages())
 }

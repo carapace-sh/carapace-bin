@@ -80,6 +80,7 @@ func init() {
 	tool_installCmd.Flags().StringSlice("with-editable", nil, "Include the given packages in editable mode")
 	tool_installCmd.Flags().StringSlice("with-executables-from", nil, "Install executables from the following packages")
 	tool_installCmd.Flags().StringSlice("with-requirements", nil, "Run with the packages listed in the given files")
+
 	tool_installCmd.Flag("binary").Hidden = true
 	tool_installCmd.Flag("build").Hidden = true
 	tool_installCmd.Flag("build-constraint").Hidden = true
@@ -98,7 +99,9 @@ func init() {
 	tool_installCmd.Flag("no-upgrade").Hidden = true
 	tool_installCmd.Flag("override").Hidden = true
 	tool_installCmd.Flag("pre").Hidden = true
+
 	toolCmd.AddCommand(tool_installCmd)
+
 	carapace.Gen(tool_installCmd).FlagCompletion(carapace.ActionMap{
 		"build-constraint":  carapace.ActionFiles(),
 		"build-constraints": carapace.ActionFiles(),
@@ -172,5 +175,6 @@ func init() {
 		"with-editable":     carapace.ActionDirectories(),
 		"with-requirements": carapace.ActionFiles(),
 	})
+
 	carapace.Gen(tool_installCmd).PositionalCompletion(pip.ActionPackageSearch())
 }

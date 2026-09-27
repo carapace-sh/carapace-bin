@@ -102,6 +102,7 @@ func init() {
 	runCmd.Flags().StringSliceP("with", "w", nil, "Run with the given packages installed")
 	runCmd.Flags().StringSlice("with-editable", nil, "Run with the given packages installed in editable mode")
 	runCmd.Flags().StringSlice("with-requirements", nil, "Run with the packages listed in the given files")
+
 	runCmd.Flag("binary").Hidden = true
 	runCmd.Flag("build").Hidden = true
 	runCmd.Flag("build-isolation").Hidden = true
@@ -126,7 +127,9 @@ func init() {
 	runCmd.Flag("no_workspace").Hidden = true
 	runCmd.Flag("pre").Hidden = true
 	runCmd.Flag("show-resolution").Hidden = true
+
 	rootCmd.AddCommand(runCmd)
+
 	carapace.Gen(runCmd).FlagCompletion(carapace.ActionMap{
 		"env-file":          carapace.ActionFiles(),
 		"extra":             uv.ActionExtras(),
@@ -142,5 +145,6 @@ func init() {
 		"with-editable":     carapace.ActionDirectories(),
 		"with-requirements": carapace.ActionFiles(),
 	})
+
 	carapace.Gen(runCmd).PositionalCompletion(carapace.Batch(uv.ActionScripts(), carapace.ActionExecutables()).ToA())
 }

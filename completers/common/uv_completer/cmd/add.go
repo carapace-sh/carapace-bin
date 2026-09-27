@@ -100,6 +100,7 @@ func init() {
 	addCmd.Flags().StringSlice("upgrade-group", nil, "Allow upgrades for all packages in a dependency group, ignoring pinned versions in any existing output file")
 	addCmd.Flags().StringSliceP("upgrade-package", "P", nil, "Allow upgrades for a specific package, ignoring pinned versions in any existing output file. Implies `--refresh-package`")
 	addCmd.Flags().Bool("workspace", false, "Add the dependency as a workspace member")
+
 	addCmd.Flag("binary").Hidden = true
 	addCmd.Flag("build").Hidden = true
 	addCmd.Flag("build-isolation").Hidden = true
@@ -125,7 +126,9 @@ func init() {
 	addCmd.Flag("pre").Hidden = true
 	addCmd.Flag("raw-sources").Hidden = true
 	addCmd.Flag("requirement").Hidden = true
+
 	rootCmd.AddCommand(addCmd)
+
 	carapace.Gen(addCmd).FlagCompletion(carapace.ActionMap{
 		"bounds": carapace.ActionValuesDescribed(
 			"lower", "Only a lower bound, e.g., `>=1.2.3`",
@@ -148,5 +151,6 @@ func init() {
 		"resolution":       uv.ActionResolutions(),
 		"script":           carapace.ActionFiles(),
 	})
+
 	carapace.Gen(addCmd).PositionalAnyCompletion(pip.ActionPackageSearch())
 }

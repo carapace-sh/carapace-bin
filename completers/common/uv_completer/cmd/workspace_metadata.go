@@ -61,6 +61,7 @@ func init() {
 	workspace_metadataCmd.Flags().BoolP("upgrade", "U", false, "Allow package upgrades, ignoring pinned versions in any existing output file. Implies `--refresh`")
 	workspace_metadataCmd.Flags().StringSlice("upgrade-group", nil, "Allow upgrades for all packages in a dependency group, ignoring pinned versions in any existing output file")
 	workspace_metadataCmd.Flags().StringSliceP("upgrade-package", "P", nil, "Allow upgrades for a specific package, ignoring pinned versions in any existing output file. Implies `--refresh-package`")
+
 	workspace_metadataCmd.Flag("binary").Hidden = true
 	workspace_metadataCmd.Flag("build").Hidden = true
 	workspace_metadataCmd.Flag("build-isolation").Hidden = true
@@ -71,7 +72,9 @@ func init() {
 	workspace_metadataCmd.Flag("no-refresh").Hidden = true
 	workspace_metadataCmd.Flag("no-upgrade").Hidden = true
 	workspace_metadataCmd.Flag("pre").Hidden = true
+
 	workspaceCmd.AddCommand(workspace_metadataCmd)
+
 	carapace.Gen(workspace_metadataCmd).FlagCompletion(carapace.ActionMap{
 		"fork-strategy":    uv.ActionForkStrategies(),
 		"index-strategy":   uv.ActionIndexStrategies(),

@@ -26,8 +26,10 @@ func init() {
 	tool_listCmd.Flags().Bool("show-python", false, "Whether to display the Python version associated with each tool")
 	tool_listCmd.Flags().Bool("show-version-specifiers", false, "Whether to display the version specifier(s) used to install each tool")
 	tool_listCmd.Flags().Bool("show-with", false, "Whether to display the additional requirements installed with each tool")
+
 	tool_listCmd.Flag("no-outdated").Hidden = true
 	tool_listCmd.Flag("no-python-downloads").Hidden = true
 	tool_listCmd.Flag("python-preference").Hidden = true
+
 	toolCmd.AddCommand(tool_listCmd)
 }

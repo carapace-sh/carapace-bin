@@ -73,6 +73,7 @@ func init() {
 	versionCmd.Flags().BoolP("upgrade", "U", false, "Allow package upgrades, ignoring pinned versions in any existing output file. Implies `--refresh`")
 	versionCmd.Flags().StringSlice("upgrade-group", nil, "Allow upgrades for all packages in a dependency group, ignoring pinned versions in any existing output file")
 	versionCmd.Flags().StringSliceP("upgrade-package", "P", nil, "Allow upgrades for a specific package, ignoring pinned versions in any existing output file. Implies `--refresh-package`")
+
 	versionCmd.Flag("binary").Hidden = true
 	versionCmd.Flag("build").Hidden = true
 	versionCmd.Flag("build-isolation").Hidden = true
@@ -88,7 +89,9 @@ func init() {
 	versionCmd.Flag("no-reinstall").Hidden = true
 	versionCmd.Flag("no-upgrade").Hidden = true
 	versionCmd.Flag("pre").Hidden = true
+
 	rootCmd.AddCommand(versionCmd)
+
 	carapace.Gen(versionCmd).FlagCompletion(carapace.ActionMap{
 		"bump": carapace.ActionValuesDescribed(
 			"major", "Increase the major version (e.g., 1.2.3 => 2.0.0)",

@@ -40,11 +40,14 @@ func init() {
 	pip_listCmd.Flags().Bool("strict", false, "Validate the Python environment, to detect packages with missing dependencies and other issues")
 	pip_listCmd.Flags().Bool("system", false, "List packages in the system Python environment")
 	pip_listCmd.Flags().StringP("target", "t", "", "List packages from the specified `--target` directory")
+
 	pip_listCmd.Flag("disable-pip-version-check").Hidden = true
 	pip_listCmd.Flag("no-outdated").Hidden = true
 	pip_listCmd.Flag("no-strict").Hidden = true
 	pip_listCmd.Flag("no-system").Hidden = true
+
 	pipCmd.AddCommand(pip_listCmd)
+
 	carapace.Gen(pip_listCmd).FlagCompletion(carapace.ActionMap{
 		"format": carapace.ActionValuesDescribed(
 			"columns", "Display the list of packages in a human-readable table",

@@ -15,5 +15,6 @@ func init() {
 	carapace.Gen(buildBackend_prepareMetadataForBuildWheelCmd).Standalone()
 
 	buildBackendCmd.AddCommand(buildBackend_prepareMetadataForBuildWheelCmd)
+
 	carapace.Gen(buildBackend_prepareMetadataForBuildWheelCmd).PositionalCompletion(carapace.ActionFiles())
 }

@@ -17,7 +17,9 @@ func init() {
 
 	auth_tokenCmd.Flags().String("keyring-provider", "", "The keyring provider to use for reading credentials")
 	auth_tokenCmd.Flags().StringP("username", "u", "", "The username to lookup")
+
 	authCmd.AddCommand(auth_tokenCmd)
+
 	carapace.Gen(auth_tokenCmd).FlagCompletion(carapace.ActionMap{
 		"keyring-provider": uv.ActionKeyringProviders(),
 	})

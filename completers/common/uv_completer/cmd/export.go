@@ -105,6 +105,7 @@ func init() {
 	exportCmd.Flags().BoolP("upgrade", "U", false, "Allow package upgrades, ignoring pinned versions in any existing output file. Implies `--refresh`")
 	exportCmd.Flags().StringSlice("upgrade-group", nil, "Allow upgrades for all packages in a dependency group, ignoring pinned versions in any existing output file")
 	exportCmd.Flags().StringSliceP("upgrade-package", "P", nil, "Allow upgrades for a specific package, ignoring pinned versions in any existing output file. Implies `--refresh-package`")
+
 	exportCmd.Flag("annotate").Hidden = true
 	exportCmd.Flag("batch").Hidden = true
 	exportCmd.Flag("binary").Hidden = true
@@ -135,7 +136,9 @@ func init() {
 	exportCmd.Flag("only-install-project").Hidden = true
 	exportCmd.Flag("only-install-workspace").Hidden = true
 	exportCmd.Flag("pre").Hidden = true
+
 	rootCmd.AddCommand(exportCmd)
+
 	carapace.Gen(exportCmd).FlagCompletion(carapace.ActionMap{
 		"batch":         carapace.ActionFiles(),
 		"extra":         uv.ActionExtras(),

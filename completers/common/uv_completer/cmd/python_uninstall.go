@@ -17,9 +17,12 @@ func init() {
 
 	python_uninstallCmd.Flags().Bool("all", false, "Uninstall all managed Python versions")
 	python_uninstallCmd.Flags().StringP("install-dir", "i", "", "The directory where the Python was installed")
+
 	pythonCmd.AddCommand(python_uninstallCmd)
+
 	carapace.Gen(python_uninstallCmd).FlagCompletion(carapace.ActionMap{
 		"install-dir": carapace.ActionDirectories(),
 	})
+
 	carapace.Gen(python_uninstallCmd).PositionalAnyCompletion(uv.ActionPythonInstallations(uv.InstallationsOpts{InstalledOnly: true}))
 }

@@ -80,6 +80,7 @@ func init() {
 	tool_runCmd.Flags().StringSliceP("with", "w", nil, "Run with the given packages installed")
 	tool_runCmd.Flags().StringSlice("with-editable", nil, "Run with the given packages installed in editable mode")
 	tool_runCmd.Flags().StringSlice("with-requirements", nil, "Run with the packages listed in the given files")
+
 	tool_runCmd.Flag("binary").Hidden = true
 	tool_runCmd.Flag("build").Hidden = true
 	tool_runCmd.Flag("build-constraint").Hidden = true
@@ -98,7 +99,9 @@ func init() {
 	tool_runCmd.Flag("override").Hidden = true
 	tool_runCmd.Flag("pre").Hidden = true
 	tool_runCmd.Flag("show-resolution").Hidden = true
+
 	toolCmd.AddCommand(tool_runCmd)
+
 	carapace.Gen(tool_runCmd).FlagCompletion(carapace.ActionMap{
 		"build-constraint":  carapace.ActionFiles(),
 		"build-constraints": carapace.ActionFiles(),
@@ -179,5 +182,6 @@ func init() {
 		"with-editable":     carapace.ActionDirectories(),
 		"with-requirements": carapace.ActionFiles(),
 	})
+
 	carapace.Gen(tool_runCmd).PositionalCompletion(carapace.Batch(uv.ActionTools(), pip.ActionPackageSearch()).ToA())
 }

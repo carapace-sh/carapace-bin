@@ -31,14 +31,18 @@ func init() {
 	python_installCmd.Flags().Bool("registry", false, "Register the Python installation in the Windows registry")
 	python_installCmd.Flags().BoolP("reinstall", "r", false, "Reinstall the requested Python version, if it's already installed")
 	python_installCmd.Flags().BoolP("upgrade", "U", false, "Upgrade existing Python installations to the latest patch version")
+
 	python_installCmd.Flag("bin").Hidden = true
 	python_installCmd.Flag("compile").Hidden = true
 	python_installCmd.Flag("no-compile").Hidden = true
 	python_installCmd.Flag("no-compile-bytecode").Hidden = true
 	python_installCmd.Flag("registry").Hidden = true
+
 	pythonCmd.AddCommand(python_installCmd)
+
 	carapace.Gen(python_installCmd).FlagCompletion(carapace.ActionMap{
 		"install-dir": carapace.ActionDirectories(),
 	})
+
 	carapace.Gen(python_installCmd).PositionalAnyCompletion(uv.ActionPythonInstallations(uv.InstallationsOpts{}))
 }

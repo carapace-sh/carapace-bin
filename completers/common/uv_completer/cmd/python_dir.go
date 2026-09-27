@@ -15,5 +15,6 @@ func init() {
 	carapace.Gen(python_dirCmd).Standalone()
 
 	python_dirCmd.Flags().Bool("bin", false, "Show the directory into which `uv python` will install Python executables.")
+
 	pythonCmd.AddCommand(python_dirCmd)
 }

@@ -16,5 +16,6 @@ func init() {
 
 	workspace_listCmd.Flags().Bool("paths", false, "Show paths instead of names")
 	workspace_listCmd.Flags().Bool("scripts", false, "List all standalone scripts with inline metadata in the workspace")
+
 	workspaceCmd.AddCommand(workspace_listCmd)
 }

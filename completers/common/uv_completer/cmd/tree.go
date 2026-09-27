@@ -75,6 +75,7 @@ func init() {
 	treeCmd.Flags().BoolP("upgrade", "U", false, "Allow package upgrades, ignoring pinned versions in any existing output file. Implies `--refresh`")
 	treeCmd.Flags().StringSlice("upgrade-group", nil, "Allow upgrades for all packages in a dependency group, ignoring pinned versions in any existing output file")
 	treeCmd.Flags().StringSliceP("upgrade-package", "P", nil, "Allow upgrades for a specific package, ignoring pinned versions in any existing output file. Implies `--refresh-package`")
+
 	treeCmd.Flag("binary").Hidden = true
 	treeCmd.Flag("build").Hidden = true
 	treeCmd.Flag("build-isolation").Hidden = true
@@ -85,7 +86,9 @@ func init() {
 	treeCmd.Flag("no-upgrade").Hidden = true
 	treeCmd.Flag("pre").Hidden = true
 	treeCmd.Flag("reverse").Hidden = true
+
 	rootCmd.AddCommand(treeCmd)
+
 	carapace.Gen(treeCmd).FlagCompletion(carapace.ActionMap{
 		"fork-strategy": uv.ActionForkStrategies(),
 		"format": carapace.ActionValuesDescribed(

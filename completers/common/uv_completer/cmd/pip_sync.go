@@ -84,6 +84,7 @@ func init() {
 	pip_syncCmd.Flags().String("torch-backend", "", "The backend to use when fetching packages in the PyTorch ecosystem (e.g., `cpu`, `cu126`, or `auto`)")
 	pip_syncCmd.Flags().Bool("user", false, "")
 	pip_syncCmd.Flags().Bool("verify-hashes", false, "")
+
 	pip_syncCmd.Flag("ask").Hidden = true
 	pip_syncCmd.Flag("build").Hidden = true
 	pip_syncCmd.Flag("build-constraint").Hidden = true
@@ -107,7 +108,9 @@ func init() {
 	pip_syncCmd.Flag("python-executable").Hidden = true
 	pip_syncCmd.Flag("user").Hidden = true
 	pip_syncCmd.Flag("verify-hashes").Hidden = true
+
 	pipCmd.AddCommand(pip_syncCmd)
+
 	carapace.Gen(pip_syncCmd).FlagCompletion(carapace.ActionMap{
 		"build-constraint":  carapace.ActionFiles(),
 		"build-constraints": carapace.ActionFiles(),
@@ -179,5 +182,6 @@ func init() {
 			"xpu", "Use the PyTorch index for Intel XPU",
 		),
 	})
+
 	carapace.Gen(pip_syncCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

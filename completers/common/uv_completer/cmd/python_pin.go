@@ -22,8 +22,11 @@ func init() {
 	python_pinCmd.Flags().String("python-downloads-json-url", "", "URL pointing to JSON of custom Python installations")
 	python_pinCmd.Flags().Bool("resolved", false, "Write the resolved Python interpreter path instead of the request")
 	python_pinCmd.Flags().Bool("rm", false, "Remove the Python version pin")
+
 	python_pinCmd.Flag("no-resolved").Hidden = true
 	python_pinCmd.Flag("no-workspace").Hidden = true
+
 	pythonCmd.AddCommand(python_pinCmd)
+
 	carapace.Gen(python_pinCmd).PositionalCompletion(uv.ActionPythonInstallations(uv.InstallationsOpts{InstalledOnly: true}))
 }

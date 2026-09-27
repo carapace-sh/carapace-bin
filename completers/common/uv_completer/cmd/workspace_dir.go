@@ -15,5 +15,6 @@ func init() {
 	carapace.Gen(workspace_dirCmd).Standalone()
 
 	workspace_dirCmd.Flags().String("package", "", "Display the path to a specific package in the workspace")
+
 	workspaceCmd.AddCommand(workspace_dirCmd)
 }

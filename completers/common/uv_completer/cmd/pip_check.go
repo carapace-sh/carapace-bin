@@ -20,8 +20,11 @@ func init() {
 	pip_checkCmd.Flags().String("python-platform", "", "The platform for which packages should be checked")
 	pip_checkCmd.Flags().String("python-version", "", "The Python version against which packages should be checked")
 	pip_checkCmd.Flags().Bool("system", false, "Check packages in the system Python environment")
+
 	pip_checkCmd.Flag("no-system").Hidden = true
+
 	pipCmd.AddCommand(pip_checkCmd)
+
 	carapace.Gen(pip_checkCmd).FlagCompletion(carapace.ActionMap{
 		"python":          uv.ActionPythonInstallations(uv.InstallationsOpts{}),
 		"python-platform": uv.ActionPythonPlatforms(),

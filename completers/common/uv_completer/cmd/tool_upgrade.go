@@ -61,6 +61,7 @@ func init() {
 	tool_upgradeCmd.Flags().BoolP("upgrade", "U", false, "Allow package upgrades, ignoring pinned versions in any existing output file. Implies `--refresh`")
 	tool_upgradeCmd.Flags().StringSlice("upgrade-group", nil, "Allow upgrades for all packages in a dependency group, ignoring pinned versions in any existing output file")
 	tool_upgradeCmd.Flags().StringSliceP("upgrade-package", "P", nil, "Allow upgrades for a specific package, ignoring pinned versions in any existing output file. Implies `--refresh-package`")
+
 	tool_upgradeCmd.Flag("binary").Hidden = true
 	tool_upgradeCmd.Flag("build").Hidden = true
 	tool_upgradeCmd.Flag("build-isolation").Hidden = true
@@ -75,7 +76,9 @@ func init() {
 	tool_upgradeCmd.Flag("upgrade").Hidden = true
 	tool_upgradeCmd.Flag("upgrade-group").Hidden = true
 	tool_upgradeCmd.Flag("upgrade-package").Hidden = true
+
 	toolCmd.AddCommand(tool_upgradeCmd)
+
 	carapace.Gen(tool_upgradeCmd).FlagCompletion(carapace.ActionMap{
 		"fork-strategy":    uv.ActionForkStrategies(),
 		"index-strategy":   uv.ActionIndexStrategies(),
@@ -86,5 +89,6 @@ func init() {
 		"python-platform":  uv.ActionPythonPlatforms(),
 		"resolution":       uv.ActionResolutions(),
 	})
+
 	carapace.Gen(tool_upgradeCmd).PositionalAnyCompletion(uv.ActionTools())
 }

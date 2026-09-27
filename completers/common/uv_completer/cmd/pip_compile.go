@@ -112,6 +112,7 @@ func init() {
 	pip_compileCmd.Flags().BoolP("upgrade", "U", false, "Allow package upgrades, ignoring pinned versions in any existing output file. Implies `--refresh`")
 	pip_compileCmd.Flags().StringSlice("upgrade-group", nil, "Allow upgrades for all packages in a dependency group, ignoring pinned versions in any existing output file")
 	pip_compileCmd.Flags().StringSliceP("upgrade-package", "P", nil, "Allow upgrades for a specific package, ignoring pinned versions in any existing output file. Implies `--refresh-package`")
+
 	pip_compileCmd.Flag("allow-unsafe").Hidden = true
 	pip_compileCmd.Flag("annotate").Hidden = true
 	pip_compileCmd.Flag("build").Hidden = true
@@ -152,7 +153,9 @@ func init() {
 	pip_compileCmd.Flag("strip-extras").Hidden = true
 	pip_compileCmd.Flag("strip-markers").Hidden = true
 	pip_compileCmd.Flag("unsafe-package").Hidden = true
+
 	pipCmd.AddCommand(pip_compileCmd)
+
 	carapace.Gen(pip_compileCmd).FlagCompletion(carapace.ActionMap{
 		"annotation-style": carapace.ActionValuesDescribed(
 			"line", "Render the annotations on a single, comma-separated line",
@@ -238,5 +241,6 @@ func init() {
 			"xpu", "Use the PyTorch index for Intel XPU",
 		),
 	})
+
 	carapace.Gen(pip_compileCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

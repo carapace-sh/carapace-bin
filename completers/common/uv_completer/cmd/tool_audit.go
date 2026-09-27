@@ -20,7 +20,9 @@ func init() {
 	tool_auditCmd.Flags().String("output-format", "text", "Select the output format")
 	tool_auditCmd.Flags().String("service-format", "osv", "The service format to use for vulnerability lookups")
 	tool_auditCmd.Flags().String("service-url", "", "The URL to vulnerability service API endpoint")
+
 	toolCmd.AddCommand(tool_auditCmd)
+
 	carapace.Gen(tool_auditCmd).FlagCompletion(carapace.ActionMap{
 		"output-format": carapace.ActionValuesDescribed(
 			"text", "Display the result in a human-readable format",

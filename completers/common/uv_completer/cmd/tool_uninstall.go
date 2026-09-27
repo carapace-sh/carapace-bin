@@ -16,6 +16,8 @@ func init() {
 	carapace.Gen(tool_uninstallCmd).Standalone()
 
 	tool_uninstallCmd.Flags().Bool("all", false, "Uninstall all tools")
+
 	toolCmd.AddCommand(tool_uninstallCmd)
+
 	carapace.Gen(tool_uninstallCmd).PositionalAnyCompletion(uv.ActionTools())
 }

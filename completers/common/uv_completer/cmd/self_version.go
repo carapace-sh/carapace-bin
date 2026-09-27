@@ -16,7 +16,9 @@ func init() {
 
 	self_versionCmd.Flags().String("output-format", "text", "")
 	self_versionCmd.Flags().Bool("short", false, "Only print the version")
+
 	selfCmd.AddCommand(self_versionCmd)
+
 	carapace.Gen(self_versionCmd).FlagCompletion(carapace.ActionMap{
 		"output-format": carapace.ActionValuesDescribed(
 			"text", "Display the version as plain text",

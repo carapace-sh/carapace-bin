@@ -19,7 +19,9 @@ func init() {
 	auth_loginCmd.Flags().String("password", "", "The password to use for the service")
 	auth_loginCmd.Flags().StringP("token", "t", "", "The token to use for the service")
 	auth_loginCmd.Flags().StringP("username", "u", "", "The username to use for the service")
+
 	authCmd.AddCommand(auth_loginCmd)
+
 	carapace.Gen(auth_loginCmd).FlagCompletion(carapace.ActionMap{
 		"keyring-provider": uv.ActionKeyringProviders(),
 	})

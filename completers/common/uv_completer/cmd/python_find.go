@@ -23,11 +23,15 @@ func init() {
 	python_findCmd.Flags().String("script", "", "Find the environment for a Python script, rather than the current project")
 	python_findCmd.Flags().Bool("show-version", false, "Show the Python version that would be used instead of the path to the interpreter")
 	python_findCmd.Flags().Bool("system", false, "Only find system Python interpreters")
+
 	python_findCmd.Flag("no-system").Hidden = true
 	python_findCmd.Flag("no_workspace").Hidden = true
+
 	pythonCmd.AddCommand(python_findCmd)
+
 	carapace.Gen(python_findCmd).FlagCompletion(carapace.ActionMap{
 		"script": carapace.ActionFiles(),
 	})
+
 	carapace.Gen(python_findCmd).PositionalCompletion(uv.ActionPythonInstallations(uv.InstallationsOpts{InstalledOnly: true}))
 }

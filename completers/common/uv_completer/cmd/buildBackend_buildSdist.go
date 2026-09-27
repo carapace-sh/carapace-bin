@@ -15,5 +15,6 @@ func init() {
 	carapace.Gen(buildBackend_buildSdistCmd).Standalone()
 
 	buildBackendCmd.AddCommand(buildBackend_buildSdistCmd)
+
 	carapace.Gen(buildBackend_buildSdistCmd).PositionalCompletion(carapace.ActionFiles())
 }

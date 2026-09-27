@@ -30,6 +30,7 @@ func init() {
 	generateShellCompletionCmd.Flags().CountP("quiet", "q", "")
 	generateShellCompletionCmd.Flags().CountP("verbose", "v", "")
 	generateShellCompletionCmd.Flags().BoolP("version", "V", false, "")
+
 	generateShellCompletionCmd.Flag("cache-dir").Hidden = true
 	generateShellCompletionCmd.Flag("color").Hidden = true
 	generateShellCompletionCmd.Flag("config-file").Hidden = true
@@ -44,7 +45,9 @@ func init() {
 	generateShellCompletionCmd.Flag("quiet").Hidden = true
 	generateShellCompletionCmd.Flag("verbose").Hidden = true
 	generateShellCompletionCmd.Flag("version").Hidden = true
+
 	rootCmd.AddCommand(generateShellCompletionCmd)
+
 	carapace.Gen(generateShellCompletionCmd).PositionalCompletion(carapace.ActionValues(
 		"bash",
 		"elvish",

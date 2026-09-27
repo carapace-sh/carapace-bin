@@ -48,6 +48,7 @@ func init() {
 	venvCmd.Flags().Bool("seed", false, "Install seed packages (one or more of: `pip`, `setuptools`, and `wheel`) into the virtual environment [env: UV_VENV_SEED=]")
 	venvCmd.Flags().Bool("system", false, "Ignore virtual environments when searching for the Python interpreter")
 	venvCmd.Flags().Bool("system-site-packages", false, "Give the virtual environment access to the system site packages directory")
+
 	venvCmd.Flag("no-clear").Hidden = true
 	venvCmd.Flag("no-pip").Hidden = true
 	venvCmd.Flag("no-refresh").Hidden = true
@@ -58,12 +59,15 @@ func init() {
 	venvCmd.Flag("no-wheel").Hidden = true
 	venvCmd.Flag("no-workspace").Hidden = true
 	venvCmd.Flag("system").Hidden = true
+
 	rootCmd.AddCommand(venvCmd)
+
 	carapace.Gen(venvCmd).FlagCompletion(carapace.ActionMap{
 		"index-strategy":   uv.ActionIndexStrategies(),
 		"keyring-provider": uv.ActionKeyringProviders(),
 		"link-mode":        uv.ActionLinkModes(),
 		"python":           uv.ActionPythonInstallations(uv.InstallationsOpts{}),
 	})
+
 	carapace.Gen(venvCmd).PositionalCompletion(carapace.ActionDirectories())
 }

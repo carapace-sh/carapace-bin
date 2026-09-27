@@ -24,12 +24,16 @@ func init() {
 	python_upgradeCmd.Flags().String("pypy-mirror", "", "Set the URL to use as the source for downloading PyPy installations")
 	python_upgradeCmd.Flags().String("python-downloads-json-url", "", "URL pointing to JSON of custom Python installations")
 	python_upgradeCmd.Flags().BoolP("reinstall", "r", false, "Reinstall the latest Python patch, if it's already installed")
+
 	python_upgradeCmd.Flag("compile").Hidden = true
 	python_upgradeCmd.Flag("no-compile").Hidden = true
 	python_upgradeCmd.Flag("no-compile-bytecode").Hidden = true
+
 	pythonCmd.AddCommand(python_upgradeCmd)
+
 	carapace.Gen(python_upgradeCmd).FlagCompletion(carapace.ActionMap{
 		"install-dir": carapace.ActionDirectories(),
 	})
+
 	carapace.Gen(python_upgradeCmd).PositionalAnyCompletion(uv.ActionPythonInstallations(uv.InstallationsOpts{InstalledOnly: true}))
 }

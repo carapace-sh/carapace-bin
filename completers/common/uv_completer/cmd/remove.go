@@ -73,6 +73,7 @@ func init() {
 	removeCmd.Flags().BoolP("upgrade", "U", false, "Allow package upgrades, ignoring pinned versions in any existing output file. Implies `--refresh`")
 	removeCmd.Flags().StringSlice("upgrade-group", nil, "Allow upgrades for all packages in a dependency group, ignoring pinned versions in any existing output file")
 	removeCmd.Flags().StringSliceP("upgrade-package", "P", nil, "Allow upgrades for a specific package, ignoring pinned versions in any existing output file. Implies `--refresh-package`")
+
 	removeCmd.Flag("binary").Hidden = true
 	removeCmd.Flag("build").Hidden = true
 	removeCmd.Flag("build-isolation").Hidden = true
@@ -88,7 +89,9 @@ func init() {
 	removeCmd.Flag("no-reinstall").Hidden = true
 	removeCmd.Flag("no-upgrade").Hidden = true
 	removeCmd.Flag("pre").Hidden = true
+
 	rootCmd.AddCommand(removeCmd)
+
 	carapace.Gen(removeCmd).FlagCompletion(carapace.ActionMap{
 		"fork-strategy":    uv.ActionForkStrategies(),
 		"group":            uv.ActionDependencyGroups(),
@@ -100,5 +103,6 @@ func init() {
 		"resolution":       uv.ActionResolutions(),
 		"script":           carapace.ActionFiles(),
 	})
+
 	carapace.Gen(removeCmd).PositionalAnyCompletion(uv.ActionProjectDependencies())
 }

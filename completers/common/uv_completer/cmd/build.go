@@ -73,6 +73,7 @@ func init() {
 	buildCmd.Flags().StringSliceP("upgrade-package", "P", nil, "Allow upgrades for a specific package, ignoring pinned versions in any existing output file. Implies `--refresh-package`")
 	buildCmd.Flags().Bool("verify-hashes", false, "")
 	buildCmd.Flags().Bool("wheel", false, "Build a binary distribution (\"wheel\") from the given directory")
+
 	buildCmd.Flag("all").Hidden = true
 	buildCmd.Flag("binary").Hidden = true
 	buildCmd.Flag("build").Hidden = true
@@ -88,7 +89,9 @@ func init() {
 	buildCmd.Flag("pre").Hidden = true
 	buildCmd.Flag("skip-dependency-check").Hidden = true
 	buildCmd.Flag("verify-hashes").Hidden = true
+
 	rootCmd.AddCommand(buildCmd)
+
 	carapace.Gen(buildCmd).FlagCompletion(carapace.ActionMap{
 		"build-constraint":  carapace.ActionFiles(),
 		"build-constraints": carapace.ActionFiles(),
@@ -101,5 +104,6 @@ func init() {
 		"python":            uv.ActionPythonInstallations(uv.InstallationsOpts{}),
 		"resolution":        uv.ActionResolutions(),
 	})
+
 	carapace.Gen(buildCmd).PositionalCompletion(carapace.ActionDirectories())
 }

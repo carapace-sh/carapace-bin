@@ -54,6 +54,7 @@ func init() {
 	rootCmd.PersistentFlags().StringSlice("trusted-host", nil, "Allow insecure connections to a host")
 	rootCmd.PersistentFlags().CountP("verbose", "v", "Use verbose output")
 	rootCmd.Flags().BoolP("version", "V", false, "Display the uv version")
+
 	rootCmd.Flag("allow-python-downloads").Hidden = true
 	rootCmd.Flag("isolated").Hidden = true
 	rootCmd.Flag("native-tls").Hidden = true
@@ -71,6 +72,7 @@ func init() {
 	rootCmd.Flag("python-preference").Hidden = true
 	rootCmd.Flag("show-settings").Hidden = true
 	rootCmd.Flag("trusted-host").Hidden = true
+
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"cache-dir": carapace.ActionDirectories(),
 		"color": carapace.ActionValuesDescribed(

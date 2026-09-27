@@ -24,14 +24,18 @@ func init() {
 	pip_showCmd.Flags().Bool("strict", false, "Validate the Python environment, to detect packages with missing dependencies and other issues")
 	pip_showCmd.Flags().Bool("system", false, "Show a package in the system Python environment")
 	pip_showCmd.Flags().StringP("target", "t", "", "Show a package from the specified `--target` directory")
+
 	pip_showCmd.Flag("disable-pip-version-check").Hidden = true
 	pip_showCmd.Flag("no-strict").Hidden = true
 	pip_showCmd.Flag("no-system").Hidden = true
+
 	pipCmd.AddCommand(pip_showCmd)
+
 	carapace.Gen(pip_showCmd).FlagCompletion(carapace.ActionMap{
 		"prefix": carapace.ActionDirectories(),
 		"python": uv.ActionPythonInstallations(uv.InstallationsOpts{}),
 		"target": carapace.ActionDirectories(),
 	})
+
 	carapace.Gen(pip_showCmd).PositionalAnyCompletion(uv.ActionInstalledPackages())
 }

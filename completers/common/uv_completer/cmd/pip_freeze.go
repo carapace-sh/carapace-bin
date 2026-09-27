@@ -26,10 +26,13 @@ func init() {
 	pip_freezeCmd.Flags().Bool("strict", false, "Validate the Python environment, to detect packages with missing dependencies and other issues")
 	pip_freezeCmd.Flags().Bool("system", false, "List packages in the system Python environment")
 	pip_freezeCmd.Flags().StringP("target", "t", "", "List packages from the specified `--target` directory")
+
 	pip_freezeCmd.Flag("disable-pip-version-check").Hidden = true
 	pip_freezeCmd.Flag("no-strict").Hidden = true
 	pip_freezeCmd.Flag("no-system").Hidden = true
+
 	pipCmd.AddCommand(pip_freezeCmd)
+
 	carapace.Gen(pip_freezeCmd).FlagCompletion(carapace.ActionMap{
 		"path":   carapace.ActionDirectories(),
 		"prefix": carapace.ActionDirectories(),
