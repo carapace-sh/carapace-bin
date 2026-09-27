@@ -146,5 +146,10 @@ func init() {
 		"with-requirements": carapace.ActionFiles(),
 	})
 
-	carapace.Gen(runCmd).PositionalCompletion(carapace.Batch(uv.ActionScripts(), carapace.ActionExecutables()).ToA())
+	carapace.Gen(runCmd).PositionalCompletion(
+		carapace.Batch(
+			uv.ActionScripts(),
+			carapace.ActionExecutables(),
+		).ToA(),
+	)
 }

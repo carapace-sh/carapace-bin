@@ -133,5 +133,10 @@ func init() {
 		"with-requirements": carapace.ActionFiles(),
 	})
 
-	carapace.Gen(tool_uvxCmd).PositionalCompletion(carapace.Batch(uv.ActionTools(), pip.ActionPackageSearch()).ToA())
+	carapace.Gen(tool_uvxCmd).PositionalCompletion(
+		carapace.Batch(
+			uv.ActionTools(),
+			pip.ActionPackageSearch(),
+		).ToA(),
+	)
 }
