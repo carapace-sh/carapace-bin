@@ -8,6 +8,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "uv",
 	Short: "An extremely fast Python package manager.",
+	Long:  "https://github.com/astral-sh/uv",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

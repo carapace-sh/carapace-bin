@@ -33,11 +33,6 @@ func Uid(host string, opts ...string) func(s string, uc uid.Context) (*url.URL, 
 	}
 }
 
-type tool struct {
-	Name    string
-	Version string
-}
-
 // ActionTools completes installed tools
 //
 //	ruff (0.5.0)
