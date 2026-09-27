@@ -27,10 +27,9 @@ func init() {
 	auditCmd.Flags().Bool("optional", false, "Include \"optionalDependencies\"")
 	auditCmd.Flags().BoolP("prod", "P", false, "Only audit \"dependencies\" and \"optionalDependencies\"")
 	auditCmd.Flags().Bool("production", false, "Only audit \"dependencies\" and \"optionalDependencies\"")
+	rootCmd.AddCommand(auditCmd)
 
 	carapace.Gen(auditCmd).FlagCompletion(carapace.ActionMap{
 		"audit-level": carapace.ActionValues("info", "low", "moderate", "high", "critical"),
 	})
-
-	rootCmd.AddCommand(auditCmd)
 }

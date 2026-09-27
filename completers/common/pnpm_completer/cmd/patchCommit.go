@@ -16,6 +16,7 @@ func init() {
 
 	patchCommitCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	patchCommitCmd.Flags().String("patches-dir", "", "The generated patch file will be saved to this directory")
+	rootCmd.AddCommand(patchCommitCmd)
 
 	carapace.Gen(patchCommitCmd).FlagCompletion(carapace.ActionMap{
 		"patches-dir": carapace.ActionDirectories(),
@@ -24,6 +25,4 @@ func init() {
 	carapace.Gen(patchCommitCmd).PositionalCompletion(
 		carapace.ActionDirectories(),
 	)
-
-	rootCmd.AddCommand(patchCommitCmd)
 }

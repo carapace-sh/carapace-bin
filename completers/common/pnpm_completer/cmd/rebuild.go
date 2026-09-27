@@ -7,10 +7,9 @@ import (
 )
 
 var rebuildCmd = &cobra.Command{
-	Use:     "rebuild",
-	Short:   "Rebuild a package",
-	Aliases: []string{"rb"},
-	Run:     func(cmd *cobra.Command, args []string) {},
+	Use:   "rebuild",
+	Short: "Rebuild a package",
+	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

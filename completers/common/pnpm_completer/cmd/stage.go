@@ -28,16 +28,16 @@ func init() {
 	stageCmd.Flags().String("otp", "", "One-time password for two-factor-authenticated registries")
 	stageCmd.Flags().Bool("provenance", false, "Generate a provenance attestation for the published package")
 	stageCmd.Flags().String("publish-branch", "", "The branch publishing is allowed from. Defaults to `master` / `main`")
+	stageCmd.Flags().String("publish-wait-timeout", "", "Wait up to this many milliseconds per package for registry availability. A batch upload uses one timeout per registry group. Zero disables waiting (default)")
 	stageCmd.Flags().String("registry", "", "The base URL of the npm registry")
 	stageCmd.Flags().Bool("report-summary", false, "Recursive only: write a `pnpm-publish-summary.json` report listing the packages that were published")
 	stageCmd.Flags().Bool("skip-manifest-obfuscation", false, "Keep the original `packageManager` field and publish-lifecycle scripts in the published manifest instead of stripping them")
 	stageCmd.Flags().String("tag", "", "Register the published package under this tag instead of `latest`")
 	stageCmd.Flag("no-embed-readme").Hidden = true
 	stageCmd.Flag("no-skip-manifest-obfuscation").Hidden = true
+	rootCmd.AddCommand(stageCmd)
 
 	carapace.Gen(stageCmd).FlagCompletion(carapace.ActionMap{
 		"access": carapace.ActionValues("public", "restricted"),
 	})
-
-	rootCmd.AddCommand(stageCmd)
 }

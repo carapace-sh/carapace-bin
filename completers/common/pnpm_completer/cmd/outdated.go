@@ -28,11 +28,10 @@ func init() {
 	outdatedCmd.Flags().BoolP("prod", "P", false, "Check only \"dependencies\" and \"optionalDependencies\"")
 	outdatedCmd.Flags().Bool("production", false, "Check only \"dependencies\" and \"optionalDependencies\"")
 	outdatedCmd.Flags().String("sort-by", "", "Sorting method. Currently only `name` is supported; the default sorts by the size of the version change, then by name")
+	rootCmd.AddCommand(outdatedCmd)
 
 	carapace.Gen(outdatedCmd).FlagCompletion(carapace.ActionMap{
 		"format":  carapace.ActionValues("table", "list", "json"),
 		"sort-by": carapace.ActionValues("name"),
 	})
-
-	rootCmd.AddCommand(outdatedCmd)
 }

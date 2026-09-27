@@ -20,9 +20,11 @@ func init() {
 	removeCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	removeCmd.Flags().String("lockfile-dir", "", "The directory in which `pnpm-lock.yaml` is created. Several projects may share a single lockfile")
 	removeCmd.Flags().Bool("lockfile-only", false, "Dependencies are not removed from `node_modules`. Only the manifest and `pnpm-lock.yaml` are updated")
+	removeCmd.Flags().Bool("no-trust-lockfile", false, "Verify the lockfile against supply-chain policies even when the configuration trusts it")
 	removeCmd.Flags().BoolP("save-dev", "D", false, "Remove the dependency only from \"devDependencies\"")
 	removeCmd.Flags().BoolP("save-optional", "O", false, "Remove the dependency only from \"optionalDependencies\"")
 	removeCmd.Flags().BoolP("save-prod", "P", false, "Remove the dependency only from \"dependencies\"")
+	removeCmd.Flags().Bool("trust-lockfile", false, "Skip verifying the lockfile against supply-chain policies")
 	rootCmd.AddCommand(removeCmd)
 
 	carapace.Gen(removeCmd).PositionalAnyCompletion(

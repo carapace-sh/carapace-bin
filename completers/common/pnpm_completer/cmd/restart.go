@@ -7,7 +7,7 @@ import (
 
 var restartCmd = &cobra.Command{
 	Use:   "restart",
-	Short: "Restarts a package. Runs \"stop\", \"restart\", and \"start\" scripts, and associated pre- and post- scripts",
+	Short: "Restarts a package. Runs \"stop\", \"restart\" (if present), and \"start\" scripts, and associated pre- and post- scripts",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

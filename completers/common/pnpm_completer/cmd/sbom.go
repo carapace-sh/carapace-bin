@@ -30,11 +30,10 @@ func init() {
 	sbomCmd.Flags().String("sbom-type", "library", "The component type for the root package (default: library)")
 	sbomCmd.Flags().Bool("split", false, "Generate a separate SBOM for each matched workspace package")
 	sbomCmd.MarkFlagRequired("sbom-format")
+	rootCmd.AddCommand(sbomCmd)
 
 	carapace.Gen(sbomCmd).FlagCompletion(carapace.ActionMap{
 		"sbom-format": carapace.ActionValues("cyclonedx", "spdx"),
 		"sbom-type":   carapace.ActionValues("library", "application"),
 	})
-
-	rootCmd.AddCommand(sbomCmd)
 }

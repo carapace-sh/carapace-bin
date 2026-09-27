@@ -7,7 +7,7 @@ import (
 
 var installTestCmd = &cobra.Command{
 	Use:     "install-test",
-	Short:   "Runs a `pnpm install` followed immediately by a `pnpm test`. It takes exactly the same arguments as `pnpm install`",
+	Short:   "Runs a `pnpm install` followed immediately by a `pnpm test`. Accepts the same arguments as `pnpm install`, plus `--no-bail` to continue running workspace tests after a failure",
 	Aliases: []string{"it"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
@@ -15,8 +15,10 @@ var installTestCmd = &cobra.Command{
 func init() {
 	carapace.Gen(installTestCmd).Standalone()
 
+	installTestCmd.Flags().StringSlice("allow-build", nil, "Package names allowed to run lifecycle (build) scripts during this install, appended to `allowBuilds`. Prefix a name with `!` to deny its scripts instead. May be repeated")
+	installTestCmd.Flags().Bool("auto-dedupe", false, "Deduplicate compatible dependency versions during installation")
 	installTestCmd.Flags().StringSlice("cpu", nil, "CPU architectures whose platform-specific optional dependencies should be installed. Repeat or comma-separate for multiple values")
-	installTestCmd.Flags().BoolP("dev", "D", false, "Install only devDependencies. Regular dependencies are skipped, and removed if already installed, regardless of `NODE_ENV`")
+	installTestCmd.Flags().BoolP("dev", "D", false, "Install only devDependencies. Regular dependencies are skipped, and removed if already installed")
 	installTestCmd.Flags().Bool("dry-run", false, "Show what an install would change without writing anything to disk")
 	installTestCmd.Flags().String("fetch-min-speed-ki-bps", "", "Warn when a tarball download's average speed is below this many KiB/s")
 	installTestCmd.Flags().String("fetch-timeout", "", "Per-request network timeout, in milliseconds")
@@ -35,6 +37,7 @@ func init() {
 	installTestCmd.Flags().Bool("merge-git-branch-lockfiles", false, "Fold every per-branch lockfile (`pnpm-lock.<branch>.yaml`, written under the `gitBranchLockfile` setting) into `pnpm-lock.yaml` and delete them")
 	installTestCmd.Flags().StringSlice("merge-git-branch-lockfiles-branch-pattern", nil, "Glob patterns naming the branches that merge the per-branch lockfiles, so a mainline branch does not have to pass `--merge-git-branch-lockfiles` by hand")
 	installTestCmd.Flags().String("network-concurrency", "", "Maximum number of concurrent network requests during install")
+	installTestCmd.Flags().Bool("no-auto-dedupe", false, "Disable automatic deduplication configured in pnpm-workspace.yaml")
 	installTestCmd.Flags().Bool("no-frozen-lockfile", false, "Allow the lockfile to be updated, overriding a `frozenLockfile: true` setting")
 	installTestCmd.Flags().Bool("no-frozen-store", false, "Allow store writes even when the configuration enables the read-only store")
 	installTestCmd.Flags().Bool("no-ignore-scripts", false, "Run lifecycle scripts even when the configuration disables them")
@@ -51,18 +54,17 @@ func init() {
 	installTestCmd.Flags().String("pnpr-server", "", "URL of a pnpr server to offload resolution and file fetching to. `node_modules` is still linked locally from the server-produced lockfile")
 	installTestCmd.Flags().Bool("prefer-frozen-lockfile", false, "Prefer the existing lockfile over re-resolving, even when the manifest may have changed")
 	installTestCmd.Flags().Bool("prefer-offline", false, "Prefer packages already in the cache over the network, even past their freshness window")
-	installTestCmd.Flags().BoolP("prod", "P", false, "Install only production dependencies. devDependencies are skipped, and removed if already installed. Takes precedence over `NODE_ENV`")
-	installTestCmd.Flags().Bool("production", false, "Install only production dependencies. devDependencies are skipped, and removed if already installed. Takes precedence over `NODE_ENV`")
+	installTestCmd.Flags().BoolP("prod", "P", false, "Install only production dependencies. devDependencies are skipped, and removed if already installed")
+	installTestCmd.Flags().Bool("production", false, "Install only production dependencies. devDependencies are skipped, and removed if already installed")
 	installTestCmd.Flags().Bool("trust-lockfile", false, "Skip verifying the lockfile against supply-chain policies")
 	installTestCmd.Flags().Bool("update-checksums", false, "Refresh the integrity checksums in `pnpm-lock.yaml` from the registry. Cannot be combined with `--frozen-lockfile`")
 	installTestCmd.Flags().String("user-agent", "", "`User-Agent` header to send on registry requests")
 	installTestCmd.Flags().Bool("verify-deps-before-run-install", false, "Run the install already requested by `verifyDepsBeforeRun` without independently short-circuiting it as up to date")
 	installTestCmd.Flag("verify-deps-before-run-install").Hidden = true
+	rootCmd.AddCommand(installTestCmd)
 
 	carapace.Gen(installTestCmd).FlagCompletion(carapace.ActionMap{
 		"lockfile-dir": carapace.ActionDirectories(),
 		"node-linker":  carapace.ActionValues("isolated", "hoisted", "pnp"),
 	})
-
-	rootCmd.AddCommand(installTestCmd)
 }

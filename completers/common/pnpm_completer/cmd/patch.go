@@ -18,6 +18,7 @@ func init() {
 	patchCmd.Flags().StringP("edit-dir", "d", "", "The package that needs to be modified will be extracted to this directory")
 	patchCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	patchCmd.Flags().Bool("ignore-existing", false, "Ignore existing patch files when patching")
+	rootCmd.AddCommand(patchCmd)
 
 	carapace.Gen(patchCmd).FlagCompletion(carapace.ActionMap{
 		"edit-dir": carapace.ActionDirectories(),
@@ -28,6 +29,4 @@ func init() {
 			return pnpm.ActionPackageSearch("")
 		}),
 	)
-
-	rootCmd.AddCommand(patchCmd)
 }

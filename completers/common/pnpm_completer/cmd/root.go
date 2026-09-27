@@ -10,7 +10,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "pnpm",
-	Short: "Experimental package manager for node.js",
+	Short: "Package manager",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
@@ -39,6 +39,7 @@ func init() {
 	rootCmd.PersistentFlags().Bool("no-bail", false, "Recursive only: keep going after a project fails")
 	rootCmd.PersistentFlags().Bool("no-color", false, "Disable colored output")
 	rootCmd.PersistentFlags().Bool("no-include-workspace-root", false, "Leave the root workspace project out of a recursive command, overriding an `includeWorkspaceRoot: true` setting")
+	rootCmd.PersistentFlags().Bool("no-progress", false, "Disable dependency and download progress output")
 	rootCmd.PersistentFlags().String("no-proxy", "", "Hosts that bypass configured proxies")
 	rootCmd.PersistentFlags().Bool("no-reporter-hide-prefix", false, "Prefix the streamed output of running scripts with the project it came from, overriding a `reporterHidePrefix: true` setting")
 	rootCmd.PersistentFlags().Bool("no-reverse", false, "Process recursive workspace projects in their normal order")
@@ -46,10 +47,11 @@ func init() {
 	rootCmd.PersistentFlags().String("npmrc-auth-file", "", "Path to an `.npmrc` to read auth settings from, overriding the default `~/.npmrc`")
 	rootCmd.PersistentFlags().Bool("parallel", false, "Run scripts in every selected workspace project concurrently, disregarding topological sorting")
 	rootCmd.PersistentFlags().String("prefix", ".", "Set working directory. Accepted anywhere on the command line, before or after the subcommand, like every other rc-option")
+	rootCmd.PersistentFlags().Bool("progress", false, "Enable dependency and download progress output")
 	rootCmd.PersistentFlags().BoolP("recursive", "r", false, "Run the command for every project in the workspace instead of only the project in `--dir`")
 	rootCmd.PersistentFlags().String("registry", "", "Base URL of the npm registry to resolve and fetch packages from. Universal rc-option: accepted on every command and layered onto the config like `--config.registry=<url>`. Commands that expose their own `--registry` still read the same value")
 	rootCmd.PersistentFlags().Bool("report-summary", false, "Recursive only: write a `pnpm-exec-summary.json` execution report")
-	rootCmd.PersistentFlags().String("reporter", "default", "Reporter output format")
+	rootCmd.PersistentFlags().String("reporter", "", "Reporter output format")
 	rootCmd.PersistentFlags().Bool("reporter-hide-prefix", false, "Omit the project prefix from the streamed output of running scripts. A `run` / `exec` option pnpm accepts anywhere on the command line, like the recursive-run flags above")
 	rootCmd.PersistentFlags().String("resume-from", "", "Recursive only: resume execution from the given package")
 	rootCmd.PersistentFlags().Bool("reverse", false, "Process recursive workspace projects in reverse order")
@@ -74,9 +76,11 @@ func init() {
 	rootCmd.Flag("no-reporter-hide-prefix").Hidden = true
 	rootCmd.Flag("no-reverse").Hidden = true
 	rootCmd.Flag("prefix").Hidden = true
+	rootCmd.Flag("progress").Hidden = true
 	rootCmd.Flag("report-summary").Hidden = true
 	rootCmd.Flag("reporter-hide-prefix").Hidden = true
 	rootCmd.Flag("resume-from").Hidden = true
+	rootCmd.Flag("store").Hidden = true
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"dir":             carapace.ActionDirectories(),
 		"filter":          pnpm.ActionFilters(),
