@@ -38,6 +38,13 @@ export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
 source <(carapace _carapace)
 ```
 
+### Bash (with ble.sh)
+
+```sh
+# ~/.bashrc (after loading ble.sh)
+source <(carapace _carapace bash-ble)
+```
+
 ### Zsh
 
 ```sh
@@ -131,7 +138,7 @@ Set all variables **before** sourcing the carapace init snippet.
 
 ### CARAPACE_BRIDGES
 
-Comma-separated implicit bridge sources. Enables completion for commands carapace lacks a native completer for, by delegating to the shell's own completion. Default order: `zsh,fish,bash,inshellisense`. See the **references/choice.md** skill for full bridge details.
+Comma-separated implicit bridge sources. Enables completion for commands carapace lacks a native completer for, by delegating to the shell's own completion. Unset by default — bridges are disabled unless this variable is set. See the **references/choice.md** skill for full bridge details.
 
 ### CARAPACE_EXCLUDES
 
@@ -180,6 +187,18 @@ Enable tooltip style. `0` = disabled (default), `1` = enabled. Only affects Powe
 ### CARAPACE_UNFILTERED
 
 Skip final filtering step. Enables fuzzy completion in Fish, but only works for (mostly) static values. `0` = disabled (default), `1` = enabled.
+
+### CARAPACE_BUILTINS
+
+Experimental: enable shell builtin groups (`bash`, `bash-ble`, `cmd`, `elvish`, `fish`, `nushell`, `oil`, `powershell`, `tcsh`, `xonsh`, `zsh`) that complete commands and functions of the respective shell. Comma-separated group names.
+
+### CARAPACE_ZSH_HASH_DIRS
+
+Zsh hash directories used for command completion.
+
+### CARAPACE_ZSH_STYLE_LIMIT
+
+Maximum number of values to style in zsh (default: `300`).
 
 ## Overlays
 

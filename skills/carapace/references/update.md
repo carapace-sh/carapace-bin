@@ -10,7 +10,7 @@ The workflow has three phases:
 2. **Identify changes** — diff the skeleton against the existing completer to find exactly what changed
 3. **Apply surgically** — edit existing files to apply only the structural changes, preserving all custom completion logic
 
-**The golden rule**: never bulk-copy codegen output over existing files. Codegen strips GroupIDs, completion actions, and completer-specific imports. Always apply changes surgically to existing files.
+**The golden rule**: never bulk-copy codegen output over existing files. Codegen only emits what the spec encodes — completion actions and completer-specific imports are always lost, and group info survives only if the spec defines `group` fields. Always apply changes surgically to existing files.
 
 ## Step 1: Scrape the New Spec
 
@@ -43,9 +43,11 @@ mcp_carapace_codegen(path="/tmp/<tool>-spec.yaml")
 The generated files contain:
 - Cobra command structs (`Use`, `Short`, `GroupID`, `Aliases`, `Hidden`)
 - Flag registrations (type, shorthand, description, default value)
-- Group definitions
+- Flag extras where applicable: `NoOptDefVal` (optional-argument flags), `Hidden = true`, and `MarkFlagRequired` calls — these don't appear as plain flag-registration lines
+- Group definitions (`AddGroup`) — only when the spec defines groups
 - Subcommand wiring (`AddCommand`)
 - `Standalone()` calls
+- A root-level `func Execute()`
 
 The generated files do **not** contain:
 - `FlagCompletion`, `PositionalCompletion`, `PositionalAnyCompletion` — all completion actions are stripped
@@ -263,5 +265,4 @@ go test -v ./cmd/...
 | **references/spec.md** | Writing YAML user specs (the source format) |
 | **references/macro.md** | Looking up macro signatures and formatting macro arguments |
 | **references/action.md** | Creating/modifying Go actions that become macros |
-| **references/man.md** | Man page documentation format and UID resolution |
-| **references/man.md** | Man page documentation format, `carapace-man update` workflow, `documentation.command`/`documentation.flag` guidelines |
+| **references/man.md** | Man page documentation format, `carapace-man` workflow, `documentation.command`/`documentation.flag` guidelines |

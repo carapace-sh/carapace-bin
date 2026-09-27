@@ -41,7 +41,7 @@ The server implements JSON-RPC 2.0 with these methods:
 | Method | Description |
 |--------|-------------|
 | `initialize` | Returns server info and capabilities |
-| `tools/list` | Returns the four tool definitions |
+| `tools/list` | Returns the tool definitions (three tools; `complete_macro` is currently disabled) |
 | `tools/call` | Executes a tool by name |
 
 Capabilities: `{tools: {}}` — only tools are supported (no resources, no prompts).
@@ -68,13 +68,13 @@ The behavior depends on which optional parameters are provided:
 
 | `executable` | `bridge` | Behavior | Confirmation |
 |-------------|----------|----------|--------------|
-| not set | not set | Default completion using `carapace` from `PATH` | Not required |
+| not set | not set | Default completion using the running carapace binary (`os.Executable()`) | Not required |
 | not set | set | Explicit bridge using `carapace <command>/<bridge> export <args...>` | Not required |
 | set | set | Custom executable with specified bridge | Required |
 
 **Mode details:**
 
-1. **Default** (no `executable`, no `bridge`): Invokes `carapace <command> export <args...>` using the carapace binary from `PATH`. This is the standard completion flow.
+1. **Default** (no `executable`, no `bridge`): Invokes `carapace <command> export <args...>` using the running carapace binary itself (`os.Executable()`), not a PATH lookup. This is the standard completion flow.
 
 2. **Bridge only** (no `executable`, `bridge` set): Uses the explicit bridge variant. Invokes `carapace <command>/<bridge> export <args...>`. For example, with `bridge: "zsh"`, it completes `tail` using zsh's completion system. The `carapace-bin/<bridge>` syntax is also supported to use an explicit bridge within carapace-bin (e.g. `bridge: "carapace-bin/cobra"`).
 
@@ -90,7 +90,7 @@ The behavior depends on which optional parameters are provided:
 - Arguments must not contain NUL bytes (`\0`)
 - `bridge` is required when `executable` is set
 
-**Response:** Plain text containing the completion output (one completion candidate per line). On error, the response has `isError: true` with the error message as text.
+**Response:** For carapace-bin invocations (default, bridge, and `carapace-bin` executable modes): plain text with the completion output (one candidate per line). For executable mode with a non-`carapace-bin` bridge: JSON-marshalled invoked action. On error, the response has `isError: true` with the error message as text.
 
 **Examples:**
 
@@ -129,7 +129,9 @@ The command name (`args[0]`) appears **twice** in the CLI form: once as `<cmd>` 
 | Executable + carapace-bin/bridge | `{"args": ["git", ""], "executable": "/p/carapace", "bridge": "carapace-bin/cobra"}` | `/p/carapace git/cobra export git ""` |
 | Executable + other bridge | `{"args": ["myapp", ""], "executable": "/p/myapp", "bridge": "cobra"}` | cobra bridge calls `/p/myapp __complete myapp ""` directly |
 
-### `complete_macro` — Macro Completion
+### `complete_macro` — Macro Completion (currently disabled)
+
+> **This tool is currently disabled** and not returned by `tools/list` ("TODO: re-enable complete_macro once macro invocation is properly implemented"). The schema below documents the intended interface for when it returns. To test a macro from the CLI instead, use `carapace --macro <name> <TAB>`.
 
 Returns context‑aware, dynamic completions for a carapace macro.
 
@@ -282,7 +284,7 @@ On error (missing path, invalid spec, codegen failure), the response has `isErro
 |----------|-------------|-------|
 | `complete_command` | `carapace <cmd> export <args...>` | Default mode; bridge/executable modes use different invocations |
 | `list_macros` | `carapace --macro` | Default mode; custom executable mode uses `<executable> _carapace macro` |
-| `complete_macro` | `carapace _carapace macro <macro> <args...>` | Invokes macro completion on current or custom executable |
+| `complete_macro` | `carapace _carapace macro <macro> <args...>` | Currently disabled in `tools/list` |
 | `codegen` | `carapace --codegen <path>` | Shells out to the same executable |
 
 ## Relationship to Other Skills

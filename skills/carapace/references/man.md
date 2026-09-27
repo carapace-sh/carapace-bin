@@ -154,7 +154,7 @@ The `./` path indirection can also point to a generated markdown file for a spec
 
 The `Describe()` function resolves a UID to its description:
 
-1. **`cmd://` scheme**: Loads the split command spec YAML and returns the command/flag documentation
+1. **`cmd://` scheme**: resolves the host (command name) against three sources in order: a user spec `~/.config/carapace/specs/<host>.yaml`, the compiled documentation database (bbolt), then the file `man/cmd/<host>/<host>.yaml`
 2. **`man://` scheme**: Looks up a system man page by name and section
 3. **Other schemes**: Loads `man/<scheme>/<host>/<host>.yaml` and looks up the key matching the UID's path
 
