@@ -7,7 +7,7 @@ import (
 
 var cacheCmd = &cobra.Command{
 	Use:   "cache",
-	Short: "manage the download cache",
+	Short: "show or clear the download cache",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

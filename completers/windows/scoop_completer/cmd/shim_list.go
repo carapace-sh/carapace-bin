@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var listCmd = &cobra.Command{
+var shim_listCmd = &cobra.Command{
 	Use:   "list",
-	Short: "list installed apps",
+	Short: "list all shims or matching shims",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(listCmd).Standalone()
-	rootCmd.AddCommand(listCmd)
+	carapace.Gen(shim_listCmd).Standalone()
+	shimCmd.AddCommand(shim_listCmd)
 }
