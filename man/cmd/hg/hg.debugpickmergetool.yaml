@@ -1,0 +1,52 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugpickmergetool
+description: examine which merge tool is chosen for specified file
+hidden: true
+flags:
+    --changedelete: emulate merging change and delete
+    -I, --include=*: include names matching the given patterns
+    -X, --exclude=*: exclude names matching the given patterns
+    -r, --rev=: check for files in this revision
+    -t, --tool=: specify merge tool
+documentation:
+    command: |
+        examine which merge tool is chosen for specified file
+
+        As described in `hg help merge-tools`, Mercurial examines
+        configurations below in this order to decide which merge tool is
+        chosen for specified file.
+
+        1. `--tool` option
+        2. `HGMERGE` environment variable
+        3. configurations in `merge-patterns` section
+        4. configuration of `ui.merge`
+        5. configurations in `merge-tools` section
+        6. `hgmerge` tool (for historical reason only)
+        7. default tool for fallback (`:merge` or `:prompt`)
+
+        This command writes out examination result in the style below::
+
+            FILE = MERGETOOL
+
+        By default, all files known in the first parent context of the
+        working directory are examined. Use file patterns and/or -I/-X
+        options to limit target files. -r/--rev is also useful to examine
+        files in another context without actual updating to it.
+
+        With --debug, this command shows warning messages while matching
+        against `merge-patterns` and so on, too. It is recommended to
+        use this option with explicit file patterns and/or -I/-X options,
+        because this option increases amount of output per file according
+        to configurations in hgrc.
+
+        With -v/--verbose, this command shows configurations below at
+        first (only if specified).
+
+        - `--tool` option
+        - `HGMERGE` environment variable
+        - configuration of `ui.merge`
+
+        If merge tool is chosen before matching against
+        `merge-patterns`, this command can't show any helpful
+        information, even with --debug. In such case, information above is
+        useful to know why a merge tool is chosen.

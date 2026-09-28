@@ -1,0 +1,33 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debug-repair-issue6528
+description: find affected revisions and repair them.
+hidden: true
+flags:
+    --from-report=: repair revisions listed in this report file
+    --paranoid: check that both detection methods do the same thing
+    --to-report=: build a report of affected revisions to this file
+    -n, --dry-run: do not perform actions, just print output
+documentation:
+    command: |
+        find affected revisions and repair them. See issue6528 for more details.
+
+        The `--to-report` and `--from-report` flags allow you to cache and reuse the
+        computation of affected revisions for a given repository across clones.
+        The report format is line-based (with empty lines ignored):
+
+        ``
+        <ascii-hex of the affected revision>,... <unencoded filelog index filename>
+        ``
+
+        There can be multiple broken revisions per filelog, they are separated by
+        a comma with no spaces. The only space is between the revision(s) and the
+        filename.
+
+        Note that this does *not* mean that this repairs future affected revisions,
+        that needs a separate fix at the exchange level that was introduced in
+        Mercurial 5.9.1.
+
+        There is a `--paranoid` flag to test that the fast implementation is correct
+        by checking it against the slow implementation. Since this matter is quite
+        urgent and testing every edge-case is probably quite costly, we use this
+        method to test on large repositories as a fuzzing method of sorts.

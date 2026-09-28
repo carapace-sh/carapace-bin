@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugrevlog
+description: -c|-m|FILE
+hidden: true
+flags:
+    --dir=: open directory manifest
+    -c, --changelog: open changelog
+    -d, --dump: dump index data
+    -m, --manifest: open manifest
+documentation:
+    command: |
+        show data and statistics about a revlog

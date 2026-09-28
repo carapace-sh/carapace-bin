@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugdownload
+description: download a resource using Mercurial logic and config
+hidden: true
+flags:
+    -o, --output=: path
+documentation:
+    command: |
+        download a resource using Mercurial logic and config

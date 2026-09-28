@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugcreatestreamclonebundle
+description: FILE
+hidden: true
+documentation:
+    command: |
+        create a stream clone bundle file
+
+        Stream bundles are special bundles that are essentially archives of
+        revlog files. They are commonly used for cloning very quickly.
+
+        This command creates a "version 1" stream clone, which is deprecated in
+        favor of newer versions of the stream protocol. Bundles using such newer
+         versions can be generated using the `hg bundle` command.

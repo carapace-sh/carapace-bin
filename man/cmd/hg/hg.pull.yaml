@@ -1,0 +1,56 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pull
+description: pull changes from the specified source
+group: remote
+flags:
+    --confirm: confirm pull before applying changes
+    --insecure: do not verify server certificate (ignoring web.cacerts config)
+    --remote-hidden: include changesets hidden on the remote (EXPERIMENTAL)
+    --remotecmd=: specify hg command to run on the remote side
+    -B, --bookmark=*: bookmark to pull
+    -b, --branch=*: a specific branch you would like to pull
+    -e, --ssh=: specify ssh command to use
+    -f, --force: run even when remote repository is unrelated
+    -r, --rev=*: a remote changeset intended to be added
+    -u, --update: update to new branch head if new descendants were pulled
+documentation:
+    command: |
+        pull changes from the specified source
+
+        Pull changes from a remote repository to a local one.
+
+        This finds all changes from the repository at the specified path
+        or URL and adds them to a local repository (the current one unless
+        -R is specified). By default, this does not update the copy of the
+        project in the working directory.
+
+        When cloning from servers that support it, Mercurial may fetch
+        pre-generated data. When this is done, hooks operating on incoming
+        changesets and changegroups may fire more than once, once for each
+        pre-generated bundle and as well as for any additional remaining
+        data. See `hg help -e clonebundles` for more.
+
+        Use `hg incoming` if you want to see what would have been added
+        by a pull at the time you issued this command. If you then decide
+        to add those changes to the repository, you should use `hg pull
+        -r X` where `X` is the last changeset listed by `hg incoming`.
+
+        If SOURCE is omitted, the 'default' path will be used.
+        See `hg help urls` for more information.
+
+        If multiple sources are specified, they will be pulled sequentially as if
+        the command was run multiple times. If --update is specified, the command
+        will stop at the first failed --update.
+
+        Specifying bookmark as `.` is equivalent to specifying the active
+        bookmark's name.
+
+        .. container:: verbose
+
+            One can use the `--remote-hidden` flag to pull changesets
+            hidden on the remote. This flag is "best effort", and will only
+            work if the server supports the feature and is configured to
+            allow the user to access hidden changesets. This option is
+            experimental and backwards compatibility is not guaranteed.
+
+        Returns 0 on success, 1 if an update had unresolved files.

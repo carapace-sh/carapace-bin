@@ -1,0 +1,49 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: revert
+description: restore files to their checkout state
+group: working-dir
+flags:
+    -C, --no-backup: do not save backup copies of files
+    -I, --include=*: include names matching the given patterns
+    -X, --exclude=*: exclude names matching the given patterns
+    -a, --all: revert all changes when no arguments given
+    -d, --date=: tipmost revision matching date
+    -i, --interactive: interactively select the changes
+    -n, --dry-run: do not perform actions, just print output
+    -r, --rev=: revert to the specified revision
+documentation:
+    command: |
+        restore files to their checkout state
+
+        .. note::
+
+           To check out earlier revisions, you should use `hg update REV`.
+           To cancel an uncommitted merge (and lose your changes),
+           use `hg merge --abort`.
+
+        With no revision specified, revert the specified files or directories
+        to the contents they had in the parent of the working directory.
+        This restores the contents of files to an unmodified
+        state and unschedules adds, removes, copies, and renames. If the
+        working directory has two parents, you must explicitly specify a
+        revision.
+
+        Using the -r/--rev or -d/--date options, revert the given files or
+        directories to their states as of a specific revision. Because
+        revert does not change the working directory parents, this will
+        cause these files to appear modified. This can be helpful to "back
+        out" some or all of an earlier change. See `hg backout` for a
+        related method.
+
+        Modified files are saved with a .orig suffix before reverting.
+        To disable these backups, use --no-backup. It is possible to store
+        the backup files in a custom directory relative to the root of the
+        repository by setting the `ui.origbackuppath` configuration
+        option.
+
+        See `hg help dates` for a list of formats valid for -d/--date.
+
+        See `hg help backout` for a way to reverse the effect of an
+        earlier changeset.
+
+        Returns 0 on success.
