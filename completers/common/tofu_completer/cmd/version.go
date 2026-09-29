@@ -7,7 +7,7 @@ import (
 
 var versionCmd = &cobra.Command{
 	Use:   "version [options]",
-	Short: "Show the current Terraform version",
+	Short: "Show the current OpenTofu version",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
