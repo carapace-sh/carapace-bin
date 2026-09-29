@@ -31,6 +31,10 @@ func Snippet(shell string) string {
 			for _, name := range bridges.Inshellisense() {
 				uniqueNames[name] = true
 			}
+		case "powershell":
+			for _, name := range bridges.Powershell() {
+				uniqueNames[name] = true
+			}
 		case "zsh":
 			for _, name := range bridges.Zsh() {
 				uniqueNames[name] = true
@@ -45,6 +49,10 @@ func Snippet(shell string) string {
 		}
 	case "fish":
 		for _, name := range bridges.Fish() {
+			delete(uniqueNames, name)
+		}
+	case "powershell":
+		for _, name := range bridges.Powershell() {
 			delete(uniqueNames, name)
 		}
 	case "zsh":
