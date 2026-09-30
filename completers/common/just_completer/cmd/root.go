@@ -7,6 +7,7 @@ import (
 	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/just"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
+	shlex "github.com/carapace-sh/carapace-shlex/v2"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
@@ -133,7 +134,12 @@ func init() {
 		"shell-arg": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if f := rootCmd.Flag("shell"); f.Changed {
 				shell := filepath.Base(f.Value.String())
-				return bridge.ActionCarapaceBin(shell).Split()
+				switch shlex.Format(shell) {
+				case shlex.Bash, shlex.Elvish, shlex.Fish, shlex.Nushell, shlex.Powershell, shlex.Xonsh, shlex.Zsh:
+					return bridge.ActionCarapaceBin(shell).Split(shlex.Format(shell))
+				default:
+					return bridge.ActionCarapaceBin(shell).Split()
+				}
 			}
 			return carapace.ActionValues()
 		}),

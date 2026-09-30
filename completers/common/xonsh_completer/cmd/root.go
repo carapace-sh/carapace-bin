@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
+	shlex "github.com/carapace-sh/carapace-shlex/v2"
 	"github.com/spf13/cobra"
 )
 
@@ -36,7 +37,7 @@ func init() {
 	rootCmd.Flags().BoolP("version", "V", false, "Show version information and exit.")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"c": bridge.ActionCarapaceBin().SplitP(),
+		"c": bridge.ActionCarapaceBin().SplitP(shlex.Xonsh),
 		"rc": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return carapace.ActionFiles().NoSpace()
 		}),
