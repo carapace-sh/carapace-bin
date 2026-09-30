@@ -4,7 +4,7 @@ import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/gh_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
-	shlex "github.com/carapace-sh/carapace-shlex"
+	shlex "github.com/carapace-sh/carapace-shlex/v2"
 	"github.com/spf13/cobra"
 )
 
@@ -45,7 +45,7 @@ func init() {
 
 				carapace.Gen(aliasCmd).PositionalAnyCompletion(
 					carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-						splitted, err := shlex.Split(aliasCmd.Short) // TODO trim value
+						splitted, err := shlex.Split(aliasCmd.Short, shlex.Default) // TODO trim value
 						if err != nil {
 							return carapace.ActionMessage(err.Error())
 						}

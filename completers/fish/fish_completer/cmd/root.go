@@ -4,6 +4,7 @@ import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/fish"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
+	shlex "github.com/carapace-sh/carapace-shlex/v2"
 	"github.com/spf13/cobra"
 )
 
@@ -39,11 +40,11 @@ func init() {
 	rootCmd.Flags().BoolP("version", "v", false, "print version")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"command":         bridge.ActionCarapaceBin().SplitP(),
+		"command":         bridge.ActionCarapaceBin().SplitP(shlex.Fish),
 		"debug":           fish.ActionDebugCategories().UniqueList(","),
 		"debug-output":    carapace.ActionFiles(),
 		"features":        carapace.ActionValues("stderr-nocaret", "qmark-noglob", "regex-easyesc").UniqueList(","),
-		"init-command":    bridge.ActionCarapaceBin().SplitP(),
+		"init-command":    bridge.ActionCarapaceBin().SplitP(shlex.Fish),
 		"profile":         carapace.ActionFiles(),
 		"profile-startup": carapace.ActionFiles(),
 	})

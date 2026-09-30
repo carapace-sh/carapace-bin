@@ -7,7 +7,7 @@ import (
 	"github.com/carapace-sh/carapace"
 	carapacebin "github.com/carapace-sh/carapace-bin/pkg/actions/tools/carapace"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
-	shlex "github.com/carapace-sh/carapace-shlex"
+	shlex "github.com/carapace-sh/carapace-shlex/v2"
 	"github.com/spf13/cobra"
 )
 
@@ -22,8 +22,8 @@ var diffCmd = &cobra.Command{
 			carapace.NewContext(args[2:]...),
 		)
 
-		fmt.Printf("--- a/carapace %v\n", shlex.Join(append([]string{args[0], "export"}, args[2:]...)))
-		fmt.Printf("+++ b/carapace %v\n", shlex.Join(append([]string{args[1], "export"}, args[2:]...)))
+		fmt.Printf("--- a/carapace %v\n", shlex.Join(append([]string{args[0], "export"}, args[2:]...), shlex.Default))
+		fmt.Printf("+++ b/carapace %v\n", shlex.Join(append([]string{args[1], "export"}, args[2:]...), shlex.Default))
 		fmt.Println(strings.Join(lines, "\n"))
 	},
 }
