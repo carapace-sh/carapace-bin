@@ -1,16 +1,15 @@
 package shim
 
 import (
-	"bufio"
 	"fmt"
 	"os"
 	"path/filepath"
-	"regexp"
 	"runtime"
 	"strings"
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace/pkg/xdg"
+	"gopkg.in/yaml.v3"
 )
 
 func Update() error {
@@ -102,18 +101,24 @@ func (s shim) NeedsUpdate() bool {
 }
 
 func (s shim) IsRunnable() bool {
-	file, err := os.Open(s.Target)
+	content, err := os.ReadFile(s.Target)
 	if err != nil {
 		return false
 	}
-	defer file.Close()
 
-	scanner := bufio.NewScanner(file)
-	scanner.Split(bufio.ScanLines)
+	var document yaml.Node
+	if err := yaml.Unmarshal(content, &document); err != nil || len(document.Content) != 1 {
+		return false
+	}
 
-	r := regexp.MustCompile(`^ *run:`)
-	for scanner.Scan() {
-		if r.MatchString(scanner.Text()) {
+	root := document.Content[0]
+	if root.Kind != yaml.MappingNode {
+		return false
+	}
+
+	for index := 0; index < len(root.Content); index += 2 {
+		key := root.Content[index]
+		if key.Kind == yaml.ScalarNode && key.Value == "run" {
 			return true
 		}
 	}
