@@ -4,7 +4,7 @@ import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/carapace-sh/carapace-jjlex/pkg/actions/tools/jj"
-	shlex "github.com/carapace-sh/carapace-shlex"
+	shlex "github.com/carapace-sh/carapace-shlex/v2"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/carapace-sh/carapace/third_party/golang.org/x/sys/execabs"
 	"github.com/pelletier/go-toml"
@@ -88,7 +88,7 @@ func init() {
 		for name, alias := range config.Aliases {
 			aliasCmd := &cobra.Command{
 				Use:                name,
-				Short:              shlex.Join(alias),
+				Short:              shlex.Join(alias, shlex.Default),
 				GroupID:            "alias",
 				DisableFlagParsing: true,
 				Run:                func(cmd *cobra.Command, args []string) {},

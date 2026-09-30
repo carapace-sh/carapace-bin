@@ -6,7 +6,7 @@ import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/but"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
-	shlex "github.com/carapace-sh/carapace-shlex"
+	shlex "github.com/carapace-sh/carapace-shlex/v2"
 	"github.com/carapace-sh/carapace/pkg/traverse"
 	"github.com/carapace-sh/carapace/pkg/util"
 	"github.com/spf13/cobra"
@@ -91,7 +91,7 @@ func init() {
 
 				carapace.Gen(aliasCmd).PositionalAnyCompletion(
 					carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-						splitted, err := shlex.Split(aliasCmd.Short)
+						splitted, err := shlex.Split(aliasCmd.Short, shlex.Default)
 						if err != nil {
 							return carapace.ActionMessage(err.Error())
 						}
