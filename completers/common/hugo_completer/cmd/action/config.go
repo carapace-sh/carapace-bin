@@ -7,7 +7,7 @@ import (
 
 	"github.com/carapace-sh/carapace/pkg/util"
 	"github.com/pelletier/go-toml"
-	"gopkg.in/yaml.v3"
+	"go.yaml.in/yaml/v3"
 )
 
 func configPath() (path string, err error) {

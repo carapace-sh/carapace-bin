@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 
 	"github.com/carapace-sh/carapace"
-	"gopkg.in/yaml.v3"
+	"go.yaml.in/yaml/v3"
 )
 
 // ActionInputs completes inputs of the current environment

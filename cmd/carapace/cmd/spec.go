@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 
 	spec "github.com/carapace-sh/carapace-spec"
-	"gopkg.in/yaml.v3"
+	"go.yaml.in/yaml/v3"
 )
 
 func loadSpec(path string) (string, *spec.Command, error) {

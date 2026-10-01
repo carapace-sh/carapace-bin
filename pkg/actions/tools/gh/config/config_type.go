@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"slices"
 
-	"gopkg.in/yaml.v3"
+	"go.yaml.in/yaml/v3"
 )
 
 // Config This interface describes interacting with some persistent configuration for gh.
