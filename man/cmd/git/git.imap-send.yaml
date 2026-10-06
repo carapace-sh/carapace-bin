@@ -4,8 +4,10 @@ description: Send a collection of patches from stdin to an IMAP folder
 group: interaction
 flags:
   --curl: use libcurl to communicate with the IMAP server
+  --draft: mark uploaded messages with the IMAP \Draft flag
   --list: list all folders on the IMAP server
   --no-curl: do not use libcurl to communicate with the IMAP server
+  --no-draft: do not mark uploaded messages with the IMAP \Draft flag
   -f, --folder=: specify the IMAP folder
   -q, --quiet: be more quiet
   -v, --verbose: be more verbose
@@ -15,12 +17,22 @@ documentation:
       Use libcurl to communicate with the IMAP server, unless tunneling
       into it.  Ignored if Git was built without the USE_CURL_FOR_IMAP_SEND
       option set.
+    draft: |-
+      Mark uploaded messages with the IMAP `\Draft` flag. The default is
+      `--no-draft`.
+
+      With libcurl, `--draft` requires version 8.13.0 or later.
+      Older libcurl still uploads the message but cannot set the flag.
+    no-draft: |-
+      Do not mark uploaded messages with the IMAP `\Draft` flag. This is
+      the default.
     no-curl: |-
       Talk to the IMAP server using git's own IMAP routines instead of
       using libcurl.  Ignored if Git was built with the NO_OPENSSL option
       set.
     quiet: Be quiet.
     verbose: Be verbose.
-    list: Show all available formats.
+    list: |-
+      Run the IMAP LIST command to output a list of all the folders present.
     folder: specify the IMAP folder
 

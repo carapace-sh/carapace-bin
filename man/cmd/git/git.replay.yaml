@@ -53,6 +53,7 @@ flags:
   --invert-grep: limit output to ones with non-matching log message
   --left-only: list only commits on the left side of a symmetric difference
   --left-right: mark which side of a symmetric difference a commit is reachable from
+  --linearize: drop merge commits, replaying only non-merge commits
   --max-age=: limit the commits output to specified time range
   --max-count-oldest=: limit the number of commits to output, picking the oldest N
   --max-parents=: show only commits which have at most that many parent commits
@@ -707,6 +708,10 @@ documentation:
     contained: update all branches that point at commits in the revision range
     graph-lane-limit: limit the number of lanes in graph output
     left-only: list only commits on the left side of a symmetric difference
+    linearize: |-
+      In this mode, each replayed commit is stacked on top of the
+      previously replayed one, so all replayed commits are flattened into
+      a single linear history.
     max-age: limit the commits output to specified time range
     max-count-oldest: limit the number of commits to output, picking the oldest N
     maximal-only: restrict output to commits not reachable from other commits in the range

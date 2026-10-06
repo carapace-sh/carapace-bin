@@ -230,6 +230,7 @@ func AddObjectTraversalOptions(cmd *cobra.Command) {
 			"allow-any", "allow object traversal to continue if a missing object is encountered",
 			"allow-promisor", "is like allow-any, but will only allow object traversal to continue for EXPECTED promisor missing objects",
 			"print", "is like allow-any, but will also print a list of the missing objects",
+			"print-info", "is like print, but will also print the path and type of each missing object",
 		),
 		"no-walk": carapace.ActionValues("sorted", "unsorted"),
 	})

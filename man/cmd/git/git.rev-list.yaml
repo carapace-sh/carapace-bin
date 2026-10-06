@@ -64,6 +64,7 @@ flags:
   --min-age=: limit the commits output to specified time range
   --min-parents=: show only commits which have at least that many parent commits
   --missing=: specify how missing objects are handled
+  --missing-only: only show missing objects
   --no-abbrev-commit: show the full 40-byte hexadecimal commit object name
   --no-commit-header: suppress the header line containing "commit"
   --no-expand-tabs: do not perform a tab expansion
@@ -512,6 +513,12 @@ documentation:
       expected to be represented in such a way that the resulting encoded value does
       not have either of these two problematic bytes. Each `<token>=<value>` may be
       one of the following:
+    missing-only: |-
+      Only show missing objects, suppressing present objects from the
+      output. Requires `--missing=print` or `--missing=print-info`.
+      When used with `--missing=print`, the leading *?* character is
+      stripped from the object IDs so the output is just raw object IDs,
+      one per line. Cannot be combined with `--count` or `--disk-usage`.
     no-abbrev-commit: |-
       Show the full 40-byte hexadecimal commit object name. This negates
       `--abbrev-commit`, either explicit or implied by other options such

@@ -19,6 +19,7 @@ func init() {
 
 	replayCmd.Flags().String("advance", "", "starting point at which to create the new commits")
 	replayCmd.Flags().Bool("contained", false, "update all branches that point at commits in the revision range")
+	replayCmd.Flags().Bool("linearize", false, "drop merge commits, replaying only non-merge commits")
 	replayCmd.Flags().String("onto", "", "starting point at which to create the new commits")
 	replayCmd.Flags().String("ref", "", "override which reference is updated with the result of the replay")
 	replayCmd.Flags().String("ref-action", "", "control how references are updated")
@@ -31,6 +32,7 @@ func init() {
 	rootCmd.AddCommand(replayCmd)
 
 	replayCmd.MarkFlagsMutuallyExclusive("onto", "advance", "revert")
+	replayCmd.MarkFlagsMutuallyExclusive("linearize", "contained")
 
 	replayCmd.Flag("ref-action").NoOptDefVal = "update"
 

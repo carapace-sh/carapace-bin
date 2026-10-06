@@ -1,0 +1,41 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: drop
+description: Remove <commit>, replaying its descendants onto its parent
+flags:
+  --empty=: how to handle descendants that become empty
+  --no-dry-run: do not perform a dry-run without updating any refs
+  --update-refs=: control which refs should be updated
+  -n, --dry-run: perform a dry-run without updating any refs
+documentation:
+  command: |-
+    Remove the specified commit from the history. All descendants of the
+    commit are replayed directly onto its parent.
+
+    The root commit cannot be dropped as that may lead to edge cases where refs
+    end up with no commits anymore. Merge commits cannot be dropped either; see
+    the LIMITATIONS section of [git-history](cmd://git/history).
+
+    If `HEAD` points at a commit that is to be rewritten, the index and working
+    tree are updated to match the new `HEAD`. The command aborts before any
+    references are updated in case local modifications would be overwritten.
+
+    If replaying any descendant would result in a conflict, the command aborts
+    with an error.
+  flag:
+    dry-run: |-
+      Do not update any references, but instead print any ref updates in a
+      format that can be consumed by [git-update-ref](cmd://git/update-ref). Necessary new
+      objects will be written into the repository, so applying these printed
+      ref updates is generally safe.
+    empty: |-
+      Control what happens when a descendant commit becomes empty during
+      replay because it introduced the same change that was just dropped.
+      With `drop` (the default), empty commits are removed from the rewritten
+      history. With `keep`, empty commits are retained in the rewritten
+      history as-is. With `abort`, the command stops with an error if any
+      commit would become empty.
+    update-refs: |-
+      Control which references will be updated by the command, if any. With
+      `branches`, all local branches that point to commits which are
+      descendants of the original commit will be rewritten. With `head`, only
+      the current `HEAD` reference will be rewritten. Defaults to `branches`.

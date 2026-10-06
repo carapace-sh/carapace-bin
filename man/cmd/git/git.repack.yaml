@@ -7,6 +7,8 @@ flags:
   --cruft: same as -a, pack unreachable cruft objects separately
   --cruft-expiration=: with --cruft, expire objects older than this
   --depth=: limits the maximum delta depth
+  --drop-filtered: delete filtered out objects (requires --filter)
+  --dry-run: only show which objects would be dropped
   --expire-to=: pack prefix to store a pack containing pruned objects
   --filter-to=: pack prefix to store filtered-out objects
   --filter=*: object filtering
@@ -47,75 +49,70 @@ documentation:
     engines, disk storage, etc.
   flag:
     a: |-
-      Attempt to auto-register archives at `http://mirrors.sourcecontrol.net`
-      This is particularly useful with the -D option.
+      Instead of incrementally packing the unpacked objects,
+      pack everything referenced into a single pack.
+      Especially useful when packing a repository that is used
+      for private development. Use
+      with `-d`.  This will clean up the objects that `git prune`
+      leaves behind, but `git fsck --full --dangling` shows as
+      dangling.
+
+      Note that users fetching over dumb protocols will have to fetch the
+      whole new pack in order to get any contained object, no matter how many
+      other objects in that pack they already have locally.
     depth: |-
-      Create a `shallow` clone with a history truncated to the
-      specified number of commits. Implies `--single-branch` unless
-      `--no-single-branch` is given to fetch the histories near the
-      tips of all branches. If you want to clone submodules shallowly,
-      also pass `--shallow-submodules`.
+      These options affect how the objects contained in the pack are
+      stored using delta compression. `--depth` limits the maximum delta
+      depth; making it too deep affects the performance on the unpacker
+      side, because delta data needs to be applied that many times to get
+      to the necessary object. The default value for `--window` is 10 and
+      `--depth` is 50. The maximum depth is 4095.
+    drop-filtered: |-
+      Delete the local objects that match the `--filter` specification
+      instead of keeping them in a separate packfile, reclaiming the
+      disk space they occupy. This is intended for partial clones,
+      where the filtered objects are promisor objects that remain
+      recoverable from the promisor remote and are lazily re-fetched
+      on demand when they are next needed.
+
+      Only large blobs are supported for now, so `--filter=blob:limit=<n>`
+      is currently the only accepted filter. Because dropped objects must be
+      recoverable, this option requires a promisor remote to be configured
+      and refuses to run otherwise.
+
+      As a convenience, since dropped objects remain recoverable by lazy fetch,
+      `--drop-filtered` refuses to run while another operation
+      (merge, rebase, am, cherry-pick, revert, or bisect) is in progress, to
+      avoid a surprising network fetch mid-operation, and refuses to drop any
+      blob that the current index references, since such a blob would only be
+      lazily re-fetched by the next command that inspects the working tree.
+      These checks are skipped in bare repositories, which have neither a
+      working tree nor an index.
+    dry-run: |-
+      Only meaningful with `--drop-filtered`. List the objects that
+      would be dropped, one object ID per line, without rebuilding any
+      pack or deleting anything.
     f: |-
-      Use the fast patchset import strategy. This can be significantly faster
-      for large trees, but cannot handle directory renames or permissions
-      changes. The default strategy is slow and safe.
+      Pass the `--no-reuse-delta` option to `git-pack-objects`.
     filter: |-
-      Use the partial clone feature and request that the server sends
-      a subset of reachable objects according to a given object filter.
-      When using `--filter`, the supplied _<filter-spec>_ is used for
-      the partial clone filter.
-      
-      If `--filter=auto` is used the filter specification is determined
-      automatically through the `promisor-remote` protocol (see
-      [gitprotocol-v2](man://gitprotocol-v2/5)) by combining the filter specifications
-      advertised by the server for the promisor remotes that the client
-      accepts (see the `promisor.acceptFromServer` configuration option in
-      [git-config](cmd://git/config)). This allows the server to suggest the optimal
-      filter for the available promisor remotes.
-      
-      As with other filter specifications, the "auto" value is persisted in
-      the configuration. This ensures that future fetches will continue to
-      adapt to the server's current recommendation.
-      
-      For details on all other available filter specifications, see the
-      `--filter=<filter-spec>` option in [git-rev-list](cmd://git/rev-list).
-      
-      For example, `--filter=blob:none` will filter out all blobs (file
-      contents) until needed by Git. Also, `--filter=blob:limit=<size>` will
-      filter out all blobs of size at least _<size>_.
+      Remove objects matching the filter specification from the
+      resulting packfile and put them into a separate packfile. Note
+      that objects used in the working directory are not filtered
+      out. So for the split to fully work, it's best to perform it
+      in a bare repo and to use the `-a` and `-d` options along with
+      this option.  Also `--no-write-bitmap-index` (or the
+      `repack.writebitmaps` config option set to `false`) should be
+      used otherwise writing bitmap index will fail, as it supposes
+      a single packfile containing all the objects. See
+      [git-rev-list](cmd://git/rev-list) for valid `<filter-spec>` forms.
     n: |-
-      _<num>_ specifies how many lines from the annotation, if any,
-      are printed when using `-l`. Implies `--list`.
-      
-      The default is not to print any annotation lines.
-      If no number is given to `-n`, only the first line is printed.
-      If the tag is not annotated, the commit message is displayed instead.
+      Do not update the server information with
+      [git-update-server-info](cmd://git/update-server-info).  This option skips
+      updating local catalog files needed to publish
+      this repository (or a direct copy of it)
+      over HTTP or FTP.
     local: |-
-      When the repository to clone from is on a local machine,
-      this flag bypasses the normal "Git aware" transport
-      mechanism and clones the repository by making a copy of
-      `HEAD` and everything under objects and refs directories.
-      The files under `.git/objects/` directory are hardlinked
-      to save space when possible.
-      
-      If the repository is specified as a local path (e.g., `/path/to/repo`),
-      this is the default, and `--local` is essentially a no-op.  If the
-      repository is specified as a URL, then this flag is ignored (and we
-      never use the local optimizations).  Specifying `--no-local` will
-      override the default when `/path/to/repo` is given, using the regular
-      Git transport instead.
-      
-      If the repository's `$GIT_DIR/objects` has symbolic links or is a
-      symbolic link, the clone will fail. This is a security measure to
-      prevent the unintentional copying of files by dereferencing the symbolic
-      links.
-      
-      This option does not work with repositories owned by other users for security
-      reasons, and `--no-local` must be specified for the clone to succeed.
-      
-      *NOTE*: this operation can race with concurrent modification to the
-      source repository, similar to running `cp -r <src> <dst>` while modifying
-      _<src>_.
+      Pass the `--local` option to `git-pack-objects`.
     quiet: Be quiet. Only print error messages.
     A: same as -a, and turn unreachable objects loose
     F: pass --no-reuse-object to git-pack-objects
