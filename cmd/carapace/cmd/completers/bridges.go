@@ -106,6 +106,11 @@ func knownbridges() map[string]*completer.Completer {
 			Url:         "https://cekit.io/",
 			Variant:     "click",
 		},
+		"cf-terraforming": {
+			Description: "Generate Terraform configuration from existing Cloudflare resources",
+			Url:         "https://github.com/cloudflare/cf-terraforming",
+			Variant:     "cobra",
+		},
 		"chezmoi": {
 			Description: "Manage your dotfiles across multiple diverse machines, securely",
 			Url:         "https://chezmoi.io/",
@@ -342,6 +347,11 @@ func knownbridges() map[string]*completer.Completer {
 			Url:         "https://github.com/slsa-framework/slsa-verifier",
 			Variant:     "cobra",
 		},
+		"stripe": {
+			Description: "The official command-line tool to interact with Stripe",
+			Url:         "https://docs.stripe.com/stripe-cli",
+			Variant:     "cobra",
+		},
 		"talosctl": {
 			Description: "A CLI for out-of-band management of Kubernetes nodes created by Talos",
 			Url:         "https://docs.siderolabs.com/talos/latest/reference/cli",
@@ -357,6 +367,11 @@ func knownbridges() map[string]*completer.Completer {
 			Url:         "https://containertoolbx.org/",
 			Variant:     "cobra",
 		},
+		"trufflehog": {
+			Description: "Find, verify, and analyze leaked credentials",
+			Url:         "https://github.com/trufflesecurity/trufflehog",
+			Variant:     "kingpin",
+		},
 		"vault": {
 			Description: "A tool for secrets management",
 			Url:         "https://www.vaultproject.io/",
@@ -366,6 +381,11 @@ func knownbridges() map[string]*completer.Completer {
 			Description: "Tool for collecting vulnerability data from various sources",
 			Url:         "https://github.com/anchore/vunnel",
 			Variant:     "click",
+		},
+		"wrangler": {
+			Description: "Command-line interface for Cloudflare Workers",
+			Url:         "https://developers.cloudflare.com/workers/wrangler/",
+			Variant:     "yargs",
 		},
 		"ykman": {
 			Description: "Configure your YubiKey via the command line",
