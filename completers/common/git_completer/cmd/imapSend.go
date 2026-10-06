@@ -16,9 +16,11 @@ func init() {
 	carapace.Gen(imapSendCmd).Standalone()
 
 	imapSendCmd.Flags().Bool("curl", false, "use libcurl to communicate with the IMAP server")
+	imapSendCmd.Flags().Bool("draft", false, "mark uploaded messages with the IMAP \\Draft flag")
 	imapSendCmd.Flags().StringP("folder", "f", "", "specify the IMAP folder")
 	imapSendCmd.Flags().Bool("list", false, "list all folders on the IMAP server")
 	imapSendCmd.Flags().Bool("no-curl", false, "do not use libcurl to communicate with the IMAP server")
+	imapSendCmd.Flags().Bool("no-draft", false, "do not mark uploaded messages with the IMAP \\Draft flag")
 	imapSendCmd.Flags().BoolP("quiet", "q", false, "be more quiet")
 	imapSendCmd.Flags().BoolP("verbose", "v", false, "be more verbose")
 	rootCmd.AddCommand(imapSendCmd)

@@ -4,6 +4,7 @@ description: reset bisect state and start bisection
 flags:
   --first-parent: follow only the first parent commit upon seeing a merge commit
   --no-checkout: do not checkout the new working tree at each iteration
+  --reset-when-found?: automatically run "git bisect reset" when the first bad commit has been determined
   --term-bad=: set term for new/bad
   --term-good=: set term for old/good
   --term-new=: set term for new/bad
@@ -28,6 +29,15 @@ documentation:
       does not require a checked out tree.
 
       If the repository is bare, `--no-checkout` is assumed.
+    reset-when-found: |-
+      Once the first bad commit is found, report it and clean up the
+      bisection state. `<where>` may be `original` to return to the commit
+      checked out before `git bisect start`, or `found` to leave the first
+      bad commit checked out. If `<where>` is omitted, it defaults to
+      `original`.
+
+      This option may be given to `git bisect start` or to `git bisect run`. It
+      cannot be used for a bisection started with `--no-checkout`.
     term-bad: set term for new/bad
     term-good: set term for old/good
     term-new: set term for new/bad

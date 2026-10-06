@@ -104,6 +104,26 @@ func ActionRefs(refOption RefOption) carapace.Action {
 	})
 }
 
+// ActionRefObjectIDs completes the object id of the given ref
+//
+//	c9cac841afb9ac0265ef7b35b47194756b160d8f (current value of master)
+func ActionRefObjectIDs(ref string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		if ref == "" {
+			return carapace.ActionValues()
+		}
+		return carapace.ActionExecCommandE("git", "rev-parse", "--verify", "--quiet", ref)(func(output []byte, err error) carapace.Action {
+			if err != nil {
+				return carapace.ActionValues()
+			}
+			if oid := strings.TrimSpace(string(output)); oid != "" {
+				return carapace.ActionValuesDescribed(oid, "current value of "+ref)
+			}
+			return carapace.ActionValues()
+		})
+	})
+}
+
 // ActionRefRanges completes refs as range
 //
 //	HEAD..HEAD~17 (last commit msg)

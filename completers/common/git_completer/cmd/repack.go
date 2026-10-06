@@ -25,6 +25,8 @@ func init() {
 	repackCmd.Flags().BoolS("d", "d", false, "remove redundant packs, and run git-prune-packed")
 	repackCmd.Flags().BoolP("delta-islands", "i", false, "pass --delta-islands to git-pack-objects")
 	repackCmd.Flags().String("depth", "", "limits the maximum delta depth")
+	repackCmd.Flags().Bool("drop-filtered", false, "delete filtered out objects (requires --filter)")
+	repackCmd.Flags().Bool("dry-run", false, "only show which objects would be dropped")
 	repackCmd.Flags().String("expire-to", "", "pack prefix to store a pack containing pruned objects")
 	repackCmd.Flags().BoolS("f", "f", false, "pass --no-reuse-delta to git-pack-objects")
 	repackCmd.Flags().StringArray("filter", nil, "object filtering")
@@ -58,4 +60,6 @@ func init() {
 		"name-hash-version":  carapace.ActionValues("1", "2"),
 		"unpack-unreachable": carapace.ActionValues(), // TODO older than
 	})
+
+	repackCmd.MarkFlagsMutuallyExclusive("drop-filtered", "write-bitmap-index")
 }

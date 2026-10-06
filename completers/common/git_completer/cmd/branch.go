@@ -27,6 +27,8 @@ func init() {
 	branchCmd.Flags().BoolP("copy", "c", false, "copy a branch together with its config and reflog")
 	branchCmd.Flags().Bool("create-reflog", false, "create the branch's reflog")
 	branchCmd.Flags().BoolP("delete", "d", false, "delete a branch")
+	branchCmd.Flags().StringArray("delete-merged", nil, "delete merged branches whose upstream matches <pattern> (repeatable)")
+	branchCmd.Flags().Bool("dry-run", false, "with --delete-merged, only print which branches would be deleted")
 	branchCmd.Flags().Bool("edit-description", false, "open an editor and edit the text to explain what the branch is for")
 	branchCmd.Flags().BoolP("force", "f", false, "reset <branchname> to <startpoint>, even if <branchname> exists already")
 	branchCmd.Flags().String("format", "", "a string that interpolates %(fieldname) from a branch ref being shown and the object it points at")
@@ -57,10 +59,14 @@ func init() {
 	branchCmd.Flag("track").NoOptDefVal = " "
 
 	carapace.Gen(branchCmd).FlagCompletion(carapace.ActionMap{
-		"D":               git.ActionRefs(git.RefOption{}.Default()),
-		"color":           git.ActionColorModes(),
-		"contains":        git.ActionRefs(git.RefOption{}.Default()),
-		"delete":          git.ActionRefs(git.RefOption{LocalBranches: true, RemoteBranches: true}),
+		"D":        git.ActionRefs(git.RefOption{}.Default()),
+		"color":    git.ActionColorModes(),
+		"contains": git.ActionRefs(git.RefOption{}.Default()),
+		"delete":   git.ActionRefs(git.RefOption{LocalBranches: true, RemoteBranches: true}),
+		"delete-merged": carapace.Batch(
+			git.ActionRemotes(),
+			git.ActionRefs(git.RefOption{RemoteBranches: true}),
+		).ToA(),
 		"merged":          git.ActionRefs(git.RefOption{}.Default()),
 		"no-contains":     git.ActionRefs(git.RefOption{}.Default()),
 		"no-merged":       git.ActionRefs(git.RefOption{}.Default()),
@@ -72,6 +78,9 @@ func init() {
 
 	carapace.Gen(branchCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if branchCmd.Flag("delete-merged").Changed {
+				return git.ActionRefs(git.RefOption{LocalBranches: true}).FilterArgs()
+			}
 			switch len(c.Args) {
 			case 0:
 				if branchCmd.Flag("set-upstream-to").Changed ||

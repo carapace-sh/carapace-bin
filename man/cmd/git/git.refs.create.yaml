@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: create
+description: Create a reference
+flags:
+  --create-reflog: create a reflog
+  --message=: reason of the update
+  --no-deref: update <refname> not the one it points to
+documentation:
+  command: |-
+    Create the given reference, which must not already exist, pointing at
+    `<new-value>`.
+  flag:
+    create-reflog: |-
+      Create a reflog for the reference even if one would not ordinarily be
+      created.
+    message: |-
+      Use the given <reason> string for the reflog entry associated with the
+      update. An empty message is rejected.
+    no-deref: |-
+      Operate on <ref> itself rather than the reference it points to via a
+      symbolic ref.
