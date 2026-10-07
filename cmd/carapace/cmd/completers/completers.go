@@ -16,7 +16,7 @@ import (
 	bridge_env "github.com/carapace-sh/carapace-bridge/pkg/env"
 	"github.com/carapace-sh/carapace/pkg/xdg"
 	"github.com/spf13/cobra"
-	"gopkg.in/yaml.v3"
+	"go.yaml.in/yaml/v3"
 )
 
 func Completers(filter choices.Choice, parse bool) (completer.CompleterMap, error) { // TODO rename parse - init? if false returned completers cannot be executed

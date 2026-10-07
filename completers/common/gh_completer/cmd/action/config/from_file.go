@@ -8,7 +8,7 @@ import (
 	"strings"
 
 	"github.com/carapace-sh/carapace-bin/completers/common/gh_completer/cmd/action/ghinstance"
-	"gopkg.in/yaml.v3"
+	"go.yaml.in/yaml/v3"
 )
 
 // This type implements a Config interface and represents a config file on disk.
