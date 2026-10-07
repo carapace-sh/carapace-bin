@@ -20,7 +20,7 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().BoolP("help", "h", false, "show help")
-	rootCmd.Flags().Bool("version", false, "print the installed version")
+	rootCmd.Flags().BoolP("version", "v", false, "print the installed version")
 
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.ActionFiles(),
