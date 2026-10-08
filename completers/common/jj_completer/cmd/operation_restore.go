@@ -20,7 +20,10 @@ func init() {
 	operationCmd.AddCommand(operation_restoreCmd)
 
 	carapace.Gen(operation_restoreCmd).FlagCompletion(carapace.ActionMap{
-		"what": carapace.ActionValues("repo", "remote-tracking"),
+		"what": carapace.ActionValuesDescribed(
+			"repo", "The jj repo state and local bookmarks",
+			"remote-tracking", "The remote-tracking bookmarks. Do not restore these if you'd like to push after the undo",
+		),
 	})
 
 	carapace.Gen(operation_restoreCmd).PositionalCompletion(

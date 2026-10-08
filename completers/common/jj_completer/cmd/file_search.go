@@ -26,4 +26,10 @@ func init() {
 	carapace.Gen(file_searchCmd).FlagCompletion(carapace.ActionMap{
 		"revision": jj.ActionRevsets(jj.RevOpts{}.Default()),
 	})
+
+	carapace.Gen(file_searchCmd).PositionalAnyCompletion(
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return jj.ActionRevFiles(file_searchCmd.Flag("revision").Value.String()).FilterArgs()
+		}),
+	)
 }

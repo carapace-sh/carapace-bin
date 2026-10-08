@@ -14,6 +14,7 @@ var redoCmd = &cobra.Command{
 func init() {
 	carapace.Gen(redoCmd).Standalone()
 
+	redoCmd.Flags().Bool("allow-cross-workspace", false, "Allow redoing an undo-operation that was performed in another workspace")
 	redoCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.AddCommand(redoCmd)
 }

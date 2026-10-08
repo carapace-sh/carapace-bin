@@ -28,7 +28,7 @@ func init() {
 	git_pushCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	git_pushCmd.Flags().StringSlice("named", nil, "Specify a new bookmark name and a revision to push under that name, e.g. '--named myfeature=@'")
 	git_pushCmd.Flags().StringSliceP("option", "o", nil, "Git push options")
-	git_pushCmd.Flags().String("remote", "", "The remote to push to (only named remotes are supported)")
+	git_pushCmd.Flags().StringSlice("remote", nil, "The remote(s) to push to (can be repeated)")
 	git_pushCmd.Flags().StringSliceP("revision", "r", nil, "Push bookmarks and tags pointing to these commits (can be repeated)")
 	git_pushCmd.Flags().StringSlice("revisions", nil, "Push bookmarks and tags pointing to these commits (can be repeated)")
 	git_pushCmd.Flags().StringSliceP("tag", "t", nil, "Push only this tag, or tags matching a pattern (can be repeated)")

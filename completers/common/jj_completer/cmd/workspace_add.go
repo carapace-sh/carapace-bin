@@ -15,14 +15,18 @@ var workspace_addCmd = &cobra.Command{
 func init() {
 	carapace.Gen(workspace_addCmd).Standalone()
 
+	workspace_addCmd.Flags().Bool("colocate", false, "Create a corresponding Git worktree for this workspace")
 	workspace_addCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	workspace_addCmd.Flags().StringSliceP("message", "m", nil, "The change description to use")
 	workspace_addCmd.Flags().String("name", "", "A name for the workspace")
+	workspace_addCmd.Flags().Bool("no-colocate", false, "Do not create a Git worktree for this workspace")
 	workspace_addCmd.Flags().StringSliceP("revision", "r", nil, "A list of parent revisions for the working-copy commit of the newly created workspace. You may specify nothing, or any number of parents")
 	workspace_addCmd.Flags().StringSlice("revisions", nil, "A list of parent revisions for the working-copy commit of the newly created workspace. You may specify nothing, or any number of parents")
 	workspace_addCmd.Flags().String("sparse-patterns", "copy", "How to handle sparse patterns when creating a new workspace")
 	workspace_addCmd.Flag("revisions").Hidden = true
 	workspaceCmd.AddCommand(workspace_addCmd)
+
+	workspace_addCmd.MarkFlagsMutuallyExclusive("colocate", "no-colocate")
 
 	carapace.Gen(workspace_addCmd).FlagCompletion(carapace.ActionMap{
 		"name":      jj.ActionWorkspaces(),

@@ -26,6 +26,12 @@ func init() {
 	})
 
 	carapace.Gen(file_annotateCmd).PositionalAnyCompletion(
-		carapace.ActionFiles().FilterArgs(),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			revision := file_annotateCmd.Flag("revision").Value.String()
+			if revision == "" {
+				revision = "@"
+			}
+			return jj.ActionRevFiles(revision).FilterArgs()
+		}),
 	)
 }

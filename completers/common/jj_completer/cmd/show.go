@@ -9,7 +9,7 @@ import (
 
 var showCmd = &cobra.Command{
 	Use:   "show [OPTIONS] [REVISION]",
-	Short: "Show commit description and changes in a revision",
+	Short: "Show revision metadata and diff",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
