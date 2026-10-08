@@ -27,6 +27,7 @@ func init() {
 	runCmd.Flags().StringSliceP("revision", "r", nil, "The revisions to change")
 	runCmd.Flags().StringSlice("revisions", nil, "The revisions to change")
 	runCmd.Flags().Bool("root", false, "Run the command from the working-copy root in each commit instead of from the subdirectory `jj run` was invoked from")
+	runCmd.Flags().String("sparse-patterns", "copy", "How to handle sparse patterns when running the command. This is controlled per `jj run` invocation")
 	runCmd.Flags().BoolS("x", "x", false, "A no-op option to match the interface of `git rebase -x`")
 	runCmd.Flag("revisions").Hidden = true
 	runCmd.Flag("x").Hidden = true
@@ -35,6 +36,11 @@ func init() {
 	carapace.Gen(runCmd).FlagCompletion(carapace.ActionMap{
 		"revision":  jj.ActionRevsets(jj.RevOpts{}.Default()),
 		"revisions": jj.ActionRevsets(jj.RevOpts{}.Default()),
+		"sparse-patterns": carapace.ActionValuesDescribed(
+			"copy", "Copy all sparse patterns from the current workspace",
+			"full", "Include all files in the new workspace",
+			"empty", "Clear all files from the workspace (it will be empty)",
+		),
 	})
 
 	carapace.Gen(runCmd).PositionalAnyCompletion(

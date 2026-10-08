@@ -21,6 +21,7 @@ func init() {
 	bisect_runCmd.Flags().Bool("find-good", false, "Find the first good revision instead")
 	bisect_runCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	bisect_runCmd.Flags().StringSliceP("range", "r", nil, "Range of revisions to bisect (can be repeated)")
+	bisect_runCmd.Flags().Bool("trust-endpoints", false, "Skip the pre-bisection checks")
 	bisect_runCmd.Flag("command").Hidden = true
 	bisect_runCmd.MarkFlagRequired("range")
 	bisectCmd.AddCommand(bisect_runCmd)

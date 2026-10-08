@@ -17,13 +17,13 @@ func init() {
 	carapace.Gen(restoreCmd).Standalone()
 
 	restoreCmd.Flags().StringP("changes-in", "c", "", "Undo the changes in a revision as compared to the merge of its parents")
-	restoreCmd.Flags().StringP("from", "f", "@", "Revision to restore from (source)")
+	restoreCmd.Flags().StringP("from", "f", "", "Revision to restore from (source)")
 	restoreCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	restoreCmd.Flags().BoolP("interactive", "i", false, "Interactively choose which parts to restore")
-	restoreCmd.Flags().StringP("into", "t", "@", "Revision to restore into (destination)")
+	restoreCmd.Flags().StringP("into", "t", "", "Revision to restore into (destination)")
 	restoreCmd.Flags().Bool("restore-descendants", false, "Preserve the content (not the diff) when rebasing descendants")
 	restoreCmd.Flags().StringP("revision", "r", "", "Prints an error. DO NOT USE")
-	restoreCmd.Flags().String("to", "@", "Revision to restore into (destination)")
+	restoreCmd.Flags().String("to", "", "Revision to restore into (destination)")
 	restoreCmd.Flags().String("tool", "", "Specify diff editor to be used (implies --interactive)")
 
 	restoreCmd.MarkFlagsMutuallyExclusive("into", "to")
@@ -41,6 +41,10 @@ func init() {
 
 	carapace.Gen(restoreCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if changesInFlag := restoreCmd.Flag("changes-in"); changesInFlag.Changed {
+				return jj.ActionRevDiffs(changesInFlag.Value.String()).FilterArgs()
+			}
+
 			fromFlag := restoreCmd.Flag("from")
 			intoFlag := restoreCmd.Flag("into")
 			if !intoFlag.Changed {
@@ -48,14 +52,17 @@ func init() {
 			}
 
 			if !fromFlag.Changed && !intoFlag.Changed {
-				fromFlag.Value.Set("parents(@)")
-				intoFlag.Value.Set("@")
+				return jj.ActionRevDiffs("@").FilterArgs()
 			}
 
-			return jj.ActionRevDiffs(
-				fromFlag.Value.String(),
-				intoFlag.Value.String(),
-			).FilterArgs()
+			from, into := fromFlag.Value.String(), intoFlag.Value.String()
+			if from == "" {
+				from = "@"
+			}
+			if into == "" {
+				into = "@"
+			}
+			return jj.ActionRevDiffs(from, into).FilterArgs()
 		}),
 	)
 }
