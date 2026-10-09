@@ -20,7 +20,7 @@ func init() {
 	build_winuwpCmd.Flags().BoolP("help", "h", false, "Print this usage information.")
 	build_winuwpCmd.Flags().Bool("no-analyze-size", false, "Do not produce additional profile information for artifact output size.")
 	build_winuwpCmd.Flags().Bool("no-null-assertions", false, "Do not perform additional null assertions on the boundaries of migrated and un-migrated code.")
-	build_winuwpCmd.Flags().Bool("no-obfuscate", false, "In a release build, this flag does not removes identifiers and replaces them with randomized values for the purposes of source code obfuscation.")
+	build_winuwpCmd.Flags().Bool("no-obfuscate", false, "In a release build, this flag does not remove identifiers and replaces them with randomized values for the purposes of source code obfuscation.")
 	build_winuwpCmd.Flags().Bool("no-pub", false, "Do not run \"flutter pub get\" before executing this command.")
 	build_winuwpCmd.Flags().Bool("no-track-widget-creation", false, "Do not track widget creation locations.")
 	build_winuwpCmd.Flags().Bool("no-tree-shake-icons", false, "Do not tree shake icon fonts so that only glyphs used by the application remain.")
@@ -36,6 +36,7 @@ func init() {
 	buildCmd.AddCommand(build_winuwpCmd)
 
 	carapace.Gen(build_winuwpCmd).FlagCompletion(carapace.ActionMap{
-		"target": carapace.ActionFiles(".dart"),
+		"split-debug-info": carapace.ActionDirectories(),
+		"target":           carapace.ActionFiles(".dart"),
 	})
 }

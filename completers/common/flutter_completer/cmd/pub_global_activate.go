@@ -19,7 +19,7 @@ func init() {
 	pub_global_activateCmd.Flags().BoolP("help", "h", false, "Print this usage information.")
 	pub_global_activateCmd.Flags().StringP("hosted-url", "u", "", "A custom pub server URL for the package.")
 	pub_global_activateCmd.Flags().Bool("no-executables", false, "Do not put executables on PATH.")
-	pub_global_activateCmd.Flags().Bool("overwrite", false, "Overwrite executables from other packages with the same")
+	pub_global_activateCmd.Flags().Bool("overwrite", false, "Overwrite executables from other packages with the same name.")
 	pub_global_activateCmd.Flags().StringP("source", "s", "", "The source used to find the package.")
 	pub_globalCmd.AddCommand(pub_global_activateCmd)
 

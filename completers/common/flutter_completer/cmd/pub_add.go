@@ -18,7 +18,7 @@ func init() {
 
 	pub_addCmd.Flags().BoolP("dev", "d", false, "Adds package to the development dependencies instead.")
 	pub_addCmd.Flags().StringP("directory", "C", "", "Run this in the directory <dir>.")
-	pub_addCmd.Flags().BoolP("dry-run", "n", false, "Report what dependencies would change but don't change")
+	pub_addCmd.Flags().BoolP("dry-run", "n", false, "Report what dependencies would change but don't change.")
 	pub_addCmd.Flags().String("git-path", "", "Path of git package in repository")
 	pub_addCmd.Flags().String("git-ref", "", "Git branch or commit to be retrieved")
 	pub_addCmd.Flags().String("git-url", "", "Git URL of the package")
