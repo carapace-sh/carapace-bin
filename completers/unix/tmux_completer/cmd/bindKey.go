@@ -2,14 +2,16 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tmux"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
 
 var bindKeyCmd = &cobra.Command{
-	Use:   "bind-key",
-	Short: "bind a key to a command",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "bind-key",
+	Aliases: []string{"bind"},
+	Short:   "bind a key to a command",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
@@ -21,7 +23,9 @@ func init() {
 	bindKeyCmd.Flags().BoolS("r", "r", false, "the key may repeat")
 	rootCmd.AddCommand(bindKeyCmd)
 
-	// TODO key table
+	carapace.Gen(bindKeyCmd).FlagCompletion(carapace.ActionMap{
+		"T": tmux.ActionKeyTables(),
+	})
 
 	carapace.Gen(bindKeyCmd).PositionalCompletion(
 		carapace.ActionValues(),
