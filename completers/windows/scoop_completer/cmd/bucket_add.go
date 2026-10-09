@@ -6,17 +6,17 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var homeCmd = &cobra.Command{
-	Use:   "home",
-	Short: "opens the app homepage",
+var bucket_addCmd = &cobra.Command{
+	Use:   "add",
+	Short: "add a bucket",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(homeCmd).Standalone()
-	rootCmd.AddCommand(homeCmd)
+	carapace.Gen(bucket_addCmd).Standalone()
+	bucketCmd.AddCommand(bucket_addCmd)
 
-	carapace.Gen(homeCmd).PositionalCompletion(
-		action.ActionAvailableApps(),
+	carapace.Gen(bucket_addCmd).PositionalCompletion(
+		action.ActionKnownBuckets(),
 	)
 }
