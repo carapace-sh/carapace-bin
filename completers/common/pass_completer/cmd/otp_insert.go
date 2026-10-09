@@ -7,9 +7,10 @@ import (
 )
 
 var otp_insertCmd = &cobra.Command{
-	Use:   "insert",
-	Short: "Prompt for and insert a new OTP secret",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "insert",
+	Aliases: []string{"add"},
+	Short:   "Prompt for and insert a new OTP secret",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
@@ -18,9 +19,14 @@ func init() {
 	otp_insertCmd.Flags().BoolP("echo", "e", false, "echo input")
 	otp_insertCmd.Flags().BoolP("force", "f", false, "overwrite existing")
 	otp_insertCmd.Flags().StringP("issuer", "i", "", "specify issuer")
+	otp_insertCmd.Flags().StringP("path", "p", "", "Prefix the generated password path")
 	otp_insertCmd.Flags().BoolP("secret", "s", false, "prompt for the secret value")
 
 	otpCmd.AddCommand(otp_insertCmd)
+
+	carapace.Gen(otp_insertCmd).FlagCompletion(carapace.ActionMap{
+		"path": pass.ActionDirectories(),
+	})
 
 	carapace.Gen(otp_insertCmd).PositionalCompletion(
 		pass.ActionPasswords(),
