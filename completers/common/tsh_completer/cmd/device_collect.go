@@ -7,7 +7,7 @@ import (
 
 var device_collectCmd = &cobra.Command{
 	Use:    "collect",
-	Short:  "Simulate enroll/authn device data collection",
+	Short:  "Simulate enroll/authn device data collection.",
 	Hidden: true,
 	Run:    func(cmd *cobra.Command, args []string) {},
 }

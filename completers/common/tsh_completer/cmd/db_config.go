@@ -16,15 +16,8 @@ func init() {
 
 	db_configCmd.Flags().String("db", "", "Print information for the specified database.")
 	db_configCmd.Flags().StringP("format", "f", "", "Print format: \"text\" to print in table format (default), \"cmd\" to print connect command, \"json\" or \"yaml\" to print in JSON or YAML.")
+	db_configCmd.Flags().String("labels", "", "List of comma separated labels to filter by labels (e.g. key1=value1,key2=value2).")
+	db_configCmd.Flags().String("query", "", "Query by predicate language enclosed in single quotes. Supports ==, !=, &&, and || (e.g. --query='labels[\"key1\"] == \"value1\" && labels[\"key2\"] != \"value2\"').")
 	db_configCmd.Flag("db").Hidden = true
 	dbCmd.AddCommand(db_configCmd)
-
-	carapace.Gen(db_configCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValuesDescribed(
-			"text", "print in table format",
-			"cmd", "print connect command",
-			"json", "print int JSON",
-			"yaml", "print in YAML",
-		),
-	})
 }

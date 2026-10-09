@@ -14,7 +14,9 @@ var device_enrollCmd = &cobra.Command{
 func init() {
 	carapace.Gen(device_enrollCmd).Standalone()
 
-	device_enrollCmd.Flags().String("token", "", "Device enrollment token")
-	device_enrollCmd.MarkFlagRequired("token")
+	device_enrollCmd.Flags().Bool("current-device", false, "Attempts to register and enroll the current device. Requires device admin privileges.")
+	device_enrollCmd.Flags().Bool("no-current-device", false, "Attempts to register and enroll the current device. Requires device admin privileges.")
+	device_enrollCmd.Flags().String("token", "", "Device enrollment token.")
+	device_enrollCmd.Flag("no-current-device").Hidden = true
 	deviceCmd.AddCommand(device_enrollCmd)
 }

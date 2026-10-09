@@ -7,7 +7,7 @@ import (
 
 var fido2_diagCmd = &cobra.Command{
 	Use:    "diag",
-	Short:  "Run FIDO2 diagnostics",
+	Short:  "Run FIDO2 diagnostics.",
 	Hidden: true,
 	Run:    func(cmd *cobra.Command, args []string) {},
 }

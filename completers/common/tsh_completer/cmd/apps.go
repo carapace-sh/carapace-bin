@@ -15,5 +15,6 @@ var appsCmd = &cobra.Command{
 func init() {
 	carapace.Gen(appsCmd).Standalone()
 
+	appsCmd.Flags().StringP("cluster", "c", "", "Specify the Teleport cluster to connect.")
 	rootCmd.AddCommand(appsCmd)
 }

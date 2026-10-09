@@ -7,7 +7,7 @@ import (
 
 var fido2_attobjCmd = &cobra.Command{
 	Use:    "attobj",
-	Short:  "Parse a stored attestation object",
+	Short:  "Parse a stored attestation object.",
 	Hidden: true,
 	Run:    func(cmd *cobra.Command, args []string) {},
 }
