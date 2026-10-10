@@ -1,0 +1,193 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugwireproto
+description: send wire protocol commands to a server
+hidden: true
+flags:
+    --insecure: do not verify server certificate (ignoring web.cacerts config)
+    --localssh: start an SSH server for this repo
+    --nologhandshake: do not log I/O related to the peer handshake
+    --noreadstderr: do not read from stderr of the remote
+    --peer=: construct a specific version of the peer
+    --remotecmd=: specify hg command to run on the remote side
+    -e, --ssh=: specify ssh command to use
+documentation:
+    command: |
+        send wire protocol commands to a server
+
+        This command can be used to issue wire protocol commands to remote
+        peers and to debug the raw data being exchanged.
+
+        `--localssh` will start an SSH server against the current repository
+        and connect to that. By default, the connection will perform a handshake
+        and establish an appropriate peer instance.
+
+        `--peer` can be used to bypass the handshake protocol and construct a
+        peer instance using the specified class type. Valid values are `raw`,
+        `ssh1`. `raw` instances only allow sending raw data payloads and
+        don't support higher-level command actions.
+
+        `--noreadstderr` can be used to disable automatic reading from stderr
+        of the peer (for SSH connections only). Disabling automatic reading of
+        stderr is useful for making output more deterministic.
+
+        Commands are issued via a mini language which is specified via stdin.
+        The language consists of individual actions to perform. An action is
+        defined by a block. A block is defined as a line with no leading
+        space followed by 0 or more lines with leading space. Blocks are
+        effectively a high-level command with additional metadata.
+
+        Lines beginning with `#` are ignored.
+
+        The following sections denote available actions.
+
+        raw
+        ---
+
+        Send raw data to the server.
+
+        The block payload contains the raw data to send as one atomic send
+        operation. The data may not actually be delivered in a single system
+        call: it depends on the abilities of the transport being used.
+
+        Each line in the block is de-indented and concatenated. Then, that
+        value is evaluated as a Python b'' literal. This allows the use of
+        backslash escaping, etc.
+
+        raw+
+        ----
+
+        Behaves like `raw` except flushes output afterwards.
+
+        command <X>
+        -----------
+
+        Send a request to run a named command, whose name follows the `command`
+        string.
+
+        Arguments to the command are defined as lines in this block. The format of
+        each line is `<key> <value>`. e.g.::
+
+           command listkeys
+               namespace bookmarks
+
+        If the value begins with `eval:`, it will be interpreted as a Python
+        literal expression. Otherwise values are interpreted as Python b'' literals.
+        This allows sending complex types and encoding special byte sequences via
+        backslash escaping.
+
+        The following arguments have special meaning:
+
+        `PUSHFILE`
+            When defined, the *push* mechanism of the peer will be used instead
+            of the static request-response mechanism and the content of the
+            file specified in the value of this argument will be sent as the
+            command payload.
+
+            This can be used to submit a local bundle file to the remote.
+
+        batchbegin
+        ----------
+
+        Instruct the peer to begin a batched send.
+
+        All `command` blocks are queued for execution until the next
+        `batchsubmit` block.
+
+        batchsubmit
+        -----------
+
+        Submit previously queued `command` blocks as a batch request.
+
+        This action MUST be paired with a `batchbegin` action.
+
+        httprequest <method> <path>
+        ---------------------------
+
+        (HTTP peer only)
+
+        Send an HTTP request to the peer.
+
+        The HTTP request line follows the `httprequest` action. e.g. `GET /foo`.
+
+        Arguments of the form `<key>: <value>` are interpreted as HTTP request
+        headers to add to the request. e.g. `Accept: foo`.
+
+        The following arguments are special:
+
+        `BODYFILE`
+            The content of the file defined as the value to this argument will be
+            transferred verbatim as the HTTP request body.
+
+        `frame <type> <flags> <payload>`
+            Send a unified protocol frame as part of the request body.
+
+            All frames will be collected and sent as the body to the HTTP
+            request.
+
+        close
+        -----
+
+        Close the connection to the server.
+
+        flush
+        -----
+
+        Flush data written to the server.
+
+        readavailable
+        -------------
+
+        Close the write end of the connection and read all available data from
+        the server.
+
+        If the connection to the server encompasses multiple pipes, we poll both
+        pipes and read available data.
+
+        readline
+        --------
+
+        Read a line of output from the server. If there are multiple output
+        pipes, reads only the main pipe.
+
+        ereadline
+        ---------
+
+        Like `readline`, but read from the stderr pipe, if available.
+
+        read <X>
+        --------
+
+        `read()` N bytes from the server's main output pipe.
+
+        eread <X>
+        ---------
+
+        `read()` N bytes from the server's stderr pipe, if available.
+
+        Specifying Unified Frame-Based Protocol Frames
+        ----------------------------------------------
+
+        It is possible to emit a *Unified Frame-Based Protocol* by using special
+        syntax.
+
+        A frame is composed as a type, flags, and payload. These can be parsed
+        from a string of the form:
+
+           <request-id> <stream-id> <stream-flags> <type> <flags> <payload>
+
+        `request-id` and `stream-id` are integers defining the request and
+        stream identifiers.
+
+        `type` can be an integer value for the frame type or the string name
+        of the type. The strings are defined in `wireprotoframing.py`. e.g.
+        `command-name`.
+
+        `stream-flags` and `flags` are a `|` delimited list of flag
+        components. Each component (and there can be just one) can be an integer
+        or a flag name for stream flags or frame flags, respectively. Values are
+        resolved to integers and then bitwise OR'd together.
+
+        `payload` represents the raw frame payload. If it begins with
+        `cbor:`, the following string is evaluated as Python code and the
+        resulting object is fed into a CBOR encoder. Otherwise it is interpreted
+        as a Python byte string literal.

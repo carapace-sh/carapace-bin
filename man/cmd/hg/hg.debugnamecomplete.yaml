@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugnamecomplete
+description: NAME...
+hidden: true
+documentation:
+    command: |
+        complete "names" - tags, open branch names, bookmark names

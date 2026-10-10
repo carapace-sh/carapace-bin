@@ -1,0 +1,51 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: remove
+aliases:
+    - rm
+description: remove the specified files on the next commit
+group: working-dir
+flags:
+    -A, --after: record delete for missing files
+    -I, --include=*: include names matching the given patterns
+    -S, --subrepos: recurse into subrepositories
+    -X, --exclude=*: exclude names matching the given patterns
+    -f, --force: forget added files, delete modified files
+    -n, --dry-run: do not perform actions, just print output
+documentation:
+    command: |
+        remove the specified files on the next commit
+
+        Schedule the indicated files for removal from the current branch.
+
+        This command schedules the files to be removed at the next commit.
+        To undo a remove before that, see `hg revert`. To undo added
+        files, see `hg forget`.
+
+        .. container:: verbose
+
+          -A/--after can be used to remove only files that have already
+          been deleted, -f/--force can be used to force deletion, and -Af
+          can be used to remove files from the next revision without
+          deleting them from the working directory.
+
+          The following table details the behavior of remove for different
+          file states (columns) and option combinations (rows). The file
+          states are Added [A], Clean [C], Modified [M] and Missing [!]
+          (as reported by `hg status`). The actions are Warn, Remove
+          (from branch) and Delete (from disk):
+
+          ========= == == == ==
+          opt/state A  C  M  !
+          ========= == == == ==
+          none      W  RD W  R
+          -f        R  RD RD R
+          -A        W  W  W  R
+          -Af       R  R  R  R
+          ========= == == == ==
+
+          .. note::
+
+             `hg remove` never deletes files in Added [A] state from the
+             working directory, not even if `--force` is specified.
+
+        Returns 0 on success, 1 if any warnings encountered.

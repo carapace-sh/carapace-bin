@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debug::stable-tail-sort
+description: REV
+hidden: true
+flags:
+    -T, --template=: display with template
+documentation:
+    command: |
+        display the stable-tail sort of the ancestors of a given node

@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugrebuilddirstate
+description: rebuild the dirstate as it would look like for the given revision
+hidden: true
+flags:
+    --minimal: only rebuild files that are inconsistent with the working copy parent
+    -r, --rev=: revision to rebuild to
+documentation:
+    command: |
+        rebuild the dirstate as it would look like for the given revision
+
+        If no revision is specified the first current parent will be used.
+
+        The dirstate will be set to the files of the given revision.
+        The actual working directory content or existing dirstate
+        information such as adds or removes is not considered.
+
+        `minimal` will only rebuild the dirstate status for files that claim to be
+        tracked but are not in the parent manifest, or that exist in the parent
+        manifest but are not in the dirstate. It will not change adds, removes, or
+        modified files that are in the working copy parent.
+
+        One use of this command is to make the next `hg status` invocation
+        check the actual file content.

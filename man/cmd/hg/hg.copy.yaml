@@ -1,0 +1,34 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: copy
+aliases:
+    - cp
+description: mark files as copied for the next commit
+group: content
+flags:
+    --at-rev=: (un)mark copies in the given revision (EXPERIMENTAL)
+    --forget: unmark a destination file as copied
+    -A, --after: record a copy that has already occurred
+    -I, --include=*: include names matching the given patterns
+    -X, --exclude=*: exclude names matching the given patterns
+    -f, --force: forcibly copy over an existing managed file
+    -n, --dry-run: do not perform actions, just print output
+documentation:
+    command: |
+        mark files as copied for the next commit
+
+        Mark dest as having copies of source files. If dest is a
+        directory, copies are put in that directory. If dest is a file,
+        the source must be a single file.
+
+        By default, this command copies the contents of files as they
+        exist in the working directory. If invoked with -A/--after, the
+        operation is recorded, but no copying is performed.
+
+        To undo marking a destination file as copied, use --forget. With that
+        option, all given (positional) arguments are unmarked as copies. The
+        destination file(s) will be left in place (still tracked). Note that
+        `hg copy --forget` behaves the same way as `hg rename --forget`.
+
+        This command takes effect with the next commit by default.
+
+        Returns 0 on success, 1 if errors are encountered.

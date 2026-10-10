@@ -1,0 +1,37 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: forget
+description: forget the specified files on the next commit
+group: working-dir
+flags:
+    -I, --include=*: include names matching the given patterns
+    -X, --exclude=*: exclude names matching the given patterns
+    -i, --interactive: use interactive mode
+    -n, --dry-run: do not perform actions, just print output
+documentation:
+    command: |
+        forget the specified files on the next commit
+
+        Mark the specified files so they will no longer be tracked
+        after the next commit.
+
+        This only removes files from the current branch, not from the
+        entire project history, and it does not delete them from the
+        working directory.
+
+        To delete the file from the working directory, see `hg remove`.
+
+        To undo a forget before the next commit, see `hg add`.
+
+        .. container:: verbose
+
+          Examples:
+
+          - forget newly-added binary files::
+
+              hg forget "set:added() and binary()"
+
+          - forget files that would be excluded by .hgignore::
+
+              hg forget "set:hgignore()"
+
+        Returns 0 on success.

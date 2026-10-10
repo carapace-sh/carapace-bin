@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugbackupbundle
+description: hg debugbackupbundle [--recover HASH]
+hidden: true
+flags:
+    --recover=: brings the specified changeset back into the repository
+    --stat: output diffstat-style summary of changes
+    --style=: display using template map file (DEPRECATED)
+    -G, --graph: show the revision DAG
+    -M, --no-merges: do not show merges
+    -T, --template=: display with template
+    -g, --git: use git extended diff format
+    -l, --limit=: limit number of changes displayed
+    -p, --patch: show patch
+documentation:
+    command: |
+        lists the changesets available in backup bundles
+
+        Without any arguments, this command prints a list of the changesets in each
+        backup bundle.
+
+        --recover takes a changeset hash and unbundles the first bundle that
+        contains that hash, which puts that changeset back in your repository.
+
+        --verbose will print the entire commit message and the bundle path for that
+        backup.

@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugcheckstate
+description: validate the correctness of the current dirstate
+hidden: true
+documentation:
+    command: |
+        validate the correctness of the current dirstate

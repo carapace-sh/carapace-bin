@@ -1,0 +1,74 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: bookmarks
+aliases:
+    - bookmark
+description: create a new bookmark or list existing bookmarks
+group: change-organization
+flags:
+    -T, --template=: display with template
+    -d, --delete: delete a given bookmark
+    -f, --force: force
+    -i, --inactive: mark a bookmark inactive
+    -l, --list: list existing bookmarks
+    -m, --rename=: rename a given bookmark
+    -r, --rev=: revision for bookmark action
+documentation:
+    command: |
+        create a new bookmark or list existing bookmarks
+
+        Bookmarks are labels on changesets to help track lines of development.
+        Bookmarks are unversioned and can be moved, renamed and deleted.
+        Deleting or moving a bookmark has no effect on the associated changesets.
+
+        Creating or updating to a bookmark causes it to be marked as 'active'.
+        The active bookmark is indicated with a '*'.
+        When a commit is made, the active bookmark will advance to the new commit.
+        A plain `hg update` will also advance an active bookmark, if possible.
+        Updating away from a bookmark will cause it to be deactivated.
+
+        Bookmarks can be pushed and pulled between repositories (see
+        `hg help push` and `hg help pull`). If a shared bookmark has
+        diverged, a new 'divergent bookmark' of the form 'name@path' will
+        be created. Using `hg merge` will resolve the divergence.
+
+        Specifying bookmark as '.' to -m/-d/-l options is equivalent to specifying
+        the active bookmark's name.
+
+        A bookmark named '@' has the special property that `hg clone` will
+        check it out by default if it exists.
+
+        .. container:: verbose
+
+          Template:
+
+          The following keywords are supported in addition to the common template
+          keywords and functions such as `{bookmark}`. See also
+          `hg help templates`.
+
+          :active:  Boolean. True if the bookmark is active.
+
+          Examples:
+
+          - create an active bookmark for a new line of development::
+
+              hg book new-feature
+
+          - create an inactive bookmark as a place marker::
+
+              hg book -i reviewed
+
+          - create an inactive bookmark on another changeset::
+
+              hg book -r .^ tested
+
+          - rename bookmark turkey to dinner::
+
+              hg book -m turkey dinner
+
+          - move the '@' bookmark from another branch::
+
+              hg book -f @
+
+          - print only the active bookmark name::
+
+              hg book -ql .

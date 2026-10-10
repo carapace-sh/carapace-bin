@@ -1,0 +1,53 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: archive
+description: create an unversioned archive of a repository revision
+group: import-export
+flags:
+    --no-decode: do not pass files through decoders
+    -I, --include=*: include names matching the given patterns
+    -S, --subrepos: recurse into subrepositories
+    -X, --exclude=*: exclude names matching the given patterns
+    -p, --prefix=: directory prefix for files in archive
+    -r, --rev=: revision to distribute
+    -t, --type=: type of distribution to create
+documentation:
+    command: |
+        create an unversioned archive of a repository revision
+
+        By default, the revision used is the parent of the working
+        directory; use -r/--rev to specify a different revision.
+
+        The archive type is automatically detected based on file
+        extension (to override, use -t/--type).
+
+        .. container:: verbose
+
+          Examples:
+
+          - create a zip file containing the 1.0 release::
+
+              hg archive -r 1.0 project-1.0.zip
+
+          - create a tarball excluding .hg files::
+
+              hg archive project.tar.gz -X ".hg*"
+
+        Valid types are:
+
+        :`files`: a directory full of files (default)
+        :`tar`:   tar archive, uncompressed
+        :`tbz2`:  tar archive, compressed using bzip2
+        :`tgz`:   tar archive, compressed using gzip
+        :`txz`:   tar archive, compressed using lzma (only in Python 3)
+        :`uzip`:  zip archive, uncompressed
+        :`zip`:   zip archive, compressed using deflate
+
+        The exact name of the destination archive or directory is given
+        using a format string; see `hg help export` for details.
+
+        Each member added to an archive file has a directory prefix
+        prepended. Use -p/--prefix to specify a format string for the
+        prefix. The default is the basename of the archive, with suffixes
+        removed.
+
+        Returns 0 on success.

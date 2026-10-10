@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: branches
+description: list repository named branches
+group: change-organization
+flags:
+    -T, --template=: display with template
+    -a, --active: show only branches that have unmerged heads (DEPRECATED)
+    -c, --closed: show normal and closed branches
+    -r, --rev=*: show branch name(s) of the given rev
+documentation:
+    command: |
+        list repository named branches
+
+        List the repository's named branches, indicating which ones are
+        inactive. If -c/--closed is specified, also list branches which have
+        been marked closed (see `hg commit --close-branch`).
+
+        Use the command `hg update` to switch to an existing branch.
+
+        .. container:: verbose
+
+          Template:
+
+          The following keywords are supported in addition to the common template
+          keywords and functions such as `{branch}`. See also
+          `hg help templates`.
+
+          :active:  Boolean. True if the branch is active.
+          :closed:  Boolean. True if the branch is closed.
+          :current: Boolean. True if it is the current branch.
+
+        Returns 0.

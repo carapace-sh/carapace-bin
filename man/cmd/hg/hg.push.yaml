@@ -1,0 +1,76 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: push
+description: push changes to the specified destination
+group: remote
+flags:
+    --all-bookmarks: push all bookmarks (EXPERIMENTAL)
+    --insecure: do not verify server certificate (ignoring web.cacerts config)
+    --new-branch: allow pushing a new branch
+    --publish: push the changeset as public (EXPERIMENTAL)
+    --pushvars=: variables that can be sent to server (ADVANCED)
+    --remotecmd=: specify hg command to run on the remote side
+    -B, --bookmark=*: bookmark to push
+    -b, --branch=*: a specific branch you would like to push
+    -e, --ssh=: specify ssh command to use
+    -f, --force: force push
+    -r, --rev=*: a changeset intended to be included in the destination
+documentation:
+    command: |
+        push changes to the specified destination
+
+        Push changesets from the local repository to the specified
+        destination.
+
+        This operation is symmetrical to pull: it is identical to a pull
+        in the destination repository from the current one.
+
+        By default, push will not allow creation of new heads at the
+        destination, since multiple heads would make it unclear which head
+        to use. In this situation, it is recommended to pull and merge
+        before pushing.
+
+        Use --new-branch if you want to allow push to create a new named
+        branch that is not present at the destination. This allows you to
+        only create a new branch without forcing other changes.
+
+        .. note::
+
+           Extra care should be taken with the -f/--force option,
+           which will push all new heads on all branches, an action which will
+           almost always cause confusion for collaborators.
+
+        If -r/--rev is used, the specified revision and all its ancestors
+        will be pushed to the remote repository.
+
+        If -B/--bookmark is used, the specified bookmarked revision, its
+        ancestors, and the bookmark will be pushed to the remote
+        repository. Specifying `.` is equivalent to specifying the active
+        bookmark's name. Use the --all-bookmarks option for pushing all
+        current bookmarks.
+
+        Please see `hg help urls` for important details about `ssh://`
+        URLs. If DESTINATION is omitted, a default path will be used.
+
+        When passed multiple destinations, push will process them one after the
+        other, but stop should an error occur.
+
+        .. container:: verbose
+
+            The --pushvars option sends strings to the server that become
+            environment variables prepended with `HG_USERVAR_`. For example,
+            `--pushvars ENABLE_FEATURE=true`, provides the server side hooks with
+            `HG_USERVAR_ENABLE_FEATURE=true` as part of their environment.
+
+            pushvars can provide for user-overridable hooks as well as set debug
+            levels. One example is having a hook that blocks commits containing
+            conflict markers, but enables the user to override the hook if the file
+            is using conflict markers for testing purposes or the file format has
+            strings that look like conflict markers.
+
+            By default, servers will ignore `--pushvars`. To enable it add the
+            following to your configuration file::
+
+                [push]
+                pushvars.server = true
+
+        Returns 0 if push was successful, 1 if nothing to push.

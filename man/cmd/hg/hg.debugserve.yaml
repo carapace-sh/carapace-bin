@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugserve
+description: run a server with advanced settings
+hidden: true
+flags:
+    --logiofd=: file descriptor to log server I/O to
+    --logiofile=: file to log server I/O to
+    --sshstdio: run an SSH server bound to process handles
+documentation:
+    command: |
+        run a server with advanced settings
+
+        This command is similar to `hg serve`. It exists partially as a
+        workaround to the fact that `hg serve --stdio` must have specific
+        arguments for security reasons.

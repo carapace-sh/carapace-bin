@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debuggetbundle
+description: REPO FILE [-H|-C ID]...
+hidden: true
+flags:
+    -C, --common=*: id of common node
+    -H, --head=*: id of head node
+    -t, --type=: bundle compression type to use
+documentation:
+    command: |
+        retrieves a bundle from a repo
+
+        Every ID must be a full-length hex node id string. Saves the bundle to the
+        given file.

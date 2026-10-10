@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debug::clonebundle-manifest
+description: REPO
+hidden: true
+flags:
+    --raw: show the raw manifest instead of parsing and filtering it
+    --stream: disply stream bundle only
+    -I, --include=*: include names matching the given patterns
+    -X, --exclude=*: exclude names matching the given patterns
+documentation:
+    command: |
+        fetch a display a clone bundle manifest from a peer

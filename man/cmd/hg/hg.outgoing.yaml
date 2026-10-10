@@ -1,0 +1,60 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: outgoing
+aliases:
+    - out
+description: show changesets not found in the destination
+group: remote
+flags:
+    --insecure: do not verify server certificate (ignoring web.cacerts config)
+    --remotecmd=: specify hg command to run on the remote side
+    --stat: output diffstat-style summary of changes
+    --style=: display using template map file (DEPRECATED)
+    -B, --bookmarks: compare bookmarks
+    -G, --graph: show the revision DAG
+    -M, --no-merges: do not show merges
+    -S, --subrepos: recurse into subrepositories
+    -T, --template=: display with template
+    -b, --branch=*: a specific branch you would like to push
+    -e, --ssh=: specify ssh command to use
+    -f, --force: run even when the destination is unrelated
+    -g, --git: use git extended diff format
+    -l, --limit=: limit number of changes displayed
+    -n, --newest-first: show newest record first
+    -p, --patch: show patch
+    -r, --rev=*: a changeset intended to be included in the destination
+documentation:
+    command: |
+        show changesets not found in the destination
+
+        Show changesets not found in the specified destination repository
+        or the default push location. These are the changesets that would
+        be pushed if a push was requested.
+
+        See pull for details of valid destination formats.
+
+        .. container:: verbose
+
+          With -B/--bookmarks, the result of bookmark comparison between
+          local and remote repositories is displayed. With -v/--verbose,
+          status is also displayed for each bookmark like below::
+
+            BM1               01234567890a added
+            BM2                            deleted
+            BM3               234567890abc advanced
+            BM4               34567890abcd diverged
+            BM5               4567890abcde changed
+
+          The action taken when pushing depends on the
+          status of each bookmark:
+
+          :`added`: push with `-B` will create it
+          :`deleted`: push with `-B` will delete it
+          :`advanced`: push will update it
+          :`diverged`: push with `-B` will update it
+          :`changed`: push with `-B` will update it
+
+          From the point of view of pushing behavior, bookmarks
+          existing only in the remote repository are treated as
+          `deleted`, even if it is in fact added remotely.
+
+        Returns 0 if there are outgoing changes, 1 otherwise.
