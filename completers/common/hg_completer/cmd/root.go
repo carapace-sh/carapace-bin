@@ -7,7 +7,7 @@ import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/hg"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
-	shlex "github.com/carapace-sh/carapace-shlex"
+	shlex "github.com/carapace-sh/carapace-shlex/v2"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 )
@@ -15,6 +15,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "hg",
 	Short: "Mercurial distributed SCM",
+	Long:  "https://www.mercurial-scm.org/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
@@ -137,7 +138,7 @@ func addAliasCompletion(args []string) {
 
 		switch {
 		case strings.HasPrefix(value, "!"): // shell alias
-			tokens, err := shlex.Split(strings.TrimPrefix(value, "!"))
+			tokens, err := shlex.Split(strings.TrimPrefix(value, "!"), shlex.Default)
 			if err != nil {
 				carapace.LOG.Println("failed to parse shell alias: " + err.Error())
 				continue
@@ -150,7 +151,7 @@ func addAliasCompletion(args []string) {
 			)
 
 		default: // mercurial alias
-			tokens, err := shlex.Split(value)
+			tokens, err := shlex.Split(value, shlex.Default)
 			if err != nil {
 				carapace.LOG.Println("failed to parse alias: " + err.Error())
 				continue
