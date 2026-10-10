@@ -19,8 +19,8 @@ func init() {
 
 	token_revokeCmd.Flags().StringP("group", "g", "", "Revoke group access token. Ignored if a user or repository argument is set.")
 	token_revokeCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
-	token_revokeCmd.Flags().StringP("output", "F", "", "Format output as: text, json. 'text' provides the name and ID of the revoked token; 'json' outputs the token with metadata.")
-	token_revokeCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. Can use either `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format. Also accepts full URL or Git URL.")
+	token_revokeCmd.Flags().StringP("output", "F", "text", "Format output as: text, json. 'text' provides the name and ID of the revoked token; 'json' outputs the token with metadata.")
+	token_revokeCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. You can use either OWNER/REPO or GROUP/NAMESPACE/REPO. The full URL or Git URL is also accepted.")
 	token_revokeCmd.Flags().StringP("user", "U", "", "Revoke personal access token. Use @me for the current user.")
 	tokenCmd.AddCommand(token_revokeCmd)
 
@@ -31,6 +31,4 @@ func init() {
 		"repo":   action.ActionRepo(token_revokeCmd),
 		"user":   action.ActionUsers(token_revokeCmd),
 	})
-
-	// TODO complete tokens
 }

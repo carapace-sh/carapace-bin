@@ -16,13 +16,11 @@ func init() {
 	carapace.Gen(deployKey_getCmd).Standalone()
 
 	deployKey_getCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
-	deployKey_getCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
+	deployKey_getCmd.Flags().StringP("output", "F", "text", "Format output as: text, json.")
 	deployKeyCmd.AddCommand(deployKey_getCmd)
 
 	carapace.Gen(deployKey_getCmd).FlagCompletion(carapace.ActionMap{
 		"jq":     jq.ActionFilters(),
 		"output": carapace.ActionValues("text", "json"),
 	})
-
-	// TODO positional completion
 }

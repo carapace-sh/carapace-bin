@@ -17,7 +17,7 @@ func init() {
 
 	runnerController_createCmd.Flags().StringP("description", "d", "", "Description of the runner controller.")
 	runnerController_createCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
-	runnerController_createCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
+	runnerController_createCmd.Flags().StringP("output", "F", "text", "Format output as: text, json.")
 	runnerController_createCmd.Flags().String("state", "", "State of the runner controller: disabled, enabled, dry_run.")
 	runnerControllerCmd.AddCommand(runnerController_createCmd)
 

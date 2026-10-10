@@ -17,9 +17,9 @@ func init() {
 	carapace.Gen(cluster_agent_listCmd).Standalone()
 
 	cluster_agent_listCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
-	cluster_agent_listCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
-	cluster_agent_listCmd.Flags().StringP("page", "p", "", "Page number.")
-	cluster_agent_listCmd.Flags().StringP("per-page", "P", "", "Number of items to list per page.")
+	cluster_agent_listCmd.Flags().StringP("output", "F", "text", "Format output as: text, json.")
+	cluster_agent_listCmd.Flags().StringP("page", "p", "1", "Page number.")
+	cluster_agent_listCmd.Flags().StringP("per-page", "P", "30", "Number of items to list per page.")
 	cluster_agentCmd.AddCommand(cluster_agent_listCmd)
 
 	carapace.Gen(cluster_agent_listCmd).FlagCompletion(carapace.ActionMap{

@@ -19,9 +19,9 @@ func init() {
 
 	mr_viewCmd.Flags().BoolP("comments", "c", false, "Show merge request comments and activities.")
 	mr_viewCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
-	mr_viewCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
+	mr_viewCmd.Flags().StringP("output", "F", "text", "Format output as: text, json.")
 	mr_viewCmd.Flags().StringP("page", "p", "", "Page number.")
-	mr_viewCmd.Flags().StringP("per-page", "P", "", "Number of items to list per page.")
+	mr_viewCmd.Flags().StringP("per-page", "P", "20", "Number of items to list per page.")
 	mr_viewCmd.Flags().Bool("resolved", false, "Show only resolved discussions (implies --comments).")
 	mr_viewCmd.Flags().BoolP("system-logs", "s", false, "Show system activities and logs.")
 	mr_viewCmd.Flags().Bool("unresolved", false, "Show only unresolved discussions (implies --comments).")
@@ -32,7 +32,6 @@ func init() {
 		"jq":     jq.ActionFilters(),
 		"output": carapace.ActionValues("text", "json"),
 	})
-
 	carapace.Gen(mr_viewCmd).PositionalCompletion(
 		action.ActionMergeRequestsAndBranches(mr_viewCmd, "opened"),
 	)

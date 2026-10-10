@@ -17,16 +17,15 @@ func init() {
 	carapace.Gen(sshKey_getCmd).Standalone()
 
 	sshKey_getCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
-	sshKey_getCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
-	sshKey_getCmd.Flags().StringP("page", "p", "", "Page number.")
-	sshKey_getCmd.Flags().StringP("per-page", "P", "", "Number of items to list per page.")
+	sshKey_getCmd.Flags().StringP("output", "F", "text", "Format output as: text, json.")
+	sshKey_getCmd.Flags().StringP("page", "p", "1", "Page number.")
+	sshKey_getCmd.Flags().StringP("per-page", "P", "20", "Number of items to list per page.")
 	sshKeyCmd.AddCommand(sshKey_getCmd)
 
 	carapace.Gen(sshKey_getCmd).FlagCompletion(carapace.ActionMap{
 		"jq":     jq.ActionFilters(),
 		"output": carapace.ActionValues("text", "json"),
 	})
-
 	carapace.Gen(sshKey_getCmd).PositionalCompletion(
 		action.ActionSshKeyIds(sshKeyCmd),
 	)

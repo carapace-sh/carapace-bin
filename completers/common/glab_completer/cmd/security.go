@@ -15,7 +15,7 @@ var securityCmd = &cobra.Command{
 func init() {
 	carapace.Gen(securityCmd).Standalone()
 
-	securityCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. Can use either `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format. Also accepts full URL or Git URL.")
+	securityCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. You can use either OWNER/REPO or GROUP/NAMESPACE/REPO. The full URL or Git URL is also accepted.")
 	rootCmd.AddCommand(securityCmd)
 
 	carapace.Gen(securityCmd).FlagCompletion(carapace.ActionMap{

@@ -20,8 +20,6 @@ func init() {
 	repo_transferCmd.MarkFlagRequired("target-namespace")
 	repoCmd.AddCommand(repo_transferCmd)
 
-	// TODO target-namespace completion (user/group ?)
-
 	carapace.Gen(repo_transferCmd).PositionalCompletion(
 		action.ActionRepo(repo_transferCmd), // TODO verify this is correct
 	)

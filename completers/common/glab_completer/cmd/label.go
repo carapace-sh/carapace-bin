@@ -8,14 +8,14 @@ import (
 
 var labelCmd = &cobra.Command{
 	Use:   "label <command> [flags]",
-	Short: "Manage labels on remote.",
+	Short: "Manage project and group labels.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(labelCmd).Standalone()
 
-	labelCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. Can use either `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format. Also accepts full URL or Git URL.")
+	labelCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. You can use either OWNER/REPO or GROUP/NAMESPACE/REPO. The full URL or Git URL is also accepted.")
 	rootCmd.AddCommand(labelCmd)
 
 	carapace.Gen(labelCmd).FlagCompletion(carapace.ActionMap{

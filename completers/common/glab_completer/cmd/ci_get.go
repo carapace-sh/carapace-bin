@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/glab_completer/cmd/action"
+	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
 )
 
@@ -19,8 +20,8 @@ func init() {
 	ci_getCmd.Flags().StringP("branch", "b", "", "Get the pipeline for a branch. Defaults to the current branch.")
 	ci_getCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
 	ci_getCmd.Flags().String("merge-request", "", "Show the pipeline for the given merge request <iid>.")
-	ci_getCmd.Flags().StringP("output", "F", "", "Format output. Options: text, json.")
-	ci_getCmd.Flags().StringP("output-format", "o", "", "Use output.")
+	ci_getCmd.Flags().StringP("output", "F", "text", "Format output. Options: text, json.")
+	ci_getCmd.Flags().StringP("output-format", "o", "text", "Use output.")
 	ci_getCmd.Flags().StringP("pipeline-id", "p", "", "Get the pipeline with the given <id>.")
 	ci_getCmd.Flags().StringP("status", "s", "", "Show only jobs in the given state. Passed through to the API's scope parameter.")
 	ci_getCmd.Flags().BoolP("with-job-details", "d", false, "Show extended job information.")
@@ -30,6 +31,7 @@ func init() {
 
 	carapace.Gen(ci_getCmd).FlagCompletion(carapace.ActionMap{
 		"branch":        action.ActionBranches(ci_getCmd),
+		"jq":            jq.ActionFilters(),
 		"merge-request": action.ActionMergeRequests(ci_getCmd, "opened"),
 		"output":        carapace.ActionValues("text", "json"),
 		"output-format": carapace.ActionValues("text", "json"),

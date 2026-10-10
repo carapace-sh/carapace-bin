@@ -7,7 +7,7 @@ import (
 
 var stack_inferCmd = &cobra.Command{
 	Use:   "infer <revision-range>",
-	Short: "Add layers to a stack based on a range of commits. (EXPERIMENTAL)",
+	Short: "Add diffs to a stack based on a range of commits. (EXPERIMENTAL)",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

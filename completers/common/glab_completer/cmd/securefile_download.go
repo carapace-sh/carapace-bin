@@ -19,14 +19,12 @@ func init() {
 	securefile_downloadCmd.Flags().String("id", "", "ID of the secure file to download.")
 	securefile_downloadCmd.Flags().String("name", "", "Name of the secure file to download. Saves the file with this name, or to the path specified by --path.")
 	securefile_downloadCmd.Flags().Bool("no-verify", false, "Do not verify the checksum of the downloaded file(s). Warning: when enabled, this setting allows the download of files that are corrupt or tampered with.")
-	securefile_downloadCmd.Flags().String("output-dir", "", "Output directory for files downloaded with --all.")
-	securefile_downloadCmd.Flags().StringP("path", "p", "", "Path to download the secure file to, including filename and extension.")
+	securefile_downloadCmd.Flags().String("output-dir", ".", "Output directory for files downloaded with --all.")
+	securefile_downloadCmd.Flags().StringP("path", "p", "./downloaded.tmp", "Path to download the secure file to, including filename and extension.")
 	securefileCmd.AddCommand(securefile_downloadCmd)
 
 	carapace.Gen(securefile_downloadCmd).FlagCompletion(carapace.ActionMap{
 		"output-dir": carapace.ActionDirectories(),
 		"path":       carapace.ActionFiles(),
 	})
-
-	// TODO complete file ids
 }

@@ -22,6 +22,4 @@ func init() {
 	carapace.Gen(securefile_getCmd).FlagCompletion(carapace.ActionMap{
 		"jq": jq.ActionFilters(),
 	})
-
-	// TODO positional completion
 }

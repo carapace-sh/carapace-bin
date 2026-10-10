@@ -17,4 +17,9 @@ func init() {
 
 	securefile_updateCmd.Flags().BoolP("yes", "y", false, "Skip the confirmation prompt.")
 	securefileCmd.AddCommand(securefile_updateCmd)
+
+	carapace.Gen(securefile_updateCmd).PositionalCompletion(
+		carapace.ActionValues(),
+		carapace.ActionFiles(),
+	)
 }

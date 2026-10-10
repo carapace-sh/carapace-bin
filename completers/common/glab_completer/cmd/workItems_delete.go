@@ -18,13 +18,18 @@ func init() {
 
 	workItems_deleteCmd.Flags().StringP("group", "g", "", "Delete a work items from a group or subgroup.")
 	workItems_deleteCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
-	workItems_deleteCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
-	workItems_deleteCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. Can use either `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format. Also accepts full URL or Git URL.")
+	workItems_deleteCmd.Flags().StringP("output", "F", "text", "Format output as: text, json.")
+	workItems_deleteCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. You can use either OWNER/REPO or GROUP/NAMESPACE/REPO. The full URL or Git URL is also accepted.")
 	workItemsCmd.AddCommand(workItems_deleteCmd)
 
 	carapace.Gen(workItems_deleteCmd).FlagCompletion(carapace.ActionMap{
+		"group":  action.ActionGroups(workItems_deleteCmd),
 		"jq":     jq.ActionFilters(),
 		"output": carapace.ActionValues("text", "json"),
 		"repo":   action.ActionRepo(workItems_deleteCmd),
 	})
+
+	carapace.Gen(workItems_deleteCmd).PositionalCompletion(
+		action.ActionIssues(workItems_deleteCmd, "opened"),
+	)
 }

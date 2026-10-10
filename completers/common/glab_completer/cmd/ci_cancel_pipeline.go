@@ -16,6 +16,4 @@ func init() {
 
 	ci_cancel_pipelineCmd.Flags().Bool("dry-run", false, "Show which pipelines would be canceled, without canceling them.")
 	ci_cancelCmd.AddCommand(ci_cancel_pipelineCmd)
-
-	// TODO complete pipeline ids
 }

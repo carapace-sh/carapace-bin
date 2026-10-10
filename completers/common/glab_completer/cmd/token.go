@@ -16,7 +16,7 @@ var tokenCmd = &cobra.Command{
 func init() {
 	carapace.Gen(tokenCmd).Standalone()
 
-	tokenCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. Can use either `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format. Also accepts full URL or Git URL.")
+	tokenCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. You can use either OWNER/REPO or GROUP/NAMESPACE/REPO. The full URL or Git URL is also accepted.")
 	rootCmd.AddCommand(tokenCmd)
 
 	carapace.Gen(tokenCmd).FlagCompletion(carapace.ActionMap{

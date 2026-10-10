@@ -21,8 +21,6 @@ func init() {
 	repo_forkCmd.Flags().Bool("remote", false, "Add a remote for the fork. Options: true, false.")
 	repoCmd.AddCommand(repo_forkCmd)
 
-	// TODO path completion
-
 	carapace.Gen(repo_forkCmd).PositionalCompletion(
 		action.ActionRepo(repo_forkCmd),
 	)

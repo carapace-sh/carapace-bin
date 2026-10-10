@@ -17,8 +17,8 @@ func init() {
 	carapace.Gen(securefile_listCmd).Standalone()
 
 	securefile_listCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
-	securefile_listCmd.Flags().StringP("page", "p", "", "Page number.")
-	securefile_listCmd.Flags().StringP("per-page", "P", "", "Number of items to list per page.")
+	securefile_listCmd.Flags().StringP("page", "p", "1", "Page number.")
+	securefile_listCmd.Flags().StringP("per-page", "P", "30", "Number of items to list per page.")
 	securefileCmd.AddCommand(securefile_listCmd)
 
 	carapace.Gen(securefile_listCmd).FlagCompletion(carapace.ActionMap{

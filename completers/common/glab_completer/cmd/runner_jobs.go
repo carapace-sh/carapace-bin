@@ -18,12 +18,12 @@ func init() {
 	carapace.Gen(runner_jobsCmd).Standalone()
 
 	runner_jobsCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
-	runner_jobsCmd.Flags().String("order-by", "", "Order jobs by: id.")
-	runner_jobsCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
-	runner_jobsCmd.Flags().StringP("page", "p", "", "Page number.")
-	runner_jobsCmd.Flags().StringP("per-page", "P", "", "Number of items to list per page.")
-	runner_jobsCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. Can use either `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format. Also accepts full URL or Git URL.")
-	runner_jobsCmd.Flags().String("sort", "", "Sort order: asc or desc.")
+	runner_jobsCmd.Flags().String("order-by", "id", "Order jobs by: id.")
+	runner_jobsCmd.Flags().StringP("output", "F", "text", "Format output as: text, json.")
+	runner_jobsCmd.Flags().StringP("page", "p", "1", "Page number.")
+	runner_jobsCmd.Flags().StringP("per-page", "P", "30", "Number of items to list per page.")
+	runner_jobsCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. You can use either OWNER/REPO or GROUP/NAMESPACE/REPO. The full URL or Git URL is also accepted.")
+	runner_jobsCmd.Flags().String("sort", "desc", "Sort order: asc or desc.")
 	runner_jobsCmd.Flags().String("status", "", "Filter jobs by status: running, success, failed, canceled.")
 	runnerCmd.AddCommand(runner_jobsCmd)
 

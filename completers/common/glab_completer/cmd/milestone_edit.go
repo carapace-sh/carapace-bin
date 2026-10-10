@@ -28,4 +28,8 @@ func init() {
 		"group": action.ActionGroups(milestone_editCmd),
 		"state": carapace.ActionValues("activate", "close"),
 	})
+
+	carapace.Gen(milestone_editCmd).PositionalCompletion(
+		action.ActionMilestones(milestone_editCmd),
+	)
 }

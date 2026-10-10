@@ -15,7 +15,7 @@ var deployKeyCmd = &cobra.Command{
 func init() {
 	carapace.Gen(deployKeyCmd).Standalone()
 
-	deployKeyCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. Can use either `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format. Also accepts full URL or Git URL.")
+	deployKeyCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. You can use either OWNER/REPO or GROUP/NAMESPACE/REPO. The full URL or Git URL is also accepted.")
 	rootCmd.AddCommand(deployKeyCmd)
 
 	carapace.Gen(deployKeyCmd).FlagCompletion(carapace.ActionMap{

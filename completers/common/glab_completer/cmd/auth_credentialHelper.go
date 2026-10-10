@@ -16,7 +16,7 @@ var auth_credentialHelperCmd = &cobra.Command{
 func init() {
 	carapace.Gen(auth_credentialHelperCmd).Standalone()
 
-	auth_credentialHelperCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. Can use either `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format. Also accepts full URL or Git URL.")
+	auth_credentialHelperCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. You can use either OWNER/REPO or GROUP/NAMESPACE/REPO. The full URL or Git URL is also accepted.")
 	authCmd.AddCommand(auth_credentialHelperCmd)
 
 	carapace.Gen(auth_credentialHelperCmd).FlagCompletion(carapace.ActionMap{

@@ -17,14 +17,13 @@ func init() {
 	carapace.Gen(mr_approversCmd).Standalone()
 
 	mr_approversCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
-	mr_approversCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
+	mr_approversCmd.Flags().StringP("output", "F", "text", "Format output as: text, json.")
 	mrCmd.AddCommand(mr_approversCmd)
 
 	carapace.Gen(mr_approversCmd).FlagCompletion(carapace.ActionMap{
 		"jq":     jq.ActionFilters(),
 		"output": carapace.ActionValues("text", "json"),
 	})
-
 	carapace.Gen(mr_approversCmd).PositionalCompletion(
 		action.ActionMergeRequestsAndBranches(mr_approversCmd, ""),
 	)

@@ -21,4 +21,8 @@ func init() {
 	packages_uploadCmd.MarkFlagRequired("name")
 	packages_uploadCmd.MarkFlagRequired("version")
 	packagesCmd.AddCommand(packages_uploadCmd)
+
+	carapace.Gen(packages_uploadCmd).PositionalCompletion(
+		carapace.ActionFiles(),
+	)
 }

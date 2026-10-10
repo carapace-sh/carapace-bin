@@ -18,10 +18,12 @@ func init() {
 
 	mr_createCmd.Flags().Bool("allow-collaboration", false, "Allow commits from other members. Set to true/false to override project defaults, or omit to use project settings.")
 	mr_createCmd.Flags().StringSliceP("assignee", "a", nil, "Assign merge request to people by their `usernames`. Multiple usernames can be comma-separated or specified by repeating the flag.")
+	mr_createCmd.Flags().StringSlice("attach", nil, "(EXPERIMENTAL) Upload a file and reference it at the end of the description. Use \"-\" to read the file from standard input. Repeat the flag to attach multiple files.")
 	mr_createCmd.Flags().Bool("auto-merge", false, "Set the merge request to merge when all merge checks pass.")
 	mr_createCmd.Flags().Bool("copy-issue-labels", false, "Copy labels from issue to the merge request. Used with --related-issue.")
 	mr_createCmd.Flags().Bool("create-source-branch", false, "Create a source branch if it does not exist.")
 	mr_createCmd.Flags().StringP("description", "d", "", "Supply a description for the merge request. Set to \"-\" to open an editor.")
+	mr_createCmd.Flags().String("description-file", "", "Read the merge request description from a file. Use \"-\" to read from standard input.")
 	mr_createCmd.Flags().Bool("draft", false, "Mark merge request as a draft.")
 	mr_createCmd.Flags().BoolP("fill", "f", false, "Do not prompt for title or description, and just use commit info. Sets `push` to `true`, and pushes the branch.")
 	mr_createCmd.Flags().Bool("fill-commit-body", false, "Fill description with each commit body when multiple commits. Can only be used with --fill.")
@@ -45,17 +47,17 @@ func init() {
 	mr_createCmd.Flags().Bool("wip", false, "Mark merge request as a draft. Alternative to --draft.")
 	mr_createCmd.Flags().BoolP("yes", "y", false, "Skip submission confirmation prompt. Use --fill to skip all optional prompts.")
 	mr_createCmd.Flag("target-project").Hidden = true
-	mr_createCmd.Flag("target-project").Hidden = true
 	mrCmd.AddCommand(mr_createCmd)
 
-	// TODO target-project completion
 	carapace.Gen(mr_createCmd).FlagCompletion(carapace.ActionMap{
-		"assignee":      action.ActionProjectMembers(mr_createCmd).UniqueList(","),
-		"label":         action.ActionLabels(mr_createCmd).UniqueList(","),
-		"milestone":     action.ActionMilestones(mr_createCmd),
-		"related-issue": action.ActionIssues(mr_createCmd, "opened"),
-		"reviewer":      action.ActionProjectMembers(mr_createCmd).UniqueList(","),
-		"source-branch": action.ActionBranches(mr_createCmd),
-		"target-branch": action.ActionBranches(mr_createCmd),
+		"assignee":         action.ActionProjectMembers(mr_createCmd).UniqueList(","),
+		"attach":           carapace.ActionFiles(),
+		"description-file": carapace.ActionFiles(),
+		"label":            action.ActionLabels(mr_createCmd).UniqueList(","),
+		"milestone":        action.ActionMilestones(mr_createCmd),
+		"related-issue":    action.ActionIssues(mr_createCmd, "opened"),
+		"reviewer":         action.ActionProjectMembers(mr_createCmd).UniqueList(","),
+		"source-branch":    action.ActionBranches(mr_createCmd),
+		"target-branch":    action.ActionBranches(mr_createCmd),
 	})
 }

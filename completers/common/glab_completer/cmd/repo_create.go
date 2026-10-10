@@ -23,7 +23,7 @@ func init() {
 	repo_createCmd.Flags().BoolP("private", "p", false, "Make project private: visible only to project members.")
 	repo_createCmd.Flags().BoolP("public", "P", false, "Make project public: visible without any authentication.")
 	repo_createCmd.Flags().Bool("readme", false, "Initialize project with `README.md`. The repository is cloned locally after creation to ensure the local branch matches the remote.")
-	repo_createCmd.Flags().String("remoteName", "", "Remote name for the Git repository you're in. Defaults to `origin` if not provided.")
+	repo_createCmd.Flags().String("remoteName", "origin", "Remote name for the Git repository you're in. Defaults to `origin` if not provided.")
 	repo_createCmd.Flags().BoolP("skipGitInit", "s", false, "Skip local repository setup (skips both 'git init' and cloning).")
 	repo_createCmd.Flags().StringSliceP("tag", "t", nil, "The list of tags for the project.")
 	repoCmd.AddCommand(repo_createCmd)
@@ -31,7 +31,6 @@ func init() {
 	carapace.Gen(repo_createCmd).FlagCompletion(carapace.ActionMap{
 		"group": action.ActionGroups(repo_createCmd),
 	})
-
 	carapace.Gen(repo_createCmd).PositionalCompletion(
 		action.ActionRepo(repo_createCmd),
 	)

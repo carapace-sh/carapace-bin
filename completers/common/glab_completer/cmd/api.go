@@ -22,9 +22,10 @@ func init() {
 	apiCmd.Flags().String("hostname", "", "The GitLab hostname for the request. Defaults to gitlab.com, or the authenticated host in the current Git directory.")
 	apiCmd.Flags().BoolP("include", "i", false, "Include HTTP response headers in the output.")
 	apiCmd.Flags().String("input", "", "The file to use as the body for the HTTP request.")
-	apiCmd.Flags().StringP("method", "X", "", "The HTTP method for the request.")
-	apiCmd.Flags().String("output", "", "Format output as: json, ndjson.")
+	apiCmd.Flags().StringP("method", "X", "GET", "The HTTP method for the request.")
+	apiCmd.Flags().String("output", "json", "Format output as: json, ndjson.")
 	apiCmd.Flags().Bool("paginate", false, "Make additional HTTP requests to fetch all pages of results.")
+	apiCmd.Flags().StringSlice("placeholder", nil, "Define a custom placeholder in <name>=<value> format, expanded from :<name>. Repeat the flag to define more than one.")
 	apiCmd.Flags().StringSliceP("raw-field", "f", nil, "Add a string parameter.")
 	apiCmd.Flags().Bool("silent", false, "Do not print the response body.")
 	rootCmd.AddCommand(apiCmd)
@@ -47,7 +48,6 @@ func init() {
 		"method":   http.ActionRequestMethods(),
 		"output":   carapace.ActionValues("json", "ndjson"),
 	})
-
 	carapace.Gen(apiCmd).PositionalCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return carapace.Batch(

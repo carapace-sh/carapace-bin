@@ -22,7 +22,6 @@ func init() {
 	carapace.Gen(config_setCmd).FlagCompletion(carapace.ActionMap{
 		"host": action.ActionConfigHosts(),
 	})
-
 	carapace.Gen(config_setCmd).PositionalCompletion(
 		action.ActionConfigKeys(),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {

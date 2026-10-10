@@ -15,6 +15,6 @@ var duo_askCmd = &cobra.Command{
 func init() {
 	carapace.Gen(duo_askCmd).Standalone()
 
-	duo_askCmd.Flags().Bool("git", false, "Ask a question about Git.")
+	duo_askCmd.Flags().Bool("git", true, "Ask a question about Git.")
 	duoCmd.AddCommand(duo_askCmd)
 }

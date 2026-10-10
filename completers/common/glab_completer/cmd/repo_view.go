@@ -18,7 +18,7 @@ func init() {
 
 	repo_viewCmd.Flags().StringP("branch", "b", "", "View a specific branch of the repository.")
 	repo_viewCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
-	repo_viewCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
+	repo_viewCmd.Flags().StringP("output", "F", "text", "Format output as: text, json.")
 	repo_viewCmd.Flags().BoolP("web", "w", false, "Open a project in the browser.")
 	repoCmd.AddCommand(repo_viewCmd)
 
@@ -33,7 +33,6 @@ func init() {
 		"jq":     jq.ActionFilters(),
 		"output": carapace.ActionValues("text", "json"),
 	})
-
 	carapace.Gen(repo_viewCmd).PositionalCompletion(
 		action.ActionRepo(repo_viewCmd),
 	)

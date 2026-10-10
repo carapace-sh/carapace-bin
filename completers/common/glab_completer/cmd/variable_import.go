@@ -18,7 +18,7 @@ func init() {
 
 	variable_importCmd.PersistentFlags().StringP("group", "g", "", "Select a group or subgroup. Ignored if a repository argument is set.")
 	variable_importCmd.Flags().StringP("input-file", "i", "", "Read the variables JSON from this file instead of standard input.")
-	variable_importCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. Can use either `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format. Also accepts full URL or Git URL.")
+	variable_importCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. You can use either OWNER/REPO or GROUP/NAMESPACE/REPO. The full URL or Git URL is also accepted.")
 	variable_importCmd.Flags().Bool("skip-existing", false, "Skip variables that already exist instead of failing.")
 	variableCmd.AddCommand(variable_importCmd)
 

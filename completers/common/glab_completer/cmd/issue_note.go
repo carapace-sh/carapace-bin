@@ -16,8 +16,13 @@ var issue_noteCmd = &cobra.Command{
 func init() {
 	carapace.Gen(issue_noteCmd).Standalone()
 
+	issue_noteCmd.Flags().StringSlice("attach", nil, "(EXPERIMENTAL) Upload a file and reference it at the end of the comment. Use \"-\" to read the file from standard input. Repeat the flag to attach multiple files.")
 	issue_noteCmd.Flags().StringP("message", "m", "", "Message text.")
 	issueCmd.AddCommand(issue_noteCmd)
+
+	carapace.Gen(issue_noteCmd).FlagCompletion(carapace.ActionMap{
+		"attach": carapace.ActionFiles(),
+	})
 
 	carapace.Gen(issue_noteCmd).PositionalCompletion(
 		action.ActionIssues(issue_noteCmd, "opened"),

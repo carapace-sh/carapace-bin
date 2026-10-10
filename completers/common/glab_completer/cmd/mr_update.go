@@ -16,7 +16,9 @@ func init() {
 	carapace.Gen(mr_updateCmd).Standalone()
 
 	mr_updateCmd.Flags().StringSliceP("assignee", "a", nil, "Assign users via username. Prefix with '!' or '-' to remove from existing assignees, '+' to add. Otherwise, replace existing assignees with given users. Multiple usernames can be comma-separated or specified by repeating the flag.")
+	mr_updateCmd.Flags().StringSlice("attach", nil, "(EXPERIMENTAL) Upload a file and reference it at the end of the description. Use \"-\" to read the file from standard input. Repeat the flag to attach multiple files.")
 	mr_updateCmd.Flags().StringP("description", "d", "", "Merge request description. Set to \"-\" to open an editor.")
+	mr_updateCmd.Flags().String("description-file", "", "Read the merge request description from a file. Use \"-\" to read from standard input.")
 	mr_updateCmd.Flags().Bool("draft", false, "Mark merge request as a draft.")
 	mr_updateCmd.Flags().BoolP("fill", "f", false, "Do not prompt for title or body, and just use commit info.")
 	mr_updateCmd.Flags().Bool("fill-commit-body", false, "Fill body with each commit body when multiple commits. Can only be used with --fill.")
@@ -37,14 +39,15 @@ func init() {
 	mrCmd.AddCommand(mr_updateCmd)
 
 	carapace.Gen(mr_updateCmd).FlagCompletion(carapace.ActionMap{
-		"assignee":      action.ActionProjectMembers(mr_updateCmd).UniqueList(","),
-		"label":         action.ActionLabels(mr_updateCmd).UniqueList(","),
-		"milestone":     action.ActionMilestones(mr_updateCmd),
-		"reviewer":      action.ActionProjectMembers(mr_updateCmd).UniqueList(","),
-		"target-branch": action.ActionBranches(mr_updateCmd),
-		"unlabel":       action.ActionLabels(mr_updateCmd).UniqueList(","),
+		"assignee":         action.ActionProjectMembers(mr_updateCmd).UniqueList(","),
+		"attach":           carapace.ActionFiles(),
+		"description-file": carapace.ActionFiles(),
+		"label":            action.ActionLabels(mr_updateCmd).UniqueList(","),
+		"milestone":        action.ActionMilestones(mr_updateCmd),
+		"reviewer":         action.ActionProjectMembers(mr_updateCmd).UniqueList(","),
+		"target-branch":    action.ActionBranches(mr_updateCmd),
+		"unlabel":          action.ActionLabels(mr_updateCmd).UniqueList(","),
 	})
-
 	carapace.Gen(mr_updateCmd).PositionalCompletion(
 		action.ActionMergeRequestsAndBranches(mr_updateCmd, ""),
 	)

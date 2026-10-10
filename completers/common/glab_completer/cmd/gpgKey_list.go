@@ -16,7 +16,7 @@ func init() {
 	carapace.Gen(gpgKey_listCmd).Standalone()
 
 	gpgKey_listCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
-	gpgKey_listCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
+	gpgKey_listCmd.Flags().StringP("output", "F", "text", "Format output as: text, json.")
 	gpgKey_listCmd.Flags().Bool("show-id", false, "Shows IDs of GPG keys.")
 	gpgKeyCmd.AddCommand(gpgKey_listCmd)
 

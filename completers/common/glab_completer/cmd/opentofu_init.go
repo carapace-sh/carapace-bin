@@ -14,8 +14,8 @@ var opentofu_initCmd = &cobra.Command{
 func init() {
 	carapace.Gen(opentofu_initCmd).Standalone()
 
-	opentofu_initCmd.Flags().StringP("binary", "b", "", "Name or path of the OpenTofu or Terraform binary to use for the initialization.")
-	opentofu_initCmd.Flags().StringP("directory", "d", "", "Directory of the OpenTofu or Terraform project to initialize.")
+	opentofu_initCmd.Flags().StringP("binary", "b", "tofu", "Name or path of the OpenTofu or Terraform binary to use for the initialization.")
+	opentofu_initCmd.Flags().StringP("directory", "d", ".", "Directory of the OpenTofu or Terraform project to initialize.")
 	opentofuCmd.AddCommand(opentofu_initCmd)
 
 	carapace.Gen(opentofu_initCmd).FlagCompletion(carapace.ActionMap{
