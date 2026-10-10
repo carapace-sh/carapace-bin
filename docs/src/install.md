@@ -17,9 +17,13 @@ pamac install carapace-bin
 
 Install from [fury.io](https://rsteube.fury.site/)
 
+```sh
+curl -fsSL https://apt.fury.io/rsteube/gpg.key | sudo gpg --dearmor -o /usr/share/keyrings/rsteube.gpg
+```
+
 ```toml
 # /etc/apt/sources.list.d/fury.list
-deb [trusted=yes] https://apt.fury.io/rsteube/ /
+deb [signed-by=/usr/share/keyrings/rsteube.gpg] https://apt.fury.io/rsteube/ /
 ```
 
 ```sh
@@ -86,6 +90,8 @@ name=Gemfury Private Repo
 baseurl=https://yum.fury.io/rsteube/
 enabled=1
 gpgcheck=0
+repo_gpgcheck=1
+gpgkey=https://yum.fury.io/rsteube/gpg.key
 ```
 
 ```sh
@@ -95,7 +101,8 @@ yum install carapace-bin
 ### Zypper
 
 ```sh
-zypper ar --gpgcheck-allow-unsigned -f https://yum.fury.io/rsteube/ carapace
+rpm --import https://yum.fury.io/rsteube/gpg.key
+zypper ar -f https://yum.fury.io/rsteube/ carapace
 zypper install carapace-bin
 ```
 
