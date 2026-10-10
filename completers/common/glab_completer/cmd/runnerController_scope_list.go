@@ -16,7 +16,7 @@ func init() {
 	carapace.Gen(runnerController_scope_listCmd).Standalone()
 
 	runnerController_scope_listCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
-	runnerController_scope_listCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
+	runnerController_scope_listCmd.Flags().StringP("output", "F", "text", "Format output as: text, json.")
 	runnerController_scopeCmd.AddCommand(runnerController_scope_listCmd)
 
 	carapace.Gen(runnerController_scope_listCmd).FlagCompletion(carapace.ActionMap{

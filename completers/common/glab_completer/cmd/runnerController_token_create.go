@@ -17,7 +17,7 @@ func init() {
 
 	runnerController_token_createCmd.Flags().StringP("description", "d", "", "Description of the token.")
 	runnerController_token_createCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
-	runnerController_token_createCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
+	runnerController_token_createCmd.Flags().StringP("output", "F", "text", "Format output as: text, json.")
 	runnerController_tokenCmd.AddCommand(runnerController_token_createCmd)
 
 	carapace.Gen(runnerController_token_createCmd).FlagCompletion(carapace.ActionMap{

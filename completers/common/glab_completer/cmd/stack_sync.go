@@ -8,7 +8,7 @@ import (
 
 var stack_syncCmd = &cobra.Command{
 	Use:   "sync",
-	Short: "Sync and submit progress on a stacked diff. (EXPERIMENTAL)",
+	Short: "Push the stack to GitLab, and create or update its merge requests. (EXPERIMENTAL)",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
@@ -20,6 +20,7 @@ func init() {
 	stack_syncCmd.Flags().Bool("no-verify", false, "Bypass the pre-push hook. (See githooks(5) for more information.)")
 	stack_syncCmd.Flags().StringSlice("reviewer", nil, "Request review from users by their `usernames`. Multiple usernames can be comma-separated or specified by repeating the flag.")
 	stack_syncCmd.Flags().Bool("skip-mr-creation", false, "Skip creating merge requests for branches that don't have one yet.")
+	stack_syncCmd.Flags().Bool("skip-push", false, "Rebase the stack locally without pushing branches or creating merge requests. Still fetches from the remote and calls the GitLab API.")
 	stack_syncCmd.Flags().Bool("update-base", false, "Rebase the stack onto the latest version of the base branch.")
 	stackCmd.AddCommand(stack_syncCmd)
 

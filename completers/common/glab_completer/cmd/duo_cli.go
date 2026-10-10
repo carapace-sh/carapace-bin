@@ -15,7 +15,7 @@ func init() {
 	carapace.Gen(duo_cliCmd).Standalone()
 
 	duo_cliCmd.Flags().Bool("install", false, "Install the GitLab Duo CLI binary without running it.")
-	duo_cliCmd.Flags().Bool("update", false, "Check for and install updates to the binary.")
+	duo_cliCmd.Flags().Bool("update", false, "Check for and install updates to the binary. Same as the update command.")
 	duo_cliCmd.Flags().BoolP("yes", "y", false, "Skip confirmation prompts.")
 	duoCmd.AddCommand(duo_cliCmd)
 }

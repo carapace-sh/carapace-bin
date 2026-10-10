@@ -19,7 +19,7 @@ func init() {
 	search_semanticCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
 	search_semanticCmd.Flags().String("knn", "", "Nearest neighbours to retrieve (1–100). Defaults to 64 server-side.")
 	search_semanticCmd.Flags().StringP("limit", "l", "", "Maximum number of results (1–100). Defaults to 20 server-side.")
-	search_semanticCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
+	search_semanticCmd.Flags().StringP("output", "F", "text", "Format output as: text, json.")
 	search_semanticCmd.Flags().StringP("query", "q", "", "Natural language search query.")
 	search_semanticCmd.MarkFlagRequired("query")
 	searchCmd.AddCommand(search_semanticCmd)

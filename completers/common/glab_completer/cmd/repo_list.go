@@ -24,16 +24,17 @@ func init() {
 	repo_listCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
 	repo_listCmd.Flags().Bool("member", false, "List only projects of which you are a member.")
 	repo_listCmd.Flags().BoolP("mine", "m", false, "List only projects you own. Default if no filters are provided.")
-	repo_listCmd.Flags().StringP("order", "o", "", "Return repositories ordered by id, name, path, created_at, updated_at, similarity, star_count, last_activity_at.")
-	repo_listCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
-	repo_listCmd.Flags().StringP("page", "p", "", "Page number.")
-	repo_listCmd.Flags().StringP("per-page", "P", "", "Number of items to list per page.")
+	repo_listCmd.Flags().StringP("order", "o", "last_activity_at", "Return repositories ordered by id, name, path, created_at, updated_at, similarity, star_count, last_activity_at.")
+	repo_listCmd.Flags().StringP("output", "F", "text", "Format output as: text, json.")
+	repo_listCmd.Flags().StringP("page", "p", "1", "Page number.")
+	repo_listCmd.Flags().StringP("per-page", "P", "30", "Number of items to list per page.")
 	repo_listCmd.Flags().StringP("sort", "s", "", "Sort direction for --order field: asc or desc.")
 	repo_listCmd.Flags().Bool("starred", false, "List only starred projects.")
 	repo_listCmd.Flags().StringP("user", "u", "", "List user projects.")
 	repoCmd.AddCommand(repo_listCmd)
 
 	carapace.Gen(repo_listCmd).FlagCompletion(carapace.ActionMap{
+		"group":  action.ActionGroups(repo_listCmd),
 		"jq":     jq.ActionFilters(),
 		"order":  carapace.ActionValues("id", "name", "path", "created_at", "updated_at", "last_activity_at", "repository_size", "storage_size", "packages_size", "wiki_size"),
 		"output": carapace.ActionValues("text", "json"),

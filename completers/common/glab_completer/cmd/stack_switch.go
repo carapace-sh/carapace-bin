@@ -15,6 +15,4 @@ func init() {
 	carapace.Gen(stack_switchCmd).Standalone()
 
 	stackCmd.AddCommand(stack_switchCmd)
-
-	// TODO complete stack names
 }

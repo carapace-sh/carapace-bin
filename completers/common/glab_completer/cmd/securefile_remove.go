@@ -19,6 +19,4 @@ func init() {
 	securefile_removeCmd.Flags().String("name", "", "Name of the secure file to remove.")
 	securefile_removeCmd.Flags().BoolP("yes", "y", false, "Skip the confirmation prompt.")
 	securefileCmd.AddCommand(securefile_removeCmd)
-
-	// TODO complete file ids
 }

@@ -18,19 +18,19 @@ func init() {
 
 	variable_getCmd.Flags().StringP("group", "g", "", "Get variable for a group.")
 	variable_getCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
-	variable_getCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
-	variable_getCmd.Flags().StringP("scope", "s", "", "The environment_scope of the variable. Values: all (*), or specific environments.")
+	variable_getCmd.Flags().StringP("output", "F", "text", "Format output as: text, json.")
+	variable_getCmd.Flags().StringP("scope", "s", "*", "The environment_scope of the variable. Values: all (*), or specific environments.")
 	variableCmd.AddCommand(variable_getCmd)
 
 	carapace.Gen(variable_getCmd).FlagCompletion(carapace.ActionMap{
-		"group": action.ActionGroups(variable_getCmd),
-		"jq":    jq.ActionFilters(),
+		"group":  action.ActionGroups(variable_getCmd),
+		"jq":     jq.ActionFilters(),
+		"output": carapace.ActionValues("text", "json"),
 		"scope": carapace.Batch(
 			carapace.ActionValues("*"),
 			action.ActionEnvironments(variable_getCmd),
 		).ToA(),
 	})
-
 	carapace.Gen(variable_getCmd).PositionalCompletion(
 		action.ActionVariables(variable_getCmd),
 	)

@@ -23,6 +23,4 @@ func init() {
 		"branch":      action.ActionBranches(ci_triggerCmd),
 		"pipeline-id": action.ActionPipelines(ci_triggerCmd, ""),
 	})
-
-	// TODO complete job ids
 }

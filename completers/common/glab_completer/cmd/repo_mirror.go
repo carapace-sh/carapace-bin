@@ -16,8 +16,8 @@ func init() {
 	carapace.Gen(repo_mirrorCmd).Standalone()
 
 	repo_mirrorCmd.Flags().Bool("allow-divergence", false, "Determines if divergent refs are skipped.")
-	repo_mirrorCmd.Flags().String("direction", "", "Mirror direction. Options: pull, push.")
-	repo_mirrorCmd.Flags().Bool("enabled", false, "Determines if the mirror is enabled.")
+	repo_mirrorCmd.Flags().String("direction", "pull", "Mirror direction. Options: pull, push.")
+	repo_mirrorCmd.Flags().Bool("enabled", true, "Determines if the mirror is enabled.")
 	repo_mirrorCmd.Flags().Bool("protected-branches-only", false, "Determines if only protected branches are mirrored.")
 	repo_mirrorCmd.Flags().String("url", "", "The target URL to which the repository is mirrored.")
 	repo_mirrorCmd.MarkFlagRequired("direction")
@@ -27,7 +27,6 @@ func init() {
 	carapace.Gen(repo_mirrorCmd).FlagCompletion(carapace.ActionMap{
 		"direction": carapace.ActionValues("pull", "push"),
 	})
-
 	carapace.Gen(repo_mirrorCmd).PositionalCompletion(
 		action.ActionRepo(repo_mirrorCmd),
 	)

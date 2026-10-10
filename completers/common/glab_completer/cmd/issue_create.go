@@ -17,12 +17,14 @@ func init() {
 	carapace.Gen(issue_createCmd).Standalone()
 
 	issue_createCmd.Flags().StringSliceP("assignee", "a", nil, "Assign issue to people by their `usernames`. Multiple usernames can be comma-separated or specified by repeating the flag.")
+	issue_createCmd.Flags().StringSlice("attach", nil, "(EXPERIMENTAL) Upload a file and reference it at the end of the description. Use \"-\" to read the file from standard input. Repeat the flag to attach multiple files.")
 	issue_createCmd.Flags().BoolP("confidential", "c", false, "Set an issue to be confidential.")
 	issue_createCmd.Flags().StringP("description", "d", "", "Issue description. Set to \"-\" to open an editor.")
+	issue_createCmd.Flags().String("description-file", "", "Read the issue description from a file. Use \"-\" to read from standard input.")
 	issue_createCmd.Flags().String("due-date", "", "A date in 'YYYY-MM-DD' format.")
 	issue_createCmd.Flags().String("epic", "", "ID of the epic to add the issue to.")
 	issue_createCmd.Flags().StringSliceP("label", "l", nil, "Add label by name. Multiple labels can be comma-separated or specified by repeating the flag.")
-	issue_createCmd.Flags().String("link-type", "", "Type for the issue link.")
+	issue_createCmd.Flags().String("link-type", "relates_to", "Type for the issue link.")
 	issue_createCmd.Flags().StringSlice("linked-issues", nil, "The IIDs of issues that this issue links to. Multiple IIDs can be comma-separated or specified by repeating the flag.")
 	issue_createCmd.Flags().String("linked-mr", "", "The IID of a merge request in which to resolve all issues.")
 	issue_createCmd.Flags().StringP("milestone", "m", "", "The global ID or title of a milestone to assign.")
@@ -39,11 +41,13 @@ func init() {
 
 	carapace.Gen(issue_createCmd).FlagCompletion(carapace.ActionMap{
 		// TODO more flags
-		"assignee":      action.ActionProjectMembers(issue_createCmd).UniqueList(","),
-		"label":         action.ActionLabels(issue_createCmd).UniqueList(","),
-		"link-type":     carapace.ActionValues("relates_to", "blocks", "is_blocked_by"),
-		"linked-issues": action.ActionIssues(issue_createCmd, "opened").UniqueList(","),
-		"linked-mr":     action.ActionMergeRequests(issue_createCmd, "opened"),
-		"milestone":     action.ActionMilestones(issue_createCmd),
+		"assignee":         action.ActionProjectMembers(issue_createCmd).UniqueList(","),
+		"attach":           carapace.ActionFiles(),
+		"description-file": carapace.ActionFiles(),
+		"label":            action.ActionLabels(issue_createCmd).UniqueList(","),
+		"link-type":        carapace.ActionValues("relates_to", "blocks", "is_blocked_by"),
+		"linked-issues":    action.ActionIssues(issue_createCmd, "opened").UniqueList(","),
+		"linked-mr":        action.ActionMergeRequests(issue_createCmd, "opened"),
+		"milestone":        action.ActionMilestones(issue_createCmd),
 	})
 }

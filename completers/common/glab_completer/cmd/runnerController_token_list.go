@@ -16,9 +16,9 @@ func init() {
 	carapace.Gen(runnerController_token_listCmd).Standalone()
 
 	runnerController_token_listCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
-	runnerController_token_listCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
-	runnerController_token_listCmd.Flags().StringP("page", "p", "", "Page number.")
-	runnerController_token_listCmd.Flags().StringP("per-page", "P", "", "Number of items per page.")
+	runnerController_token_listCmd.Flags().StringP("output", "F", "text", "Format output as: text, json.")
+	runnerController_token_listCmd.Flags().StringP("page", "p", "1", "Page number.")
+	runnerController_token_listCmd.Flags().StringP("per-page", "P", "30", "Number of items per page.")
 	runnerController_tokenCmd.AddCommand(runnerController_token_listCmd)
 
 	carapace.Gen(runnerController_token_listCmd).FlagCompletion(carapace.ActionMap{

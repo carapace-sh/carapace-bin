@@ -54,7 +54,6 @@ func init() {
 			"manual",
 		).StyleF(style.ForKeyword),
 	})
-
 	carapace.Gen(ci_deleteCmd).PositionalCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return action.ActionPipelines(ci_deleteCmd, ci_deleteCmd.Flag("status").Value.String()).UniqueList(",")

@@ -18,8 +18,7 @@ func init() {
 	mr_checkoutCmd.Flags().StringP("branch", "b", "", "Check out merge request with name <branch>.")
 	mr_checkoutCmd.Flags().BoolP("force", "f", false, "Reset local branch to remote when they have diverged. Refuses if working tree has changes that would be lost.")
 	mr_checkoutCmd.Flags().StringP("set-upstream-to", "u", "", "Set tracking of checked-out branch to [REMOTE/]BRANCH.")
-	mr_checkoutCmd.Flags().BoolP("track", "t", false, "Set checked out branch to track the remote branch.")
-	mr_checkoutCmd.Flag("track").Hidden = true
+	mr_checkoutCmd.Flags().BoolP("track", "t", true, "Set checked out branch to track the remote branch.")
 	mr_checkoutCmd.Flag("track").Hidden = true
 	mrCmd.AddCommand(mr_checkoutCmd)
 
@@ -27,7 +26,6 @@ func init() {
 		"branch": action.ActionBranches(mr_checkoutCmd),
 		// TODO "set-upstream-to":
 	})
-
 	carapace.Gen(mr_checkoutCmd).PositionalAnyCompletion(
 		action.ActionMergeRequestsAndBranches(mr_checkoutCmd, ""),
 	)

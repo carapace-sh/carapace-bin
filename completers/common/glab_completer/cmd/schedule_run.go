@@ -15,6 +15,4 @@ func init() {
 	carapace.Gen(schedule_runCmd).Standalone()
 
 	scheduleCmd.AddCommand(schedule_runCmd)
-
-	// TODO positional completion
 }

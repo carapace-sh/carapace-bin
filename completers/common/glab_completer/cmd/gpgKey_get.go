@@ -16,10 +16,11 @@ func init() {
 	carapace.Gen(gpgKey_getCmd).Standalone()
 
 	gpgKey_getCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
-	gpgKey_getCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
+	gpgKey_getCmd.Flags().StringP("output", "F", "text", "Format output as: text, json.")
 	gpgKeyCmd.AddCommand(gpgKey_getCmd)
 
 	carapace.Gen(gpgKey_getCmd).FlagCompletion(carapace.ActionMap{
-		"jq": jq.ActionFilters(),
+		"jq":     jq.ActionFilters(),
+		"output": carapace.ActionValues("text", "json"),
 	})
 }

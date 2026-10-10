@@ -15,7 +15,7 @@ var runner_assignCmd = &cobra.Command{
 func init() {
 	carapace.Gen(runner_assignCmd).Standalone()
 
-	runner_assignCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. Can use either `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format. Also accepts full URL or Git URL.")
+	runner_assignCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. You can use either OWNER/REPO or GROUP/NAMESPACE/REPO. The full URL or Git URL is also accepted.")
 	runnerCmd.AddCommand(runner_assignCmd)
 
 	carapace.Gen(runner_assignCmd).FlagCompletion(carapace.ActionMap{

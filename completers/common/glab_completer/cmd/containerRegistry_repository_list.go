@@ -20,12 +20,12 @@ func init() {
 	containerRegistry_repository_listCmd.PersistentFlags().StringP("group", "g", "", "List container registry repositories for a group.")
 	containerRegistry_repository_listCmd.Flags().Bool("include-tag-details", false, "Fetch digest, size, and creation time for included tags. Makes one API call per tag. Project JSON output only. Implies --include-tags.")
 	containerRegistry_repository_listCmd.Flags().Bool("include-tags", false, "Include tags in the response. Project repositories only.")
-	containerRegistry_repository_listCmd.Flags().Bool("include-tags-count", false, "Include the number of tags in the response. Project repositories only.")
+	containerRegistry_repository_listCmd.Flags().Bool("include-tags-count", true, "Include the number of tags in the response. Project repositories only.")
 	containerRegistry_repository_listCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
-	containerRegistry_repository_listCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
-	containerRegistry_repository_listCmd.Flags().StringP("page", "p", "", "Page number.")
-	containerRegistry_repository_listCmd.Flags().StringP("per-page", "P", "", "Number of items to list per page.")
-	containerRegistry_repository_listCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. Can use either `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format. Also accepts full URL or Git URL.")
+	containerRegistry_repository_listCmd.Flags().StringP("output", "F", "text", "Format output as: text, json.")
+	containerRegistry_repository_listCmd.Flags().StringP("page", "p", "1", "Page number.")
+	containerRegistry_repository_listCmd.Flags().StringP("per-page", "P", "30", "Number of items to list per page.")
+	containerRegistry_repository_listCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. You can use either OWNER/REPO or GROUP/NAMESPACE/REPO. The full URL or Git URL is also accepted.")
 	containerRegistry_repositoryCmd.AddCommand(containerRegistry_repository_listCmd)
 
 	carapace.Gen(containerRegistry_repository_listCmd).FlagCompletion(carapace.ActionMap{

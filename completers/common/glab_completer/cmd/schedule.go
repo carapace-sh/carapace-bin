@@ -16,7 +16,7 @@ var scheduleCmd = &cobra.Command{
 func init() {
 	carapace.Gen(scheduleCmd).Standalone()
 
-	scheduleCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. Can use either `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format. Also accepts full URL or Git URL.")
+	scheduleCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. You can use either OWNER/REPO or GROUP/NAMESPACE/REPO. The full URL or Git URL is also accepted.")
 	rootCmd.AddCommand(scheduleCmd)
 
 	carapace.Gen(scheduleCmd).FlagCompletion(carapace.ActionMap{

@@ -18,18 +18,18 @@ func init() {
 
 	mr_note_listCmd.Flags().String("file", "", "Show only diff notes on this file path.")
 	mr_note_listCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
-	mr_note_listCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
-	mr_note_listCmd.Flags().String("state", "", "Resolution state: all, resolved, unresolved.")
-	mr_note_listCmd.Flags().StringP("type", "t", "", "Note type: all, general, diff, system.")
+	mr_note_listCmd.Flags().StringP("output", "F", "text", "Format output as: text, json.")
+	mr_note_listCmd.Flags().String("state", "all", "Resolution state: all, resolved, unresolved.")
+	mr_note_listCmd.Flags().StringP("type", "t", "all", "Note type: all, general, diff, system.")
 	mr_noteCmd.AddCommand(mr_note_listCmd)
 
 	carapace.Gen(mr_note_listCmd).FlagCompletion(carapace.ActionMap{
+		"file":   carapace.ActionFiles(),
 		"jq":     jq.ActionFilters(),
 		"output": carapace.ActionValues("text", "json"),
 		"state":  carapace.ActionValues("all", "resolved", "unresolved"),
 		"type":   carapace.ActionValues("all", "general", "diff", "system"),
 	})
-
 	carapace.Gen(mr_note_listCmd).PositionalAnyCompletion(
 		action.ActionMergeRequestsAndBranches(mr_note_listCmd, ""),
 	)

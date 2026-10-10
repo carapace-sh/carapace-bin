@@ -16,7 +16,7 @@ var auth_dpopGenCmd = &cobra.Command{
 func init() {
 	carapace.Gen(auth_dpopGenCmd).Standalone()
 
-	auth_dpopGenCmd.Flags().String("hostname", "", "The hostname of the GitLab instance to authenticate with.")
+	auth_dpopGenCmd.Flags().String("hostname", "gitlab.com", "The hostname of the GitLab instance to authenticate with.")
 	auth_dpopGenCmd.Flags().String("pat", "", "Personal access token (PAT) to generate a DPoP proof for. Defaults to the token set with 'glab auth login'.")
 	auth_dpopGenCmd.Flags().StringP("private-key", "p", "", "Location of the private SSH key on the local system.")
 	auth_dpopGenCmd.MarkFlagRequired("private-key")

@@ -16,9 +16,9 @@ func init() {
 	carapace.Gen(deployKey_listCmd).Standalone()
 
 	deployKey_listCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
-	deployKey_listCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
-	deployKey_listCmd.Flags().StringP("page", "p", "", "Page number.")
-	deployKey_listCmd.Flags().StringP("per-page", "P", "", "Number of items to list per page.")
+	deployKey_listCmd.Flags().StringP("output", "F", "text", "Format output as: text, json.")
+	deployKey_listCmd.Flags().StringP("page", "p", "1", "Page number.")
+	deployKey_listCmd.Flags().StringP("per-page", "P", "30", "Number of items to list per page.")
 	deployKey_listCmd.Flags().Bool("show-id", false, "Shows IDs of deploy keys.")
 	deployKeyCmd.AddCommand(deployKey_listCmd)
 

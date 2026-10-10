@@ -23,6 +23,4 @@ func init() {
 		"branch":      action.ActionBranches(ci_retryCmd),
 		"pipeline-id": action.ActionPipelines(ci_retryCmd, ""),
 	})
-
-	// TODO positional completion
 }

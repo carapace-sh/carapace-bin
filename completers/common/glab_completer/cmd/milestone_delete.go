@@ -22,4 +22,8 @@ func init() {
 	carapace.Gen(milestone_deleteCmd).FlagCompletion(carapace.ActionMap{
 		"group": action.ActionGroups(milestone_deleteCmd),
 	})
+
+	carapace.Gen(milestone_deleteCmd).PositionalCompletion(
+		action.ActionMilestones(milestone_deleteCmd),
+	)
 }

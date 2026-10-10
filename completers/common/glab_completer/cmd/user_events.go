@@ -17,9 +17,9 @@ func init() {
 
 	user_eventsCmd.Flags().BoolP("all", "a", false, "Get events from all projects.")
 	user_eventsCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
-	user_eventsCmd.Flags().StringP("output", "F", "", "Format output as: 'text', 'json'.")
-	user_eventsCmd.Flags().StringP("page", "p", "", "Page number.")
-	user_eventsCmd.Flags().StringP("per-page", "P", "", "Number of items to list per page.")
+	user_eventsCmd.Flags().StringP("output", "F", "text", "Format output as: 'text', 'json'.")
+	user_eventsCmd.Flags().StringP("page", "p", "1", "Page number.")
+	user_eventsCmd.Flags().StringP("per-page", "P", "30", "Number of items to list per page.")
 	userCmd.AddCommand(user_eventsCmd)
 
 	carapace.Gen(user_eventsCmd).FlagCompletion(carapace.ActionMap{

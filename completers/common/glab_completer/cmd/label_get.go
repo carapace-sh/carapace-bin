@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/glab_completer/cmd/action"
 	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
 )
@@ -16,11 +17,15 @@ func init() {
 	carapace.Gen(label_getCmd).Standalone()
 
 	label_getCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
-	label_getCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
+	label_getCmd.Flags().StringP("output", "F", "text", "Format output as: text, json.")
 	labelCmd.AddCommand(label_getCmd)
 
 	carapace.Gen(label_getCmd).FlagCompletion(carapace.ActionMap{
 		"jq":     jq.ActionFilters(),
 		"output": carapace.ActionValues("text", "json"),
 	})
+
+	carapace.Gen(label_getCmd).PositionalCompletion(
+		action.ActionLabels(label_getCmd),
+	)
 }

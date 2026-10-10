@@ -17,8 +17,8 @@ func init() {
 	carapace.Gen(runner_managersCmd).Standalone()
 
 	runner_managersCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
-	runner_managersCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
-	runner_managersCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. Can use either `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format. Also accepts full URL or Git URL.")
+	runner_managersCmd.Flags().StringP("output", "F", "text", "Format output as: text, json.")
+	runner_managersCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. You can use either OWNER/REPO or GROUP/NAMESPACE/REPO. The full URL or Git URL is also accepted.")
 	runnerCmd.AddCommand(runner_managersCmd)
 
 	carapace.Gen(runner_managersCmd).FlagCompletion(carapace.ActionMap{

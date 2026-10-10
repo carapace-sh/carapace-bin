@@ -7,7 +7,7 @@ import (
 
 var dependencyFirewall_ciSummaryCmd = &cobra.Command{
 	Use:   "ci-summary",
-	Short: "Summarize Dependency Firewall activity from the CI log.",
+	Short: "Summarize Dependency Firewall activity from the CI log. (EXPERIMENTAL)",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

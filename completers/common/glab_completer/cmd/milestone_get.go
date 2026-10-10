@@ -18,7 +18,7 @@ func init() {
 
 	milestone_getCmd.Flags().String("group", "", "The ID or URL-encoded path of the group.")
 	milestone_getCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
-	milestone_getCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
+	milestone_getCmd.Flags().StringP("output", "F", "text", "Format output as: text, json.")
 	milestone_getCmd.Flags().String("project", "", "The ID or URL-encoded path of the project.")
 	milestoneCmd.AddCommand(milestone_getCmd)
 
@@ -27,4 +27,8 @@ func init() {
 		"jq":     jq.ActionFilters(),
 		"output": carapace.ActionValues("text", "json"),
 	})
+
+	carapace.Gen(milestone_getCmd).PositionalCompletion(
+		action.ActionMilestones(milestone_getCmd),
+	)
 }

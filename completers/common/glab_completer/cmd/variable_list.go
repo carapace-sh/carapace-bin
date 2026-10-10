@@ -20,10 +20,10 @@ func init() {
 	variable_listCmd.PersistentFlags().StringP("group", "g", "", "Select a group or subgroup. Ignored if a repository argument is set.")
 	variable_listCmd.Flags().BoolP("instance", "i", false, "Display instance variables.")
 	variable_listCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
-	variable_listCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
-	variable_listCmd.Flags().StringP("page", "p", "", "Page number.")
-	variable_listCmd.Flags().StringP("per-page", "P", "", "Number of items to list per page.")
-	variable_listCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. Can use either `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format. Also accepts full URL or Git URL.")
+	variable_listCmd.Flags().StringP("output", "F", "text", "Format output as: text, json.")
+	variable_listCmd.Flags().StringP("page", "p", "1", "Page number.")
+	variable_listCmd.Flags().StringP("per-page", "P", "20", "Number of items to list per page.")
+	variable_listCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. You can use either OWNER/REPO or GROUP/NAMESPACE/REPO. The full URL or Git URL is also accepted.")
 	variableCmd.AddCommand(variable_listCmd)
 
 	carapace.Gen(variable_listCmd).FlagCompletion(carapace.ActionMap{

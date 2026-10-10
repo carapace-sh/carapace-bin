@@ -18,9 +18,9 @@ func init() {
 	carapace.Gen(release_listCmd).Standalone()
 
 	release_listCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
-	release_listCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
-	release_listCmd.Flags().StringP("page", "p", "", "Page number.")
-	release_listCmd.Flags().StringP("per-page", "P", "", "Number of items to list per page.")
+	release_listCmd.Flags().StringP("output", "F", "text", "Format output as: text, json.")
+	release_listCmd.Flags().StringP("page", "p", "1", "Page number.")
+	release_listCmd.Flags().StringP("per-page", "P", "30", "Number of items to list per page.")
 	release_listCmd.Flags().StringP("tag", "t", "", "Filter releases by tag <name>.")
 	release_listCmd.Flag("tag").Hidden = true
 	releaseCmd.AddCommand(release_listCmd)

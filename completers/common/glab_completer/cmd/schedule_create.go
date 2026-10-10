@@ -15,9 +15,9 @@ var schedule_createCmd = &cobra.Command{
 func init() {
 	carapace.Gen(schedule_createCmd).Standalone()
 
-	schedule_createCmd.Flags().Bool("active", false, "Whether or not the schedule is active.")
+	schedule_createCmd.Flags().Bool("active", true, "Whether or not the schedule is active.")
 	schedule_createCmd.Flags().String("cron", "", "Cron interval pattern.")
-	schedule_createCmd.Flags().String("cronTimeZone", "", "Cron timezone.")
+	schedule_createCmd.Flags().String("cronTimeZone", "UTC", "Cron timezone.")
 	schedule_createCmd.Flags().String("description", "", "Description of the schedule.")
 	schedule_createCmd.Flags().String("ref", "", "Target branch or tag.")
 	schedule_createCmd.Flags().StringSlice("variable", nil, "Pass variables to schedule in the format <key>:<value>. Repeat flag for multiple variables.")

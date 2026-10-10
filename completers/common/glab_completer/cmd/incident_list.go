@@ -24,7 +24,7 @@ func init() {
 	incident_listCmd.Flags().BoolP("confidential", "C", false, "Filter by confidential incidents.")
 	incident_listCmd.Flags().StringP("epic", "e", "", "List issues belonging to a given epic (requires --group, no pagination support).")
 	incident_listCmd.PersistentFlags().StringP("group", "g", "", "Select a group or subgroup. Ignored if a repo argument is set.")
-	incident_listCmd.Flags().String("in", "", "Search in: title, description.")
+	incident_listCmd.Flags().String("in", "title,description", "Search in: title, description.")
 	incident_listCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
 	incident_listCmd.Flags().StringSliceP("label", "l", nil, "Filter incident by label <name>. Multiple labels can be comma-separated or specified by repeating the flag.")
 	incident_listCmd.Flags().StringP("milestone", "m", "", "Filter incident by milestone <id>.")
@@ -33,21 +33,18 @@ func init() {
 	incident_listCmd.Flags().String("not-author", "", "Filter incident by not being by author(s) <username>.")
 	incident_listCmd.Flags().StringSlice("not-label", nil, "Filter incident by lack of label <name>. Multiple labels can be comma-separated or specified by repeating the flag.")
 	incident_listCmd.Flags().BoolP("opened", "o", false, "Get only open incidents.")
-	incident_listCmd.Flags().String("order", "", "Order incident by <field>. Order options: created_at, updated_at, priority, due_date, relative_position, label_priority, milestone_due, popularity, weight.")
-	incident_listCmd.Flags().StringP("output", "O", "", "Options: 'text' or 'json'.")
-	incident_listCmd.Flags().StringP("output-format", "F", "", "Options: 'details', 'ids', 'urls'.")
-	incident_listCmd.Flags().StringP("page", "p", "", "Page number.")
-	incident_listCmd.Flags().StringP("per-page", "P", "", "Number of items to list per page.")
-	incident_listCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. Can use either `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format. Also accepts full URL or Git URL.")
+	incident_listCmd.Flags().String("order", "created_at", "Order incident by <field>. Order options: created_at, updated_at, priority, due_date, relative_position, label_priority, milestone_due, popularity, weight.")
+	incident_listCmd.Flags().StringP("output", "O", "text", "Options: 'text' or 'json'.")
+	incident_listCmd.Flags().StringP("output-format", "F", "details", "Options: 'details', 'ids', 'urls'.")
+	incident_listCmd.Flags().StringP("page", "p", "1", "Page number.")
+	incident_listCmd.Flags().StringP("per-page", "P", "30", "Number of items to list per page.")
+	incident_listCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. You can use either OWNER/REPO or GROUP/NAMESPACE/REPO. The full URL or Git URL is also accepted.")
 	incident_listCmd.Flags().String("search", "", "Search <string> in the fields defined by '--in'.")
-	incident_listCmd.Flags().StringP("sort", "s", "", "Sort direction for --order field: asc or desc.")
+	incident_listCmd.Flags().StringP("sort", "s", "desc", "Sort direction for --order field: asc or desc.")
 	incident_listCmd.Flag("mine").Hidden = true
 	incident_listCmd.Flag("opened").Hidden = true
-	incident_listCmd.Flag("opened").Hidden = true
-	incident_listCmd.Flag("mine").Hidden = true
 	incidentCmd.AddCommand(incident_listCmd)
 
-	// TODO complete epic
 	carapace.Gen(incident_listCmd).FlagCompletion(carapace.ActionMap{
 		"assignee":      action.ActionProjectMembers(incident_listCmd),
 		"author":        action.ActionUsers(incident_listCmd),

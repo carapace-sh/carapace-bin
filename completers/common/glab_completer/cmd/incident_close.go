@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/glab_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,5 +18,7 @@ func init() {
 
 	incidentCmd.AddCommand(incident_closeCmd)
 
-	// TODO positional completion
+	carapace.Gen(incident_closeCmd).PositionalCompletion(
+		action.ActionIssues(incident_closeCmd, "opened"),
+	)
 }

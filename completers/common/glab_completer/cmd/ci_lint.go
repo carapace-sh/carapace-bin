@@ -26,7 +26,6 @@ func init() {
 			action.ActionTags(ci_lintCmd),
 		).ToA(),
 	})
-
 	carapace.Gen(ci_lintCmd).PositionalCompletion(
 		carapace.ActionFiles(".gitlab-ci.yml", ".gitlab-ci.yaml", ".yml", ".yaml"),
 	)

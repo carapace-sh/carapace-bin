@@ -7,7 +7,7 @@ import (
 
 var dependencyFirewallCmd = &cobra.Command{
 	Use:     "dependency-firewall <command>",
-	Short:   "Configure and monitor GitLab Dependency Firewall for local package managers.",
+	Short:   "Configure and monitor GitLab Dependency Firewall for local package managers. (EXPERIMENTAL)",
 	Aliases: []string{"df"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
