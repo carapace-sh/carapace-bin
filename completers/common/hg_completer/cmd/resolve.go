@@ -35,6 +35,6 @@ func init() {
 	})
 
 	carapace.Gen(resolveCmd).PositionalAnyCompletion(
-		carapace.ActionFiles(),
+		carapace.Batch(hg.ActionUnresolvedFiles(), carapace.ActionFiles()).ToA(),
 	)
 }

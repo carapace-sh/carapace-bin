@@ -34,6 +34,16 @@ func ActionChangedFiles() carapace.Action {
 	})
 }
 
+// ActionManagedFiles completes files managed by mercurial
+//
+//	.hgtags
+//	a.txt
+func ActionManagedFiles() carapace.Action {
+	return carapace.ActionExecCommand("hg", "status", "-0", "-n", "-c", "-m", "-r", "-d")(func(output []byte) carapace.Action {
+		return carapace.ActionValues(nullSeparated(output)...).Tag("managed files").UidF(Uid("managed-file")).QueryF(Uid("managed-file"))
+	})
+}
+
 // ActionUnresolvedFiles completes files with unresolved merge conflicts
 //
 //	c.txt

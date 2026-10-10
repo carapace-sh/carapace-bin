@@ -33,6 +33,6 @@ func init() {
 	})
 
 	carapace.Gen(revertCmd).PositionalAnyCompletion(
-		carapace.ActionFiles(),
+		hg.ActionManagedFiles(),
 	)
 }

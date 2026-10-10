@@ -31,6 +31,11 @@ func init() {
 	})
 
 	carapace.Gen(removeCmd).PositionalAnyCompletion(
-		hg.ActionTrackedFiles(),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if removeCmd.Flags().Lookup("force").Changed {
+				return hg.ActionTrackedFiles().FilterArgs()
+			}
+			return hg.ActionManagedFiles().FilterArgs()
+		}),
 	)
 }
