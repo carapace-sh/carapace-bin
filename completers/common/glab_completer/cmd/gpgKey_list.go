@@ -20,7 +20,7 @@ func init() {
 	gpgKey_listCmd.Flags().Bool("show-id", false, "Shows IDs of GPG keys.")
 	gpgKeyCmd.AddCommand(gpgKey_listCmd)
 
-	carapace.Gen(gpgKey_getCmd).FlagCompletion(carapace.ActionMap{
+	carapace.Gen(gpgKey_listCmd).FlagCompletion(carapace.ActionMap{
 		"jq":     jq.ActionFilters(),
 		"output": carapace.ActionValues("text", "json"),
 	})
