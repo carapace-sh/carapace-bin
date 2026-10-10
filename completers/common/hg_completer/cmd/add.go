@@ -28,6 +28,6 @@ func init() {
 	})
 
 	carapace.Gen(addCmd).PositionalAnyCompletion(
-		carapace.Batch(hg.ActionUntrackedFiles(), carapace.ActionFiles()).ToA(),
+		hg.ActionUntrackedFiles(),
 	)
 }
