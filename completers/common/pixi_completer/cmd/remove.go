@@ -39,7 +39,7 @@ func init() {
 	removeCmd.Flags().String("pypi-keyring-provider", "", "Specifies whether to use the keyring to look up credentials for PyPI")
 	removeCmd.Flags().String("rev", "", "The git revision")
 	removeCmd.Flags().Bool("run-post-link-scripts", false, "Run post-link scripts (insecure)")
-	removeCmd.PersistentFlags().StringP("script", "s", "", "The path to a Python script containing PEP 723 metadata. Pixi run also accepts an HTTP(S) URL or '-' to read the script from stdin")
+	removeCmd.PersistentFlags().StringP("script", "s", "", "The path to a script with an embedded manifest: PEP 723 Python metadata or a conda-script block. Pixi run also accepts an HTTP(S) URL or '-' for stdin")
 	removeCmd.Flags().String("subdirectory", "", "The subdirectory of the git repository to use")
 	removeCmd.Flags().String("tag", "", "The git tag")
 	removeCmd.Flags().Bool("tls-no-verify", false, "Do not verify the TLS certificate of the server")
@@ -57,7 +57,7 @@ func init() {
 		"pinning-strategy":      carapace.ActionValues("semver", "minor", "major", "latest-up", "exact-version", "no-pin"),
 		"platform":              pixi.ActionPlatforms(),
 		"pypi-keyring-provider": carapace.ActionValues("disabled", "subprocess"),
-		"script":                carapace.ActionFiles(".py"),
+		"script":                carapace.ActionFiles(),
 		"tls-root-certs":        carapace.ActionValues("webpki", "system"),
 	})
 
