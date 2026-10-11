@@ -35,6 +35,7 @@ func init() {
 	installCmd.Flags().StringP("platform", "p", "", "Install for the given platform; a warning is printed when it doesn't run on this machine")
 	installCmd.Flags().String("pypi-keyring-provider", "", "Specifies whether to use the keyring to look up credentials for PyPI")
 	installCmd.Flags().Bool("run-post-link-scripts", false, "Run post-link scripts (insecure)")
+	installCmd.PersistentFlags().StringP("script", "s", "", "The path to a script with an embedded manifest: PEP 723 Python metadata or a conda-script block. Pixi run also accepts an HTTP(S) URL or '-' for stdin")
 	installCmd.Flags().StringSlice("skip", nil, "Skip installation of specific packages present in the lock file. This uses a soft exclusion: the package will be skipped but its dependencies are installed")
 	installCmd.Flags().StringSlice("skip-with-deps", nil, "Skip a package and its entire dependency subtree. This performs a hard exclusion: the package and its dependencies are not installed unless reachable from another non-skipped root")
 	installCmd.Flags().Bool("tls-no-verify", false, "Do not verify the TLS certificate of the server")
@@ -51,6 +52,7 @@ func init() {
 		"pinning-strategy":      carapace.ActionValues("semver", "minor", "major", "latest-up", "exact-version", "no-pin"),
 		"platform":              pixi.ActionPlatforms(),
 		"pypi-keyring-provider": carapace.ActionValues("disabled", "subprocess"),
+		"script":                carapace.ActionFiles(),
 		"tls-root-certs":        carapace.ActionValues("webpki", "system"),
 	})
 }

@@ -8,7 +8,7 @@ import (
 
 var initCmd = &cobra.Command{
 	Use:   "init",
-	Short: "Creates a new workspace",
+	Short: "Creates a new workspace or script",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
@@ -21,14 +21,14 @@ func init() {
 	initCmd.Flags().StringP("import", "i", "", "Environment.yml file to bootstrap the workspace")
 	initCmd.Flags().StringSliceP("platform", "p", nil, "Platforms that the workspace supports")
 	initCmd.Flags().String("scm", "", "Source Control Management used for this workspace")
-	initCmd.Flags().StringP("script", "s", "", "Create a PEP 723 metadata block in a Python script")
+	initCmd.Flags().StringP("script", "s", "", "Create a metadata block in a script instead of a workspace")
 	rootCmd.AddCommand(initCmd)
 
 	carapace.Gen(initCmd).FlagCompletion(carapace.ActionMap{
-		"format":   carapace.ActionValues("pixi", "pyproject", "mojoproject"),
+		"format":   carapace.ActionValues("pixi", "pyproject", "mojoproject", "pep723", "conda-script"),
 		"import":   carapace.ActionFiles(),
 		"platform": pixi.ActionPlatforms(),
 		"scm":      carapace.ActionValues("github", "gitlab", "codeberg"),
-		"script":   carapace.ActionFiles(".py"),
+		"script":   carapace.ActionFiles(),
 	})
 }

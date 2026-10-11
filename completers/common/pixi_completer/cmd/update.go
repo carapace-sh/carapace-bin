@@ -33,6 +33,7 @@ func init() {
 	updateCmd.Flags().StringSliceP("platform", "p", nil, "The platforms to update. If none is specified, all platforms are updated. Accepts a workspace platform name; a bare conda subdir (e.g. `linux-64`) is also accepted so users don't have to declare a platform before targeting it")
 	updateCmd.Flags().String("pypi-keyring-provider", "", "Specifies whether to use the keyring to look up credentials for PyPI")
 	updateCmd.Flags().Bool("run-post-link-scripts", false, "Run post-link scripts (insecure)")
+	updateCmd.PersistentFlags().StringP("script", "s", "", "The path to a script with an embedded manifest: PEP 723 Python metadata or a conda-script block. Pixi run also accepts an HTTP(S) URL or '-' for stdin")
 	updateCmd.Flags().Bool("tls-no-verify", false, "Do not verify the TLS certificate of the server")
 	updateCmd.Flags().String("tls-root-certs", "", "Which TLS root certificates to use: 'webpki' (bundled Mozilla roots) or 'system' (system store)")
 	updateCmd.Flags().Bool("use-environment-activation-cache", false, "Use environment activation cache (experimental)")
@@ -47,6 +48,7 @@ func init() {
 		"pinning-strategy":      carapace.ActionValues("semver", "minor", "major", "latest-up", "exact-version", "no-pin"),
 		"platform":              pixi.ActionPlatforms(),
 		"pypi-keyring-provider": carapace.ActionValues("disabled", "subprocess"),
+		"script":                carapace.ActionFiles(),
 		"tls-root-certs":        carapace.ActionValues("webpki", "system"),
 	})
 }

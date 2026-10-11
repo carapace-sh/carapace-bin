@@ -27,6 +27,7 @@ func init() {
 	runCmd.Flags().BoolP("dry-run", "n", false, "Run the task in dry-run mode (only print the command that would run)")
 	runCmd.Flags().StringP("environment", "e", "", "The environment to run the task in")
 	runCmd.Flags().BoolP("executable", "x", false, "Execute the command as an executable without resolving Pixi tasks")
+	runCmd.Flags().Bool("experimental", false, "Enable experimental script features, currently the conda-script block")
 	runCmd.Flags().Bool("force-activate", false, "Do not use the environment activation cache. (default: true except in experimental mode)")
 	runCmd.Flags().Bool("frozen", false, "Install the environment as defined in the lock file, doesn't update lock file if it isn't up-to-date with the manifest file")
 	runCmd.Flags().BoolS("h", "h", false, "")
@@ -44,7 +45,7 @@ func init() {
 	runCmd.Flags().StringP("platform", "p", "", "Install and run in the environment for the given platform; a warning is printed when it doesn't run on this machine. Accepts a workspace platform name; a bare conda subdir (e.g. `linux-64`) is also accepted")
 	runCmd.Flags().String("pypi-keyring-provider", "", "Specifies whether to use the keyring to look up credentials for PyPI")
 	runCmd.Flags().Bool("run-post-link-scripts", false, "Run post-link scripts (insecure)")
-	runCmd.PersistentFlags().StringP("script", "s", "", "The path to a Python script containing PEP 723 metadata. Pixi run also accepts an HTTP(S) URL or '-' to read the script from stdin")
+	runCmd.PersistentFlags().StringP("script", "s", "", "The path to a script with an embedded manifest: PEP 723 Python metadata or a conda-script block. Pixi run also accepts an HTTP(S) URL or '-' for stdin")
 	runCmd.Flags().Bool("skip-deps", false, "Don't run the dependencies of the task ('depends-on' field in the task definition)")
 	runCmd.Flags().Bool("templated", false, "Enable template rendering for the command arguments")
 	runCmd.Flags().Bool("tls-no-verify", false, "Do not verify the TLS certificate of the server")
@@ -61,7 +62,7 @@ func init() {
 		"pinning-strategy":      carapace.ActionValues("semver", "minor", "major", "latest-up", "exact-version", "no-pin"),
 		"platform":              pixi.ActionPlatforms(),
 		"pypi-keyring-provider": carapace.ActionValues("disabled", "subprocess"),
-		"script":                carapace.Batch(carapace.ActionFiles(".py"), carapace.ActionValues("-")).ToA(),
+		"script":                carapace.Batch(carapace.ActionFiles(), carapace.ActionValues("-")).ToA(),
 		"tls-root-certs":        carapace.ActionValues("webpki", "system"),
 	})
 

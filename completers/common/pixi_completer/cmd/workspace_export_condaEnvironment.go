@@ -21,13 +21,13 @@ func init() {
 	workspace_export_condaEnvironmentCmd.Flags().Bool("no-config", false, "Don't read system or user-level configuration files. Project-local `<project>/.pixi/config.toml` is still loaded")
 	workspace_export_condaEnvironmentCmd.Flags().Bool("no-pypi", false, "Exclude pypi dependencies from the exported environment file")
 	workspace_export_condaEnvironmentCmd.Flags().StringP("platform", "p", "", "The platform to render the environment file for. Defaults to the current platform")
-	workspace_export_condaEnvironmentCmd.Flags().StringP("script", "s", "", "The path to a Python script containing PEP 723 metadata. Pixi run also accepts an HTTP(S) URL or '-' to read the script from stdin")
+	workspace_export_condaEnvironmentCmd.Flags().StringP("script", "s", "", "The path to a script with an embedded manifest: PEP 723 Python metadata or a conda-script block. Pixi run also accepts an HTTP(S) URL or '-' for stdin")
 	workspace_exportCmd.AddCommand(workspace_export_condaEnvironmentCmd)
 
 	carapace.Gen(workspace_export_condaEnvironmentCmd).FlagCompletion(carapace.ActionMap{
 		"config-file": carapace.ActionFiles(),
 		"environment": pixi.ActionEnvironments(),
 		"platform":    pixi.ActionPlatforms(),
-		"script":      carapace.ActionFiles(".py"),
+		"script":      carapace.ActionFiles(),
 	})
 }
