@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/linux/dnf_completer/cmd/action"
+	"github.com/carapace-sh/carapace/pkg/condition"
 	"github.com/spf13/cobra"
 )
 
@@ -26,6 +27,9 @@ func init() {
 	rootCmd.AddCommand(installCmd)
 
 	carapace.Gen(installCmd).PositionalAnyCompletion(
-		action.ActionPackageSearch(installCmd),
+		carapace.Batch(
+			carapace.ActionFiles(".rpm"),
+			action.ActionPackageSearch(installCmd).UnlessF(condition.CompletingPath),
+		).ToA(),
 	)
 }
