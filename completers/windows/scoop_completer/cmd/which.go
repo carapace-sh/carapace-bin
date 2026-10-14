@@ -7,7 +7,7 @@ import (
 
 var whichCmd = &cobra.Command{
 	Use:   "which",
-	Short: "find the path to an installed executable",
+	Short: "locate a shim/executable (similar to 'which' on Linux)",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -7,7 +7,7 @@ import (
 
 var searchCmd = &cobra.Command{
 	Use:   "search",
-	Short: "search for packages",
+	Short: "search available apps",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
