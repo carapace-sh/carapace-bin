@@ -14,5 +14,6 @@ var configCmd = &cobra.Command{
 func init() {
 	carapace.Gen(configCmd).Standalone()
 
+	configCmd.Flags().StringP("port", "p", "", "SSH port on a remote host.")
 	rootCmd.AddCommand(configCmd)
 }
