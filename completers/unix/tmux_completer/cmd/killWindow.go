@@ -17,6 +17,7 @@ func init() {
 	carapace.Gen(killWindowCmd).Standalone()
 
 	killWindowCmd.Flags().BoolS("a", "a", false, "kill all windows except the one specified by -t")
+	killWindowCmd.Flags().StringS("f", "f", "", "filter for windows to kill")
 	killWindowCmd.Flags().StringS("t", "t", "", "specify target window")
 	rootCmd.AddCommand(killWindowCmd)
 
