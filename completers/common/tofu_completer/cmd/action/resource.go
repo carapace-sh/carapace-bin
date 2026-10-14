@@ -14,3 +14,12 @@ func ActionResources(cmd *cobra.Command) carapace.Action {
 		return tofu.ActionResources("")
 	})
 }
+
+func ActionOutputs(cmd *cobra.Command) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		if f := cmd.Flag("state"); f != nil {
+			return tofu.ActionOutputs(f.Value.String())
+		}
+		return tofu.ActionOutputs("")
+	})
+}
