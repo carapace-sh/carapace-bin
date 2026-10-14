@@ -8,7 +8,7 @@ import (
 var config_listCmd = &cobra.Command{
 	Use:     "list",
 	Aliases: []string{"ls", "show"},
-	Short:   "Show a configuration parameter",
+	Short:   "Show the value of a config parameter",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

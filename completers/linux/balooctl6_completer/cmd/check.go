@@ -7,7 +7,7 @@ import (
 
 var checkCmd = &cobra.Command{
 	Use:   "check",
-	Short: "Check for unindexed files and index them",
+	Short: "Check for any unindexed files and index them",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

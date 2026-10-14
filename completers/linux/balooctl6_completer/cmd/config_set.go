@@ -7,7 +7,7 @@ import (
 
 var config_setCmd = &cobra.Command{
 	Use:   "set",
-	Short: "Set a configuration parameter",
+	Short: "Set the value of a config parameter",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

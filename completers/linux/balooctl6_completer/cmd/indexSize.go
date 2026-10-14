@@ -7,7 +7,7 @@ import (
 
 var indexSizeCmd = &cobra.Command{
 	Use:   "indexSize",
-	Short: "Display the disk space used by the index",
+	Short: "Display the disk space used by index",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -7,7 +7,7 @@ import (
 
 var config_helpCmd = &cobra.Command{
 	Use:   "help",
-	Short: "Show configuration help",
+	Short: "Display this help menu",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
