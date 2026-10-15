@@ -21,4 +21,6 @@ func init() {
 		action.ActionBatteries(),
 		carapace.ActionValues(),
 	)
+
+	carapace.Gen(dischargeCmd).DashAnyCompletion(action.ActionConfigParams())
 }

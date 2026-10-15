@@ -20,4 +20,6 @@ func init() {
 	carapace.Gen(chargeonceCmd).PositionalCompletion(
 		action.ActionBatteries(),
 	)
+
+	carapace.Gen(chargeonceCmd).DashAnyCompletion(action.ActionConfigParams())
 }

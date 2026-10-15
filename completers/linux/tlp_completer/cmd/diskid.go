@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/linux/tlp_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -15,4 +16,6 @@ func init() {
 	carapace.Gen(diskidCmd).Standalone()
 
 	rootCmd.AddCommand(diskidCmd)
+
+	carapace.Gen(diskidCmd).DashAnyCompletion(action.ActionConfigParams())
 }
