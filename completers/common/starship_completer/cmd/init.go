@@ -14,9 +14,8 @@ var initCmd = &cobra.Command{
 func init() {
 	carapace.Gen(initCmd).Standalone()
 
-	initCmd.Flags().BoolP("help", "h", false, "Prints help information")
+	initCmd.Flags().BoolP("help", "h", false, "Print help")
 	initCmd.Flags().Bool("print-full-init", false, "Print the main initialization script (as opposed to the init stub)")
-	initCmd.Flags().BoolP("version", "V", false, "Prints version information")
 	rootCmd.AddCommand(initCmd)
 
 	carapace.Gen(initCmd).PositionalCompletion(
