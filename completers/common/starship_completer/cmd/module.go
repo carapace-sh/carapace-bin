@@ -17,17 +17,21 @@ func init() {
 	carapace.Gen(moduleCmd).Standalone()
 
 	moduleCmd.Flags().StringP("cmd-duration", "d", "", "The execution duration of the last command, in milliseconds")
-	moduleCmd.Flags().BoolP("help", "h", false, "Prints help information")
-	moduleCmd.Flags().StringP("jobs", "j", "", "The number of currently running jobs")
-	moduleCmd.Flags().StringP("keymap", "k", "", "The keymap of fish/zsh")
+	moduleCmd.Flags().BoolP("help", "h", false, "Print help")
+	moduleCmd.Flags().StringP("jobs", "j", "0", "The number of currently running jobs")
+	moduleCmd.Flags().StringP("keymap", "k", "viins", "The keymap of fish/zsh/cmd")
 	moduleCmd.Flags().BoolP("list", "l", false, "List out all supported modules")
+	moduleCmd.Flags().StringP("logical-path", "P", "", "The logical path that the prompt should render for. This path should be a virtual/logical representation of the PATH argument")
 	moduleCmd.Flags().StringP("path", "p", "", "The path that the prompt should render for")
-	moduleCmd.Flags().StringP("status", "s", "", "The status code of the previously run command")
-	moduleCmd.Flags().BoolP("version", "V", false, "Prints version information")
+	moduleCmd.Flags().StringSlice("pipestatus", nil, "Bash, Fish and Zsh support returning codes for each process in a pipeline")
+	moduleCmd.Flags().String("shlvl", "", "The current value of SHLVL, for shells that mis-handle it in $()")
+	moduleCmd.Flags().StringP("status", "s", "", "The status code of the previously run command as an unsigned or signed 32bit integer")
+	moduleCmd.Flags().StringP("terminal-width", "w", "80", "The width of the current interactive terminal")
 	rootCmd.AddCommand(moduleCmd)
 
 	carapace.Gen(moduleCmd).FlagCompletion(carapace.ActionMap{
-		"path": carapace.ActionDirectories(),
+		"logical-path": carapace.ActionFiles(),
+		"path":         carapace.ActionFiles(),
 	})
 
 	carapace.Gen(moduleCmd).PositionalCompletion(

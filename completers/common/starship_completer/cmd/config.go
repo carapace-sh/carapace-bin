@@ -14,7 +14,6 @@ var configCmd = &cobra.Command{
 func init() {
 	carapace.Gen(configCmd).Standalone()
 
-	configCmd.Flags().BoolP("help", "h", false, "Prints help information")
-	configCmd.Flags().BoolP("version", "V", false, "Prints version information")
+	configCmd.Flags().BoolP("help", "h", false, "Print help")
 	rootCmd.AddCommand(configCmd)
 }
