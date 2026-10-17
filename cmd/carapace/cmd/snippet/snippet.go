@@ -4,10 +4,30 @@ import (
 	"sort"
 
 	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/completers"
+	"github.com/carapace-sh/carapace-bin/pkg/completer"
 	"github.com/carapace-sh/carapace-bridge/pkg/bridges"
 	"github.com/carapace-sh/carapace-bridge/pkg/choices"
 	envbridges "github.com/carapace-sh/carapace-bridge/pkg/env"
 )
+
+func filterNativeCompletions(uniqueNames map[string]bool, nativeNames []string, m completer.CompleterMap, chosenNames map[string]bool) {
+	for _, name := range nativeNames {
+		if chosenNames[name] {
+			continue
+		}
+
+		hasNonBridgeCompleter := false
+		for _, variant := range m[name] {
+			if variant.Group != "bridge" {
+				hasNonBridgeCompleter = true
+				break
+			}
+		}
+		if !hasNonBridgeCompleter {
+			delete(uniqueNames, name)
+		}
+	}
+}
 
 func Snippet(shell string) string {
 	uniqueNames := map[string]bool{
@@ -38,27 +58,13 @@ func Snippet(shell string) string {
 		}
 	}
 
-	switch shell { // don't bridge native completions
-	case "bash":
-		for _, name := range bridges.Bash() {
-			delete(uniqueNames, name)
-		}
-	case "fish":
-		for _, name := range bridges.Fish() {
-			delete(uniqueNames, name)
-		}
-	case "zsh":
-		for _, name := range bridges.Zsh() {
-			delete(uniqueNames, name)
-		}
-	}
-
+	chosenNames := make(map[string]bool)
 	if list, err := choices.List(false); err == nil {
 		for _, choice := range list {
 			// TODO filter by variant?? would need to read contents for that
 			//  if s != shell { // don't bridge native completions
 			uniqueNames[choice.Name] = true
-
+			chosenNames[choice.Name] = true
 		}
 	}
 
@@ -71,6 +77,16 @@ func Snippet(shell string) string {
 	for name := range m { // TODO already includes bridges and such
 		uniqueNames[name] = true
 	}
+
+	switch shell { // don't bridge native completions
+	case "bash":
+		filterNativeCompletions(uniqueNames, bridges.Bash(), m, chosenNames)
+	case "fish":
+		filterNativeCompletions(uniqueNames, bridges.Fish(), m, chosenNames)
+	case "zsh":
+		filterNativeCompletions(uniqueNames, bridges.Zsh(), m, chosenNames)
+	}
+
 	completers.RemoveExcludes(uniqueNames)
 
 	completerNames := make([]string, 0)
