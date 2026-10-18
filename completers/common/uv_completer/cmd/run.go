@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/uv"
+	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
 
@@ -14,6 +15,7 @@ var runCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(runCmd).Standalone()
+	runCmd.Flags().SetInterspersed(false)
 
 	runCmd.Flags().Bool("active", false, "Prefer the active virtual environment over the project's virtual environment")
 	runCmd.Flags().Bool("all-extras", false, "Include all optional dependencies")
@@ -149,7 +151,15 @@ func init() {
 	carapace.Gen(runCmd).PositionalCompletion(
 		carapace.Batch(
 			uv.ActionScripts(),
-			carapace.ActionExecutables(),
+			bridge.ActionCarapaceBin(),
 		).ToA(),
+	)
+
+	carapace.Gen(runCmd).PositionalAnyCompletion(
+		bridge.ActionCarapaceBin(),
+	)
+
+	carapace.Gen(runCmd).DashAnyCompletion(
+		carapace.ActionPositional(runCmd),
 	)
 }
