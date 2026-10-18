@@ -44,8 +44,12 @@ func init() {
 		"id":                     carapace.ActionValues(),
 		"moniker":                carapace.ActionValues(),
 		"name":                   carapace.ActionValues(),
-		"query":                  carapace.ActionValues(),
+		"query":                  winget.ActionSearchPackages(),
 		"source":                 carapace.ActionValues(),
 		"tag":                    carapace.ActionValues(),
 	})
+
+	carapace.Gen(searchCmd).PositionalCompletion(
+		winget.ActionSearchPackages(),
+	)
 }

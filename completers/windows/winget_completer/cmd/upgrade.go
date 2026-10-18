@@ -43,4 +43,8 @@ func init() {
 		"name":                   carapace.ActionValues(),
 		"query":                  carapace.ActionValues(),
 	})
+
+	carapace.Gen(upgradeCmd).PositionalCompletion(
+		winget.ActionUpgradablePackages(),
+	)
 }

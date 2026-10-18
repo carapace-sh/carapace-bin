@@ -55,9 +55,13 @@ func init() {
 		"name":                   carapace.ActionValues(),
 		"os-version":             carapace.ActionValues(),
 		"platform":               carapace.ActionValues(),
-		"query":                  carapace.ActionValues(),
+		"query":                  winget.ActionSearchPackages(),
 		"scope":                  winget.ActionScopes(),
 		"source":                 carapace.ActionValues(),
 		"version":                carapace.ActionValues(),
 	})
+
+	carapace.Gen(downloadCmd).PositionalCompletion(
+		winget.ActionSearchPackages(),
+	)
 }
