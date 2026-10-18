@@ -25,11 +25,7 @@ func ActionUpgradablePackages() carapace.Action {
 //	Nushell.Nushell (Nushell)
 func ActionSearchPackages() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		args := []string{"search", "--accept-source-agreements"}
-		if c.Value != "" {
-			args = append(args, c.Value)
-		}
-		return carapace.ActionExecCommand("winget", args...)(func(output []byte) carapace.Action {
+		return carapace.ActionExecCommand("winget", "search", "--accept-source-agreements", c.Value)(func(output []byte) carapace.Action {
 			return carapace.ActionValuesDescribed(parsePackages(string(output))...)
 		})
 	}).Tag("packages")
