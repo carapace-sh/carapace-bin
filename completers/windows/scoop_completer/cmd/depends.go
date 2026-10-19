@@ -8,7 +8,7 @@ import (
 
 var dependsCmd = &cobra.Command{
 	Use:   "depends",
-	Short: "list dependencies for an app",
+	Short: "list dependencies for an app, in the order they'll be installed",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

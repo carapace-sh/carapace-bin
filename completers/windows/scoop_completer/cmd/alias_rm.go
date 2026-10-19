@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/windows/scoop_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -14,4 +15,8 @@ var alias_rmCmd = &cobra.Command{
 func init() {
 	carapace.Gen(alias_rmCmd).Standalone()
 	aliasCmd.AddCommand(alias_rmCmd)
+
+	carapace.Gen(alias_rmCmd).PositionalCompletion(
+		action.ActionAliases(),
+	)
 }

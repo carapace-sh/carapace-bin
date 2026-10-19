@@ -13,6 +13,6 @@ var shimCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(shimCmd).Standalone()
-	shimCmd.Flags().BoolP("global", "g", false, "manipulate global shim(s)")
+	shimCmd.PersistentFlags().BoolP("global", "g", false, "manipulate global shim(s)")
 	rootCmd.AddCommand(shimCmd)
 }

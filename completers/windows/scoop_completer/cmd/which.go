@@ -14,4 +14,8 @@ var whichCmd = &cobra.Command{
 func init() {
 	carapace.Gen(whichCmd).Standalone()
 	rootCmd.AddCommand(whichCmd)
+
+	carapace.Gen(whichCmd).PositionalCompletion(
+		carapace.ActionExecutables(),
+	)
 }

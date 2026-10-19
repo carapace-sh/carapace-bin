@@ -70,7 +70,7 @@ func ActionAvailableApps() carapace.Action {
 			}
 			apps = []string{app}
 		}
-		return carapace.ActionValues(apps...).UniqueList(",")
+		return carapace.ActionValues(apps...).Unique()
 	})
 }
 
@@ -81,12 +81,12 @@ func ActionKnownBuckets() carapace.Action {
 		"extras", "https://github.com/ScoopInstaller/Extras",
 		"versions", "https://github.com/ScoopInstaller/Versions",
 		"nirsoft", "https://github.com/ScoopInstaller/Nirsoft",
-		"sysinternals", "https://github.com/niheaven/scoop-sysinternals",
+		"sysinternals", "https://github.com/ScoopInstaller/Sysinternals",
 		"php", "https://github.com/ScoopInstaller/PHP",
 		"nerd-fonts", "https://github.com/matthewjberger/scoop-nerd-fonts",
 		"nonportable", "https://github.com/ScoopInstaller/Nonportable",
 		"java", "https://github.com/ScoopInstaller/Java",
-		"games", "https://github.com/Calinou/scoop-games",
+		"games", "https://github.com/ScoopInstaller/Games",
 	)
 }
 
@@ -94,6 +94,7 @@ func ActionKnownBuckets() carapace.Action {
 func ActionConfigKeys() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"aria2-enabled", "Use aria2c for downloading of artifacts",
+		"aria2-fallback-enabled", "Fall back to the default downloader when aria2 fails",
 		"aria2-max-connection-per-server", "Max connections per server for aria2",
 		"aria2-min-split-size", "Min split size for aria2",
 		"aria2-options", "Additional aria2 options",
@@ -121,6 +122,7 @@ func ActionConfigKeys() carapace.Action {
 		"show_update_log", "Show/hide changed commits on update",
 		"update_nightly", "Auto-update nightly versions",
 		"use_external_7zip", "Use external 7zip for archives extraction",
+		"use_git_history", "Search bucket git history for exact versions when installing",
 		"use_isolated_path", "Isolate Scoop from system PATH",
 		"use_lessmsi", "Prefer lessmsi utility over native msiexec",
 		"use_sqlite_cache", "Use SQLite database for caching",
@@ -161,6 +163,35 @@ func ActionShims() carapace.Action {
 type scoopCacheInfo struct {
 	Name    string `json:"Name"`
 	Version string `json:"Version"`
+}
+
+// scoopAlias is the JSON structure for alias list output.
+type scoopAlias struct {
+	Name    string `json:"Name"`
+	Command string `json:"Command"`
+}
+
+// ActionAliases completes alias names with their command as description.
+func ActionAliases() carapace.Action {
+	return carapace.ActionExecCommand("powershell", "-NoProfile", "-Command", "scoop alias list | ConvertTo-Json -Compress")(func(output []byte) carapace.Action {
+		output = []byte(strings.TrimSpace(string(output)))
+		if len(output) == 0 || string(output) == "null" {
+			return carapace.ActionValues()
+		}
+		var aliases []scoopAlias
+		if err := json.Unmarshal(output, &aliases); err != nil {
+			var alias scoopAlias
+			if err2 := json.Unmarshal(output, &alias); err2 != nil {
+				return carapace.ActionMessage(err.Error())
+			}
+			return carapace.ActionValuesDescribed(alias.Name, alias.Command)
+		}
+		vals := make([]string, 0)
+		for _, alias := range aliases {
+			vals = append(vals, alias.Name, alias.Command)
+		}
+		return carapace.ActionValuesDescribed(vals...)
+	})
 }
 
 // ActionCachedApps completes cached app names with their version as description.

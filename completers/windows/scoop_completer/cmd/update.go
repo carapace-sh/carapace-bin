@@ -20,7 +20,7 @@ func init() {
 	updateCmd.Flags().BoolP("independent", "i", false, "don't install dependencies automatically")
 	updateCmd.Flags().BoolP("no-cache", "k", false, "don't use the download cache")
 	updateCmd.Flags().BoolP("quiet", "q", false, "hide extraneous messages")
-	updateCmd.Flags().BoolP("skip-hash-check", "s", false, "skip hash validation")
+	updateCmd.Flags().BoolP("skip-hash-check", "s", false, "skip hash validation (use with caution!)")
 	rootCmd.AddCommand(updateCmd)
 
 	carapace.Gen(updateCmd).PositionalAnyCompletion(

@@ -14,4 +14,8 @@ var importCmd = &cobra.Command{
 func init() {
 	carapace.Gen(importCmd).Standalone()
 	rootCmd.AddCommand(importCmd)
+
+	carapace.Gen(importCmd).PositionalCompletion(
+		carapace.ActionFiles(),
+	)
 }
