@@ -26,9 +26,9 @@ func init() {
 
 	rootCmd.Flags().StringS("chdir", "chdir", "", "Switch to a different working directory before executing the given subcommand.")
 	rootCmd.Flags().BoolS("help", "help", false, "Show this help output, or the help for a specified subcommand.")
+	rootCmd.Flags().BoolS("install-autocomplete", "install-autocomplete", false, "Install Autocomplete scripts")
+	rootCmd.Flags().BoolS("uninstall-autocomplete", "uninstall-autocomplete", false, "Uninstall Autocomplete scripts")
 	rootCmd.Flags().BoolS("version", "version", false, "An alias for the \"version\" subcommand.")
-
-	rootCmd.Flag("chdir").NoOptDefVal = "."
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"chdir": carapace.ActionDirectories(),

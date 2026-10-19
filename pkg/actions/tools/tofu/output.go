@@ -15,7 +15,7 @@ func ActionOutputs(state string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		args := []string{"output", "-no-color"}
 		if state != "" {
-			args = append(args, "--state", state)
+			args = append(args, "-state", state)
 		}
 		return carapace.ActionExecCommand("tofu", args...)(func(output []byte) carapace.Action {
 			lines := strings.Split(string(output), "\n")
