@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/windows/scoop_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/scoop"
 	"github.com/spf13/cobra"
 )
 
@@ -18,6 +18,6 @@ func init() {
 	rootCmd.AddCommand(unholdCmd)
 
 	carapace.Gen(unholdCmd).PositionalAnyCompletion(
-		action.ActionInstalledApps(),
+		scoop.ActionInstalledApps(),
 	)
 }

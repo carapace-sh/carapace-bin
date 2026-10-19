@@ -1,0 +1,50 @@
+package scoop
+
+import (
+	"encoding/json"
+
+	"github.com/carapace-sh/carapace"
+)
+
+type scoopBucket struct {
+	Name      string `json:"Name"`
+	Source    string `json:"Source"`
+	Manifests int    `json:"Manifests"`
+}
+
+// ActionInstalledBuckets completes installed bucket names with their source as description
+//
+//	extras (https://github.com/ScoopInstaller/Extras)
+//	main (https://github.com/ScoopInstaller/Main)
+func ActionInstalledBuckets() carapace.Action {
+	return carapace.ActionExecCommand("powershell", "-NoProfile", "-Command", "scoop export")(func(output []byte) carapace.Action {
+		var export scoopExport
+		if err := json.Unmarshal(output, &export); err != nil {
+			return carapace.ActionMessage(err.Error())
+		}
+		vals := make([]string, 0)
+		for _, bucket := range export.Buckets {
+			vals = append(vals, bucket.Name, bucket.Source)
+		}
+		return carapace.ActionValuesDescribed(vals...).Tag("buckets")
+	})
+}
+
+// ActionKnownBuckets completes known bucket names with their source as description
+//
+//	extras (https://github.com/ScoopInstaller/Extras)
+//	main (https://github.com/ScoopInstaller/Main)
+func ActionKnownBuckets() carapace.Action {
+	return carapace.ActionValuesDescribed(
+		"main", "https://github.com/ScoopInstaller/Main",
+		"extras", "https://github.com/ScoopInstaller/Extras",
+		"versions", "https://github.com/ScoopInstaller/Versions",
+		"nirsoft", "https://github.com/ScoopInstaller/Nirsoft",
+		"sysinternals", "https://github.com/ScoopInstaller/Sysinternals",
+		"php", "https://github.com/ScoopInstaller/PHP",
+		"nerd-fonts", "https://github.com/matthewjberger/scoop-nerd-fonts",
+		"nonportable", "https://github.com/ScoopInstaller/Nonportable",
+		"java", "https://github.com/ScoopInstaller/Java",
+		"games", "https://github.com/ScoopInstaller/Games",
+	).Tag("buckets")
+}
