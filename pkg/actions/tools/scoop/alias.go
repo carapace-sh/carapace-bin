@@ -1,39 +1,47 @@
 package scoop
 
 import (
-	"encoding/json"
+	"os"
+	"path/filepath"
+	"sort"
 	"strings"
 
 	"github.com/carapace-sh/carapace"
 )
-
-type scoopAlias struct {
-	Name    string `json:"Name"`
-	Command string `json:"Command"`
-}
 
 // ActionAliases completes alias names with their command as description
 //
 //	rm (scoop uninstall $args[0])
 //	upgrade (scoop update *)
 func ActionAliases() carapace.Action {
-	return carapace.ActionExecCommand("powershell", "-NoProfile", "-Command", "scoop alias list | ConvertTo-Json -Compress")(func(output []byte) carapace.Action {
-		output = []byte(strings.TrimSpace(string(output)))
-		if len(output) == 0 || string(output) == "null" {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		root := loadConfig().scoopDir()
+		if root == "" {
 			return carapace.ActionValues()
 		}
-		var aliases []scoopAlias
-		if err := json.Unmarshal(output, &aliases); err != nil {
-			var alias scoopAlias
-			if err2 := json.Unmarshal(output, &alias); err2 != nil {
-				return carapace.ActionMessage(err.Error())
-			}
-			return carapace.ActionValuesDescribed(alias.Name, alias.Command).Tag("aliases")
+		matches, err := filepath.Glob(filepath.Join(root, "shims", "scoop-*.ps1"))
+		if err != nil {
+			return carapace.ActionValues()
 		}
-		vals := make([]string, 0)
-		for _, alias := range aliases {
-			vals = append(vals, alias.Name, alias.Command)
+
+		sort.Strings(matches)
+		vals := make([]string, 0, len(matches)*2)
+		for _, match := range matches {
+			name := strings.TrimSuffix(strings.TrimPrefix(filepath.Base(match), "scoop-"), ".ps1")
+			vals = append(vals, name, aliasCommand(match))
 		}
 		return carapace.ActionValuesDescribed(vals...).Tag("aliases")
 	})
+}
+
+func aliasCommand(path string) string {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return ""
+	}
+	lines := strings.Split(strings.ReplaceAll(string(data), "\r\n", "\n"), "\n")
+	if len(lines) < 2 {
+		return ""
+	}
+	return strings.TrimSpace(lines[1])
 }

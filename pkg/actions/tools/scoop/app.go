@@ -2,7 +2,9 @@
 package scoop
 
 import (
+	"bytes"
 	"encoding/json"
+	"path/filepath"
 	"strings"
 
 	"github.com/carapace-sh/carapace"
@@ -25,9 +27,9 @@ type scoopApp struct {
 //	bat (0.24.0)
 //	git (2.45.0)
 func ActionInstalledApps() carapace.Action {
-	return carapace.ActionExecCommand("powershell", "-NoProfile", "-Command", "scoop export")(func(output []byte) carapace.Action {
+	return carapace.ActionExecCommand("scoop", "export")(func(output []byte) carapace.Action {
 		var export scoopExport
-		if err := json.Unmarshal(output, &export); err != nil {
+		if err := json.Unmarshal(bytes.TrimPrefix(output, []byte{0xEF, 0xBB, 0xBF}), &export); err != nil {
 			return carapace.ActionMessage(err.Error())
 		}
 		vals := make([]string, 0)
@@ -43,19 +45,19 @@ func ActionInstalledApps() carapace.Action {
 //	bat
 //	git
 func ActionAvailableApps() carapace.Action {
-	return carapace.ActionExecCommand("powershell", "-NoProfile", "-Command", "$d = if ($env:SCOOP) { $env:SCOOP } else { \"$env:USERPROFILE\\scoop\" }; Get-ChildItem -Path \"$d\\buckets\\*\\bucket\\*.json\" | Select-Object -ExpandProperty BaseName | ConvertTo-Json -Compress")(func(output []byte) carapace.Action {
-		output = []byte(strings.TrimSpace(string(output)))
-		if len(output) == 0 || string(output) == "null" {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		root := loadConfig().scoopDir()
+		if root == "" {
 			return carapace.ActionValues()
 		}
-		var apps []string
-		if err := json.Unmarshal(output, &apps); err != nil {
-			var app string
-			if err2 := json.Unmarshal(output, &app); err2 != nil {
-				return carapace.ActionMessage(err.Error())
-			}
-			apps = []string{app}
+		matches, err := filepath.Glob(filepath.Join(root, "buckets", "*", "bucket", "*.json"))
+		if err != nil {
+			return carapace.ActionValues()
 		}
-		return carapace.ActionValues(apps...).Unique().Tag("apps")
+		vals := make([]string, 0, len(matches))
+		for _, match := range matches {
+			vals = append(vals, strings.TrimSuffix(filepath.Base(match), filepath.Ext(match)))
+		}
+		return carapace.ActionValues(vals...).Unique().Tag("apps")
 	})
 }

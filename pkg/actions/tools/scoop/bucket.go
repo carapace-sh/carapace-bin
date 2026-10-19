@@ -1,6 +1,7 @@
 package scoop
 
 import (
+	"bytes"
 	"encoding/json"
 
 	"github.com/carapace-sh/carapace"
@@ -17,9 +18,9 @@ type scoopBucket struct {
 //	extras (https://github.com/ScoopInstaller/Extras)
 //	main (https://github.com/ScoopInstaller/Main)
 func ActionInstalledBuckets() carapace.Action {
-	return carapace.ActionExecCommand("powershell", "-NoProfile", "-Command", "scoop export")(func(output []byte) carapace.Action {
+	return carapace.ActionExecCommand("scoop", "export")(func(output []byte) carapace.Action {
 		var export scoopExport
-		if err := json.Unmarshal(output, &export); err != nil {
+		if err := json.Unmarshal(bytes.TrimPrefix(output, []byte{0xEF, 0xBB, 0xBF}), &export); err != nil {
 			return carapace.ActionMessage(err.Error())
 		}
 		vals := make([]string, 0)

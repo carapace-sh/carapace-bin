@@ -1,38 +1,49 @@
 package scoop
 
 import (
-	"encoding/json"
+	"os"
+	"sort"
 	"strings"
 
 	"github.com/carapace-sh/carapace"
 )
-
-type scoopCacheInfo struct {
-	Name    string `json:"Name"`
-	Version string `json:"Version"`
-}
 
 // ActionCachedApps completes cached app names with their version as description
 //
 //	bat (0.24.0)
 //	git (2.45.0)
 func ActionCachedApps() carapace.Action {
-	return carapace.ActionExecCommand("powershell", "-NoProfile", "-Command", "scoop cache show | ConvertTo-Json -Compress")(func(output []byte) carapace.Action {
-		output = []byte(strings.TrimSpace(string(output)))
-		if len(output) == 0 || string(output) == "null" {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		dir := loadConfig().cacheDir()
+		if dir == "" {
 			return carapace.ActionValues()
 		}
-		var cache []scoopCacheInfo
-		if err := json.Unmarshal(output, &cache); err != nil {
-			var item scoopCacheInfo
-			if err2 := json.Unmarshal(output, &item); err2 != nil {
-				return carapace.ActionMessage(err.Error())
-			}
-			return carapace.ActionValuesDescribed(item.Name, item.Version).Tag("cached apps")
+		entries, err := os.ReadDir(dir)
+		if err != nil {
+			return carapace.ActionValues()
 		}
-		vals := make([]string, 0)
-		for _, item := range cache {
-			vals = append(vals, item.Name, item.Version)
+
+		versions := make(map[string]string)
+		names := make([]string, 0)
+		for _, entry := range entries {
+			if entry.IsDir() {
+				continue
+			}
+			parts := strings.Split(entry.Name(), "#")
+			if len(parts) < 2 || parts[0] == "" {
+				continue
+			}
+			if _, ok := versions[parts[0]]; ok {
+				continue
+			}
+			names = append(names, parts[0])
+			versions[parts[0]] = parts[1]
+		}
+
+		sort.Strings(names)
+		vals := make([]string, 0, len(names)*2)
+		for _, name := range names {
+			vals = append(vals, name, versions[name])
 		}
 		return carapace.ActionValuesDescribed(vals...).Tag("cached apps")
 	})
