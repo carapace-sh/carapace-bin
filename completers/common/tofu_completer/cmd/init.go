@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/tofu_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -16,11 +17,13 @@ func init() {
 	carapace.Gen(initCmd).Standalone()
 
 	initCmd.Flags().BoolS("backend", "backend", false, "Disable backend or cloud backend initialization.")
-	initCmd.Flags().StringSliceS("backend-config", "backend-config", nil, "Configuration to be merged with what is in the configuration file's 'backend' block.")
+	initCmd.Flags().StringArrayS("backend-config", "backend-config", nil, "Configuration to be merged with what is in the configuration file's 'backend' block.")
 	initCmd.Flags().BoolS("cloud", "cloud", false, "Disable backend or cloud backend initialization.")
 	initCmd.Flags().BoolS("compact-warnings", "compact-warnings", false, "Show warnings in a more compact form that includes only the summary messages.")
+	initCmd.Flags().BoolS("concise", "concise", false, "Disable progress-related messages.")
 	initCmd.Flags().BoolS("consolidate-errors", "consolidate-errors", false, "If OpenTofu produces any errors, attempt to consolidate similar messages into a single item.")
 	initCmd.Flags().BoolS("consolidate-warnings", "consolidate-warnings", false, "If OpenTofu produces any warnings, do not attempt to consolidate similar messages.")
+	initCmd.Flags().StringArrayS("deprecation", "deprecation", nil, "Specify what type of warnings are shown.")
 	initCmd.Flags().BoolS("force-copy", "force-copy", false, "Suppress prompts about copying state data.")
 	initCmd.Flags().StringS("from-module", "from-module", "", "Copy the contents of the given module into the target directory before initialization.")
 	initCmd.Flags().BoolS("get", "get", false, "Disable downloading modules for this configuration.")
@@ -35,23 +38,16 @@ func init() {
 	initCmd.Flags().BoolS("no-color", "no-color", false, "If specified, output won't contain any color.")
 	initCmd.Flags().StringArrayS("plugin-dir", "plugin-dir", nil, "Directory containing plugin binaries. This overrides all other plugin search directory settings.")
 	initCmd.Flags().BoolS("reconfigure", "reconfigure", false, "Reconfigure a backend, ignoring any saved configuration.")
+	initCmd.Flags().BoolS("show-sensitive", "show-sensitive", false, "If specified, sensitive values will be displayed.")
 	initCmd.Flags().StringS("test-directory", "test-directory", "", "Set the OpenTofu test directory, defaults to \"tests\".")
 	initCmd.Flags().BoolS("upgrade", "upgrade", false, "Install the latest module and provider versions allowed within configured constraints.")
 	initCmd.Flags().StringArrayS("var", "var", nil, "Set a value for one of the input variables in the root module of the configuration.")
 	initCmd.Flags().StringS("var-file", "var-file", "", "Load variable values from the given file.")
 	rootCmd.AddCommand(initCmd)
 
-	initCmd.Flag("backend-config").NoOptDefVal = " "
-	initCmd.Flag("from-module").NoOptDefVal = " "
-	initCmd.Flag("json-into").NoOptDefVal = " "
-	initCmd.Flag("lock-timeout").NoOptDefVal = " "
-	initCmd.Flag("lockfile").NoOptDefVal = " "
-	initCmd.Flag("plugin-dir").NoOptDefVal = " "
-	initCmd.Flag("test-directory").NoOptDefVal = " "
-	initCmd.Flag("var-file").NoOptDefVal = " "
-
 	carapace.Gen(initCmd).FlagCompletion(carapace.ActionMap{
-		"backend-config": carapace.ActionFiles(),
+		"backend-config": carapace.ActionFiles(".tfvars", ".hcl"),
+		"deprecation":    action.ActionDeprecationLevels(),
 		"from-module":    carapace.ActionDirectories(),
 		"json-into":      carapace.ActionFiles(),
 		"lockfile":       carapace.ActionValues("readonly"),
@@ -59,4 +55,8 @@ func init() {
 		"test-directory": carapace.ActionDirectories(),
 		"var-file":       carapace.ActionFiles(),
 	})
+
+	carapace.Gen(initCmd).PositionalCompletion(
+		carapace.ActionDirectories(),
+	)
 }

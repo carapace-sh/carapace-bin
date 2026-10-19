@@ -15,6 +15,11 @@ var outputCmd = &cobra.Command{
 func init() {
 	carapace.Gen(outputCmd).Standalone()
 
+	outputCmd.Flags().BoolS("compact-warnings", "compact-warnings", false, "Show warnings in a more compact form that includes only the summary messages.")
+	outputCmd.Flags().BoolS("concise", "concise", false, "Disable progress-related messages.")
+	outputCmd.Flags().BoolS("consolidate-errors", "consolidate-errors", false, "If OpenTofu produces any errors, attempt to consolidate similar messages into a single item.")
+	outputCmd.Flags().BoolS("consolidate-warnings", "consolidate-warnings", false, "If OpenTofu produces any warnings, do not attempt to consolidate similar messages.")
+	outputCmd.Flags().StringArrayS("deprecation", "deprecation", nil, "Specify what type of warnings are shown.")
 	outputCmd.Flags().BoolS("json", "json", false, "If specified, machine readable output will be printed in JSON format.")
 	outputCmd.Flags().StringS("json-into", "json-into", "", "Produce the same output as -json, but sent directly to the given file.")
 	outputCmd.Flags().BoolS("no-color", "no-color", false, "If specified, output won't contain any color.")
@@ -25,14 +30,11 @@ func init() {
 	outputCmd.Flags().StringS("var-file", "var-file", "", "Load variable values from the given file.")
 	rootCmd.AddCommand(outputCmd)
 
-	outputCmd.Flag("json-into").NoOptDefVal = " "
-	outputCmd.Flag("state").NoOptDefVal = " "
-	outputCmd.Flag("var-file").NoOptDefVal = " "
-
 	carapace.Gen(outputCmd).FlagCompletion(carapace.ActionMap{
-		"json-into": carapace.ActionFiles(),
-		"state":     carapace.ActionFiles(),
-		"var-file":  carapace.ActionFiles(),
+		"deprecation": action.ActionDeprecationLevels(),
+		"json-into":   carapace.ActionFiles(),
+		"state":       carapace.ActionFiles(),
+		"var-file":    carapace.ActionFiles(),
 	})
 
 	carapace.Gen(outputCmd).PositionalCompletion(

@@ -19,6 +19,7 @@ func ActionPlatforms() carapace.Action {
 		"windows_amd64",
 		"windows_386",
 		"windows_arm",
+		"windows_arm64",
 		"freebsd_amd64",
 		"freebsd_386",
 		"freebsd_arm",

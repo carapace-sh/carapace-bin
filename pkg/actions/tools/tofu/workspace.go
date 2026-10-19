@@ -12,7 +12,7 @@ import (
 //	default
 //	staging
 func ActionWorkspaces() carapace.Action {
-	return carapace.ActionExecCommand("tofu", "workspace", "list")(func(output []byte) carapace.Action {
+	return carapace.ActionExecCommand("tofu", "workspace", "list", "-no-color")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
 		r := regexp.MustCompile(`^[* ] (?P<name>.*)$`)
 

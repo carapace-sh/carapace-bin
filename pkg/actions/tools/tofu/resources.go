@@ -12,13 +12,18 @@ import (
 //	aws_s3_bucket.example
 func ActionResources(state string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		args := []string{"state", "list"}
+		args := []string{"state", "list", "-no-color"}
 		if state != "" {
-			args = append(args, "--state", state)
+			args = append(args, "-state", state)
 		}
 		return carapace.ActionExecCommand("tofu", args...)(func(output []byte) carapace.Action {
-			lines := strings.Split(string(output), "\n")
-			return carapace.ActionValues(lines[:len(lines)-1]...)
+			vals := make([]string, 0)
+			for _, line := range strings.Split(strings.TrimSpace(string(output)), "\n") {
+				if line != "" {
+					vals = append(vals, line)
+				}
+			}
+			return carapace.ActionValues(vals...)
 		})
 	})
 }
