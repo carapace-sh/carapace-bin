@@ -1,5 +1,3 @@
-// Generated with `carapace --codegen` from the usage spec of mise 2026.10.15 (`mise usage`).
-
 package cmd
 
 import (

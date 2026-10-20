@@ -1,6 +1,3 @@
-// Generated with `carapace --codegen` from the usage spec of mise 2026.10.15 (`mise usage`).
-// Completions below the flag definitions were wired by hand.
-
 package cmd
 
 import (
