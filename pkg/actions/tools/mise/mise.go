@@ -28,7 +28,7 @@ func parseDescribed(output []byte) []string {
 				name.WriteByte(':')
 				i++
 			case line[i] == ':':
-				desc = line[i+1:]
+				desc = strings.ReplaceAll(line[i+1:], `\:`, ":")
 				i = len(line)
 			default:
 				name.WriteByte(line[i])
@@ -128,9 +128,11 @@ func ActionBackends() carapace.Action {
 //	1password (Password manager developed by AgileBits Inc)
 //	7z (7-Zip is a file archiver with a high compression ratio)
 func ActionTools() carapace.Action {
-	return carapace.ActionExecCommand("mise", "search", "--complete")(func(output []byte) carapace.Action {
-		return carapace.ActionValuesDescribed(parseDescribed(output)...)
-	}).Tag("tools").Cache(24 * time.Hour)
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		return carapace.ActionExecCommand("mise", "search", "--complete", c.Value)(func(output []byte) carapace.Action {
+			return carapace.ActionValuesDescribed(parseDescribed(output)...)
+		}).Tag("tools").Cache(24*time.Hour, key.String(c.Value))
+	})
 }
 
 // ActionInstalledTools completes installed tools
@@ -167,18 +169,20 @@ func ActionVersions(tool string) carapace.Action {
 //	20.20.2
 //	24.0.0
 func ActionInstalledVersions(tool string) carapace.Action {
-	return carapace.ActionExecCommand("mise", "ls", "--installed", "--json", tool)(func(output []byte) carapace.Action {
-		var installed []installedVersion
-		if err := json.Unmarshal(output, &installed); err != nil {
-			return carapace.ActionMessage(err.Error())
-		}
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		return carapace.ActionExecCommand("mise", "ls", "--installed", "--json", "--prefix", c.Value, tool)(func(output []byte) carapace.Action {
+			var installed []installedVersion
+			if err := json.Unmarshal(output, &installed); err != nil {
+				return carapace.ActionMessage(err.Error())
+			}
 
-		vals := make([]string, 0, len(installed))
-		for _, v := range installed {
-			vals = append(vals, v.Version)
-		}
-		return carapace.ActionValues(vals...)
-	}).Tag("installed versions")
+			vals := make([]string, 0, len(installed))
+			for _, v := range installed {
+				vals = append(vals, v.Version)
+			}
+			return carapace.ActionValues(vals...)
+		}).Tag("installed versions")
+	})
 }
 
 // ActionToolVersions completes tools with their available versions
@@ -216,7 +220,7 @@ func ActionInstalledToolVersions() carapace.Action {
 //	lts (24)
 //	lts-argon (4)
 func ActionToolAliases(tool string) carapace.Action {
-	return carapace.ActionExecCommand("mise", "tool-alias", "ls", tool)(func(output []byte) carapace.Action {
+	return carapace.ActionExecCommand("mise", "tool-alias", "ls", "--no-header", tool)(func(output []byte) carapace.Action {
 		vals := make([]string, 0)
 		for _, line := range parseLines(output) {
 			if fields := strings.Fields(line); len(fields) >= 3 {
