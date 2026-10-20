@@ -17,6 +17,7 @@ func init() {
 	carapace.Gen(variable_getCmd).Standalone()
 
 	variable_getCmd.Flags().StringP("group", "g", "", "Get variable for a group.")
+	variable_getCmd.Flags().Bool("inherited", false, "If the key is not defined at the selected level, look in the groups above it, then in instance variables.")
 	variable_getCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
 	variable_getCmd.Flags().StringP("output", "F", "text", "Format output as: text, json.")
 	variable_getCmd.Flags().StringP("scope", "s", "*", "The environment_scope of the variable. Values: all (*), or specific environments.")

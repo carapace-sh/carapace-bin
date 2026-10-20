@@ -24,6 +24,7 @@ func init() {
 	artifactRegistry_loginCmd.Flags().String("registry", "", "Registry to authenticate against. For --docker, a bare hostname; for others, typically a URL.")
 	artifactRegistry_loginCmd.Flags().String("registry-alias", "", "Alias/ID to register the registry under (Maven/Gradle only). Defaults to a name derived from --registry.")
 	artifactRegistry_loginCmd.Flags().Bool("sbt", false, "Configure sbt to authenticate against the registry. Writes to ~/.sbt/1.0/credentials.sbt.")
+	artifactRegistry_loginCmd.Flags().Bool("yarn", false, "Configure Yarn 2 or later to authenticate against the registry. Writes to ~/.yarnrc.yml. For Yarn 1, use --npm.")
 	artifactRegistry_loginCmd.MarkFlagRequired("registry")
 	artifactRegistryCmd.AddCommand(artifactRegistry_loginCmd)
 

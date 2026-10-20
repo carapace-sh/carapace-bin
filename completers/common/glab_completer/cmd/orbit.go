@@ -7,7 +7,7 @@ import (
 
 var orbitCmd = &cobra.Command{
 	Use:   "orbit [<command>] [flags]",
-	Short: "Run the GitLab Orbit CLI. (EXPERIMENTAL)",
+	Short: "Query the GitLab Orbit context graph. (EXPERIMENTAL)",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

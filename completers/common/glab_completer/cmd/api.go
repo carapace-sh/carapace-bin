@@ -21,7 +21,7 @@ func init() {
 	apiCmd.Flags().StringSliceP("header", "H", nil, "Add an additional HTTP request header.")
 	apiCmd.Flags().String("hostname", "", "The GitLab hostname for the request. Defaults to gitlab.com, or the authenticated host in the current Git directory.")
 	apiCmd.Flags().BoolP("include", "i", false, "Include HTTP response headers in the output.")
-	apiCmd.Flags().String("input", "", "The file to use as the body for the HTTP request.")
+	apiCmd.Flags().String("input", "", "The file to use as the body for the HTTP request. Sent as 'application/json' unless you set another 'Content-Type' with --header.")
 	apiCmd.Flags().StringP("method", "X", "GET", "The HTTP method for the request.")
 	apiCmd.Flags().String("output", "json", "Format output as: json, ndjson.")
 	apiCmd.Flags().Bool("paginate", false, "Make additional HTTP requests to fetch all pages of results.")

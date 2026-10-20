@@ -15,6 +15,7 @@ func init() {
 	carapace.Gen(sshKey_addCmd).Standalone()
 
 	sshKey_addCmd.Flags().StringP("expires-at", "e", "", "The expiration date of the SSH key. Uses ISO 8601 format: YYYY-MM-DDTHH:MM:SSZ.")
+	sshKey_addCmd.Flags().Bool("replace", false, "Delete an existing key with the same fingerprint, such as an expired key, before adding this one.")
 	sshKey_addCmd.Flags().StringP("title", "t", "", "New SSH key's title.")
 	sshKey_addCmd.Flags().StringP("usage-type", "u", "auth_and_signing", "Usage scope for the key. Possible values: 'auth', 'signing' or 'auth_and_signing'. Default value: 'auth_and_signing'.")
 	sshKey_addCmd.MarkFlagRequired("title")

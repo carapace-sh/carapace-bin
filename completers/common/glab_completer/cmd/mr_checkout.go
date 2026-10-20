@@ -19,11 +19,13 @@ func init() {
 	mr_checkoutCmd.Flags().BoolP("force", "f", false, "Reset local branch to remote when they have diverged. Refuses if working tree has changes that would be lost.")
 	mr_checkoutCmd.Flags().StringP("set-upstream-to", "u", "", "Set tracking of checked-out branch to [REMOTE/]BRANCH.")
 	mr_checkoutCmd.Flags().BoolP("track", "t", true, "Set checked out branch to track the remote branch.")
+	mr_checkoutCmd.Flags().String("worktree", "", "Check out the merge request into a Git worktree at <path> instead of the current working directory. Re-running updates an existing worktree at that path.")
 	mr_checkoutCmd.Flag("track").Hidden = true
 	mrCmd.AddCommand(mr_checkoutCmd)
 
 	carapace.Gen(mr_checkoutCmd).FlagCompletion(carapace.ActionMap{
-		"branch": action.ActionBranches(mr_checkoutCmd),
+		"branch":   action.ActionBranches(mr_checkoutCmd),
+		"worktree": carapace.ActionDirectories(),
 		// TODO "set-upstream-to":
 	})
 	carapace.Gen(mr_checkoutCmd).PositionalAnyCompletion(

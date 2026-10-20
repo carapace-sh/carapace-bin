@@ -23,6 +23,7 @@ func init() {
 	auth_loginCmd.Flags().String("hostname", "", "The hostname of the GitLab instance to authenticate with. When omitted, glab prompts in interactive mode, or uses the host resolved from your Git remotes, GITLAB_HOST, and your configuration.")
 	auth_loginCmd.Flags().Bool("insecure-storage", false, "Store the token as plaintext in the configuration file instead of the operating system's keyring.")
 	auth_loginCmd.Flags().StringP("job-token", "j", "", "CI job token.")
+	auth_loginCmd.Flags().Bool("setup-git-credential-helper", false, "Configure glab as the Git credential helper for this host without prompting. Use this in non-interactive runs, such as CI/CD jobs.")
 	auth_loginCmd.Flags().String("ssh-hostname", "", "SSH hostname for instances with a different SSH endpoint. A port is not required; Git uses the port from the remote URL. Also skips the SSH hostname prompt in interactive mode.")
 	auth_loginCmd.Flags().Bool("stdin", false, "Read the token from standard input.")
 	auth_loginCmd.Flags().StringP("token", "t", "", "Your GitLab access token.")

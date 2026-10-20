@@ -21,6 +21,7 @@ func init() {
 	workItems_createCmd.Flags().StringP("description", "d", "", "Description of the work item. Set to \"-\" to open an editor.")
 	workItems_createCmd.Flags().String("description-file", "", "Read the work item description from a file. Use \"-\" to read from standard input.")
 	workItems_createCmd.Flags().StringP("group", "g", "", "Create work items for a group or subgroup.")
+	workItems_createCmd.Flags().String("iteration", "", "Add the work item to the iteration with this ID.")
 	workItems_createCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
 	workItems_createCmd.Flags().StringP("output", "F", "text", "Format output as: text, json.")
 	workItems_createCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. You can use either OWNER/REPO or GROUP/NAMESPACE/REPO. The full URL or Git URL is also accepted.")
@@ -33,6 +34,7 @@ func init() {
 		"attach":           carapace.ActionFiles(),
 		"description-file": carapace.ActionFiles(),
 		"group":            action.ActionGroups(workItems_createCmd),
+		"iteration":        action.ActionIterations(workItems_createCmd),
 		"jq":               jq.ActionFilters(),
 		"output":           carapace.ActionValues("text", "json"),
 		"repo":             action.ActionRepo(workItems_createCmd),
