@@ -3,7 +3,9 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/mise"
+	"github.com/carapace-sh/carapace/pkg/traverse"
 	"github.com/spf13/cobra"
+	"github.com/spf13/pflag"
 )
 
 var rootCmd = &cobra.Command{
@@ -73,4 +75,8 @@ func init() {
 	carapace.Gen(rootCmd).PositionalCompletion(
 		mise.ActionTasks(),
 	)
+
+	carapace.Gen(rootCmd).PreInvoke(func(cmd *cobra.Command, _ *pflag.Flag, action carapace.Action) carapace.Action {
+		return action.ChdirF(traverse.Flag(rootCmd.Flag("cd")))
+	})
 }
