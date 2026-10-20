@@ -30,6 +30,6 @@ func init() {
 
 	carapace.Gen(hookEnvCmd).FlagCompletion(carapace.ActionMap{
 		"reason": carapace.ActionValues("precmd", "chpwd"),
-		"shell":  action.Shells(),
+		"shell":  action.ActionShells(),
 	})
 }

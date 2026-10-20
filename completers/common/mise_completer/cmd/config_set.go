@@ -32,6 +32,6 @@ func init() {
 	})
 
 	carapace.Gen(config_setCmd).PositionalCompletion(
-		action.ConfigKeys("set"),
+		action.ActionConfigKeys("set"),
 	)
 }

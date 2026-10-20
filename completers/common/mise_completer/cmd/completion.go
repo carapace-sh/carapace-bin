@@ -30,11 +30,11 @@ func init() {
 	rootCmd.AddCommand(completionCmd)
 
 	carapace.Gen(completionCmd).FlagCompletion(carapace.ActionMap{
-		"shell": action.CompletionShells(),
+		"shell": action.ActionCompletionShells(),
 		"tool":  mise.ActionTools(),
 	})
 
 	carapace.Gen(completionCmd).PositionalCompletion(
-		action.CompletionShells(),
+		action.ActionCompletionShells(),
 	)
 }

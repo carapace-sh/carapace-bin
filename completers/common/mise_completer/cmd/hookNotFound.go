@@ -21,6 +21,6 @@ func init() {
 	rootCmd.AddCommand(hookNotFoundCmd)
 
 	carapace.Gen(hookNotFoundCmd).FlagCompletion(carapace.ActionMap{
-		"shell": action.Shells(),
+		"shell": action.ActionShells(),
 	})
 }

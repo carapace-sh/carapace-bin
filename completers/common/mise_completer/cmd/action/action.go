@@ -6,8 +6,8 @@ import (
 	"github.com/carapace-sh/carapace"
 )
 
-// ConfigKeys completes keys of the project config
-func ConfigKeys(subcommand string) carapace.Action {
+// ActionConfigKeys completes keys of the project config
+func ActionConfigKeys(subcommand string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		words := append([]string{"mise", "config", subcommand}, c.Args...)
 		words = append(words, c.Value)
@@ -17,8 +17,8 @@ func ConfigKeys(subcommand string) carapace.Action {
 	}).Tag("config keys")
 }
 
-// BootstrapParts completes parts of the bootstrap process
-func BootstrapParts() carapace.Action {
+// ActionBootstrapParts completes parts of the bootstrap process
+func ActionBootstrapParts() carapace.Action {
 	return carapace.ActionValues(
 		"plugins",
 		"packages",
@@ -44,18 +44,18 @@ func BootstrapParts() carapace.Action {
 	)
 }
 
-// Shells completes shells supported by mise
-func Shells() carapace.Action {
+// ActionShells completes shells supported by mise
+func ActionShells() carapace.Action {
 	return carapace.ActionValues("bash", "elvish", "fish", "nu", "xonsh", "zsh", "pwsh", "powershell")
 }
 
-// CompletionShells completes shells supported by `mise completion`
-func CompletionShells() carapace.Action {
+// ActionCompletionShells completes shells supported by `mise completion`
+func ActionCompletionShells() carapace.Action {
 	return carapace.ActionValues("bash", "fish", "powershell", "zsh", "pwsh")
 }
 
-// TaskCacheModes completes task cache access modes
-func TaskCacheModes() carapace.Action {
+// ActionTaskCacheModes completes task cache access modes
+func ActionTaskCacheModes() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"read-write", "Read cached results and write new results.",
 		"read-only", "Read cached results without writing new results.",

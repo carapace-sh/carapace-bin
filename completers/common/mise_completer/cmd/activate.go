@@ -26,10 +26,10 @@ func init() {
 	rootCmd.AddCommand(activateCmd)
 
 	carapace.Gen(activateCmd).FlagCompletion(carapace.ActionMap{
-		"shell": action.Shells(),
+		"shell": action.ActionShells(),
 	})
 
 	carapace.Gen(activateCmd).PositionalCompletion(
-		action.Shells(),
+		action.ActionShells(),
 	)
 }
