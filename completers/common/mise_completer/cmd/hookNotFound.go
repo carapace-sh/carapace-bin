@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/mise_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -20,6 +21,6 @@ func init() {
 	rootCmd.AddCommand(hookNotFoundCmd)
 
 	carapace.Gen(hookNotFoundCmd).FlagCompletion(carapace.ActionMap{
-		"shell": carapace.ActionValues("bash", "elvish", "fish", "nu", "xonsh", "zsh", "pwsh", "powershell"),
+		"shell": action.Shells(),
 	})
 }

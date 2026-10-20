@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/mise_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -29,4 +30,8 @@ func init() {
 		"file": carapace.ActionFiles(),
 		"type": carapace.ActionValues("infer", "string", "integer", "float", "bool", "list", "set"),
 	})
+
+	carapace.Gen(config_setCmd).PositionalCompletion(
+		action.ConfigKeys("set"),
+	)
 }

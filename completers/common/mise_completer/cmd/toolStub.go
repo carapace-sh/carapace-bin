@@ -15,4 +15,8 @@ func init() {
 	carapace.Gen(toolStubCmd).Standalone()
 
 	rootCmd.AddCommand(toolStubCmd)
+
+	carapace.Gen(toolStubCmd).PositionalCompletion(
+		carapace.ActionFiles(),
+	)
 }

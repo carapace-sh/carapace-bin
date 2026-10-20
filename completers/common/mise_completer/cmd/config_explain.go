@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/mise_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -26,4 +27,8 @@ func init() {
 	carapace.Gen(config_explainCmd).FlagCompletion(carapace.ActionMap{
 		"file": carapace.ActionFiles(),
 	})
+
+	carapace.Gen(config_explainCmd).PositionalCompletion(
+		action.ConfigKeys("explain"),
+	)
 }

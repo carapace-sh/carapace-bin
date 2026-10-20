@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/mise_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -36,7 +37,7 @@ func init() {
 
 	carapace.Gen(bootstrapCmd).FlagCompletion(carapace.ActionMap{
 		"from-dir": carapace.ActionDirectories(),
-		"only":     carapace.ActionValues("plugins", "packages", "accounts", "files", "services", "firewall", "compose", "repos", "dotfiles", "mise-shell-activate", "macos-defaults", "macos-launchd-agents", "linux-systemd-units", "user", "tools", "task", "final-hook", "shell", "defaults", "launchd", "systemd"),
-		"skip":     carapace.ActionValues("plugins", "packages", "accounts", "files", "services", "firewall", "compose", "repos", "dotfiles", "mise-shell-activate", "macos-defaults", "macos-launchd-agents", "linux-systemd-units", "user", "tools", "task", "final-hook", "shell", "defaults", "launchd", "systemd"),
+		"only":     action.BootstrapParts(),
+		"skip":     action.BootstrapParts(),
 	})
 }

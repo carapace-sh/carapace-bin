@@ -27,6 +27,10 @@ func init() {
 	globalCmd.Flag("unset").Hidden = true
 	rootCmd.AddCommand(globalCmd)
 
+	carapace.Gen(globalCmd).FlagCompletion(carapace.ActionMap{
+		"remove": mise.ActionTools(),
+	})
+
 	carapace.Gen(globalCmd).PositionalAnyCompletion(
 		mise.ActionToolVersions(),
 	)

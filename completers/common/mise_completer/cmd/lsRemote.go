@@ -29,5 +29,11 @@ func init() {
 
 	carapace.Gen(lsRemoteCmd).PositionalCompletion(
 		mise.ActionToolVersions(),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if len(c.Args) == 0 {
+				return carapace.ActionValues()
+			}
+			return mise.ActionVersions(c.Args[0])
+		}),
 	)
 }

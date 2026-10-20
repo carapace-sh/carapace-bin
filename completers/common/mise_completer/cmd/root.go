@@ -66,7 +66,8 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"cd":        carapace.ActionDirectories(),
-		"log-level": carapace.ActionValues("trace", "debug", "info", "warn", "error", "warning"),
+		"log-level": carapace.ActionValues("trace", "debug", "info", "warn", "warning", "error"),
+		"tool":      mise.ActionToolVersions(),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

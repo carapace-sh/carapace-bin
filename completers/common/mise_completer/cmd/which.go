@@ -23,6 +23,10 @@ func init() {
 	whichCmd.Flag("complete").Hidden = true
 	rootCmd.AddCommand(whichCmd)
 
+	carapace.Gen(whichCmd).FlagCompletion(carapace.ActionMap{
+		"tool": mise.ActionToolVersions(),
+	})
+
 	carapace.Gen(whichCmd).PositionalCompletion(
 		mise.ActionBinNames(),
 	)

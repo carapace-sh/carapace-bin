@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/mise"
 	"github.com/spf13/cobra"
 )
 
@@ -21,4 +22,8 @@ func init() {
 	toolAliasCmd.Flags().StringP("tool", "p", "", "Filter aliases by tool")
 	toolAliasCmd.Flag("plugin").Hidden = true
 	rootCmd.AddCommand(toolAliasCmd)
+
+	carapace.Gen(toolAliasCmd).FlagCompletion(carapace.ActionMap{
+		"tool": mise.ActionTools(),
+	})
 }
