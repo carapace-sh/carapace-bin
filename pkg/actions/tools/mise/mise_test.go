@@ -6,7 +6,7 @@ import (
 )
 
 func TestParseDescribed(t *testing.T) {
-	output := []byte("build:Build it\ntest\\:unit:\nlint\n\nfmt:Format: all files\r\n")
+	output := []byte("build:Build it\ntest\\:unit:\nlint\n\nfmt:Format\\: all files\r\n")
 	expected := []string{
 		"build", "Build it",
 		"test:unit", "",
