@@ -12,6 +12,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "mise",
 	Short: "Dev tools, env vars, and tasks in one CLI",
+	Long:  "https://github.com/jdx/mise",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
