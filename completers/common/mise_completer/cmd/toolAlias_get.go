@@ -1,0 +1,27 @@
+package cmd
+
+import (
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/mise"
+	"github.com/spf13/cobra"
+)
+
+var toolAlias_getCmd = &cobra.Command{
+	Use:   "get",
+	Short: "Show the version a tool's version alias stands for",
+	Run:   func(cmd *cobra.Command, args []string) {},
+}
+
+func init() {
+	carapace.Gen(toolAlias_getCmd).Standalone()
+
+	toolAlias_getCmd.Flags().BoolP("help", "h", false, "Print help")
+	toolAliasCmd.AddCommand(toolAlias_getCmd)
+
+	carapace.Gen(toolAlias_getCmd).PositionalCompletion(
+		mise.ActionTools(),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return mise.ActionToolAliases(c.Args[0])
+		}),
+	)
+}

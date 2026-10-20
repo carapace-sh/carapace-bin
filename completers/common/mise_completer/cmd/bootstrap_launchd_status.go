@@ -1,0 +1,22 @@
+package cmd
+
+import (
+	"github.com/carapace-sh/carapace"
+	"github.com/spf13/cobra"
+)
+
+var bootstrap_launchd_statusCmd = &cobra.Command{
+	Use:    "status",
+	Short:  "Show the state of the configured LaunchAgents",
+	Hidden: true,
+	Run:    func(cmd *cobra.Command, args []string) {},
+}
+
+func init() {
+	carapace.Gen(bootstrap_launchd_statusCmd).Standalone()
+
+	bootstrap_launchd_statusCmd.Flags().BoolP("help", "h", false, "Print help")
+	bootstrap_launchd_statusCmd.Flags().BoolP("json", "J", false, "Output in JSON format")
+	bootstrap_launchd_statusCmd.Flags().Bool("missing", false, "Exit with status 1 if any LaunchAgent differs from the config (all are still listed)")
+	bootstrap_launchdCmd.AddCommand(bootstrap_launchd_statusCmd)
+}
