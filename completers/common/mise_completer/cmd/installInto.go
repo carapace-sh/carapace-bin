@@ -20,5 +20,6 @@ func init() {
 
 	carapace.Gen(installIntoCmd).PositionalCompletion(
 		mise.ActionToolVersions(),
+		carapace.ActionDirectories(),
 	)
 }

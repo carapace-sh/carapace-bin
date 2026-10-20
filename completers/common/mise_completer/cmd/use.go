@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/mise"
+	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
 
@@ -29,9 +30,11 @@ func init() {
 	useCmd.Flags().Bool("override", false, "Write to the global override file, `config.override.toml`")
 	useCmd.Flags().StringP("path", "p", "", "Write to this config file, or to the config file in this directory")
 	useCmd.Flags().Bool("pin", false, "Write the resolved version, such as `20.19.5` for node@20")
+	useCmd.Flags().String("postinstall", "", "Command to run after installing this tool")
 	useCmd.Flags().Bool("raw", false, "Connect the install commands' stdin, stdout, and stderr to the terminal")
 	useCmd.Flags().StringSlice("remove", nil, "Remove these tools from the config file")
 	useCmd.Flags().StringSlice("rm", nil, "Remove these tools from the config file")
+	useCmd.Flags().StringSlice("tool-option", nil, "Set an option for the tool that follows; repeat for several options")
 	useCmd.Flags().StringSlice("unset", nil, "Remove these tools from the config file")
 	useCmd.Flag("before").Hidden = true
 	useCmd.Flag("rm").Hidden = true
@@ -39,7 +42,9 @@ func init() {
 	rootCmd.AddCommand(useCmd)
 
 	carapace.Gen(useCmd).FlagCompletion(carapace.ActionMap{
-		"path": carapace.ActionFiles(),
+		"path":        carapace.ActionFiles(),
+		"postinstall": bridge.ActionCarapaceBin().Split(),
+		"remove":      mise.ActionTools(),
 	})
 
 	carapace.Gen(useCmd).PositionalAnyCompletion(

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,9 @@ func init() {
 
 	shellAlias_setCmd.Flags().BoolP("help", "h", false, "Print help")
 	shellAliasCmd.AddCommand(shellAlias_setCmd)
+
+	carapace.Gen(shellAlias_setCmd).PositionalCompletion(
+		carapace.ActionValues(),
+		bridge.ActionCarapaceBin().Split(),
+	)
 }

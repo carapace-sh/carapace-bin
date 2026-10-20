@@ -45,6 +45,12 @@ func init() {
 	carapace.Gen(lsCmd).FlagCompletion(carapace.ActionMap{
 		"backend": mise.ActionBackends(),
 		"plugin":  mise.ActionPlugins(),
+		"prefix": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if len(c.Args) == 0 {
+				return carapace.ActionValues()
+			}
+			return mise.ActionVersions(c.Args[len(c.Args)-1])
+		}),
 	})
 
 	carapace.Gen(lsCmd).PositionalAnyCompletion(

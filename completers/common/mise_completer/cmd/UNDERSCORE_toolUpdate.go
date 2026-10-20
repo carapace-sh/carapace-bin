@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/mise"
 	"github.com/spf13/cobra"
 )
 
@@ -24,4 +25,8 @@ func init() {
 	__toolUpdateCmd.Flag("due").Hidden = true
 	__toolUpdateCmd.Flag("id").Hidden = true
 	rootCmd.AddCommand(__toolUpdateCmd)
+
+	carapace.Gen(__toolUpdateCmd).PositionalCompletion(
+		mise.ActionTools(),
+	)
 }

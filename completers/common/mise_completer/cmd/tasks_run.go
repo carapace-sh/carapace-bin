@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/mise_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/mise"
 	"github.com/spf13/cobra"
 )
@@ -68,9 +69,12 @@ func init() {
 	tasksCmd.AddCommand(tasks_runCmd)
 
 	carapace.Gen(tasks_runCmd).FlagCompletion(carapace.ActionMap{
-		"cd":         carapace.ActionDirectories(),
-		"secrets":    mise.ActionSecrets(),
-		"task-cache": carapace.ActionValuesDescribed("read-write", "Read cached results and write new results.", "read-only", "Read cached results without writing new results.", "write-only", "Write new results without reading cached results.", "off", "Disable task output caching for this run.", "local-only", "Read and write only the local cache."),
+		"allow-read":  carapace.ActionFiles(),
+		"allow-write": carapace.ActionFiles(),
+		"cd":          carapace.ActionDirectories(),
+		"secrets":     mise.ActionSecrets(),
+		"task-cache":  action.TaskCacheModes(),
+		"tool":        mise.ActionToolVersions(),
 	})
 
 	carapace.Gen(tasks_runCmd).PositionalCompletion(

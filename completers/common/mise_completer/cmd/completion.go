@@ -2,6 +2,8 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/mise_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/mise"
 	"github.com/spf13/cobra"
 )
 
@@ -28,10 +30,11 @@ func init() {
 	rootCmd.AddCommand(completionCmd)
 
 	carapace.Gen(completionCmd).FlagCompletion(carapace.ActionMap{
-		"shell": carapace.ActionValues("bash", "fish", "powershell", "zsh", "pwsh"),
+		"shell": action.CompletionShells(),
+		"tool":  mise.ActionTools(),
 	})
 
 	carapace.Gen(completionCmd).PositionalCompletion(
-		carapace.ActionValues("bash", "fish", "powershell", "zsh", "pwsh"),
+		action.CompletionShells(),
 	)
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
 )
 
@@ -18,4 +19,8 @@ func init() {
 	dotfiles_conflictsCmd.Flags().BoolP("help", "h", false, "Print help")
 	dotfiles_conflictsCmd.Flags().String("tool", "", "Use this Git diff tool instead of the configured default")
 	dotfilesCmd.AddCommand(dotfiles_conflictsCmd)
+
+	carapace.Gen(dotfiles_conflictsCmd).FlagCompletion(carapace.ActionMap{
+		"tool": git.ActionDiffTools(),
+	})
 }
