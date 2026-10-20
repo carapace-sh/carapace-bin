@@ -73,7 +73,7 @@ func init() {
 		"allow-write": carapace.ActionFiles(),
 		"cd":          carapace.ActionDirectories(),
 		"secrets":     mise.ActionSecrets(),
-		"task-cache":  action.TaskCacheModes(),
+		"task-cache":  action.ActionTaskCacheModes(),
 		"tool":        mise.ActionToolVersions(),
 	})
 

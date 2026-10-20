@@ -37,7 +37,7 @@ func init() {
 
 	carapace.Gen(bootstrapCmd).FlagCompletion(carapace.ActionMap{
 		"from-dir": carapace.ActionDirectories(),
-		"only":     action.BootstrapParts(),
-		"skip":     action.BootstrapParts(),
+		"only":     action.ActionBootstrapParts(),
+		"skip":     action.ActionBootstrapParts(),
 	})
 }

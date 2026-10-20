@@ -29,6 +29,6 @@ func init() {
 	})
 
 	carapace.Gen(config_explainCmd).PositionalCompletion(
-		action.ConfigKeys("explain"),
+		action.ActionConfigKeys("explain"),
 	)
 }

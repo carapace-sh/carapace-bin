@@ -58,8 +58,8 @@ func init() {
 		"identity-file": carapace.ActionFiles(),
 		"install-mise":  carapace.ActionFiles(),
 		"mise-bin":      carapace.ActionFiles(),
-		"only":          action.BootstrapParts(),
-		"skip":          action.BootstrapParts(),
+		"only":          action.ActionBootstrapParts(),
+		"skip":          action.ActionBootstrapParts(),
 		"source":        carapace.ActionDirectories(),
 	})
 }
