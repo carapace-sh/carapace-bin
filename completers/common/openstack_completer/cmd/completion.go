@@ -526,6 +526,7 @@ func init() {
 		"format":        carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"member-status": carapace.ActionValues("accepted", "pending", "rejected", "all"),
 		"quote":         carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"status":        carapace.ActionValues("queued", "saving", "active", "killed", "deleted", "pending_delete", "deactivated", "reactivating"),
 	})
 	carapace.Gen(image_member_getCmd).FlagCompletion(carapace.ActionMap{
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
@@ -683,7 +684,8 @@ func init() {
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 	carapace.Gen(network_createCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"format":                carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"provider-network-type": carapace.ActionValues("flat", "geneve", "gre", "local", "vlan", "vxlan"),
 	})
 	carapace.Gen(network_flavor_createCmd).FlagCompletion(carapace.ActionMap{
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
@@ -986,6 +988,7 @@ func init() {
 	carapace.Gen(security_group_rule_createCmd).FlagCompletion(carapace.ActionMap{
 		"ethertype": carapace.ActionValues("IPv4", "IPv6"),
 		"format":    carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"protocol":  carapace.ActionValues("ah", "dccp", "egp", "esp", "gre", "icmp", "igmp", "ipv6-encap", "ipv6-frag", "ipv6-icmp", "ipv6-nonxt", "ipv6-opts", "ipv6-route", "ospf", "pgm", "rsvp", "sctp", "tcp", "udp", "udplite", "vrrp", "any"),
 	})
 	carapace.Gen(security_group_rule_listCmd).FlagCompletion(carapace.ActionMap{
 		"format": carapace.ActionValues("csv", "json", "table", "value", "yaml"),
@@ -1149,6 +1152,7 @@ func init() {
 	carapace.Gen(share_group_listCmd).FlagCompletion(carapace.ActionMap{
 		"format": carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":  carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"status": carapace.ActionValues("available", "error", "creating", "deleting", "error_deleting"),
 	})
 	carapace.Gen(share_group_showCmd).FlagCompletion(carapace.ActionMap{
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
@@ -1205,6 +1209,7 @@ func init() {
 	carapace.Gen(share_listCmd).FlagCompletion(carapace.ActionMap{
 		"format": carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":  carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"status": carapace.ActionValues("available", "creating", "creating_from_snapshot", "deleting", "deleted", "error", "error_deleting", "manage_starting", "manage_error", "unmanage_starting", "unmanage_error", "extending", "extending_error", "shrinking", "shrinking_error", "reverting", "reverting_error", "awaiting_transfer", "replication_change", "server_migrating"),
 	})
 	carapace.Gen(share_lock_createCmd).FlagCompletion(carapace.ActionMap{
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),

@@ -5,7 +5,15 @@ import (
 )
 
 func init() {
+	action.SetGlobalCloud(globalCloud)
 	action.SetGlobalEnv(globalEnv)
+}
+
+func globalCloud() string {
+	if flag := rootCmd.Flags().Lookup("os-cloud"); flag != nil && flag.Changed {
+		return flag.Value.String()
+	}
+	return ""
 }
 
 func globalEnv() []string {

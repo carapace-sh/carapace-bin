@@ -14,26 +14,8 @@ import (
 // ActionClouds completes cloud names from the os-client-config files.
 func ActionClouds() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		paths := []string{}
-		if path := os.Getenv("OS_CLIENT_CONFIG_FILE"); path != "" {
-			paths = append(paths, path)
-		}
-		if configDir, err := os.UserConfigDir(); err == nil {
-			paths = append(paths,
-				filepath.Join(configDir, "openstack", "clouds.yaml"),
-				filepath.Join(configDir, "openstack", "clouds-public.yaml"),
-			)
-		}
-		if homeDir, err := os.UserHomeDir(); err == nil {
-			paths = append(paths, filepath.Join(homeDir, ".openstack", "clouds.yaml"))
-		}
-		paths = append(paths,
-			"/etc/openstack/clouds.yaml",
-			"/etc/openstack/clouds-public.yaml",
-		)
-
 		values := make([]string, 0)
-		for _, path := range paths {
+		for _, path := range cloudConfigPaths() {
 			content, err := os.ReadFile(path)
 			if err != nil {
 				continue
@@ -53,6 +35,102 @@ func ActionClouds() carapace.Action {
 	})
 }
 
+func ActionCloudAuthURLs() carapace.Action {
+	return cloudValues("auth_url")
+}
+
+func ActionCloudDomainIDs() carapace.Action {
+	return cloudValues("domain_id", "user_domain_id", "project_domain_id")
+}
+
+func ActionCloudDomainNames() carapace.Action {
+	return cloudValues("domain_name", "user_domain_name", "project_domain_name")
+}
+
+func ActionCloudProjectIDs() carapace.Action {
+	return cloudValues("project_id")
+}
+
+func ActionCloudProjectNames() carapace.Action {
+	return cloudValues("project_name")
+}
+
+func ActionCloudRegions() carapace.Action {
+	return cloudValues("region_name")
+}
+
+func ActionCloudUserIDs() carapace.Action {
+	return cloudValues("user_id")
+}
+
+func ActionCloudUsernames() carapace.Action {
+	return cloudValues("username")
+}
+
+func cloudConfigPaths() []string {
+	paths := []string{}
+	if path := os.Getenv("OS_CLIENT_CONFIG_FILE"); path != "" {
+		paths = append(paths, path)
+	}
+	if configDir, err := os.UserConfigDir(); err == nil {
+		paths = append(paths,
+			filepath.Join(configDir, "openstack", "clouds.yaml"),
+			filepath.Join(configDir, "openstack", "clouds-public.yaml"),
+		)
+	}
+	if homeDir, err := os.UserHomeDir(); err == nil {
+		paths = append(paths, filepath.Join(homeDir, ".openstack", "clouds.yaml"))
+	}
+	paths = append(paths,
+		"/etc/openstack/clouds.yaml",
+		"/etc/openstack/clouds-public.yaml",
+	)
+	return paths
+}
+
+func cloudValues(keys ...string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		values := make([]string, 0)
+		for _, path := range cloudConfigPaths() {
+			content, err := os.ReadFile(path)
+			if err != nil {
+				continue
+			}
+			var config struct {
+				Clouds map[string]map[string]any `yaml:"clouds"`
+			}
+			if err := yaml.Unmarshal(content, &config); err != nil {
+				continue
+			}
+
+			selected := ""
+			if globalCloud != nil {
+				selected = globalCloud()
+			}
+
+			for name, cloud := range config.Clouds {
+				if selected != "" && name != selected {
+					continue
+				}
+				for _, key := range keys {
+					if value, ok := cloud[key].(string); ok && value != "" {
+						values = append(values, value)
+					}
+				}
+				if auth, ok := cloud["auth"].(map[string]any); ok {
+					for _, key := range keys {
+						if value, ok := auth[key].(string); ok && value != "" {
+							values = append(values, value)
+						}
+					}
+				}
+			}
+		}
+
+		return carapace.ActionValues(values...).Unique()
+	})
+}
+
 func actionNamed(command ...string) carapace.Action {
 	return actionList(command, "ID", "Name")
 }
@@ -61,7 +139,14 @@ func actionID(command ...string) carapace.Action {
 	return actionList(command, "ID")
 }
 
+var globalCloud func() string
+
 var globalEnv func() []string
+
+// SetGlobalCloud registers a provider for the cloud selected via global flags.
+func SetGlobalCloud(f func() string) {
+	globalCloud = f
+}
 
 // SetGlobalEnv registers a provider for environment variables derived from global flags.
 func SetGlobalEnv(f func() []string) {
@@ -73,12 +158,99 @@ func actionList(command []string, columns ...string) carapace.Action {
 }
 
 func actionListArgs(command []string, columns ...string) carapace.Action {
-	args := append([]string{}, command...)
-	args = append(args, "-f", "csv")
-	for _, column := range columns {
-		args = append(args, "-c", column)
+	if len(columns) == 0 {
+		columns = []string{"ID", "Name"}
 	}
 
+	args := append([]string{}, command...)
+	args = append(args, "-f", "csv")
+
+	return actionExec(args, func(output []byte, err error) carapace.Action {
+		if err != nil {
+			return carapace.ActionValues()
+		}
+
+		reader := csv.NewReader(bytes.NewReader(output))
+		reader.FieldsPerRecord = -1
+		records, err := reader.ReadAll()
+		if err != nil || len(records) <= 1 {
+			return carapace.ActionValues()
+		}
+
+		indices := make([]int, len(columns))
+		for i, column := range columns {
+			indices[i] = -1
+			for j, header := range records[0] {
+				if strings.EqualFold(strings.TrimSpace(header), column) {
+					indices[i] = j
+					break
+				}
+			}
+			if indices[i] == -1 && i < len(records[0]) {
+				indices[i] = i
+			}
+		}
+
+		field := func(record []string, index int) string {
+			if index >= 0 && index < len(record) {
+				return record[index]
+			}
+			return ""
+		}
+
+		described := len(indices) > 1
+		values := make([]string, 0, (len(records)-1)*2)
+		for _, record := range records[1:] {
+			id := field(record, indices[0])
+			if id == "" {
+				continue
+			}
+			if described {
+				if name := field(record, indices[1]); name != "" {
+					values = append(values, name, id)
+				} else {
+					values = append(values, id, "")
+				}
+				continue
+			}
+			values = append(values, id)
+		}
+
+		if described {
+			return carapace.ActionValuesDescribed(values...).Unique()
+		}
+		return carapace.ActionValues(values...).Unique()
+	})
+}
+
+// ActionColumns completes column names from the output of the given list command.
+func ActionColumns(command ...string) carapace.Action {
+	args := append([]string{}, command...)
+	args = append(args, "-f", "csv")
+
+	return actionExec(args, func(output []byte, err error) carapace.Action {
+		if err != nil {
+			return carapace.ActionValues()
+		}
+
+		reader := csv.NewReader(bytes.NewReader(output))
+		reader.FieldsPerRecord = -1
+		header, err := reader.Read()
+		if err != nil {
+			return carapace.ActionValues()
+		}
+
+		values := make([]string, 0, len(header))
+		for _, column := range header {
+			if column = strings.TrimSpace(column); column != "" {
+				values = append(values, column)
+			}
+		}
+		return carapace.ActionValues(values...).Unique()
+	})
+}
+
+func actionExec(args []string, f func(output []byte, err error) carapace.Action) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if globalEnv != nil {
 			if overrides := globalEnv(); len(overrides) > 0 {
@@ -104,32 +276,19 @@ func actionListArgs(command []string, columns ...string) carapace.Action {
 			}
 		}
 
-		return carapace.ActionExecCommandE("openstack", args...)(func(output []byte, err error) carapace.Action {
-			if err != nil {
-				return carapace.ActionValues()
-			}
+		return carapace.ActionExecCommandE("openstack", args...)(f).Invoke(c).ToA()
+	})
+}
 
-			reader := csv.NewReader(bytes.NewReader(output))
-			reader.FieldsPerRecord = -1
-			records, err := reader.ReadAll()
-			if err != nil || len(records) <= 1 {
-				return carapace.ActionValues()
-			}
+func actionScoped(argIndex int, command []string, columns ...string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		if argIndex < 0 || argIndex >= len(c.Args) {
+			return carapace.ActionValues()
+		}
 
-			values := make([]string, 0, (len(records)-1)*2)
-			for _, record := range records[1:] {
-				if len(record) == 0 || record[0] == "" {
-					continue
-				}
-				switch {
-				case len(record) > 1 && record[1] != "":
-					values = append(values, record[1], record[0])
-				default:
-					values = append(values, record[0])
-				}
-			}
-			return carapace.ActionValuesDescribed(values...).Unique()
-		}).Invoke(c).ToA()
+		args := append([]string{}, command...)
+		args = append(args, c.Args[argIndex])
+		return actionListArgs(args, columns...)
 	})
 }
 
@@ -193,6 +352,10 @@ func ActionMappings() carapace.Action {
 	return actionID("mapping")
 }
 
+func ActionProjectIDs() carapace.Action {
+	return actionID("project")
+}
+
 func ActionProjects() carapace.Action {
 	return actionNamed("project")
 }
@@ -211,6 +374,10 @@ func ActionRoles() carapace.Action {
 
 func ActionServerGroups() carapace.Action {
 	return actionNamed("server", "group")
+}
+
+func ActionServerIDs() carapace.Action {
+	return actionID("server")
 }
 
 func ActionServers() carapace.Action {
@@ -259,6 +426,10 @@ func ActionVolumeTransfers() carapace.Action {
 
 func ActionVolumeTypes() carapace.Action {
 	return actionNamed("volume", "type")
+}
+
+func ActionVolumeIDs() carapace.Action {
+	return actionID("volume")
 }
 
 func ActionVolumes() carapace.Action {
@@ -312,6 +483,10 @@ func ActionShareSecurityServices() carapace.Action {
 
 func ActionShareServers() carapace.Action {
 	return actionID("share", "server")
+}
+
+func ActionShareSnapshotIDs() carapace.Action {
+	return actionID("share", "snapshot")
 }
 
 func ActionShareSnapshots() carapace.Action {
@@ -412,6 +587,54 @@ func ActionBgpSpeakers() carapace.Action {
 
 func ActionBgpPeers() carapace.Action {
 	return actionNamed("bgp", "peer")
+}
+
+func ActionBgpDragents() carapace.Action {
+	return actionID("bgp", "dragent")
+}
+
+func ActionComputeHosts() carapace.Action {
+	return actionListArgs([]string{"compute", "service", "list"}, "Host")
+}
+
+func ActionFloatingIPPortForwardings() carapace.Action {
+	return actionScoped(0, []string{"floating", "ip", "port", "forwarding", "list"}, "ID")
+}
+
+func ActionImageMetadefObjects() carapace.Action {
+	return actionScoped(0, []string{"image", "metadef", "object", "list"}, "Name")
+}
+
+func ActionImageMetadefProperties() carapace.Action {
+	return actionScoped(0, []string{"image", "metadef", "property", "list"}, "Name")
+}
+
+func ActionImageMetadefResourceTypes() carapace.Action {
+	return actionList([]string{"image", "metadef", "resource", "type"}, "Name")
+}
+
+func ActionNetworkFlavorProfiles() carapace.Action {
+	return actionNamed("network", "flavor", "profile")
+}
+
+func ActionNetworkQosRules() carapace.Action {
+	return actionScoped(0, []string{"network", "qos", "rule", "list"}, "ID")
+}
+
+func ActionObjects() carapace.Action {
+	return ActionObjectsFromArg(0)
+}
+
+func ActionObjectsFromArg(index int) carapace.Action {
+	return actionScoped(index, []string{"object", "list"}, "Name")
+}
+
+func ActionServerMigrations() carapace.Action {
+	return actionScoped(0, []string{"server", "migration", "list", "--server"}, "ID")
+}
+
+func ActionVolumeHosts() carapace.Action {
+	return actionListArgs([]string{"volume", "service", "list"}, "Host")
 }
 
 func ActionBgpvpns() carapace.Action {
