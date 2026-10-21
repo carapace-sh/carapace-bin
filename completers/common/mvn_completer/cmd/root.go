@@ -22,54 +22,71 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().StringP("activate-profiles", "P", "", "Comma-delimited list of profiles to activate")
-	rootCmd.Flags().BoolP("also-make", "am", false, "also build projects required by the list")
-	rootCmd.Flags().BoolP("also-make-dependents", "amd", false, "also build projects that depend on projects on the list")
-	rootCmd.Flags().BoolP("batch-mode", "B", false, "Run in non-interactive (batch) mode")
+	rootCmd.Flags().BoolP("also-make", "am", false, "If project list is specified, also build projects required by the list")
+	rootCmd.Flags().BoolP("also-make-dependents", "amd", false, "If project list is specified, also build projects that depend on projects on the list")
+	rootCmd.Flags().String("artifacts-update-policy", "", "The update policy to apply onto artifacts ('always', 'daily', 'never'); The -UA option overrides this option with 'always'")
+	rootCmd.Flags().BoolP("batch-mode", "B", false, "Run in non-interactive (batch) mode (disables output color)")
 	rootCmd.Flags().StringP("builder", "b", "", "The id of the build strategy to use")
-	rootCmd.Flags().String("color", "", "Defines the color mode of the output")
+	rootCmd.Flags().BoolP("check-plugin-updates", "cpu", false, "Ineffective, only kept for backward compatibility")
+	rootCmd.Flags().String("color", "", "Defines the color mode of the output. Supported are 'auto', 'always', 'never'.")
 	rootCmd.Flags().BoolP("debug", "X", false, "Produce execution debug output")
-	rootCmd.Flags().StringP("define", "D", "", "Define a system property")
+	rootCmd.Flags().StringP("define", "D", "", "Define a user property")
 	rootCmd.Flags().StringP("encrypt-master-password", "emp", "", "Encrypt master security password")
 	rootCmd.Flags().StringP("encrypt-password", "ep", "", "Encrypt server password")
 	rootCmd.Flags().BoolP("errors", "e", false, "Produce execution error messages")
-	rootCmd.Flags().BoolP("fail-at-end", "fae", false, "Only fail the build afterwards")
+	rootCmd.Flags().BoolP("fail-at-end", "fae", false, "Only fail the build afterwards; allow all non-impacted builds to continue")
 	rootCmd.Flags().BoolP("fail-fast", "ff", false, "Stop at first failure in reactorized builds")
 	rootCmd.Flags().BoolP("fail-never", "fn", false, "NEVER fail the build, regardless of project result")
-	rootCmd.Flags().StringP("file", "f", "", "Force the use of an alternate POM file")
+	rootCmd.Flags().StringP("file", "f", "", "Force the use of an alternate POM file (or directory with pom.xml)")
 	rootCmd.Flags().StringP("global-settings", "gs", "", "Alternate path for the global settings file")
 	rootCmd.Flags().StringP("global-toolchains", "gt", "", "Alternate path for the global toolchains file")
 	rootCmd.Flags().BoolP("help", "h", false, "Display help information")
+	rootCmd.Flags().BoolP("ignore-transitive-repositories", "itr", false, "If set, Maven will ignore remote repositories introduced by transitive dependencies.")
 	rootCmd.Flags().BoolP("lax-checksums", "c", false, "Warn if checksums don't match")
-	rootCmd.Flags().BoolP("legacy-local-repository", "llr", false, "Use Maven 2 Legacy Local Repository behaviour")
-	rootCmd.Flags().StringP("log-file", "l", "", "Log file where all build output will go")
+	rootCmd.Flags().BoolP("legacy-local-repository", "llr", false, "UNSUPPORTED: Use of this option will make Maven invocation fail.")
+	rootCmd.Flags().StringP("log-file", "l", "", "Log file where all build output will go (disables output color)")
+	rootCmd.Flags().String("metadata-update-policy", "", "The update policy to apply onto metadata ('always', 'daily', 'never'); The -UM option overrides this option with 'always'")
+	rootCmd.Flags().BoolP("no-plugin-registry", "npr", false, "Ineffective, only kept for backward compatibility")
+	rootCmd.Flags().BoolP("no-plugin-updates", "npu", false, "Ineffective, only kept for backward compatibility")
 	rootCmd.Flags().BoolP("no-snapshot-updates", "nsu", false, "Suppress SNAPSHOT updates")
 	rootCmd.Flags().BoolP("no-transfer-progress", "ntp", false, "Do not display transfer progress when downloading or uploading")
 	rootCmd.Flags().BoolP("non-recursive", "N", false, "Do not recurse into sub-projects")
 	rootCmd.Flags().BoolP("offline", "o", false, "Work offline")
-	rootCmd.Flags().StringP("projects", "pl", "", "Comma-delimited list of specified reactor projects to build instead of all projects")
+	rootCmd.Flags().StringP("projects", "pl", "", "Comma-delimited list of specified reactor projects to build instead of all projects. A project can be specified by [groupId]:artifactId or by its relative path")
 	rootCmd.Flags().BoolP("quiet", "q", false, "Quiet output - only show errors")
+	rootCmd.Flags().Bool("raw-streams", false, "Ignored (Maven4 option)")
 	rootCmd.Flags().StringP("resume-from", "rf", "", "Resume reactor from specified project")
 	rootCmd.Flags().StringP("settings", "s", "", "Alternate path for the user settings file")
 	rootCmd.Flags().BoolP("show-version", "V", false, "Display version information WITHOUT stopping build")
 	rootCmd.Flags().BoolP("strict-checksums", "C", false, "Fail the build if checksums don't match")
-	rootCmd.Flags().StringP("threads", "T", "", "Thread count")
+	rootCmd.Flags().StringP("threads", "T", "", "Thread count, for instance 4 (int) or 2C/2.5C (int/float) where C is core multiplied")
 	rootCmd.Flags().StringP("toolchains", "t", "", "Alternate path for the user toolchains file")
+	rootCmd.Flags().BoolP("update-artifacts", "UA", false, "Forces checks for missing artifacts (retries cached retrieval errors)")
+	rootCmd.Flags().BoolP("update-metadata", "UM", false, "Forces updates of remote repository metadata (updates plugin prefixes, version ranges and snapshots)")
+	rootCmd.Flags().BoolP("update-plugins", "up", false, "Ineffective, only kept for backward compatibility")
 	rootCmd.Flags().BoolP("update-snapshots", "U", false, "Forces a check for missing releases and updated snapshots on remote repositories")
 	rootCmd.Flags().BoolP("version", "v", false, "Display version information")
+
+	rootCmd.Flag("color").NoOptDefVal = " "
+	rootCmd.Flag("encrypt-master-password").NoOptDefVal = " "
+	rootCmd.Flag("encrypt-password").NoOptDefVal = " "
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"activate-profiles": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return mvn.ActionProfiles(rootCmd.Flag("file").Value.String()).UniqueList(",")
 		}),
-		"color":             carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
-		"file":              carapace.ActionFiles(".xml"),
-		"global-settings":   carapace.ActionFiles(".xml"),
-		"global-toolchains": carapace.ActionFiles(".xml"),
-		"log-file":          carapace.ActionFiles(),
-		"projects":          action.ActionProjects(rootCmd).UniqueList(","),
-		"resume-from":       action.ActionProjects(rootCmd),
-		"settings":          carapace.ActionFiles(".xml"),
-		"toolchains":        carapace.ActionFiles(".xml"),
+		"artifacts-update-policy": carapace.ActionValues("always", "daily", "never"),
+		"builder":                 carapace.ActionValues("multithreaded", "singlethreaded"),
+		"color":                   carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
+		"file":                    carapace.ActionFiles(".xml"),
+		"global-settings":         carapace.ActionFiles(".xml"),
+		"global-toolchains":       carapace.ActionFiles(".xml"),
+		"log-file":                carapace.ActionFiles(),
+		"metadata-update-policy":  carapace.ActionValues("always", "daily", "never"),
+		"projects":                action.ActionProjects(rootCmd).UniqueList(","),
+		"resume-from":             action.ActionProjects(rootCmd),
+		"settings":                carapace.ActionFiles(".xml"),
+		"toolchains":              carapace.ActionFiles(".xml"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
