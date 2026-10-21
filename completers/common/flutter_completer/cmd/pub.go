@@ -6,9 +6,10 @@ import (
 )
 
 var pubCmd = &cobra.Command{
-	Use:   "pub",
-	Short: "Commands for managing Flutter packages",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "pub",
+	Aliases: []string{"packages"},
+	Short:   "Commands for managing Flutter packages",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

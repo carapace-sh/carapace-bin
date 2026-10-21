@@ -14,6 +14,7 @@ var pub_cache_repairCmd = &cobra.Command{
 func init() {
 	carapace.Gen(pub_cache_repairCmd).Standalone()
 
+	pub_cache_repairCmd.Flags().Bool("all", false, "Repair all cached packages instead of only packages in the current pubspec.lock.")
 	pub_cache_repairCmd.Flags().BoolP("help", "h", false, "Print this usage information.")
 	pub_cacheCmd.AddCommand(pub_cache_repairCmd)
 }

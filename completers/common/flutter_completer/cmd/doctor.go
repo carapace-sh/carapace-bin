@@ -15,6 +15,7 @@ func init() {
 	carapace.Gen(doctorCmd).Standalone()
 
 	doctorCmd.Flags().Bool("android-licenses", false, "Run the Android SDK manager tool to accept the SDK's licenses.")
+	doctorCmd.Flags().String("check-for-remote-artifacts", "", "Used to determine if Flutter engine artifacts for all platforms are available for download.")
 	doctorCmd.Flags().BoolP("help", "h", false, "Print this usage information.")
 	rootCmd.AddCommand(doctorCmd)
 }
