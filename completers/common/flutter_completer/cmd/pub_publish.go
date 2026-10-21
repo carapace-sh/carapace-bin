@@ -18,6 +18,8 @@ func init() {
 	pub_publishCmd.Flags().BoolP("dry-run", "n", false, "Validate but do not publish the package.")
 	pub_publishCmd.Flags().BoolP("force", "f", false, "Publish without confirmation if there are no errors.")
 	pub_publishCmd.Flags().BoolP("help", "h", false, "Print this usage information.")
+	pub_publishCmd.Flags().Bool("ignore-warnings", false, "Do not treat warnings as fatal.")
+	pub_publishCmd.Flags().Bool("skip-validation", false, "Publish without validation and resolution (this will ignore errors).")
 	pubCmd.AddCommand(pub_publishCmd)
 
 	carapace.Gen(pub_publishCmd).FlagCompletion(carapace.ActionMap{

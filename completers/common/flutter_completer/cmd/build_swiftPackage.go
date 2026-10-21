@@ -7,21 +7,43 @@ import (
 
 var build_swiftPackageCmd = &cobra.Command{
 	Use:   "swift-package",
-	Short: "Build a Swift Package",
+	Short: "Produces Swift packages and scripts for a Flutter project and its plugins for integration into existing, native non-Flutter iOS and macOS Xcode projects",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(build_swiftPackageCmd).Standalone()
 
-	build_swiftPackageCmd.Flags().Bool("debug", false, "Build a debug version of your app.")
+	build_swiftPackageCmd.Flags().StringSlice("build-mode", nil, "Build modes to include.")
+	build_swiftPackageCmd.Flags().Bool("codesign", false, "Whether to code-sign XCFrameworks.")
+	build_swiftPackageCmd.Flags().String("codesign-identity", "", "The identity to use for code-signing XCFrameworks. If an identity is not provided and \"codesign\" is enabled, a code signing identity will be selected automatically from the Flutter app's Xcode project settings or Flutter config. To see a list of valid identities run \"security find-identity -p codesigning -v\".")
+	build_swiftPackageCmd.Flags().StringArrayP("dart-define", "D", nil, "Additional key-value pairs that will be available as constants from the String.fromEnvironment, bool.fromEnvironment, and int.fromEnvironment constructors. Multiple defines can be passed by repeating \"--dart-define\".")
+	build_swiftPackageCmd.Flags().StringSlice("dart-define-from-file", nil, "The path of a .json or .env file containing key-value pairs that will be available as environment variables. These can be accessed using the String.fromEnvironment, bool.fromEnvironment, and int.fromEnvironment constructors. Multiple define files can be passed by repeating \"--dart-define-from-file\".")
+	build_swiftPackageCmd.Flags().StringArray("dart-defines", nil, "Additional key-value pairs that will be available as constants from the String.fromEnvironment, bool.fromEnvironment, and int.fromEnvironment constructors. Multiple defines can be passed by repeating \"--dart-define\".")
+	build_swiftPackageCmd.Flags().StringSlice("enable-experiment", nil, "The name of an experimental Dart feature to enable. Multiple experiments can be enabled by repeating \"--enable-experiment\".")
+	build_swiftPackageCmd.Flags().StringSlice("extra-front-end-options", nil, "A comma-separated list of additional command line arguments that will be passed directly to the Dart front end. For example, \"--extra-front-end-options=--enable-experiment=nonfunction-type-aliases\".")
+	build_swiftPackageCmd.Flags().StringSlice("extra-gen-snapshot-options", nil, "A comma-separated list of additional command line arguments that will be passed directly to the Dart native compiler. (Requires the \"--release\", \"--profile\", or \"--jit-release\" flag.)")
+	build_swiftPackageCmd.Flags().Bool("fatal-warnings", false, "Causes the command to fail if warnings are sent to the console during its execution.")
+	build_swiftPackageCmd.Flags().String("flavor", "", "Build a custom app flavor as defined by platform-specific build setup. Supports the use of product flavors in Android Gradle scripts, and the use of custom Xcode schemes. Overrides the value of the \"default-flavor\" entry in the flutter pubspec.")
 	build_swiftPackageCmd.Flags().BoolP("help", "h", false, "Print this usage information.")
-	build_swiftPackageCmd.Flags().Bool("no-debug", false, "Do not build a debug version of your app.")
-	build_swiftPackageCmd.Flags().Bool("no-profile", false, "Do not build a version of your app specialized for performance profiling.")
-	build_swiftPackageCmd.Flags().Bool("no-pub", false, "Do not run \"flutter pub get\" before executing this command.")
-	build_swiftPackageCmd.Flags().Bool("no-release", false, "Do not build a release version of your app.")
-	build_swiftPackageCmd.Flags().Bool("profile", false, "Build a version of your app specialized for performance profiling.")
-	build_swiftPackageCmd.Flags().Bool("pub", false, "Run \"flutter pub get\" before executing this command.")
-	build_swiftPackageCmd.Flags().Bool("release", false, "Build a release version of your app (default mode).")
+	build_swiftPackageCmd.Flags().Bool("no-codesign", false, "Whether to code-sign XCFrameworks.")
+	build_swiftPackageCmd.Flags().Bool("no-fatal-warnings", false, "Causes the command to fail if warnings are sent to the console during its execution.")
+	build_swiftPackageCmd.Flags().Bool("no-obfuscate", false, "In a release build, this flag removes identifiers and replaces them with randomized values for the purposes of source code obfuscation. This flag must always be combined with \"--split-debug-info\", the mapping between the values and the original identifiers is stored in the symbol map created in the specified directory. For an app built with this flag, the \"flutter symbolize\" command with the right program symbol file is required to obtain a human readable stack trace. Because all identifiers are renamed, methods like Object.runtimeType, Type.toString, Enum.toString, Stacktrace.toString, Symbol.toString (for constant symbols or those generated by runtime system) will return obfuscated results. Any code or tests that rely on exact names will break.")
+	build_swiftPackageCmd.Flags().Bool("no-pub", false, "Whether to run \"flutter pub get\" before executing this command.")
+	build_swiftPackageCmd.Flags().Bool("no-static", false, "Build plugins as static frameworks. Link on, but do not embed these frameworks in the existing Xcode project.")
+	build_swiftPackageCmd.Flags().Bool("no-tree-shake-icons", false, "Tree shake icon fonts so that only glyphs used by the application are included.")
+	build_swiftPackageCmd.Flags().Bool("obfuscate", false, "In a release build, this flag removes identifiers and replaces them with randomized values for the purposes of source code obfuscation. This flag must always be combined with \"--split-debug-info\", the mapping between the values and the original identifiers is stored in the symbol map created in the specified directory. For an app built with this flag, the \"flutter symbolize\" command with the right program symbol file is required to obtain a human readable stack trace. Because all identifiers are renamed, methods like Object.runtimeType, Type.toString, Enum.toString, Stacktrace.toString, Symbol.toString (for constant symbols or those generated by runtime system) will return obfuscated results. Any code or tests that rely on exact names will break.")
+	build_swiftPackageCmd.Flags().StringP("output", "o", "", "Directory where the Swift package will be written.")
+	build_swiftPackageCmd.Flags().String("platform", "", "Target platform for the build.")
+	build_swiftPackageCmd.Flags().Bool("pub", false, "Whether to run \"flutter pub get\" before executing this command.")
+	build_swiftPackageCmd.Flags().String("split-debug-info", "", "In a release build, this flag reduces application size by storing Dart program symbols in a separate file on the host rather than in the application. The value of the flag should be a directory where program symbol files can be stored for later use. These symbol files contain the information needed to symbolize Dart stack traces. For an app built with this flag, the \"flutter symbolize\" command with the right program symbol file is required to obtain a human readable stack trace. This flag cannot be combined with \"--analyze-size\".")
+	build_swiftPackageCmd.Flags().Bool("static", false, "Build plugins as static frameworks. Link on, but do not embed these frameworks in the existing Xcode project.")
+	build_swiftPackageCmd.Flags().StringP("target", "t", "", "The main entrypoint file of the application, as run on the device. If the \"--target\" option is omitted, but a file name is provided on the command line, then that file is used instead.")
+	build_swiftPackageCmd.Flags().Bool("tree-shake-icons", false, "Tree shake icon fonts so that only glyphs used by the application are included.")
 	buildCmd.AddCommand(build_swiftPackageCmd)
+	carapace.Gen(build_swiftPackageCmd).FlagCompletion(carapace.ActionMap{
+		"build-mode": carapace.ActionValues("debug", "profile", "release").UniqueList(","),
+		"platform":   carapace.ActionValues("ios", "macos"),
+	})
+
 }
