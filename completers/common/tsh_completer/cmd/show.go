@@ -16,4 +16,8 @@ func init() {
 	carapace.Gen(showCmd).Standalone()
 
 	rootCmd.AddCommand(showCmd)
+
+	carapace.Gen(showCmd).PositionalCompletion(
+		carapace.ActionFiles(),
+	)
 }

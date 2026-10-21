@@ -15,14 +15,16 @@ var joinCmd = &cobra.Command{
 func init() {
 	carapace.Gen(joinCmd).Standalone()
 
-	joinCmd.Flags().StringP("cluster", "c", "", "Specify the Teleport cluster to connect")
-	joinCmd.Flags().String("invite", "", "A comma separated list of people to mark as invited for the session.")
-	joinCmd.Flags().StringP("mode", "m", "", "Mode of joining the session, valid modes are observer, moderator and peer.")
-	joinCmd.Flags().String("reason", "", "The purpose of the session.")
+	joinCmd.Flags().StringP("cluster", "c", "", "Specify the Teleport cluster to connect.")
+	joinCmd.Flags().StringP("mode", "m", "observer", "Mode of joining the session, valid modes are observer, moderator and peer.")
 	rootCmd.AddCommand(joinCmd)
 
 	carapace.Gen(joinCmd).FlagCompletion(carapace.ActionMap{
 		"cluster": tsh.ActionClusters(),
 		"mode":    carapace.ActionValues("observer", "moderator", "peer"),
 	})
+
+	carapace.Gen(joinCmd).PositionalCompletion(
+		tsh.ActionSessions("ssh,k8s"),
+	)
 }

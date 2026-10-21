@@ -16,7 +16,7 @@ func init() {
 	carapace.Gen(versionCmd).Standalone()
 
 	versionCmd.Flags().Bool("client", false, "Show the client version only (no server required).")
-	versionCmd.Flags().StringP("format", "f", "", "Format output (text, json, yaml)")
+	versionCmd.Flags().StringP("format", "f", "text", "Format output (text, json, yaml).")
 	versionCmd.Flags().Bool("no-client", false, "Show the client version only (no server required).")
 	versionCmd.Flag("no-client").Hidden = true
 	rootCmd.AddCommand(versionCmd)

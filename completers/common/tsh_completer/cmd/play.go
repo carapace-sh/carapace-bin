@@ -15,12 +15,23 @@ var playCmd = &cobra.Command{
 func init() {
 	carapace.Gen(playCmd).Standalone()
 
-	playCmd.Flags().StringP("cluster", "c", "", "Specify the Teleport cluster to connect")
-	playCmd.Flags().StringP("format", "f", "", "Format output (pty, json, yaml)")
+	playCmd.Flags().StringP("cluster", "c", "", "Specify the Teleport cluster to connect.")
+	playCmd.Flags().StringP("format", "f", "pty", "Format output (pty, json, yaml, text).")
+	playCmd.Flags().Bool("no-skip-idle-time", false, "Quickly skip over idle time, applicable when streaming SSH or Kubernetes sessions.")
+	playCmd.Flags().Bool("skip-idle-time", false, "Quickly skip over idle time, applicable when streaming SSH or Kubernetes sessions.")
+	playCmd.Flags().String("speed", "1x", "Playback speed, applicable when streaming SSH or Kubernetes sessions.")
+	playCmd.Flag("no-skip-idle-time").Hidden = true
 	rootCmd.AddCommand(playCmd)
 
 	carapace.Gen(playCmd).FlagCompletion(carapace.ActionMap{
 		"cluster": tsh.ActionClusters(),
-		"format":  tsh.ActionFormats(),
+		"format":  carapace.ActionValues("pty", "json", "yaml", "text"),
 	})
+
+	carapace.Gen(playCmd).PositionalCompletion(
+		carapace.Batch(
+			tsh.ActionRecordings(),
+			carapace.ActionFiles(),
+		).ToA(),
+	)
 }

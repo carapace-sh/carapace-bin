@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -29,5 +30,7 @@ func init() {
 		),
 	})
 
-	// TODO complete apps
+	carapace.Gen(apps_configCmd).PositionalCompletion(
+		tsh.ActionApps(),
+	)
 }

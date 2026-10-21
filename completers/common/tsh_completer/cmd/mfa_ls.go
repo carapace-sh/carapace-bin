@@ -15,9 +15,9 @@ var mfa_lsCmd = &cobra.Command{
 func init() {
 	carapace.Gen(mfa_lsCmd).Standalone()
 
-	mfa_lsCmd.Flags().StringP("format", "f", "", "Format output (text, json, yaml)")
-	mfa_lsCmd.Flags().Bool("no-verbose", false, "Print more information about MFA devices")
-	mfa_lsCmd.Flags().BoolP("verbose", "v", false, "Print more information about MFA devices")
+	mfa_lsCmd.Flags().StringP("format", "f", "text", "Format output (text, json, yaml).")
+	mfa_lsCmd.Flags().Bool("no-verbose", false, "Print more information about MFA devices.")
+	mfa_lsCmd.Flags().BoolP("verbose", "v", false, "Print more information about MFA devices.")
 	mfa_lsCmd.Flag("no-verbose").Hidden = true
 	mfaCmd.AddCommand(mfa_lsCmd)
 
