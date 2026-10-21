@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/asdf_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/asdf"
 	"github.com/spf13/cobra"
 )
 
@@ -18,6 +18,6 @@ func init() {
 	rootCmd.AddCommand(shimversionsCmd)
 
 	carapace.Gen(shimversionsCmd).PositionalCompletion(
-		action.ActionShims(),
+		asdf.ActionShims(),
 	)
 }

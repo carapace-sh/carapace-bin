@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/asdf_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/asdf"
 	"github.com/spf13/cobra"
 )
 
@@ -22,9 +22,9 @@ func init() {
 	carapace.Gen(setCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) == 0 {
-				return action.ActionPlugins()
+				return asdf.ActionInstalledPlugins()
 			}
-			return action.ActionSetVersions(c.Args[0])
+			return asdf.ActionSetVersions(c.Args[0])
 		}),
 	)
 }
