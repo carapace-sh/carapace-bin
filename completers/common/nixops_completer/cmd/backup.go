@@ -13,5 +13,12 @@ var backupCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(backupCmd).Standalone()
+
+	backupCmd.Flags().StringSlice("devices", nil, "Only backup the specified devices")
+	backupCmd.Flags().StringSlice("exclude", nil, "Do not perform backup actions on the specified machines")
+	backupCmd.Flags().Bool("force", false, "Start new backup even if previous is still running")
+	backupCmd.Flags().Bool("freeze", false, "Freeze filesystems for non-root filesystems that support this")
+	backupCmd.Flags().StringSlice("include", nil, "Perform backup actions on the specified machines only")
+
 	rootCmd.AddCommand(backupCmd)
 }

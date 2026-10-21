@@ -22,6 +22,7 @@ func init() {
 	common.AddEvaluationFlags(fmtCmd)
 	common.AddFlakeFlags(fmtCmd)
 	common.AddInterpretationFlags(fmtCmd)
+	common.AddJSONFlags(fmtCmd)
 	common.AddLoggingFlags(fmtCmd)
 
 	carapace.Gen(fmtCmd).FlagCompletion(carapace.ActionMap{})

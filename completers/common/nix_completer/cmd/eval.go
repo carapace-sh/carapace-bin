@@ -26,6 +26,7 @@ func init() {
 	common.AddEvaluationFlags(evalCmd)
 	common.AddFlakeFlags(evalCmd)
 	common.AddInterpretationFlags(evalCmd)
+	common.AddJSONFlags(evalCmd)
 	common.AddLoggingFlags(evalCmd)
 
 	// TODO: --apply flag completion

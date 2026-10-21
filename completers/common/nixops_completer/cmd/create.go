@@ -14,10 +14,7 @@ var createCmd = &cobra.Command{
 func init() {
 	carapace.Gen(createCmd).Standalone()
 
-	createCmd.Flags().StringP("deployment", "d", "", "Set the symbolic name of the new deployment")
-	createCmd.Flags().StringP("include", "I", "", "Add path to Nix expression search path")
-
-	createCmd.Flag("include").Nargs = 2
+	createCmd.Flags().StringP("name", "n", "", "Obsolete, use --deployment instead")
 
 	rootCmd.AddCommand(createCmd)
 }

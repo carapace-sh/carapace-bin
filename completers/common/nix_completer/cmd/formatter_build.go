@@ -16,6 +16,9 @@ var formatter_buildCmd = &cobra.Command{
 func init() {
 	carapace.Gen(formatter_buildCmd).Standalone()
 
+	formatter_buildCmd.Flags().Bool("no-link", false, "Do not create symlinks to the build results")
+	formatter_buildCmd.Flags().StringP("out-link", "o", "", "Use path as prefix for the symlinks to the build results")
+
 	common.AddEvaluationFlags(formatter_buildCmd)
 	common.AddFlakeFlags(formatter_buildCmd)
 	common.AddInterpretationFlags(formatter_buildCmd)
@@ -23,6 +26,8 @@ func init() {
 
 	formatterCmd.AddCommand(formatter_buildCmd)
 
-	carapace.Gen(formatter_buildCmd).FlagCompletion(carapace.ActionMap{})
+	carapace.Gen(formatter_buildCmd).FlagCompletion(carapace.ActionMap{
+		"out-link": carapace.ActionFiles(),
+	})
 	carapace.Gen(formatter_buildCmd).PositionalAnyCompletion(nix.ActionInstallables())
 }

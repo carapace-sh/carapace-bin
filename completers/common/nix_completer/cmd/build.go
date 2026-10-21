@@ -28,6 +28,7 @@ func init() {
 	common.AddEvaluationFlags(buildCmd)
 	common.AddFlakeFlags(buildCmd)
 	common.AddInterpretationFlags(buildCmd)
+	common.AddJSONFlags(buildCmd)
 	common.AddLoggingFlags(buildCmd)
 
 	rootCmd.AddCommand(buildCmd)

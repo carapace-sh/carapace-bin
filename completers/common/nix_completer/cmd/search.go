@@ -23,6 +23,7 @@ func init() {
 	common.AddEvaluationFlags(searchCmd)
 	common.AddFlakeFlags(searchCmd)
 	common.AddInterpretationFlags(searchCmd)
+	common.AddJSONFlags(searchCmd)
 	common.AddLoggingFlags(searchCmd)
 
 	carapace.Gen(searchCmd).FlagCompletion(carapace.ActionMap{})

@@ -13,5 +13,8 @@ var modifyCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(modifyCmd).Standalone()
+
+	modifyCmd.Flags().StringP("name", "n", "", "New symbolic name of deployment")
+
 	rootCmd.AddCommand(modifyCmd)
 }

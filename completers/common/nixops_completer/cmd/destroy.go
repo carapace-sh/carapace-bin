@@ -13,5 +13,11 @@ var destroyCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(destroyCmd).Standalone()
+
+	destroyCmd.Flags().Bool("all", false, "Destroy all deployments")
+	destroyCmd.Flags().StringSlice("exclude", nil, "Destroy all except the specified machines")
+	destroyCmd.Flags().StringSlice("include", nil, "Destroy only the specified machines")
+	destroyCmd.Flags().Bool("wipe", false, "Securely wipe data on the machines")
+
 	rootCmd.AddCommand(destroyCmd)
 }

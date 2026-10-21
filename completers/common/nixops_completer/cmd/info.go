@@ -13,5 +13,10 @@ var infoCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(infoCmd).Standalone()
+
+	infoCmd.Flags().Bool("all", false, "Show all deployments")
+	infoCmd.Flags().Bool("no-eval", false, "Do not evaluate the deployment specification")
+	infoCmd.Flags().Bool("plain", false, "Do not pretty-print the output")
+
 	rootCmd.AddCommand(infoCmd)
 }

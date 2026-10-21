@@ -23,18 +23,17 @@ func init() {
 	rootCmd.Flags().String("dest", "", "Destination directory")
 	rootCmd.Flags().Bool("force", false, "Overwrite .narinfo files if they already exist")
 	rootCmd.Flags().Bool("help", false, "Show usage information")
+	rootCmd.Flags().String("key-file", "", "Secret key file used to sign the .narinfo files")
 	rootCmd.Flags().Bool("link", false, "Hard link files into the destination directory rather than copying")
 	rootCmd.Flags().Bool("manifest", false, "Force the generation of a manifest suitable for use by nix-pull")
 	rootCmd.Flags().String("manifest-path", "", "Like --manifest, but specify the manifest filename")
+	rootCmd.Flags().StringP("max-jobs", "j", "", "Maximum number of parallel builds")
 	rootCmd.Flags().Bool("none", false, "Do not compress")
 	rootCmd.Flags().String("url-prefix", "", "Specify the prefix URL used in the Manifest")
 
-	rootCmd.MarkFlagsMutuallyExclusive("bzip2", "none")
-	rootCmd.MarkFlagsMutuallyExclusive("manifest", "manifest-path")
-
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"dest":          carapace.ActionDirectories(),
-		"manifest":      carapace.ActionFiles(),
+		"key-file":      carapace.ActionFiles(),
 		"manifest-path": carapace.ActionFiles(),
 	})
 

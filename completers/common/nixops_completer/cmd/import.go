@@ -13,5 +13,8 @@ var importCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(importCmd).Standalone()
+
+	importCmd.Flags().Bool("include-keys", false, "Import public SSH host keys to .ssh/known_hosts")
+
 	rootCmd.AddCommand(importCmd)
 }

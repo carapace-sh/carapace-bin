@@ -13,5 +13,13 @@ var showOptionCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(showOptionCmd).Standalone()
+
+	showOptionCmd.Flags().Bool("include-physical", false, "Include the physical specification in the evaluation")
+
 	rootCmd.AddCommand(showOptionCmd)
+
+	carapace.Gen(showOptionCmd).PositionalCompletion(
+		carapace.ActionValues(), // machine
+		carapace.ActionValues(), // option
+	)
 }

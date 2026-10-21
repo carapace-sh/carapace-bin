@@ -23,6 +23,7 @@ func init() {
 
 	common.AddEvaluationFlags(printDevEnvCmd)
 	common.AddFlakeFlags(printDevEnvCmd)
+	common.AddJSONFlags(printDevEnvCmd)
 	common.AddLoggingFlags(printDevEnvCmd)
 
 	carapace.Gen(printDevEnvCmd).FlagCompletion(carapace.ActionMap{

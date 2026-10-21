@@ -21,6 +21,7 @@ func init() {
 	nar_lsCmd.Flags().BoolP("recursive", "R", false, "List subdirectories recursively")
 	narCmd.AddCommand(nar_lsCmd)
 
+	common.AddJSONFlags(nar_lsCmd)
 	common.AddLoggingFlags(nar_lsCmd)
 
 	carapace.Gen(nar_lsCmd).PositionalCompletion(

@@ -13,5 +13,11 @@ var sshForEachCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(sshForEachCmd).Standalone()
+
+	sshForEachCmd.Flags().Bool("all", false, "Run ssh-for-each for all deployments")
+	sshForEachCmd.Flags().StringSlice("exclude", nil, "Run command on all except the specified machines")
+	sshForEachCmd.Flags().StringSlice("include", nil, "Run command only on the specified machines")
+	sshForEachCmd.Flags().BoolP("parallel", "p", false, "Run in parallel")
+
 	rootCmd.AddCommand(sshForEachCmd)
 }

@@ -13,5 +13,10 @@ var cleanBackupsCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(cleanBackupsCmd).Standalone()
+
+	cleanBackupsCmd.Flags().Int("keep", 0, "Number of backups to keep around")
+	cleanBackupsCmd.Flags().Int("keep-days", 0, "Keep backups newer than N days")
+	cleanBackupsCmd.Flags().Bool("keep-physical", false, "Only remove backups from nixops state")
+
 	rootCmd.AddCommand(cleanBackupsCmd)
 }

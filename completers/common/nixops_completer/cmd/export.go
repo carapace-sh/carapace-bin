@@ -13,5 +13,8 @@ var exportCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(exportCmd).Standalone()
+
+	exportCmd.Flags().Bool("all", false, "Export all deployments")
+
 	rootCmd.AddCommand(exportCmd)
 }

@@ -14,4 +14,9 @@ var copyClosureCmd = &cobra.Command{
 func init() {
 	carapace.Gen(copyClosureCmd).Standalone()
 	rootCmd.AddCommand(copyClosureCmd)
+
+	carapace.Gen(copyClosureCmd).PositionalCompletion(
+		carapace.ActionValues(), // machine
+		carapace.ActionValues(), // store path
+	)
 }

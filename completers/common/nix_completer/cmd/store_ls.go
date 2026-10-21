@@ -20,6 +20,7 @@ func init() {
 	store_lsCmd.Flags().BoolP("recursive", "R", false, "List subdirectories recursively")
 	storeCmd.AddCommand(store_lsCmd)
 
+	common.AddJSONFlags(store_lsCmd)
 	common.AddLoggingFlags(store_lsCmd)
 
 	carapace.Gen(store_lsCmd).PositionalCompletion(

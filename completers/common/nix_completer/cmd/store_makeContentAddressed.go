@@ -24,6 +24,7 @@ func init() {
 	common.AddBuiltPathsFlags(store_makeContentAddressedCmd)
 	common.AddEvaluationFlags(store_makeContentAddressedCmd)
 	common.AddFlakeFlags(store_makeContentAddressedCmd)
+	common.AddJSONFlags(store_makeContentAddressedCmd)
 	common.AddLoggingFlags(store_makeContentAddressedCmd)
 
 	// TODO: --from/--to flag completion
