@@ -34,6 +34,7 @@ func init() {
 	carapace.Gen(assembleCmd).FlagCompletion(carapace.ActionMap{
 		"build-inputs":                 carapace.ActionFiles(),
 		"build-outputs":                carapace.ActionFiles(),
+		"dart-define-from-file":        carapace.ActionFiles(".json", ".env"),
 		"depfile":                      carapace.ActionFiles(),
 		"output":                       carapace.ActionDirectories(),
 		"performance-measurement-file": carapace.ActionFiles(),

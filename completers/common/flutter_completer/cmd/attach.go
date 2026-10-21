@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/flutter_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/adb"
 	"github.com/spf13/cobra"
 )
@@ -28,6 +29,7 @@ func init() {
 	attachCmd.Flags().String("debug-uri", "", "The URL at which the Dart VM Service is listening.")
 	attachCmd.Flags().String("debug-url", "", "The URL at which the Dart VM Service is listening.")
 	attachCmd.Flags().String("device-connection", "", "Discover devices based on connection type.")
+	attachCmd.Flags().StringP("device-id", "d", "", "Target device id or name (prefixes allowed).")
 	attachCmd.Flags().String("device-timeout", "", "Time in seconds to wait for devices to attach. Longer timeouts may be necessary for networked devices.")
 	attachCmd.Flags().String("device-user", "", "Identifier number for a user or work profile on Android only. Run \"adb shell pm list users\" for available identifiers.")
 	attachCmd.Flags().String("device-vmservice-port", "", "Look for vmservice connections only from the specified port. Specifying port 0 (the default) will accept the first vmservice discovered.")
@@ -63,15 +65,22 @@ func init() {
 	rootCmd.AddCommand(attachCmd)
 
 	carapace.Gen(attachCmd).FlagCompletion(carapace.ActionMap{
-		"app-id": adb.ActionPackages(), // TODO ios
+		"app-id":                adb.ActionPackages(), // TODO ios
+		"dart-define-from-file": carapace.ActionFiles(".json", ".env"),
 		"device-connection": carapace.ActionValuesDescribed(
 			"attached", "Only searches for devices connected by USB or built-in (such as simulators/emulators, MacOS/Windows, Chrome)",
 			"wireless", "Only searches for devices connected wirelessly. Discovering wireless devices may take longer.",
 			"both", "Searches for both attached and wireless devices.",
 		),
-		"device-user":  adb.ActionUsers(),
-		"pid-file":     carapace.ActionFiles(),
-		"target":       carapace.ActionFiles(".dart"),
-		"target-model": carapace.ActionValues("flutter", "flutter_runner"),
+		"device-id":               action.ActionDevices(),
+		"device-user":             adb.ActionUsers(),
+		"filesystem-root":         carapace.ActionDirectories(),
+		"initialize-from-dill":    carapace.ActionFiles(),
+		"native-assets-yaml-file": carapace.ActionFiles(".yaml", ".yml"),
+		"output-dill":             carapace.ActionFiles(),
+		"pid-file":                carapace.ActionFiles(),
+		"project-root":            carapace.ActionDirectories(),
+		"target":                  carapace.ActionFiles(".dart"),
+		"target-model":            carapace.ActionValues("flutter", "flutter_runner"),
 	})
 }

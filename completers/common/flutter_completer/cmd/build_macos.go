@@ -49,7 +49,10 @@ func init() {
 	buildCmd.AddCommand(build_macosCmd)
 
 	carapace.Gen(build_macosCmd).FlagCompletion(carapace.ActionMap{
-		"split-debug-info": carapace.ActionDirectories(),
-		"target":           carapace.ActionFiles(".dart"),
+		"code-size-directory":          carapace.ActionDirectories(),
+		"dart-define-from-file":        carapace.ActionFiles(".json", ".env"),
+		"performance-measurement-file": carapace.ActionFiles(),
+		"split-debug-info":             carapace.ActionDirectories(),
+		"target":                       carapace.ActionFiles(".dart"),
 	})
 }

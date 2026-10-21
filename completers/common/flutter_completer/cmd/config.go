@@ -76,5 +76,6 @@ func init() {
 		"android-sdk":        carapace.ActionDirectories(),
 		"android-studio-dir": carapace.ActionDirectories(),
 		"build-dir":          carapace.ActionDirectories(),
+		"jdk-dir":            carapace.ActionDirectories(),
 	})
 }

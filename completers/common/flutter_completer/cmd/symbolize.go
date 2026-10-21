@@ -22,8 +22,9 @@ func init() {
 	rootCmd.AddCommand(symbolizeCmd)
 
 	carapace.Gen(symbolizeCmd).FlagCompletion(carapace.ActionMap{
-		"debug-info": carapace.ActionFiles(),
-		"input":      carapace.ActionFiles(),
-		"output":     carapace.ActionFiles(),
+		"debug-info":         carapace.ActionFiles(),
+		"input":              carapace.ActionFiles(),
+		"output":             carapace.ActionFiles(),
+		"unit-id-debug-info": carapace.ActionFiles(),
 	})
 }

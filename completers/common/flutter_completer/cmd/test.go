@@ -84,8 +84,20 @@ func init() {
 	rootCmd.AddCommand(testCmd)
 
 	carapace.Gen(testCmd).FlagCompletion(carapace.ActionMap{
-		"coverage-path": carapace.ActionFiles(),
-		"device-user":   adb.ActionUsers(),
+		"coverage-path":         carapace.ActionFiles(),
+		"dart-define-from-file": carapace.ActionFiles(".json", ".env"),
+		"device-user":           adb.ActionUsers(),
+		"file-reporter": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return carapace.ActionValues("compact", "expanded", "failures-only", "github", "json", "silent").Suffix(":")
+			case 1:
+				return carapace.ActionFiles()
+			default:
+				return carapace.ActionValues()
+			}
+		}),
+		"frontend-server-starter-path": carapace.ActionFiles(),
 		"platform": carapace.ActionValuesDescribed(
 			"tester", "Run tests using the VM-based test environment.",
 			"chrome", "(deprecated) Run tests using the Google Chrome web browser. This value is intended for testing the Flutter framework itself and may be removed at any time.",

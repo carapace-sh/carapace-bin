@@ -43,9 +43,12 @@ func init() {
 	buildCmd.AddCommand(build_bundleCmd)
 
 	carapace.Gen(build_bundleCmd).FlagCompletion(carapace.ActionMap{
-		"asset-dir":       carapace.ActionDirectories(),
-		"depfile":         carapace.ActionFiles(),
-		"target":          carapace.ActionFiles(".dart"),
-		"target-platform": carapace.ActionValues("android-arm", "android-arm64", "android-x64", "ios", "darwin", "linux-x64", "linux-arm64", "linux-riscv64", "windows-x64", "windows-arm64"),
+		"asset-dir":             carapace.ActionDirectories(),
+		"dart-define-from-file": carapace.ActionFiles(".json", ".env"),
+		"depfile":               carapace.ActionFiles(),
+		"filesystem-root":       carapace.ActionDirectories(),
+		"output-dill":           carapace.ActionFiles(),
+		"target":                carapace.ActionFiles(".dart"),
+		"target-platform":       carapace.ActionValues("android-arm", "android-arm64", "android-x64", "ios", "darwin", "linux-x64", "linux-arm64", "linux-riscv64", "windows-x64", "windows-arm64"),
 	})
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/flutter_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -42,8 +43,13 @@ func init() {
 	build_swiftPackageCmd.Flags().Bool("tree-shake-icons", false, "Tree shake icon fonts so that only glyphs used by the application are included.")
 	buildCmd.AddCommand(build_swiftPackageCmd)
 	carapace.Gen(build_swiftPackageCmd).FlagCompletion(carapace.ActionMap{
-		"build-mode": carapace.ActionValues("debug", "profile", "release").UniqueList(","),
-		"platform":   carapace.ActionValues("ios", "macos"),
+		"build-mode":            carapace.ActionValues("debug", "profile", "release").UniqueList(","),
+		"codesign-identity":     action.ActionCodesignIdentities(),
+		"dart-define-from-file": carapace.ActionFiles(".json", ".env"),
+		"output":                carapace.ActionDirectories(),
+		"platform":              carapace.ActionValues("ios", "macos"),
+		"split-debug-info":      carapace.ActionDirectories(),
+		"target":                carapace.ActionFiles(".dart"),
 	})
 
 }

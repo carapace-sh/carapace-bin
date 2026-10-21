@@ -52,6 +52,14 @@ func init() {
 	rootCmd.AddCommand(analyzeCmd)
 
 	carapace.Gen(analyzeCmd).FlagCompletion(carapace.ActionMap{
-		"write": carapace.ActionFiles(),
+		"dart-sdk":                       carapace.ActionDirectories(),
+		"output-app-link-settings":       carapace.ActionFiles(),
+		"output-universal-link-settings": carapace.ActionFiles(),
+		"protocol-traffic-log":           carapace.ActionFiles(),
+		"write":                          carapace.ActionFiles(),
 	})
+
+	carapace.Gen(analyzeCmd).PositionalCompletion(
+		carapace.ActionFiles(".dart"),
+	)
 }

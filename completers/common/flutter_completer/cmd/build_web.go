@@ -69,15 +69,17 @@ func init() {
 	buildCmd.AddCommand(build_webCmd)
 
 	carapace.Gen(build_webCmd).FlagCompletion(carapace.ActionMap{
-		"dart2js-optimization": carapace.ActionValues("O1", "O2", "O3", "O4"),
-		"optimization-level":   carapace.ActionValues("0", "1", "2", "3", "4"),
-		"output":               carapace.ActionDirectories(),
-		"output-dir":           carapace.ActionDirectories(),
+		"dart-define-from-file": carapace.ActionFiles(".json", ".env"),
+		"dart2js-optimization":  carapace.ActionValues("O1", "O2", "O3", "O4"),
+		"optimization-level":    carapace.ActionValues("0", "1", "2", "3", "4"),
+		"output":                carapace.ActionDirectories(),
+		"output-dir":            carapace.ActionDirectories(),
 		"pwa-strategy": carapace.ActionValuesDescribed(
 			"offline-first", "Attempt to cache the application shell eagerly and then lazily cache all subsequent assets as they are loaded. When making a network request for an asset, the offline cache will be preferred.",
 			"none", "Generate a service worker with no body. This is useful for local testing or in cases where the service worker caching functionality is not desirable",
 		),
-		"target": carapace.ActionFiles(".dart"),
+		"target":               carapace.ActionFiles(".dart"),
+		"web-define-from-file": carapace.ActionFiles(".json", ".env"),
 	})
 
 }

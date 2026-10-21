@@ -36,4 +36,7 @@ func init() {
 	widget_preview_startCmd.Flags().String("scaffold-output-dir", "", "Generated the widget preview environment scaffolding at a given location for testing purposes.")
 	widget_preview_startCmd.Flags().Bool("web-server", false, "Serve the widget preview environment using the web-server device instead of the browser.")
 	widget_previewCmd.AddCommand(widget_preview_startCmd)
+	carapace.Gen(widget_preview_startCmd).FlagCompletion(carapace.ActionMap{
+		"scaffold-output-dir": carapace.ActionDirectories(),
+	})
 }

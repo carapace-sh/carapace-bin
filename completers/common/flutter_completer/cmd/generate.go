@@ -17,4 +17,7 @@ func init() {
 	generateCmd.Flags().BoolP("help", "h", false, "Print this usage information.")
 	generateCmd.Flags().StringP("target", "t", "", "The main entrypoint file of the application, as run on the device. If the \"--target\" option is omitted, but a file name is provided on the command line, then that file is used instead.")
 	rootCmd.AddCommand(generateCmd)
+	carapace.Gen(generateCmd).FlagCompletion(carapace.ActionMap{
+		"target": carapace.ActionFiles(".dart"),
+	})
 }

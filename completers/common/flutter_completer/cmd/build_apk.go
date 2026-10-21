@@ -63,8 +63,12 @@ func init() {
 	buildCmd.AddCommand(build_apkCmd)
 
 	carapace.Gen(build_apkCmd).FlagCompletion(carapace.ActionMap{
-		"split-debug-info": carapace.ActionDirectories(),
-		"target":           carapace.ActionFiles(".dart"),
-		"target-platform":  carapace.ActionValues("android-arm", "android-arm64", "android-x64"),
+		"android-project-cache-dir":    carapace.ActionDirectories(),
+		"code-size-directory":          carapace.ActionDirectories(),
+		"dart-define-from-file":        carapace.ActionFiles(".json", ".env"),
+		"performance-measurement-file": carapace.ActionFiles(),
+		"split-debug-info":             carapace.ActionDirectories(),
+		"target":                       carapace.ActionFiles(".dart"),
+		"target-platform":              carapace.ActionValues("android-arm", "android-arm64", "android-x64"),
 	})
 }

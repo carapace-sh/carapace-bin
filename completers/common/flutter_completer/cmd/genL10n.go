@@ -45,4 +45,14 @@ func init() {
 	genL10nCmd.Flags().Bool("use-escaping", false, "Whether or not to use escaping for messages. By default, this value is set to false for backwards compatibility. Turning this flag on will cause the parser to treat any special characters contained within pairs of single quotes as normal strings and treat all consecutive pairs of single quotes as a single quote character.")
 	genL10nCmd.Flags().Bool("use-named-parameters", false, "Whether or not to use named parameters for the generated localization methods.")
 	rootCmd.AddCommand(genL10nCmd)
+	carapace.Gen(genL10nCmd).FlagCompletion(carapace.ActionMap{
+		"arb-dir":                     carapace.ActionDirectories(),
+		"gen-inputs-and-outputs-list": carapace.ActionFiles(".json"),
+		"header-file":                 carapace.ActionFiles(),
+		"output-dir":                  carapace.ActionDirectories(),
+		"output-localization-file":    carapace.ActionFiles(".dart"),
+		"project-dir":                 carapace.ActionDirectories(),
+		"template-arb-file":           carapace.ActionFiles(".arb"),
+		"untranslated-messages-file":  carapace.ActionFiles(".json"),
+	})
 }

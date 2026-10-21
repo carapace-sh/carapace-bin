@@ -49,7 +49,10 @@ func init() {
 	buildCmd.AddCommand(build_windowsCmd)
 
 	carapace.Gen(build_windowsCmd).FlagCompletion(carapace.ActionMap{
-		"split-debug-info": carapace.ActionDirectories(),
-		"target":           carapace.ActionFiles(".dart"),
+		"code-size-directory":          carapace.ActionDirectories(),
+		"dart-define-from-file":        carapace.ActionFiles(".json", ".env"),
+		"performance-measurement-file": carapace.ActionFiles(),
+		"split-debug-info":             carapace.ActionDirectories(),
+		"target":                       carapace.ActionFiles(".dart"),
 	})
 }

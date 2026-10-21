@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/flutter_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -16,6 +17,7 @@ func init() {
 	carapace.Gen(screenshotCmd).Standalone()
 
 	screenshotCmd.Flags().String("device-connection", "", "Discover devices based on connection type.")
+	screenshotCmd.Flags().StringP("device-id", "d", "", "Target device id or name (prefixes allowed).")
 	screenshotCmd.Flags().String("device-timeout", "", "Time in seconds to wait for devices to attach. Longer timeouts may be necessary for networked devices.")
 	screenshotCmd.Flags().BoolP("help", "h", false, "Print this usage information.")
 	screenshotCmd.Flags().StringP("out", "o", "", "Location to write the screenshot.")
@@ -29,7 +31,8 @@ func init() {
 			"wireless", "Only searches for devices connected wirelessly. Discovering wireless devices may take longer.",
 			"both", "Searches for both attached and wireless devices.",
 		),
-		"out": carapace.ActionFiles(),
+		"device-id": action.ActionDevices(),
+		"out":       carapace.ActionFiles(),
 		"type": carapace.ActionValuesDescribed(
 			"device", "Delegate to the device's native screenshot capabilities.",
 			"rasterizer", "Render the Flutter app using the rasterizer.",

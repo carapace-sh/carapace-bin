@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/flutter_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/adb"
 	"github.com/spf13/cobra"
 )
@@ -38,6 +39,7 @@ func init() {
 	runCmd.Flags().Bool("debug", false, "Build a debug version of your app.")
 	runCmd.Flags().Bool("deprecated-js-interop", false, "Whether to allow the deprecated JS interop libraries (such as \"dart:html\", \"dart:js\", and \"dart:js_util\") when compiling to JavaScript. With \"--no-deprecated-js-interop\", importing these libraries is a compile-time error and conditional imports on them resolve to false. Use this to find code that still needs to migrate to \"package:web\" and \"dart:js_interop\". If not specified, the Dart compiler default is used. Has no effect when compiling to WebAssembly.")
 	runCmd.Flags().String("device-connection", "", "Discover devices based on connection type.")
+	runCmd.Flags().StringP("device-id", "d", "", "Target device id or name (prefixes allowed).")
 	runCmd.Flags().String("device-timeout", "", "Time in seconds to wait for devices to attach. Longer timeouts may be necessary for networked devices.")
 	runCmd.Flags().String("device-user", "", "Identifier number for a user or work profile on Android only. Run \"adb shell pm list users\" for available identifiers.")
 	runCmd.Flags().String("device-vmservice-port", "", "Look for vmservice connections only from the specified port. Specifying port 0 (the default) will accept the first vmservice discovered.")
@@ -158,17 +160,29 @@ func init() {
 	rootCmd.AddCommand(runCmd)
 
 	carapace.Gen(runCmd).FlagCompletion(carapace.ActionMap{
+		"dart-define-from-file": carapace.ActionFiles(".json", ".env"),
 		"device-connection": carapace.ActionValuesDescribed(
 			"attached", "Only searches for devices connected by USB or built-in (such as simulators/emulators, MacOS/Windows, Chrome)",
 			"wireless", "Only searches for devices connected wirelessly. Discovering wireless devices may take longer.",
 			"both", "Searches for both attached and wireless devices.",
 		),
+		"device-id":                         action.ActionDevices(),
 		"device-user":                       adb.ActionUsers(),
+		"filesystem-root":                   carapace.ActionDirectories(),
+		"frontend-server-starter-path":      carapace.ActionFiles(),
+		"initialize-from-dill":              carapace.ActionFiles(),
+		"native-assets-yaml-file":           carapace.ActionFiles(".yaml", ".yml"),
+		"output-dill":                       carapace.ActionFiles(),
 		"pid-file":                          carapace.ActionFiles(),
+		"project-root":                      carapace.ActionDirectories(),
 		"target":                            carapace.ActionFiles(".dart"),
+		"trace-to-file":                     carapace.ActionFiles(),
 		"use-application-binary":            carapace.ActionFiles(".apk", ".ipa"),
+		"vmservice-out-file":                carapace.ActionFiles(),
 		"web-server-debug-backend-protocol": carapace.ActionValues("sse", "ws"),
 		"web-server-debug-injected-client-protocol": carapace.ActionValues("sse", "ws"),
 		"web-server-debug-protocol":                 carapace.ActionValues("sse", "ws"),
+		"web-tls-cert-key-path":                     carapace.ActionFiles(),
+		"web-tls-cert-path":                         carapace.ActionFiles(),
 	})
 }

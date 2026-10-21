@@ -23,4 +23,7 @@ func init() {
 	upgradeCmd.Flags().Bool("verify-only", false, "Verifies for any new version of flutter available, without upgrading to it.")
 	upgradeCmd.Flags().String("working-directory", "", "Override the working directory for the upgrade. Useful for testing upgrade flows without modifying the current flutter repo.")
 	rootCmd.AddCommand(upgradeCmd)
+	carapace.Gen(upgradeCmd).FlagCompletion(carapace.ActionMap{
+		"working-directory": carapace.ActionDirectories(),
+	})
 }

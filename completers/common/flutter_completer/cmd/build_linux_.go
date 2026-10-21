@@ -51,8 +51,12 @@ func init() {
 	buildCmd.AddCommand(build_linuxCmd)
 
 	carapace.Gen(build_linuxCmd).FlagCompletion(carapace.ActionMap{
-		"split-debug-info": carapace.ActionDirectories(),
-		"target":           carapace.ActionFiles(".dart"),
-		"target-platform":  carapace.ActionValues("linux-arm64", "linux-x64"),
+		"code-size-directory":          carapace.ActionDirectories(),
+		"dart-define-from-file":        carapace.ActionFiles(".json", ".env"),
+		"performance-measurement-file": carapace.ActionFiles(),
+		"split-debug-info":             carapace.ActionDirectories(),
+		"target":                       carapace.ActionFiles(".dart"),
+		"target-platform":              carapace.ActionValues("linux-arm64", "linux-x64"),
+		"target-sysroot":               carapace.ActionDirectories(),
 	})
 }

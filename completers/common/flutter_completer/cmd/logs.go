@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/flutter_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,6 +18,7 @@ func init() {
 	logsCmd.Flags().Bool("adb-log-filtering", false, "Filter adb logs so that logs not emitted by the current flutter application are not displayed.")
 	logsCmd.Flags().BoolP("clear", "c", false, "Clear log history before reading from logs.")
 	logsCmd.Flags().String("device-connection", "", "Discover devices based on connection type.")
+	logsCmd.Flags().StringP("device-id", "d", "", "Target device id or name (prefixes allowed).")
 	logsCmd.Flags().String("device-timeout", "", "Time in seconds to wait for devices to attach. Longer timeouts may be necessary for networked devices.")
 	logsCmd.Flags().BoolP("help", "h", false, "Print this usage information.")
 	logsCmd.Flags().Bool("no-adb-log-filtering", false, "Filter adb logs so that logs not emitted by the current flutter application are not displayed.")
@@ -27,6 +29,7 @@ func init() {
 			"wireless", "Only searches for devices connected wirelessly. Discovering wireless devices may take longer.",
 			"both", "Searches for both attached and wireless devices.",
 		),
+		"device-id": action.ActionDevices(),
 	})
 
 }

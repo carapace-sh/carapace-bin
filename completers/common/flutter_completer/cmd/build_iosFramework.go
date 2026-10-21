@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/flutter_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -56,8 +57,10 @@ func init() {
 	buildCmd.AddCommand(build_iosFrameworkCmd)
 
 	carapace.Gen(build_iosFrameworkCmd).FlagCompletion(carapace.ActionMap{
-		"output":           carapace.ActionDirectories(),
-		"split-debug-info": carapace.ActionDirectories(),
-		"target":           carapace.ActionFiles(".dart"),
+		"codesign-identity":     action.ActionCodesignIdentities(),
+		"dart-define-from-file": carapace.ActionFiles(".json", ".env"),
+		"output":                carapace.ActionDirectories(),
+		"split-debug-info":      carapace.ActionDirectories(),
+		"target":                carapace.ActionFiles(".dart"),
 	})
 }

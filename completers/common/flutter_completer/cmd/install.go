@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/flutter_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/adb"
 	"github.com/spf13/cobra"
 )
@@ -17,6 +18,7 @@ func init() {
 
 	installCmd.Flags().Bool("debug", false, "Build a debug version of your app.")
 	installCmd.Flags().String("device-connection", "", "Discover devices based on connection type.")
+	installCmd.Flags().StringP("device-id", "d", "", "Target device id or name (prefixes allowed).")
 	installCmd.Flags().String("device-timeout", "", "Time in seconds to wait for devices to attach. Longer timeouts may be necessary for networked devices.")
 	installCmd.Flags().String("device-user", "", "Identifier number for a user or work profile on Android only. Run \"adb shell pm list users\" for available identifiers.")
 	installCmd.Flags().String("flavor", "", "Build a custom app flavor as defined by platform-specific build setup. Supports the use of product flavors in Android Gradle scripts, and the use of custom Xcode schemes. Overrides the value of the \"default-flavor\" entry in the flutter pubspec.")
@@ -35,6 +37,8 @@ func init() {
 			"wireless", "Only searches for devices connected wirelessly. Discovering wireless devices may take longer.",
 			"both", "Searches for both attached and wireless devices.",
 		),
-		"device-user": adb.ActionUsers(),
+		"device-id":              action.ActionDevices(),
+		"device-user":            adb.ActionUsers(),
+		"use-application-binary": carapace.ActionFiles(".apk", ".ipa"),
 	})
 }
