@@ -9,19 +9,37 @@ import (
 	"github.com/carapace-sh/carapace"
 )
 
+// Aliases returns configured aliases with their command as value
+//
+//	rm (scoop uninstall $args[0])
+//	upgrade (scoop update *)
+func Aliases() map[string]string {
+	cfg := loadConfig()
+	root := cfg.scoopDir()
+	if root == "" {
+		return nil
+	}
+
+	configured := cfg.aliases()
+	aliases := make(map[string]string, len(configured))
+	for name := range configured {
+		path := filepath.Join(root, "shims", "scoop-"+name+".ps1")
+		if _, err := os.Stat(path); err != nil {
+			aliases[name] = "<BROKEN>"
+			continue
+		}
+		aliases[name] = aliasCommand(path)
+	}
+	return aliases
+}
+
 // ActionAliases completes alias names with their command as description
 //
 //	rm (scoop uninstall $args[0])
 //	upgrade (scoop update *)
 func ActionAliases() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		cfg := loadConfig()
-		root := cfg.scoopDir()
-		if root == "" {
-			return carapace.ActionValues()
-		}
-
-		aliases := cfg.aliases()
+		aliases := Aliases()
 		names := make([]string, 0, len(aliases))
 		for name := range aliases {
 			names = append(names, name)
@@ -30,12 +48,7 @@ func ActionAliases() carapace.Action {
 
 		vals := make([]string, 0, len(names)*2)
 		for _, name := range names {
-			path := filepath.Join(root, "shims", "scoop-"+name+".ps1")
-			if _, err := os.Stat(path); err != nil {
-				vals = append(vals, name, "<BROKEN>")
-				continue
-			}
-			vals = append(vals, name, aliasCommand(path))
+			vals = append(vals, name, aliases[name])
 		}
 		return carapace.ActionValuesDescribed(vals...).Tag("aliases")
 	})

@@ -21,7 +21,19 @@ func init() {
 
 	rootCmd.Flags().BoolP("version", "v", false, "show the current Scoop version")
 
-	carapace.Gen(rootCmd).PositionalCompletion(
-		scoop.ActionAliases(),
-	)
+	carapace.Gen(rootCmd).PreRun(func(cmd *cobra.Command, args []string) {
+		aliases := scoop.Aliases()
+		for _, existing := range cmd.Commands() {
+			delete(aliases, existing.Name())
+		}
+		for name, description := range aliases {
+			aliasCmd := &cobra.Command{
+				Use:   name,
+				Short: description,
+				Run:   func(cmd *cobra.Command, args []string) {},
+			}
+			carapace.Gen(aliasCmd).Standalone()
+			cmd.AddCommand(aliasCmd)
+		}
+	})
 }
