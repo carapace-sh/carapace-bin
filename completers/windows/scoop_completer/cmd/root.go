@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/scoop"
 	"github.com/spf13/cobra"
 )
 
@@ -19,4 +20,8 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	rootCmd.Flags().BoolP("version", "v", false, "show the current Scoop version")
+
+	carapace.Gen(rootCmd).PositionalCompletion(
+		scoop.ActionAliases(),
+	)
 }

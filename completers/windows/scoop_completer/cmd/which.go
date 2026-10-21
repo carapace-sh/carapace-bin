@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/scoop"
 	"github.com/spf13/cobra"
 )
 
@@ -16,6 +17,9 @@ func init() {
 	rootCmd.AddCommand(whichCmd)
 
 	carapace.Gen(whichCmd).PositionalCompletion(
-		carapace.ActionExecutables(),
+		carapace.Batch(
+			scoop.ActionShims(),
+			carapace.ActionExecutables(),
+		).ToA().Unique(),
 	)
 }

@@ -55,6 +55,18 @@ func (c config) string(key string) string {
 	return ""
 }
 
+func (c config) aliases() map[string]string {
+	for k, raw := range c {
+		if strings.EqualFold(k, "ALIAS") {
+			var aliases map[string]string
+			if err := json.Unmarshal(raw, &aliases); err == nil {
+				return aliases
+			}
+		}
+	}
+	return nil
+}
+
 func (c config) scoopDir() string {
 	if dir := os.Getenv("SCOOP"); dir != "" {
 		return dir

@@ -4,6 +4,7 @@ package scoop
 import (
 	"bytes"
 	"encoding/json"
+	"os"
 	"path/filepath"
 	"strings"
 
@@ -50,13 +51,26 @@ func ActionAvailableApps() carapace.Action {
 		if root == "" {
 			return carapace.ActionValues()
 		}
-		matches, err := filepath.Glob(filepath.Join(root, "buckets", "*", "bucket", "*.json"))
+		buckets, err := os.ReadDir(filepath.Join(root, "buckets"))
 		if err != nil {
 			return carapace.ActionValues()
 		}
-		vals := make([]string, 0, len(matches))
-		for _, match := range matches {
-			vals = append(vals, strings.TrimSuffix(filepath.Base(match), filepath.Ext(match)))
+		vals := make([]string, 0)
+		for _, bucket := range buckets {
+			if !bucket.IsDir() {
+				continue
+			}
+			dir := filepath.Join(root, "buckets", bucket.Name(), "bucket")
+			if _, err := os.Stat(dir); err != nil {
+				dir = filepath.Join(root, "buckets", bucket.Name())
+			}
+			_ = filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
+				if err != nil || info.IsDir() || !strings.EqualFold(filepath.Ext(path), ".json") {
+					return nil
+				}
+				vals = append(vals, strings.TrimSuffix(filepath.Base(path), filepath.Ext(path)))
+				return nil
+			})
 		}
 		return carapace.ActionValues(vals...).Unique().Tag("apps")
 	})
