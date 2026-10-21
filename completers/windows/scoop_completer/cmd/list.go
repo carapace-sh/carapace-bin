@@ -7,7 +7,7 @@ import (
 
 var listCmd = &cobra.Command{
 	Use:   "list",
-	Short: "list installed packages",
+	Short: "list installed apps",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

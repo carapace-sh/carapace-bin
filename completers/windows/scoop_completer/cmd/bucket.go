@@ -7,7 +7,7 @@ import (
 
 var bucketCmd = &cobra.Command{
 	Use:   "bucket",
-	Short: "manage buckets",
+	Short: "manage Scoop buckets",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

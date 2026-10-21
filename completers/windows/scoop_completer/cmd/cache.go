@@ -2,16 +2,21 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/scoop"
 	"github.com/spf13/cobra"
 )
 
 var cacheCmd = &cobra.Command{
 	Use:   "cache",
-	Short: "manage the download cache",
+	Short: "show or clear the download cache",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(cacheCmd).Standalone()
 	rootCmd.AddCommand(cacheCmd)
+
+	carapace.Gen(cacheCmd).PositionalAnyCompletion(
+		scoop.ActionCachedApps(),
+	)
 }
