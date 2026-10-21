@@ -52,7 +52,7 @@ func init() {
 	carapace.Gen(incident_listCmd).FlagCompletion(carapace.ActionMap{
 		"assignee": carapace.Batch(
 			carapace.ActionValues("@me", "@none", "@any"),
-			action.ActionProjectMembers(incident_listCmd).Suppress("search needs at least 3 characters"),
+			action.ActionProjectMembers(incident_listCmd),
 		).ToA(),
 		"author":        action.ActionUsers(incident_listCmd),
 		"group":         action.ActionGroups(incident_listCmd).UniqueList(","),

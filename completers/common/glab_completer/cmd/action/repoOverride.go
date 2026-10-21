@@ -42,7 +42,7 @@ func ActionRepo(cmd *cobra.Command) carapace.Action {
 				return carapace.ActionValues(configHosts...).Invoke(c).Suffix("/").ToA()
 			case 1:
 				return carapace.Batch(
-					ActionUsers(cmd).Suppress("search needs at least 3 characters"),
+					ActionUsers(cmd),
 					ActionGroups(cmd),
 				).Invoke(c).Merge().Suffix("/").ToA()
 			case 2:

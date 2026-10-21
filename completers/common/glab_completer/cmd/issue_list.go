@@ -54,7 +54,7 @@ func init() {
 	carapace.Gen(issue_listCmd).FlagCompletion(carapace.ActionMap{
 		"assignee": carapace.Batch(
 			carapace.ActionValues("@me", "@none", "@any"),
-			action.ActionProjectMembers(issue_listCmd).Suppress("search needs at least 3 characters"),
+			action.ActionProjectMembers(issue_listCmd),
 		).ToA(),
 		"author":        action.ActionUsers(issue_listCmd),
 		"group":         action.ActionGroups(issue_listCmd),
