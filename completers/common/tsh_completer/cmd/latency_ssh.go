@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -19,4 +20,12 @@ func init() {
 	latency_sshCmd.Flags().Bool("no-resume", false, "Disable SSH connection resumption.")
 	latency_sshCmd.Flag("no-no-resume").Hidden = true
 	latencyCmd.AddCommand(latency_sshCmd)
+
+	carapace.Gen(latency_sshCmd).FlagCompletion(carapace.ActionMap{
+		"cluster": tsh.ActionClusters(),
+	})
+
+	carapace.Gen(latency_sshCmd).PositionalCompletion(
+		tsh.ActionNodes(),
+	)
 }

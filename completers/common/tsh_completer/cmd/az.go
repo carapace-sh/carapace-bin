@@ -2,6 +2,8 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
+	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +19,14 @@ func init() {
 	azCmd.Flags().String("app", "", "Optional name of the Azure application to use if logged into multiple.")
 	azCmd.Flags().String("azure-identity", "", "(For Azure CLI access only) Azure managed identity name.")
 	rootCmd.AddCommand(azCmd)
+
+	azCmd.Flags().SetInterspersed(false)
+
+	carapace.Gen(azCmd).FlagCompletion(carapace.ActionMap{
+		"app": tsh.ActionApps(),
+	})
+
+	carapace.Gen(azCmd).PositionalAnyCompletion(
+		bridge.ActionCarapaceBin("az"),
+	)
 }

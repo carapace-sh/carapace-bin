@@ -34,4 +34,8 @@ func init() {
 	kube_execCmd.Flag("no-stdin").Hidden = true
 	kube_execCmd.Flag("no-tty").Hidden = true
 	kubeCmd.AddCommand(kube_execCmd)
+
+	carapace.Gen(kube_execCmd).FlagCompletion(carapace.ActionMap{
+		"filename": carapace.ActionFiles(),
+	})
 }

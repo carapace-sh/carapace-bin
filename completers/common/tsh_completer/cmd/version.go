@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -19,4 +20,8 @@ func init() {
 	versionCmd.Flags().Bool("no-client", false, "Show the client version only (no server required).")
 	versionCmd.Flag("no-client").Hidden = true
 	rootCmd.AddCommand(versionCmd)
+
+	carapace.Gen(versionCmd).FlagCompletion(carapace.ActionMap{
+		"format": tsh.ActionFormats(),
+	})
 }

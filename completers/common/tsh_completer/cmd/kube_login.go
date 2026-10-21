@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -31,4 +32,12 @@ func init() {
 	kube_loginCmd.Flag("no-all").Hidden = true
 	kube_loginCmd.Flag("no-disable-access-request").Hidden = true
 	kubeCmd.AddCommand(kube_loginCmd)
+
+	carapace.Gen(kube_loginCmd).FlagCompletion(carapace.ActionMap{
+		"cluster": tsh.ActionClusters(),
+	})
+
+	carapace.Gen(kube_loginCmd).PositionalCompletion(
+		tsh.ActionKubeClusters(),
+	)
 }

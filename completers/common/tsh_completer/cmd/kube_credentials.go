@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -20,4 +21,9 @@ func init() {
 	kube_credentialsCmd.MarkFlagRequired("kube-cluster")
 	kube_credentialsCmd.MarkFlagRequired("teleport-cluster")
 	kubeCmd.AddCommand(kube_credentialsCmd)
+
+	carapace.Gen(kube_credentialsCmd).FlagCompletion(carapace.ActionMap{
+		"kube-cluster":     tsh.ActionKubeClusters(),
+		"teleport-cluster": tsh.ActionClusters(),
+	})
 }

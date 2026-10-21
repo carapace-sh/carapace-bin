@@ -2,6 +2,8 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
+	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
 
@@ -22,4 +24,15 @@ func init() {
 	awsCmd.Flag("endpoint-url").Hidden = true
 	awsCmd.Flag("no-endpoint-url").Hidden = true
 	rootCmd.AddCommand(awsCmd)
+
+	awsCmd.Flags().SetInterspersed(false)
+
+	carapace.Gen(awsCmd).FlagCompletion(carapace.ActionMap{
+		"app":  tsh.ActionApps(),
+		"exec": bridge.ActionCarapaceBin().SplitP(),
+	})
+
+	carapace.Gen(awsCmd).PositionalAnyCompletion(
+		bridge.ActionCarapaceBin("aws"),
+	)
 }

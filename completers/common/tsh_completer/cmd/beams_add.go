@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -17,6 +18,11 @@ func init() {
 	beams_addCmd.Flags().Bool("console", true, "Connect to the beam via SSH after creation.")
 	beams_addCmd.Flags().StringP("format", "f", "text", "Format output (text, json, yaml).")
 	beams_addCmd.Flags().Bool("no-console", false, "Connect to the beam via SSH after creation.")
+	beams_addCmd.Flags().String("region", "", "Region where the beam should live. If not specified, the closest region is selected.")
 	beams_addCmd.Flag("no-console").Hidden = true
 	beamsCmd.AddCommand(beams_addCmd)
+
+	carapace.Gen(beams_addCmd).FlagCompletion(carapace.ActionMap{
+		"format": tsh.ActionFormats(),
+	})
 }

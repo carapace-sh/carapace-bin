@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -20,4 +21,13 @@ func init() {
 	db_envCmd.Flags().String("query", "", "Query by predicate language enclosed in single quotes. Supports ==, !=, &&, and || (e.g. --query='labels[\"key1\"] == \"value1\" && labels[\"key2\"] != \"value2\"').")
 	db_envCmd.Flag("db").Hidden = true
 	dbCmd.AddCommand(db_envCmd)
+
+	carapace.Gen(db_envCmd).FlagCompletion(carapace.ActionMap{
+		"db":     tsh.ActionDatabases(),
+		"format": tsh.ActionFormats(),
+	})
+
+	carapace.Gen(db_envCmd).PositionalCompletion(
+		tsh.ActionDatabases(),
+	)
 }

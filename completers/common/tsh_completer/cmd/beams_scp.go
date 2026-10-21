@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -23,4 +24,22 @@ func init() {
 	beams_scpCmd.Flag("no-quiet").Hidden = true
 	beams_scpCmd.Flag("no-recursive").Hidden = true
 	beamsCmd.AddCommand(beams_scpCmd)
+
+	carapace.Gen(beams_scpCmd).FlagCompletion(carapace.ActionMap{
+		"format": tsh.ActionFormats(),
+	})
+
+	carapace.Gen(beams_scpCmd).PositionalAnyCompletion(
+		carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return carapace.Batch(
+					tsh.ActionBeams(),
+					carapace.ActionFiles(),
+				).ToA()
+			default:
+				return carapace.ActionFiles()
+			}
+		}),
+	)
 }

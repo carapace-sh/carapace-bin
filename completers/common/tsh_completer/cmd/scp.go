@@ -2,6 +2,8 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/net"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -32,4 +34,23 @@ func init() {
 	scpCmd.Flag("no-recursive").Hidden = true
 	scpCmd.Flag("no-relogin").Hidden = true
 	rootCmd.AddCommand(scpCmd)
+
+	carapace.Gen(scpCmd).FlagCompletion(carapace.ActionMap{
+		"cluster": tsh.ActionClusters(),
+		"port":    net.ActionPorts(),
+	})
+
+	carapace.Gen(scpCmd).PositionalAnyCompletion(
+		carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return carapace.Batch(
+					tsh.ActionNodes(),
+					carapace.ActionFiles(),
+				).ToA()
+			default:
+				return carapace.ActionFiles()
+			}
+		}),
+	)
 }

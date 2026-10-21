@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -24,4 +25,8 @@ func init() {
 	db_lsCmd.Flag("no-all").Hidden = true
 	db_lsCmd.Flag("no-verbose").Hidden = true
 	dbCmd.AddCommand(db_lsCmd)
+
+	carapace.Gen(db_lsCmd).FlagCompletion(carapace.ActionMap{
+		"format": tsh.ActionFormats(),
+	})
 }

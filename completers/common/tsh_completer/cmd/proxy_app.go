@@ -2,6 +2,8 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/net"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -21,4 +23,13 @@ func init() {
 	proxy_appCmd.Flag("https-tunnel").Hidden = true
 	proxy_appCmd.Flag("no-https-tunnel").Hidden = true
 	proxyCmd.AddCommand(proxy_appCmd)
+
+	carapace.Gen(proxy_appCmd).FlagCompletion(carapace.ActionMap{
+		"cluster": tsh.ActionClusters(),
+		"port":    net.ActionPorts(),
+	})
+
+	carapace.Gen(proxy_appCmd).PositionalCompletion(
+		tsh.ActionApps(),
+	)
 }

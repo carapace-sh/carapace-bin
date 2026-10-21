@@ -2,6 +2,8 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/net"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -22,4 +24,17 @@ func init() {
 	proxy_awsCmd.Flag("endpoint-url").Hidden = true
 	proxy_awsCmd.Flag("no-endpoint-url").Hidden = true
 	proxyCmd.AddCommand(proxy_awsCmd)
+
+	carapace.Gen(proxy_awsCmd).FlagCompletion(carapace.ActionMap{
+		"app": tsh.ActionApps(),
+		"format": carapace.ActionValues(
+			"unix",
+			"command-prompt",
+			"powershell",
+			"text",
+			"athena-odbc",
+			"athena-jdbc",
+		),
+		"port": net.ActionPorts(),
+	})
 }

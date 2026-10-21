@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/net"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,8 @@ func init() {
 
 	configCmd.Flags().StringP("port", "p", "", "SSH port on a remote host.")
 	rootCmd.AddCommand(configCmd)
+
+	carapace.Gen(configCmd).FlagCompletion(carapace.ActionMap{
+		"port": net.ActionPorts(),
+	})
 }

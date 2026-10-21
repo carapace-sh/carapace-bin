@@ -20,4 +20,8 @@ func init() {
 	workloadIdentity_issueX509Cmd.Flags().String("output", "", "Path to the directory to write the SVID into.")
 	workloadIdentity_issueX509Cmd.MarkFlagRequired("output")
 	workloadIdentityCmd.AddCommand(workloadIdentity_issueX509Cmd)
+
+	carapace.Gen(workloadIdentity_issueX509Cmd).FlagCompletion(carapace.ActionMap{
+		"output": carapace.ActionDirectories(),
+	})
 }

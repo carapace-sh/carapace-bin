@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -20,4 +21,8 @@ func init() {
 	beams_lsCmd.Flags().Bool("no-all", false, "List all beams. By default, filters to show only beams belonging to the current user.")
 	beams_lsCmd.Flag("no-all").Hidden = true
 	beamsCmd.AddCommand(beams_lsCmd)
+
+	carapace.Gen(beams_lsCmd).FlagCompletion(carapace.ActionMap{
+		"format": tsh.ActionFormats(),
+	})
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -23,4 +24,8 @@ func init() {
 	request_reviewCmd.Flag("no-approve").Hidden = true
 	request_reviewCmd.Flag("no-deny").Hidden = true
 	requestCmd.AddCommand(request_reviewCmd)
+
+	carapace.Gen(request_reviewCmd).PositionalCompletion(
+		tsh.ActionRequests(),
+	)
 }

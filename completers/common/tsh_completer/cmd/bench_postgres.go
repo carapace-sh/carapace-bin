@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -18,4 +19,8 @@ func init() {
 	bench_postgresCmd.Flags().String("db-name", "", "Database name where benchmark queries will be executed.")
 	bench_postgresCmd.Flags().String("db-user", "", "Database user used to connect to the target database. The user must have enough permissions on the database to execute all the benchmark queries.")
 	benchCmd.AddCommand(bench_postgresCmd)
+
+	carapace.Gen(bench_postgresCmd).PositionalCompletion(
+		tsh.ActionDatabases(),
+	)
 }

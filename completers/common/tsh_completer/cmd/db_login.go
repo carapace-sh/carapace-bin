@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -24,4 +25,8 @@ func init() {
 	db_loginCmd.Flags().String("request-reason", "", "Reason for requesting access.")
 	db_loginCmd.Flag("no-disable-access-request").Hidden = true
 	dbCmd.AddCommand(db_loginCmd)
+
+	carapace.Gen(db_loginCmd).PositionalCompletion(
+		tsh.ActionDatabases(),
+	)
 }

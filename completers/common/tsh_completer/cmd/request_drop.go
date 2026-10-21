@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -15,4 +16,8 @@ func init() {
 	carapace.Gen(request_dropCmd).Standalone()
 
 	requestCmd.AddCommand(request_dropCmd)
+
+	carapace.Gen(request_dropCmd).PositionalAnyCompletion(
+		tsh.ActionRequests(),
+	)
 }

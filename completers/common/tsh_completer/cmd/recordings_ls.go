@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -20,4 +21,8 @@ func init() {
 	recordings_lsCmd.Flags().String("limit", "50", "Maximum number of recordings to show. Default 50.")
 	recordings_lsCmd.Flags().String("to-utc", "", "End of time range in which recordings are listed. Format 2006-01-02. Defaults to current time.")
 	recordingsCmd.AddCommand(recordings_lsCmd)
+
+	carapace.Gen(recordings_lsCmd).FlagCompletion(carapace.ActionMap{
+		"format": tsh.ActionFormats(),
+	})
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,12 @@ func init() {
 
 	request_showCmd.Flags().StringP("format", "f", "text", "Format output (text, json, yaml).")
 	requestCmd.AddCommand(request_showCmd)
+
+	carapace.Gen(request_showCmd).FlagCompletion(carapace.ActionMap{
+		"format": tsh.ActionFormats(),
+	})
+
+	carapace.Gen(request_showCmd).PositionalCompletion(
+		tsh.ActionRequests(),
+	)
 }

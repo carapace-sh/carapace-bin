@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -20,4 +21,8 @@ func init() {
 	bench_kube_execCmd.Flags().Bool("no-interactive", false, "Create interactive Kube session.")
 	bench_kube_execCmd.Flag("no-interactive").Hidden = true
 	bench_kubeCmd.AddCommand(bench_kube_execCmd)
+
+	carapace.Gen(bench_kube_execCmd).PositionalCompletion(
+		tsh.ActionKubeClusters(),
+	)
 }

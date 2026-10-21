@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -25,4 +26,9 @@ func init() {
 	lsCmd.Flag("no-all").Hidden = true
 	lsCmd.Flag("no-verbose").Hidden = true
 	rootCmd.AddCommand(lsCmd)
+
+	carapace.Gen(lsCmd).FlagCompletion(carapace.ActionMap{
+		"cluster": tsh.ActionClusters(),
+		"format":  carapace.ActionValues("text", "json", "yaml", "names"),
+	})
 }

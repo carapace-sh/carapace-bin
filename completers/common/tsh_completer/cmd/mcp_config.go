@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -27,4 +28,20 @@ func init() {
 	mcp_configCmd.Flag("no-all").Hidden = true
 	mcp_configCmd.Flag("no-auto-reconnect").Hidden = true
 	mcpCmd.AddCommand(mcp_configCmd)
+
+	carapace.Gen(mcp_configCmd).FlagCompletion(carapace.ActionMap{
+		"client-config": carapace.Batch(
+			carapace.ActionValuesDescribed(
+				"claude", "default Claude Desktop config",
+				"cursor", "global Cursor MCP servers config",
+			),
+			carapace.ActionFiles(),
+		).ToA(),
+		"format":      carapace.ActionValues("claude", "vscode", "cursor"),
+		"json-format": carapace.ActionValues("pretty", "compact", "auto", "none"),
+	})
+
+	carapace.Gen(mcp_configCmd).PositionalCompletion(
+		tsh.ActionMCPServers(),
+	)
 }

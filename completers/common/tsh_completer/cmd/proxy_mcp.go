@@ -2,6 +2,8 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/net"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +19,13 @@ func init() {
 	proxy_mcpCmd.Flags().StringP("cluster", "c", "", "Specify the Teleport cluster to connect.")
 	proxy_mcpCmd.Flags().StringP("port", "p", "", "Specifies the listening port used by the proxy app listener.")
 	proxyCmd.AddCommand(proxy_mcpCmd)
+
+	carapace.Gen(proxy_mcpCmd).FlagCompletion(carapace.ActionMap{
+		"cluster": tsh.ActionClusters(),
+		"port":    net.ActionPorts(),
+	})
+
+	carapace.Gen(proxy_mcpCmd).PositionalCompletion(
+		tsh.ActionMCPServers(),
+	)
 }

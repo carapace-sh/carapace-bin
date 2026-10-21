@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -27,4 +28,8 @@ func init() {
 	request_createCmd.Flags().String("session-ttl", "", "Expiration time for the elevated certificate.")
 	request_createCmd.Flag("no-nowait").Hidden = true
 	requestCmd.AddCommand(request_createCmd)
+
+	carapace.Gen(request_createCmd).FlagCompletion(carapace.ActionMap{
+		"roles": tsh.ActionRequestableRoles().UniqueList(","),
+	})
 }

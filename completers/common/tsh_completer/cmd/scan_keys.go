@@ -17,4 +17,9 @@ func init() {
 	scan_keysCmd.Flags().String("dirs", "", "Directories to scan. Defaults to /home/ on Linux, /Users/ on macOS, and C:\\Users\\ on Windows.")
 	scan_keysCmd.Flags().String("skip-paths", "", "Paths to directories or files to skip. Supports for matching patterns.")
 	scanCmd.AddCommand(scan_keysCmd)
+
+	carapace.Gen(scan_keysCmd).FlagCompletion(carapace.ActionMap{
+		"dirs":       carapace.ActionDirectories().UniqueList(","),
+		"skip-paths": carapace.ActionFiles().UniqueList(","),
+	})
 }

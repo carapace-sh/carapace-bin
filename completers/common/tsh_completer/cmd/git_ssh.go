@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/net/ssh"
 	"github.com/spf13/cobra"
 )
 
@@ -19,4 +20,8 @@ func init() {
 	git_sshCmd.Flags().StringP("option", "o", "", "OpenSSH options in the format used in the configuration file.")
 	git_sshCmd.MarkFlagRequired("github-org")
 	gitCmd.AddCommand(git_sshCmd)
+
+	carapace.Gen(git_sshCmd).FlagCompletion(carapace.ActionMap{
+		"option": ssh.ActionOptions(),
+	})
 }

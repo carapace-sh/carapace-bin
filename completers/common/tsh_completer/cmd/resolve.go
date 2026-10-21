@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -19,4 +20,12 @@ func init() {
 	resolveCmd.Flags().BoolP("quiet", "q", false, "Quiet mode.")
 	resolveCmd.Flag("no-quiet").Hidden = true
 	rootCmd.AddCommand(resolveCmd)
+
+	carapace.Gen(resolveCmd).FlagCompletion(carapace.ActionMap{
+		"format": tsh.ActionFormats(),
+	})
+
+	carapace.Gen(resolveCmd).PositionalCompletion(
+		tsh.ActionNodes(),
+	)
 }

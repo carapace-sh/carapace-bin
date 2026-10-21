@@ -2,6 +2,9 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/net"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/net/ssh"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -60,4 +63,16 @@ func init() {
 	sshCmd.Flag("no-x11-trusted").Hidden = true
 	sshCmd.Flag("no-x11-untrusted").Hidden = true
 	rootCmd.AddCommand(sshCmd)
+
+	carapace.Gen(sshCmd).FlagCompletion(carapace.ActionMap{
+		"cluster":      tsh.ActionClusters(),
+		"log-dir":      carapace.ActionDirectories(),
+		"option":       ssh.ActionOptions(),
+		"port":         net.ActionPorts(),
+		"request-mode": carapace.ActionValues("off", "resource", "role"),
+	})
+
+	carapace.Gen(sshCmd).PositionalCompletion(
+		tsh.ActionNodes(),
+	)
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -22,4 +23,12 @@ func init() {
 	proxy_sshCmd.Flag("no-no-resume").Hidden = true
 	proxy_sshCmd.Flag("no-relogin").Hidden = true
 	proxyCmd.AddCommand(proxy_sshCmd)
+
+	carapace.Gen(proxy_sshCmd).FlagCompletion(carapace.ActionMap{
+		"cluster": tsh.ActionClusters(),
+	})
+
+	carapace.Gen(proxy_sshCmd).PositionalCompletion(
+		tsh.ActionNodes(),
+	)
 }

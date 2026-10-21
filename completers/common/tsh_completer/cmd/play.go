@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -21,4 +22,16 @@ func init() {
 	playCmd.Flags().String("speed", "1x", "Playback speed, applicable when streaming SSH or Kubernetes sessions.")
 	playCmd.Flag("no-skip-idle-time").Hidden = true
 	rootCmd.AddCommand(playCmd)
+
+	carapace.Gen(playCmd).FlagCompletion(carapace.ActionMap{
+		"cluster": tsh.ActionClusters(),
+		"format":  carapace.ActionValues("pty", "json", "yaml", "text"),
+	})
+
+	carapace.Gen(playCmd).PositionalCompletion(
+		carapace.Batch(
+			tsh.ActionRecordings(),
+			carapace.ActionFiles(),
+		).ToA(),
+	)
 }

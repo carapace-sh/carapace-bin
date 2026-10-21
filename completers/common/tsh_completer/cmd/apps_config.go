@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,20 @@ func init() {
 
 	apps_configCmd.Flags().StringP("format", "f", "", "Optional print format, one of: \"uri\" to print app address, \"ca\" to print CA cert path, \"cert\" to print cert path, \"key\" print key path, \"curl\" to print example curl command, \"json\" or \"yaml\" to print everything as JSON or YAML.")
 	appsCmd.AddCommand(apps_configCmd)
+
+	carapace.Gen(apps_configCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValuesDescribed(
+			"uri", "app address",
+			"ca", "CA cert path",
+			"cert", "cert path",
+			"key", "key path",
+			"curl", "example curl command",
+			"json", "print everything as JSON",
+			"yaml", "print everything as YAML",
+		),
+	})
+
+	carapace.Gen(apps_configCmd).PositionalCompletion(
+		tsh.ActionApps(),
+	)
 }

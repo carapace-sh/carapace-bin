@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -24,4 +25,8 @@ func init() {
 	apps_lsCmd.Flag("no-all").Hidden = true
 	apps_lsCmd.Flag("no-verbose").Hidden = true
 	appsCmd.AddCommand(apps_lsCmd)
+
+	carapace.Gen(apps_lsCmd).FlagCompletion(carapace.ActionMap{
+		"format": tsh.ActionFormats(),
+	})
 }

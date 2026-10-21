@@ -2,6 +2,8 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/net"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -20,4 +22,12 @@ func init() {
 	bench_web_sshCmd.Flags().Bool("random", false, "Connect to random hosts for each SSH session. The provided hostname must be all: tsh bench ssh --random <user>@all <command>.")
 	bench_web_sshCmd.Flag("no-random").Hidden = true
 	bench_webCmd.AddCommand(bench_web_sshCmd)
+
+	carapace.Gen(bench_web_sshCmd).FlagCompletion(carapace.ActionMap{
+		"port": net.ActionPorts(),
+	})
+
+	carapace.Gen(bench_web_sshCmd).PositionalCompletion(
+		tsh.ActionNodes(),
+	)
 }

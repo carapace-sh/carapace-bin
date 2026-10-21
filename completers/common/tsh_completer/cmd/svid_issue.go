@@ -21,4 +21,9 @@ func init() {
 	svid_issueCmd.Flags().String("type", "x509", "Type of the SVID to issue (x509). Defaults to x509.")
 	svid_issueCmd.MarkFlagRequired("output")
 	svidCmd.AddCommand(svid_issueCmd)
+
+	carapace.Gen(svid_issueCmd).FlagCompletion(carapace.ActionMap{
+		"output": carapace.ActionDirectories(),
+		"type":   carapace.ActionValues("x509"),
+	})
 }

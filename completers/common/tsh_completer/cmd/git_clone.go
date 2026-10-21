@@ -15,4 +15,9 @@ func init() {
 	carapace.Gen(git_cloneCmd).Standalone()
 
 	gitCmd.AddCommand(git_cloneCmd)
+
+	carapace.Gen(git_cloneCmd).PositionalCompletion(
+		carapace.ActionValues(),
+		carapace.ActionDirectories(),
+	)
 }

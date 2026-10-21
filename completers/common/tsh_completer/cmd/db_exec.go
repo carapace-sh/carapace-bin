@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -26,4 +27,9 @@ func init() {
 	db_execCmd.Flags().String("search", "", "List of comma separated search keywords or phrases enclosed in quotations (e.g. --search=foo,bar,\"some phrase\").")
 	db_execCmd.Flag("no-confirm").Hidden = true
 	dbCmd.AddCommand(db_execCmd)
+
+	carapace.Gen(db_execCmd).FlagCompletion(carapace.ActionMap{
+		"dbs":        tsh.ActionDatabases().UniqueList(","),
+		"output-dir": carapace.ActionDirectories(),
+	})
 }

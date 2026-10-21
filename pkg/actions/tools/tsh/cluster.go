@@ -9,13 +9,15 @@ import (
 
 // ActionClusters completes teleport clusters
 //
-//	production
-//	staging
+//	production (root, selected)
+//	staging (leaf, offline)
 func ActionClusters() carapace.Action {
 	return carapace.ActionExecCommand("tsh", "clusters", "--format", "json")(func(output []byte) carapace.Action {
 		var clusters []struct {
 			ClusterName string `json:"cluster_name"`
-			Status      string
+			Status      string `json:"status"`
+			ClusterType string `json:"cluster_type"`
+			Selected    bool   `json:"selected"`
 		}
 
 		if err := json.Unmarshal(output, &clusters); err != nil {
@@ -28,8 +30,16 @@ func ActionClusters() carapace.Action {
 			if cluster.Status != "online" {
 				s = style.Red
 			}
-			vals = append(vals, cluster.ClusterName, s)
+
+			desc := cluster.ClusterType
+			if cluster.Selected {
+				desc += ", selected"
+			}
+			if cluster.Status != "" {
+				desc += ", " + cluster.Status
+			}
+			vals = append(vals, cluster.ClusterName, desc, s)
 		}
-		return carapace.ActionStyledValues(vals...)
+		return carapace.ActionStyledValuesDescribed(vals...)
 	})
 }

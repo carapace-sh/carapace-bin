@@ -2,6 +2,8 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/net"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -18,4 +20,13 @@ func init() {
 	puttyconfigCmd.Flags().String("leaf", "", "Add a configuration for connecting to a leaf cluster.")
 	puttyconfigCmd.Flags().StringP("port", "p", "", "SSH port on a remote host.")
 	rootCmd.AddCommand(puttyconfigCmd)
+
+	carapace.Gen(puttyconfigCmd).FlagCompletion(carapace.ActionMap{
+		"leaf": tsh.ActionClusters(),
+		"port": net.ActionPorts(),
+	})
+
+	carapace.Gen(puttyconfigCmd).PositionalCompletion(
+		tsh.ActionNodes(),
+	)
 }

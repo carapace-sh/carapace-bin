@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -19,4 +20,12 @@ func init() {
 	beams_publishCmd.Flags().Bool("tcp", false, "Publish as a TCP app instead of an HTTP app.")
 	beams_publishCmd.Flag("no-tcp").Hidden = true
 	beamsCmd.AddCommand(beams_publishCmd)
+
+	carapace.Gen(beams_publishCmd).FlagCompletion(carapace.ActionMap{
+		"format": tsh.ActionFormats(),
+	})
+
+	carapace.Gen(beams_publishCmd).PositionalCompletion(
+		tsh.ActionBeams(),
+	)
 }

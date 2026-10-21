@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,8 @@ func init() {
 
 	bench_web_sessionsCmd.Flags().String("max", "", "The maximum number of sessions to open. If not specified a single session per node will be opened.")
 	bench_webCmd.AddCommand(bench_web_sessionsCmd)
+
+	carapace.Gen(bench_web_sessionsCmd).PositionalCompletion(
+		tsh.ActionNodes(),
+	)
 }

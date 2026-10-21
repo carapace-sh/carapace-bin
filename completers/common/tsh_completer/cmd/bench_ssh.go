@@ -2,6 +2,8 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/net"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -23,4 +25,12 @@ func init() {
 	bench_sshCmd.Flag("no-no-resume").Hidden = true
 	bench_sshCmd.Flag("no-random").Hidden = true
 	benchCmd.AddCommand(bench_sshCmd)
+
+	carapace.Gen(bench_sshCmd).FlagCompletion(carapace.ActionMap{
+		"port": net.ActionPorts(),
+	})
+
+	carapace.Gen(bench_sshCmd).PositionalCompletion(
+		tsh.ActionNodes(),
+	)
 }

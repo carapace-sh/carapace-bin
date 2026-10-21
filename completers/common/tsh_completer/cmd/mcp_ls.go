@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -21,4 +22,8 @@ func init() {
 	mcp_lsCmd.Flags().BoolP("verbose", "v", false, "Show extra MCP server fields.")
 	mcp_lsCmd.Flag("no-verbose").Hidden = true
 	mcpCmd.AddCommand(mcp_lsCmd)
+
+	carapace.Gen(mcp_lsCmd).FlagCompletion(carapace.ActionMap{
+		"format": tsh.ActionFormats(),
+	})
 }

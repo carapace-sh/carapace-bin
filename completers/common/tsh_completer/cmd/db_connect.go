@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -28,4 +29,8 @@ func init() {
 	db_connectCmd.Flag("no-tunnel").Hidden = true
 	db_connectCmd.Flag("tunnel").Hidden = true
 	dbCmd.AddCommand(db_connectCmd)
+
+	carapace.Gen(db_connectCmd).PositionalCompletion(
+		tsh.ActionDatabases(),
+	)
 }

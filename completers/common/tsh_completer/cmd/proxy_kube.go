@@ -2,6 +2,8 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/net"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -31,4 +33,15 @@ func init() {
 	proxy_kubeCmd.Flag("kube-namespace").Hidden = true
 	proxy_kubeCmd.Flag("no-exec").Hidden = true
 	proxyCmd.AddCommand(proxy_kubeCmd)
+
+	carapace.Gen(proxy_kubeCmd).FlagCompletion(carapace.ActionMap{
+		"cluster":  tsh.ActionClusters(),
+		"exec-cmd": carapace.ActionExecutables(),
+		"format":   carapace.ActionValues("unix", "command-prompt", "powershell", "text"),
+		"port":     net.ActionPorts(),
+	})
+
+	carapace.Gen(proxy_kubeCmd).PositionalAnyCompletion(
+		tsh.ActionKubeClusters(),
+	)
 }

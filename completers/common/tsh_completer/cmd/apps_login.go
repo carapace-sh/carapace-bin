@@ -2,6 +2,8 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/net"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -29,4 +31,12 @@ func init() {
 	apps_loginCmd.Flag("no-interactive").Hidden = true
 	apps_loginCmd.Flag("no-quiet").Hidden = true
 	appsCmd.AddCommand(apps_loginCmd)
+
+	carapace.Gen(apps_loginCmd).FlagCompletion(carapace.ActionMap{
+		"target-port": net.ActionPorts(),
+	})
+
+	carapace.Gen(apps_loginCmd).PositionalCompletion(
+		tsh.ActionApps(),
+	)
 }

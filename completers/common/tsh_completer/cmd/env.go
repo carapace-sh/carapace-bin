@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -19,4 +20,8 @@ func init() {
 	envCmd.Flags().Bool("unset", false, "Print commands to clear Teleport session environment variables.")
 	envCmd.Flag("no-unset").Hidden = true
 	rootCmd.AddCommand(envCmd)
+
+	carapace.Gen(envCmd).FlagCompletion(carapace.ActionMap{
+		"format": tsh.ActionFormats(),
+	})
 }

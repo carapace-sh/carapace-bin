@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/net/ssh"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
@@ -127,6 +128,7 @@ func init() {
 		"mem-profile":   carapace.ActionFiles(),
 		"mfa-mode":      carapace.ActionValues("auto", "cross-platform", "platform", "otp", "sso", "browser").StyleF(style.ForKeyword),
 		"mlock":         carapace.ActionValues("off", "auto", "best_effort", "strict").StyleF(style.ForKeyword),
+		"proxy":         tsh.ActionProfiles(),
 		"trace-profile": carapace.ActionFiles(),
 	})
 }

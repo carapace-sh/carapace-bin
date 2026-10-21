@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -20,4 +21,8 @@ func init() {
 	mcp_connectCmd.Flags().Bool("no-auto-reconnect", false, "Automatically starts a new remote MCP session when the previous remote session is interrupted by network issues or tsh session expirations. Recommended for stateless MCP sessions. Defaults to true.")
 	mcp_connectCmd.Flag("no-auto-reconnect").Hidden = true
 	mcpCmd.AddCommand(mcp_connectCmd)
+
+	carapace.Gen(mcp_connectCmd).PositionalCompletion(
+		tsh.ActionMCPServers(),
+	)
 }

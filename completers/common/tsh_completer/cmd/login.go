@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -36,4 +37,21 @@ func init() {
 	loginCmd.Flag("no-request-nowait").Hidden = true
 	loginCmd.Flag("no-verbose").Hidden = true
 	rootCmd.AddCommand(loginCmd)
+
+	carapace.Gen(loginCmd).FlagCompletion(carapace.ActionMap{
+		"browser": carapace.Batch(
+			carapace.ActionValuesDescribed("none", "suppress browser opening"),
+			carapace.ActionExecutables(),
+		).ToA(),
+		"format":        carapace.ActionValues("file", "openssh", "kubernetes"),
+		"kube-cluster":  tsh.ActionKubeClusters(),
+		"out":           carapace.ActionFiles(),
+		"request-id":    tsh.ActionRequests(),
+		"request-roles": tsh.ActionRequestableRoles().UniqueList(","),
+		"scope":         tsh.ActionScopes(),
+	})
+
+	carapace.Gen(loginCmd).PositionalCompletion(
+		tsh.ActionClusters(),
+	)
 }

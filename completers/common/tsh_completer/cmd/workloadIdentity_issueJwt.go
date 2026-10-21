@@ -22,4 +22,8 @@ func init() {
 	workloadIdentity_issueJwtCmd.MarkFlagRequired("audience")
 	workloadIdentity_issueJwtCmd.MarkFlagRequired("output")
 	workloadIdentityCmd.AddCommand(workloadIdentity_issueJwtCmd)
+
+	carapace.Gen(workloadIdentity_issueJwtCmd).FlagCompletion(carapace.ActionMap{
+		"output": carapace.ActionDirectories(),
+	})
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -26,4 +27,11 @@ func init() {
 	delegation_createSessionCmd.Flags().String("session-ttl", "", "How long the delegation session should remain valid.")
 	delegation_createSessionCmd.Flag("no-allow-all").Hidden = true
 	delegationCmd.AddCommand(delegation_createSessionCmd)
+
+	carapace.Gen(delegation_createSessionCmd).FlagCompletion(carapace.ActionMap{
+		"allow-app":          tsh.ActionApps(),
+		"allow-db":           tsh.ActionDatabases(),
+		"allow-kube-cluster": tsh.ActionKubeClusters(),
+		"allow-node":         tsh.ActionNodes(),
+	})
 }

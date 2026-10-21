@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -19,4 +20,8 @@ func init() {
 	mfa_lsCmd.Flags().BoolP("verbose", "v", false, "Print more information about MFA devices.")
 	mfa_lsCmd.Flag("no-verbose").Hidden = true
 	mfaCmd.AddCommand(mfa_lsCmd)
+
+	carapace.Gen(mfa_lsCmd).FlagCompletion(carapace.ActionMap{
+		"format": tsh.ActionFormats(),
+	})
 }

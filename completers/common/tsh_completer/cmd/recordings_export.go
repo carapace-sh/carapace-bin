@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -20,4 +21,13 @@ func init() {
 	recordings_exportCmd.Flags().BoolP("quiet", "q", false, "Quiet mode.")
 	recordings_exportCmd.Flag("no-quiet").Hidden = true
 	recordingsCmd.AddCommand(recordings_exportCmd)
+
+	carapace.Gen(recordings_exportCmd).FlagCompletion(carapace.ActionMap{
+		"encoder": carapace.ActionValues("ffmpeg", "avi", "auto"),
+		"out":     carapace.ActionFiles(),
+	})
+
+	carapace.Gen(recordings_exportCmd).PositionalCompletion(
+		tsh.ActionRecordings(),
+	)
 }

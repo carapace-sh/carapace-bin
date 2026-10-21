@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/aws"
 	"github.com/spf13/cobra"
 )
 
@@ -19,4 +20,8 @@ func init() {
 	awsProfileCmd.Flags().Bool("no-dry-run", false, "Print the configuration that will be applied without modifying the AWS config file.")
 	awsProfileCmd.Flag("no-dry-run").Hidden = true
 	rootCmd.AddCommand(awsProfileCmd)
+
+	carapace.Gen(awsProfileCmd).FlagCompletion(carapace.ActionMap{
+		"aws-sso-region": aws.ActionRegions(),
+	})
 }
