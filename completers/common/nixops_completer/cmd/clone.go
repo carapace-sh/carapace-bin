@@ -13,5 +13,8 @@ var cloneCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(cloneCmd).Standalone()
+
+	cloneCmd.Flags().StringP("name", "n", "", "Symbolic name of the cloned deployment")
+
 	rootCmd.AddCommand(cloneCmd)
 }

@@ -27,6 +27,7 @@ func init() {
 	common.AddBuiltPathsFlags(pathInfoCmd)
 	common.AddEvaluationFlags(pathInfoCmd)
 	common.AddFlakeFlags(pathInfoCmd)
+	common.AddJSONFlags(pathInfoCmd)
 	common.AddLoggingFlags(pathInfoCmd)
 
 	carapace.Gen(pathInfoCmd).FlagCompletion(carapace.ActionMap{})

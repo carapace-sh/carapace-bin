@@ -26,18 +26,23 @@ func init() {
 	rootCmd.PersistentFlags().StringP("deployment", "d", "", "Deployment to use")
 	rootCmd.PersistentFlags().Bool("fallback", false, "Fall back on installation from source")
 	rootCmd.PersistentFlags().Bool("help", false, "Show usage information")
-	rootCmd.PersistentFlags().Bool("keep-failed", false, "Keep temporary directories of failed builds")
+	rootCmd.PersistentFlags().StringP("include", "I", "", "Append a directory to the Nix search path")
+	rootCmd.PersistentFlags().BoolP("keep-failed", "K", false, "Keep temporary directories of failed builds")
 	rootCmd.PersistentFlags().Bool("keep-going", false, "Keep going after failed builds")
-	rootCmd.PersistentFlags().String("max-jobs", "", "Set maximum number of concurrent Nix builds")
+	rootCmd.PersistentFlags().StringP("max-jobs", "j", "", "Set maximum number of concurrent Nix builds")
+	rootCmd.PersistentFlags().String("network", "", "Path to a directory containing either nixops.nix or flake.nix")
+	rootCmd.PersistentFlags().Bool("no-build-output", false, "Suppress output written by builders")
 	rootCmd.PersistentFlags().StringSlice("option", nil, "Set a Nix option")
 	rootCmd.PersistentFlags().Bool("read-only-mode", false, "Run Nix evaluations in read-only mode")
 	rootCmd.PersistentFlags().Bool("show-trace", false, "Print a Nix stack trace if evaluation fails")
-	rootCmd.PersistentFlags().StringP("state", "s", "", "Path to state file")
-	rootCmd.PersistentFlags().Bool("version", false, "Print NixOps's version number")
+
+	rootCmd.Flags().Bool("pdb", false, "Invoke pdb on unhandled exception")
+	rootCmd.Flags().Bool("version", false, "Print NixOps's version number")
 
 	rootCmd.Flag("option").Nargs = 2
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"network": carapace.ActionDirectories(),
 		"option": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
@@ -48,6 +53,5 @@ func init() {
 				return carapace.ActionValues()
 			}
 		}),
-		"state": carapace.ActionFiles(),
 	})
 }

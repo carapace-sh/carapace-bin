@@ -13,5 +13,12 @@ var removeBackupCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(removeBackupCmd).Standalone()
+
+	removeBackupCmd.Flags().Bool("keep-physical", false, "Only remove backups from nixops state")
+
 	rootCmd.AddCommand(removeBackupCmd)
+
+	carapace.Gen(removeBackupCmd).PositionalCompletion(
+		carapace.ActionValues(), // backup id
+	)
 }

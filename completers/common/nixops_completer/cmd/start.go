@@ -13,5 +13,9 @@ var startCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(startCmd).Standalone()
+
+	startCmd.Flags().StringSlice("exclude", nil, "Start all except the specified machines")
+	startCmd.Flags().StringSlice("include", nil, "Start only the specified machines")
+
 	rootCmd.AddCommand(startCmd)
 }

@@ -19,6 +19,7 @@ func init() {
 
 	common.AddEvaluationFlags(flake_metadataCmd)
 	common.AddFlakeFlags(flake_metadataCmd)
+	common.AddJSONFlags(flake_metadataCmd)
 	common.AddLoggingFlags(flake_metadataCmd)
 
 	carapace.Gen(flake_metadataCmd).FlagCompletion(carapace.ActionMap{})

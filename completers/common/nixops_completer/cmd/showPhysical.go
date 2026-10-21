@@ -13,5 +13,8 @@ var showPhysicalCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(showPhysicalCmd).Standalone()
+
+	showPhysicalCmd.Flags().String("backup", "", "Print physical network expression for given backup id")
+
 	rootCmd.AddCommand(showPhysicalCmd)
 }

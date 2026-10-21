@@ -13,5 +13,9 @@ var deleteCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(deleteCmd).Standalone()
+
+	deleteCmd.Flags().Bool("all", false, "Delete all deployments")
+	deleteCmd.Flags().Bool("force", false, "Force deletion even if resources still exist")
+
 	rootCmd.AddCommand(deleteCmd)
 }

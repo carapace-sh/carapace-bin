@@ -22,5 +22,7 @@ func init() {
 	rootCmd.Flags().Bool("hash", false, "Print the NixOS version hash (alias for --revision)")
 	rootCmd.Flags().BoolP("help", "h", false, "Show usage information")
 	rootCmd.Flags().Bool("json", false, "Print a JSON representation of the versions")
+	rootCmd.Flags().Bool("kernel-version", false, "Print the NixOS kernel version if available")
 	rootCmd.Flags().Bool("revision", false, "Print the NixOS version revision (alias for --hash)")
+	rootCmd.Flags().Bool("specialisations", false, "Print the specialisations of the current configuration")
 }

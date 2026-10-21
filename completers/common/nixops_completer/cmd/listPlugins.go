@@ -13,5 +13,9 @@ var listPluginsCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(listPluginsCmd).Standalone()
+
+	listPluginsCmd.Flags().Bool("debug", false, "Enable debug output")
+	listPluginsCmd.Flags().BoolP("verbose", "v", false, "Provide extra plugin information")
+
 	rootCmd.AddCommand(listPluginsCmd)
 }

@@ -13,5 +13,9 @@ var sendKeysCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(sendKeysCmd).Standalone()
+
+	sendKeysCmd.Flags().StringSlice("exclude", nil, "Send keys to all except the specified machines")
+	sendKeysCmd.Flags().StringSlice("include", nil, "Send keys only to the specified machines")
+
 	rootCmd.AddCommand(sendKeysCmd)
 }

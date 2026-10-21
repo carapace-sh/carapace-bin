@@ -18,9 +18,15 @@ func init() {
 
 	common.AddEvaluationFlags(flake_prefetchCmd)
 	common.AddFlakeFlags(flake_prefetchCmd)
+	common.AddJSONFlags(flake_prefetchCmd)
 	common.AddLoggingFlags(flake_prefetchCmd)
 
-	carapace.Gen(flake_prefetchCmd).FlagCompletion(carapace.ActionMap{})
+	flake_prefetchCmd.Flags().StringP("out-link", "o", "", "Create symlink named path to the resulting store path")
+
+	carapace.Gen(flake_prefetchCmd).FlagCompletion(carapace.ActionMap{
+		"out-link": carapace.ActionFiles(),
+	})
+
 	carapace.Gen(flake_prefetchCmd).PositionalCompletion(carapace.Batch(
 		carapace.ActionDirectories(),
 		nix.ActionFlakes(),

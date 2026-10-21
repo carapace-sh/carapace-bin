@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/linux/nixos-container_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -13,5 +14,10 @@ var rootLoginCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(rootLoginCmd).Standalone()
+
+	carapace.Gen(rootLoginCmd).PositionalCompletion(
+		action.ActionContainers(),
+	)
+
 	rootCmd.AddCommand(rootLoginCmd)
 }

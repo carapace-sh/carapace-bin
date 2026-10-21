@@ -22,6 +22,7 @@ func init() {
 	store_prefetchFileCmd.Flags().Bool("unpack", false, "Unpack the archive (which must be a tarball or zip file) and add the unpacked contents to the store")
 	storeCmd.AddCommand(store_prefetchFileCmd)
 
+	common.AddJSONFlags(store_prefetchFileCmd)
 	common.AddLoggingFlags(store_prefetchFileCmd)
 
 	carapace.Gen(store_prefetchFileCmd).FlagCompletion(carapace.ActionMap{

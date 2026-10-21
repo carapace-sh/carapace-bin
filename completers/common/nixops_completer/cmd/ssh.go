@@ -13,5 +13,12 @@ var sshCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(sshCmd).Standalone()
+
+	sshCmd.Flags().Bool("now", false, "Do not acquire a lock before fetching the state")
+
 	rootCmd.AddCommand(sshCmd)
+
+	carapace.Gen(sshCmd).PositionalAnyCompletion(
+		carapace.ActionValues(),
+	)
 }

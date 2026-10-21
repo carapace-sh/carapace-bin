@@ -22,13 +22,18 @@ func init() {
 	rootCmd.Flags().Bool("non-interactive", false, "Do not ask for confirmation")
 	rootCmd.Flags().StringP("profile", "p", "", "Path to profile")
 	rootCmd.Flags().Bool("set", false, "Set profile to contain exactly one derivation")
-	rootCmd.Flags().String("url", "", "URL of the package to install")
+	rootCmd.Flags().Bool("url", false, "Interpret the source as a URL")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"profile": carapace.ActionFiles(),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValues(), // url
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if rootCmd.Flag("url").Changed {
+				return carapace.ActionValues()
+			}
+			return carapace.ActionFiles(".nixpkg")
+		}),
 	)
 }

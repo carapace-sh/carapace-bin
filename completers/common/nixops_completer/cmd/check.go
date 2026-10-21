@@ -13,5 +13,10 @@ var checkCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(checkCmd).Standalone()
+
+	checkCmd.Flags().Bool("all", false, "Check all deployments")
+	checkCmd.Flags().StringSlice("exclude", nil, "Check all except the specified machines")
+	checkCmd.Flags().StringSlice("include", nil, "Check only the specified machines")
+
 	rootCmd.AddCommand(checkCmd)
 }

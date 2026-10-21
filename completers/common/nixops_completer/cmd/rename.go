@@ -14,4 +14,9 @@ var renameCmd = &cobra.Command{
 func init() {
 	carapace.Gen(renameCmd).Standalone()
 	rootCmd.AddCommand(renameCmd)
+
+	carapace.Gen(renameCmd).PositionalCompletion(
+		carapace.ActionValues(), // current name
+		carapace.ActionValues(), // new name
+	)
 }

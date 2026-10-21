@@ -13,5 +13,9 @@ var deleteResourcesCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(deleteResourcesCmd).Standalone()
+
+	deleteResourcesCmd.Flags().StringSlice("exclude", nil, "Delete all resources except the specified resources")
+	deleteResourcesCmd.Flags().StringSlice("include", nil, "Delete only the specified resources")
+
 	rootCmd.AddCommand(deleteResourcesCmd)
 }

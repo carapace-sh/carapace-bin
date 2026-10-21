@@ -22,6 +22,7 @@ func init() {
 
 	common.AddEvaluationFlags(flake_archiveCmd)
 	common.AddFlakeFlags(flake_archiveCmd)
+	common.AddJSONFlags(flake_archiveCmd)
 	common.AddLoggingFlags(flake_archiveCmd)
 
 	carapace.Gen(flake_archiveCmd).FlagCompletion(carapace.ActionMap{})

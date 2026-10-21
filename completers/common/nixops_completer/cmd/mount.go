@@ -13,5 +13,13 @@ var mountCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(mountCmd).Standalone()
+
+	mountCmd.Flags().StringArrayP("sshfs-option", "o", nil, "Mount options passed to sshfs")
+
 	rootCmd.AddCommand(mountCmd)
+
+	carapace.Gen(mountCmd).PositionalCompletion(
+		carapace.ActionValues(), // machine[:path]
+		carapace.ActionDirectories(),
+	)
 }
