@@ -16,5 +16,6 @@ func init() {
 
 	image_stageCmd.Flags().String("file", "", "Local file that contains disk image to be uploaded.")
 	image_stageCmd.Flags().Bool("progress", false, "Show upload progress bar (ignored if passing data via stdin)")
+	image_stageCmd.Flags().String("size", "", "Size of image data in bytes.")
 	imageCmd.AddCommand(image_stageCmd)
 }

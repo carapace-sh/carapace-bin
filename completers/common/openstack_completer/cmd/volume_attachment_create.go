@@ -32,6 +32,7 @@ func init() {
 	volume_attachment_createCmd.Flags().String("platform", "", "Platform type")
 	volume_attachment_createCmd.Flags().String("prefix", "", "add a prefix to all variable names")
 	volume_attachment_createCmd.Flags().Bool("print-empty", false, "Print empty table if there is no data to show.")
+	volume_attachment_createCmd.Flags().String("server", "", "Name or ID of server attaching to")
 	volume_attachment_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	volume_attachmentCmd.AddCommand(volume_attachment_createCmd)
 }

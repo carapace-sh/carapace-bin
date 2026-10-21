@@ -27,6 +27,7 @@ func init() {
 	volume_attachment_listCmd.Flags().String("project", "", "Filter results by project (name or ID) (admin only)")
 	volume_attachment_listCmd.Flags().String("project-domain", "", "Domain the project belongs to (name or ID).")
 	volume_attachment_listCmd.Flags().String("quote", "", "when to include quotes, defaults to nonnumeric")
+	volume_attachment_listCmd.Flags().String("server-id", "", "Filters results by a server ID.")
 	volume_attachment_listCmd.Flags().Bool("sort-ascending", false, "sort the column(s) in ascending order")
 	volume_attachment_listCmd.Flags().String("sort-column", "", "specify the column(s) to sort the data (columns specified first have a priority, non-existing columns are ignored), can be repeated")
 	volume_attachment_listCmd.Flags().Bool("sort-descending", false, "sort the column(s) in descending order")

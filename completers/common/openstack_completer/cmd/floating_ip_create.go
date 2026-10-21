@@ -32,6 +32,7 @@ func init() {
 	floating_ip_createCmd.Flags().String("project", "", "Owner's project (name or ID)")
 	floating_ip_createCmd.Flags().String("project-domain", "", "Domain the project belongs to (name or ID).")
 	floating_ip_createCmd.Flags().String("qos-policy", "", "Attach QoS policy to the floating IP (name or ID)")
+	floating_ip_createCmd.Flags().String("router", "", "Router hosting the floating IP (name or ID)")
 	floating_ip_createCmd.Flags().String("subnet", "", "Subnet on which you want to create the floating IP (name or ID)")
 	floating_ip_createCmd.Flags().String("tag", "", "Tag to be added to the floating IP (repeat option to set multiple tags)")
 	floating_ip_createCmd.Flags().String("variable", "", "==SUPPRESS==")

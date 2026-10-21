@@ -16,5 +16,6 @@ func init() {
 
 	image_saveCmd.Flags().String("chunk-size", "", "Size in bytes to read from the wire and buffer at one time (default: 1024)")
 	image_saveCmd.Flags().String("file", "", "Downloaded image save filename (default: stdout)")
+	image_saveCmd.Flags().String("store-preference", "", "Preferred store to download the image from (repeat option to specify multiple store preferences in order)")
 	imageCmd.AddCommand(image_saveCmd)
 }

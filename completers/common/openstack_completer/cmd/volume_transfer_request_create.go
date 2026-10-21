@@ -19,11 +19,11 @@ func init() {
 	volume_transfer_request_createCmd.Flags().StringP("format", "f", "", "the output format, defaults to table")
 	volume_transfer_request_createCmd.Flags().String("max-width", "", "Maximum display width, <1 to disable.")
 	volume_transfer_request_createCmd.Flags().String("name", "", "New transfer request name (default to None)")
-	volume_transfer_request_createCmd.Flags().Bool("no-snapshots", false, "Disallow transfer volumes without snapshots (supported by --os-volume-api-version 3.55 or later)")
+	volume_transfer_request_createCmd.Flags().Bool("no-snapshots", false, "Do not transfer volume snapshots (supported by --os-volume-api-version 3.55 or later)")
 	volume_transfer_request_createCmd.Flags().Bool("noindent", false, "whether to disable indenting the JSON")
 	volume_transfer_request_createCmd.Flags().String("prefix", "", "add a prefix to all variable names")
 	volume_transfer_request_createCmd.Flags().Bool("print-empty", false, "Print empty table if there is no data to show.")
-	volume_transfer_request_createCmd.Flags().Bool("snapshots", false, "Allow transfer volumes without snapshots (default) (supported by --os-volume-api-version 3.55 or later)")
+	volume_transfer_request_createCmd.Flags().Bool("snapshots", false, "Also transfer volume snapshots (default) (supported by --os-volume-api-version 3.55 or later)")
 	volume_transfer_request_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	volume_transfer_requestCmd.AddCommand(volume_transfer_request_createCmd)
 }

@@ -21,6 +21,7 @@ func init() {
 	server_createCmd.Flags().String("boot-from-volume", "", "When used in conjunction with the ``--image`` or ``--image-property`` option, this option automatically creates a block device mapping with a boot index of 0 and tells the compute service to create a volume of the given size (in GB) from the specified image and use it as the root disk of the server.")
 	server_createCmd.Flags().StringP("column", "c", "", "specify the column(s) to include, can be repeated to show multiple columns")
 	server_createCmd.Flags().String("config-drive", "", "**Deprecated** Use specified volume as the config drive, or 'True' to use an ephemeral drive.")
+	server_createCmd.Flags().Bool("delete-on-termination", false, "Delete the boot volume automatically when the server is deleted (only valid with --boot-from-volume).")
 	server_createCmd.Flags().String("description", "", "Set description for the server (supported by --os-compute-api-version 2.19 or above)")
 	server_createCmd.Flags().String("ephemeral", "", "Create and attach a local ephemeral block device of <size> GiB and format it to <format>.")
 	server_createCmd.Flags().String("file", "", "File(s) to inject into image before boot (repeat option to set multiple files) (supported by --os-compute-api-version 2.57 or below)")

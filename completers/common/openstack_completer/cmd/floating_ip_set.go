@@ -21,6 +21,7 @@ func init() {
 	floating_ip_setCmd.Flags().Bool("no-tag", false, "Clear tags associated with the floating IP.")
 	floating_ip_setCmd.Flags().String("port", "", "Associate the floating IP with port (name or ID)")
 	floating_ip_setCmd.Flags().String("qos-policy", "", "Attach QoS policy to the floating IP (name or ID)")
+	floating_ip_setCmd.Flags().String("router", "", "Router hosting the floating IP (name or ID)")
 	floating_ip_setCmd.Flags().String("tag", "", "Tag to be added to the floating IP (repeat option to set multiple tags)")
 	floating_ipCmd.AddCommand(floating_ip_setCmd)
 }

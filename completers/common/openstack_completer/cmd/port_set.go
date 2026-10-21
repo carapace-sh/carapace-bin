@@ -51,6 +51,6 @@ func init() {
 	port_setCmd.Flags().String("security-group", "", "Security group to associate with this port (name or ID) (repeat option to set multiple security groups)")
 	port_setCmd.Flags().String("tag", "", "Tag to be added to the port (repeat option to set multiple tags)")
 	port_setCmd.Flags().Bool("trusted", false, "Set port to be trusted.")
-	port_setCmd.Flags().String("vnic-type", "", "VNIC type for this port (direct | direct-physical | macvtap | normal | baremetal | virtio-forwarder | vdpa | remote-managed) (default: normal)")
+	port_setCmd.Flags().String("vnic-type", "", "VNIC type for this port (accelerator-direct | accelerator-direct-physical | direct | direct-physical | macvtap | normal | baremetal | virtio-forwarder | smart-nic | vdpa | remote-managed) (default: normal)")
 	portCmd.AddCommand(port_setCmd)
 }

@@ -34,6 +34,8 @@ func init() {
 	share_backup_listCmd.Flags().Bool("sort-descending", false, "sort the column(s) in descending order")
 	share_backup_listCmd.Flags().String("sort-dir", "", "Sort direction, available values are ('asc', 'desc').")
 	share_backup_listCmd.Flags().String("sort-key", "", "Key to be sorted, available keys are ('id', 'status', 'size', 'share_id', 'progress', 'restore_progress', 'name', 'host', 'topic', 'project_id').")
+	share_backup_listCmd.Flags().String("sort_dir", "", "Sort direction, available values are ('asc', 'desc').")
+	share_backup_listCmd.Flags().String("sort_key", "", "Key to be sorted, available keys are ('id', 'status', 'size', 'share_id', 'progress', 'restore_progress', 'name', 'host', 'topic', 'project_id').")
 	share_backup_listCmd.Flags().String("status", "", "Filter results by status.")
 	share_backupCmd.AddCommand(share_backup_listCmd)
 }

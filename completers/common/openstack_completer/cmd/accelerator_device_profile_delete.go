@@ -1,0 +1,18 @@
+package cmd
+
+import (
+	"github.com/carapace-sh/carapace"
+	"github.com/spf13/cobra"
+)
+
+var accelerator_device_profile_deleteCmd = &cobra.Command{
+	Use:   "delete",
+	Short: "Delete device profile(s)",
+	Run:   func(cmd *cobra.Command, args []string) {},
+}
+
+func init() {
+	carapace.Gen(accelerator_device_profile_deleteCmd).Standalone()
+
+	accelerator_device_profileCmd.AddCommand(accelerator_device_profile_deleteCmd)
+}

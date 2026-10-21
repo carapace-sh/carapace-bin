@@ -22,7 +22,9 @@ func init() {
 	share_lock_createCmd.Flags().Bool("noindent", false, "whether to disable indenting the JSON")
 	share_lock_createCmd.Flags().String("prefix", "", "add a prefix to all variable names")
 	share_lock_createCmd.Flags().Bool("print-empty", false, "Print empty table if there is no data to show.")
+	share_lock_createCmd.Flags().String("reason", "", "Reason for the resource lock.")
 	share_lock_createCmd.Flags().String("resource-action", "", "Action to lock on the resource (default=\"delete\")")
+	share_lock_createCmd.Flags().String("resource_action", "", "Action to lock on the resource (default=\"delete\")")
 	share_lock_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	share_lockCmd.AddCommand(share_lock_createCmd)
 }

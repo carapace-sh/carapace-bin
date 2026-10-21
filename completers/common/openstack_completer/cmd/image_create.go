@@ -43,7 +43,7 @@ func init() {
 	image_createCmd.Flags().Bool("shared", false, "Image is only accessible by the owner and image members (requires --os-image-api-version 2.5 or later) (default since --os-image-api-version 2.5)")
 	image_createCmd.Flags().String("sign-cert-id", "", "The specified certificate UUID is a reference to the certificate in the key manager that corresponds to the public key and is used for signature validation.")
 	image_createCmd.Flags().String("sign-key-path", "", "Sign the image using the specified private key.")
-	image_createCmd.Flags().String("size", "", "==SUPPRESS==")
+	image_createCmd.Flags().String("size", "", "Size of image data in bytes.")
 	image_createCmd.Flags().String("store", "", "==SUPPRESS==")
 	image_createCmd.Flags().String("tag", "", "Set a tag on this image (repeat option to set multiple tags)")
 	image_createCmd.Flags().Bool("unprotected", false, "Allow image to be deleted (default)")

@@ -4,9 +4,62 @@ import "github.com/carapace-sh/carapace"
 
 func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"os-auth-type":         carapace.ActionValues("v3applicationcredential", "v3oidcaccesstoken", "v3oidcdeviceauthz", "password", "v3password", "token", "admin_token", "v2password", "v3token", "v3multifactor", "v3oauth2clientcredential", "v3tokenlessauth", "v3oidcauthcode", "http_basic", "v3totp", "none", "v3oidcclientcredentials", "v2token", "v3oauth2mtlsclientcredential", "v3oidcpassword"),
+		"os-auth-type":         carapace.ActionValues("v3applicationcredential", "v3oidcaccesstoken", "v3oidcdeviceauthz", "password", "v3password", "token", "admin_token", "v2password", "v3token", "v3multifactor", "v3oauth2clientcredential", "v3tokenlessauth", "v3oidcauthcode", "http_basic", "v3totp", "none", "v3oidcclientcredentials", "v2token", "v3oauth2mtlsclientcredential", "v3oidcpassword", "v3websso"),
 		"os-interface":         carapace.ActionValues("admin", "public", "internal"),
-		"os-share-api-version": carapace.ActionValues("2.0", "2.1", "2.2", "2.3", "2.4", "2.5", "2.6", "2.7", "2.8", "2.9", "2.10", "2.11", "2.12", "2.13", "2.14", "2.15", "2.16", "2.17", "2.18", "2.19", "2.20", "2.21", "2.22", "2.23", "2.24", "2.25", "2.26", "2.27", "2.28", "2.29", "2.30", "2.31", "2.32", "2.33", "2.34", "2.35", "2.36", "2.37", "2.38", "2.39", "2.40", "2.41", "2.42", "2.43", "2.44", "2.45", "2.46", "2.47", "2.48", "2.49", "2.50", "2.51", "2.52", "2.53", "2.54", "2.55", "2.56", "2.57", "2.58", "2.59", "2.60", "2.61", "2.62", "2.63", "2.64", "2.65", "2.66", "2.67", "2.68", "2.69", "2.70", "2.71", "2.72", "2.73", "2.74", "2.75", "2.76", "2.77", "2.78", "2.79", "2.80", "2.81", "2.82", "2.83", "2.84", "2.85", "2.86", "2.87", "2.88", "2.89", "2.90", "2.91", "2.92", "2.93", "2.94", "2.95", "2.96"),
+		"os-share-api-version": carapace.ActionValues("2.0", "2.1", "2.2", "2.3", "2.4", "2.5", "2.6", "2.7", "2.8", "2.9", "2.10", "2.11", "2.12", "2.13", "2.14", "2.15", "2.16", "2.17", "2.18", "2.19", "2.20", "2.21", "2.22", "2.23", "2.24", "2.25", "2.26", "2.27", "2.28", "2.29", "2.30", "2.31", "2.32", "2.33", "2.34", "2.35", "2.36", "2.37", "2.38", "2.39", "2.40", "2.41", "2.42", "2.43", "2.44", "2.45", "2.46", "2.47", "2.48", "2.49", "2.50", "2.51", "2.52", "2.53", "2.54", "2.55", "2.56", "2.57", "2.58", "2.59", "2.60", "2.61", "2.62", "2.63", "2.64", "2.65", "2.66", "2.67", "2.68", "2.69", "2.70", "2.71", "2.72", "2.73", "2.74", "2.75", "2.76", "2.77", "2.78", "2.79", "2.80", "2.81", "2.82", "2.83", "2.84", "2.85", "2.86", "2.87", "2.88", "2.89", "2.90", "2.91", "2.92", "2.93", "2.94", "2.95", "2.96", "2.97", "2.98"),
+	})
+	carapace.Gen(accelerator_arq_bindCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
+	carapace.Gen(accelerator_arq_createCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
+	carapace.Gen(accelerator_arq_listCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"quote":  carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+	})
+	carapace.Gen(accelerator_arq_showCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
+	carapace.Gen(accelerator_arq_unbindCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
+	carapace.Gen(accelerator_deployable_listCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"quote":  carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+	})
+	carapace.Gen(accelerator_deployable_programCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
+	carapace.Gen(accelerator_deployable_showCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
+	carapace.Gen(accelerator_device_attribute_createCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
+	carapace.Gen(accelerator_device_attribute_listCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"quote":  carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+	})
+	carapace.Gen(accelerator_device_attribute_showCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
+	carapace.Gen(accelerator_device_listCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"quote":  carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+	})
+	carapace.Gen(accelerator_device_profile_createCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
+	carapace.Gen(accelerator_device_profile_listCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"quote":  carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+	})
+	carapace.Gen(accelerator_device_profile_showCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
+	carapace.Gen(accelerator_device_showCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 	carapace.Gen(access_rule_listCmd).FlagCompletion(carapace.ActionMap{
 		"format": carapace.ActionValues("csv", "json", "table", "value", "yaml"),
@@ -773,6 +826,10 @@ func init() {
 	carapace.Gen(network_trunk_showCmd).FlagCompletion(carapace.ActionMap{
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
+	carapace.Gen(network_trunk_subport_listCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"quote":  carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+	})
 	carapace.Gen(object_createCmd).FlagCompletion(carapace.ActionMap{
 		"format": carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":  carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
@@ -800,17 +857,18 @@ func init() {
 	carapace.Gen(port_createCmd).FlagCompletion(carapace.ActionMap{
 		"format":     carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 		"pvlan-type": carapace.ActionValues("promiscuous", "isolated", "community"),
-		"vnic-type":  carapace.ActionValues("direct", "direct-physical", "macvtap", "normal", "baremetal", "virtio-forwarder", "vdpa", "remote-managed"),
+		"vnic-type":  carapace.ActionValues("accelerator-direct", "accelerator-direct-physical", "direct", "direct-physical", "macvtap", "normal", "baremetal", "virtio-forwarder", "smart-nic", "vdpa", "remote-managed"),
 	})
 	carapace.Gen(port_listCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("csv", "json", "table", "value", "yaml"),
-		"quote":  carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"status": carapace.ActionValues("ACTIVE", "BUILD", "DOWN", "ERROR"),
+		"format":     carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"pvlan-type": carapace.ActionValues("promiscuous", "isolated", "community"),
+		"quote":      carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"status":     carapace.ActionValues("ACTIVE", "BUILD", "DOWN", "ERROR"),
 	})
 	carapace.Gen(port_setCmd).FlagCompletion(carapace.ActionMap{
 		"data-plane-status": carapace.ActionValues("ACTIVE", "DOWN"),
 		"pvlan-type":        carapace.ActionValues("promiscuous", "isolated", "community"),
-		"vnic-type":         carapace.ActionValues("direct", "direct-physical", "macvtap", "normal", "baremetal", "virtio-forwarder", "vdpa", "remote-managed"),
+		"vnic-type":         carapace.ActionValues("accelerator-direct", "accelerator-direct-physical", "direct", "direct-physical", "macvtap", "normal", "baremetal", "virtio-forwarder", "smart-nic", "vdpa", "remote-managed"),
 	})
 	carapace.Gen(port_showCmd).FlagCompletion(carapace.ActionMap{
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
@@ -1062,8 +1120,12 @@ func init() {
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 	carapace.Gen(share_backup_listCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("csv", "json", "table", "value", "yaml"),
-		"quote":  carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"format":   carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"quote":    carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"sort-dir": carapace.ActionValues("asc", "desc"),
+		"sort-key": carapace.ActionValues("id", "status", "size", "share_id", "progress", "restore_progress", "name", "host", "topic", "project_id"),
+		"sort_dir": carapace.ActionValues("asc", "desc"),
+		"sort_key": carapace.ActionValues("id", "status", "size", "share_id", "progress", "restore_progress", "name", "host", "topic", "project_id"),
 	})
 	carapace.Gen(share_backup_setCmd).FlagCompletion(carapace.ActionMap{
 		"status": carapace.ActionValues("available", "error", "creating", "deleting", "restoring"),
@@ -1148,11 +1210,14 @@ func init() {
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 	carapace.Gen(share_lock_listCmd).FlagCompletion(carapace.ActionMap{
+		"context":      carapace.ActionValues("user", "admin", "service"),
 		"format":       carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"lock-context": carapace.ActionValues("user", "admin", "service"),
 		"quote":        carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
 		"sort-dir":     carapace.ActionValues("asc", "desc"),
 		"sort-key":     carapace.ActionValues("id", "created_at", "updated_at", "resource_id", "resource_type", "resource_action", "lock_reason"),
+		"sort_dir":     carapace.ActionValues("asc", "desc"),
+		"sort_key":     carapace.ActionValues("id", "created_at", "updated_at", "resource_id", "resource_type", "resource_action", "lock_reason"),
 	})
 	carapace.Gen(share_lock_showCmd).FlagCompletion(carapace.ActionMap{
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
@@ -1205,8 +1270,12 @@ func init() {
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 	carapace.Gen(share_qos_type_listCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("csv", "json", "table", "value", "yaml"),
-		"quote":  carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"format":   carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"quote":    carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"sort-dir": carapace.ActionValues("asc", "desc"),
+		"sort-key": carapace.ActionValues("id", "name", "created_at", "updated_at"),
+		"sort_dir": carapace.ActionValues("asc", "desc"),
+		"sort_key": carapace.ActionValues("id", "name", "created_at", "updated_at"),
 	})
 	carapace.Gen(share_qos_type_showCmd).FlagCompletion(carapace.ActionMap{
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
@@ -1325,8 +1394,12 @@ func init() {
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 	carapace.Gen(share_transfer_listCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("csv", "json", "table", "value", "yaml"),
-		"quote":  carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"format":   carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"quote":    carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"sort-dir": carapace.ActionValues("asc", "desc"),
+		"sort-key": carapace.ActionValues("id", "resource_type", "resource_id", "name", "source_project_id", "destination_project_id", "created_at", "expires_at"),
+		"sort_dir": carapace.ActionValues("asc", "desc"),
+		"sort_key": carapace.ActionValues("id", "resource_type", "resource_id", "name", "source_project_id", "destination_project_id", "created_at", "expires_at"),
 	})
 	carapace.Gen(share_transfer_showCmd).FlagCompletion(carapace.ActionMap{
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),

@@ -60,7 +60,7 @@ func init() {
 	port_createCmd.Flags().String("tag", "", "Tag to be added to the port (repeat option to set multiple tags)")
 	port_createCmd.Flags().Bool("trusted", false, "Set port to be trusted.")
 	port_createCmd.Flags().String("variable", "", "==SUPPRESS==")
-	port_createCmd.Flags().String("vnic-type", "", "VNIC type for this port (direct | direct-physical | macvtap | normal | baremetal | virtio-forwarder | vdpa | remote-managed) (default: normal)")
+	port_createCmd.Flags().String("vnic-type", "", "VNIC type for this port (accelerator-direct | accelerator-direct-physical | direct | direct-physical | macvtap | normal | baremetal | virtio-forwarder | smart-nic | vdpa | remote-managed) (default: normal)")
 	port_createCmd.MarkFlagRequired("network")
 	portCmd.AddCommand(port_createCmd)
 }

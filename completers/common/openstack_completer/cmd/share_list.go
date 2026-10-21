@@ -15,6 +15,7 @@ func init() {
 	carapace.Gen(share_listCmd).Standalone()
 
 	share_listCmd.Flags().Bool("all-projects", false, "Include all projects (admin only)")
+	share_listCmd.Flags().String("availability-zone", "", "Filter shares by their availability zone.")
 	share_listCmd.Flags().StringP("column", "c", "", "specify the column(s) to include, can be repeated to show multiple columns")
 	share_listCmd.Flags().String("description~", "", "Filter results matching a share description pattern.Available only for microversion >= 2.36.")
 	share_listCmd.Flags().String("encryption-key-ref", "", "Filter shares by their encryption key ref.")
