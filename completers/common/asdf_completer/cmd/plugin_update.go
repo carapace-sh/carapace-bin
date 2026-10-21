@@ -20,5 +20,6 @@ func init() {
 
 	carapace.Gen(plugin_updateCmd).PositionalCompletion(
 		action.ActionPlugins(),
+		action.ActionPluginRefs(""),
 	)
 }

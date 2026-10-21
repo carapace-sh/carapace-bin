@@ -17,4 +17,6 @@ func Execute() error {
 }
 func init() {
 	carapace.Gen(rootCmd).Standalone()
+
+	rootCmd.Flags().BoolP("version", "v", false, "print the version")
 }

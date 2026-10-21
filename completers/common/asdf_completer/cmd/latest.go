@@ -20,5 +20,6 @@ func init() {
 
 	carapace.Gen(latestCmd).PositionalCompletion(
 		action.ActionPlugins(),
+		action.ActionAllVersions(""),
 	)
 }

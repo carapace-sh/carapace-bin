@@ -20,11 +20,6 @@ func init() {
 
 	carapace.Gen(installCmd).PositionalCompletion(
 		action.ActionPlugins(),
-		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return carapace.Batch(
-				action.ActionAllVersions(c.Args[0]),
-				carapace.ActionValues("latest", "latest:"),
-			).ToA()
-		}),
+		action.ActionInstallVersions(""),
 	)
 }

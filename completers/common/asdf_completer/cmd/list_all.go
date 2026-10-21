@@ -19,5 +19,6 @@ func init() {
 
 	carapace.Gen(list_allCmd).PositionalCompletion(
 		action.ActionPlugins(),
+		action.ActionAllVersions(""),
 	)
 }

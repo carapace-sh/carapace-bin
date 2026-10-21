@@ -19,13 +19,12 @@ func init() {
 	setCmd.Flags().BoolP("parent", "p", false, "The version should be set in the closest existing .tool-versions file in a parent directory")
 	rootCmd.AddCommand(setCmd)
 
-	carapace.Gen(setCmd).PositionalCompletion(
-		action.ActionPlugins(),
+	carapace.Gen(setCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return carapace.Batch(
-				action.ActionInstalledVersions(c.Args[0]),
-				carapace.ActionValues("latest", "latest:"),
-			).ToA()
+			if len(c.Args) == 0 {
+				return action.ActionPlugins()
+			}
+			return action.ActionSetVersions(c.Args[0])
 		}),
 	)
 }
