@@ -17,6 +17,7 @@ func init() {
 
 	repo_cloneCmd.Flags().Bool("active", false, "Limit by project status. When true, returns active projects. When false, returns projects that are archived or marked for deletion. Used with the --group flag.")
 	repo_cloneCmd.Flags().BoolP("archived", "a", false, "Limit by archived status. Use with '-a=false' to exclude archived repositories. Used with the --group flag.")
+	repo_cloneCmd.Flags().StringSlice("exclude-subgroup", nil, "Skip projects in this subgroup, as a path relative to the group, not a numeric ID. Repeat the flag, or separate values with commas, to skip more than one. Projects shared from other namespaces are not affected. Used with the --group flag.")
 	repo_cloneCmd.Flags().StringP("group", "g", "", "Specify the group to clone repositories from.")
 	repo_cloneCmd.Flags().BoolP("include-subgroups", "G", true, "Include projects in subgroups of this group. Default is true. Used with the --group flag.")
 	repo_cloneCmd.Flags().BoolP("mine", "m", false, "Limit by projects in the group owned by the current authenticated user. Used with the --group flag.")
@@ -32,8 +33,9 @@ func init() {
 	repoCmd.AddCommand(repo_cloneCmd)
 
 	carapace.Gen(repo_cloneCmd).FlagCompletion(carapace.ActionMap{
-		"group":      action.ActionGroups(repo_cloneCmd),
-		"visibility": carapace.ActionValues("public", "internal", "private"),
+		"exclude-subgroup": action.ActionGroups(repo_cloneCmd).UniqueList(","),
+		"group":            action.ActionGroups(repo_cloneCmd),
+		"visibility":       carapace.ActionValues("public", "internal", "private"),
 	})
 	carapace.Gen(repo_cloneCmd).PositionalCompletion(
 		action.ActionRepo(repo_cloneCmd), // TODO not yet correct - also needs to consider flags being set

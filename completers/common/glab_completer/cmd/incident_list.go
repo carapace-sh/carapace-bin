@@ -18,10 +18,12 @@ func init() {
 	carapace.Gen(incident_listCmd).Standalone()
 
 	incident_listCmd.Flags().BoolP("all", "A", false, "Get all incidents.")
-	incident_listCmd.Flags().StringP("assignee", "a", "", "Filter incident by assignee <username>.")
+	incident_listCmd.Flags().StringP("assignee", "a", "", "Filter incident by assignee <username>, @me, @none (unassigned), or @any (assigned).")
 	incident_listCmd.Flags().String("author", "", "Filter incident by author <username>.")
 	incident_listCmd.Flags().BoolP("closed", "c", false, "Get only closed incidents.")
 	incident_listCmd.Flags().BoolP("confidential", "C", false, "Filter by confidential incidents.")
+	incident_listCmd.Flags().String("created-after", "", "Filter incidents created after a certain date (RFC 3339, for example 2026-10-01T00:00:00Z).")
+	incident_listCmd.Flags().String("created-before", "", "Filter incidents created before a certain date (RFC 3339, for example 2026-10-01T00:00:00Z).")
 	incident_listCmd.Flags().StringP("epic", "e", "", "List issues belonging to a given epic (requires --group, no pagination support).")
 	incident_listCmd.PersistentFlags().StringP("group", "g", "", "Select a group or subgroup. Ignored if a repo argument is set.")
 	incident_listCmd.Flags().String("in", "title,description", "Search in: title, description.")
@@ -41,12 +43,17 @@ func init() {
 	incident_listCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. You can use either OWNER/REPO or GROUP/NAMESPACE/REPO. The full URL or Git URL is also accepted.")
 	incident_listCmd.Flags().String("search", "", "Search <string> in the fields defined by '--in'.")
 	incident_listCmd.Flags().StringP("sort", "s", "desc", "Sort direction for --order field: asc or desc.")
+	incident_listCmd.Flags().String("updated-after", "", "Filter incidents updated after a certain date (RFC 3339, for example 2026-10-01T00:00:00Z).")
+	incident_listCmd.Flags().String("updated-before", "", "Filter incidents updated before a certain date (RFC 3339, for example 2026-10-01T00:00:00Z).")
 	incident_listCmd.Flag("mine").Hidden = true
 	incident_listCmd.Flag("opened").Hidden = true
 	incidentCmd.AddCommand(incident_listCmd)
 
 	carapace.Gen(incident_listCmd).FlagCompletion(carapace.ActionMap{
-		"assignee":      action.ActionProjectMembers(incident_listCmd),
+		"assignee": carapace.Batch(
+			carapace.ActionValues("@me", "@none", "@any"),
+			action.ActionProjectMembers(incident_listCmd),
+		).ToA(),
 		"author":        action.ActionUsers(incident_listCmd),
 		"group":         action.ActionGroups(incident_listCmd).UniqueList(","),
 		"in":            carapace.ActionValues("title", "description"),

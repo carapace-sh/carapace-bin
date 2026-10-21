@@ -29,6 +29,7 @@ func init() {
 	mr_updateCmd.Flags().Bool("remove-source-branch", false, "Toggles the removal of the source branch on merge.")
 	mr_updateCmd.Flags().StringSlice("reviewer", nil, "Request review from users by their usernames. Prefix with '!' or '-' to remove from existing reviewers, '+' to add. Otherwise, replace existing reviewers with given users. Multiple usernames can be comma-separated or specified by repeating the flag.")
 	mr_updateCmd.Flags().Bool("squash-before-merge", false, "Toggles the option to squash commits into a single commit when merging.")
+	mr_updateCmd.Flags().String("state", "any", "Filter by state when selecting a merge request by branch: opened, closed, merged, locked, any. Ignored for IDs and URLs.")
 	mr_updateCmd.Flags().String("target-branch", "", "Set target branch.")
 	mr_updateCmd.Flags().StringP("title", "t", "", "Title of merge request.")
 	mr_updateCmd.Flags().Bool("unassign", false, "Unassign all users.")
@@ -45,10 +46,17 @@ func init() {
 		"label":            action.ActionLabels(mr_updateCmd).UniqueList(","),
 		"milestone":        action.ActionMilestones(mr_updateCmd),
 		"reviewer":         action.ActionProjectMembers(mr_updateCmd).UniqueList(","),
+		"state":            carapace.ActionValues("opened", "closed", "merged", "locked", "any"),
 		"target-branch":    action.ActionBranches(mr_updateCmd),
 		"unlabel":          action.ActionLabels(mr_updateCmd).UniqueList(","),
 	})
 	carapace.Gen(mr_updateCmd).PositionalCompletion(
-		action.ActionMergeRequestsAndBranches(mr_updateCmd, ""),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			state := mr_updateCmd.Flag("state").Value.String()
+			if state == "any" {
+				state = ""
+			}
+			return action.ActionMergeRequestsAndBranches(mr_updateCmd, state)
+		}),
 	)
 }

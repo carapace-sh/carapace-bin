@@ -25,13 +25,13 @@ func init() {
 	mr_createCmd.Flags().StringP("description", "d", "", "Supply a description for the merge request. Set to \"-\" to open an editor.")
 	mr_createCmd.Flags().String("description-file", "", "Read the merge request description from a file. Use \"-\" to read from standard input.")
 	mr_createCmd.Flags().Bool("draft", false, "Mark merge request as a draft.")
-	mr_createCmd.Flags().BoolP("fill", "f", false, "Do not prompt for title or description, and just use commit info. Sets `push` to `true`, and pushes the branch.")
+	mr_createCmd.Flags().BoolP("fill", "f", false, "Do not prompt for title or description, and just use commit info. Pushes the branch unless --push=false is set.")
 	mr_createCmd.Flags().Bool("fill-commit-body", false, "Fill description with each commit body when multiple commits. Can only be used with --fill.")
 	mr_createCmd.Flags().StringP("head", "H", "", "Select another head repository using the `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format, the project ID, or the full URL.")
 	mr_createCmd.Flags().StringSliceP("label", "l", nil, "Add label by name. Multiple labels can be comma-separated or specified by repeating the flag.")
 	mr_createCmd.Flags().StringP("milestone", "m", "", "The global ID or title of a milestone to assign.")
 	mr_createCmd.Flags().Bool("no-editor", false, "Don't open editor to enter a description. If true, uses prompt. Defaults to false.")
-	mr_createCmd.Flags().Bool("push", false, "Push committed changes after creating merge request. Make sure you have committed changes.")
+	mr_createCmd.Flags().Bool("push", false, "Push committed changes before creating the merge request. Make sure you have committed changes. Defaults to true with --fill. Use --push=false to skip the push.")
 	mr_createCmd.Flags().Bool("recover", false, "Save the options to a file if the merge request creation fails. If the file exists, the options are loaded from the recovery file. (EXPERIMENTAL)")
 	mr_createCmd.Flags().StringP("related-issue", "i", "", "Create a merge request for an issue. If --title is not provided, uses the issue title.")
 	mr_createCmd.Flags().Bool("remove-source-branch", false, "Remove source branch on merge. Set to true/false to override project defaults, or omit to use project settings.")
@@ -41,7 +41,7 @@ func init() {
 	mr_createCmd.Flags().Bool("squash-before-merge", false, "Squash commits into a single commit when merging. Set to true/false to override project defaults, or omit to use project settings.")
 	mr_createCmd.Flags().StringP("target-branch", "b", "", "The target or base branch into which you want your code merged into.")
 	mr_createCmd.Flags().String("target-project", "", "Add target project by id, OWNER/REPO, or GROUP/NAMESPACE/REPO.")
-	mr_createCmd.Flags().String("template", "", "Name of a template in '.gitlab/merge_request_templates/' to pre-populate the description. The '.md' extension is optional. Templates are loaded from the local repository only.")
+	mr_createCmd.Flags().String("template", "", "Template to pre-populate the description. A name is looked up in '.gitlab/merge_request_templates/' of the local repository, and the '.md' extension is optional. A value that is absolute or contains a path separator is read as a file path, for example '~/templates/feature.md'.")
 	mr_createCmd.Flags().StringP("title", "t", "", "Supply a title for the merge request.")
 	mr_createCmd.Flags().BoolP("web", "w", false, "Continue merge request creation in a browser.")
 	mr_createCmd.Flags().Bool("wip", false, "Mark merge request as a draft. Alternative to --draft.")
@@ -59,5 +59,6 @@ func init() {
 		"reviewer":         action.ActionProjectMembers(mr_createCmd).UniqueList(","),
 		"source-branch":    action.ActionBranches(mr_createCmd),
 		"target-branch":    action.ActionBranches(mr_createCmd),
+		"template":         action.ActionTemplates("merge_request_templates"),
 	})
 }

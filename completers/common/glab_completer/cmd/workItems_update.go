@@ -22,6 +22,7 @@ func init() {
 	workItems_updateCmd.Flags().String("description-file", "", "Read the work item description from a file. Use \"-\" to read from standard input.")
 	workItems_updateCmd.Flags().String("duedate", "", "Update the due date for the work item.")
 	workItems_updateCmd.Flags().StringP("group", "g", "", "Update work items for a group or subgroup.")
+	workItems_updateCmd.Flags().String("iteration", "", "Move the work item to the iteration with this ID.")
 	workItems_updateCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
 	workItems_updateCmd.Flags().StringP("milestone", "m", "", "Update the work item milestone with the title or ID.")
 	workItems_updateCmd.Flags().StringP("output", "F", "text", "Format output as: text, json.")
@@ -36,6 +37,7 @@ func init() {
 		"attach":           carapace.ActionFiles(),
 		"description-file": carapace.ActionFiles(),
 		"group":            action.ActionGroups(workItems_updateCmd),
+		"iteration":        action.ActionIterations(workItems_updateCmd),
 		"jq":               jq.ActionFilters(),
 		"milestone":        action.ActionMilestones(workItems_updateCmd),
 		"output":           carapace.ActionValues("text", "json"),

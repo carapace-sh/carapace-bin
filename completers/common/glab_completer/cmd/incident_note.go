@@ -17,6 +17,7 @@ func init() {
 	carapace.Gen(incident_noteCmd).Standalone()
 
 	incident_noteCmd.Flags().StringSlice("attach", nil, "(EXPERIMENTAL) Upload a file and reference it at the end of the comment. Use \"-\" to read the file from standard input. Repeat the flag to attach multiple files.")
+	incident_noteCmd.Flags().Bool("internal", false, "Create the note as an internal note, visible only to project members.")
 	incident_noteCmd.Flags().StringP("message", "m", "", "Message text.")
 	incidentCmd.AddCommand(incident_noteCmd)
 
