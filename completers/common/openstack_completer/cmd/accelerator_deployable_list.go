@@ -29,9 +29,9 @@ func init() {
 	accelerator_deployableCmd.AddCommand(accelerator_deployable_listCmd)
 
 	carapace.Gen(accelerator_deployable_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("accelerator", "deployable", "list"),
+		"column":      action.ActionColumns(accelerator_deployable_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("accelerator", "deployable", "list"),
+		"sort-column": action.ActionColumns(accelerator_deployable_listCmd),
 	})
 }

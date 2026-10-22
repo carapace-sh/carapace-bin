@@ -43,11 +43,11 @@ func init() {
 	projectCmd.AddCommand(project_listCmd)
 
 	carapace.Gen(project_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("project", "list"),
+		"column":      action.ActionColumns(project_listCmd),
 		"domain":      action.ActionDomains(),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("project", "list"),
+		"sort-column": action.ActionColumns(project_listCmd),
 		"user":        action.ActionUsers(),
 	})
 }

@@ -29,9 +29,9 @@ func init() {
 	regionCmd.AddCommand(region_listCmd)
 
 	carapace.Gen(region_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("region", "list"),
+		"column":      action.ActionColumns(region_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("region", "list"),
+		"sort-column": action.ActionColumns(region_listCmd),
 	})
 }

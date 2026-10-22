@@ -30,9 +30,9 @@ func init() {
 	usageCmd.AddCommand(usage_listCmd)
 
 	carapace.Gen(usage_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("usage", "list"),
+		"column":      action.ActionColumns(usage_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("usage", "list"),
+		"sort-column": action.ActionColumns(usage_listCmd),
 	})
 }

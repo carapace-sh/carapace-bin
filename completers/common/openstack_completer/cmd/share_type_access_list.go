@@ -28,10 +28,10 @@ func init() {
 	share_type_accessCmd.AddCommand(share_type_access_listCmd)
 
 	carapace.Gen(share_type_access_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("share", "type", "access", "list"),
+		"column":      action.ActionColumns(share_type_access_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("share", "type", "access", "list"),
+		"sort-column": action.ActionColumns(share_type_access_listCmd),
 	})
 
 	carapace.Gen(share_type_access_listCmd).PositionalCompletion(action.ActionShareTypes())

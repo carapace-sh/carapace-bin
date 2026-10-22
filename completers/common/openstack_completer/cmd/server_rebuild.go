@@ -44,7 +44,7 @@ func init() {
 	serverCmd.AddCommand(server_rebuildCmd)
 
 	carapace.Gen(server_rebuildCmd).FlagCompletion(carapace.ActionMap{
-		"column":    action.ActionColumns("server", "list"),
+		"column":    action.ActionColumns(server_rebuildCmd),
 		"format":    carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 		"image":     action.ActionImages(),
 		"key-name":  action.ActionKeypairs(),

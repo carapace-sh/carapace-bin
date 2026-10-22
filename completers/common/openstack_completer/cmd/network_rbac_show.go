@@ -26,7 +26,7 @@ func init() {
 	network_rbacCmd.AddCommand(network_rbac_showCmd)
 
 	carapace.Gen(network_rbac_showCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("network", "rbac", "list"),
+		"column": action.ActionColumns(network_rbac_showCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 

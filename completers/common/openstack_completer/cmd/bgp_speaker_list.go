@@ -29,9 +29,9 @@ func init() {
 	bgp_speakerCmd.AddCommand(bgp_speaker_listCmd)
 
 	carapace.Gen(bgp_speaker_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("bgp", "speaker", "list"),
+		"column":      action.ActionColumns(bgp_speaker_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("bgp", "speaker", "list"),
+		"sort-column": action.ActionColumns(bgp_speaker_listCmd),
 	})
 }

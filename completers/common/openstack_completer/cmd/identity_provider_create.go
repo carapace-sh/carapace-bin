@@ -33,7 +33,7 @@ func init() {
 	identity_providerCmd.AddCommand(identity_provider_createCmd)
 
 	carapace.Gen(identity_provider_createCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("identity", "provider", "list"),
+		"column": action.ActionColumns(identity_provider_createCmd),
 		"domain": action.ActionDomains(),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})

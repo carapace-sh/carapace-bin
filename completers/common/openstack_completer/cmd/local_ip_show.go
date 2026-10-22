@@ -26,7 +26,7 @@ func init() {
 	local_ipCmd.AddCommand(local_ip_showCmd)
 
 	carapace.Gen(local_ip_showCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("local", "ip", "list"),
+		"column": action.ActionColumns(local_ip_showCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 

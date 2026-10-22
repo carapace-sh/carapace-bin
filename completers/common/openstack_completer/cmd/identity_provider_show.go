@@ -26,7 +26,7 @@ func init() {
 	identity_providerCmd.AddCommand(identity_provider_showCmd)
 
 	carapace.Gen(identity_provider_showCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("identity", "provider", "list"),
+		"column": action.ActionColumns(identity_provider_showCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 

@@ -26,7 +26,7 @@ func init() {
 	trustCmd.AddCommand(trust_showCmd)
 
 	carapace.Gen(trust_showCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("trust", "list"),
+		"column": action.ActionColumns(trust_showCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 

@@ -34,7 +34,7 @@ func init() {
 
 	carapace.Gen(volume_group_createCmd).FlagCompletion(carapace.ActionMap{
 		"availability-zone": action.ActionAvailabilityZones(),
-		"column":            action.ActionColumns("volume", "group", "list"),
+		"column":            action.ActionColumns(volume_group_createCmd),
 		"format":            carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 		"volume-type":       action.ActionVolumeTypes(),
 	})

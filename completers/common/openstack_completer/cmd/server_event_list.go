@@ -34,10 +34,10 @@ func init() {
 	server_eventCmd.AddCommand(server_event_listCmd)
 
 	carapace.Gen(server_event_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("server", "event", "list"),
+		"column":      action.ActionColumns(server_event_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("server", "event", "list"),
+		"sort-column": action.ActionColumns(server_event_listCmd),
 	})
 
 	carapace.Gen(server_event_listCmd).PositionalCompletion(action.ActionServers())

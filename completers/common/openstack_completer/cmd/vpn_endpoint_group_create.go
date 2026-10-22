@@ -33,7 +33,7 @@ func init() {
 	vpn_endpoint_groupCmd.AddCommand(vpn_endpoint_group_createCmd)
 
 	carapace.Gen(vpn_endpoint_group_createCmd).FlagCompletion(carapace.ActionMap{
-		"column":         action.ActionColumns("vpn", "endpoint", "group", "list"),
+		"column":         action.ActionColumns(vpn_endpoint_group_createCmd),
 		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 		"project":        action.ActionProjects(),
 		"project-domain": action.ActionDomains(),

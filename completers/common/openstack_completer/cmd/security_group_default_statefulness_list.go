@@ -30,11 +30,11 @@ func init() {
 	security_group_default_statefulnessCmd.AddCommand(security_group_default_statefulness_listCmd)
 
 	carapace.Gen(security_group_default_statefulness_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":         action.ActionColumns("security", "group", "default", "statefulness", "list"),
+		"column":         action.ActionColumns(security_group_default_statefulness_listCmd),
 		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"project":        action.ActionProjects(),
 		"project-domain": action.ActionDomains(),
 		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column":    action.ActionColumns("security", "group", "default", "statefulness", "list"),
+		"sort-column":    action.ActionColumns(security_group_default_statefulness_listCmd),
 	})
 }

@@ -29,9 +29,9 @@ func init() {
 	volume_backend_poolCmd.AddCommand(volume_backend_pool_listCmd)
 
 	carapace.Gen(volume_backend_pool_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("volume", "backend", "pool", "list"),
+		"column":      action.ActionColumns(volume_backend_pool_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("volume", "backend", "pool", "list"),
+		"sort-column": action.ActionColumns(volume_backend_pool_listCmd),
 	})
 }

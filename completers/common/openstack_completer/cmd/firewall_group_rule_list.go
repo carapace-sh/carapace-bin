@@ -29,9 +29,9 @@ func init() {
 	firewall_group_ruleCmd.AddCommand(firewall_group_rule_listCmd)
 
 	carapace.Gen(firewall_group_rule_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("firewall", "group", "rule", "list"),
+		"column":      action.ActionColumns(firewall_group_rule_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("firewall", "group", "rule", "list"),
+		"sort-column": action.ActionColumns(firewall_group_rule_listCmd),
 	})
 }

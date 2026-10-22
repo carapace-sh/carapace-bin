@@ -26,7 +26,7 @@ func init() {
 	networkCmd.AddCommand(network_showCmd)
 
 	carapace.Gen(network_showCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("network", "list"),
+		"column": action.ActionColumns(network_showCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 

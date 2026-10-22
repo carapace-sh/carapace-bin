@@ -31,9 +31,9 @@ func init() {
 	network_meterCmd.AddCommand(network_meter_listCmd)
 
 	carapace.Gen(network_meter_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("network", "meter", "list"),
+		"column":      action.ActionColumns(network_meter_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("network", "meter", "list"),
+		"sort-column": action.ActionColumns(network_meter_listCmd),
 	})
 }

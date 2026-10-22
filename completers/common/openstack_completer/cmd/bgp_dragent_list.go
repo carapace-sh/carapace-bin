@@ -29,9 +29,9 @@ func init() {
 	bgp_dragentCmd.AddCommand(bgp_dragent_listCmd)
 
 	carapace.Gen(bgp_dragent_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("bgp", "dragent", "list"),
+		"column":      action.ActionColumns(bgp_dragent_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("bgp", "dragent", "list"),
+		"sort-column": action.ActionColumns(bgp_dragent_listCmd),
 	})
 }

@@ -28,9 +28,9 @@ func init() {
 	bgp_peerCmd.AddCommand(bgp_peer_listCmd)
 
 	carapace.Gen(bgp_peer_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("bgp", "peer", "list"),
+		"column":      action.ActionColumns(bgp_peer_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("bgp", "peer", "list"),
+		"sort-column": action.ActionColumns(bgp_peer_listCmd),
 	})
 }

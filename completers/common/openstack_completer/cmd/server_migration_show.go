@@ -26,7 +26,7 @@ func init() {
 	server_migrationCmd.AddCommand(server_migration_showCmd)
 
 	carapace.Gen(server_migration_showCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("server", "migration", "list"),
+		"column": action.ActionColumns(server_migration_showCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 

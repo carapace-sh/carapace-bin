@@ -30,7 +30,7 @@ func init() {
 	serverCmd.AddCommand(server_evacuateCmd)
 
 	carapace.Gen(server_evacuateCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("server", "list"),
+		"column": action.ActionColumns(server_evacuateCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 

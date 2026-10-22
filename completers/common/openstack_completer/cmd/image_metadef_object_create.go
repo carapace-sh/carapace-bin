@@ -27,7 +27,7 @@ func init() {
 	image_metadef_objectCmd.AddCommand(image_metadef_object_createCmd)
 
 	carapace.Gen(image_metadef_object_createCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("image", "metadef", "object", "list"),
+		"column": action.ActionColumns(image_metadef_object_createCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 

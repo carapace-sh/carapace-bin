@@ -50,7 +50,7 @@ func init() {
 	vpn_ipsec_site_connectionCmd.AddCommand(vpn_ipsec_site_connection_createCmd)
 
 	carapace.Gen(vpn_ipsec_site_connection_createCmd).FlagCompletion(carapace.ActionMap{
-		"column":         action.ActionColumns("vpn", "ipsec", "site", "connection", "list"),
+		"column":         action.ActionColumns(vpn_ipsec_site_connection_createCmd),
 		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 		"initiator":      carapace.ActionValues("bi-directional", "response-only"),
 		"project":        action.ActionProjects(),

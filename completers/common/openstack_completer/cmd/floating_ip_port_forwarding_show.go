@@ -26,7 +26,7 @@ func init() {
 	floating_ip_port_forwardingCmd.AddCommand(floating_ip_port_forwarding_showCmd)
 
 	carapace.Gen(floating_ip_port_forwarding_showCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("floating", "ip", "port", "forwarding", "list"),
+		"column": action.ActionColumns(floating_ip_port_forwarding_showCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 

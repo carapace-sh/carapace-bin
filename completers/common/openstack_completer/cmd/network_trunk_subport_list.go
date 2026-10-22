@@ -28,10 +28,10 @@ func init() {
 	network_trunk_subportCmd.AddCommand(network_trunk_subport_listCmd)
 
 	carapace.Gen(network_trunk_subport_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("network", "trunk", "subport", "list"),
+		"column":      action.ActionColumns(network_trunk_subport_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("network", "trunk", "subport", "list"),
+		"sort-column": action.ActionColumns(network_trunk_subport_listCmd),
 	})
 
 	carapace.Gen(network_trunk_subport_listCmd).PositionalCompletion(action.ActionNetworkTrunks())

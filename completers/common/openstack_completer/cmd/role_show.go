@@ -27,7 +27,7 @@ func init() {
 	roleCmd.AddCommand(role_showCmd)
 
 	carapace.Gen(role_showCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("role", "list"),
+		"column": action.ActionColumns(role_showCmd),
 		"domain": action.ActionDomains(),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})

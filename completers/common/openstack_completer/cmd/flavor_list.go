@@ -37,9 +37,9 @@ func init() {
 	flavorCmd.AddCommand(flavor_listCmd)
 
 	carapace.Gen(flavor_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("flavor", "list"),
+		"column":      action.ActionColumns(flavor_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("flavor", "list"),
+		"sort-column": action.ActionColumns(flavor_listCmd),
 	})
 }

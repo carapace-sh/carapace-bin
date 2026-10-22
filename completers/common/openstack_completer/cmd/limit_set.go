@@ -28,7 +28,7 @@ func init() {
 	limitCmd.AddCommand(limit_setCmd)
 
 	carapace.Gen(limit_setCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("limit", "list"),
+		"column": action.ActionColumns(limit_setCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 

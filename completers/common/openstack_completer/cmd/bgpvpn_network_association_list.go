@@ -30,9 +30,9 @@ func init() {
 	bgpvpn_network_associationCmd.AddCommand(bgpvpn_network_association_listCmd)
 
 	carapace.Gen(bgpvpn_network_association_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("bgpvpn", "network", "association", "list"),
+		"column":      action.ActionColumns(bgpvpn_network_association_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("bgpvpn", "network", "association", "list"),
+		"sort-column": action.ActionColumns(bgpvpn_network_association_listCmd),
 	})
 }

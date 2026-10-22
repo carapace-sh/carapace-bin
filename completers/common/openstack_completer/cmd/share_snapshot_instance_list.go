@@ -30,10 +30,10 @@ func init() {
 	share_snapshot_instanceCmd.AddCommand(share_snapshot_instance_listCmd)
 
 	carapace.Gen(share_snapshot_instance_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("share", "snapshot", "instance", "list"),
+		"column":      action.ActionColumns(share_snapshot_instance_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
 		"snapshot":    action.ActionShareSnapshotIDs(),
-		"sort-column": action.ActionColumns("share", "snapshot", "instance", "list"),
+		"sort-column": action.ActionColumns(share_snapshot_instance_listCmd),
 	})
 }

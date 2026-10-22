@@ -28,9 +28,9 @@ func init() {
 	share_snapshot_export_locationCmd.AddCommand(share_snapshot_export_location_listCmd)
 
 	carapace.Gen(share_snapshot_export_location_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("share", "snapshot", "export", "location", "list"),
+		"column":      action.ActionColumns(share_snapshot_export_location_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("share", "snapshot", "export", "location", "list"),
+		"sort-column": action.ActionColumns(share_snapshot_export_location_listCmd),
 	})
 }

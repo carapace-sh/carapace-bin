@@ -44,7 +44,7 @@ func init() {
 
 	carapace.Gen(subnet_pool_createCmd).FlagCompletion(carapace.ActionMap{
 		"address-scope":  action.ActionAddressScopes(),
-		"column":         action.ActionColumns("subnet", "pool", "list"),
+		"column":         action.ActionColumns(subnet_pool_createCmd),
 		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 		"project":        action.ActionProjects(),
 		"project-domain": action.ActionDomains(),

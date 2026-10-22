@@ -26,7 +26,7 @@ func init() {
 	security_group_default_statefulnessCmd.AddCommand(security_group_default_statefulness_showCmd)
 
 	carapace.Gen(security_group_default_statefulness_showCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("security", "group", "default", "statefulness", "list"),
+		"column": action.ActionColumns(security_group_default_statefulness_showCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 }

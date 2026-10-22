@@ -26,7 +26,7 @@ func init() {
 	address_groupCmd.AddCommand(address_group_showCmd)
 
 	carapace.Gen(address_group_showCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("address", "group", "list"),
+		"column": action.ActionColumns(address_group_showCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 

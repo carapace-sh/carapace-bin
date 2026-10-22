@@ -26,7 +26,7 @@ func init() {
 	access_ruleCmd.AddCommand(access_rule_showCmd)
 
 	carapace.Gen(access_rule_showCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("access", "rule", "list"),
+		"column": action.ActionColumns(access_rule_showCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 }

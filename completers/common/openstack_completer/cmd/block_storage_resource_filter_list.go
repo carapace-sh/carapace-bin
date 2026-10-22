@@ -28,9 +28,9 @@ func init() {
 	block_storage_resource_filterCmd.AddCommand(block_storage_resource_filter_listCmd)
 
 	carapace.Gen(block_storage_resource_filter_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("block", "storage", "resource", "filter", "list"),
+		"column":      action.ActionColumns(block_storage_resource_filter_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("block", "storage", "resource", "filter", "list"),
+		"sort-column": action.ActionColumns(block_storage_resource_filter_listCmd),
 	})
 }

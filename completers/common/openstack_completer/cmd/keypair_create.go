@@ -31,7 +31,7 @@ func init() {
 	keypairCmd.AddCommand(keypair_createCmd)
 
 	carapace.Gen(keypair_createCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("keypair", "list"),
+		"column":      action.ActionColumns(keypair_createCmd),
 		"format":      carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 		"public-key":  carapace.ActionFiles(),
 		"type":        carapace.ActionValues("ssh", "x509"),

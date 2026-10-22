@@ -28,7 +28,7 @@ func init() {
 	implied_roleCmd.AddCommand(implied_role_createCmd)
 
 	carapace.Gen(implied_role_createCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("implied", "role", "list"),
+		"column": action.ActionColumns(implied_role_createCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 }

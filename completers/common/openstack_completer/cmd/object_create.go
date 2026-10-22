@@ -29,10 +29,10 @@ func init() {
 	objectCmd.AddCommand(object_createCmd)
 
 	carapace.Gen(object_createCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("object", "list"),
+		"column":      action.ActionColumns(object_createCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("object", "list"),
+		"sort-column": action.ActionColumns(object_createCmd),
 	})
 
 	carapace.Gen(object_createCmd).PositionalCompletion(

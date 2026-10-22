@@ -33,11 +33,11 @@ func init() {
 	extensionCmd.AddCommand(extension_listCmd)
 
 	carapace.Gen(extension_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("extension", "list"),
+		"column":      action.ActionColumns(extension_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"network":     action.ActionNetworks(),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("extension", "list"),
+		"sort-column": action.ActionColumns(extension_listCmd),
 		"volume":      action.ActionVolumes(),
 	})
 }

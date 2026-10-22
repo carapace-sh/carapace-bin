@@ -26,7 +26,7 @@ func init() {
 	service_providerCmd.AddCommand(service_provider_showCmd)
 
 	carapace.Gen(service_provider_showCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("service", "provider", "list"),
+		"column": action.ActionColumns(service_provider_showCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 }

@@ -33,12 +33,12 @@ func init() {
 	limitCmd.AddCommand(limit_listCmd)
 
 	carapace.Gen(limit_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":         action.ActionColumns("limit", "list"),
+		"column":         action.ActionColumns(limit_listCmd),
 		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"project":        action.ActionProjects(),
 		"project-domain": action.ActionDomains(),
 		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
 		"region":         action.ActionRegions(),
-		"sort-column":    action.ActionColumns("limit", "list"),
+		"sort-column":    action.ActionColumns(limit_listCmd),
 	})
 }

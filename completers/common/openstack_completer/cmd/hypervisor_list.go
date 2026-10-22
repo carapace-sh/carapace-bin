@@ -33,9 +33,9 @@ func init() {
 	hypervisorCmd.AddCommand(hypervisor_listCmd)
 
 	carapace.Gen(hypervisor_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("hypervisor", "list"),
+		"column":      action.ActionColumns(hypervisor_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("hypervisor", "list"),
+		"sort-column": action.ActionColumns(hypervisor_listCmd),
 	})
 }

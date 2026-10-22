@@ -28,7 +28,7 @@ func init() {
 	consistency_group_snapshotCmd.AddCommand(consistency_group_snapshot_createCmd)
 
 	carapace.Gen(consistency_group_snapshot_createCmd).FlagCompletion(carapace.ActionMap{
-		"column":            action.ActionColumns("consistency", "group", "snapshot", "list"),
+		"column":            action.ActionColumns(consistency_group_snapshot_createCmd),
 		"consistency-group": action.ActionConsistencyGroups(),
 		"format":            carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})

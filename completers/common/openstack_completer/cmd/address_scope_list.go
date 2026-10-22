@@ -37,12 +37,12 @@ func init() {
 	address_scopeCmd.AddCommand(address_scope_listCmd)
 
 	carapace.Gen(address_scope_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":         action.ActionColumns("address", "scope", "list"),
+		"column":         action.ActionColumns(address_scope_listCmd),
 		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"ip-version":     carapace.ActionValues("4", "6"),
 		"project":        action.ActionProjects(),
 		"project-domain": action.ActionDomains(),
 		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column":    action.ActionColumns("address", "scope", "list"),
+		"sort-column":    action.ActionColumns(address_scope_listCmd),
 	})
 }

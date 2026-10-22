@@ -36,7 +36,7 @@ func init() {
 
 	carapace.Gen(vpn_ipsec_policy_createCmd).FlagCompletion(carapace.ActionMap{
 		"auth-algorithm":       carapace.ActionValues("sha1", "sha256", "sha384", "sha512", "aes-xcbc", "aes-cmac"),
-		"column":               action.ActionColumns("vpn", "ipsec", "policy", "list"),
+		"column":               action.ActionColumns(vpn_ipsec_policy_createCmd),
 		"encapsulation-mode":   carapace.ActionValues("tunnel", "transport"),
 		"encryption-algorithm": carapace.ActionValues("3des", "aes-128", "aes-192", "aes-256", "aes-128-ccm-8", "aes-192-ccm-8", "aes-256-ccm-8", "aes-128-ccm-12", "aes-192-ccm-12", "aes-256-ccm-12", "aes-128-ccm-16", "aes-192-ccm-16", "aes-256-ccm-16", "aes-128-gcm-8", "aes-192-gcm-8", "aes-256-gcm-8", "aes-128-gcm-12", "aes-192-gcm-12", "aes-256-gcm-12", "aes-128-gcm-16", "aes-192-gcm-16", "aes-256-gcm-16", "aes-128-ctr", "aes-192-ctr", "aes-256-ctr"),
 		"format":               carapace.ActionValues("json", "shell", "table", "value", "yaml"),

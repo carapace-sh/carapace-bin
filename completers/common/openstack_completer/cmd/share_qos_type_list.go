@@ -38,10 +38,10 @@ func init() {
 	share_qos_typeCmd.AddCommand(share_qos_type_listCmd)
 
 	carapace.Gen(share_qos_type_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("share", "qos", "type", "list"),
+		"column":      action.ActionColumns(share_qos_type_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("share", "qos", "type", "list"),
+		"sort-column": action.ActionColumns(share_qos_type_listCmd),
 		"sort-dir":    carapace.ActionValues("asc", "desc"),
 		"sort-key":    carapace.ActionValues("id", "name", "created_at", "updated_at"),
 		"sort_dir":    carapace.ActionValues("asc", "desc"),

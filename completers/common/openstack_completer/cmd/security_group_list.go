@@ -39,11 +39,11 @@ func init() {
 	security_groupCmd.AddCommand(security_group_listCmd)
 
 	carapace.Gen(security_group_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":         action.ActionColumns("security", "group", "list"),
+		"column":         action.ActionColumns(security_group_listCmd),
 		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"project":        action.ActionProjects(),
 		"project-domain": action.ActionDomains(),
 		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column":    action.ActionColumns("security", "group", "list"),
+		"sort-column":    action.ActionColumns(security_group_listCmd),
 	})
 }

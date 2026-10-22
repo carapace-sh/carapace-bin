@@ -29,9 +29,9 @@ func init() {
 	accelerator_device_profileCmd.AddCommand(accelerator_device_profile_listCmd)
 
 	carapace.Gen(accelerator_device_profile_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("accelerator", "device", "profile", "list"),
+		"column":      action.ActionColumns(accelerator_device_profile_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("accelerator", "device", "profile", "list"),
+		"sort-column": action.ActionColumns(accelerator_device_profile_listCmd),
 	})
 }

@@ -34,7 +34,7 @@ func init() {
 	image_metadef_propertyCmd.AddCommand(image_metadef_property_createCmd)
 
 	carapace.Gen(image_metadef_property_createCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("image", "metadef", "property", "list"),
+		"column": action.ActionColumns(image_metadef_property_createCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 

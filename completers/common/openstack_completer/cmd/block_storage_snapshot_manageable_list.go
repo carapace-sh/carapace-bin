@@ -35,9 +35,9 @@ func init() {
 	block_storage_snapshot_manageableCmd.AddCommand(block_storage_snapshot_manageable_listCmd)
 
 	carapace.Gen(block_storage_snapshot_manageable_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("block", "storage", "snapshot", "manageable", "list"),
+		"column":      action.ActionColumns(block_storage_snapshot_manageable_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("block", "storage", "snapshot", "manageable", "list"),
+		"sort-column": action.ActionColumns(block_storage_snapshot_manageable_listCmd),
 	})
 }

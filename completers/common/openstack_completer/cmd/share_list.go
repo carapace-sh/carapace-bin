@@ -55,7 +55,7 @@ func init() {
 
 	carapace.Gen(share_listCmd).FlagCompletion(carapace.ActionMap{
 		"availability-zone": action.ActionAvailabilityZones(),
-		"column":            action.ActionColumns("share", "list"),
+		"column":            action.ActionColumns(share_listCmd),
 		"format":            carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"project":           action.ActionProjects(),
 		"project-domain":    action.ActionDomains(),
@@ -65,7 +65,7 @@ func init() {
 		"share-server":      action.ActionShareServers(),
 		"share-type":        action.ActionShareTypes(),
 		"snapshot":          action.ActionShareSnapshots(),
-		"sort-column":       action.ActionColumns("share", "list"),
+		"sort-column":       action.ActionColumns(share_listCmd),
 		"status":            carapace.ActionValues("available", "creating", "creating_from_snapshot", "deleting", "deleted", "error", "error_deleting", "manage_starting", "manage_error", "unmanage_starting", "unmanage_error", "extending", "extending_error", "shrinking", "shrinking_error", "reverting", "reverting_error", "awaiting_transfer", "replication_change", "server_migrating"),
 		"user":              action.ActionUsers(),
 		"user-domain":       action.ActionDomains(),

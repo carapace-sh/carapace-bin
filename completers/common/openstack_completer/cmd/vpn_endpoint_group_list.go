@@ -29,9 +29,9 @@ func init() {
 	vpn_endpoint_groupCmd.AddCommand(vpn_endpoint_group_listCmd)
 
 	carapace.Gen(vpn_endpoint_group_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("vpn", "endpoint", "group", "list"),
+		"column":      action.ActionColumns(vpn_endpoint_group_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("vpn", "endpoint", "group", "list"),
+		"sort-column": action.ActionColumns(vpn_endpoint_group_listCmd),
 	})
 }

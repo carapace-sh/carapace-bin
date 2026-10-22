@@ -36,10 +36,10 @@ func init() {
 
 	carapace.Gen(network_rbac_listCmd).FlagCompletion(carapace.ActionMap{
 		"action":         carapace.ActionValues("access_as_external", "access_as_shared"),
-		"column":         action.ActionColumns("network", "rbac", "list"),
+		"column":         action.ActionColumns(network_rbac_listCmd),
 		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column":    action.ActionColumns("network", "rbac", "list"),
+		"sort-column":    action.ActionColumns(network_rbac_listCmd),
 		"target-project": action.ActionProjects(),
 		"type":           carapace.ActionValues("address_group", "address_scope", "security_group", "subnetpool", "qos_policy", "network"),
 	})

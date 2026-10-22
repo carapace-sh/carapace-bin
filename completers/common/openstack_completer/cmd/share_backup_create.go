@@ -29,7 +29,7 @@ func init() {
 	share_backupCmd.AddCommand(share_backup_createCmd)
 
 	carapace.Gen(share_backup_createCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("share", "backup", "list"),
+		"column": action.ActionColumns(share_backup_createCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 }

@@ -52,13 +52,13 @@ func init() {
 	networkCmd.AddCommand(network_listCmd)
 
 	carapace.Gen(network_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":                action.ActionColumns("network", "list"),
+		"column":                action.ActionColumns(network_listCmd),
 		"format":                carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"project":               action.ActionProjects(),
 		"project-domain":        action.ActionDomains(),
 		"provider-network-type": carapace.ActionValues("flat", "geneve", "gre", "local", "vlan", "vxlan"),
 		"quote":                 carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column":           action.ActionColumns("network", "list"),
+		"sort-column":           action.ActionColumns(network_listCmd),
 		"status":                carapace.ActionValues("ACTIVE", "BUILD", "DOWN", "ERROR"),
 	})
 }

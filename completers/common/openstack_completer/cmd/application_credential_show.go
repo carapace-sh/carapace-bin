@@ -26,7 +26,7 @@ func init() {
 	application_credentialCmd.AddCommand(application_credential_showCmd)
 
 	carapace.Gen(application_credential_showCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("application", "credential", "list"),
+		"column": action.ActionColumns(application_credential_showCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 

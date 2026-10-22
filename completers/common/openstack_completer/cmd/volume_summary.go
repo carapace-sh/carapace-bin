@@ -27,7 +27,7 @@ func init() {
 	volumeCmd.AddCommand(volume_summaryCmd)
 
 	carapace.Gen(volume_summaryCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("volume", "list"),
+		"column": action.ActionColumns(volume_summaryCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 }

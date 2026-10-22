@@ -37,9 +37,9 @@ func init() {
 	block_storage_clusterCmd.AddCommand(block_storage_cluster_listCmd)
 
 	carapace.Gen(block_storage_cluster_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("block", "storage", "cluster", "list"),
+		"column":      action.ActionColumns(block_storage_cluster_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("block", "storage", "cluster", "list"),
+		"sort-column": action.ActionColumns(block_storage_cluster_listCmd),
 	})
 }

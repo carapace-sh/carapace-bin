@@ -40,7 +40,7 @@ func init() {
 	firewall_groupCmd.AddCommand(firewall_group_createCmd)
 
 	carapace.Gen(firewall_group_createCmd).FlagCompletion(carapace.ActionMap{
-		"column":         action.ActionColumns("firewall", "group", "list"),
+		"column":         action.ActionColumns(firewall_group_createCmd),
 		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 		"port":           action.ActionPorts(),
 		"project":        action.ActionProjects(),

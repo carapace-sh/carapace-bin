@@ -31,7 +31,7 @@ func init() {
 	volume_snapshotCmd.AddCommand(volume_snapshot_createCmd)
 
 	carapace.Gen(volume_snapshot_createCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("volume", "snapshot", "list"),
+		"column": action.ActionColumns(volume_snapshot_createCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 		"volume": action.ActionVolumes(),
 	})

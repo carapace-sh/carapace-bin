@@ -36,7 +36,7 @@ func init() {
 	imageCmd.AddCommand(image_importCmd)
 
 	carapace.Gen(image_importCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("image", "list"),
+		"column": action.ActionColumns(image_importCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 		"method": carapace.ActionValues("glance-direct", "web-download", "glance-download", "copy-image"),
 	})

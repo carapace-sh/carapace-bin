@@ -30,9 +30,9 @@ func init() {
 	federation_protocolCmd.AddCommand(federation_protocol_listCmd)
 
 	carapace.Gen(federation_protocol_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("federation", "protocol", "list"),
+		"column":      action.ActionColumns(federation_protocol_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("federation", "protocol", "list"),
+		"sort-column": action.ActionColumns(federation_protocol_listCmd),
 	})
 }

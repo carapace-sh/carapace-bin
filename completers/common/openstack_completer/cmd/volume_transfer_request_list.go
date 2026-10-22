@@ -29,9 +29,9 @@ func init() {
 	volume_transfer_requestCmd.AddCommand(volume_transfer_request_listCmd)
 
 	carapace.Gen(volume_transfer_request_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("volume", "transfer", "request", "list"),
+		"column":      action.ActionColumns(volume_transfer_request_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("volume", "transfer", "request", "list"),
+		"sort-column": action.ActionColumns(volume_transfer_request_listCmd),
 	})
 }

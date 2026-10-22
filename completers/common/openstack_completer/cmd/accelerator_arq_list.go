@@ -29,9 +29,9 @@ func init() {
 	accelerator_arqCmd.AddCommand(accelerator_arq_listCmd)
 
 	carapace.Gen(accelerator_arq_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("accelerator", "arq", "list"),
+		"column":      action.ActionColumns(accelerator_arq_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("accelerator", "arq", "list"),
+		"sort-column": action.ActionColumns(accelerator_arq_listCmd),
 	})
 }

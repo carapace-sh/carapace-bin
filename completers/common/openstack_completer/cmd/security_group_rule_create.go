@@ -40,7 +40,7 @@ func init() {
 	security_group_ruleCmd.AddCommand(security_group_rule_createCmd)
 
 	carapace.Gen(security_group_rule_createCmd).FlagCompletion(carapace.ActionMap{
-		"column":         action.ActionColumns("security", "group", "rule", "list"),
+		"column":         action.ActionColumns(security_group_rule_createCmd),
 		"ethertype":      carapace.ActionValues("IPv4", "IPv6"),
 		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 		"project":        action.ActionProjects(),

@@ -55,7 +55,7 @@ func init() {
 
 	carapace.Gen(router_createCmd).FlagCompletion(carapace.ActionMap{
 		"availability-zone-hint": action.ActionAvailabilityZones(),
-		"column":                 action.ActionColumns("router", "list"),
+		"column":                 action.ActionColumns(router_createCmd),
 		"flavor":                 action.ActionFlavors(),
 		"format":                 carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 		"project":                action.ActionProjects(),

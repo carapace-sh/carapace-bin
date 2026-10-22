@@ -28,10 +28,10 @@ func init() {
 	image_metadef_resource_type_associationCmd.AddCommand(image_metadef_resource_type_association_listCmd)
 
 	carapace.Gen(image_metadef_resource_type_association_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("image", "metadef", "resource", "type", "association", "list"),
+		"column":      action.ActionColumns(image_metadef_resource_type_association_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("image", "metadef", "resource", "type", "association", "list"),
+		"sort-column": action.ActionColumns(image_metadef_resource_type_association_listCmd),
 	})
 
 	carapace.Gen(image_metadef_resource_type_association_listCmd).PositionalCompletion(

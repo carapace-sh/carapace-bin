@@ -37,13 +37,13 @@ func init() {
 	volume_attachmentCmd.AddCommand(volume_attachment_listCmd)
 
 	carapace.Gen(volume_attachment_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":         action.ActionColumns("volume", "attachment", "list"),
+		"column":         action.ActionColumns(volume_attachment_listCmd),
 		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"project":        action.ActionProjects(),
 		"project-domain": action.ActionDomains(),
 		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
 		"server-id":      action.ActionServerIDs(),
-		"sort-column":    action.ActionColumns("volume", "attachment", "list"),
+		"sort-column":    action.ActionColumns(volume_attachment_listCmd),
 		"volume-id":      action.ActionVolumeIDs(),
 	})
 }

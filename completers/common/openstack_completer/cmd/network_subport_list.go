@@ -30,9 +30,9 @@ func init() {
 	network_subportCmd.AddCommand(network_subport_listCmd)
 
 	carapace.Gen(network_subport_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("network", "subport", "list"),
+		"column":      action.ActionColumns(network_subport_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("network", "subport", "list"),
+		"sort-column": action.ActionColumns(network_subport_listCmd),
 	})
 }

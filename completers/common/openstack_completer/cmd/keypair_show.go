@@ -29,7 +29,7 @@ func init() {
 	keypairCmd.AddCommand(keypair_showCmd)
 
 	carapace.Gen(keypair_showCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("keypair", "list"),
+		"column":      action.ActionColumns(keypair_showCmd),
 		"format":      carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 		"public-key":  carapace.ActionFiles(),
 		"user":        action.ActionUsers(),

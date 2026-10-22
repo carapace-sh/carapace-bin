@@ -29,9 +29,9 @@ func init() {
 	vpn_ipsec_policyCmd.AddCommand(vpn_ipsec_policy_listCmd)
 
 	carapace.Gen(vpn_ipsec_policy_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("vpn", "ipsec", "policy", "list"),
+		"column":      action.ActionColumns(vpn_ipsec_policy_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("vpn", "ipsec", "policy", "list"),
+		"sort-column": action.ActionColumns(vpn_ipsec_policy_listCmd),
 	})
 }

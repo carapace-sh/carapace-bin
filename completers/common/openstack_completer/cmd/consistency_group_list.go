@@ -30,9 +30,9 @@ func init() {
 	consistency_groupCmd.AddCommand(consistency_group_listCmd)
 
 	carapace.Gen(consistency_group_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("consistency", "group", "list"),
+		"column":      action.ActionColumns(consistency_group_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("consistency", "group", "list"),
+		"sort-column": action.ActionColumns(consistency_group_listCmd),
 	})
 }

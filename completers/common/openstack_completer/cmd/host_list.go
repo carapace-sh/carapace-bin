@@ -29,9 +29,9 @@ func init() {
 	hostCmd.AddCommand(host_listCmd)
 
 	carapace.Gen(host_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("host", "list"),
+		"column":      action.ActionColumns(host_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("host", "list"),
+		"sort-column": action.ActionColumns(host_listCmd),
 	})
 }

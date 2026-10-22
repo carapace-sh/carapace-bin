@@ -44,10 +44,10 @@ func init() {
 	share_transferCmd.AddCommand(share_transfer_listCmd)
 
 	carapace.Gen(share_transfer_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("share", "transfer", "list"),
+		"column":      action.ActionColumns(share_transfer_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("share", "transfer", "list"),
+		"sort-column": action.ActionColumns(share_transfer_listCmd),
 		"sort-dir":    carapace.ActionValues("asc", "desc"),
 		"sort-key":    carapace.ActionValues("id", "resource_type", "resource_id", "name", "source_project_id", "destination_project_id", "created_at", "expires_at"),
 		"sort_dir":    carapace.ActionValues("asc", "desc"),

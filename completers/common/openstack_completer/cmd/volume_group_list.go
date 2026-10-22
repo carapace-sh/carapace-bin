@@ -29,9 +29,9 @@ func init() {
 	volume_groupCmd.AddCommand(volume_group_listCmd)
 
 	carapace.Gen(volume_group_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("volume", "group", "list"),
+		"column":      action.ActionColumns(volume_group_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("volume", "group", "list"),
+		"sort-column": action.ActionColumns(volume_group_listCmd),
 	})
 }

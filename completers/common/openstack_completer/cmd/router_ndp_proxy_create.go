@@ -31,7 +31,7 @@ func init() {
 	router_ndp_proxyCmd.AddCommand(router_ndp_proxy_createCmd)
 
 	carapace.Gen(router_ndp_proxy_createCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("router", "ndp", "proxy", "list"),
+		"column": action.ActionColumns(router_ndp_proxy_createCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 		"port":   action.ActionPorts(),
 	})

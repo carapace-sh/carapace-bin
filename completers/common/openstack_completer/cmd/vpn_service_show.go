@@ -26,7 +26,7 @@ func init() {
 	vpn_serviceCmd.AddCommand(vpn_service_showCmd)
 
 	carapace.Gen(vpn_service_showCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("vpn", "service", "list"),
+		"column": action.ActionColumns(vpn_service_showCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 }

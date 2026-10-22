@@ -26,7 +26,7 @@ func init() {
 	hypervisorCmd.AddCommand(hypervisor_showCmd)
 
 	carapace.Gen(hypervisor_showCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("hypervisor", "list"),
+		"column": action.ActionColumns(hypervisor_showCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 

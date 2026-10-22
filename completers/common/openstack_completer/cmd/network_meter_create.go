@@ -32,7 +32,7 @@ func init() {
 	network_meterCmd.AddCommand(network_meter_createCmd)
 
 	carapace.Gen(network_meter_createCmd).FlagCompletion(carapace.ActionMap{
-		"column":         action.ActionColumns("network", "meter", "list"),
+		"column":         action.ActionColumns(network_meter_createCmd),
 		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 		"project":        action.ActionProjects(),
 		"project-domain": action.ActionDomains(),

@@ -28,7 +28,7 @@ func init() {
 	aggregateCmd.AddCommand(aggregate_createCmd)
 
 	carapace.Gen(aggregate_createCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("aggregate", "list"),
+		"column": action.ActionColumns(aggregate_createCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 }

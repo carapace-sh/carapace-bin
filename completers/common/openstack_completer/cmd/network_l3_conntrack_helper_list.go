@@ -34,10 +34,10 @@ func init() {
 	network_l3_conntrack_helperCmd.AddCommand(network_l3_conntrack_helper_listCmd)
 
 	carapace.Gen(network_l3_conntrack_helper_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("network", "l3", "conntrack", "helper", "list"),
+		"column":      action.ActionColumns(network_l3_conntrack_helper_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"port":        action.ActionPorts(),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("network", "l3", "conntrack", "helper", "list"),
+		"sort-column": action.ActionColumns(network_l3_conntrack_helper_listCmd),
 	})
 }

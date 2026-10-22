@@ -32,7 +32,7 @@ func init() {
 	network_l3_conntrack_helperCmd.AddCommand(network_l3_conntrack_helper_createCmd)
 
 	carapace.Gen(network_l3_conntrack_helper_createCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("network", "l3", "conntrack", "helper", "list"),
+		"column": action.ActionColumns(network_l3_conntrack_helper_createCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 		"port":   action.ActionPorts(),
 	})

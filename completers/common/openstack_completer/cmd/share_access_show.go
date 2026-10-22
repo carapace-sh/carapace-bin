@@ -26,7 +26,7 @@ func init() {
 	share_accessCmd.AddCommand(share_access_showCmd)
 
 	carapace.Gen(share_access_showCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("share", "access", "list"),
+		"column": action.ActionColumns(share_access_showCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 }

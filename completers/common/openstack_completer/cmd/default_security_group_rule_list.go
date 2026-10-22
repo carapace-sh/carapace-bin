@@ -32,9 +32,9 @@ func init() {
 	default_security_group_ruleCmd.AddCommand(default_security_group_rule_listCmd)
 
 	carapace.Gen(default_security_group_rule_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("default", "security", "group", "rule", "list"),
+		"column":      action.ActionColumns(default_security_group_rule_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("default", "security", "group", "rule", "list"),
+		"sort-column": action.ActionColumns(default_security_group_rule_listCmd),
 	})
 }

@@ -26,7 +26,7 @@ func init() {
 	address_scopeCmd.AddCommand(address_scope_showCmd)
 
 	carapace.Gen(address_scope_showCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("address", "scope", "list"),
+		"column": action.ActionColumns(address_scope_showCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 

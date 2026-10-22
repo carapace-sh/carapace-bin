@@ -26,7 +26,7 @@ func init() {
 	share_snapshot_instanceCmd.AddCommand(share_snapshot_instance_showCmd)
 
 	carapace.Gen(share_snapshot_instance_showCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("share", "snapshot", "instance", "list"),
+		"column": action.ActionColumns(share_snapshot_instance_showCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 }

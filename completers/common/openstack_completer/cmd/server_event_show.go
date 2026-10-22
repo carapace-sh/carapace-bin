@@ -26,7 +26,7 @@ func init() {
 	server_eventCmd.AddCommand(server_event_showCmd)
 
 	carapace.Gen(server_event_showCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("server", "event", "list"),
+		"column": action.ActionColumns(server_event_showCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 

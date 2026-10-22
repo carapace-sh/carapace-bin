@@ -26,7 +26,7 @@ func init() {
 	image_taskCmd.AddCommand(image_task_showCmd)
 
 	carapace.Gen(image_task_showCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("image", "task", "list"),
+		"column": action.ActionColumns(image_task_showCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 

@@ -26,7 +26,7 @@ func init() {
 	containerCmd.AddCommand(container_showCmd)
 
 	carapace.Gen(container_showCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("container", "list"),
+		"column": action.ActionColumns(container_showCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 

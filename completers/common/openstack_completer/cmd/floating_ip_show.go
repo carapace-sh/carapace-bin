@@ -26,7 +26,7 @@ func init() {
 	floating_ipCmd.AddCommand(floating_ip_showCmd)
 
 	carapace.Gen(floating_ip_showCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("floating", "ip", "list"),
+		"column": action.ActionColumns(floating_ip_showCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 

@@ -26,7 +26,7 @@ func init() {
 	server_groupCmd.AddCommand(server_group_showCmd)
 
 	carapace.Gen(server_group_showCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("server", "group", "list"),
+		"column": action.ActionColumns(server_group_showCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 

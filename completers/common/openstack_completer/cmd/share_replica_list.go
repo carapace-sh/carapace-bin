@@ -30,10 +30,10 @@ func init() {
 	share_replicaCmd.AddCommand(share_replica_listCmd)
 
 	carapace.Gen(share_replica_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("share", "replica", "list"),
+		"column":      action.ActionColumns(share_replica_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
 		"share":       action.ActionShares(),
-		"sort-column": action.ActionColumns("share", "replica", "list"),
+		"sort-column": action.ActionColumns(share_replica_listCmd),
 	})
 }

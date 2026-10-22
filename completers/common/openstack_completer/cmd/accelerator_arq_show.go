@@ -26,7 +26,7 @@ func init() {
 	accelerator_arqCmd.AddCommand(accelerator_arq_showCmd)
 
 	carapace.Gen(accelerator_arq_showCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("accelerator", "arq", "list"),
+		"column": action.ActionColumns(accelerator_arq_showCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 

@@ -26,7 +26,7 @@ func init() {
 	consistency_groupCmd.AddCommand(consistency_group_showCmd)
 
 	carapace.Gen(consistency_group_showCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("consistency", "group", "list"),
+		"column": action.ActionColumns(consistency_group_showCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 

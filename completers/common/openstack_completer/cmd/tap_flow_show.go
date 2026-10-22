@@ -26,7 +26,7 @@ func init() {
 	tap_flowCmd.AddCommand(tap_flow_showCmd)
 
 	carapace.Gen(tap_flow_showCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("tap", "flow", "list"),
+		"column": action.ActionColumns(tap_flow_showCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 }

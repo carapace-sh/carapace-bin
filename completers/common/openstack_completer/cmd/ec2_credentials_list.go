@@ -30,10 +30,10 @@ func init() {
 	ec2_credentialsCmd.AddCommand(ec2_credentials_listCmd)
 
 	carapace.Gen(ec2_credentials_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("ec2", "credentials", "list"),
+		"column":      action.ActionColumns(ec2_credentials_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("ec2", "credentials", "list"),
+		"sort-column": action.ActionColumns(ec2_credentials_listCmd),
 		"user":        action.ActionUsers(),
 		"user-domain": action.ActionDomains(),
 	})

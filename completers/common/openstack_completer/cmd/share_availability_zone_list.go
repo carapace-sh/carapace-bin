@@ -28,9 +28,9 @@ func init() {
 	share_availability_zoneCmd.AddCommand(share_availability_zone_listCmd)
 
 	carapace.Gen(share_availability_zone_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("share", "availability", "zone", "list"),
+		"column":      action.ActionColumns(share_availability_zone_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("share", "availability", "zone", "list"),
+		"sort-column": action.ActionColumns(share_availability_zone_listCmd),
 	})
 }

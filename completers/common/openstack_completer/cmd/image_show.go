@@ -27,7 +27,7 @@ func init() {
 	imageCmd.AddCommand(image_showCmd)
 
 	carapace.Gen(image_showCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("image", "list"),
+		"column": action.ActionColumns(image_showCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 

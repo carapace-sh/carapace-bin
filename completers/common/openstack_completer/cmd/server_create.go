@@ -67,7 +67,7 @@ func init() {
 	carapace.Gen(server_createCmd).FlagCompletion(carapace.ActionMap{
 		"availability-zone": action.ActionAvailabilityZones(),
 		"block-device":      carapace.ActionFiles(),
-		"column":            action.ActionColumns("server", "list"),
+		"column":            action.ActionColumns(server_createCmd),
 		"file":              carapace.ActionFiles(),
 		"flavor":            action.ActionFlavors(),
 		"format":            carapace.ActionValues("json", "shell", "table", "value", "yaml"),

@@ -31,10 +31,10 @@ func init() {
 	block_storage_log_levelCmd.AddCommand(block_storage_log_level_listCmd)
 
 	carapace.Gen(block_storage_log_level_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("block", "storage", "log", "level", "list"),
+		"column":      action.ActionColumns(block_storage_log_level_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
 		"service":     carapace.ActionValues("None", "*", "cinder-api", "cinder-volume", "cinder-scheduler", "cinder-backup"),
-		"sort-column": action.ActionColumns("block", "storage", "log", "level", "list"),
+		"sort-column": action.ActionColumns(block_storage_log_level_listCmd),
 	})
 }

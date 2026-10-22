@@ -26,7 +26,7 @@ func init() {
 	accelerator_device_attributeCmd.AddCommand(accelerator_device_attribute_showCmd)
 
 	carapace.Gen(accelerator_device_attribute_showCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("accelerator", "device", "attribute", "list"),
+		"column": action.ActionColumns(accelerator_device_attribute_showCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 }

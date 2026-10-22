@@ -41,11 +41,11 @@ func init() {
 	share_backupCmd.AddCommand(share_backup_listCmd)
 
 	carapace.Gen(share_backup_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("share", "backup", "list"),
+		"column":      action.ActionColumns(share_backup_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
 		"share":       action.ActionShares(),
-		"sort-column": action.ActionColumns("share", "backup", "list"),
+		"sort-column": action.ActionColumns(share_backup_listCmd),
 		"sort-dir":    carapace.ActionValues("asc", "desc"),
 		"sort-key":    carapace.ActionValues("id", "status", "size", "share_id", "progress", "restore_progress", "name", "host", "topic", "project_id"),
 		"sort_dir":    carapace.ActionValues("asc", "desc"),

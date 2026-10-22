@@ -26,7 +26,7 @@ func init() {
 	share_messageCmd.AddCommand(share_message_showCmd)
 
 	carapace.Gen(share_message_showCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("share", "message", "list"),
+		"column": action.ActionColumns(share_message_showCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 

@@ -27,7 +27,7 @@ func init() {
 	share_transferCmd.AddCommand(share_transfer_createCmd)
 
 	carapace.Gen(share_transfer_createCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("share", "transfer", "list"),
+		"column": action.ActionColumns(share_transfer_createCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 }

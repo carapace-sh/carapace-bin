@@ -35,7 +35,7 @@ func init() {
 	share_security_serviceCmd.AddCommand(share_security_service_createCmd)
 
 	carapace.Gen(share_security_service_createCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("share", "security", "service", "list"),
+		"column": action.ActionColumns(share_security_service_createCmd),
 		"domain": action.ActionDomains(),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 		"server": action.ActionServers(),

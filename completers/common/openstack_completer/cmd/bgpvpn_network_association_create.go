@@ -28,7 +28,7 @@ func init() {
 	bgpvpn_network_associationCmd.AddCommand(bgpvpn_network_association_createCmd)
 
 	carapace.Gen(bgpvpn_network_association_createCmd).FlagCompletion(carapace.ActionMap{
-		"column":         action.ActionColumns("bgpvpn", "network", "association", "list"),
+		"column":         action.ActionColumns(bgpvpn_network_association_createCmd),
 		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 		"project":        action.ActionProjects(),
 		"project-domain": action.ActionDomains(),

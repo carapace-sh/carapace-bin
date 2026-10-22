@@ -28,9 +28,9 @@ func init() {
 	network_qos_ruleCmd.AddCommand(network_qos_rule_listCmd)
 
 	carapace.Gen(network_qos_rule_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("network", "qos", "rule", "list"),
+		"column":      action.ActionColumns(network_qos_rule_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("network", "qos", "rule", "list"),
+		"sort-column": action.ActionColumns(network_qos_rule_listCmd),
 	})
 }

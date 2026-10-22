@@ -47,7 +47,7 @@ func init() {
 	userCmd.AddCommand(user_createCmd)
 
 	carapace.Gen(user_createCmd).FlagCompletion(carapace.ActionMap{
-		"column":         action.ActionColumns("user", "list"),
+		"column":         action.ActionColumns(user_createCmd),
 		"domain":         action.ActionDomains(),
 		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 		"project":        action.ActionProjects(),

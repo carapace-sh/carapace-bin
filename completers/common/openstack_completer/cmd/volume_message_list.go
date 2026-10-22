@@ -32,11 +32,11 @@ func init() {
 	volume_messageCmd.AddCommand(volume_message_listCmd)
 
 	carapace.Gen(volume_message_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":         action.ActionColumns("volume", "message", "list"),
+		"column":         action.ActionColumns(volume_message_listCmd),
 		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"project":        action.ActionProjects(),
 		"project-domain": action.ActionDomains(),
 		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column":    action.ActionColumns("volume", "message", "list"),
+		"sort-column":    action.ActionColumns(volume_message_listCmd),
 	})
 }

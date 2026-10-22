@@ -28,9 +28,9 @@ func init() {
 	federation_projectCmd.AddCommand(federation_project_listCmd)
 
 	carapace.Gen(federation_project_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("federation", "project", "list"),
+		"column":      action.ActionColumns(federation_project_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("federation", "project", "list"),
+		"sort-column": action.ActionColumns(federation_project_listCmd),
 	})
 }

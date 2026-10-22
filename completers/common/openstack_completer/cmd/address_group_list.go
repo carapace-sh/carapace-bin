@@ -34,11 +34,11 @@ func init() {
 	address_groupCmd.AddCommand(address_group_listCmd)
 
 	carapace.Gen(address_group_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":         action.ActionColumns("address", "group", "list"),
+		"column":         action.ActionColumns(address_group_listCmd),
 		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"project":        action.ActionProjects(),
 		"project-domain": action.ActionDomains(),
 		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column":    action.ActionColumns("address", "group", "list"),
+		"sort-column":    action.ActionColumns(address_group_listCmd),
 	})
 }

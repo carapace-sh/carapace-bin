@@ -26,7 +26,7 @@ func init() {
 	flavorCmd.AddCommand(flavor_showCmd)
 
 	carapace.Gen(flavor_showCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("flavor", "list"),
+		"column": action.ActionColumns(flavor_showCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 

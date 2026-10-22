@@ -29,9 +29,9 @@ func init() {
 	compute_agentCmd.AddCommand(compute_agent_listCmd)
 
 	carapace.Gen(compute_agent_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("compute", "agent", "list"),
+		"column":      action.ActionColumns(compute_agent_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("compute", "agent", "list"),
+		"sort-column": action.ActionColumns(compute_agent_listCmd),
 	})
 }

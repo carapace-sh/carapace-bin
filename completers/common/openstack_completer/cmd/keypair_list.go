@@ -35,12 +35,12 @@ func init() {
 	keypairCmd.AddCommand(keypair_listCmd)
 
 	carapace.Gen(keypair_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":         action.ActionColumns("keypair", "list"),
+		"column":         action.ActionColumns(keypair_listCmd),
 		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"project":        action.ActionProjects(),
 		"project-domain": action.ActionDomains(),
 		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column":    action.ActionColumns("keypair", "list"),
+		"sort-column":    action.ActionColumns(keypair_listCmd),
 		"user":           action.ActionUsers(),
 		"user-domain":    action.ActionDomains(),
 	})

@@ -29,9 +29,9 @@ func init() {
 	image_storesCmd.AddCommand(image_stores_listCmd)
 
 	carapace.Gen(image_stores_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("image", "stores", "list"),
+		"column":      action.ActionColumns(image_stores_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("image", "stores", "list"),
+		"sort-column": action.ActionColumns(image_stores_listCmd),
 	})
 }

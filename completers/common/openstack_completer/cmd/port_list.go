@@ -53,7 +53,7 @@ func init() {
 	portCmd.AddCommand(port_listCmd)
 
 	carapace.Gen(port_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":         action.ActionColumns("port", "list"),
+		"column":         action.ActionColumns(port_listCmd),
 		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"network":        action.ActionNetworks(),
 		"project":        action.ActionProjects(),
@@ -63,7 +63,7 @@ func init() {
 		"router":         action.ActionRouters(),
 		"security-group": action.ActionSecurityGroups(),
 		"server":         action.ActionServers(),
-		"sort-column":    action.ActionColumns("port", "list"),
+		"sort-column":    action.ActionColumns(port_listCmd),
 		"status":         carapace.ActionValues("ACTIVE", "BUILD", "DOWN", "ERROR"),
 	})
 }

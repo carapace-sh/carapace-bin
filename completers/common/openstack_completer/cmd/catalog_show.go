@@ -26,7 +26,7 @@ func init() {
 	catalogCmd.AddCommand(catalog_showCmd)
 
 	carapace.Gen(catalog_showCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("catalog", "list"),
+		"column": action.ActionColumns(catalog_showCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 }

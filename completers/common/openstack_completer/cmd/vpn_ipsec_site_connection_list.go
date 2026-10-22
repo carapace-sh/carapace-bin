@@ -29,9 +29,9 @@ func init() {
 	vpn_ipsec_site_connectionCmd.AddCommand(vpn_ipsec_site_connection_listCmd)
 
 	carapace.Gen(vpn_ipsec_site_connection_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("vpn", "ipsec", "site", "connection", "list"),
+		"column":      action.ActionColumns(vpn_ipsec_site_connection_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("vpn", "ipsec", "site", "connection", "list"),
+		"sort-column": action.ActionColumns(vpn_ipsec_site_connection_listCmd),
 	})
 }

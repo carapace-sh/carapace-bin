@@ -35,10 +35,10 @@ func init() {
 	image_taskCmd.AddCommand(image_task_listCmd)
 
 	carapace.Gen(image_task_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("image", "task", "list"),
+		"column":      action.ActionColumns(image_task_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("image", "task", "list"),
+		"sort-column": action.ActionColumns(image_task_listCmd),
 		"status":      carapace.ActionValues("pending", "processing", "success", "failure"),
 		"type":        carapace.ActionValues("import"),
 	})

@@ -28,10 +28,10 @@ func init() {
 	image_metadef_propertyCmd.AddCommand(image_metadef_property_listCmd)
 
 	carapace.Gen(image_metadef_property_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("image", "metadef", "property", "list"),
+		"column":      action.ActionColumns(image_metadef_property_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("image", "metadef", "property", "list"),
+		"sort-column": action.ActionColumns(image_metadef_property_listCmd),
 	})
 
 	carapace.Gen(image_metadef_property_listCmd).PositionalCompletion(action.ActionImageMetadefNamespaces())

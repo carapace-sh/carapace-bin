@@ -28,9 +28,9 @@ func init() {
 	cached_imageCmd.AddCommand(cached_image_listCmd)
 
 	carapace.Gen(cached_image_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("cached", "image", "list"),
+		"column":      action.ActionColumns(cached_image_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("cached", "image", "list"),
+		"sort-column": action.ActionColumns(cached_image_listCmd),
 	})
 }

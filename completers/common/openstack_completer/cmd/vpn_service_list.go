@@ -29,9 +29,9 @@ func init() {
 	vpn_serviceCmd.AddCommand(vpn_service_listCmd)
 
 	carapace.Gen(vpn_service_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("vpn", "service", "list"),
+		"column":      action.ActionColumns(vpn_service_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("vpn", "service", "list"),
+		"sort-column": action.ActionColumns(vpn_service_listCmd),
 	})
 }

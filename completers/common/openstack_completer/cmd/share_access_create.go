@@ -33,7 +33,7 @@ func init() {
 
 	carapace.Gen(share_access_createCmd).FlagCompletion(carapace.ActionMap{
 		"access-level": carapace.ActionValues("rw", "ro"),
-		"column":       action.ActionColumns("share", "access", "list"),
+		"column":       action.ActionColumns(share_access_createCmd),
 		"format":       carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 

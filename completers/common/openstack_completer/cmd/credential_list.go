@@ -31,10 +31,10 @@ func init() {
 	credentialCmd.AddCommand(credential_listCmd)
 
 	carapace.Gen(credential_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("credential", "list"),
+		"column":      action.ActionColumns(credential_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("credential", "list"),
+		"sort-column": action.ActionColumns(credential_listCmd),
 		"user":        action.ActionUsers(),
 		"user-domain": action.ActionDomains(),
 	})

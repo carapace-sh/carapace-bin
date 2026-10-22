@@ -37,11 +37,11 @@ func init() {
 	volume_backupCmd.AddCommand(volume_backup_listCmd)
 
 	carapace.Gen(volume_backup_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("volume", "backup", "list"),
+		"column":      action.ActionColumns(volume_backup_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"project":     action.ActionProjects(),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("volume", "backup", "list"),
+		"sort-column": action.ActionColumns(volume_backup_listCmd),
 		"status":      carapace.ActionValues("creating", "available", "deleting", "error", "restoring", "error_restoring"),
 		"volume":      action.ActionVolumes(),
 	})

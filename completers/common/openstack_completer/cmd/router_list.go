@@ -42,11 +42,11 @@ func init() {
 	routerCmd.AddCommand(router_listCmd)
 
 	carapace.Gen(router_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":         action.ActionColumns("router", "list"),
+		"column":         action.ActionColumns(router_listCmd),
 		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"project":        action.ActionProjects(),
 		"project-domain": action.ActionDomains(),
 		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column":    action.ActionColumns("router", "list"),
+		"sort-column":    action.ActionColumns(router_listCmd),
 	})
 }

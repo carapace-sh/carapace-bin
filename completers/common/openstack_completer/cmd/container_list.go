@@ -34,9 +34,9 @@ func init() {
 	containerCmd.AddCommand(container_listCmd)
 
 	carapace.Gen(container_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("container", "list"),
+		"column":      action.ActionColumns(container_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("container", "list"),
+		"sort-column": action.ActionColumns(container_listCmd),
 	})
 }

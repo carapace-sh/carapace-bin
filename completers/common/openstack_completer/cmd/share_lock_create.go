@@ -30,7 +30,7 @@ func init() {
 	share_lockCmd.AddCommand(share_lock_createCmd)
 
 	carapace.Gen(share_lock_createCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("share", "lock", "list"),
+		"column": action.ActionColumns(share_lock_createCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 }

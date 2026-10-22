@@ -34,7 +34,7 @@ func init() {
 	network_qos_policyCmd.AddCommand(network_qos_policy_createCmd)
 
 	carapace.Gen(network_qos_policy_createCmd).FlagCompletion(carapace.ActionMap{
-		"column":         action.ActionColumns("network", "qos", "policy", "list"),
+		"column":         action.ActionColumns(network_qos_policy_createCmd),
 		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 		"project":        action.ActionProjects(),
 		"project-domain": action.ActionDomains(),

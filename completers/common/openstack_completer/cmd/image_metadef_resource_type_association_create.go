@@ -27,7 +27,7 @@ func init() {
 	image_metadef_resource_type_associationCmd.AddCommand(image_metadef_resource_type_association_createCmd)
 
 	carapace.Gen(image_metadef_resource_type_association_createCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("image", "metadef", "resource", "type", "association", "list"),
+		"column": action.ActionColumns(image_metadef_resource_type_association_createCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 

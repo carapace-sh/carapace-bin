@@ -45,11 +45,11 @@ func init() {
 
 	carapace.Gen(subnet_pool_listCmd).FlagCompletion(carapace.ActionMap{
 		"address-scope":  action.ActionAddressScopes(),
-		"column":         action.ActionColumns("subnet", "pool", "list"),
+		"column":         action.ActionColumns(subnet_pool_listCmd),
 		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"project":        action.ActionProjects(),
 		"project-domain": action.ActionDomains(),
 		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column":    action.ActionColumns("subnet", "pool", "list"),
+		"sort-column":    action.ActionColumns(subnet_pool_listCmd),
 	})
 }

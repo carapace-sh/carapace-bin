@@ -26,7 +26,7 @@ func init() {
 	vpn_ike_policyCmd.AddCommand(vpn_ike_policy_showCmd)
 
 	carapace.Gen(vpn_ike_policy_showCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("vpn", "ike", "policy", "list"),
+		"column": action.ActionColumns(vpn_ike_policy_showCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 }

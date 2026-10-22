@@ -34,7 +34,7 @@ func init() {
 
 	carapace.Gen(consistency_group_createCmd).FlagCompletion(carapace.ActionMap{
 		"availability-zone": action.ActionAvailabilityZones(),
-		"column":            action.ActionColumns("consistency", "group", "list"),
+		"column":            action.ActionColumns(consistency_group_createCmd),
 		"format":            carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 		"snapshot":          action.ActionConsistencyGroupSnapshots(),
 		"source":            action.ActionConsistencyGroups(),

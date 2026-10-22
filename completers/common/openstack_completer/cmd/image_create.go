@@ -53,7 +53,7 @@ func init() {
 	imageCmd.AddCommand(image_createCmd)
 
 	carapace.Gen(image_createCmd).FlagCompletion(carapace.ActionMap{
-		"column":           action.ActionColumns("image", "list"),
+		"column":           action.ActionColumns(image_createCmd),
 		"container-format": carapace.ActionValues("ami", "ari", "aki", "bare", "docker", "ova", "ovf"),
 		"disk-format":      carapace.ActionValues("ami", "ari", "aki", "vhd", "vmdk", "raw", "qcow2", "vhdx", "vdi", "iso", "ploop"),
 		"file":             carapace.ActionFiles(),

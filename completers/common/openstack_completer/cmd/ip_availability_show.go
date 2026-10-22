@@ -26,7 +26,7 @@ func init() {
 	ip_availabilityCmd.AddCommand(ip_availability_showCmd)
 
 	carapace.Gen(ip_availability_showCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("ip", "availability", "list"),
+		"column": action.ActionColumns(ip_availability_showCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 }

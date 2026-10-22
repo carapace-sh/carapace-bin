@@ -29,7 +29,7 @@ func init() {
 	mappingCmd.AddCommand(mapping_createCmd)
 
 	carapace.Gen(mapping_createCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("mapping", "list"),
+		"column": action.ActionColumns(mapping_createCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 }

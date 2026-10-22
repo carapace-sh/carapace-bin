@@ -29,10 +29,10 @@ func init() {
 	roleCmd.AddCommand(role_listCmd)
 
 	carapace.Gen(role_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("role", "list"),
+		"column":      action.ActionColumns(role_listCmd),
 		"domain":      action.ActionDomains(),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("role", "list"),
+		"sort-column": action.ActionColumns(role_listCmd),
 	})
 }

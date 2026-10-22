@@ -27,7 +27,7 @@ func init() {
 	endpoint_groupCmd.AddCommand(endpoint_group_createCmd)
 
 	carapace.Gen(endpoint_group_createCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("endpoint", "group", "list"),
+		"column": action.ActionColumns(endpoint_group_createCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 }

@@ -52,7 +52,7 @@ func init() {
 	subnetCmd.AddCommand(subnet_createCmd)
 
 	carapace.Gen(subnet_createCmd).FlagCompletion(carapace.ActionMap{
-		"column":            action.ActionColumns("subnet", "list"),
+		"column":            action.ActionColumns(subnet_createCmd),
 		"format":            carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 		"ip-version":        carapace.ActionValues("4", "6"),
 		"ipv6-address-mode": carapace.ActionValues("dhcpv6-stateful", "dhcpv6-stateless", "slaac"),

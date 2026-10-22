@@ -42,13 +42,13 @@ func init() {
 	share_security_serviceCmd.AddCommand(share_security_service_listCmd)
 
 	carapace.Gen(share_security_service_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":        action.ActionColumns("share", "security", "service", "list"),
+		"column":        action.ActionColumns(share_security_service_listCmd),
 		"domain":        action.ActionDomains(),
 		"format":        carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":         carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
 		"server":        action.ActionServers(),
 		"share-network": action.ActionShareNetworks(),
-		"sort-column":   action.ActionColumns("share", "security", "service", "list"),
+		"sort-column":   action.ActionColumns(share_security_service_listCmd),
 		"user":          action.ActionUsers(),
 	})
 }

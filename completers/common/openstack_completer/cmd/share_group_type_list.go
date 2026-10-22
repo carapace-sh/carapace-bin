@@ -30,9 +30,9 @@ func init() {
 	share_group_typeCmd.AddCommand(share_group_type_listCmd)
 
 	carapace.Gen(share_group_type_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("share", "group", "type", "list"),
+		"column":      action.ActionColumns(share_group_type_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("share", "group", "type", "list"),
+		"sort-column": action.ActionColumns(share_group_type_listCmd),
 	})
 }

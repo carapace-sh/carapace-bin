@@ -27,7 +27,7 @@ func init() {
 	image_memberCmd.AddCommand(image_member_getCmd)
 
 	carapace.Gen(image_member_getCmd).FlagCompletion(carapace.ActionMap{
-		"column":         action.ActionColumns("image", "member", "list"),
+		"column":         action.ActionColumns(image_member_getCmd),
 		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 		"project-domain": action.ActionDomains(),
 	})

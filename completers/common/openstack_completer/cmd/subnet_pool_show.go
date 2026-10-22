@@ -26,7 +26,7 @@ func init() {
 	subnet_poolCmd.AddCommand(subnet_pool_showCmd)
 
 	carapace.Gen(subnet_pool_showCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("subnet", "pool", "list"),
+		"column": action.ActionColumns(subnet_pool_showCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 

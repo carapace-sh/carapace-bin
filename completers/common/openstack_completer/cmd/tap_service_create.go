@@ -32,7 +32,7 @@ func init() {
 	tap_serviceCmd.AddCommand(tap_service_createCmd)
 
 	carapace.Gen(tap_service_createCmd).FlagCompletion(carapace.ActionMap{
-		"column":         action.ActionColumns("tap", "service", "list"),
+		"column":         action.ActionColumns(tap_service_createCmd),
 		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 		"port":           action.ActionPorts(),
 		"project":        action.ActionProjects(),

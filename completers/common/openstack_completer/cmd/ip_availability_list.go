@@ -34,12 +34,12 @@ func init() {
 	ip_availabilityCmd.AddCommand(ip_availability_listCmd)
 
 	carapace.Gen(ip_availability_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":         action.ActionColumns("ip", "availability", "list"),
+		"column":         action.ActionColumns(ip_availability_listCmd),
 		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"ip-version":     carapace.ActionValues("4", "6"),
 		"project":        action.ActionProjects(),
 		"project-domain": action.ActionDomains(),
 		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column":    action.ActionColumns("ip", "availability", "list"),
+		"sort-column":    action.ActionColumns(ip_availability_listCmd),
 	})
 }

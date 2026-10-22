@@ -26,7 +26,7 @@ func init() {
 	share_export_locationCmd.AddCommand(share_export_location_showCmd)
 
 	carapace.Gen(share_export_location_showCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("share", "export", "location", "list"),
+		"column": action.ActionColumns(share_export_location_showCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 }

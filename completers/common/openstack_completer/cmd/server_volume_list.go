@@ -28,10 +28,10 @@ func init() {
 	server_volumeCmd.AddCommand(server_volume_listCmd)
 
 	carapace.Gen(server_volume_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("server", "volume", "list"),
+		"column":      action.ActionColumns(server_volume_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("server", "volume", "list"),
+		"sort-column": action.ActionColumns(server_volume_listCmd),
 	})
 
 	carapace.Gen(server_volume_listCmd).PositionalCompletion(action.ActionServers())

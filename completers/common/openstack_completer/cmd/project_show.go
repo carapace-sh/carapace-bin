@@ -29,7 +29,7 @@ func init() {
 	projectCmd.AddCommand(project_showCmd)
 
 	carapace.Gen(project_showCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("project", "list"),
+		"column": action.ActionColumns(project_showCmd),
 		"domain": action.ActionDomains(),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})

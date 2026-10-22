@@ -44,7 +44,7 @@ func init() {
 	share_groupCmd.AddCommand(share_group_listCmd)
 
 	carapace.Gen(share_group_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":         action.ActionColumns("share", "group", "list"),
+		"column":         action.ActionColumns(share_group_listCmd),
 		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"project":        action.ActionProjects(),
 		"project-domain": action.ActionDomains(),
@@ -52,7 +52,7 @@ func init() {
 		"share-network":  action.ActionShareNetworks(),
 		"share-server":   action.ActionShareServers(),
 		"snapshot":       action.ActionShareGroupSnapshots(),
-		"sort-column":    action.ActionColumns("share", "group", "list"),
+		"sort-column":    action.ActionColumns(share_group_listCmd),
 		"status":         carapace.ActionValues("available", "error", "creating", "deleting", "error_deleting"),
 	})
 }

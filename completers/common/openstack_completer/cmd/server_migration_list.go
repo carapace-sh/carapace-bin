@@ -41,13 +41,13 @@ func init() {
 	server_migrationCmd.AddCommand(server_migration_listCmd)
 
 	carapace.Gen(server_migration_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":         action.ActionColumns("server", "migration", "list"),
+		"column":         action.ActionColumns(server_migration_listCmd),
 		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"project":        action.ActionProjects(),
 		"project-domain": action.ActionDomains(),
 		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
 		"server":         action.ActionServers(),
-		"sort-column":    action.ActionColumns("server", "migration", "list"),
+		"sort-column":    action.ActionColumns(server_migration_listCmd),
 		"type":           carapace.ActionValues("evacuation", "live-migration", "cold-migration", "resize"),
 		"user":           action.ActionUsers(),
 		"user-domain":    action.ActionDomains(),

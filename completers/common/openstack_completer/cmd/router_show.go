@@ -26,7 +26,7 @@ func init() {
 	routerCmd.AddCommand(router_showCmd)
 
 	carapace.Gen(router_showCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("router", "list"),
+		"column": action.ActionColumns(router_showCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 

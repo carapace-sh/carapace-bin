@@ -32,9 +32,9 @@ func init() {
 
 	carapace.Gen(aggregate_listCmd).FlagCompletion(carapace.ActionMap{
 		"availability-zone": action.ActionAvailabilityZones(),
-		"column":            action.ActionColumns("aggregate", "list"),
+		"column":            action.ActionColumns(aggregate_listCmd),
 		"format":            carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":             carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column":       action.ActionColumns("aggregate", "list"),
+		"sort-column":       action.ActionColumns(aggregate_listCmd),
 	})
 }

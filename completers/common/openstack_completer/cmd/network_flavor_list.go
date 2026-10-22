@@ -31,9 +31,9 @@ func init() {
 	network_flavorCmd.AddCommand(network_flavor_listCmd)
 
 	carapace.Gen(network_flavor_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("network", "flavor", "list"),
+		"column":      action.ActionColumns(network_flavor_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("network", "flavor", "list"),
+		"sort-column": action.ActionColumns(network_flavor_listCmd),
 	})
 }

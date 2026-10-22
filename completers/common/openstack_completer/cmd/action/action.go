@@ -9,6 +9,7 @@ import (
 	"strings"
 
 	"github.com/carapace-sh/carapace"
+	"github.com/spf13/cobra"
 	"go.yaml.in/yaml/v3"
 )
 
@@ -242,8 +243,23 @@ func actionListArgs(command []string, columns ...string) carapace.Action {
 	})
 }
 
-// ActionColumns completes column names from the output of the given list command.
-func ActionColumns(command ...string) carapace.Action {
+// ActionColumns completes column names from the corresponding list command.
+func ActionColumns(cmd *cobra.Command) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		list := columnList(cmd)
+		if list == nil {
+			return carapace.ActionValues()
+		}
+
+		path := strings.Fields(list.CommandPath())
+		if len(path) < 2 {
+			return carapace.ActionValues()
+		}
+		return actionColumns(path[1:])
+	})
+}
+
+func actionColumns(command []string) carapace.Action {
 	args := append([]string{}, command...)
 	args = append(args, "-f", "csv")
 
@@ -267,6 +283,24 @@ func ActionColumns(command ...string) carapace.Action {
 		}
 		return carapace.ActionValues(values...).Unique()
 	})
+}
+
+func columnList(cmd *cobra.Command) *cobra.Command {
+	if isLister(cmd) {
+		return cmd
+	}
+	for parent := cmd.Parent(); parent != nil; parent = parent.Parent() {
+		for _, child := range parent.Commands() {
+			if child.Name() == "list" && isLister(child) {
+				return child
+			}
+		}
+	}
+	return nil
+}
+
+func isLister(cmd *cobra.Command) bool {
+	return cmd.Flags().Lookup("sort-column") != nil
 }
 
 func actionExec(args []string, f func(output []byte, err error) carapace.Action) carapace.Action {

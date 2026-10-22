@@ -37,11 +37,11 @@ func init() {
 
 	carapace.Gen(network_agent_listCmd).FlagCompletion(carapace.ActionMap{
 		"agent-type":  carapace.ActionValues("bgp", "dhcp", "open-vswitch", "linux-bridge", "ofa", "l3", "loadbalancer", "metering", "metadata", "macvtap", "nic", "baremetal", "ovn-controller", "ovn-controller-gateway", "ovn-metadata", "ovn-agent"),
-		"column":      action.ActionColumns("network", "agent", "list"),
+		"column":      action.ActionColumns(network_agent_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"network":     action.ActionNetworks(),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
 		"router":      action.ActionRouters(),
-		"sort-column": action.ActionColumns("network", "agent", "list"),
+		"sort-column": action.ActionColumns(network_agent_listCmd),
 	})
 }

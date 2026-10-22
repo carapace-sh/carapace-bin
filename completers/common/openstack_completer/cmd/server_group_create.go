@@ -28,7 +28,7 @@ func init() {
 	server_groupCmd.AddCommand(server_group_createCmd)
 
 	carapace.Gen(server_group_createCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("server", "group", "list"),
+		"column": action.ActionColumns(server_group_createCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 		"policy": carapace.ActionValues("affinity", "anti-affinity", "soft-affinity", "soft-anti-affinity"),
 	})

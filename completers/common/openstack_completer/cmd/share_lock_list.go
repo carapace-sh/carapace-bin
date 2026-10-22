@@ -51,14 +51,14 @@ func init() {
 	share_lockCmd.AddCommand(share_lock_listCmd)
 
 	carapace.Gen(share_lock_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":         action.ActionColumns("share", "lock", "list"),
+		"column":         action.ActionColumns(share_lock_listCmd),
 		"context":        carapace.ActionValues("user", "admin", "service"),
 		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"lock-context":   carapace.ActionValues("user", "admin", "service"),
 		"project":        action.ActionProjects(),
 		"project-domain": action.ActionDomains(),
 		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column":    action.ActionColumns("share", "lock", "list"),
+		"sort-column":    action.ActionColumns(share_lock_listCmd),
 		"sort-dir":       carapace.ActionValues("asc", "desc"),
 		"sort-key":       carapace.ActionValues("id", "created_at", "updated_at", "resource_id", "resource_type", "resource_action", "lock_reason"),
 		"sort_dir":       carapace.ActionValues("asc", "desc"),

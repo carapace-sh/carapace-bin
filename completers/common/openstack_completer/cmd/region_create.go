@@ -28,7 +28,7 @@ func init() {
 	regionCmd.AddCommand(region_createCmd)
 
 	carapace.Gen(region_createCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("region", "list"),
+		"column": action.ActionColumns(region_createCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 }

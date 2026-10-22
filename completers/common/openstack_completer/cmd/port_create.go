@@ -66,7 +66,7 @@ func init() {
 	portCmd.AddCommand(port_createCmd)
 
 	carapace.Gen(port_createCmd).FlagCompletion(carapace.ActionMap{
-		"column":         action.ActionColumns("port", "list"),
+		"column":         action.ActionColumns(port_createCmd),
 		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 		"network":        action.ActionNetworks(),
 		"project":        action.ActionProjects(),

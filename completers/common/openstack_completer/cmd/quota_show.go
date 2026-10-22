@@ -34,11 +34,11 @@ func init() {
 	quotaCmd.AddCommand(quota_showCmd)
 
 	carapace.Gen(quota_showCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("quota", "list"),
+		"column":      action.ActionColumns(quota_showCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"network":     action.ActionNetworks(),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("quota", "list"),
+		"sort-column": action.ActionColumns(quota_showCmd),
 		"volume":      action.ActionVolumes(),
 	})
 

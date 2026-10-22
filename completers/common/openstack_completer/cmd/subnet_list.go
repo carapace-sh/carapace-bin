@@ -47,14 +47,14 @@ func init() {
 	subnetCmd.AddCommand(subnet_listCmd)
 
 	carapace.Gen(subnet_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":         action.ActionColumns("subnet", "list"),
+		"column":         action.ActionColumns(subnet_listCmd),
 		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"ip-version":     carapace.ActionValues("4", "6"),
 		"network":        action.ActionNetworks(),
 		"project":        action.ActionProjects(),
 		"project-domain": action.ActionDomains(),
 		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column":    action.ActionColumns("subnet", "list"),
+		"sort-column":    action.ActionColumns(subnet_listCmd),
 		"subnet-pool":    action.ActionSubnetPools(),
 	})
 }

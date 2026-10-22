@@ -26,7 +26,7 @@ func init() {
 	objectCmd.AddCommand(object_showCmd)
 
 	carapace.Gen(object_showCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("object", "list"),
+		"column": action.ActionColumns(object_showCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 

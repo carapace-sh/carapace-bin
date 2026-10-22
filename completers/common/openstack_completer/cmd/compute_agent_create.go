@@ -26,7 +26,7 @@ func init() {
 	compute_agentCmd.AddCommand(compute_agent_createCmd)
 
 	carapace.Gen(compute_agent_createCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("compute", "agent", "list"),
+		"column": action.ActionColumns(compute_agent_createCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 }

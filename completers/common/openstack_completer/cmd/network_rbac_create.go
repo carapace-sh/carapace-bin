@@ -37,7 +37,7 @@ func init() {
 
 	carapace.Gen(network_rbac_createCmd).FlagCompletion(carapace.ActionMap{
 		"action":                carapace.ActionValues("access_as_external", "access_as_shared"),
-		"column":                action.ActionColumns("network", "rbac", "list"),
+		"column":                action.ActionColumns(network_rbac_createCmd),
 		"format":                carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 		"project":               action.ActionProjects(),
 		"project-domain":        action.ActionDomains(),

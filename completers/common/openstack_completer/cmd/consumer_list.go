@@ -28,9 +28,9 @@ func init() {
 	consumerCmd.AddCommand(consumer_listCmd)
 
 	carapace.Gen(consumer_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("consumer", "list"),
+		"column":      action.ActionColumns(consumer_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("consumer", "list"),
+		"sort-column": action.ActionColumns(consumer_listCmd),
 	})
 }

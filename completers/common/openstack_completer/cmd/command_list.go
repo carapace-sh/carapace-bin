@@ -29,9 +29,9 @@ func init() {
 	commandCmd.AddCommand(command_listCmd)
 
 	carapace.Gen(command_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("command", "list"),
+		"column":      action.ActionColumns(command_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("command", "list"),
+		"sort-column": action.ActionColumns(command_listCmd),
 	})
 }

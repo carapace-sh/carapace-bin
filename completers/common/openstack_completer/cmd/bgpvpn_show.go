@@ -26,7 +26,7 @@ func init() {
 	bgpvpnCmd.AddCommand(bgpvpn_showCmd)
 
 	carapace.Gen(bgpvpn_showCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("bgpvpn", "list"),
+		"column": action.ActionColumns(bgpvpn_showCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 

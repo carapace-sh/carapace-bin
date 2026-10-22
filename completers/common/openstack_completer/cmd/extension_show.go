@@ -26,7 +26,7 @@ func init() {
 	extensionCmd.AddCommand(extension_showCmd)
 
 	carapace.Gen(extension_showCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("extension", "list"),
+		"column": action.ActionColumns(extension_showCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 

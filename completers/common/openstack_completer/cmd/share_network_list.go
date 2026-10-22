@@ -45,12 +45,12 @@ func init() {
 	share_networkCmd.AddCommand(share_network_listCmd)
 
 	carapace.Gen(share_network_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":         action.ActionColumns("share", "network", "list"),
+		"column":         action.ActionColumns(share_network_listCmd),
 		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"ip-version":     carapace.ActionValues("4", "6"),
 		"project":        action.ActionProjects(),
 		"project-domain": action.ActionDomains(),
 		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column":    action.ActionColumns("share", "network", "list"),
+		"sort-column":    action.ActionColumns(share_network_listCmd),
 	})
 }

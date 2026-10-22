@@ -31,9 +31,9 @@ func init() {
 	network_meter_ruleCmd.AddCommand(network_meter_rule_listCmd)
 
 	carapace.Gen(network_meter_rule_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("network", "meter", "rule", "list"),
+		"column":      action.ActionColumns(network_meter_rule_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("network", "meter", "rule", "list"),
+		"sort-column": action.ActionColumns(network_meter_rule_listCmd),
 	})
 }

@@ -47,13 +47,13 @@ func init() {
 	imageCmd.AddCommand(image_listCmd)
 
 	carapace.Gen(image_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":         action.ActionColumns("image", "list"),
+		"column":         action.ActionColumns(image_listCmd),
 		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"member-status":  carapace.ActionValues("accepted", "pending", "rejected", "all"),
 		"project":        action.ActionProjects(),
 		"project-domain": action.ActionDomains(),
 		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column":    action.ActionColumns("image", "list"),
+		"sort-column":    action.ActionColumns(image_listCmd),
 		"status":         carapace.ActionValues("queued", "saving", "active", "killed", "deleted", "pending_delete", "deactivated", "reactivating"),
 	})
 }

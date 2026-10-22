@@ -35,7 +35,7 @@ func init() {
 	firewall_group_policyCmd.AddCommand(firewall_group_policy_createCmd)
 
 	carapace.Gen(firewall_group_policy_createCmd).FlagCompletion(carapace.ActionMap{
-		"column":         action.ActionColumns("firewall", "group", "policy", "list"),
+		"column":         action.ActionColumns(firewall_group_policy_createCmd),
 		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 		"project":        action.ActionProjects(),
 		"project-domain": action.ActionDomains(),

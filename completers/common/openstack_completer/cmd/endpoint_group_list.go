@@ -31,11 +31,11 @@ func init() {
 	endpoint_groupCmd.AddCommand(endpoint_group_listCmd)
 
 	carapace.Gen(endpoint_group_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("endpoint", "group", "list"),
+		"column":      action.ActionColumns(endpoint_group_listCmd),
 		"domain":      action.ActionDomains(),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"project":     action.ActionProjects(),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("endpoint", "group", "list"),
+		"sort-column": action.ActionColumns(endpoint_group_listCmd),
 	})
 }

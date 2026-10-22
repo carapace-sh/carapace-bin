@@ -30,7 +30,7 @@ func init() {
 	federation_protocolCmd.AddCommand(federation_protocol_createCmd)
 
 	carapace.Gen(federation_protocol_createCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("federation", "protocol", "list"),
+		"column": action.ActionColumns(federation_protocol_createCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 }

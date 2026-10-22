@@ -26,7 +26,7 @@ func init() {
 	security_groupCmd.AddCommand(security_group_showCmd)
 
 	carapace.Gen(security_group_showCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("security", "group", "list"),
+		"column": action.ActionColumns(security_group_showCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 

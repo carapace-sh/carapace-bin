@@ -33,9 +33,9 @@ func init() {
 	server_groupCmd.AddCommand(server_group_listCmd)
 
 	carapace.Gen(server_group_listCmd).FlagCompletion(carapace.ActionMap{
-		"column":      action.ActionColumns("server", "group", "list"),
+		"column":      action.ActionColumns(server_group_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"sort-column": action.ActionColumns("server", "group", "list"),
+		"sort-column": action.ActionColumns(server_group_listCmd),
 	})
 }

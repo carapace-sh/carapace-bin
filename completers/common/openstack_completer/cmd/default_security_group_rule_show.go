@@ -26,7 +26,7 @@ func init() {
 	default_security_group_ruleCmd.AddCommand(default_security_group_rule_showCmd)
 
 	carapace.Gen(default_security_group_rule_showCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("default", "security", "group", "rule", "list"),
+		"column": action.ActionColumns(default_security_group_rule_showCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 }

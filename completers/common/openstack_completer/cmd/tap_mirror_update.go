@@ -28,7 +28,7 @@ func init() {
 	tap_mirrorCmd.AddCommand(tap_mirror_updateCmd)
 
 	carapace.Gen(tap_mirror_updateCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("tap", "mirror", "list"),
+		"column": action.ActionColumns(tap_mirror_updateCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 }

@@ -29,7 +29,7 @@ func init() {
 	volume_transfer_requestCmd.AddCommand(volume_transfer_request_createCmd)
 
 	carapace.Gen(volume_transfer_request_createCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("volume", "transfer", "request", "list"),
+		"column": action.ActionColumns(volume_transfer_request_createCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 }

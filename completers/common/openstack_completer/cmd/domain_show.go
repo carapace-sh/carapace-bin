@@ -26,7 +26,7 @@ func init() {
 	domainCmd.AddCommand(domain_showCmd)
 
 	carapace.Gen(domain_showCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("domain", "list"),
+		"column": action.ActionColumns(domain_showCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 

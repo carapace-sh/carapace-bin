@@ -27,7 +27,7 @@ func init() {
 	policyCmd.AddCommand(policy_createCmd)
 
 	carapace.Gen(policy_createCmd).FlagCompletion(carapace.ActionMap{
-		"column": action.ActionColumns("policy", "list"),
+		"column": action.ActionColumns(policy_createCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 }

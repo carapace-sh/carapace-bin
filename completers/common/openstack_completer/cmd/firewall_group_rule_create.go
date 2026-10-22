@@ -50,7 +50,7 @@ func init() {
 
 	carapace.Gen(firewall_group_rule_createCmd).FlagCompletion(carapace.ActionMap{
 		"action":         carapace.ActionValues("allow", "deny", "reject"),
-		"column":         action.ActionColumns("firewall", "group", "rule", "list"),
+		"column":         action.ActionColumns(firewall_group_rule_createCmd),
 		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 		"ip-version":     carapace.ActionValues("4", "6"),
 		"project":        action.ActionProjects(),
