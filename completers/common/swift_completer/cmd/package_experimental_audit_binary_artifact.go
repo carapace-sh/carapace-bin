@@ -8,7 +8,6 @@ import (
 var package_experimentalAuditBinaryArtifactCmd = &cobra.Command{
 	Use:   "experimental-audit-binary-artifact",
 	Short: "Audit a static library binary artifact for undefined symbols",
-	Args:  cobra.ExactArgs(1),
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

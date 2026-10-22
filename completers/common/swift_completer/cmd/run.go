@@ -10,7 +10,6 @@ import (
 var runCmd = &cobra.Command{
 	Use:   "run",
 	Short: "Build and run an executable product",
-	Args:  cobra.MinimumNArgs(0),
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

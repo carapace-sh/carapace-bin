@@ -8,7 +8,6 @@ import (
 var package_addDependencyCmd = &cobra.Command{
 	Use:   "add-dependency",
 	Short: "Add a package dependency to the manifest",
-	Args:  cobra.ExactArgs(1),
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

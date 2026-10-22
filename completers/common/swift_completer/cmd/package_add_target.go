@@ -9,7 +9,6 @@ import (
 var package_addTargetCmd = &cobra.Command{
 	Use:   "add-target",
 	Short: "Add a new target to the manifest",
-	Args:  cobra.ExactArgs(1),
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

@@ -8,7 +8,6 @@ import (
 var package_uneditCmd = &cobra.Command{
 	Use:   "unedit",
 	Short: "Remove a package from editable mode",
-	Args:  cobra.ExactArgs(1),
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

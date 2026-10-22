@@ -8,7 +8,6 @@ import (
 var package_editCmd = &cobra.Command{
 	Use:   "edit",
 	Short: "Put a package in editable mode",
-	Args:  cobra.ExactArgs(1),
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

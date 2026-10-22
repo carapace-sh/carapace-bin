@@ -9,7 +9,6 @@ import (
 var package_addProductCmd = &cobra.Command{
 	Use:   "add-product",
 	Short: "Add a new product to the manifest",
-	Args:  cobra.ExactArgs(1),
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

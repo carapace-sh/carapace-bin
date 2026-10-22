@@ -8,7 +8,6 @@ import (
 var package_diagnoseApiBreakingChangesCmd = &cobra.Command{
 	Use:   "diagnose-api-breaking-changes",
 	Short: "Diagnose API-breaking changes to Swift modules in a package",
-	Args:  cobra.MinimumNArgs(1),
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

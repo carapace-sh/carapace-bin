@@ -9,7 +9,6 @@ import (
 var package_addTargetDependencyCmd = &cobra.Command{
 	Use:   "add-target-dependency",
 	Short: "Add a new target dependency to the manifest",
-	Args:  cobra.ExactArgs(2),
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

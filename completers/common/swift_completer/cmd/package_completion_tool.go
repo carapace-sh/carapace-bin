@@ -8,7 +8,6 @@ import (
 var package_completionToolCmd = &cobra.Command{
 	Use:   "completion-tool",
 	Short: "Command to generate shell completions",
-	Args:  cobra.ExactArgs(1),
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

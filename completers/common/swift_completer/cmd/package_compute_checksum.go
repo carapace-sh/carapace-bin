@@ -8,7 +8,6 @@ import (
 var package_computeChecksumCmd = &cobra.Command{
 	Use:   "compute-checksum",
 	Short: "Compute the checksum for a binary artifact",
-	Args:  cobra.ExactArgs(1),
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

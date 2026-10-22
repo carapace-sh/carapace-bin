@@ -9,7 +9,6 @@ import (
 var package_experimentalUninstallCmd = &cobra.Command{
 	Use:   "experimental-uninstall",
 	Short: "Uninstall executable products previously installed by experimental-install",
-	Args:  cobra.ExactArgs(1),
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
