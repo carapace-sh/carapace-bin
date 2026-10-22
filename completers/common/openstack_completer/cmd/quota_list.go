@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -28,4 +29,13 @@ func init() {
 	quota_listCmd.Flags().Bool("sort-descending", false, "sort the column(s) in descending order")
 	quota_listCmd.Flags().Bool("volume", false, "List volume quota")
 	quotaCmd.AddCommand(quota_listCmd)
+
+	carapace.Gen(quota_listCmd).FlagCompletion(carapace.ActionMap{
+		"column":      action.ActionColumns("quota", "list"),
+		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"network":     action.ActionNetworks(),
+		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"sort-column": action.ActionColumns("quota", "list"),
+		"volume":      action.ActionVolumes(),
+	})
 }

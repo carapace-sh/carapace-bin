@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -60,4 +61,23 @@ func init() {
 	server_listCmd.Flags().String("user-domain", "", "Domain the user belongs to (name or ID).")
 	server_listCmd.Flags().String("vm-state", "", "Search by vm_state value (admin only before microversion 2.83)")
 	serverCmd.AddCommand(server_listCmd)
+
+	carapace.Gen(server_listCmd).FlagCompletion(carapace.ActionMap{
+		"availability-zone": action.ActionAvailabilityZones(),
+		"column":            action.ActionColumns("server", "list"),
+		"flavor":            action.ActionFlavors(),
+		"format":            carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"image":             action.ActionImages(),
+		"key-name":          action.ActionKeypairs(),
+		"power-state":       carapace.ActionValues("pending", "running", "paused", "shutdown", "crashed", "suspended"),
+		"project":           action.ActionProjects(),
+		"project-domain":    action.ActionDomains(),
+		"quote":             carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"sort-column":       action.ActionColumns("server", "list"),
+		"status":            carapace.ActionValues("ACTIVE", "BUILD", "DELETED", "ERROR", "HARD_REBOOT", "MIGRATING", "PASSWORD", "PAUSED", "REBOOT", "REBUILD", "RESCUE", "RESIZE", "REVERT_RESIZE", "SHELVED", "SHELVED_OFFLOADED", "SHUTOFF", "SOFT_DELETED", "SUSPENDED", "VERIFY_RESIZE"),
+		"task-state":        carapace.ActionValues("block_device_mapping", "deleting", "image_backup", "image_pending_upload", "image_snapshot", "image_snapshot_pending", "image_uploading", "migrating", "networking", "pausing", "powering-off", "powering-on", "rebooting", "reboot_pending", "reboot_started", "reboot_pending_hard", "reboot_started_hard", "rebooting_hard", "rebuilding", "rebuild_block_device_mapping", "rebuild_spawning", "rescuing", "resize_confirming", "resize_finish", "resize_migrated", "resize_migrating", "resize_prep", "resize_reverting", "restoring", "resuming", "scheduling", "shelving", "shelving_image_pending_upload", "shelving_image_uploading", "shelving_offloading", "soft-deleting", "spawning", "suspending", "updating_password", "unpausing", "unrescuing", "unshelving"),
+		"user":              action.ActionUsers(),
+		"user-domain":       action.ActionDomains(),
+		"vm-state":          carapace.ActionValues("active", "building", "deleted", "error", "paused", "stopped", "suspended", "rescued", "resized", "shelved", "shelved_offloaded", "soft-delete"),
+	})
 }

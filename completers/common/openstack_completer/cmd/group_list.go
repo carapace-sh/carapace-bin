@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -29,4 +30,14 @@ func init() {
 	group_listCmd.Flags().String("user", "", "Filter group list by <user> (name or ID)")
 	group_listCmd.Flags().String("user-domain", "", "Domain the user belongs to (name or ID).")
 	groupCmd.AddCommand(group_listCmd)
+
+	carapace.Gen(group_listCmd).FlagCompletion(carapace.ActionMap{
+		"column":      action.ActionColumns("group", "list"),
+		"domain":      action.ActionDomains(),
+		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"sort-column": action.ActionColumns("group", "list"),
+		"user":        action.ActionUsers(),
+		"user-domain": action.ActionDomains(),
+	})
 }

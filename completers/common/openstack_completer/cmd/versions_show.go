@@ -30,4 +30,9 @@ func init() {
 	versions_showCmd.Flags().Bool("sort-descending", false, "sort the column(s) in descending order")
 	versions_showCmd.Flags().String("status", "", "Show versions for a specific status.")
 	versionsCmd.AddCommand(versions_showCmd)
+
+	carapace.Gen(versions_showCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"quote":  carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+	})
 }

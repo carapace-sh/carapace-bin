@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -15,4 +16,6 @@ func init() {
 	carapace.Gen(share_security_service_deleteCmd).Standalone()
 
 	share_security_serviceCmd.AddCommand(share_security_service_deleteCmd)
+
+	carapace.Gen(share_security_service_deleteCmd).PositionalAnyCompletion(action.ActionShareSecurityServices())
 }

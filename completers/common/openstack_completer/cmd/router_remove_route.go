@@ -24,4 +24,8 @@ func init() {
 	router_remove_routeCmd.Flags().String("route", "", "Remove extra static route from the router.")
 	router_remove_routeCmd.Flags().String("variable", "", "==SUPPRESS==")
 	router_removeCmd.AddCommand(router_remove_routeCmd)
+
+	carapace.Gen(router_remove_routeCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
 }

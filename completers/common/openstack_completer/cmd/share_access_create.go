@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -29,4 +30,12 @@ func init() {
 	share_access_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	share_access_createCmd.Flags().Bool("wait", false, "Wait for share access rule creation.")
 	share_accessCmd.AddCommand(share_access_createCmd)
+
+	carapace.Gen(share_access_createCmd).FlagCompletion(carapace.ActionMap{
+		"access-level": carapace.ActionValues("rw", "ro"),
+		"column":       action.ActionColumns("share", "access", "list"),
+		"format":       carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
+
+	carapace.Gen(share_access_createCmd).PositionalCompletion(action.ActionShares())
 }

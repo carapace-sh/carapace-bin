@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,6 @@ func init() {
 
 	volume_snapshot_unsetCmd.Flags().String("property", "", "Property to remove from snapshot (repeat option to remove multiple properties)")
 	volume_snapshotCmd.AddCommand(volume_snapshot_unsetCmd)
+
+	carapace.Gen(volume_snapshot_unsetCmd).PositionalCompletion(action.ActionVolumeSnapshots())
 }

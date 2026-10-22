@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -19,4 +20,10 @@ func init() {
 	share_deleteCmd.Flags().Bool("soft", false, "Soft delete one or more shares.")
 	share_deleteCmd.Flags().Bool("wait", false, "Wait for share deletion")
 	shareCmd.AddCommand(share_deleteCmd)
+
+	carapace.Gen(share_deleteCmd).FlagCompletion(carapace.ActionMap{
+		"share-group": action.ActionShareGroups(),
+	})
+
+	carapace.Gen(share_deleteCmd).PositionalAnyCompletion(action.ActionShares())
 }

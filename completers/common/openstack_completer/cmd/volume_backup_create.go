@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -32,4 +33,13 @@ func init() {
 	volume_backup_createCmd.Flags().String("snapshot", "", "Snapshot to backup (name or ID)")
 	volume_backup_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	volume_backupCmd.AddCommand(volume_backup_createCmd)
+
+	carapace.Gen(volume_backup_createCmd).FlagCompletion(carapace.ActionMap{
+		"availability-zone": action.ActionAvailabilityZones(),
+		"column":            action.ActionColumns("volume", "backup", "list"),
+		"format":            carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"snapshot":          action.ActionVolumeSnapshots(),
+	})
+
+	carapace.Gen(volume_backup_createCmd).PositionalCompletion(action.ActionVolumes())
 }

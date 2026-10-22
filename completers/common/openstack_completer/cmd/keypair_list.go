@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -32,4 +33,15 @@ func init() {
 	keypair_listCmd.Flags().String("user", "", "Show keypairs for another user (admin only) (name or ID).")
 	keypair_listCmd.Flags().String("user-domain", "", "Domain the user belongs to (name or ID).")
 	keypairCmd.AddCommand(keypair_listCmd)
+
+	carapace.Gen(keypair_listCmd).FlagCompletion(carapace.ActionMap{
+		"column":         action.ActionColumns("keypair", "list"),
+		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"project":        action.ActionProjects(),
+		"project-domain": action.ActionDomains(),
+		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"sort-column":    action.ActionColumns("keypair", "list"),
+		"user":           action.ActionUsers(),
+		"user-domain":    action.ActionDomains(),
+	})
 }

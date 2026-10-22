@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -15,4 +16,9 @@ func init() {
 	carapace.Gen(server_migration_abortCmd).Standalone()
 
 	server_migrationCmd.AddCommand(server_migration_abortCmd)
+
+	carapace.Gen(server_migration_abortCmd).PositionalCompletion(
+		action.ActionServers(),
+		action.ActionServerMigrations(),
+	)
 }

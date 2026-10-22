@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -28,4 +29,10 @@ func init() {
 	share_network_createCmd.Flags().Bool("print-empty", false, "Print empty table if there is no data to show.")
 	share_network_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	share_networkCmd.AddCommand(share_network_createCmd)
+
+	carapace.Gen(share_network_createCmd).FlagCompletion(carapace.ActionMap{
+		"availability-zone": action.ActionAvailabilityZones(),
+		"column":            action.ActionColumns("share", "network", "list"),
+		"format":            carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -41,4 +42,14 @@ func init() {
 	server_rebuildCmd.Flags().String("variable", "", "==SUPPRESS==")
 	server_rebuildCmd.Flags().Bool("wait", false, "Wait for rebuild to complete")
 	serverCmd.AddCommand(server_rebuildCmd)
+
+	carapace.Gen(server_rebuildCmd).FlagCompletion(carapace.ActionMap{
+		"column":    action.ActionColumns("server", "list"),
+		"format":    carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"image":     action.ActionImages(),
+		"key-name":  action.ActionKeypairs(),
+		"user-data": carapace.ActionFiles(),
+	})
+
+	carapace.Gen(server_rebuildCmd).PositionalCompletion(action.ActionServers())
 }

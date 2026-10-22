@@ -31,4 +31,11 @@ func init() {
 	share_server_migration_startCmd.MarkFlagRequired("preserve-snapshots")
 	share_server_migration_startCmd.MarkFlagRequired("writable")
 	share_server_migrationCmd.AddCommand(share_server_migration_startCmd)
+
+	carapace.Gen(share_server_migration_startCmd).FlagCompletion(carapace.ActionMap{
+		"format":             carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"nondisruptive":      carapace.ActionValues("True", "False"),
+		"preserve-snapshots": carapace.ActionValues("True", "False"),
+		"writable":           carapace.ActionValues("True", "False"),
+	})
 }

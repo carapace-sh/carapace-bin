@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -24,4 +25,12 @@ func init() {
 	floating_ip_setCmd.Flags().String("router", "", "Router hosting the floating IP (name or ID)")
 	floating_ip_setCmd.Flags().String("tag", "", "Tag to be added to the floating IP (repeat option to set multiple tags)")
 	floating_ipCmd.AddCommand(floating_ip_setCmd)
+
+	carapace.Gen(floating_ip_setCmd).FlagCompletion(carapace.ActionMap{
+		"port":       action.ActionPorts(),
+		"qos-policy": action.ActionNetworkQosPolicies(),
+		"router":     action.ActionRouters(),
+	})
+
+	carapace.Gen(floating_ip_setCmd).PositionalCompletion(action.ActionFloatingIPs())
 }

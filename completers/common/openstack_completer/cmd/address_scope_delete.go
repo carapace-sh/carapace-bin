@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -15,4 +16,6 @@ func init() {
 	carapace.Gen(address_scope_deleteCmd).Standalone()
 
 	address_scopeCmd.AddCommand(address_scope_deleteCmd)
+
+	carapace.Gen(address_scope_deleteCmd).PositionalAnyCompletion(action.ActionAddressScopes())
 }

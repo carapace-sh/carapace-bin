@@ -23,4 +23,8 @@ func init() {
 	console_connection_showCmd.Flags().Bool("print-empty", false, "Print empty table if there is no data to show.")
 	console_connection_showCmd.Flags().String("variable", "", "==SUPPRESS==")
 	console_connectionCmd.AddCommand(console_connection_showCmd)
+
+	carapace.Gen(console_connection_showCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
 }

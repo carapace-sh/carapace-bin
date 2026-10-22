@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,6 @@ func init() {
 
 	share_transfer_acceptCmd.Flags().Bool("clear_rules", false, "Whether manila should clean up the access rules after the transfer is complete.")
 	share_transferCmd.AddCommand(share_transfer_acceptCmd)
+
+	carapace.Gen(share_transfer_acceptCmd).PositionalCompletion(action.ActionShareTransfers())
 }

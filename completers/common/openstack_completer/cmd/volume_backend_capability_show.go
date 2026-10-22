@@ -25,4 +25,9 @@ func init() {
 	volume_backend_capability_showCmd.Flags().String("sort-column", "", "specify the column(s) to sort the data (columns specified first have a priority, non-existing columns are ignored), can be repeated")
 	volume_backend_capability_showCmd.Flags().Bool("sort-descending", false, "sort the column(s) in descending order")
 	volume_backend_capabilityCmd.AddCommand(volume_backend_capability_showCmd)
+
+	carapace.Gen(volume_backend_capability_showCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"quote":  carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+	})
 }

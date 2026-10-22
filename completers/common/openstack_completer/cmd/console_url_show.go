@@ -30,4 +30,8 @@ func init() {
 	console_url_showCmd.Flags().String("variable", "", "==SUPPRESS==")
 	console_url_showCmd.Flags().Bool("xvpvnc", false, "Show xvpvnc console URL")
 	console_urlCmd.AddCommand(console_url_showCmd)
+
+	carapace.Gen(console_url_showCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
 }

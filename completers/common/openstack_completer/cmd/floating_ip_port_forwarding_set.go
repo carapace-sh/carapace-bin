@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -22,4 +23,14 @@ func init() {
 	floating_ip_port_forwarding_setCmd.Flags().String("port", "", "The ID of the network port associated to the floating IP port forwarding")
 	floating_ip_port_forwarding_setCmd.Flags().String("protocol", "", "The IP protocol used in the floating IP port forwarding")
 	floating_ip_port_forwardingCmd.AddCommand(floating_ip_port_forwarding_setCmd)
+
+	carapace.Gen(floating_ip_port_forwarding_setCmd).FlagCompletion(carapace.ActionMap{
+		"port":     action.ActionPorts(),
+		"protocol": carapace.ActionValues("tcp", "udp"),
+	})
+
+	carapace.Gen(floating_ip_port_forwarding_setCmd).PositionalCompletion(
+		action.ActionFloatingIPs(),
+		action.ActionFloatingIPPortForwardings(),
+	)
 }

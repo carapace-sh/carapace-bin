@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -32,4 +33,13 @@ func init() {
 	image_task_listCmd.Flags().String("status", "", "Filter tasks based on status.")
 	image_task_listCmd.Flags().String("type", "", "Filters the response by a task type.")
 	image_taskCmd.AddCommand(image_task_listCmd)
+
+	carapace.Gen(image_task_listCmd).FlagCompletion(carapace.ActionMap{
+		"column":      action.ActionColumns("image", "task", "list"),
+		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"sort-column": action.ActionColumns("image", "task", "list"),
+		"status":      carapace.ActionValues("pending", "processing", "success", "failure"),
+		"type":        carapace.ActionValues("import"),
+	})
 }

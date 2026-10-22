@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -36,4 +37,15 @@ func init() {
 	volume_listCmd.Flags().String("user", "", "Filter results by user (name or ID) (admin only)")
 	volume_listCmd.Flags().String("user-domain", "", "Domain the user belongs to (name or ID).")
 	volumeCmd.AddCommand(volume_listCmd)
+
+	carapace.Gen(volume_listCmd).FlagCompletion(carapace.ActionMap{
+		"column":         action.ActionColumns("volume", "list"),
+		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"project":        action.ActionProjects(),
+		"project-domain": action.ActionDomains(),
+		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"sort-column":    action.ActionColumns("volume", "list"),
+		"user":           action.ActionUsers(),
+		"user-domain":    action.ActionDomains(),
+	})
 }

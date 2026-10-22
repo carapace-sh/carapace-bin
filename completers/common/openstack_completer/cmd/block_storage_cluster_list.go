@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -34,4 +35,11 @@ func init() {
 	block_storage_cluster_listCmd.Flags().Bool("sort-descending", false, "sort the column(s) in descending order")
 	block_storage_cluster_listCmd.Flags().Bool("up", false, "Filter by up status.")
 	block_storage_clusterCmd.AddCommand(block_storage_cluster_listCmd)
+
+	carapace.Gen(block_storage_cluster_listCmd).FlagCompletion(carapace.ActionMap{
+		"column":      action.ActionColumns("block", "storage", "cluster", "list"),
+		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"sort-column": action.ActionColumns("block", "storage", "cluster", "list"),
+	})
 }

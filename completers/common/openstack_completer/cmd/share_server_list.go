@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -33,4 +34,14 @@ func init() {
 	share_server_listCmd.Flags().String("source-share-server-id", "", "Share server ID to be used as a filter.")
 	share_server_listCmd.Flags().String("status", "", "Filter results by status.")
 	share_serverCmd.AddCommand(share_server_listCmd)
+
+	carapace.Gen(share_server_listCmd).FlagCompletion(carapace.ActionMap{
+		"column":         action.ActionColumns("share", "server", "list"),
+		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"project":        action.ActionProjects(),
+		"project-domain": action.ActionDomains(),
+		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"share-network":  action.ActionShareNetworks(),
+		"sort-column":    action.ActionColumns("share", "server", "list"),
+	})
 }

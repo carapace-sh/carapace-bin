@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,6 @@ func init() {
 	mapping_setCmd.Flags().String("rules", "", "Filename that contains a new set of mapping rules")
 	mapping_setCmd.Flags().String("schema-version", "", "The federated attribute mapping schema version.")
 	mappingCmd.AddCommand(mapping_setCmd)
+
+	carapace.Gen(mapping_setCmd).PositionalCompletion(action.ActionMappings())
 }

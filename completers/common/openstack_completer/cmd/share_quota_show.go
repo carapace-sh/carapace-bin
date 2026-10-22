@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -27,4 +28,10 @@ func init() {
 	share_quota_showCmd.Flags().String("user", "", "Name or ID of user to list the quotas for.")
 	share_quota_showCmd.Flags().String("variable", "", "==SUPPRESS==")
 	share_quotaCmd.AddCommand(share_quota_showCmd)
+
+	carapace.Gen(share_quota_showCmd).FlagCompletion(carapace.ActionMap{
+		"format":     carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"share-type": action.ActionShareTypes(),
+		"user":       action.ActionUsers(),
+	})
 }

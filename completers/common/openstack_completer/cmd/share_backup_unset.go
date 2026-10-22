@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,6 @@ func init() {
 	share_backup_unsetCmd.Flags().Bool("description", false, "Unset a description to the backup.")
 	share_backup_unsetCmd.Flags().Bool("name", false, "Unset a name to the backup.")
 	share_backupCmd.AddCommand(share_backup_unsetCmd)
+
+	carapace.Gen(share_backup_unsetCmd).PositionalCompletion(action.ActionShareBackups())
 }

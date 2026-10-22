@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,6 @@ func init() {
 	image_metadef_namespace_unsetCmd.Flags().Bool("all-tags", false, "Unset all metadef tags")
 	image_metadef_namespace_unsetCmd.Flags().String("tag", "", "Unset a tag on this metadef namespace (repeat option to unset multiple tags)")
 	image_metadef_namespaceCmd.AddCommand(image_metadef_namespace_unsetCmd)
+
+	carapace.Gen(image_metadef_namespace_unsetCmd).PositionalCompletion(action.ActionImageMetadefNamespaces())
 }

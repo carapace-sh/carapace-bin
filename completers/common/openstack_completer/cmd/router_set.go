@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -40,4 +41,10 @@ func init() {
 	router_setCmd.Flags().String("route", "", "Add routes to the router.")
 	router_setCmd.Flags().String("tag", "", "Tag to be added to the router (repeat option to set multiple tags)")
 	routerCmd.AddCommand(router_setCmd)
+
+	carapace.Gen(router_setCmd).FlagCompletion(carapace.ActionMap{
+		"qos-policy": action.ActionNetworkQosPolicies(),
+	})
+
+	carapace.Gen(router_setCmd).PositionalCompletion(action.ActionRouters())
 }

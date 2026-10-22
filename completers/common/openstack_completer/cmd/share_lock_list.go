@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -48,4 +49,21 @@ func init() {
 	share_lock_listCmd.Flags().String("user", "", "Filter resource locks for specific user by name or ID, combine with --all-projects to search across projects (Admin only).")
 	share_lock_listCmd.Flags().String("user-domain", "", "Domain the user belongs to (name or ID).")
 	share_lockCmd.AddCommand(share_lock_listCmd)
+
+	carapace.Gen(share_lock_listCmd).FlagCompletion(carapace.ActionMap{
+		"column":         action.ActionColumns("share", "lock", "list"),
+		"context":        carapace.ActionValues("user", "admin", "service"),
+		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"lock-context":   carapace.ActionValues("user", "admin", "service"),
+		"project":        action.ActionProjects(),
+		"project-domain": action.ActionDomains(),
+		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"sort-column":    action.ActionColumns("share", "lock", "list"),
+		"sort-dir":       carapace.ActionValues("asc", "desc"),
+		"sort-key":       carapace.ActionValues("id", "created_at", "updated_at", "resource_id", "resource_type", "resource_action", "lock_reason"),
+		"sort_dir":       carapace.ActionValues("asc", "desc"),
+		"sort_key":       carapace.ActionValues("id", "created_at", "updated_at", "resource_id", "resource_type", "resource_action", "lock_reason"),
+		"user":           action.ActionUsers(),
+		"user-domain":    action.ActionDomains(),
+	})
 }

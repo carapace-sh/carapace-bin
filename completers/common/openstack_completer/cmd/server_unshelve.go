@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -19,4 +20,10 @@ func init() {
 	server_unshelveCmd.Flags().Bool("no-availability-zone", false, "Unpin the availability zone of a SHELVED_OFFLOADED server.")
 	server_unshelveCmd.Flags().Bool("wait", false, "Wait for unshelve operation to complete")
 	serverCmd.AddCommand(server_unshelveCmd)
+
+	carapace.Gen(server_unshelveCmd).FlagCompletion(carapace.ActionMap{
+		"availability-zone": action.ActionAvailabilityZones(),
+	})
+
+	carapace.Gen(server_unshelveCmd).PositionalCompletion(action.ActionServers())
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,9 @@ func init() {
 	network_auto_allocated_topology_deleteCmd.Flags().String("project", "", "Delete auto allocated topology for a given project.")
 	network_auto_allocated_topology_deleteCmd.Flags().String("project-domain", "", "Domain the project belongs to (name or ID).")
 	network_auto_allocated_topologyCmd.AddCommand(network_auto_allocated_topology_deleteCmd)
+
+	carapace.Gen(network_auto_allocated_topology_deleteCmd).FlagCompletion(carapace.ActionMap{
+		"project":        action.ActionProjects(),
+		"project-domain": action.ActionDomains(),
+	})
 }

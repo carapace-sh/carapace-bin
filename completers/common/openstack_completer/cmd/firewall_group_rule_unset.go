@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -23,4 +24,6 @@ func init() {
 	firewall_group_rule_unsetCmd.Flags().Bool("source-ip-address", false, "Source IP address or subnet")
 	firewall_group_rule_unsetCmd.Flags().Bool("source-port", false, "Source port number or range(integer in [1, 65535] or range like 123:456)")
 	firewall_group_ruleCmd.AddCommand(firewall_group_rule_unsetCmd)
+
+	carapace.Gen(firewall_group_rule_unsetCmd).PositionalCompletion(action.ActionFirewallRules())
 }

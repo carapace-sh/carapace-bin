@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,9 @@ func init() {
 
 	image_metadef_object_updateCmd.Flags().String("name", "", "New name of the object")
 	image_metadef_objectCmd.AddCommand(image_metadef_object_updateCmd)
+
+	carapace.Gen(image_metadef_object_updateCmd).PositionalCompletion(
+		action.ActionImageMetadefNamespaces(),
+		action.ActionImageMetadefObjects(),
+	)
 }

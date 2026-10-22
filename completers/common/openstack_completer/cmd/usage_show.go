@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -27,4 +28,11 @@ func init() {
 	usage_showCmd.Flags().String("start", "", "Usage range start date, ex 2012-01-20 (default: 4 weeks ago)")
 	usage_showCmd.Flags().String("variable", "", "==SUPPRESS==")
 	usageCmd.AddCommand(usage_showCmd)
+
+	carapace.Gen(usage_showCmd).FlagCompletion(carapace.ActionMap{
+		"column":         action.ActionColumns("usage", "list"),
+		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"project":        action.ActionProjects(),
+		"project-domain": action.ActionDomains(),
+	})
 }

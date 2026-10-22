@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -44,4 +45,15 @@ func init() {
 	image_listCmd.Flags().String("status", "", "Filter images based on status.")
 	image_listCmd.Flags().String("tag", "", "Filter images based on tag.")
 	imageCmd.AddCommand(image_listCmd)
+
+	carapace.Gen(image_listCmd).FlagCompletion(carapace.ActionMap{
+		"column":         action.ActionColumns("image", "list"),
+		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"member-status":  carapace.ActionValues("accepted", "pending", "rejected", "all"),
+		"project":        action.ActionProjects(),
+		"project-domain": action.ActionDomains(),
+		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"sort-column":    action.ActionColumns("image", "list"),
+		"status":         carapace.ActionValues("queued", "saving", "active", "killed", "deleted", "pending_delete", "deactivated", "reactivating"),
+	})
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -30,4 +31,10 @@ func init() {
 	request_token_createCmd.MarkFlagRequired("consumer-secret")
 	request_token_createCmd.MarkFlagRequired("project")
 	request_tokenCmd.AddCommand(request_token_createCmd)
+
+	carapace.Gen(request_token_createCmd).FlagCompletion(carapace.ActionMap{
+		"domain":  action.ActionDomains(),
+		"format":  carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"project": action.ActionProjects(),
+	})
 }

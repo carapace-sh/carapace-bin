@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -26,4 +27,11 @@ func init() {
 	command_listCmd.Flags().String("sort-column", "", "specify the column(s) to sort the data (columns specified first have a priority, non-existing columns are ignored), can be repeated")
 	command_listCmd.Flags().Bool("sort-descending", false, "sort the column(s) in descending order")
 	commandCmd.AddCommand(command_listCmd)
+
+	carapace.Gen(command_listCmd).FlagCompletion(carapace.ActionMap{
+		"column":      action.ActionColumns("command", "list"),
+		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"sort-column": action.ActionColumns("command", "list"),
+	})
 }

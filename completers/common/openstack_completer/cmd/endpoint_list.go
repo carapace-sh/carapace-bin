@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -31,4 +32,15 @@ func init() {
 	endpoint_listCmd.Flags().String("sort-column", "", "specify the column(s) to sort the data (columns specified first have a priority, non-existing columns are ignored), can be repeated")
 	endpoint_listCmd.Flags().Bool("sort-descending", false, "sort the column(s) in descending order")
 	endpointCmd.AddCommand(endpoint_listCmd)
+
+	carapace.Gen(endpoint_listCmd).FlagCompletion(carapace.ActionMap{
+		"column":         action.ActionColumns("endpoint", "list"),
+		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"interface":      carapace.ActionValues("admin", "public", "internal"),
+		"project":        action.ActionProjects(),
+		"project-domain": action.ActionDomains(),
+		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"region":         action.ActionRegions(),
+		"sort-column":    action.ActionColumns("endpoint", "list"),
+	})
 }

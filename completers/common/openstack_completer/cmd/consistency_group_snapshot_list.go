@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -29,4 +30,13 @@ func init() {
 	consistency_group_snapshot_listCmd.Flags().Bool("sort-descending", false, "sort the column(s) in descending order")
 	consistency_group_snapshot_listCmd.Flags().String("status", "", "Filters results by a status (\"available\", \"error\", \"creating\", \"deleting\" or \"error_deleting\")")
 	consistency_group_snapshotCmd.AddCommand(consistency_group_snapshot_listCmd)
+
+	carapace.Gen(consistency_group_snapshot_listCmd).FlagCompletion(carapace.ActionMap{
+		"column":            action.ActionColumns("consistency", "group", "snapshot", "list"),
+		"consistency-group": action.ActionConsistencyGroups(),
+		"format":            carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"quote":             carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"sort-column":       action.ActionColumns("consistency", "group", "snapshot", "list"),
+		"status":            carapace.ActionValues("available", "error", "creating", "deleting", "error_deleting"),
+	})
 }

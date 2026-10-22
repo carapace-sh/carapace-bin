@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -23,4 +24,9 @@ func init() {
 	project_cleanupCmd.Flags().String("skip-resource", "", "Skip cleanup of specific resource (repeat if necessary)")
 	project_cleanupCmd.Flags().String("updated-before", "", "Only delete resources updated before the given time")
 	projectCmd.AddCommand(project_cleanupCmd)
+
+	carapace.Gen(project_cleanupCmd).FlagCompletion(carapace.ActionMap{
+		"project":        action.ActionProjects(),
+		"project-domain": action.ActionDomains(),
+	})
 }

@@ -23,4 +23,8 @@ func init() {
 	object_store_account_showCmd.Flags().Bool("print-empty", false, "Print empty table if there is no data to show.")
 	object_store_account_showCmd.Flags().String("variable", "", "==SUPPRESS==")
 	object_store_accountCmd.AddCommand(object_store_account_showCmd)
+
+	carapace.Gen(object_store_account_showCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
 }

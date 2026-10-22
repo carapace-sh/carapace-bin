@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -28,4 +29,12 @@ func init() {
 	registered_limit_setCmd.Flags().String("service", "", "Service to be updated responsible for the resource to limit (name or ID).")
 	registered_limit_setCmd.Flags().String("variable", "", "==SUPPRESS==")
 	registered_limitCmd.AddCommand(registered_limit_setCmd)
+
+	carapace.Gen(registered_limit_setCmd).FlagCompletion(carapace.ActionMap{
+		"column": action.ActionColumns("registered", "limit", "list"),
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"region": action.ActionRegions(),
+	})
+
+	carapace.Gen(registered_limit_setCmd).PositionalCompletion(action.ActionRegisteredLimits())
 }

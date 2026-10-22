@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -19,4 +20,6 @@ func init() {
 	aggregate_setCmd.Flags().String("property", "", "Property to set on <aggregate> (repeat option to set multiple properties)")
 	aggregate_setCmd.Flags().String("zone", "", "Set availability zone name")
 	aggregateCmd.AddCommand(aggregate_setCmd)
+
+	carapace.Gen(aggregate_setCmd).PositionalCompletion(action.ActionAggregates())
 }

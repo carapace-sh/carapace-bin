@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -24,4 +25,10 @@ func init() {
 	share_network_setCmd.Flags().Bool("restart-check", false, "Restart a dry-run of a security service replacement.")
 	share_network_setCmd.Flags().String("status", "", "Assign a status to the share network (Admin only).")
 	share_networkCmd.AddCommand(share_network_setCmd)
+
+	carapace.Gen(share_network_setCmd).FlagCompletion(carapace.ActionMap{
+		"status": carapace.ActionValues("active", "error", "network_change"),
+	})
+
+	carapace.Gen(share_network_setCmd).PositionalCompletion(action.ActionShareNetworks())
 }

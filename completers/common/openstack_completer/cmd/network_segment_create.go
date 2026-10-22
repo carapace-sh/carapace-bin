@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -31,4 +32,11 @@ func init() {
 	network_segment_createCmd.MarkFlagRequired("network")
 	network_segment_createCmd.MarkFlagRequired("network-type")
 	network_segmentCmd.AddCommand(network_segment_createCmd)
+
+	carapace.Gen(network_segment_createCmd).FlagCompletion(carapace.ActionMap{
+		"column":       action.ActionColumns("network", "segment", "list"),
+		"format":       carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"network":      action.ActionNetworks(),
+		"network-type": carapace.ActionValues("flat", "geneve", "gre", "local", "vlan", "vxlan"),
+	})
 }

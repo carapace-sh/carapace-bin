@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -27,4 +28,13 @@ func init() {
 	server_add_volumeCmd.Flags().String("tag", "", "Tag for the attached volume (supported by --os-compute-api-version 2.49 or above)")
 	server_add_volumeCmd.Flags().String("variable", "", "==SUPPRESS==")
 	server_addCmd.AddCommand(server_add_volumeCmd)
+
+	carapace.Gen(server_add_volumeCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
+
+	carapace.Gen(server_add_volumeCmd).PositionalCompletion(
+		action.ActionServers(),
+		action.ActionVolumes(),
+	)
 }

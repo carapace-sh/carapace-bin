@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -23,4 +24,11 @@ func init() {
 	local_ip_showCmd.Flags().Bool("print-empty", false, "Print empty table if there is no data to show.")
 	local_ip_showCmd.Flags().String("variable", "", "==SUPPRESS==")
 	local_ipCmd.AddCommand(local_ip_showCmd)
+
+	carapace.Gen(local_ip_showCmd).FlagCompletion(carapace.ActionMap{
+		"column": action.ActionColumns("local", "ip", "list"),
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
+
+	carapace.Gen(local_ip_showCmd).PositionalCompletion(action.ActionLocalIPs())
 }

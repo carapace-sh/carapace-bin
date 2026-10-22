@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -40,4 +41,17 @@ func init() {
 	role_assignment_listCmd.Flags().String("user", "", "User to filter (name or ID)")
 	role_assignment_listCmd.Flags().String("user-domain", "", "Domain the user belongs to (name or ID).")
 	role_assignmentCmd.AddCommand(role_assignment_listCmd)
+
+	carapace.Gen(role_assignment_listCmd).FlagCompletion(carapace.ActionMap{
+		"column":         action.ActionColumns("role", "assignment", "list"),
+		"domain":         action.ActionDomains(),
+		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"project":        action.ActionProjects(),
+		"project-domain": action.ActionDomains(),
+		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"role":           action.ActionRoles(),
+		"sort-column":    action.ActionColumns("role", "assignment", "list"),
+		"user":           action.ActionUsers(),
+		"user-domain":    action.ActionDomains(),
+	})
 }

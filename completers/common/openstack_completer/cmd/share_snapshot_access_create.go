@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -23,4 +24,11 @@ func init() {
 	share_snapshot_access_createCmd.Flags().Bool("print-empty", false, "Print empty table if there is no data to show.")
 	share_snapshot_access_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	share_snapshot_accessCmd.AddCommand(share_snapshot_access_createCmd)
+
+	carapace.Gen(share_snapshot_access_createCmd).FlagCompletion(carapace.ActionMap{
+		"column": action.ActionColumns("share", "snapshot", "access", "list"),
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
+
+	carapace.Gen(share_snapshot_access_createCmd).PositionalCompletion(action.ActionShareSnapshots())
 }

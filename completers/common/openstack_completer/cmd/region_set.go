@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,6 @@ func init() {
 	region_setCmd.Flags().String("description", "", "New region description")
 	region_setCmd.Flags().String("parent-region", "", "New parent region ID")
 	regionCmd.AddCommand(region_setCmd)
+
+	carapace.Gen(region_setCmd).PositionalCompletion(action.ActionRegions())
 }

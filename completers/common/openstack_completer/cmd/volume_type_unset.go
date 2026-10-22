@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -19,4 +20,11 @@ func init() {
 	volume_type_unsetCmd.Flags().String("project-domain", "", "Domain the project belongs to (name or ID).")
 	volume_type_unsetCmd.Flags().String("property", "", "Remove a property from this volume type (repeat option to remove multiple properties)")
 	volume_typeCmd.AddCommand(volume_type_unsetCmd)
+
+	carapace.Gen(volume_type_unsetCmd).FlagCompletion(carapace.ActionMap{
+		"project":        action.ActionProjects(),
+		"project-domain": action.ActionDomains(),
+	})
+
+	carapace.Gen(volume_type_unsetCmd).PositionalCompletion(action.ActionVolumeTypes())
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -24,4 +25,9 @@ func init() {
 	network_qos_rule_setCmd.Flags().String("min-kbps", "", "Minimum guaranteed bandwidth in kbps")
 	network_qos_rule_setCmd.Flags().String("min-kpps", "", "Minimum guaranteed packet rate in kpps")
 	network_qos_ruleCmd.AddCommand(network_qos_rule_setCmd)
+
+	carapace.Gen(network_qos_rule_setCmd).PositionalCompletion(
+		action.ActionNetworkQosPolicies(),
+		action.ActionNetworkQosRules(),
+	)
 }

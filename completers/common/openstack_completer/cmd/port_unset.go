@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -30,4 +31,11 @@ func init() {
 	port_unsetCmd.Flags().String("security-group", "", "Security group which should be removed this port (name or ID) (repeat option to unset multiple security groups)")
 	port_unsetCmd.Flags().String("tag", "", "Tag to be removed from the port (repeat option to remove multiple tags)")
 	portCmd.AddCommand(port_unsetCmd)
+
+	carapace.Gen(port_unsetCmd).FlagCompletion(carapace.ActionMap{
+		"qos-policy":     action.ActionNetworkQosPolicies(),
+		"security-group": action.ActionSecurityGroups(),
+	})
+
+	carapace.Gen(port_unsetCmd).PositionalCompletion(action.ActionPorts())
 }

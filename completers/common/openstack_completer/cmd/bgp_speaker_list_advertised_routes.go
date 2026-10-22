@@ -25,4 +25,9 @@ func init() {
 	bgp_speaker_list_advertised_routesCmd.Flags().String("sort-column", "", "specify the column(s) to sort the data (columns specified first have a priority, non-existing columns are ignored), can be repeated")
 	bgp_speaker_list_advertised_routesCmd.Flags().Bool("sort-descending", false, "sort the column(s) in descending order")
 	bgp_speaker_list_advertisedCmd.AddCommand(bgp_speaker_list_advertised_routesCmd)
+
+	carapace.Gen(bgp_speaker_list_advertised_routesCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"quote":  carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+	})
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -18,4 +19,6 @@ func init() {
 	share_snapshot_unsetCmd.Flags().Bool("name", false, "Unset snapshot name.")
 	share_snapshot_unsetCmd.Flags().String("property", "", "Remove a property from snapshot (repeat option to remove multiple properties)")
 	share_snapshotCmd.AddCommand(share_snapshot_unsetCmd)
+
+	carapace.Gen(share_snapshot_unsetCmd).PositionalCompletion(action.ActionShareSnapshots())
 }

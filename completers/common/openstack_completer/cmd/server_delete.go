@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -18,4 +19,6 @@ func init() {
 	server_deleteCmd.Flags().Bool("force", false, "Force delete server(s)")
 	server_deleteCmd.Flags().Bool("wait", false, "Wait for delete to complete")
 	serverCmd.AddCommand(server_deleteCmd)
+
+	carapace.Gen(server_deleteCmd).PositionalAnyCompletion(action.ActionServers())
 }

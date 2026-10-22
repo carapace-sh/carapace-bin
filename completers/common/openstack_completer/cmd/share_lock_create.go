@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -27,4 +28,9 @@ func init() {
 	share_lock_createCmd.Flags().String("resource_action", "", "Action to lock on the resource (default=\"delete\")")
 	share_lock_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	share_lockCmd.AddCommand(share_lock_createCmd)
+
+	carapace.Gen(share_lock_createCmd).FlagCompletion(carapace.ActionMap{
+		"column": action.ActionColumns("share", "lock", "list"),
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
 }

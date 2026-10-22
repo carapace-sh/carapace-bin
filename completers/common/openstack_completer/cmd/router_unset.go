@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -21,4 +22,10 @@ func init() {
 	router_unsetCmd.Flags().String("route", "", "Routes to be removed from the router.")
 	router_unsetCmd.Flags().String("tag", "", "Tag to be removed from the router (repeat option to remove multiple tags)")
 	routerCmd.AddCommand(router_unsetCmd)
+
+	carapace.Gen(router_unsetCmd).FlagCompletion(carapace.ActionMap{
+		"qos-policy": action.ActionNetworkQosPolicies(),
+	})
+
+	carapace.Gen(router_unsetCmd).PositionalCompletion(action.ActionRouters())
 }

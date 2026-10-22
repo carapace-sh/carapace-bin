@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -44,4 +45,13 @@ func init() {
 	image_setCmd.Flags().Bool("unhidden", false, "Unhide the image")
 	image_setCmd.Flags().Bool("unprotected", false, "Allow image to be deleted (default)")
 	imageCmd.AddCommand(image_setCmd)
+
+	carapace.Gen(image_setCmd).FlagCompletion(carapace.ActionMap{
+		"container-format": carapace.ActionValues("ami", "ari", "aki", "bare", "docker", "ova", "ovf"),
+		"disk-format":      carapace.ActionValues("ami", "ari", "aki", "vhd", "vmdk", "raw", "qcow2", "vhdx", "vdi", "iso", "ploop"),
+		"project":          action.ActionProjects(),
+		"project-domain":   action.ActionDomains(),
+	})
+
+	carapace.Gen(image_setCmd).PositionalCompletion(action.ActionImages())
 }

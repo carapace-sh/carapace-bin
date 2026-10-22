@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -18,4 +19,9 @@ func init() {
 	volume_service_setCmd.Flags().String("disable-reason", "", "Reason for disabling the service (should be used with --disable option)")
 	volume_service_setCmd.Flags().Bool("enable", false, "Enable volume service")
 	volume_serviceCmd.AddCommand(volume_service_setCmd)
+
+	carapace.Gen(volume_service_setCmd).PositionalCompletion(
+		action.ActionVolumeHosts(),
+		action.ActionVolumeServiceBinaries(),
+	)
 }

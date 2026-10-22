@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -37,4 +38,10 @@ func init() {
 	default_security_group_rule_createCmd.Flags().String("remote-ip", "", "Remote IP address block (may use CIDR notation; default for IPv4 rule: 0.0.0.0/0, default for IPv6 rule: ::/0)")
 	default_security_group_rule_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	default_security_group_ruleCmd.AddCommand(default_security_group_rule_createCmd)
+
+	carapace.Gen(default_security_group_rule_createCmd).FlagCompletion(carapace.ActionMap{
+		"column":    action.ActionColumns("default", "security", "group", "rule", "list"),
+		"ethertype": carapace.ActionValues("IPv4", "IPv6"),
+		"format":    carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
 }

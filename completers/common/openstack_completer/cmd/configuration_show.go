@@ -25,4 +25,8 @@ func init() {
 	configuration_showCmd.Flags().Bool("unmask", false, "Show password in clear text")
 	configuration_showCmd.Flags().String("variable", "", "==SUPPRESS==")
 	configurationCmd.AddCommand(configuration_showCmd)
+
+	carapace.Gen(configuration_showCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
 }

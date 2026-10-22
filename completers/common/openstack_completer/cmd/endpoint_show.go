@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -23,4 +24,11 @@ func init() {
 	endpoint_showCmd.Flags().Bool("print-empty", false, "Print empty table if there is no data to show.")
 	endpoint_showCmd.Flags().String("variable", "", "==SUPPRESS==")
 	endpointCmd.AddCommand(endpoint_showCmd)
+
+	carapace.Gen(endpoint_showCmd).FlagCompletion(carapace.ActionMap{
+		"column": action.ActionColumns("endpoint", "list"),
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
+
+	carapace.Gen(endpoint_showCmd).PositionalCompletion(action.ActionEndpoints())
 }

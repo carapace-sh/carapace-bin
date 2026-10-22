@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,6 @@ func init() {
 
 	volume_backup_deleteCmd.Flags().Bool("force", false, "Allow delete in state other than error or available")
 	volume_backupCmd.AddCommand(volume_backup_deleteCmd)
+
+	carapace.Gen(volume_backup_deleteCmd).PositionalAnyCompletion(action.ActionVolumeBackups())
 }

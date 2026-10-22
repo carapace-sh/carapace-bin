@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -29,4 +30,9 @@ func init() {
 	image_metadef_namespace_createCmd.Flags().Bool("unprotected", false, "Allow metadef namespace to be deleted (default)")
 	image_metadef_namespace_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	image_metadef_namespaceCmd.AddCommand(image_metadef_namespace_createCmd)
+
+	carapace.Gen(image_metadef_namespace_createCmd).FlagCompletion(carapace.ActionMap{
+		"column": action.ActionColumns("image", "metadef", "namespace", "list"),
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -27,4 +28,13 @@ func init() {
 	access_rule_listCmd.Flags().String("user", "", "User whose access rules to list (name or ID)")
 	access_rule_listCmd.Flags().String("user-domain", "", "Domain the user belongs to (name or ID).")
 	access_ruleCmd.AddCommand(access_rule_listCmd)
+
+	carapace.Gen(access_rule_listCmd).FlagCompletion(carapace.ActionMap{
+		"column":      action.ActionColumns("access", "rule", "list"),
+		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"sort-column": action.ActionColumns("access", "rule", "list"),
+		"user":        action.ActionUsers(),
+		"user-domain": action.ActionDomains(),
+	})
 }

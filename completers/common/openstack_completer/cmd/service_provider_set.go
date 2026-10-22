@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -28,4 +29,9 @@ func init() {
 	service_provider_setCmd.Flags().String("service-provider-url", "", "New service provider URL, where SAML assertions are sent")
 	service_provider_setCmd.Flags().String("variable", "", "==SUPPRESS==")
 	service_providerCmd.AddCommand(service_provider_setCmd)
+
+	carapace.Gen(service_provider_setCmd).FlagCompletion(carapace.ActionMap{
+		"column": action.ActionColumns("service", "provider", "list"),
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
 }

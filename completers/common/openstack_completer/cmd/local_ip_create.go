@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -30,4 +31,11 @@ func init() {
 	local_ip_createCmd.Flags().String("project-domain", "", "Domain the project belongs to (name or ID).")
 	local_ip_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	local_ipCmd.AddCommand(local_ip_createCmd)
+
+	carapace.Gen(local_ip_createCmd).FlagCompletion(carapace.ActionMap{
+		"column":         action.ActionColumns("local", "ip", "list"),
+		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"network":        action.ActionNetworks(),
+		"project-domain": action.ActionDomains(),
+	})
 }

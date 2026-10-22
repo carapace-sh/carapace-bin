@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -27,4 +28,9 @@ func init() {
 	request_token_authorizeCmd.MarkFlagRequired("request-key")
 	request_token_authorizeCmd.MarkFlagRequired("role")
 	request_tokenCmd.AddCommand(request_token_authorizeCmd)
+
+	carapace.Gen(request_token_authorizeCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"role":   action.ActionRoles(),
+	})
 }

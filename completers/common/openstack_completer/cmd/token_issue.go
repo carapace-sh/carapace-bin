@@ -23,4 +23,8 @@ func init() {
 	token_issueCmd.Flags().Bool("print-empty", false, "Print empty table if there is no data to show.")
 	token_issueCmd.Flags().String("variable", "", "==SUPPRESS==")
 	tokenCmd.AddCommand(token_issueCmd)
+
+	carapace.Gen(token_issueCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
 }

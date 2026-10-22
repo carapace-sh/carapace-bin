@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,6 @@ func init() {
 
 	volume_qos_deleteCmd.Flags().Bool("force", false, "Allow to delete in-use QoS specification(s)")
 	volume_qosCmd.AddCommand(volume_qos_deleteCmd)
+
+	carapace.Gen(volume_qos_deleteCmd).PositionalAnyCompletion(action.ActionVolumeQosSpecs())
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -18,4 +19,8 @@ func init() {
 	network_l3_conntrack_helper_setCmd.Flags().String("port", "", "The network port for the netfilter conntrack target rule")
 	network_l3_conntrack_helper_setCmd.Flags().String("protocol", "", "The network protocol for the netfilter conntrack target rule")
 	network_l3_conntrack_helperCmd.AddCommand(network_l3_conntrack_helper_setCmd)
+
+	carapace.Gen(network_l3_conntrack_helper_setCmd).FlagCompletion(carapace.ActionMap{
+		"port": action.ActionPorts(),
+	})
 }

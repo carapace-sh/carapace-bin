@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -30,4 +31,10 @@ func init() {
 	application_credential_createCmd.Flags().Bool("unrestricted", false, "Enable application credential to create and delete other application credentials and trusts (this is potentially dangerous behavior and is disabled by default)")
 	application_credential_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	application_credentialCmd.AddCommand(application_credential_createCmd)
+
+	carapace.Gen(application_credential_createCmd).FlagCompletion(carapace.ActionMap{
+		"column": action.ActionColumns("application", "credential", "list"),
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"role":   action.ActionRoles(),
+	})
 }

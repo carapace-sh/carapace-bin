@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -28,4 +29,10 @@ func init() {
 	router_ndp_proxy_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	router_ndp_proxy_createCmd.MarkFlagRequired("port")
 	router_ndp_proxyCmd.AddCommand(router_ndp_proxy_createCmd)
+
+	carapace.Gen(router_ndp_proxy_createCmd).FlagCompletion(carapace.ActionMap{
+		"column": action.ActionColumns("router", "ndp", "proxy", "list"),
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"port":   action.ActionPorts(),
+	})
 }

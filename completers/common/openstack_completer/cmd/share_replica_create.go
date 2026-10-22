@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -28,4 +29,11 @@ func init() {
 	share_replica_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	share_replica_createCmd.Flags().Bool("wait", false, "Wait for replica creation")
 	share_replicaCmd.AddCommand(share_replica_createCmd)
+
+	carapace.Gen(share_replica_createCmd).FlagCompletion(carapace.ActionMap{
+		"availability-zone": action.ActionAvailabilityZones(),
+		"column":            action.ActionColumns("share", "replica", "list"),
+		"format":            carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"share-network":     action.ActionShareNetworks(),
+	})
 }

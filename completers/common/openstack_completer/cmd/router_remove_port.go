@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -15,4 +16,9 @@ func init() {
 	carapace.Gen(router_remove_portCmd).Standalone()
 
 	router_removeCmd.AddCommand(router_remove_portCmd)
+
+	carapace.Gen(router_remove_portCmd).PositionalCompletion(
+		action.ActionRouters(),
+		action.ActionPorts(),
+	)
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,6 @@ func init() {
 	container_unsetCmd.Flags().String("property", "", "Property to remove from container (repeat option to remove multiple properties)")
 	container_unsetCmd.MarkFlagRequired("property")
 	containerCmd.AddCommand(container_unsetCmd)
+
+	carapace.Gen(container_unsetCmd).PositionalCompletion(action.ActionContainers())
 }

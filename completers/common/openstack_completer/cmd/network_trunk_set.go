@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -20,4 +21,6 @@ func init() {
 	network_trunk_setCmd.Flags().String("name", "", "Set trunk name")
 	network_trunk_setCmd.Flags().String("subport", "", "Subport to add.")
 	network_trunkCmd.AddCommand(network_trunk_setCmd)
+
+	carapace.Gen(network_trunk_setCmd).PositionalCompletion(action.ActionNetworkTrunks())
 }

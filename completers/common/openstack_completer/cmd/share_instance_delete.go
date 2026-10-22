@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,6 @@ func init() {
 
 	share_instance_deleteCmd.Flags().Bool("wait", false, "Wait for share instance deletion.")
 	share_instanceCmd.AddCommand(share_instance_deleteCmd)
+
+	carapace.Gen(share_instance_deleteCmd).PositionalAnyCompletion(action.ActionShareInstances())
 }

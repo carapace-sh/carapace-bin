@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,13 @@ func init() {
 	group_add_userCmd.Flags().String("group-domain", "", "Domain the group belongs to (name or ID).")
 	group_add_userCmd.Flags().String("user-domain", "", "Domain the user belongs to (name or ID).")
 	group_addCmd.AddCommand(group_add_userCmd)
+
+	carapace.Gen(group_add_userCmd).FlagCompletion(carapace.ActionMap{
+		"user-domain": action.ActionDomains(),
+	})
+
+	carapace.Gen(group_add_userCmd).PositionalCompletion(
+		action.ActionGroups(),
+		action.ActionUsers(),
+	)
 }

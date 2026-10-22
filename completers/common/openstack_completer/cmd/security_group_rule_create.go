@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -37,4 +38,15 @@ func init() {
 	security_group_rule_createCmd.Flags().String("remote-ip", "", "Remote IP address block (may use CIDR notation; default for IPv4 rule: 0.0.0.0/0, default for IPv6 rule: ::/0)")
 	security_group_rule_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	security_group_ruleCmd.AddCommand(security_group_rule_createCmd)
+
+	carapace.Gen(security_group_rule_createCmd).FlagCompletion(carapace.ActionMap{
+		"column":         action.ActionColumns("security", "group", "rule", "list"),
+		"ethertype":      carapace.ActionValues("IPv4", "IPv6"),
+		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"project":        action.ActionProjects(),
+		"project-domain": action.ActionDomains(),
+		"protocol":       carapace.ActionValues("ah", "dccp", "egp", "esp", "gre", "icmp", "igmp", "ipv6-encap", "ipv6-frag", "ipv6-icmp", "ipv6-nonxt", "ipv6-opts", "ipv6-route", "ospf", "pgm", "rsvp", "sctp", "tcp", "udp", "udplite", "vrrp", "any"),
+	})
+
+	carapace.Gen(security_group_rule_createCmd).PositionalCompletion(action.ActionSecurityGroups())
 }

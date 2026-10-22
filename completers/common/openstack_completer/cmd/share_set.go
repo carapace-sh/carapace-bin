@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -21,4 +22,6 @@ func init() {
 	share_setCmd.Flags().String("status", "", "Explicitly update the status of a share (Admin only).")
 	share_setCmd.Flags().String("task-state", "", "Indicate which task state to assign the share.")
 	shareCmd.AddCommand(share_setCmd)
+
+	carapace.Gen(share_setCmd).PositionalCompletion(action.ActionShares())
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -23,4 +24,11 @@ func init() {
 	registered_limit_showCmd.Flags().Bool("print-empty", false, "Print empty table if there is no data to show.")
 	registered_limit_showCmd.Flags().String("variable", "", "==SUPPRESS==")
 	registered_limitCmd.AddCommand(registered_limit_showCmd)
+
+	carapace.Gen(registered_limit_showCmd).FlagCompletion(carapace.ActionMap{
+		"column": action.ActionColumns("registered", "limit", "list"),
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
+
+	carapace.Gen(registered_limit_showCmd).PositionalCompletion(action.ActionRegisteredLimits())
 }

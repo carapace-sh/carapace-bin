@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -30,4 +31,13 @@ func init() {
 	consistency_group_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	consistency_group_createCmd.Flags().String("volume-type", "", "Volume type of this consistency group (name or ID)")
 	consistency_groupCmd.AddCommand(consistency_group_createCmd)
+
+	carapace.Gen(consistency_group_createCmd).FlagCompletion(carapace.ActionMap{
+		"availability-zone": action.ActionAvailabilityZones(),
+		"column":            action.ActionColumns("consistency", "group", "list"),
+		"format":            carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"snapshot":          action.ActionConsistencyGroupSnapshots(),
+		"source":            action.ActionConsistencyGroups(),
+		"volume-type":       action.ActionVolumeTypes(),
+	})
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -15,4 +16,6 @@ func init() {
 	carapace.Gen(volume_attachment_deleteCmd).Standalone()
 
 	volume_attachmentCmd.AddCommand(volume_attachment_deleteCmd)
+
+	carapace.Gen(volume_attachment_deleteCmd).PositionalAnyCompletion(action.ActionVolumeAttachments())
 }

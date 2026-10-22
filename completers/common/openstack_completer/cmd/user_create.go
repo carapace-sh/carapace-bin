@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -44,4 +45,12 @@ func init() {
 	user_createCmd.Flags().String("project-domain", "", "Domain the project belongs to (name or ID).")
 	user_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	userCmd.AddCommand(user_createCmd)
+
+	carapace.Gen(user_createCmd).FlagCompletion(carapace.ActionMap{
+		"column":         action.ActionColumns("user", "list"),
+		"domain":         action.ActionDomains(),
+		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"project":        action.ActionProjects(),
+		"project-domain": action.ActionDomains(),
+	})
 }

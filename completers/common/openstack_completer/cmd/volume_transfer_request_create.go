@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -26,4 +27,9 @@ func init() {
 	volume_transfer_request_createCmd.Flags().Bool("snapshots", false, "Also transfer volume snapshots (default) (supported by --os-volume-api-version 3.55 or later)")
 	volume_transfer_request_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	volume_transfer_requestCmd.AddCommand(volume_transfer_request_createCmd)
+
+	carapace.Gen(volume_transfer_request_createCmd).FlagCompletion(carapace.ActionMap{
+		"column": action.ActionColumns("volume", "transfer", "request", "list"),
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
 }

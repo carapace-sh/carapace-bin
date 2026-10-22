@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -44,4 +45,16 @@ func init() {
 	subnet_listCmd.Flags().String("subnet-range", "", "List only subnets with the specified subnet range (in CIDR notation).")
 	subnet_listCmd.Flags().String("tags", "", "List subnets which have all given tag(s) (Comma-separated list of tags)")
 	subnetCmd.AddCommand(subnet_listCmd)
+
+	carapace.Gen(subnet_listCmd).FlagCompletion(carapace.ActionMap{
+		"column":         action.ActionColumns("subnet", "list"),
+		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"ip-version":     carapace.ActionValues("4", "6"),
+		"network":        action.ActionNetworks(),
+		"project":        action.ActionProjects(),
+		"project-domain": action.ActionDomains(),
+		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"sort-column":    action.ActionColumns("subnet", "list"),
+		"subnet-pool":    action.ActionSubnetPools(),
+	})
 }

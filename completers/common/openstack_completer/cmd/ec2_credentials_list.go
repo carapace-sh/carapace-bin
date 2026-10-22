@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -27,4 +28,13 @@ func init() {
 	ec2_credentials_listCmd.Flags().String("user", "", "Filter list by user (name or ID)")
 	ec2_credentials_listCmd.Flags().String("user-domain", "", "Domain the user belongs to (name or ID).")
 	ec2_credentialsCmd.AddCommand(ec2_credentials_listCmd)
+
+	carapace.Gen(ec2_credentials_listCmd).FlagCompletion(carapace.ActionMap{
+		"column":      action.ActionColumns("ec2", "credentials", "list"),
+		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"sort-column": action.ActionColumns("ec2", "credentials", "list"),
+		"user":        action.ActionUsers(),
+		"user-domain": action.ActionDomains(),
+	})
 }

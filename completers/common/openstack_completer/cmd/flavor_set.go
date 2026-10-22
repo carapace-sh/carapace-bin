@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -20,4 +21,11 @@ func init() {
 	flavor_setCmd.Flags().String("project-domain", "", "Domain the project belongs to (name or ID).")
 	flavor_setCmd.Flags().String("property", "", "Property to add or modify for this flavor (repeat option to set multiple properties)")
 	flavorCmd.AddCommand(flavor_setCmd)
+
+	carapace.Gen(flavor_setCmd).FlagCompletion(carapace.ActionMap{
+		"project":        action.ActionProjects(),
+		"project-domain": action.ActionDomains(),
+	})
+
+	carapace.Gen(flavor_setCmd).PositionalCompletion(action.ActionFlavors())
 }

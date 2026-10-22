@@ -25,4 +25,8 @@ func init() {
 	server_add_fixed_ipCmd.Flags().String("tag", "", "Tag for the attached interface.")
 	server_add_fixed_ipCmd.Flags().String("variable", "", "==SUPPRESS==")
 	server_add_fixedCmd.AddCommand(server_add_fixed_ipCmd)
+
+	carapace.Gen(server_add_fixed_ipCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
 }

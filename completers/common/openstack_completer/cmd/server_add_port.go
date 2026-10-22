@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,9 @@ func init() {
 
 	server_add_portCmd.Flags().String("tag", "", "Tag for the attached interface (supported by --os-compute-api-version 2.49 or later)")
 	server_addCmd.AddCommand(server_add_portCmd)
+
+	carapace.Gen(server_add_portCmd).PositionalCompletion(
+		action.ActionServers(),
+		action.ActionPorts(),
+	)
 }

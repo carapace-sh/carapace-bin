@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -30,4 +31,9 @@ func init() {
 	share_quota_setCmd.Flags().String("snapshots", "", "New value for the \"snapshots\" quota.")
 	share_quota_setCmd.Flags().String("user", "", "Name or ID of a user to set the quotas for.")
 	share_quotaCmd.AddCommand(share_quota_setCmd)
+
+	carapace.Gen(share_quota_setCmd).FlagCompletion(carapace.ActionMap{
+		"share-type": action.ActionShareTypes(),
+		"user":       action.ActionUsers(),
+	})
 }

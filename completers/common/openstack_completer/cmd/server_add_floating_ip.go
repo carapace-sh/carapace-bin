@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,9 @@ func init() {
 
 	server_add_floating_ipCmd.Flags().String("fixed-ip-address", "", "Fixed IP address to associate with this floating IP address.")
 	server_add_floatingCmd.AddCommand(server_add_floating_ipCmd)
+
+	carapace.Gen(server_add_floating_ipCmd).PositionalCompletion(
+		action.ActionServers(),
+		action.ActionFloatingIPs(),
+	)
 }

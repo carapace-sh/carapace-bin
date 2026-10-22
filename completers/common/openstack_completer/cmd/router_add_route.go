@@ -24,4 +24,8 @@ func init() {
 	router_add_routeCmd.Flags().String("route", "", "Add extra static route to the router.")
 	router_add_routeCmd.Flags().String("variable", "", "==SUPPRESS==")
 	router_addCmd.AddCommand(router_add_routeCmd)
+
+	carapace.Gen(router_add_routeCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
 }

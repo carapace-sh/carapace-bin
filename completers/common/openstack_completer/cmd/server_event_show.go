@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -23,4 +24,11 @@ func init() {
 	server_event_showCmd.Flags().Bool("print-empty", false, "Print empty table if there is no data to show.")
 	server_event_showCmd.Flags().String("variable", "", "==SUPPRESS==")
 	server_eventCmd.AddCommand(server_event_showCmd)
+
+	carapace.Gen(server_event_showCmd).FlagCompletion(carapace.ActionMap{
+		"column": action.ActionColumns("server", "event", "list"),
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
+
+	carapace.Gen(server_event_showCmd).PositionalCompletion(action.ActionServers())
 }

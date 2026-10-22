@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -26,4 +27,10 @@ func init() {
 	server_setCmd.Flags().String("state", "", "New server state.**WARNING** Resetting the state is intended to work around servers stuck in an intermediate state, such as deleting.")
 	server_setCmd.Flags().String("tag", "", "Tag for the server.")
 	serverCmd.AddCommand(server_setCmd)
+
+	carapace.Gen(server_setCmd).FlagCompletion(carapace.ActionMap{
+		"state": carapace.ActionValues("active", "error"),
+	})
+
+	carapace.Gen(server_setCmd).PositionalCompletion(action.ActionServers())
 }

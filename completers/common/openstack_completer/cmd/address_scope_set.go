@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -19,4 +20,6 @@ func init() {
 	address_scope_setCmd.Flags().Bool("no-share", false, "Do not share the address scope between projects")
 	address_scope_setCmd.Flags().Bool("share", false, "Share the address scope between projects")
 	address_scopeCmd.AddCommand(address_scope_setCmd)
+
+	carapace.Gen(address_scope_setCmd).PositionalCompletion(action.ActionAddressScopes())
 }

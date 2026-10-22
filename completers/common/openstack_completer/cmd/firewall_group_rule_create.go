@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -46,4 +47,13 @@ func init() {
 	firewall_group_rule_createCmd.Flags().String("source-port", "", "Source port number or range (integer in [1, 65535] or range like 123:456)")
 	firewall_group_rule_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	firewall_group_ruleCmd.AddCommand(firewall_group_rule_createCmd)
+
+	carapace.Gen(firewall_group_rule_createCmd).FlagCompletion(carapace.ActionMap{
+		"action":         carapace.ActionValues("allow", "deny", "reject"),
+		"column":         action.ActionColumns("firewall", "group", "rule", "list"),
+		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"ip-version":     carapace.ActionValues("4", "6"),
+		"project":        action.ActionProjects(),
+		"project-domain": action.ActionDomains(),
+	})
 }

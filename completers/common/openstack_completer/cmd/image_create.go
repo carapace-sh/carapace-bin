@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -50,4 +51,16 @@ func init() {
 	image_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	image_createCmd.Flags().String("volume", "", "Create image from a volume")
 	imageCmd.AddCommand(image_createCmd)
+
+	carapace.Gen(image_createCmd).FlagCompletion(carapace.ActionMap{
+		"column":           action.ActionColumns("image", "list"),
+		"container-format": carapace.ActionValues("ami", "ari", "aki", "bare", "docker", "ova", "ovf"),
+		"disk-format":      carapace.ActionValues("ami", "ari", "aki", "vhd", "vmdk", "raw", "qcow2", "vhdx", "vdi", "iso", "ploop"),
+		"file":             carapace.ActionFiles(),
+		"format":           carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"project":          action.ActionProjects(),
+		"project-domain":   action.ActionDomains(),
+		"sign-key-path":    carapace.ActionFiles(),
+		"volume":           action.ActionVolumes(),
+	})
 }

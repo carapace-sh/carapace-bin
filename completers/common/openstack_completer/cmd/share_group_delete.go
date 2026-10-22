@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,6 @@ func init() {
 	share_group_deleteCmd.Flags().Bool("force", false, "Attempt to force delete the share group (Default=False) (Admin only).")
 	share_group_deleteCmd.Flags().Bool("wait", false, "Wait for share group to delete")
 	share_groupCmd.AddCommand(share_group_deleteCmd)
+
+	carapace.Gen(share_group_deleteCmd).PositionalAnyCompletion(action.ActionShareGroups())
 }

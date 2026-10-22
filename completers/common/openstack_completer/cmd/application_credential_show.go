@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -23,4 +24,11 @@ func init() {
 	application_credential_showCmd.Flags().Bool("print-empty", false, "Print empty table if there is no data to show.")
 	application_credential_showCmd.Flags().String("variable", "", "==SUPPRESS==")
 	application_credentialCmd.AddCommand(application_credential_showCmd)
+
+	carapace.Gen(application_credential_showCmd).FlagCompletion(carapace.ActionMap{
+		"column": action.ActionColumns("application", "credential", "list"),
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
+
+	carapace.Gen(application_credential_showCmd).PositionalCompletion(action.ActionApplicationCredentials())
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -47,4 +48,12 @@ func init() {
 	vpn_ipsec_site_connection_createCmd.MarkFlagRequired("psk")
 	vpn_ipsec_site_connection_createCmd.MarkFlagRequired("vpnservice")
 	vpn_ipsec_site_connectionCmd.AddCommand(vpn_ipsec_site_connection_createCmd)
+
+	carapace.Gen(vpn_ipsec_site_connection_createCmd).FlagCompletion(carapace.ActionMap{
+		"column":         action.ActionColumns("vpn", "ipsec", "site", "connection", "list"),
+		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"initiator":      carapace.ActionValues("bi-directional", "response-only"),
+		"project":        action.ActionProjects(),
+		"project-domain": action.ActionDomains(),
+	})
 }

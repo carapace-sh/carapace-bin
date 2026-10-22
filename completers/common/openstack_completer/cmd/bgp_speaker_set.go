@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -20,4 +21,6 @@ func init() {
 	bgp_speaker_setCmd.Flags().Bool("no-advertise-floating-ip-host-routes", false, "Disable the advertisement of floating IP host routes by the BGP speaker.")
 	bgp_speaker_setCmd.Flags().Bool("no-advertise-tenant-networks", false, "Disable the advertisement of tenant network routes by the BGP speaker.")
 	bgp_speakerCmd.AddCommand(bgp_speaker_setCmd)
+
+	carapace.Gen(bgp_speaker_setCmd).PositionalCompletion(action.ActionBgpSpeakers())
 }

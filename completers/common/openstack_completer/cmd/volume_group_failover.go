@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -18,4 +19,6 @@ func init() {
 	volume_group_failoverCmd.Flags().Bool("disallow-attached-volume", false, "Disallow group with attached volumes to be failed over.")
 	volume_group_failoverCmd.Flags().String("secondary-backend-id", "", "Secondary backend ID.")
 	volume_groupCmd.AddCommand(volume_group_failoverCmd)
+
+	carapace.Gen(volume_group_failoverCmd).PositionalCompletion(action.ActionVolumeGroups())
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -20,4 +21,11 @@ func init() {
 	floating_ip_unsetCmd.Flags().Bool("qos-policy", false, "Remove the QoS policy attached to the floating IP")
 	floating_ip_unsetCmd.Flags().String("tag", "", "Tag to be removed from the floating IP (repeat option to remove multiple tags)")
 	floating_ipCmd.AddCommand(floating_ip_unsetCmd)
+
+	carapace.Gen(floating_ip_unsetCmd).FlagCompletion(carapace.ActionMap{
+		"port":       action.ActionPorts(),
+		"qos-policy": action.ActionNetworkQosPolicies(),
+	})
+
+	carapace.Gen(floating_ip_unsetCmd).PositionalCompletion(action.ActionFloatingIPs())
 }

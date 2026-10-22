@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -18,4 +19,6 @@ func init() {
 	compute_agent_setCmd.Flags().String("md5hash", "", "MD5 hash of the agent")
 	compute_agent_setCmd.Flags().String("url", "", "URL of the agent")
 	compute_agentCmd.AddCommand(compute_agent_setCmd)
+
+	carapace.Gen(compute_agent_setCmd).PositionalCompletion(action.ActionComputeAgents())
 }

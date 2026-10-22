@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -33,4 +34,12 @@ func init() {
 	bgpvpn_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	bgpvpn_createCmd.Flags().String("vni", "", "VXLAN Network Identifier to be used for this BGPVPN when a VXLAN encapsulation is used")
 	bgpvpnCmd.AddCommand(bgpvpn_createCmd)
+
+	carapace.Gen(bgpvpn_createCmd).FlagCompletion(carapace.ActionMap{
+		"column":         action.ActionColumns("bgpvpn", "list"),
+		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"project":        action.ActionProjects(),
+		"project-domain": action.ActionDomains(),
+		"type":           carapace.ActionValues("l2", "l3"),
+	})
 }

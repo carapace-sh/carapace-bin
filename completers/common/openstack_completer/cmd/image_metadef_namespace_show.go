@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -23,4 +24,11 @@ func init() {
 	image_metadef_namespace_showCmd.Flags().Bool("print-empty", false, "Print empty table if there is no data to show.")
 	image_metadef_namespace_showCmd.Flags().String("variable", "", "==SUPPRESS==")
 	image_metadef_namespaceCmd.AddCommand(image_metadef_namespace_showCmd)
+
+	carapace.Gen(image_metadef_namespace_showCmd).FlagCompletion(carapace.ActionMap{
+		"column": action.ActionColumns("image", "metadef", "namespace", "list"),
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
+
+	carapace.Gen(image_metadef_namespace_showCmd).PositionalCompletion(action.ActionImageMetadefNamespaces())
 }

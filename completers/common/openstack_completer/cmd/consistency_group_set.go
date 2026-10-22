@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,6 @@ func init() {
 	consistency_group_setCmd.Flags().String("description", "", "New consistency group description")
 	consistency_group_setCmd.Flags().String("name", "", "New consistency group name")
 	consistency_groupCmd.AddCommand(consistency_group_setCmd)
+
+	carapace.Gen(consistency_group_setCmd).PositionalCompletion(action.ActionConsistencyGroups())
 }

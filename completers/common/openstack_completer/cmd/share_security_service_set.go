@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -24,4 +25,12 @@ func init() {
 	share_security_service_setCmd.Flags().String("server", "", "Set security service IP address or hostname.")
 	share_security_service_setCmd.Flags().String("user", "", "Set security service user or group used by project.")
 	share_security_serviceCmd.AddCommand(share_security_service_setCmd)
+
+	carapace.Gen(share_security_service_setCmd).FlagCompletion(carapace.ActionMap{
+		"domain": action.ActionDomains(),
+		"server": action.ActionServers(),
+		"user":   action.ActionUsers(),
+	})
+
+	carapace.Gen(share_security_service_setCmd).PositionalCompletion(action.ActionShareSecurityServices())
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -21,4 +22,9 @@ func init() {
 	vpn_service_setCmd.Flags().String("name", "", "Name for the VPN service")
 	vpn_service_setCmd.Flags().String("subnet", "", "Local private subnet (name or ID)")
 	vpn_serviceCmd.AddCommand(vpn_service_setCmd)
+
+	carapace.Gen(vpn_service_setCmd).FlagCompletion(carapace.ActionMap{
+		"flavor": action.ActionFlavors(),
+		"subnet": action.ActionSubnets(),
+	})
 }

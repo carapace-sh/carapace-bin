@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -52,4 +53,14 @@ func init() {
 	network_createCmd.Flags().Bool("transparent-vlan", false, "Make the network VLAN transparent")
 	network_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	networkCmd.AddCommand(network_createCmd)
+
+	carapace.Gen(network_createCmd).FlagCompletion(carapace.ActionMap{
+		"availability-zone-hint": action.ActionAvailabilityZones(),
+		"column":                 action.ActionColumns("network", "list"),
+		"format":                 carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"project":                action.ActionProjects(),
+		"project-domain":         action.ActionDomains(),
+		"provider-network-type":  carapace.ActionValues("flat", "geneve", "gre", "local", "vlan", "vxlan"),
+		"qos-policy":             action.ActionNetworkQosPolicies(),
+	})
 }

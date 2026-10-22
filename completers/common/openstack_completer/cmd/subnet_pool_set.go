@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -29,4 +30,10 @@ func init() {
 	subnet_pool_setCmd.Flags().String("pool-prefix", "", "Set subnet pool prefixes (in CIDR notation) (repeat option to set multiple prefixes)")
 	subnet_pool_setCmd.Flags().String("tag", "", "Tag to be added to the subnet pool (repeat option to set multiple tags)")
 	subnet_poolCmd.AddCommand(subnet_pool_setCmd)
+
+	carapace.Gen(subnet_pool_setCmd).FlagCompletion(carapace.ActionMap{
+		"address-scope": action.ActionAddressScopes(),
+	})
+
+	carapace.Gen(subnet_pool_setCmd).PositionalCompletion(action.ActionSubnetPools())
 }

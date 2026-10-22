@@ -24,4 +24,8 @@ func init() {
 	router_remove_gatewayCmd.Flags().Bool("print-empty", false, "Print empty table if there is no data to show.")
 	router_remove_gatewayCmd.Flags().String("variable", "", "==SUPPRESS==")
 	router_removeCmd.AddCommand(router_remove_gatewayCmd)
+
+	carapace.Gen(router_remove_gatewayCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
 }

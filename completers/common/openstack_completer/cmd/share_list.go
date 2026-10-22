@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -51,4 +52,22 @@ func init() {
 	share_listCmd.Flags().String("user", "", "Filter results by user (name or ID) (admin only)")
 	share_listCmd.Flags().String("user-domain", "", "Domain the user belongs to (name or ID).")
 	shareCmd.AddCommand(share_listCmd)
+
+	carapace.Gen(share_listCmd).FlagCompletion(carapace.ActionMap{
+		"availability-zone": action.ActionAvailabilityZones(),
+		"column":            action.ActionColumns("share", "list"),
+		"format":            carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"project":           action.ActionProjects(),
+		"project-domain":    action.ActionDomains(),
+		"quote":             carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"share-group":       action.ActionShareGroups(),
+		"share-network":     action.ActionShareNetworks(),
+		"share-server":      action.ActionShareServers(),
+		"share-type":        action.ActionShareTypes(),
+		"snapshot":          action.ActionShareSnapshots(),
+		"sort-column":       action.ActionColumns("share", "list"),
+		"status":            carapace.ActionValues("available", "creating", "creating_from_snapshot", "deleting", "deleted", "error", "error_deleting", "manage_starting", "manage_error", "unmanage_starting", "unmanage_error", "extending", "extending_error", "shrinking", "shrinking_error", "reverting", "reverting_error", "awaiting_transfer", "replication_change", "server_migrating"),
+		"user":              action.ActionUsers(),
+		"user-domain":       action.ActionDomains(),
+	})
 }

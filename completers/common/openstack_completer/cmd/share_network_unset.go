@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -18,4 +19,6 @@ func init() {
 	share_network_unsetCmd.Flags().Bool("name", false, "Unset share network name.")
 	share_network_unsetCmd.Flags().String("security-service", "", "Disassociate a security service from the share network.")
 	share_networkCmd.AddCommand(share_network_unsetCmd)
+
+	carapace.Gen(share_network_unsetCmd).PositionalCompletion(action.ActionShareNetworks())
 }

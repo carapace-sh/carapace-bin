@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -27,4 +28,11 @@ func init() {
 	network_subport_listCmd.Flags().String("trunk", "", "List only subports belonging to this trunk (name or ID)")
 	network_subport_listCmd.MarkFlagRequired("trunk")
 	network_subportCmd.AddCommand(network_subport_listCmd)
+
+	carapace.Gen(network_subport_listCmd).FlagCompletion(carapace.ActionMap{
+		"column":      action.ActionColumns("network", "subport", "list"),
+		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"sort-column": action.ActionColumns("network", "subport", "list"),
+	})
 }

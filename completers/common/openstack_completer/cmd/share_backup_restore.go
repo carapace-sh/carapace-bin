@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,6 @@ func init() {
 	share_backup_restoreCmd.Flags().String("target-share", "", "share to restore backup to.")
 	share_backup_restoreCmd.Flags().Bool("wait", false, "Wait for restore conclusion")
 	share_backupCmd.AddCommand(share_backup_restoreCmd)
+
+	carapace.Gen(share_backup_restoreCmd).PositionalCompletion(action.ActionShareBackups())
 }

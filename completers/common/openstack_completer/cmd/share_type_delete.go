@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -15,4 +16,6 @@ func init() {
 	carapace.Gen(share_type_deleteCmd).Standalone()
 
 	share_typeCmd.AddCommand(share_type_deleteCmd)
+
+	carapace.Gen(share_type_deleteCmd).PositionalAnyCompletion(action.ActionShareTypes())
 }

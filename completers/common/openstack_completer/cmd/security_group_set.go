@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -22,4 +23,6 @@ func init() {
 	security_group_setCmd.Flags().Bool("stateless", false, "Security group is stateless")
 	security_group_setCmd.Flags().String("tag", "", "Tag to be added to the security group (repeat option to set multiple tags)")
 	security_groupCmd.AddCommand(security_group_setCmd)
+
+	carapace.Gen(security_group_setCmd).PositionalCompletion(action.ActionSecurityGroups())
 }

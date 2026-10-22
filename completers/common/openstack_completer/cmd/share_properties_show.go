@@ -23,4 +23,8 @@ func init() {
 	share_properties_showCmd.Flags().Bool("print-empty", false, "Print empty table if there is no data to show.")
 	share_properties_showCmd.Flags().String("variable", "", "==SUPPRESS==")
 	share_propertiesCmd.AddCommand(share_properties_showCmd)
+
+	carapace.Gen(share_properties_showCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
 }

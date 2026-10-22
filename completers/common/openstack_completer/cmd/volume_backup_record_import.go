@@ -23,4 +23,8 @@ func init() {
 	volume_backup_record_importCmd.Flags().Bool("print-empty", false, "Print empty table if there is no data to show.")
 	volume_backup_record_importCmd.Flags().String("variable", "", "==SUPPRESS==")
 	volume_backup_recordCmd.AddCommand(volume_backup_record_importCmd)
+
+	carapace.Gen(volume_backup_record_importCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -31,4 +32,12 @@ func init() {
 	volume_setCmd.Flags().String("state", "", "New volume state (\"available\", \"error\", \"creating\", \"deleting\", \"in-use\", \"attaching\", \"detaching\", \"error_deleting\" or \"maintenance\") (admin only) (This option simply changes the state of the volume in the database with no regard to actual status, exercise caution when using)")
 	volume_setCmd.Flags().String("type", "", "New volume type (name or ID)")
 	volumeCmd.AddCommand(volume_setCmd)
+
+	carapace.Gen(volume_setCmd).FlagCompletion(carapace.ActionMap{
+		"migration-policy": carapace.ActionValues("never", "on-demand"),
+		"retype-policy":    carapace.ActionValues("never", "on-demand"),
+		"state":            carapace.ActionValues("available", "error", "creating", "deleting", "in-use", "attaching", "detaching", "error_deleting", "maintenance"),
+	})
+
+	carapace.Gen(volume_setCmd).PositionalCompletion(action.ActionVolumes())
 }

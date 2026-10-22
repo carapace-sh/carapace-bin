@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -18,4 +19,6 @@ func init() {
 	network_agent_setCmd.Flags().Bool("disable", false, "Disable network agent")
 	network_agent_setCmd.Flags().Bool("enable", false, "Enable network agent")
 	network_agentCmd.AddCommand(network_agent_setCmd)
+
+	carapace.Gen(network_agent_setCmd).PositionalCompletion(action.ActionNetworkAgents())
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,9 @@ func init() {
 	share_quota_deleteCmd.Flags().String("share-type", "", "Name or ID of a share type to delete the quotas for.")
 	share_quota_deleteCmd.Flags().String("user", "", "Name or ID of user to delete the quotas for.")
 	share_quotaCmd.AddCommand(share_quota_deleteCmd)
+
+	carapace.Gen(share_quota_deleteCmd).FlagCompletion(carapace.ActionMap{
+		"share-type": action.ActionShareTypes(),
+		"user":       action.ActionUsers(),
+	})
 }

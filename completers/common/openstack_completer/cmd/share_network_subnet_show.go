@@ -23,4 +23,8 @@ func init() {
 	share_network_subnet_showCmd.Flags().Bool("print-empty", false, "Print empty table if there is no data to show.")
 	share_network_subnet_showCmd.Flags().String("variable", "", "==SUPPRESS==")
 	share_network_subnetCmd.AddCommand(share_network_subnet_showCmd)
+
+	carapace.Gen(share_network_subnet_showCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
 }

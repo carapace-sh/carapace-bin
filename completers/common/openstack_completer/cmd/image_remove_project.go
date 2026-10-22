@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,13 @@ func init() {
 
 	image_remove_projectCmd.Flags().String("project-domain", "", "Domain the project belongs to (name or ID).")
 	image_removeCmd.AddCommand(image_remove_projectCmd)
+
+	carapace.Gen(image_remove_projectCmd).FlagCompletion(carapace.ActionMap{
+		"project-domain": action.ActionDomains(),
+	})
+
+	carapace.Gen(image_remove_projectCmd).PositionalCompletion(
+		action.ActionImages(),
+		action.ActionProjects(),
+	)
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,6 @@ func init() {
 
 	volume_group_deleteCmd.Flags().Bool("force", false, "Delete the volume group even if it contains volumes.")
 	volume_groupCmd.AddCommand(volume_group_deleteCmd)
+
+	carapace.Gen(volume_group_deleteCmd).PositionalAnyCompletion(action.ActionVolumeGroups())
 }

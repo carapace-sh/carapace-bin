@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,6 @@ func init() {
 	container_setCmd.Flags().String("property", "", "Set a property on this container (repeat option to set multiple properties)")
 	container_setCmd.MarkFlagRequired("property")
 	containerCmd.AddCommand(container_setCmd)
+
+	carapace.Gen(container_setCmd).PositionalCompletion(action.ActionContainers())
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -41,4 +42,17 @@ func init() {
 	floating_ip_listCmd.Flags().String("status", "", "List only floating IP(s) with the specified status ('ACTIVE', 'DOWN')")
 	floating_ip_listCmd.Flags().String("tags", "", "List floating IP which have all given tag(s) (Comma-separated list of tags)")
 	floating_ipCmd.AddCommand(floating_ip_listCmd)
+
+	carapace.Gen(floating_ip_listCmd).FlagCompletion(carapace.ActionMap{
+		"column":         action.ActionColumns("floating", "ip", "list"),
+		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"network":        action.ActionNetworks(),
+		"port":           action.ActionPorts(),
+		"project":        action.ActionProjects(),
+		"project-domain": action.ActionDomains(),
+		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"router":         action.ActionRouters(),
+		"sort-column":    action.ActionColumns("floating", "ip", "list"),
+		"status":         carapace.ActionValues("ACTIVE", "DOWN"),
+	})
 }

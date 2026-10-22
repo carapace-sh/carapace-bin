@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -18,4 +19,6 @@ func init() {
 	share_unsetCmd.Flags().Bool("name", false, "Unset share name.")
 	share_unsetCmd.Flags().String("property", "", "Remove a property from share (repeat option to remove multiple properties)")
 	shareCmd.AddCommand(share_unsetCmd)
+
+	carapace.Gen(share_unsetCmd).PositionalCompletion(action.ActionShares())
 }

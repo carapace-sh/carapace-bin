@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -26,4 +27,10 @@ func init() {
 	endpoint_createCmd.Flags().String("region", "", "New endpoint region ID")
 	endpoint_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	endpointCmd.AddCommand(endpoint_createCmd)
+
+	carapace.Gen(endpoint_createCmd).FlagCompletion(carapace.ActionMap{
+		"column": action.ActionColumns("endpoint", "list"),
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"region": action.ActionRegions(),
+	})
 }

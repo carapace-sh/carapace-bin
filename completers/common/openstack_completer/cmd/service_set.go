@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -20,4 +21,6 @@ func init() {
 	service_setCmd.Flags().String("name", "", "New service name")
 	service_setCmd.Flags().String("type", "", "New service type (compute, image, identity, volume, etc)")
 	serviceCmd.AddCommand(service_setCmd)
+
+	carapace.Gen(service_setCmd).PositionalCompletion(action.ActionServices())
 }

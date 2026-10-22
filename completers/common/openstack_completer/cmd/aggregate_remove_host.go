@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -23,4 +24,13 @@ func init() {
 	aggregate_remove_hostCmd.Flags().Bool("print-empty", false, "Print empty table if there is no data to show.")
 	aggregate_remove_hostCmd.Flags().String("variable", "", "==SUPPRESS==")
 	aggregate_removeCmd.AddCommand(aggregate_remove_hostCmd)
+
+	carapace.Gen(aggregate_remove_hostCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
+
+	carapace.Gen(aggregate_remove_hostCmd).PositionalCompletion(
+		action.ActionAggregates(),
+		action.ActionComputeHosts(),
+	)
 }

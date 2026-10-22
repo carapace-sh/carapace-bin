@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -30,4 +31,9 @@ func init() {
 	share_type_createCmd.Flags().String("snapshot-support", "", "Boolean extra spec used for filtering of back ends by their capability to create share snapshots.")
 	share_type_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	share_typeCmd.AddCommand(share_type_createCmd)
+
+	carapace.Gen(share_type_createCmd).FlagCompletion(carapace.ActionMap{
+		"column": action.ActionColumns("share", "type", "list"),
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
 }

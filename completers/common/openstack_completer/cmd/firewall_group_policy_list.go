@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -26,4 +27,11 @@ func init() {
 	firewall_group_policy_listCmd.Flags().String("sort-column", "", "specify the column(s) to sort the data (columns specified first have a priority, non-existing columns are ignored), can be repeated")
 	firewall_group_policy_listCmd.Flags().Bool("sort-descending", false, "sort the column(s) in descending order")
 	firewall_group_policyCmd.AddCommand(firewall_group_policy_listCmd)
+
+	carapace.Gen(firewall_group_policy_listCmd).FlagCompletion(carapace.ActionMap{
+		"column":      action.ActionColumns("firewall", "group", "policy", "list"),
+		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"sort-column": action.ActionColumns("firewall", "group", "policy", "list"),
+	})
 }

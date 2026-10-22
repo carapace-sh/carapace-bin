@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,6 @@ func init() {
 	share_replica_deleteCmd.Flags().Bool("force", false, "Attempt to force delete a replica on its backend.")
 	share_replica_deleteCmd.Flags().Bool("wait", false, "Wait for share replica deletion")
 	share_replicaCmd.AddCommand(share_replica_deleteCmd)
+
+	carapace.Gen(share_replica_deleteCmd).PositionalAnyCompletion(action.ActionShareReplicas())
 }

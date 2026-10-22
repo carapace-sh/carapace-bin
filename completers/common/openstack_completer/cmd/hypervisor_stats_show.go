@@ -23,4 +23,8 @@ func init() {
 	hypervisor_stats_showCmd.Flags().Bool("print-empty", false, "Print empty table if there is no data to show.")
 	hypervisor_stats_showCmd.Flags().String("variable", "", "==SUPPRESS==")
 	hypervisor_statsCmd.AddCommand(hypervisor_stats_showCmd)
+
+	carapace.Gen(hypervisor_stats_showCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
 }

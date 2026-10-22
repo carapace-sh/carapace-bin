@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -19,4 +20,6 @@ func init() {
 	address_group_setCmd.Flags().String("extra-property", "", "Additional parameters can be passed using this property.")
 	address_group_setCmd.Flags().String("name", "", "Set address group name")
 	address_groupCmd.AddCommand(address_group_setCmd)
+
+	carapace.Gen(address_group_setCmd).PositionalCompletion(action.ActionAddressGroups())
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -15,4 +16,6 @@ func init() {
 	carapace.Gen(cached_image_deleteCmd).Standalone()
 
 	cached_imageCmd.AddCommand(cached_image_deleteCmd)
+
+	carapace.Gen(cached_image_deleteCmd).PositionalAnyCompletion(action.ActionCachedImages())
 }

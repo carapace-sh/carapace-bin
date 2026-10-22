@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -26,4 +27,11 @@ func init() {
 	host_listCmd.Flags().Bool("sort-descending", false, "sort the column(s) in descending order")
 	host_listCmd.Flags().String("zone", "", "Only return hosts in the availability zone")
 	hostCmd.AddCommand(host_listCmd)
+
+	carapace.Gen(host_listCmd).FlagCompletion(carapace.ActionMap{
+		"column":      action.ActionColumns("host", "list"),
+		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"sort-column": action.ActionColumns("host", "list"),
+	})
 }

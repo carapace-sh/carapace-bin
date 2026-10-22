@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -38,4 +39,17 @@ func init() {
 	server_migration_listCmd.Flags().String("user", "", "Filter migrations by user (name or ID) (supported with --os-compute-api-version 2.80 or above)")
 	server_migration_listCmd.Flags().String("user-domain", "", "Domain the user belongs to (name or ID).")
 	server_migrationCmd.AddCommand(server_migration_listCmd)
+
+	carapace.Gen(server_migration_listCmd).FlagCompletion(carapace.ActionMap{
+		"column":         action.ActionColumns("server", "migration", "list"),
+		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"project":        action.ActionProjects(),
+		"project-domain": action.ActionDomains(),
+		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"server":         action.ActionServers(),
+		"sort-column":    action.ActionColumns("server", "migration", "list"),
+		"type":           carapace.ActionValues("evacuation", "live-migration", "cold-migration", "resize"),
+		"user":           action.ActionUsers(),
+		"user-domain":    action.ActionDomains(),
+	})
 }

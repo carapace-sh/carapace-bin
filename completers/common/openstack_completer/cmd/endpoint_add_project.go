@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,8 @@ func init() {
 
 	endpoint_add_projectCmd.Flags().String("project-domain", "", "Domain the project belongs to (name or ID).")
 	endpoint_addCmd.AddCommand(endpoint_add_projectCmd)
+
+	carapace.Gen(endpoint_add_projectCmd).FlagCompletion(carapace.ActionMap{
+		"project-domain": action.ActionDomains(),
+	})
 }

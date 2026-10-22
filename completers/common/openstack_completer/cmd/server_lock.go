@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,6 @@ func init() {
 
 	server_lockCmd.Flags().String("reason", "", "Reason for locking the server(s) (supported by --os-compute-api-version 2.73 or above)")
 	serverCmd.AddCommand(server_lockCmd)
+
+	carapace.Gen(server_lockCmd).PositionalCompletion(action.ActionServers())
 }

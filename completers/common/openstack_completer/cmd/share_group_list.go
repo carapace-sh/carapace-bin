@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -41,4 +42,17 @@ func init() {
 	share_group_listCmd.Flags().Bool("sort-descending", false, "sort the column(s) in descending order")
 	share_group_listCmd.Flags().String("status", "", "Filter results by status.")
 	share_groupCmd.AddCommand(share_group_listCmd)
+
+	carapace.Gen(share_group_listCmd).FlagCompletion(carapace.ActionMap{
+		"column":         action.ActionColumns("share", "group", "list"),
+		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"project":        action.ActionProjects(),
+		"project-domain": action.ActionDomains(),
+		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"share-network":  action.ActionShareNetworks(),
+		"share-server":   action.ActionShareServers(),
+		"snapshot":       action.ActionShareGroupSnapshots(),
+		"sort-column":    action.ActionColumns("share", "group", "list"),
+		"status":         carapace.ActionValues("available", "error", "creating", "deleting", "error_deleting"),
+	})
 }

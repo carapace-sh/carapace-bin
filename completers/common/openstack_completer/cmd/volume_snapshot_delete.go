@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,6 @@ func init() {
 	volume_snapshot_deleteCmd.Flags().Bool("force", false, "Attempt forced removal of snapshot(s), regardless of state (defaults to False)")
 	volume_snapshot_deleteCmd.Flags().Bool("remote", false, "Unmanage the snapshot, removing it from the Block Storage service management but not from the backend.")
 	volume_snapshotCmd.AddCommand(volume_snapshot_deleteCmd)
+
+	carapace.Gen(volume_snapshot_deleteCmd).PositionalAnyCompletion(action.ActionVolumeSnapshots())
 }

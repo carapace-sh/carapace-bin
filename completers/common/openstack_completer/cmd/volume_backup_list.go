@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -34,4 +35,14 @@ func init() {
 	volume_backup_listCmd.Flags().String("status", "", "Filters results by the backup status, one of: creating, available, deleting, error, restoring or error_restoring")
 	volume_backup_listCmd.Flags().String("volume", "", "Filters results by the volume which they backup (name or ID)")
 	volume_backupCmd.AddCommand(volume_backup_listCmd)
+
+	carapace.Gen(volume_backup_listCmd).FlagCompletion(carapace.ActionMap{
+		"column":      action.ActionColumns("volume", "backup", "list"),
+		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"project":     action.ActionProjects(),
+		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"sort-column": action.ActionColumns("volume", "backup", "list"),
+		"status":      carapace.ActionValues("creating", "available", "deleting", "error", "restoring", "error_restoring"),
+		"volume":      action.ActionVolumes(),
+	})
 }

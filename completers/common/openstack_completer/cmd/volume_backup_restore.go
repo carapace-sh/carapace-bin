@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -24,4 +25,14 @@ func init() {
 	volume_backup_restoreCmd.Flags().Bool("print-empty", false, "Print empty table if there is no data to show.")
 	volume_backup_restoreCmd.Flags().String("variable", "", "==SUPPRESS==")
 	volume_backupCmd.AddCommand(volume_backup_restoreCmd)
+
+	carapace.Gen(volume_backup_restoreCmd).FlagCompletion(carapace.ActionMap{
+		"column": action.ActionColumns("volume", "backup", "list"),
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
+
+	carapace.Gen(volume_backup_restoreCmd).PositionalCompletion(
+		action.ActionVolumeBackups(),
+		action.ActionVolumes(),
+	)
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -22,4 +23,6 @@ func init() {
 	network_qos_policy_setCmd.Flags().Bool("no-share", false, "Make the QoS policy not accessible by other projects")
 	network_qos_policy_setCmd.Flags().Bool("share", false, "Make the QoS policy accessible by other projects")
 	network_qos_policyCmd.AddCommand(network_qos_policy_setCmd)
+
+	carapace.Gen(network_qos_policy_setCmd).PositionalCompletion(action.ActionNetworkQosPolicies())
 }

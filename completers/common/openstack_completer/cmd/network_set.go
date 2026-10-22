@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -39,4 +40,10 @@ func init() {
 	network_setCmd.Flags().Bool("share", false, "Share the network between projects")
 	network_setCmd.Flags().String("tag", "", "Tag to be added to the network (repeat option to set multiple tags)")
 	networkCmd.AddCommand(network_setCmd)
+
+	carapace.Gen(network_setCmd).FlagCompletion(carapace.ActionMap{
+		"qos-policy": action.ActionNetworkQosPolicies(),
+	})
+
+	carapace.Gen(network_setCmd).PositionalCompletion(action.ActionNetworks())
 }

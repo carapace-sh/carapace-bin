@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,6 @@ func init() {
 	share_server_setCmd.Flags().String("status", "", "Assign a status to the share server.")
 	share_server_setCmd.Flags().String("task-state", "", "Indicate which task state to assign the share server.")
 	share_serverCmd.AddCommand(share_server_setCmd)
+
+	carapace.Gen(share_server_setCmd).PositionalCompletion(action.ActionShareServers())
 }

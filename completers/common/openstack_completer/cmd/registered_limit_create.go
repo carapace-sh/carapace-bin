@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -29,4 +30,10 @@ func init() {
 	registered_limit_createCmd.MarkFlagRequired("default-limit")
 	registered_limit_createCmd.MarkFlagRequired("service")
 	registered_limitCmd.AddCommand(registered_limit_createCmd)
+
+	carapace.Gen(registered_limit_createCmd).FlagCompletion(carapace.ActionMap{
+		"column": action.ActionColumns("registered", "limit", "list"),
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"region": action.ActionRegions(),
+	})
 }

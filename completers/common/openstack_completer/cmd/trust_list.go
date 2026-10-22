@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -30,4 +31,11 @@ func init() {
 	trust_listCmd.Flags().String("trustor", "", "Trustor user to filter (name or ID)")
 	trust_listCmd.Flags().String("trustor-domain", "", "Domain that contains <trustor> (name or ID)")
 	trustCmd.AddCommand(trust_listCmd)
+
+	carapace.Gen(trust_listCmd).FlagCompletion(carapace.ActionMap{
+		"column":      action.ActionColumns("trust", "list"),
+		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"sort-column": action.ActionColumns("trust", "list"),
+	})
 }

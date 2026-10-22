@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -31,4 +32,12 @@ func init() {
 	bgp_peer_createCmd.MarkFlagRequired("peer-ip")
 	bgp_peer_createCmd.MarkFlagRequired("remote-as")
 	bgp_peerCmd.AddCommand(bgp_peer_createCmd)
+
+	carapace.Gen(bgp_peer_createCmd).FlagCompletion(carapace.ActionMap{
+		"auth-type":      carapace.ActionValues("none", "md5"),
+		"column":         action.ActionColumns("bgp", "peer", "list"),
+		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"project":        action.ActionProjects(),
+		"project-domain": action.ActionDomains(),
+	})
 }

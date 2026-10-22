@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -31,4 +32,15 @@ func init() {
 	router_ndp_proxy_listCmd.Flags().String("sort-column", "", "specify the column(s) to sort the data (columns specified first have a priority, non-existing columns are ignored), can be repeated")
 	router_ndp_proxy_listCmd.Flags().Bool("sort-descending", false, "sort the column(s) in descending order")
 	router_ndp_proxyCmd.AddCommand(router_ndp_proxy_listCmd)
+
+	carapace.Gen(router_ndp_proxy_listCmd).FlagCompletion(carapace.ActionMap{
+		"column":         action.ActionColumns("router", "ndp", "proxy", "list"),
+		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"port":           action.ActionPorts(),
+		"project":        action.ActionProjects(),
+		"project-domain": action.ActionDomains(),
+		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"router":         action.ActionRouters(),
+		"sort-column":    action.ActionColumns("router", "ndp", "proxy", "list"),
+	})
 }

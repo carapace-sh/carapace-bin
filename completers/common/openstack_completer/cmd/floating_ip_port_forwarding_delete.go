@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -15,4 +16,9 @@ func init() {
 	carapace.Gen(floating_ip_port_forwarding_deleteCmd).Standalone()
 
 	floating_ip_port_forwardingCmd.AddCommand(floating_ip_port_forwarding_deleteCmd)
+
+	carapace.Gen(floating_ip_port_forwarding_deleteCmd).PositionalCompletion(
+		action.ActionFloatingIPs(),
+		action.ActionFloatingIPPortForwardings(),
+	)
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -49,4 +50,17 @@ func init() {
 	subnet_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	subnet_createCmd.MarkFlagRequired("network")
 	subnetCmd.AddCommand(subnet_createCmd)
+
+	carapace.Gen(subnet_createCmd).FlagCompletion(carapace.ActionMap{
+		"column":            action.ActionColumns("subnet", "list"),
+		"format":            carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"ip-version":        carapace.ActionValues("4", "6"),
+		"ipv6-address-mode": carapace.ActionValues("dhcpv6-stateful", "dhcpv6-stateless", "slaac"),
+		"ipv6-ra-mode":      carapace.ActionValues("dhcpv6-stateful", "dhcpv6-stateless", "slaac"),
+		"network":           action.ActionNetworks(),
+		"network-segment":   action.ActionNetworkSegments(),
+		"project":           action.ActionProjects(),
+		"project-domain":    action.ActionDomains(),
+		"subnet-pool":       action.ActionSubnetPools(),
+	})
 }

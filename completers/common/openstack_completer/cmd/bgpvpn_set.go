@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -26,4 +27,6 @@ func init() {
 	bgpvpn_setCmd.Flags().String("route-target", "", "Add Route Target to import/export list (repeat option for multiple Route Targets)")
 	bgpvpn_setCmd.Flags().String("vni", "", "VXLAN Network Identifier to be used for this BGPVPN when a VXLAN encapsulation is used")
 	bgpvpnCmd.AddCommand(bgpvpn_setCmd)
+
+	carapace.Gen(bgpvpn_setCmd).PositionalCompletion(action.ActionBgpvpns())
 }

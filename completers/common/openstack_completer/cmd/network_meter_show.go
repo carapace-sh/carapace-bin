@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -23,4 +24,11 @@ func init() {
 	network_meter_showCmd.Flags().Bool("print-empty", false, "Print empty table if there is no data to show.")
 	network_meter_showCmd.Flags().String("variable", "", "==SUPPRESS==")
 	network_meterCmd.AddCommand(network_meter_showCmd)
+
+	carapace.Gen(network_meter_showCmd).FlagCompletion(carapace.ActionMap{
+		"column": action.ActionColumns("network", "meter", "list"),
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
+
+	carapace.Gen(network_meter_showCmd).PositionalCompletion(action.ActionNetworkMeters())
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,6 @@ func init() {
 	subnet_pool_unsetCmd.Flags().Bool("all-tag", false, "Clear all tags associated with the subnet pool")
 	subnet_pool_unsetCmd.Flags().String("tag", "", "Tag to be removed from the subnet pool (repeat option to remove multiple tags)")
 	subnet_poolCmd.AddCommand(subnet_pool_unsetCmd)
+
+	carapace.Gen(subnet_pool_unsetCmd).PositionalCompletion(action.ActionSubnetPools())
 }

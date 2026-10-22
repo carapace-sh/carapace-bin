@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -33,4 +34,10 @@ func init() {
 	project_createCmd.Flags().String("tag", "", "Tag to be added to the project (repeat option to set multiple tags)")
 	project_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	projectCmd.AddCommand(project_createCmd)
+
+	carapace.Gen(project_createCmd).FlagCompletion(carapace.ActionMap{
+		"column": action.ActionColumns("project", "list"),
+		"domain": action.ActionDomains(),
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
 }

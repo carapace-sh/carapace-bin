@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -22,4 +23,11 @@ func init() {
 	credential_setCmd.MarkFlagRequired("type")
 	credential_setCmd.MarkFlagRequired("user")
 	credentialCmd.AddCommand(credential_setCmd)
+
+	carapace.Gen(credential_setCmd).FlagCompletion(carapace.ActionMap{
+		"project": action.ActionProjects(),
+		"user":    action.ActionUsers(),
+	})
+
+	carapace.Gen(credential_setCmd).PositionalCompletion(action.ActionCredentials())
 }

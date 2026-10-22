@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -25,4 +26,10 @@ func init() {
 	credential_createCmd.Flags().String("type", "", "New credential type: cert, ec2, totp and so on")
 	credential_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	credentialCmd.AddCommand(credential_createCmd)
+
+	carapace.Gen(credential_createCmd).FlagCompletion(carapace.ActionMap{
+		"column":  action.ActionColumns("credential", "list"),
+		"format":  carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"project": action.ActionProjects(),
+	})
 }

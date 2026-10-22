@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -20,4 +21,6 @@ func init() {
 	network_flavor_setCmd.Flags().String("extra-property", "", "Additional parameters can be passed using this property.")
 	network_flavor_setCmd.Flags().String("name", "", "Set flavor name")
 	network_flavorCmd.AddCommand(network_flavor_setCmd)
+
+	carapace.Gen(network_flavor_setCmd).PositionalCompletion(action.ActionNetworkFlavors())
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -25,4 +26,11 @@ func init() {
 	server_showCmd.Flags().Bool("topology", false, "Include topology information in the output (supported by --os-compute-api-version 2.78 or above)")
 	server_showCmd.Flags().String("variable", "", "==SUPPRESS==")
 	serverCmd.AddCommand(server_showCmd)
+
+	carapace.Gen(server_showCmd).FlagCompletion(carapace.ActionMap{
+		"column": action.ActionColumns("server", "list"),
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
+
+	carapace.Gen(server_showCmd).PositionalCompletion(action.ActionServers())
 }

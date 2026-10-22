@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -19,4 +20,10 @@ func init() {
 	server_resizeCmd.Flags().Bool("revert", false, "**Deprecated** Restore server state before resize.")
 	server_resizeCmd.Flags().Bool("wait", false, "Wait for resize to complete")
 	serverCmd.AddCommand(server_resizeCmd)
+
+	carapace.Gen(server_resizeCmd).FlagCompletion(carapace.ActionMap{
+		"flavor": action.ActionFlavors(),
+	})
+
+	carapace.Gen(server_resizeCmd).PositionalCompletion(action.ActionServers())
 }

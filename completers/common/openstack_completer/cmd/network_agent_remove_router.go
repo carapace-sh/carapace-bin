@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,9 @@ func init() {
 
 	network_agent_remove_routerCmd.Flags().Bool("l3", false, "Remove router from an L3 agent")
 	network_agent_removeCmd.AddCommand(network_agent_remove_routerCmd)
+
+	carapace.Gen(network_agent_remove_routerCmd).PositionalCompletion(
+		action.ActionNetworkAgents(),
+		action.ActionRouters(),
+	)
 }

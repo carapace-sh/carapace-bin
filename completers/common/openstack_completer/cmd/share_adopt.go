@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -31,4 +32,10 @@ func init() {
 	share_adoptCmd.Flags().String("variable", "", "==SUPPRESS==")
 	share_adoptCmd.Flags().Bool("wait", false, "Wait until share is adopted")
 	shareCmd.AddCommand(share_adoptCmd)
+
+	carapace.Gen(share_adoptCmd).FlagCompletion(carapace.ActionMap{
+		"column":     action.ActionColumns("share", "list"),
+		"format":     carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"share-type": action.ActionShareTypes(),
+	})
 }

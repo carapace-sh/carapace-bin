@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -49,4 +50,15 @@ func init() {
 	network_listCmd.Flags().String("status", "", "List only networks with the specified status ('ACTIVE', 'BUILD', 'DOWN', 'ERROR')")
 	network_listCmd.Flags().String("tags", "", "List networks which have all given tag(s) (Comma-separated list of tags)")
 	networkCmd.AddCommand(network_listCmd)
+
+	carapace.Gen(network_listCmd).FlagCompletion(carapace.ActionMap{
+		"column":                action.ActionColumns("network", "list"),
+		"format":                carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"project":               action.ActionProjects(),
+		"project-domain":        action.ActionDomains(),
+		"provider-network-type": carapace.ActionValues("flat", "geneve", "gre", "local", "vlan", "vxlan"),
+		"quote":                 carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"sort-column":           action.ActionColumns("network", "list"),
+		"status":                carapace.ActionValues("ACTIVE", "BUILD", "DOWN", "ERROR"),
+	})
 }

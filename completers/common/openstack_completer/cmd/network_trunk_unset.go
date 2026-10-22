@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,6 @@ func init() {
 	network_trunk_unsetCmd.Flags().String("subport", "", "Subport to unset (name or ID of the port) (repeat option to unset multiple subports)")
 	network_trunk_unsetCmd.MarkFlagRequired("subport")
 	network_trunkCmd.AddCommand(network_trunk_unsetCmd)
+
+	carapace.Gen(network_trunk_unsetCmd).PositionalCompletion(action.ActionNetworkTrunks())
 }

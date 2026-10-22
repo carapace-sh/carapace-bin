@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -15,4 +16,6 @@ func init() {
 	carapace.Gen(accelerator_device_profile_deleteCmd).Standalone()
 
 	accelerator_device_profileCmd.AddCommand(accelerator_device_profile_deleteCmd)
+
+	carapace.Gen(accelerator_device_profile_deleteCmd).PositionalAnyCompletion(action.ActionAcceleratorDeviceProfiles())
 }

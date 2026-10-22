@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -23,4 +24,11 @@ func init() {
 	share_showCmd.Flags().Bool("print-empty", false, "Print empty table if there is no data to show.")
 	share_showCmd.Flags().String("variable", "", "==SUPPRESS==")
 	shareCmd.AddCommand(share_showCmd)
+
+	carapace.Gen(share_showCmd).FlagCompletion(carapace.ActionMap{
+		"column": action.ActionColumns("share", "list"),
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
+
+	carapace.Gen(share_showCmd).PositionalCompletion(action.ActionShares())
 }

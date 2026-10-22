@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -41,4 +42,14 @@ func init() {
 	subnet_pool_listCmd.Flags().Bool("sort-descending", false, "sort the column(s) in descending order")
 	subnet_pool_listCmd.Flags().String("tags", "", "List subnet pools which have all given tag(s) (Comma-separated list of tags)")
 	subnet_poolCmd.AddCommand(subnet_pool_listCmd)
+
+	carapace.Gen(subnet_pool_listCmd).FlagCompletion(carapace.ActionMap{
+		"address-scope":  action.ActionAddressScopes(),
+		"column":         action.ActionColumns("subnet", "pool", "list"),
+		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"project":        action.ActionProjects(),
+		"project-domain": action.ActionDomains(),
+		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"sort-column":    action.ActionColumns("subnet", "pool", "list"),
+	})
 }

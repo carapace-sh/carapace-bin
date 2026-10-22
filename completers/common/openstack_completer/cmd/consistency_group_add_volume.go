@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -15,4 +16,9 @@ func init() {
 	carapace.Gen(consistency_group_add_volumeCmd).Standalone()
 
 	consistency_group_addCmd.AddCommand(consistency_group_add_volumeCmd)
+
+	carapace.Gen(consistency_group_add_volumeCmd).PositionalCompletion(
+		action.ActionConsistencyGroups(),
+		action.ActionVolumes(),
+	)
 }

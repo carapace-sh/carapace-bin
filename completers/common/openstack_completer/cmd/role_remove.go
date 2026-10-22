@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -25,4 +26,14 @@ func init() {
 	role_removeCmd.Flags().String("user", "", "Include <user> (name or ID)")
 	role_removeCmd.Flags().String("user-domain", "", "Domain the user belongs to (name or ID).")
 	roleCmd.AddCommand(role_removeCmd)
+
+	carapace.Gen(role_removeCmd).FlagCompletion(carapace.ActionMap{
+		"domain":         action.ActionDomains(),
+		"project":        action.ActionProjects(),
+		"project-domain": action.ActionDomains(),
+		"user":           action.ActionUsers(),
+		"user-domain":    action.ActionDomains(),
+	})
+
+	carapace.Gen(role_removeCmd).PositionalCompletion(action.ActionRoles())
 }

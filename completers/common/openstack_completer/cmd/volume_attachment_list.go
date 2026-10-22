@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -34,4 +35,15 @@ func init() {
 	volume_attachment_listCmd.Flags().String("status", "", "Filters results by a status.")
 	volume_attachment_listCmd.Flags().String("volume-id", "", "Filters results by a volume ID.")
 	volume_attachmentCmd.AddCommand(volume_attachment_listCmd)
+
+	carapace.Gen(volume_attachment_listCmd).FlagCompletion(carapace.ActionMap{
+		"column":         action.ActionColumns("volume", "attachment", "list"),
+		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"project":        action.ActionProjects(),
+		"project-domain": action.ActionDomains(),
+		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"server-id":      action.ActionServerIDs(),
+		"sort-column":    action.ActionColumns("volume", "attachment", "list"),
+		"volume-id":      action.ActionVolumeIDs(),
+	})
 }

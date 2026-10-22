@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -35,4 +36,15 @@ func init() {
 	share_qos_type_listCmd.Flags().String("sort_dir", "", "Sort direction, available values are ('asc', 'desc').")
 	share_qos_type_listCmd.Flags().String("sort_key", "", "Key to be sorted with, available keys are ('id', 'name', 'created_at', 'updated_at').")
 	share_qos_typeCmd.AddCommand(share_qos_type_listCmd)
+
+	carapace.Gen(share_qos_type_listCmd).FlagCompletion(carapace.ActionMap{
+		"column":      action.ActionColumns("share", "qos", "type", "list"),
+		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"sort-column": action.ActionColumns("share", "qos", "type", "list"),
+		"sort-dir":    carapace.ActionValues("asc", "desc"),
+		"sort-key":    carapace.ActionValues("id", "name", "created_at", "updated_at"),
+		"sort_dir":    carapace.ActionValues("asc", "desc"),
+		"sort_key":    carapace.ActionValues("id", "name", "created_at", "updated_at"),
+	})
 }

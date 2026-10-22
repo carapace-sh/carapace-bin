@@ -16,4 +16,8 @@ func init() {
 
 	share_snapshot_instance_setCmd.Flags().String("status", "", "Indicate state to update the snapshot instance to.")
 	share_snapshot_instanceCmd.AddCommand(share_snapshot_instance_setCmd)
+
+	carapace.Gen(share_snapshot_instance_setCmd).FlagCompletion(carapace.ActionMap{
+		"status": carapace.ActionValues("available", "error", "creating", "deleting", "error_deleting"),
+	})
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -25,4 +26,10 @@ func init() {
 	server_sshCmd.Flags().Bool("public", false, "Use public IP address")
 	server_sshCmd.Flags().BoolS("v", "v", false, "==SUPPRESS==")
 	serverCmd.AddCommand(server_sshCmd)
+
+	carapace.Gen(server_sshCmd).FlagCompletion(carapace.ActionMap{
+		"port": action.ActionPorts(),
+	})
+
+	carapace.Gen(server_sshCmd).PositionalCompletion(action.ActionServers())
 }

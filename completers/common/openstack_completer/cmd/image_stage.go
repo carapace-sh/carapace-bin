@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -18,4 +19,10 @@ func init() {
 	image_stageCmd.Flags().Bool("progress", false, "Show upload progress bar (ignored if passing data via stdin)")
 	image_stageCmd.Flags().String("size", "", "Size of image data in bytes.")
 	imageCmd.AddCommand(image_stageCmd)
+
+	carapace.Gen(image_stageCmd).FlagCompletion(carapace.ActionMap{
+		"file": carapace.ActionFiles(),
+	})
+
+	carapace.Gen(image_stageCmd).PositionalCompletion(action.ActionImages())
 }

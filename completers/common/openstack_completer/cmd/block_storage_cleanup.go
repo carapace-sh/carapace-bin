@@ -35,4 +35,10 @@ func init() {
 	block_storage_cleanupCmd.Flags().Bool("sort-descending", false, "sort the column(s) in descending order")
 	block_storage_cleanupCmd.Flags().Bool("up", false, "Filter by up status.")
 	block_storageCmd.AddCommand(block_storage_cleanupCmd)
+
+	carapace.Gen(block_storage_cleanupCmd).FlagCompletion(carapace.ActionMap{
+		"format":        carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"quote":         carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"resource-type": carapace.ActionValues("Volume", "Snapshot"),
+	})
 }

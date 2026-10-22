@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,9 @@ func init() {
 	firewall_group_policy_add_ruleCmd.Flags().String("insert-after", "", "Insert the new rule after this existing rule  (name or ID)")
 	firewall_group_policy_add_ruleCmd.Flags().String("insert-before", "", "Insert the new rule before this existing rule  (name or ID)")
 	firewall_group_policy_addCmd.AddCommand(firewall_group_policy_add_ruleCmd)
+
+	carapace.Gen(firewall_group_policy_add_ruleCmd).PositionalCompletion(
+		action.ActionFirewallPolicies(),
+		action.ActionFirewallRules(),
+	)
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -23,4 +24,11 @@ func init() {
 	bgp_speaker_showCmd.Flags().Bool("print-empty", false, "Print empty table if there is no data to show.")
 	bgp_speaker_showCmd.Flags().String("variable", "", "==SUPPRESS==")
 	bgp_speakerCmd.AddCommand(bgp_speaker_showCmd)
+
+	carapace.Gen(bgp_speaker_showCmd).FlagCompletion(carapace.ActionMap{
+		"column": action.ActionColumns("bgp", "speaker", "list"),
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
+
+	carapace.Gen(bgp_speaker_showCmd).PositionalCompletion(action.ActionBgpSpeakers())
 }

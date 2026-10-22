@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -22,4 +23,6 @@ func init() {
 	image_metadef_namespace_setCmd.Flags().String("tag", "", "Set a tag on this metadef namespace (repeat option to set multiple tags)")
 	image_metadef_namespace_setCmd.Flags().Bool("unprotected", false, "Allow metadef namespace to be deleted (default)")
 	image_metadef_namespaceCmd.AddCommand(image_metadef_namespace_setCmd)
+
+	carapace.Gen(image_metadef_namespace_setCmd).PositionalCompletion(action.ActionImageMetadefNamespaces())
 }

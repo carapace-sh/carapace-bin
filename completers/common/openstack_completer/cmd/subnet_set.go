@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -35,4 +36,10 @@ func init() {
 	subnet_setCmd.Flags().String("service-type", "", "Service type for this subnet, for example, network:floatingip_agent_gateway.")
 	subnet_setCmd.Flags().String("tag", "", "Tag to be added to the subnet (repeat option to set multiple tags)")
 	subnetCmd.AddCommand(subnet_setCmd)
+
+	carapace.Gen(subnet_setCmd).FlagCompletion(carapace.ActionMap{
+		"network-segment": action.ActionNetworkSegments(),
+	})
+
+	carapace.Gen(subnet_setCmd).PositionalCompletion(action.ActionSubnets())
 }

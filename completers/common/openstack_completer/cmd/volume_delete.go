@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -19,4 +20,6 @@ func init() {
 	volume_deleteCmd.Flags().Bool("purge", false, "==SUPPRESS==")
 	volume_deleteCmd.Flags().Bool("remote", false, "Specify this parameter to unmanage a volume.")
 	volumeCmd.AddCommand(volume_deleteCmd)
+
+	carapace.Gen(volume_deleteCmd).PositionalAnyCompletion(action.ActionVolumes())
 }

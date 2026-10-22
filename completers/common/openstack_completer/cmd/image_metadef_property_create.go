@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -31,4 +32,11 @@ func init() {
 	image_metadef_property_createCmd.MarkFlagRequired("title")
 	image_metadef_property_createCmd.MarkFlagRequired("type")
 	image_metadef_propertyCmd.AddCommand(image_metadef_property_createCmd)
+
+	carapace.Gen(image_metadef_property_createCmd).FlagCompletion(carapace.ActionMap{
+		"column": action.ActionColumns("image", "metadef", "property", "list"),
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
+
+	carapace.Gen(image_metadef_property_createCmd).PositionalCompletion(action.ActionImageMetadefNamespaces())
 }

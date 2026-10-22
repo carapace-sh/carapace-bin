@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -23,4 +24,9 @@ func init() {
 	bgpvpn_port_association_showCmd.Flags().Bool("print-empty", false, "Print empty table if there is no data to show.")
 	bgpvpn_port_association_showCmd.Flags().String("variable", "", "==SUPPRESS==")
 	bgpvpn_port_associationCmd.AddCommand(bgpvpn_port_association_showCmd)
+
+	carapace.Gen(bgpvpn_port_association_showCmd).FlagCompletion(carapace.ActionMap{
+		"column": action.ActionColumns("bgpvpn", "port", "association", "list"),
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,6 @@ func init() {
 	volume_host_setCmd.Flags().Bool("disable", false, "Freeze and disable the specified volume host")
 	volume_host_setCmd.Flags().Bool("enable", false, "Thaw and enable the specified volume host")
 	volume_hostCmd.AddCommand(volume_host_setCmd)
+
+	carapace.Gen(volume_host_setCmd).PositionalCompletion(action.ActionVolumeHosts())
 }

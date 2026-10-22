@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -31,4 +32,14 @@ func init() {
 	floating_ip_port_forwarding_listCmd.Flags().String("sort-column", "", "specify the column(s) to sort the data (columns specified first have a priority, non-existing columns are ignored), can be repeated")
 	floating_ip_port_forwarding_listCmd.Flags().Bool("sort-descending", false, "sort the column(s) in descending order")
 	floating_ip_port_forwardingCmd.AddCommand(floating_ip_port_forwarding_listCmd)
+
+	carapace.Gen(floating_ip_port_forwarding_listCmd).FlagCompletion(carapace.ActionMap{
+		"column":      action.ActionColumns("floating", "ip", "port", "forwarding", "list"),
+		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"port":        action.ActionPorts(),
+		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"sort-column": action.ActionColumns("floating", "ip", "port", "forwarding", "list"),
+	})
+
+	carapace.Gen(floating_ip_port_forwarding_listCmd).PositionalCompletion(action.ActionFloatingIPs())
 }

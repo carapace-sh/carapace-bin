@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,6 @@ func init() {
 
 	server_stopCmd.Flags().Bool("all-projects", false, "Stop server(s) in another project by name (admin only) (can be specified using the ALL_PROJECTS envvar)")
 	serverCmd.AddCommand(server_stopCmd)
+
+	carapace.Gen(server_stopCmd).PositionalCompletion(action.ActionServers())
 }

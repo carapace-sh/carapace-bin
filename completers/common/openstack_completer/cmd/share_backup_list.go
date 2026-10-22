@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -38,4 +39,16 @@ func init() {
 	share_backup_listCmd.Flags().String("sort_key", "", "Key to be sorted, available keys are ('id', 'status', 'size', 'share_id', 'progress', 'restore_progress', 'name', 'host', 'topic', 'project_id').")
 	share_backup_listCmd.Flags().String("status", "", "Filter results by status.")
 	share_backupCmd.AddCommand(share_backup_listCmd)
+
+	carapace.Gen(share_backup_listCmd).FlagCompletion(carapace.ActionMap{
+		"column":      action.ActionColumns("share", "backup", "list"),
+		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"share":       action.ActionShares(),
+		"sort-column": action.ActionColumns("share", "backup", "list"),
+		"sort-dir":    carapace.ActionValues("asc", "desc"),
+		"sort-key":    carapace.ActionValues("id", "status", "size", "share_id", "progress", "restore_progress", "name", "host", "topic", "project_id"),
+		"sort_dir":    carapace.ActionValues("asc", "desc"),
+		"sort_key":    carapace.ActionValues("id", "status", "size", "share_id", "progress", "restore_progress", "name", "host", "topic", "project_id"),
+	})
 }

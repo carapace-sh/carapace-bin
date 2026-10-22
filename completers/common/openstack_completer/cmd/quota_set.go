@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -48,4 +49,10 @@ func init() {
 	quota_setCmd.Flags().String("volume-type", "", "Set quotas for a specific <volume-type>")
 	quota_setCmd.Flags().String("volumes", "", "New value for the volumes quota")
 	quotaCmd.AddCommand(quota_setCmd)
+
+	carapace.Gen(quota_setCmd).FlagCompletion(carapace.ActionMap{
+		"volume-type": action.ActionVolumeTypes(),
+	})
+
+	carapace.Gen(quota_setCmd).PositionalCompletion(action.ActionProjects())
 }

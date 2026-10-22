@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -27,4 +28,10 @@ func init() {
 	firewall_group_setCmd.Flags().String("port", "", "Port(s) (name or ID) to apply firewall group.")
 	firewall_group_setCmd.Flags().Bool("share", false, "Share the firewall group to be used in all projects (by default, it is restricted to be used by the current project).")
 	firewall_groupCmd.AddCommand(firewall_group_setCmd)
+
+	carapace.Gen(firewall_group_setCmd).FlagCompletion(carapace.ActionMap{
+		"port": action.ActionPorts(),
+	})
+
+	carapace.Gen(firewall_group_setCmd).PositionalCompletion(action.ActionFirewallGroups())
 }

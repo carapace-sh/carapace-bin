@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -25,4 +26,11 @@ func init() {
 	share_availability_zone_listCmd.Flags().String("sort-column", "", "specify the column(s) to sort the data (columns specified first have a priority, non-existing columns are ignored), can be repeated")
 	share_availability_zone_listCmd.Flags().Bool("sort-descending", false, "sort the column(s) in descending order")
 	share_availability_zoneCmd.AddCommand(share_availability_zone_listCmd)
+
+	carapace.Gen(share_availability_zone_listCmd).FlagCompletion(carapace.ActionMap{
+		"column":      action.ActionColumns("share", "availability", "zone", "list"),
+		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"sort-column": action.ActionColumns("share", "availability", "zone", "list"),
+	})
 }

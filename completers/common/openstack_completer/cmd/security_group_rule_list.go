@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -35,4 +36,13 @@ func init() {
 	security_group_rule_listCmd.Flags().String("sort-column", "", "specify the column(s) to sort the data (columns specified first have a priority, non-existing columns are ignored), can be repeated")
 	security_group_rule_listCmd.Flags().Bool("sort-descending", false, "sort the column(s) in descending order")
 	security_group_ruleCmd.AddCommand(security_group_rule_listCmd)
+
+	carapace.Gen(security_group_rule_listCmd).FlagCompletion(carapace.ActionMap{
+		"column":         action.ActionColumns("security", "group", "rule", "list"),
+		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"project":        action.ActionProjects(),
+		"project-domain": action.ActionDomains(),
+		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"sort-column":    action.ActionColumns("security", "group", "rule", "list"),
+	})
 }

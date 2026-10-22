@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -25,4 +26,9 @@ func init() {
 	aggregate_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	aggregate_createCmd.Flags().String("zone", "", "Availability zone name")
 	aggregateCmd.AddCommand(aggregate_createCmd)
+
+	carapace.Gen(aggregate_createCmd).FlagCompletion(carapace.ActionMap{
+		"column": action.ActionColumns("aggregate", "list"),
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
 }

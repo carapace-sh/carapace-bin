@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -23,4 +24,9 @@ func init() {
 	block_storage_resource_filter_showCmd.Flags().Bool("print-empty", false, "Print empty table if there is no data to show.")
 	block_storage_resource_filter_showCmd.Flags().String("variable", "", "==SUPPRESS==")
 	block_storage_resource_filterCmd.AddCommand(block_storage_resource_filter_showCmd)
+
+	carapace.Gen(block_storage_resource_filter_showCmd).FlagCompletion(carapace.ActionMap{
+		"column": action.ActionColumns("block", "storage", "resource", "filter", "list"),
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
 }

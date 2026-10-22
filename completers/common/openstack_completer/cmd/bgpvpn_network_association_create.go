@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -25,4 +26,11 @@ func init() {
 	bgpvpn_network_association_createCmd.Flags().String("project-domain", "", "Domain the project belongs to (name or ID).")
 	bgpvpn_network_association_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	bgpvpn_network_associationCmd.AddCommand(bgpvpn_network_association_createCmd)
+
+	carapace.Gen(bgpvpn_network_association_createCmd).FlagCompletion(carapace.ActionMap{
+		"column":         action.ActionColumns("bgpvpn", "network", "association", "list"),
+		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"project":        action.ActionProjects(),
+		"project-domain": action.ActionDomains(),
+	})
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -19,4 +20,9 @@ func init() {
 	image_metadef_property_setCmd.Flags().String("title", "", "Property name displayed to the user")
 	image_metadef_property_setCmd.Flags().String("type", "", "Property type")
 	image_metadef_propertyCmd.AddCommand(image_metadef_property_setCmd)
+
+	carapace.Gen(image_metadef_property_setCmd).PositionalCompletion(
+		action.ActionImageMetadefNamespaces(),
+		action.ActionImageMetadefProperties(),
+	)
 }

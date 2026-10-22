@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -25,4 +26,9 @@ func init() {
 	implied_role_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	implied_role_createCmd.MarkFlagRequired("implied-role")
 	implied_roleCmd.AddCommand(implied_role_createCmd)
+
+	carapace.Gen(implied_role_createCmd).FlagCompletion(carapace.ActionMap{
+		"column": action.ActionColumns("implied", "role", "list"),
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
 }

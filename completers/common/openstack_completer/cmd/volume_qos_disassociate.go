@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,10 @@ func init() {
 	volume_qos_disassociateCmd.Flags().Bool("all", false, "Disassociate the QoS from every volume type")
 	volume_qos_disassociateCmd.Flags().String("volume-type", "", "Volume type to disassociate the QoS from (name or ID)")
 	volume_qosCmd.AddCommand(volume_qos_disassociateCmd)
+
+	carapace.Gen(volume_qos_disassociateCmd).FlagCompletion(carapace.ActionMap{
+		"volume-type": action.ActionVolumeTypes(),
+	})
+
+	carapace.Gen(volume_qos_disassociateCmd).PositionalCompletion(action.ActionVolumeQosSpecs())
 }

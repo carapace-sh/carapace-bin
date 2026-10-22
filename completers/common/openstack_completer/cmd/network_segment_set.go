@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -18,4 +19,6 @@ func init() {
 	network_segment_setCmd.Flags().String("extra-property", "", "Additional parameters can be passed using this property.")
 	network_segment_setCmd.Flags().String("name", "", "Set network segment name")
 	network_segmentCmd.AddCommand(network_segment_setCmd)
+
+	carapace.Gen(network_segment_setCmd).PositionalCompletion(action.ActionNetworkSegments())
 }

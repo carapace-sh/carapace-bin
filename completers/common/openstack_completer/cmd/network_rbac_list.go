@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -32,4 +33,14 @@ func init() {
 	network_rbac_listCmd.Flags().String("target-project", "", "List only network RBAC policies with the specified target project (name or ID)")
 	network_rbac_listCmd.Flags().String("type", "", "List only network RBAC policies with the specified object type (\"address_group\", \"address_scope\", \"security_group\", \"subnetpool\", \"qos_policy\" or \"network\")")
 	network_rbacCmd.AddCommand(network_rbac_listCmd)
+
+	carapace.Gen(network_rbac_listCmd).FlagCompletion(carapace.ActionMap{
+		"action":         carapace.ActionValues("access_as_external", "access_as_shared"),
+		"column":         action.ActionColumns("network", "rbac", "list"),
+		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"sort-column":    action.ActionColumns("network", "rbac", "list"),
+		"target-project": action.ActionProjects(),
+		"type":           carapace.ActionValues("address_group", "address_scope", "security_group", "subnetpool", "qos_policy", "network"),
+	})
 }

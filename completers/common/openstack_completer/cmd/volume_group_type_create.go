@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -26,4 +27,9 @@ func init() {
 	volume_group_type_createCmd.Flags().Bool("public", false, "Volume group type is available to other projects (default)")
 	volume_group_type_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	volume_group_typeCmd.AddCommand(volume_group_type_createCmd)
+
+	carapace.Gen(volume_group_type_createCmd).FlagCompletion(carapace.ActionMap{
+		"column": action.ActionColumns("volume", "group", "type", "list"),
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
 }

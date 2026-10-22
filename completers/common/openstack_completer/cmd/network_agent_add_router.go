@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,9 @@ func init() {
 	network_agent_add_routerCmd.Flags().String("ha-chassis-priority", "", "HA Chassis priority, ranging from [0, 32767].")
 	network_agent_add_routerCmd.Flags().Bool("l3", false, "Add router to an L3 agent")
 	network_agent_addCmd.AddCommand(network_agent_add_routerCmd)
+
+	carapace.Gen(network_agent_add_routerCmd).PositionalCompletion(
+		action.ActionNetworkAgents(),
+		action.ActionRouters(),
+	)
 }

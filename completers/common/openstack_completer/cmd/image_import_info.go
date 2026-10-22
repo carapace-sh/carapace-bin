@@ -23,4 +23,8 @@ func init() {
 	image_import_infoCmd.Flags().Bool("print-empty", false, "Print empty table if there is no data to show.")
 	image_import_infoCmd.Flags().String("variable", "", "==SUPPRESS==")
 	image_importCmd.AddCommand(image_import_infoCmd)
+
+	carapace.Gen(image_import_infoCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
 }

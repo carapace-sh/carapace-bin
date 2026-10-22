@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -23,4 +24,6 @@ func init() {
 	subnet_unsetCmd.Flags().String("service-type", "", "Service type to be removed from this subnet, for example, network:floatingip_agent_gateway.")
 	subnet_unsetCmd.Flags().String("tag", "", "Tag to be removed from the subnet (repeat option to remove multiple tags)")
 	subnetCmd.AddCommand(subnet_unsetCmd)
+
+	carapace.Gen(subnet_unsetCmd).PositionalCompletion(action.ActionSubnets())
 }

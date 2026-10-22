@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -32,4 +33,12 @@ func init() {
 	share_security_service_createCmd.Flags().String("user", "", "Security service user or group used by project.")
 	share_security_service_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	share_security_serviceCmd.AddCommand(share_security_service_createCmd)
+
+	carapace.Gen(share_security_service_createCmd).FlagCompletion(carapace.ActionMap{
+		"column": action.ActionColumns("share", "security", "service", "list"),
+		"domain": action.ActionDomains(),
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"server": action.ActionServers(),
+		"user":   action.ActionUsers(),
+	})
 }

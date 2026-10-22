@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,6 @@ func init() {
 
 	share_network_deleteCmd.Flags().Bool("wait", false, "Wait for the share network(s) to be deleted")
 	share_networkCmd.AddCommand(share_network_deleteCmd)
+
+	carapace.Gen(share_network_deleteCmd).PositionalAnyCompletion(action.ActionShareNetworks())
 }

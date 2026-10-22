@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,9 @@ func init() {
 
 	router_add_subnetCmd.Flags().Bool("advertise-host", false, "Mark the subnet's prefixes to be advertised as host routes within the router's EVPN VNI.")
 	router_addCmd.AddCommand(router_add_subnetCmd)
+
+	carapace.Gen(router_add_subnetCmd).PositionalCompletion(
+		action.ActionRouters(),
+		action.ActionSubnets(),
+	)
 }

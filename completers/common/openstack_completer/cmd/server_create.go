@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -62,4 +63,22 @@ func init() {
 	server_createCmd.Flags().Bool("wait", false, "Wait for build to complete")
 	server_createCmd.MarkFlagRequired("flavor")
 	serverCmd.AddCommand(server_createCmd)
+
+	carapace.Gen(server_createCmd).FlagCompletion(carapace.ActionMap{
+		"availability-zone": action.ActionAvailabilityZones(),
+		"block-device":      carapace.ActionFiles(),
+		"column":            action.ActionColumns("server", "list"),
+		"file":              carapace.ActionFiles(),
+		"flavor":            action.ActionFlavors(),
+		"format":            carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"image":             action.ActionImages(),
+		"key-name":          action.ActionKeypairs(),
+		"network":           action.ActionNetworks(),
+		"port":              action.ActionPorts(),
+		"security-group":    action.ActionSecurityGroups(),
+		"server-group":      action.ActionServerGroups(),
+		"snapshot":          action.ActionImages(),
+		"user-data":         carapace.ActionFiles(),
+		"volume":            action.ActionVolumes(),
+	})
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -27,4 +28,11 @@ func init() {
 	image_metadef_namespace_listCmd.Flags().Bool("sort-descending", false, "sort the column(s) in descending order")
 	image_metadef_namespace_listCmd.Flags().String("visibility", "", "filter on visibility")
 	image_metadef_namespaceCmd.AddCommand(image_metadef_namespace_listCmd)
+
+	carapace.Gen(image_metadef_namespace_listCmd).FlagCompletion(carapace.ActionMap{
+		"column":      action.ActionColumns("image", "metadef", "namespace", "list"),
+		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"sort-column": action.ActionColumns("image", "metadef", "namespace", "list"),
+	})
 }

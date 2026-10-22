@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -36,4 +37,11 @@ func init() {
 	flavor_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	flavor_createCmd.Flags().String("vcpus", "", "Number of vcpus (default 1)")
 	flavorCmd.AddCommand(flavor_createCmd)
+
+	carapace.Gen(flavor_createCmd).FlagCompletion(carapace.ActionMap{
+		"column":         action.ActionColumns("flavor", "list"),
+		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"project":        action.ActionProjects(),
+		"project-domain": action.ActionDomains(),
+	})
 }

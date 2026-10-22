@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,6 @@ func init() {
 
 	aggregate_unsetCmd.Flags().String("property", "", "Property to remove from aggregate (repeat option to remove multiple properties)")
 	aggregateCmd.AddCommand(aggregate_unsetCmd)
+
+	carapace.Gen(aggregate_unsetCmd).PositionalCompletion(action.ActionAggregates())
 }

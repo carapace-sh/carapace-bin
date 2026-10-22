@@ -18,4 +18,8 @@ func init() {
 	block_storage_log_level_setCmd.Flags().String("log-prefix", "", "Prefix for the log, e.g. 'sqlalchemy'")
 	block_storage_log_level_setCmd.Flags().String("service", "", "Set block storage service log level of specified service (name only)")
 	block_storage_log_levelCmd.AddCommand(block_storage_log_level_setCmd)
+
+	carapace.Gen(block_storage_log_level_setCmd).FlagCompletion(carapace.ActionMap{
+		"service": carapace.ActionValues("None", "*", "cinder-api", "cinder-volume", "cinder-scheduler", "cinder-backup"),
+	})
 }

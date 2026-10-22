@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -29,4 +30,11 @@ func init() {
 	share_network_subnet_createCmd.Flags().Bool("restart-check", false, "Restart a dry-run of a share network subnet create.")
 	share_network_subnet_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	share_network_subnetCmd.AddCommand(share_network_subnet_createCmd)
+
+	carapace.Gen(share_network_subnet_createCmd).FlagCompletion(carapace.ActionMap{
+		"availability-zone": action.ActionAvailabilityZones(),
+		"format":            carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
+
+	carapace.Gen(share_network_subnet_createCmd).PositionalCompletion(action.ActionShareNetworks())
 }

@@ -17,4 +17,8 @@ func init() {
 	share_access_setCmd.Flags().String("access-level", "", "Share access level (\"rw\" and \"ro\" access levels are supported) to set.")
 	share_access_setCmd.Flags().String("property", "", "Set a property to this share access rule.")
 	share_accessCmd.AddCommand(share_access_setCmd)
+
+	carapace.Gen(share_access_setCmd).FlagCompletion(carapace.ActionMap{
+		"access-level": carapace.ActionValues("rw", "ro"),
+	})
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -33,4 +34,14 @@ func init() {
 	network_agent_listCmd.Flags().String("sort-column", "", "specify the column(s) to sort the data (columns specified first have a priority, non-existing columns are ignored), can be repeated")
 	network_agent_listCmd.Flags().Bool("sort-descending", false, "sort the column(s) in descending order")
 	network_agentCmd.AddCommand(network_agent_listCmd)
+
+	carapace.Gen(network_agent_listCmd).FlagCompletion(carapace.ActionMap{
+		"agent-type":  carapace.ActionValues("bgp", "dhcp", "open-vswitch", "linux-bridge", "ofa", "l3", "loadbalancer", "metering", "metadata", "macvtap", "nic", "baremetal", "ovn-controller", "ovn-controller-gateway", "ovn-metadata", "ovn-agent"),
+		"column":      action.ActionColumns("network", "agent", "list"),
+		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"network":     action.ActionNetworks(),
+		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"router":      action.ActionRouters(),
+		"sort-column": action.ActionColumns("network", "agent", "list"),
+	})
 }

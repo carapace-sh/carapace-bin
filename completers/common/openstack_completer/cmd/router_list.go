@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -39,4 +40,13 @@ func init() {
 	router_listCmd.Flags().Bool("sort-descending", false, "sort the column(s) in descending order")
 	router_listCmd.Flags().String("tags", "", "List routers which have all given tag(s) (Comma-separated list of tags)")
 	routerCmd.AddCommand(router_listCmd)
+
+	carapace.Gen(router_listCmd).FlagCompletion(carapace.ActionMap{
+		"column":         action.ActionColumns("router", "list"),
+		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"project":        action.ActionProjects(),
+		"project-domain": action.ActionDomains(),
+		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"sort-column":    action.ActionColumns("router", "list"),
+	})
 }

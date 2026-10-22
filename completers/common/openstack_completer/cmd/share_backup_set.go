@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -18,4 +19,10 @@ func init() {
 	share_backup_setCmd.Flags().String("name", "", "Set a name to the backup.")
 	share_backup_setCmd.Flags().String("status", "", "Assign a status to the backup(Admin only).")
 	share_backupCmd.AddCommand(share_backup_setCmd)
+
+	carapace.Gen(share_backup_setCmd).FlagCompletion(carapace.ActionMap{
+		"status": carapace.ActionValues("available", "error", "creating", "deleting", "restoring"),
+	})
+
+	carapace.Gen(share_backup_setCmd).PositionalCompletion(action.ActionShareBackups())
 }

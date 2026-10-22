@@ -27,4 +27,9 @@ func init() {
 	share_limits_showCmd.Flags().String("sort-column", "", "specify the column(s) to sort the data (columns specified first have a priority, non-existing columns are ignored), can be repeated")
 	share_limits_showCmd.Flags().Bool("sort-descending", false, "sort the column(s) in descending order")
 	share_limitsCmd.AddCommand(share_limits_showCmd)
+
+	carapace.Gen(share_limits_showCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"quote":  carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+	})
 }

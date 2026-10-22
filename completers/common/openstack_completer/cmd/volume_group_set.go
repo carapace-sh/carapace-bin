@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -27,4 +28,11 @@ func init() {
 	volume_group_setCmd.Flags().Bool("print-empty", false, "Print empty table if there is no data to show.")
 	volume_group_setCmd.Flags().String("variable", "", "==SUPPRESS==")
 	volume_groupCmd.AddCommand(volume_group_setCmd)
+
+	carapace.Gen(volume_group_setCmd).FlagCompletion(carapace.ActionMap{
+		"column": action.ActionColumns("volume", "group", "list"),
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
+
+	carapace.Gen(volume_group_setCmd).PositionalCompletion(action.ActionVolumeGroups())
 }

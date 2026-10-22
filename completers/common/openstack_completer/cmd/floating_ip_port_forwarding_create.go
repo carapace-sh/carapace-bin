@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -35,4 +36,12 @@ func init() {
 	floating_ip_port_forwarding_createCmd.MarkFlagRequired("port")
 	floating_ip_port_forwarding_createCmd.MarkFlagRequired("protocol")
 	floating_ip_port_forwardingCmd.AddCommand(floating_ip_port_forwarding_createCmd)
+
+	carapace.Gen(floating_ip_port_forwarding_createCmd).FlagCompletion(carapace.ActionMap{
+		"column": action.ActionColumns("floating", "ip", "port", "forwarding", "list"),
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"port":   action.ActionPorts(),
+	})
+
+	carapace.Gen(floating_ip_port_forwarding_createCmd).PositionalCompletion(action.ActionFloatingIPs())
 }

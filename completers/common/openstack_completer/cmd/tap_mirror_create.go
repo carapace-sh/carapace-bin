@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -35,4 +36,12 @@ func init() {
 	tap_mirror_createCmd.MarkFlagRequired("port")
 	tap_mirror_createCmd.MarkFlagRequired("remote-ip")
 	tap_mirrorCmd.AddCommand(tap_mirror_createCmd)
+
+	carapace.Gen(tap_mirror_createCmd).FlagCompletion(carapace.ActionMap{
+		"column":         action.ActionColumns("tap", "mirror", "list"),
+		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"port":           action.ActionPorts(),
+		"project":        action.ActionProjects(),
+		"project-domain": action.ActionDomains(),
+	})
 }

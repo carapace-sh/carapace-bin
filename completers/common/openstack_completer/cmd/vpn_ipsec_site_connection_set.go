@@ -28,4 +28,8 @@ func init() {
 	vpn_ipsec_site_connection_setCmd.Flags().String("peer-endpoint-group", "", "Peer endpoint group (name or ID) with CIDR(s) for IPSec connection")
 	vpn_ipsec_site_connection_setCmd.Flags().String("peer-id", "", "Peer router identity for authentication.")
 	vpn_ipsec_site_connectionCmd.AddCommand(vpn_ipsec_site_connection_setCmd)
+
+	carapace.Gen(vpn_ipsec_site_connection_setCmd).FlagCompletion(carapace.ActionMap{
+		"initiator": carapace.ActionValues("bi-directional", "response-only"),
+	})
 }

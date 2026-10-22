@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -19,4 +20,11 @@ func init() {
 	quota_deleteCmd.Flags().Bool("network", false, "Delete network quotas for the project")
 	quota_deleteCmd.Flags().Bool("volume", false, "Delete volume quotas for the project")
 	quotaCmd.AddCommand(quota_deleteCmd)
+
+	carapace.Gen(quota_deleteCmd).FlagCompletion(carapace.ActionMap{
+		"network": action.ActionNetworks(),
+		"volume":  action.ActionVolumes(),
+	})
+
+	carapace.Gen(quota_deleteCmd).PositionalCompletion(action.ActionProjects())
 }

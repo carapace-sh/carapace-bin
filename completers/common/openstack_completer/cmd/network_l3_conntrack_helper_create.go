@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -29,4 +30,10 @@ func init() {
 	network_l3_conntrack_helper_createCmd.MarkFlagRequired("port")
 	network_l3_conntrack_helper_createCmd.MarkFlagRequired("protocol")
 	network_l3_conntrack_helperCmd.AddCommand(network_l3_conntrack_helper_createCmd)
+
+	carapace.Gen(network_l3_conntrack_helper_createCmd).FlagCompletion(carapace.ActionMap{
+		"column": action.ActionColumns("network", "l3", "conntrack", "helper", "list"),
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"port":   action.ActionPorts(),
+	})
 }

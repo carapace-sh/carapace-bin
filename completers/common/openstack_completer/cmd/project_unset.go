@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,6 @@ func init() {
 
 	project_unsetCmd.Flags().String("property", "", "Unset a project property (repeat option to unset multiple properties)")
 	projectCmd.AddCommand(project_unsetCmd)
+
+	carapace.Gen(project_unsetCmd).PositionalCompletion(action.ActionProjects())
 }

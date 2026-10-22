@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,6 @@ func init() {
 	volume_qos_setCmd.Flags().Bool("no-property", false, "Remove all properties from <qos-spec> (specify both --no-property and --property to remove the current properties before setting new properties)")
 	volume_qos_setCmd.Flags().String("property", "", "Property to add or modify for this QoS specification (repeat option to set multiple properties)")
 	volume_qosCmd.AddCommand(volume_qos_setCmd)
+
+	carapace.Gen(volume_qos_setCmd).PositionalCompletion(action.ActionVolumeQosSpecs())
 }

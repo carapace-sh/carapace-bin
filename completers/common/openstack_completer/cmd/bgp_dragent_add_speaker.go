@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -15,4 +16,9 @@ func init() {
 	carapace.Gen(bgp_dragent_add_speakerCmd).Standalone()
 
 	bgp_dragent_addCmd.AddCommand(bgp_dragent_add_speakerCmd)
+
+	carapace.Gen(bgp_dragent_add_speakerCmd).PositionalCompletion(
+		action.ActionBgpDragents(),
+		action.ActionBgpSpeakers(),
+	)
 }

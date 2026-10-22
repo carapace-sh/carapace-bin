@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -37,4 +38,13 @@ func init() {
 	volume_type_createCmd.Flags().Bool("replicated", false, "Enabled replication for this volume type (this is an alias for '--property replication_enabled=<is> True') (requires driver support)")
 	volume_type_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	volume_typeCmd.AddCommand(volume_type_createCmd)
+
+	carapace.Gen(volume_type_createCmd).FlagCompletion(carapace.ActionMap{
+		"availability-zone":           action.ActionAvailabilityZones(),
+		"column":                      action.ActionColumns("volume", "type", "list"),
+		"encryption-control-location": carapace.ActionValues("front-end", "back-end"),
+		"format":                      carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"project":                     action.ActionProjects(),
+		"project-domain":              action.ActionDomains(),
+	})
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -63,4 +64,16 @@ func init() {
 	port_createCmd.Flags().String("vnic-type", "", "VNIC type for this port (accelerator-direct | accelerator-direct-physical | direct | direct-physical | macvtap | normal | baremetal | virtio-forwarder | smart-nic | vdpa | remote-managed) (default: normal)")
 	port_createCmd.MarkFlagRequired("network")
 	portCmd.AddCommand(port_createCmd)
+
+	carapace.Gen(port_createCmd).FlagCompletion(carapace.ActionMap{
+		"column":         action.ActionColumns("port", "list"),
+		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"network":        action.ActionNetworks(),
+		"project":        action.ActionProjects(),
+		"project-domain": action.ActionDomains(),
+		"pvlan-type":     carapace.ActionValues("promiscuous", "isolated", "community"),
+		"qos-policy":     action.ActionNetworkQosPolicies(),
+		"security-group": action.ActionSecurityGroups(),
+		"vnic-type":      carapace.ActionValues("accelerator-direct", "accelerator-direct-physical", "direct", "direct-physical", "macvtap", "normal", "baremetal", "virtio-forwarder", "smart-nic", "vdpa", "remote-managed"),
+	})
 }

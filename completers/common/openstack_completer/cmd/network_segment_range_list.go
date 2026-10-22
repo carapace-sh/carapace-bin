@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -33,4 +34,11 @@ func init() {
 	network_segment_range_listCmd.Flags().Bool("unused", false, "List only network segment ranges that have segments not in use")
 	network_segment_range_listCmd.Flags().Bool("used", false, "List only network segment ranges that have segments in use")
 	network_segment_rangeCmd.AddCommand(network_segment_range_listCmd)
+
+	carapace.Gen(network_segment_range_listCmd).FlagCompletion(carapace.ActionMap{
+		"column":      action.ActionColumns("network", "segment", "range", "list"),
+		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"sort-column": action.ActionColumns("network", "segment", "range", "list"),
+	})
 }

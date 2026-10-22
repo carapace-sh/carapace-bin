@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -33,4 +34,12 @@ func init() {
 	image_importCmd.Flags().String("variable", "", "==SUPPRESS==")
 	image_importCmd.Flags().Bool("wait", false, "Wait for operation to complete")
 	imageCmd.AddCommand(image_importCmd)
+
+	carapace.Gen(image_importCmd).FlagCompletion(carapace.ActionMap{
+		"column": action.ActionColumns("image", "list"),
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"method": carapace.ActionValues("glance-direct", "web-download", "glance-download", "copy-image"),
+	})
+
+	carapace.Gen(image_importCmd).PositionalCompletion(action.ActionImages())
 }

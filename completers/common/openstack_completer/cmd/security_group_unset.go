@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,6 @@ func init() {
 	security_group_unsetCmd.Flags().Bool("all-tag", false, "Clear all tags associated with the security group")
 	security_group_unsetCmd.Flags().String("tag", "", "Tag to be removed from the security group (repeat option to remove multiple tags)")
 	security_groupCmd.AddCommand(security_group_unsetCmd)
+
+	carapace.Gen(security_group_unsetCmd).PositionalCompletion(action.ActionSecurityGroups())
 }

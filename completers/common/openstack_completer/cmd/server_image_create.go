@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -26,4 +27,10 @@ func init() {
 	server_image_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	server_image_createCmd.Flags().Bool("wait", false, "Wait for operation to complete")
 	server_imageCmd.AddCommand(server_image_createCmd)
+
+	carapace.Gen(server_image_createCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
+
+	carapace.Gen(server_image_createCmd).PositionalCompletion(action.ActionServers())
 }

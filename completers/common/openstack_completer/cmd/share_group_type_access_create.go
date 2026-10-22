@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,10 @@ func init() {
 
 	share_group_type_access_createCmd.Flags().String("project-domain", "", "Domain the project belongs to (name or ID).")
 	share_group_type_accessCmd.AddCommand(share_group_type_access_createCmd)
+
+	carapace.Gen(share_group_type_access_createCmd).FlagCompletion(carapace.ActionMap{
+		"project-domain": action.ActionDomains(),
+	})
+
+	carapace.Gen(share_group_type_access_createCmd).PositionalCompletion(action.ActionShareGroupTypes())
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,6 @@ func init() {
 	share_group_snapshot_deleteCmd.Flags().Bool("force", false, "Attempt to force delete the share group snapshot(s) (Default=False) (Admin only).")
 	share_group_snapshot_deleteCmd.Flags().Bool("wait", false, "Wait for share group snapshot deletion")
 	share_group_snapshotCmd.AddCommand(share_group_snapshot_deleteCmd)
+
+	carapace.Gen(share_group_snapshot_deleteCmd).PositionalAnyCompletion(action.ActionShareGroupSnapshots())
 }

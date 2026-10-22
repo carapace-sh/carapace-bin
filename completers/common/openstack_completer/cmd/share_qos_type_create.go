@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -25,4 +26,9 @@ func init() {
 	share_qos_type_createCmd.Flags().String("spec", "", "Spec key and value of QoS type that will be used for QoS type creation.")
 	share_qos_type_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	share_qos_typeCmd.AddCommand(share_qos_type_createCmd)
+
+	carapace.Gen(share_qos_type_createCmd).FlagCompletion(carapace.ActionMap{
+		"column": action.ActionColumns("share", "qos", "type", "list"),
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
 }

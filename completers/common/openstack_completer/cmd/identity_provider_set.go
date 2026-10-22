@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -21,4 +22,6 @@ func init() {
 	identity_provider_setCmd.Flags().String("remote-id", "", "Remote IDs to associate with the Identity Provider (repeat option to provide multiple values)")
 	identity_provider_setCmd.Flags().String("remote-id-file", "", "Name of a file that contains many remote IDs to associate with the identity provider, one per line")
 	identity_providerCmd.AddCommand(identity_provider_setCmd)
+
+	carapace.Gen(identity_provider_setCmd).PositionalCompletion(action.ActionIdentityProviders())
 }

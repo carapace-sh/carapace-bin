@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,6 @@ func init() {
 	share_server_abandonCmd.Flags().Bool("force", false, "Enforces the unmanage share server operation, even if the backend driver does not support it.")
 	share_server_abandonCmd.Flags().Bool("wait", false, "Wait until share server is abandoned")
 	share_serverCmd.AddCommand(share_server_abandonCmd)
+
+	carapace.Gen(share_server_abandonCmd).PositionalCompletion(action.ActionShareServers())
 }

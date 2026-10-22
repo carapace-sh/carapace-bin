@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -33,4 +34,15 @@ func init() {
 	network_rbac_createCmd.MarkFlagRequired("action")
 	network_rbac_createCmd.MarkFlagRequired("type")
 	network_rbacCmd.AddCommand(network_rbac_createCmd)
+
+	carapace.Gen(network_rbac_createCmd).FlagCompletion(carapace.ActionMap{
+		"action":                carapace.ActionValues("access_as_external", "access_as_shared"),
+		"column":                action.ActionColumns("network", "rbac", "list"),
+		"format":                carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"project":               action.ActionProjects(),
+		"project-domain":        action.ActionDomains(),
+		"target-project":        action.ActionProjects(),
+		"target-project-domain": action.ActionDomains(),
+		"type":                  carapace.ActionValues("address_group", "address_scope", "security_group", "subnetpool", "qos_policy", "network"),
+	})
 }

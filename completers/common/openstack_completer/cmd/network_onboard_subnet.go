@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -15,4 +16,9 @@ func init() {
 	carapace.Gen(network_onboard_subnetCmd).Standalone()
 
 	network_onboardCmd.AddCommand(network_onboard_subnetCmd)
+
+	carapace.Gen(network_onboard_subnetCmd).PositionalCompletion(
+		action.ActionNetworks(),
+		action.ActionSubnetPools(),
+	)
 }

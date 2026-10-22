@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -51,4 +52,14 @@ func init() {
 	router_createCmd.Flags().String("tag", "", "Tag to be added to the router (repeat option to set multiple tags)")
 	router_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	routerCmd.AddCommand(router_createCmd)
+
+	carapace.Gen(router_createCmd).FlagCompletion(carapace.ActionMap{
+		"availability-zone-hint": action.ActionAvailabilityZones(),
+		"column":                 action.ActionColumns("router", "list"),
+		"flavor":                 action.ActionFlavors(),
+		"format":                 carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"project":                action.ActionProjects(),
+		"project-domain":         action.ActionDomains(),
+		"qos-policy":             action.ActionNetworkQosPolicies(),
+	})
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -18,4 +19,6 @@ func init() {
 	server_rebootCmd.Flags().Bool("soft", false, "Perform a soft reboot")
 	server_rebootCmd.Flags().Bool("wait", false, "Wait for reboot to complete")
 	serverCmd.AddCommand(server_rebootCmd)
+
+	carapace.Gen(server_rebootCmd).PositionalCompletion(action.ActionServers())
 }

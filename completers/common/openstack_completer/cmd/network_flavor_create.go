@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -31,4 +32,11 @@ func init() {
 	network_flavor_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	network_flavor_createCmd.MarkFlagRequired("service-type")
 	network_flavorCmd.AddCommand(network_flavor_createCmd)
+
+	carapace.Gen(network_flavor_createCmd).FlagCompletion(carapace.ActionMap{
+		"column":         action.ActionColumns("network", "flavor", "list"),
+		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"project":        action.ActionProjects(),
+		"project-domain": action.ActionDomains(),
+	})
 }

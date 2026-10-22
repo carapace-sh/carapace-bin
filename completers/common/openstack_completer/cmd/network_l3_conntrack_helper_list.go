@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -31,4 +32,12 @@ func init() {
 	network_l3_conntrack_helper_listCmd.Flags().String("sort-column", "", "specify the column(s) to sort the data (columns specified first have a priority, non-existing columns are ignored), can be repeated")
 	network_l3_conntrack_helper_listCmd.Flags().Bool("sort-descending", false, "sort the column(s) in descending order")
 	network_l3_conntrack_helperCmd.AddCommand(network_l3_conntrack_helper_listCmd)
+
+	carapace.Gen(network_l3_conntrack_helper_listCmd).FlagCompletion(carapace.ActionMap{
+		"column":      action.ActionColumns("network", "l3", "conntrack", "helper", "list"),
+		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"port":        action.ActionPorts(),
+		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"sort-column": action.ActionColumns("network", "l3", "conntrack", "helper", "list"),
+	})
 }

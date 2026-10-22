@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -24,4 +25,9 @@ func init() {
 	policy_createCmd.Flags().String("type", "", "New MIME type of the policy rules file (defaults to application/json)")
 	policy_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	policyCmd.AddCommand(policy_createCmd)
+
+	carapace.Gen(policy_createCmd).FlagCompletion(carapace.ActionMap{
+		"column": action.ActionColumns("policy", "list"),
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
 }

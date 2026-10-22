@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,9 @@ func init() {
 	ec2_credentials_deleteCmd.Flags().String("user", "", "Delete credentials for user (name or ID)")
 	ec2_credentials_deleteCmd.Flags().String("user-domain", "", "Domain the user belongs to (name or ID).")
 	ec2_credentialsCmd.AddCommand(ec2_credentials_deleteCmd)
+
+	carapace.Gen(ec2_credentials_deleteCmd).FlagCompletion(carapace.ActionMap{
+		"user":        action.ActionUsers(),
+		"user-domain": action.ActionDomains(),
+	})
 }

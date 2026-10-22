@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -31,4 +32,11 @@ func init() {
 	share_group_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	share_group_createCmd.Flags().Bool("wait", false, "Wait for share group creation")
 	share_groupCmd.AddCommand(share_group_createCmd)
+
+	carapace.Gen(share_group_createCmd).FlagCompletion(carapace.ActionMap{
+		"availability-zone": action.ActionAvailabilityZones(),
+		"column":            action.ActionColumns("share", "group", "list"),
+		"format":            carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"share-network":     action.ActionShareNetworks(),
+	})
 }

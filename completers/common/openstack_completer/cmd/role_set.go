@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -20,4 +21,10 @@ func init() {
 	role_setCmd.Flags().String("name", "", "Set role name")
 	role_setCmd.Flags().Bool("no-immutable", false, "Make resource mutable (default)")
 	roleCmd.AddCommand(role_setCmd)
+
+	carapace.Gen(role_setCmd).FlagCompletion(carapace.ActionMap{
+		"domain": action.ActionDomains(),
+	})
+
+	carapace.Gen(role_setCmd).PositionalCompletion(action.ActionRoles())
 }

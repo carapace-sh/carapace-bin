@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -26,4 +27,10 @@ func init() {
 	project_setCmd.Flags().String("remove-tag", "", "Tag to be deleted from the project (repeat option to delete multiple tags)")
 	project_setCmd.Flags().String("tag", "", "Tag to be added to the project (repeat option to set multiple tags)")
 	projectCmd.AddCommand(project_setCmd)
+
+	carapace.Gen(project_setCmd).FlagCompletion(carapace.ActionMap{
+		"domain": action.ActionDomains(),
+	})
+
+	carapace.Gen(project_setCmd).PositionalCompletion(action.ActionProjects())
 }

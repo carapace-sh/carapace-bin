@@ -33,4 +33,8 @@ func init() {
 	access_token_createCmd.MarkFlagRequired("request-secret")
 	access_token_createCmd.MarkFlagRequired("verifier")
 	access_tokenCmd.AddCommand(access_token_createCmd)
+
+	carapace.Gen(access_token_createCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,6 @@ func init() {
 
 	address_group_unsetCmd.Flags().String("address", "", "IP address or CIDR (repeat option to unset multiple addresses)")
 	address_groupCmd.AddCommand(address_group_unsetCmd)
+
+	carapace.Gen(address_group_unsetCmd).PositionalCompletion(action.ActionAddressGroups())
 }

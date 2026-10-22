@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,10 @@ func init() {
 
 	user_deleteCmd.Flags().String("domain", "", "Domain owning <user> (name or ID)")
 	userCmd.AddCommand(user_deleteCmd)
+
+	carapace.Gen(user_deleteCmd).FlagCompletion(carapace.ActionMap{
+		"domain": action.ActionDomains(),
+	})
+
+	carapace.Gen(user_deleteCmd).PositionalAnyCompletion(action.ActionUsers())
 }

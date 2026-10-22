@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -24,4 +25,13 @@ func init() {
 	server_add_shareCmd.Flags().String("tag", "", "Optional tag used to mount the share, if not provided the share uuid is used as tag by default")
 	server_add_shareCmd.Flags().String("variable", "", "==SUPPRESS==")
 	server_addCmd.AddCommand(server_add_shareCmd)
+
+	carapace.Gen(server_add_shareCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
+
+	carapace.Gen(server_add_shareCmd).PositionalCompletion(
+		action.ActionServers(),
+		action.ActionShares(),
+	)
 }

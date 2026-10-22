@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -18,4 +19,6 @@ func init() {
 	share_group_setCmd.Flags().String("name", "", "New name for the share group.")
 	share_group_setCmd.Flags().String("status", "", "Explicitly update the status of a share group (Admin  only).")
 	share_groupCmd.AddCommand(share_group_setCmd)
+
+	carapace.Gen(share_group_setCmd).PositionalCompletion(action.ActionShareGroups())
 }

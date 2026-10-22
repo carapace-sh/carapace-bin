@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -19,4 +20,6 @@ func init() {
 	share_type_setCmd.Flags().String("name", "", "New name of share type.")
 	share_type_setCmd.Flags().String("public", "", "New visibility of the share type.")
 	share_typeCmd.AddCommand(share_type_setCmd)
+
+	carapace.Gen(share_type_setCmd).PositionalCompletion(action.ActionShareTypes())
 }

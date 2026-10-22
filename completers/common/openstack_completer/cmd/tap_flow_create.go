@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -34,4 +35,13 @@ func init() {
 	tap_flow_createCmd.MarkFlagRequired("port")
 	tap_flow_createCmd.MarkFlagRequired("tap-service")
 	tap_flowCmd.AddCommand(tap_flow_createCmd)
+
+	carapace.Gen(tap_flow_createCmd).FlagCompletion(carapace.ActionMap{
+		"column":         action.ActionColumns("tap", "flow", "list"),
+		"direction":      carapace.ActionValues("IN", "OUT", "BOTH"),
+		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"port":           action.ActionPorts(),
+		"project":        action.ActionProjects(),
+		"project-domain": action.ActionDomains(),
+	})
 }

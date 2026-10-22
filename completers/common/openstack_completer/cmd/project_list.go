@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -40,4 +41,13 @@ func init() {
 	project_listCmd.Flags().String("tags-any", "", "List projects which have any given tag(s) (Comma-separated list of tags)")
 	project_listCmd.Flags().String("user", "", "Filter projects by <user> (name or ID)")
 	projectCmd.AddCommand(project_listCmd)
+
+	carapace.Gen(project_listCmd).FlagCompletion(carapace.ActionMap{
+		"column":      action.ActionColumns("project", "list"),
+		"domain":      action.ActionDomains(),
+		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"sort-column": action.ActionColumns("project", "list"),
+		"user":        action.ActionUsers(),
+	})
 }

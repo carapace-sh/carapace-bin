@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -15,4 +16,9 @@ func init() {
 	carapace.Gen(network_trunk_subport_removeCmd).Standalone()
 
 	network_trunk_subportCmd.AddCommand(network_trunk_subport_removeCmd)
+
+	carapace.Gen(network_trunk_subport_removeCmd).PositionalCompletion(
+		action.ActionNetworkTrunks(),
+		action.ActionPorts(),
+	)
 }

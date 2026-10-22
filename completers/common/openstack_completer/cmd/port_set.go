@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -53,4 +54,14 @@ func init() {
 	port_setCmd.Flags().Bool("trusted", false, "Set port to be trusted.")
 	port_setCmd.Flags().String("vnic-type", "", "VNIC type for this port (accelerator-direct | accelerator-direct-physical | direct | direct-physical | macvtap | normal | baremetal | virtio-forwarder | smart-nic | vdpa | remote-managed) (default: normal)")
 	portCmd.AddCommand(port_setCmd)
+
+	carapace.Gen(port_setCmd).FlagCompletion(carapace.ActionMap{
+		"data-plane-status": carapace.ActionValues("ACTIVE", "DOWN"),
+		"pvlan-type":        carapace.ActionValues("promiscuous", "isolated", "community"),
+		"qos-policy":        action.ActionNetworkQosPolicies(),
+		"security-group":    action.ActionSecurityGroups(),
+		"vnic-type":         carapace.ActionValues("accelerator-direct", "accelerator-direct-physical", "direct", "direct-physical", "macvtap", "normal", "baremetal", "virtio-forwarder", "smart-nic", "vdpa", "remote-managed"),
+	})
+
+	carapace.Gen(port_setCmd).PositionalCompletion(action.ActionPorts())
 }

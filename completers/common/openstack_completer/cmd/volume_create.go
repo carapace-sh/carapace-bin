@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -42,4 +43,13 @@ func init() {
 	volume_createCmd.Flags().String("type", "", "Set the type of volume")
 	volume_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	volumeCmd.AddCommand(volume_createCmd)
+
+	carapace.Gen(volume_createCmd).FlagCompletion(carapace.ActionMap{
+		"availability-zone": action.ActionAvailabilityZones(),
+		"column":            action.ActionColumns("volume", "list"),
+		"consistency-group": action.ActionConsistencyGroups(),
+		"format":            carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"image":             action.ActionImages(),
+		"snapshot":          action.ActionVolumeSnapshots(),
+	})
 }

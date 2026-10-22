@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -24,4 +25,14 @@ func init() {
 	image_metadef_resource_type_association_createCmd.Flags().String("properties-target", "", "Some resource types allow more than one key/value pair per instance.")
 	image_metadef_resource_type_association_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	image_metadef_resource_type_associationCmd.AddCommand(image_metadef_resource_type_association_createCmd)
+
+	carapace.Gen(image_metadef_resource_type_association_createCmd).FlagCompletion(carapace.ActionMap{
+		"column": action.ActionColumns("image", "metadef", "resource", "type", "association", "list"),
+		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+	})
+
+	carapace.Gen(image_metadef_resource_type_association_createCmd).PositionalCompletion(
+		action.ActionImageMetadefNamespaces(),
+		action.ActionImageMetadefResourceTypes(),
+	)
 }

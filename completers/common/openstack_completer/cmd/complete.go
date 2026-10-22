@@ -17,4 +17,8 @@ func init() {
 	completeCmd.Flags().String("name", "", "Command name to support with command completion")
 	completeCmd.Flags().String("shell", "", "Shell being used.")
 	rootCmd.AddCommand(completeCmd)
+
+	carapace.Gen(completeCmd).FlagCompletion(carapace.ActionMap{
+		"shell": carapace.ActionValues("bash", "none"),
+	})
 }

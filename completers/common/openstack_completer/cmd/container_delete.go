@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -16,4 +17,6 @@ func init() {
 
 	container_deleteCmd.Flags().BoolP("recursive", "r", false, "Recursively delete objects and container")
 	containerCmd.AddCommand(container_deleteCmd)
+
+	carapace.Gen(container_deleteCmd).PositionalAnyCompletion(action.ActionContainers())
 }

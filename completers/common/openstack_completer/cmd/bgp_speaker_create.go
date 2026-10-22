@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -32,4 +33,12 @@ func init() {
 	bgp_speaker_createCmd.Flags().String("variable", "", "==SUPPRESS==")
 	bgp_speaker_createCmd.MarkFlagRequired("local-as")
 	bgp_speakerCmd.AddCommand(bgp_speaker_createCmd)
+
+	carapace.Gen(bgp_speaker_createCmd).FlagCompletion(carapace.ActionMap{
+		"column":         action.ActionColumns("bgp", "speaker", "list"),
+		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
+		"ip-version":     carapace.ActionValues("4", "6"),
+		"project":        action.ActionProjects(),
+		"project-domain": action.ActionDomains(),
+	})
 }

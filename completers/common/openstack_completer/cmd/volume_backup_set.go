@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -20,4 +21,10 @@ func init() {
 	volume_backup_setCmd.Flags().String("property", "", "Set a property on this backup (repeat option to set multiple values) (supported by --os-volume-api-version 3.43 or above)")
 	volume_backup_setCmd.Flags().String("state", "", "New backup state (\"available\" or \"error\") (admin only) (This option simply changes the state of the backup in the database with no regard to actual status; exercise caution when using)")
 	volume_backupCmd.AddCommand(volume_backup_setCmd)
+
+	carapace.Gen(volume_backup_setCmd).FlagCompletion(carapace.ActionMap{
+		"state": carapace.ActionValues("available", "error"),
+	})
+
+	carapace.Gen(volume_backup_setCmd).PositionalCompletion(action.ActionVolumeBackups())
 }

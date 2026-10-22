@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,6 @@ func init() {
 	share_group_snapshot_unsetCmd.Flags().Bool("description", false, "Unset share group snapshot description.")
 	share_group_snapshot_unsetCmd.Flags().Bool("name", false, "Unset share group snapshot name.")
 	share_group_snapshotCmd.AddCommand(share_group_snapshot_unsetCmd)
+
+	carapace.Gen(share_group_snapshot_unsetCmd).PositionalCompletion(action.ActionShareGroupSnapshots())
 }

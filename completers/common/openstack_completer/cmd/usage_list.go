@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -27,4 +28,11 @@ func init() {
 	usage_listCmd.Flags().Bool("sort-descending", false, "sort the column(s) in descending order")
 	usage_listCmd.Flags().String("start", "", "Usage range start date, ex 2012-01-20 (default: 4 weeks ago)")
 	usageCmd.AddCommand(usage_listCmd)
+
+	carapace.Gen(usage_listCmd).FlagCompletion(carapace.ActionMap{
+		"column":      action.ActionColumns("usage", "list"),
+		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"sort-column": action.ActionColumns("usage", "list"),
+	})
 }

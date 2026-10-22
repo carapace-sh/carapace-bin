@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,6 @@ func init() {
 	bgp_peer_setCmd.Flags().String("name", "", "Updated name of the BGP peer")
 	bgp_peer_setCmd.Flags().String("password", "", "Updated authentication password")
 	bgp_peerCmd.AddCommand(bgp_peer_setCmd)
+
+	carapace.Gen(bgp_peer_setCmd).PositionalCompletion(action.ActionBgpPeers())
 }

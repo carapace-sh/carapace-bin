@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -50,4 +51,19 @@ func init() {
 	port_listCmd.Flags().String("status", "", "List only ports with the specified status ('ACTIVE', 'BUILD', 'DOWN', 'ERROR')")
 	port_listCmd.Flags().String("tags", "", "List ports which have all given tag(s) (Comma-separated list of tags)")
 	portCmd.AddCommand(port_listCmd)
+
+	carapace.Gen(port_listCmd).FlagCompletion(carapace.ActionMap{
+		"column":         action.ActionColumns("port", "list"),
+		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
+		"network":        action.ActionNetworks(),
+		"project":        action.ActionProjects(),
+		"project-domain": action.ActionDomains(),
+		"pvlan-type":     carapace.ActionValues("promiscuous", "isolated", "community"),
+		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
+		"router":         action.ActionRouters(),
+		"security-group": action.ActionSecurityGroups(),
+		"server":         action.ActionServers(),
+		"sort-column":    action.ActionColumns("port", "list"),
+		"status":         carapace.ActionValues("ACTIVE", "BUILD", "DOWN", "ERROR"),
+	})
 }
