@@ -1,0 +1,24 @@
+package cmd
+
+import (
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
+	"github.com/spf13/cobra"
+)
+
+var server_remove_floating_ipCmd = &cobra.Command{
+	Use:   "ip",
+	Short: "Remove floating IP address from server",
+	Run:   func(cmd *cobra.Command, args []string) {},
+}
+
+func init() {
+	carapace.Gen(server_remove_floating_ipCmd).Standalone()
+
+	server_remove_floatingCmd.AddCommand(server_remove_floating_ipCmd)
+
+	carapace.Gen(server_remove_floating_ipCmd).PositionalCompletion(
+		action.ActionServers(server_remove_floating_ipCmd),
+		action.ActionFloatingIPs(server_remove_floating_ipCmd),
+	)
+}

@@ -1,0 +1,24 @@
+package cmd
+
+import (
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
+	"github.com/spf13/cobra"
+)
+
+var router_remove_subnetCmd = &cobra.Command{
+	Use:   "subnet",
+	Short: "Remove a subnet from a router",
+	Run:   func(cmd *cobra.Command, args []string) {},
+}
+
+func init() {
+	carapace.Gen(router_remove_subnetCmd).Standalone()
+
+	router_removeCmd.AddCommand(router_remove_subnetCmd)
+
+	carapace.Gen(router_remove_subnetCmd).PositionalCompletion(
+		action.ActionRouters(router_remove_subnetCmd),
+		action.ActionSubnets(router_remove_subnetCmd),
+	)
+}
