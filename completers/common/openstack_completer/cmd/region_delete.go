@@ -17,5 +17,5 @@ func init() {
 
 	regionCmd.AddCommand(region_deleteCmd)
 
-	carapace.Gen(region_deleteCmd).PositionalAnyCompletion(action.ActionRegions())
+	carapace.Gen(region_deleteCmd).PositionalAnyCompletion(action.ActionRegions(region_deleteCmd))
 }

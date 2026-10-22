@@ -40,7 +40,7 @@ func init() {
 		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
 		"sort-column":    action.ActionColumns(network_rbac_listCmd),
-		"target-project": action.ActionProjects(),
+		"target-project": action.ActionProjects(network_rbac_listCmd),
 		"type":           carapace.ActionValues("address_group", "address_scope", "security_group", "subnetpool", "qos_policy", "network"),
 	})
 }

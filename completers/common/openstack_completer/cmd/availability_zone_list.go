@@ -35,9 +35,9 @@ func init() {
 	carapace.Gen(availability_zone_listCmd).FlagCompletion(carapace.ActionMap{
 		"column":      action.ActionColumns(availability_zone_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
-		"network":     action.ActionNetworks(),
+		"network":     action.ActionNetworks(availability_zone_listCmd),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
 		"sort-column": action.ActionColumns(availability_zone_listCmd),
-		"volume":      action.ActionVolumes(),
+		"volume":      action.ActionVolumes(availability_zone_listCmd),
 	})
 }

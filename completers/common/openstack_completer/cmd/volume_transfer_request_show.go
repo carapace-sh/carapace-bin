@@ -30,5 +30,5 @@ func init() {
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 
-	carapace.Gen(volume_transfer_request_showCmd).PositionalCompletion(action.ActionVolumeTransfers())
+	carapace.Gen(volume_transfer_request_showCmd).PositionalCompletion(action.ActionVolumeTransfers(volume_transfer_request_showCmd))
 }

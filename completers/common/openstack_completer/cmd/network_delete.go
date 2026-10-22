@@ -17,5 +17,5 @@ func init() {
 
 	networkCmd.AddCommand(network_deleteCmd)
 
-	carapace.Gen(network_deleteCmd).PositionalAnyCompletion(action.ActionNetworks())
+	carapace.Gen(network_deleteCmd).PositionalAnyCompletion(action.ActionNetworks(network_deleteCmd))
 }

@@ -20,5 +20,5 @@ func init() {
 	share_snapshot_unsetCmd.Flags().String("property", "", "Remove a property from snapshot (repeat option to remove multiple properties)")
 	share_snapshotCmd.AddCommand(share_snapshot_unsetCmd)
 
-	carapace.Gen(share_snapshot_unsetCmd).PositionalCompletion(action.ActionShareSnapshots())
+	carapace.Gen(share_snapshot_unsetCmd).PositionalCompletion(action.ActionShareSnapshots(share_snapshot_unsetCmd))
 }

@@ -17,5 +17,5 @@ func init() {
 
 	endpointCmd.AddCommand(endpoint_deleteCmd)
 
-	carapace.Gen(endpoint_deleteCmd).PositionalAnyCompletion(action.ActionEndpoints())
+	carapace.Gen(endpoint_deleteCmd).PositionalAnyCompletion(action.ActionEndpoints(endpoint_deleteCmd))
 }

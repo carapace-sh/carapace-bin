@@ -46,12 +46,12 @@ func init() {
 	carapace.Gen(floating_ip_listCmd).FlagCompletion(carapace.ActionMap{
 		"column":         action.ActionColumns(floating_ip_listCmd),
 		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
-		"network":        action.ActionNetworks(),
-		"port":           action.ActionPorts(),
-		"project":        action.ActionProjects(),
-		"project-domain": action.ActionDomains(),
+		"network":        action.ActionNetworks(floating_ip_listCmd),
+		"port":           action.ActionPorts(floating_ip_listCmd),
+		"project":        action.ActionProjects(floating_ip_listCmd),
+		"project-domain": action.ActionDomains(floating_ip_listCmd),
 		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"router":         action.ActionRouters(),
+		"router":         action.ActionRouters(floating_ip_listCmd),
 		"sort-column":    action.ActionColumns(floating_ip_listCmd),
 		"status":         carapace.ActionValues("ACTIVE", "DOWN"),
 	})

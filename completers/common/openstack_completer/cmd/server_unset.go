@@ -23,5 +23,5 @@ func init() {
 	server_unsetCmd.Flags().String("tag", "", "Tag to remove from the server.")
 	serverCmd.AddCommand(server_unsetCmd)
 
-	carapace.Gen(server_unsetCmd).PositionalCompletion(action.ActionServers())
+	carapace.Gen(server_unsetCmd).PositionalCompletion(action.ActionServers(server_unsetCmd))
 }

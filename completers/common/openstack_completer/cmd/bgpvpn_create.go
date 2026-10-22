@@ -38,8 +38,8 @@ func init() {
 	carapace.Gen(bgpvpn_createCmd).FlagCompletion(carapace.ActionMap{
 		"column":         action.ActionColumns(bgpvpn_createCmd),
 		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
-		"project":        action.ActionProjects(),
-		"project-domain": action.ActionDomains(),
+		"project":        action.ActionProjects(bgpvpn_createCmd),
+		"project-domain": action.ActionDomains(bgpvpn_createCmd),
 		"type":           carapace.ActionValues("l2", "l3"),
 	})
 }

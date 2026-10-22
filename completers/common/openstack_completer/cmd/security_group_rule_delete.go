@@ -17,5 +17,5 @@ func init() {
 
 	security_group_ruleCmd.AddCommand(security_group_rule_deleteCmd)
 
-	carapace.Gen(security_group_rule_deleteCmd).PositionalAnyCompletion(action.ActionSecurityGroupRules())
+	carapace.Gen(security_group_rule_deleteCmd).PositionalAnyCompletion(action.ActionSecurityGroupRules(security_group_rule_deleteCmd))
 }

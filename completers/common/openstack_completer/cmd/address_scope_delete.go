@@ -17,5 +17,5 @@ func init() {
 
 	address_scopeCmd.AddCommand(address_scope_deleteCmd)
 
-	carapace.Gen(address_scope_deleteCmd).PositionalAnyCompletion(action.ActionAddressScopes())
+	carapace.Gen(address_scope_deleteCmd).PositionalAnyCompletion(action.ActionAddressScopes(address_scope_deleteCmd))
 }

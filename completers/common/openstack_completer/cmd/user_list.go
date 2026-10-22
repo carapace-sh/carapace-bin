@@ -38,9 +38,9 @@ func init() {
 
 	carapace.Gen(user_listCmd).FlagCompletion(carapace.ActionMap{
 		"column":      action.ActionColumns(user_listCmd),
-		"domain":      action.ActionDomains(),
+		"domain":      action.ActionDomains(user_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
-		"project":     action.ActionProjects(),
+		"project":     action.ActionProjects(user_listCmd),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
 		"sort-column": action.ActionColumns(user_listCmd),
 	})

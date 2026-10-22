@@ -20,7 +20,7 @@ func init() {
 	firewall_group_policy_addCmd.AddCommand(firewall_group_policy_add_ruleCmd)
 
 	carapace.Gen(firewall_group_policy_add_ruleCmd).PositionalCompletion(
-		action.ActionFirewallPolicies(),
-		action.ActionFirewallRules(),
+		action.ActionFirewallPolicies(firewall_group_policy_add_ruleCmd),
+		action.ActionFirewallRules(firewall_group_policy_add_ruleCmd),
 	)
 }

@@ -19,5 +19,5 @@ func init() {
 	mapping_setCmd.Flags().String("schema-version", "", "The federated attribute mapping schema version.")
 	mappingCmd.AddCommand(mapping_setCmd)
 
-	carapace.Gen(mapping_setCmd).PositionalCompletion(action.ActionMappings())
+	carapace.Gen(mapping_setCmd).PositionalCompletion(action.ActionMappings(mapping_setCmd))
 }

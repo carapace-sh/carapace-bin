@@ -17,5 +17,5 @@ func init() {
 
 	portCmd.AddCommand(port_deleteCmd)
 
-	carapace.Gen(port_deleteCmd).PositionalAnyCompletion(action.ActionPorts())
+	carapace.Gen(port_deleteCmd).PositionalAnyCompletion(action.ActionPorts(port_deleteCmd))
 }

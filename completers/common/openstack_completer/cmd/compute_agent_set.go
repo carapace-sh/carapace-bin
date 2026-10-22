@@ -20,5 +20,5 @@ func init() {
 	compute_agent_setCmd.Flags().String("url", "", "URL of the agent")
 	compute_agentCmd.AddCommand(compute_agent_setCmd)
 
-	carapace.Gen(compute_agent_setCmd).PositionalCompletion(action.ActionComputeAgents())
+	carapace.Gen(compute_agent_setCmd).PositionalCompletion(action.ActionComputeAgents(compute_agent_setCmd))
 }

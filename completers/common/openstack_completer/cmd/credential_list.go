@@ -35,7 +35,7 @@ func init() {
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
 		"sort-column": action.ActionColumns(credential_listCmd),
-		"user":        action.ActionUsers(),
-		"user-domain": action.ActionDomains(),
+		"user":        action.ActionUsers(credential_listCmd),
+		"user-domain": action.ActionDomains(credential_listCmd),
 	})
 }

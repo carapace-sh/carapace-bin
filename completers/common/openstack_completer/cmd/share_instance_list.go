@@ -33,7 +33,7 @@ func init() {
 		"column":      action.ActionColumns(share_instance_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"share":       action.ActionShares(),
+		"share":       action.ActionShares(share_instance_listCmd),
 		"sort-column": action.ActionColumns(share_instance_listCmd),
 	})
 }

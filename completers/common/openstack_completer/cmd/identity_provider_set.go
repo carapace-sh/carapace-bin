@@ -23,5 +23,5 @@ func init() {
 	identity_provider_setCmd.Flags().String("remote-id-file", "", "Name of a file that contains many remote IDs to associate with the identity provider, one per line")
 	identity_providerCmd.AddCommand(identity_provider_setCmd)
 
-	carapace.Gen(identity_provider_setCmd).PositionalCompletion(action.ActionIdentityProviders())
+	carapace.Gen(identity_provider_setCmd).PositionalCompletion(action.ActionIdentityProviders(identity_provider_setCmd))
 }

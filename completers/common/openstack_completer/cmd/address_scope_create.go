@@ -35,7 +35,7 @@ func init() {
 		"column":         action.ActionColumns(address_scope_createCmd),
 		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 		"ip-version":     carapace.ActionValues("4", "6"),
-		"project":        action.ActionProjects(),
-		"project-domain": action.ActionDomains(),
+		"project":        action.ActionProjects(address_scope_createCmd),
+		"project-domain": action.ActionDomains(address_scope_createCmd),
 	})
 }

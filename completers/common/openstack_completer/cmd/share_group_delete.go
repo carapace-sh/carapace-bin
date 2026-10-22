@@ -19,5 +19,5 @@ func init() {
 	share_group_deleteCmd.Flags().Bool("wait", false, "Wait for share group to delete")
 	share_groupCmd.AddCommand(share_group_deleteCmd)
 
-	carapace.Gen(share_group_deleteCmd).PositionalAnyCompletion(action.ActionShareGroups())
+	carapace.Gen(share_group_deleteCmd).PositionalAnyCompletion(action.ActionShareGroups(share_group_deleteCmd))
 }

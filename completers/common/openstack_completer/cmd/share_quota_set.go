@@ -33,7 +33,7 @@ func init() {
 	share_quotaCmd.AddCommand(share_quota_setCmd)
 
 	carapace.Gen(share_quota_setCmd).FlagCompletion(carapace.ActionMap{
-		"share-type": action.ActionShareTypes(),
-		"user":       action.ActionUsers(),
+		"share-type": action.ActionShareTypes(share_quota_setCmd),
+		"user":       action.ActionUsers(share_quota_setCmd),
 	})
 }

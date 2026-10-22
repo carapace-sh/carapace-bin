@@ -22,7 +22,7 @@ func init() {
 	image_metadef_propertyCmd.AddCommand(image_metadef_property_setCmd)
 
 	carapace.Gen(image_metadef_property_setCmd).PositionalCompletion(
-		action.ActionImageMetadefNamespaces(),
-		action.ActionImageMetadefProperties(),
+		action.ActionImageMetadefNamespaces(image_metadef_property_setCmd),
+		action.ActionImageMetadefProperties(image_metadef_property_setCmd),
 	)
 }

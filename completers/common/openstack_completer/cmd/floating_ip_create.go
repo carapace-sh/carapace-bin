@@ -42,11 +42,11 @@ func init() {
 	carapace.Gen(floating_ip_createCmd).FlagCompletion(carapace.ActionMap{
 		"column":         action.ActionColumns(floating_ip_createCmd),
 		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
-		"port":           action.ActionPorts(),
-		"project":        action.ActionProjects(),
-		"project-domain": action.ActionDomains(),
-		"qos-policy":     action.ActionNetworkQosPolicies(),
-		"router":         action.ActionRouters(),
-		"subnet":         action.ActionSubnets(),
+		"port":           action.ActionPorts(floating_ip_createCmd),
+		"project":        action.ActionProjects(floating_ip_createCmd),
+		"project-domain": action.ActionDomains(floating_ip_createCmd),
+		"qos-policy":     action.ActionNetworkQosPolicies(floating_ip_createCmd),
+		"router":         action.ActionRouters(floating_ip_createCmd),
+		"subnet":         action.ActionSubnets(floating_ip_createCmd),
 	})
 }

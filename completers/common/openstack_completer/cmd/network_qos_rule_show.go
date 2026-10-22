@@ -31,7 +31,7 @@ func init() {
 	})
 
 	carapace.Gen(network_qos_rule_showCmd).PositionalCompletion(
-		action.ActionNetworkQosPolicies(),
-		action.ActionNetworkQosRules(),
+		action.ActionNetworkQosPolicies(network_qos_rule_showCmd),
+		action.ActionNetworkQosRules(network_qos_rule_showCmd),
 	)
 }

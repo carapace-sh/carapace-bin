@@ -31,7 +31,7 @@ func init() {
 	})
 
 	carapace.Gen(server_share_showCmd).PositionalCompletion(
-		action.ActionServers(),
-		action.ActionShares(),
+		action.ActionServers(server_share_showCmd),
+		action.ActionShares(server_share_showCmd),
 	)
 }

@@ -18,5 +18,5 @@ func init() {
 	server_lockCmd.Flags().String("reason", "", "Reason for locking the server(s) (supported by --os-compute-api-version 2.73 or above)")
 	serverCmd.AddCommand(server_lockCmd)
 
-	carapace.Gen(server_lockCmd).PositionalCompletion(action.ActionServers())
+	carapace.Gen(server_lockCmd).PositionalCompletion(action.ActionServers(server_lockCmd))
 }

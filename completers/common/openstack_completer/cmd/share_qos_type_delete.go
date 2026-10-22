@@ -17,5 +17,5 @@ func init() {
 
 	share_qos_typeCmd.AddCommand(share_qos_type_deleteCmd)
 
-	carapace.Gen(share_qos_type_deleteCmd).PositionalAnyCompletion(action.ActionShareQosTypes())
+	carapace.Gen(share_qos_type_deleteCmd).PositionalAnyCompletion(action.ActionShareQosTypes(share_qos_type_deleteCmd))
 }

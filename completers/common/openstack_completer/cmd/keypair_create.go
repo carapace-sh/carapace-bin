@@ -35,7 +35,7 @@ func init() {
 		"format":      carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 		"public-key":  carapace.ActionFiles(),
 		"type":        carapace.ActionValues("ssh", "x509"),
-		"user":        action.ActionUsers(),
-		"user-domain": action.ActionDomains(),
+		"user":        action.ActionUsers(keypair_createCmd),
+		"user-domain": action.ActionDomains(keypair_createCmd),
 	})
 }

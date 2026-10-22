@@ -40,8 +40,8 @@ func init() {
 	carapace.Gen(volume_attachment_createCmd).FlagCompletion(carapace.ActionMap{
 		"column": action.ActionColumns(volume_attachment_createCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
-		"server": action.ActionServers(),
+		"server": action.ActionServers(volume_attachment_createCmd),
 	})
 
-	carapace.Gen(volume_attachment_createCmd).PositionalCompletion(action.ActionVolumes())
+	carapace.Gen(volume_attachment_createCmd).PositionalCompletion(action.ActionVolumes(volume_attachment_createCmd))
 }

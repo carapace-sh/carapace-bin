@@ -28,12 +28,12 @@ func init() {
 	roleCmd.AddCommand(role_removeCmd)
 
 	carapace.Gen(role_removeCmd).FlagCompletion(carapace.ActionMap{
-		"domain":         action.ActionDomains(),
-		"project":        action.ActionProjects(),
-		"project-domain": action.ActionDomains(),
-		"user":           action.ActionUsers(),
-		"user-domain":    action.ActionDomains(),
+		"domain":         action.ActionDomains(role_removeCmd),
+		"project":        action.ActionProjects(role_removeCmd),
+		"project-domain": action.ActionDomains(role_removeCmd),
+		"user":           action.ActionUsers(role_removeCmd),
+		"user-domain":    action.ActionDomains(role_removeCmd),
 	})
 
-	carapace.Gen(role_removeCmd).PositionalCompletion(action.ActionRoles())
+	carapace.Gen(role_removeCmd).PositionalCompletion(action.ActionRoles(role_removeCmd))
 }

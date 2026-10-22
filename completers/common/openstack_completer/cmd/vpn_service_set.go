@@ -24,7 +24,7 @@ func init() {
 	vpn_serviceCmd.AddCommand(vpn_service_setCmd)
 
 	carapace.Gen(vpn_service_setCmd).FlagCompletion(carapace.ActionMap{
-		"flavor": action.ActionFlavors(),
-		"subnet": action.ActionSubnets(),
+		"flavor": action.ActionFlavors(vpn_service_setCmd),
+		"subnet": action.ActionSubnets(vpn_service_setCmd),
 	})
 }

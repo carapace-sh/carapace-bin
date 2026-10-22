@@ -19,8 +19,8 @@ func init() {
 	userCmd.AddCommand(user_deleteCmd)
 
 	carapace.Gen(user_deleteCmd).FlagCompletion(carapace.ActionMap{
-		"domain": action.ActionDomains(),
+		"domain": action.ActionDomains(user_deleteCmd),
 	})
 
-	carapace.Gen(user_deleteCmd).PositionalAnyCompletion(action.ActionUsers())
+	carapace.Gen(user_deleteCmd).PositionalAnyCompletion(action.ActionUsers(user_deleteCmd))
 }

@@ -21,7 +21,7 @@ func init() {
 	volume_serviceCmd.AddCommand(volume_service_setCmd)
 
 	carapace.Gen(volume_service_setCmd).PositionalCompletion(
-		action.ActionVolumeHosts(),
-		action.ActionVolumeServiceBinaries(),
+		action.ActionVolumeHosts(volume_service_setCmd),
+		action.ActionVolumeServiceBinaries(volume_service_setCmd),
 	)
 }

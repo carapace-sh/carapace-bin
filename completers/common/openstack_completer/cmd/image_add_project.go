@@ -28,11 +28,11 @@ func init() {
 
 	carapace.Gen(image_add_projectCmd).FlagCompletion(carapace.ActionMap{
 		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
-		"project-domain": action.ActionDomains(),
+		"project-domain": action.ActionDomains(image_add_projectCmd),
 	})
 
 	carapace.Gen(image_add_projectCmd).PositionalCompletion(
-		action.ActionImages(),
-		action.ActionProjectIDs(),
+		action.ActionImages(image_add_projectCmd),
+		action.ActionProjectIDs(image_add_projectCmd),
 	)
 }

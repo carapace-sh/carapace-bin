@@ -57,10 +57,10 @@ func init() {
 		"ip-version":        carapace.ActionValues("4", "6"),
 		"ipv6-address-mode": carapace.ActionValues("dhcpv6-stateful", "dhcpv6-stateless", "slaac"),
 		"ipv6-ra-mode":      carapace.ActionValues("dhcpv6-stateful", "dhcpv6-stateless", "slaac"),
-		"network":           action.ActionNetworks(),
-		"network-segment":   action.ActionNetworkSegments(),
-		"project":           action.ActionProjects(),
-		"project-domain":    action.ActionDomains(),
-		"subnet-pool":       action.ActionSubnetPools(),
+		"network":           action.ActionNetworks(subnet_createCmd),
+		"network-segment":   action.ActionNetworkSegments(subnet_createCmd),
+		"project":           action.ActionProjects(subnet_createCmd),
+		"project-domain":    action.ActionDomains(subnet_createCmd),
+		"subnet-pool":       action.ActionSubnetPools(subnet_createCmd),
 	})
 }

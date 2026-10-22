@@ -30,5 +30,5 @@ func init() {
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 
-	carapace.Gen(share_type_showCmd).PositionalCompletion(action.ActionShareTypes())
+	carapace.Gen(share_type_showCmd).PositionalCompletion(action.ActionShareTypes(share_type_showCmd))
 }

@@ -35,11 +35,11 @@ func init() {
 	volume_backupCmd.AddCommand(volume_backup_createCmd)
 
 	carapace.Gen(volume_backup_createCmd).FlagCompletion(carapace.ActionMap{
-		"availability-zone": action.ActionAvailabilityZones(),
+		"availability-zone": action.ActionAvailabilityZones(volume_backup_createCmd),
 		"column":            action.ActionColumns(volume_backup_createCmd),
 		"format":            carapace.ActionValues("json", "shell", "table", "value", "yaml"),
-		"snapshot":          action.ActionVolumeSnapshots(),
+		"snapshot":          action.ActionVolumeSnapshots(volume_backup_createCmd),
 	})
 
-	carapace.Gen(volume_backup_createCmd).PositionalCompletion(action.ActionVolumes())
+	carapace.Gen(volume_backup_createCmd).PositionalCompletion(action.ActionVolumes(volume_backup_createCmd))
 }

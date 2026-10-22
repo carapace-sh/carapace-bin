@@ -17,5 +17,5 @@ func init() {
 
 	bgp_speakerCmd.AddCommand(bgp_speaker_deleteCmd)
 
-	carapace.Gen(bgp_speaker_deleteCmd).PositionalAnyCompletion(action.ActionBgpSpeakers())
+	carapace.Gen(bgp_speaker_deleteCmd).PositionalAnyCompletion(action.ActionBgpSpeakers(bgp_speaker_deleteCmd))
 }

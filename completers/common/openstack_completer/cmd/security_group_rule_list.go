@@ -40,8 +40,8 @@ func init() {
 	carapace.Gen(security_group_rule_listCmd).FlagCompletion(carapace.ActionMap{
 		"column":         action.ActionColumns(security_group_rule_listCmd),
 		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
-		"project":        action.ActionProjects(),
-		"project-domain": action.ActionDomains(),
+		"project":        action.ActionProjects(security_group_rule_listCmd),
+		"project-domain": action.ActionDomains(security_group_rule_listCmd),
 		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
 		"sort-column":    action.ActionColumns(security_group_rule_listCmd),
 	})

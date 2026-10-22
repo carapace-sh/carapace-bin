@@ -36,11 +36,11 @@ func init() {
 	carapace.Gen(router_ndp_proxy_listCmd).FlagCompletion(carapace.ActionMap{
 		"column":         action.ActionColumns(router_ndp_proxy_listCmd),
 		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
-		"port":           action.ActionPorts(),
-		"project":        action.ActionProjects(),
-		"project-domain": action.ActionDomains(),
+		"port":           action.ActionPorts(router_ndp_proxy_listCmd),
+		"project":        action.ActionProjects(router_ndp_proxy_listCmd),
+		"project-domain": action.ActionDomains(router_ndp_proxy_listCmd),
 		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"router":         action.ActionRouters(),
+		"router":         action.ActionRouters(router_ndp_proxy_listCmd),
 		"sort-column":    action.ActionColumns(router_ndp_proxy_listCmd),
 	})
 }

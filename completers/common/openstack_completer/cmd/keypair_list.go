@@ -37,11 +37,11 @@ func init() {
 	carapace.Gen(keypair_listCmd).FlagCompletion(carapace.ActionMap{
 		"column":         action.ActionColumns(keypair_listCmd),
 		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
-		"project":        action.ActionProjects(),
-		"project-domain": action.ActionDomains(),
+		"project":        action.ActionProjects(keypair_listCmd),
+		"project-domain": action.ActionDomains(keypair_listCmd),
 		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
 		"sort-column":    action.ActionColumns(keypair_listCmd),
-		"user":           action.ActionUsers(),
-		"user-domain":    action.ActionDomains(),
+		"user":           action.ActionUsers(keypair_listCmd),
+		"user-domain":    action.ActionDomains(keypair_listCmd),
 	})
 }

@@ -34,5 +34,5 @@ func init() {
 		"sort-column": action.ActionColumns(share_type_access_listCmd),
 	})
 
-	carapace.Gen(share_type_access_listCmd).PositionalCompletion(action.ActionShareTypes())
+	carapace.Gen(share_type_access_listCmd).PositionalCompletion(action.ActionShareTypes(share_type_access_listCmd))
 }

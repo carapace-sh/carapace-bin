@@ -18,7 +18,7 @@ func init() {
 	consistency_group_removeCmd.AddCommand(consistency_group_remove_volumeCmd)
 
 	carapace.Gen(consistency_group_remove_volumeCmd).PositionalCompletion(
-		action.ActionConsistencyGroups(),
-		action.ActionVolumes(),
+		action.ActionConsistencyGroups(consistency_group_remove_volumeCmd),
+		action.ActionVolumes(consistency_group_remove_volumeCmd),
 	)
 }

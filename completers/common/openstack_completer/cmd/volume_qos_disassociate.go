@@ -20,8 +20,8 @@ func init() {
 	volume_qosCmd.AddCommand(volume_qos_disassociateCmd)
 
 	carapace.Gen(volume_qos_disassociateCmd).FlagCompletion(carapace.ActionMap{
-		"volume-type": action.ActionVolumeTypes(),
+		"volume-type": action.ActionVolumeTypes(volume_qos_disassociateCmd),
 	})
 
-	carapace.Gen(volume_qos_disassociateCmd).PositionalCompletion(action.ActionVolumeQosSpecs())
+	carapace.Gen(volume_qos_disassociateCmd).PositionalCompletion(action.ActionVolumeQosSpecs(volume_qos_disassociateCmd))
 }

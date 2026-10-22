@@ -20,7 +20,7 @@ func init() {
 	network_auto_allocated_topologyCmd.AddCommand(network_auto_allocated_topology_deleteCmd)
 
 	carapace.Gen(network_auto_allocated_topology_deleteCmd).FlagCompletion(carapace.ActionMap{
-		"project":        action.ActionProjects(),
-		"project-domain": action.ActionDomains(),
+		"project":        action.ActionProjects(network_auto_allocated_topology_deleteCmd),
+		"project-domain": action.ActionDomains(network_auto_allocated_topology_deleteCmd),
 	})
 }

@@ -18,5 +18,5 @@ func init() {
 	volume_qos_unsetCmd.Flags().String("property", "", "Property to remove from the QoS specification.")
 	volume_qosCmd.AddCommand(volume_qos_unsetCmd)
 
-	carapace.Gen(volume_qos_unsetCmd).PositionalCompletion(action.ActionVolumeQosSpecs())
+	carapace.Gen(volume_qos_unsetCmd).PositionalCompletion(action.ActionVolumeQosSpecs(volume_qos_unsetCmd))
 }

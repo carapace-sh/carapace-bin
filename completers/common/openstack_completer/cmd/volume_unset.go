@@ -19,5 +19,5 @@ func init() {
 	volume_unsetCmd.Flags().String("property", "", "Remove a property from volume (repeat option to remove multiple properties)")
 	volumeCmd.AddCommand(volume_unsetCmd)
 
-	carapace.Gen(volume_unsetCmd).PositionalCompletion(action.ActionVolumes())
+	carapace.Gen(volume_unsetCmd).PositionalCompletion(action.ActionVolumes(volume_unsetCmd))
 }

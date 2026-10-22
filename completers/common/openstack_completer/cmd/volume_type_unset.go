@@ -22,9 +22,9 @@ func init() {
 	volume_typeCmd.AddCommand(volume_type_unsetCmd)
 
 	carapace.Gen(volume_type_unsetCmd).FlagCompletion(carapace.ActionMap{
-		"project":        action.ActionProjects(),
-		"project-domain": action.ActionDomains(),
+		"project":        action.ActionProjects(volume_type_unsetCmd),
+		"project-domain": action.ActionDomains(volume_type_unsetCmd),
 	})
 
-	carapace.Gen(volume_type_unsetCmd).PositionalCompletion(action.ActionVolumeTypes())
+	carapace.Gen(volume_type_unsetCmd).PositionalCompletion(action.ActionVolumeTypes(volume_type_unsetCmd))
 }

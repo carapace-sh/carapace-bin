@@ -17,5 +17,5 @@ func init() {
 
 	share_transferCmd.AddCommand(share_transfer_deleteCmd)
 
-	carapace.Gen(share_transfer_deleteCmd).PositionalAnyCompletion(action.ActionShareTransfers())
+	carapace.Gen(share_transfer_deleteCmd).PositionalAnyCompletion(action.ActionShareTransfers(share_transfer_deleteCmd))
 }

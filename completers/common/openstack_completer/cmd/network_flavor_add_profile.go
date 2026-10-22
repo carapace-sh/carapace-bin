@@ -18,7 +18,7 @@ func init() {
 	network_flavor_addCmd.AddCommand(network_flavor_add_profileCmd)
 
 	carapace.Gen(network_flavor_add_profileCmd).PositionalCompletion(
-		action.ActionNetworkFlavors(),
-		action.ActionNetworkFlavorProfiles(),
+		action.ActionNetworkFlavors(network_flavor_add_profileCmd),
+		action.ActionNetworkFlavorProfiles(network_flavor_add_profileCmd),
 	)
 }

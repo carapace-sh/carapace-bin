@@ -41,7 +41,7 @@ func init() {
 		"column":         action.ActionColumns(network_segment_range_createCmd),
 		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 		"network-type":   carapace.ActionValues("geneve", "gre", "vlan", "vxlan"),
-		"project":        action.ActionProjects(),
-		"project-domain": action.ActionDomains(),
+		"project":        action.ActionProjects(network_segment_range_createCmd),
+		"project-domain": action.ActionDomains(network_segment_range_createCmd),
 	})
 }

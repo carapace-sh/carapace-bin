@@ -31,7 +31,7 @@ func init() {
 	share_networkCmd.AddCommand(share_network_createCmd)
 
 	carapace.Gen(share_network_createCmd).FlagCompletion(carapace.ActionMap{
-		"availability-zone": action.ActionAvailabilityZones(),
+		"availability-zone": action.ActionAvailabilityZones(share_network_createCmd),
 		"column":            action.ActionColumns(share_network_createCmd),
 		"format":            carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})

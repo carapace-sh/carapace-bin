@@ -22,5 +22,5 @@ func init() {
 	network_flavor_setCmd.Flags().String("name", "", "Set flavor name")
 	network_flavorCmd.AddCommand(network_flavor_setCmd)
 
-	carapace.Gen(network_flavor_setCmd).PositionalCompletion(action.ActionNetworkFlavors())
+	carapace.Gen(network_flavor_setCmd).PositionalCompletion(action.ActionNetworkFlavors(network_flavor_setCmd))
 }

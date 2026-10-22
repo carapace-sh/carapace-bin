@@ -38,5 +38,5 @@ func init() {
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 
-	carapace.Gen(volume_attachment_setCmd).PositionalCompletion(action.ActionVolumeAttachments())
+	carapace.Gen(volume_attachment_setCmd).PositionalCompletion(action.ActionVolumeAttachments(volume_attachment_setCmd))
 }

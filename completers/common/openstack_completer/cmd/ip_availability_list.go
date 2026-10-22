@@ -37,8 +37,8 @@ func init() {
 		"column":         action.ActionColumns(ip_availability_listCmd),
 		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"ip-version":     carapace.ActionValues("4", "6"),
-		"project":        action.ActionProjects(),
-		"project-domain": action.ActionDomains(),
+		"project":        action.ActionProjects(ip_availability_listCmd),
+		"project-domain": action.ActionDomains(ip_availability_listCmd),
 		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
 		"sort-column":    action.ActionColumns(ip_availability_listCmd),
 	})

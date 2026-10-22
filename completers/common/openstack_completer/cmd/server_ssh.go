@@ -28,8 +28,8 @@ func init() {
 	serverCmd.AddCommand(server_sshCmd)
 
 	carapace.Gen(server_sshCmd).FlagCompletion(carapace.ActionMap{
-		"port": action.ActionPorts(),
+		"port": action.ActionPorts(server_sshCmd),
 	})
 
-	carapace.Gen(server_sshCmd).PositionalCompletion(action.ActionServers())
+	carapace.Gen(server_sshCmd).PositionalCompletion(action.ActionServers(server_sshCmd))
 }

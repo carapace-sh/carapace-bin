@@ -17,5 +17,5 @@ func init() {
 
 	server_migrateCmd.AddCommand(server_migrate_revertCmd)
 
-	carapace.Gen(server_migrate_revertCmd).PositionalCompletion(action.ActionServers())
+	carapace.Gen(server_migrate_revertCmd).PositionalCompletion(action.ActionServers(server_migrate_revertCmd))
 }

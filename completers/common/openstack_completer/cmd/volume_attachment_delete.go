@@ -17,5 +17,5 @@ func init() {
 
 	volume_attachmentCmd.AddCommand(volume_attachment_deleteCmd)
 
-	carapace.Gen(volume_attachment_deleteCmd).PositionalAnyCompletion(action.ActionVolumeAttachments())
+	carapace.Gen(volume_attachment_deleteCmd).PositionalAnyCompletion(action.ActionVolumeAttachments(volume_attachment_deleteCmd))
 }

@@ -20,11 +20,11 @@ func init() {
 	group_removeCmd.AddCommand(group_remove_userCmd)
 
 	carapace.Gen(group_remove_userCmd).FlagCompletion(carapace.ActionMap{
-		"user-domain": action.ActionDomains(),
+		"user-domain": action.ActionDomains(group_remove_userCmd),
 	})
 
 	carapace.Gen(group_remove_userCmd).PositionalCompletion(
-		action.ActionGroups(),
-		action.ActionUsers(),
+		action.ActionGroups(group_remove_userCmd),
+		action.ActionUsers(group_remove_userCmd),
 	)
 }

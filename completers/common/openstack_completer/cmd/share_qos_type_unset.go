@@ -19,5 +19,5 @@ func init() {
 	share_qos_type_unsetCmd.Flags().String("spec", "", "Remove specified spec from this qos type")
 	share_qos_typeCmd.AddCommand(share_qos_type_unsetCmd)
 
-	carapace.Gen(share_qos_type_unsetCmd).PositionalCompletion(action.ActionShareQosTypes())
+	carapace.Gen(share_qos_type_unsetCmd).PositionalCompletion(action.ActionShareQosTypes(share_qos_type_unsetCmd))
 }

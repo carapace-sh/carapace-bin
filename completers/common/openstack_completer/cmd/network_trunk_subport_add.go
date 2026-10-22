@@ -20,7 +20,7 @@ func init() {
 	network_trunk_subportCmd.AddCommand(network_trunk_subport_addCmd)
 
 	carapace.Gen(network_trunk_subport_addCmd).PositionalCompletion(
-		action.ActionNetworkTrunks(),
-		action.ActionPorts(),
+		action.ActionNetworkTrunks(network_trunk_subport_addCmd),
+		action.ActionPorts(network_trunk_subport_addCmd),
 	)
 }

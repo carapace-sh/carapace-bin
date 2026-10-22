@@ -17,5 +17,5 @@ func init() {
 
 	mappingCmd.AddCommand(mapping_deleteCmd)
 
-	carapace.Gen(mapping_deleteCmd).PositionalAnyCompletion(action.ActionMappings())
+	carapace.Gen(mapping_deleteCmd).PositionalAnyCompletion(action.ActionMappings(mapping_deleteCmd))
 }

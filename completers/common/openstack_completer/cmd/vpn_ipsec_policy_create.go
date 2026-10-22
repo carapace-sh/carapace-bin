@@ -41,8 +41,8 @@ func init() {
 		"encryption-algorithm": carapace.ActionValues("3des", "aes-128", "aes-192", "aes-256", "aes-128-ccm-8", "aes-192-ccm-8", "aes-256-ccm-8", "aes-128-ccm-12", "aes-192-ccm-12", "aes-256-ccm-12", "aes-128-ccm-16", "aes-192-ccm-16", "aes-256-ccm-16", "aes-128-gcm-8", "aes-192-gcm-8", "aes-256-gcm-8", "aes-128-gcm-12", "aes-192-gcm-12", "aes-256-gcm-12", "aes-128-gcm-16", "aes-192-gcm-16", "aes-256-gcm-16", "aes-128-ctr", "aes-192-ctr", "aes-256-ctr"),
 		"format":               carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 		"pfs":                  carapace.ActionValues("group2", "group5", "group14", "group15", "group16", "group17", "group18", "group19", "group20", "group21", "group22", "group23", "group24", "group25", "group26", "group27", "group28", "group29", "group30", "group31"),
-		"project":              action.ActionProjects(),
-		"project-domain":       action.ActionDomains(),
+		"project":              action.ActionProjects(vpn_ipsec_policy_createCmd),
+		"project-domain":       action.ActionDomains(vpn_ipsec_policy_createCmd),
 		"transform-protocol":   carapace.ActionValues("esp", "ah", "ah-esp"),
 	})
 }

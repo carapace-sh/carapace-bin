@@ -28,9 +28,9 @@ func init() {
 
 	carapace.Gen(role_showCmd).FlagCompletion(carapace.ActionMap{
 		"column": action.ActionColumns(role_showCmd),
-		"domain": action.ActionDomains(),
+		"domain": action.ActionDomains(role_showCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 
-	carapace.Gen(role_showCmd).PositionalCompletion(action.ActionRoles())
+	carapace.Gen(role_showCmd).PositionalCompletion(action.ActionRoles(role_showCmd))
 }

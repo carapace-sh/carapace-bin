@@ -27,7 +27,7 @@ func init() {
 	network_qos_ruleCmd.AddCommand(network_qos_rule_setCmd)
 
 	carapace.Gen(network_qos_rule_setCmd).PositionalCompletion(
-		action.ActionNetworkQosPolicies(),
-		action.ActionNetworkQosRules(),
+		action.ActionNetworkQosPolicies(network_qos_rule_setCmd),
+		action.ActionNetworkQosRules(network_qos_rule_setCmd),
 	)
 }

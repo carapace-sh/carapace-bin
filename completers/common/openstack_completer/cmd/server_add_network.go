@@ -19,7 +19,7 @@ func init() {
 	server_addCmd.AddCommand(server_add_networkCmd)
 
 	carapace.Gen(server_add_networkCmd).PositionalCompletion(
-		action.ActionServers(),
-		action.ActionNetworks(),
+		action.ActionServers(server_add_networkCmd),
+		action.ActionNetworks(server_add_networkCmd),
 	)
 }

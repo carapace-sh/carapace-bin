@@ -31,7 +31,7 @@ func init() {
 	})
 
 	carapace.Gen(accelerator_deployable_programCmd).PositionalCompletion(
-		action.ActionAcceleratorDeployables(),
-		action.ActionImages(),
+		action.ActionAcceleratorDeployables(accelerator_deployable_programCmd),
+		action.ActionImages(accelerator_deployable_programCmd),
 	)
 }

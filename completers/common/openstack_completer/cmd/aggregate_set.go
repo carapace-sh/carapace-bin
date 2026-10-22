@@ -21,5 +21,5 @@ func init() {
 	aggregate_setCmd.Flags().String("zone", "", "Set availability zone name")
 	aggregateCmd.AddCommand(aggregate_setCmd)
 
-	carapace.Gen(aggregate_setCmd).PositionalCompletion(action.ActionAggregates())
+	carapace.Gen(aggregate_setCmd).PositionalCompletion(action.ActionAggregates(aggregate_setCmd))
 }

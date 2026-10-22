@@ -19,5 +19,5 @@ func init() {
 	share_server_setCmd.Flags().String("task-state", "", "Indicate which task state to assign the share server.")
 	share_serverCmd.AddCommand(share_server_setCmd)
 
-	carapace.Gen(share_server_setCmd).PositionalCompletion(action.ActionShareServers())
+	carapace.Gen(share_server_setCmd).PositionalCompletion(action.ActionShareServers(share_server_setCmd))
 }

@@ -17,5 +17,5 @@ func init() {
 
 	share_typeCmd.AddCommand(share_type_unsetCmd)
 
-	carapace.Gen(share_type_unsetCmd).PositionalCompletion(action.ActionShareTypes())
+	carapace.Gen(share_type_unsetCmd).PositionalCompletion(action.ActionShareTypes(share_type_unsetCmd))
 }

@@ -29,8 +29,8 @@ func init() {
 	projectCmd.AddCommand(project_setCmd)
 
 	carapace.Gen(project_setCmd).FlagCompletion(carapace.ActionMap{
-		"domain": action.ActionDomains(),
+		"domain": action.ActionDomains(project_setCmd),
 	})
 
-	carapace.Gen(project_setCmd).PositionalCompletion(action.ActionProjects())
+	carapace.Gen(project_setCmd).PositionalCompletion(action.ActionProjects(project_setCmd))
 }

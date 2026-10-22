@@ -40,8 +40,8 @@ func init() {
 	carapace.Gen(floating_ip_port_forwarding_createCmd).FlagCompletion(carapace.ActionMap{
 		"column": action.ActionColumns(floating_ip_port_forwarding_createCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
-		"port":   action.ActionPorts(),
+		"port":   action.ActionPorts(floating_ip_port_forwarding_createCmd),
 	})
 
-	carapace.Gen(floating_ip_port_forwarding_createCmd).PositionalCompletion(action.ActionFloatingIPs())
+	carapace.Gen(floating_ip_port_forwarding_createCmd).PositionalCompletion(action.ActionFloatingIPs(floating_ip_port_forwarding_createCmd))
 }

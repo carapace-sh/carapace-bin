@@ -17,5 +17,5 @@ func init() {
 
 	accelerator_arqCmd.AddCommand(accelerator_arq_deleteCmd)
 
-	carapace.Gen(accelerator_arq_deleteCmd).PositionalAnyCompletion(action.ActionAcceleratorArqs())
+	carapace.Gen(accelerator_arq_deleteCmd).PositionalAnyCompletion(action.ActionAcceleratorArqs(accelerator_arq_deleteCmd))
 }

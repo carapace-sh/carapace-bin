@@ -38,7 +38,7 @@ func init() {
 		"column":         action.ActionColumns(bgp_speaker_createCmd),
 		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 		"ip-version":     carapace.ActionValues("4", "6"),
-		"project":        action.ActionProjects(),
-		"project-domain": action.ActionDomains(),
+		"project":        action.ActionProjects(bgp_speaker_createCmd),
+		"project-domain": action.ActionDomains(bgp_speaker_createCmd),
 	})
 }

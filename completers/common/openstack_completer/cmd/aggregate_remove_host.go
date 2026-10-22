@@ -30,7 +30,7 @@ func init() {
 	})
 
 	carapace.Gen(aggregate_remove_hostCmd).PositionalCompletion(
-		action.ActionAggregates(),
-		action.ActionComputeHosts(),
+		action.ActionAggregates(aggregate_remove_hostCmd),
+		action.ActionComputeHosts(aggregate_remove_hostCmd),
 	)
 }

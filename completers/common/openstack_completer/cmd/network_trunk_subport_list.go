@@ -34,5 +34,5 @@ func init() {
 		"sort-column": action.ActionColumns(network_trunk_subport_listCmd),
 	})
 
-	carapace.Gen(network_trunk_subport_listCmd).PositionalCompletion(action.ActionNetworkTrunks())
+	carapace.Gen(network_trunk_subport_listCmd).PositionalCompletion(action.ActionNetworkTrunks(network_trunk_subport_listCmd))
 }

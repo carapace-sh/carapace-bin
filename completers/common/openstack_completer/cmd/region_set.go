@@ -19,5 +19,5 @@ func init() {
 	region_setCmd.Flags().String("parent-region", "", "New parent region ID")
 	regionCmd.AddCommand(region_setCmd)
 
-	carapace.Gen(region_setCmd).PositionalCompletion(action.ActionRegions())
+	carapace.Gen(region_setCmd).PositionalCompletion(action.ActionRegions(region_setCmd))
 }

@@ -42,8 +42,8 @@ func init() {
 	networkCmd.AddCommand(network_setCmd)
 
 	carapace.Gen(network_setCmd).FlagCompletion(carapace.ActionMap{
-		"qos-policy": action.ActionNetworkQosPolicies(),
+		"qos-policy": action.ActionNetworkQosPolicies(network_setCmd),
 	})
 
-	carapace.Gen(network_setCmd).PositionalCompletion(action.ActionNetworks())
+	carapace.Gen(network_setCmd).PositionalCompletion(action.ActionNetworks(network_setCmd))
 }

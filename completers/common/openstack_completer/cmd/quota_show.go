@@ -36,11 +36,11 @@ func init() {
 	carapace.Gen(quota_showCmd).FlagCompletion(carapace.ActionMap{
 		"column":      action.ActionColumns(quota_showCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
-		"network":     action.ActionNetworks(),
+		"network":     action.ActionNetworks(quota_showCmd),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
 		"sort-column": action.ActionColumns(quota_showCmd),
-		"volume":      action.ActionVolumes(),
+		"volume":      action.ActionVolumes(quota_showCmd),
 	})
 
-	carapace.Gen(quota_showCmd).PositionalCompletion(action.ActionProjects())
+	carapace.Gen(quota_showCmd).PositionalCompletion(action.ActionProjects(quota_showCmd))
 }

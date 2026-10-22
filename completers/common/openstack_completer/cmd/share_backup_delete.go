@@ -18,5 +18,5 @@ func init() {
 	share_backup_deleteCmd.Flags().Bool("wait", false, "Wait for share backup deletion")
 	share_backupCmd.AddCommand(share_backup_deleteCmd)
 
-	carapace.Gen(share_backup_deleteCmd).PositionalAnyCompletion(action.ActionShareBackups())
+	carapace.Gen(share_backup_deleteCmd).PositionalAnyCompletion(action.ActionShareBackups(share_backup_deleteCmd))
 }

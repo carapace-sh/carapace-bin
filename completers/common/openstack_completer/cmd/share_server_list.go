@@ -38,10 +38,10 @@ func init() {
 	carapace.Gen(share_server_listCmd).FlagCompletion(carapace.ActionMap{
 		"column":         action.ActionColumns(share_server_listCmd),
 		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
-		"project":        action.ActionProjects(),
-		"project-domain": action.ActionDomains(),
+		"project":        action.ActionProjects(share_server_listCmd),
+		"project-domain": action.ActionDomains(share_server_listCmd),
 		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"share-network":  action.ActionShareNetworks(),
+		"share-network":  action.ActionShareNetworks(share_server_listCmd),
 		"sort-column":    action.ActionColumns(share_server_listCmd),
 	})
 }

@@ -30,5 +30,5 @@ func init() {
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 
-	carapace.Gen(registered_limit_showCmd).PositionalCompletion(action.ActionRegisteredLimits())
+	carapace.Gen(registered_limit_showCmd).PositionalCompletion(action.ActionRegisteredLimits(registered_limit_showCmd))
 }

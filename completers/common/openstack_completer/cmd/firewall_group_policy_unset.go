@@ -21,5 +21,5 @@ func init() {
 	firewall_group_policy_unsetCmd.Flags().Bool("share", false, "(Deprecated) Use \"firewall policy set --no-share\" instead.")
 	firewall_group_policyCmd.AddCommand(firewall_group_policy_unsetCmd)
 
-	carapace.Gen(firewall_group_policy_unsetCmd).PositionalCompletion(action.ActionFirewallPolicies())
+	carapace.Gen(firewall_group_policy_unsetCmd).PositionalCompletion(action.ActionFirewallPolicies(firewall_group_policy_unsetCmd))
 }

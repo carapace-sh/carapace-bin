@@ -17,5 +17,5 @@ func init() {
 
 	network_meterCmd.AddCommand(network_meter_deleteCmd)
 
-	carapace.Gen(network_meter_deleteCmd).PositionalAnyCompletion(action.ActionNetworkMeters())
+	carapace.Gen(network_meter_deleteCmd).PositionalAnyCompletion(action.ActionNetworkMeters(network_meter_deleteCmd))
 }

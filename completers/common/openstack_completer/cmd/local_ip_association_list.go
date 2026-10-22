@@ -34,10 +34,10 @@ func init() {
 	carapace.Gen(local_ip_association_listCmd).FlagCompletion(carapace.ActionMap{
 		"column":         action.ActionColumns(local_ip_association_listCmd),
 		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
-		"project-domain": action.ActionDomains(),
+		"project-domain": action.ActionDomains(local_ip_association_listCmd),
 		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
 		"sort-column":    action.ActionColumns(local_ip_association_listCmd),
 	})
 
-	carapace.Gen(local_ip_association_listCmd).PositionalCompletion(action.ActionLocalIPs())
+	carapace.Gen(local_ip_association_listCmd).PositionalCompletion(action.ActionLocalIPs(local_ip_association_listCmd))
 }

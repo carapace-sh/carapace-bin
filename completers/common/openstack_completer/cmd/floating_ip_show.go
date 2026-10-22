@@ -30,5 +30,5 @@ func init() {
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 
-	carapace.Gen(floating_ip_showCmd).PositionalCompletion(action.ActionFloatingIPs())
+	carapace.Gen(floating_ip_showCmd).PositionalCompletion(action.ActionFloatingIPs(floating_ip_showCmd))
 }

@@ -18,7 +18,7 @@ func init() {
 	network_trunk_subportCmd.AddCommand(network_trunk_subport_removeCmd)
 
 	carapace.Gen(network_trunk_subport_removeCmd).PositionalCompletion(
-		action.ActionNetworkTrunks(),
-		action.ActionPorts(),
+		action.ActionNetworkTrunks(network_trunk_subport_removeCmd),
+		action.ActionPorts(network_trunk_subport_removeCmd),
 	)
 }

@@ -39,11 +39,11 @@ func init() {
 	carapace.Gen(volume_attachment_listCmd).FlagCompletion(carapace.ActionMap{
 		"column":         action.ActionColumns(volume_attachment_listCmd),
 		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
-		"project":        action.ActionProjects(),
-		"project-domain": action.ActionDomains(),
+		"project":        action.ActionProjects(volume_attachment_listCmd),
+		"project-domain": action.ActionDomains(volume_attachment_listCmd),
 		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"server-id":      action.ActionServerIDs(),
+		"server-id":      action.ActionServerIDs(volume_attachment_listCmd),
 		"sort-column":    action.ActionColumns(volume_attachment_listCmd),
-		"volume-id":      action.ActionVolumeIDs(),
+		"volume-id":      action.ActionVolumeIDs(volume_attachment_listCmd),
 	})
 }

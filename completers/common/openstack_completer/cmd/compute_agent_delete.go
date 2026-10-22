@@ -17,5 +17,5 @@ func init() {
 
 	compute_agentCmd.AddCommand(compute_agent_deleteCmd)
 
-	carapace.Gen(compute_agent_deleteCmd).PositionalAnyCompletion(action.ActionComputeAgents())
+	carapace.Gen(compute_agent_deleteCmd).PositionalAnyCompletion(action.ActionComputeAgents(compute_agent_deleteCmd))
 }

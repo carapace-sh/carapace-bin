@@ -20,8 +20,8 @@ func init() {
 	serverCmd.AddCommand(server_rescueCmd)
 
 	carapace.Gen(server_rescueCmd).FlagCompletion(carapace.ActionMap{
-		"image": action.ActionImages(),
+		"image": action.ActionImages(server_rescueCmd),
 	})
 
-	carapace.Gen(server_rescueCmd).PositionalCompletion(action.ActionServers())
+	carapace.Gen(server_rescueCmd).PositionalCompletion(action.ActionServers(server_rescueCmd))
 }

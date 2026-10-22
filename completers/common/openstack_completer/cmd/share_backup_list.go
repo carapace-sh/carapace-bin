@@ -44,7 +44,7 @@ func init() {
 		"column":      action.ActionColumns(share_backup_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"share":       action.ActionShares(),
+		"share":       action.ActionShares(share_backup_listCmd),
 		"sort-column": action.ActionColumns(share_backup_listCmd),
 		"sort-dir":    carapace.ActionValues("asc", "desc"),
 		"sort-key":    carapace.ActionValues("id", "status", "size", "share_id", "progress", "restore_progress", "name", "host", "topic", "project_id"),

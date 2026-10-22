@@ -18,7 +18,7 @@ func init() {
 	router_removeCmd.AddCommand(router_remove_portCmd)
 
 	carapace.Gen(router_remove_portCmd).PositionalCompletion(
-		action.ActionRouters(),
-		action.ActionPorts(),
+		action.ActionRouters(router_remove_portCmd),
+		action.ActionPorts(router_remove_portCmd),
 	)
 }

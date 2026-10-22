@@ -25,5 +25,5 @@ func init() {
 	firewall_group_policy_setCmd.Flags().Bool("share", false, "Share the firewall policy to be used in all projects (by default, it is restricted to be used by the current project).")
 	firewall_group_policyCmd.AddCommand(firewall_group_policy_setCmd)
 
-	carapace.Gen(firewall_group_policy_setCmd).PositionalCompletion(action.ActionFirewallPolicies())
+	carapace.Gen(firewall_group_policy_setCmd).PositionalCompletion(action.ActionFirewallPolicies(firewall_group_policy_setCmd))
 }

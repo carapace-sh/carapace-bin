@@ -37,36 +37,36 @@ func ActionClouds() carapace.Action {
 	})
 }
 
-func ActionCloudAuthURLs() carapace.Action {
-	return cloudValues("auth_url")
+func ActionCloudAuthURLs(cmd *cobra.Command) carapace.Action {
+	return cloudValues(cmd, "auth_url")
 }
 
-func ActionCloudDomainIDs() carapace.Action {
-	return cloudValues("domain_id", "user_domain_id", "project_domain_id")
+func ActionCloudDomainIDs(cmd *cobra.Command) carapace.Action {
+	return cloudValues(cmd, "domain_id", "user_domain_id", "project_domain_id")
 }
 
-func ActionCloudDomainNames() carapace.Action {
-	return cloudValues("domain_name", "user_domain_name", "project_domain_name")
+func ActionCloudDomainNames(cmd *cobra.Command) carapace.Action {
+	return cloudValues(cmd, "domain_name", "user_domain_name", "project_domain_name")
 }
 
-func ActionCloudProjectIDs() carapace.Action {
-	return cloudValues("project_id")
+func ActionCloudProjectIDs(cmd *cobra.Command) carapace.Action {
+	return cloudValues(cmd, "project_id")
 }
 
-func ActionCloudProjectNames() carapace.Action {
-	return cloudValues("project_name")
+func ActionCloudProjectNames(cmd *cobra.Command) carapace.Action {
+	return cloudValues(cmd, "project_name")
 }
 
-func ActionCloudRegions() carapace.Action {
-	return cloudValues("region_name")
+func ActionCloudRegions(cmd *cobra.Command) carapace.Action {
+	return cloudValues(cmd, "region_name")
 }
 
-func ActionCloudUserIDs() carapace.Action {
-	return cloudValues("user_id")
+func ActionCloudUserIDs(cmd *cobra.Command) carapace.Action {
+	return cloudValues(cmd, "user_id")
 }
 
-func ActionCloudUsernames() carapace.Action {
-	return cloudValues("username")
+func ActionCloudUsernames(cmd *cobra.Command) carapace.Action {
+	return cloudValues(cmd, "username")
 }
 
 func cloudConfigPaths() []string {
@@ -98,7 +98,7 @@ func cloudConfigPaths() []string {
 	return paths
 }
 
-func cloudValues(keys ...string) carapace.Action {
+func cloudValues(cmd *cobra.Command, keys ...string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		values := make([]string, 0)
 		for _, path := range cloudConfigPaths() {
@@ -114,8 +114,11 @@ func cloudValues(keys ...string) carapace.Action {
 			}
 
 			selected := ""
-			if globalCloud != nil {
-				selected = globalCloud()
+			if flag := cmd.Root().Flags().Lookup("os-cloud"); flag != nil && flag.Changed {
+				selected = flag.Value.String()
+			}
+			if selected == "" {
+				selected = os.Getenv("OS_CLOUD")
 			}
 
 			for name, cloud := range config.Clouds {
@@ -151,33 +154,19 @@ func cloudString(value any) (string, bool) {
 	return "", false
 }
 
-func actionNamed(command ...string) carapace.Action {
-	return actionList(command, "ID", "Name")
+func actionNamed(cmd *cobra.Command, command ...string) carapace.Action {
+	return actionList(cmd, command, "ID", "Name")
 }
 
-func actionID(command ...string) carapace.Action {
-	return actionList(command, "ID")
+func actionID(cmd *cobra.Command, command ...string) carapace.Action {
+	return actionList(cmd, command, "ID")
 }
 
-var globalCloud func() string
-
-var globalEnv func() []string
-
-// SetGlobalCloud registers a provider for the cloud selected via global flags.
-func SetGlobalCloud(f func() string) {
-	globalCloud = f
+func actionList(cmd *cobra.Command, command []string, columns ...string) carapace.Action {
+	return actionListArgs(cmd, append(append([]string{}, command...), "list"), columns...)
 }
 
-// SetGlobalEnv registers a provider for environment variables derived from global flags.
-func SetGlobalEnv(f func() []string) {
-	globalEnv = f
-}
-
-func actionList(command []string, columns ...string) carapace.Action {
-	return actionListArgs(append(append([]string{}, command...), "list"), columns...)
-}
-
-func actionListArgs(command []string, columns ...string) carapace.Action {
+func actionListArgs(cmd *cobra.Command, command []string, columns ...string) carapace.Action {
 	if len(columns) == 0 {
 		columns = []string{"ID", "Name"}
 	}
@@ -185,7 +174,7 @@ func actionListArgs(command []string, columns ...string) carapace.Action {
 	args := append([]string{}, command...)
 	args = append(args, "-f", "csv")
 
-	return actionExec(args, func(output []byte, err error) carapace.Action {
+	return actionExec(cmd, args, func(output []byte, err error) carapace.Action {
 		if err != nil {
 			return carapace.ActionValues()
 		}
@@ -255,15 +244,15 @@ func ActionColumns(cmd *cobra.Command) carapace.Action {
 		if len(path) < 2 {
 			return carapace.ActionValues()
 		}
-		return actionColumns(path[1:])
+		return actionColumns(cmd, path[1:])
 	})
 }
 
-func actionColumns(command []string) carapace.Action {
+func actionColumns(cmd *cobra.Command, command []string) carapace.Action {
 	args := append([]string{}, command...)
 	args = append(args, "-f", "csv")
 
-	return actionExec(args, func(output []byte, err error) carapace.Action {
+	return actionExec(cmd, args, func(output []byte, err error) carapace.Action {
 		if err != nil {
 			return carapace.ActionValues()
 		}
@@ -303,37 +292,94 @@ func isLister(cmd *cobra.Command) bool {
 	return cmd.Flags().Lookup("sort-column") != nil
 }
 
-func actionExec(args []string, f func(output []byte, err error) carapace.Action) carapace.Action {
+func actionExec(cmd *cobra.Command, args []string, f func(output []byte, err error) carapace.Action) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if globalEnv != nil {
-			if overrides := globalEnv(); len(overrides) > 0 {
-				env := c.Env
-				if len(env) == 0 {
-					env = os.Environ()
-				}
-
-				keys := make(map[string]struct{}, len(overrides))
-				for _, entry := range overrides {
-					key, _, _ := strings.Cut(entry, "=")
-					keys[key] = struct{}{}
-				}
-
-				filtered := make([]string, 0, len(env)+len(overrides))
-				for _, entry := range env {
-					key, _, _ := strings.Cut(entry, "=")
-					if _, ok := keys[key]; !ok {
-						filtered = append(filtered, entry)
-					}
-				}
-				c.Env = append(filtered, overrides...)
+		if overrides := actionEnv(cmd.Root()); len(overrides) > 0 {
+			env := c.Env
+			if len(env) == 0 {
+				env = os.Environ()
 			}
+
+			keys := make(map[string]struct{}, len(overrides))
+			for _, entry := range overrides {
+				key, _, _ := strings.Cut(entry, "=")
+				keys[key] = struct{}{}
+			}
+
+			filtered := make([]string, 0, len(env)+len(overrides))
+			for _, entry := range env {
+				key, _, _ := strings.Cut(entry, "=")
+				if _, ok := keys[key]; !ok {
+					filtered = append(filtered, entry)
+				}
+			}
+			c.Env = append(filtered, overrides...)
 		}
 
 		return carapace.ActionExecCommandE("openstack", args...)(f).Invoke(c).ToA()
 	})
 }
 
-func actionScoped(argIndex int, command []string, columns ...string) carapace.Action {
+func actionEnv(cmd *cobra.Command) []string {
+	env := []string{}
+	add := func(name, flagName string) {
+		if flag := cmd.Flags().Lookup(flagName); flag != nil && flag.Changed {
+			env = append(env, name+"="+flag.Value.String())
+		}
+	}
+
+	add("OS_CLOUD", "os-cloud")
+	add("OS_REGION_NAME", "os-region-name")
+	add("OS_INTERFACE", "os-interface")
+	add("OS_AUTH_TYPE", "os-auth-type")
+	add("OS_AUTH_URL", "os-auth-url")
+	add("OS_IDENTITY_API_VERSION", "os-identity-api-version")
+	add("OS_USERNAME", "os-username")
+	add("OS_USER_ID", "os-user-id")
+	add("OS_PASSWORD", "os-password")
+	add("OS_TOKEN", "os-token")
+	add("OS_PROJECT_NAME", "os-project-name")
+	add("OS_PROJECT_ID", "os-project-id")
+	add("OS_PROJECT_DOMAIN_NAME", "os-project-domain-name")
+	add("OS_PROJECT_DOMAIN_ID", "os-project-domain-id")
+	add("OS_USER_DOMAIN_NAME", "os-user-domain-name")
+	add("OS_USER_DOMAIN_ID", "os-user-domain-id")
+	add("OS_DOMAIN_NAME", "os-domain-name")
+	add("OS_DOMAIN_ID", "os-domain-id")
+	add("OS_DEFAULT_DOMAIN", "os-default-domain")
+	add("OS_DEFAULT_DOMAIN_NAME", "os-default-domain-name")
+	add("OS_DEFAULT_DOMAIN_ID", "os-default-domain-id")
+	add("OS_TENANT_NAME", "os-tenant-name")
+	add("OS_TENANT_ID", "os-tenant-id")
+	add("OS_TRUST_ID", "os-trust-id")
+	add("OS_APPLICATION_CREDENTIAL_ID", "os-application-credential-id")
+	add("OS_APPLICATION_CREDENTIAL_NAME", "os-application-credential-name")
+	add("OS_APPLICATION_CREDENTIAL_SECRET", "os-application-credential-secret")
+	add("OS_ACCESS_TOKEN", "os-access-token")
+	add("OS_SYSTEM_SCOPE", "os-system-scope")
+	add("OS_CACERT", "os-cacert")
+	add("OS_CERT", "os-cert")
+	add("OS_KEY", "os-key")
+	add("OS_ENDPOINT_OVERRIDE", "os-endpoint-override")
+	add("OS_SERVICE_PROVIDER", "os-service-provider")
+	add("OS_REMOTE_PROJECT_ID", "os-remote-project-id")
+	add("OS_REMOTE_PROJECT_NAME", "os-remote-project-name")
+	add("OS_REMOTE_PROJECT_DOMAIN_ID", "os-remote-project-domain-id")
+	add("OS_REMOTE_PROJECT_DOMAIN_NAME", "os-remote-project-domain-name")
+	add("OS_COMPUTE_API_VERSION", "os-compute-api-version")
+	add("OS_NETWORK_API_VERSION", "os-network-api-version")
+	add("OS_VOLUME_API_VERSION", "os-volume-api-version")
+	add("OS_IMAGE_API_VERSION", "os-image-api-version")
+	add("OS_OBJECT_API_VERSION", "os-object-api-version")
+	add("OS_SHARE_API_VERSION", "os-share-api-version")
+	add("OS_ACCELERATOR_API_VERSION", "os-accelerator-api-version")
+	add("OS_INSECURE", "insecure")
+	add("OS_VERIFY", "verify")
+
+	return env
+}
+
+func actionScoped(cmd *cobra.Command, argIndex int, command []string, columns ...string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if argIndex < 0 || argIndex >= len(c.Args) {
 			return carapace.ActionValues()
@@ -341,433 +387,433 @@ func actionScoped(argIndex int, command []string, columns ...string) carapace.Ac
 
 		args := append([]string{}, command...)
 		args = append(args, c.Args[argIndex])
-		return actionListArgs(args, columns...)
+		return actionListArgs(cmd, args, columns...)
 	})
 }
 
-func ActionAggregates() carapace.Action {
-	return actionNamed("aggregate")
+func ActionAggregates(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "aggregate")
 }
 
-func ActionApplicationCredentials() carapace.Action {
-	return actionNamed("application", "credential")
+func ActionApplicationCredentials(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "application", "credential")
 }
 
-func ActionAvailabilityZones() carapace.Action {
-	return actionList([]string{"availability", "zone"}, "Zone Name")
+func ActionAvailabilityZones(cmd *cobra.Command) carapace.Action {
+	return actionList(cmd, []string{"availability", "zone"}, "Zone Name")
 }
 
-func ActionComputeAgents() carapace.Action {
-	return actionList([]string{"compute", "agent"}, "Agent ID")
+func ActionComputeAgents(cmd *cobra.Command) carapace.Action {
+	return actionList(cmd, []string{"compute", "agent"}, "Agent ID")
 }
 
-func ActionCredentials() carapace.Action {
-	return actionID("credential")
+func ActionCredentials(cmd *cobra.Command) carapace.Action {
+	return actionID(cmd, "credential")
 }
 
-func ActionDomains() carapace.Action {
-	return actionNamed("domain")
+func ActionDomains(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "domain")
 }
 
-func ActionEndpoints() carapace.Action {
-	return actionID("endpoint")
+func ActionEndpoints(cmd *cobra.Command) carapace.Action {
+	return actionID(cmd, "endpoint")
 }
 
-func ActionFlavors() carapace.Action {
-	return actionNamed("flavor")
+func ActionFlavors(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "flavor")
 }
 
-func ActionGroups() carapace.Action {
-	return actionNamed("group")
+func ActionGroups(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "group")
 }
 
-func ActionHypervisors() carapace.Action {
-	return actionList([]string{"hypervisor"}, "ID", "Hypervisor Hostname")
+func ActionHypervisors(cmd *cobra.Command) carapace.Action {
+	return actionList(cmd, []string{"hypervisor"}, "ID", "Hypervisor Hostname")
 }
 
-func ActionIdentityProviders() carapace.Action {
-	return actionID("identity", "provider")
+func ActionIdentityProviders(cmd *cobra.Command) carapace.Action {
+	return actionID(cmd, "identity", "provider")
 }
 
-func ActionImages() carapace.Action {
-	return actionNamed("image")
+func ActionImages(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "image")
 }
 
-func ActionKeypairs() carapace.Action {
-	return actionList([]string{"keypair"}, "Name")
+func ActionKeypairs(cmd *cobra.Command) carapace.Action {
+	return actionList(cmd, []string{"keypair"}, "Name")
 }
 
-func ActionLimits() carapace.Action {
-	return actionID("limit")
+func ActionLimits(cmd *cobra.Command) carapace.Action {
+	return actionID(cmd, "limit")
 }
 
-func ActionMappings() carapace.Action {
-	return actionID("mapping")
+func ActionMappings(cmd *cobra.Command) carapace.Action {
+	return actionID(cmd, "mapping")
 }
 
-func ActionProjectIDs() carapace.Action {
-	return actionID("project")
+func ActionProjectIDs(cmd *cobra.Command) carapace.Action {
+	return actionID(cmd, "project")
 }
 
-func ActionProjects() carapace.Action {
-	return actionNamed("project")
+func ActionProjects(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "project")
 }
 
-func ActionRegions() carapace.Action {
-	return actionList([]string{"region"}, "Region")
+func ActionRegions(cmd *cobra.Command) carapace.Action {
+	return actionList(cmd, []string{"region"}, "Region")
 }
 
-func ActionRegisteredLimits() carapace.Action {
-	return actionID("registered", "limit")
+func ActionRegisteredLimits(cmd *cobra.Command) carapace.Action {
+	return actionID(cmd, "registered", "limit")
 }
 
-func ActionRoles() carapace.Action {
-	return actionNamed("role")
+func ActionRoles(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "role")
 }
 
-func ActionServerGroups() carapace.Action {
-	return actionNamed("server", "group")
+func ActionServerGroups(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "server", "group")
 }
 
-func ActionServerIDs() carapace.Action {
-	return actionID("server")
+func ActionServerIDs(cmd *cobra.Command) carapace.Action {
+	return actionID(cmd, "server")
 }
 
-func ActionServers() carapace.Action {
-	return actionNamed("server")
+func ActionServers(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "server")
 }
 
-func ActionServices() carapace.Action {
-	return actionNamed("service")
+func ActionServices(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "service")
 }
 
-func ActionTrusts() carapace.Action {
-	return actionID("trust")
+func ActionTrusts(cmd *cobra.Command) carapace.Action {
+	return actionID(cmd, "trust")
 }
 
-func ActionUsers() carapace.Action {
-	return actionNamed("user")
+func ActionUsers(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "user")
 }
 
-func ActionVolumeAttachments() carapace.Action {
-	return actionID("volume", "attachment")
+func ActionVolumeAttachments(cmd *cobra.Command) carapace.Action {
+	return actionID(cmd, "volume", "attachment")
 }
 
-func ActionVolumeBackups() carapace.Action {
-	return actionNamed("volume", "backup")
+func ActionVolumeBackups(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "volume", "backup")
 }
 
-func ActionVolumeGroupSnapshots() carapace.Action {
-	return actionNamed("volume", "group", "snapshot")
+func ActionVolumeGroupSnapshots(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "volume", "group", "snapshot")
 }
 
-func ActionVolumeGroups() carapace.Action {
-	return actionNamed("volume", "group")
+func ActionVolumeGroups(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "volume", "group")
 }
 
-func ActionVolumeQosSpecs() carapace.Action {
-	return actionNamed("volume", "qos")
+func ActionVolumeQosSpecs(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "volume", "qos")
 }
 
-func ActionVolumeSnapshots() carapace.Action {
-	return actionNamed("volume", "snapshot")
+func ActionVolumeSnapshots(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "volume", "snapshot")
 }
 
-func ActionVolumeTransfers() carapace.Action {
-	return actionNamed("volume", "transfer", "request")
+func ActionVolumeTransfers(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "volume", "transfer", "request")
 }
 
-func ActionVolumeTypes() carapace.Action {
-	return actionNamed("volume", "type")
+func ActionVolumeTypes(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "volume", "type")
 }
 
-func ActionVolumeIDs() carapace.Action {
-	return actionID("volume")
+func ActionVolumeIDs(cmd *cobra.Command) carapace.Action {
+	return actionID(cmd, "volume")
 }
 
-func ActionVolumes() carapace.Action {
-	return actionNamed("volume")
+func ActionVolumes(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "volume")
 }
 
-func ActionShareAccessRules() carapace.Action {
+func ActionShareAccessRules(cmd *cobra.Command) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if len(c.Args) == 0 {
 			return carapace.ActionValues()
 		}
-		return actionListArgs([]string{"share", "access", "list", c.Args[0]}, "ID")
+		return actionListArgs(cmd, []string{"share", "access", "list", c.Args[0]}, "ID")
 	})
 }
 
-func ActionShareBackups() carapace.Action {
-	return actionNamed("share", "backup")
+func ActionShareBackups(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "share", "backup")
 }
 
-func ActionShareGroupSnapshots() carapace.Action {
-	return actionNamed("share", "group", "snapshot")
+func ActionShareGroupSnapshots(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "share", "group", "snapshot")
 }
 
-func ActionShareGroups() carapace.Action {
-	return actionNamed("share", "group")
+func ActionShareGroups(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "share", "group")
 }
 
-func ActionShareInstances() carapace.Action {
-	return actionID("share", "instance")
+func ActionShareInstances(cmd *cobra.Command) carapace.Action {
+	return actionID(cmd, "share", "instance")
 }
 
-func ActionShareMessages() carapace.Action {
-	return actionID("share", "message")
+func ActionShareMessages(cmd *cobra.Command) carapace.Action {
+	return actionID(cmd, "share", "message")
 }
 
-func ActionShareNetworks() carapace.Action {
-	return actionNamed("share", "network")
+func ActionShareNetworks(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "share", "network")
 }
 
-func ActionShareQosTypes() carapace.Action {
-	return actionNamed("share", "qos", "type")
+func ActionShareQosTypes(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "share", "qos", "type")
 }
 
-func ActionShareReplicas() carapace.Action {
-	return actionNamed("share", "replica")
+func ActionShareReplicas(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "share", "replica")
 }
 
-func ActionShareSecurityServices() carapace.Action {
-	return actionNamed("share", "security", "service")
+func ActionShareSecurityServices(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "share", "security", "service")
 }
 
-func ActionShareServers() carapace.Action {
-	return actionID("share", "server")
+func ActionShareServers(cmd *cobra.Command) carapace.Action {
+	return actionID(cmd, "share", "server")
 }
 
-func ActionShareSnapshotIDs() carapace.Action {
-	return actionID("share", "snapshot")
+func ActionShareSnapshotIDs(cmd *cobra.Command) carapace.Action {
+	return actionID(cmd, "share", "snapshot")
 }
 
-func ActionShareSnapshots() carapace.Action {
-	return actionNamed("share", "snapshot")
+func ActionShareSnapshots(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "share", "snapshot")
 }
 
-func ActionShareTypes() carapace.Action {
-	return actionNamed("share", "type")
+func ActionShareTypes(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "share", "type")
 }
 
-func ActionShares() carapace.Action {
-	return actionNamed("share")
+func ActionShares(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "share")
 }
 
-func ActionAddressGroups() carapace.Action {
-	return actionNamed("address", "group")
+func ActionAddressGroups(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "address", "group")
 }
 
-func ActionAddressScopes() carapace.Action {
-	return actionNamed("address", "scope")
+func ActionAddressScopes(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "address", "scope")
 }
 
-func ActionFloatingIPs() carapace.Action {
-	return actionList([]string{"floating", "ip"}, "ID", "Floating IP Address")
+func ActionFloatingIPs(cmd *cobra.Command) carapace.Action {
+	return actionList(cmd, []string{"floating", "ip"}, "ID", "Floating IP Address")
 }
 
-func ActionLocalIPs() carapace.Action {
-	return actionNamed("local", "ip")
+func ActionLocalIPs(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "local", "ip")
 }
 
-func ActionNetworkAgents() carapace.Action {
-	return actionID("network", "agent")
+func ActionNetworkAgents(cmd *cobra.Command) carapace.Action {
+	return actionID(cmd, "network", "agent")
 }
 
-func ActionNetworkFlavors() carapace.Action {
-	return actionNamed("network", "flavor")
+func ActionNetworkFlavors(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "network", "flavor")
 }
 
-func ActionNetworkQosPolicies() carapace.Action {
-	return actionNamed("network", "qos", "policy")
+func ActionNetworkQosPolicies(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "network", "qos", "policy")
 }
 
-func ActionNetworkRbacPolicies() carapace.Action {
-	return actionID("network", "rbac")
+func ActionNetworkRbacPolicies(cmd *cobra.Command) carapace.Action {
+	return actionID(cmd, "network", "rbac")
 }
 
-func ActionNetworkSegments() carapace.Action {
-	return actionNamed("network", "segment")
+func ActionNetworkSegments(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "network", "segment")
 }
 
-func ActionNetworkTrunks() carapace.Action {
-	return actionNamed("network", "trunk")
+func ActionNetworkTrunks(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "network", "trunk")
 }
 
-func ActionNetworks() carapace.Action {
-	return actionNamed("network")
+func ActionNetworks(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "network")
 }
 
-func ActionPorts() carapace.Action {
-	return actionNamed("port")
+func ActionPorts(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "port")
 }
 
-func ActionRouters() carapace.Action {
-	return actionNamed("router")
+func ActionRouters(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "router")
 }
 
-func ActionSecurityGroupRules() carapace.Action {
-	return actionID("security", "group", "rule")
+func ActionSecurityGroupRules(cmd *cobra.Command) carapace.Action {
+	return actionID(cmd, "security", "group", "rule")
 }
 
-func ActionSecurityGroups() carapace.Action {
-	return actionNamed("security", "group")
+func ActionSecurityGroups(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "security", "group")
 }
 
-func ActionSubnetPools() carapace.Action {
-	return actionNamed("subnet", "pool")
+func ActionSubnetPools(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "subnet", "pool")
 }
 
-func ActionSubnets() carapace.Action {
-	return actionNamed("subnet")
+func ActionSubnets(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "subnet")
 }
 
-func ActionFirewallGroups() carapace.Action {
-	return actionNamed("firewall", "group")
+func ActionFirewallGroups(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "firewall", "group")
 }
 
-func ActionFirewallPolicies() carapace.Action {
-	return actionNamed("firewall", "group", "policy")
+func ActionFirewallPolicies(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "firewall", "group", "policy")
 }
 
-func ActionFirewallRules() carapace.Action {
-	return actionNamed("firewall", "group", "rule")
+func ActionFirewallRules(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "firewall", "group", "rule")
 }
 
-func ActionBgpSpeakers() carapace.Action {
-	return actionNamed("bgp", "speaker")
+func ActionBgpSpeakers(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "bgp", "speaker")
 }
 
-func ActionBgpPeers() carapace.Action {
-	return actionNamed("bgp", "peer")
+func ActionBgpPeers(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "bgp", "peer")
 }
 
-func ActionBgpDragents() carapace.Action {
-	return actionID("bgp", "dragent")
+func ActionBgpDragents(cmd *cobra.Command) carapace.Action {
+	return actionID(cmd, "bgp", "dragent")
 }
 
-func ActionComputeHosts() carapace.Action {
-	return actionListArgs([]string{"compute", "service", "list"}, "Host")
+func ActionComputeHosts(cmd *cobra.Command) carapace.Action {
+	return actionListArgs(cmd, []string{"compute", "service", "list"}, "Host")
 }
 
-func ActionFloatingIPPortForwardings() carapace.Action {
-	return actionScoped(0, []string{"floating", "ip", "port", "forwarding", "list"}, "ID")
+func ActionFloatingIPPortForwardings(cmd *cobra.Command) carapace.Action {
+	return actionScoped(cmd, 0, []string{"floating", "ip", "port", "forwarding", "list"}, "ID")
 }
 
-func ActionImageMetadefObjects() carapace.Action {
-	return actionScoped(0, []string{"image", "metadef", "object", "list"}, "Name")
+func ActionImageMetadefObjects(cmd *cobra.Command) carapace.Action {
+	return actionScoped(cmd, 0, []string{"image", "metadef", "object", "list"}, "Name")
 }
 
-func ActionImageMetadefProperties() carapace.Action {
-	return actionScoped(0, []string{"image", "metadef", "property", "list"}, "Name")
+func ActionImageMetadefProperties(cmd *cobra.Command) carapace.Action {
+	return actionScoped(cmd, 0, []string{"image", "metadef", "property", "list"}, "Name")
 }
 
-func ActionImageMetadefResourceTypes() carapace.Action {
-	return actionList([]string{"image", "metadef", "resource", "type"}, "Name")
+func ActionImageMetadefResourceTypes(cmd *cobra.Command) carapace.Action {
+	return actionList(cmd, []string{"image", "metadef", "resource", "type"}, "Name")
 }
 
-func ActionNetworkFlavorProfiles() carapace.Action {
-	return actionNamed("network", "flavor", "profile")
+func ActionNetworkFlavorProfiles(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "network", "flavor", "profile")
 }
 
-func ActionNetworkQosRules() carapace.Action {
-	return actionScoped(0, []string{"network", "qos", "rule", "list"}, "ID")
+func ActionNetworkQosRules(cmd *cobra.Command) carapace.Action {
+	return actionScoped(cmd, 0, []string{"network", "qos", "rule", "list"}, "ID")
 }
 
-func ActionObjects() carapace.Action {
-	return ActionObjectsFromArg(0)
+func ActionObjects(cmd *cobra.Command) carapace.Action {
+	return ActionObjectsFromArg(cmd, 0)
 }
 
-func ActionObjectsFromArg(index int) carapace.Action {
-	return actionScoped(index, []string{"object", "list"}, "Name")
+func ActionObjectsFromArg(cmd *cobra.Command, index int) carapace.Action {
+	return actionScoped(cmd, index, []string{"object", "list"}, "Name")
 }
 
-func ActionServerMigrations() carapace.Action {
-	return actionScoped(0, []string{"server", "migration", "list", "--server"}, "ID")
+func ActionServerMigrations(cmd *cobra.Command) carapace.Action {
+	return actionScoped(cmd, 0, []string{"server", "migration", "list", "--server"}, "ID")
 }
 
-func ActionVolumeHosts() carapace.Action {
-	return actionListArgs([]string{"volume", "service", "list"}, "Host")
+func ActionVolumeHosts(cmd *cobra.Command) carapace.Action {
+	return actionListArgs(cmd, []string{"volume", "service", "list"}, "Host")
 }
 
-func ActionVolumeServiceBinaries() carapace.Action {
+func ActionVolumeServiceBinaries(cmd *cobra.Command) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		args := []string{"volume", "service", "list"}
 		if len(c.Args) > 0 {
 			args = append(args, "--host", c.Args[0])
 		}
-		return actionListArgs(args, "Binary")
+		return actionListArgs(cmd, args, "Binary")
 	})
 }
 
-func ActionBgpvpns() carapace.Action {
-	return actionNamed("bgpvpn")
+func ActionBgpvpns(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "bgpvpn")
 }
 
-func ActionAcceleratorArqs() carapace.Action {
-	return actionList([]string{"accelerator", "arq"}, "uuid")
+func ActionAcceleratorArqs(cmd *cobra.Command) carapace.Action {
+	return actionList(cmd, []string{"accelerator", "arq"}, "uuid")
 }
 
-func ActionAcceleratorDeployables() carapace.Action {
-	return actionList([]string{"accelerator", "deployable"}, "uuid", "name")
+func ActionAcceleratorDeployables(cmd *cobra.Command) carapace.Action {
+	return actionList(cmd, []string{"accelerator", "deployable"}, "uuid", "name")
 }
 
-func ActionAcceleratorDevices() carapace.Action {
-	return actionList([]string{"accelerator", "device"}, "uuid")
+func ActionAcceleratorDevices(cmd *cobra.Command) carapace.Action {
+	return actionList(cmd, []string{"accelerator", "device"}, "uuid")
 }
 
-func ActionAcceleratorDeviceProfiles() carapace.Action {
-	return actionList([]string{"accelerator", "device", "profile"}, "uuid", "name")
+func ActionAcceleratorDeviceProfiles(cmd *cobra.Command) carapace.Action {
+	return actionList(cmd, []string{"accelerator", "device", "profile"}, "uuid", "name")
 }
 
-func ActionContainers() carapace.Action {
-	return actionList([]string{"container"}, "Name")
+func ActionContainers(cmd *cobra.Command) carapace.Action {
+	return actionList(cmd, []string{"container"}, "Name")
 }
 
-func ActionCachedImages() carapace.Action {
-	return actionList([]string{"cached", "image"}, "image_id")
+func ActionCachedImages(cmd *cobra.Command) carapace.Action {
+	return actionList(cmd, []string{"cached", "image"}, "image_id")
 }
 
-func ActionConsistencyGroups() carapace.Action {
-	return actionNamed("consistency", "group")
+func ActionConsistencyGroups(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "consistency", "group")
 }
 
-func ActionConsistencyGroupSnapshots() carapace.Action {
-	return actionNamed("consistency", "group", "snapshot")
+func ActionConsistencyGroupSnapshots(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "consistency", "group", "snapshot")
 }
 
-func ActionExtensions() carapace.Action {
-	return actionList([]string{"extension"}, "Name")
+func ActionExtensions(cmd *cobra.Command) carapace.Action {
+	return actionList(cmd, []string{"extension"}, "Name")
 }
 
-func ActionImageMetadefNamespaces() carapace.Action {
-	return actionList([]string{"image", "metadef", "namespace"}, "Namespace")
+func ActionImageMetadefNamespaces(cmd *cobra.Command) carapace.Action {
+	return actionList(cmd, []string{"image", "metadef", "namespace"}, "Namespace")
 }
 
-func ActionImageTasks() carapace.Action {
-	return actionID("image", "task")
+func ActionImageTasks(cmd *cobra.Command) carapace.Action {
+	return actionID(cmd, "image", "task")
 }
 
-func ActionNetworkMeters() carapace.Action {
-	return actionNamed("network", "meter")
+func ActionNetworkMeters(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "network", "meter")
 }
 
-func ActionNetworkSegmentRanges() carapace.Action {
-	return actionNamed("network", "segment", "range")
+func ActionNetworkSegmentRanges(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "network", "segment", "range")
 }
 
-func ActionShareGroupTypes() carapace.Action {
-	return actionNamed("share", "group", "type")
+func ActionShareGroupTypes(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "share", "group", "type")
 }
 
-func ActionShareLocks() carapace.Action {
-	return actionID("share", "lock")
+func ActionShareLocks(cmd *cobra.Command) carapace.Action {
+	return actionID(cmd, "share", "lock")
 }
 
-func ActionShareTransfers() carapace.Action {
-	return actionNamed("share", "transfer")
+func ActionShareTransfers(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "share", "transfer")
 }
 
-func ActionVolumeGroupTypes() carapace.Action {
-	return actionNamed("volume", "group", "type")
+func ActionVolumeGroupTypes(cmd *cobra.Command) carapace.Action {
+	return actionNamed(cmd, "volume", "group", "type")
 }

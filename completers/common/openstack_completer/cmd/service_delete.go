@@ -17,5 +17,5 @@ func init() {
 
 	serviceCmd.AddCommand(service_deleteCmd)
 
-	carapace.Gen(service_deleteCmd).PositionalAnyCompletion(action.ActionServices())
+	carapace.Gen(service_deleteCmd).PositionalAnyCompletion(action.ActionServices(service_deleteCmd))
 }

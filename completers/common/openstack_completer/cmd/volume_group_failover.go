@@ -20,5 +20,5 @@ func init() {
 	volume_group_failoverCmd.Flags().String("secondary-backend-id", "", "Secondary backend ID.")
 	volume_groupCmd.AddCommand(volume_group_failoverCmd)
 
-	carapace.Gen(volume_group_failoverCmd).PositionalCompletion(action.ActionVolumeGroups())
+	carapace.Gen(volume_group_failoverCmd).PositionalCompletion(action.ActionVolumeGroups(volume_group_failoverCmd))
 }

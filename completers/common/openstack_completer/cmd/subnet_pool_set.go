@@ -32,8 +32,8 @@ func init() {
 	subnet_poolCmd.AddCommand(subnet_pool_setCmd)
 
 	carapace.Gen(subnet_pool_setCmd).FlagCompletion(carapace.ActionMap{
-		"address-scope": action.ActionAddressScopes(),
+		"address-scope": action.ActionAddressScopes(subnet_pool_setCmd),
 	})
 
-	carapace.Gen(subnet_pool_setCmd).PositionalCompletion(action.ActionSubnetPools())
+	carapace.Gen(subnet_pool_setCmd).PositionalCompletion(action.ActionSubnetPools(subnet_pool_setCmd))
 }

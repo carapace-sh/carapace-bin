@@ -38,9 +38,9 @@ func init() {
 	carapace.Gen(network_meter_rule_createCmd).FlagCompletion(carapace.ActionMap{
 		"column":         action.ActionColumns(network_meter_rule_createCmd),
 		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
-		"project":        action.ActionProjects(),
-		"project-domain": action.ActionDomains(),
+		"project":        action.ActionProjects(network_meter_rule_createCmd),
+		"project-domain": action.ActionDomains(network_meter_rule_createCmd),
 	})
 
-	carapace.Gen(network_meter_rule_createCmd).PositionalCompletion(action.ActionNetworkMeters())
+	carapace.Gen(network_meter_rule_createCmd).PositionalCompletion(action.ActionNetworkMeters(network_meter_rule_createCmd))
 }

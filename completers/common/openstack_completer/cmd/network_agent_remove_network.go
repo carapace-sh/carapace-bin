@@ -19,7 +19,7 @@ func init() {
 	network_agent_removeCmd.AddCommand(network_agent_remove_networkCmd)
 
 	carapace.Gen(network_agent_remove_networkCmd).PositionalCompletion(
-		action.ActionNetworkAgents(),
-		action.ActionNetworks(),
+		action.ActionNetworkAgents(network_agent_remove_networkCmd),
+		action.ActionNetworks(network_agent_remove_networkCmd),
 	)
 }

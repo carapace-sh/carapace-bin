@@ -31,10 +31,10 @@ func init() {
 	carapace.Gen(image_member_listCmd).FlagCompletion(carapace.ActionMap{
 		"column":         action.ActionColumns(image_member_listCmd),
 		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
-		"project-domain": action.ActionDomains(),
+		"project-domain": action.ActionDomains(image_member_listCmd),
 		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
 		"sort-column":    action.ActionColumns(image_member_listCmd),
 	})
 
-	carapace.Gen(image_member_listCmd).PositionalCompletion(action.ActionImages())
+	carapace.Gen(image_member_listCmd).PositionalCompletion(action.ActionImages(image_member_listCmd))
 }

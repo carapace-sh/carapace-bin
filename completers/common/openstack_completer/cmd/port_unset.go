@@ -33,9 +33,9 @@ func init() {
 	portCmd.AddCommand(port_unsetCmd)
 
 	carapace.Gen(port_unsetCmd).FlagCompletion(carapace.ActionMap{
-		"qos-policy":     action.ActionNetworkQosPolicies(),
-		"security-group": action.ActionSecurityGroups(),
+		"qos-policy":     action.ActionNetworkQosPolicies(port_unsetCmd),
+		"security-group": action.ActionSecurityGroups(port_unsetCmd),
 	})
 
-	carapace.Gen(port_unsetCmd).PositionalCompletion(action.ActionPorts())
+	carapace.Gen(port_unsetCmd).PositionalCompletion(action.ActionPorts(port_unsetCmd))
 }

@@ -18,7 +18,7 @@ func init() {
 	server_removeCmd.AddCommand(server_remove_volumeCmd)
 
 	carapace.Gen(server_remove_volumeCmd).PositionalCompletion(
-		action.ActionServers(),
-		action.ActionVolumes(),
+		action.ActionServers(server_remove_volumeCmd),
+		action.ActionVolumes(server_remove_volumeCmd),
 	)
 }

@@ -22,8 +22,8 @@ func init() {
 	serverCmd.AddCommand(server_unshelveCmd)
 
 	carapace.Gen(server_unshelveCmd).FlagCompletion(carapace.ActionMap{
-		"availability-zone": action.ActionAvailabilityZones(),
+		"availability-zone": action.ActionAvailabilityZones(server_unshelveCmd),
 	})
 
-	carapace.Gen(server_unshelveCmd).PositionalCompletion(action.ActionServers())
+	carapace.Gen(server_unshelveCmd).PositionalCompletion(action.ActionServers(server_unshelveCmd))
 }

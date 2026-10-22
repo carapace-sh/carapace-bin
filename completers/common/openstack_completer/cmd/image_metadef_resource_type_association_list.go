@@ -35,6 +35,6 @@ func init() {
 	})
 
 	carapace.Gen(image_metadef_resource_type_association_listCmd).PositionalCompletion(
-		action.ActionImageMetadefNamespaces(),
+		action.ActionImageMetadefNamespaces(image_metadef_resource_type_association_listCmd),
 	)
 }

@@ -19,7 +19,7 @@ func init() {
 	server_add_floatingCmd.AddCommand(server_add_floating_ipCmd)
 
 	carapace.Gen(server_add_floating_ipCmd).PositionalCompletion(
-		action.ActionServers(),
-		action.ActionFloatingIPs(),
+		action.ActionServers(server_add_floating_ipCmd),
+		action.ActionFloatingIPs(server_add_floating_ipCmd),
 	)
 }

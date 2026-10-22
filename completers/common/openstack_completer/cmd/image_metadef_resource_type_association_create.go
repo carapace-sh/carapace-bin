@@ -32,7 +32,7 @@ func init() {
 	})
 
 	carapace.Gen(image_metadef_resource_type_association_createCmd).PositionalCompletion(
-		action.ActionImageMetadefNamespaces(),
-		action.ActionImageMetadefResourceTypes(),
+		action.ActionImageMetadefNamespaces(image_metadef_resource_type_association_createCmd),
+		action.ActionImageMetadefResourceTypes(image_metadef_resource_type_association_createCmd),
 	)
 }

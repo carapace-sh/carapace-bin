@@ -30,5 +30,5 @@ func init() {
 		"status": carapace.ActionValues("active", "error", "network_change"),
 	})
 
-	carapace.Gen(share_network_setCmd).PositionalCompletion(action.ActionShareNetworks())
+	carapace.Gen(share_network_setCmd).PositionalCompletion(action.ActionShareNetworks(share_network_setCmd))
 }

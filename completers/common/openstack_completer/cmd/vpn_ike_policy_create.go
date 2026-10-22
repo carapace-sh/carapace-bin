@@ -42,7 +42,7 @@ func init() {
 		"ike-version":             carapace.ActionValues("v1", "v2"),
 		"pfs":                     carapace.ActionValues("group2", "group5", "group14", "group15", "group16", "group17", "group18", "group19", "group20", "group21", "group22", "group23", "group24", "group25", "group26", "group27", "group28", "group29", "group30", "group31"),
 		"phase1-negotiation-mode": carapace.ActionValues("main", "aggressive"),
-		"project":                 action.ActionProjects(),
-		"project-domain":          action.ActionDomains(),
+		"project":                 action.ActionProjects(vpn_ike_policy_createCmd),
+		"project-domain":          action.ActionDomains(vpn_ike_policy_createCmd),
 	})
 }

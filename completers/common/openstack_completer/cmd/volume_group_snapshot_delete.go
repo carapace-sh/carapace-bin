@@ -17,5 +17,5 @@ func init() {
 
 	volume_group_snapshotCmd.AddCommand(volume_group_snapshot_deleteCmd)
 
-	carapace.Gen(volume_group_snapshot_deleteCmd).PositionalAnyCompletion(action.ActionVolumeGroupSnapshots())
+	carapace.Gen(volume_group_snapshot_deleteCmd).PositionalAnyCompletion(action.ActionVolumeGroupSnapshots(volume_group_snapshot_deleteCmd))
 }

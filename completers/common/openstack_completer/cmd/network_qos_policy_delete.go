@@ -17,5 +17,5 @@ func init() {
 
 	network_qos_policyCmd.AddCommand(network_qos_policy_deleteCmd)
 
-	carapace.Gen(network_qos_policy_deleteCmd).PositionalAnyCompletion(action.ActionNetworkQosPolicies())
+	carapace.Gen(network_qos_policy_deleteCmd).PositionalAnyCompletion(action.ActionNetworkQosPolicies(network_qos_policy_deleteCmd))
 }

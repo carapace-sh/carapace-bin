@@ -17,5 +17,5 @@ func init() {
 
 	aggregateCmd.AddCommand(aggregate_deleteCmd)
 
-	carapace.Gen(aggregate_deleteCmd).PositionalAnyCompletion(action.ActionAggregates())
+	carapace.Gen(aggregate_deleteCmd).PositionalAnyCompletion(action.ActionAggregates(aggregate_deleteCmd))
 }

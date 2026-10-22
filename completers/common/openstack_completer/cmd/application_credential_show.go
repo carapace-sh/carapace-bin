@@ -30,5 +30,5 @@ func init() {
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 
-	carapace.Gen(application_credential_showCmd).PositionalCompletion(action.ActionApplicationCredentials())
+	carapace.Gen(application_credential_showCmd).PositionalCompletion(action.ActionApplicationCredentials(application_credential_showCmd))
 }

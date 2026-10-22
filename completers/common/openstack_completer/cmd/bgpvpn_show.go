@@ -30,5 +30,5 @@ func init() {
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 
-	carapace.Gen(bgpvpn_showCmd).PositionalCompletion(action.ActionBgpvpns())
+	carapace.Gen(bgpvpn_showCmd).PositionalCompletion(action.ActionBgpvpns(bgpvpn_showCmd))
 }

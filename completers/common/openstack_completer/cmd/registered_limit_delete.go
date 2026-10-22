@@ -17,5 +17,5 @@ func init() {
 
 	registered_limitCmd.AddCommand(registered_limit_deleteCmd)
 
-	carapace.Gen(registered_limit_deleteCmd).PositionalAnyCompletion(action.ActionRegisteredLimits())
+	carapace.Gen(registered_limit_deleteCmd).PositionalAnyCompletion(action.ActionRegisteredLimits(registered_limit_deleteCmd))
 }

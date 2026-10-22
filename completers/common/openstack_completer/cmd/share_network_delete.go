@@ -18,5 +18,5 @@ func init() {
 	share_network_deleteCmd.Flags().Bool("wait", false, "Wait for the share network(s) to be deleted")
 	share_networkCmd.AddCommand(share_network_deleteCmd)
 
-	carapace.Gen(share_network_deleteCmd).PositionalAnyCompletion(action.ActionShareNetworks())
+	carapace.Gen(share_network_deleteCmd).PositionalAnyCompletion(action.ActionShareNetworks(share_network_deleteCmd))
 }

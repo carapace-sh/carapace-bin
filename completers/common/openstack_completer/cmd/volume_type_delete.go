@@ -17,5 +17,5 @@ func init() {
 
 	volume_typeCmd.AddCommand(volume_type_deleteCmd)
 
-	carapace.Gen(volume_type_deleteCmd).PositionalAnyCompletion(action.ActionVolumeTypes())
+	carapace.Gen(volume_type_deleteCmd).PositionalAnyCompletion(action.ActionVolumeTypes(volume_type_deleteCmd))
 }

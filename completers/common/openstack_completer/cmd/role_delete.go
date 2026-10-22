@@ -19,8 +19,8 @@ func init() {
 	roleCmd.AddCommand(role_deleteCmd)
 
 	carapace.Gen(role_deleteCmd).FlagCompletion(carapace.ActionMap{
-		"domain": action.ActionDomains(),
+		"domain": action.ActionDomains(role_deleteCmd),
 	})
 
-	carapace.Gen(role_deleteCmd).PositionalAnyCompletion(action.ActionRoles())
+	carapace.Gen(role_deleteCmd).PositionalAnyCompletion(action.ActionRoles(role_deleteCmd))
 }

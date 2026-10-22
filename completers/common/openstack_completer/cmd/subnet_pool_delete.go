@@ -17,5 +17,5 @@ func init() {
 
 	subnet_poolCmd.AddCommand(subnet_pool_deleteCmd)
 
-	carapace.Gen(subnet_pool_deleteCmd).PositionalAnyCompletion(action.ActionSubnetPools())
+	carapace.Gen(subnet_pool_deleteCmd).PositionalAnyCompletion(action.ActionSubnetPools(subnet_pool_deleteCmd))
 }

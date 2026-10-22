@@ -22,8 +22,8 @@ func init() {
 	serverCmd.AddCommand(server_resizeCmd)
 
 	carapace.Gen(server_resizeCmd).FlagCompletion(carapace.ActionMap{
-		"flavor": action.ActionFlavors(),
+		"flavor": action.ActionFlavors(server_resizeCmd),
 	})
 
-	carapace.Gen(server_resizeCmd).PositionalCompletion(action.ActionServers())
+	carapace.Gen(server_resizeCmd).PositionalCompletion(action.ActionServers(server_resizeCmd))
 }

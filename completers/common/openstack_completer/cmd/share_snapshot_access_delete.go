@@ -17,5 +17,5 @@ func init() {
 
 	share_snapshot_accessCmd.AddCommand(share_snapshot_access_deleteCmd)
 
-	carapace.Gen(share_snapshot_access_deleteCmd).PositionalCompletion(action.ActionShareSnapshots())
+	carapace.Gen(share_snapshot_access_deleteCmd).PositionalCompletion(action.ActionShareSnapshots(share_snapshot_access_deleteCmd))
 }

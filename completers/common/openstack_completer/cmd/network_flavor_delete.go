@@ -17,5 +17,5 @@ func init() {
 
 	network_flavorCmd.AddCommand(network_flavor_deleteCmd)
 
-	carapace.Gen(network_flavor_deleteCmd).PositionalAnyCompletion(action.ActionNetworkFlavors())
+	carapace.Gen(network_flavor_deleteCmd).PositionalAnyCompletion(action.ActionNetworkFlavors(network_flavor_deleteCmd))
 }

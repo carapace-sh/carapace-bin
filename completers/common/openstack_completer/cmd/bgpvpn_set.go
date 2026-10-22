@@ -28,5 +28,5 @@ func init() {
 	bgpvpn_setCmd.Flags().String("vni", "", "VXLAN Network Identifier to be used for this BGPVPN when a VXLAN encapsulation is used")
 	bgpvpnCmd.AddCommand(bgpvpn_setCmd)
 
-	carapace.Gen(bgpvpn_setCmd).PositionalCompletion(action.ActionBgpvpns())
+	carapace.Gen(bgpvpn_setCmd).PositionalCompletion(action.ActionBgpvpns(bgpvpn_setCmd))
 }

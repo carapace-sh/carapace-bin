@@ -31,7 +31,7 @@ func init() {
 	aggregateCmd.AddCommand(aggregate_listCmd)
 
 	carapace.Gen(aggregate_listCmd).FlagCompletion(carapace.ActionMap{
-		"availability-zone": action.ActionAvailabilityZones(),
+		"availability-zone": action.ActionAvailabilityZones(aggregate_listCmd),
 		"column":            action.ActionColumns(aggregate_listCmd),
 		"format":            carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":             carapace.ActionValues("all", "minimal", "none", "nonnumeric"),

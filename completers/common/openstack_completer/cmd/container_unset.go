@@ -19,5 +19,5 @@ func init() {
 	container_unsetCmd.MarkFlagRequired("property")
 	containerCmd.AddCommand(container_unsetCmd)
 
-	carapace.Gen(container_unsetCmd).PositionalCompletion(action.ActionContainers())
+	carapace.Gen(container_unsetCmd).PositionalCompletion(action.ActionContainers(container_unsetCmd))
 }

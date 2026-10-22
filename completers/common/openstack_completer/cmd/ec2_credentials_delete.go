@@ -20,7 +20,7 @@ func init() {
 	ec2_credentialsCmd.AddCommand(ec2_credentials_deleteCmd)
 
 	carapace.Gen(ec2_credentials_deleteCmd).FlagCompletion(carapace.ActionMap{
-		"user":        action.ActionUsers(),
-		"user-domain": action.ActionDomains(),
+		"user":        action.ActionUsers(ec2_credentials_deleteCmd),
+		"user-domain": action.ActionDomains(ec2_credentials_deleteCmd),
 	})
 }

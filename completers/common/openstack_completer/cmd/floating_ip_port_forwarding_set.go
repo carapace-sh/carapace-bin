@@ -25,12 +25,12 @@ func init() {
 	floating_ip_port_forwardingCmd.AddCommand(floating_ip_port_forwarding_setCmd)
 
 	carapace.Gen(floating_ip_port_forwarding_setCmd).FlagCompletion(carapace.ActionMap{
-		"port":     action.ActionPorts(),
+		"port":     action.ActionPorts(floating_ip_port_forwarding_setCmd),
 		"protocol": carapace.ActionValues("tcp", "udp"),
 	})
 
 	carapace.Gen(floating_ip_port_forwarding_setCmd).PositionalCompletion(
-		action.ActionFloatingIPs(),
-		action.ActionFloatingIPPortForwardings(),
+		action.ActionFloatingIPs(floating_ip_port_forwarding_setCmd),
+		action.ActionFloatingIPPortForwardings(floating_ip_port_forwarding_setCmd),
 	)
 }

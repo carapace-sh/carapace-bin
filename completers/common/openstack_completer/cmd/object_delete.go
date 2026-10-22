@@ -18,7 +18,7 @@ func init() {
 	objectCmd.AddCommand(object_deleteCmd)
 
 	carapace.Gen(object_deleteCmd).PositionalCompletion(
-		action.ActionContainers(),
-		action.ActionObjects(),
+		action.ActionContainers(object_deleteCmd),
+		action.ActionObjects(object_deleteCmd),
 	)
 }

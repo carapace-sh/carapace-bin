@@ -18,5 +18,5 @@ func init() {
 	project_unsetCmd.Flags().String("property", "", "Unset a project property (repeat option to unset multiple properties)")
 	projectCmd.AddCommand(project_unsetCmd)
 
-	carapace.Gen(project_unsetCmd).PositionalCompletion(action.ActionProjects())
+	carapace.Gen(project_unsetCmd).PositionalCompletion(action.ActionProjects(project_unsetCmd))
 }

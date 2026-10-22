@@ -18,5 +18,5 @@ func init() {
 	container_deleteCmd.Flags().BoolP("recursive", "r", false, "Recursively delete objects and container")
 	containerCmd.AddCommand(container_deleteCmd)
 
-	carapace.Gen(container_deleteCmd).PositionalAnyCompletion(action.ActionContainers())
+	carapace.Gen(container_deleteCmd).PositionalAnyCompletion(action.ActionContainers(container_deleteCmd))
 }

@@ -41,5 +41,5 @@ func init() {
 		"method": carapace.ActionValues("glance-direct", "web-download", "glance-download", "copy-image"),
 	})
 
-	carapace.Gen(image_importCmd).PositionalCompletion(action.ActionImages())
+	carapace.Gen(image_importCmd).PositionalCompletion(action.ActionImages(image_importCmd))
 }

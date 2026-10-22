@@ -18,7 +18,7 @@ func init() {
 	aggregate_cacheCmd.AddCommand(aggregate_cache_imageCmd)
 
 	carapace.Gen(aggregate_cache_imageCmd).PositionalCompletion(
-		action.ActionAggregates(),
-		action.ActionImages(),
+		action.ActionAggregates(aggregate_cache_imageCmd),
+		action.ActionImages(aggregate_cache_imageCmd),
 	)
 }

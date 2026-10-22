@@ -17,5 +17,5 @@ func init() {
 
 	application_credentialCmd.AddCommand(application_credential_deleteCmd)
 
-	carapace.Gen(application_credential_deleteCmd).PositionalAnyCompletion(action.ActionApplicationCredentials())
+	carapace.Gen(application_credential_deleteCmd).PositionalAnyCompletion(action.ActionApplicationCredentials(application_credential_deleteCmd))
 }

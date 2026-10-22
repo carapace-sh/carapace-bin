@@ -23,7 +23,7 @@ func init() {
 	})
 
 	carapace.Gen(object_saveCmd).PositionalCompletion(
-		action.ActionContainers(),
-		action.ActionObjects(),
+		action.ActionContainers(object_saveCmd),
+		action.ActionObjects(object_saveCmd),
 	)
 }

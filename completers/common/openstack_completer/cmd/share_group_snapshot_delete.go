@@ -19,5 +19,5 @@ func init() {
 	share_group_snapshot_deleteCmd.Flags().Bool("wait", false, "Wait for share group snapshot deletion")
 	share_group_snapshotCmd.AddCommand(share_group_snapshot_deleteCmd)
 
-	carapace.Gen(share_group_snapshot_deleteCmd).PositionalAnyCompletion(action.ActionShareGroupSnapshots())
+	carapace.Gen(share_group_snapshot_deleteCmd).PositionalAnyCompletion(action.ActionShareGroupSnapshots(share_group_snapshot_deleteCmd))
 }

@@ -17,5 +17,5 @@ func init() {
 
 	security_groupCmd.AddCommand(security_group_deleteCmd)
 
-	carapace.Gen(security_group_deleteCmd).PositionalAnyCompletion(action.ActionSecurityGroups())
+	carapace.Gen(security_group_deleteCmd).PositionalAnyCompletion(action.ActionSecurityGroups(security_group_deleteCmd))
 }

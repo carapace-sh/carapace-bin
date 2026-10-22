@@ -17,5 +17,5 @@ func init() {
 
 	serverCmd.AddCommand(server_unlockCmd)
 
-	carapace.Gen(server_unlockCmd).PositionalCompletion(action.ActionServers())
+	carapace.Gen(server_unlockCmd).PositionalCompletion(action.ActionServers(server_unlockCmd))
 }

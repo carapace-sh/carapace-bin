@@ -33,11 +33,11 @@ func init() {
 
 	carapace.Gen(group_listCmd).FlagCompletion(carapace.ActionMap{
 		"column":      action.ActionColumns(group_listCmd),
-		"domain":      action.ActionDomains(),
+		"domain":      action.ActionDomains(group_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
 		"sort-column": action.ActionColumns(group_listCmd),
-		"user":        action.ActionUsers(),
-		"user-domain": action.ActionDomains(),
+		"user":        action.ActionUsers(group_listCmd),
+		"user-domain": action.ActionDomains(group_listCmd),
 	})
 }

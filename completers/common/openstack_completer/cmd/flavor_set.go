@@ -23,9 +23,9 @@ func init() {
 	flavorCmd.AddCommand(flavor_setCmd)
 
 	carapace.Gen(flavor_setCmd).FlagCompletion(carapace.ActionMap{
-		"project":        action.ActionProjects(),
-		"project-domain": action.ActionDomains(),
+		"project":        action.ActionProjects(flavor_setCmd),
+		"project-domain": action.ActionDomains(flavor_setCmd),
 	})
 
-	carapace.Gen(flavor_setCmd).PositionalCompletion(action.ActionFlavors())
+	carapace.Gen(flavor_setCmd).PositionalCompletion(action.ActionFlavors(flavor_setCmd))
 }

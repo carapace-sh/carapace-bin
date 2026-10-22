@@ -54,8 +54,8 @@ func init() {
 	carapace.Gen(network_listCmd).FlagCompletion(carapace.ActionMap{
 		"column":                action.ActionColumns(network_listCmd),
 		"format":                carapace.ActionValues("csv", "json", "table", "value", "yaml"),
-		"project":               action.ActionProjects(),
-		"project-domain":        action.ActionDomains(),
+		"project":               action.ActionProjects(network_listCmd),
+		"project-domain":        action.ActionDomains(network_listCmd),
 		"provider-network-type": carapace.ActionValues("flat", "geneve", "gre", "local", "vlan", "vxlan"),
 		"quote":                 carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
 		"sort-column":           action.ActionColumns(network_listCmd),

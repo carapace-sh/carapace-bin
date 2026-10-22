@@ -32,5 +32,5 @@ func init() {
 		"state": carapace.ActionValues("active", "error"),
 	})
 
-	carapace.Gen(server_setCmd).PositionalCompletion(action.ActionServers())
+	carapace.Gen(server_setCmd).PositionalCompletion(action.ActionServers(server_setCmd))
 }

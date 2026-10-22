@@ -20,7 +20,7 @@ func init() {
 	objectCmd.AddCommand(object_unsetCmd)
 
 	carapace.Gen(object_unsetCmd).PositionalCompletion(
-		action.ActionContainers(),
-		action.ActionObjects(),
+		action.ActionContainers(object_unsetCmd),
+		action.ActionObjects(object_unsetCmd),
 	)
 }

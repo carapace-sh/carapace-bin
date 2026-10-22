@@ -20,5 +20,5 @@ func init() {
 	network_agent_setCmd.Flags().Bool("enable", false, "Enable network agent")
 	network_agentCmd.AddCommand(network_agent_setCmd)
 
-	carapace.Gen(network_agent_setCmd).PositionalCompletion(action.ActionNetworkAgents())
+	carapace.Gen(network_agent_setCmd).PositionalCompletion(action.ActionNetworkAgents(network_agent_setCmd))
 }

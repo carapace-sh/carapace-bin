@@ -19,7 +19,7 @@ func init() {
 	router_addCmd.AddCommand(router_add_subnetCmd)
 
 	carapace.Gen(router_add_subnetCmd).PositionalCompletion(
-		action.ActionRouters(),
-		action.ActionSubnets(),
+		action.ActionRouters(router_add_subnetCmd),
+		action.ActionSubnets(router_add_subnetCmd),
 	)
 }

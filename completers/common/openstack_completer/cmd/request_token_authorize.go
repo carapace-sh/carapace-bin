@@ -31,6 +31,6 @@ func init() {
 
 	carapace.Gen(request_token_authorizeCmd).FlagCompletion(carapace.ActionMap{
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
-		"role":   action.ActionRoles(),
+		"role":   action.ActionRoles(request_token_authorizeCmd),
 	})
 }

@@ -17,5 +17,5 @@ func init() {
 
 	identity_providerCmd.AddCommand(identity_provider_deleteCmd)
 
-	carapace.Gen(identity_provider_deleteCmd).PositionalAnyCompletion(action.ActionIdentityProviders())
+	carapace.Gen(identity_provider_deleteCmd).PositionalAnyCompletion(action.ActionIdentityProviders(identity_provider_deleteCmd))
 }

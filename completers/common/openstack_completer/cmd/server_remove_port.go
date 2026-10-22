@@ -18,7 +18,7 @@ func init() {
 	server_removeCmd.AddCommand(server_remove_portCmd)
 
 	carapace.Gen(server_remove_portCmd).PositionalCompletion(
-		action.ActionServers(),
-		action.ActionPorts(),
+		action.ActionServers(server_remove_portCmd),
+		action.ActionPorts(server_remove_portCmd),
 	)
 }

@@ -19,5 +19,5 @@ func init() {
 	security_group_unsetCmd.Flags().String("tag", "", "Tag to be removed from the security group (repeat option to remove multiple tags)")
 	security_groupCmd.AddCommand(security_group_unsetCmd)
 
-	carapace.Gen(security_group_unsetCmd).PositionalCompletion(action.ActionSecurityGroups())
+	carapace.Gen(security_group_unsetCmd).PositionalCompletion(action.ActionSecurityGroups(security_group_unsetCmd))
 }

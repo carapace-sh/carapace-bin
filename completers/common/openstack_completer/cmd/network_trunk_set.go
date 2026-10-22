@@ -22,5 +22,5 @@ func init() {
 	network_trunk_setCmd.Flags().String("subport", "", "Subport to add.")
 	network_trunkCmd.AddCommand(network_trunk_setCmd)
 
-	carapace.Gen(network_trunk_setCmd).PositionalCompletion(action.ActionNetworkTrunks())
+	carapace.Gen(network_trunk_setCmd).PositionalCompletion(action.ActionNetworkTrunks(network_trunk_setCmd))
 }

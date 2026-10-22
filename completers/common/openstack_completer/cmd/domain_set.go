@@ -23,5 +23,5 @@ func init() {
 	domain_setCmd.Flags().Bool("no-immutable", false, "Make resource mutable (default)")
 	domainCmd.AddCommand(domain_setCmd)
 
-	carapace.Gen(domain_setCmd).PositionalCompletion(action.ActionDomains())
+	carapace.Gen(domain_setCmd).PositionalCompletion(action.ActionDomains(domain_setCmd))
 }

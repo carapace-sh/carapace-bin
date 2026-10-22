@@ -17,5 +17,5 @@ func init() {
 
 	server_groupCmd.AddCommand(server_group_deleteCmd)
 
-	carapace.Gen(server_group_deleteCmd).PositionalAnyCompletion(action.ActionServerGroups())
+	carapace.Gen(server_group_deleteCmd).PositionalAnyCompletion(action.ActionServerGroups(server_group_deleteCmd))
 }

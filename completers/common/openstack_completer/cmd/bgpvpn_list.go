@@ -34,8 +34,8 @@ func init() {
 	carapace.Gen(bgpvpn_listCmd).FlagCompletion(carapace.ActionMap{
 		"column":         action.ActionColumns(bgpvpn_listCmd),
 		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
-		"project":        action.ActionProjects(),
-		"project-domain": action.ActionDomains(),
+		"project":        action.ActionProjects(bgpvpn_listCmd),
+		"project-domain": action.ActionDomains(bgpvpn_listCmd),
 		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
 		"sort-column":    action.ActionColumns(bgpvpn_listCmd),
 	})

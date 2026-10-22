@@ -68,12 +68,12 @@ func init() {
 	carapace.Gen(port_createCmd).FlagCompletion(carapace.ActionMap{
 		"column":         action.ActionColumns(port_createCmd),
 		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
-		"network":        action.ActionNetworks(),
-		"project":        action.ActionProjects(),
-		"project-domain": action.ActionDomains(),
+		"network":        action.ActionNetworks(port_createCmd),
+		"project":        action.ActionProjects(port_createCmd),
+		"project-domain": action.ActionDomains(port_createCmd),
 		"pvlan-type":     carapace.ActionValues("promiscuous", "isolated", "community"),
-		"qos-policy":     action.ActionNetworkQosPolicies(),
-		"security-group": action.ActionSecurityGroups(),
+		"qos-policy":     action.ActionNetworkQosPolicies(port_createCmd),
+		"security-group": action.ActionSecurityGroups(port_createCmd),
 		"vnic-type":      carapace.ActionValues("accelerator-direct", "accelerator-direct-physical", "direct", "direct-physical", "macvtap", "normal", "baremetal", "virtio-forwarder", "smart-nic", "vdpa", "remote-managed"),
 	})
 }

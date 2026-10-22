@@ -21,5 +21,5 @@ func init() {
 	address_scope_setCmd.Flags().Bool("share", false, "Share the address scope between projects")
 	address_scopeCmd.AddCommand(address_scope_setCmd)
 
-	carapace.Gen(address_scope_setCmd).PositionalCompletion(action.ActionAddressScopes())
+	carapace.Gen(address_scope_setCmd).PositionalCompletion(action.ActionAddressScopes(address_scope_setCmd))
 }

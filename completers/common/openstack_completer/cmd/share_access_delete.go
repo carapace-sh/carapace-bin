@@ -20,7 +20,7 @@ func init() {
 	share_accessCmd.AddCommand(share_access_deleteCmd)
 
 	carapace.Gen(share_access_deleteCmd).PositionalCompletion(
-		action.ActionShares(),
-		action.ActionShareAccessRules(),
+		action.ActionShares(share_access_deleteCmd),
+		action.ActionShareAccessRules(share_access_deleteCmd),
 	)
 }

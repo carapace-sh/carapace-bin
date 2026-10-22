@@ -20,5 +20,5 @@ func init() {
 	share_group_setCmd.Flags().String("status", "", "Explicitly update the status of a share group (Admin  only).")
 	share_groupCmd.AddCommand(share_group_setCmd)
 
-	carapace.Gen(share_group_setCmd).PositionalCompletion(action.ActionShareGroups())
+	carapace.Gen(share_group_setCmd).PositionalCompletion(action.ActionShareGroups(share_group_setCmd))
 }

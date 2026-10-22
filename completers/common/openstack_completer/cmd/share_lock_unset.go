@@ -18,5 +18,5 @@ func init() {
 	share_lock_unsetCmd.Flags().Bool("reason", false, "Unset the lock reason.")
 	share_lockCmd.AddCommand(share_lock_unsetCmd)
 
-	carapace.Gen(share_lock_unsetCmd).PositionalCompletion(action.ActionShareLocks())
+	carapace.Gen(share_lock_unsetCmd).PositionalCompletion(action.ActionShareLocks(share_lock_unsetCmd))
 }

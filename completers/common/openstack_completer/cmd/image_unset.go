@@ -19,5 +19,5 @@ func init() {
 	image_unsetCmd.Flags().String("tag", "", "Unset a tag on this image (repeat option to unset multiple tags)")
 	imageCmd.AddCommand(image_unsetCmd)
 
-	carapace.Gen(image_unsetCmd).PositionalCompletion(action.ActionImages())
+	carapace.Gen(image_unsetCmd).PositionalCompletion(action.ActionImages(image_unsetCmd))
 }

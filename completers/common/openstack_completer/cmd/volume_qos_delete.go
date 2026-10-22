@@ -18,5 +18,5 @@ func init() {
 	volume_qos_deleteCmd.Flags().Bool("force", false, "Allow to delete in-use QoS specification(s)")
 	volume_qosCmd.AddCommand(volume_qos_deleteCmd)
 
-	carapace.Gen(volume_qos_deleteCmd).PositionalAnyCompletion(action.ActionVolumeQosSpecs())
+	carapace.Gen(volume_qos_deleteCmd).PositionalAnyCompletion(action.ActionVolumeQosSpecs(volume_qos_deleteCmd))
 }

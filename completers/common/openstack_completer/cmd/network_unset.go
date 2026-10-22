@@ -20,5 +20,5 @@ func init() {
 	network_unsetCmd.Flags().String("tag", "", "Tag to be removed from the network (repeat option to remove multiple tags)")
 	networkCmd.AddCommand(network_unsetCmd)
 
-	carapace.Gen(network_unsetCmd).PositionalCompletion(action.ActionNetworks())
+	carapace.Gen(network_unsetCmd).PositionalCompletion(action.ActionNetworks(network_unsetCmd))
 }

@@ -18,7 +18,7 @@ func init() {
 	server_remove_floatingCmd.AddCommand(server_remove_floating_ipCmd)
 
 	carapace.Gen(server_remove_floating_ipCmd).PositionalCompletion(
-		action.ActionServers(),
-		action.ActionFloatingIPs(),
+		action.ActionServers(server_remove_floating_ipCmd),
+		action.ActionFloatingIPs(server_remove_floating_ipCmd),
 	)
 }

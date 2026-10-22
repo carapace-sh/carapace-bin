@@ -19,8 +19,8 @@ func init() {
 	share_group_type_accessCmd.AddCommand(share_group_type_access_deleteCmd)
 
 	carapace.Gen(share_group_type_access_deleteCmd).FlagCompletion(carapace.ActionMap{
-		"project-domain": action.ActionDomains(),
+		"project-domain": action.ActionDomains(share_group_type_access_deleteCmd),
 	})
 
-	carapace.Gen(share_group_type_access_deleteCmd).PositionalCompletion(action.ActionShareGroupTypes())
+	carapace.Gen(share_group_type_access_deleteCmd).PositionalCompletion(action.ActionShareGroupTypes(share_group_type_access_deleteCmd))
 }

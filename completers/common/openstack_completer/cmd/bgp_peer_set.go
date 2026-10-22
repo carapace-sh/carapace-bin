@@ -19,5 +19,5 @@ func init() {
 	bgp_peer_setCmd.Flags().String("password", "", "Updated authentication password")
 	bgp_peerCmd.AddCommand(bgp_peer_setCmd)
 
-	carapace.Gen(bgp_peer_setCmd).PositionalCompletion(action.ActionBgpPeers())
+	carapace.Gen(bgp_peer_setCmd).PositionalCompletion(action.ActionBgpPeers(bgp_peer_setCmd))
 }

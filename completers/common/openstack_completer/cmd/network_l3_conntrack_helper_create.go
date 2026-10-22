@@ -34,6 +34,6 @@ func init() {
 	carapace.Gen(network_l3_conntrack_helper_createCmd).FlagCompletion(carapace.ActionMap{
 		"column": action.ActionColumns(network_l3_conntrack_helper_createCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
-		"port":   action.ActionPorts(),
+		"port":   action.ActionPorts(network_l3_conntrack_helper_createCmd),
 	})
 }

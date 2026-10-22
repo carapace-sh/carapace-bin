@@ -18,5 +18,5 @@ func init() {
 	volume_snapshot_unsetCmd.Flags().String("property", "", "Property to remove from snapshot (repeat option to remove multiple properties)")
 	volume_snapshotCmd.AddCommand(volume_snapshot_unsetCmd)
 
-	carapace.Gen(volume_snapshot_unsetCmd).PositionalCompletion(action.ActionVolumeSnapshots())
+	carapace.Gen(volume_snapshot_unsetCmd).PositionalCompletion(action.ActionVolumeSnapshots(volume_snapshot_unsetCmd))
 }

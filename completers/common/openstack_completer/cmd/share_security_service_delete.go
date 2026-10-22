@@ -17,5 +17,5 @@ func init() {
 
 	share_security_serviceCmd.AddCommand(share_security_service_deleteCmd)
 
-	carapace.Gen(share_security_service_deleteCmd).PositionalAnyCompletion(action.ActionShareSecurityServices())
+	carapace.Gen(share_security_service_deleteCmd).PositionalAnyCompletion(action.ActionShareSecurityServices(share_security_service_deleteCmd))
 }

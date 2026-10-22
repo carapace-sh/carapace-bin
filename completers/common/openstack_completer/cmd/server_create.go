@@ -65,20 +65,20 @@ func init() {
 	serverCmd.AddCommand(server_createCmd)
 
 	carapace.Gen(server_createCmd).FlagCompletion(carapace.ActionMap{
-		"availability-zone": action.ActionAvailabilityZones(),
+		"availability-zone": action.ActionAvailabilityZones(server_createCmd),
 		"block-device":      carapace.ActionFiles(),
 		"column":            action.ActionColumns(server_createCmd),
 		"file":              carapace.ActionFiles(),
-		"flavor":            action.ActionFlavors(),
+		"flavor":            action.ActionFlavors(server_createCmd),
 		"format":            carapace.ActionValues("json", "shell", "table", "value", "yaml"),
-		"image":             action.ActionImages(),
-		"key-name":          action.ActionKeypairs(),
-		"network":           action.ActionNetworks(),
-		"port":              action.ActionPorts(),
-		"security-group":    action.ActionSecurityGroups(),
-		"server-group":      action.ActionServerGroups(),
-		"snapshot":          action.ActionImages(),
+		"image":             action.ActionImages(server_createCmd),
+		"key-name":          action.ActionKeypairs(server_createCmd),
+		"network":           action.ActionNetworks(server_createCmd),
+		"port":              action.ActionPorts(server_createCmd),
+		"security-group":    action.ActionSecurityGroups(server_createCmd),
+		"server-group":      action.ActionServerGroups(server_createCmd),
+		"snapshot":          action.ActionImages(server_createCmd),
 		"user-data":         carapace.ActionFiles(),
-		"volume":            action.ActionVolumes(),
+		"volume":            action.ActionVolumes(server_createCmd),
 	})
 }

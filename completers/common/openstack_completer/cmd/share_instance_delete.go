@@ -18,5 +18,5 @@ func init() {
 	share_instance_deleteCmd.Flags().Bool("wait", false, "Wait for share instance deletion.")
 	share_instanceCmd.AddCommand(share_instance_deleteCmd)
 
-	carapace.Gen(share_instance_deleteCmd).PositionalAnyCompletion(action.ActionShareInstances())
+	carapace.Gen(share_instance_deleteCmd).PositionalAnyCompletion(action.ActionShareInstances(share_instance_deleteCmd))
 }

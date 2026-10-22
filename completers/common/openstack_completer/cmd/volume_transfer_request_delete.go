@@ -17,5 +17,5 @@ func init() {
 
 	volume_transfer_requestCmd.AddCommand(volume_transfer_request_deleteCmd)
 
-	carapace.Gen(volume_transfer_request_deleteCmd).PositionalAnyCompletion(action.ActionVolumeTransfers())
+	carapace.Gen(volume_transfer_request_deleteCmd).PositionalAnyCompletion(action.ActionVolumeTransfers(volume_transfer_request_deleteCmd))
 }

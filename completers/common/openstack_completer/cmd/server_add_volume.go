@@ -34,7 +34,7 @@ func init() {
 	})
 
 	carapace.Gen(server_add_volumeCmd).PositionalCompletion(
-		action.ActionServers(),
-		action.ActionVolumes(),
+		action.ActionServers(server_add_volumeCmd),
+		action.ActionVolumes(server_add_volumeCmd),
 	)
 }

@@ -45,11 +45,11 @@ func init() {
 	volumeCmd.AddCommand(volume_createCmd)
 
 	carapace.Gen(volume_createCmd).FlagCompletion(carapace.ActionMap{
-		"availability-zone": action.ActionAvailabilityZones(),
+		"availability-zone": action.ActionAvailabilityZones(volume_createCmd),
 		"column":            action.ActionColumns(volume_createCmd),
-		"consistency-group": action.ActionConsistencyGroups(),
+		"consistency-group": action.ActionConsistencyGroups(volume_createCmd),
 		"format":            carapace.ActionValues("json", "shell", "table", "value", "yaml"),
-		"image":             action.ActionImages(),
-		"snapshot":          action.ActionVolumeSnapshots(),
+		"image":             action.ActionImages(volume_createCmd),
+		"snapshot":          action.ActionVolumeSnapshots(volume_createCmd),
 	})
 }

@@ -25,5 +25,5 @@ func init() {
 	subnet_unsetCmd.Flags().String("tag", "", "Tag to be removed from the subnet (repeat option to remove multiple tags)")
 	subnetCmd.AddCommand(subnet_unsetCmd)
 
-	carapace.Gen(subnet_unsetCmd).PositionalCompletion(action.ActionSubnets())
+	carapace.Gen(subnet_unsetCmd).PositionalCompletion(action.ActionSubnets(subnet_unsetCmd))
 }

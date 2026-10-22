@@ -17,5 +17,5 @@ func init() {
 
 	network_rbacCmd.AddCommand(network_rbac_deleteCmd)
 
-	carapace.Gen(network_rbac_deleteCmd).PositionalAnyCompletion(action.ActionNetworkRbacPolicies())
+	carapace.Gen(network_rbac_deleteCmd).PositionalAnyCompletion(action.ActionNetworkRbacPolicies(network_rbac_deleteCmd))
 }

@@ -22,5 +22,5 @@ func init() {
 	bgp_speaker_setCmd.Flags().Bool("no-advertise-tenant-networks", false, "Disable the advertisement of tenant network routes by the BGP speaker.")
 	bgp_speakerCmd.AddCommand(bgp_speaker_setCmd)
 
-	carapace.Gen(bgp_speaker_setCmd).PositionalCompletion(action.ActionBgpSpeakers())
+	carapace.Gen(bgp_speaker_setCmd).PositionalCompletion(action.ActionBgpSpeakers(bgp_speaker_setCmd))
 }

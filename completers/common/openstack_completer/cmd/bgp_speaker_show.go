@@ -30,5 +30,5 @@ func init() {
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 
-	carapace.Gen(bgp_speaker_showCmd).PositionalCompletion(action.ActionBgpSpeakers())
+	carapace.Gen(bgp_speaker_showCmd).PositionalCompletion(action.ActionBgpSpeakers(bgp_speaker_showCmd))
 }

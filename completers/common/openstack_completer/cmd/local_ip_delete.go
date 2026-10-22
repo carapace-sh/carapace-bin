@@ -17,5 +17,5 @@ func init() {
 
 	local_ipCmd.AddCommand(local_ip_deleteCmd)
 
-	carapace.Gen(local_ip_deleteCmd).PositionalAnyCompletion(action.ActionLocalIPs())
+	carapace.Gen(local_ip_deleteCmd).PositionalAnyCompletion(action.ActionLocalIPs(local_ip_deleteCmd))
 }

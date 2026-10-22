@@ -32,9 +32,9 @@ func init() {
 		"column":      action.ActionColumns(keypair_showCmd),
 		"format":      carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 		"public-key":  carapace.ActionFiles(),
-		"user":        action.ActionUsers(),
-		"user-domain": action.ActionDomains(),
+		"user":        action.ActionUsers(keypair_showCmd),
+		"user-domain": action.ActionDomains(keypair_showCmd),
 	})
 
-	carapace.Gen(keypair_showCmd).PositionalCompletion(action.ActionKeypairs())
+	carapace.Gen(keypair_showCmd).PositionalCompletion(action.ActionKeypairs(keypair_showCmd))
 }

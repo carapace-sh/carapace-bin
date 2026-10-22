@@ -18,7 +18,7 @@ func init() {
 	server_remove_securityCmd.AddCommand(server_remove_security_groupCmd)
 
 	carapace.Gen(server_remove_security_groupCmd).PositionalCompletion(
-		action.ActionServers(),
-		action.ActionSecurityGroups(),
+		action.ActionServers(server_remove_security_groupCmd),
+		action.ActionSecurityGroups(server_remove_security_groupCmd),
 	)
 }

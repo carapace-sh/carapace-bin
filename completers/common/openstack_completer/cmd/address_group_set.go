@@ -21,5 +21,5 @@ func init() {
 	address_group_setCmd.Flags().String("name", "", "Set address group name")
 	address_groupCmd.AddCommand(address_group_setCmd)
 
-	carapace.Gen(address_group_setCmd).PositionalCompletion(action.ActionAddressGroups())
+	carapace.Gen(address_group_setCmd).PositionalCompletion(action.ActionAddressGroups(address_group_setCmd))
 }

@@ -18,7 +18,7 @@ func init() {
 	server_removeCmd.AddCommand(server_remove_networkCmd)
 
 	carapace.Gen(server_remove_networkCmd).PositionalCompletion(
-		action.ActionServers(),
-		action.ActionNetworks(),
+		action.ActionServers(server_remove_networkCmd),
+		action.ActionNetworks(server_remove_networkCmd),
 	)
 }

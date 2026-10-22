@@ -39,9 +39,9 @@ func init() {
 		"agent-type":  carapace.ActionValues("bgp", "dhcp", "open-vswitch", "linux-bridge", "ofa", "l3", "loadbalancer", "metering", "metadata", "macvtap", "nic", "baremetal", "ovn-controller", "ovn-controller-gateway", "ovn-metadata", "ovn-agent"),
 		"column":      action.ActionColumns(network_agent_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
-		"network":     action.ActionNetworks(),
+		"network":     action.ActionNetworks(network_agent_listCmd),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"router":      action.ActionRouters(),
+		"router":      action.ActionRouters(network_agent_listCmd),
 		"sort-column": action.ActionColumns(network_agent_listCmd),
 	})
 }

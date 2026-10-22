@@ -30,5 +30,5 @@ func init() {
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 
-	carapace.Gen(hypervisor_showCmd).PositionalCompletion(action.ActionHypervisors())
+	carapace.Gen(hypervisor_showCmd).PositionalCompletion(action.ActionHypervisors(hypervisor_showCmd))
 }

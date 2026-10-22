@@ -21,5 +21,5 @@ func init() {
 	network_segment_range_setCmd.Flags().String("name", "", "Set network segment name")
 	network_segment_rangeCmd.AddCommand(network_segment_range_setCmd)
 
-	carapace.Gen(network_segment_range_setCmd).PositionalCompletion(action.ActionNetworkSegmentRanges())
+	carapace.Gen(network_segment_range_setCmd).PositionalCompletion(action.ActionNetworkSegmentRanges(network_segment_range_setCmd))
 }

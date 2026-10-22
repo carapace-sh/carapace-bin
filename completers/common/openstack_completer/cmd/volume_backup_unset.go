@@ -18,5 +18,5 @@ func init() {
 	volume_backup_unsetCmd.Flags().String("property", "", "Property to remove from this backup (repeat option to unset multiple values) ")
 	volume_backupCmd.AddCommand(volume_backup_unsetCmd)
 
-	carapace.Gen(volume_backup_unsetCmd).PositionalCompletion(action.ActionVolumeBackups())
+	carapace.Gen(volume_backup_unsetCmd).PositionalCompletion(action.ActionVolumeBackups(volume_backup_unsetCmd))
 }

@@ -31,7 +31,7 @@ func init() {
 	})
 
 	carapace.Gen(server_migration_showCmd).PositionalCompletion(
-		action.ActionServers(),
-		action.ActionServerMigrations(),
+		action.ActionServers(server_migration_showCmd),
+		action.ActionServerMigrations(server_migration_showCmd),
 	)
 }

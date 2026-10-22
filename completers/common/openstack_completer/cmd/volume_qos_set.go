@@ -19,5 +19,5 @@ func init() {
 	volume_qos_setCmd.Flags().String("property", "", "Property to add or modify for this QoS specification (repeat option to set multiple properties)")
 	volume_qosCmd.AddCommand(volume_qos_setCmd)
 
-	carapace.Gen(volume_qos_setCmd).PositionalCompletion(action.ActionVolumeQosSpecs())
+	carapace.Gen(volume_qos_setCmd).PositionalCompletion(action.ActionVolumeQosSpecs(volume_qos_setCmd))
 }

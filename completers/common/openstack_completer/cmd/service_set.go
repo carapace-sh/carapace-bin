@@ -22,5 +22,5 @@ func init() {
 	service_setCmd.Flags().String("type", "", "New service type (compute, image, identity, volume, etc)")
 	serviceCmd.AddCommand(service_setCmd)
 
-	carapace.Gen(service_setCmd).PositionalCompletion(action.ActionServices())
+	carapace.Gen(service_setCmd).PositionalCompletion(action.ActionServices(service_setCmd))
 }

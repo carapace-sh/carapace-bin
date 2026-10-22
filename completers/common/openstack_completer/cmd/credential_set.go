@@ -25,9 +25,9 @@ func init() {
 	credentialCmd.AddCommand(credential_setCmd)
 
 	carapace.Gen(credential_setCmd).FlagCompletion(carapace.ActionMap{
-		"project": action.ActionProjects(),
-		"user":    action.ActionUsers(),
+		"project": action.ActionProjects(credential_setCmd),
+		"user":    action.ActionUsers(credential_setCmd),
 	})
 
-	carapace.Gen(credential_setCmd).PositionalCompletion(action.ActionCredentials())
+	carapace.Gen(credential_setCmd).PositionalCompletion(action.ActionCredentials(credential_setCmd))
 }

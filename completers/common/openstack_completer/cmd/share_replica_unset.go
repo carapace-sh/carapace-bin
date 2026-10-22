@@ -18,5 +18,5 @@ func init() {
 	share_replica_unsetCmd.Flags().String("property", "", "Remove a property from replica (repeat option to remove multiple properties)")
 	share_replicaCmd.AddCommand(share_replica_unsetCmd)
 
-	carapace.Gen(share_replica_unsetCmd).PositionalCompletion(action.ActionShareReplicas())
+	carapace.Gen(share_replica_unsetCmd).PositionalCompletion(action.ActionShareReplicas(share_replica_unsetCmd))
 }

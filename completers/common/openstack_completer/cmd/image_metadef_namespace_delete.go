@@ -17,5 +17,5 @@ func init() {
 
 	image_metadef_namespaceCmd.AddCommand(image_metadef_namespace_deleteCmd)
 
-	carapace.Gen(image_metadef_namespace_deleteCmd).PositionalAnyCompletion(action.ActionImageMetadefNamespaces())
+	carapace.Gen(image_metadef_namespace_deleteCmd).PositionalAnyCompletion(action.ActionImageMetadefNamespaces(image_metadef_namespace_deleteCmd))
 }

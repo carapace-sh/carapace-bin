@@ -17,5 +17,5 @@ func init() {
 
 	serverCmd.AddCommand(server_unpauseCmd)
 
-	carapace.Gen(server_unpauseCmd).PositionalCompletion(action.ActionServers())
+	carapace.Gen(server_unpauseCmd).PositionalCompletion(action.ActionServers(server_unpauseCmd))
 }

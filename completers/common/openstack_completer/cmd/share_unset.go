@@ -20,5 +20,5 @@ func init() {
 	share_unsetCmd.Flags().String("property", "", "Remove a property from share (repeat option to remove multiple properties)")
 	shareCmd.AddCommand(share_unsetCmd)
 
-	carapace.Gen(share_unsetCmd).PositionalCompletion(action.ActionShares())
+	carapace.Gen(share_unsetCmd).PositionalCompletion(action.ActionShares(share_unsetCmd))
 }

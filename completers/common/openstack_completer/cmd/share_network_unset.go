@@ -20,5 +20,5 @@ func init() {
 	share_network_unsetCmd.Flags().String("security-service", "", "Disassociate a security service from the share network.")
 	share_networkCmd.AddCommand(share_network_unsetCmd)
 
-	carapace.Gen(share_network_unsetCmd).PositionalCompletion(action.ActionShareNetworks())
+	carapace.Gen(share_network_unsetCmd).PositionalCompletion(action.ActionShareNetworks(share_network_unsetCmd))
 }

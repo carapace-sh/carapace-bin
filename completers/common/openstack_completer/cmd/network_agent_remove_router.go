@@ -19,7 +19,7 @@ func init() {
 	network_agent_removeCmd.AddCommand(network_agent_remove_routerCmd)
 
 	carapace.Gen(network_agent_remove_routerCmd).PositionalCompletion(
-		action.ActionNetworkAgents(),
-		action.ActionRouters(),
+		action.ActionNetworkAgents(network_agent_remove_routerCmd),
+		action.ActionRouters(network_agent_remove_routerCmd),
 	)
 }

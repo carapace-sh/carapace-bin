@@ -19,5 +19,5 @@ func init() {
 	local_ip_setCmd.Flags().String("name", "", "Set local IP name")
 	local_ipCmd.AddCommand(local_ip_setCmd)
 
-	carapace.Gen(local_ip_setCmd).PositionalCompletion(action.ActionLocalIPs())
+	carapace.Gen(local_ip_setCmd).PositionalCompletion(action.ActionLocalIPs(local_ip_setCmd))
 }

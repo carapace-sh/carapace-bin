@@ -24,5 +24,5 @@ func init() {
 	server_migrateCmd.Flags().Bool("wait", false, "Wait for migrate to complete")
 	serverCmd.AddCommand(server_migrateCmd)
 
-	carapace.Gen(server_migrateCmd).PositionalCompletion(action.ActionServers())
+	carapace.Gen(server_migrateCmd).PositionalCompletion(action.ActionServers(server_migrateCmd))
 }

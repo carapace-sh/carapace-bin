@@ -30,5 +30,5 @@ func init() {
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 
-	carapace.Gen(bgp_peer_showCmd).PositionalCompletion(action.ActionBgpPeers())
+	carapace.Gen(bgp_peer_showCmd).PositionalCompletion(action.ActionBgpPeers(bgp_peer_showCmd))
 }

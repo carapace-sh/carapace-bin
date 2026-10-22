@@ -27,10 +27,10 @@ func init() {
 	floating_ipCmd.AddCommand(floating_ip_setCmd)
 
 	carapace.Gen(floating_ip_setCmd).FlagCompletion(carapace.ActionMap{
-		"port":       action.ActionPorts(),
-		"qos-policy": action.ActionNetworkQosPolicies(),
-		"router":     action.ActionRouters(),
+		"port":       action.ActionPorts(floating_ip_setCmd),
+		"qos-policy": action.ActionNetworkQosPolicies(floating_ip_setCmd),
+		"router":     action.ActionRouters(floating_ip_setCmd),
 	})
 
-	carapace.Gen(floating_ip_setCmd).PositionalCompletion(action.ActionFloatingIPs())
+	carapace.Gen(floating_ip_setCmd).PositionalCompletion(action.ActionFloatingIPs(floating_ip_setCmd))
 }

@@ -18,7 +18,7 @@ func init() {
 	network_flavor_removeCmd.AddCommand(network_flavor_remove_profileCmd)
 
 	carapace.Gen(network_flavor_remove_profileCmd).PositionalCompletion(
-		action.ActionNetworkFlavors(),
-		action.ActionNetworkFlavorProfiles(),
+		action.ActionNetworkFlavors(network_flavor_remove_profileCmd),
+		action.ActionNetworkFlavorProfiles(network_flavor_remove_profileCmd),
 	)
 }

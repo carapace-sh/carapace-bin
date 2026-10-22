@@ -19,5 +19,5 @@ func init() {
 	network_trunk_unsetCmd.MarkFlagRequired("subport")
 	network_trunkCmd.AddCommand(network_trunk_unsetCmd)
 
-	carapace.Gen(network_trunk_unsetCmd).PositionalCompletion(action.ActionNetworkTrunks())
+	carapace.Gen(network_trunk_unsetCmd).PositionalCompletion(action.ActionNetworkTrunks(network_trunk_unsetCmd))
 }

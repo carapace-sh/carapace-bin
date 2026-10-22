@@ -34,10 +34,10 @@ func init() {
 	limitsCmd.AddCommand(limits_showCmd)
 
 	carapace.Gen(limits_showCmd).FlagCompletion(carapace.ActionMap{
-		"domain":         action.ActionDomains(),
+		"domain":         action.ActionDomains(limits_showCmd),
 		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
-		"project":        action.ActionProjects(),
-		"project-domain": action.ActionDomains(),
+		"project":        action.ActionProjects(limits_showCmd),
+		"project-domain": action.ActionDomains(limits_showCmd),
 		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
 	})
 }

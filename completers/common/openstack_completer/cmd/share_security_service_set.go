@@ -27,10 +27,10 @@ func init() {
 	share_security_serviceCmd.AddCommand(share_security_service_setCmd)
 
 	carapace.Gen(share_security_service_setCmd).FlagCompletion(carapace.ActionMap{
-		"domain": action.ActionDomains(),
-		"server": action.ActionServers(),
-		"user":   action.ActionUsers(),
+		"domain": action.ActionDomains(share_security_service_setCmd),
+		"server": action.ActionServers(share_security_service_setCmd),
+		"user":   action.ActionUsers(share_security_service_setCmd),
 	})
 
-	carapace.Gen(share_security_service_setCmd).PositionalCompletion(action.ActionShareSecurityServices())
+	carapace.Gen(share_security_service_setCmd).PositionalCompletion(action.ActionShareSecurityServices(share_security_service_setCmd))
 }

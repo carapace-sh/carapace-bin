@@ -37,8 +37,8 @@ func init() {
 	carapace.Gen(trust_createCmd).FlagCompletion(carapace.ActionMap{
 		"column":         action.ActionColumns(trust_createCmd),
 		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
-		"project":        action.ActionProjects(),
-		"project-domain": action.ActionDomains(),
-		"role":           action.ActionRoles(),
+		"project":        action.ActionProjects(trust_createCmd),
+		"project-domain": action.ActionDomains(trust_createCmd),
+		"role":           action.ActionRoles(trust_createCmd),
 	})
 }

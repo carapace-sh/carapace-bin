@@ -30,5 +30,5 @@ func init() {
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 
-	carapace.Gen(accelerator_deployable_showCmd).PositionalCompletion(action.ActionAcceleratorDeployables())
+	carapace.Gen(accelerator_deployable_showCmd).PositionalCompletion(action.ActionAcceleratorDeployables(accelerator_deployable_showCmd))
 }

@@ -54,20 +54,20 @@ func init() {
 	shareCmd.AddCommand(share_listCmd)
 
 	carapace.Gen(share_listCmd).FlagCompletion(carapace.ActionMap{
-		"availability-zone": action.ActionAvailabilityZones(),
+		"availability-zone": action.ActionAvailabilityZones(share_listCmd),
 		"column":            action.ActionColumns(share_listCmd),
 		"format":            carapace.ActionValues("csv", "json", "table", "value", "yaml"),
-		"project":           action.ActionProjects(),
-		"project-domain":    action.ActionDomains(),
+		"project":           action.ActionProjects(share_listCmd),
+		"project-domain":    action.ActionDomains(share_listCmd),
 		"quote":             carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"share-group":       action.ActionShareGroups(),
-		"share-network":     action.ActionShareNetworks(),
-		"share-server":      action.ActionShareServers(),
-		"share-type":        action.ActionShareTypes(),
-		"snapshot":          action.ActionShareSnapshots(),
+		"share-group":       action.ActionShareGroups(share_listCmd),
+		"share-network":     action.ActionShareNetworks(share_listCmd),
+		"share-server":      action.ActionShareServers(share_listCmd),
+		"share-type":        action.ActionShareTypes(share_listCmd),
+		"snapshot":          action.ActionShareSnapshots(share_listCmd),
 		"sort-column":       action.ActionColumns(share_listCmd),
 		"status":            carapace.ActionValues("available", "creating", "creating_from_snapshot", "deleting", "deleted", "error", "error_deleting", "manage_starting", "manage_error", "unmanage_starting", "unmanage_error", "extending", "extending_error", "shrinking", "shrinking_error", "reverting", "reverting_error", "awaiting_transfer", "replication_change", "server_migrating"),
-		"user":              action.ActionUsers(),
-		"user-domain":       action.ActionDomains(),
+		"user":              action.ActionUsers(share_listCmd),
+		"user-domain":       action.ActionDomains(share_listCmd),
 	})
 }

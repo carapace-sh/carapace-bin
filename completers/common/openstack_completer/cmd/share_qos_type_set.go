@@ -19,5 +19,5 @@ func init() {
 	share_qos_type_setCmd.Flags().String("spec", "", "Spec key and value of qos type that will be used for QoS type.")
 	share_qos_typeCmd.AddCommand(share_qos_type_setCmd)
 
-	carapace.Gen(share_qos_type_setCmd).PositionalCompletion(action.ActionShareQosTypes())
+	carapace.Gen(share_qos_type_setCmd).PositionalCompletion(action.ActionShareQosTypes(share_qos_type_setCmd))
 }

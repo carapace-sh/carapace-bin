@@ -22,8 +22,8 @@ func init() {
 	shareCmd.AddCommand(share_deleteCmd)
 
 	carapace.Gen(share_deleteCmd).FlagCompletion(carapace.ActionMap{
-		"share-group": action.ActionShareGroups(),
+		"share-group": action.ActionShareGroups(share_deleteCmd),
 	})
 
-	carapace.Gen(share_deleteCmd).PositionalAnyCompletion(action.ActionShares())
+	carapace.Gen(share_deleteCmd).PositionalAnyCompletion(action.ActionShares(share_deleteCmd))
 }

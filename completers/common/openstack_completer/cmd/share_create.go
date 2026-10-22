@@ -39,11 +39,11 @@ func init() {
 	shareCmd.AddCommand(share_createCmd)
 
 	carapace.Gen(share_createCmd).FlagCompletion(carapace.ActionMap{
-		"availability-zone": action.ActionAvailabilityZones(),
+		"availability-zone": action.ActionAvailabilityZones(share_createCmd),
 		"column":            action.ActionColumns(share_createCmd),
 		"format":            carapace.ActionValues("json", "shell", "table", "value", "yaml"),
-		"share-group":       action.ActionShareGroups(),
-		"share-network":     action.ActionShareNetworks(),
-		"share-type":        action.ActionShareTypes(),
+		"share-group":       action.ActionShareGroups(share_createCmd),
+		"share-network":     action.ActionShareNetworks(share_createCmd),
+		"share-type":        action.ActionShareTypes(share_createCmd),
 	})
 }

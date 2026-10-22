@@ -21,5 +21,5 @@ func init() {
 	share_type_setCmd.Flags().String("public", "", "New visibility of the share type.")
 	share_typeCmd.AddCommand(share_type_setCmd)
 
-	carapace.Gen(share_type_setCmd).PositionalCompletion(action.ActionShareTypes())
+	carapace.Gen(share_type_setCmd).PositionalCompletion(action.ActionShareTypes(share_type_setCmd))
 }

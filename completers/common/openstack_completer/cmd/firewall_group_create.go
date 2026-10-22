@@ -42,8 +42,8 @@ func init() {
 	carapace.Gen(firewall_group_createCmd).FlagCompletion(carapace.ActionMap{
 		"column":         action.ActionColumns(firewall_group_createCmd),
 		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
-		"port":           action.ActionPorts(),
-		"project":        action.ActionProjects(),
-		"project-domain": action.ActionDomains(),
+		"port":           action.ActionPorts(firewall_group_createCmd),
+		"project":        action.ActionProjects(firewall_group_createCmd),
+		"project-domain": action.ActionDomains(firewall_group_createCmd),
 	})
 }

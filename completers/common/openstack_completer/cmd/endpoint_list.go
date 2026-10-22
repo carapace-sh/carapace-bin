@@ -37,10 +37,10 @@ func init() {
 		"column":         action.ActionColumns(endpoint_listCmd),
 		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"interface":      carapace.ActionValues("admin", "public", "internal"),
-		"project":        action.ActionProjects(),
-		"project-domain": action.ActionDomains(),
+		"project":        action.ActionProjects(endpoint_listCmd),
+		"project-domain": action.ActionDomains(endpoint_listCmd),
 		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"region":         action.ActionRegions(),
+		"region":         action.ActionRegions(endpoint_listCmd),
 		"sort-column":    action.ActionColumns(endpoint_listCmd),
 	})
 }

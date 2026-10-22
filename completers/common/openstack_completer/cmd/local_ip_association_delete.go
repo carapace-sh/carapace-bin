@@ -18,7 +18,7 @@ func init() {
 	local_ip_associationCmd.AddCommand(local_ip_association_deleteCmd)
 
 	carapace.Gen(local_ip_association_deleteCmd).PositionalCompletion(
-		action.ActionLocalIPs(),
-		action.ActionPorts(),
+		action.ActionLocalIPs(local_ip_association_deleteCmd),
+		action.ActionPorts(local_ip_association_deleteCmd),
 	)
 }

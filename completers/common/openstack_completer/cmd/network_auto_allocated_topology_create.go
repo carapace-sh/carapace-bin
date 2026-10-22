@@ -31,7 +31,7 @@ func init() {
 
 	carapace.Gen(network_auto_allocated_topology_createCmd).FlagCompletion(carapace.ActionMap{
 		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
-		"project":        action.ActionProjects(),
-		"project-domain": action.ActionDomains(),
+		"project":        action.ActionProjects(network_auto_allocated_topology_createCmd),
+		"project-domain": action.ActionDomains(network_auto_allocated_topology_createCmd),
 	})
 }

@@ -39,10 +39,10 @@ func init() {
 		"action":                carapace.ActionValues("access_as_external", "access_as_shared"),
 		"column":                action.ActionColumns(network_rbac_createCmd),
 		"format":                carapace.ActionValues("json", "shell", "table", "value", "yaml"),
-		"project":               action.ActionProjects(),
-		"project-domain":        action.ActionDomains(),
-		"target-project":        action.ActionProjects(),
-		"target-project-domain": action.ActionDomains(),
+		"project":               action.ActionProjects(network_rbac_createCmd),
+		"project-domain":        action.ActionDomains(network_rbac_createCmd),
+		"target-project":        action.ActionProjects(network_rbac_createCmd),
+		"target-project-domain": action.ActionDomains(network_rbac_createCmd),
 		"type":                  carapace.ActionValues("address_group", "address_scope", "security_group", "subnetpool", "qos_policy", "network"),
 	})
 }

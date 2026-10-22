@@ -17,5 +17,5 @@ func init() {
 
 	bgpvpnCmd.AddCommand(bgpvpn_deleteCmd)
 
-	carapace.Gen(bgpvpn_deleteCmd).PositionalAnyCompletion(action.ActionBgpvpns())
+	carapace.Gen(bgpvpn_deleteCmd).PositionalAnyCompletion(action.ActionBgpvpns(bgpvpn_deleteCmd))
 }

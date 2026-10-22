@@ -17,5 +17,5 @@ func init() {
 
 	floating_ipCmd.AddCommand(floating_ip_deleteCmd)
 
-	carapace.Gen(floating_ip_deleteCmd).PositionalAnyCompletion(action.ActionFloatingIPs())
+	carapace.Gen(floating_ip_deleteCmd).PositionalAnyCompletion(action.ActionFloatingIPs(floating_ip_deleteCmd))
 }

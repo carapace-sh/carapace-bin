@@ -18,5 +18,5 @@ func init() {
 	volume_backup_deleteCmd.Flags().Bool("force", false, "Allow delete in state other than error or available")
 	volume_backupCmd.AddCommand(volume_backup_deleteCmd)
 
-	carapace.Gen(volume_backup_deleteCmd).PositionalAnyCompletion(action.ActionVolumeBackups())
+	carapace.Gen(volume_backup_deleteCmd).PositionalAnyCompletion(action.ActionVolumeBackups(volume_backup_deleteCmd))
 }

@@ -19,5 +19,5 @@ func init() {
 	share_backup_unsetCmd.Flags().Bool("name", false, "Unset a name to the backup.")
 	share_backupCmd.AddCommand(share_backup_unsetCmd)
 
-	carapace.Gen(share_backup_unsetCmd).PositionalCompletion(action.ActionShareBackups())
+	carapace.Gen(share_backup_unsetCmd).PositionalCompletion(action.ActionShareBackups(share_backup_unsetCmd))
 }

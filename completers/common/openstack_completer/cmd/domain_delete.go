@@ -17,5 +17,5 @@ func init() {
 
 	domainCmd.AddCommand(domain_deleteCmd)
 
-	carapace.Gen(domain_deleteCmd).PositionalAnyCompletion(action.ActionDomains())
+	carapace.Gen(domain_deleteCmd).PositionalAnyCompletion(action.ActionDomains(domain_deleteCmd))
 }

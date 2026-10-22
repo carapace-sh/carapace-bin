@@ -17,5 +17,5 @@ func init() {
 
 	flavorCmd.AddCommand(flavor_deleteCmd)
 
-	carapace.Gen(flavor_deleteCmd).PositionalAnyCompletion(action.ActionFlavors())
+	carapace.Gen(flavor_deleteCmd).PositionalAnyCompletion(action.ActionFlavors(flavor_deleteCmd))
 }

@@ -33,8 +33,8 @@ func init() {
 	request_tokenCmd.AddCommand(request_token_createCmd)
 
 	carapace.Gen(request_token_createCmd).FlagCompletion(carapace.ActionMap{
-		"domain":  action.ActionDomains(),
+		"domain":  action.ActionDomains(request_token_createCmd),
 		"format":  carapace.ActionValues("json", "shell", "table", "value", "yaml"),
-		"project": action.ActionProjects(),
+		"project": action.ActionProjects(request_token_createCmd),
 	})
 }

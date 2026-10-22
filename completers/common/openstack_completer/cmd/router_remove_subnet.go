@@ -18,7 +18,7 @@ func init() {
 	router_removeCmd.AddCommand(router_remove_subnetCmd)
 
 	carapace.Gen(router_remove_subnetCmd).PositionalCompletion(
-		action.ActionRouters(),
-		action.ActionSubnets(),
+		action.ActionRouters(router_remove_subnetCmd),
+		action.ActionSubnets(router_remove_subnetCmd),
 	)
 }

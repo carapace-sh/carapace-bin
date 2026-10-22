@@ -30,5 +30,5 @@ func init() {
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 
-	carapace.Gen(router_showCmd).PositionalCompletion(action.ActionRouters())
+	carapace.Gen(router_showCmd).PositionalCompletion(action.ActionRouters(router_showCmd))
 }

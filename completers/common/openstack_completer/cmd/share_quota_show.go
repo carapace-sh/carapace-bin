@@ -31,7 +31,7 @@ func init() {
 
 	carapace.Gen(share_quota_showCmd).FlagCompletion(carapace.ActionMap{
 		"format":     carapace.ActionValues("json", "shell", "table", "value", "yaml"),
-		"share-type": action.ActionShareTypes(),
-		"user":       action.ActionUsers(),
+		"share-type": action.ActionShareTypes(share_quota_showCmd),
+		"user":       action.ActionUsers(share_quota_showCmd),
 	})
 }

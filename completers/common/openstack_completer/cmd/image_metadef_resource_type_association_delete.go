@@ -19,7 +19,7 @@ func init() {
 	image_metadef_resource_type_associationCmd.AddCommand(image_metadef_resource_type_association_deleteCmd)
 
 	carapace.Gen(image_metadef_resource_type_association_deleteCmd).PositionalCompletion(
-		action.ActionImageMetadefNamespaces(),
-		action.ActionImageMetadefResourceTypes(),
+		action.ActionImageMetadefNamespaces(image_metadef_resource_type_association_deleteCmd),
+		action.ActionImageMetadefResourceTypes(image_metadef_resource_type_association_deleteCmd),
 	)
 }

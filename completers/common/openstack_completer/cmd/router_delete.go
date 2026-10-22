@@ -17,5 +17,5 @@ func init() {
 
 	routerCmd.AddCommand(router_deleteCmd)
 
-	carapace.Gen(router_deleteCmd).PositionalAnyCompletion(action.ActionRouters())
+	carapace.Gen(router_deleteCmd).PositionalAnyCompletion(action.ActionRouters(router_deleteCmd))
 }

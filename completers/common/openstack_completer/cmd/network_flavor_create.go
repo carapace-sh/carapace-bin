@@ -36,7 +36,7 @@ func init() {
 	carapace.Gen(network_flavor_createCmd).FlagCompletion(carapace.ActionMap{
 		"column":         action.ActionColumns(network_flavor_createCmd),
 		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
-		"project":        action.ActionProjects(),
-		"project-domain": action.ActionDomains(),
+		"project":        action.ActionProjects(network_flavor_createCmd),
+		"project-domain": action.ActionDomains(network_flavor_createCmd),
 	})
 }

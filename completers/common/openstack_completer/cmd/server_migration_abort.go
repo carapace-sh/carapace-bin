@@ -18,7 +18,7 @@ func init() {
 	server_migrationCmd.AddCommand(server_migration_abortCmd)
 
 	carapace.Gen(server_migration_abortCmd).PositionalCompletion(
-		action.ActionServers(),
-		action.ActionServerMigrations(),
+		action.ActionServers(server_migration_abortCmd),
+		action.ActionServerMigrations(server_migration_abortCmd),
 	)
 }

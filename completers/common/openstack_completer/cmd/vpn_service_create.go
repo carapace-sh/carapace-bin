@@ -36,11 +36,11 @@ func init() {
 
 	carapace.Gen(vpn_service_createCmd).FlagCompletion(carapace.ActionMap{
 		"column":         action.ActionColumns(vpn_service_createCmd),
-		"flavor":         action.ActionFlavors(),
+		"flavor":         action.ActionFlavors(vpn_service_createCmd),
 		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
-		"project":        action.ActionProjects(),
-		"project-domain": action.ActionDomains(),
-		"router":         action.ActionRouters(),
-		"subnet":         action.ActionSubnets(),
+		"project":        action.ActionProjects(vpn_service_createCmd),
+		"project-domain": action.ActionDomains(vpn_service_createCmd),
+		"router":         action.ActionRouters(vpn_service_createCmd),
+		"subnet":         action.ActionSubnets(vpn_service_createCmd),
 	})
 }

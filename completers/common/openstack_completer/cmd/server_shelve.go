@@ -19,5 +19,5 @@ func init() {
 	server_shelveCmd.Flags().Bool("wait", false, "Wait for shelve and/or offload operation to complete")
 	serverCmd.AddCommand(server_shelveCmd)
 
-	carapace.Gen(server_shelveCmd).PositionalCompletion(action.ActionServers())
+	carapace.Gen(server_shelveCmd).PositionalCompletion(action.ActionServers(server_shelveCmd))
 }

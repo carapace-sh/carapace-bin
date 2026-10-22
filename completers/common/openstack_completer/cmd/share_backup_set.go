@@ -24,5 +24,5 @@ func init() {
 		"status": carapace.ActionValues("available", "error", "creating", "deleting", "restoring"),
 	})
 
-	carapace.Gen(share_backup_setCmd).PositionalCompletion(action.ActionShareBackups())
+	carapace.Gen(share_backup_setCmd).PositionalCompletion(action.ActionShareBackups(share_backup_setCmd))
 }

@@ -17,5 +17,5 @@ func init() {
 
 	server_resizeCmd.AddCommand(server_resize_revertCmd)
 
-	carapace.Gen(server_resize_revertCmd).PositionalCompletion(action.ActionServers())
+	carapace.Gen(server_resize_revertCmd).PositionalCompletion(action.ActionServers(server_resize_revertCmd))
 }

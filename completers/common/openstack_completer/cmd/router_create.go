@@ -54,12 +54,12 @@ func init() {
 	routerCmd.AddCommand(router_createCmd)
 
 	carapace.Gen(router_createCmd).FlagCompletion(carapace.ActionMap{
-		"availability-zone-hint": action.ActionAvailabilityZones(),
+		"availability-zone-hint": action.ActionAvailabilityZones(router_createCmd),
 		"column":                 action.ActionColumns(router_createCmd),
-		"flavor":                 action.ActionFlavors(),
+		"flavor":                 action.ActionFlavors(router_createCmd),
 		"format":                 carapace.ActionValues("json", "shell", "table", "value", "yaml"),
-		"project":                action.ActionProjects(),
-		"project-domain":         action.ActionDomains(),
-		"qos-policy":             action.ActionNetworkQosPolicies(),
+		"project":                action.ActionProjects(router_createCmd),
+		"project-domain":         action.ActionDomains(router_createCmd),
+		"qos-policy":             action.ActionNetworkQosPolicies(router_createCmd),
 	})
 }

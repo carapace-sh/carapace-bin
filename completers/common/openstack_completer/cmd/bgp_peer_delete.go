@@ -17,5 +17,5 @@ func init() {
 
 	bgp_peerCmd.AddCommand(bgp_peer_deleteCmd)
 
-	carapace.Gen(bgp_peer_deleteCmd).PositionalAnyCompletion(action.ActionBgpPeers())
+	carapace.Gen(bgp_peer_deleteCmd).PositionalAnyCompletion(action.ActionBgpPeers(bgp_peer_deleteCmd))
 }

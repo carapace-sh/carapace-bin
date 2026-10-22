@@ -17,5 +17,5 @@ func init() {
 
 	server_dumpCmd.AddCommand(server_dump_createCmd)
 
-	carapace.Gen(server_dump_createCmd).PositionalCompletion(action.ActionServers())
+	carapace.Gen(server_dump_createCmd).PositionalCompletion(action.ActionServers(server_dump_createCmd))
 }

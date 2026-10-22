@@ -18,7 +18,7 @@ func init() {
 	server_removeCmd.AddCommand(server_remove_shareCmd)
 
 	carapace.Gen(server_remove_shareCmd).PositionalCompletion(
-		action.ActionServers(),
-		action.ActionShares(),
+		action.ActionServers(server_remove_shareCmd),
+		action.ActionShares(server_remove_shareCmd),
 	)
 }

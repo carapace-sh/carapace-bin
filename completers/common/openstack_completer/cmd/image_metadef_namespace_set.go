@@ -24,5 +24,5 @@ func init() {
 	image_metadef_namespace_setCmd.Flags().Bool("unprotected", false, "Allow metadef namespace to be deleted (default)")
 	image_metadef_namespaceCmd.AddCommand(image_metadef_namespace_setCmd)
 
-	carapace.Gen(image_metadef_namespace_setCmd).PositionalCompletion(action.ActionImageMetadefNamespaces())
+	carapace.Gen(image_metadef_namespace_setCmd).PositionalCompletion(action.ActionImageMetadefNamespaces(image_metadef_namespace_setCmd))
 }

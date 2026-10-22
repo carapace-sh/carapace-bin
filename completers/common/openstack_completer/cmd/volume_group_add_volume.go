@@ -18,7 +18,7 @@ func init() {
 	volume_group_addCmd.AddCommand(volume_group_add_volumeCmd)
 
 	carapace.Gen(volume_group_add_volumeCmd).PositionalCompletion(
-		action.ActionVolumeGroups(),
-		action.ActionVolumes(),
+		action.ActionVolumeGroups(volume_group_add_volumeCmd),
+		action.ActionVolumes(volume_group_add_volumeCmd),
 	)
 }

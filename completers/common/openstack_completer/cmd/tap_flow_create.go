@@ -40,8 +40,8 @@ func init() {
 		"column":         action.ActionColumns(tap_flow_createCmd),
 		"direction":      carapace.ActionValues("IN", "OUT", "BOTH"),
 		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
-		"port":           action.ActionPorts(),
-		"project":        action.ActionProjects(),
-		"project-domain": action.ActionDomains(),
+		"port":           action.ActionPorts(tap_flow_createCmd),
+		"project":        action.ActionProjects(tap_flow_createCmd),
+		"project-domain": action.ActionDomains(tap_flow_createCmd),
 	})
 }

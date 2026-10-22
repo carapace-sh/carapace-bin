@@ -25,5 +25,5 @@ func init() {
 	firewall_group_rule_unsetCmd.Flags().Bool("source-port", false, "Source port number or range(integer in [1, 65535] or range like 123:456)")
 	firewall_group_ruleCmd.AddCommand(firewall_group_rule_unsetCmd)
 
-	carapace.Gen(firewall_group_rule_unsetCmd).PositionalCompletion(action.ActionFirewallRules())
+	carapace.Gen(firewall_group_rule_unsetCmd).PositionalCompletion(action.ActionFirewallRules(firewall_group_rule_unsetCmd))
 }

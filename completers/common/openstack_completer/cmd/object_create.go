@@ -36,7 +36,7 @@ func init() {
 	})
 
 	carapace.Gen(object_createCmd).PositionalCompletion(
-		action.ActionContainers(),
+		action.ActionContainers(object_createCmd),
 		carapace.ActionFiles(),
 	)
 }

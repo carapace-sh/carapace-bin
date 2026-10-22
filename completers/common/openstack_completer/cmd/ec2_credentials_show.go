@@ -30,7 +30,7 @@ func init() {
 	carapace.Gen(ec2_credentials_showCmd).FlagCompletion(carapace.ActionMap{
 		"column":      action.ActionColumns(ec2_credentials_showCmd),
 		"format":      carapace.ActionValues("json", "shell", "table", "value", "yaml"),
-		"user":        action.ActionUsers(),
-		"user-domain": action.ActionDomains(),
+		"user":        action.ActionUsers(ec2_credentials_showCmd),
+		"user-domain": action.ActionDomains(ec2_credentials_showCmd),
 	})
 }

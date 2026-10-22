@@ -17,5 +17,5 @@ func init() {
 
 	address_groupCmd.AddCommand(address_group_deleteCmd)
 
-	carapace.Gen(address_group_deleteCmd).PositionalAnyCompletion(action.ActionAddressGroups())
+	carapace.Gen(address_group_deleteCmd).PositionalAnyCompletion(action.ActionAddressGroups(address_group_deleteCmd))
 }

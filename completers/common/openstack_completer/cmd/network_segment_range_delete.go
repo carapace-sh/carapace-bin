@@ -17,5 +17,5 @@ func init() {
 
 	network_segment_rangeCmd.AddCommand(network_segment_range_deleteCmd)
 
-	carapace.Gen(network_segment_range_deleteCmd).PositionalAnyCompletion(action.ActionNetworkSegmentRanges())
+	carapace.Gen(network_segment_range_deleteCmd).PositionalAnyCompletion(action.ActionNetworkSegmentRanges(network_segment_range_deleteCmd))
 }

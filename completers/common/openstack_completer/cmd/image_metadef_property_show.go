@@ -31,7 +31,7 @@ func init() {
 	})
 
 	carapace.Gen(image_metadef_property_showCmd).PositionalCompletion(
-		action.ActionImageMetadefNamespaces(),
-		action.ActionImageMetadefProperties(),
+		action.ActionImageMetadefNamespaces(image_metadef_property_showCmd),
+		action.ActionImageMetadefProperties(image_metadef_property_showCmd),
 	)
 }

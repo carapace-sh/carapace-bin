@@ -55,12 +55,12 @@ func init() {
 	networkCmd.AddCommand(network_createCmd)
 
 	carapace.Gen(network_createCmd).FlagCompletion(carapace.ActionMap{
-		"availability-zone-hint": action.ActionAvailabilityZones(),
+		"availability-zone-hint": action.ActionAvailabilityZones(network_createCmd),
 		"column":                 action.ActionColumns(network_createCmd),
 		"format":                 carapace.ActionValues("json", "shell", "table", "value", "yaml"),
-		"project":                action.ActionProjects(),
-		"project-domain":         action.ActionDomains(),
+		"project":                action.ActionProjects(network_createCmd),
+		"project-domain":         action.ActionDomains(network_createCmd),
 		"provider-network-type":  carapace.ActionValues("flat", "geneve", "gre", "local", "vlan", "vxlan"),
-		"qos-policy":             action.ActionNetworkQosPolicies(),
+		"qos-policy":             action.ActionNetworkQosPolicies(network_createCmd),
 	})
 }

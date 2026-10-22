@@ -17,5 +17,5 @@ func init() {
 
 	network_trunkCmd.AddCommand(network_trunk_deleteCmd)
 
-	carapace.Gen(network_trunk_deleteCmd).PositionalAnyCompletion(action.ActionNetworkTrunks())
+	carapace.Gen(network_trunk_deleteCmd).PositionalAnyCompletion(action.ActionNetworkTrunks(network_trunk_deleteCmd))
 }

@@ -40,5 +40,5 @@ func init() {
 		"sort-column": action.ActionColumns(server_event_listCmd),
 	})
 
-	carapace.Gen(server_event_listCmd).PositionalCompletion(action.ActionServers())
+	carapace.Gen(server_event_listCmd).PositionalCompletion(action.ActionServers(server_event_listCmd))
 }

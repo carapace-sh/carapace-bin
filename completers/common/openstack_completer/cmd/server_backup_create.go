@@ -33,5 +33,5 @@ func init() {
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 
-	carapace.Gen(server_backup_createCmd).PositionalCompletion(action.ActionServers())
+	carapace.Gen(server_backup_createCmd).PositionalCompletion(action.ActionServers(server_backup_createCmd))
 }

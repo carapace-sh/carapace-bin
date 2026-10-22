@@ -41,5 +41,5 @@ func init() {
 		"sort-column": action.ActionColumns(object_listCmd),
 	})
 
-	carapace.Gen(object_listCmd).PositionalCompletion(action.ActionContainers())
+	carapace.Gen(object_listCmd).PositionalCompletion(action.ActionContainers(object_listCmd))
 }

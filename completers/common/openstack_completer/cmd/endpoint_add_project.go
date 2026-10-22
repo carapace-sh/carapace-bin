@@ -19,6 +19,6 @@ func init() {
 	endpoint_addCmd.AddCommand(endpoint_add_projectCmd)
 
 	carapace.Gen(endpoint_add_projectCmd).FlagCompletion(carapace.ActionMap{
-		"project-domain": action.ActionDomains(),
+		"project-domain": action.ActionDomains(endpoint_add_projectCmd),
 	})
 }

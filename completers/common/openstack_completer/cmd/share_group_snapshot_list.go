@@ -39,7 +39,7 @@ func init() {
 		"column":      action.ActionColumns(share_group_snapshot_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"share-group": action.ActionShareGroups(),
+		"share-group": action.ActionShareGroups(share_group_snapshot_listCmd),
 		"sort-column": action.ActionColumns(share_group_snapshot_listCmd),
 	})
 }

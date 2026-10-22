@@ -40,8 +40,8 @@ func init() {
 		"column":         action.ActionColumns(address_scope_listCmd),
 		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"ip-version":     carapace.ActionValues("4", "6"),
-		"project":        action.ActionProjects(),
-		"project-domain": action.ActionDomains(),
+		"project":        action.ActionProjects(address_scope_listCmd),
+		"project-domain": action.ActionDomains(address_scope_listCmd),
 		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
 		"sort-column":    action.ActionColumns(address_scope_listCmd),
 	})

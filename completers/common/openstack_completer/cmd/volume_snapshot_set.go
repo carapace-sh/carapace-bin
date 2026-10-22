@@ -26,5 +26,5 @@ func init() {
 		"state": carapace.ActionValues("available", "error", "creating", "deleting", "error_deleting"),
 	})
 
-	carapace.Gen(volume_snapshot_setCmd).PositionalCompletion(action.ActionVolumeSnapshots())
+	carapace.Gen(volume_snapshot_setCmd).PositionalCompletion(action.ActionVolumeSnapshots(volume_snapshot_setCmd))
 }

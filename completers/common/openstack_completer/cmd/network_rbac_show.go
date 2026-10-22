@@ -30,5 +30,5 @@ func init() {
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 
-	carapace.Gen(network_rbac_showCmd).PositionalCompletion(action.ActionNetworkRbacPolicies())
+	carapace.Gen(network_rbac_showCmd).PositionalCompletion(action.ActionNetworkRbacPolicies(network_rbac_showCmd))
 }

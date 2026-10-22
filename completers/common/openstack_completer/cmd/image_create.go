@@ -58,9 +58,9 @@ func init() {
 		"disk-format":      carapace.ActionValues("ami", "ari", "aki", "vhd", "vmdk", "raw", "qcow2", "vhdx", "vdi", "iso", "ploop"),
 		"file":             carapace.ActionFiles(),
 		"format":           carapace.ActionValues("json", "shell", "table", "value", "yaml"),
-		"project":          action.ActionProjects(),
-		"project-domain":   action.ActionDomains(),
+		"project":          action.ActionProjects(image_createCmd),
+		"project-domain":   action.ActionDomains(image_createCmd),
 		"sign-key-path":    carapace.ActionFiles(),
-		"volume":           action.ActionVolumes(),
+		"volume":           action.ActionVolumes(image_createCmd),
 	})
 }

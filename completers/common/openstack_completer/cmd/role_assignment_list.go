@@ -44,14 +44,14 @@ func init() {
 
 	carapace.Gen(role_assignment_listCmd).FlagCompletion(carapace.ActionMap{
 		"column":         action.ActionColumns(role_assignment_listCmd),
-		"domain":         action.ActionDomains(),
+		"domain":         action.ActionDomains(role_assignment_listCmd),
 		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
-		"project":        action.ActionProjects(),
-		"project-domain": action.ActionDomains(),
+		"project":        action.ActionProjects(role_assignment_listCmd),
+		"project-domain": action.ActionDomains(role_assignment_listCmd),
 		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"role":           action.ActionRoles(),
+		"role":           action.ActionRoles(role_assignment_listCmd),
 		"sort-column":    action.ActionColumns(role_assignment_listCmd),
-		"user":           action.ActionUsers(),
-		"user-domain":    action.ActionDomains(),
+		"user":           action.ActionUsers(role_assignment_listCmd),
+		"user-domain":    action.ActionDomains(role_assignment_listCmd),
 	})
 }

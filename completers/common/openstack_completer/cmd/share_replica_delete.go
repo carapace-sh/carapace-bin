@@ -19,5 +19,5 @@ func init() {
 	share_replica_deleteCmd.Flags().Bool("wait", false, "Wait for share replica deletion")
 	share_replicaCmd.AddCommand(share_replica_deleteCmd)
 
-	carapace.Gen(share_replica_deleteCmd).PositionalAnyCompletion(action.ActionShareReplicas())
+	carapace.Gen(share_replica_deleteCmd).PositionalAnyCompletion(action.ActionShareReplicas(share_replica_deleteCmd))
 }

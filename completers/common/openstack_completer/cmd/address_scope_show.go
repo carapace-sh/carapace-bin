@@ -30,5 +30,5 @@ func init() {
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 
-	carapace.Gen(address_scope_showCmd).PositionalCompletion(action.ActionAddressScopes())
+	carapace.Gen(address_scope_showCmd).PositionalCompletion(action.ActionAddressScopes(address_scope_showCmd))
 }

@@ -20,5 +20,5 @@ func init() {
 	server_rebootCmd.Flags().Bool("wait", false, "Wait for reboot to complete")
 	serverCmd.AddCommand(server_rebootCmd)
 
-	carapace.Gen(server_rebootCmd).PositionalCompletion(action.ActionServers())
+	carapace.Gen(server_rebootCmd).PositionalCompletion(action.ActionServers(server_rebootCmd))
 }

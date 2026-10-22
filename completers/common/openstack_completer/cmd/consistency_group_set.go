@@ -19,5 +19,5 @@ func init() {
 	consistency_group_setCmd.Flags().String("name", "", "New consistency group name")
 	consistency_groupCmd.AddCommand(consistency_group_setCmd)
 
-	carapace.Gen(consistency_group_setCmd).PositionalCompletion(action.ActionConsistencyGroups())
+	carapace.Gen(consistency_group_setCmd).PositionalCompletion(action.ActionConsistencyGroups(consistency_group_setCmd))
 }

@@ -43,10 +43,10 @@ func init() {
 		"column":         action.ActionColumns(security_group_rule_createCmd),
 		"ethertype":      carapace.ActionValues("IPv4", "IPv6"),
 		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
-		"project":        action.ActionProjects(),
-		"project-domain": action.ActionDomains(),
+		"project":        action.ActionProjects(security_group_rule_createCmd),
+		"project-domain": action.ActionDomains(security_group_rule_createCmd),
 		"protocol":       carapace.ActionValues("ah", "dccp", "egp", "esp", "gre", "icmp", "igmp", "ipv6-encap", "ipv6-frag", "ipv6-icmp", "ipv6-nonxt", "ipv6-opts", "ipv6-route", "ospf", "pgm", "rsvp", "sctp", "tcp", "udp", "udplite", "vrrp", "any"),
 	})
 
-	carapace.Gen(security_group_rule_createCmd).PositionalCompletion(action.ActionSecurityGroups())
+	carapace.Gen(security_group_rule_createCmd).PositionalCompletion(action.ActionSecurityGroups(security_group_rule_createCmd))
 }

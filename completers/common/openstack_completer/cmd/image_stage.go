@@ -24,5 +24,5 @@ func init() {
 		"file": carapace.ActionFiles(),
 	})
 
-	carapace.Gen(image_stageCmd).PositionalCompletion(action.ActionImages())
+	carapace.Gen(image_stageCmd).PositionalCompletion(action.ActionImages(image_stageCmd))
 }

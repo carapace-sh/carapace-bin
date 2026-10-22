@@ -30,5 +30,5 @@ func init() {
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 
-	carapace.Gen(image_task_showCmd).PositionalCompletion(action.ActionImageTasks())
+	carapace.Gen(image_task_showCmd).PositionalCompletion(action.ActionImageTasks(image_task_showCmd))
 }

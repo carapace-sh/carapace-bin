@@ -17,5 +17,5 @@ func init() {
 
 	share_group_typeCmd.AddCommand(share_group_type_deleteCmd)
 
-	carapace.Gen(share_group_type_deleteCmd).PositionalAnyCompletion(action.ActionShareGroupTypes())
+	carapace.Gen(share_group_type_deleteCmd).PositionalAnyCompletion(action.ActionShareGroupTypes(share_group_type_deleteCmd))
 }

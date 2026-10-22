@@ -30,5 +30,5 @@ func init() {
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 
-	carapace.Gen(firewall_group_rule_showCmd).PositionalCompletion(action.ActionFirewallRules())
+	carapace.Gen(firewall_group_rule_showCmd).PositionalCompletion(action.ActionFirewallRules(firewall_group_rule_showCmd))
 }

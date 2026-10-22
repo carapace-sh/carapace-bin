@@ -25,5 +25,5 @@ func init() {
 		"status": carapace.ActionValues("available", "error", "creating", "deleting", "manage_starting", "manage_error", "unmanage_starting", "unmanage_error", "error_deleting"),
 	})
 
-	carapace.Gen(share_snapshot_setCmd).PositionalCompletion(action.ActionShareSnapshots())
+	carapace.Gen(share_snapshot_setCmd).PositionalCompletion(action.ActionShareSnapshots(share_snapshot_setCmd))
 }

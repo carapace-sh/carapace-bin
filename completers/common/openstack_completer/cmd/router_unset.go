@@ -24,8 +24,8 @@ func init() {
 	routerCmd.AddCommand(router_unsetCmd)
 
 	carapace.Gen(router_unsetCmd).FlagCompletion(carapace.ActionMap{
-		"qos-policy": action.ActionNetworkQosPolicies(),
+		"qos-policy": action.ActionNetworkQosPolicies(router_unsetCmd),
 	})
 
-	carapace.Gen(router_unsetCmd).PositionalCompletion(action.ActionRouters())
+	carapace.Gen(router_unsetCmd).PositionalCompletion(action.ActionRouters(router_unsetCmd))
 }

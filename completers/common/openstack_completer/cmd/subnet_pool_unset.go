@@ -19,5 +19,5 @@ func init() {
 	subnet_pool_unsetCmd.Flags().String("tag", "", "Tag to be removed from the subnet pool (repeat option to remove multiple tags)")
 	subnet_poolCmd.AddCommand(subnet_pool_unsetCmd)
 
-	carapace.Gen(subnet_pool_unsetCmd).PositionalCompletion(action.ActionSubnetPools())
+	carapace.Gen(subnet_pool_unsetCmd).PositionalCompletion(action.ActionSubnetPools(subnet_pool_unsetCmd))
 }

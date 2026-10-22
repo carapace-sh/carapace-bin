@@ -33,11 +33,11 @@ func init() {
 	consistency_groupCmd.AddCommand(consistency_group_createCmd)
 
 	carapace.Gen(consistency_group_createCmd).FlagCompletion(carapace.ActionMap{
-		"availability-zone": action.ActionAvailabilityZones(),
+		"availability-zone": action.ActionAvailabilityZones(consistency_group_createCmd),
 		"column":            action.ActionColumns(consistency_group_createCmd),
 		"format":            carapace.ActionValues("json", "shell", "table", "value", "yaml"),
-		"snapshot":          action.ActionConsistencyGroupSnapshots(),
-		"source":            action.ActionConsistencyGroups(),
-		"volume-type":       action.ActionVolumeTypes(),
+		"snapshot":          action.ActionConsistencyGroupSnapshots(consistency_group_createCmd),
+		"source":            action.ActionConsistencyGroups(consistency_group_createCmd),
+		"volume-type":       action.ActionVolumeTypes(consistency_group_createCmd),
 	})
 }

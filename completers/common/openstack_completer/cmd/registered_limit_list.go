@@ -34,7 +34,7 @@ func init() {
 		"column":      action.ActionColumns(registered_limit_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"region":      action.ActionRegions(),
+		"region":      action.ActionRegions(registered_limit_listCmd),
 		"sort-column": action.ActionColumns(registered_limit_listCmd),
 	})
 }

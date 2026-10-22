@@ -17,5 +17,5 @@ func init() {
 
 	trustCmd.AddCommand(trust_deleteCmd)
 
-	carapace.Gen(trust_deleteCmd).PositionalAnyCompletion(action.ActionTrusts())
+	carapace.Gen(trust_deleteCmd).PositionalAnyCompletion(action.ActionTrusts(trust_deleteCmd))
 }

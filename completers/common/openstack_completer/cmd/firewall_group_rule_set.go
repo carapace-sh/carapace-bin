@@ -43,5 +43,5 @@ func init() {
 		"ip-version": carapace.ActionValues("4", "6"),
 	})
 
-	carapace.Gen(firewall_group_rule_setCmd).PositionalCompletion(action.ActionFirewallRules())
+	carapace.Gen(firewall_group_rule_setCmd).PositionalCompletion(action.ActionFirewallRules(firewall_group_rule_setCmd))
 }

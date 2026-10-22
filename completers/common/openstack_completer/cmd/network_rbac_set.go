@@ -21,9 +21,9 @@ func init() {
 	network_rbacCmd.AddCommand(network_rbac_setCmd)
 
 	carapace.Gen(network_rbac_setCmd).FlagCompletion(carapace.ActionMap{
-		"target-project":        action.ActionProjects(),
-		"target-project-domain": action.ActionDomains(),
+		"target-project":        action.ActionProjects(network_rbac_setCmd),
+		"target-project-domain": action.ActionDomains(network_rbac_setCmd),
 	})
 
-	carapace.Gen(network_rbac_setCmd).PositionalCompletion(action.ActionNetworkRbacPolicies())
+	carapace.Gen(network_rbac_setCmd).PositionalCompletion(action.ActionNetworkRbacPolicies(network_rbac_setCmd))
 }

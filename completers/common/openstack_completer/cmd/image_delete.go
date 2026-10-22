@@ -18,5 +18,5 @@ func init() {
 	image_deleteCmd.Flags().String("store", "", "Store to delete image(s) from.")
 	imageCmd.AddCommand(image_deleteCmd)
 
-	carapace.Gen(image_deleteCmd).PositionalAnyCompletion(action.ActionImages())
+	carapace.Gen(image_deleteCmd).PositionalAnyCompletion(action.ActionImages(image_deleteCmd))
 }

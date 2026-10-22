@@ -26,5 +26,5 @@ func init() {
 		"state": carapace.ActionValues("available", "error"),
 	})
 
-	carapace.Gen(volume_backup_setCmd).PositionalCompletion(action.ActionVolumeBackups())
+	carapace.Gen(volume_backup_setCmd).PositionalCompletion(action.ActionVolumeBackups(volume_backup_setCmd))
 }

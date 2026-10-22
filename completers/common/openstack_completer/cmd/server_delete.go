@@ -20,5 +20,5 @@ func init() {
 	server_deleteCmd.Flags().Bool("wait", false, "Wait for delete to complete")
 	serverCmd.AddCommand(server_deleteCmd)
 
-	carapace.Gen(server_deleteCmd).PositionalAnyCompletion(action.ActionServers())
+	carapace.Gen(server_deleteCmd).PositionalAnyCompletion(action.ActionServers(server_deleteCmd))
 }

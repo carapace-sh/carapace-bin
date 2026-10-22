@@ -19,8 +19,8 @@ func init() {
 	share_group_type_accessCmd.AddCommand(share_group_type_access_createCmd)
 
 	carapace.Gen(share_group_type_access_createCmd).FlagCompletion(carapace.ActionMap{
-		"project-domain": action.ActionDomains(),
+		"project-domain": action.ActionDomains(share_group_type_access_createCmd),
 	})
 
-	carapace.Gen(share_group_type_access_createCmd).PositionalCompletion(action.ActionShareGroupTypes())
+	carapace.Gen(share_group_type_access_createCmd).PositionalCompletion(action.ActionShareGroupTypes(share_group_type_access_createCmd))
 }

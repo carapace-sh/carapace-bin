@@ -19,11 +19,11 @@ func init() {
 	image_removeCmd.AddCommand(image_remove_projectCmd)
 
 	carapace.Gen(image_remove_projectCmd).FlagCompletion(carapace.ActionMap{
-		"project-domain": action.ActionDomains(),
+		"project-domain": action.ActionDomains(image_remove_projectCmd),
 	})
 
 	carapace.Gen(image_remove_projectCmd).PositionalCompletion(
-		action.ActionImages(),
-		action.ActionProjects(),
+		action.ActionImages(image_remove_projectCmd),
+		action.ActionProjects(image_remove_projectCmd),
 	)
 }

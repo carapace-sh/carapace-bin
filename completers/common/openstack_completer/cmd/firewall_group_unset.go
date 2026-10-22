@@ -24,8 +24,8 @@ func init() {
 	firewall_groupCmd.AddCommand(firewall_group_unsetCmd)
 
 	carapace.Gen(firewall_group_unsetCmd).FlagCompletion(carapace.ActionMap{
-		"port": action.ActionPorts(),
+		"port": action.ActionPorts(firewall_group_unsetCmd),
 	})
 
-	carapace.Gen(firewall_group_unsetCmd).PositionalCompletion(action.ActionFirewallGroups())
+	carapace.Gen(firewall_group_unsetCmd).PositionalCompletion(action.ActionFirewallGroups(firewall_group_unsetCmd))
 }

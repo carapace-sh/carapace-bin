@@ -18,5 +18,5 @@ func init() {
 	consistency_group_deleteCmd.Flags().Bool("force", false, "Allow delete in state other than error or available")
 	consistency_groupCmd.AddCommand(consistency_group_deleteCmd)
 
-	carapace.Gen(consistency_group_deleteCmd).PositionalAnyCompletion(action.ActionConsistencyGroups())
+	carapace.Gen(consistency_group_deleteCmd).PositionalAnyCompletion(action.ActionConsistencyGroups(consistency_group_deleteCmd))
 }

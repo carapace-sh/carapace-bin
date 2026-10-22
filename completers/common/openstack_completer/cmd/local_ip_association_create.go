@@ -30,8 +30,8 @@ func init() {
 	carapace.Gen(local_ip_association_createCmd).FlagCompletion(carapace.ActionMap{
 		"column":         action.ActionColumns(local_ip_association_createCmd),
 		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
-		"project-domain": action.ActionDomains(),
+		"project-domain": action.ActionDomains(local_ip_association_createCmd),
 	})
 
-	carapace.Gen(local_ip_association_createCmd).PositionalCompletion(action.ActionLocalIPs())
+	carapace.Gen(local_ip_association_createCmd).PositionalCompletion(action.ActionLocalIPs(local_ip_association_createCmd))
 }

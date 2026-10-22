@@ -32,7 +32,7 @@ func init() {
 
 	carapace.Gen(role_createCmd).FlagCompletion(carapace.ActionMap{
 		"column": action.ActionColumns(role_createCmd),
-		"domain": action.ActionDomains(),
+		"domain": action.ActionDomains(role_createCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 }

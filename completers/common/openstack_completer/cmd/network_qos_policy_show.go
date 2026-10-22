@@ -30,5 +30,5 @@ func init() {
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 
-	carapace.Gen(network_qos_policy_showCmd).PositionalCompletion(action.ActionNetworkQosPolicies())
+	carapace.Gen(network_qos_policy_showCmd).PositionalCompletion(action.ActionNetworkQosPolicies(network_qos_policy_showCmd))
 }

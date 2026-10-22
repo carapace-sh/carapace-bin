@@ -20,7 +20,7 @@ func init() {
 	network_agent_routerCmd.AddCommand(network_agent_router_setCmd)
 
 	carapace.Gen(network_agent_router_setCmd).PositionalCompletion(
-		action.ActionNetworkAgents(),
-		action.ActionRouters(),
+		action.ActionNetworkAgents(network_agent_router_setCmd),
+		action.ActionRouters(network_agent_router_setCmd),
 	)
 }

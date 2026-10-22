@@ -21,8 +21,8 @@ func init() {
 	groupCmd.AddCommand(group_setCmd)
 
 	carapace.Gen(group_setCmd).FlagCompletion(carapace.ActionMap{
-		"domain": action.ActionDomains(),
+		"domain": action.ActionDomains(group_setCmd),
 	})
 
-	carapace.Gen(group_setCmd).PositionalCompletion(action.ActionGroups())
+	carapace.Gen(group_setCmd).PositionalCompletion(action.ActionGroups(group_setCmd))
 }

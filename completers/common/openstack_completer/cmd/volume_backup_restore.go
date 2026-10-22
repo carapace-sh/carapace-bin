@@ -32,7 +32,7 @@ func init() {
 	})
 
 	carapace.Gen(volume_backup_restoreCmd).PositionalCompletion(
-		action.ActionVolumeBackups(),
-		action.ActionVolumes(),
+		action.ActionVolumeBackups(volume_backup_restoreCmd),
+		action.ActionVolumes(volume_backup_restoreCmd),
 	)
 }

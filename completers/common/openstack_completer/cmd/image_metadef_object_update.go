@@ -19,7 +19,7 @@ func init() {
 	image_metadef_objectCmd.AddCommand(image_metadef_object_updateCmd)
 
 	carapace.Gen(image_metadef_object_updateCmd).PositionalCompletion(
-		action.ActionImageMetadefNamespaces(),
-		action.ActionImageMetadefObjects(),
+		action.ActionImageMetadefNamespaces(image_metadef_object_updateCmd),
+		action.ActionImageMetadefObjects(image_metadef_object_updateCmd),
 	)
 }

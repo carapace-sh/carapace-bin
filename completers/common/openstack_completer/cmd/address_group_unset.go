@@ -18,5 +18,5 @@ func init() {
 	address_group_unsetCmd.Flags().String("address", "", "IP address or CIDR (repeat option to unset multiple addresses)")
 	address_groupCmd.AddCommand(address_group_unsetCmd)
 
-	carapace.Gen(address_group_unsetCmd).PositionalCompletion(action.ActionAddressGroups())
+	carapace.Gen(address_group_unsetCmd).PositionalCompletion(action.ActionAddressGroups(address_group_unsetCmd))
 }

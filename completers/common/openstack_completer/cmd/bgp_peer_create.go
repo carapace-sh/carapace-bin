@@ -37,7 +37,7 @@ func init() {
 		"auth-type":      carapace.ActionValues("none", "md5"),
 		"column":         action.ActionColumns(bgp_peer_createCmd),
 		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
-		"project":        action.ActionProjects(),
-		"project-domain": action.ActionDomains(),
+		"project":        action.ActionProjects(bgp_peer_createCmd),
+		"project-domain": action.ActionDomains(bgp_peer_createCmd),
 	})
 }

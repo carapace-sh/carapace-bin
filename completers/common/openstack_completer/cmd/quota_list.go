@@ -33,9 +33,9 @@ func init() {
 	carapace.Gen(quota_listCmd).FlagCompletion(carapace.ActionMap{
 		"column":      action.ActionColumns(quota_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
-		"network":     action.ActionNetworks(),
+		"network":     action.ActionNetworks(quota_listCmd),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
 		"sort-column": action.ActionColumns(quota_listCmd),
-		"volume":      action.ActionVolumes(),
+		"volume":      action.ActionVolumes(quota_listCmd),
 	})
 }

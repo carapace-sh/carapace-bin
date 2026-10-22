@@ -17,5 +17,5 @@ func init() {
 
 	accelerator_device_profileCmd.AddCommand(accelerator_device_profile_deleteCmd)
 
-	carapace.Gen(accelerator_device_profile_deleteCmd).PositionalAnyCompletion(action.ActionAcceleratorDeviceProfiles())
+	carapace.Gen(accelerator_device_profile_deleteCmd).PositionalAnyCompletion(action.ActionAcceleratorDeviceProfiles(accelerator_device_profile_deleteCmd))
 }

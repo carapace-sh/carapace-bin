@@ -36,10 +36,10 @@ func init() {
 	carapace.Gen(floating_ip_port_forwarding_listCmd).FlagCompletion(carapace.ActionMap{
 		"column":      action.ActionColumns(floating_ip_port_forwarding_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
-		"port":        action.ActionPorts(),
+		"port":        action.ActionPorts(floating_ip_port_forwarding_listCmd),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
 		"sort-column": action.ActionColumns(floating_ip_port_forwarding_listCmd),
 	})
 
-	carapace.Gen(floating_ip_port_forwarding_listCmd).PositionalCompletion(action.ActionFloatingIPs())
+	carapace.Gen(floating_ip_port_forwarding_listCmd).PositionalCompletion(action.ActionFloatingIPs(floating_ip_port_forwarding_listCmd))
 }

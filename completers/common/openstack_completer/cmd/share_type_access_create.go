@@ -17,5 +17,5 @@ func init() {
 
 	share_type_accessCmd.AddCommand(share_type_access_createCmd)
 
-	carapace.Gen(share_type_access_createCmd).PositionalCompletion(action.ActionShareTypes())
+	carapace.Gen(share_type_access_createCmd).PositionalCompletion(action.ActionShareTypes(share_type_access_createCmd))
 }

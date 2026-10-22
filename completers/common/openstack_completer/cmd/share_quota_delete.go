@@ -20,7 +20,7 @@ func init() {
 	share_quotaCmd.AddCommand(share_quota_deleteCmd)
 
 	carapace.Gen(share_quota_deleteCmd).FlagCompletion(carapace.ActionMap{
-		"share-type": action.ActionShareTypes(),
-		"user":       action.ActionUsers(),
+		"share-type": action.ActionShareTypes(share_quota_deleteCmd),
+		"user":       action.ActionUsers(share_quota_deleteCmd),
 	})
 }

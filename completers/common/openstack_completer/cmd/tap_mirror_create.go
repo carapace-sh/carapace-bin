@@ -40,8 +40,8 @@ func init() {
 	carapace.Gen(tap_mirror_createCmd).FlagCompletion(carapace.ActionMap{
 		"column":         action.ActionColumns(tap_mirror_createCmd),
 		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
-		"port":           action.ActionPorts(),
-		"project":        action.ActionProjects(),
-		"project-domain": action.ActionDomains(),
+		"port":           action.ActionPorts(tap_mirror_createCmd),
+		"project":        action.ActionProjects(tap_mirror_createCmd),
+		"project-domain": action.ActionDomains(tap_mirror_createCmd),
 	})
 }

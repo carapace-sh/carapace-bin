@@ -17,5 +17,5 @@ func init() {
 
 	consistency_group_snapshotCmd.AddCommand(consistency_group_snapshot_deleteCmd)
 
-	carapace.Gen(consistency_group_snapshot_deleteCmd).PositionalAnyCompletion(action.ActionConsistencyGroupSnapshots())
+	carapace.Gen(consistency_group_snapshot_deleteCmd).PositionalAnyCompletion(action.ActionConsistencyGroupSnapshots(consistency_group_snapshot_deleteCmd))
 }

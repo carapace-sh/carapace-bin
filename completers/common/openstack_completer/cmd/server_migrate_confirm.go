@@ -17,5 +17,5 @@ func init() {
 
 	server_migrateCmd.AddCommand(server_migrate_confirmCmd)
 
-	carapace.Gen(server_migrate_confirmCmd).PositionalCompletion(action.ActionServers())
+	carapace.Gen(server_migrate_confirmCmd).PositionalCompletion(action.ActionServers(server_migrate_confirmCmd))
 }

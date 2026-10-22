@@ -30,5 +30,5 @@ func init() {
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 
-	carapace.Gen(subnet_showCmd).PositionalCompletion(action.ActionSubnets())
+	carapace.Gen(subnet_showCmd).PositionalCompletion(action.ActionSubnets(subnet_showCmd))
 }

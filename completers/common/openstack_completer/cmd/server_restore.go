@@ -17,5 +17,5 @@ func init() {
 
 	serverCmd.AddCommand(server_restoreCmd)
 
-	carapace.Gen(server_restoreCmd).PositionalCompletion(action.ActionServers())
+	carapace.Gen(server_restoreCmd).PositionalCompletion(action.ActionServers(server_restoreCmd))
 }

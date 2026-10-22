@@ -29,7 +29,7 @@ func init() {
 
 	carapace.Gen(consistency_group_snapshot_createCmd).FlagCompletion(carapace.ActionMap{
 		"column":            action.ActionColumns(consistency_group_snapshot_createCmd),
-		"consistency-group": action.ActionConsistencyGroups(),
+		"consistency-group": action.ActionConsistencyGroups(consistency_group_snapshot_createCmd),
 		"format":            carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 }

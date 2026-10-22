@@ -40,11 +40,11 @@ func init() {
 	volume_typeCmd.AddCommand(volume_type_createCmd)
 
 	carapace.Gen(volume_type_createCmd).FlagCompletion(carapace.ActionMap{
-		"availability-zone":           action.ActionAvailabilityZones(),
+		"availability-zone":           action.ActionAvailabilityZones(volume_type_createCmd),
 		"column":                      action.ActionColumns(volume_type_createCmd),
 		"encryption-control-location": carapace.ActionValues("front-end", "back-end"),
 		"format":                      carapace.ActionValues("json", "shell", "table", "value", "yaml"),
-		"project":                     action.ActionProjects(),
-		"project-domain":              action.ActionDomains(),
+		"project":                     action.ActionProjects(volume_type_createCmd),
+		"project-domain":              action.ActionDomains(volume_type_createCmd),
 	})
 }

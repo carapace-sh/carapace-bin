@@ -37,8 +37,8 @@ func init() {
 	carapace.Gen(network_qos_policy_listCmd).FlagCompletion(carapace.ActionMap{
 		"column":         action.ActionColumns(network_qos_policy_listCmd),
 		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
-		"project":        action.ActionProjects(),
-		"project-domain": action.ActionDomains(),
+		"project":        action.ActionProjects(network_qos_policy_listCmd),
+		"project-domain": action.ActionDomains(network_qos_policy_listCmd),
 		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
 		"sort-column":    action.ActionColumns(network_qos_policy_listCmd),
 	})

@@ -21,6 +21,6 @@ func init() {
 	network_l3_conntrack_helperCmd.AddCommand(network_l3_conntrack_helper_setCmd)
 
 	carapace.Gen(network_l3_conntrack_helper_setCmd).FlagCompletion(carapace.ActionMap{
-		"port": action.ActionPorts(),
+		"port": action.ActionPorts(network_l3_conntrack_helper_setCmd),
 	})
 }

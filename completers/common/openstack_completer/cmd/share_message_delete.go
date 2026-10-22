@@ -17,5 +17,5 @@ func init() {
 
 	share_messageCmd.AddCommand(share_message_deleteCmd)
 
-	carapace.Gen(share_message_deleteCmd).PositionalAnyCompletion(action.ActionShareMessages())
+	carapace.Gen(share_message_deleteCmd).PositionalAnyCompletion(action.ActionShareMessages(share_message_deleteCmd))
 }

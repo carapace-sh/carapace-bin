@@ -19,7 +19,7 @@ func init() {
 	server_addCmd.AddCommand(server_add_portCmd)
 
 	carapace.Gen(server_add_portCmd).PositionalCompletion(
-		action.ActionServers(),
-		action.ActionPorts(),
+		action.ActionServers(server_add_portCmd),
+		action.ActionPorts(server_add_portCmd),
 	)
 }

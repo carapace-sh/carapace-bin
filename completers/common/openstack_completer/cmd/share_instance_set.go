@@ -18,5 +18,5 @@ func init() {
 	share_instance_setCmd.Flags().String("status", "", "Indicate which state to assign the instance.")
 	share_instanceCmd.AddCommand(share_instance_setCmd)
 
-	carapace.Gen(share_instance_setCmd).PositionalCompletion(action.ActionShareInstances())
+	carapace.Gen(share_instance_setCmd).PositionalCompletion(action.ActionShareInstances(share_instance_setCmd))
 }

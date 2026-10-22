@@ -22,9 +22,9 @@ func init() {
 	quotaCmd.AddCommand(quota_deleteCmd)
 
 	carapace.Gen(quota_deleteCmd).FlagCompletion(carapace.ActionMap{
-		"network": action.ActionNetworks(),
-		"volume":  action.ActionVolumes(),
+		"network": action.ActionNetworks(quota_deleteCmd),
+		"volume":  action.ActionVolumes(quota_deleteCmd),
 	})
 
-	carapace.Gen(quota_deleteCmd).PositionalCompletion(action.ActionProjects())
+	carapace.Gen(quota_deleteCmd).PositionalCompletion(action.ActionProjects(quota_deleteCmd))
 }

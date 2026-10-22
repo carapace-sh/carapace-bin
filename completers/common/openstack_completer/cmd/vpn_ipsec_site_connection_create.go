@@ -53,7 +53,7 @@ func init() {
 		"column":         action.ActionColumns(vpn_ipsec_site_connection_createCmd),
 		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 		"initiator":      carapace.ActionValues("bi-directional", "response-only"),
-		"project":        action.ActionProjects(),
-		"project-domain": action.ActionDomains(),
+		"project":        action.ActionProjects(vpn_ipsec_site_connection_createCmd),
+		"project-domain": action.ActionDomains(vpn_ipsec_site_connection_createCmd),
 	})
 }

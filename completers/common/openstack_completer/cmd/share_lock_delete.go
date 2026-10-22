@@ -17,5 +17,5 @@ func init() {
 
 	share_lockCmd.AddCommand(share_lock_deleteCmd)
 
-	carapace.Gen(share_lock_deleteCmd).PositionalAnyCompletion(action.ActionShareLocks())
+	carapace.Gen(share_lock_deleteCmd).PositionalAnyCompletion(action.ActionShareLocks(share_lock_deleteCmd))
 }

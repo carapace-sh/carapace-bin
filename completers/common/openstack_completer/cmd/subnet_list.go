@@ -50,11 +50,11 @@ func init() {
 		"column":         action.ActionColumns(subnet_listCmd),
 		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"ip-version":     carapace.ActionValues("4", "6"),
-		"network":        action.ActionNetworks(),
-		"project":        action.ActionProjects(),
-		"project-domain": action.ActionDomains(),
+		"network":        action.ActionNetworks(subnet_listCmd),
+		"project":        action.ActionProjects(subnet_listCmd),
+		"project-domain": action.ActionDomains(subnet_listCmd),
 		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
 		"sort-column":    action.ActionColumns(subnet_listCmd),
-		"subnet-pool":    action.ActionSubnetPools(),
+		"subnet-pool":    action.ActionSubnetPools(subnet_listCmd),
 	})
 }

@@ -30,5 +30,5 @@ func init() {
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 
-	carapace.Gen(share_group_snapshot_showCmd).PositionalCompletion(action.ActionShareGroupSnapshots())
+	carapace.Gen(share_group_snapshot_showCmd).PositionalCompletion(action.ActionShareGroupSnapshots(share_group_snapshot_showCmd))
 }

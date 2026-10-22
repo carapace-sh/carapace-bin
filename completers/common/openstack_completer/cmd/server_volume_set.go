@@ -20,7 +20,7 @@ func init() {
 	server_volumeCmd.AddCommand(server_volume_setCmd)
 
 	carapace.Gen(server_volume_setCmd).PositionalCompletion(
-		action.ActionServers(),
-		action.ActionVolumes(),
+		action.ActionServers(server_volume_setCmd),
+		action.ActionVolumes(server_volume_setCmd),
 	)
 }

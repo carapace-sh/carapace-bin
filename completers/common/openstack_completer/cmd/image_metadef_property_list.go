@@ -34,5 +34,5 @@ func init() {
 		"sort-column": action.ActionColumns(image_metadef_property_listCmd),
 	})
 
-	carapace.Gen(image_metadef_property_listCmd).PositionalCompletion(action.ActionImageMetadefNamespaces())
+	carapace.Gen(image_metadef_property_listCmd).PositionalCompletion(action.ActionImageMetadefNamespaces(image_metadef_property_listCmd))
 }

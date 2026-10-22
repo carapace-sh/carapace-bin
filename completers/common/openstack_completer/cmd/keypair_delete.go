@@ -20,9 +20,9 @@ func init() {
 	keypairCmd.AddCommand(keypair_deleteCmd)
 
 	carapace.Gen(keypair_deleteCmd).FlagCompletion(carapace.ActionMap{
-		"user":        action.ActionUsers(),
-		"user-domain": action.ActionDomains(),
+		"user":        action.ActionUsers(keypair_deleteCmd),
+		"user-domain": action.ActionDomains(keypair_deleteCmd),
 	})
 
-	carapace.Gen(keypair_deleteCmd).PositionalAnyCompletion(action.ActionKeypairs())
+	carapace.Gen(keypair_deleteCmd).PositionalAnyCompletion(action.ActionKeypairs(keypair_deleteCmd))
 }

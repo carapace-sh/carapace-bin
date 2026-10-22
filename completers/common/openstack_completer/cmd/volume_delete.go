@@ -21,5 +21,5 @@ func init() {
 	volume_deleteCmd.Flags().Bool("remote", false, "Specify this parameter to unmanage a volume.")
 	volumeCmd.AddCommand(volume_deleteCmd)
 
-	carapace.Gen(volume_deleteCmd).PositionalAnyCompletion(action.ActionVolumes())
+	carapace.Gen(volume_deleteCmd).PositionalAnyCompletion(action.ActionVolumes(volume_deleteCmd))
 }

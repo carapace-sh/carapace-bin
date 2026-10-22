@@ -19,5 +19,5 @@ func init() {
 	share_group_snapshot_unsetCmd.Flags().Bool("name", false, "Unset share group snapshot name.")
 	share_group_snapshotCmd.AddCommand(share_group_snapshot_unsetCmd)
 
-	carapace.Gen(share_group_snapshot_unsetCmd).PositionalCompletion(action.ActionShareGroupSnapshots())
+	carapace.Gen(share_group_snapshot_unsetCmd).PositionalCompletion(action.ActionShareGroupSnapshots(share_group_snapshot_unsetCmd))
 }

@@ -19,5 +19,5 @@ func init() {
 	share_backup_restoreCmd.Flags().Bool("wait", false, "Wait for restore conclusion")
 	share_backupCmd.AddCommand(share_backup_restoreCmd)
 
-	carapace.Gen(share_backup_restoreCmd).PositionalCompletion(action.ActionShareBackups())
+	carapace.Gen(share_backup_restoreCmd).PositionalCompletion(action.ActionShareBackups(share_backup_restoreCmd))
 }

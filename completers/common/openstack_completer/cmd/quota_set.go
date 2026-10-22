@@ -51,8 +51,8 @@ func init() {
 	quotaCmd.AddCommand(quota_setCmd)
 
 	carapace.Gen(quota_setCmd).FlagCompletion(carapace.ActionMap{
-		"volume-type": action.ActionVolumeTypes(),
+		"volume-type": action.ActionVolumeTypes(quota_setCmd),
 	})
 
-	carapace.Gen(quota_setCmd).PositionalCompletion(action.ActionProjects())
+	carapace.Gen(quota_setCmd).PositionalCompletion(action.ActionProjects(quota_setCmd))
 }

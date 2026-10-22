@@ -17,5 +17,5 @@ func init() {
 
 	subnetCmd.AddCommand(subnet_deleteCmd)
 
-	carapace.Gen(subnet_deleteCmd).PositionalAnyCompletion(action.ActionSubnets())
+	carapace.Gen(subnet_deleteCmd).PositionalAnyCompletion(action.ActionSubnets(subnet_deleteCmd))
 }

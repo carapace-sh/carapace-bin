@@ -17,5 +17,5 @@ func init() {
 
 	cached_imageCmd.AddCommand(cached_image_deleteCmd)
 
-	carapace.Gen(cached_image_deleteCmd).PositionalAnyCompletion(action.ActionCachedImages())
+	carapace.Gen(cached_image_deleteCmd).PositionalAnyCompletion(action.ActionCachedImages(cached_image_deleteCmd))
 }

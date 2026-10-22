@@ -17,5 +17,5 @@ func init() {
 
 	firewall_groupCmd.AddCommand(firewall_group_deleteCmd)
 
-	carapace.Gen(firewall_group_deleteCmd).PositionalAnyCompletion(action.ActionFirewallGroups())
+	carapace.Gen(firewall_group_deleteCmd).PositionalAnyCompletion(action.ActionFirewallGroups(firewall_group_deleteCmd))
 }

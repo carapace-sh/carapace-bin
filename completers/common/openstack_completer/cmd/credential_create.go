@@ -30,6 +30,6 @@ func init() {
 	carapace.Gen(credential_createCmd).FlagCompletion(carapace.ActionMap{
 		"column":  action.ActionColumns(credential_createCmd),
 		"format":  carapace.ActionValues("json", "shell", "table", "value", "yaml"),
-		"project": action.ActionProjects(),
+		"project": action.ActionProjects(credential_createCmd),
 	})
 }

@@ -38,8 +38,8 @@ func init() {
 	subnetCmd.AddCommand(subnet_setCmd)
 
 	carapace.Gen(subnet_setCmd).FlagCompletion(carapace.ActionMap{
-		"network-segment": action.ActionNetworkSegments(),
+		"network-segment": action.ActionNetworkSegments(subnet_setCmd),
 	})
 
-	carapace.Gen(subnet_setCmd).PositionalCompletion(action.ActionSubnets())
+	carapace.Gen(subnet_setCmd).PositionalCompletion(action.ActionSubnets(subnet_setCmd))
 }

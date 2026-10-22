@@ -19,5 +19,5 @@ func init() {
 	share_server_abandonCmd.Flags().Bool("wait", false, "Wait until share server is abandoned")
 	share_serverCmd.AddCommand(share_server_abandonCmd)
 
-	carapace.Gen(share_server_abandonCmd).PositionalCompletion(action.ActionShareServers())
+	carapace.Gen(share_server_abandonCmd).PositionalCompletion(action.ActionShareServers(share_server_abandonCmd))
 }

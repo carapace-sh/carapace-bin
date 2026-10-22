@@ -24,5 +24,5 @@ func init() {
 	security_group_setCmd.Flags().String("tag", "", "Tag to be added to the security group (repeat option to set multiple tags)")
 	security_groupCmd.AddCommand(security_group_setCmd)
 
-	carapace.Gen(security_group_setCmd).PositionalCompletion(action.ActionSecurityGroups())
+	carapace.Gen(security_group_setCmd).PositionalCompletion(action.ActionSecurityGroups(security_group_setCmd))
 }

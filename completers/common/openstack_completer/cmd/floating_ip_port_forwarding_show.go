@@ -31,7 +31,7 @@ func init() {
 	})
 
 	carapace.Gen(floating_ip_port_forwarding_showCmd).PositionalCompletion(
-		action.ActionFloatingIPs(),
-		action.ActionFloatingIPPortForwardings(),
+		action.ActionFloatingIPs(floating_ip_port_forwarding_showCmd),
+		action.ActionFloatingIPPortForwardings(floating_ip_port_forwarding_showCmd),
 	)
 }

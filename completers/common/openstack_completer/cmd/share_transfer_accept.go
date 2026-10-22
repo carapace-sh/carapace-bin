@@ -18,5 +18,5 @@ func init() {
 	share_transfer_acceptCmd.Flags().Bool("clear_rules", false, "Whether manila should clean up the access rules after the transfer is complete.")
 	share_transferCmd.AddCommand(share_transfer_acceptCmd)
 
-	carapace.Gen(share_transfer_acceptCmd).PositionalCompletion(action.ActionShareTransfers())
+	carapace.Gen(share_transfer_acceptCmd).PositionalCompletion(action.ActionShareTransfers(share_transfer_acceptCmd))
 }

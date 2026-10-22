@@ -18,7 +18,7 @@ func init() {
 	bgp_speaker_removeCmd.AddCommand(bgp_speaker_remove_networkCmd)
 
 	carapace.Gen(bgp_speaker_remove_networkCmd).PositionalCompletion(
-		action.ActionBgpSpeakers(),
-		action.ActionNetworks(),
+		action.ActionBgpSpeakers(bgp_speaker_remove_networkCmd),
+		action.ActionNetworks(bgp_speaker_remove_networkCmd),
 	)
 }

@@ -18,7 +18,7 @@ func init() {
 	firewall_group_policy_removeCmd.AddCommand(firewall_group_policy_remove_ruleCmd)
 
 	carapace.Gen(firewall_group_policy_remove_ruleCmd).PositionalCompletion(
-		action.ActionFirewallPolicies(),
-		action.ActionFirewallRules(),
+		action.ActionFirewallPolicies(firewall_group_policy_remove_ruleCmd),
+		action.ActionFirewallRules(firewall_group_policy_remove_ruleCmd),
 	)
 }

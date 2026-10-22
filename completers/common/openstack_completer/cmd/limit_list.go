@@ -35,10 +35,10 @@ func init() {
 	carapace.Gen(limit_listCmd).FlagCompletion(carapace.ActionMap{
 		"column":         action.ActionColumns(limit_listCmd),
 		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
-		"project":        action.ActionProjects(),
-		"project-domain": action.ActionDomains(),
+		"project":        action.ActionProjects(limit_listCmd),
+		"project-domain": action.ActionDomains(limit_listCmd),
 		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"region":         action.ActionRegions(),
+		"region":         action.ActionRegions(limit_listCmd),
 		"sort-column":    action.ActionColumns(limit_listCmd),
 	})
 }

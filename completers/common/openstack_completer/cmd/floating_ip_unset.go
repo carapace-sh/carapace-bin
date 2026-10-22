@@ -23,9 +23,9 @@ func init() {
 	floating_ipCmd.AddCommand(floating_ip_unsetCmd)
 
 	carapace.Gen(floating_ip_unsetCmd).FlagCompletion(carapace.ActionMap{
-		"port":       action.ActionPorts(),
-		"qos-policy": action.ActionNetworkQosPolicies(),
+		"port":       action.ActionPorts(floating_ip_unsetCmd),
+		"qos-policy": action.ActionNetworkQosPolicies(floating_ip_unsetCmd),
 	})
 
-	carapace.Gen(floating_ip_unsetCmd).PositionalCompletion(action.ActionFloatingIPs())
+	carapace.Gen(floating_ip_unsetCmd).PositionalCompletion(action.ActionFloatingIPs(floating_ip_unsetCmd))
 }

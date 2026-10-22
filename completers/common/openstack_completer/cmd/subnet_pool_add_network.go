@@ -18,7 +18,7 @@ func init() {
 	subnet_pool_addCmd.AddCommand(subnet_pool_add_networkCmd)
 
 	carapace.Gen(subnet_pool_add_networkCmd).PositionalCompletion(
-		action.ActionNetworks(),
-		action.ActionSubnetPools(),
+		action.ActionNetworks(subnet_pool_add_networkCmd),
+		action.ActionSubnetPools(subnet_pool_add_networkCmd),
 	)
 }

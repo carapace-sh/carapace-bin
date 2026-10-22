@@ -18,7 +18,7 @@ func init() {
 	server_add_securityCmd.AddCommand(server_add_security_groupCmd)
 
 	carapace.Gen(server_add_security_groupCmd).PositionalCompletion(
-		action.ActionServers(),
-		action.ActionSecurityGroups(),
+		action.ActionServers(server_add_security_groupCmd),
+		action.ActionSecurityGroups(server_add_security_groupCmd),
 	)
 }

@@ -18,5 +18,5 @@ func init() {
 	server_startCmd.Flags().Bool("all-projects", false, "Start server(s) in another project by name (admin only) (can be specified using the ALL_PROJECTS envvar)")
 	serverCmd.AddCommand(server_startCmd)
 
-	carapace.Gen(server_startCmd).PositionalCompletion(action.ActionServers())
+	carapace.Gen(server_startCmd).PositionalCompletion(action.ActionServers(server_startCmd))
 }

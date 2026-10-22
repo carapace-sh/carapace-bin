@@ -18,7 +18,7 @@ func init() {
 	floating_ip_port_forwardingCmd.AddCommand(floating_ip_port_forwarding_deleteCmd)
 
 	carapace.Gen(floating_ip_port_forwarding_deleteCmd).PositionalCompletion(
-		action.ActionFloatingIPs(),
-		action.ActionFloatingIPPortForwardings(),
+		action.ActionFloatingIPs(floating_ip_port_forwarding_deleteCmd),
+		action.ActionFloatingIPPortForwardings(floating_ip_port_forwarding_deleteCmd),
 	)
 }

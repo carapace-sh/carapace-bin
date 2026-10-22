@@ -18,5 +18,5 @@ func init() {
 	server_stopCmd.Flags().Bool("all-projects", false, "Stop server(s) in another project by name (admin only) (can be specified using the ALL_PROJECTS envvar)")
 	serverCmd.AddCommand(server_stopCmd)
 
-	carapace.Gen(server_stopCmd).PositionalCompletion(action.ActionServers())
+	carapace.Gen(server_stopCmd).PositionalCompletion(action.ActionServers(server_stopCmd))
 }
