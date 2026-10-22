@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"os"
+
 	"github.com/carapace-sh/carapace-bin/completers/common/openstack_completer/cmd/action"
 )
 
@@ -13,7 +15,7 @@ func globalCloud() string {
 	if flag := rootCmd.Flags().Lookup("os-cloud"); flag != nil && flag.Changed {
 		return flag.Value.String()
 	}
-	return ""
+	return os.Getenv("OS_CLOUD")
 }
 
 func globalEnv() []string {

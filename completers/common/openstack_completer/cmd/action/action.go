@@ -3,6 +3,7 @@ package action
 import (
 	"bytes"
 	"encoding/csv"
+	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
@@ -72,19 +73,27 @@ func cloudConfigPaths() []string {
 	if path := os.Getenv("OS_CLIENT_CONFIG_FILE"); path != "" {
 		paths = append(paths, path)
 	}
+
+	dirs := []string{}
 	if configDir, err := os.UserConfigDir(); err == nil {
-		paths = append(paths,
-			filepath.Join(configDir, "openstack", "clouds.yaml"),
-			filepath.Join(configDir, "openstack", "clouds-public.yaml"),
-		)
+		dirs = append(dirs, filepath.Join(configDir, "openstack"))
 	}
 	if homeDir, err := os.UserHomeDir(); err == nil {
-		paths = append(paths, filepath.Join(homeDir, ".openstack", "clouds.yaml"))
+		dirs = append(dirs, filepath.Join(homeDir, ".openstack"))
 	}
-	paths = append(paths,
-		"/etc/openstack/clouds.yaml",
-		"/etc/openstack/clouds-public.yaml",
-	)
+	if wd, err := os.Getwd(); err == nil {
+		dirs = append(dirs, wd)
+	}
+	dirs = append(dirs, "/etc/openstack", "/etc/xdg/openstack")
+
+	for _, dir := range dirs {
+		for _, name := range []string{
+			"clouds.yaml", "clouds.yml", "clouds.json",
+			"clouds-public.yaml", "clouds-public.yml", "clouds-public.json",
+		} {
+			paths = append(paths, filepath.Join(dir, name))
+		}
+	}
 	return paths
 }
 
@@ -113,13 +122,13 @@ func cloudValues(keys ...string) carapace.Action {
 					continue
 				}
 				for _, key := range keys {
-					if value, ok := cloud[key].(string); ok && value != "" {
+					if value, ok := cloudString(cloud[key]); ok {
 						values = append(values, value)
 					}
 				}
 				if auth, ok := cloud["auth"].(map[string]any); ok {
 					for _, key := range keys {
-						if value, ok := auth[key].(string); ok && value != "" {
+						if value, ok := cloudString(auth[key]); ok {
 							values = append(values, value)
 						}
 					}
@@ -129,6 +138,16 @@ func cloudValues(keys ...string) carapace.Action {
 
 		return carapace.ActionValues(values...).Unique()
 	})
+}
+
+func cloudString(value any) (string, bool) {
+	switch v := value.(type) {
+	case string:
+		return v, v != ""
+	case int, int64, float64, bool:
+		return fmt.Sprint(v), true
+	}
+	return "", false
 }
 
 func actionNamed(command ...string) carapace.Action {
@@ -230,14 +249,14 @@ func ActionColumns(command ...string) carapace.Action {
 
 	return actionExec(args, func(output []byte, err error) carapace.Action {
 		if err != nil {
-			return carapace.ActionValues()
+			return staticColumns(command)
 		}
 
 		reader := csv.NewReader(bytes.NewReader(output))
 		reader.FieldsPerRecord = -1
 		header, err := reader.Read()
 		if err != nil {
-			return carapace.ActionValues()
+			return staticColumns(command)
 		}
 
 		values := make([]string, 0, len(header))
@@ -246,8 +265,48 @@ func ActionColumns(command ...string) carapace.Action {
 				values = append(values, column)
 			}
 		}
+		if len(values) == 0 {
+			return staticColumns(command)
+		}
 		return carapace.ActionValues(values...).Unique()
 	})
+}
+
+var staticColumnHeaders = map[string][]string{
+	"bgpvpn network association list":              {"ID", "Network ID"},
+	"bgpvpn port association list":                 {"ID", "Port ID"},
+	"bgpvpn router association list":               {"ID", "Router ID"},
+	"floating ip port forwarding list":             {"ID", "Internal Port ID", "Internal IP Address", "Internal Port", "Internal Port Range", "External Port", "External Port Range", "Protocol", "Description"},
+	"image member list":                            {"Image ID", "Member ID", "Status"},
+	"image metadef object list":                    {"name", "description"},
+	"image metadef property list":                  {"name", "title", "type"},
+	"image metadef resource type association list": {"Name"},
+	"local ip association list":                    {"Local IP ID", "Local IP Address", "Fixed port ID", "Fixed IP", "Host"},
+	"network l3 conntrack helper list":             {"ID", "Router ID", "Helper", "Protocol", "Port"},
+	"network qos rule list":                        {"ID", "QoS Policy ID", "Type", "Max Kbps", "Max Burst Kbits", "Min Kbps", "Min Kpps", "DSCP mark", "Direction"},
+	"network trunk subport list":                   {"Port", "Segmentation Type", "Segmentation ID"},
+	"object list":                                  {"Name"},
+	"server event list":                            {"Request ID", "Server ID", "Action", "Start Time"},
+	"server share list":                            {"Share ID", "Status", "Tag"},
+	"server volume list":                           {"Device", "Server ID", "Volume ID"},
+	"share access list":                            {"ID", "Access Type", "Access To", "Access Level", "State"},
+	"share export location list":                   {"ID", "Path", "Preferred"},
+	"share group snapshot members list":            {"Share ID", "Size"},
+	"share group type access list":                 {"Project ID"},
+	"share instance export location list":          {"ID", "Path", "Is Admin Only", "Preferred"},
+	"share replica export location list":           {"ID", "Availability Zone", "Replica State", "Preferred", "Path"},
+	"share snapshot access list":                   {"ID", "Access Type", "Access To", "State"},
+	"share snapshot export location list":          {"ID", "Path"},
+	"share snapshot instance export location list": {"ID", "Path", "Is Admin only"},
+	"share type access list":                       {"Project ID"},
+}
+
+func staticColumns(command []string) carapace.Action {
+	columns, ok := staticColumnHeaders[strings.Join(command, " ")]
+	if !ok {
+		return carapace.ActionValues()
+	}
+	return carapace.ActionValues(columns...).Unique()
 }
 
 func actionExec(args []string, f func(output []byte, err error) carapace.Action) carapace.Action {
@@ -635,6 +694,16 @@ func ActionServerMigrations() carapace.Action {
 
 func ActionVolumeHosts() carapace.Action {
 	return actionListArgs([]string{"volume", "service", "list"}, "Host")
+}
+
+func ActionVolumeServiceBinaries() carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		args := []string{"volume", "service", "list"}
+		if len(c.Args) > 0 {
+			args = append(args, "--host", c.Args[0])
+		}
+		return actionListArgs(args, "Binary")
+	})
 }
 
 func ActionBgpvpns() carapace.Action {
