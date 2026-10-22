@@ -31,15 +31,21 @@ func AddPackageFlags(cmd *cobra.Command) {
 
 	cmd.Flags().Bool("disable-netrc", false, "Disable netrc file for authentication")
 	cmd.Flags().Bool("disable-sandbox", false, "Disable using the sandbox when executing subprocesses")
+	cmd.Flags().Bool("disable-signature-validation", false, "Do not validate signatures on package releases downloaded from the registry")
 	cmd.Flags().Bool("enable-netrc", false, "Use netrc file for authentication")
+	cmd.Flags().Bool("enable-signature-validation", false, "Validate signatures on package releases downloaded from the registry")
 	cmd.Flags().Bool("netrc", false, "Use netrc file for authentication")
 	cmd.Flags().String("netrc-file", "", "Specify the netrc file path")
+	cmd.Flags().String("resolver-fingerprint-checking", "", "Fingerprint checking mode of the resolver (default: strict)")
+	cmd.Flags().String("resolver-signing-entity-checking", "", "Signing entity checking mode of the resolver (default: warn)")
 
 	cmd.Flags().String("default-registry-url", "", "Default registry URL")
+	cmd.Flags().Bool("disable-automatic-resolution", false, "Only use versions from the Package.resolved file")
 	cmd.Flags().Bool("disable-prefetching", false, "Disable prefetching")
 	cmd.Flags().Bool("disable-scm-to-registry-transformation", false, "Disable source control to registry transformation")
 	cmd.Flags().Bool("enable-prefetching", false, "Enable prefetching")
 	cmd.Flags().Bool("force-resolved-versions", false, "Only use versions from the Package.resolved file")
+	cmd.Flags().Bool("only-use-versions-from-resolved-file", false, "Only use versions from the Package.resolved file")
 	cmd.Flags().Bool("replace-scm-with-registry", false, "Use the registry to retrieve source control dependencies")
 	cmd.Flags().Bool("skip-update", false, "Skip updating dependencies during resolution")
 	cmd.Flags().Bool("use-registry-identity-for-scm", false, "Look up source control dependencies in the registry")
@@ -53,11 +59,15 @@ func AddPackageFlags(cmd *cobra.Command) {
 	cmd.Flags().StringP("configuration", "c", "", "Build with configuration (debug, release)")
 	cmd.Flags().String("debug-info-format", "", "The debug info format to use (dwarf, codeview, none)")
 	cmd.Flags().Bool("disable-dead-strip", false, "Disable dead code stripping by the linker")
+	cmd.Flags().Bool("disable-experimental-strip-products", false, "Do not strip debug symbols from the final binary")
 	cmd.Flags().Bool("disable-index-store", false, "Disable indexing-while-building feature")
 	cmd.Flags().Bool("disable-local-rpath", false, "Disable adding $ORIGIN/@loader_path to the rpath")
 	cmd.Flags().Bool("enable-dead-strip", false, "Enable dead code stripping by the linker")
+	cmd.Flags().Bool("enable-experimental-strip-products", false, "Strip debug symbols from the final binary")
 	cmd.Flags().Bool("enable-index-store", false, "Enable indexing-while-building feature")
 	cmd.Flags().Bool("enable-parseable-module-interfaces", false, "Enable parseable module interfaces")
+	cmd.Flags().String("experimental-codesize-profile-output-dir", "", "Directory to store code size profiling output files")
+	cmd.Flags().Bool("experimental-enable-codesize-profile", false, "Generate SIL, LLVM IR, and optimization record files for code size profiling")
 	cmd.Flags().String("explicit-target-dependency-import-check", "", "Check explicit target dependency imports (none, warn, error)")
 	cmd.Flags().IntP("jobs", "j", 0, "The number of jobs to spawn in parallel during the build process")
 	cmd.Flags().String("sanitize", "", "Turn on runtime checks for erroneous behavior (address, thread, undefined, scudo, fuzzer)")
@@ -77,14 +87,17 @@ func AddPackageFlags(cmd *cobra.Command) {
 		"config-path":       carapace.ActionDirectories(),
 		"configuration":     carapace.ActionValues("debug", "release"),
 		"debug-info-format": carapace.ActionValues("dwarf", "codeview", "none"),
-		"explicit-target-dependency-import-check": carapace.ActionValues("none", "warn", "error"),
-		"manifest-cache":  carapace.ActionValues("shared", "local", "none"),
-		"package-path":    carapace.ActionDirectories(),
-		"pkg-config-path": carapace.ActionDirectories(),
-		"sanitize":        carapace.ActionValues("address", "thread", "undefined", "scudo", "fuzzer"),
-		"scratch-path":    carapace.ActionDirectories(),
-		"security-path":   carapace.ActionDirectories(),
-		"swift-sdks-path": carapace.ActionDirectories(),
-		"toolset":         carapace.ActionFiles(".json"),
+		"experimental-codesize-profile-output-dir": carapace.ActionDirectories(),
+		"explicit-target-dependency-import-check":  carapace.ActionValues("none", "warn", "error"),
+		"manifest-cache":                   carapace.ActionValues("shared", "local", "none"),
+		"package-path":                     carapace.ActionDirectories(),
+		"pkg-config-path":                  carapace.ActionDirectories(),
+		"resolver-fingerprint-checking":    carapace.ActionValues("strict", "warn"),
+		"resolver-signing-entity-checking": carapace.ActionValues("strict", "warn"),
+		"sanitize":                         carapace.ActionValues("address", "thread", "undefined", "scudo", "fuzzer"),
+		"scratch-path":                     carapace.ActionDirectories(),
+		"security-path":                    carapace.ActionDirectories(),
+		"swift-sdks-path":                  carapace.ActionDirectories(),
+		"toolset":                          carapace.ActionFiles(".json"),
 	})
 }

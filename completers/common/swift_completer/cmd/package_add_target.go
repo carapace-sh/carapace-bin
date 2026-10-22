@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/swift_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -28,6 +29,7 @@ func init() {
 	packageCmd.AddCommand(package_addTargetCmd)
 
 	carapace.Gen(package_addTargetCmd).FlagCompletion(carapace.ActionMap{
+		"dependencies":    action.ActionTargets(),
 		"path":            carapace.ActionFiles(),
 		"testing-library": carapace.ActionValues("xctest", "swift-testing", "none"),
 		"type":            carapace.ActionValues("library", "executable", "test", "macro"),

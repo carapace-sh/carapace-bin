@@ -2,6 +2,7 @@ package common
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/swift_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -47,12 +48,14 @@ func AddCompilerFlags(cmd *cobra.Command) {
 	cmd.Flags().StringS("clang-target-variant", "clang-target-variant", "", "Separately set the target we should use for internal Clang instance for the 'zippered' code for macCatalyst")
 	cmd.Flags().BoolS("color-diagnostics", "color-diagnostics", false, "Print diagnostics in color")
 	cmd.Flags().BoolS("compiler-assertions", "compiler-assertions", false, "Enable internal self-checks while compiling")
+	cmd.Flags().StringS("const-gather-protocols-list", "const-gather-protocols-list", "", "Specify a list of protocols for extraction of conformances 'const values'")
 	cmd.Flags().BoolS("continue-building-after-errors", "continue-building-after-errors", false, "Continue building, even after errors are encountered")
 	cmd.Flags().StringS("coverage-prefix-map", "coverage-prefix-map", "", "Remap source paths in coverage info")
 	cmd.Flags().StringS("cxx-interoperability-mode", "cxx-interoperability-mode", "", "Enables C++ interoperability; pass 'default' to enable or 'off' to disable")
 	cmd.Flags().StringS("debug-info-format", "debug-info-format", "", "Specify the debug info format type to either 'dwarf' or 'codeview'")
 	cmd.Flags().BoolS("debug-info-store-invocation", "debug-info-store-invocation", false, "Emit the compiler invocation in the debug info.")
 	cmd.Flags().StringS("debug-module-path", "debug-module-path", "", "Path to this module's binary swiftmodule artifact (required by debug info)")
+	cmd.Flags().BoolS("debug-module-self-key", "debug-module-self-key", false, "Embedded the key of current job in debug info generation (required by debug info)")
 	cmd.Flags().StringS("debug-prefix-map", "debug-prefix-map", "", "Remap source paths in debug info")
 	cmd.Flags().StringS("default-isolation", "default-isolation", "", "Specify the default actor isolation: MainActor or nonisolated. Defaults to nonisolated.")
 	cmd.Flags().StringS("dependency-scan-serialize-diagnostics-path", "dependency-scan-serialize-diagnostics-path", "", "Emit a serialized diagnostics file for the dependency scanning task to <path>")
@@ -118,6 +121,7 @@ func AddCompilerFlags(cmd *cobra.Command) {
 	cmd.Flags().StringS("ir-output-dir", "ir-output-dir", "", "Output LLVM IR files to directory <dir> as additional output during compilation")
 	cmd.Flags().IntS("j", "j", 0, "Number of commands to execute in parallel")
 	cmd.Flags().StringS("l", "l", "", "Specifies a library which should be linked against")
+	cmd.Flags().StringS("language-mode", "language-mode", "", "Interpret input according to a specific Swift language mode")
 	cmd.Flags().StringS("libc", "libc", "", "libc runtime library to use")
 	cmd.Flags().BoolS("link-objc-runtime", "link-objc-runtime", false, "Deprecated")
 	cmd.Flags().StringS("load-pass-plugin", "load-pass-plugin", "", "Load LLVM pass plugin from a dynamic shared object file.")
@@ -193,19 +197,25 @@ func AddCompilerFlags(cmd *cobra.Command) {
 
 func CompilerFlagCompletion(cmd *cobra.Command) {
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
-		"access-notes-path":         carapace.ActionFiles(".yaml"),
-		"assert-config":             carapace.ActionValues("Debug", "Release", "Unchecked", "DisableReplacement"),
-		"cas-path":                  carapace.ActionDirectories(),
-		"cas-plugin-path":           carapace.ActionFiles(),
-		"cxx-interoperability-mode": carapace.ActionValues("default", "off"),
-		"debug-info-format":         carapace.ActionValues("dwarf", "codeview"),
-		"debug-module-path":         carapace.ActionFiles(),
-		"default-isolation":         carapace.ActionValues("MainActor", "nonisolated"),
+		"access-notes-path":                          carapace.ActionFiles(".yaml"),
+		"assert-config":                              carapace.ActionValues("Debug", "Release", "Unchecked", "DisableReplacement"),
+		"cas-path":                                   carapace.ActionDirectories(),
+		"cas-plugin-path":                            carapace.ActionFiles(),
+		"const-gather-protocols-list":                carapace.ActionFiles(),
+		"cxx-interoperability-mode":                  carapace.ActionValues("default", "off"),
+		"debug-info-format":                          carapace.ActionValues("dwarf", "codeview"),
+		"debug-module-path":                          carapace.ActionFiles(),
+		"default-isolation":                          carapace.ActionValues("MainActor", "nonisolated"),
 		"dependency-scan-serialize-diagnostics-path": carapace.ActionFiles(),
 		"diagnostic-style":                           carapace.ActionValues("swift", "llvm"),
+		"disable-experimental-feature":               action.ActionExperimentalFeatures(),
+		"disable-upcoming-feature":                   action.ActionUpcomingFeatures(),
+		"dwarf-version":                              carapace.ActionValues("2", "3", "4", "5"),
 		"emit-module-dependencies-path":              carapace.ActionFiles(),
 		"emit-module-serialize-diagnostics-path":     carapace.ActionFiles(),
-		"enforce-exclusivity":                        carapace.ActionValues("always", "runtime-only", "none"),
+		"enable-experimental-feature":                action.ActionExperimentalFeatures(),
+		"enable-upcoming-feature":                    action.ActionUpcomingFeatures(),
+		"enforce-exclusivity":                        carapace.ActionValues("unchecked", "checked", "dynamic-only", "none"),
 		"external-plugin-path":                       carapace.ActionFiles(),
 		"file-compilation-dir":                       carapace.ActionDirectories(),
 		"import-bridging-header":                     carapace.ActionFiles(".h"),
@@ -214,6 +224,8 @@ func CompilerFlagCompletion(cmd *cobra.Command) {
 		"index-unit-output-path":                     carapace.ActionFiles(),
 		"internal-import-bridging-header":            carapace.ActionFiles(".h"),
 		"ir-output-dir":                              carapace.ActionDirectories(),
+		"language-mode":                              carapace.ActionValues("4", "4.2", "5", "6"),
+		"libc":                                       carapace.ActionValues("MD", "MDd", "MT", "MTd"),
 		"load-pass-plugin":                           carapace.ActionFiles(),
 		"load-plugin-executable":                     carapace.ActionFiles(),
 		"load-plugin-library":                        carapace.ActionFiles(),
@@ -222,7 +234,7 @@ func CompilerFlagCompletion(cmd *cobra.Command) {
 		"module-cache-path":                          carapace.ActionDirectories(),
 		"plugin-path":                                carapace.ActionDirectories(),
 		"runtime-compatibility-version":              carapace.ActionValues("none"),
-		"save-optimization-record":                   carapace.ActionValues("yaml", "bitstream", "json"),
+		"save-optimization-record":                   carapace.ActionValues("yaml", "bitstream"),
 		"save-optimization-record-passes":            carapace.ActionValues(),
 		"save-optimization-record-path":              carapace.ActionFiles(),
 		"scanner-prefix-map-paths":                   carapace.ActionValues(),

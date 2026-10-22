@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/swift_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -21,4 +22,8 @@ func init() {
 	package_addSettingCmd.Flags().Bool("version", false, "Show the version")
 
 	packageCmd.AddCommand(package_addSettingCmd)
+
+	carapace.Gen(package_addSettingCmd).FlagCompletion(carapace.ActionMap{
+		"target": action.ActionTargets(),
+	})
 }

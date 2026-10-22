@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/swift_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -24,6 +25,7 @@ func init() {
 	packageCmd.AddCommand(package_addProductCmd)
 
 	carapace.Gen(package_addProductCmd).FlagCompletion(carapace.ActionMap{
-		"type": carapace.ActionValues("executable", "library", "static-library", "dynamic-library", "plugin"),
+		"targets": action.ActionTargets(),
+		"type":    carapace.ActionValues("executable", "library", "static-library", "dynamic-library", "plugin"),
 	})
 }

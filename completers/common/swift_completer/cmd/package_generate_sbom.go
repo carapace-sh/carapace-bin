@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/swift_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/completers/common/swift_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
@@ -29,11 +30,7 @@ func init() {
 	packageCmd.AddCommand(package_generateSbomCmd)
 
 	carapace.Gen(package_generateSbomCmd).FlagCompletion(carapace.ActionMap{
-		"product": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return carapace.ActionExecCommand("swift", "package", "describe", "--type", "json")(func(output []byte) carapace.Action {
-				return carapace.ActionValues()
-			})
-		}),
+		"product":         action.ActionProducts(),
 		"sbom-filter":     carapace.ActionValues("all", "product", "package"),
 		"sbom-output-dir": carapace.ActionDirectories(),
 		"sbom-spec":       carapace.ActionValues("cyclonedx", "spdx", "cyclonedx1", "spdx3"),
