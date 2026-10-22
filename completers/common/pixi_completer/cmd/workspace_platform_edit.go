@@ -16,7 +16,9 @@ var workspace_platform_editCmd = &cobra.Command{
 func init() {
 	carapace.Gen(workspace_platform_editCmd).Standalone()
 
-	workspace_platform_editCmd.Flags().String("archspec", "", "Declare a `__archspec` virtual package with the given microarchitecture string, e.g. `x86-64-v3`. Valid on any subdir")
+	workspace_platform_editCmd.Flags().Bool("amdgpu", false, "Declare a `__amdgpu` virtual package, stating that an AMD GPU is present. Valid on any subdir. Serialized as `amdgpu = true`")
+	workspace_platform_editCmd.Flags().String("amdgpu-arch", "", "Declare a `__amdgpu_arch` virtual package from an AMDGPU target name, e.g. `gfx90a`. Also declares `__amdgpu`. Serialized as `amdgpu = \"<target>\"`")
+	workspace_platform_editCmd.Flags().String("archspec", "", "Declare a `__archspec` virtual package with the given microarchitecture string, e.g. `x86_64_v3`. Valid on any subdir")
 	workspace_platform_editCmd.Flags().Bool("clear-virtual-packages", false, "Clear all virtual packages before applying any add/upsert operations")
 	workspace_platform_editCmd.Flags().String("cuda", "", "Declare a `__cuda` virtual package at the given version, e.g. `12.0`. Valid on any subdir")
 	workspace_platform_editCmd.Flags().String("cuda-arch", "", "Declare a `__cuda_arch` virtual package (GPU compute capability) at the given version, e.g. `8.6`. Requires `--cuda` (or an existing `__cuda`), matching the conda CEP coupling. Serialized as `cuda = { driver, arch }`")

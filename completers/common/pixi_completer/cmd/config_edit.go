@@ -18,11 +18,15 @@ func init() {
 	config_editCmd.Flags().BoolP("global", "g", false, "Operation on global configuration")
 	config_editCmd.Flags().BoolP("local", "l", false, "Operation on project-local configuration")
 	config_editCmd.PersistentFlags().StringP("manifest-path", "m", "", "The path to `pixi.toml`, `pyproject.toml`, or the workspace directory")
+	config_editCmd.Flags().StringP("path", "p", "", "Path to a local configuration file")
+	config_editCmd.Flags().Bool("shared", false, "Operation on the user configuration shared with other rattler-based tools, which only accepts the keys every such tool understands")
 	config_editCmd.Flags().BoolP("system", "s", false, "Operation on system configuration")
 	config_editCmd.PersistentFlags().StringP("workspace", "w", "", "Name of the workspace")
+	config_editCmd.MarkFlagsMutuallyExclusive("local", "global", "system", "shared", "path")
 	configCmd.AddCommand(config_editCmd)
 
 	carapace.Gen(config_editCmd).FlagCompletion(carapace.ActionMap{
 		"manifest-path": carapace.ActionFiles(),
+		"path":          carapace.ActionFiles(),
 	})
 }
