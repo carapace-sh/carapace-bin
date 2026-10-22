@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "openstack",
 	Short: "",
+	Long:  "https://github.com/openstack/python-openstackclient",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
