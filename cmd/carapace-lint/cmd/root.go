@@ -10,6 +10,7 @@ import (
 	"strings"
 
 	"github.com/carapace-sh/carapace"
+	"github.com/owenrumney/go-sarif/sarif"
 	"github.com/spf13/cobra"
 )
 
@@ -22,13 +23,37 @@ var rootCmd = &cobra.Command{
 	},
 	Run: func(cmd *cobra.Command, args []string) {
 		exitCode := 0
+		var issues []lintIssue
 		for _, arg := range args {
-			if err := Lint(arg); err != nil {
+			lintIssues, err := Lint(arg)
+			if err != nil {
 				println(err.Error())
 				exitCode = 1
-			} else if err := LintFlagActions(arg); err != nil {
+				continue
+			}
+			issues = append(issues, lintIssues...)
+
+			flagActionIssues, err := LintFlagActions(arg)
+			if err != nil {
 				println(err.Error())
 				exitCode = 1
+				continue
+			}
+			issues = append(issues, flagActionIssues...)
+		}
+
+		if len(issues) > 0 {
+			exitCode = 1
+		}
+
+		if sarifPath != "" {
+			if err := writeSarif(sarifPath, issues); err != nil {
+				println(err.Error())
+				os.Exit(1)
+			}
+		} else {
+			for _, issue := range issues {
+				println(fmt.Sprintf("%s [%d]: %s", issue.file, issue.line, issue.message))
 			}
 		}
 		os.Exit(exitCode)
@@ -36,6 +61,7 @@ var rootCmd = &cobra.Command{
 }
 
 var fixFlagsOrder bool
+var sarifPath string
 
 func Execute() error {
 	return rootCmd.Execute()
@@ -43,6 +69,7 @@ func Execute() error {
 
 func init() {
 	rootCmd.Flags().BoolVar(&fixFlagsOrder, "fix-flags-order", false, "auto-fix flags order")
+	rootCmd.Flags().StringVar(&sarifPath, "sarif", "", "output sarif report to file")
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionFiles(".go"),
@@ -62,14 +89,14 @@ type (
 	}
 )
 
-func Lint(path string) error {
+func Lint(path string) ([]lintIssue, error) {
 	if !strings.HasSuffix(path, ".go") {
-		return nil
+		return nil, nil
 	}
 
 	content, err := os.ReadFile(path)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
 	r := regexp.MustCompile(`\.Flags\(\)\.(Bool|String|Float|Int|Uint|Count)[^(]*\("(?P<name>[^"]+)"`)
@@ -141,8 +168,9 @@ func Lint(path string) error {
 			}
 		}
 
-		return os.WriteFile(path, buf.Bytes(), 0644)
+		return nil, os.WriteFile(path, buf.Bytes(), 0644)
 	} else {
+		var issues []lintIssue
 		for _, def := range defs {
 			block := lines[def.Start:def.End]
 			for i := 1; i < len(block); i++ {
@@ -150,23 +178,27 @@ func Lint(path string) error {
 				current := block[i]
 
 				if current.FlagName < prev.FlagName {
-					return fmt.Errorf("%s [%d]: flag '%s' should be before '%s'", path, current.LineNumber, current.FlagName, prev.FlagName)
+					issues = append(issues, lintIssue{
+						file:    path,
+						line:    current.LineNumber,
+						message: fmt.Sprintf("flag '%s' should be before '%s'", current.FlagName, prev.FlagName),
+						ruleID:  "carapace-lint/flags-order",
+					})
 				}
 			}
 		}
+		return issues, nil
 	}
-
-	return nil
 }
 
-func LintFlagActions(path string) error {
+func LintFlagActions(path string) ([]lintIssue, error) {
 	if !strings.HasSuffix(path, ".go") {
-		return nil
+		return nil, nil
 	}
 
 	file, err := os.Open(path)
 	if err != nil {
-		return err
+		return nil, err
 	}
 	defer file.Close()
 
@@ -177,6 +209,7 @@ func LintFlagActions(path string) error {
 	rFlagName := regexp.MustCompile(`^\t\t"(?P<name>[^"]+)":.*$`)
 	rEnd := regexp.MustCompile(`^\t}\)?$`)
 
+	var issues []lintIssue
 	line := 0
 	previous := ""
 outer:
@@ -191,7 +224,12 @@ outer:
 					matches := rFlagName.FindStringSubmatch(scanner.Text())
 					current := matches[1]
 					if previous != "" && previous > current {
-						return fmt.Errorf("%v [%v]: flag completion '%v' should be before '%v'", path, line, current, previous)
+						issues = append(issues, lintIssue{
+							file:    path,
+							line:    line,
+							message: fmt.Sprintf("flag completion '%s' should be before '%s'", current, previous),
+							ruleID:  "carapace-lint/flag-actions-order",
+						})
 					}
 					previous = current
 				}
@@ -200,9 +238,50 @@ outer:
 		}
 		line += 1
 	}
-	return nil
+	return issues, nil
 }
 
 func (l sourceLine) isFlagLine() bool {
 	return l.FlagName != ""
+}
+
+type lintIssue struct {
+	file    string
+	line    int
+	message string
+	ruleID  string
+}
+
+func writeSarif(path string, issues []lintIssue) error {
+	report, err := sarif.New(sarif.Version210)
+	if err != nil {
+		return err
+	}
+
+	run := sarif.NewRun("carapace-lint", "https://github.com/carapace-sh/carapace-bin")
+	run.AddRule("carapace-lint/flags-order").WithDescription("Flags should be in alphabetical order")
+	run.AddRule("carapace-lint/flag-actions-order").WithDescription("Flag completions should be in alphabetical order")
+
+	for _, issue := range issues {
+		result := run.AddResult(issue.ruleID)
+		result.WithLevel("warning").
+			WithMessage(sarif.NewTextMessage(issue.message))
+
+		if issue.file != "" && issue.line > 0 {
+			result.WithLocation(sarif.NewLocationWithPhysicalLocation(
+				sarif.NewPhysicalLocation().
+					WithArtifactLocation(sarif.NewSimpleArtifactLocation(issue.file)).
+					WithRegion(sarif.NewSimpleRegion(issue.line, issue.line)),
+			))
+		}
+	}
+
+	report.AddRun(run)
+
+	file, err := os.Create(path)
+	if err != nil {
+		return err
+	}
+	defer file.Close()
+	return report.PrettyWrite(file)
 }
