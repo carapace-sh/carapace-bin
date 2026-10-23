@@ -37,7 +37,7 @@ func init() {
 	databaseCmd.Flags().Bool("noconfirm", false, "do not ask for any confirmation")
 	databaseCmd.Flags().BoolP("quiet", "q", false, "suppress output of success messages")
 	databaseCmd.Flags().StringP("root", "r", "", "set an alternate installation root")
-	databaseCmd.Flags().Bool("sysroot", false, "operate on a mounted guest system (root-only)")
+	databaseCmd.Flags().String("sysroot", "", "operate on a mounted guest system (root-only)")
 	databaseCmd.Flags().BoolP("verbose", "v", false, "be verbose")
 
 	carapace.Gen(databaseCmd).FlagCompletion(carapace.ActionMap{
@@ -50,6 +50,7 @@ func init() {
 		"hookdir":  carapace.ActionDirectories(),
 		"logfile":  carapace.ActionFiles(),
 		"root":     carapace.ActionDirectories(),
+		"sysroot":  carapace.ActionDirectories(),
 	})
 
 	carapace.Gen(databaseCmd).PositionalAnyCompletion(
