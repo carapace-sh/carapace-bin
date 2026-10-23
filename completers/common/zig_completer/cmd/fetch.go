@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -18,18 +17,23 @@ func init() {
 
 	rootCmd.AddCommand(fetchCmd)
 
-	fetchCmd.Flags().String("color", "", "Enable or disable colored error messages")
+	fetchCmd.Flags().String("cache-dir", "", "Override path to local cache directory")
 	fetchCmd.Flags().Bool("debug-hash", false, "Print verbose hash information to stdout")
-	fetchCmd.Flags().String("global-cache-dir", "", "Override path to global Zig cache directory")
+	fetchCmd.Flags().String("debug-log", "", "Enable printing debug/info log messages for scope")
 	fetchCmd.Flags().BoolP("help", "h", false, "Print help")
+	fetchCmd.Flags().String("pkg-dir", "", "Override path to local package directory")
 	fetchCmd.Flags().String("save", "", "Add the fetched package to build.zig.zon")
 	fetchCmd.Flags().String("save-exact", "", "Add the fetched package to build.zig.zon, storing the URL verbatim")
 
-	carapace.Gen(fetchCmd).FlagCompletion(carapace.ActionMap{
-		"color":            carapace.ActionValues("auto", "off", "on").StyleF(style.ForKeyword),
-		"global-cache-dir": carapace.ActionDirectories(),
-	})
-
 	fetchCmd.Flags().Lookup("save").NoOptDefVal = " "
 	fetchCmd.Flags().Lookup("save-exact").NoOptDefVal = " "
+
+	carapace.Gen(fetchCmd).FlagCompletion(carapace.ActionMap{
+		"cache-dir": carapace.ActionDirectories(),
+		"pkg-dir":   carapace.ActionDirectories(),
+	})
+
+	carapace.Gen(fetchCmd).PositionalCompletion(
+		carapace.ActionFiles(),
+	)
 }

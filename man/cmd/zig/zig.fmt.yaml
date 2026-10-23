@@ -7,6 +7,7 @@ flags:
     --check: List non-conforming files and exit with an error if the list is non-empty
     --color=: Enable or disable colored error messages
     --exclude=*: Exclude file or directory from formatting
+    --complexity: Print a complexity report for each file as well as total
     --stdin: Format code from stdin; output to stdout
     --zon: Treat all input files as ZON, regardless of file extension
     -h, --help: Print help

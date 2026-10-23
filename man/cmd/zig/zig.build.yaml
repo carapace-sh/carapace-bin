@@ -4,25 +4,29 @@ description: Build project from build.zig
 group: project
 flags:
     --build-file=: Override path to build.zig
-    --build-runner=: Override path to build runner
     --cache-dir=: Override the local cache directory
+    --cache-poison?: Override configuration caching behavior
     --color=: Enable or disable colored output
     --debug-compile-errors: Crash with diagnostics at first compile error
+    --debug-incremental: Enable incremental compilation debug features
     --debug-log=: Enable printing debug/info log messages for scope
+    --debug-rt?: Build compiler runtime libraries with optimization
+    --debug-target=: Compile the configurer for a given target
+    --error-limit=: Set the maximum amount of distinct error values
     --fetch=: Fetch all packages and exit
-    --global-cache-dir=: Override the global cache directory
-    --job-count=: Limit concurrent jobs
+    --glibc-runtimes=: Enhances QEMU integration by providing dynamic libc
+    --listen=: Enable the build server protocol on stdio
+    --pkg-dir=: Override path to local package directory
+    --print-configuration: Render configuration as .zon to stdout
+    --print-configuration-path: Print the path to the binary configuration file to stdout
     --reference-trace: Enable reference trace (256 lines)
     --seed=: Override the random seed for the build
     --system=: Set system package directory path
     --verbose-air: Enable compiler debug output for Zig AIR
     --verbose-cc: Display C compiler invocations
     --verbose-cimport: Enable compiler debug output for C imports
-    --verbose-generic-instances: Enable compiler debug output for generic instance generation
-    --verbose-intern-pool: Enable compiler debug output for InternPool
     --verbose-link: Display linker invocations
     --verbose-llvm-bc=: Enable compiler debug output for unoptimized LLVM BC
     --verbose-llvm-cpu-features: Enable compiler debug output for LLVM CPU features
     --verbose-llvm-ir=: Enable compiler debug output for unoptimized LLVM IR
-    --zig-lib-dir=: Override path to Zig installation lib directory
     -h, --help: Print help

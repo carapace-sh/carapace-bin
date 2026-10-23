@@ -1,4 +1,23 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
-name: objdump
+name: objdump [options] file
 description: Print information about executables and relocatables
 group: wrapper
+flags:
+    --all-headers: Alias for --file-headers --linker-member=2 --member-headers --section-headers --relocs --symbols
+    --elements=: Select which formatting elements are displayed
+    --exports?: Display exported symbols, optionally sorted by symbol name
+    --file-headers: Display file-format specific headers
+    --imports: Display imported symbols
+    --linker-member?: Display contents of the specified archive linker member
+    --member-headers: Display archive member headers
+    --only-member=*: Only consider archive members names that contain name
+    --only-section=*: Only consider section names that contain name
+    --only-symbol=*: Only consider symbol names that contain name
+    --redact=: Redact the specified field kind
+    --relocs: Display relocations
+    --section-headers: Display section headers
+    -s, --snapshot: Alias for --redact=all --elements=-all
+    --strings: Display string tables
+    --symbols: Display symbol tables
+    --tls: Display TLS information
+    -h, --help: Print this help and exit
