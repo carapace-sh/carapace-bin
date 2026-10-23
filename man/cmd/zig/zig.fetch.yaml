@@ -3,10 +3,11 @@ name: fetch [options] <url>
 description: Copy a package into global cache and print its hash
 group: project
 flags:
-    --color=: Enable or disable colored error messages
     --debug-hash: Print verbose hash information to stdout
-    --global-cache-dir=: Override path to global Zig cache directory
+    --debug-log=: Enable printing debug/info log messages for scope
+    --cache-dir=: Override path to local cache directory
     --save: Add the fetched package to build.zig.zon
+    --pkg-dir=: Override path to local package directory
     --save-exact: Add the fetched package to build.zig.zon, storing the URL verbatim
     --save-exact-name=: Add the fetched package to build.zig.zon as name, storing the URL verbatim
     --save-name=: Add the fetched package to build.zig.zon as name
