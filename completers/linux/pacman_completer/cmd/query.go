@@ -46,7 +46,7 @@ func init() {
 	queryCmd.Flags().BoolP("quiet", "q", false, "show less information for query and search")
 	queryCmd.Flags().StringP("root", "r", "", "set an alternate installation root")
 	queryCmd.Flags().StringP("search", "s", "", "search locally-installed packages for matching strings")
-	queryCmd.Flags().Bool("sysroot", false, "operate on a mounted guest system (root-only)")
+	queryCmd.Flags().String("sysroot", "", "operate on a mounted guest system (root-only)")
 	queryCmd.Flags().CountP("unrequired", "t", "list packages not (optionally) required by any package")
 	queryCmd.Flags().BoolP("upgrades", "u", false, "list outdated packages [filter]")
 	queryCmd.Flags().BoolP("verbose", "v", false, "be verbose")
@@ -63,6 +63,7 @@ func init() {
 		"logfile":  carapace.ActionFiles(),
 		"owns":     carapace.ActionFiles(),
 		"root":     carapace.ActionDirectories(),
+		"sysroot":  carapace.ActionDirectories(),
 	})
 
 	carapace.Gen(queryCmd).PositionalAnyCompletion(

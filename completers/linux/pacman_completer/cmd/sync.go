@@ -54,7 +54,7 @@ func init() {
 	syncCmd.Flags().CountP("refresh", "y", "download fresh package databases from the server")
 	syncCmd.Flags().StringP("root", "r", "", "set an alternate installation root")
 	syncCmd.Flags().StringP("search", "s", "", "search remote repositories for matching strings")
-	syncCmd.Flags().Bool("sysroot", false, "operate on a mounted guest system (root-only)")
+	syncCmd.Flags().String("sysroot", "", "operate on a mounted guest system (root-only)")
 	syncCmd.Flags().CountP("sysupgrade", "u", "upgrade installed packages (-uu enables downgrades)")
 	syncCmd.Flags().BoolP("verbose", "v", false, "be verbose")
 
@@ -76,7 +76,8 @@ func init() {
 			}
 			return carapace.ActionValues()
 		}),
-		"root": carapace.ActionDirectories(),
+		"root":    carapace.ActionDirectories(),
+		"sysroot": carapace.ActionDirectories(),
 	})
 
 	carapace.Gen(syncCmd).PositionalAnyCompletion(

@@ -41,7 +41,7 @@ func init() {
 	rootCmd.Flags().String("logfile", "", "set an alternate log file")
 	rootCmd.Flags().Bool("noconfirm", false, "do not ask for any confirmation")
 	rootCmd.Flags().StringP("root", "r", "", "set an alternate installation root")
-	rootCmd.Flags().Bool("sysroot", false, "operate on a mounted guest system (root-only)")
+	rootCmd.Flags().String("sysroot", "", "operate on a mounted guest system (root-only)")
 	rootCmd.Flags().BoolP("verbose", "v", false, "be verbose")
 	rootCmd.Flags().BoolP("version", "V", false, "show version")
 	common.AddNewFlags(rootCmd)
@@ -56,6 +56,7 @@ func init() {
 		"hookdir":  carapace.ActionDirectories(),
 		"logfile":  carapace.ActionFiles(),
 		"root":     carapace.ActionDirectories(),
+		"sysroot":  carapace.ActionDirectories(),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

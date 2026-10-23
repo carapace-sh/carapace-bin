@@ -43,7 +43,7 @@ func init() {
 	removeCmd.Flags().String("print-format", "", "specify how the targets should be printed")
 	removeCmd.Flags().CountP("recursive", "s", "remove unnecessary dependencies")
 	removeCmd.Flags().StringP("root", "r", "", "set an alternate installation root")
-	removeCmd.Flags().Bool("sysroot", false, "operate on a mounted guest system (root-only)")
+	removeCmd.Flags().String("sysroot", "", "operate on a mounted guest system (root-only)")
 	removeCmd.Flags().BoolP("unneeded", "u", false, "remove unneeded packages")
 	removeCmd.Flags().BoolP("verbose", "v", false, "be verbose")
 
@@ -57,6 +57,7 @@ func init() {
 		"hookdir":  carapace.ActionDirectories(),
 		"logfile":  carapace.ActionFiles(),
 		"root":     carapace.ActionDirectories(),
+		"sysroot":  carapace.ActionDirectories(),
 	})
 
 	carapace.Gen(removeCmd).PositionalAnyCompletion(

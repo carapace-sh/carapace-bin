@@ -47,7 +47,7 @@ func init() {
 	upgradeCmd.Flags().BoolP("print", "p", false, "print the targets instead of performing the operation")
 	upgradeCmd.Flags().String("print-format", "", "specify how the targets should be printed")
 	upgradeCmd.Flags().StringP("root", "r", "", "set an alternate installation root")
-	upgradeCmd.Flags().Bool("sysroot", false, "operate on a mounted guest system (root-only)")
+	upgradeCmd.Flags().String("sysroot", "", "operate on a mounted guest system (root-only)")
 	upgradeCmd.Flags().BoolP("verbose", "v", false, "be verbose")
 
 	carapace.Gen(upgradeCmd).FlagCompletion(carapace.ActionMap{
@@ -67,7 +67,8 @@ func init() {
 			}
 			return carapace.ActionValues()
 		}),
-		"root": carapace.ActionDirectories(),
+		"root":    carapace.ActionDirectories(),
+		"sysroot": carapace.ActionDirectories(),
 	})
 
 	carapace.Gen(upgradeCmd).PositionalAnyCompletion(carapace.ActionFiles())
