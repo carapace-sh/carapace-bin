@@ -63,8 +63,8 @@ var listCmd = &cobra.Command{
 func init() {
 	carapace.Gen(listCmd).Standalone()
 	listCmd.Flags().Bool("all", false, "return unfiltered results")
-	listCmd.Flags().Bool("names", false, "only list names")
 	listCmd.Flags().Bool("init", false, "update shims")
+	listCmd.Flags().Bool("names", false, "only list names")
 
 	carapace.Gen(listCmd).PositionalCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {

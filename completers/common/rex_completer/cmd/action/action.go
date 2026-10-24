@@ -16,7 +16,10 @@ func ActionSessions(cmd *cobra.Command) carapace.Action {
 // ActionWindows completes window targets
 func ActionWindows(cmd *cobra.Command) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return rex.ActionWindows(flagValue(cmd, "server"), flagValue(cmd, "session"))
+		return rex.ActionWindows(rex.WindowsOpts{
+			Server:  flagValue(cmd, "server"),
+			Session: flagValue(cmd, "session"),
+		})
 	})
 }
 
@@ -52,7 +55,10 @@ func ActionClientActionArgs(cmd *cobra.Command) carapace.Action {
 		if len(c.Args) > 0 {
 			name = c.Args[0]
 		}
-		return rex.ActionClientActionArgs(name, flagValue(cmd, "client"))
+		return rex.ActionClientActionArgs(rex.ClientActionArgsOpts{
+			Action: name,
+			Client: flagValue(cmd, "client"),
+		})
 	})
 }
 

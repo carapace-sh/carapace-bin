@@ -45,6 +45,7 @@ func AddPackageBuildFlags(cmd *cobra.Command) {
 
 func AddPackageBuildFlagsMask(cmd *cobra.Command, mask uint) {
 	cmd.Flags().StringS("C", "C", "", "Change to dir before running the command")
+	cmd.Flags().BoolS("a", "a", false, "force rebuilding of packages that are already up-to-date")
 	cmd.Flags().BoolS("asan", "asan", false, "enable interoperation with address sanitizer")
 	cmd.Flags().StringS("asmflags", "asmflags", "", "arguments to pass on each go tool asm invocation")
 	cmd.Flags().StringS("buildmode", "buildmode", "", "build mode to use")
@@ -52,7 +53,6 @@ func AddPackageBuildFlagsMask(cmd *cobra.Command, mask uint) {
 	cmd.Flags().StringS("compiler", "compiler", "", "name of compiler to use")
 	cmd.Flags().StringS("gccgoflags", "gccgoflags", "", "arguments to pass on each gccgo compiler/linker invocation")
 	cmd.Flags().StringS("gcflags", "gcflags", "", "arguments to pass on each go tool compile invocation")
-	cmd.Flags().BoolS("a", "a", false, "force rebuilding of packages that are already up-to-date")
 	cmd.Flags().StringS("installsuffix", "installsuffix", "", "a suffix to use in the name of the package installation directory")
 	cmd.Flags().StringS("ldflags", "ldflags", "", "arguments to pass on each go tool link invocation")
 	cmd.Flags().BoolS("linkshared", "linkshared", false, "build code that will be linked against shared libraries")
