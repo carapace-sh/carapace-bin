@@ -231,11 +231,11 @@ After running `update`:
 # Build with all platform completers
 go build -tags force_all -o /tmp/carapace-test ./cmd/carapace
 
-# Lint flag ordering
-go run ./cmd/carapace-lint completers/<category>/<tool>_completer/cmd/*.go
+# Lint (requires golangci-lint built via `golangci-lint custom`)
+./custom-gcl run ./...
 
-# Auto-fix ordering if needed
-go run ./cmd/carapace-lint --fix-flags-order completers/<category>/<tool>_completer/cmd/*.go
+# Auto-fix ordering and duplicate findings if needed
+./custom-gcl run --fix ./...
 
 # Test completion output
 /tmp/carapace-test <tool> bash ''

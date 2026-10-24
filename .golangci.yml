@@ -1,0 +1,44 @@
+version: "2"
+
+output:
+  formats:
+    sarif:
+      path: golangci-lint.sarif
+
+linters:
+  default: none
+  enable:
+    - carapace
+    - staticcheck
+  exclusions:
+    paths:
+      - completers_release
+    rules:
+      - path: (.+)_test\.go
+        linters:
+          - carapace
+  settings:
+    custom:
+      carapace:
+        type: module
+        description: check alphabetical order of carapace command definitions
+        original-url: https://github.com/carapace-sh/carapace-lint
+        settings:
+          flags-order: true
+          flag-actions-order: true
+          macro-syntax: true
+          completion-values: true
+    staticcheck:
+      checks:
+        - all
+        - -ST1000
+        - -ST1003
+        - -SA1019
+        - -QF*
+
+formatters:
+  enable:
+    - gofmt
+  exclusions:
+    paths:
+      - completers_release

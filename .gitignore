@@ -35,5 +35,8 @@
 /dist
 /docs/book
 /out.gif
+/custom-gcl
+/custom-gcl.exe
+/golangci-lint.sarif
 /pkg/actions/actions_generated.go
 /pkg/conditions/conditions_generated.go

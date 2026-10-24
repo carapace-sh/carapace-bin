@@ -12,7 +12,6 @@ require (
 	github.com/carapace-sh/carapace-shlex/v2 v2.0.0
 	github.com/carapace-sh/carapace-spec v1.10.0
 	github.com/micromdm/plist v0.3.0
-	github.com/owenrumney/go-sarif v1.1.1
 	github.com/pelletier/go-toml v1.9.5
 	github.com/spf13/cobra v1.10.2
 	github.com/spf13/pflag v1.0.10
@@ -22,9 +21,9 @@ require (
 )
 
 require (
+	github.com/kr/pretty v0.1.0 // indirect
 	github.com/pelletier/go-toml/v2 v2.4.3 // indirect
-	github.com/zclconf/go-cty v1.10.0 // indirect
-	golang.org/x/text v0.3.8 // indirect
+	gopkg.in/check.v1 v1.0.0-20180628173108-788fd7840127 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 

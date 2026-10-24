@@ -12,10 +12,8 @@ For carapace library concepts (actions, macros, specs, integration, scraping), s
 | `go install -v -tags force_all ./cmd/carapace` | Build with all platform completers |
 | `go install -v ./cmd/carapace` | Build for current platform only |
 | `go test -v ./cmd/...` | Run tests |
-| `gofmt -d -s .` | Format check (must produce empty diff) |
-| `staticcheck ./...` | Static analysis |
-| `go run ./cmd/carapace-lint completers/*/*/cmd/*.go` | Alphabetical ordering linter |
-| `go run ./cmd/carapace-lint --fix-flags-order completers/*/*/cmd/*.go` | Auto-fix ordering |
+| `golangci-lint custom && ./custom-gcl run ./...` | Run linter: formatting (gofmt), static analysis (staticcheck), carapace checks (see `.custom-gcl.yml`/`.golangci.yml`) |
+| `./custom-gcl run --fix ./...` | Auto-fix linter findings |
 
 No Makefile — orchestration is in `.github/workflows/go.yml`.
 
@@ -49,7 +47,6 @@ The `skills/carapace/` directory contains the composite carapace skill with deta
 cmd/
   carapace/              # Main binary: spec loader, macro dispatcher, completer invoker
   carapace-generate/     # Code generator (macros, completer lists, conditions, specs)
-  carapace-lint/         # Custom linter: alphabetical flag/flag-action ordering
   carapace-parse/        # Spec parser
   carapace-shim/         # Shell shim manager
 completers/              # Individual completers
@@ -232,18 +229,21 @@ carapace.ActionValuesDescribed(vals...).Style(styles.Git.Branch)
 carapace.ActionStyledValuesDescribed(vals...) // value, description, style triplets
 ```
 
-## Lint Rules (carapace-lint)
+## Lint Checks
 
-Beyond standard Go tooling, two project-specific checks:
+`.golangci.yml` enables the [carapace-lint](https://github.com/carapace-sh/carapace-lint) module plugin (pinned in `.custom-gcl.yml`) alongside the `gofmt` and `staticcheck` linters, so a single `./custom-gcl run ./...` covers formatting, static analysis, and the project-specific checks:
 
-1. **Flag definitions must be alphabetically ordered** within contiguous blocks of `.Flags().(Bool|String|Float|Int|Uint|Count)()` calls
-2. **Flag completion keys** in `carapace.ActionMap{}` blocks must be alphabetically ordered
+1. **FlagsOrder** — flag definitions must be alphabetically ordered within contiguous blocks of `.Flags().<Type>()` calls
+2. **FlagActionsOrder** — flag completion keys in `carapace.ActionMap{}` blocks must be alphabetically ordered
+3. **MacroSyntax** — exported actions under `pkg/actions/` must match the macro syntax (single parameter or none)
+4. **CompletionValues** — completion values must be paired correctly and must be unique
 
-Both auto-fixable with `--fix-flags-order`.
+Ordering and duplicate-entry findings support auto-fix with `./custom-gcl run --fix ./...`.
 
 ## staticcheck Configuration
 
-`staticcheck.conf` enables all checks except ST1000, ST1003, SA1019 (deprecated func usage is common).
+The `staticcheck` linter in `.golangci.yml` enables all checks except ST1000, ST1003, SA1019 (deprecated func usage is common).
+`staticcheck.conf` mirrors this for standalone staticcheck runs.
 
 ## Subcommand init() Ordering
 
@@ -279,7 +279,7 @@ Compound values (e.g. `KEY=VALUE`, `user@host`, `repo/branch`) use `carapace.Act
 ## Gotchas
 
 - **`go generate` is mandatory** after adding/modifying public actions — the generated macro map won't update otherwise
-- **Flag alphabetical ordering** is enforced by carapace-lint, not Go tooling — CI will fail if you only run `go vet`/`staticcheck` locally
+- **Flag alphabetical ordering** is enforced by the carapace golangci-lint plugin (`./custom-gcl run ./...`) — CI will fail if you only run `go vet` locally
 - **Build with `-tags force_all`** during development or you'll miss platform-specific compilation errors
 - **The root command uses manual flag parsing** — it doesn't follow normal cobra patterns
 - **`actions_generated.go` is auto-generated** — never edit directly; add public actions with proper doc comments instead

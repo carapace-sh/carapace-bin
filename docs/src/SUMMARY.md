@@ -63,7 +63,6 @@
     - [Best Practices](./development/bestPractices.md)
       - [Coupled Actions](./development/bestPractices/coupledActions.md)
     - [Tools](./development/tools.md)
-      - [carapace-fmt](./development/tools/carapace-fmt.md)
       - [carapace-lint](./development/tools/carapace-lint.md)
       - [carapace-parse](./development/tools/carapace-parse.md)
       - [carapace-generate](./development/tools/carapace-generate.md)
