@@ -652,7 +652,7 @@ that checks completers statically. Registered analyzers:
 | `FlagsOrder` | `.Flags().<Type>(...)` definitions ordered alphabetically |
 | `FlagActionsOrder` | `FlagCompletion(carapace.ActionMap{...})` keys ordered alphabetically |
 | `MacroSyntax` | public actions in `pkg/actions/` match the macro syntax (at most one parameter, doc comment, single unnamed result) |
-| `CompletionValues` | value lists paired correctly, unique, and sorted: alphabetically for text values, by magnitude for numeric and size-like values (`512`, `2k`, `2.5MiB`) |
+| `CompletionValues` | value lists paired correctly, unique, and sorted: natural order (runs of digits compared numerically, F2 before F10) for text values, by magnitude for numeric and size-like values (`512`, `2k`, `2.5MiB`) |
 
 Value lists that follow a deliberate order are annotated with `// carapace:curated` inside the
 call — written on the call's line for multiline lists, after the call for single-line lists:

@@ -236,11 +236,12 @@ carapace.ActionStyledValuesDescribed(vals...) // value, description, style tripl
 1. **FlagsOrder** — flag definitions must be alphabetically ordered within contiguous blocks of `.Flags().<Type>()` calls
 2. **FlagActionsOrder** — flag completion keys in `carapace.ActionMap{}` blocks must be alphabetically ordered
 3. **MacroSyntax** — exported actions under `pkg/actions/` must match the macro syntax (single parameter or none)
-4. **CompletionValues** — completion values must be paired correctly, unique, and sorted: alphabetically
-   for text values, by magnitude for numeric and size-like values (`512`, `2k`, `2.5MiB`). Deliberately
-   ordered lists are annotated with `// carapace:curated` inside the call — on the call's line for
-   multiline lists (see `pkg/actions/tools/zfs/property.go`, `case "compression"`), after the call for
-   single-line lists. Arity and duplicate checks still apply to curated lists.
+4. **CompletionValues** — completion values must be paired correctly, unique, and sorted: natural
+   order (digit runs compared numerically, F2 before F10) for text values, by magnitude for numeric
+   and size-like values (`512`, `2k`, `2.5MiB`). Deliberately ordered lists are annotated with
+   `// carapace:curated` inside the call — on the call's line for multiline lists (see
+   `pkg/actions/tools/zfs/property.go`, `case "compression"`), after the call for single-line lists.
+   Arity and duplicate checks still apply to curated lists.
 
 Ordering and duplicate-entry findings support auto-fix with `./custom-gcl run --fix ./...`.
 
