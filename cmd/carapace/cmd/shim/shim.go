@@ -1,16 +1,17 @@
 package shim
 
 import (
-	"bufio"
+	"bytes"
 	"fmt"
 	"os"
 	"path/filepath"
-	"regexp"
 	"runtime"
 	"strings"
+	"sync"
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace/pkg/xdg"
+	"gopkg.in/yaml.v3"
 )
 
 func Update() error {
@@ -30,12 +31,51 @@ func Update() error {
 		return err
 	}
 
+	targets := make([]shim, 0, len(entries))
 	for _, entry := range entries {
 		if strings.HasSuffix(entry.Name(), ".yaml") {
-			s := shim{Target: fmt.Sprintf("%v/carapace/specs/%v", configDir, entry.Name())}
+			targets = append(targets, shim{Target: fmt.Sprintf("%v/carapace/specs/%v", configDir, entry.Name())})
+		}
+	}
+	return updateTargets(targets)
+}
+
+func updateTargets(targets []shim) error {
+	if len(targets) < 2 {
+		for _, s := range targets {
 			if err := s.Update(); err != nil {
 				return err
 			}
+		}
+		return nil
+	}
+
+	errs := make([]error, len(targets))
+	workers := min(runtime.NumCPU(), len(targets))
+
+	next := make(chan int)
+	go func() {
+		defer close(next)
+		for index := range targets {
+			next <- index
+		}
+	}()
+
+	var group sync.WaitGroup
+	group.Add(workers)
+	for range workers {
+		go func() {
+			defer group.Done()
+			for index := range next {
+				errs[index] = targets[index].Update()
+			}
+		}()
+	}
+	group.Wait()
+
+	for _, err := range errs {
+		if err != nil {
+			return err
 		}
 	}
 	return nil
@@ -102,18 +142,28 @@ func (s shim) NeedsUpdate() bool {
 }
 
 func (s shim) IsRunnable() bool {
-	file, err := os.Open(s.Target)
+	content, err := os.ReadFile(s.Target)
 	if err != nil {
 		return false
 	}
-	defer file.Close()
 
-	scanner := bufio.NewScanner(file)
-	scanner.Split(bufio.ScanLines)
+	if !bytes.Contains(content, []byte("run")) {
+		return false
+	}
 
-	r := regexp.MustCompile(`^ *run:`)
-	for scanner.Scan() {
-		if r.MatchString(scanner.Text()) {
+	var document yaml.Node
+	if err := yaml.Unmarshal(content, &document); err != nil || len(document.Content) != 1 {
+		return false
+	}
+
+	root := document.Content[0]
+	if root.Kind != yaml.MappingNode {
+		return false
+	}
+
+	for index := 0; index < len(root.Content); index += 2 {
+		key := root.Content[index]
+		if key.Kind == yaml.ScalarNode && key.Value == "run" {
 			return true
 		}
 	}
