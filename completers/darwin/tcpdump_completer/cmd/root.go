@@ -80,6 +80,6 @@ func init() {
 		"r":                    carapace.ActionFiles(),
 		"time-stamp-precision": carapace.ActionValues("micro", "nano"),
 		"w":                    carapace.ActionFiles(),
-		"y":                    carapace.ActionValues("en10mb", "en3mb", "linux_sll", "null", "raw"),
+		"y":                    carapace.ActionValues("en3mb", "en10mb", "linux_sll", "null", "raw"),
 	})
 }

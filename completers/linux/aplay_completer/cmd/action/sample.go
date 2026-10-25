@@ -6,11 +6,11 @@ import (
 
 func ActionSampleFormats() carapace.Action {
 	return carapace.ActionValues("A_LAW",
+		"DSD_U8",
 		"DSD_U16_BE",
 		"DSD_U16_LE",
 		"DSD_U32_BE",
 		"DSD_U32_LE",
-		"DSD_U8",
 		"FLOAT64_BE",
 		"FLOAT64_LE",
 		"FLOAT_BE",
@@ -25,6 +25,7 @@ func ActionSampleFormats() carapace.Action {
 		"IMA_ADPCM",
 		"MPEG",
 		"MU_LAW",
+		"S8",
 		"S16_BE",
 		"S16_LE",
 		"S18_3BE",
@@ -39,8 +40,8 @@ func ActionSampleFormats() carapace.Action {
 		"S24_LE",
 		"S32_BE",
 		"S32_LE",
-		"S8",
 		"SPECIAL",
+		"U8",
 		"U16_BE",
 		"U16_LE",
 		"U18_3BE",
@@ -55,6 +56,5 @@ func ActionSampleFormats() carapace.Action {
 		"U24_LE",
 		"U32_BE",
 		"U32_LE",
-		"U8",
 	)
 }

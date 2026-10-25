@@ -159,7 +159,7 @@ func ActionPropertyValues(property string) carapace.Action {
 		case "direct":
 			return carapace.ActionValues("always", "disabled", "standard")
 		case "dnodesize":
-			return carapace.ActionValues("16k", "1k", "2k", "4k", "8k", "auto", "legacy")
+			return carapace.ActionValues("1k", "2k", "4k", "8k", "16k", "auto", "legacy")
 		case "encryption":
 			return carapace.ActionValues("aes-128-ccm", "aes-128-gcm", "aes-192-ccm", "aes-192-gcm", "aes-256-ccm",
 				"aes-256-gcm", "off", "on")

@@ -141,7 +141,7 @@ func init() {
 			"match", "specify coloring for match text",
 			"path", "specify coloring for file names",
 		),
-		"encoding": carapace.ActionValues("ASCII", "UTF-16", "UTF-8", "auto", "none"),
+		"encoding": carapace.ActionValues("ASCII", "UTF-8", "UTF-16", "auto", "none"),
 		"engine": carapace.ActionValuesDescribed(
 			"auto", "identical to --auto-hybrid-regex",
 			"default", "use default engine",

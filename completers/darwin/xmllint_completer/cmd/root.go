@@ -70,7 +70,7 @@ func init() {
 	rootCmd.Flags().String("xpath", "", "Run an XPath expression")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"encode":  carapace.ActionValues("ASCII", "ISO-8859-1", "US-ASCII", "UTF-16", "UTF-8"),
+		"encode":  carapace.ActionValues("ASCII", "ISO-8859-1", "US-ASCII", "UTF-8", "UTF-16"),
 		"output":  carapace.ActionFiles(),
 		"path":    carapace.ActionDirectories(),
 		"pattern": carapace.ActionFiles(),

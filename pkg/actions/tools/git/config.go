@@ -375,8 +375,8 @@ func ActionConfigValues(config string) carapace.Action {
 			"core.excludesFile":           carapace.ActionFiles(),
 			"core.fileMode":               _bool,
 			"core.filesRefLockTimeout": carapace.ActionValuesDescribed(
-				"-1", "try indefinitely",
 				"0", "no retry at all",
+				"-1", "try indefinitely",
 			).Usage("The length of time, in milliseconds, to retry when trying to lock an individual reference"),
 			"core.fsmonitor":            _bool,
 			"core.fsmonitorHookVersion": carapace.ActionValues("1", "2"),

@@ -13,10 +13,10 @@ func ActionFormatters() carapace.Action {
 		"noop",
 		"svg",
 		"terminal",
+		"terminal8",
 		"terminal16",
 		"terminal16m",
 		"terminal256",
-		"terminal8",
 		"tokens",
 	).Tag("formatters")
 }

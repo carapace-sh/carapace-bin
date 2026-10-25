@@ -165,7 +165,7 @@ func init() {
 		"jsx":              carapace.ActionValues("preserve", "react", "react-jsx", "react-jsxdev", "react-native"),
 		"lib":              action.ActionLibs().UniqueList(","),
 		"mapRoot":          carapace.ActionDirectories(),
-		"module":           carapace.ActionValues("amd", "commonjs", "es2015", "es2020", "es6", "esnext", "none", "system", "umd"),
+		"module":           carapace.ActionValues("amd", "commonjs", "es6", "es2015", "es2020", "esnext", "none", "system", "umd"),
 		"moduleDetection":  carapace.ActionValues("auto", "force", "legacy"),
 		"moduleResolution": carapace.ActionValues("classic", "node"),
 		"newLine":          carapace.ActionValues("crlf", "lf"),
@@ -177,7 +177,7 @@ func init() {
 			return carapace.ActionDirectories().NoSpace()
 		}),
 		"sourceRoot":      carapace.ActionDirectories(),
-		"target":          carapace.ActionValues("es2015", "es2016", "es2017", "es2018", "es2019", "es2020", "es2021", "es3", "es5", "es6", "esnext"),
+		"target":          carapace.ActionValues("es3", "es5", "es6", "es2015", "es2016", "es2017", "es2018", "es2019", "es2020", "es2021", "esnext"),
 		"tsBuildInfoFile": carapace.ActionFiles(),
 		"typeRoots": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return carapace.ActionDirectories().NoSpace()

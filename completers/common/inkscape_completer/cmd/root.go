@@ -101,7 +101,7 @@ func init() {
 		"export-filename":          carapace.ActionFiles(),
 		"export-pdf-version":       carapace.ActionValues("1.4", "1.5"),
 		"export-png-antialias":     carapace.ActionValues("0", "1", "2", "3"),
-		"export-png-color-mode":    carapace.ActionValues("GrayAlpha_16", "GrayAlpha_8", "Gray_1", "Gray_16", "Gray_2", "Gray_4", "Gray_8", "RGBA_16", "RGBA_8", "RGB_16", "RGB_8"),
+		"export-png-color-mode":    carapace.ActionValues("GrayAlpha_8", "GrayAlpha_16", "Gray_1", "Gray_2", "Gray_4", "Gray_8", "Gray_16", "RGBA_8", "RGBA_16", "RGB_8", "RGB_16"),
 		"export-png-compression":   carapace.ActionValues("0", "1", "2", "3", "4", "5", "6", "7", "8", "9"),
 		"export-png-use-dithering": carapace.ActionValues("false", "true").StyleF(style.ForKeyword),
 		"export-type": carapace.ActionValues("emf", "eps", "pdf", "png", "ps", "svg", "wmf", "xaml").StyleF(func(s string, sc style.Context) string {

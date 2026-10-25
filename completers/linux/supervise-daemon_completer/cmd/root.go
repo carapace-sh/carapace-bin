@@ -63,8 +63,8 @@ func init() {
 		"chdir":         carapace.ActionDirectories(),
 		"chroot":        carapace.ActionDirectories(),
 		"ionice":        carapace.ActionValues("0", "1", "2", "3"),
-		"nicelevel":     carapace.ActionValues("-20", "0", "19"),
-		"oom-score-adj": carapace.ActionValues("-1000", "0", "1000"),
+		"nicelevel":     carapace.ActionValues("0", "19", "-20"),
+		"oom-score-adj": carapace.ActionValues("0", "1000", "-1000"),
 		"pidfile":       carapace.ActionFiles(),
 		"retry":         carapace.ActionValues("1", "5", "10", "15", "30", "60"),
 		"signal": ps.ActionKillSignals("linux").

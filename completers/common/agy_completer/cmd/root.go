@@ -58,6 +58,6 @@ func init() {
 		"mode":          carapace.ActionValues("accept-edits", "plan"),
 		"model":         agy.ActionModels(),
 		"output-format": carapace.ActionValues("json", "stream-json", "text"),
-		"print-timeout": carapace.ActionValues("10m", "1h", "1m", "30s").Usage("duration (e.g., 5m, 1h30m)"),
+		"print-timeout": carapace.ActionValues("1h", "1m", "10m", "30s").Usage("duration (e.g., 5m, 1h30m)"),
 	})
 }

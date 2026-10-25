@@ -175,7 +175,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"backup-dir":      carapace.ActionDirectories(),
-		"checksum-choice": carapace.ActionValues("auto", "md4", "md5", "none", "xxh128", "xxh3", "xxh64"),
+		"checksum-choice": carapace.ActionValues("auto", "md4", "md5", "none", "xxh3", "xxh64", "xxh128"),
 		"chmod": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			if c.Value == "" {
 				return carapace.Batch(

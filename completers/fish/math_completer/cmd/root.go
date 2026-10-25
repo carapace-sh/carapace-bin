@@ -28,7 +28,7 @@ func init() {
 	rootCmd.Flags().String("scale-mode", "", "scale behavior")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"base":       carapace.ActionValues("16", "8", "hex", "octal"),
+		"base":       carapace.ActionValues("8", "16", "hex", "octal"),
 		"scale-mode": carapace.ActionValues("ceiling", "floor", "round", "truncate"),
 	})
 }

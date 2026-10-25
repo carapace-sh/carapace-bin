@@ -65,9 +65,9 @@ func ActionAsmPredefinedSymbols() carapace.Action {
 			"GOMIPS64_softfloat", "MIPS64 soft float",
 		).Tag("mips64 symbols"),
 		carapace.ActionValuesDescribed(
-			"GOPPC64_power10", "PowerPC64 v10",
 			"GOPPC64_power8", "PowerPC64 v8",
 			"GOPPC64_power9", "PowerPC64 v9",
+			"GOPPC64_power10", "PowerPC64 v10",
 		).Tag("ppc64 symbols"),
 		carapace.ActionValuesDescribed(
 			"GORISCV64_rv64gc", "RISC-V 64 rv64gc",

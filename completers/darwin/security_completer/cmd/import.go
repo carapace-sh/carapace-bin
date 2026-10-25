@@ -26,7 +26,7 @@ func init() {
 	rootCmd.AddCommand(importCmd)
 	carapace.Gen(importCmd).PositionalCompletion(carapace.ActionFiles())
 	carapace.Gen(importCmd).FlagCompletion(carapace.ActionMap{
-		"format":   carapace.ActionValues("bsafe", "openssh1", "openssh2", "openssl", "pemseq", "pkcs12", "pkcs7", "pkcs8", "raw", "x509"),
+		"format":   carapace.ActionValues("bsafe", "openssh1", "openssh2", "openssl", "pemseq", "pkcs7", "pkcs8", "pkcs12", "raw", "x509"),
 		"keychain": security.ActionKeychains(),
 		"type":     carapace.ActionValues("agg", "cert", "priv", "pub", "session"),
 	})

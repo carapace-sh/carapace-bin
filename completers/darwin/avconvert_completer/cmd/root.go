@@ -34,7 +34,7 @@ func init() {
 		"audioCodec": carapace.ActionValues("MAC3", "MAC6", "aac", "alac", "ilbc", "ima4", "mp1", "mp2", "mp3", "msbc", "pcm", "qcelp", "qclp"),
 		"dest":       carapace.ActionFiles(),
 		"fileType":   carapace.ActionValues("aac", "aiff", "caf", "m4a", "m4v", "mov", "mp3", "mp4", "sd2", "wav"),
-		"preset":     carapace.ActionValues("AVPresetPreset1280x720", "AVPresetPreset1920x1080", "AVPresetPreset3840x2160", "AVPresetPreset640x480", "AVPresetPreset960x540"),
+		"preset":     carapace.ActionValues("AVPresetPreset640x480", "AVPresetPreset960x540", "AVPresetPreset1280x720", "AVPresetPreset1920x1080", "AVPresetPreset3840x2160"),
 		"source":     carapace.ActionFiles(),
 		"videoCodec": carapace.ActionValues("h264", "hevc", "jpeg", "prores422", "prores4444"),
 	})
