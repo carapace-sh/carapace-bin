@@ -34,7 +34,7 @@ func init() {
 			default:
 				switch c.Parts[0] {
 				case "membership":
-					return carapace.ActionValues("pending", "accepted", "rejected")
+					return carapace.ActionValues("accepted", "pending", "rejected")
 				case "role":
 					return carapace.ActionValues("manager", "worker")
 				default:

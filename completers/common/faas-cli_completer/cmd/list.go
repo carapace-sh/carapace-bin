@@ -27,6 +27,6 @@ func init() {
 
 	carapace.Gen(listCmd).FlagCompletion(carapace.ActionMap{
 		"namespace": action.ActionNamespaces(),
-		"sort":      carapace.ActionValues("name", "invocations"),
+		"sort":      carapace.ActionValues("invocations", "name"),
 	})
 }

@@ -11,9 +11,9 @@ import (
 //	unfocused (Only send notifications if the surface is not focused)
 func ActionNotifyOnCommandFinishes() carapace.Action {
 	return carapace.ActionValuesDescribed(
+		"always", "Always send notifications",
 		"never", "Never send notifications",
 		"unfocused", "Only send notifications if the surface is not focused",
-		"always", "Always send notifications",
 	).StyleF(style.ForKeyword).Tag("notify on command finish modes").Uid("ghostty", "notify-on-command-finish")
 }
 
@@ -24,9 +24,9 @@ func ActionNotifyOnCommandFinishes() carapace.Action {
 func ActionNotifyOnCommandFinishActions() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"bell", "enabled by default",
-		"notify", "disabled by default",
 		"no-bell", "disabled by default",
 		"no-notify", "disabled by default",
+		"notify", "disabled by default",
 	).Tag("notify on command finish actions").Uid("ghostty", "notify-on-command-finish-action")
 }
 
@@ -37,10 +37,10 @@ func ActionNotifyOnCommandFinishActions() carapace.Action {
 func ActionRightClickActions() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"context-menu", "Show the context menu",
-		"paste", "Paste the contents of the clipboard",
 		"copy", "Copy the selected text to the clipboard",
 		"copy-or-paste", "If there is a selection copy; otherwise paste",
 		"ignore", "Do nothing, ignore the right-click",
+		"paste", "Paste the contents of the clipboard",
 	).Tag("right click actions").Uid("ghostty", "right-click-action")
 }
 
@@ -50,8 +50,8 @@ func ActionRightClickActions() carapace.Action {
 //	never (Never show a scrollbar)
 func ActionScrollbarModes() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"system", "Respect the system settings for when to show scrollbars",
 		"never", "Never show a scrollbar",
+		"system", "Respect the system settings for when to show scrollbars",
 	).StyleF(style.ForKeyword).Tag("scrollbar modes").Uid("ghostty", "scrollbar-mode")
 }
 
@@ -84,8 +84,8 @@ func ActionMacosDockDropBehaviors() carapace.Action {
 //	always (The macOS app is always hidden)
 func ActionMacosHiddenModes() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"never", "The macOS app is never hidden",
 		"always", "The macOS app is always hidden",
+		"never", "The macOS app is never hidden",
 	).Tag("macos hidden modes").Uid("ghostty", "macos-hidden-mode")
 }
 
@@ -95,8 +95,8 @@ func ActionMacosHiddenModes() carapace.Action {
 //	allow (Allow Shortcuts to control Ghostty without asking)
 func ActionMacosShortcuts() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"ask", "Ask the user for permission",
 		"allow", "Allow Shortcuts to control Ghostty without asking",
+		"ask", "Ask the user for permission",
 		"deny", "Deny Shortcuts from controlling Ghostty",
 	).StyleF(style.ForKeyword).Tag("macos shortcuts modes").Uid("ghostty", "macos-shortcut")
 }
@@ -107,8 +107,8 @@ func ActionMacosShortcuts() carapace.Action {
 //	hidden (Hide the window buttons)
 func ActionMacosWindowButtons() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"visible", "Show the window buttons",
 		"hidden", "Hide the window buttons",
+		"visible", "Show the window buttons",
 	).Tag("macos window buttons visibility").Uid("ghostty", "macos-window-button")
 }
 
@@ -129,10 +129,10 @@ func ActionGtkTitlebarStyles() carapace.Action {
 //	top (appears in front of normal windows but behind fullscreen overlays)
 func ActionGtkQuickTerminalLayers() carapace.Action {
 	return carapace.ActionValuesDescribed(
+		"background", "The quick terminal appears behind all windows",
+		"bottom", "The quick terminal appears behind normal windows but in front of wallpapers",
 		"overlay", "The quick terminal appears in front of all windows",
 		"top", "The quick terminal appears in front of normal windows but behind fullscreen overlays",
-		"bottom", "The quick terminal appears behind normal windows but in front of wallpapers",
-		"background", "The quick terminal appears behind all windows",
 	).Tag("gtk quick terminal layers").Uid("ghostty", "gtk-quick-terminal-layer")
 }
 
@@ -178,9 +178,9 @@ func ActionWindowSubtitles() carapace.Action {
 func ActionFullscreens() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"false", "Do not start in fullscreen",
-		"true", "Start in native fullscreen",
 		"non-native", "Start in non-native fullscreen",
-		"non-native-visible-menu", "Start in non-native fullscreen, keep menu bar visible",
 		"non-native-padded-notch", "Start in non-native fullscreen, hide menu bar but pad for notch",
+		"non-native-visible-menu", "Start in non-native fullscreen, keep menu bar visible",
+		"true", "Start in native fullscreen",
 	).StyleF(style.ForKeyword).Tag("fullscreen modes").Uid("ghostty", "fullscreen")
 }

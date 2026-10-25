@@ -29,7 +29,7 @@ func init() {
 
 	carapace.Gen(volume_qos_createCmd).FlagCompletion(carapace.ActionMap{
 		"column":   action.ActionColumns(volume_qos_createCmd),
-		"consumer": carapace.ActionValues("front-end", "back-end", "both"),
+		"consumer": carapace.ActionValues("back-end", "both", "front-end"),
 		"format":   carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 	})
 }

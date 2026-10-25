@@ -177,21 +177,21 @@ func AddCommitFormattingOptions(cmd *cobra.Command) {
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
 		"date": carapace.ActionValuesDescribed(
-			"relative", "shows dates relative to the current time",
-			"local", "is an alias for --date=default-local",
+			"default", "the default format",
+			"format:", "feeds the given format to your system strftime",
+			"format:%c", "show the date in your system locale's preferred format",
+			"human", "shows the date in human readable format",
 			"iso", "shows timestamps in a ISO 8601-like format",
 			"iso8601", "shows timestamps in a ISO 8601-like format",
-			"iso-strict", "shows timestamps in strict ISO 8601 format",
 			"iso8601-strict", "shows timestamps in strict ISO 8601 format",
+			"iso-strict", "shows timestamps in strict ISO 8601 format",
+			"local", "is an alias for --date=default-local",
+			"raw", "shows the date as seconds since the epoch (1970-01-01 00:00:00 UTC)",
+			"relative", "shows dates relative to the current time",
 			"rfc", "shows timestamps in RFC 2822 format",
 			"rfc2822", "shows timestamps in RFC 2822 format",
 			"short", "shows only the date, but not the time, in YYYY-MM-DD format",
-			"raw", "shows the date as seconds since the epoch (1970-01-01 00:00:00 UTC)",
-			"human", "shows the date in human readable format",
 			"unix", "shows the date as a Unix epoch timestamp (seconds since 1970)",
-			"format:", "feeds the given format to your system strftime",
-			"format:%c", "show the date in your system locale's preferred format",
-			"default", "the default format",
 		),
 		"encoding":          text.ActionEncodings(),
 		"expand-tabs":       carapace.ActionValues(), // TODO
@@ -226,11 +226,11 @@ func AddObjectTraversalOptions(cmd *cobra.Command) {
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
 		"filter": git.ActionObjectFilters(),
 		"missing": carapace.ActionValues(
-			"error", "requests that rev-list stop with an error if a missing object is encountered",
-			"allow-any", "allow object traversal to continue if a missing object is encountered",
-			"allow-promisor", "is like allow-any, but will only allow object traversal to continue for EXPECTED promisor missing objects",
-			"print", "is like allow-any, but will also print a list of the missing objects",
-			"print-info", "is like print, but will also print the path and type of each missing object",
+			"allow object traversal to continue if a missing object is encountered", "allow-any",
+			"allow-promisor", "error",
+			"is like allow-any, but will also print a list of the missing objects", "is like allow-any, but will only allow object traversal to continue for EXPECTED promisor missing objects",
+			"is like print, but will also print the path and type of each missing object", "print",
+			"print-info", "requests that rev-list stop with an error if a missing object is encountered",
 		),
 		"no-walk": carapace.ActionValues("sorted", "unsorted"),
 	})

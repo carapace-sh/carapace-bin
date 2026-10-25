@@ -48,10 +48,10 @@ func init() {
 
 	carapace.Gen(gerrit_uploadCmd).FlagCompletion(carapace.ActionMap{
 		"notify": carapace.ActionValuesDescribed(
+			"all", "All relevant users, including owner, reviewers, cc'd, users that have starred the change, and users who have configured a watch on files in the change",
 			"none", "No emails",
 			"owner", "Only the change owner is notified",
 			"owner-reviewers", "Only the change owner and reviewers will be notified",
-			"all", "All relevant users, including owner, reviewers, cc'd, users that have starred the change, and users who have configured a watch on files in the change",
 		),
 		"option":   git.ActionPushOptions(),
 		"revision": jj.ActionRevsets(jj.RevOpts{}.Default()).UniqueList(","),

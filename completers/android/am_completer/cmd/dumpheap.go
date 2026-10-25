@@ -23,7 +23,7 @@ func init() {
 	rootCmd.AddCommand(dumpheapCmd)
 
 	carapace.Gen(dumpheapCmd).FlagCompletion(carapace.ActionMap{
-		"bitmap-format": carapace.ActionValues("png", "jpg", "webp"),
+		"bitmap-format": carapace.ActionValues("jpg", "png", "webp"),
 		"user": carapace.Batch(
 			carapace.ActionValues("current"),
 			android.ActionUsers(),

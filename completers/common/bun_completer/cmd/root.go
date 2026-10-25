@@ -112,12 +112,12 @@ func init() {
 		"config":            carapace.ActionFiles(".toml"),
 		"cpu-prof-dir":      carapace.ActionDirectories(),
 		"cwd":               carapace.ActionDirectories(),
-		"dns-result-order":  carapace.ActionValues("verbatim", "ipv4first", "ipv6first"),
+		"dns-result-order":  carapace.ActionValues("ipv4first", "ipv6first", "verbatim"),
 		"env-file":          carapace.ActionFiles(),
-		"extension-order":   carapace.ActionValues(".tsx", ".ts", ".jsx", ".js", ".json").StyleF(style.ForPathExt).UniqueList(","),
+		"extension-order":   carapace.ActionValues(".js", ".json", ".jsx", ".ts", ".tsx").StyleF(style.ForPathExt).UniqueList(","),
 		"heap-prof-dir":     carapace.ActionDirectories(),
 		"import":            carapace.ActionFiles(),
-		"install":           carapace.ActionValues("auto", "force", "fallback").StyleF(style.ForKeyword),
+		"install":           carapace.ActionValues("auto", "fallback", "force").StyleF(style.ForKeyword),
 		"jsx-import-source": carapace.ActionValues("react"),
 		"jsx-runtime":       carapace.ActionValues("automatic", "classic"),
 		"loader": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
@@ -125,14 +125,14 @@ func init() {
 			case 0:
 				return fs.ActionFilenameExtensions().Suffix(":")
 			case 1:
-				return carapace.ActionValues("jsx", "js", "json", "tsx", "ts", "css").StyleF(func(s string, sc style.Context) string {
+				return carapace.ActionValues("css", "js", "json", "jsx", "ts", "tsx").StyleF(func(s string, sc style.Context) string {
 					return style.ForPathExt("."+s, sc)
 				})
 			default:
 				return carapace.ActionValues()
 			}
 		}).UniqueList(","),
-		"platform":       carapace.ActionValues("bun", "browser", "node"),
+		"platform":       carapace.ActionValues("browser", "bun", "node"),
 		"port":           net.ActionPorts(),
 		"preload":        carapace.ActionFiles(),
 		"public-dir":     carapace.ActionDirectories(),

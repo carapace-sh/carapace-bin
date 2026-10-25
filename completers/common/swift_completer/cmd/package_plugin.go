@@ -26,7 +26,7 @@ func init() {
 	packageCmd.AddCommand(package_pluginCmd)
 
 	carapace.Gen(package_pluginCmd).FlagCompletion(carapace.ActionMap{
-		"allow-network-connections":  carapace.ActionValues("none", "local", "all", "docker", "unixDomainSocket"),
+		"allow-network-connections":  carapace.ActionValues("all", "docker", "local", "none", "unixDomainSocket"),
 		"allow-writing-to-directory": carapace.ActionDirectories(),
 	})
 

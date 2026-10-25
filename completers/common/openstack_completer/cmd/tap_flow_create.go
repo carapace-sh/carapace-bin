@@ -38,7 +38,7 @@ func init() {
 
 	carapace.Gen(tap_flow_createCmd).FlagCompletion(carapace.ActionMap{
 		"column":         action.ActionColumns(tap_flow_createCmd),
-		"direction":      carapace.ActionValues("IN", "OUT", "BOTH"),
+		"direction":      carapace.ActionValues("BOTH", "IN", "OUT"),
 		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 		"port":           action.ActionPorts(tap_flow_createCmd),
 		"project":        action.ActionProjects(tap_flow_createCmd),

@@ -20,7 +20,7 @@ func init() {
 	rootCmd.AddCommand(historyCmd)
 
 	carapace.Gen(historyCmd).FlagCompletion(carapace.ActionMap{
-		"output": carapace.ActionValues("table", "json", "yaml"),
+		"output": carapace.ActionValues("json", "table", "yaml"),
 	})
 
 	carapace.Gen(historyCmd).PositionalCompletion(

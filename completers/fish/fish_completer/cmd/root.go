@@ -43,7 +43,7 @@ func init() {
 		"command":         bridge.ActionCarapaceBin().SplitP(shlex.Fish),
 		"debug":           fish.ActionDebugCategories().UniqueList(","),
 		"debug-output":    carapace.ActionFiles(),
-		"features":        carapace.ActionValues("stderr-nocaret", "qmark-noglob", "regex-easyesc").UniqueList(","),
+		"features":        carapace.ActionValues("qmark-noglob", "regex-easyesc", "stderr-nocaret").UniqueList(","),
 		"init-command":    bridge.ActionCarapaceBin().SplitP(shlex.Fish),
 		"profile":         carapace.ActionFiles(),
 		"profile-startup": carapace.ActionFiles(),

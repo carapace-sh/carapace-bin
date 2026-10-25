@@ -22,7 +22,7 @@ func init() {
 	rootCmd.Flags().StringS("out", "out", "", "Output file")
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValues("none", "lzw", "packbits", "cat", "catnosizecheck", "cathidpicheck", "extract", "info", "verboseinfo", "dump"),
+		carapace.ActionValues("cat", "cathidpicheck", "catnosizecheck", "dump", "extract", "info", "lzw", "none", "packbits", "verboseinfo"),
 	)
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

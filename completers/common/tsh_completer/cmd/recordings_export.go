@@ -23,7 +23,7 @@ func init() {
 	recordingsCmd.AddCommand(recordings_exportCmd)
 
 	carapace.Gen(recordings_exportCmd).FlagCompletion(carapace.ActionMap{
-		"encoder": carapace.ActionValues("ffmpeg", "avi", "auto"),
+		"encoder": carapace.ActionValues("auto", "avi", "ffmpeg"),
 		"out":     carapace.ActionFiles(),
 	})
 

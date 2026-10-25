@@ -26,8 +26,8 @@ func init() {
 	carapace.Gen(waitCmd).FlagCompletion(carapace.ActionMap{
 		"T": carapace.ActionValues("d", "u"),
 		"t": carapace.ActionValues(
-			"discard", "free", "initialize", "replace",
-			"remove", "resilver", "scrub", "trim", "raidz_expand",
+			"discard", "free", "initialize", "raidz_expand",
+			"remove", "replace", "resilver", "scrub", "trim",
 		).UniqueList(","),
 	})
 

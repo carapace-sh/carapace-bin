@@ -146,12 +146,12 @@ func AddDiffFlags(cmd *cobra.Command) {
 		"color-moved-ws":     git.ActionColorMovedWsModes(),
 		"diff-algorithm":     git.ActionDiffAlgorithms(),
 		"diff-filter":        git.ActionDiffFilters().UniqueList(""),
-		"ignore-submodules":  carapace.ActionValues("none", "untracked", "dirty", "all").StyleF(style.ForKeyword),
+		"ignore-submodules":  carapace.ActionValues("all", "dirty", "none", "untracked").StyleF(style.ForKeyword),
 		"max-depth":          carapace.ActionValues(),
 		"output":             carapace.ActionFiles(),
 		"rotate-to":          carapace.ActionFiles(), // TODO complete files of specific revision/modified between commits?
 		"skip-to":            carapace.ActionFiles(), // TODO complete files of specific revision/modified between commits?
-		"submodule":          carapace.ActionValues("short", "long", "log"),
+		"submodule":          carapace.ActionValues("log", "long", "short"),
 		"word-diff":          git.ActionWordDiffModes(),
 		"ws-error-highlight": git.ActionWsErrorHighlightModes().UniqueList(","),
 	})

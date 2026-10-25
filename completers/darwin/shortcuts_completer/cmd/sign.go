@@ -19,7 +19,7 @@ func init() {
 	rootCmd.AddCommand(signCmd)
 	carapace.Gen(signCmd).FlagCompletion(carapace.ActionMap{
 		"input":  carapace.ActionFiles(),
-		"mode":   carapace.ActionValues("people-who-know-me", "Anyone"),
+		"mode":   carapace.ActionValues("Anyone", "people-who-know-me"),
 		"output": carapace.ActionFiles(),
 	})
 }

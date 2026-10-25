@@ -87,7 +87,7 @@ func init() {
 		"options":     carapace.ActionFiles(),
 		"output":      carapace.ActionFiles(),
 		"recipient":   os.ActionUsers(),
-		"tofu-policy": carapace.ActionValues("auto", "good", "unknown", "bad", "ask"),
+		"tofu-policy": carapace.ActionValues("ask", "auto", "bad", "good", "unknown"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

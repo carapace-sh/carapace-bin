@@ -49,6 +49,6 @@ func init() {
 		"filesystem-root":       carapace.ActionDirectories(),
 		"output-dill":           carapace.ActionFiles(),
 		"target":                carapace.ActionFiles(".dart"),
-		"target-platform":       carapace.ActionValues("android-arm", "android-arm64", "android-x64", "ios", "darwin", "linux-x64", "linux-arm64", "linux-riscv64", "windows-x64", "windows-arm64"),
+		"target-platform":       carapace.ActionValues("android-arm", "android-arm64", "android-x64", "darwin", "ios", "linux-arm64", "linux-riscv64", "linux-x64", "windows-arm64", "windows-x64"),
 	})
 }

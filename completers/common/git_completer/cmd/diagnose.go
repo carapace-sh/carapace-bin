@@ -22,7 +22,7 @@ func init() {
 	rootCmd.AddCommand(diagnoseCmd)
 
 	carapace.Gen(diagnoseCmd).FlagCompletion(carapace.ActionMap{
-		"mode":             carapace.ActionValues("stats", "all").StyleF(style.ForKeyword),
+		"mode":             carapace.ActionValues("all", "stats").StyleF(style.ForKeyword),
 		"output-directory": carapace.ActionDirectories(),
 	})
 }

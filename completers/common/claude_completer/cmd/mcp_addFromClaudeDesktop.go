@@ -19,6 +19,6 @@ func init() {
 	mcpCmd.AddCommand(mcp_addFromClaudeDesktopCmd)
 
 	carapace.Gen(mcp_addFromClaudeDesktopCmd).FlagCompletion(carapace.ActionMap{
-		"scope": carapace.ActionValues("local", "user", "project"),
+		"scope": carapace.ActionValues("local", "project", "user"),
 	})
 }

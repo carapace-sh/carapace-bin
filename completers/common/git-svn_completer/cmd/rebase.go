@@ -51,7 +51,7 @@ func init() {
 		"ignore-refs":   carapace.ActionValues(),
 		"include-paths": carapace.ActionValues(),
 		"repack-flags":  carapace.ActionValues(),
-		"strategy":      carapace.ActionValues("recursive", "resolve", "ours", "theirs", "subtree"),
+		"strategy":      carapace.ActionValues("ours", "recursive", "resolve", "subtree", "theirs"),
 		"username":      carapace.ActionValues(),
 	})
 }

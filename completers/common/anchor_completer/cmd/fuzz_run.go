@@ -47,7 +47,7 @@ func init() {
 		"crashes-meta-out": carapace.ActionDirectories(),
 		"crashes-out":      carapace.ActionDirectories(),
 		"lcov-out":         carapace.ActionFiles(),
-		"mode":             carapace.ActionValues("dry_run", "explore", "coverage", "reproduce", "corpus_merge"),
+		"mode":             carapace.ActionValues("corpus_merge", "coverage", "dry_run", "explore", "reproduce"),
 		"program-so":       carapace.ActionFiles(".so"),
 		"replay":           carapace.ActionFiles(),
 		"symbols":          carapace.ActionFiles(),

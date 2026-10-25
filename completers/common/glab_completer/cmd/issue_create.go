@@ -45,7 +45,7 @@ func init() {
 		"attach":           carapace.ActionFiles(),
 		"description-file": carapace.ActionFiles(),
 		"label":            action.ActionLabels(issue_createCmd).UniqueList(","),
-		"link-type":        carapace.ActionValues("relates_to", "blocks", "is_blocked_by"),
+		"link-type":        carapace.ActionValues("blocks", "is_blocked_by", "relates_to"),
 		"linked-issues":    action.ActionIssues(issue_createCmd, "opened").UniqueList(","),
 		"linked-mr":        action.ActionMergeRequests(issue_createCmd, "opened"),
 		"milestone":        action.ActionMilestones(issue_createCmd),

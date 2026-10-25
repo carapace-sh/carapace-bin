@@ -145,9 +145,9 @@ func init() {
 				switch len(c.Parts) {
 				case 0:
 					return carapace.ActionValuesDescribed(
+						"panic", "action when guest panics",
 						"reboot", "action when guest reboots",
 						"shutdown", "action when guest shuts down",
-						"panic", "action when guest panics",
 						"watchdog", "action when watchdog fires",
 					).Suffix("=").NoSpace('=')
 				default:
@@ -155,9 +155,9 @@ func init() {
 					case "reboot":
 						return carapace.ActionValues("reset", "shutdown")
 					case "shutdown":
-						return carapace.ActionValues("poweroff", "pause")
+						return carapace.ActionValues("pause", "poweroff")
 					case "panic":
-						return carapace.ActionValues("pause", "shutdown", "exit-failure", "none")
+						return carapace.ActionValues("exit-failure", "none", "pause", "shutdown")
 					case "watchdog":
 						return qemu.ActionWatchdogActions()
 					default:
@@ -172,12 +172,12 @@ func init() {
 				switch len(c.Parts) {
 				case 0:
 					return carapace.ActionValuesDescribed(
-						"order", "boot drive order",
-						"once", "boot drive order for first boot",
 						"menu", "boot menu",
+						"once", "boot drive order for first boot",
+						"order", "boot drive order",
+						"reboot-timeout", "reboot timeout in ms",
 						"splash", "splash image file",
 						"splash-time", "splash time in ms",
-						"reboot-timeout", "reboot timeout in ms",
 						"strict", "strict boot",
 					).Suffix("=").NoSpace('=')
 				default:
@@ -185,7 +185,7 @@ func init() {
 					case "order", "once":
 						return qemu.ActionBootDrives()
 					case "menu", "strict":
-						return carapace.ActionValues("on", "off").StyleF(style.ForKeyword)
+						return carapace.ActionValues("off", "on").StyleF(style.ForKeyword)
 					default:
 						return carapace.ActionValues()
 					}
@@ -206,11 +206,11 @@ func init() {
 				default:
 					switch c.Parts[0] {
 					case "deprecated-input":
-						return carapace.ActionValues("accept", "reject", "crash")
+						return carapace.ActionValues("accept", "crash", "reject")
 					case "deprecated-output":
 						return carapace.ActionValues("accept", "hide")
 					case "unstable-input":
-						return carapace.ActionValues("accept", "reject", "crash")
+						return carapace.ActionValues("accept", "crash", "reject")
 					case "unstable-output":
 						return carapace.ActionValues("accept", "hide")
 					default:
@@ -248,7 +248,7 @@ func init() {
 			case 1:
 				switch c.Parts[0] {
 				case "tcp":
-					return carapace.ActionValues("localhost", "0.0.0.0", "::").NoSpace(':')
+					return carapace.ActionValues("0.0.0.0", "::", "localhost").NoSpace(':')
 				case "unix":
 					return carapace.ActionFiles()
 				case "chardev":
@@ -269,19 +269,19 @@ func init() {
 				switch len(c.Parts) {
 				case 0:
 					return carapace.ActionValuesDescribed(
-						"shift", "number of clock ticks per instruction (2^N)",
 						"align", "align host and virtual clocks",
-						"sleep", "real time CPU sleeping",
 						"rr", "record/replay mode",
 						"rrfile", "record/replay file",
 						"rrsnapshot", "record/replay snapshot name",
+						"shift", "number of clock ticks per instruction (2^N)",
+						"sleep", "real time CPU sleeping",
 					).Suffix("=").NoSpace('=')
 				default:
 					switch c.Parts[0] {
 					case "shift":
 						return carapace.ActionValues("auto")
 					case "align", "sleep":
-						return carapace.ActionValues("on", "off").StyleF(style.ForKeyword)
+						return carapace.ActionValues("off", "on").StyleF(style.ForKeyword)
 					case "rr":
 						return carapace.ActionValues("record", "replay")
 					case "rrfile":
@@ -292,7 +292,7 @@ func init() {
 				}
 			})
 		}),
-		"incoming": carapace.ActionValues("tcp:", "rdma:", "unix:", "fd:", "file:", "exec:", "defer").NoSpace(':'),
+		"incoming": carapace.ActionValues("defer", "exec:", "fd:", "file:", "rdma:", "tcp:", "unix:").NoSpace(':'),
 		"initrd":   carapace.ActionFiles(),
 		"iscsi":    carapace.ActionValues(),
 		"kernel":   carapace.ActionFiles(),
@@ -302,9 +302,9 @@ func init() {
 				switch len(c.Parts) {
 				case 0:
 					return carapace.ActionValuesDescribed(
+						"maxmem", "maximum amount of guest memory",
 						"size", "initial amount of guest memory",
 						"slots", "number of hotplug slots",
-						"maxmem", "maximum amount of guest memory",
 					).Suffix("=").NoSpace('=')
 				default:
 					switch c.Parts[0] {
@@ -330,9 +330,9 @@ func init() {
 				default:
 					switch c.Parts[0] {
 					case "mode":
-						return carapace.ActionValues("readline", "control")
+						return carapace.ActionValues("control", "readline")
 					case "pretty":
-						return carapace.ActionValues("on", "off").StyleF(style.ForKeyword)
+						return carapace.ActionValues("off", "on").StyleF(style.ForKeyword)
 					default:
 						return carapace.ActionValues()
 					}
@@ -352,11 +352,11 @@ func init() {
 				switch len(c.Parts) {
 				case 0:
 					return carapace.ActionValuesDescribed(
-						"timestamp", "enable timestamps",
 						"guest-name", "enable guest name prefix",
+						"timestamp", "enable timestamps",
 					).Suffix("=").NoSpace('=')
 				default:
-					return carapace.ActionValues("on", "off").StyleF(style.ForKeyword)
+					return carapace.ActionValues("off", "on").StyleF(style.ForKeyword)
 				}
 			})
 		}),
@@ -366,13 +366,13 @@ func init() {
 				switch len(c.Parts) {
 				case 0:
 					return carapace.ActionValuesDescribed(
-						"process", "process name",
 						"debug-threads", "name individual threads",
+						"process", "process name",
 					).Suffix("=").NoSpace('=')
 				default:
 					switch c.Parts[0] {
 					case "debug-threads":
-						return carapace.ActionValues("on", "off").StyleF(style.ForKeyword)
+						return carapace.ActionValues("off", "on").StyleF(style.ForKeyword)
 					default:
 						return carapace.ActionValues()
 					}
@@ -390,15 +390,15 @@ func init() {
 				switch len(c.Parts) {
 				case 0:
 					return carapace.ActionValuesDescribed(
-						"mem-lock", "memory lock support",
 						"cpu-pm", "CPU power management",
+						"mem-lock", "memory lock support",
 					).Suffix("=").NoSpace('=')
 				default:
 					switch c.Parts[0] {
 					case "mem-lock":
-						return carapace.ActionValues("on", "off", "on-fault").StyleF(style.ForKeyword)
+						return carapace.ActionValues("off", "on", "on-fault").StyleF(style.ForKeyword)
 					case "cpu-pm":
-						return carapace.ActionValues("on", "off").StyleF(style.ForKeyword)
+						return carapace.ActionValues("off", "on").StyleF(style.ForKeyword)
 					default:
 						return carapace.ActionValues()
 					}
@@ -436,7 +436,7 @@ func init() {
 			case 1:
 				switch c.Parts[0] {
 				case "tcp":
-					return carapace.ActionValues("localhost", "0.0.0.0", "::").NoSpace(':')
+					return carapace.ActionValues("0.0.0.0", "::", "localhost").NoSpace(':')
 				case "unix":
 					return carapace.ActionFiles()
 				case "chardev":
@@ -455,7 +455,7 @@ func init() {
 			case 1:
 				switch c.Parts[0] {
 				case "tcp":
-					return carapace.ActionValues("localhost", "0.0.0.0", "::").NoSpace(':')
+					return carapace.ActionValues("0.0.0.0", "::", "localhost").NoSpace(':')
 				case "unix":
 					return carapace.ActionFiles()
 				case "chardev":
@@ -480,7 +480,7 @@ func init() {
 				default:
 					switch c.Parts[0] {
 					case "base":
-						return carapace.ActionValues("utc", "localtime")
+						return carapace.ActionValues("localtime", "utc")
 					case "clock":
 						return carapace.ActionValues("host", "rt", "vm")
 					case "driftfix":
@@ -504,7 +504,7 @@ func init() {
 				default:
 					switch c.Parts[0] {
 					case "async-teardown", "exit-with-parent":
-						return carapace.ActionValues("on", "off").StyleF(style.ForKeyword)
+						return carapace.ActionValues("off", "on").StyleF(style.ForKeyword)
 					case "chroot":
 						return carapace.ActionDirectories()
 					default:
@@ -516,12 +516,12 @@ func init() {
 		"sandbox": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			if len(c.Parts) == 0 {
 				return carapace.Batch(
-					carapace.ActionValues("on", "off").StyleF(style.ForKeyword),
+					carapace.ActionValues("off", "on").StyleF(style.ForKeyword),
 					carapace.ActionValuesDescribed(
-						"obsolete", "allow obsolete system calls",
 						"elevateprivileges", "allow or deny privilege elevation",
-						"spawn", "allow or deny spawning new threads/processes",
+						"obsolete", "allow obsolete system calls",
 						"resourcecontrol", "allow or deny resource control",
+						"spawn", "allow or deny spawning new threads/processes",
 					).Suffix("=").NoSpace('='),
 				).ToA()
 			}
@@ -529,17 +529,17 @@ func init() {
 				switch len(c.Parts) {
 				case 0:
 					return carapace.ActionValuesDescribed(
-						"obsolete", "allow obsolete system calls",
 						"elevateprivileges", "allow or deny privilege elevation",
-						"spawn", "allow or deny spawning new threads/processes",
+						"obsolete", "allow obsolete system calls",
 						"resourcecontrol", "allow or deny resource control",
+						"spawn", "allow or deny spawning new threads/processes",
 					).Suffix("=").NoSpace('=')
 				default:
 					switch c.Parts[0] {
 					case "obsolete":
 						return carapace.ActionValues("allow", "deny")
 					case "elevateprivileges":
-						return carapace.ActionValues("allow", "deny", "children")
+						return carapace.ActionValues("allow", "children", "deny")
 					case "spawn":
 						return carapace.ActionValues("allow", "deny")
 					case "resourcecontrol":
@@ -556,20 +556,20 @@ func init() {
 				switch len(c.Parts) {
 				case 0:
 					return carapace.ActionValuesDescribed(
+						"arg", "argument string",
+						"chardev", "use a named character device",
 						"enable", "enable semihosting",
 						"target", "target for semihosting",
-						"chardev", "use a named character device",
 						"userspace", "enable userspace semihosting",
-						"arg", "argument string",
 					).Suffix("=").NoSpace('=')
 				default:
 					switch c.Parts[0] {
 					case "enable":
-						return carapace.ActionValues("on", "off").StyleF(style.ForKeyword)
+						return carapace.ActionValues("off", "on").StyleF(style.ForKeyword)
 					case "target":
-						return carapace.ActionValues("native", "gdb", "auto")
+						return carapace.ActionValues("auto", "gdb", "native")
 					case "userspace":
-						return carapace.ActionValues("on", "off").StyleF(style.ForKeyword)
+						return carapace.ActionValues("off", "on").StyleF(style.ForKeyword)
 					case "chardev":
 						return carapace.ActionValues()
 					default:
@@ -604,16 +604,16 @@ func init() {
 				switch len(c.Parts) {
 				case 0:
 					return carapace.ActionValuesDescribed(
-						"cpus", "total number of guest CPUs",
-						"maxcpus", "maximum CPUs including hotplug",
-						"sockets", "physical sockets",
-						"dies", "dies per socket",
-						"clusters", "clusters per die",
-						"modules", "modules per cluster",
-						"cores", "cores per module",
-						"threads", "threads per core",
 						"books", "books per drawer",
+						"clusters", "clusters per die",
+						"cores", "cores per module",
+						"cpus", "total number of guest CPUs",
+						"dies", "dies per socket",
 						"drawers", "drawers",
+						"maxcpus", "maximum CPUs including hotplug",
+						"modules", "modules per cluster",
+						"sockets", "physical sockets",
+						"threads", "threads per core",
 					).Suffix("=").NoSpace('=')
 				default:
 					return carapace.ActionValues()
@@ -623,7 +623,7 @@ func init() {
 		"spice":           carapace.ActionValues(),
 		"tpmdev":          carapace.ActionValues(),
 		"trace":           carapace.ActionValues(),
-		"usbdevice":       carapace.ActionValues("tablet", "mouse", "keyboard", "host:", "bt:"),
+		"usbdevice":       carapace.ActionValues("bt:", "host:", "keyboard", "mouse", "tablet"),
 		"uuid":            carapace.ActionValues(),
 		"vga":             qemu.ActionVgaTypes(),
 		"vnc":             carapace.ActionValues(),

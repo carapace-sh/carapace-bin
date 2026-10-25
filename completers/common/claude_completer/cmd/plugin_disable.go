@@ -21,6 +21,6 @@ func init() {
 	pluginCmd.AddCommand(plugin_disableCmd)
 
 	carapace.Gen(plugin_disableCmd).FlagCompletion(carapace.ActionMap{
-		"scope": carapace.ActionValues("user", "project", "local"),
+		"scope": carapace.ActionValues("local", "project", "user"),
 	})
 }

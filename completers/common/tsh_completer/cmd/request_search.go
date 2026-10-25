@@ -39,7 +39,7 @@ func init() {
 
 	carapace.Gen(request_searchCmd).FlagCompletion(carapace.ActionMap{
 		"format":       tsh.ActionFormats(),
-		"kind":         carapace.ActionValues("node", "kube_cluster", "kube_resource", "db", "app", "windows_desktop", "linux_desktop", "user_group", "saml_idp_service_provider", "aws_ic_account", "aws_ic_account_assignment", "git_server"),
+		"kind":         carapace.ActionValues("app", "aws_ic_account", "aws_ic_account_assignment", "db", "git_server", "kube_cluster", "kube_resource", "linux_desktop", "node", "saml_idp_service_provider", "user_group", "windows_desktop"),
 		"kube-cluster": tsh.ActionKubeClusters(),
 	})
 }

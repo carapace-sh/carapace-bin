@@ -57,13 +57,13 @@ func init() {
 				case "expose":
 					return docker.ActionPorts()
 				case "health":
-					return carapace.ActionValues("starting", "healthy", "unhealthy", "none").StyleF(style.ForKeyword)
+					return carapace.ActionValues("healthy", "none", "starting", "unhealthy").StyleF(style.ForKeyword)
 				case "is-task":
-					return carapace.ActionValues("true", "false").StyleF(style.ForKeyword)
+					return carapace.ActionValues("false", "true").StyleF(style.ForKeyword)
 				case "id":
 					return docker.ActionContainerIds()
 				case "isolation":
-					return carapace.ActionValues("default", "process", "hyperv")
+					return carapace.ActionValues("default", "hyperv", "process")
 				case "name":
 					return docker.ActionContainers()
 				case "network":
@@ -73,7 +73,7 @@ func init() {
 				case "since":
 					return docker.ActionContainers()
 				case "status":
-					return carapace.ActionValues("created", "restarting", "removing", "running", "paused", "exited", "dead").StyleF(style.ForKeyword)
+					return carapace.ActionValues("created", "dead", "exited", "paused", "removing", "restarting", "running").StyleF(style.ForKeyword)
 				case "volume":
 					return docker.ActionVolumes()
 				case "label":

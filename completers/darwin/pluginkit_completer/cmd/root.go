@@ -32,7 +32,7 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "Version")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"election": carapace.ActionValues("use", "ignore", "default"),
-		"platform": carapace.ActionValues("native", "maccatalyst"),
+		"election": carapace.ActionValues("default", "ignore", "use"),
+		"platform": carapace.ActionValues("maccatalyst", "native"),
 	})
 }

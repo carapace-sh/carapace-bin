@@ -19,6 +19,6 @@ func init() {
 	agentlogCmd.AddCommand(agentlog_hookCmd)
 
 	carapace.Gen(agentlog_hookCmd).FlagCompletion(carapace.ActionMap{
-		"agent": carapace.ActionValues("codex", "claude"),
+		"agent": carapace.ActionValues("claude", "codex"),
 	})
 }

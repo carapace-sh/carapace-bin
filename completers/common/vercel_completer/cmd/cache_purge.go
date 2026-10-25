@@ -23,6 +23,6 @@ func init() {
 
 	carapace.Gen(cache_purgeCmd).FlagCompletion(carapace.ActionMap{
 		"project": action.ActionProjects(cache_purgeCmd),
-		"type":    carapace.ActionValues("purge", "all"),
+		"type":    carapace.ActionValues("all", "purge"),
 	})
 }

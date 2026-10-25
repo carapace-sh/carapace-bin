@@ -20,7 +20,7 @@ func init() {
 	domainsCmd.AddCommand(domains_checkCmd)
 
 	carapace.Gen(domains_checkCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("plain", "json"),
+		"format": carapace.ActionValues("json", "plain"),
 	})
 
 	carapace.Gen(domains_checkCmd).PositionalCompletion(

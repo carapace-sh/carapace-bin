@@ -25,7 +25,7 @@ func init() {
 
 	carapace.Gen(store_addFileCmd).FlagCompletion(carapace.ActionMap{
 		"hash-algo": carapace.ActionValues("blake3", "md5", "sha1", "sha256", "sha512"),
-		"mode":      carapace.ActionValues("nar", "flat", "git"),
+		"mode":      carapace.ActionValues("flat", "git", "nar"),
 	})
 
 	carapace.Gen(store_addFileCmd).PositionalCompletion(

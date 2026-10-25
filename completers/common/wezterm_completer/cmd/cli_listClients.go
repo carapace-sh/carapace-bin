@@ -19,6 +19,6 @@ func init() {
 	cliCmd.AddCommand(cli_listClientsCmd)
 
 	carapace.Gen(cli_listClientsCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("table", "json"),
+		"format": carapace.ActionValues("json", "table"),
 	})
 }

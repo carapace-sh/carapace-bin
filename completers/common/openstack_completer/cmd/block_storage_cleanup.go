@@ -39,6 +39,6 @@ func init() {
 	carapace.Gen(block_storage_cleanupCmd).FlagCompletion(carapace.ActionMap{
 		"format":        carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":         carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"resource-type": carapace.ActionValues("Volume", "Snapshot"),
+		"resource-type": carapace.ActionValues("Snapshot", "Volume"),
 	})
 }

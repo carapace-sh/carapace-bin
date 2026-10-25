@@ -18,6 +18,6 @@ func init() {
 	aiCmd.AddCommand(ai_initCmd)
 
 	carapace.Gen(ai_initCmd).PositionalCompletion(
-		carapace.ActionValues("zsh", "bash", "fish", "auto"),
+		carapace.ActionValues("auto", "bash", "fish", "zsh"),
 	)
 }

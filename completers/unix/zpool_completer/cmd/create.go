@@ -31,7 +31,7 @@ func init() {
 		"O": zfs.ActionPropertyAssignments(),
 		"R": carapace.ActionDirectories(),
 		"m": carapace.Batch(
-			carapace.ActionValues("none", "legacy"),
+			carapace.ActionValues("legacy", "none"),
 			carapace.ActionDirectories(),
 		).ToA(),
 		"o": zfs.ActionPoolPropertyAssignments(),

@@ -22,7 +22,7 @@ func init() {
 	stepCmd.AddCommand(step_pushCmd)
 
 	carapace.Gen(step_pushCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("text", "json"),
+		"format": carapace.ActionValues("json", "text"),
 	})
 
 	carapace.Gen(step_pushCmd).PositionalCompletion(

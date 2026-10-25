@@ -39,7 +39,7 @@ func init() {
 					return carapace.ActionValues()
 				}
 			}
-			return carapace.ActionValues("dev", "up", "master", "nomaster", "vrf", "type", "group")
+			return carapace.ActionValues("dev", "group", "master", "nomaster", "type", "up", "vrf")
 		}),
 	)
 }

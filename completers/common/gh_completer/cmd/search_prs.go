@@ -74,7 +74,7 @@ func init() {
 		"base": action.ActionSearchMultiRepo(search_prsCmd, func(cmd *cobra.Command) carapace.Action {
 			return action.ActionBranches(cmd)
 		}),
-		"checks":    carapace.ActionValues("pending", "success", "failure"),
+		"checks":    carapace.ActionValues("failure", "pending", "success"),
 		"closed":    action.ActionSearchRange(time.ActionDateTime(time.DateTimeOpts{Strict: true})),
 		"commenter": gh.ActionUsers(gh.HostOpts{}),
 		"created":   action.ActionSearchRange(time.ActionDateTime(time.DateTimeOpts{Strict: true})),
@@ -88,7 +88,7 @@ func init() {
 			return action.ActionLabels(cmd).UniqueList(",")
 		}),
 		"language":  gh.ActionLanguages(),
-		"match":     carapace.ActionValues("title", "body", "comments").UniqueList(","),
+		"match":     carapace.ActionValues("body", "comments", "title").UniqueList(","),
 		"mentions":  gh.ActionUsers(gh.HostOpts{}),
 		"merged-at": action.ActionSearchRange(time.ActionDateTime(time.DateTimeOpts{Strict: true})),
 		"milestone": action.ActionSearchMultiRepo(search_prsCmd, func(cmd *cobra.Command) carapace.Action {
@@ -101,7 +101,7 @@ func init() {
 			dummyCmd.Flags().String("repo", c.Value, "fake repo flag")
 			return action.ActionOwnerRepositories(dummyCmd).NoSpace()
 		}),
-		"review": carapace.ActionValues("none", "required", "approved", "changes_requested"),
+		"review": carapace.ActionValues("approved", "changes_requested", "none", "required"),
 		"review-requested": action.ActionSearchMultiRepo(search_prsCmd, func(cmd *cobra.Command) carapace.Action {
 			return action.ActionAssignableUsers(cmd)
 		}),
@@ -109,8 +109,8 @@ func init() {
 			return action.ActionAssignableUsers(cmd)
 		}),
 		"sort":       carapace.ActionValues("comments", "created", "interactions", "reactions", "reactions-+1", "reactions--1", "reactions-heart", "reactions-smile", "reactions-tada", "reactions-thinking_face", "updated"),
-		"state":      carapace.ActionValues("open", "closed").StyleF(styles.Gh.ForState),
+		"state":      carapace.ActionValues("closed", "open").StyleF(styles.Gh.ForState),
 		"updated":    action.ActionSearchRange(time.ActionDateTime(time.DateTimeOpts{Strict: true})),
-		"visibility": carapace.ActionValues("public", "private", "internal").UniqueList(","),
+		"visibility": carapace.ActionValues("internal", "private", "public").UniqueList(","),
 	})
 }

@@ -21,11 +21,11 @@ func init() {
 	carapace.Gen(rerereCmd).PositionalCompletion(
 		carapace.ActionValuesDescribed(
 			"clear", "Reset the metadata used by rerere if a merge resolution is to be aborted",
-			"forget", "Reset the conflict resolutions which rerere has recorded for the current conflict in <pathspec>",
 			"diff", "Display diffs for the current state of the resolution",
-			"status", "Print paths with conflicts whose merge resolution rerere will record",
-			"remaining", "Print paths with conflicts that have not been autoresolved by rerere",
+			"forget", "Reset the conflict resolutions which rerere has recorded for the current conflict in <pathspec>",
 			"gc", "Prune records of conflicted merges that occurred a long time ago",
+			"remaining", "Print paths with conflicts that have not been autoresolved by rerere",
+			"status", "Print paths with conflicts whose merge resolution rerere will record",
 		),
 		// TODO forget <pathspec>
 	)

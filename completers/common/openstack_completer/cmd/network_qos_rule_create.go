@@ -39,6 +39,6 @@ func init() {
 	carapace.Gen(network_qos_rule_createCmd).FlagCompletion(carapace.ActionMap{
 		"column": action.ActionColumns(network_qos_rule_createCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
-		"type":   carapace.ActionValues("minimum-bandwidth", "minimum-packet-rate", "dscp-marking", "bandwidth-limit"),
+		"type":   carapace.ActionValues("bandwidth-limit", "dscp-marking", "minimum-bandwidth", "minimum-packet-rate"),
 	})
 }

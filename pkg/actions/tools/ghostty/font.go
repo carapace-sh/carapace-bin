@@ -29,14 +29,14 @@ func ActionFontSyntheticStyles() carapace.Action {
 //	force-autohint (Use the freetype auto-hinter)
 func ActionFreetypeLoadFlags() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"hinting", "Enable hinting",
-		"force-autohint", "Use the freetype auto-hinter",
-		"monochrome", "use 1-bit monochrome rendering",
 		"autohint", "Use the freetype auto-hinter",
-		"no-hinting", "Disable hinting",
-		"no-force-autohint", "Do not se the freetype auto-hinter",
-		"no-monochrome", "Do not use 1-bit monochrome rendering",
+		"force-autohint", "Use the freetype auto-hinter",
+		"hinting", "Enable hinting",
+		"monochrome", "use 1-bit monochrome rendering",
 		"no-autohint", "Do not use the freetype auto-hinter",
+		"no-force-autohint", "Do not se the freetype auto-hinter",
+		"no-hinting", "Disable hinting",
+		"no-monochrome", "Do not use 1-bit monochrome rendering",
 	).Tag("freetype load flags").Uid("ghostty", "freetype-load-flag")
 }
 

@@ -160,10 +160,10 @@ func ActionProcessStates() carapace.Action {
 			).Tag("process states").Uid("ps", "state")
 		case "windows":
 			return carapace.ActionValuesDescribed(
-				"Running", "process is running",
 				"Ready", "process is ready to run",
-				"Waiting", "process is waiting for a resource",
+				"Running", "process is running",
 				"Terminated", "process has terminated",
+				"Waiting", "process is waiting for a resource",
 			).Tag("process states").Uid("ps", "state")
 		default:
 			return carapace.ActionValuesDescribed(

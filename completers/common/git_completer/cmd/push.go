@@ -71,9 +71,9 @@ func init() {
 		}),
 		"push-option":        git.ActionPushOptions(),
 		"receive-pack":       carapace.ActionFiles(),
-		"recurse-submodules": carapace.ActionValues("check", "on-demand", "only", "no").StyleF(style.ForKeyword),
+		"recurse-submodules": carapace.ActionValues("check", "no", "on-demand", "only").StyleF(style.ForKeyword),
 		"repo":               git.ActionRemotes(),
-		"signed":             carapace.ActionValues("yes", "no", "if-asked").StyleF(style.ForKeyword),
+		"signed":             carapace.ActionValues("if-asked", "no", "yes").StyleF(style.ForKeyword),
 	})
 
 	carapace.Gen(pushCmd).PositionalCompletion(

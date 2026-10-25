@@ -50,7 +50,7 @@ func init() {
 		"L": carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				return carapace.ActionValues("dependency", "crate", "native", "framework", "all").Suffix("=")
+				return carapace.ActionValues("all", "crate", "dependency", "framework", "native").Suffix("=")
 			default:
 				return carapace.ActionFiles()
 			}
@@ -63,21 +63,21 @@ func init() {
 		"crate-type": rust.ActionCrateTypes().UniqueList(","),
 		"deny":       carapace.ActionValues(), // TODO
 		"edition":    carapace.ActionValues("2015", "2018", "2021"),
-		"emit":       carapace.ActionValues("asm", "llvm-bc", "llvm-ir", "obj", "metadata", "link", "dep-info", "mir").UniqueList(","),
+		"emit":       carapace.ActionValues("asm", "dep-info", "link", "llvm-bc", "llvm-ir", "metadata", "mir", "obj").UniqueList(","),
 		"explain":    rust.ActionErrorCodes(),
 		"forbid":     carapace.ActionValues(), // TODO
 		"force-warn": carapace.ActionValues(), // TODO
 		"l": carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				return carapace.ActionValues("static", "framework", "dylib").Suffix("=")
+				return carapace.ActionValues("dylib", "framework", "static").Suffix("=")
 			default:
 				return carapace.ActionFiles()
 			}
 		}),
 		"o":       carapace.ActionFiles(),
 		"out-dir": carapace.ActionDirectories(),
-		"print":   carapace.ActionValues("crate-name", "file-names", "sysroot", "target-libdir", "cfg", "target-list", "target-cpus", "target-features", "relocation-models", "code-models", "tls-models", "target-spec-json", "native-static-libs"),
+		"print":   carapace.ActionValues("cfg", "code-models", "crate-name", "file-names", "native-static-libs", "relocation-models", "sysroot", "target-cpus", "target-features", "target-libdir", "target-list", "target-spec-json", "tls-models"),
 		"target":  rust.ActionTargets(),
 		"warn":    carapace.ActionValues(), // TODO
 	})

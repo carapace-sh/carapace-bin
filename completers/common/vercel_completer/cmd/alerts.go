@@ -28,8 +28,8 @@ func init() {
 	rootCmd.AddCommand(alertsCmd)
 
 	carapace.Gen(alertsCmd).FlagCompletion(carapace.ActionMap{
-		"format":  carapace.ActionValues("plain", "json"),
+		"format":  carapace.ActionValues("json", "plain"),
 		"project": action.ActionProjects(alertsCmd),
-		"type":    carapace.ActionValues("purge", "all"),
+		"type":    carapace.ActionValues("all", "purge"),
 	})
 }

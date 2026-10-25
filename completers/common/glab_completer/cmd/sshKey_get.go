@@ -24,7 +24,7 @@ func init() {
 
 	carapace.Gen(sshKey_getCmd).FlagCompletion(carapace.ActionMap{
 		"jq":     jq.ActionFilters(),
-		"output": carapace.ActionValues("text", "json"),
+		"output": carapace.ActionValues("json", "text"),
 	})
 	carapace.Gen(sshKey_getCmd).PositionalCompletion(
 		action.ActionSshKeyIds(sshKeyCmd),

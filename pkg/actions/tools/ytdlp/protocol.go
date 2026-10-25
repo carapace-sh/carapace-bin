@@ -8,12 +8,12 @@ import "github.com/carapace-sh/carapace"
 //	ftp
 func ActionProtocols() carapace.Action {
 	return carapace.ActionValues(
-		"http",
-		"ftp",
-		"m3u8",
 		"dash",
+		"ftp",
+		"http",
+		"m3u8",
+		"mms",
 		"rstp",
 		"rtmp",
-		"mms",
 	).Tag("protocols")
 }

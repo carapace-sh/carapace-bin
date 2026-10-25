@@ -5,8 +5,8 @@ import "github.com/carapace-sh/carapace"
 // ActionMailboxTasks completes action_mailbox:* tasks
 func ActionMailboxTasks() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"install", "Install Action Mailbox",
 		"ingress", "Relay inbound email",
+		"install", "Install Action Mailbox",
 	).Tag("action mailbox tasks").UidF(taskUid("action_mailbox"))
 }
 

@@ -29,7 +29,7 @@ func init() {
 		"cache":  qemu.ActionCacheModes(),
 		"format": qemu.ActionImageFormats(),
 		"output": carapace.ActionValues("human", "json"),
-		"repair": carapace.ActionValues("leaks", "all"),
+		"repair": carapace.ActionValues("all", "leaks"),
 	})
 
 	carapace.Gen(checkCmd).PositionalCompletion(

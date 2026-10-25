@@ -43,7 +43,7 @@ func init() {
 		"editable":     carapace.ActionFiles(),
 		"no-binary":    carapace.ActionValues(":all:", ":none:"),
 		"only-binary":  carapace.ActionValues(":all:", ":none:"),
-		"progress-bar": carapace.ActionValues("off", "on", "ascii", "pretty", "emoji"),
+		"progress-bar": carapace.ActionValues("ascii", "emoji", "off", "on", "pretty"),
 		"requirement":  carapace.ActionFiles(),
 		"src":          carapace.ActionDirectories(),
 		"wheel-dir":    carapace.ActionDirectories(),

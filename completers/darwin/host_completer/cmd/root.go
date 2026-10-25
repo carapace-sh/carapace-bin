@@ -40,7 +40,7 @@ func init() {
 	rootCmd.Flags().BoolS("w", "w", false, "Wait forever")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"c": carapace.ActionValues("IN", "HS", "CH"),
-		"t": carapace.ActionValues("A", "AAAA", "CNAME", "MX", "NS", "PTR", "SOA", "SRV", "TXT", "ANY"),
+		"c": carapace.ActionValues("CH", "HS", "IN"),
+		"t": carapace.ActionValues("A", "AAAA", "ANY", "CNAME", "MX", "NS", "PTR", "SOA", "SRV", "TXT"),
 	})
 }

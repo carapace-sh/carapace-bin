@@ -22,6 +22,6 @@ func init() {
 	rootCmd.AddCommand(listThemesCmd)
 
 	carapace.Gen(listThemesCmd).FlagCompletion(carapace.ActionMap{
-		"color": carapace.ActionValues("dark", "light", "all").StyleF(style.ForKeyword),
+		"color": carapace.ActionValues("all", "dark", "light").StyleF(style.ForKeyword),
 	})
 }

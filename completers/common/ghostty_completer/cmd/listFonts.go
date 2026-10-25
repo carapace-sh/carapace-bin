@@ -24,6 +24,6 @@ func init() {
 
 	carapace.Gen(listFontsCmd).FlagCompletion(carapace.ActionMap{
 		"family": ghostty.ActionFontFamilies(),
-		"style":  carapace.ActionValues("regular", "bold", "italic", "bold_italic"),
+		"style":  carapace.ActionValues("bold", "bold_italic", "italic", "regular"),
 	})
 }

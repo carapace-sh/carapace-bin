@@ -33,7 +33,7 @@ func init() {
 	carapace.Gen(submitCmd).FlagCompletion(carapace.ActionMap{
 		"branch":   carapace.ActionValues(),
 		"commit":   carapace.ActionValues(),
-		"conflict": carapace.ActionValues("ask", "skip", "quit"),
+		"conflict": carapace.ActionValues("ask", "quit", "skip"),
 		"origin":   carapace.ActionValues(),
 	})
 

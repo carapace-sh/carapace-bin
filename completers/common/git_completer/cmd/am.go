@@ -69,11 +69,11 @@ func init() {
 
 	carapace.Gen(amCmd).FlagCompletion(carapace.ActionMap{
 		"directory":          carapace.ActionDirectories(),
-		"empty":              carapace.ActionValues("stop", "drop", "keep").StyleF(style.ForKeyword),
+		"empty":              carapace.ActionValues("drop", "keep", "stop").StyleF(style.ForKeyword),
 		"exclude":            carapace.ActionDirectories(),
 		"gpg-sign":           os.ActionGpgKeyIds(),
 		"include":            carapace.ActionDirectories(),
-		"patch-format":       carapace.ActionValues("mbox", "mboxrd", "stgit", "stgit-series", "hg"),
+		"patch-format":       carapace.ActionValues("hg", "mbox", "mboxrd", "stgit", "stgit-series"),
 		"quoted-cr":          git.ActionQuotedCrModes(),
 		"show-current-patch": carapace.ActionValues("diff", "raw"),
 		"whitespace":         git.ActionWhitespaceModes(),

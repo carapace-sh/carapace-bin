@@ -20,6 +20,6 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValues("staple", "validate", "list"),
+		carapace.ActionValues("list", "staple", "validate"),
 	)
 }

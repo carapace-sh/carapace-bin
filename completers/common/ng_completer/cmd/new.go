@@ -39,8 +39,8 @@ func init() {
 
 	carapace.Gen(newCmd).FlagCompletion(carapace.ActionMap{
 		"directory":          carapace.ActionDirectories(),
-		"package-manager":    carapace.ActionValues("npm", "yarn", "pnpm", "cnpm"),
-		"style":              carapace.ActionValues("css", "scss", "sass", "less"),
+		"package-manager":    carapace.ActionValues("cnpm", "npm", "pnpm", "yarn"),
+		"style":              carapace.ActionValues("css", "less", "sass", "scss"),
 		"view-encapsulation": carapace.ActionValues("Emulated", "None", "ShadowDom"),
 	})
 }

@@ -19,12 +19,12 @@ func init() {
 	carapace.Gen(general_loggingCmd).PositionalCompletion(
 		carapace.ActionValues("level"),
 		carapace.ActionValuesDescribed(
-			"OFF", "logging disabled",
-			"ERR", "log only critical errors",
-			"WARN", "log warning messages",
-			"INFO", "log various informational messages",
 			"DEBUG", "verbose logging for debugging purposes",
+			"ERR", "log only critical errors",
+			"INFO", "log various informational messages",
+			"OFF", "logging disabled",
 			"TRACE", "even more verbose logging than DEBUG",
+			"WARN", "log warning messages",
 		),
 		carapace.ActionValues("domains"),
 		ActionDomains().UniqueList(","),
@@ -33,13 +33,13 @@ func init() {
 
 func ActionDomains() carapace.Action {
 	return carapace.ActionValues(
-		"PLATFORM", "RFKILL", "ETHER", "WIFI", "WIFI_SCAN", "BT", "MB",
-		"DHCP4", "DHCP6", "DHCP", "PPP", "IP4", "IP6", "IP", "AUTOIP4",
-		"DNS", "VPN", "VPN_PLUGIN", "SHARING", "SUPPLICANT", "AGENTS",
-		"SETTINGS", "SUSPEND", "CORE", "DEVICE", "OLPC", "WIMAX",
-		"INFINIBAND", "FIREWALL", "ADSL", "BOND", "VLAN", "BRIDGE",
-		"DBUS_PROPS", "TEAM", "CONCHECK", "DCB", "DISPATCH", "AUDIT",
-		"SYSTEMD", "PROXY",
-		"NONE", "ALL", "DEFAULT", "HW",
+		"ADSL", "AGENTS", "ALL", "AUDIT", "AUTOIP4", "BOND", "BRIDGE",
+		"BT", "CONCHECK", "CORE", "DBUS_PROPS", "DCB", "DEFAULT", "DEVICE", "DHCP",
+		"DHCP4", "DHCP6", "DISPATCH", "DNS", "ETHER", "FIREWALL",
+		"HW", "INFINIBAND", "IP", "IP4", "IP6", "MB",
+		"NONE", "OLPC", "PLATFORM", "PPP", "PROXY", "RFKILL",
+		"SETTINGS", "SHARING", "SUPPLICANT", "SUSPEND", "SYSTEMD", "TEAM",
+		"VLAN", "VPN",
+		"VPN_PLUGIN", "WIFI", "WIFI_SCAN", "WIMAX",
 	)
 }

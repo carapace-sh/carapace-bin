@@ -19,6 +19,6 @@ func init() {
 	mfaCmd.AddCommand(mfa_addCmd)
 
 	carapace.Gen(mfa_addCmd).FlagCompletion(carapace.ActionMap{
-		"type": carapace.ActionValues("TOTP", "WEBAUTHN", "TOUCHID"),
+		"type": carapace.ActionValues("TOTP", "TOUCHID", "WEBAUTHN"),
 	})
 }

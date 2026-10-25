@@ -25,6 +25,6 @@ func init() {
 
 	carapace.Gen(package_addProductCmd).FlagCompletion(carapace.ActionMap{
 		"targets": action.ActionTargets(),
-		"type":    carapace.ActionValues("executable", "library", "static-library", "dynamic-library", "plugin"),
+		"type":    carapace.ActionValues("dynamic-library", "executable", "library", "plugin", "static-library"),
 	})
 }

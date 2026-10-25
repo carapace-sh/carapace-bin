@@ -27,12 +27,12 @@ func init() {
 	})
 
 	carapace.Gen(resetCmd).PositionalCompletion(
-		carapace.ActionValues("secure", "global"),
+		carapace.ActionValues("global", "secure"),
 		carapace.Batch(
 			carapace.ActionValuesDescribed(
-				"untrusted_defaults", "RESET_MODE_UNTRUSTED_DEFAULTS",
-				"untrusted_clear", "RESET_MODE_UNTRUSTED_CHANGES",
 				"trusted_defaults", "RESET_MODE_TRUSTED_DEFAULTS",
+				"untrusted_clear", "RESET_MODE_UNTRUSTED_CHANGES",
+				"untrusted_defaults", "RESET_MODE_UNTRUSTED_DEFAULTS",
 			),
 			android.ActionPackages(),
 		).ToA(),

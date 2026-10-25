@@ -32,8 +32,8 @@ func ActionForkStrategies() carapace.Action {
 func ActionIndexStrategies() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"first-index", "Only use results from the first index that returns a match for a given package name",
-		"unsafe-first-match", "Search for every package name across all indexes, exhausting the versions from the first index before moving on to the next",
 		"unsafe-best-match", "Search for every package name across all indexes, preferring the \"best\" version found. If a package version is in multiple indexes, only look at the entry for the first index",
+		"unsafe-first-match", "Search for every package name across all indexes, exhausting the versions from the first index before moving on to the next",
 	)
 }
 
@@ -57,10 +57,10 @@ func ActionLinkModes() carapace.Action {
 //	if-necessary (Prefer stable versions, falling back to pre-release versions when necessary)
 func ActionPreReleases() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"disallow", "Disallow all pre-release versions",
 		"allow", "Allow all pre-release versions",
-		"if-necessary", "Prefer stable versions, falling back to pre-release versions when necessary",
+		"disallow", "Disallow all pre-release versions",
 		"explicit", "Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages",
+		"if-necessary", "Prefer stable versions, falling back to pre-release versions when necessary",
 		"if-necessary-or-explicit", "Deprecated alias for `if-necessary`",
 	)
 }

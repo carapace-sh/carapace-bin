@@ -33,6 +33,6 @@ func init() {
 	advisoryCmd.AddCommand(advisoryListCmd)
 
 	carapace.Gen(advisoryListCmd).FlagCompletion(carapace.ActionMap{
-		"advisory-severities": carapace.ActionValues("critical", "important", "moderate", "low", "none"),
+		"advisory-severities": carapace.ActionValues("critical", "important", "low", "moderate", "none"),
 	})
 }

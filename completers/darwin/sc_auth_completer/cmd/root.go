@@ -42,11 +42,11 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"f": carapace.ActionFiles(),
-		"s": carapace.ActionValues("enable", "disable", "status"),
+		"s": carapace.ActionValues("disable", "enable", "status"),
 		"u": os.ActionUsers(),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValues("pair", "unpair", "pairing_ui", "identities", "list", "changepin", "verifypin", "enable_for_login", "filevault"),
+		carapace.ActionValues("changepin", "enable_for_login", "filevault", "identities", "list", "pair", "pairing_ui", "unpair", "verifypin"),
 	)
 }

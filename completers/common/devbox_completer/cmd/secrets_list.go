@@ -20,6 +20,6 @@ func init() {
 	secretsCmd.AddCommand(secrets_listCmd)
 
 	carapace.Gen(secrets_listCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("table", "dotenv", "json"),
+		"format": carapace.ActionValues("dotenv", "json", "table"),
 	})
 }

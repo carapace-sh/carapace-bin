@@ -23,7 +23,7 @@ func init() {
 	rootCmd.AddCommand(indexCmd)
 
 	carapace.Gen(indexCmd).FlagCompletion(carapace.ActionMap{
-		"compression-types": carapace.ActionValues("xz", "bz2"),
+		"compression-types": carapace.ActionValues("bz2", "xz"),
 		"output":            carapace.ActionFiles(),
 	})
 

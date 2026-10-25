@@ -17,7 +17,7 @@ func init() {
 	accessCmd.AddCommand(access_listCmd)
 
 	carapace.Gen(access_listCmd).PositionalCompletion(
-		carapace.ActionValues("packages", "collaborators"),
+		carapace.ActionValues("collaborators", "packages"),
 	)
 	carapace.Gen(access_listCmd).PositionalAnyCompletion(
 		action.ActionPackages(access_listCmd),

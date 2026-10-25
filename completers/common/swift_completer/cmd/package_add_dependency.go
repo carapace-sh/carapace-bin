@@ -28,6 +28,6 @@ func init() {
 	packageCmd.AddCommand(package_addDependencyCmd)
 
 	carapace.Gen(package_addDependencyCmd).FlagCompletion(carapace.ActionMap{
-		"type": carapace.ActionValues("url", "path", "registry"),
+		"type": carapace.ActionValues("path", "registry", "url"),
 	})
 }

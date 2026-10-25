@@ -20,6 +20,6 @@ func init() {
 	carapace.Gen(org_setCmd).PositionalCompletion(
 		carapace.ActionValues(),
 		carapace.ActionValues(),
-		carapace.ActionValues("developer", "admin", "owner"),
+		carapace.ActionValues("admin", "developer", "owner"),
 	)
 }

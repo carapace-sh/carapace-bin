@@ -57,11 +57,11 @@ func init() {
 	atCmd.AddCommand(at_launchCmd)
 
 	carapace.Gen(at_launchCmd).FlagCompletion(carapace.ActionMap{
-		"location":        carapace.ActionValues("default", "after", "before", "first", "hsplit", "last", "neighbor", "split", "vsplit"),
+		"location":        carapace.ActionValues("after", "before", "default", "first", "hsplit", "last", "neighbor", "split", "vsplit"),
 		"logo":            carapace.ActionFiles(".png"),
-		"os-window-state": carapace.ActionValues("normal", "fullscreen", "maximized", "minimized"),
-		"stdin-source":    carapace.ActionValues("none", "@alternate", "@alternate_scrollback", "@first_cmd_output_on_screen", "@last_cmd_output", "@last_visited_cmd_output", "@screen", "@screen_scrollback", "@selection"),
-		"type":            carapace.ActionValues("window", "background", "clipboard", "os-panel", "os-window", "overlay", "overlay-main", "primary", "tab"),
+		"os-window-state": carapace.ActionValues("fullscreen", "maximized", "minimized", "normal"),
+		"stdin-source":    carapace.ActionValues("@alternate", "@alternate_scrollback", "@first_cmd_output_on_screen", "@last_cmd_output", "@last_visited_cmd_output", "@screen", "@screen_scrollback", "@selection", "none"),
+		"type":            carapace.ActionValues("background", "clipboard", "os-panel", "os-window", "overlay", "overlay-main", "primary", "tab", "window"),
 		"watcher":         carapace.ActionFiles(".py"),
 	})
 }

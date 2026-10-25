@@ -18,6 +18,6 @@ func init() {
 	debugCmd.AddCommand(debug_testRiskCmd)
 
 	carapace.Gen(debug_testRiskCmd).FlagCompletion(carapace.ActionMap{
-		"accept-risk": carapace.ActionValues("lose-ssh", "mac-app-connector", "all"),
+		"accept-risk": carapace.ActionValues("all", "lose-ssh", "mac-app-connector"),
 	})
 }

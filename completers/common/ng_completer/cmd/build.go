@@ -58,11 +58,11 @@ func init() {
 			}
 			return action.ActionBuilderConfigurations(c.Args[0], "build").UniqueList(",")
 		}),
-		"cross-origin":             carapace.ActionValues("none", "anonymous", "use-credentials"),
-		"i18n-missing-translation": carapace.ActionValues("warning", "error", "ignore"),
+		"cross-origin":             carapace.ActionValues("anonymous", "none", "use-credentials"),
+		"i18n-missing-translation": carapace.ActionValues("error", "ignore", "warning"),
 		"inline-style-language":    carapace.ActionValues("css", "less", "sass", "scss"),
 		"ngsw-config-path":         carapace.ActionFiles(".json"),
-		"output-hashing":           carapace.ActionValues("none", "all", "media", "bundle"),
+		"output-hashing":           carapace.ActionValues("all", "bundle", "media", "none"),
 		"output-path":              carapace.ActionDirectories(),
 		"polyfills":                carapace.ActionFiles(),
 		"resources-output-path":    carapace.ActionDirectories(),

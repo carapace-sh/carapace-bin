@@ -24,6 +24,6 @@ func init() {
 	acl_policyCmd.AddCommand(acl_policy_readCmd)
 
 	carapace.Gen(acl_policy_readCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("pretty", "json"),
+		"format": carapace.ActionValues("json", "pretty"),
 	})
 }

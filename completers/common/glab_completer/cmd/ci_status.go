@@ -28,6 +28,6 @@ func init() {
 	carapace.Gen(ci_statusCmd).FlagCompletion(carapace.ActionMap{
 		"branch": action.ActionBranches(ci_statusCmd),
 		"jq":     jq.ActionFilters(),
-		"output": carapace.ActionValues("text", "json"),
+		"output": carapace.ActionValues("json", "text"),
 	})
 }

@@ -17,9 +17,9 @@ func ActionSeqtypes() carapace.Action {
 // ActionSamplings completes the resampling strategies for --sampling.
 func ActionSamplings() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"SITE", "resample sites",
 		"GENE", "resample partition (gene)",
 		"GENESITE", "resample both gene and sites",
+		"SITE", "resample sites",
 	).Tag("sampling")
 }
 
@@ -52,20 +52,20 @@ func ActionMerits() carapace.Action {
 // ActionMsets completes the program model sets for --mset.
 func ActionMsets() carapace.Action {
 	return carapace.ActionValues(
-		"raxml",
-		"phyml",
-		"mrbayes",
 		"beast1",
 		"beast2",
+		"mrbayes",
+		"phyml",
+		"raxml",
 	).Tag("program model sets")
 }
 
 // ActionMsubs completes the amino-acid model sources for --msub.
 func ActionMsubs() carapace.Action {
 	return carapace.ActionValues(
-		"nuclear",
-		"mitochondrial",
 		"chloroplast",
+		"mitochondrial",
+		"nuclear",
 		"viral",
 	).Tag("amino-acid model sources")
 }
@@ -73,17 +73,17 @@ func ActionMsubs() carapace.Action {
 // ActionSymtestTypes completes the symmetry test types for --symtest-type.
 func ActionSymtestTypes() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"MAR", "marginal test",
 		"INT", "internal test",
+		"MAR", "marginal test",
 	).Tag("symmetry test types")
 }
 
 // ActionRandTrees completes the random tree generation schemes for --rand.
 func ActionRandTrees() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"UNI", "uniform random tree",
-		"CAT", "caterpillar tree",
 		"BAL", "balanced tree",
+		"CAT", "caterpillar tree",
+		"UNI", "uniform random tree",
 	).Tag("random tree schemes")
 }
 
@@ -97,8 +97,8 @@ func ActionDatingMethods() carapace.Action {
 // ActionAfFormats completes the AliSim output formats for -af.
 func ActionAfFormats() carapace.Action {
 	return carapace.ActionValues(
-		"phy",
 		"fasta",
+		"phy",
 	).Tag("alignment formats")
 }
 
@@ -107,8 +107,8 @@ func ActionAfFormats() carapace.Action {
 func ActionSiteFreqOptions() carapace.Action {
 	return carapace.ActionValues(
 		"MEAN",
-		"SAMPLING",
 		"MODEL",
+		"SAMPLING",
 	).Tag("site frequency options")
 }
 
@@ -116,7 +116,7 @@ func ActionSiteFreqOptions() carapace.Action {
 // keywords for -m. Models are composed further with state-frequency (+F, +FO,
 // ...) and rate-heterogeneity (+I, +G[n], +R[n], +Hn, ...) suffixes.
 func ActionModels() carapace.Action {
-	return carapace.ActionValuesDescribed(
+	return carapace.ActionValuesDescribed( // carapace:curated
 		// ModelFinder keywords
 		"TEST", "model selection followed by tree inference",
 		"TESTONLY", "standard model selection only",

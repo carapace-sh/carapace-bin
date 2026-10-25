@@ -42,9 +42,9 @@ func init() {
 		"debug":        fish.ActionDebugCategories().UniqueList(","),
 		"debug-output": carapace.ActionFiles(),
 		"features": carapace.ActionValuesDescribed(
-			"stderr-nocaret", "^ no longer redirects stderr",
 			"qmark-noglob", "? no longer globs",
 			"regex-easyesc", `string replace -r needs fewer \'s`,
+			"stderr-nocaret", "^ no longer redirects stderr",
 		).UniqueList(","),
 		"init-command":    bridge.ActionCarapaceBin().SplitP(shlex.Fish),
 		"profile":         carapace.ActionFiles(),

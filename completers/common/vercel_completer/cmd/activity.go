@@ -28,8 +28,8 @@ func init() {
 	rootCmd.AddCommand(activityCmd)
 
 	carapace.Gen(activityCmd).FlagCompletion(carapace.ActionMap{
-		"format":  carapace.ActionValues("plain", "json"),
+		"format":  carapace.ActionValues("json", "plain"),
 		"project": action.ActionProjects(activityCmd),
-		"type":    carapace.ActionValues("deployment", "project", "domain", "dns", "cert", "env"),
+		"type":    carapace.ActionValues("cert", "deployment", "dns", "domain", "env", "project"),
 	})
 }

@@ -20,7 +20,7 @@ func init() {
 	repoCmd.AddCommand(repo_archiveCmd)
 
 	carapace.Gen(repo_archiveCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("tar.gz", "tar.bz2", "tbz", "tbz2", "tb2", "bz2", "tar", "zip"),
+		"format": carapace.ActionValues("bz2", "tar", "tar.bz2", "tar.gz", "tb2", "tbz", "tbz2", "zip"),
 		"sha": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return carapace.Batch(
 				action.ActionBranches(repo_archiveCmd),

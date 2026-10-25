@@ -57,6 +57,6 @@ func init() {
 		"lang":       action.ActionLanguageTemplates(),
 		"name":       action.ActionFunctions(),
 		"namespace":  action.ActionNamespaces(),
-		"tag":        carapace.ActionValues("latest", "sha", "branch", "describe"),
+		"tag":        carapace.ActionValues("branch", "describe", "latest", "sha"),
 	})
 }

@@ -20,9 +20,9 @@ func init() {
 
 	carapace.Gen(config_featureCmd).PositionalCompletion(
 		carapace.ActionValuesDescribed(
-			"unapply-v3-pgm", "Use the V3 unapply compatibility mode",
 			"single-branch", "Enable single-branch mode",
+			"unapply-v3-pgm", "Use the V3 unapply compatibility mode",
 		),
-		carapace.ActionValues("enable", "disable").StyleF(style.ForKeyword),
+		carapace.ActionValues("disable", "enable").StyleF(style.ForKeyword),
 	)
 }

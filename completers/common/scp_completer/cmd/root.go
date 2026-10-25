@@ -53,8 +53,8 @@ func init() {
 			switch len(c.Parts) {
 			case 0:
 				return carapace.ActionValuesDescribed(
-					"nrequests", "Controls how many concurrent SFTP read or write requests may be in progress",
 					"buffer", "Controls the maximum buffer size for a single SFTP read/write operation",
+					"nrequests", "Controls how many concurrent SFTP read or write requests may be in progress",
 				).Suffix("=")
 			default:
 				return carapace.ActionValues()

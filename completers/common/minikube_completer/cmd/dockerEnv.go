@@ -24,7 +24,7 @@ func init() {
 	rootCmd.AddCommand(dockerEnvCmd)
 
 	carapace.Gen(dockerEnvCmd).FlagCompletion(carapace.ActionMap{
-		"output": carapace.ActionValues("text", "yaml", "json"),
-		"shell":  carapace.ActionValues("fish", "cmd", "powershell", "tcsh", "bash", "zsh", "auto-detect"),
+		"output": carapace.ActionValues("json", "text", "yaml"),
+		"shell":  carapace.ActionValues("auto-detect", "bash", "cmd", "fish", "powershell", "tcsh", "zsh"),
 	})
 }

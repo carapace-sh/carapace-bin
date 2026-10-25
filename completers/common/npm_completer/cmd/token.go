@@ -32,7 +32,7 @@ func init() {
 	rootCmd.AddCommand(tokenCmd)
 
 	carapace.Gen(tokenCmd).FlagCompletion(carapace.ActionMap{
-		"orgs-permission":                carapace.ActionValues("read-only", "read-write", "no-access"),
-		"packages-and-scopes-permission": carapace.ActionValues("read-only", "read-write", "no-access"),
+		"orgs-permission":                carapace.ActionValues("no-access", "read-only", "read-write"),
+		"packages-and-scopes-permission": carapace.ActionValues("no-access", "read-only", "read-write"),
 	})
 }

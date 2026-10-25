@@ -21,6 +21,6 @@ func init() {
 	rootCmd.AddCommand(deleteCmd)
 
 	carapace.Gen(deleteCmd).FlagCompletion(carapace.ActionMap{
-		"output": carapace.ActionValues("text", "json"),
+		"output": carapace.ActionValues("json", "text"),
 	})
 }

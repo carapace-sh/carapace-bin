@@ -33,7 +33,7 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"func":        carapace.ActionFiles(),
 		"html":        carapace.ActionFiles(),
-		"mode":        carapace.ActionValues("set", "count", "atomic"),
+		"mode":        carapace.ActionValues("atomic", "count", "set"),
 		"o":           carapace.ActionFiles(),
 		"outfilelist": carapace.ActionFiles(),
 		"pkgcfg":      carapace.ActionFiles(),

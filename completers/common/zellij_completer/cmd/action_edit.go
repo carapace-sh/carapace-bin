@@ -35,10 +35,10 @@ func init() {
 	actionCmd.AddCommand(action_editCmd)
 
 	carapace.Gen(action_editCmd).FlagCompletion(carapace.ActionMap{
-		"borderless": carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
+		"borderless": carapace.ActionValues("false", "true").StyleF(style.ForKeyword),
 		"cwd":        carapace.ActionDirectories(),
 		"direction":  zellij.ActionDirections(),
-		"pinned":     carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
+		"pinned":     carapace.ActionValues("false", "true").StyleF(style.ForKeyword),
 		"tab-id":     zellij.ActionTabs(),
 	})
 

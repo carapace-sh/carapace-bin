@@ -101,19 +101,19 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"D": carapace.ActionValuesDescribed(
+			"all", "Enable all of the other debug options (but help).",
 			"exec", "Show diagnostic information relating to -exec, -execdir, -ok and -okdir",
+			"help", "Explain the debugging options.",
 			"opt", "Prints diagnostic information relating to the optimisation of the expression tree",
 			"rates", "Prints a summary indicating how often each predicate succeeded or failed.",
 			"search", "Navigate the directory tree verbosely.",
 			"stat", "Print  messages  as  files are examined with the stat and lstat system calls.",
 			"tree", "Show the expression tree in its original and optimised form.",
-			"all", "Enable all of the other debug options (but help).",
-			"help", "Explain the debugging options.",
 		),
 		"fstype":    fs.ActionFilesystemTypes(),
 		"group":     os.ActionGroups(),
 		"perm":      fs.ActionFileModes(),
-		"regextype": carapace.ActionValues("findutils-default", "ed", "emacs", "gnu-awk", "grep", "posix-awk", "awk", "posix-basic", "posix-egrep", "egrep", "posix-extended", "posix-minimal-basic", "sed"),
+		"regextype": carapace.ActionValues("awk", "ed", "egrep", "emacs", "findutils-default", "gnu-awk", "grep", "posix-awk", "posix-basic", "posix-egrep", "posix-extended", "posix-minimal-basic", "sed"),
 		"type":      ActionFileTypes().UniqueList(","),
 		"user":      os.ActionUsers(),
 		"xtype":     ActionFileTypes().UniqueList(","),
@@ -126,13 +126,13 @@ func init() {
 
 func ActionFileTypes() carapace.Action {
 	return carapace.ActionValuesDescribed(
+		"D", "door (Solaris)",
 		"b", "block (buffered) special",
 		"c", "character (unbuffered) special",
 		"d", "directory",
-		"p", "named pipe (FIFO)",
 		"f", "regular file",
 		"l", "symbolic link",
+		"p", "named pipe (FIFO)",
 		"s", "socket",
-		"D", "door (Solaris)",
 	)
 }

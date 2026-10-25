@@ -36,6 +36,6 @@ func init() {
 		"auth-provider":         carapace.ActionValues("azure", "gcp", "oidc"),
 		"client-certificate":    carapace.ActionFiles(),
 		"client-key":            carapace.ActionFiles(),
-		"exec-interactive-mode": carapace.ActionValues("IfAvailable", "Required", "Never"),
+		"exec-interactive-mode": carapace.ActionValues("IfAvailable", "Never", "Required"),
 	})
 }

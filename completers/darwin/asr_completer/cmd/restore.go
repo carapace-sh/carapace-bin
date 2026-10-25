@@ -21,7 +21,7 @@ func init() {
 	restoreCmd.Flags().String("target", "", "Target device to restore to")
 	rootCmd.AddCommand(restoreCmd)
 	carapace.Gen(restoreCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("HFS+", "APFS"),
+		"format": carapace.ActionValues("APFS", "HFS+"),
 		"source": carapace.ActionFiles(),
 		"target": carapace.ActionFiles(),
 	})

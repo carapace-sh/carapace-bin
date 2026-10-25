@@ -40,7 +40,7 @@ func init() {
 		"iteration":        action.ActionIterations(workItems_updateCmd),
 		"jq":               jq.ActionFilters(),
 		"milestone":        action.ActionMilestones(workItems_updateCmd),
-		"output":           carapace.ActionValues("text", "json"),
+		"output":           carapace.ActionValues("json", "text"),
 		"repo":             action.ActionRepo(workItems_updateCmd),
 	})
 

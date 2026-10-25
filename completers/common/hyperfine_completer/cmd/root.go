@@ -70,9 +70,9 @@ func init() {
 		).ToA(),
 		"output": carapace.Batch(
 			carapace.ActionValuesDescribed(
+				"inherit", "Don't redirect the output at all",
 				"null", "Redirect output to /dev/null",
 				"pipe", "Feed the output through a pipe before discarding it",
-				"inherit", "Don't redirect the output at all",
 			),
 			carapace.ActionFiles(),
 		).ToA(),
@@ -90,8 +90,8 @@ func init() {
 		),
 		"style": carapace.ActionValuesDescribed(
 			"basic", "disable output coloring and interactive elements",
-			"full", "enable all effects",
 			"color", "keep the colors without any interactive output",
+			"full", "enable all effects",
 			"none", "disable all the output of the tool",
 		),
 		"time-unit": carapace.ActionValues("microsecond", "millisecond", "second"),

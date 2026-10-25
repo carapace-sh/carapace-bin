@@ -77,7 +77,7 @@ func init() {
 		}),
 		"artifacts-update-policy": carapace.ActionValues("always", "daily", "never"),
 		"builder":                 carapace.ActionValues("multithreaded", "singlethreaded"),
-		"color":                   carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
+		"color":                   carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"file":                    carapace.ActionFiles(".xml"),
 		"global-settings":         carapace.ActionFiles(".xml"),
 		"global-toolchains":       carapace.ActionFiles(".xml"),

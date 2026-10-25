@@ -32,7 +32,7 @@ func AddCargoFlags(cmd *cobra.Command) {
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
 		"Z":             cargo.ActionNightlyFlags(),
-		"color":         carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
+		"color":         carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"features":      cargo.ActionFeatures("").UniqueList(","),
 		"manifest-path": carapace.ActionFiles(),
 		"target":        rust.ActionTargets(),

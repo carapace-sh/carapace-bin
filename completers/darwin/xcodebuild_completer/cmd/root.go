@@ -61,7 +61,7 @@ func init() {
 		}),
 		"project":          carapace.ActionFiles(".xcodeproj"),
 		"resultBundlePath": carapace.ActionFiles(),
-		"sdk":              carapace.ActionValues("macosx", "iphoneos", "iphonesimulator", "appletvos", "appletvsimulator", "watchos", "watchsimulator", "xros", "xrsimulator"),
+		"sdk":              carapace.ActionValues("appletvos", "appletvsimulator", "iphoneos", "iphonesimulator", "macosx", "watchos", "watchsimulator", "xros", "xrsimulator"),
 		"workspace":        carapace.ActionFiles(".xcworkspace"),
 	})
 

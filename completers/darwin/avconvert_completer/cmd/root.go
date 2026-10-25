@@ -31,11 +31,11 @@ func init() {
 	rootCmd.Flags().String("videoCodec", "", "Video codec")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"audioCodec": carapace.ActionValues("aac", "alac", "ilbc", "ima4", "MAC3", "MAC6", "mp1", "mp2", "mp3", "msbc", "pcm", "qcelp", "qclp"),
+		"audioCodec": carapace.ActionValues("MAC3", "MAC6", "aac", "alac", "ilbc", "ima4", "mp1", "mp2", "mp3", "msbc", "pcm", "qcelp", "qclp"),
 		"dest":       carapace.ActionFiles(),
-		"fileType":   carapace.ActionValues("aac", "aiff", "caf", "m4a", "m4v", "mov", "mp3", "mp4", "wav", "sd2"),
+		"fileType":   carapace.ActionValues("aac", "aiff", "caf", "m4a", "m4v", "mov", "mp3", "mp4", "sd2", "wav"),
 		"preset":     carapace.ActionValues("AVPresetPreset640x480", "AVPresetPreset960x540", "AVPresetPreset1280x720", "AVPresetPreset1920x1080", "AVPresetPreset3840x2160"),
 		"source":     carapace.ActionFiles(),
-		"videoCodec": carapace.ActionValues("h264", "hevc", "prores422", "prores4444", "jpeg"),
+		"videoCodec": carapace.ActionValues("h264", "hevc", "jpeg", "prores422", "prores4444"),
 	})
 }

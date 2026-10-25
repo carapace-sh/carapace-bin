@@ -69,7 +69,7 @@ func parseManifest(cmd *cobra.Command) (m manifestToml, err error) {
 }
 
 func ActionColorModes() carapace.Action {
-	return carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword)
+	return carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword)
 }
 
 type TargetOpts struct {
@@ -177,11 +177,11 @@ func ActionWorkspaceMembers(cmd *cobra.Command) carapace.Action {
 func ActionMessageFormats() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"human", "Display in a human-readable text format",
-		"short", "Emit shorter, human-readable text messages",
 		"json", "Emit JSON messages to stdout",
-		"json-diagnostic-short", "Ensure the rendered field of JSON messages contains the 'short' rendering from rustc",
 		"json-diagnostic-rendered-ansi", "Ensure the rendered field of JSON messages contains embedded ANSI color codes",
+		"json-diagnostic-short", "Ensure the rendered field of JSON messages contains the 'short' rendering from rustc",
 		"json-render-diagnostics", "Instruct Cargo to not include rustc diagnostics in in JSON messages printed",
+		"short", "Emit shorter, human-readable text messages",
 	)
 }
 

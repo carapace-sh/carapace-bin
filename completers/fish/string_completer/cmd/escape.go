@@ -20,6 +20,6 @@ func init() {
 	rootCmd.AddCommand(escapeCmd)
 
 	carapace.Gen(escapeCmd).FlagCompletion(carapace.ActionMap{
-		"style": carapace.ActionValues("script", "var", "url", "regex"),
+		"style": carapace.ActionValues("regex", "script", "url", "var"),
 	})
 }

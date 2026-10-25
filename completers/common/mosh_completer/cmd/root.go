@@ -40,14 +40,14 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "version and copyright information")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"bind-server":            carapace.ActionValues("ssh", "any", "IP"),
+		"bind-server":            carapace.ActionValues("IP", "any", "ssh"),
 		"client":                 carapace.ActionFiles(),
-		"experimental-remote-ip": carapace.ActionValues("local", "remote", "proxy"),
+		"experimental-remote-ip": carapace.ActionValues("local", "proxy", "remote"),
 		"family": carapace.ActionValuesDescribed(
+			"all", "try all network types",
+			"auto", "autodetect network type for single-family hosts only",
 			"inet", "use IPv4 only",
 			"inet6", "use IPv6 only",
-			"auto", "autodetect network type for single-family hosts only",
-			"all", "try all network types",
 			"prefer-inet", "use all network types, but try IPv4 first",
 			"prefer-inet6", "use all network types, but try IPv6 first",
 		).StyleF(style.ForKeyword),
@@ -64,8 +64,8 @@ func init() {
 		"predict": carapace.ActionValuesDescribed(
 			"adaptive", "local echo for slower links",
 			"always", "use local echo even on fast links",
-			"never", "never use local echo",
 			"experimental", "aggressively echo even when incorrect",
+			"never", "never use local echo",
 		).StyleF(style.ForKeyword),
 	})
 

@@ -46,6 +46,6 @@ func init() {
 		"interpreter":        carapace.ActionFiles(),
 		"out":                carapace.ActionDirectories(),
 		"sbom-include":       carapace.ActionFiles(),
-		"strip":              carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
+		"strip":              carapace.ActionValues("false", "true").StyleF(style.ForKeyword),
 	})
 }

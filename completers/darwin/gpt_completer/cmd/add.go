@@ -23,8 +23,8 @@ func init() {
 	carapace.Gen(addCmd).FlagCompletion(carapace.ActionMap{
 		"type": carapace.ActionValuesDescribed(
 			"00000000-0000-0000-0000-000000000000", "Unused",
-			"48465300-0000-11AA-AA11-00306543ECAC", "Apple HFS+",
 			"7C3457EF-0000-11AA-AA11-00306543ECAC", "Apple APFS",
+			"48465300-0000-11AA-AA11-00306543ECAC", "Apple HFS+",
 		),
 	})
 }

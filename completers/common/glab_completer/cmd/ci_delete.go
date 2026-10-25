@@ -44,14 +44,14 @@ func init() {
 			"webide",
 		),
 		"status": carapace.ActionValues(
-			"running",
-			"pending",
-			"success",
-			"failed",
 			"canceled",
-			"skipped",
 			"created",
+			"failed",
 			"manual",
+			"pending",
+			"running",
+			"skipped",
+			"success",
 		).StyleF(style.ForKeyword),
 	})
 	carapace.Gen(ci_deleteCmd).PositionalCompletion(

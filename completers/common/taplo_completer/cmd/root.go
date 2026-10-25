@@ -28,8 +28,8 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"colors": carapace.ActionValuesDescribed(
-			"auto", "Determine whether to colorize output automatically",
 			"always", "Always colorize output",
+			"auto", "Determine whether to colorize output automatically",
 			"never", "Never colorize output",
 		),
 	})

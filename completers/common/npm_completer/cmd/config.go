@@ -23,6 +23,6 @@ func init() {
 	rootCmd.AddCommand(configCmd)
 
 	carapace.Gen(configCmd).FlagCompletion(carapace.ActionMap{
-		"location": carapace.ActionValues("global", "user", "project"),
+		"location": carapace.ActionValues("global", "project", "user"),
 	})
 }

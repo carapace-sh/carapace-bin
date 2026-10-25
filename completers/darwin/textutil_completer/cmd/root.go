@@ -28,9 +28,9 @@ func init() {
 	rootCmd.Flags().String("output", "", "Output file")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"convert":  carapace.ActionValues("txt", "html", "rtf", "rtfd", "doc", "docx", "wordml", "webarchive", "odt", "word97"),
+		"convert":  carapace.ActionValues("doc", "docx", "html", "odt", "rtf", "rtfd", "txt", "webarchive", "word97", "wordml"),
 		"encoding": text.ActionEncodings(),
-		"format":   carapace.ActionValues("txt", "html", "rtf", "rtfd", "doc", "docx", "wordml", "webarchive", "odt", "word97"),
+		"format":   carapace.ActionValues("doc", "docx", "html", "odt", "rtf", "rtfd", "txt", "webarchive", "word97", "wordml"),
 		"input":    carapace.ActionFiles(),
 		"output":   carapace.ActionFiles(),
 	})

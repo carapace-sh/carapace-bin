@@ -47,6 +47,6 @@ func init() {
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
 		"share":       action.ActionShares(share_snapshot_listCmd),
 		"sort-column": action.ActionColumns(share_snapshot_listCmd),
-		"usage":       carapace.ActionValues("used", "unused"),
+		"usage":       carapace.ActionValues("unused", "used"),
 	})
 }

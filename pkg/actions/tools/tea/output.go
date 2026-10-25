@@ -12,11 +12,11 @@ import (
 func ActionOutputFormats() carapace.Action {
 	return carapace.ActionValues(
 		"csv",
+		"json",
 		"simple",
 		"table",
 		"tsv",
 		"yaml",
-		"json",
 	).StyleF(func(s string, sc style.Context) string {
 		return style.ForPathExt("."+s, sc)
 	})

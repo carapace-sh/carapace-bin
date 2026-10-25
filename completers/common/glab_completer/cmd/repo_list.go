@@ -36,8 +36,8 @@ func init() {
 	carapace.Gen(repo_listCmd).FlagCompletion(carapace.ActionMap{
 		"group":  action.ActionGroups(repo_listCmd),
 		"jq":     jq.ActionFilters(),
-		"order":  carapace.ActionValues("id", "name", "path", "created_at", "updated_at", "last_activity_at", "repository_size", "storage_size", "packages_size", "wiki_size"),
-		"output": carapace.ActionValues("text", "json"),
+		"order":  carapace.ActionValues("created_at", "id", "last_activity_at", "name", "packages_size", "path", "repository_size", "storage_size", "updated_at", "wiki_size"),
+		"output": carapace.ActionValues("json", "text"),
 		"sort":   carapace.ActionValues("asc", "desc"),
 		"user":   action.ActionUsers(repo_listCmd),
 	})

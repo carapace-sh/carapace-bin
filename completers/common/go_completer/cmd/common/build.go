@@ -23,7 +23,7 @@ func AddBuildFlagsMask(cmd *cobra.Command, mask uint) {
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
 		"coverpkg": golang.ActionPackages().UniqueList(","),
-		"mod":      carapace.ActionValues("readonly", "vendor", "mod"),
+		"mod":      carapace.ActionValues("mod", "readonly", "vendor"),
 		"modfile":  carapace.ActionFiles(".mod"),
 	})
 }
@@ -31,7 +31,7 @@ func AddBuildFlagsMask(cmd *cobra.Command, mask uint) {
 func AddCoverFlags(cmd *cobra.Command) {
 	cmd.Flags().StringS("covermode", "covermode", "", "set the mode for coverage analysis")
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
-		"covermode": carapace.ActionValues("set", "count", "atomic"),
+		"covermode": carapace.ActionValues("atomic", "count", "set"),
 	})
 }
 
@@ -77,8 +77,8 @@ func AddPackageBuildFlagsMask(cmd *cobra.Command, mask uint) {
 		"C":         carapace.ActionDirectories(),
 		"asmflags":  bridge.ActionCarapaceBin("go", "tool", "asm").Split(),
 		"buildmode": golang.ActionBuildmodes(),
-		"buildvcs":  carapace.ActionValues("true", "false", "auto").StyleF(style.ForKeyword),
-		"compiler":  carapace.ActionValues("gccgo", "gc"),
+		"buildvcs":  carapace.ActionValues("auto", "false", "true").StyleF(style.ForKeyword),
+		"compiler":  carapace.ActionValues("gc", "gccgo"),
 		"gcflags":   bridge.ActionCarapaceBin("go", "tool", "compile").Split(),
 		"ldflags":   bridge.ActionCarapaceBin("go", "tool", "link").Split(),
 		"overlay":   carapace.ActionFiles(".json"),

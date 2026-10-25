@@ -25,7 +25,7 @@ func init() {
 
 	carapace.Gen(playCmd).FlagCompletion(carapace.ActionMap{
 		"cluster": tsh.ActionClusters(),
-		"format":  carapace.ActionValues("pty", "json", "yaml", "text"),
+		"format":  carapace.ActionValues("json", "pty", "text", "yaml"),
 	})
 
 	carapace.Gen(playCmd).PositionalCompletion(

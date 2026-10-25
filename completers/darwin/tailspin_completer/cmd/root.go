@@ -20,6 +20,6 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.Batch(
-		carapace.ActionValues("info", "enable", "disable", "set", "reset", "save", "augment", "stat"),
+		carapace.ActionValues("augment", "disable", "enable", "info", "reset", "save", "set", "stat"),
 	).ToA())
 }

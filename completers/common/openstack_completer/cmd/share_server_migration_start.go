@@ -34,8 +34,8 @@ func init() {
 
 	carapace.Gen(share_server_migration_startCmd).FlagCompletion(carapace.ActionMap{
 		"format":             carapace.ActionValues("json", "shell", "table", "value", "yaml"),
-		"nondisruptive":      carapace.ActionValues("True", "False"),
-		"preserve-snapshots": carapace.ActionValues("True", "False"),
-		"writable":           carapace.ActionValues("True", "False"),
+		"nondisruptive":      carapace.ActionValues("False", "True"),
+		"preserve-snapshots": carapace.ActionValues("False", "True"),
+		"writable":           carapace.ActionValues("False", "True"),
 	})
 }

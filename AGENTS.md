@@ -236,14 +236,20 @@ carapace.ActionStyledValuesDescribed(vals...) // value, description, style tripl
 1. **FlagsOrder** — flag definitions must be alphabetically ordered within contiguous blocks of `.Flags().<Type>()` calls
 2. **FlagActionsOrder** — flag completion keys in `carapace.ActionMap{}` blocks must be alphabetically ordered
 3. **MacroSyntax** — exported actions under `pkg/actions/` must match the macro syntax (single parameter or none)
-4. **CompletionValues** — completion values must be paired correctly and must be unique
+4. **CompletionValues** — completion values must be paired correctly, unique, and sorted: natural
+   order (digit runs compared numerically, F2 before F10) for text values, by magnitude for numeric
+   and size-like values (`512`, `2k`, `2.5MiB`). Deliberately ordered lists are annotated with
+   `// carapace:curated` inside the call — on the call's line for multiline lists (see
+   `pkg/actions/tools/zfs/property.go`, `case "compression"`), after the call for single-line lists.
+   Arity and duplicate checks still apply to curated lists.
 
 Ordering and duplicate-entry findings support auto-fix with `./custom-gcl run --fix ./...`.
 
-## staticcheck Configuration
+[carapace-lint](https://github.com/carapace-sh/carapace-lint) is a [golangci-lint module plugin](https://golangci-lint.run/docs/plugins/module-plugins/) — the stock golangci-lint binary can't run it, so a custom binary is required. [golangci-lint-action](https://github.com/golangci/golangci-lint-action) v9 and later builds one automatically by detecting `.custom-gcl.yml`, which references the plugin version (`latest` resolves to the newest release). After plugin updates, remove stale cached results with `./custom-gcl cache clean`.
 
-The `staticcheck` linter in `.golangci.yml` enables all checks except ST1000, ST1003, SA1019 (deprecated func usage is common).
-`staticcheck.conf` mirrors this for standalone staticcheck runs.
+## staticcheck
+
+The `staticcheck` linter configured in `.golangci.yml` enables all checks except ST1000, ST1003, SA1019. `staticcheck.conf` mirrors this for standalone staticcheck runs.
 
 ## Subcommand init() Ordering
 

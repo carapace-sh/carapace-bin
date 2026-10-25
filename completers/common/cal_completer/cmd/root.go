@@ -42,7 +42,7 @@ func init() {
 	rootCmd.Flag("week").NoOptDefVal = " "
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"color":  carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
+		"color":  carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"reform": carapace.ActionValues("1752", "gregorian", "iso", "julian"),
 	})
 }

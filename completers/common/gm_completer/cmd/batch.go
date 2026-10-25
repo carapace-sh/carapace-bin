@@ -27,11 +27,11 @@ func init() {
 	rootCmd.AddCommand(batchCmd)
 
 	carapace.Gen(batchCmd).FlagCompletion(carapace.ActionMap{
-		"echo":          carapace.ActionValues("on", "off").StyleF(style.ForKeyword),
+		"echo":          carapace.ActionValues("off", "on").StyleF(style.ForKeyword),
 		"escape":        carapace.ActionValues("unix", "windows"),
-		"feedback":      carapace.ActionValues("on", "off").StyleF(style.ForKeyword),
-		"stop-on-error": carapace.ActionValues("on", "off").StyleF(style.ForKeyword),
-		"tap-mode":      carapace.ActionValues("on", "off").StyleF(style.ForKeyword),
+		"feedback":      carapace.ActionValues("off", "on").StyleF(style.ForKeyword),
+		"stop-on-error": carapace.ActionValues("off", "on").StyleF(style.ForKeyword),
+		"tap-mode":      carapace.ActionValues("off", "on").StyleF(style.ForKeyword),
 	})
 
 	carapace.Gen(batchCmd).PositionalCompletion(carapace.ActionFiles())

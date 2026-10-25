@@ -35,7 +35,7 @@ func init() {
 	rootCmd.Flags().StringS("t", "t", "", "Subtype")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"i": carapace.ActionValues("universal", "phone", "pad", "tv", "car", "watch", "mac"),
+		"i": carapace.ActionValues("car", "mac", "pad", "phone", "tv", "universal", "watch"),
 		"o": carapace.ActionFiles(),
 	})
 }

@@ -51,7 +51,7 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"config":    carapace.ActionFiles(),
 		"context":   docker.ActionContexts(),
-		"log-level": carapace.ActionValues("debug", "info", "warn", "error", "fatal").StyleF(style.ForLogLevel),
+		"log-level": carapace.ActionValues("debug", "error", "fatal", "info", "warn").StyleF(style.ForLogLevel),
 		"tlscacert": carapace.ActionFiles(),
 		"tlscert":   carapace.ActionFiles(),
 		"tlskey":    carapace.ActionFiles(),

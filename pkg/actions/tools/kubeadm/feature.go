@@ -20,7 +20,7 @@ func ActionFeatureGates() carapace.Action {
 				"RootlessControlPlane", "ALPHA - default=false",
 			).Suffix("=")
 		default:
-			return carapace.ActionValues("true", "false").StyleF(style.ForKeyword)
+			return carapace.ActionValues("false", "true").StyleF(style.ForKeyword)
 		}
 	}).List(",")
 }

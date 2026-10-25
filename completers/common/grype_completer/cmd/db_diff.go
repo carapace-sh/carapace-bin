@@ -19,6 +19,6 @@ func init() {
 	dbCmd.AddCommand(db_diffCmd)
 
 	carapace.Gen(db_diffCmd).FlagCompletion(carapace.ActionMap{
-		"output": carapace.ActionValues("table", "json"),
+		"output": carapace.ActionValues("json", "table"),
 	})
 }

@@ -32,8 +32,8 @@ func init() {
 
 	carapace.Gen(python_listCmd).FlagCompletion(carapace.ActionMap{
 		"output-format": carapace.ActionValuesDescribed(
-			"text", "Plain text (for humans)",
 			"json", "JSON (for computers)",
+			"text", "Plain text (for humans)",
 		),
 	})
 

@@ -21,6 +21,6 @@ func init() {
 	rootCmd.AddCommand(monitorCmd)
 
 	carapace.Gen(monitorCmd).FlagCompletion(carapace.ActionMap{
-		"log-level": carapace.ActionValues("trace", "debug", "info", "warn", "err").StyleF(style.ForLogLevel),
+		"log-level": carapace.ActionValues("debug", "err", "info", "trace", "warn").StyleF(style.ForLogLevel),
 	})
 }

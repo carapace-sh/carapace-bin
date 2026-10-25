@@ -25,7 +25,7 @@ func init() {
 	rootCmd.AddCommand(pruneCmd)
 
 	carapace.Gen(pruneCmd).FlagCompletion(carapace.ActionMap{
-		"include": carapace.ActionValues("prod", "dev", "optional", "peer"),
+		"include": carapace.ActionValues("dev", "optional", "peer", "prod"),
 		"omit":    carapace.ActionValues("dev", "optional", "peer"),
 	})
 

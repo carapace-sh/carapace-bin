@@ -21,7 +21,7 @@ func init() {
 	rootCmd.AddCommand(syncCmd)
 
 	carapace.Gen(syncCmd).FlagCompletion(carapace.ActionMap{
-		"z": carapace.ActionValues("any", "none", "brotli"),
+		"z": carapace.ActionValues("any", "brotli", "none"),
 	})
 
 	carapace.Gen(syncCmd).PositionalCompletion(

@@ -76,8 +76,8 @@ func init() {
 			}
 			return mount.ActionMountOptions().Invoke(c).Filter(keys...).ToA().NoSpace()
 		}),
-		"options-mode":   carapace.ActionValues("ignore", "append", "prepend", "replace"),
-		"options-source": carapace.ActionValues("fstab", "mtab", "disable").UniqueList(","),
+		"options-mode":   carapace.ActionValues("append", "ignore", "prepend", "replace"),
+		"options-source": carapace.ActionValues("disable", "fstab", "mtab").UniqueList(","),
 		"source":         mount.ActionSources(),
 		"target":         carapace.ActionDirectories(),
 		"target-prefix":  carapace.ActionDirectories(),

@@ -21,7 +21,7 @@ func init() {
 			if len(c.Args) > 0 {
 				switch c.Args[len(c.Args)-1] {
 				case "mode":
-					return carapace.ActionValues("tun", "tap")
+					return carapace.ActionValues("tap", "tun")
 				case "dev":
 					return carapace.ActionValues()
 				case "user":
@@ -30,7 +30,7 @@ func init() {
 					return carapace.ActionValues()
 				}
 			}
-			return carapace.ActionValues("dev", "mode", "user", "group", "one_queue", "pi", "vnet_hdr", "multi_queue")
+			return carapace.ActionValues("dev", "group", "mode", "multi_queue", "one_queue", "pi", "user", "vnet_hdr")
 		}),
 	)
 }

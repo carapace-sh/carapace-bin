@@ -34,8 +34,8 @@ func init() {
 	carapace.Gen(searchCmd).FlagCompletion(carapace.ActionMap{
 		"color": carapace.ActionValuesDescribed(
 			"always", "always show colors",
-			"true", "only for file descriptors",
 			"false", "never show colors",
+			"true", "only for file descriptors",
 		).StyleF(style.ForKeyword),
 	})
 }

@@ -27,7 +27,7 @@ func init() {
 	rootCmd.Flags().BoolS("v", "v", false, "Print verbose output")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"keep": carapace.ActionValues("mostrecent", "dotbar", "native"),
+		"keep": carapace.ActionValues("dotbar", "mostrecent", "native"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionDirectories())

@@ -95,8 +95,8 @@ func init() {
 		"o": carapace.ActionFiles(),
 		"overlay": carapace.ActionValuesDescribed(
 			"copy", "copy any extra data attached to the file [default]",
-			"strip", "strip any extra data attached to the file [DANGEROUS]",
 			"skip", "don't compress a file with an overlay",
+			"strip", "strip any extra data attached to the file [DANGEROUS]",
 		),
 		"strip-relocs": carapace.ActionValuesDescribed(
 			"0", "do not strip relocations",

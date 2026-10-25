@@ -93,7 +93,7 @@ func init() {
 	carapace.Gen(testCmd).FlagCompletion(carapace.ActionMap{
 		"bench":             golang.ActionTests(golang.TestOpts{Benchmark: true}).UniqueList("/"),
 		"blockprofile":      carapace.ActionFiles(),
-		"covermode":         carapace.ActionValues("set", "count,atomic"),
+		"covermode":         carapace.ActionValues("count,atomic", "set"),
 		"coverpkg":          golang.ActionPackages().List(","),
 		"coverprofile":      carapace.ActionFiles(),
 		"cpuprofile":        carapace.ActionFiles(),

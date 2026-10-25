@@ -106,14 +106,14 @@ func init() {
 	yayCmd.Flags().Bool("useask", false, "Automatically resolve conflicts using pacman's ask flag")
 
 	carapace.Gen(yayCmd).FlagCompletion(carapace.ActionMap{
-		"answerclean":   carapace.ActionValues("Yes", "No", "All", "None", "Editor", "Diff"),
-		"answerdiff":    carapace.ActionValues("Yes", "No", "All", "None", "Editor", "Diff"),
-		"answeredit":    carapace.ActionValues("Yes", "No", "All", "None", "Editor", "Diff"),
-		"answerupgrade": carapace.ActionValues("Yes", "No", "All", "None", "Editor", "Diff"),
+		"answerclean":   carapace.ActionValues("All", "Diff", "Editor", "No", "None", "Yes"),
+		"answerdiff":    carapace.ActionValues("All", "Diff", "Editor", "No", "None", "Yes"),
+		"answeredit":    carapace.ActionValues("All", "Diff", "Editor", "No", "None", "Yes"),
+		"answerupgrade": carapace.ActionValues("All", "Diff", "Editor", "No", "None", "Yes"),
 		"arch":          carapace.ActionValues("i686", "x86_64"),
 		"builddir":      carapace.ActionDirectories(),
 		"cachedir":      carapace.ActionDirectories(),
-		"color":         carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
+		"color":         carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"config":        carapace.ActionFiles(),
 		"editor":        carapace.ActionExecutables(),
 		"git":           carapace.ActionExecutables(),
@@ -124,7 +124,7 @@ func init() {
 		"makepkg":       carapace.ActionExecutables(),
 		"makepkgconf":   carapace.ActionFiles(),
 		"pacman":        carapace.ActionExecutables(),
-		"searchby":      carapace.ActionValues("name-desc", "name", "maintainer", "submitter", "depends", "makedepends", "optdepends", "checkdepends", "provides", "conflicts", "replaces", "groups", "keywords", "comaintainers"),
+		"searchby":      carapace.ActionValues("checkdepends", "comaintainers", "conflicts", "depends", "groups", "keywords", "maintainer", "makedepends", "name", "name-desc", "optdepends", "provides", "replaces", "submitter"),
 		"sortby":        carapace.ActionValues("base", "modified", "name", "popularity", "submitted", "votes"),
 		"sudo":          carapace.ActionExecutables(),
 		"sysroot":       carapace.ActionDirectories(),

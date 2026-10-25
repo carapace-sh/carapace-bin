@@ -61,7 +61,7 @@ func init() {
 	carapace.Gen(syncCmd).FlagCompletion(carapace.ActionMap{
 		"arch":     carapace.ActionValues("i686", "x86_64"),
 		"cachedir": carapace.ActionDirectories(),
-		"color":    carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
+		"color":    carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"config":   carapace.ActionFiles(),
 		"dbpath":   carapace.ActionFiles(),
 		"gpgdir":   carapace.ActionDirectories(),

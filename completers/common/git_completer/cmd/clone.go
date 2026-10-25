@@ -87,8 +87,8 @@ func init() {
 			}
 		}).UniqueList(" "),
 		"filter":             git.ActionObjectFilters(),
-		"recurse-submodules": carapace.ActionValues("yes", "on-demand").StyleF(style.ForKeyword),
-		"recursive":          carapace.ActionValues("yes", "on-demand").StyleF(style.ForKeyword),
+		"recurse-submodules": carapace.ActionValues("on-demand", "yes").StyleF(style.ForKeyword),
+		"recursive":          carapace.ActionValues("on-demand", "yes").StyleF(style.ForKeyword),
 		"ref-format":         carapace.ActionValues("files", "flat", "tree"),
 		"reference":          carapace.ActionDirectories(),
 		"reference-if-able":  carapace.ActionDirectories(),

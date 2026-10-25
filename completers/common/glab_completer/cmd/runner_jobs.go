@@ -30,9 +30,9 @@ func init() {
 	carapace.Gen(runner_jobsCmd).FlagCompletion(carapace.ActionMap{
 		"jq":       jq.ActionFilters(),
 		"order-by": carapace.ActionValues("id"),
-		"output":   carapace.ActionValues("text", "json"),
+		"output":   carapace.ActionValues("json", "text"),
 		"repo":     action.ActionRepo(runner_jobsCmd),
 		"sort":     carapace.ActionValues("asc", "desc").StyleF(style.ForKeyword),
-		"status":   carapace.ActionValues("running", "success", "failed", "canceled"),
+		"status":   carapace.ActionValues("canceled", "failed", "running", "success"),
 	})
 }

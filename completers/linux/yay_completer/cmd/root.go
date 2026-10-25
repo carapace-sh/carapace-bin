@@ -57,7 +57,7 @@ func init() {
 		"gpg":      carapace.ActionExecutables(),
 		"makepkg":  carapace.ActionExecutables(),
 		"pacman":   carapace.ActionExecutables(),
-		"searchby": carapace.ActionValues("name-desc", "name", "maintainer", "submitter", "depends", "makedepends", "optdepends", "checkdepends", "provides", "conflicts", "replaces", "groups", "keywords", "comaintainers"),
+		"searchby": carapace.ActionValues("checkdepends", "comaintainers", "conflicts", "depends", "groups", "keywords", "maintainer", "makedepends", "name", "name-desc", "optdepends", "provides", "replaces", "submitter"),
 		"sortby":   carapace.ActionValues("base", "modified", "name", "popularity", "submitted", "votes"),
 		"sudo":     carapace.ActionExecutables(),
 	})

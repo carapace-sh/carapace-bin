@@ -40,7 +40,7 @@ func init() {
 	rootCmd.Flags().BoolS("x", "x", false, "Same filesystem")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"color":        carapace.ActionValues("off", "dark"),
+		"color":        carapace.ActionValues("dark", "off"),
 		"exclude-from": carapace.ActionFiles(),
 		"f":            carapace.ActionFiles(),
 		"o":            carapace.ActionFiles(),

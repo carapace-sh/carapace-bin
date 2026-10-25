@@ -66,5 +66,5 @@ func ActionPanes() carapace.Action {
 //	Up
 //	Down
 func ActionPaneDirections() carapace.Action {
-	return carapace.ActionValues("Up", "Down", "Left", "Right", "Next", "Prev")
+	return carapace.ActionValues("Down", "Left", "Next", "Prev", "Right", "Up")
 }

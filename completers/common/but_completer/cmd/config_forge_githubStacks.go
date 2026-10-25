@@ -21,8 +21,8 @@ func init() {
 	carapace.Gen(config_forge_githubStacksCmd).PositionalCompletion(
 		carapace.ActionValuesDescribed(
 			"auto", "Use native stacks when the repository supports them (the default)",
-			"enable", "",
 			"disable", "",
+			"enable", "",
 		).StyleF(style.ForKeyword),
 	)
 }

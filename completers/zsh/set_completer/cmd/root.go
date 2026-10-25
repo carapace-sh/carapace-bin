@@ -34,7 +34,7 @@ func init() {
 	rootCmd.Flags().BoolS("x", "x", false, "print commands and arguments")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"A": carapace.ActionValues("name", "array"),
+		"A": carapace.ActionValues("array", "name"),
 		"o": carapace.ActionValues(
 			"aliases", "aliasfuncdef", "allexport", "alwayslastprompt", "alwaystoend",
 			"appendcreate", "appendhistory", "autocd", "autocontinue", "autolist",

@@ -33,7 +33,7 @@ func init() {
 	rootCmd.AddCommand(chooseTreeCmd)
 
 	carapace.Gen(chooseTreeCmd).FlagCompletion(carapace.ActionMap{
-		"O": carapace.ActionValues("index", "name", "activity", "z"),
+		"O": carapace.ActionValues("activity", "index", "name", "z"),
 		"t": tmux.ActionPanes(),
 	})
 }

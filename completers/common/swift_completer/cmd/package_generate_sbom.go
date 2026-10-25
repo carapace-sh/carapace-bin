@@ -31,8 +31,8 @@ func init() {
 
 	carapace.Gen(package_generateSbomCmd).FlagCompletion(carapace.ActionMap{
 		"product":         action.ActionProducts(),
-		"sbom-filter":     carapace.ActionValues("all", "product", "package"),
+		"sbom-filter":     carapace.ActionValues("all", "package", "product"),
 		"sbom-output-dir": carapace.ActionDirectories(),
-		"sbom-spec":       carapace.ActionValues("cyclonedx", "spdx", "cyclonedx1", "spdx3"),
+		"sbom-spec":       carapace.ActionValues("cyclonedx", "cyclonedx1", "spdx", "spdx3"),
 	})
 }

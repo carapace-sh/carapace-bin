@@ -38,7 +38,7 @@ func init() {
 			carapace.ActionExecutables(),
 			carapace.ActionFiles(),
 		).ToA(),
-		"format": carapace.ActionValues("text", "json"),
+		"format": carapace.ActionValues("json", "text"),
 	})
 
 	carapace.Gen(switchCmd).PositionalCompletion(
@@ -48,17 +48,17 @@ func init() {
 			}
 			return carapace.Batch(
 				carapace.ActionValuesDescribed(
-					"^", "default branch",
-					"@", "current branch/worktree",
 					"-", "previous worktree",
+					"@", "current branch/worktree",
+					"^", "default branch",
 				),
 				wt.ActionBranches(),
 				carapace.ActionMultiPartsN(":", 2, func(c carapace.Context) carapace.Action {
 					switch len(c.Parts) {
 					case 0:
 						return carapace.ActionValuesDescribed(
-							"pr", "pull requests",
 							"mr", "merge requests",
+							"pr", "pull requests",
 						).Suffix(":")
 					default:
 						switch c.Parts[0] {

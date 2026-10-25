@@ -128,7 +128,7 @@ func init() {
 		"cookie":       carapace.ActionFiles(),
 		"cookie-jar":   carapace.ActionFiles(),
 		"curl":         carapace.ActionFiles(),
-		"error-format": carapace.ActionValues("short", "long"),
+		"error-format": carapace.ActionValues("long", "short"),
 		"file-root":    carapace.ActionDirectories(),
 		"header":       http.ActionRequestHeaders(),
 		"key":          carapace.ActionFiles(),
@@ -177,7 +177,7 @@ func init() {
 		"unix-socket":    carapace.ActionFiles(),
 		"user-agent":     http.ActionUserAgents(),
 		"variables-file": carapace.ActionFiles(),
-		"verbosity":      carapace.ActionValues("brief", "verbose", "debug"),
+		"verbosity":      carapace.ActionValues("brief", "debug", "verbose"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

@@ -71,7 +71,7 @@ func init() {
 		"interdiff":              git.ActionRefs(git.RefOption{}.Default()),
 		"output-directory":       carapace.ActionDirectories(),
 		"signature-file":         carapace.ActionFiles(),
-		"thread":                 carapace.ActionValues("shallow", "deep"),
+		"thread":                 carapace.ActionValues("deep", "shallow"),
 	})
 
 	carapace.Gen(formatPatchCmd).PositionalCompletion(

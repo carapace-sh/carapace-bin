@@ -39,26 +39,26 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"backend": carapace.ActionValuesDescribed(
 			"default", "Uses lldb on macOS, native everywhere else.",
-			"native", "Native backend.",
 			"lldb", "Uses lldb-server or debugserver.",
+			"native", "Native backend.",
 			"rr", "Uses mozilla rr (https://github.com/mozilla/rr)",
 		),
 		"init":     carapace.ActionFiles(),
 		"log-dest": carapace.ActionFiles(),
 		"log-output": carapace.ActionValuesDescribed(
+			"dap", "Log all DAP messages",
 			"debugger", "Log debugger commands",
+			"debuglineerr", "Log recoverable errors reading .debug_line",
+			"fncall", "Log function call protocol",
 			"gdbwire", "Log connection to gdbserial backend",
 			"lldbout", "Copy output from debugserver/lldb to standard output",
-			"debuglineerr", "Log recoverable errors reading .debug_line",
-			"rpc", "Log all RPC messages",
-			"dap", "Log all DAP messages",
-			"fncall", "Log function call protocol",
 			"minidump", "Log minidump loading",
+			"rpc", "Log all RPC messages",
 		).UniqueList(","),
 		"redirect": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				return carapace.ActionValues("stdin", "stdout", "stderr").Invoke(c).Suffix(":").ToA()
+				return carapace.ActionValues("stderr", "stdin", "stdout").Invoke(c).Suffix(":").ToA()
 			case 1:
 				return carapace.ActionFiles()
 			default:

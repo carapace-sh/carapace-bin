@@ -46,17 +46,17 @@ func init() {
 
 	carapace.Gen(search_reposCmd).FlagCompletion(carapace.ActionMap{
 		"created":       action.ActionSearchRange(time.ActionDateTime(time.DateTimeOpts{Strict: true})),
-		"include-forks": carapace.ActionValues("false", "true", "only"),
+		"include-forks": carapace.ActionValues("false", "only", "true"),
 		"jq":            jq.ActionFilters(),
 		"json":          action.ActionSearchRepositoryFields().UniqueList(","),
 		"language":      gh.ActionLanguages(),
 		"license":       gh.ActionLicenses(gh.HostOpts{}).UniqueList(","),
-		"match":         carapace.ActionValues("name", "description", "readme").UniqueList(","),
+		"match":         carapace.ActionValues("description", "name", "readme").UniqueList(","),
 		"order":         carapace.ActionValues("asc", "desc"),
 		"owner":         gh.ActionOwners(gh.HostOpts{}),
 		"sort":          carapace.ActionValues("forks", "help-wanted-issues", "stars", "updated"),
 		"topic":         action.ActionTopicSearch(search_reposCmd).UniqueList(","),
 		"updated":       action.ActionSearchRange(time.ActionDateTime(time.DateTimeOpts{Strict: true})),
-		"visibility":    carapace.ActionValues("public", "private", "internal").UniqueList(","),
+		"visibility":    carapace.ActionValues("internal", "private", "public").UniqueList(","),
 	})
 }

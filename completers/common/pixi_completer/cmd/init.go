@@ -25,10 +25,10 @@ func init() {
 	rootCmd.AddCommand(initCmd)
 
 	carapace.Gen(initCmd).FlagCompletion(carapace.ActionMap{
-		"format":   carapace.ActionValues("pixi", "pyproject", "mojoproject", "pep723", "conda-script"),
+		"format":   carapace.ActionValues("conda-script", "mojoproject", "pep723", "pixi", "pyproject"),
 		"import":   carapace.ActionFiles(),
 		"platform": pixi.ActionPlatforms(),
-		"scm":      carapace.ActionValues("github", "gitlab", "codeberg"),
+		"scm":      carapace.ActionValues("codeberg", "github", "gitlab"),
 		"script":   carapace.ActionFiles(),
 	})
 }

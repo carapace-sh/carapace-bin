@@ -36,7 +36,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"config":      carapace.ActionFiles(),
-		"grammar":     carapace.ActionValues("fetch", "build"),
+		"grammar":     carapace.ActionValues("build", "fetch"),
 		"health":      helix.ActionLanguages(),
 		"log":         carapace.ActionFiles(),
 		"working-dir": carapace.ActionDirectories(),

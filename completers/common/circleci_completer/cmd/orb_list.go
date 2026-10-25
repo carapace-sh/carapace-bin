@@ -21,6 +21,6 @@ func init() {
 	orbCmd.AddCommand(orb_listCmd)
 
 	carapace.Gen(orb_listCmd).FlagCompletion(carapace.ActionMap{
-		"sort": carapace.ActionValues("builds", "projects", "orgs"),
+		"sort": carapace.ActionValues("builds", "orgs", "projects"),
 	})
 }

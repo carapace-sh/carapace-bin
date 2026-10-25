@@ -37,7 +37,7 @@ func init() {
 	rootCmd.Flags().BoolP("verbose", "v", false, "Verbose output")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"force-protocols": carapace.ActionValues("h1", "h2", "h3", "L4S", "noL4S"),
+		"force-protocols": carapace.ActionValues("L4S", "h1", "h2", "h3", "noL4S"),
 		"output":          carapace.ActionFiles(),
 	})
 }

@@ -19,6 +19,6 @@ func init() {
 	repo_remoteCmd.AddCommand(repo_remote_addCmd)
 
 	carapace.Gen(repo_remote_addCmd).FlagCompletion(carapace.ActionMap{
-		"protocol": carapace.ActionValues("ssh", "https"),
+		"protocol": carapace.ActionValues("https", "ssh"),
 	})
 }

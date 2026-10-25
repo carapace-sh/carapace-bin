@@ -26,11 +26,11 @@ func init() {
 	stepCmd.AddCommand(step_squashCmd)
 
 	carapace.Gen(step_squashCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("text", "json"),
+		"format": carapace.ActionValues("json", "text"),
 		"stage": carapace.ActionValuesDescribed(
 			"all", "Stage everything: untracked files + unstaged tracked changes",
-			"tracked", "Stage tracked changes only (like git add -u)",
 			"none", "Stage nothing, commit only what's already in the index",
+			"tracked", "Stage tracked changes only (like git add -u)",
 		).StyleF(style.ForKeyword),
 	})
 

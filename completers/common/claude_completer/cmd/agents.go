@@ -36,12 +36,12 @@ func init() {
 	carapace.Gen(agentsCmd).FlagCompletion(carapace.ActionMap{
 		"add-dir":         carapace.ActionDirectories(),
 		"cwd":             carapace.ActionDirectories(),
-		"effort":          carapace.ActionValues("low", "medium", "high", "xhigh", "max", "ultracode"),
+		"effort":          carapace.ActionValues("high", "low", "max", "medium", "ultracode", "xhigh"),
 		"mcp-config":      carapace.ActionFiles(),
 		"model":           carapace.ActionValues("fable", "haiku", "opus", "sonnet"),
 		"permission-mode": carapace.ActionValues("default"),
 		"plugin-dir":      carapace.ActionFiles(),
-		"setting-sources": carapace.ActionValues("user", "project", "local").UniqueList(","),
+		"setting-sources": carapace.ActionValues("local", "project", "user").UniqueList(","),
 		"settings":        carapace.ActionFiles(),
 	})
 }

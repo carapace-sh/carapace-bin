@@ -71,7 +71,7 @@ func ActionNodes(opts NodeOpts) carapace.Action {
 
 // ActionNodeGroups completes k3d node groups
 func ActionNodeGroups() carapace.Action {
-	return carapace.ActionValues("server", "servers", "agent", "agents", "loadbalancer", "all").Tag("node groups")
+	return carapace.ActionValues("agent", "agents", "all", "loadbalancer", "server", "servers").Tag("node groups")
 }
 
 // ActionNodeFilter completes k3d node filters

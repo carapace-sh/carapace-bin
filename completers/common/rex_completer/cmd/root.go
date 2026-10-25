@@ -31,7 +31,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"client": action.ActionClients(rootCmd),
-		"color":  carapace.ActionValues("auto", "always", "never"),
+		"color":  carapace.ActionValues("always", "auto", "never"),
 		"server": rex.ActionHosts(),
 	})
 }

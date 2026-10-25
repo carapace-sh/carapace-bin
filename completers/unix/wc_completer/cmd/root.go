@@ -31,7 +31,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"files0-from": carapace.ActionFiles(),
-		"total":       carapace.ActionValues("auto", "always", "only", "never"),
+		"total":       carapace.ActionValues("always", "auto", "never", "only"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

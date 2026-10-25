@@ -10,7 +10,7 @@ import (
 
 func init() {
 	knownVariables["cargo"] = func() variables {
-		_bool := carapace.ActionValues("true", "false").StyleF(style.ForKeyword)
+		_bool := carapace.ActionValues("false", "true").StyleF(style.ForKeyword)
 		return variables{
 			Condition: conditions.ConditionPath("cargo"),
 			Variables: map[string]string{
@@ -100,9 +100,9 @@ func init() {
 				"CARGO_BUILD_TARGET":                     carapace.ActionValues(), // TODO
 				"CARGO_BUILD_TARGET_DIR":                 carapace.ActionDirectories(),
 				"CARGO_CACHE_RUSTC_INFO":                 carapace.ActionValues("0"),
-				"CARGO_CARGO_NEW_VCS":                    carapace.ActionValues("git", "hg", "pijul", "fossil", "none"),
+				"CARGO_CARGO_NEW_VCS":                    carapace.ActionValues("fossil", "git", "hg", "none", "pijul"),
 				"CARGO_CFG_TARGET_ARCH":                  carapace.ActionValues(), // TODO
-				"CARGO_CFG_TARGET_ENDIAN":                carapace.ActionValues("little", "big"),
+				"CARGO_CFG_TARGET_ENDIAN":                carapace.ActionValues("big", "little"),
 				"CARGO_CFG_TARGET_ENV":                   carapace.ActionValues(), // TODO
 				"CARGO_CFG_TARGET_FAMILY":                carapace.ActionValues(), // TODO
 				"CARGO_CFG_TARGET_FEATURE":               carapace.ActionValues(), // TODO https://doc.rust-lang.org/reference/attributes/codegen.html#the-target_feature-attribute
@@ -127,7 +127,7 @@ func init() {
 				"CARGO_HTTP_USER_AGENT":        http.ActionUserAgents(),
 				"CARGO_INCREMENTAL":            carapace.ActionStyledValuesDescribed("0", "force disabled,", style.Red, "1", "force enabled", style.Green),
 				"CARGO_INSTALL_ROOT":           carapace.ActionDirectories(),
-				"CARGO_LOG":                    carapace.ActionValues("debug", "info", "warn", "error", "trace").StyleF(style.ForLogLevel),
+				"CARGO_LOG":                    carapace.ActionValues("debug", "error", "info", "trace", "warn").StyleF(style.ForLogLevel),
 				"CARGO_MAKEFLAGS":              bridge.ActionCarapaceBin("make").Split(),
 				"CARGO_MANIFEST_DIR":           carapace.ActionDirectories(),
 				"CARGO_MANIFEST_LINKS":         carapace.ActionValues(),
@@ -153,8 +153,8 @@ func init() {
 				"CARGO_REGISTRY_TOKEN":      carapace.ActionValues(),
 				"CARGO_TARGET_DIR":          carapace.ActionDirectories(),
 				"CARGO_TARGET_TMPDIR":       carapace.ActionDirectories(),
-				"CARGO_TERM_COLOR":          carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
-				"CARGO_TERM_PROGRESS_WHEN":  carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
+				"CARGO_TERM_COLOR":          carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
+				"CARGO_TERM_PROGRESS_WHEN":  carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 				"CARGO_TERM_PROGRESS_WIDTH": carapace.ActionValues(),
 				"CARGO_TERM_QUIET":          _bool,
 				"CARGO_TERM_VERBOSE":        _bool,

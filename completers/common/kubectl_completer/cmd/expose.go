@@ -50,14 +50,14 @@ func init() {
 		"kustomize":        carapace.ActionDirectories(),
 		"output":           kubectl.ActionOutputFormats(),
 		"override-type":    carapace.ActionValues("json", "merge", "strategic"),
-		"protocol":         carapace.ActionValues("TCP", "UDP", "SCTP"),
-		"session-affinity": carapace.ActionValues("None", "ClientIP"),
+		"protocol":         carapace.ActionValues("SCTP", "TCP", "UDP"),
+		"session-affinity": carapace.ActionValues("ClientIP", "None"),
 		"template":         carapace.ActionFiles(),
-		"type":             carapace.ActionValues("ClusterIP", "NodePort", "LoadBalancer", "ExternalName"),
+		"type":             carapace.ActionValues("ClusterIP", "ExternalName", "LoadBalancer", "NodePort"),
 	})
 
 	carapace.Gen(exposeCmd).PositionalCompletion(
-		carapace.ActionValues("pod", "service", "replicationcontroller", "deployment", "replicaset"),
+		carapace.ActionValues("deployment", "pod", "replicaset", "replicationcontroller", "service"),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return kubectl.ActionResources(kubectl.ResourceOpts{
 				Context:   rootCmd.Flag("context").Value.String(),

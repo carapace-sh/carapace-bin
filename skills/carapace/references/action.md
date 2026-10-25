@@ -642,3 +642,29 @@ func ActionConfigKeys(cmd *cobra.Command) carapace.Action {
 ```
 
 These live in the completer's own `cmd/action/` package (e.g. `completers/common/npm_completer/cmd/action/`) with package name `action`. They take `*cobra.Command` as first argument and delegate to shared actions in `pkg/actions/`.
+## Linting
+
+[carapace-lint](https://github.com/carapace-sh/carapace-lint) is a golangci-lint module plugin
+that checks completers statically. Registered analyzers:
+
+| Analyzer | Checks |
+|----------|--------|
+| `FlagsOrder` | `.Flags().<Type>(...)` definitions ordered alphabetically |
+| `FlagActionsOrder` | `FlagCompletion(carapace.ActionMap{...})` keys ordered alphabetically |
+| `MacroSyntax` | public actions in `pkg/actions/` match the macro syntax (at most one parameter, doc comment, single unnamed result) |
+| `CompletionValues` | value lists paired correctly, unique, and sorted: natural order (runs of digits compared numerically, F2 before F10) for text values, by magnitude for numeric and size-like values (`512`, `2k`, `2.5MiB`) |
+
+Value lists that follow a deliberate order are annotated with `// carapace:curated` inside the
+call — written on the call's line for multiline lists, after the call for single-line lists:
+
+```go
+return carapace.ActionValues( // carapace:curated
+	"on", "off", "gzip", "gzip-1", "zstd", "zstd-fast",
+)
+```
+
+Curated lists still enforce arity and uniqueness. Deliberate precedence between value groups is
+expressed with `Batch` instead. Ordering findings support auto-fix (`golangci-lint run --fix`).
+
+See the [carapace-lint README](https://github.com/carapace-sh/carapace-lint#readme) for settings,
+golangci-lint-action integration, and the standalone binary.

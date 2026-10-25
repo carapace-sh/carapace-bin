@@ -25,7 +25,7 @@ func init() {
 	rootCmd.AddCommand(mergeCmd)
 
 	carapace.Gen(mergeCmd).FlagCompletion(carapace.ActionMap{
-		"merge-method": carapace.ActionValues("merge", "squash", "rebase"),
+		"merge-method": carapace.ActionValues("merge", "rebase", "squash"),
 	})
 
 	carapace.Gen(mergeCmd).PositionalCompletion(

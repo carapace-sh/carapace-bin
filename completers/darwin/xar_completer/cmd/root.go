@@ -43,13 +43,13 @@ func init() {
 	rootCmd.Flags().Bool("z", false, "Synonym for --compression=gzip")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"compression":      carapace.ActionValues("none", "gzip", "bzip2", "lzma"),
+		"compression":      carapace.ActionValues("bzip2", "gzip", "lzma", "none"),
 		"compression-args": carapace.ActionValues("0", "1", "2", "3", "4", "5", "6", "7", "8", "9"),
 		"dump-toc":         carapace.ActionFiles(),
 		"extract-subdoc":   carapace.ActionFiles(),
 		"file":             carapace.ActionFiles(),
-		"file-cksum":       carapace.ActionValues("sha1", "sha256", "sha512", "md5"),
+		"file-cksum":       carapace.ActionValues("md5", "sha1", "sha256", "sha512"),
 		"s":                carapace.ActionFiles(),
-		"toc-cksum":        carapace.ActionValues("sha1", "sha256", "sha512", "md5"),
+		"toc-cksum":        carapace.ActionValues("md5", "sha1", "sha256", "sha512"),
 	})
 }

@@ -19,10 +19,10 @@ func init() {
 	carapace.Gen(cleanCmd).PositionalAnyCompletion(
 		carapace.ActionValuesDescribed(
 			"all", "Delete all cached data from the repositories cache",
-			"packages", "Delete packages from the repositories cache",
-			"metadata", "Delete the metadata and dbcache from the repositories cache",
 			"dbcache", "Delete dbcache from the repositories cache",
 			"expire-cache", "Mark the repositories cache as expired",
+			"metadata", "Delete the metadata and dbcache from the repositories cache",
+			"packages", "Delete packages from the repositories cache",
 		),
 	)
 }

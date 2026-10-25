@@ -17,6 +17,6 @@ func init() {
 	mptcpCmd.AddCommand(mptcp_endpointCmd)
 
 	carapace.Gen(mptcp_endpointCmd).PositionalCompletion(
-		carapace.ActionValues("add", "delete", "change", "show", "flush"),
+		carapace.ActionValues("add", "change", "delete", "flush", "show"),
 	)
 }

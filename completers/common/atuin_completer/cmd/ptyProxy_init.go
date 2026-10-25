@@ -18,6 +18,6 @@ func init() {
 	ptyProxyCmd.AddCommand(ptyProxy_initCmd)
 
 	carapace.Gen(ptyProxy_initCmd).PositionalCompletion(
-		carapace.ActionValues("zsh", "bash", "fish", "nu"),
+		carapace.ActionValues("bash", "fish", "nu", "zsh"),
 	)
 }

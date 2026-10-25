@@ -21,7 +21,7 @@ func init() {
 	share_backupCmd.AddCommand(share_backup_setCmd)
 
 	carapace.Gen(share_backup_setCmd).FlagCompletion(carapace.ActionMap{
-		"status": carapace.ActionValues("available", "error", "creating", "deleting", "restoring"),
+		"status": carapace.ActionValues("available", "creating", "deleting", "error", "restoring"),
 	})
 
 	carapace.Gen(share_backup_setCmd).PositionalCompletion(action.ActionShareBackups(share_backup_setCmd))

@@ -38,10 +38,10 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"partition": fs.ActionBlockDevices(),
 		"unit": carapace.ActionValuesDescribed(
-			"k", "1000",
 			"K", "1024",
-			"m", "1000000",
 			"M", "1048576",
+			"k", "1000",
+			"m", "1000000",
 		),
 	})
 }

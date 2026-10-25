@@ -16,7 +16,7 @@ func init() {
 	carapace.Gen(partitionDiskCmd).Standalone()
 	rootCmd.AddCommand(partitionDiskCmd)
 	carapace.Gen(partitionDiskCmd).PositionalCompletion(
-		carapace.ActionValues("APFS", "HFS+", "ExFAT", "MS-DOS"),
+		carapace.ActionValues("APFS", "ExFAT", "HFS+", "MS-DOS"),
 		fs.ActionBlockDevices(),
 	)
 }

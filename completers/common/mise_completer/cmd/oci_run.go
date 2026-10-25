@@ -33,7 +33,7 @@ func init() {
 	ociCmd.AddCommand(oci_runCmd)
 
 	carapace.Gen(oci_runCmd).FlagCompletion(carapace.ActionMap{
-		"engine":    carapace.ActionValues("auto", "podman", "docker"),
+		"engine":    carapace.ActionValues("auto", "docker", "podman"),
 		"image-dir": carapace.ActionDirectories(),
 	})
 }

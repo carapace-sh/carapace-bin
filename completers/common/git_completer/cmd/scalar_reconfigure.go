@@ -20,6 +20,6 @@ func init() {
 	scalarCmd.AddCommand(scalar_reconfigureCmd)
 
 	carapace.Gen(scalar_reconfigureCmd).FlagCompletion(carapace.ActionMap{
-		"maintenance": carapace.ActionValues("enable", "disable", "keep").StyleF(style.ForKeyword),
+		"maintenance": carapace.ActionValues("disable", "enable", "keep").StyleF(style.ForKeyword),
 	})
 }

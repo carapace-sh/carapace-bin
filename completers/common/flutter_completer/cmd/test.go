@@ -99,8 +99,8 @@ func init() {
 		}),
 		"frontend-server-starter-path": carapace.ActionFiles(),
 		"platform": carapace.ActionValuesDescribed(
-			"tester", "Run tests using the VM-based test environment.",
 			"chrome", "(deprecated) Run tests using the Google Chrome web browser. This value is intended for testing the Flutter framework itself and may be removed at any time.",
+			"tester", "Run tests using the VM-based test environment.",
 		),
 		"reporter": carapace.ActionValuesDescribed(
 			"compact", "A single line, updated continuously (the default).",

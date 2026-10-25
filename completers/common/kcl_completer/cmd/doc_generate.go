@@ -24,7 +24,7 @@ func init() {
 
 	carapace.Gen(doc_generateCmd).FlagCompletion(carapace.ActionMap{
 		"file-path": carapace.ActionDirectories(),
-		"format":    carapace.ActionValues("markdown", "html", "openapi"),
+		"format":    carapace.ActionValues("html", "markdown", "openapi"),
 		"target":    carapace.ActionDirectories(),
 		"template":  carapace.ActionDirectories(),
 	})

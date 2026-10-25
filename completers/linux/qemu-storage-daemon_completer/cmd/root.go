@@ -64,9 +64,9 @@ func init() {
 						case "discard":
 							return carapace.ActionValues("ignore", "unmap").Suffix(",")
 						case "detect-zeroes":
-							return carapace.ActionValues("on", "off", "unmap").Suffix(",").StyleF(style.ForKeyword)
+							return carapace.ActionValues("off", "on", "unmap").Suffix(",").StyleF(style.ForKeyword)
 						case "cache.direct", "cache.no-flush", "force-share", "read-only", "auto-read-only":
-							return carapace.ActionValues("on", "off").Suffix(",").StyleF(style.ForKeyword)
+							return carapace.ActionValues("off", "on").Suffix(",").StyleF(style.ForKeyword)
 						default:
 							return carapace.ActionValues()
 						}
@@ -114,9 +114,9 @@ func init() {
 					case "type":
 						return qemu.ActionExportTypes().Suffix(",")
 					case "addr.type":
-						return carapace.ActionValues("unix", "inet", "fd").Suffix(",")
+						return carapace.ActionValues("fd", "inet", "unix").Suffix(",")
 					case "writable", "growable", "allow-other":
-						return carapace.ActionValues("on", "off", "auto").Suffix(",").StyleF(style.ForKeyword)
+						return carapace.ActionValues("auto", "off", "on").Suffix(",").StyleF(style.ForKeyword)
 					case "mountpoint":
 						return carapace.ActionFiles().Suffix(",")
 					case "addr.path":
@@ -143,7 +143,7 @@ func init() {
 					case "mode":
 						return carapace.ActionValues("control", "readline").Suffix(",")
 					case "pretty":
-						return carapace.ActionValues("on", "off").Suffix(",").StyleF(style.ForKeyword)
+						return carapace.ActionValues("off", "on").Suffix(",").StyleF(style.ForKeyword)
 					default:
 						return carapace.ActionValues()
 					}

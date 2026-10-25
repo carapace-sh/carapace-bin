@@ -23,7 +23,7 @@ func init() {
 	cronsCmd.AddCommand(crons_lsCmd)
 
 	carapace.Gen(crons_lsCmd).FlagCompletion(carapace.ActionMap{
-		"format":  carapace.ActionValues("plain", "json"),
+		"format":  carapace.ActionValues("json", "plain"),
 		"project": action.ActionProjects(crons_lsCmd),
 	})
 }

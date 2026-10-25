@@ -32,6 +32,6 @@ func init() {
 	swarmCmd.AddCommand(swarm_initCmd)
 
 	carapace.Gen(swarm_initCmd).FlagCompletion(carapace.ActionMap{
-		"availability": carapace.ActionValues("active", "pause", "drain"),
+		"availability": carapace.ActionValues("active", "drain", "pause"),
 	})
 }

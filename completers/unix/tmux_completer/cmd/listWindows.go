@@ -25,7 +25,7 @@ func init() {
 	rootCmd.AddCommand(listWindowsCmd)
 
 	carapace.Gen(listWindowsCmd).FlagCompletion(carapace.ActionMap{
-		"O": carapace.ActionValues("index", "name", "size", "creation", "activity"),
+		"O": carapace.ActionValues("activity", "creation", "index", "name", "size"),
 		"t": tmux.ActionSessions(),
 	})
 }

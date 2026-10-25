@@ -60,7 +60,7 @@ func init() {
 		"dither":         carapace.ActionValues("1", "2"),
 		"gapless-after":  carapace.ActionFiles(),
 		"gapless-before": carapace.ActionFiles(),
-		"media-kind":     carapace.ActionValues("Music", "Podcast", "iTunes U", "Audiobook", "Voice Memo", "Movie", "TV Show", "Music Video", "Home Video", "Audio Ad", "Video Ad"),
+		"media-kind":     carapace.ActionValues("Audio Ad", "Audiobook", "Home Video", "Movie", "Music", "Music Video", "Podcast", "TV Show", "Video Ad", "Voice Memo", "iTunes U"),
 		"o":              carapace.ActionFiles(),
 		"strategy":       carapace.ActionValuesDescribed("0", "CBR", "1", "ABR", "2", "VBR_constrained", "3", "VBR"),
 	})

@@ -61,7 +61,7 @@ func init() {
 		"mergeinfo":     carapace.ActionValues(),
 		"revision":      carapace.ActionValues(),
 		"set-svn-props": carapace.ActionValues(),
-		"strategy":      carapace.ActionValues("recursive", "resolve", "ours", "theirs", "subtree"),
+		"strategy":      carapace.ActionValues("ours", "recursive", "resolve", "subtree", "theirs"),
 		"username":      carapace.ActionValues(),
 	})
 

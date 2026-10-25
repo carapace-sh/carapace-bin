@@ -34,7 +34,7 @@ func init() {
 	bgp_peerCmd.AddCommand(bgp_peer_createCmd)
 
 	carapace.Gen(bgp_peer_createCmd).FlagCompletion(carapace.ActionMap{
-		"auth-type":      carapace.ActionValues("none", "md5"),
+		"auth-type":      carapace.ActionValues("md5", "none"),
 		"column":         action.ActionColumns(bgp_peer_createCmd),
 		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 		"project":        action.ActionProjects(bgp_peer_createCmd),

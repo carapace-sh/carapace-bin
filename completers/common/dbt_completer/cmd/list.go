@@ -31,7 +31,7 @@ func init() {
 
 	carapace.Gen(listCmd).FlagCompletion(carapace.ActionMap{
 		"output":        carapace.ActionValues("json", "name", "path", "selector"),
-		"resource-type": carapace.ActionValues("analysis", "snapshot", "source", "metric", "model", "seed", "test", "exposure", "default", "all"),
+		"resource-type": carapace.ActionValues("all", "analysis", "default", "exposure", "metric", "model", "seed", "snapshot", "source", "test"),
 		"state":         carapace.ActionDirectories(),
 	})
 }

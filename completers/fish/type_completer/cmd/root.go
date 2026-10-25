@@ -39,7 +39,7 @@ func init() {
 	rootCmd.Flags().Bool("type", false, "print type")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"color": carapace.ActionValues("always", "never", "auto").StyleF(style.ForKeyword),
+		"color": carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

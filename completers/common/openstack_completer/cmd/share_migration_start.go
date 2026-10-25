@@ -28,10 +28,10 @@ func init() {
 	share_migrationCmd.AddCommand(share_migration_startCmd)
 
 	carapace.Gen(share_migration_startCmd).FlagCompletion(carapace.ActionMap{
-		"force-host-assisted-migration": carapace.ActionValues("True", "False"),
-		"nondisruptive":                 carapace.ActionValues("True", "False"),
-		"preserve-metadata":             carapace.ActionValues("True", "False"),
-		"preserve-snapshots":            carapace.ActionValues("True", "False"),
-		"writable":                      carapace.ActionValues("True", "False"),
+		"force-host-assisted-migration": carapace.ActionValues("False", "True"),
+		"nondisruptive":                 carapace.ActionValues("False", "True"),
+		"preserve-metadata":             carapace.ActionValues("False", "True"),
+		"preserve-snapshots":            carapace.ActionValues("False", "True"),
+		"writable":                      carapace.ActionValues("False", "True"),
 	})
 }

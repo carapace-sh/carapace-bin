@@ -19,6 +19,6 @@ func init() {
 	rootCmd.AddCommand(downCmd)
 
 	carapace.Gen(downCmd).FlagCompletion(carapace.ActionMap{
-		"accept-risk": carapace.ActionValues("lose-ssh", "mac-app-connector", "all"),
+		"accept-risk": carapace.ActionValues("all", "lose-ssh", "mac-app-connector"),
 	})
 }

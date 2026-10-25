@@ -20,6 +20,6 @@ func init() {
 	bridge_transformationsCmd.AddCommand(bridge_transformations_listCmd)
 
 	carapace.Gen(bridge_transformations_listCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("table", "json"),
+		"format": carapace.ActionValues("json", "table"),
 	})
 }

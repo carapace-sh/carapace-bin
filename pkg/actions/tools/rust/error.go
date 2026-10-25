@@ -53,6 +53,7 @@ func ActionErrorCodes() carapace.Action {
 		"E0076", "The type of the field in a tuple struct isn't an array when using the `#[simd]`",
 		"E0077", "A tuple struct's element isn't a machine type when using the `#[simd]`",
 		"E0080", "A constant value failed to get evaluated.",
+		"E080", "An attribute was given an invalid number of arguments",
 		"E0081", "A discriminant value is present more than once.",
 		"E0084", "An unsupported representation was attempted on a zero-variant enum.",
 		"E0087", "#### Note: this error code is no longer emitted by the compiler.",
@@ -433,12 +434,12 @@ func ActionErrorCodes() carapace.Action {
 		"E0706", "#### Note: this error code is no longer emitted by the compiler.",
 		"E0708", "#### Note: this error code is no longer emitted by the compiler.",
 		"E0710", "An unknown tool name was found in a scoped lint.",
+		"E0711", "#### This error code is internal to the compiler and will not be emitted with normal Rust code.",
 		"E0712", "A borrow of a thread-local variable was made inside a function which outlived",
 		"E0713", "This error occurs when an attempt is made to borrow state past the end of the",
 		"E0714", "A `#[marker]` trait contained an associated item.",
 		"E0715", "An `impl` for a `#[marker]` trait tried to override an associated item.",
 		"E0716", "A temporary value is being dropped while a borrow is still in active use.",
-		"E0711", "#### This error code is internal to the compiler and will not be emitted with normal Rust code.",
 		"E0717", "#### This error code is internal to the compiler and will not be emitted with normal Rust code.",
 		"E0718", "A `#[lang = \"..\"]` attribute was placed on the wrong item type.",
 		"E0719", "An associated type value was specified more than once.",
@@ -524,6 +525,5 @@ func ActionErrorCodes() carapace.Action {
 		"E0802", "The target of `derive(CoercePointee)` macro has inadmissible specification for",
 		"E0803", "A trait implementation returns a reference without an",
 		"E0804", "An auto trait cannot be added to the bounds of a `dyn Trait` type via",
-		"E080", "An attribute was given an invalid number of arguments",
 	).Tag("error codes").Uid("rust", "error-code")
 }

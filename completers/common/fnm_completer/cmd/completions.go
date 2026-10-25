@@ -18,6 +18,6 @@ func init() {
 	rootCmd.AddCommand(completionsCmd)
 
 	carapace.Gen(completionsCmd).FlagCompletion(carapace.ActionMap{
-		"shell": carapace.ActionValues("bash", "zsh", "fish", "powershell"),
+		"shell": carapace.ActionValues("bash", "fish", "powershell", "zsh"),
 	})
 }

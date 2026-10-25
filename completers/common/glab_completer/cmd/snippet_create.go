@@ -24,7 +24,7 @@ func init() {
 	snippetCmd.AddCommand(snippet_createCmd)
 
 	carapace.Gen(snippet_createCmd).FlagCompletion(carapace.ActionMap{
-		"visibility": carapace.ActionValues("public", "internal", "private").StyleF(style.ForKeyword),
+		"visibility": carapace.ActionValues("internal", "private", "public").StyleF(style.ForKeyword),
 	})
 	carapace.Gen(snippet_createCmd).PositionalAnyCompletion(
 		carapace.ActionFiles(),

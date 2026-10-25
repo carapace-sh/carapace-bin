@@ -38,10 +38,10 @@ func ActionFileModesSymbolic() carapace.Action {
 	return carapace.ActionMultiParts("", func(c carapace.Context) carapace.Action {
 		if !strings.ContainsAny(strings.Join(c.Parts, ""), "+-=") {
 			classes := carapace.ActionValuesDescribed(
-				"u", "user",
+				"a", "all",
 				"g", "group",
 				"o", "other",
-				"a", "all",
+				"u", "user",
 			).Invoke(c)
 
 			if len(c.Parts) > 0 {

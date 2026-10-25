@@ -23,7 +23,7 @@ func init() {
 	rootCmd.AddCommand(helpCmd)
 
 	carapace.Gen(helpCmd).FlagCompletion(carapace.ActionMap{
-		"system": carapace.ActionValues("aix", "cygwin", "darwin", "dragonflybsd", "freebsd", "irix", "linux", "netbsd", "openbsd", "plan9", "posix", "unix", "vms", "windows", "win32", "verbose"),
+		"system": carapace.ActionValues("aix", "cygwin", "darwin", "dragonflybsd", "freebsd", "irix", "linux", "netbsd", "openbsd", "plan9", "posix", "unix", "verbose", "vms", "win32", "windows"),
 	})
 
 	carapace.Gen(helpCmd).PositionalAnyCompletion(

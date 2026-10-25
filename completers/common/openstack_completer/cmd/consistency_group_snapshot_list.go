@@ -37,6 +37,6 @@ func init() {
 		"format":            carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":             carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
 		"sort-column":       action.ActionColumns(consistency_group_snapshot_listCmd),
-		"status":            carapace.ActionValues("available", "error", "creating", "deleting", "error_deleting"),
+		"status":            carapace.ActionValues("available", "creating", "deleting", "error", "error_deleting"),
 	})
 }

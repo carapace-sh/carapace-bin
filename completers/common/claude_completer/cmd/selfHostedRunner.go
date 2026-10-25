@@ -62,7 +62,7 @@ func init() {
 		"hooks-dir":                carapace.ActionDirectories(),
 		"host-config-snapshot":     carapace.ActionValues("disk", "memory"),
 		"log-file":                 carapace.ActionFiles(),
-		"log-level":                carapace.ActionValues("info", "debug"),
+		"log-level":                carapace.ActionValues("debug", "info"),
 		"proxy-authorization-file": carapace.ActionFiles(),
 	})
 }

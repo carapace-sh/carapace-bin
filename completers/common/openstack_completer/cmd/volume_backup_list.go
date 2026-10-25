@@ -42,7 +42,7 @@ func init() {
 		"project":     action.ActionProjects(volume_backup_listCmd),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
 		"sort-column": action.ActionColumns(volume_backup_listCmd),
-		"status":      carapace.ActionValues("creating", "available", "deleting", "error", "restoring", "error_restoring"),
+		"status":      carapace.ActionValues("available", "creating", "deleting", "error", "error_restoring", "restoring"),
 		"volume":      action.ActionVolumes(volume_backup_listCmd),
 	})
 }

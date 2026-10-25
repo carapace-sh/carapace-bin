@@ -104,11 +104,11 @@ func init() {
 					}
 
 					return carapace.ActionValuesDescribed(
-						"format", "set container",
-						"muxer", "set muxer",
 						"bin_path", "set binary file path",
-						"skip_sub", "set whether or not skip subtitle files",
+						"format", "set container",
 						"keep", "set whether or not keep files",
+						"muxer", "set muxer",
+						"skip_sub", "set whether or not skip subtitle files",
 					).Invoke(c).Filter(usedKeys...).Suffix("=").ToA()
 				case 1:
 					switch c.Parts[0] {
@@ -119,7 +119,7 @@ func init() {
 					case "bin_path":
 						return carapace.ActionFiles()
 					case "keep", "skip_sub":
-						return carapace.ActionValues("true", "false").StyleF(style.ForKeyword)
+						return carapace.ActionValues("false", "true").StyleF(style.ForKeyword)
 					default:
 						return carapace.ActionValues()
 					}
@@ -138,9 +138,9 @@ func init() {
 					}
 
 					return carapace.ActionValuesDescribed(
-						"path", "set file path",
 						"lang", "set media language code (not required)",
 						"name", "set description (not required)",
+						"path", "set file path",
 					).Invoke(c).Filter(usedKeys...).Suffix("=").ToA()
 				case 1:
 					switch c.Parts[0] {
@@ -200,7 +200,7 @@ func ActionSelectStreams() carapace.Action {
 			case 1:
 				switch c.Parts[0] {
 				case "for":
-					return carapace.ActionValues("best", "worst", "all")
+					return carapace.ActionValues("all", "best", "worst")
 				default:
 					return carapace.ActionValues()
 				}

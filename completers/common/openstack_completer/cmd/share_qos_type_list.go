@@ -43,8 +43,8 @@ func init() {
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
 		"sort-column": action.ActionColumns(share_qos_type_listCmd),
 		"sort-dir":    carapace.ActionValues("asc", "desc"),
-		"sort-key":    carapace.ActionValues("id", "name", "created_at", "updated_at"),
+		"sort-key":    carapace.ActionValues("created_at", "id", "name", "updated_at"),
 		"sort_dir":    carapace.ActionValues("asc", "desc"),
-		"sort_key":    carapace.ActionValues("id", "name", "created_at", "updated_at"),
+		"sort_key":    carapace.ActionValues("created_at", "id", "name", "updated_at"),
 	})
 }

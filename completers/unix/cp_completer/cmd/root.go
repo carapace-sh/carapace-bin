@@ -65,11 +65,11 @@ func init() {
 	rootCmd.Flag("update").NoOptDefVal = " "
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"backup":           carapace.ActionValues("never", "nil", "none", "numbered", "off", "simple", "t", "existing"),
+		"backup":           carapace.ActionValues("existing", "never", "nil", "none", "numbered", "off", "simple", "t"),
 		"no-preserve":      carapace.ActionValues("all", "context", "links", "mode", "ownership", "timestamps", "xattr"),
 		"preserve":         carapace.ActionValues("all", "context", "links", "mode", "ownership", "timestamps", "xattr"),
-		"reflink":          carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
-		"sparse":           carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
+		"reflink":          carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
+		"sparse":           carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"target-directory": carapace.ActionDirectories(),
 		"update":           carapace.ActionValues("all", "none", "none-fail", "older"),
 	})

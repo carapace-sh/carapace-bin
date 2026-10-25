@@ -29,10 +29,10 @@ func init() {
 	variableCmd.AddCommand(variable_exportCmd)
 
 	carapace.Gen(variable_exportCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("json", "export", "env"),
+		"format": carapace.ActionValues("env", "export", "json"),
 		"group":  action.ActionGroups(variable_exportCmd),
 		"jq":     jq.ActionFilters(),
-		"output": carapace.ActionValues("json", "export", "env"),
+		"output": carapace.ActionValues("env", "export", "json"),
 		"repo":   action.ActionRepo(variable_exportCmd),
 	})
 }

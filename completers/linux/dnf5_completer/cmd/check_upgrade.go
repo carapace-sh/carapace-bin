@@ -30,7 +30,7 @@ func init() {
 	rootCmd.AddCommand(checkUpgradeCmd)
 
 	carapace.Gen(checkUpgradeCmd).FlagCompletion(carapace.ActionMap{
-		"advisory-severities": carapace.ActionValues("critical", "important", "moderate", "low", "none"),
+		"advisory-severities": carapace.ActionValues("critical", "important", "low", "moderate", "none"),
 	})
 
 	carapace.Gen(checkUpgradeCmd).PositionalAnyCompletion(

@@ -40,7 +40,7 @@ func init() {
 	rootCmd.Flag("timing").NoOptDefVal = " "
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"echo":           carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
+		"echo":           carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"log-in":         carapace.ActionFiles(),
 		"log-io":         carapace.ActionFiles(),
 		"log-out":        carapace.ActionFiles(),

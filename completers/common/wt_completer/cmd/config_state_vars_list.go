@@ -22,6 +22,6 @@ func init() {
 
 	carapace.Gen(config_state_vars_listCmd).FlagCompletion(carapace.ActionMap{
 		"branch": wt.ActionBranches(),
-		"format": carapace.ActionValues("text", "json"),
+		"format": carapace.ActionValues("json", "text"),
 	})
 }

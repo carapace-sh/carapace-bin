@@ -34,24 +34,24 @@ func init() {
 	rootCmd.Flags().StringP("wait", "w", "", "set timeout waiting for finishing operations")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"colors":     carapace.ActionValues("auto", "yes", "no").StyleF(style.ForKeyword),
-		"escape":     carapace.ActionValues("yes", "no").StyleF(style.ForKeyword),
+		"colors":     carapace.ActionValues("auto", "no", "yes").StyleF(style.ForKeyword),
+		"escape":     carapace.ActionValues("no", "yes").StyleF(style.ForKeyword),
 		"fields":     ActionFields().UniqueList(","),
 		"get-values": ActionFields().UniqueList(","),
-		"mode":       carapace.ActionValues("tabular", "multiline"),
+		"mode":       carapace.ActionValues("multiline", "tabular"),
 	})
 }
 
 func ActionFields() carapace.Action {
 	return carapace.ActionValues(
-		"ACTIVE", "CONNECTION", "RATE", "TIMESTAMP",
-		"ACTIVE-PATH", "CONNECTIVITY", "READONLY", "TIMESTAMP-REAL",
-		"all", "CON-PATH", "RUNNING", "TYPE",
-		"AUTOCONNECT", "CON-UUID", "SECURITY", "UUID",
-		"AUTOCONNECT-PRIORITY", "DBUS-PATH", "SIGNAL", "VERSION",
-		"BARS", "DEVICE", "SLAVE", "WIFI",
-		"BSSID", "MODE", "SSID", "WIFI-HW",
-		"CHAN", "NAME", "STARTUP", "WWAN",
-		"common", "NETWORKING", "STATE", "WWAN-HW",
+		"ACTIVE", "ACTIVE-PATH", "AUTOCONNECT", "AUTOCONNECT-PRIORITY",
+		"BARS", "BSSID", "CHAN", "CON-PATH",
+		"CON-UUID", "CONNECTION", "CONNECTIVITY", "DBUS-PATH",
+		"DEVICE", "MODE", "NAME", "NETWORKING",
+		"RATE", "READONLY", "RUNNING", "SECURITY",
+		"SIGNAL", "SLAVE", "SSID", "STARTUP",
+		"STATE", "TIMESTAMP", "TIMESTAMP-REAL", "TYPE",
+		"UUID", "VERSION", "WIFI", "WIFI-HW",
+		"WWAN", "WWAN-HW", "all", "common",
 	)
 }

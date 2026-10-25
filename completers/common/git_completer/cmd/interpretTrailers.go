@@ -30,9 +30,9 @@ func init() {
 	rootCmd.AddCommand(interpretTrailerCmd)
 
 	carapace.Gen(interpretTrailerCmd).FlagCompletion(carapace.ActionMap{
-		"if-exists":  carapace.ActionValues("addIfDifferent", "addIfDifferentNeighbor", "add", "replace", "doNothing"),
+		"if-exists":  carapace.ActionValues("add", "addIfDifferent", "addIfDifferentNeighbor", "doNothing", "replace"),
 		"if-missing": carapace.ActionValues("add", "doNothing"),
-		"trailer":    carapace.ActionValues("doNothing", "add"),
+		"trailer":    carapace.ActionValues("add", "doNothing"),
 		"where":      carapace.ActionValues("after", "before", "end", "start"),
 	})
 

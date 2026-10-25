@@ -47,8 +47,8 @@ func init() {
 		"share":       action.ActionShares(share_backup_listCmd),
 		"sort-column": action.ActionColumns(share_backup_listCmd),
 		"sort-dir":    carapace.ActionValues("asc", "desc"),
-		"sort-key":    carapace.ActionValues("id", "status", "size", "share_id", "progress", "restore_progress", "name", "host", "topic", "project_id"),
+		"sort-key":    carapace.ActionValues("host", "id", "name", "progress", "project_id", "restore_progress", "share_id", "size", "status", "topic"),
 		"sort_dir":    carapace.ActionValues("asc", "desc"),
-		"sort_key":    carapace.ActionValues("id", "status", "size", "share_id", "progress", "restore_progress", "name", "host", "topic", "project_id"),
+		"sort_key":    carapace.ActionValues("host", "id", "name", "progress", "project_id", "restore_progress", "share_id", "size", "status", "topic"),
 	})
 }

@@ -25,7 +25,7 @@ func init() {
 	stepCmd.AddCommand(step_copyIgnoredCmd)
 
 	carapace.Gen(step_copyIgnoredCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("text", "json"),
+		"format": carapace.ActionValues("json", "text"),
 		"from":   wt.ActionWorktrees(),
 		"to":     wt.ActionWorktrees(),
 	})

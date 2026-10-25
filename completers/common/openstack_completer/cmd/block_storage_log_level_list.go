@@ -34,7 +34,7 @@ func init() {
 		"column":      action.ActionColumns(block_storage_log_level_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
-		"service":     carapace.ActionValues("None", "*", "cinder-api", "cinder-volume", "cinder-scheduler", "cinder-backup"),
+		"service":     carapace.ActionValues("*", "None", "cinder-api", "cinder-backup", "cinder-scheduler", "cinder-volume"),
 		"sort-column": action.ActionColumns(block_storage_log_level_listCmd),
 	})
 }

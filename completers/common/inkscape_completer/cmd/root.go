@@ -95,19 +95,19 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"actions-file":             carapace.ActionFiles(),
-		"convert-dpi-method":       carapace.ActionValues("none", "scale-viewbox", "scale-document"),
+		"convert-dpi-method":       carapace.ActionValues("none", "scale-document", "scale-viewbox"),
 		"display":                  os.ActionDisplays(),
 		"export-extension":         carapace.ActionValues(),
 		"export-filename":          carapace.ActionFiles(),
 		"export-pdf-version":       carapace.ActionValues("1.4", "1.5"),
 		"export-png-antialias":     carapace.ActionValues("0", "1", "2", "3"),
-		"export-png-color-mode":    carapace.ActionValues("Gray_1", "Gray_2", "Gray_4", "Gray_8", "Gray_16", "RGB_8", "RGB_16", "GrayAlpha_8", "GrayAlpha_16", "RGBA_8", "RGBA_16"),
+		"export-png-color-mode":    carapace.ActionValues("GrayAlpha_8", "GrayAlpha_16", "Gray_1", "Gray_2", "Gray_4", "Gray_8", "Gray_16", "RGBA_8", "RGBA_16", "RGB_8", "RGB_16"),
 		"export-png-compression":   carapace.ActionValues("0", "1", "2", "3", "4", "5", "6", "7", "8", "9"),
 		"export-png-use-dithering": carapace.ActionValues("false", "true").StyleF(style.ForKeyword),
-		"export-type": carapace.ActionValues("svg", "png", "ps", "eps", "pdf", "emf", "wmf", "xaml").StyleF(func(s string, sc style.Context) string {
+		"export-type": carapace.ActionValues("emf", "eps", "pdf", "png", "ps", "svg", "wmf", "xaml").StyleF(func(s string, sc style.Context) string {
 			return style.ForPathExt("."+s, sc)
 		}),
-		"pdf-font-strategy": carapace.ActionValues("draw-missing", "draw-all", "delete-missing", "delete-all", "substitute", "keep"),
+		"pdf-font-strategy": carapace.ActionValues("delete-all", "delete-missing", "draw-all", "draw-missing", "keep", "substitute"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())

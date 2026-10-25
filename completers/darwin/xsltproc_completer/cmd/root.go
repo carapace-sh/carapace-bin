@@ -51,7 +51,7 @@ func init() {
 	rootCmd.Flags().Bool("xincludestyle", false, "Do XInclude processing on stylesheet")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"encoding":     carapace.ActionValues("UTF-8", "UTF-16", "ISO-8859-1", "ASCII"),
+		"encoding":     carapace.ActionValues("ASCII", "ISO-8859-1", "UTF-8", "UTF-16"),
 		"output":       carapace.ActionFiles(),
 		"path":         carapace.ActionDirectories(),
 		"writesubtree": carapace.ActionDirectories(),

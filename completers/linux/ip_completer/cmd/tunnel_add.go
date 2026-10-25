@@ -37,7 +37,7 @@ func init() {
 				case "local":
 					return carapace.ActionValues().NoSpace()
 				case "mode":
-					return carapace.ActionValues("ipip", "gre", "sit", "isatap", "vti", "ip6ip6", "ipip6", "ip6gre", "vti6", "any")
+					return carapace.ActionValues("any", "gre", "ip6gre", "ip6ip6", "ipip", "ipip6", "isatap", "sit", "vti", "vti6")
 				case "okey":
 					return carapace.ActionValues()
 				case "remote":
@@ -50,7 +50,7 @@ func init() {
 					return carapace.ActionValues()
 				}
 			}
-			return carapace.ActionValues("mode", "remote", "local", "dev", "ttl", "hoplimit", "tos", "dsfield", "tclass", "nopmtudisc", "ignore-df", "key", "ikey", "okey", "csum", "icsum", "ocsum", "encaplimit", "flowlabel", "allow-localremote")
+			return carapace.ActionValues("allow-localremote", "csum", "dev", "dsfield", "encaplimit", "flowlabel", "hoplimit", "icsum", "ignore-df", "ikey", "key", "local", "mode", "nopmtudisc", "ocsum", "okey", "remote", "tclass", "tos", "ttl")
 		}),
 	)
 }

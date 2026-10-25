@@ -26,7 +26,7 @@ func init() {
 	rootCmd.AddCommand(infoCmd)
 
 	carapace.Gen(infoCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("friendly", "text", "json"),
+		"format": carapace.ActionValues("friendly", "json", "text"),
 		"keyboard": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return action.ActionKeyboards().Invoke(c).ToMultiPartsA("/")
 		}),

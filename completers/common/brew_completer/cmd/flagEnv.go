@@ -22,6 +22,6 @@ func init() {
 	flagEnvCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
 
 	carapace.Gen(flagEnvCmd).FlagCompletion(carapace.ActionMap{
-		"shell": carapace.ActionValues("bash", "csh", "fish", "nu", "pwsh", "tcsh", "zsh", "auto"),
+		"shell": carapace.ActionValues("auto", "bash", "csh", "fish", "nu", "pwsh", "tcsh", "zsh"),
 	})
 }

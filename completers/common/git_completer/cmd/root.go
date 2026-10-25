@@ -103,7 +103,7 @@ func init() {
 		}),
 		"exec-path": carapace.ActionDirectories(),
 		"git-dir":   carapace.ActionDirectories(),
-		"list-cmds": carapace.ActionValues("main", "others", "alias", "nohelpers", "builtins", "config", "deprecated"),
+		"list-cmds": carapace.ActionValues("alias", "builtins", "config", "deprecated", "main", "nohelpers", "others"),
 		"work-tree": carapace.ActionDirectories(),
 	})
 

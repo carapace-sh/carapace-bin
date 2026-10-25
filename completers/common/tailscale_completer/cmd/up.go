@@ -49,9 +49,9 @@ func init() {
 	rootCmd.AddCommand(upCmd)
 
 	carapace.Gen(upCmd).FlagCompletion(carapace.ActionMap{
-		"accept-risk":    carapace.ActionValues("lose-ssh", "mac-app-connector", "all"),
+		"accept-risk":    carapace.ActionValues("all", "lose-ssh", "mac-app-connector"),
 		"exit-node":      tailscale.ActionExitNodes(),
-		"netfilter-mode": carapace.ActionValues("on", "nodivert", "off"),
+		"netfilter-mode": carapace.ActionValues("nodivert", "off", "on"),
 		"qr-format":      carapace.ActionValues("ascii", "auto", "large", "small"),
 	})
 }

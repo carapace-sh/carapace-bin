@@ -26,10 +26,10 @@ func init() {
 	todoCmd.AddCommand(todo_listCmd)
 
 	carapace.Gen(todo_listCmd).FlagCompletion(carapace.ActionMap{
-		"action": carapace.ActionValues("assigned", "mentioned", "build_failed", "marked", "approval_required", "directly_addressed"),
+		"action": carapace.ActionValues("approval_required", "assigned", "build_failed", "directly_addressed", "marked", "mentioned"),
 		"jq":     jq.ActionFilters(),
-		"output": carapace.ActionValues("text", "json"),
-		"state":  carapace.ActionValues("pending", "done", "all"),
+		"output": carapace.ActionValues("json", "text"),
+		"state":  carapace.ActionValues("all", "done", "pending"),
 		"type":   carapace.ActionValues("Issue", "MergeRequest"),
 	})
 }

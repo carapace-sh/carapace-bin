@@ -21,7 +21,7 @@ func init() {
 
 	carapace.Gen(chooseFontsCmd).FlagCompletion(carapace.ActionMap{
 		"config-file-name": carapace.ActionFiles("~/.config/kitty"),
-		"reload-in":        carapace.ActionValues("parent", "all", "none"),
+		"reload-in":        carapace.ActionValues("all", "none", "parent"),
 	})
 
 	carapace.Gen(chooseFontsCmd).PositionalAnyCompletion(carapace.ActionFiles())

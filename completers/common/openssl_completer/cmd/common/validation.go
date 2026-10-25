@@ -47,16 +47,16 @@ func AddValidationFlags(cmd *cobra.Command) {
 			"ssl_server",
 		),
 		"purpose": carapace.ActionValuesDescribed(
+			"any", "Any Purpose",
+			"codesign", "Code signing",
+			"crlsign", "CRL signing",
+			"nssslserver", "Netscape SSL server",
+			"ocsphelper", "OCSP helper",
+			"smimeencrypt", "S/MIME encryption",
+			"smimesign", "S/MIME signing",
 			"sslclient", "SSL client",
 			"sslserver", "SSL server",
-			"nssslserver", "Netscape SSL server",
-			"smimesign", "S/MIME signing",
-			"smimeencrypt", "S/MIME encryption",
-			"crlsign", "CRL signing",
-			"any", "Any Purpose",
-			"ocsphelper", "OCSP helper",
 			"timestampsign", "Time Stamp signing",
-			"codesign", "Code signing",
 		),
 	})
 }

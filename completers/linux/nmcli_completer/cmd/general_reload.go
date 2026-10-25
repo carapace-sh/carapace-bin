@@ -17,6 +17,6 @@ func init() {
 	generalCmd.AddCommand(general_reloadCmd)
 
 	carapace.Gen(general_reloadCmd).PositionalCompletion(
-		carapace.ActionValues("conf", "dns-rc", "dns-full").UniqueList(","),
+		carapace.ActionValues("conf", "dns-full", "dns-rc").UniqueList(","),
 	)
 }

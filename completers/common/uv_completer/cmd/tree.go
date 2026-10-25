@@ -92,8 +92,8 @@ func init() {
 	carapace.Gen(treeCmd).FlagCompletion(carapace.ActionMap{
 		"fork-strategy": uv.ActionForkStrategies(),
 		"format": carapace.ActionValuesDescribed(
-			"text", "Display the dependency graph as a human-readable tree",
 			"json", "Display the dependency graph as JSON",
+			"text", "Display the dependency graph as a human-readable tree",
 		),
 		"group":            uv.ActionDependencyGroups(),
 		"index-strategy":   uv.ActionIndexStrategies(),

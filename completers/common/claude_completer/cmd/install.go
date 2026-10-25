@@ -19,6 +19,6 @@ func init() {
 	rootCmd.AddCommand(installCmd)
 
 	carapace.Gen(installCmd).PositionalCompletion(
-		carapace.ActionValues("stable", "latest"),
+		carapace.ActionValues("latest", "stable"),
 	)
 }

@@ -36,9 +36,9 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"c": carapace.ActionValuesDescribed(
-			"IN", "",
-			"HS", "Hesiod records",
 			"CH", "Chaosnet records",
+			"HS", "Hesiod records",
+			"IN", "",
 		),
 		"f": carapace.ActionFiles(),
 		"k": carapace.ActionFiles(),

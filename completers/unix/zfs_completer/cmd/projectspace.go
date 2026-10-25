@@ -25,9 +25,9 @@ func init() {
 	rootCmd.AddCommand(projectspaceCmd)
 
 	carapace.Gen(projectspaceCmd).FlagCompletion(carapace.ActionMap{
-		"S": carapace.ActionValues("type", "name", "used", "quota"),
-		"o": carapace.ActionValues("type", "name", "used", "quota").UniqueList(","),
-		"s": carapace.ActionValues("type", "name", "used", "quota"),
+		"S": carapace.ActionValues("name", "quota", "type", "used"),
+		"o": carapace.ActionValues("name", "quota", "type", "used").UniqueList(","),
+		"s": carapace.ActionValues("name", "quota", "type", "used"),
 	})
 
 	carapace.Gen(projectspaceCmd).PositionalCompletion(

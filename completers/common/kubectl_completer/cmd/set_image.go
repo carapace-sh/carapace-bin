@@ -41,7 +41,7 @@ func init() {
 	})
 
 	carapace.Gen(set_imageCmd).PositionalCompletion(
-		carapace.ActionValues("pod", "service", "replicationcontroller", "deployment", "replicaset").UniqueList(","),
+		carapace.ActionValues("deployment", "pod", "replicaset", "replicationcontroller", "service").UniqueList(","),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return kubectl.ActionResources(kubectl.ResourceOpts{
 				Context:   rootCmd.Flag("context").Value.String(),

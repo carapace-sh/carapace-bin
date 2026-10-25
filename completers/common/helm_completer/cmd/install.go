@@ -60,7 +60,7 @@ func init() {
 		"key-file":  carapace.ActionFiles(),
 		"keyring":   carapace.ActionFiles(),
 		// TODO name-template
-		"output":        carapace.ActionValues("table", "json", "yaml"),
+		"output":        carapace.ActionValues("json", "table", "yaml"),
 		"post-renderer": carapace.ActionFiles(),
 		"set-file": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {

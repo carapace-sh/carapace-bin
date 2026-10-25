@@ -165,8 +165,8 @@ func init() {
 		"dart-define-from-file": carapace.ActionFiles(".json", ".env"),
 		"device-connection": carapace.ActionValuesDescribed(
 			"attached", "Only searches for devices connected by USB or built-in (such as simulators/emulators, MacOS/Windows, Chrome)",
-			"wireless", "Only searches for devices connected wirelessly. Discovering wireless devices may take longer.",
 			"both", "Searches for both attached and wireless devices.",
+			"wireless", "Only searches for devices connected wirelessly. Discovering wireless devices may take longer.",
 		),
 		"device-id":                         action.ActionDevices(),
 		"device-user":                       adb.ActionUsers(),

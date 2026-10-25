@@ -27,6 +27,6 @@ func init() {
 	carapace.Gen(search_semanticCmd).FlagCompletion(carapace.ActionMap{
 		"directory-path": carapace.ActionDirectories(),
 		"jq":             jq.ActionFilters(),
-		"output":         carapace.ActionValues("text", "json"),
+		"output":         carapace.ActionValues("json", "text"),
 	})
 }

@@ -10,9 +10,9 @@ import (
 
 func ActionLogLevel() carapace.Action {
 	return carapace.ActionValues(
-		"quiet",
-		"info",
 		"error",
+		"info",
+		"quiet",
 	)
 }
 
@@ -24,7 +24,7 @@ func ActionVersionFileStrategy() carapace.Action {
 }
 
 func ActionResolveEngines() carapace.Action {
-	return carapace.ActionValues("true", "false").StyleF(style.ForKeyword)
+	return carapace.ActionValues("false", "true").StyleF(style.ForKeyword)
 }
 
 func ActionLocalVersions() carapace.Action {

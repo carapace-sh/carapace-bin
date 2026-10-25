@@ -43,6 +43,6 @@ func init() {
 		"project-domain":        action.ActionDomains(network_rbac_createCmd),
 		"target-project":        action.ActionProjects(network_rbac_createCmd),
 		"target-project-domain": action.ActionDomains(network_rbac_createCmd),
-		"type":                  carapace.ActionValues("address_group", "address_scope", "security_group", "subnetpool", "qos_policy", "network"),
+		"type":                  carapace.ActionValues("address_group", "address_scope", "network", "qos_policy", "security_group", "subnetpool"),
 	})
 }

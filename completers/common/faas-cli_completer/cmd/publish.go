@@ -38,6 +38,6 @@ func init() {
 		"lang":      action.ActionLanguageTemplates(),
 		"name":      action.ActionFunctions(),
 		"platforms": action.ActionImageArchitectures(), // TODO likely wrong as example is `linux/amd64`
-		"tag":       carapace.ActionValues("latest", "sha", "branch", "describe"),
+		"tag":       carapace.ActionValues("branch", "describe", "latest", "sha"),
 	})
 }

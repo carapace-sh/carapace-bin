@@ -33,7 +33,7 @@ func init() {
 
 	carapace.Gen(downloadCmd).FlagCompletion(carapace.ActionMap{
 		"destdir":     carapace.ActionDirectories(),
-		"urlprotocol": carapace.ActionValues("http", "https", "ftp", "file"),
+		"urlprotocol": carapace.ActionValues("file", "ftp", "http", "https"),
 	})
 
 	carapace.Gen(downloadCmd).PositionalAnyCompletion(

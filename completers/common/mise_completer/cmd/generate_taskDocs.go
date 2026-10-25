@@ -27,6 +27,6 @@ func init() {
 
 	carapace.Gen(generate_taskDocsCmd).FlagCompletion(carapace.ActionMap{
 		"root":  carapace.ActionDirectories(),
-		"style": carapace.ActionValues("simple", "detailed"),
+		"style": carapace.ActionValues("detailed", "simple"),
 	})
 }

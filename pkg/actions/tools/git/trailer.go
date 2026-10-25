@@ -15,8 +15,8 @@ func ActionTrailers() carapace.Action {
 		case 0:
 			return carapace.ActionValues(
 				"Co-authored-by",
-				"Signed-off-by",
 				"Helped-by",
+				"Signed-off-by",
 			).Suffix(":")
 		default:
 			return carapace.Batch(

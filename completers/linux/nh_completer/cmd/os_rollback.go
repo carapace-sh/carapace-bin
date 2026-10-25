@@ -24,7 +24,7 @@ func init() {
 	os_rollbackCmd.Flags().StringP("to", "t", "", "Rollback to a specific generation number")
 
 	carapace.Gen(os_rollbackCmd).FlagCompletion(carapace.ActionMap{
-		"diff": carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
+		"diff": carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 	})
 
 	osCmd.AddCommand(os_rollbackCmd)

@@ -84,7 +84,7 @@ func init() {
 		"squash":             git.ActionRefs(git.RefOption{}.Default()),
 		"template":           carapace.ActionFiles(),
 		"trailer":            git.ActionTrailers(),
-		"untracked-files":    carapace.ActionValues("all", "normal", "no").StyleF(style.ForKeyword),
+		"untracked-files":    carapace.ActionValues("all", "no", "normal").StyleF(style.ForKeyword),
 	})
 
 	carapace.Gen(commitCmd).PositionalAnyCompletion(

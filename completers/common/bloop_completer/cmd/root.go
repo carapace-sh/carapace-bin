@@ -26,7 +26,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"config-dir": carapace.ActionDirectories(),
-		"debug":      carapace.ActionValues("all", "file-watching", "compilation", "test", "bsp", "link"),
+		"debug":      carapace.ActionValues("all", "bsp", "compilation", "file-watching", "link", "test"),
 	})
 
 }

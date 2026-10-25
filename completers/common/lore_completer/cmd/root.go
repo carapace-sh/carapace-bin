@@ -59,7 +59,7 @@ func init() {
 		"file-count-limit": carapace.ActionValues(),
 		"file-size-limit":  carapace.ActionValues(),
 		"identity":         carapace.ActionValues(),
-		"log-level":        carapace.ActionValues("trace", "debug", "info", "warn", "error"),
+		"log-level":        carapace.ActionValues("debug", "error", "info", "trace", "warn"),
 		"max-connections":  carapace.ActionValues(),
 		"max-threads":      carapace.ActionValues(),
 		"repository":       carapace.ActionDirectories(),

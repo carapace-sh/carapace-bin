@@ -22,7 +22,7 @@ func init() {
 	rootCmd.AddCommand(openCmd)
 
 	carapace.Gen(openCmd).FlagCompletion(carapace.ActionMap{
-		"split": carapace.ActionValues("right", "left", "down", "up"),
+		"split": carapace.ActionValues("down", "left", "right", "up"),
 	})
 
 	carapace.Gen(openCmd).PositionalCompletion(

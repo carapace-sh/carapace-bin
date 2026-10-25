@@ -18,6 +18,6 @@ func init() {
 	rootCmd.AddCommand(versionCmd)
 
 	carapace.Gen(versionCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("pretty", "json"),
+		"format": carapace.ActionValues("json", "pretty"),
 	})
 }

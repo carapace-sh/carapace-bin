@@ -43,8 +43,8 @@ func init() {
 		"chdir":           carapace.ActionDirectories(),
 		"git-change-base": git.ActionRefs(git.RefOption{}.Default()),
 		"log-destination": carapace.ActionValues("stderr", "stdout"),
-		"log-fmt":         carapace.ActionValues("console", "text", "json"),
-		"log-level":       carapace.ActionValues("disabled", "trace", "debug", "info", "warn", "error", "fatal").StyleF(style.ForLogLevel),
+		"log-fmt":         carapace.ActionValues("console", "json", "text"),
+		"log-level":       carapace.ActionValues("debug", "disabled", "error", "fatal", "info", "trace", "warn").StyleF(style.ForLogLevel),
 	})
 
 	carapace.Gen(rootCmd).PreInvoke(func(cmd *cobra.Command, flag *pflag.Flag, action carapace.Action) carapace.Action {

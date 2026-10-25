@@ -71,9 +71,9 @@ func init() {
 	carapace.Gen(packObjectsCmd).FlagCompletion(carapace.ActionMap{
 		"filter": git.ActionObjectFilters(),
 		"missing": carapace.ActionValuesDescribed(
-			"error", "stop with an error if a missing object is encountered",
 			"allow-any", "allow object traversal to continue if a missing object is encountered",
 			"allow-promisor", "only allow object traversal to continue for EXPECTED promisor missing objects",
+			"error", "stop with an error if a missing object is encountered",
 		),
 		"name-hash-version": carapace.ActionValues("1", "2"),
 	})

@@ -37,7 +37,7 @@ func init() {
 	authCmd.AddCommand(auth_loginCmd)
 
 	carapace.Gen(auth_loginCmd).FlagCompletion(carapace.ActionMap{
-		"oauth-flow":                 carapace.ActionValues("device-code", "auth-code", "auto"),
-		"workload-identity-exchange": carapace.ActionValues("token-exchange", "prefix"),
+		"oauth-flow":                 carapace.ActionValues("auth-code", "auto", "device-code"),
+		"workload-identity-exchange": carapace.ActionValues("prefix", "token-exchange"),
 	})
 }

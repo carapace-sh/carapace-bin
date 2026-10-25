@@ -33,7 +33,7 @@ func init() {
 
 	carapace.Gen(connect_proxyCmd).FlagCompletion(carapace.ActionMap{
 		// TODO flag completion
-		"log-level":   carapace.ActionValues("trace", "debug", "info", "warn", "err").StyleF(style.ForLogLevel),
+		"log-level":   carapace.ActionValues("debug", "err", "info", "trace", "warn").StyleF(style.ForLogLevel),
 		"sidecar-for": action.ActionServices(connect_proxyCmd), // TODO local service
 	})
 }

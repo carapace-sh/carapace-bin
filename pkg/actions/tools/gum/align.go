@@ -7,5 +7,5 @@ import "github.com/carapace-sh/carapace"
 //	left
 //	center
 func ActionAlignments() carapace.Action {
-	return carapace.ActionValues("left", "center", "right", "bottom", "middle", "top")
+	return carapace.ActionValues("bottom", "center", "left", "middle", "right", "top")
 }

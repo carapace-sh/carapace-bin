@@ -28,9 +28,9 @@ func init() {
 	carapace.Gen(inspectCmd).FlagCompletion(carapace.ActionMap{
 		"d": carapace.ActionDirectories(),
 		"format": carapace.ActionValuesDescribed(
-			"xml", "default",
 			"json", "",
 			"plain", "",
+			"xml", "default",
 		),
 	})
 

@@ -26,6 +26,6 @@ func init() {
 	carapace.Gen(pane_waitOutputCmd).PositionalCompletion(herdr.ActionPanes(herdr.PaneOpts{}))
 
 	carapace.Gen(pane_waitOutputCmd).FlagCompletion(carapace.ActionMap{
-		"source": carapace.ActionValues("visible", "recent", "recent-unwrapped"),
+		"source": carapace.ActionValues("recent", "recent-unwrapped", "visible"),
 	})
 }

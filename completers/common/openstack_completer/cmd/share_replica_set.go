@@ -21,8 +21,8 @@ func init() {
 	share_replicaCmd.AddCommand(share_replica_setCmd)
 
 	carapace.Gen(share_replica_setCmd).FlagCompletion(carapace.ActionMap{
-		"replica-state": carapace.ActionValues("in_sync", "out_of_sync", "active", "error"),
-		"status":        carapace.ActionValues("available", "error", "creating", "deleting", "error_deleting"),
+		"replica-state": carapace.ActionValues("active", "error", "in_sync", "out_of_sync"),
+		"status":        carapace.ActionValues("available", "creating", "deleting", "error", "error_deleting"),
 	})
 
 	carapace.Gen(share_replica_setCmd).PositionalCompletion(action.ActionShareReplicas(share_replica_setCmd))

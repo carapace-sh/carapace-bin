@@ -52,8 +52,8 @@ func init() {
 		"code-size-directory":   carapace.ActionDirectories(),
 		"dart-define-from-file": carapace.ActionFiles(".json", ".env"),
 		"export-method": carapace.ActionValuesDescribed(
-			"app-store", "Upload to the App Store.",
 			"ad-hoc", "Test on designated devices that do not need to be registered with the Apple developer account. Requires a distribution certificate.",
+			"app-store", "Upload to the App Store.",
 			"development", "Test only on development devices registered with the Apple developer account.",
 			"enterprise", "Distribute an app registered with the Apple Developer Enterprise Program.",
 		),

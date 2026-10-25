@@ -5,9 +5,9 @@ import "github.com/carapace-sh/carapace"
 func ActionRotations() carapace.Action {
 	return carapace.ActionValues(
 		"0",
+		"90",
 		"180",
 		"270",
-		"90",
 		"auto",
 		"ifvalid",
 		"none",

@@ -18,7 +18,7 @@ func init() {
 	rootCmd.AddCommand(networkingCmd)
 
 	carapace.Gen(networkingCmd).PositionalCompletion(
-		carapace.ActionValues("on", "off", "connectivity").StyleF(style.ForKeyword),
+		carapace.ActionValues("connectivity", "off", "on").StyleF(style.ForKeyword),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if c.Args[0] == "connectivity" {
 				return carapace.ActionValues("check")

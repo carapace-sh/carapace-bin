@@ -30,8 +30,8 @@ func init() {
 	carapace.Gen(workItems_listCmd).FlagCompletion(carapace.ActionMap{
 		"group":  action.ActionGroups(workItems_listCmd),
 		"jq":     jq.ActionFilters(),
-		"output": carapace.ActionValues("text", "json"),
+		"output": carapace.ActionValues("json", "text"),
 		"repo":   action.ActionRepo(workItems_listCmd),
-		"state":  carapace.ActionValues("opened", "closed", "all"),
+		"state":  carapace.ActionValues("all", "closed", "opened"),
 	})
 }

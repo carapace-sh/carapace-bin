@@ -82,7 +82,7 @@ func init() {
 			}
 			return carapace.ActionValues()
 		}),
-		"zw": carapace.ActionValues("32k", "16k", "8k", "4k", "2k", "1k", "512", "256"),
+		"zw": carapace.ActionValues("256", "512", "1k", "2k", "4k", "8k", "16k", "32k"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

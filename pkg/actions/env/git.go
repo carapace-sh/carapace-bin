@@ -12,7 +12,7 @@ import (
 
 func init() {
 	knownVariables["git"] = func() variables {
-		_bool := carapace.ActionValues("true", "false").StyleF(style.ForKeyword)
+		_bool := carapace.ActionValues("false", "true").StyleF(style.ForKeyword)
 		return variables{
 			Condition: conditions.ConditionPath("git"),
 			Variables: map[string]string{

@@ -18,7 +18,7 @@ func init() {
 	rootCmd.AddCommand(screenCompatCmd)
 
 	carapace.Gen(screenCompatCmd).PositionalCompletion(
-		carapace.ActionValues("on", "off"),
+		carapace.ActionValues("off", "on"),
 		android.ActionPackages(),
 	)
 }

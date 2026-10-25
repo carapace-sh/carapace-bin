@@ -23,7 +23,7 @@ func init() {
 	rootCmd.AddCommand(importCmd)
 
 	carapace.Gen(importCmd).FlagCompletion(carapace.ActionMap{
-		"mode":   carapace.ActionValues("auto", "json", "yaml", "toml", "gostruct", "jsonschema", "terraformschema", "crd", "openapi"),
+		"mode":   carapace.ActionValues("auto", "crd", "gostruct", "json", "jsonschema", "openapi", "terraformschema", "toml", "yaml"),
 		"output": carapace.ActionFiles(".k"),
 	})
 

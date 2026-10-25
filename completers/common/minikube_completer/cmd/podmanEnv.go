@@ -20,6 +20,6 @@ func init() {
 	rootCmd.AddCommand(podmanEnvCmd)
 
 	carapace.Gen(podmanEnvCmd).FlagCompletion(carapace.ActionMap{
-		"shell": carapace.ActionValues("fish", "cmd", "powershell", "tcsh", "bash", "zsh", "auto-detect"),
+		"shell": carapace.ActionValues("auto-detect", "bash", "cmd", "fish", "powershell", "tcsh", "zsh"),
 	})
 }
