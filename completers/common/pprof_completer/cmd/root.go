@@ -164,7 +164,6 @@ func init() {
 			"alloc_objects",
 			"delay",
 			"contentions",
-			"delay",
 		),
 		"source_path": carapace.ActionDirectories(),
 		"symbolize": carapace.ActionValuesDescribed(

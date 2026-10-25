@@ -98,13 +98,19 @@ func ActionCloudBoxProviders(name string) carapace.Action {
 	})
 }
 
+// CloudBoxVersionsOpts provides target filters for cloud box version completion
+type CloudBoxVersionsOpts struct {
+	Box      string // box name
+	Provider string // box provider
+}
+
 // ActionCloudBoxVersions completes cloud box versions
 //
 //	2024.01.01
 //	2024.02.01
-func ActionCloudBoxVersions(name string, provider string) carapace.Action {
+func ActionCloudBoxVersions(opts CloudBoxVersionsOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return carapace.ActionExecCommand("curl", "https://app.vagrantup.com/api/v1/box/"+name)(func(output []byte) carapace.Action {
+		return carapace.ActionExecCommand("curl", "https://app.vagrantup.com/api/v1/box/"+opts.Box)(func(output []byte) carapace.Action {
 			var details boxDetails
 			if err := json.Unmarshal(output, &details); err != nil {
 				return carapace.ActionMessage(err.Error())
@@ -113,7 +119,7 @@ func ActionCloudBoxVersions(name string, provider string) carapace.Action {
 			vals := make([]string, 0)
 			for _, version := range details.Versions {
 				for _, _provider := range version.Providers {
-					if provider == "" || provider == _provider.Name {
+					if opts.Provider == "" || opts.Provider == _provider.Name {
 						vals = append(vals, version.Version)
 					}
 				}

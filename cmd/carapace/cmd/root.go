@@ -184,8 +184,8 @@ func init() {
 	rootCmd.Flags().Bool("macro", false, "list or execute macros")
 	rootCmd.Flags().Bool("mcp", false, "run MCP server")
 	rootCmd.Flags().Bool("run", false, "run spec")
-	rootCmd.Flags().Bool("selfupdate", false, "update to nightly/stable")
 	rootCmd.Flags().Bool("schema", false, "json schema for spec files")
+	rootCmd.Flags().Bool("selfupdate", false, "update to nightly/stable")
 	rootCmd.Flags().Bool("style", false, "set style")
 	rootCmd.Flags().BoolP("version", "v", false, "version for carapace")
 

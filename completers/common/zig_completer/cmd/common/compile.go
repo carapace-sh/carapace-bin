@@ -318,8 +318,8 @@ func AddCompilerOptions(cmd *cobra.Command) {
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
 		"color":             carapace.ActionValues("auto", "off", "on").StyleF(style.ForKeyword),
-		"target":            zig.ActionTargets(),
 		"library-directory": carapace.ActionDirectories(),
 		"sysroot":           carapace.ActionDirectories(),
+		"target":            zig.ActionTargets(),
 	})
 }

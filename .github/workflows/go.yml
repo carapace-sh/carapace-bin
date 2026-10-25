@@ -73,40 +73,16 @@ jobs:
       - name: Generate
         run: go generate ./cmd/...
 
-      - name: "Check formatting"
-        run: '[ "$(gofmt -d -s . | tee -a /dev/stderr)" = "" ]'
-
-      - name: "staticcheck"
-        run: go install honnef.co/go/tools/cmd/staticcheck@latest && staticcheck ./...
-
-      - name: "carapace-lint"
-        run: |
-          exit_code=0
-          go run ./cmd/carapace-lint --sarif carapace-lint.sarif completers/*/*/cmd/*.go || exit_code=$?
-          echo "LINT_EXIT=${exit_code}" >> "$GITHUB_ENV"
-          exit 0
-
-      - name: Upload SARIF file
-        if: always() && hashFiles('carapace-lint.sarif') != ''
-        uses: actions/upload-artifact@v7
+      - name: "golangci-lint"
+        uses: golangci/golangci-lint-action@v9
         with:
-          name: carapace-lint-sarif
-          path: carapace-lint.sarif
-          retention-days: 1
+          version: v2.15.0
 
-      - name: Upload SARIF to GitHub
-        if: always() && hashFiles('carapace-lint.sarif') != '' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
+      - name: "Upload SARIF"
+        if: always()
         uses: github/codeql-action/upload-sarif@v4
         with:
-          sarif_file: carapace-lint.sarif
-
-      - name: Check lint exit code
-        if: always()
-        run: |
-          if [ "${LINT_EXIT:-0}" != "0" ]; then
-            echo "carapace-lint failed with exit code ${LINT_EXIT}"
-            exit 1
-          fi
+          sarif_file: golangci-lint.sarif
 
   build-windows:
     runs-on: windows-latest

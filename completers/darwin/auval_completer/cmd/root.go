@@ -31,6 +31,6 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"f": carapace.ActionFiles(),
-		"s": carapace.ActionValues("aufx", "aumx", "aufc", "aufb", "aufd", "aumi", "aumr", "aumc", "aumx"),
+		"s": carapace.ActionValues("aufx", "aumx", "aufc", "aufb", "aufd", "aumi", "aumr", "aumc"),
 	})
 }

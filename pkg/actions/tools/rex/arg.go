@@ -7,14 +7,24 @@ import (
 	"github.com/carapace-sh/carapace/pkg/cache/key"
 )
 
+// ClientActionArgsOpts provides target filters for action argument completion
+type ClientActionArgsOpts struct {
+	Action string // action name
+	Client string // client target
+}
+
+func (o ClientActionArgsOpts) cacheKey() key.Key {
+	return key.String(o.Client, o.Action)
+}
+
 // ActionClientActionArgs completes argument names of a client action
 //
 //	direction
 //	ratio
-func ActionClientActionArgs(name, client string) carapace.Action {
+func ActionClientActionArgs(opts ClientActionArgsOpts) carapace.Action {
 	args := []string{"actions", "--json"}
-	if client != "" {
-		args = append(args, "--client", client)
+	if opts.Client != "" {
+		args = append(args, "--client", opts.Client)
 	}
 	return carapace.ActionExecCommand("rex", args...)(func(output []byte) carapace.Action {
 		actions, err := unmarshalActions(output)
@@ -23,7 +33,7 @@ func ActionClientActionArgs(name, client string) carapace.Action {
 		}
 		vals := make([]string, 0)
 		for _, action := range actions {
-			if action.Name != name {
+			if action.Name != opts.Action {
 				continue
 			}
 			for property, schema := range action.Args.Properties {
@@ -37,5 +47,5 @@ func ActionClientActionArgs(name, client string) carapace.Action {
 			}
 		}
 		return carapace.ActionValuesDescribed(vals...)
-	}).Cache(24*time.Hour, key.String(client, name)).Tag("action args")
+	}).Cache(24*time.Hour, opts.cacheKey()).Tag("action args")
 }

@@ -24,7 +24,6 @@ func ActionTargets() carapace.Action {
 		"debug_android_application",
 		"profile_android_application",
 		"android_aot_bundle_profile_android-arm",
-		"android_aot_bundle_profile_android-arm",
 		"android_aot_bundle_profile_android-arm64",
 		"android_aot_bundle_profile_android-x64",
 		"android_aot_bundle_release_android-arm",

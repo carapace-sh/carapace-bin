@@ -25,7 +25,7 @@ func init() {
 			return vagrant.ActionCloudBoxProviders(c.Args[0])
 		}),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return vagrant.ActionCloudBoxVersions(c.Args[0], c.Args[1])
+			return vagrant.ActionCloudBoxVersions(vagrant.CloudBoxVersionsOpts{Box: c.Args[0], Provider: c.Args[1]})
 		}),
 		carapace.ActionFiles(".box", ".json"),
 	)
