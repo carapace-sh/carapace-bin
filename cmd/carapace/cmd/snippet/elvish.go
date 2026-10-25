@@ -3,7 +3,8 @@ package snippet
 import (
 	"fmt"
 	"runtime"
-	"strings"
+
+	shlex "github.com/carapace-sh/carapace-shlex/v2"
 )
 
 func Elvish(completers []string) string {
@@ -38,10 +39,5 @@ put %v | each {|c|
 }
 `
 
-	var quotedCompleters []string
-	for _, c := range completers {
-		quotedCompleters = append(quotedCompleters, fmt.Sprintf("%q", c))
-	}
-
-	return fmt.Sprintf(snippet, pathSnippet("elvish"), strings.Join(quotedCompleters, " "), windowsSnippet)
+	return fmt.Sprintf(snippet, pathSnippet("elvish"), shlex.Join(completers, shlex.Elvish), windowsSnippet)
 }

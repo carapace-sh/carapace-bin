@@ -3,6 +3,8 @@ package snippet
 import (
 	"fmt"
 	"strings"
+
+	shlex "github.com/carapace-sh/carapace-shlex/v2"
 )
 
 // Xonsh creates a generic completer (not lazy).
@@ -48,7 +50,7 @@ add_one_completer('carapace', _carapace_completer, 'start')
 `
 	complete := make([]string, len(completers))
 	for index, completer := range completers {
-		complete[index] = fmt.Sprintf(`'%v'`, completer)
+		complete[index] = fmt.Sprintf(`'%v'`, shlex.Escape(completer, shlex.Xonsh))
 	}
 	return fmt.Sprintf(snippet, pathSnippet("xonsh"), envSnippet("xonsh"), strings.Join(complete, ", "))
 }

@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"runtime"
 	"strings"
+
+	shlex "github.com/carapace-sh/carapace-shlex/v2"
 )
 
 func Powershell(completers []string) string {
@@ -89,7 +91,9 @@ $_carapace_completer = {
 
 	complete := make([]string, 0, len(completers)*2)
 	for _, completer := range completers {
-		complete = append(complete, fmt.Sprintf(`Register-ArgumentCompleter -Native -ScriptBlock $_carapace_completer -CommandName '%v'%v,'%v.exe'`, completer, prefix, completer))
+		name := shlex.Quote(completer, shlex.Powershell)
+		exe := shlex.Quote(completer+".exe", shlex.Powershell)
+		complete = append(complete, fmt.Sprintf(`Register-ArgumentCompleter -Native -ScriptBlock $_carapace_completer -CommandName %v%v,%v`, name, prefix, exe))
 	}
 	return fmt.Sprintf(snippet, pathSnippet("powershell"), envSnippet("powershell"), strings.Join(complete, "\n"))
 }
