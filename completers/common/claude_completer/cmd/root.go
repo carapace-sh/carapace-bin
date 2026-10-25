@@ -127,7 +127,7 @@ func init() {
 		"append-subagent-system-prompt-file": carapace.ActionFiles(),
 		"append-system-prompt-file":          carapace.ActionFiles(),
 		"debug-file":                         carapace.ActionFiles(),
-		"effort":                             carapace.ActionValues("low", "medium", "high", "xhigh", "max", "ultracode"),
+		"effort":                             carapace.ActionValues("high", "low", "max", "medium", "ultracode", "xhigh"),
 		"fallback-model":                     carapace.ActionValues("fable", "haiku", "opus", "sonnet").UniqueList(","),
 		"input-format":                       carapace.ActionValues("stream-json", "text"),
 		"mcp-config":                         carapace.ActionFiles(),
@@ -137,10 +137,10 @@ func init() {
 		"permission-prompts":                 carapace.ActionValues("host", "none"),
 		"plugin-dir":                         carapace.ActionFiles(),
 		"prompt-suggestions":                 carapace.ActionValues("0", "1", "false", "no", "off", "on", "true", "yes"),
-		"setting-sources":                    carapace.ActionValues("user", "project", "local").UniqueList(","),
+		"setting-sources":                    carapace.ActionValues("local", "project", "user").UniqueList(","),
 		"settings":                           carapace.ActionFiles(),
 		"system-prompt-file":                 carapace.ActionFiles(),
 		"system-prompt-snapshot":             carapace.ActionValues("off", "on"),
-		"teammate-mode":                      carapace.ActionValues("in-process", "auto", "tmux", "iterm2"),
+		"teammate-mode":                      carapace.ActionValues("auto", "in-process", "iterm2", "tmux"),
 	})
 }

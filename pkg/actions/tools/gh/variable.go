@@ -89,10 +89,10 @@ func ActionOrganisationVariables(opts OwnerOpts) carapace.Action {
 func ActionVariableFields() carapace.Action {
 	return carapace.ActionValues(
 		"name",
-		"value",
-		"visibility",
-		"updatedAt",
 		"numSelectedRepos",
 		"selectedReposURL",
+		"updatedAt",
+		"value",
+		"visibility",
 	)
 }

@@ -41,10 +41,10 @@ func init() {
 	rootCmd.AddCommand(doCmd)
 
 	carapace.Gen(doCmd).FlagCompletion(carapace.ActionMap{
-		"action":              carapace.ActionValues("install", "remove", "upgrade", "downgrade", "reinstall"),
-		"advisory-severities": carapace.ActionValues("critical", "important", "moderate", "low", "none"),
+		"action":              carapace.ActionValues("downgrade", "install", "reinstall", "remove", "upgrade"),
+		"advisory-severities": carapace.ActionValues("critical", "important", "low", "moderate", "none"),
 		"store":               carapace.ActionDirectories(),
-		"type":                carapace.ActionValues("auto", "package", "group", "environment"),
+		"type":                carapace.ActionValues("auto", "environment", "group", "package"),
 	})
 
 	carapace.Gen(doCmd).PositionalAnyCompletion(

@@ -20,6 +20,6 @@ func init() {
 	mcpCmd.AddCommand(mcp_addJsonCmd)
 
 	carapace.Gen(mcp_addJsonCmd).FlagCompletion(carapace.ActionMap{
-		"scope": carapace.ActionValues("local", "user", "project"),
+		"scope": carapace.ActionValues("local", "project", "user"),
 	})
 }

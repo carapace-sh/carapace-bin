@@ -25,14 +25,14 @@ func init() {
 				case "iif":
 					return net.ActionDevices(net.IncludedDevices{Wifi: true, Ethernet: true})
 				case "table":
-					return carapace.ActionValues("local", "main", "default", "all")
+					return carapace.ActionValues("all", "default", "local", "main")
 				case "to":
 					return net.ActionSubnets()
 				case "from":
 					return net.ActionSubnets()
 				}
 			}
-			return carapace.ActionValues("to", "from", "iif", "table")
+			return carapace.ActionValues("from", "iif", "table", "to")
 		}),
 	)
 }

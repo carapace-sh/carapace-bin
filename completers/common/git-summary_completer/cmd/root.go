@@ -27,7 +27,7 @@ func init() {
 	rootCmd.Flags().String("output-style", "", "Output style: tabular or oneline")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"output-style": carapace.ActionValues("tabular", "oneline"),
+		"output-style": carapace.ActionValues("oneline", "tabular"),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

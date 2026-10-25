@@ -74,20 +74,20 @@ func styleForRun(run run) string {
 
 func ActionRunFields() carapace.Action {
 	return carapace.ActionValues(
-		"name",
+		"conclusion",
+		"createdAt",
+		"databaseId",
 		"displayTitle",
+		"event",
 		"headBranch",
 		"headSha",
-		"createdAt",
-		"updatedAt",
+		"name",
+		"number",
 		"startedAt",
 		"status",
-		"conclusion",
-		"event",
-		"number",
-		"databaseId",
+		"updatedAt",
+		"url",
 		"workflowDatabaseId",
 		"workflowName",
-		"url",
 	)
 }

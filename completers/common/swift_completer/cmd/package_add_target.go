@@ -30,7 +30,7 @@ func init() {
 	carapace.Gen(package_addTargetCmd).FlagCompletion(carapace.ActionMap{
 		"dependencies":    action.ActionTargets(),
 		"path":            carapace.ActionFiles(),
-		"testing-library": carapace.ActionValues("xctest", "swift-testing", "none"),
-		"type":            carapace.ActionValues("library", "executable", "test", "macro"),
+		"testing-library": carapace.ActionValues("none", "swift-testing", "xctest"),
+		"type":            carapace.ActionValues("executable", "library", "macro", "test"),
 	})
 }

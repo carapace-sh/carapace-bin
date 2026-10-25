@@ -29,8 +29,8 @@ func init() {
 	rootCmd.AddCommand(readallCmd)
 
 	carapace.Gen(readallCmd).FlagCompletion(carapace.ActionMap{
-		"arch": carapace.ActionValues("x86_64", "arm64", "all"),
-		"os":   carapace.ActionValues("linux", "macos", "all"),
+		"arch": carapace.ActionValues("all", "arm64", "x86_64"),
+		"os":   carapace.ActionValues("all", "linux", "macos"),
 	})
 
 	carapace.Gen(readallCmd).PositionalAnyCompletion(

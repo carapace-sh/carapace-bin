@@ -33,9 +33,9 @@ func init() {
 		"branch":        action.ActionBranches(ci_getCmd),
 		"jq":            jq.ActionFilters(),
 		"merge-request": action.ActionMergeRequests(ci_getCmd, "opened"),
-		"output":        carapace.ActionValues("text", "json"),
-		"output-format": carapace.ActionValues("text", "json"),
+		"output":        carapace.ActionValues("json", "text"),
+		"output-format": carapace.ActionValues("json", "text"),
 		"pipeline-id":   action.ActionPipelines(ci_getCmd, ""),
-		"status":        carapace.ActionValues("running", "pending", "success", "failed", "canceled", "skipped", "created", "manual", "waiting_for_resource", "preparing", "scheduled"),
+		"status":        carapace.ActionValues("canceled", "created", "failed", "manual", "pending", "preparing", "running", "scheduled", "skipped", "success", "waiting_for_resource"),
 	})
 }

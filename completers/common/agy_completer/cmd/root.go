@@ -51,13 +51,13 @@ func init() {
 		"add-dir":       carapace.ActionDirectories(),
 		"agent":         agy.ActionAgents(),
 		"cwd":           carapace.ActionDirectories(),
-		"effort":        carapace.ActionValues("low", "medium", "high"),
-		"input-format":  carapace.ActionValues("text", "stream-json"),
+		"effort":        carapace.ActionValues("high", "low", "medium"),
+		"input-format":  carapace.ActionValues("stream-json", "text"),
 		"json-schema":   carapace.ActionFiles(".json"),
 		"log-file":      carapace.ActionFiles(),
 		"mode":          carapace.ActionValues("accept-edits", "plan"),
 		"model":         agy.ActionModels(),
-		"output-format": carapace.ActionValues("text", "json", "stream-json"),
-		"print-timeout": carapace.ActionValues("30s", "1m", "10m", "1h").Usage("duration (e.g., 5m, 1h30m)"),
+		"output-format": carapace.ActionValues("json", "stream-json", "text"),
+		"print-timeout": carapace.ActionValues("10m", "1h", "1m", "30s").Usage("duration (e.g., 5m, 1h30m)"),
 	})
 }

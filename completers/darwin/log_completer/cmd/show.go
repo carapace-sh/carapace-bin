@@ -33,9 +33,9 @@ func init() {
 	rootCmd.AddCommand(showCmd)
 
 	carapace.Gen(showCmd).FlagCompletion(carapace.ActionMap{
-		"color":    carapace.ActionValues("auto", "always", "none"),
+		"color":    carapace.ActionValues("always", "auto", "none"),
 		"last":     carapace.ActionValues(),
-		"style":    carapace.ActionValues("default", "syslog", "json", "ndjson", "compact"),
+		"style":    carapace.ActionValues("compact", "default", "json", "ndjson", "syslog"),
 		"timezone": carapace.ActionValues("local"),
 	})
 

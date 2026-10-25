@@ -18,6 +18,6 @@ func init() {
 	rootCmd.AddCommand(proxyCmd)
 
 	carapace.Gen(proxyCmd).FlagCompletion(carapace.ActionMap{
-		"proxy-log-output": carapace.ActionValues("stdout", "stderr", "none"),
+		"proxy-log-output": carapace.ActionValues("none", "stderr", "stdout"),
 	})
 }

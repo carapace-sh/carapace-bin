@@ -141,19 +141,19 @@ func init() {
 			"match", "specify coloring for match text",
 			"path", "specify coloring for file names",
 		),
-		"encoding": carapace.ActionValues("auto", "none", "ASCII", "UTF-8", "UTF-16"),
+		"encoding": carapace.ActionValues("ASCII", "UTF-16", "UTF-8", "auto", "none"),
 		"engine": carapace.ActionValuesDescribed(
 			"auto", "identical to --auto-hybrid-regex",
 			"default", "use default engine",
 			"pcre2", "identical to --pcre2",
 		),
 		"file":     carapace.ActionFiles(),
-		"generate": carapace.ActionValues("man", "complete-bash", "complete-zsh", "complete-fish", "complete-powershell"),
+		"generate": carapace.ActionValues("complete-bash", "complete-fish", "complete-powershell", "complete-zsh", "man"),
 		"hostname-bin": carapace.Batch(
 			carapace.ActionExecutables(),
 			carapace.ActionFiles(),
 		).ToA(),
-		"hyperlink-format": carapace.ActionValues("default", "none", "file", "grep+", "kitty", "macvim", "textmate", "vscode", "vscode-insiders", "vscodium"),
+		"hyperlink-format": carapace.ActionValues("default", "file", "grep+", "kitty", "macvim", "none", "textmate", "vscode", "vscode-insiders", "vscodium"),
 		"ignore-file":      carapace.ActionFiles(),
 		"pre": carapace.Batch(
 			carapace.ActionExecutables(),

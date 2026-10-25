@@ -19,6 +19,6 @@ func init() {
 	scalarCmd.AddCommand(scalar_runCmd)
 
 	carapace.Gen(scalar_runCmd).FlagCompletion(carapace.ActionMap{
-		"task": carapace.ActionValues("all", "config", "commit-graph", "fetch", "loose-objects", "pack-files").StyleF(style.ForKeyword),
+		"task": carapace.ActionValues("all", "commit-graph", "config", "fetch", "loose-objects", "pack-files").StyleF(style.ForKeyword),
 	})
 }

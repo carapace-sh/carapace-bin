@@ -19,6 +19,6 @@ func init() {
 	hook_approvalsCmd.AddCommand(hook_approvals_listCmd)
 
 	carapace.Gen(hook_approvals_listCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("text", "json"),
+		"format": carapace.ActionValues("json", "text"),
 	})
 }

@@ -37,8 +37,8 @@ func init() {
 			),
 			carapace.ActionFiles(),
 		).ToA(),
-		"format":      carapace.ActionValues("claude", "vscode", "cursor"),
-		"json-format": carapace.ActionValues("pretty", "compact", "auto", "none"),
+		"format":      carapace.ActionValues("claude", "cursor", "vscode"),
+		"json-format": carapace.ActionValues("auto", "compact", "none", "pretty"),
 	})
 
 	carapace.Gen(mcp_configCmd).PositionalCompletion(

@@ -28,15 +28,12 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"f": carapace.ActionFiles(),
 		"p": carapace.ActionValuesDescribed(
-			"emerg", "Emergency",
 			"alert", "Alert",
 			"crit", "Critical",
-			"err", "Error",
-			"warning", "Warning",
-			"notice", "Notice",
-			"info", "Info",
 			"debug", "Debug",
-			"user.notice", "Default",
+			"emerg", "Emergency",
+			"err", "Error",
+			"info", "Info",
 			"local0.info", "Local0",
 			"local1.info", "Local1",
 			"local2.info", "Local2",
@@ -45,6 +42,9 @@ func init() {
 			"local5.info", "Local5",
 			"local6.info", "Local6",
 			"local7.info", "Local7",
+			"notice", "Notice",
+			"user.notice", "Default",
+			"warning", "Warning",
 		),
 	})
 }

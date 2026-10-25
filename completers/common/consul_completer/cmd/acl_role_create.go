@@ -29,7 +29,7 @@ func init() {
 	acl_roleCmd.AddCommand(acl_role_createCmd)
 
 	carapace.Gen(acl_role_createCmd).FlagCompletion(carapace.ActionMap{
-		"format":           carapace.ActionValues("pretty", "json"),
+		"format":           carapace.ActionValues("json", "pretty"),
 		"node-identity":    action.ActionNodeIdentity(acl_role_createCmd),
 		"service-identity": action.ActionServiceIdentity(acl_role_createCmd),
 	})

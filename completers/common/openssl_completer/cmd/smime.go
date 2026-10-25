@@ -72,7 +72,7 @@ func init() {
 		"in":       carapace.ActionFiles(),
 		"inform":   carapace.ActionValues("DER", "PEM", "SMIME"),
 		"inkey":    carapace.ActionFiles(),
-		"keyform":  carapace.ActionValues("DER", "PEM", "P12"),
+		"keyform":  carapace.ActionValues("DER", "P12", "PEM"),
 		"out":      carapace.ActionFiles(),
 		"outform":  carapace.ActionValues("DER", "PEM", "SMIME"),
 		"recip":    carapace.ActionFiles(),

@@ -29,7 +29,7 @@ func init() {
 	rootCmd.Flags().StringP("rotate", "r", "", "Rotate by specified degrees")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("jpeg", "tiff", "png", "gif", "jp2", "pict", "bmp", "qtif", "psd", "sgi", "tga"),
+		"format": carapace.ActionValues("bmp", "gif", "jp2", "jpeg", "pict", "png", "psd", "qtif", "sgi", "tga", "tiff"),
 		"out":    carapace.ActionFiles(),
 	})
 

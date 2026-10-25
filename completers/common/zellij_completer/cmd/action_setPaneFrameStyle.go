@@ -19,6 +19,6 @@ func init() {
 	actionCmd.AddCommand(action_setPaneFrameStyleCmd)
 
 	carapace.Gen(action_setPaneFrameStyleCmd).PositionalAnyCompletion(
-		carapace.ActionValues("full", "titles", "none").StyleF(style.ForKeyword),
+		carapace.ActionValues("full", "none", "titles").StyleF(style.ForKeyword),
 	)
 }

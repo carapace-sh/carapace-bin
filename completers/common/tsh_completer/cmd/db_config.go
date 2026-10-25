@@ -25,9 +25,9 @@ func init() {
 	carapace.Gen(db_configCmd).FlagCompletion(carapace.ActionMap{
 		"db": tsh.ActionDatabases(),
 		"format": carapace.ActionValuesDescribed(
-			"text", "print in table format",
 			"cmd", "print connect command",
 			"json", "print in JSON",
+			"text", "print in table format",
 			"yaml", "print in YAML",
 		),
 	})

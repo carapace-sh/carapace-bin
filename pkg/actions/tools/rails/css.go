@@ -8,10 +8,10 @@ import "github.com/carapace-sh/carapace"
 //	bootstrap
 func ActionCSSOptions() carapace.Action {
 	return carapace.ActionValues(
-		"tailwind",
 		"bootstrap",
 		"bulma",
 		"postcss",
 		"sass",
+		"tailwind",
 	).Tag("css options").Uid("rails", "css-option")
 }

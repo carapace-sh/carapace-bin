@@ -26,7 +26,7 @@ func ActionDateFields() carapace.Action {
 				}
 			}
 			return carapace.Batch(
-				carapace.ActionValues(">", ">=", "<", "<=").Style(style.Blue).NoSpace('>', '=', '<'),
+				carapace.ActionValues("<", "<=", ">", ">=").Style(style.Blue).NoSpace('>', '=', '<'),
 				time.ActionDate().Invoke(c).Prefix(prefix).ToA().NoSpace(),
 			).ToA()
 

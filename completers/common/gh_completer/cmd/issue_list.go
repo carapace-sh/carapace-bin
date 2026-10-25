@@ -45,7 +45,7 @@ func init() {
 		"label":     action.ActionLabels(issue_listCmd).UniqueList(","),
 		"mention":   action.ActionMentionableUsers(issue_listCmd),
 		"milestone": action.ActionMilestones(issue_listCmd),
-		"state":     carapace.ActionValues("open", "closed", "all").StyleF(styles.Gh.ForState),
+		"state":     carapace.ActionValues("all", "closed", "open").StyleF(styles.Gh.ForState),
 		"type":      action.ActionIssueTypes(issue_listCmd),
 	})
 }

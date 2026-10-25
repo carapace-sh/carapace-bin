@@ -27,7 +27,7 @@ func init() {
 	uploadCmd.AddCommand(upload_s3Cmd)
 
 	carapace.Gen(upload_s3Cmd).FlagCompletion(carapace.ActionMap{
-		"addressing-style": carapace.ActionValues("virtual-host", "path"),
+		"addressing-style": carapace.ActionValues("path", "virtual-host"),
 		"attestation":      carapace.ActionFiles(),
 	})
 }

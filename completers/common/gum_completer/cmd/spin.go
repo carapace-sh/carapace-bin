@@ -62,17 +62,17 @@ func init() {
 	carapace.Gen(spinCmd).FlagCompletion(carapace.ActionMap{
 		"align": carapace.ActionValues("left", "right"), // differs from gum.ActionAlignments
 		"spinner": carapace.ActionValuesDescribed(
-			"line", "/",
 			"dot", "⢿",
-			"minidot", "⠋",
-			"jump", "⡈",
-			"pulse", "░",
-			"points", "●",
 			"globe", "🌍",
-			"moon", "🌗",
-			"monkey", "🙊",
-			"meter", "▰",
 			"hamburger", "☲",
+			"jump", "⡈",
+			"line", "/",
+			"meter", "▰",
+			"minidot", "⠋",
+			"monkey", "🙊",
+			"moon", "🌗",
+			"points", "●",
+			"pulse", "░",
 		),
 	})
 

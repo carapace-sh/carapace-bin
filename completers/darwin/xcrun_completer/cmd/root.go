@@ -36,8 +36,8 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "Show the xcrun version")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"sdk":       carapace.ActionValues("macosx", "iphoneos", "iphonesimulator", "appletvos", "appletvsimulator", "watchos", "watchsimulator", "xros", "xrsimulator"),
-		"toolchain": carapace.ActionValues("default", "com.apple.dt.toolchain.XcodeDefault", "swift", "org.swift.5220190702a"),
+		"sdk":       carapace.ActionValues("appletvos", "appletvsimulator", "iphoneos", "iphonesimulator", "macosx", "watchos", "watchsimulator", "xros", "xrsimulator"),
+		"toolchain": carapace.ActionValues("com.apple.dt.toolchain.XcodeDefault", "default", "org.swift.5220190702a", "swift"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

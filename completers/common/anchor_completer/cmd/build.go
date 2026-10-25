@@ -34,7 +34,7 @@ func init() {
 	rootCmd.AddCommand(buildCmd)
 
 	carapace.Gen(buildCmd).FlagCompletion(carapace.ActionMap{
-		"bootstrap":    carapace.ActionValues("none", "debian"),
+		"bootstrap":    carapace.ActionValues("debian", "none"),
 		"idl":          carapace.ActionDirectories(),
 		"idl-ts":       carapace.ActionDirectories(),
 		"program-name": anchor.ActionPrograms(),

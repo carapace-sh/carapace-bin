@@ -34,8 +34,8 @@ func init() {
 	rootCmd.AddCommand(pluginCmd)
 
 	carapace.Gen(pluginCmd).FlagCompletion(carapace.ActionMap{
-		"borderless": carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
-		"pinned":     carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
+		"borderless": carapace.ActionValues("false", "true").StyleF(style.ForKeyword),
+		"pinned":     carapace.ActionValues("false", "true").StyleF(style.ForKeyword),
 		"tab-id":     zellij.ActionTabs(),
 	})
 }

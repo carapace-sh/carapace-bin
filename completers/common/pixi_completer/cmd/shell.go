@@ -46,12 +46,12 @@ func init() {
 
 	carapace.Gen(shellCmd).FlagCompletion(carapace.ActionMap{
 		"auth-file":             carapace.ActionFiles(),
-		"change-ps1":            carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
+		"change-ps1":            carapace.ActionValues("false", "true").StyleF(style.ForKeyword),
 		"config-file":           carapace.ActionFiles(),
 		"environment":           pixi.ActionEnvironments(),
 		"manifest-path":         carapace.ActionFiles(),
-		"pinning-strategy":      carapace.ActionValues("semver", "minor", "major", "latest-up", "exact-version", "no-pin"),
+		"pinning-strategy":      carapace.ActionValues("exact-version", "latest-up", "major", "minor", "no-pin", "semver"),
 		"pypi-keyring-provider": carapace.ActionValues("disabled", "subprocess"),
-		"tls-root-certs":        carapace.ActionValues("webpki", "system"),
+		"tls-root-certs":        carapace.ActionValues("system", "webpki"),
 	})
 }

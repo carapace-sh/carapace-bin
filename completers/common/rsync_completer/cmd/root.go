@@ -175,7 +175,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"backup-dir":      carapace.ActionDirectories(),
-		"checksum-choice": carapace.ActionValues("auto", "xxh128", "xxh3", "xxh64", "md5", "md4", "none"),
+		"checksum-choice": carapace.ActionValues("auto", "md4", "md5", "none", "xxh128", "xxh3", "xxh64"),
 		"chmod": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			if c.Value == "" {
 				return carapace.Batch(
@@ -194,7 +194,7 @@ func init() {
 			}
 			return fs.ActionFileModes()
 		}),
-		"compress-choice": carapace.ActionValues("zstd", "lz4", "zlibx", "zlib", "none"),
+		"compress-choice": carapace.ActionValues("lz4", "none", "zlib", "zlibx", "zstd"),
 		"copy-as":         os.ActionUserGroup(),
 		"debug": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			r := regexp.MustCompile(`\d`)
@@ -228,16 +228,16 @@ func init() {
 		"log-file-format":  action.ActionFormats(),
 		"only-write-batch": carapace.ActionFiles(),
 		"out-format":       action.ActionFormats(),
-		"outbuf":           carapace.ActionValues("None", "Line", "Block"),
+		"outbuf":           carapace.ActionValues("Block", "Line", "None"),
 		"partial-dir":      carapace.ActionDirectories(),
 		"password-file":    carapace.ActionFiles(),
 		"port":             net.ActionPorts(),
 		"read-batch":       carapace.ActionFiles(),
 		"skip-compress":    fs.ActionFilenameExtensions().UniqueList("/"),
 		"stderr": carapace.ActionValuesDescribed(
-			"errors", "causes all the rsync processes to send an error directly to stderr",
 			"all", "causes all rsync messages to get written directly to stderr from all processes",
 			"client", "causes all rsync messages to be sent to the client side via the  protocol stream",
+			"errors", "causes all the rsync processes to send an error directly to stderr",
 		),
 		"temp-dir": carapace.ActionDirectories(),
 		"usermap": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {

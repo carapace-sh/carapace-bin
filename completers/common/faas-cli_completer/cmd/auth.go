@@ -27,6 +27,6 @@ func init() {
 	rootCmd.AddCommand(authCmd)
 
 	carapace.Gen(authCmd).FlagCompletion(carapace.ActionMap{
-		"grant": carapace.ActionValues("implicit", "implicit-id", "client_credentials"),
+		"grant": carapace.ActionValues("client_credentials", "implicit", "implicit-id"),
 	})
 }

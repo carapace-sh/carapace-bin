@@ -35,10 +35,10 @@ func init() {
 
 	carapace.Gen(share_service_listCmd).FlagCompletion(carapace.ActionMap{
 		"column":      action.ActionColumns(share_service_listCmd),
-		"ensuring":    carapace.ActionValues("True", "False"),
+		"ensuring":    carapace.ActionValues("False", "True"),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
 		"sort-column": action.ActionColumns(share_service_listCmd),
-		"state":       carapace.ActionValues("up", "down"),
+		"state":       carapace.ActionValues("down", "up"),
 	})
 }

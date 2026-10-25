@@ -131,10 +131,10 @@ func init() {
 
 	carapace.Gen(addCmd).FlagCompletion(carapace.ActionMap{
 		"bounds": carapace.ActionValuesDescribed(
+			"exact", "Pin the exact version, e.g., `==1.2.3`",
 			"lower", "Only a lower bound, e.g., `>=1.2.3`",
 			"major", "Allow the same major version, similar to the semver caret, e.g., `>=1.2.3, <2.0.0`",
 			"minor", "Allow the same minor version, similar to the semver tilde, e.g., `>=1.2.3, <1.3.0`",
-			"exact", "Pin the exact version, e.g., `==1.2.3`",
 		),
 		"constraint":       carapace.ActionFiles(),
 		"constraints":      carapace.ActionFiles(),

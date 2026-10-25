@@ -35,7 +35,7 @@ func init() {
 	rootCmd.Flags().StringS("t", "t", "", "Throughput tier")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"c": carapace.ActionValues("utility", "background", "maintenance"),
+		"c": carapace.ActionValues("background", "maintenance", "utility"),
 		"d": carapace.ActionValues("default", "throttle"),
 		"g": carapace.ActionValues("default", "throttle"),
 		"p": ps.ActionProcessIds(),

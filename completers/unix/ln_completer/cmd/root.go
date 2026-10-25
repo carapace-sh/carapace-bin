@@ -42,13 +42,13 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"backup": carapace.ActionValuesDescribed(
 			"existing", "numbered if numbered backup exists, simple otherwise",
+			"never", "always make simple backups",
 			"nil", "numbered if numbered backup exists, simple otherwise",
 			"none", "never make backups",
-			"off", "never make backups",
 			"numbered", "make numbered backups",
-			"t", "make numbered backups",
+			"off", "never make backups",
 			"simple", "always make simple backups",
-			"never", "always make simple backups",
+			"t", "make numbered backups",
 		),
 		"target-directory": carapace.ActionDirectories(),
 	})

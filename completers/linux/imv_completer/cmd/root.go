@@ -39,7 +39,7 @@ func init() {
 			carapace.ActionValuesDescribed("checks", "chequered background"),
 		).ToA(),
 		"n": carapace.ActionFiles(),
-		"s": carapace.ActionValues("none", "shrink", "full", "crop"),
+		"s": carapace.ActionValues("crop", "full", "none", "shrink"),
 		"u": carapace.ActionValues("linear", "nearest_neighbour"),
 	})
 

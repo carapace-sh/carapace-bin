@@ -32,21 +32,21 @@ func init() {
 			"v2", "Generate Anchor v2 templates",
 		),
 		"package-manager": carapace.ActionValuesDescribed(
-			"npm", "Use npm as the package manager",
-			"yarn", "Use yarn as the package manager",
-			"pnpm", "Use pnpm as the package manager",
 			"bun", "Use bun as the package manager",
+			"npm", "Use npm as the package manager",
+			"pnpm", "Use pnpm as the package manager",
+			"yarn", "Use yarn as the package manager",
 		),
 		"template": carapace.ActionValuesDescribed(
-			"single", "Program with a single `lib.rs` file (not recommended for production)",
 			"multiple", "Program with multiple files for instructions, state... (recommended)",
+			"single", "Program with a single `lib.rs` file (not recommended for production)",
 		),
 		"test-template": carapace.ActionValuesDescribed(
-			"mocha", "Generate template for Mocha unit-test",
 			"jest", "Generate template for Jest unit-test",
-			"rust", "Generate template for Rust unit-test",
-			"mollusk", "Generate template for Mollusk Rust unit-test",
 			"litesvm", "Generate template for LiteSVM rust unit-test",
+			"mocha", "Generate template for Mocha unit-test",
+			"mollusk", "Generate template for Mollusk Rust unit-test",
+			"rust", "Generate template for Rust unit-test",
 		),
 	})
 }

@@ -88,7 +88,7 @@ func init() {
 		"session-read-only": carapace.ActionFiles(), // TODO complete names
 		"ssl":               carapace.ActionValues("ssl2.3", "tls1", "tls1.1", "tls1.2"),
 		"style":             ActionStyles(),
-		"verify":            carapace.ActionValues("yes", "no").StyleF(style.ForKeyword),
+		"verify":            carapace.ActionValues("no", "yes").StyleF(style.ForKeyword),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
@@ -122,10 +122,10 @@ func init() {
 
 func ActionPrintOptions() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"H", "request headers",
 		"B", "request body",
-		"h", "response headers",
+		"H", "request headers",
 		"b", "response body",
+		"h", "response headers",
 	).UniqueList("")
 }
 
@@ -144,10 +144,10 @@ func ActionFormatOptions() carapace.Action {
 	return carapace.ActionMultiParts(",", func(cEntries carapace.Context) carapace.Action {
 		return carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 			options := map[string]carapace.Action{
-				"headers.sort":   carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
-				"json.format":    carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
+				"headers.sort":   carapace.ActionValues("false", "true").StyleF(style.ForKeyword),
+				"json.format":    carapace.ActionValues("false", "true").StyleF(style.ForKeyword),
 				"json.indent":    carapace.ActionValues(),
-				"json.sort_keys": carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
+				"json.sort_keys": carapace.ActionValues("false", "true").StyleF(style.ForKeyword),
 			}
 			switch len(c.Parts) {
 			case 0:
@@ -226,11 +226,11 @@ func ActionRequestItem() carapace.Action {
 func ActionSeparators() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		":", "HTTP headers",
-		"==", "URL parameters to be appended to the request URI",
-		"=", "Data fields to be serialized into a JSON object",
 		":=", "Non-string JSON data fields (only with --json, -j)",
-		"@", "Form file fields (only with --form or --multipart)",
-		"=@", "A data field like '=', but takes a file path and embeds its content",
 		":=@", "A raw JSON field like ':=', but takes a file path and embeds its content",
+		"=", "Data fields to be serialized into a JSON object",
+		"==", "URL parameters to be appended to the request URI",
+		"=@", "A data field like '=', but takes a file path and embeds its content",
+		"@", "Form file fields (only with --form or --multipart)",
 	).Tag("separators")
 }

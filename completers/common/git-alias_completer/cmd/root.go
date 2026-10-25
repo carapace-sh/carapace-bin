@@ -22,6 +22,6 @@ func init() {
 	rootCmd.Flags().Bool("help", false, "show help")
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-		git.ActionAliases(""),
+		git.AcAliases(""),
 	)
 }

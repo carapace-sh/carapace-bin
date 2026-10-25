@@ -24,6 +24,6 @@ func init() {
 
 	carapace.Gen(containerRegistry_repository_viewCmd).FlagCompletion(carapace.ActionMap{
 		"jq":     jq.ActionFilters(),
-		"output": carapace.ActionValues("text", "json"),
+		"output": carapace.ActionValues("json", "text"),
 	})
 }

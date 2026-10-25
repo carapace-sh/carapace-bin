@@ -26,7 +26,7 @@ func init() {
 	rootCmd.AddCommand(getCmd)
 
 	carapace.Gen(getCmd).FlagCompletion(carapace.ActionMap{
-		"o": carapace.ActionValues("name", "property", "value", "source").UniqueList(","),
+		"o": carapace.ActionValues("name", "property", "source", "value").UniqueList(","),
 	})
 
 	carapace.Gen(getCmd).PositionalCompletion(

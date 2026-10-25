@@ -29,8 +29,8 @@ func init() {
 	rootCmd.AddCommand(getCmd)
 
 	carapace.Gen(getCmd).FlagCompletion(carapace.ActionMap{
-		"o": carapace.ActionValues("name", "property", "value", "source").UniqueList(","),
-		"s": carapace.ActionValues("local", "default", "inherited", "temporary", "received", "none").UniqueList(","),
+		"o": carapace.ActionValues("name", "property", "source", "value").UniqueList(","),
+		"s": carapace.ActionValues("default", "inherited", "local", "none", "received", "temporary").UniqueList(","),
 		"t": zfs.ActionDatasetTypes().UniqueList(","),
 	})
 

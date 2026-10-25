@@ -21,9 +21,9 @@ func init() {
 		"scheduler": carapace.ActionValuesDescribed(
 			"auto", "",
 			"crontab", "POSIX",
-			"systemd-timer", "Linux",
 			"launchctl", "macOS",
 			"schtasks", "Windows",
+			"systemd-timer", "Linux",
 		),
 	})
 }

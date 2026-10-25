@@ -25,7 +25,7 @@ func init() {
 	carapace.Gen(milestone_getCmd).FlagCompletion(carapace.ActionMap{
 		"group":  action.ActionGroups(milestone_getCmd),
 		"jq":     jq.ActionFilters(),
-		"output": carapace.ActionValues("text", "json"),
+		"output": carapace.ActionValues("json", "text"),
 	})
 
 	carapace.Gen(milestone_getCmd).PositionalCompletion(

@@ -39,11 +39,11 @@ func Aliases(dir, gitDir string) (map[string]string, error) {
 	return aliases, nil
 }
 
-// ActionAliases completes aliases
+// AcAliases completes aliases
 //
 //	po (push origin)
 //	ct (checkout --track)
-func ActionAliases(gitDir string) carapace.Action {
+func AcAliases(gitDir string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if aliases, err := Aliases(c.Dir, gitDir); err != nil {
 			return carapace.ActionMessage(err.Error())

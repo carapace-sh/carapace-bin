@@ -26,8 +26,8 @@ func init() {
 			"v2", "Generate Anchor v2 templates",
 		),
 		"template": carapace.ActionValuesDescribed(
-			"single", "Program with a single `lib.rs` file (not recommended for production)",
 			"multiple", "Program with multiple files for instructions, state... (recommended)",
+			"single", "Program with a single `lib.rs` file (not recommended for production)",
 		),
 	})
 }

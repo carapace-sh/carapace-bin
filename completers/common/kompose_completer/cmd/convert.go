@@ -42,7 +42,7 @@ func init() {
 	rootCmd.AddCommand(convertCmd)
 
 	carapace.Gen(convertCmd).FlagCompletion(carapace.ActionMap{
-		"build": carapace.ActionValues("local", "build-config", "none"),
+		"build": carapace.ActionValues("build-config", "local", "none"),
 		"build-branch": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if flag := convertCmd.Flag("build-repo"); flag.Changed {
 				return git.ActionLsRemoteRefs(git.LsRemoteRefOption{Url: flag.Value.String(), Branches: true})
@@ -50,13 +50,13 @@ func init() {
 			return carapace.ActionValues()
 		}),
 		"build-repo": git.ActionRepositorySearch(git.SearchOpts{}.Default()),
-		"controller": carapace.ActionValues("deployment", "daemonSet", "replicationController"),
+		"controller": carapace.ActionValues("daemonSet", "deployment", "replicationController"),
 		"out":        carapace.ActionFiles(),
 		"service-group-mode": carapace.ActionValuesDescribed(
 			"label", "kompose.service.group",
 			"volume", "shared volumes",
 		),
-		"volumes": carapace.ActionValues("persistentVolumeClaim", "emptyDir", "hostPath", "configMap"),
+		"volumes": carapace.ActionValues("configMap", "emptyDir", "hostPath", "persistentVolumeClaim"),
 	})
 
 	carapace.Gen(convertCmd).PositionalCompletion(

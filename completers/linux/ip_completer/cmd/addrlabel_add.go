@@ -29,7 +29,7 @@ func init() {
 					return carapace.ActionValues()
 				}
 			}
-			return carapace.ActionValues("prefix", "dev", "label")
+			return carapace.ActionValues("dev", "label", "prefix")
 		}),
 	)
 }

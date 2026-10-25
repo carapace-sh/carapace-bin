@@ -38,7 +38,7 @@ func init() {
 	// TODO flag completion
 	carapace.Gen(buildCmd).FlagCompletion(carapace.ActionMap{
 		"allow":                    carapace.ActionValues(),
-		"debug-json-cache-metrics": carapace.ActionValues("stdout", "stderr"),
+		"debug-json-cache-metrics": carapace.ActionValues("stderr", "stdout"),
 		"export-cache":             carapace.ActionValues(),
 		"frontend":                 carapace.ActionValues(),
 		"import-cache":             carapace.ActionValues(),
@@ -47,7 +47,7 @@ func init() {
 		"oci-layout":               carapace.ActionValues(),
 		"opt":                      carapace.ActionValues(),
 		"output":                   carapace.ActionValues(),
-		"progress":                 carapace.ActionValues("auto", "plain", "tty", "rawjson"),
+		"progress":                 carapace.ActionValues("auto", "plain", "rawjson", "tty"),
 		"ref-file":                 carapace.ActionFiles(),
 		"registry-auth-tlscontext": carapace.ActionValues(),
 		"secret":                   carapace.ActionValues(),

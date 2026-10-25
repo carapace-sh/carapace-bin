@@ -20,6 +20,6 @@ func init() {
 	rootCmd.AddCommand(contractCmd)
 
 	carapace.Gen(contractCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("plain", "json"),
+		"format": carapace.ActionValues("json", "plain"),
 	})
 }

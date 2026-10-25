@@ -34,15 +34,15 @@ func ActionRunlevels() carapace.Action {
 //	stopped
 func ActionServiceStates() carapace.Action {
 	return carapace.ActionValues(
-		"started",
-		"stopped",
-		"starting",
-		"stopping",
-		"inactive",
-		"hotplugged",
-		"failed",
 		"crashed",
+		"failed",
+		"hotplugged",
+		"inactive",
 		"scheduled",
+		"started",
+		"starting",
+		"stopped",
+		"stopping",
 	).Tag("service states")
 }
 
@@ -52,24 +52,24 @@ func ActionServiceStates() carapace.Action {
 //	stop
 func ActionCommands() carapace.Action {
 	return carapace.ActionValues(
+		"conditionalrestart",
+		"condrestart",
+		"depend",
 		"describe",
 		"help",
-		"depend",
-		"status",
+		"iafter",
+		"ibefore",
 		"ineed",
+		"iprovide",
 		"iuse",
 		"iwant",
 		"needsme",
+		"restart",
+		"start",
+		"status",
+		"stop",
 		"usesme",
 		"wantsme",
-		"iafter",
-		"ibefore",
-		"iprovide",
-		"start",
-		"stop",
-		"restart",
-		"condrestart",
-		"conditionalrestart",
 		"zap",
 	).Tag("service commands")
 }
@@ -80,19 +80,19 @@ func ActionCommands() carapace.Action {
 //	iuse
 func ActionDependencyTypes() carapace.Action {
 	return carapace.ActionValues(
-		"ineed",
-		"iuse",
-		"iwant",
-		"needsme",
-		"usesme",
-		"wantsme",
+		"broken",
+		"config",
 		"iafter",
 		"ibefore",
+		"ineed",
 		"iprovide",
-		"providedby",
+		"iuse",
+		"iwant",
 		"keyword",
-		"config",
+		"needsme",
+		"providedby",
 		"reexport",
-		"broken",
+		"usesme",
+		"wantsme",
 	).Tag("dependency types")
 }

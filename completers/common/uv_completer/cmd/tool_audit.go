@@ -25,9 +25,9 @@ func init() {
 
 	carapace.Gen(tool_auditCmd).FlagCompletion(carapace.ActionMap{
 		"output-format": carapace.ActionValuesDescribed(
-			"text", "Display the result in a human-readable format",
 			"json", "Display the result in JSON format",
 			"sarif", "Display the result in SARIF format",
+			"text", "Display the result in a human-readable format",
 		),
 		"service-format": carapace.ActionValues("osv"),
 	})

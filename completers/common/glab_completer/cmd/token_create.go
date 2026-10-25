@@ -30,10 +30,10 @@ func init() {
 	tokenCmd.AddCommand(token_createCmd)
 
 	carapace.Gen(token_createCmd).FlagCompletion(carapace.ActionMap{
-		"access-level": carapace.ActionValues("guest", "reporter", "developer", "maintainer", "owner"),
+		"access-level": carapace.ActionValues("developer", "guest", "maintainer", "owner", "reporter"),
 		"group":        action.ActionGroups(token_createCmd),
 		"jq":           jq.ActionFilters(),
-		"output":       carapace.ActionValues("text", "json"),
+		"output":       carapace.ActionValues("json", "text"),
 		// TODO scope
 		"user": action.ActionUsers(token_createCmd),
 	})

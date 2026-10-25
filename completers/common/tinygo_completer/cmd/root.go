@@ -46,33 +46,33 @@ func init() {
 	rootCmd.Flags().BoolS("x", "x", false, "Print commands")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"gc":         carapace.ActionValues("none", "leaking", "extalloc", "conservative"),
+		"gc":         carapace.ActionValues("conservative", "extalloc", "leaking", "none"),
 		"o":          carapace.ActionFiles(),
 		"opt":        carapace.ActionValues("0", "1", "2", "s", "z"),
 		"panic":      carapace.ActionValues("print", "trap"),
 		"port":       net.ActionPorts().UniqueList(","),
-		"programmer": carapace.ActionValues("openocd", "msd", "command", "bmp"),
-		"scheduler":  carapace.ActionValues("none", "coroutines", "tasks"),
+		"programmer": carapace.ActionValues("bmp", "command", "msd", "openocd"),
+		"scheduler":  carapace.ActionValues("coroutines", "none", "tasks"),
 		"serial":     carapace.ActionValues("none", "uart", "usb"),
-		"size":       carapace.ActionValues("none", "short", "full"),
+		"size":       carapace.ActionValues("full", "none", "short"),
 		"target": carapace.Batch(
 			carapace.ActionFiles(),
 			tinygo.ActionTargets(),
 		).ToA(),
-		"wasm-abi": carapace.ActionValues("js", "generic"),
+		"wasm-abi": carapace.ActionValues("generic", "js"),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.ActionValuesDescribed(
 			"build", "compile packages and dependencies",
-			"run", "compile and run immediately",
-			"test", "test packages",
+			"clean", "empty cache directory",
+			"env", "list environment variables used during build",
 			"flash", "compile and flash to the device",
 			"gdb", "run/flash and immediately enter GDB",
-			"env", "list environment variables used during build",
-			"list", "run go list using the TinyGo root",
-			"clean", "empty cache directory",
 			"help", "print this help text",
+			"list", "run go list using the TinyGo root",
+			"run", "compile and run immediately",
+			"test", "test packages",
 		),
 		carapace.ActionFiles(),
 	)

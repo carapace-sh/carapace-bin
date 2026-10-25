@@ -18,6 +18,6 @@ func init() {
 	rootCmd.AddCommand(logverboseCmd)
 	carapace.Gen(logverboseCmd).PositionalCompletion(
 		simctl.ActionDevices(),
-		carapace.ActionValues("enable", "disable").StyleF(style.ForKeyword),
+		carapace.ActionValues("disable", "enable").StyleF(style.ForKeyword),
 	)
 }

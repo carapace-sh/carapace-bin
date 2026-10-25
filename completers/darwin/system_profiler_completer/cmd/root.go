@@ -26,7 +26,7 @@ func init() {
 	rootCmd.Flags().String("timeout", "", "Set the timeout in seconds")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"detailLevel": carapace.ActionValues("mini", "basic", "full"),
+		"detailLevel": carapace.ActionValues("basic", "full", "mini"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
@@ -49,8 +49,8 @@ func init() {
 			"SPInstallHistoryDataType", "Install history",
 			"SPLanguagesDataType", "Languages information",
 			"SPLegacySoftwareDataType", "Legacy software information",
-			"SPNetworkDataType", "Network configuration",
 			"SPNVMeDataType", "NVMe storage information",
+			"SPNetworkDataType", "Network configuration",
 			"SPPCIDataType", "PCI devices",
 			"SPPlatformDataType", "Platform information",
 			"SPPowerDataType", "Power information",

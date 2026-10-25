@@ -16,6 +16,6 @@ func init() {
 	pluginCmd.AddCommand(pluginImportCmd)
 
 	carapace.Gen(pluginImportCmd).PositionalCompletion(
-		carapace.ActionValues("gemini", "claude"),
+		carapace.ActionValues("claude", "gemini"),
 	)
 }

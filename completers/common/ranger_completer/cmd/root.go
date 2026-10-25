@@ -41,7 +41,7 @@ func init() {
 		"choosedir":   carapace.ActionFiles(),
 		"choosefile":  carapace.ActionFiles(),
 		"choosefiles": carapace.ActionFiles(),
-		"copy-config": carapace.ActionValues("all", "rc", "rifle", "commands", "commands_full", "scope"),
+		"copy-config": carapace.ActionValues("all", "commands", "commands_full", "rc", "rifle", "scope"),
 		"datadir":     carapace.ActionDirectories(),
 		"logfile":     carapace.ActionFiles(),
 		"selectfile":  carapace.ActionFiles(),

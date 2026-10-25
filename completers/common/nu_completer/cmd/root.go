@@ -66,13 +66,13 @@ func init() {
 		"execute":       bridge.ActionCarapaceBin().SplitP(shlex.Nushell),
 		"include-path":  carapace.ActionDirectories().List(";"),
 		"log-file":      carapace.ActionFiles(),
-		"log-level":     carapace.ActionValues("error", "warn", "info", "debug", "trace").StyleF(style.ForLogLevel),
-		"log-target":    carapace.ActionValues("stdout", "stderr", "mixed", "file"),
+		"log-level":     carapace.ActionValues("debug", "error", "info", "trace", "warn").StyleF(style.ForLogLevel),
+		"log-target":    carapace.ActionValues("file", "mixed", "stderr", "stdout"),
 		"mcp-port":      net.ActionPorts(),
-		"mcp-transport": carapace.ActionValues("stdio", "http"),
+		"mcp-transport": carapace.ActionValues("http", "stdio"),
 		"plugin-config": carapace.ActionFiles(),
 		"plugins":       carapace.ActionFiles(),
-		"table-mode":    carapace.ActionValues("rounded", "basic", "compact", "compact_double", "light", "thin", "with_love", "reinforced", "heavy", "none", "other"),
+		"table-mode":    carapace.ActionValues("basic", "compact", "compact_double", "heavy", "light", "none", "other", "reinforced", "rounded", "thin", "with_love"),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

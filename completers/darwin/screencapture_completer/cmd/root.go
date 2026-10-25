@@ -54,8 +54,8 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"bundleid": carapace.ActionValues(),
 		"display":  carapace.ActionValues("1", "2", "3"),
-		"format":   carapace.ActionValues("png", "pdf", "jpg", "tiff", "gif"),
-		"style":    carapace.ActionValues("selection", "window", "video"),
+		"format":   carapace.ActionValues("gif", "jpg", "pdf", "png", "tiff"),
+		"style":    carapace.ActionValues("selection", "video", "window"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())

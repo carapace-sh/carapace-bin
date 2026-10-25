@@ -18,6 +18,6 @@ func init() {
 	dbCmd.AddCommand(db_listCmd)
 
 	carapace.Gen(db_listCmd).FlagCompletion(carapace.ActionMap{
-		"output": carapace.ActionValues("text", "raw", "json"),
+		"output": carapace.ActionValues("json", "raw", "text"),
 	})
 }

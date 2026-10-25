@@ -18,6 +18,6 @@ func init() {
 	sharedStoreCmd.AddCommand(sharedStore_setUseAutomaticallyCmd)
 
 	carapace.Gen(sharedStore_setUseAutomaticallyCmd).PositionalCompletion(
-		carapace.ActionValues("true", "false"),
+		carapace.ActionValues("false", "true"),
 	)
 }

@@ -19,6 +19,6 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValues("lock", "logout", "switch_user", "suspend", "hibernate", "reboot", "shutdown"),
+		carapace.ActionValues("hibernate", "lock", "logout", "reboot", "shutdown", "suspend", "switch_user"),
 	)
 }

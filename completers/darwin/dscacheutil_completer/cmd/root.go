@@ -30,6 +30,6 @@ func init() {
 	rootCmd.Flags().Bool("statistics", false, "Show cache statistics")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"q": carapace.ActionValues("user", "group", "host", "mount", "user_byuid", "group_bygid", "user_byname", "group_byname"),
+		"q": carapace.ActionValues("group", "group_bygid", "group_byname", "host", "mount", "user", "user_byname", "user_byuid"),
 	})
 }

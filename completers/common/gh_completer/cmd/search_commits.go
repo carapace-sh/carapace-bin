@@ -56,6 +56,6 @@ func init() {
 			return action.ActionOwnerRepositories(dummyCmd).NoSpace()
 		}),
 		"sort":       carapace.ActionValues("author-date", "committer-date"),
-		"visibility": carapace.ActionValues("public", "private", "internal").UniqueList(","),
+		"visibility": carapace.ActionValues("internal", "private", "public").UniqueList(","),
 	})
 }

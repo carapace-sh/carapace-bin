@@ -65,8 +65,8 @@ func init() {
 		"interpreter": carapace.ActionValuesDescribed(
 			"console", "The traditional console or command-line interpreter.",
 			"mi", "The newest GDB/MI interface (currently mi2).",
-			"mi2", "The current GDB/MI interface.",
 			"mi1", "The GDB/MI interface included in GDB 5.1, 5.2, and 5.3.",
+			"mi2", "The current GDB/MI interface.",
 		),
 		"pid":     ps.ActionProcessIds(),
 		"se":      carapace.ActionFiles(),

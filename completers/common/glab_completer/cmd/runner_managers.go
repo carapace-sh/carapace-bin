@@ -23,7 +23,7 @@ func init() {
 
 	carapace.Gen(runner_managersCmd).FlagCompletion(carapace.ActionMap{
 		"jq":     jq.ActionFilters(),
-		"output": carapace.ActionValues("text", "json"),
+		"output": carapace.ActionValues("json", "text"),
 		"repo":   action.ActionRepo(runner_managersCmd),
 	})
 }

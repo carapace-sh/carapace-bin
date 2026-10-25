@@ -37,9 +37,9 @@ func init() {
 	carapace.Gen(global_listCmd).FlagCompletion(carapace.ActionMap{
 		"auth-file":             carapace.ActionFiles(),
 		"environment":           pixi.ActionGlobalEnvironments(),
-		"pinning-strategy":      carapace.ActionValues("semver", "minor", "major", "latest-up", "exact-version", "no-pin"),
+		"pinning-strategy":      carapace.ActionValues("exact-version", "latest-up", "major", "minor", "no-pin", "semver"),
 		"pypi-keyring-provider": carapace.ActionValues("disabled", "subprocess"),
-		"sort-by":               carapace.ActionValues("size", "name"),
-		"tls-root-certs":        carapace.ActionValues("webpki", "system"),
+		"sort-by":               carapace.ActionValues("name", "size"),
+		"tls-root-certs":        carapace.ActionValues("system", "webpki"),
 	})
 }

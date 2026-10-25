@@ -66,22 +66,22 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"bundle":                   carapace.ActionDirectories(),
-		"cocoatouch-compiler-mode": carapace.ActionValues("toolchain", "simulator"),
+		"cocoatouch-compiler-mode": carapace.ActionValues("simulator", "toolchain"),
 		"compile":                  carapace.ActionDirectories(),
 		"export-strings-file":      carapace.ActionFiles(),
 		"export-xliff":             carapace.ActionFiles(),
-		"flatten":                  carapace.ActionValues("YES", "NO"),
+		"flatten":                  carapace.ActionValues("NO", "YES"),
 		"import":                   carapace.ActionFiles(),
 		"import-strings-file":      carapace.ActionFiles(),
 		"import-xliff":             carapace.ActionFiles(),
 		"incremental-file":         carapace.ActionFiles(),
-		"output-format":            carapace.ActionValues("xml1", "binary1", "human-readable-text"),
+		"output-format":            carapace.ActionValues("binary1", "human-readable-text", "xml1"),
 		"plugin":                   carapace.ActionFiles(),
 		"plugin-dir":               carapace.ActionDirectories(),
 		"previous-file":            carapace.ActionFiles(),
-		"source-language":          carapace.ActionValues("en", "fr", "de", "es", "ja", "zh-Hans", "zh-Hant"),
+		"source-language":          carapace.ActionValues("de", "en", "es", "fr", "ja", "zh-Hans", "zh-Hant"),
 		"strip":                    carapace.ActionDirectories(),
-		"target-language":          carapace.ActionValues("en", "fr", "de", "es", "ja", "zh-Hans", "zh-Hant"),
+		"target-language":          carapace.ActionValues("de", "en", "es", "fr", "ja", "zh-Hans", "zh-Hant"),
 		"write":                    carapace.ActionFiles(),
 	})
 

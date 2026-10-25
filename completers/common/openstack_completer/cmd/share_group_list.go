@@ -53,6 +53,6 @@ func init() {
 		"share-server":   action.ActionShareServers(share_group_listCmd),
 		"snapshot":       action.ActionShareGroupSnapshots(share_group_listCmd),
 		"sort-column":    action.ActionColumns(share_group_listCmd),
-		"status":         carapace.ActionValues("available", "error", "creating", "deleting", "error_deleting"),
+		"status":         carapace.ActionValues("available", "creating", "deleting", "error", "error_deleting"),
 	})
 }

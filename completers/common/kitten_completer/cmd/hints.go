@@ -38,17 +38,17 @@ func init() {
 	rootCmd.AddCommand(hintsCmd)
 
 	carapace.Gen(hintsCmd).FlagCompletion(carapace.ActionMap{
-		"add-trailing-space":   carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
+		"add-trailing-space":   carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"customize-processing": carapace.ActionFiles().Chdir("~/.config/kitty"),
-		"linenum-action":       carapace.ActionValues("self", "background", "os_window", "remote-control", "tab", "window"),
+		"linenum-action":       carapace.ActionValues("background", "os_window", "remote-control", "self", "tab", "window"),
 		"multiple-joiner": carapace.ActionValuesDescribed(
-			"space", "a space character",
-			"newline", "a newline",
+			"auto", "an automatic choice, based on the type of text being selected",
 			"empty", "an empty joiner",
 			"json", "a JSON serialized list",
-			"auto", "an automatic choice, based on the type of text being selected",
+			"newline", "a newline",
+			"space", "a space character",
 		),
-		"program": carapace.ActionValues("-", "@", "*", "default", "launch"),
-		"type":    carapace.ActionValues("url", "hash", "hyperlink", "ip", "line", "linenum", "path", "regex", "word"),
+		"program": carapace.ActionValues("*", "-", "@", "default", "launch"),
+		"type":    carapace.ActionValues("hash", "hyperlink", "ip", "line", "linenum", "path", "regex", "url", "word"),
 	})
 }

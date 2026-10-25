@@ -44,7 +44,7 @@ func init() {
 		"project-domain": action.ActionDomains(volume_snapshot_listCmd),
 		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
 		"sort-column":    action.ActionColumns(volume_snapshot_listCmd),
-		"status":         carapace.ActionValues("available", "error", "creating", "deleting", "error_deleting"),
+		"status":         carapace.ActionValues("available", "creating", "deleting", "error", "error_deleting"),
 		"volume":         action.ActionVolumes(volume_snapshot_listCmd),
 	})
 }

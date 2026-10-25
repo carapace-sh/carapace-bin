@@ -23,7 +23,7 @@ func init() {
 	profileCmd.AddCommand(profileStartCmd)
 
 	carapace.Gen(profileStartCmd).FlagCompletion(carapace.ActionMap{
-		"clock-type": carapace.ActionValues("wall", "thread-cpu", "dual"),
+		"clock-type": carapace.ActionValues("dual", "thread-cpu", "wall"),
 		"user": carapace.Batch(
 			carapace.ActionValues("current"),
 			android.ActionUsers(),

@@ -28,8 +28,8 @@ func init() {
 
 	carapace.Gen(repo_contributorsCmd).FlagCompletion(carapace.ActionMap{
 		"jq":     jq.ActionFilters(),
-		"order":  carapace.ActionValues("name", "email", "commits"),
-		"output": carapace.ActionValues("text", "json"),
+		"order":  carapace.ActionValues("commits", "email", "name"),
+		"output": carapace.ActionValues("json", "text"),
 		"repo":   action.ActionRepo(repo_contributorsCmd),
 		"sort":   carapace.ActionValues("asc", "desc"),
 	})

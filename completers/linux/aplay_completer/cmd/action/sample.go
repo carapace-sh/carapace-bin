@@ -5,8 +5,7 @@ import (
 )
 
 func ActionSampleFormats() carapace.Action {
-	return carapace.ActionValues("S8",
-		"A_LAW",
+	return carapace.ActionValues("A_LAW",
 		"DSD_U16_BE",
 		"DSD_U16_LE",
 		"DSD_U32_BE",
@@ -40,6 +39,7 @@ func ActionSampleFormats() carapace.Action {
 		"S24_LE",
 		"S32_BE",
 		"S32_LE",
+		"S8",
 		"SPECIAL",
 		"U16_BE",
 		"U16_LE",

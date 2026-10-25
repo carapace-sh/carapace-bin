@@ -24,8 +24,8 @@ func init() {
 	rootCmd.Flags().StringS("o", "o", "", "Set initial buffering of standard output")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"e": carapace.ActionValues("0", "L", "B"),
-		"i": carapace.ActionValues("0", "L", "B"),
-		"o": carapace.ActionValues("0", "L", "B"),
+		"e": carapace.ActionValues("0", "B", "L"),
+		"i": carapace.ActionValues("0", "B", "L"),
+		"o": carapace.ActionValues("0", "B", "L"),
 	})
 }

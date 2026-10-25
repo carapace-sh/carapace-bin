@@ -23,6 +23,6 @@ func init() {
 	carapace.Gen(agent_promptCmd).PositionalCompletion(herdr.ActionAgents())
 
 	carapace.Gen(agent_promptCmd).FlagCompletion(carapace.ActionMap{
-		"until": carapace.ActionValues("idle", "working", "blocked", "done", "unknown"),
+		"until": carapace.ActionValues("blocked", "done", "idle", "unknown", "working"),
 	})
 }

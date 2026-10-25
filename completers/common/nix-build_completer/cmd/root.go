@@ -77,7 +77,7 @@ func init() {
 			return nix.ActionAttributes(opts)
 		}),
 		"include":    carapace.ActionFiles(),
-		"log-format": carapace.ActionValues("raw", "internal-json", "bar", "bar-with-logs"),
+		"log-format": carapace.ActionValues("bar", "bar-with-logs", "internal-json", "raw"),
 		"option": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:

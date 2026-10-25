@@ -32,7 +32,7 @@ func init() {
 	rootCmd.Flags().BoolP("zoom-width", "w", false, "Start the application with zoom set to fit width.")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"W": carapace.ActionValues("all", "debug", "info", "warn", "error").StyleF(style.ForLogLevel),
+		"W": carapace.ActionValues("all", "debug", "error", "info", "warn").StyleF(style.ForLogLevel),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

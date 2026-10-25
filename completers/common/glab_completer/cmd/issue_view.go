@@ -28,7 +28,7 @@ func init() {
 
 	carapace.Gen(issue_viewCmd).FlagCompletion(carapace.ActionMap{
 		"jq":     jq.ActionFilters(),
-		"output": carapace.ActionValues("text", "json"),
+		"output": carapace.ActionValues("json", "text"),
 	})
 	carapace.Gen(issue_viewCmd).PositionalCompletion(
 		action.ActionIssues(issue_viewCmd, "opened"),

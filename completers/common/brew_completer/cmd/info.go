@@ -35,7 +35,7 @@ func init() {
 	infoCmd.MarkFlagsMutuallyExclusive("cask", "formula")
 
 	carapace.Gen(infoCmd).FlagCompletion(carapace.ActionMap{
-		"category": carapace.ActionValues("install", "install-on-request", "build-error", "cask-install", "os-version"),
+		"category": carapace.ActionValues("build-error", "cask-install", "install", "install-on-request", "os-version"),
 		"days":     carapace.ActionValues("30", "90", "365"),
 	})
 

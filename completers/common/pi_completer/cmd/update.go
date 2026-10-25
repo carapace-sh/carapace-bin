@@ -26,7 +26,7 @@ func init() {
 
 	carapace.Gen(updateCmd).PositionalCompletion(
 		carapace.Batch(
-			carapace.ActionValues("self", "pi"),
+			carapace.ActionValues("pi", "self"),
 			pi.ActionPackages(),
 		).ToA(),
 	)

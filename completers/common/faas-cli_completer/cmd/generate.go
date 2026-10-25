@@ -27,6 +27,6 @@ func init() {
 	carapace.Gen(generateCmd).FlagCompletion(carapace.ActionMap{
 		"arch":      action.ActionImageArchitectures(),
 		"namespace": action.ActionNamespaces(),
-		"tag":       carapace.ActionValues("latest", "sha", "branch", "describe"),
+		"tag":       carapace.ActionValues("branch", "describe", "latest", "sha"),
 	})
 }

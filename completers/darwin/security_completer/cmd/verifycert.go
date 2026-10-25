@@ -29,7 +29,7 @@ func init() {
 	carapace.Gen(verifyCertCmd).FlagCompletion(carapace.ActionMap{
 		"cert":      carapace.ActionFiles(),
 		"keychain":  security.ActionKeychains(),
-		"policy":    carapace.ActionValues("ssl", "smime", "codeSign", "IPSec", "iChat", "basic", "swUpdate", "pkgSign", "pkinitClient", "pkinitServer", "eap", "appleID", "macappstore", "timestamping"),
+		"policy":    carapace.ActionValues("IPSec", "appleID", "basic", "codeSign", "eap", "iChat", "macappstore", "pkgSign", "pkinitClient", "pkinitServer", "smime", "ssl", "swUpdate", "timestamping"),
 		"root-cert": carapace.ActionFiles(),
 	})
 }

@@ -38,8 +38,8 @@ func init() {
 	rootCmd.AddCommand(lintCmd)
 
 	carapace.Gen(lintCmd).FlagCompletion(carapace.ActionMap{
-		"error_format": carapace.ActionValues("pretty", "short", "arcanist", "sarif"),
-		"format":       carapace.ActionValues("yaml", "json", "toml", "xml"),
+		"error_format": carapace.ActionValues("arcanist", "pretty", "sarif", "short"),
+		"format":       carapace.ActionValues("json", "toml", "xml", "yaml"),
 		"output":       carapace.ActionFiles(),
 		"setting":      carapace.ActionFiles(".yaml", ".yml"),
 	})

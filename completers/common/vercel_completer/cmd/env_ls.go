@@ -24,7 +24,7 @@ func init() {
 	envCmd.AddCommand(env_lsCmd)
 
 	carapace.Gen(env_lsCmd).FlagCompletion(carapace.ActionMap{
-		"format":  carapace.ActionValues("plain", "json"),
+		"format":  carapace.ActionValues("json", "plain"),
 		"project": action.ActionProjects(env_lsCmd),
 	})
 

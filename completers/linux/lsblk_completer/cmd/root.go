@@ -68,9 +68,9 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"dedup":         action.ActionColumns().UniqueList(","),
-		"hyperlink":     carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
+		"hyperlink":     carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"output":        action.ActionColumns().UniqueList(","),
-		"properties-by": carapace.ActionValues("udev", "blkid", "file", "none").UniqueList(","),
+		"properties-by": carapace.ActionValues("blkid", "file", "none", "udev").UniqueList(","),
 		"sort":          action.ActionColumns(),
 		"sysroot":       carapace.ActionDirectories(),
 		"tree":          action.ActionColumns(),

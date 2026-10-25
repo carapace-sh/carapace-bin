@@ -28,6 +28,6 @@ func init() {
 	rootCmd.AddCommand(searchCmd)
 
 	carapace.Gen(searchCmd).FlagCompletion(carapace.ActionMap{
-		"match-type": carapace.ActionValues("equal", "contains", "fuzzy"),
+		"match-type": carapace.ActionValues("contains", "equal", "fuzzy"),
 	})
 }

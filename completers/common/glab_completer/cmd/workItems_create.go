@@ -36,7 +36,7 @@ func init() {
 		"group":            action.ActionGroups(workItems_createCmd),
 		"iteration":        action.ActionIterations(workItems_createCmd),
 		"jq":               jq.ActionFilters(),
-		"output":           carapace.ActionValues("text", "json"),
+		"output":           carapace.ActionValues("json", "text"),
 		"repo":             action.ActionRepo(workItems_createCmd),
 	})
 }

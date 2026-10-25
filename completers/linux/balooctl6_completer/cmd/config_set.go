@@ -16,7 +16,7 @@ func init() {
 	configCmd.AddCommand(config_setCmd)
 
 	carapace.Gen(config_setCmd).PositionalCompletion(
-		carapace.ActionValues("hidden", "contentIndexing"),
-		carapace.ActionValues("true", "false", "yes", "no", "y", "n", "1", "0"),
+		carapace.ActionValues("contentIndexing", "hidden"),
+		carapace.ActionValues("0", "1", "false", "n", "no", "true", "y", "yes"),
 	)
 }

@@ -23,6 +23,6 @@ func init() {
 	})
 
 	carapace.Gen(testCmd).PositionalCompletion(
-		carapace.ActionValues("init", "test", "export", "serve"),
+		carapace.ActionValues("export", "init", "serve", "test"),
 	)
 }

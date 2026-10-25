@@ -40,7 +40,7 @@ func init() {
 	rootCmd.Flag("color").NoOptDefVal = " "
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"color":  carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
+		"color":  carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"length": ActionMultiplicativeSuffixes(),
 		"skip":   ActionMultiplicativeSuffixes(),
 	})
@@ -55,7 +55,7 @@ func ActionMultiplicativeSuffixes() carapace.Action {
 		r := regexp.MustCompile(`^(?P<num>\d+)`)
 		if r.MatchString(c.Value) {
 			matches := r.FindStringSubmatch(c.Value)
-			return carapace.ActionValues("KiB", "MiB", "GiB", "TiB", "PiB", "EiB", "ZiB", "YiB").Invoke(c).Prefix(matches[1]).ToA()
+			return carapace.ActionValues("EiB", "GiB", "KiB", "MiB", "PiB", "TiB", "YiB", "ZiB").Invoke(c).Prefix(matches[1]).ToA()
 		}
 		return carapace.ActionValues()
 	})

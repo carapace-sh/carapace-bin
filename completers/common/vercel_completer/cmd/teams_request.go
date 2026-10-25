@@ -21,6 +21,6 @@ func init() {
 	teamsCmd.AddCommand(teams_requestCmd)
 
 	carapace.Gen(teams_requestCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("plain", "json"),
+		"format": carapace.ActionValues("json", "plain"),
 	})
 }

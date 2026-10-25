@@ -13,9 +13,9 @@ import (
 //	global
 func ActionNamespaces() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"system", "system settings",
-		"secure", "secure settings",
 		"global", "global settings",
+		"secure", "secure settings",
+		"system", "system settings",
 	).Tag("namespaces")
 }
 

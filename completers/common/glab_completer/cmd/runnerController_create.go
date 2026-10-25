@@ -23,7 +23,7 @@ func init() {
 
 	carapace.Gen(runnerController_createCmd).FlagCompletion(carapace.ActionMap{
 		"jq":     jq.ActionFilters(),
-		"output": carapace.ActionValues("text", "json"),
-		"state":  carapace.ActionValues("disabled", "enabled", "dry_run"),
+		"output": carapace.ActionValues("json", "text"),
+		"state":  carapace.ActionValues("disabled", "dry_run", "enabled"),
 	})
 }

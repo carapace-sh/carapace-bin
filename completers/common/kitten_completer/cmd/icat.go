@@ -42,8 +42,8 @@ func init() {
 	carapace.Gen(icatCmd).FlagCompletion(carapace.ActionMap{
 		"align":         carapace.ActionValues("center", "left", "right"),
 		"engine":        carapace.ActionValues("auto", "builtin", "magick"),
-		"fit":           carapace.ActionValues("width", "height", "both", "none"),
-		"mirror":        carapace.ActionValues("none", "both", "horizontal", "vertical"),
+		"fit":           carapace.ActionValues("both", "height", "none", "width"),
+		"mirror":        carapace.ActionValues("both", "horizontal", "none", "vertical"),
 		"passthrough":   carapace.ActionValues("detect", "none", "tmux"),
 		"stdin":         carapace.ActionValues("detect", "no", "yes"),
 		"transfer-mode": carapace.ActionValues("detect", "file", "memory", "stream"),

@@ -91,7 +91,7 @@ func init() {
 				"FC":           bridge.ActionCarapaceBin().Split(),
 				"GCCGO":        bridge.ActionCarapaceBin().Split(),
 				"GCCGOTOOLDIR": carapace.ActionDirectories(),
-				"GO111MODULE":  carapace.ActionValues("off", "on", "auto").StyleF(style.ForKeyword),
+				"GO111MODULE":  carapace.ActionValues("auto", "off", "on").StyleF(style.ForKeyword),
 				"GOARCH":       golang.ActionArchitectures(),
 				"GOAUTH": carapace.ActionMultiParts(";", func(c carapace.Context) carapace.Action {
 					return carapace.Batch(
@@ -137,7 +137,7 @@ func init() {
 				"GOVCS": carapace.ActionMultiPartsN(":", 2, func(c carapace.Context) carapace.Action {
 					switch len(c.Parts) {
 					case 0:
-						return carapace.ActionValues("public", "private").StyleF(style.ForKeyword).Suffix(":")
+						return carapace.ActionValues("private", "public").StyleF(style.ForKeyword).Suffix(":")
 					default:
 						return carapace.ActionValuesDescribed(
 							"all", "",

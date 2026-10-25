@@ -57,10 +57,10 @@ func init() {
 
 	carapace.Gen(port_setCmd).FlagCompletion(carapace.ActionMap{
 		"data-plane-status": carapace.ActionValues("ACTIVE", "DOWN"),
-		"pvlan-type":        carapace.ActionValues("promiscuous", "isolated", "community"),
+		"pvlan-type":        carapace.ActionValues("community", "isolated", "promiscuous"),
 		"qos-policy":        action.ActionNetworkQosPolicies(port_setCmd),
 		"security-group":    action.ActionSecurityGroups(port_setCmd),
-		"vnic-type":         carapace.ActionValues("accelerator-direct", "accelerator-direct-physical", "direct", "direct-physical", "macvtap", "normal", "baremetal", "virtio-forwarder", "smart-nic", "vdpa", "remote-managed"),
+		"vnic-type":         carapace.ActionValues("accelerator-direct", "accelerator-direct-physical", "baremetal", "direct", "direct-physical", "macvtap", "normal", "remote-managed", "smart-nic", "vdpa", "virtio-forwarder"),
 	})
 
 	carapace.Gen(port_setCmd).PositionalCompletion(action.ActionPorts(port_setCmd))

@@ -20,13 +20,13 @@ func init() {
 	carapace.Gen(findIdentityCmd).FlagCompletion(carapace.ActionMap{
 		"policy": carapace.ActionValues(
 			"basic",
+			"codesigning",
+			"eap",
+			"ichat",
+			"ipsec",
+			"smime",
 			"ssl-client",
 			"ssl-server",
-			"smime",
-			"eap",
-			"ipsec",
-			"ichat",
-			"codesigning",
 			"sys-default",
 			"sys-kerberos-kdc",
 		),

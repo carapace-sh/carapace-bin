@@ -38,7 +38,7 @@ func init() {
 	carapace.Gen(showloadedCmd).FlagCompletion(carapace.ActionMap{
 		"arch":        carapace.ActionValues("arm64", "arm64e", "x86_64", "x86_64h"),
 		"bundle-path": carapace.ActionFiles(),
-		"collection":  carapace.ActionValues("boot", "system", "auxiliary"),
-		"show":        carapace.ActionValues("loaded", "unloaded", "all"),
+		"collection":  carapace.ActionValues("auxiliary", "boot", "system"),
+		"show":        carapace.ActionValues("all", "loaded", "unloaded"),
 	})
 }

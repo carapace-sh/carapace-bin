@@ -36,7 +36,7 @@ func init() {
 	carapace.Gen(endpoint_listCmd).FlagCompletion(carapace.ActionMap{
 		"column":         action.ActionColumns(endpoint_listCmd),
 		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
-		"interface":      carapace.ActionValues("admin", "public", "internal"),
+		"interface":      carapace.ActionValues("admin", "internal", "public"),
 		"project":        action.ActionProjects(endpoint_listCmd),
 		"project-domain": action.ActionDomains(endpoint_listCmd),
 		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),

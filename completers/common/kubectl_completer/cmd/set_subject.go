@@ -43,7 +43,7 @@ func init() {
 	})
 
 	carapace.Gen(set_subjectCmd).PositionalCompletion(
-		carapace.ActionValues("rolebinding", "clusterrolebinding"),
+		carapace.ActionValues("clusterrolebinding", "rolebinding"),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return kubectl.ActionResources(kubectl.ResourceOpts{
 				Context:   rootCmd.Flag("context").Value.String(),

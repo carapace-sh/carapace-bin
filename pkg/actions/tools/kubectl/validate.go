@@ -10,5 +10,5 @@ import (
 //	strict
 //	warn
 func ActionValidationModes() carapace.Action {
-	return carapace.ActionValues("strict", "true", "warn", "ignore", "false").StyleF(style.ForKeyword)
+	return carapace.ActionValues("false", "ignore", "strict", "true", "warn").StyleF(style.ForKeyword)
 }

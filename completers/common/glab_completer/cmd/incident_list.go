@@ -51,19 +51,19 @@ func init() {
 
 	carapace.Gen(incident_listCmd).FlagCompletion(carapace.ActionMap{
 		"assignee": carapace.Batch(
-			carapace.ActionValues("@me", "@none", "@any"),
+			carapace.ActionValues("@any", "@me", "@none"),
 			action.ActionProjectMembers(incident_listCmd),
 		).ToA(),
 		"author":        action.ActionUsers(incident_listCmd),
 		"group":         action.ActionGroups(incident_listCmd).UniqueList(","),
-		"in":            carapace.ActionValues("title", "description"),
+		"in":            carapace.ActionValues("description", "title"),
 		"jq":            jq.ActionFilters(),
 		"label":         action.ActionLabels(incident_listCmd).UniqueList(","),
 		"milestone":     action.ActionMilestones(incident_listCmd),
 		"not-assignee":  action.ActionProjectMembers(incident_listCmd).UniqueList(","),
 		"not-author":    action.ActionUsers(incident_listCmd).UniqueList(","),
 		"not-label":     action.ActionLabels(incident_listCmd).UniqueList(","),
-		"order":         carapace.ActionValues("created_at", "updated_at", "priority", "due_date", "relative_position", "label_priority", "milestone_due", "popularity", "weight"),
+		"order":         carapace.ActionValues("created_at", "due_date", "label_priority", "milestone_due", "popularity", "priority", "relative_position", "updated_at", "weight"),
 		"output":        carapace.ActionStyledValues("text", "json"),
 		"output-format": carapace.ActionValues("details", "ids", "urls"),
 		"repo":          action.ActionRepo(incident_listCmd),

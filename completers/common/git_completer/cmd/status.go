@@ -43,7 +43,7 @@ func init() {
 
 	carapace.Gen(statusCmd).FlagCompletion(carapace.ActionMap{
 		"column":            carapace.ActionValues("always", "never").StyleF(style.ForKeyword),
-		"ignore-submodules": carapace.ActionValues("none", "untracked", "dirty", "all").StyleF(style.ForKeyword),
+		"ignore-submodules": carapace.ActionValues("all", "dirty", "none", "untracked").StyleF(style.ForKeyword),
 		"ignored":           ActionIgnoredModes(),
 		"porcelain":         carapace.ActionValues("v1", "v2"),
 		"untracked-files":   ActionUntrackedFilesModes(),
@@ -60,16 +60,16 @@ func init() {
 
 func ActionUntrackedFilesModes() carapace.Action {
 	return carapace.ActionValuesDescribed(
+		"all", "also shows individual files in untracked directories",
 		"no", "show no untracked files",
 		"normal", "shows untracked files and directories",
-		"all", "also shows individual files in untracked directories",
 	)
 }
 
 func ActionIgnoredModes() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"traditional", "shows ignored files and directories",
-		"no", "show no ignored files",
 		"matching", "shows ignored files and directories matching an ignore pattern",
+		"no", "show no ignored files",
+		"traditional", "shows ignored files and directories",
 	)
 }

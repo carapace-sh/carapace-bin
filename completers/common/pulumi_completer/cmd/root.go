@@ -33,7 +33,7 @@ func init() {
 	rootCmd.PersistentFlags().IntP("verbose", "v", 0, "Enable verbose logging (e.g., v=3); anything >3 is very verbose")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"color": carapace.ActionValues("always", "never", "raw", "auto").StyleF(style.ForKeyword),
+		"color": carapace.ActionValues("always", "auto", "never", "raw").StyleF(style.ForKeyword),
 		"cwd":   carapace.ActionDirectories(),
 		"tracing": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {

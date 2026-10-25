@@ -117,7 +117,7 @@ func init() {
 	carapace.Gen(service_updateCmd).FlagCompletion(carapace.ActionMap{
 		"config-add":              docker.ActionConfigs(),
 		"config-rm":               docker.ActionConfigs(),
-		"endpoint-mode":           carapace.ActionValues("vip", "dnsrr"),
+		"endpoint-mode":           carapace.ActionValues("dnsrr", "vip"),
 		"env-add":                 env.ActionNameValues(false),
 		"group-add":               os.ActionGroups(),
 		"image":                   docker.ActionRepositoryTags(),

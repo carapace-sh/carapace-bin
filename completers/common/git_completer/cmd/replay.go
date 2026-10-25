@@ -40,7 +40,7 @@ func init() {
 		"advance":    git.ActionRefs(git.RefOption{}.Default()),
 		"onto":       git.ActionLocalBranches(),
 		"ref":        git.ActionRefs(git.RefOption{}.Default()),
-		"ref-action": carapace.ActionValuesDescribed("update", "update refs directly using an atomic transaction", "print", "output update-ref commands for pipeline use"),
+		"ref-action": carapace.ActionValuesDescribed("print", "output update-ref commands for pipeline use", "update", "update refs directly using an atomic transaction"),
 		"revert":     git.ActionLocalBranches(),
 	})
 

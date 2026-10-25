@@ -35,8 +35,8 @@ func init() {
 	rootCmd.Flags().StringS("t", "t", "", "Type")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"m": carapace.ActionValues("tcp", "udp", "scopt", "route"),
+		"m": carapace.ActionValues("route", "scopt", "tcp", "udp"),
 		"p": ps.ActionProcessExecutables(),
-		"t": carapace.ActionValues("tcp", "udp", "scopt", "route"),
+		"t": carapace.ActionValues("route", "scopt", "tcp", "udp"),
 	})
 }

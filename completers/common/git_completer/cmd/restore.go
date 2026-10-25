@@ -40,7 +40,7 @@ func init() {
 	rootCmd.AddCommand(restoreCmd)
 
 	carapace.Gen(restoreCmd).FlagCompletion(carapace.ActionMap{
-		"conflict":           carapace.ActionValues("merge", "diff3"),
+		"conflict":           carapace.ActionValues("diff3", "merge"),
 		"pathspec-from-file": carapace.ActionFiles(),
 		"recurse-submodules": git.ActionRefs(git.RefOption{}.Default()),
 		"source":             git.ActionRefs(git.RefOption{}.Default()),

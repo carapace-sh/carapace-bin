@@ -21,7 +21,7 @@ func init() {
 
 	carapace.Gen(kube_joinCmd).FlagCompletion(carapace.ActionMap{
 		"cluster": tsh.ActionClusters(),
-		"mode":    carapace.ActionValues("observer", "moderator", "peer"),
+		"mode":    carapace.ActionValues("moderator", "observer", "peer"),
 	})
 
 	carapace.Gen(kube_joinCmd).PositionalCompletion(

@@ -56,12 +56,12 @@ func init() {
 	rootCmd.Flag("color").NoOptDefVal = " "
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"color":         carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
+		"color":         carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"console-level": action.ActionLogLevels(),
 		"facility":      action.ActionFacilities().UniqueList(","),
 		"file":          carapace.ActionFiles(),
 		"kmsg-file":     carapace.ActionFiles(),
 		"level":         action.ActionLogLevels().UniqueList(","),
-		"time-format":   carapace.ActionValues("delta", "reltime", "ctime", "notime", "iso"),
+		"time-format":   carapace.ActionValues("ctime", "delta", "iso", "notime", "reltime"),
 	})
 }

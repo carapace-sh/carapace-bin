@@ -22,6 +22,6 @@ func init() {
 	stepCmd.AddCommand(step_pruneCmd)
 
 	carapace.Gen(step_pruneCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("text", "json"),
+		"format": carapace.ActionValues("json", "text"),
 	})
 }

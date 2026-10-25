@@ -16,7 +16,7 @@ func init() {
 	carapace.Gen(reformatCmd).Standalone()
 	rootCmd.AddCommand(reformatCmd)
 	carapace.Gen(reformatCmd).PositionalCompletion(
-		carapace.ActionValues("APFS", "HFS+", "ExFAT", "MS-DOS"),
+		carapace.ActionValues("APFS", "ExFAT", "HFS+", "MS-DOS"),
 		fs.ActionBlockDevices(),
 	)
 }

@@ -28,7 +28,7 @@ func init() {
 
 	carapace.Gen(logCmd).FlagCompletion(carapace.ActionMap{
 		"authors-file": carapace.ActionFiles(),
-		"pager":        carapace.ActionValues("less", "more", "cat"),
+		"pager":        carapace.ActionValues("cat", "less", "more"),
 		"revision":     carapace.ActionValues(),
 	})
 }

@@ -22,7 +22,7 @@ func init() {
 
 	carapace.Gen(diagnosticsCmd).FlagCompletion(carapace.ActionMap{
 		"proc-macro-srv": carapace.ActionFiles(),
-		"severity":       carapace.ActionValues("error", "warning", "weak", "hints"),
+		"severity":       carapace.ActionValues("error", "hints", "warning", "weak"),
 	})
 
 	carapace.Gen(diagnosticsCmd).PositionalCompletion(

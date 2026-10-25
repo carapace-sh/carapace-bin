@@ -26,6 +26,6 @@ func init() {
 
 	carapace.Gen(agent_explainCmd).FlagCompletion(carapace.ActionMap{
 		"file":   carapace.ActionFiles(),
-		"format": carapace.ActionValues("text", "json"),
+		"format": carapace.ActionValues("json", "text"),
 	})
 }

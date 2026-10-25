@@ -33,11 +33,11 @@ func init() {
 	volumeCmd.AddCommand(volume_createCmd)
 
 	carapace.Gen(volume_createCmd).FlagCompletion(carapace.ActionMap{
-		"availability": carapace.ActionValues("active", "pause", "drain"),
+		"availability": carapace.ActionValues("active", "drain", "pause"),
 		"driver":       carapace.ActionValues("local"),
-		"scope":        carapace.ActionValues("single", "multi"),
-		"sharing":      carapace.ActionValues("none", "readonly", "onewriter", "all"),
-		"type":         carapace.ActionValues("mount", "block"),
+		"scope":        carapace.ActionValues("multi", "single"),
+		"sharing":      carapace.ActionValues("all", "none", "onewriter", "readonly"),
+		"type":         carapace.ActionValues("block", "mount"),
 	})
 
 	carapace.Gen(volume_createCmd).PositionalCompletion(docker.ActionVolumes())

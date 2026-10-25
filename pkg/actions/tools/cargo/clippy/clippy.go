@@ -12,15 +12,15 @@ import (
 func ActionCategories() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"clippy::all", "all lints that are on by default",
-		"clippy::correctness", "code that is outright wrong or useless",
-		"clippy::suspicious", "code that is most likely wrong or useless",
-		"clippy::style", "code that should be written in a more idiomatic way",
-		"clippy::complexity", "code that does something simple but in a complex way",
-		"clippy::perf", "code that can be written to run faster",
-		"clippy::pedantic", "lints which are rather strict or have occasional false positives",
-		"clippy::nursery", "new lints that are still under development",
-		"clippy::restriction", "lints used to restrict code based on clippy recommendations",
 		"clippy::cargo", "lints for the cargo manifest",
+		"clippy::complexity", "code that does something simple but in a complex way",
+		"clippy::correctness", "code that is outright wrong or useless",
+		"clippy::nursery", "new lints that are still under development",
+		"clippy::pedantic", "lints which are rather strict or have occasional false positives",
+		"clippy::perf", "code that can be written to run faster",
+		"clippy::restriction", "lints used to restrict code based on clippy recommendations",
+		"clippy::style", "code that should be written in a more idiomatic way",
+		"clippy::suspicious", "code that is most likely wrong or useless",
 	).Style(style.Blue)
 }
 

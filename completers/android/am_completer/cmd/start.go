@@ -34,13 +34,13 @@ func init() {
 	rootCmd.AddCommand(startCmd)
 
 	carapace.Gen(startCmd).FlagCompletion(carapace.ActionMap{
-		"activity-type":  carapace.ActionValues("standard", "home", "secondaryHome", "multiInstance"),
+		"activity-type":  carapace.ActionValues("home", "multiInstance", "secondaryHome", "standard"),
 		"start-profiler": carapace.ActionFiles(),
 		"user": carapace.Batch(
 			carapace.ActionValues("current"),
 			android.ActionUsers(),
 		).ToA(),
-		"windowing-mode": carapace.ActionValues("fullscreen", "multi-window", "picture-in-picture", "freeform", "split-screen"),
+		"windowing-mode": carapace.ActionValues("freeform", "fullscreen", "multi-window", "picture-in-picture", "split-screen"),
 	})
 	carapace.Gen(startCmd).PositionalAnyCompletion(
 		carapace.Batch(

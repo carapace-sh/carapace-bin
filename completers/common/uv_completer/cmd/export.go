@@ -144,9 +144,9 @@ func init() {
 		"extra":         uv.ActionExtras(),
 		"fork-strategy": uv.ActionForkStrategies(),
 		"format": carapace.ActionValuesDescribed(
-			"requirements.txt", "Export in `requirements.txt` format",
-			"pylock.toml", "Export in `pylock.toml` format",
 			"cyclonedx1.5", "Export in `CycloneDX` v1.5 JSON format",
+			"pylock.toml", "Export in `pylock.toml` format",
+			"requirements.txt", "Export in `requirements.txt` format",
 		),
 		"group":            uv.ActionDependencyGroups(),
 		"index-strategy":   uv.ActionIndexStrategies(),

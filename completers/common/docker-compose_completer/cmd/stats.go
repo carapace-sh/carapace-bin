@@ -22,7 +22,7 @@ func init() {
 	rootCmd.AddCommand(statsCmd)
 
 	carapace.Gen(statsCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("table", "json"),
+		"format": carapace.ActionValues("json", "table"),
 	})
 
 	carapace.Gen(statsCmd).PositionalCompletion(

@@ -18,6 +18,6 @@ func init() {
 	debugCmd.AddCommand(debug_daemonBusGraphCmd)
 
 	carapace.Gen(debug_daemonBusGraphCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("json", "dot"),
+		"format": carapace.ActionValues("dot", "json"),
 	})
 }

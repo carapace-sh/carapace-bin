@@ -18,7 +18,7 @@ func init() {
 	rootCmd.AddCommand(agentCmd)
 	carapace.Gen(agentCmd).PositionalCompletion(
 		carapace.Batch(
-			carapace.ActionValues("off", "on", "auto").StyleF(style.ForKeyword),
+			carapace.ActionValues("auto", "off", "on").StyleF(style.ForKeyword),
 			bluetoothctl.ActionAgentCapabilities(),
 		).ToA(),
 	)

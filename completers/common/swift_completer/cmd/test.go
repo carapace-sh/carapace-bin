@@ -52,8 +52,8 @@ func init() {
 	carapace.Gen(testCmd).FlagCompletion(carapace.ActionMap{
 		"attachments-path":         carapace.ActionDirectories(),
 		"event-stream-output-path": carapace.ActionFiles(),
-		"repeat-until":             carapace.ActionValues("pass", "fail"),
-		"test-output":              carapace.ActionValues("default", "experimental-summary", "experimental-parseable"),
+		"repeat-until":             carapace.ActionValues("fail", "pass"),
+		"test-output":              carapace.ActionValues("default", "experimental-parseable", "experimental-summary"),
 		"xunit-output":             carapace.ActionFiles(),
 	})
 

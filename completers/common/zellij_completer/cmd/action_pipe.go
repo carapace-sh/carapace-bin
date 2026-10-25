@@ -29,8 +29,8 @@ func init() {
 	actionCmd.AddCommand(action_pipeCmd)
 
 	carapace.Gen(action_pipeCmd).FlagCompletion(carapace.ActionMap{
-		"floating-plugin": carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
-		"in-place-plugin": carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
+		"floating-plugin": carapace.ActionValues("false", "true").StyleF(style.ForKeyword),
+		"in-place-plugin": carapace.ActionValues("false", "true").StyleF(style.ForKeyword),
 		"plugin-cwd":      carapace.ActionDirectories(),
 	})
 }

@@ -46,8 +46,8 @@ func init() {
 	carapace.Gen(createCmd).FlagCompletion(carapace.ActionMap{
 		"android-language": carapace.ActionValues("java", "kotlin"),
 		"ios-language":     carapace.ActionValues("objc", "swift"),
-		"platform":         carapace.ActionValues("ios", "android", "windows", "linux", "macos", "web", "darwin").UniqueList(","),
-		"platforms":        carapace.ActionValues("ios", "android", "windows", "linux", "macos", "web", "darwin").UniqueList(","),
+		"platform":         carapace.ActionValues("android", "darwin", "ios", "linux", "macos", "web", "windows").UniqueList(","),
+		"platforms":        carapace.ActionValues("android", "darwin", "ios", "linux", "macos", "web", "windows").UniqueList(","),
 		"sample":           action.ActionSamples(),
 		"template": carapace.ActionValuesDescribed(
 			"app", "(default) Generate a Flutter application.",

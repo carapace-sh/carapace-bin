@@ -40,7 +40,7 @@ func init() {
 	rootCmd.Flags().Bool("v", false, "Print version information")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"R": carapace.ActionValues("never", "always", "auto"),
+		"R": carapace.ActionValues("always", "auto", "never"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

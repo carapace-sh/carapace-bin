@@ -28,10 +28,10 @@ func init() {
 	rootCmd.AddCommand(groupspaceCmd)
 
 	carapace.Gen(groupspaceCmd).FlagCompletion(carapace.ActionMap{
-		"S": carapace.ActionValues("type", "name", "used", "quota"),
-		"o": carapace.ActionValues("type", "name", "used", "quota").UniqueList(","),
-		"s": carapace.ActionValues("type", "name", "used", "quota"),
-		"t": carapace.ActionValues("all", "posixuser", "smbuser", "posixgroup", "smbgroup").UniqueList(","),
+		"S": carapace.ActionValues("name", "quota", "type", "used"),
+		"o": carapace.ActionValues("name", "quota", "type", "used").UniqueList(","),
+		"s": carapace.ActionValues("name", "quota", "type", "used"),
+		"t": carapace.ActionValues("all", "posixgroup", "posixuser", "smbgroup", "smbuser").UniqueList(","),
 	})
 
 	carapace.Gen(groupspaceCmd).PositionalCompletion(

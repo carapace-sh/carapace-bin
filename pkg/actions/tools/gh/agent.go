@@ -12,12 +12,12 @@ import (
 func ActionAgents() carapace.Action {
 	return carapace.Batch(
 		carapace.ActionValuesDescribed(
-			"github-copilot", "GitHub Copilot",
-			"claude-code", "Claude Code",
-			"cursor", "Cursor",
-			"codex", "Codex",
-			"gemini-cli", "Gemini CLI",
 			"antigravity", "Antigravity",
+			"claude-code", "Claude Code",
+			"codex", "Codex",
+			"cursor", "Cursor",
+			"gemini-cli", "Gemini CLI",
+			"github-copilot", "GitHub Copilot",
 		).Style(style.Blue),
 		carapace.ActionValuesDescribed(
 			"adal", "AdaL",

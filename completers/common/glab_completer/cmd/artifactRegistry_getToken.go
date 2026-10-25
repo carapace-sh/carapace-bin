@@ -25,6 +25,6 @@ func init() {
 	carapace.Gen(artifactRegistry_getTokenCmd).FlagCompletion(carapace.ActionMap{
 		"hostname": action.ActionConfigHosts(),
 		"jq":       jq.ActionFilters(),
-		"output":   carapace.ActionValues("text", "json"),
+		"output":   carapace.ActionValues("json", "text"),
 	})
 }

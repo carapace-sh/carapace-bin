@@ -101,11 +101,11 @@ func init() {
 	rootCmd.Flag("x86").NoOptDefVal = ""
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"check":  carapace.ActionValues("none", "crc32", "crc64", "sha256"),
+		"check":  carapace.ActionValues("crc32", "crc64", "none", "sha256"),
 		"files":  carapace.ActionFiles(),
 		"files0": carapace.ActionFiles(),
-		"format": carapace.ActionValues("auto", "xz", "lzma", "lzip", "raw"),
-		"suffix": carapace.ActionValues(".xz", ".lzma", ".lzip"),
+		"format": carapace.ActionValues("auto", "lzip", "lzma", "raw", "xz"),
+		"suffix": carapace.ActionValues(".lzip", ".lzma", ".xz"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

@@ -48,9 +48,9 @@ func init() {
 	rootCmd.Flags().Bool("verbose", false, "Enable verbose output")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"force":                  carapace.ActionValues("scan", "list", "download", "install"),
+		"force":                  carapace.ActionValues("download", "install", "list", "scan"),
 		"full-installer-version": carapace.ActionValues(),
-		"product-types":          carapace.ActionValues("macOS", "AppStore", "BridgeOS", "iOS", "tvOS", "watchOS", "Firmware", "Safari"),
+		"product-types":          carapace.ActionValues("AppStore", "BridgeOS", "Firmware", "Safari", "iOS", "macOS", "tvOS", "watchOS"),
 		"user":                   os.ActionUsers(),
 	})
 

@@ -27,8 +27,8 @@ func init() {
 	addWorkspaceFlags(auditCmd)
 
 	carapace.Gen(auditCmd).FlagCompletion(carapace.ActionMap{
-		"audit-level": carapace.ActionValues("info", "low", "moderate", "high", "critical", "none"),
-		"include":     carapace.ActionValues("prod", "dev", "optional", "peer"),
+		"audit-level": carapace.ActionValues("critical", "high", "info", "low", "moderate", "none"),
+		"include":     carapace.ActionValues("dev", "optional", "peer", "prod"),
 		"omit":        carapace.ActionValues("dev", "optional", "peer"),
 	})
 

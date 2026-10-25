@@ -22,6 +22,6 @@ func init() {
 	searchCmd.AddCommand(search_repoCmd)
 
 	carapace.Gen(search_repoCmd).FlagCompletion(carapace.ActionMap{
-		"output": carapace.ActionValues("table", "json", "yaml"),
+		"output": carapace.ActionValues("json", "table", "yaml"),
 	})
 }

@@ -24,7 +24,7 @@ func init() {
 				codespace := codespace_ports_visibilityCmd.Flag("codespace").Value.String()
 				return action.ActionCodespacePorts(codespace).Invoke(c).Suffix(":").ToA()
 			case 1:
-				return carapace.ActionValues("public", "private", "org")
+				return carapace.ActionValues("org", "private", "public")
 			default:
 				return carapace.ActionValues()
 			}

@@ -34,6 +34,6 @@ func init() {
 
 	carapace.Gen(sbomCmd).FlagCompletion(carapace.ActionMap{
 		"sbom-format": carapace.ActionValues("cyclonedx", "spdx"),
-		"sbom-type":   carapace.ActionValues("library", "application"),
+		"sbom-type":   carapace.ActionValues("application", "library"),
 	})
 }

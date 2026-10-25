@@ -86,13 +86,13 @@ func ActionCodespacePorts(codespace string) carapace.Action {
 
 func ActionCodespaceFields() carapace.Action {
 	return carapace.ActionValues(
+		"createdAt",
+		"gitStatus",
+		"lastUsedAt",
 		"name",
 		"owner",
 		"repository",
 		"state",
-		"gitStatus",
-		"createdAt",
-		"lastUsedAt",
 	)
 }
 

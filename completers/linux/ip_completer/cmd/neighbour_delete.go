@@ -31,12 +31,12 @@ func init() {
 				case "lladdr":
 					return carapace.ActionValues().NoSpace()
 				case "nud":
-					return carapace.ActionValues("permanent", "noarp", "stale", "reachable", "none", "incomplete", "delay", "probe", "failed")
+					return carapace.ActionValues("delay", "failed", "incomplete", "noarp", "none", "permanent", "probe", "reachable", "stale")
 				case "vrf":
 					return carapace.ActionValues()
 				}
 			}
-			return carapace.ActionValues("dev", "lladdr", "nud", "proxy", "vrf", "nomaster")
+			return carapace.ActionValues("dev", "lladdr", "nomaster", "nud", "proxy", "vrf")
 		}),
 	)
 }

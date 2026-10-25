@@ -57,7 +57,7 @@ func init() {
 		"lastlog2-file": carapace.ActionFiles(),
 		"logins":        os.ActionUsers().UniqueList(","),
 		"output":        action.ActionColumns().UniqueList(","),
-		"time-format":   carapace.ActionValues("short", "full", "iso"),
+		"time-format":   carapace.ActionValues("full", "iso", "short"),
 		"wtmp-file":     carapace.ActionFiles(),
 	})
 

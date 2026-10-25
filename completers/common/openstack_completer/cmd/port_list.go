@@ -58,7 +58,7 @@ func init() {
 		"network":        action.ActionNetworks(port_listCmd),
 		"project":        action.ActionProjects(port_listCmd),
 		"project-domain": action.ActionDomains(port_listCmd),
-		"pvlan-type":     carapace.ActionValues("promiscuous", "isolated", "community"),
+		"pvlan-type":     carapace.ActionValues("community", "isolated", "promiscuous"),
 		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
 		"router":         action.ActionRouters(port_listCmd),
 		"security-group": action.ActionSecurityGroups(port_listCmd),

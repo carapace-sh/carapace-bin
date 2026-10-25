@@ -47,8 +47,8 @@ func init() {
 	imageCmd.AddCommand(image_setCmd)
 
 	carapace.Gen(image_setCmd).FlagCompletion(carapace.ActionMap{
-		"container-format": carapace.ActionValues("ami", "ari", "aki", "bare", "docker", "ova", "ovf"),
-		"disk-format":      carapace.ActionValues("ami", "ari", "aki", "vhd", "vmdk", "raw", "qcow2", "vhdx", "vdi", "iso", "ploop"),
+		"container-format": carapace.ActionValues("aki", "ami", "ari", "bare", "docker", "ova", "ovf"),
+		"disk-format":      carapace.ActionValues("aki", "ami", "ari", "iso", "ploop", "qcow2", "raw", "vdi", "vhd", "vhdx", "vmdk"),
 		"project":          action.ActionProjects(image_setCmd),
 		"project-domain":   action.ActionDomains(image_setCmd),
 	})

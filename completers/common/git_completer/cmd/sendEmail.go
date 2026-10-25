@@ -96,10 +96,10 @@ func init() {
 		"compose-encoding": text.ActionEncodings(),
 		"confirm": carapace.ActionValuesDescribed(
 			"always", "will always confirm before sending",
-			"never", "will never confirm before sending",
+			"auto", "is equivalent to cc + compose",
 			"cc", "will confirm before sending when send-email has automatically added addresses from the patch to the Cc list",
 			"compose", "will confirm before sending the first message when using --compose",
-			"auto", "is equivalent to cc + compose",
+			"never", "will never confirm before sending",
 		),
 		"envelope-sender": carapace.ActionValues("auto"),
 		"header-cmd":      bridge.ActionCarapaceBin().Split(),
@@ -116,7 +116,7 @@ func init() {
 		"smtp-ssl-client-cert": carapace.ActionFiles(),
 		"smtp-ssl-client-key":  carapace.ActionFiles(),
 		"to-cmd":               bridge.ActionCarapaceBin().Split(),
-		"transfer-encoding":    carapace.ActionValues("7bit", "8bit", "quoted-printable", "base64", "auto"),
+		"transfer-encoding":    carapace.ActionValues("7bit", "8bit", "auto", "base64", "quoted-printable"),
 	})
 
 	carapace.Gen(sendEmailCmd).PositionalAnyCompletion(

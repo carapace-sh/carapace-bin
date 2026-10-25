@@ -21,6 +21,6 @@ func init() {
 
 	carapace.Gen(opentofu_state_listCmd).FlagCompletion(carapace.ActionMap{
 		"jq":     jq.ActionFilters(),
-		"output": carapace.ActionValues("text", "json"),
+		"output": carapace.ActionValues("json", "text"),
 	})
 }

@@ -24,7 +24,7 @@ func init() {
 	endpointCmd.AddCommand(endpoint_setCmd)
 
 	carapace.Gen(endpoint_setCmd).FlagCompletion(carapace.ActionMap{
-		"interface": carapace.ActionValues("admin", "public", "internal"),
+		"interface": carapace.ActionValues("admin", "internal", "public"),
 		"region":    action.ActionRegions(endpoint_setCmd),
 	})
 

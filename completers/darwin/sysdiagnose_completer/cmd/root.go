@@ -44,7 +44,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"A": carapace.ActionFiles(),
-		"C": carapace.ActionValues("none", "gzip", "bzip2", "lzfse", "lzma"),
+		"C": carapace.ActionValues("bzip2", "gzip", "lzfse", "lzma", "none"),
 		"V": carapace.ActionFiles(),
 		"f": carapace.ActionDirectories(),
 	})

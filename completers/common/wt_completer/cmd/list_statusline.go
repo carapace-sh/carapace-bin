@@ -21,9 +21,9 @@ func init() {
 
 	carapace.Gen(list_statuslineCmd).FlagCompletion(carapace.ActionMap{
 		"format": carapace.ActionValuesDescribed(
-			"table", "Table format",
-			"json", "JSON format",
 			"claude-code", "Claude Code statusline mode (reads context from stdin)",
+			"json", "JSON format",
+			"table", "Table format",
 		),
 	})
 }

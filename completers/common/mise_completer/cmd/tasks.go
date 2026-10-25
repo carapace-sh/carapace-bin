@@ -36,7 +36,7 @@ func init() {
 	rootCmd.AddCommand(tasksCmd)
 
 	carapace.Gen(tasksCmd).FlagCompletion(carapace.ActionMap{
-		"sort":       carapace.ActionValues("name", "alias", "description", "source"),
+		"sort":       carapace.ActionValues("alias", "description", "name", "source"),
 		"sort-order": carapace.ActionValues("asc", "desc"),
 	})
 

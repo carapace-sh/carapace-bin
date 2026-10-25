@@ -97,7 +97,7 @@ func init() {
 	// TODO identifier, namespace, machine, unit
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"boot":           action.ActionBoots(),
-		"case-sensitive": carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
+		"case-sensitive": carapace.ActionValues("false", "true").StyleF(style.ForKeyword),
 		"cursor-file":    carapace.ActionFiles(),
 		"directory":      carapace.ActionDirectories(),
 		"facility":       action.ActionFacilities().UniqueList(","),
@@ -114,14 +114,14 @@ func init() {
 		}),
 		"root": carapace.ActionDirectories(),
 		"since": carapace.Batch(
-			carapace.ActionValues("yesterday", "today", "tomorrow"),
+			carapace.ActionValues("today", "tomorrow", "yesterday"),
 			time.ActionDateTime(time.DateTimeOpts{}),
 		).ToA(),
 		"unit": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return systemd.ActionUnits(systemd.UnitOpts{User: rootCmd.Flag("user").Changed, Active: true, Inactive: true})
 		}),
 		"until": carapace.Batch(
-			carapace.ActionValues("yesterday", "today", "tomorrow"),
+			carapace.ActionValues("today", "tomorrow", "yesterday"),
 			time.ActionDateTime(time.DateTimeOpts{}),
 		).ToA(),
 		"user-unit": systemd.ActionUnits(systemd.UnitOpts{User: true, Active: true, Inactive: true}),

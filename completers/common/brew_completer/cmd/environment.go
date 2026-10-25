@@ -23,6 +23,6 @@ func init() {
 	rootCmd.AddCommand(environmentCmd)
 
 	carapace.Gen(environmentCmd).FlagCompletion(carapace.ActionMap{
-		"shell": carapace.ActionValues("bash", "csh", "fish", "nu", "pwsh", "tcsh", "zsh", "auto"),
+		"shell": carapace.ActionValues("auto", "bash", "csh", "fish", "nu", "pwsh", "tcsh", "zsh"),
 	})
 }

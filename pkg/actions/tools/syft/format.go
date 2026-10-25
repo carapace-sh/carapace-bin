@@ -8,12 +8,12 @@ import "github.com/carapace-sh/carapace"
 //	template
 func ActionOutputFormats() carapace.Action {
 	return carapace.ActionValues(
-		"syft-json",
-		"cyclonedx-xml",
 		"cyclonedx-json",
+		"cyclonedx-xml",
 		"github-json",
-		"spdx-tag-value",
 		"spdx-json",
+		"spdx-tag-value",
+		"syft-json",
 		"syft-table",
 		"syft-text",
 		"template",

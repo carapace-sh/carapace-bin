@@ -33,7 +33,7 @@ func init() {
 			default:
 				switch c.Parts[0] {
 				case "is-official":
-					return carapace.ActionValues("true", "false").StyleF(style.ForKeyword)
+					return carapace.ActionValues("false", "true").StyleF(style.ForKeyword)
 				default:
 					return carapace.ActionValues()
 				}

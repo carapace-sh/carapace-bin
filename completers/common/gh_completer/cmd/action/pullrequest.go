@@ -98,11 +98,11 @@ func ActionPullRequestFields() carapace.Action {
 		"isCrossRepository",
 		"isDraft",
 		"maintainerCanModify",
-		"mergeable",
 		"mergeCommit",
+		"mergeStateStatus",
+		"mergeable",
 		"mergedAt",
 		"mergedBy",
-		"mergeStateStatus",
 		"potentialMergeCommit",
 		"reviewDecision",
 		"reviewRequests",
@@ -113,15 +113,15 @@ func ActionPullRequestFields() carapace.Action {
 
 func ActionPullRequestCheckFields() carapace.Action {
 	return carapace.ActionValues(
-		"name",
-		"state",
-		"startedAt",
-		"completedAt",
-		"link",
 		"bucket",
-		"event",
-		"workflow",
+		"completedAt",
 		"description",
+		"event",
+		"link",
+		"name",
+		"startedAt",
+		"state",
+		"workflow",
 	)
 }
 

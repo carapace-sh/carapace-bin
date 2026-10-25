@@ -81,8 +81,8 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		// TODO custom + format
-		"color": carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
-		"time":  carapace.ActionValues("full-iso", "long-iso", "iso", "locale"),
+		"color": carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
+		"time":  carapace.ActionValues("full-iso", "iso", "locale", "long-iso"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())

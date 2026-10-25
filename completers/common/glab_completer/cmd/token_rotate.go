@@ -29,7 +29,7 @@ func init() {
 	carapace.Gen(token_rotateCmd).FlagCompletion(carapace.ActionMap{
 		"group":  action.ActionGroups(token_rotateCmd),
 		"jq":     jq.ActionFilters(),
-		"output": carapace.ActionValues("text", "json"),
+		"output": carapace.ActionValues("json", "text"),
 		"repo":   action.ActionRepo(token_rotateCmd),
 		"user":   action.ActionUsers(token_rotateCmd),
 	})

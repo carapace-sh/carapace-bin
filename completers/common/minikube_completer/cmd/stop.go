@@ -23,6 +23,6 @@ func init() {
 	rootCmd.AddCommand(stopCmd)
 
 	carapace.Gen(stopCmd).FlagCompletion(carapace.ActionMap{
-		"output": carapace.ActionValues("text", "json"),
+		"output": carapace.ActionValues("json", "text"),
 	})
 }

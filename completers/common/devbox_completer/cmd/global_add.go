@@ -31,7 +31,7 @@ func init() {
 	// TODO complete more flags
 	carapace.Gen(global_addCmd).FlagCompletion(carapace.ActionMap{
 		"config": carapace.ActionDirectories(),
-		"patch":  carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
+		"patch":  carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 	})
 
 	// TODO positional completion

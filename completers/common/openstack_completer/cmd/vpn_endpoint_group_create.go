@@ -37,6 +37,6 @@ func init() {
 		"format":         carapace.ActionValues("json", "shell", "table", "value", "yaml"),
 		"project":        action.ActionProjects(vpn_endpoint_group_createCmd),
 		"project-domain": action.ActionDomains(vpn_endpoint_group_createCmd),
-		"type":           carapace.ActionValues("subnet", "cidr"),
+		"type":           carapace.ActionValues("cidr", "subnet"),
 	})
 }

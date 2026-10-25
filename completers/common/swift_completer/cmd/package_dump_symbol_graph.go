@@ -29,7 +29,7 @@ func init() {
 	packageCmd.AddCommand(package_dumpSymbolGraphCmd)
 
 	carapace.Gen(package_dumpSymbolGraphCmd).FlagCompletion(carapace.ActionMap{
-		"minimum-access-level": carapace.ActionValues("private", "fileprivate", "internal", "package", "public", "open"),
+		"minimum-access-level": carapace.ActionValues("fileprivate", "internal", "open", "package", "private", "public"),
 		"output-dir":           carapace.ActionDirectories(),
 	})
 }

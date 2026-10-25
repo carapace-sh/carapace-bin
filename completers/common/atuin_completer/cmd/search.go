@@ -45,16 +45,16 @@ func init() {
 	carapace.Gen(searchCmd).FlagCompletion(carapace.ActionMap{
 		"after": time.ActionDate(),
 		"author": carapace.ActionValuesDescribed(
-			"$all-user", "non-agents",
 			"$all-agent", "agents",
+			"$all-user", "non-agents",
 			// TODO existing users
 		),
 		"before":      time.ActionDate(),
 		"cwd":         carapace.ActionDirectories(),
 		"exclude-cwd": carapace.ActionDirectories(),
-		"filter-mode": carapace.ActionValues("global", "host", "session", "directory", "workspace", "session-preload"),
-		"keymap-mode": carapace.ActionValues("emacs", "vim-normal", "vim-insert", "auto"),
-		"search-mode": carapace.ActionValues("prefix", "full-text", "fuzzy", "skim", "daemon-fuzzy"),
+		"filter-mode": carapace.ActionValues("directory", "global", "host", "session", "session-preload", "workspace"),
+		"keymap-mode": carapace.ActionValues("auto", "emacs", "vim-insert", "vim-normal"),
+		"search-mode": carapace.ActionValues("daemon-fuzzy", "full-text", "fuzzy", "prefix", "skim"),
 		"timezone":    carapace.ActionValues(), // TODO
 		"tz":          carapace.ActionValues(), // TODO
 	})

@@ -28,7 +28,7 @@ func init() {
 	rootCmd.Flags().BoolS("x", "x", false, "Print commands before execution")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"o": carapace.ActionValues("vi", "emacs"),
+		"o": carapace.ActionValues("emacs", "vi"),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

@@ -12,7 +12,7 @@ import (
 func ActionModes() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.Batch(
-			carapace.ActionValues("regular", "transparent", "socks5"),
+			carapace.ActionValues("regular", "socks5", "transparent"),
 			carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 				switch len(c.Parts) {
 				case 0:

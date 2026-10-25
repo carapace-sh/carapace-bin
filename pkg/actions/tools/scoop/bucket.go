@@ -37,15 +37,15 @@ func ActionInstalledBuckets() carapace.Action {
 //	main (https://github.com/ScoopInstaller/Main)
 func ActionKnownBuckets() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"main", "https://github.com/ScoopInstaller/Main",
 		"extras", "https://github.com/ScoopInstaller/Extras",
-		"versions", "https://github.com/ScoopInstaller/Versions",
-		"nirsoft", "https://github.com/ScoopInstaller/Nirsoft",
-		"sysinternals", "https://github.com/ScoopInstaller/Sysinternals",
-		"php", "https://github.com/ScoopInstaller/PHP",
-		"nerd-fonts", "https://github.com/matthewjberger/scoop-nerd-fonts",
-		"nonportable", "https://github.com/ScoopInstaller/Nonportable",
-		"java", "https://github.com/ScoopInstaller/Java",
 		"games", "https://github.com/ScoopInstaller/Games",
+		"java", "https://github.com/ScoopInstaller/Java",
+		"main", "https://github.com/ScoopInstaller/Main",
+		"nerd-fonts", "https://github.com/matthewjberger/scoop-nerd-fonts",
+		"nirsoft", "https://github.com/ScoopInstaller/Nirsoft",
+		"nonportable", "https://github.com/ScoopInstaller/Nonportable",
+		"php", "https://github.com/ScoopInstaller/PHP",
+		"sysinternals", "https://github.com/ScoopInstaller/Sysinternals",
+		"versions", "https://github.com/ScoopInstaller/Versions",
 	).Tag("buckets")
 }

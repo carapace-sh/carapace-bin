@@ -36,7 +36,7 @@ func init() {
 	carapace.Gen(generate_componentCmd).FlagCompletion(carapace.ActionMap{
 		"change-detection":   carapace.ActionValues("Default", "OnPush"),
 		"project":            action.ActionProjects(),
-		"style":              carapace.ActionValues("css", "scss", "sass", "less", "none"),
+		"style":              carapace.ActionValues("css", "less", "none", "sass", "scss"),
 		"view-encapsulation": carapace.ActionValues("Emulated", "None", "ShadowDom"),
 	})
 }

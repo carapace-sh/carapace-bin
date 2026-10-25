@@ -44,7 +44,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"m": os.ActionUsers(),
-		"o": carapace.ActionValues("read", "create", "delete", "edit", "checkmember"),
+		"o": carapace.ActionValues("checkmember", "create", "delete", "edit", "read"),
 		"u": os.ActionUsers(),
 	})
 }

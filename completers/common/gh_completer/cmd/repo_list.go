@@ -46,7 +46,7 @@ func init() {
 			}
 			return action.ActionTopics(repo_listCmd, "").UniqueList(",")
 		}),
-		"visibility": carapace.ActionValues("public", "private", "internal"),
+		"visibility": carapace.ActionValues("internal", "private", "public"),
 	})
 
 	carapace.Gen(repo_listCmd).PositionalCompletion(

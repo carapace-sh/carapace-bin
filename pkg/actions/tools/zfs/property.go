@@ -125,45 +125,45 @@ func ActionPropertyValues(property string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		switch property {
 		case "aclinherit":
-			return carapace.ActionValues("discard", "noallow", "restricted", "passthrough", "passthrough-x")
+			return carapace.ActionValues("discard", "noallow", "passthrough", "passthrough-x", "restricted")
 		case "aclmode":
 			return carapace.ActionValues("discard", "groupmask", "passthrough", "restricted")
 		case "acltype":
-			return carapace.ActionValues("off", "nfsv4", "posix", "noacl", "posixacl")
+			return carapace.ActionValues("nfsv4", "noacl", "off", "posix", "posixacl")
 		case "atime", "relatime", "devices", "exec", "jailed", "nbmand", "overlay",
 			"readonly", "setuid", "utf8only", "volthreading", "vscan", "zoned":
-			return carapace.ActionValues("on", "off").StyleF(style.ForKeyword)
+			return carapace.ActionValues("off", "on").StyleF(style.ForKeyword)
 		case "canmount":
-			return carapace.ActionValues("on", "off", "noauto").StyleF(style.ForKeyword)
+			return carapace.ActionValues("noauto", "off", "on").StyleF(style.ForKeyword)
 		case "casesensitivity":
-			return carapace.ActionValues("sensitive", "insensitive", "mixed")
+			return carapace.ActionValues("insensitive", "mixed", "sensitive")
 		case "checksum":
-			return carapace.ActionValues("on", "off", "fletcher2", "fletcher4", "sha256", "noparity", "sha512", "skein", "edonr", "blake3")
+			return carapace.ActionValues("blake3", "edonr", "fletcher2", "fletcher4", "noparity", "off", "on", "sha256", "sha512", "skein")
 		case "compression":
-			return carapace.ActionValues("on", "off", "gzip", "gzip-1", "gzip-2", "gzip-3", "gzip-4", "gzip-5",
-				"gzip-6", "gzip-7", "gzip-8", "gzip-9", "lz4", "lzjb", "zle",
-				"zstd", "zstd-1", "zstd-2", "zstd-3", "zstd-4", "zstd-5", "zstd-6", "zstd-7",
-				"zstd-8", "zstd-9", "zstd-10", "zstd-11", "zstd-12", "zstd-13", "zstd-14",
-				"zstd-15", "zstd-16", "zstd-17", "zstd-18", "zstd-19", "zstd-fast",
-				"zstd-fast-1", "zstd-fast-2", "zstd-fast-3", "zstd-fast-4", "zstd-fast-5",
-				"zstd-fast-6", "zstd-fast-7", "zstd-fast-8", "zstd-fast-9", "zstd-fast-10",
-				"zstd-fast-20", "zstd-fast-30", "zstd-fast-40", "zstd-fast-50",
-				"zstd-fast-60", "zstd-fast-70", "zstd-fast-80", "zstd-fast-90",
-				"zstd-fast-100", "zstd-fast-500", "zstd-fast-1000")
+			return carapace.ActionValues("gzip", "gzip-1", "gzip-2", "gzip-3", "gzip-4", "gzip-5", "gzip-6", "gzip-7",
+				"gzip-8", "gzip-9", "lz4", "lzjb", "off", "on", "zle",
+				"zstd", "zstd-1", "zstd-10", "zstd-11", "zstd-12", "zstd-13", "zstd-14", "zstd-15",
+				"zstd-16", "zstd-17", "zstd-18", "zstd-19", "zstd-2", "zstd-3", "zstd-4",
+				"zstd-5", "zstd-6", "zstd-7", "zstd-8", "zstd-9", "zstd-fast",
+				"zstd-fast-1", "zstd-fast-10", "zstd-fast-100", "zstd-fast-1000", "zstd-fast-2",
+				"zstd-fast-20", "zstd-fast-3", "zstd-fast-30", "zstd-fast-4", "zstd-fast-40",
+				"zstd-fast-5", "zstd-fast-50", "zstd-fast-500", "zstd-fast-6",
+				"zstd-fast-60", "zstd-fast-7", "zstd-fast-70", "zstd-fast-8",
+				"zstd-fast-80", "zstd-fast-9", "zstd-fast-90")
 		case "copies":
 			return carapace.ActionValues("1", "2", "3")
 		case "dedup":
-			return carapace.ActionValues("on", "off", "verify", "sha256", "sha256,verify", "sha512", "sha512,verify",
-				"skein", "skein,verify", "edonr,verify", "blake3", "blake3,verify")
+			return carapace.ActionValues("blake3", "blake3,verify", "edonr,verify", "off", "on", "sha256", "sha256,verify",
+				"sha512", "sha512,verify", "skein", "skein,verify", "verify")
 		case "direct":
-			return carapace.ActionValues("disabled", "standard", "always")
+			return carapace.ActionValues("always", "disabled", "standard")
 		case "dnodesize":
-			return carapace.ActionValues("legacy", "auto", "1k", "2k", "4k", "8k", "16k")
+			return carapace.ActionValues("16k", "1k", "2k", "4k", "8k", "auto", "legacy")
 		case "encryption":
-			return carapace.ActionValues("off", "on", "aes-128-ccm", "aes-192-ccm", "aes-256-ccm",
-				"aes-128-gcm", "aes-192-gcm", "aes-256-gcm")
+			return carapace.ActionValues("aes-128-ccm", "aes-128-gcm", "aes-192-ccm", "aes-192-gcm", "aes-256-ccm",
+				"aes-256-gcm", "off", "on")
 		case "keyformat":
-			return carapace.ActionValues("raw", "hex", "passphrase")
+			return carapace.ActionValues("hex", "passphrase", "raw")
 		case "keylocation":
 			return carapace.Batch(
 				carapace.ActionValues("prompt"),
@@ -172,29 +172,29 @@ func ActionPropertyValues(property string) carapace.Action {
 		case "logbias":
 			return carapace.ActionValues("latency", "throughput")
 		case "normalization":
-			return carapace.ActionValues("none", "formC", "formD", "formKC", "formKD")
+			return carapace.ActionValues("formC", "formD", "formKC", "formKD", "none")
 		case "prefetch":
-			return carapace.ActionValues("all", "none", "metadata")
+			return carapace.ActionValues("all", "metadata", "none")
 		case "mountpoint":
 			return carapace.Batch(
-				carapace.ActionValues("none", "legacy"),
+				carapace.ActionValues("legacy", "none"),
 				carapace.ActionDirectories(),
 			).ToA()
 		case "primarycache", "secondarycache":
-			return carapace.ActionValues("all", "none", "metadata")
+			return carapace.ActionValues("all", "metadata", "none")
 		case "defaultgroupobjquota", "defaultgroupquota", "defaultprojectobjquota", "defaultprojectquota",
 			"defaultuserobjquota", "defaultuserquota", "quota", "refquota", "reservation", "volsize":
 			return carapace.ActionValues("none")
 		case "refreservation":
-			return carapace.ActionValues("none", "auto")
+			return carapace.ActionValues("auto", "none")
 		case "recordsize":
 			return carapace.ActionValues("512", "1K", "2K", "4K", "8K", "16K", "32K", "64K", "128K", "256K", "512K", "1M")
 		case "redundant_metadata":
-			return carapace.ActionValues("all", "most", "some", "none")
+			return carapace.ActionValues("all", "most", "none", "some")
 		case "sharenfs":
-			return carapace.ActionValues("on", "off").StyleF(style.ForKeyword)
+			return carapace.ActionValues("off", "on").StyleF(style.ForKeyword)
 		case "sharesmb":
-			return carapace.ActionValues("on", "off").StyleF(style.ForKeyword)
+			return carapace.ActionValues("off", "on").StyleF(style.ForKeyword)
 		case "snapdev":
 			return carapace.ActionValues("hidden", "visible")
 		case "snapdir":
@@ -202,13 +202,13 @@ func ActionPropertyValues(property string) carapace.Action {
 		case "special_small_blocks":
 			return carapace.ActionValues("0", "512", "1K", "2K", "4K", "8K", "16K", "32K", "64K", "128K", "256K", "512K", "1M")
 		case "sync":
-			return carapace.ActionValues("standard", "always", "disabled")
+			return carapace.ActionValues("always", "disabled", "standard")
 		case "volblocksize":
 			return carapace.ActionValues("512", "1K", "2K", "4K", "8K", "16K", "32K", "64K", "128K")
 		case "volmode":
-			return carapace.ActionValues("default", "full", "geom", "dev", "none")
+			return carapace.ActionValues("default", "dev", "full", "geom", "none")
 		case "xattr":
-			return carapace.ActionValues("on", "off", "dir", "sa")
+			return carapace.ActionValues("dir", "off", "on", "sa")
 		default:
 			return carapace.ActionValues()
 		}
@@ -318,7 +318,7 @@ func ActionReadonlyPoolProperties() carapace.Action {
 func ActionPoolPropertyValues(property string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if strings.HasPrefix(property, "feature@") {
-			return carapace.ActionValues("enabled", "disabled").StyleF(style.ForKeyword)
+			return carapace.ActionValues("disabled", "enabled").StyleF(style.ForKeyword)
 		}
 		switch property {
 		case "altroot":
@@ -326,11 +326,11 @@ func ActionPoolPropertyValues(property string) carapace.Action {
 		case "ashift":
 			return carapace.ActionValues("0", "9", "10", "11", "12", "13", "14", "15", "16")
 		case "autoexpand", "autoreplace", "autotrim", "delegation", "listsnapshots", "multihost", "readonly":
-			return carapace.ActionValues("on", "off").StyleF(style.ForKeyword)
+			return carapace.ActionValues("off", "on").StyleF(style.ForKeyword)
 		case "bootfs":
 			return ActionFilesystems()
 		case "dedup_table_quota":
-			return carapace.ActionValues("none", "auto")
+			return carapace.ActionValues("auto", "none")
 		case "cachefile":
 			return carapace.Batch(
 				carapace.ActionValues("none"),
@@ -338,11 +338,11 @@ func ActionPoolPropertyValues(property string) carapace.Action {
 			).ToA()
 		case "compatibility":
 			return carapace.Batch(
-				carapace.ActionValues("off", "legacy"),
+				carapace.ActionValues("legacy", "off"),
 				carapace.ActionFiles(),
 			).ToA()
 		case "failmode":
-			return carapace.ActionValues("wait", "continue", "panic")
+			return carapace.ActionValues("continue", "panic", "wait")
 		default:
 			return carapace.ActionValues()
 		}
@@ -384,11 +384,11 @@ func ActionPermissions() carapace.Action {
 		"hold", "hold snapshots",
 		"load-key", "load/unload encryption key",
 		"mount", "mount/unmount",
-		"promote", "promote clones",
 		"projectobjquota", "access project object quotas",
 		"projectobjused", "read project object usage",
 		"projectquota", "access project quotas",
 		"projectused", "read project usage",
+		"promote", "promote clones",
 		"receive", "receive streams",
 		"receive:append", "receive without force",
 		"release", "release holds",

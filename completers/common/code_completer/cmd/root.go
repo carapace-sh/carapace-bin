@@ -55,7 +55,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"add":               carapace.ActionDirectories(),
-		"category":          carapace.ActionValues("Programming Languages", "Snippets", "Linters", "Themes", "Debuggers", "Other"),
+		"category":          carapace.ActionValues("Debuggers", "Linters", "Other", "Programming Languages", "Snippets", "Themes"),
 		"disable-extension": action.ActionExtensions(rootCmd),
 		"extensions-dir":    carapace.ActionDirectories(),
 		"goto": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
@@ -73,8 +73,8 @@ func init() {
 			).ToA()
 		}),
 		"locale":              os.ActionLocales(),
-		"log":                 carapace.ActionValues("critical", "error", "warn", "info", "debug", "trace", "off").StyleF(style.ForLogLevel),
-		"sync":                carapace.ActionValues("on", "off").StyleF(style.ForKeyword),
+		"log":                 carapace.ActionValues("critical", "debug", "error", "info", "off", "trace", "warn").StyleF(style.ForLogLevel),
+		"sync":                carapace.ActionValues("off", "on").StyleF(style.ForKeyword),
 		"uninstall-extension": action.ActionExtensions(rootCmd),
 		"user-data-dir":       carapace.ActionDirectories(),
 	})

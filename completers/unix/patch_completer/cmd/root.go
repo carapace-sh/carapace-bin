@@ -62,10 +62,10 @@ func init() {
 		"directory":       carapace.ActionDirectories(),
 		"input":           carapace.ActionFiles(),
 		"output":          carapace.ActionFiles(),
-		"read-only":       carapace.ActionValues("ignore", "warn", "fail"),
+		"read-only":       carapace.ActionValues("fail", "ignore", "warn"),
 		"reject-file":     carapace.ActionFiles(),
 		"reject-format":   carapace.ActionValues("context", "unified"),
-		"version-control": carapace.ActionValues("simple", "numbered", "existing"),
+		"version-control": carapace.ActionValues("existing", "numbered", "simple"),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

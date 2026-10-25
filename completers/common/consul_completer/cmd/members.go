@@ -22,6 +22,6 @@ func init() {
 	rootCmd.AddCommand(membersCmd)
 
 	carapace.Gen(membersCmd).FlagCompletion(carapace.ActionMap{
-		"status": carapace.ActionValues("alive", "left", "failed"),
+		"status": carapace.ActionValues("alive", "failed", "left"),
 	})
 }

@@ -28,8 +28,8 @@ func init() {
 	actionCmd.AddCommand(action_changeFloatingPaneCoordinatesCmd)
 
 	carapace.Gen(action_changeFloatingPaneCoordinatesCmd).FlagCompletion(carapace.ActionMap{
-		"borderless": carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
+		"borderless": carapace.ActionValues("false", "true").StyleF(style.ForKeyword),
 		"pane-id":    zellij.ActionPanes(),
-		"pinned":     carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
+		"pinned":     carapace.ActionValues("false", "true").StyleF(style.ForKeyword),
 	})
 }

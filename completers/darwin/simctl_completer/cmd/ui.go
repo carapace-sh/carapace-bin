@@ -18,6 +18,6 @@ func init() {
 	carapace.Gen(uiCmd).PositionalCompletion(
 		simctl.ActionDevices(),
 		carapace.ActionValues("appearance"),
-		carapace.ActionValues("light", "dark"),
+		carapace.ActionValues("dark", "light"),
 	)
 }

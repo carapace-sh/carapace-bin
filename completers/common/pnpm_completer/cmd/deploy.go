@@ -70,7 +70,7 @@ func init() {
 	carapace.Gen(deployCmd).FlagCompletion(carapace.ActionMap{
 		"cpu":         carapace.ActionValues("arm", "arm64", "ia32", "loong64", "mips", "mipsel", "ppc64", "riscv64", "s390", "s390x", "x64"),
 		"libc":        carapace.ActionValues("glibc", "musl"),
-		"node-linker": carapace.ActionValues("isolated", "hoisted", "pnp"),
+		"node-linker": carapace.ActionValues("hoisted", "isolated", "pnp"),
 		"os":          carapace.ActionValues("aix", "android", "darwin", "freebsd", "linux", "openbsd", "sunos", "win32"),
 	})
 }

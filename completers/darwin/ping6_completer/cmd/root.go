@@ -56,6 +56,6 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"B": net.ActionDevices(net.AllDevices),
 		"I": net.ActionDevices(net.AllDevices),
-		"K": carapace.ActionValues("sig", "sig_ev", "sig_ev_ecn", "cnt", "cnt_ev", "cnt_ev_ecn"),
+		"K": carapace.ActionValues("cnt", "cnt_ev", "cnt_ev_ecn", "sig", "sig_ev", "sig_ev_ecn"),
 	})
 }

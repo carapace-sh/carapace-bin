@@ -21,7 +21,7 @@ func init() {
 	mrCmd.AddCommand(mr_diffCmd)
 
 	carapace.Gen(mr_diffCmd).FlagCompletion(carapace.ActionMap{
-		"color": carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
+		"color": carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 	})
 	carapace.Gen(mr_diffCmd).PositionalAnyCompletion(
 		action.ActionMergeRequestsAndBranches(mr_diffCmd, ""),

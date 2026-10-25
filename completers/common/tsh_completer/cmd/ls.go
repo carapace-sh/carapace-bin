@@ -29,6 +29,6 @@ func init() {
 
 	carapace.Gen(lsCmd).FlagCompletion(carapace.ActionMap{
 		"cluster": tsh.ActionClusters(),
-		"format":  carapace.ActionValues("text", "json", "yaml", "names"),
+		"format":  carapace.ActionValues("json", "names", "text", "yaml"),
 	})
 }

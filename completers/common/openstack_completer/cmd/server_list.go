@@ -69,15 +69,15 @@ func init() {
 		"format":            carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"image":             action.ActionImages(server_listCmd),
 		"key-name":          action.ActionKeypairs(server_listCmd),
-		"power-state":       carapace.ActionValues("pending", "running", "paused", "shutdown", "crashed", "suspended"),
+		"power-state":       carapace.ActionValues("crashed", "paused", "pending", "running", "shutdown", "suspended"),
 		"project":           action.ActionProjects(server_listCmd),
 		"project-domain":    action.ActionDomains(server_listCmd),
 		"quote":             carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
 		"sort-column":       action.ActionColumns(server_listCmd),
 		"status":            carapace.ActionValues("ACTIVE", "BUILD", "DELETED", "ERROR", "HARD_REBOOT", "MIGRATING", "PASSWORD", "PAUSED", "REBOOT", "REBUILD", "RESCUE", "RESIZE", "REVERT_RESIZE", "SHELVED", "SHELVED_OFFLOADED", "SHUTOFF", "SOFT_DELETED", "SUSPENDED", "VERIFY_RESIZE"),
-		"task-state":        carapace.ActionValues("block_device_mapping", "deleting", "image_backup", "image_pending_upload", "image_snapshot", "image_snapshot_pending", "image_uploading", "migrating", "networking", "pausing", "powering-off", "powering-on", "rebooting", "reboot_pending", "reboot_started", "reboot_pending_hard", "reboot_started_hard", "rebooting_hard", "rebuilding", "rebuild_block_device_mapping", "rebuild_spawning", "rescuing", "resize_confirming", "resize_finish", "resize_migrated", "resize_migrating", "resize_prep", "resize_reverting", "restoring", "resuming", "scheduling", "shelving", "shelving_image_pending_upload", "shelving_image_uploading", "shelving_offloading", "soft-deleting", "spawning", "suspending", "updating_password", "unpausing", "unrescuing", "unshelving"),
+		"task-state":        carapace.ActionValues("block_device_mapping", "deleting", "image_backup", "image_pending_upload", "image_snapshot", "image_snapshot_pending", "image_uploading", "migrating", "networking", "pausing", "powering-off", "powering-on", "reboot_pending", "reboot_pending_hard", "reboot_started", "reboot_started_hard", "rebooting", "rebooting_hard", "rebuild_block_device_mapping", "rebuild_spawning", "rebuilding", "rescuing", "resize_confirming", "resize_finish", "resize_migrated", "resize_migrating", "resize_prep", "resize_reverting", "restoring", "resuming", "scheduling", "shelving", "shelving_image_pending_upload", "shelving_image_uploading", "shelving_offloading", "soft-deleting", "spawning", "suspending", "unpausing", "unrescuing", "unshelving", "updating_password"),
 		"user":              action.ActionUsers(server_listCmd),
 		"user-domain":       action.ActionDomains(server_listCmd),
-		"vm-state":          carapace.ActionValues("active", "building", "deleted", "error", "paused", "stopped", "suspended", "rescued", "resized", "shelved", "shelved_offloaded", "soft-delete"),
+		"vm-state":          carapace.ActionValues("active", "building", "deleted", "error", "paused", "rescued", "resized", "shelved", "shelved_offloaded", "soft-delete", "stopped", "suspended"),
 	})
 }

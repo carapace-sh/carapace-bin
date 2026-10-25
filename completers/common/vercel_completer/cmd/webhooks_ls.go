@@ -21,6 +21,6 @@ func init() {
 	webhooksCmd.AddCommand(webhooks_lsCmd)
 
 	carapace.Gen(webhooks_lsCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("plain", "json"),
+		"format": carapace.ActionValues("json", "plain"),
 	})
 }

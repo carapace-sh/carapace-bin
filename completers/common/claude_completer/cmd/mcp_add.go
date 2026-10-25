@@ -25,7 +25,7 @@ func init() {
 	mcpCmd.AddCommand(mcp_addCmd)
 
 	carapace.Gen(mcp_addCmd).FlagCompletion(carapace.ActionMap{
-		"scope":     carapace.ActionValues("local", "user", "project"),
-		"transport": carapace.ActionValues("stdio", "sse", "http"),
+		"scope":     carapace.ActionValues("local", "project", "user"),
+		"transport": carapace.ActionValues("http", "sse", "stdio"),
 	})
 }

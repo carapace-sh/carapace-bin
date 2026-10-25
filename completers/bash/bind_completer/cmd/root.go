@@ -39,13 +39,13 @@ func init() {
 		"f": carapace.ActionFiles(),
 		"m": carapace.ActionValuesDescribed(
 			"emacs", "emacs keymap",
-			"emacs-standard", "emacs-standard keymap",
-			"emacs-meta", "emacs-meta keymap",
 			"emacs-ctlx", "emacs-ctlx keymap",
+			"emacs-meta", "emacs-meta keymap",
+			"emacs-standard", "emacs-standard keymap",
 			"vi", "vi keymap",
-			"vi-move", "vi-move keymap",
 			"vi-command", "vi-command keymap",
 			"vi-insert", "vi-insert keymap",
+			"vi-move", "vi-move keymap",
 		),
 	})
 }

@@ -89,10 +89,10 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"build-host": net.ActionHosts(),
-		"elevate":    carapace.ActionValues("none", "sudo", "run0"),
+		"elevate":    carapace.ActionValues("none", "run0", "sudo"),
 		"file":       carapace.ActionFiles(".nix"),
 		"flake":      nix.ActionFlakes(),
-		"log-format": carapace.ActionValues("raw", "internal-json", "bar", "bar-with-logs"),
+		"log-format": carapace.ActionValues("bar", "bar-with-logs", "internal-json", "raw"),
 		"option": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:

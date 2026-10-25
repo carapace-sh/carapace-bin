@@ -23,8 +23,8 @@ func init() {
 	common.AddLoggingFlags(hash_convertCmd)
 
 	carapace.Gen(hash_convertCmd).FlagCompletion(carapace.ActionMap{
-		"from":      carapace.ActionValues("base16", "nix32", "base64", "sri"),
+		"from":      carapace.ActionValues("base16", "base64", "nix32", "sri"),
 		"hash-algo": carapace.ActionValues("blake3", "md5", "sha1", "sha256", "sha512"),
-		"to":        carapace.ActionValues("base16", "nix32", "base64", "sri"),
+		"to":        carapace.ActionValues("base16", "base64", "nix32", "sri"),
 	})
 }

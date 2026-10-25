@@ -29,7 +29,7 @@ func init() {
 	rootCmd.AddCommand(hookEnvCmd)
 
 	carapace.Gen(hookEnvCmd).FlagCompletion(carapace.ActionMap{
-		"reason": carapace.ActionValues("precmd", "chpwd"),
+		"reason": carapace.ActionValues("chpwd", "precmd"),
 		"shell":  action.ActionShells(),
 	})
 }

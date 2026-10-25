@@ -27,7 +27,7 @@ func init() {
 
 	carapace.Gen(hashObjectCmd).FlagCompletion(carapace.ActionMap{
 		"path": carapace.ActionFiles(),
-		"t":    carapace.ActionValues("commit", "tree", "blob", "tag"),
+		"t":    carapace.ActionValues("blob", "commit", "tag", "tree"),
 	})
 
 	carapace.Gen(hashObjectCmd).PositionalAnyCompletion(

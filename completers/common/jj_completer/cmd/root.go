@@ -46,7 +46,7 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"at-op":        jj.ActionOperations(100),
 		"at-operation": jj.ActionOperations(100),
-		"color":        carapace.ActionValues("always", "never", "debug", "auto").StyleF(style.ForKeyword),
+		"color":        carapace.ActionValues("always", "auto", "debug", "never").StyleF(style.ForKeyword),
 		"config-file":  carapace.ActionFiles(),
 		"repository":   carapace.ActionDirectories(),
 	})

@@ -25,8 +25,8 @@ func init() {
 
 	carapace.Gen(localnetCmd).FlagCompletion(carapace.ActionMap{
 		"validator": carapace.ActionValuesDescribed(
-			"surfpool", "Use Surfpool validator (default)",
 			"legacy", "Use Solana test validator",
+			"surfpool", "Use Surfpool validator (default)",
 		),
 	})
 }

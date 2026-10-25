@@ -80,7 +80,7 @@ func init() {
 	rootCmd.Flags().Bool("zero", false, "end each output line with NUL, not newline")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"color":           carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
+		"color":           carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"format":          carapace.ActionValues("across", "commas", "horizontal", "long", "single-column", "verbose", "vertical"),
 		"hyperlink":       carapace.ActionValues("always", "auto", "none").StyleF(style.ForKeyword),
 		"indicator-style": carapace.ActionValues("classify", "file-type", "none", "slash"),

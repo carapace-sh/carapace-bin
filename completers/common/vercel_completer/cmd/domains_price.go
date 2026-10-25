@@ -20,7 +20,7 @@ func init() {
 	domainsCmd.AddCommand(domains_priceCmd)
 
 	carapace.Gen(domains_priceCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("plain", "json"),
+		"format": carapace.ActionValues("json", "plain"),
 	})
 
 	carapace.Gen(domains_priceCmd).PositionalCompletion(

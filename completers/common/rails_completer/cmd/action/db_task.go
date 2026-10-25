@@ -10,37 +10,37 @@ import (
 // ActionDbTasks completes db:* leaf tasks
 func ActionDbTasks() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"prepare", "Create DB or run migrations",
-		"truncate_all", "Truncate all tables in current env",
 		"charset", "Retrieve database charset",
 		"collation", "Retrieve database collation",
+		"prepare", "Create DB or run migrations",
+		"truncate_all", "Truncate all tables in current env",
 	).Tag("db tasks").UidF(taskUid("db"))
 }
 
 // ActionDbMultiDbTasks completes db:* tasks that accept a :name suffix for multi-database
 func ActionDbMultiDbTasks() carapace.Action {
 	return carapace.ActionValuesDescribed(
+		"abort_if_pending_migrations", "Raise error if pending migrations exist",
 		"create", "Create the database",
 		"drop", "Drop the database",
 		"forward", "Push schema to next version",
+		"purge", "Empty the database",
+		"reset", "Drop, recreate, migrate, seed",
 		"rollback", "Rollback the schema",
 		"seed", "Load seed data",
 		"setup", "Create databases and load schema",
-		"reset", "Drop, recreate, migrate, seed",
 		"version", "Show schema version",
-		"purge", "Empty the database",
-		"abort_if_pending_migrations", "Raise error if pending migrations exist",
 	).Tag("db multi-db tasks").UidF(taskUid("db"))
 }
 
 // ActionDbNamespaces completes db:* sub-namespaces
 func ActionDbNamespaces() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"migrate", "Run pending migrations",
-		"fixtures", "Load test fixtures",
-		"schema", "Database schema operations",
-		"environment", "Set database environment",
 		"encryption", "Active Record encryption",
+		"environment", "Set database environment",
+		"fixtures", "Load test fixtures",
+		"migrate", "Run pending migrations",
+		"schema", "Database schema operations",
 		"system", "Change database adapter",
 		"test", "Database test tasks",
 	).Tag("db namespaces").UidF(namespaceUid("db"))
@@ -49,11 +49,11 @@ func ActionDbNamespaces() carapace.Action {
 // ActionDbMigrateTasks completes db:migrate:* tasks
 func ActionDbMigrateTasks() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"redo", "Rollback one migration and re-migrate",
-		"up", "Run the up for a given version",
 		"down", "Run the down for a given version",
-		"status", "Show migration status",
+		"redo", "Rollback one migration and re-migrate",
 		"reset", "Drop DB, recreate, migrate",
+		"status", "Show migration status",
+		"up", "Run the up for a given version",
 	).Tag("db migrate tasks").UidF(taskUid("db.migrate"))
 }
 
@@ -83,8 +83,8 @@ func ActionDbSchemaNamespaces() carapace.Action {
 // ActionDbTestTasks completes db:test:* tasks
 func ActionDbTestTasks() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"prepare", "Load test schema",
 		"load_schema", "Recreate test DB from schema",
+		"prepare", "Load test schema",
 		"purge", "Empty the test database",
 	).Tag("db test tasks").UidF(taskUid("db.test"))
 }
@@ -99,8 +99,8 @@ func ActionDbSeedTasks() carapace.Action {
 // ActionDbFixtureTasks completes db:fixtures:* tasks
 func ActionDbFixtureTasks() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"load", "Load fixtures into current environment",
 		"identify", "Find fixture by label or ID",
+		"load", "Load fixtures into current environment",
 	).Tag("db fixtures tasks").UidF(taskUid("db.fixtures"))
 }
 

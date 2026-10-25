@@ -26,7 +26,7 @@ func init() {
 
 	carapace.Gen(serveCmd).FlagCompletion(carapace.ActionMap{
 		"dest-dir": carapace.ActionDirectories(),
-		"hostname": carapace.ActionValues("localhost", "0.0.0.0"),
+		"hostname": carapace.ActionValues("0.0.0.0", "localhost"),
 		"port":     net.ActionPorts(),
 	})
 

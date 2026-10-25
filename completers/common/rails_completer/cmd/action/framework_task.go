@@ -19,10 +19,10 @@ func ActionLogTasks() carapace.Action {
 // ActionCredentialTasks completes credentials:* tasks
 func ActionCredentialTasks() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"edit", "Edit encrypted credentials",
-		"show", "Show decrypted credentials",
 		"diff", "Enroll/disenroll in credential diffs",
+		"edit", "Edit encrypted credentials",
 		"fetch", "Fetch a credential value",
+		"show", "Show decrypted credentials",
 	).Tag("credentials tasks").UidF(taskUid("credentials"))
 }
 

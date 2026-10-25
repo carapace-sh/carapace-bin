@@ -99,18 +99,18 @@ func init() {
 	rootCmd.MarkFlagsMutuallyExclusive("color-scale-mode", "colour-scale-mode")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"absolute":          carapace.ActionValues("on", "follow", "off").StyleF(style.ForKeyword),
-		"classify":          carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
-		"color":             carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
-		"color-scale":       carapace.ActionValues("all", "age", "size"),
+		"absolute":          carapace.ActionValues("follow", "off", "on").StyleF(style.ForKeyword),
+		"classify":          carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
+		"color":             carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
+		"color-scale":       carapace.ActionValues("age", "all", "size"),
 		"color-scale-mode":  carapace.ActionValues("fixed", "gradient"),
-		"colour":            carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
-		"colour-scale":      carapace.ActionValues("all", "age", "size"),
+		"colour":            carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
+		"colour-scale":      carapace.ActionValues("age", "all", "size"),
 		"colour-scale-mode": carapace.ActionValues("fixed", "gradient"),
-		"icons":             carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
-		"sort":              carapace.ActionValues("name", "Name", "size", "extension", "Extension", "modified", "changed", "accessed", "created", "inode", "type", "none"),
-		"time":              carapace.ActionValues("modified", "accessed", "created"),
-		"time-style":        carapace.ActionValues("default", "iso", "long-iso", "full-iso", "relative"),
+		"icons":             carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
+		"sort":              carapace.ActionValues("Extension", "Name", "accessed", "changed", "created", "extension", "inode", "modified", "name", "none", "size", "type"),
+		"time":              carapace.ActionValues("accessed", "created", "modified"),
+		"time-style":        carapace.ActionValues("default", "full-iso", "iso", "long-iso", "relative"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

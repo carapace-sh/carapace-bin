@@ -44,9 +44,9 @@ func init() {
 		"config-file":           carapace.ActionFiles(),
 		"environment":           pixi.ActionEnvironments(),
 		"manifest-path":         carapace.ActionFiles(),
-		"pinning-strategy":      carapace.ActionValues("semver", "minor", "major", "latest-up", "exact-version", "no-pin"),
+		"pinning-strategy":      carapace.ActionValues("exact-version", "latest-up", "major", "minor", "no-pin", "semver"),
 		"platform":              pixi.ActionPlatforms(),
 		"pypi-keyring-provider": carapace.ActionValues("disabled", "subprocess"),
-		"tls-root-certs":        carapace.ActionValues("webpki", "system"),
+		"tls-root-certs":        carapace.ActionValues("system", "webpki"),
 	})
 }

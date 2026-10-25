@@ -36,7 +36,7 @@ func init() {
 				case "ipproto":
 					return action.ActionIpProtocols()
 				case "not":
-					return carapace.ActionValues("from", "to", "tos", "dsfield", "fwmark", "iif", "oif", "priority", "preference", "order", "l3mdev", "uidrange", "ipproto", "sport", "dport", "tun_id")
+					return carapace.ActionValues("dport", "dsfield", "from", "fwmark", "iif", "ipproto", "l3mdev", "oif", "order", "preference", "priority", "sport", "to", "tos", "tun_id", "uidrange")
 				case "oif":
 					return net.ActionDevices(net.IncludedDevices{Wifi: true, Ethernet: true})
 				case "order":
@@ -57,7 +57,7 @@ func init() {
 					return carapace.ActionValues()
 				}
 			}
-			return carapace.ActionValues("not", "from", "to", "tos", "dsfield", "fwmark", "iif", "oif", "priority", "preference", "order", "l3mdev", "uidrange", "ipproto", "sport", "dport", "tun_id")
+			return carapace.ActionValues("dport", "dsfield", "from", "fwmark", "iif", "ipproto", "l3mdev", "not", "oif", "order", "preference", "priority", "sport", "to", "tos", "tun_id", "uidrange")
 		}),
 	)
 }

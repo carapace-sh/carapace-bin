@@ -102,26 +102,26 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"P":                action.ActionProperties(rootCmd),
-		"check-inhibitors": carapace.ActionValues("auto", "yes", "no").StyleF(style.ForKeyword),
+		"check-inhibitors": carapace.ActionValues("auto", "no", "yes").StyleF(style.ForKeyword),
 		"host":             net.ActionHosts(),
 		"job-mode": carapace.ActionValuesDescribed(
 			"fail", "cause fail on conflict",
-			"replace", "replace on conflict",
-			"replace-irreversibly", "replace on conflict irreversibly",
-			"isolate", "cause all other units to be stopped when starting unit",
+			"flush", "cancel all queued jobs",
 			"ignore-dependencies", "ignore all unit dependencies",
 			"ignore-requirements", "ignore all unit requirements",
-			"flush", "cancel all queued jobs",
+			"isolate", "cause all other units to be stopped when starting unit",
+			"replace", "replace on conflict",
+			"replace-irreversibly", "replace on conflict irreversibly",
 			"triggering", "stop unit and any active unit that may trigger it",
 		),
 		"kill-whom": carapace.ActionValuesDescribed(
-			"main", "main process",
-			"control", "control process",
-			"cgroup", "all processes in the unit's control group",
 			"all", "all processes",
+			"cgroup", "all processes in the unit's control group",
+			"control", "control process",
+			"main", "main process",
 		),
 		"output":      journalctl.ActionOutputs(),
-		"preset-mode": carapace.ActionValues("full", "enable-only", "disable-only"),
+		"preset-mode": carapace.ActionValues("disable-only", "enable-only", "full"),
 		"property":    action.ActionProperties(rootCmd),
 		"root":        carapace.ActionDirectories(),
 		"signal":      ps.ActionKillSignals("linux"),
@@ -129,10 +129,10 @@ func init() {
 		"timestamp": carapace.ActionValuesDescribed(
 			"pretty", "Day YYYY-MM-DD HH:MM:SS TZ",
 			"us", "Day YYYY-MM-DD HH:MM:SS.UUUUUU TZ",
-			"utc", "Day YYYY-MM-DD HH:MM:SS UTC",
 			"us+utc", "Day YYYY-MM-DD HH:MM:SS.UUUUUU UTC",
+			"utc", "Day YYYY-MM-DD HH:MM:SS UTC",
 		),
 		"type": systemd.ActionUnitTypes(),
-		"what": carapace.ActionValues("configuration", "state", "cache", "logs", "runtime"),
+		"what": carapace.ActionValues("cache", "configuration", "logs", "runtime", "state"),
 	})
 }

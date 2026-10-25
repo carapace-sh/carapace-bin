@@ -39,14 +39,14 @@ func init() {
 
 	carapace.Gen(ci_listCmd).FlagCompletion(carapace.ActionMap{
 		"jq":       jq.ActionFilters(),
-		"order":    carapace.ActionValues("id", "status", "ref", "updated_at", "user_id"),
-		"orderBy":  carapace.ActionValues("id", "status", "ref", "updated_at", "user_id"),
-		"output":   carapace.ActionValues("text", "json"),
+		"order":    carapace.ActionValues("id", "ref", "status", "updated_at", "user_id"),
+		"orderBy":  carapace.ActionValues("id", "ref", "status", "updated_at", "user_id"),
+		"output":   carapace.ActionValues("json", "text"),
 		"ref":      carapace.Batch(action.ActionBranches(ci_listCmd), action.ActionTags(ci_listCmd)).ToA(),
-		"scope":    carapace.ActionValues("running", "pending", "finished", "branches", "tags"),
+		"scope":    carapace.ActionValues("branches", "finished", "pending", "running", "tags"),
 		"sort":     carapace.ActionValues("asc", "desc").StyleF(style.ForKeyword),
 		"source":   carapace.ActionValues("merge_request_event", "parent_pipeline", "pipeline", "push", "trigger"),
-		"status":   carapace.ActionValues("running", "pending", "success", "failed", "canceled", "skipped", "created", "manual", "waiting_for_resource", "preparing", "scheduled"),
+		"status":   carapace.ActionValues("canceled", "created", "failed", "manual", "pending", "preparing", "running", "scheduled", "skipped", "success", "waiting_for_resource"),
 		"username": action.ActionUsers(ci_listCmd),
 	})
 }

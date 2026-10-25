@@ -30,7 +30,7 @@ func init() {
 	rootCmd.Flags().BoolP("verbose", "v", false, "Verbose mode")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"index": carapace.ActionValues("on", "off").StyleF(style.ForKeyword),
+		"index": carapace.ActionValues("off", "on").StyleF(style.ForKeyword),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionDirectories())

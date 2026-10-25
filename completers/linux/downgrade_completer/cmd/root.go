@@ -36,7 +36,7 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "show downgrade version")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"ignore":       carapace.ActionValues("prompt", "always", "never"),
+		"ignore":       carapace.ActionValues("always", "never", "prompt"),
 		"pacman-cache": carapace.ActionDirectories(),
 		"pacman-conf":  carapace.ActionFiles(),
 		"pacman-log":   carapace.ActionFiles(),

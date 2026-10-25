@@ -21,6 +21,6 @@ func init() {
 
 	carapace.Gen(sessions_lsCmd).FlagCompletion(carapace.ActionMap{
 		"format": tsh.ActionFormats(),
-		"kind":   carapace.ActionValues("ssh", "k8s", "kube", "db", "app", "desktop"),
+		"kind":   carapace.ActionValues("app", "db", "desktop", "k8s", "kube", "ssh"),
 	})
 }

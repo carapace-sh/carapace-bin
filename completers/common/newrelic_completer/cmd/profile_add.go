@@ -22,6 +22,6 @@ func init() {
 	profileCmd.AddCommand(profile_addCmd)
 
 	carapace.Gen(profile_addCmd).FlagCompletion(carapace.ActionMap{
-		"region": carapace.ActionValues("US", "EU"),
+		"region": carapace.ActionValues("EU", "US"),
 	})
 }

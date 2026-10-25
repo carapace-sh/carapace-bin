@@ -37,6 +37,6 @@ func init() {
 		"config":             action.ActionOptionalFiles(),
 		"format":             carapace.ActionValues("json", "pretty"),
 		"kubernetes-ca-cert": action.ActionOptionalFiles(),
-		"token-locality":     carapace.ActionValues("local", "global"),
+		"token-locality":     carapace.ActionValues("global", "local"),
 	})
 }

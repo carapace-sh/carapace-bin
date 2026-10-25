@@ -46,7 +46,7 @@ func init() {
 		"label":            action.ActionLabels(mr_updateCmd).UniqueList(","),
 		"milestone":        action.ActionMilestones(mr_updateCmd),
 		"reviewer":         action.ActionProjectMembers(mr_updateCmd).UniqueList(","),
-		"state":            carapace.ActionValues("opened", "closed", "merged", "locked", "any"),
+		"state":            carapace.ActionValues("any", "closed", "locked", "merged", "opened"),
 		"target-branch":    action.ActionBranches(mr_updateCmd),
 		"unlabel":          action.ActionLabels(mr_updateCmd).UniqueList(","),
 	})

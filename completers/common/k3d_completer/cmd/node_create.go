@@ -37,6 +37,6 @@ func init() {
 		"image":   docker.ActionRepositoryTags(),
 		"k3s-arg": bridge.ActionCarapaceBin("k3s").Split(), // TODO verify
 		"network": docker.ActionNetworks(),
-		"role":    carapace.ActionValues("server", "agent"),
+		"role":    carapace.ActionValues("agent", "server"),
 	})
 }

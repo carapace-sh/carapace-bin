@@ -18,6 +18,6 @@ func init() {
 	rootCmd.AddCommand(credentialCmd)
 
 	carapace.Gen(credentialCmd).PositionalCompletion(
-		carapace.ActionValues("fill", "approve", "reject"),
+		carapace.ActionValues("approve", "fill", "reject"),
 	)
 }

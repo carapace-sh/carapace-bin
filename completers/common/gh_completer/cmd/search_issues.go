@@ -74,7 +74,7 @@ func init() {
 			return action.ActionLabels(cmd).UniqueList(",")
 		}),
 		"language": gh.ActionLanguages(),
-		"match":    carapace.ActionValues("title", "body", "comments").UniqueList(","),
+		"match":    carapace.ActionValues("body", "comments", "title").UniqueList(","),
 		"mentions": gh.ActionUsers(gh.HostOpts{}),
 		"milestone": action.ActionSearchMultiRepo(search_issuesCmd, func(cmd *cobra.Command) carapace.Action {
 			return action.ActionMilestones(cmd)
@@ -86,10 +86,10 @@ func init() {
 			dummyCmd.Flags().String("repo", c.Value, "fake repo flag")
 			return action.ActionOwnerRepositories(dummyCmd).NoSpace()
 		}),
-		"search-type": carapace.ActionValues("lexical", "semantic", "hybrid"),
+		"search-type": carapace.ActionValues("hybrid", "lexical", "semantic"),
 		"sort":        carapace.ActionValues("comments", "created", "interactions", "reactions", "reactions-+1", "reactions--1", "reactions-heart", "reactions-smile", "reactions-tada", "reactions-thinking_face", "updated"),
-		"state":       carapace.ActionValues("open", "closed").StyleF(styles.Gh.ForState),
+		"state":       carapace.ActionValues("closed", "open").StyleF(styles.Gh.ForState),
 		"updated":     action.ActionSearchRange(time.ActionDateTime(time.DateTimeOpts{Strict: true})),
-		"visibility":  carapace.ActionValues("public", "private", "internal").UniqueList(","),
+		"visibility":  carapace.ActionValues("internal", "private", "public").UniqueList(","),
 	})
 }

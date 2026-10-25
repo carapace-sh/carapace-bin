@@ -20,6 +20,6 @@ func init() {
 	operator_autopilotCmd.AddCommand(operator_autopilot_stateCmd)
 
 	carapace.Gen(operator_autopilot_stateCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("pretty", "json"),
+		"format": carapace.ActionValues("json", "pretty"),
 	})
 }

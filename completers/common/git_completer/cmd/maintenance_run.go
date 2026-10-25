@@ -23,7 +23,7 @@ func init() {
 	maintenanceCmd.AddCommand(maintenance_runCmd)
 
 	carapace.Gen(maintenance_runCmd).FlagCompletion(carapace.ActionMap{
-		"schedule": carapace.ActionValues("hourly", "daily", "weekly"),
+		"schedule": carapace.ActionValues("daily", "hourly", "weekly"),
 		"task":     git.ActionMaintenanceTasks(),
 	})
 }

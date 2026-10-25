@@ -20,7 +20,7 @@ func init() {
 	rootCmd.AddCommand(unicodeInputCmd)
 
 	carapace.Gen(unicodeInputCmd).FlagCompletion(carapace.ActionMap{
-		"emoji-variation": carapace.ActionValues("none", "graphic", "text"),
-		"tab":             carapace.ActionValues("previous", "code", "emoticons", "favorites", "name"),
+		"emoji-variation": carapace.ActionValues("graphic", "none", "text"),
+		"tab":             carapace.ActionValues("code", "emoticons", "favorites", "name", "previous"),
 	})
 }

@@ -26,7 +26,7 @@ func init() {
 				case "dev":
 					return net.ActionDevices(net.IncludedDevices{Wifi: true, Ethernet: true})
 				case "scope":
-					return carapace.ActionValues("global", "site", "link", "host", "nowhere")
+					return carapace.ActionValues("global", "host", "link", "nowhere", "site")
 				case "to":
 					return net.ActionSubnets()
 				case "master":
@@ -39,7 +39,7 @@ func init() {
 					return carapace.ActionValues()
 				}
 			}
-			return carapace.ActionValues("dev", "scope", "to", "label", "up", "master", "nomaster", "type", "vrf")
+			return carapace.ActionValues("dev", "label", "master", "nomaster", "scope", "to", "type", "up", "vrf")
 		}),
 	)
 }

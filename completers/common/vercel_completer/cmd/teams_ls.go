@@ -23,6 +23,6 @@ func init() {
 	teamsCmd.AddCommand(teams_lsCmd)
 
 	carapace.Gen(teams_lsCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("plain", "json"),
+		"format": carapace.ActionValues("json", "plain"),
 	})
 }

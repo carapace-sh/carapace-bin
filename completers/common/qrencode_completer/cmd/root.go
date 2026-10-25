@@ -43,9 +43,9 @@ func init() {
 	rootCmd.Flags().BoolP("version", "V", false, "display the version number and copyrights of the qrencode.")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"level":     carapace.ActionValues("L", "M", "Q", "H"),
+		"level":     carapace.ActionValues("H", "L", "M", "Q"),
 		"output":    carapace.ActionFiles(),
 		"read-from": carapace.ActionFiles(),
-		"type":      carapace.ActionValues("PNG", "PNG32", "EPS", "SVG", "XPM", "ANSI", "ANSI256", "ASCII", "ASCIIi", "UTF8", "UTF8i", "ANSIUTF8", "ANSIUTF8i", "ANSI256UTF8"),
+		"type":      carapace.ActionValues("ANSI", "ANSI256", "ANSI256UTF8", "ANSIUTF8", "ANSIUTF8i", "ASCII", "ASCIIi", "EPS", "PNG", "PNG32", "SVG", "UTF8", "UTF8i", "XPM"),
 	})
 }

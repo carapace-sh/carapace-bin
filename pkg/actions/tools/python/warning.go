@@ -8,12 +8,12 @@ import "github.com/carapace-sh/carapace"
 //	error (Convert to exceptions)
 func ActionWarnings() carapace.Action {
 	return carapace.ActionValuesDescribed(
+		"always", "Warn every time",
 		"default", "Warn once per call location",
 		"error", "Convert to exceptions",
-		"always", "Warn every time",
+		"ignore", "Never warn",
 		"module", "Warn once per calling module",
 		"once", "Warn once per Python process",
-		"ignore", "Never warn",
 	)
 }
 

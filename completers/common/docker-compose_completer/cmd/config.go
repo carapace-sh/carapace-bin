@@ -37,7 +37,7 @@ func init() {
 	rootCmd.AddCommand(configCmd)
 
 	carapace.Gen(configCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("yaml", "json"),
+		"format": carapace.ActionValues("json", "yaml"),
 		"hash":   action.ActionServices(configCmd),
 		"output": carapace.ActionFiles(),
 	})

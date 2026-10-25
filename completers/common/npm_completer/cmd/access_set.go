@@ -18,14 +18,14 @@ func init() {
 
 	carapace.Gen(access_setCmd).PositionalCompletion(
 		carapace.ActionValues(
-			"status=public",
-			"status=private",
-			"mfa=none",
-			"mfa=publish",
-			"mfa=automation",
+			"2fa=automation",
 			"2fa=none",
 			"2fa=publish",
-			"2fa=automation",
+			"mfa=automation",
+			"mfa=none",
+			"mfa=publish",
+			"status=private",
+			"status=public",
 		),
 		action.ActionPackages(access_setCmd),
 	)

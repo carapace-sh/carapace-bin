@@ -67,8 +67,8 @@ func init() {
 	rootCmd.Flags().BoolS("v", "v", false, "print copyright and version info")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"aaRaster":           carapace.ActionValues("yes", "no").StyleF(style.ForKeyword),
-		"processcolorformat": carapace.ActionValues("MONO8", "RGB8", "CMYK8"),
+		"aaRaster":           carapace.ActionValues("no", "yes").StyleF(style.ForKeyword),
+		"processcolorformat": carapace.ActionValues("CMYK8", "MONO8", "RGB8"),
 		"rasterize":          carapace.ActionValues("always", "never", "whenneeded"),
 	})
 

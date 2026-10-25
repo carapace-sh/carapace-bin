@@ -52,11 +52,11 @@ func ActionSources() carapace.Action {
 				switch len(c.Parts) {
 				case 0:
 					return carapace.ActionValuesDescribed(
+						"ID", "specifies device by udev hardware ID",
 						"LABEL", "specifies device by filesystem label",
-						"UUID", "specifies device by filesystem UUID",
 						"PARTLABEL", "specifies device by partition label",
 						"PARTUUID", "specifies device by partition UUID",
-						"ID", "specifies device by udev hardware ID",
+						"UUID", "specifies device by filesystem UUID",
 					).Suffix("=")
 				case 1:
 					switch c.Parts[0] {

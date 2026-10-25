@@ -30,7 +30,7 @@ func init() {
 
 	carapace.Gen(toolchain_installCmd).FlagCompletion(carapace.ActionMap{
 		"component": action.ActionAvailableComponents().UniqueList(","),
-		"profile":   carapace.ActionValues("minimal", "default", "complete"),
+		"profile":   carapace.ActionValues("complete", "default", "minimal"),
 		"target": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return action.ActionTargets(false).Invoke(c).ToMultiPartsA("-")
 		}),

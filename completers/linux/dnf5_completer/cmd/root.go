@@ -60,9 +60,9 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "Display the version of dnf5")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"color":       carapace.ActionValues("always", "never", "auto").StyleF(style.ForKeyword),
+		"color":       carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"config":      carapace.ActionFiles(),
-		"forcearch":   carapace.ActionValues("i386", "i486", "i586", "i686", "x86_64", "aarch64", "armv7l", "ppc64", "ppc64le", "s390x"),
+		"forcearch":   carapace.ActionValues("aarch64", "armv7l", "i386", "i486", "i586", "i686", "ppc64", "ppc64le", "s390x", "x86_64"),
 		"installroot": carapace.ActionDirectories(),
 	})
 }

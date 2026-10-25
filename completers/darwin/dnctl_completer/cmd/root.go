@@ -27,6 +27,6 @@ func init() {
 	rootCmd.Flags().BoolS("s", "s", false, "Show statistics")
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValues("list", "show", "flush", "delete", "pipe", "queue"),
+		carapace.ActionValues("delete", "flush", "list", "pipe", "queue", "show"),
 	)
 }

@@ -18,8 +18,8 @@ func init() {
 
 	carapace.Gen(git_configCmd).PositionalCompletion(
 		carapace.ActionValuesDescribed(
-			"update", "configure the Git repo to proxy Git commands through Teleport",
 			"reset", "clear Teleport configuration from the Git repo",
+			"update", "configure the Git repo to proxy Git commands through Teleport",
 		),
 	)
 }

@@ -42,7 +42,7 @@ func init() {
 		"file":        carapace.ActionFiles(),
 		"present":     actionTime(),
 		"since":       actionTime(),
-		"time-format": carapace.ActionValues("notime", "short", "full", "iso"),
+		"time-format": carapace.ActionValues("full", "iso", "notime", "short"),
 		"until":       actionTime(),
 	})
 
@@ -59,6 +59,6 @@ func actionTime() carapace.Action {
 		time.ActionDate(),
 		time.ActionDateTime(time.DateTimeOpts{}),
 		time.ActionTime(),
-		carapace.ActionValues("now", "yesterday", "today", "tomorrow").Style(style.Blue),
+		carapace.ActionValues("now", "today", "tomorrow", "yesterday").Style(style.Blue),
 	).ToA()
 }

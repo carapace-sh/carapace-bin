@@ -8,7 +8,7 @@ import (
 
 func init() {
 	knownVariables["terragrunt"] = func() variables {
-		_bool := carapace.ActionValues("true", "false").StyleF(style.ForKeyword)
+		_bool := carapace.ActionValues("false", "true").StyleF(style.ForKeyword)
 		return variables{
 			Condition: conditions.ConditionPath("terragrunt"),
 			Variables: map[string]string{
@@ -58,7 +58,7 @@ func init() {
 				"TERRAGRUNT_PARALLELISM":                        carapace.ActionValues(),
 				"TERRAGRUNT_EXCLUDE_DIR":                        carapace.ActionDirectories(),
 				"TERRAGRUNT_DEBUG":                              _bool,
-				"TERRAGRUNT_LOG_LEVEL":                          carapace.ActionValues("panic", "fatal", "error", "warn", "info", "debug", "trace").StyleF(style.ForLogLevel),
+				"TERRAGRUNT_LOG_LEVEL":                          carapace.ActionValues("debug", "error", "fatal", "info", "panic", "trace", "warn").StyleF(style.ForLogLevel),
 				"TERRAGRUNT_NO_COLOR":                           _bool,
 				"TERRAGRUNT_USE_PARTIAL_PARSE_CONFIG_CACHE":     _bool,
 				"TERRAGRUNT_FETCH_DEPENDENCY_OUTPUT_FROM_STATE": _bool,

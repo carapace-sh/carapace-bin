@@ -53,9 +53,9 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"S":          carapace.ActionValues("stable", "testing", "unstable"),
 		"country":    pacman.ActionCountries().UniqueList(","),
-		"method":     carapace.ActionValues("rank", "random"),
-		"proto":      carapace.ActionValues("all", "http", "https", "ftp", "ftps").UniqueList(","),
-		"protocols":  carapace.ActionValues("all", "http", "https", "ftp", "ftps").UniqueList(","),
+		"method":     carapace.ActionValues("random", "rank"),
+		"proto":      carapace.ActionValues("all", "ftp", "ftps", "http", "https").UniqueList(","),
+		"protocols":  carapace.ActionValues("all", "ftp", "ftps", "http", "https").UniqueList(","),
 		"set-branch": carapace.ActionValues("stable", "testing", "unstable"),
 	})
 }

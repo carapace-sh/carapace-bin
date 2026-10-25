@@ -39,7 +39,7 @@ func init() {
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
 		"sort-column": action.ActionColumns(image_task_listCmd),
-		"status":      carapace.ActionValues("pending", "processing", "success", "failure"),
+		"status":      carapace.ActionValues("failure", "pending", "processing", "success"),
 		"type":        carapace.ActionValues("import"),
 	})
 }

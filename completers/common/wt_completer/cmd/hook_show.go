@@ -21,7 +21,7 @@ func init() {
 	hookCmd.AddCommand(hook_showCmd)
 
 	carapace.Gen(hook_showCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("text", "json"),
+		"format": carapace.ActionValues("json", "text"),
 	})
 
 	carapace.Gen(hook_showCmd).PositionalCompletion(

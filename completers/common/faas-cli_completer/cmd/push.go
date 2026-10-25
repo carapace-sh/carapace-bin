@@ -19,6 +19,6 @@ func init() {
 	rootCmd.AddCommand(pushCmd)
 
 	carapace.Gen(pushCmd).FlagCompletion(carapace.ActionMap{
-		"tag": carapace.ActionValues("latest", "sha", "branch", "describe"),
+		"tag": carapace.ActionValues("branch", "describe", "latest", "sha"),
 	})
 }

@@ -20,6 +20,6 @@ func init() {
 	config_stateCmd.AddCommand(config_state_hintsCmd)
 
 	carapace.Gen(config_state_hintsCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("text", "json"),
+		"format": carapace.ActionValues("json", "text"),
 	})
 }

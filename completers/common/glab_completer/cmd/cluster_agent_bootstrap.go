@@ -47,7 +47,7 @@ func init() {
 	cluster_agentCmd.AddCommand(cluster_agent_bootstrapCmd)
 
 	carapace.Gen(cluster_agent_bootstrapCmd).FlagCompletion(carapace.ActionMap{
-		"flux-source-type":    carapace.ActionValues("Git", "OCI", "Helm"),
+		"flux-source-type":    carapace.ActionValues("Git", "Helm", "OCI"),
 		"helm-release-values": carapace.ActionFiles(),
 		"manifest-branch":     action.ActionBranches(cluster_agent_bootstrapCmd),
 	})

@@ -33,7 +33,7 @@ func init() {
 	rootCmd.Flags().StringS("w", "w", "", "Specify weekday range to limit search to")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"F": carapace.ActionValues("gpg", "authordate"),
+		"F": carapace.ActionValues("authordate", "gpg"),
 		"a": carapace.Batch(
 			carapace.ActionValuesDescribed("all", "all authors").Style(style.Blue),
 			git.ActionAuthors(),

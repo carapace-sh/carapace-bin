@@ -57,6 +57,6 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"batch":  carapace.ActionFiles(),
 		"color":  carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
-		"family": carapace.ActionValues("inet", "inet6", "bridge", "mpls", "link"),
+		"family": carapace.ActionValues("bridge", "inet", "inet6", "link", "mpls"),
 	})
 }

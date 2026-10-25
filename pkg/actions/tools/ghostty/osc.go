@@ -8,8 +8,8 @@ import "github.com/carapace-sh/carapace"
 //	8-bit (Color components are return unscaled)
 func ActionOscColorReportFormats() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"none", "OSC 4/10/11 queries receive no reply",
-		"8-bit", "Color components are return unscaled",
 		"16-bit", "Color components are returned scaled",
+		"8-bit", "Color components are return unscaled",
+		"none", "OSC 4/10/11 queries receive no reply",
 	).Uid("ghostty", "osc-color-report-format")
 }

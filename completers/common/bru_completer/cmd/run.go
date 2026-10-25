@@ -32,7 +32,7 @@ func init() {
 		"cacert":  carapace.ActionFiles(),
 		"env":     env.ActionNameValues(false),
 		"env-var": carapace.ActionValues(), // TODO
-		"format":  carapace.ActionValues("json", "junit", "html"),
+		"format":  carapace.ActionValues("html", "json", "junit"),
 		"output":  carapace.ActionFiles(),
 	})
 

@@ -19,6 +19,6 @@ func init() {
 	config_shellCmd.AddCommand(config_shell_uninstallCmd)
 
 	carapace.Gen(config_shell_uninstallCmd).PositionalCompletion(
-		carapace.ActionValues("bash", "fish", "nu", "zsh", "powershell"),
+		carapace.ActionValues("bash", "fish", "nu", "powershell", "zsh"),
 	)
 }

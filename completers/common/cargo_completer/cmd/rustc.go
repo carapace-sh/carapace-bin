@@ -50,13 +50,13 @@ func init() {
 	carapace.Gen(rustcCmd).FlagCompletion(carapace.ActionMap{
 		"bench":          action.ActionTargets(rustcCmd, action.TargetOpts{Bench: true}),
 		"bin":            action.ActionTargets(rustcCmd, action.TargetOpts{Bin: true}),
-		"crate-type":     carapace.ActionValues("bin", "lib", "rlib", "dylib", "cdylib", "staticlib", "and proc-macr").UniqueList(","),
+		"crate-type":     carapace.ActionValues("and proc-macr", "bin", "cdylib", "dylib", "lib", "rlib", "staticlib").UniqueList(","),
 		"example":        action.ActionTargets(rustcCmd, action.TargetOpts{Example: true}),
 		"features":       action.ActionFeatures(rustcCmd).UniqueList(","),
 		"manifest-path":  carapace.ActionFiles(),
 		"message-format": action.ActionMessageFormats(),
 		"package":        action.ActionDependencies(rustcCmd, false),
-		"print":          carapace.ActionValues("crate-name", "file-names", "sysroot", "target-libdir", "cfg", "calling-conventions", "target-list", "target-cpus", "target-features", "relocation-models", "code-models", "tls-models", "target-spec-json", "native-static-libs", "stack-protector-strategies", "link-args"),
+		"print":          carapace.ActionValues("calling-conventions", "cfg", "code-models", "crate-name", "file-names", "link-args", "native-static-libs", "relocation-models", "stack-protector-strategies", "sysroot", "target-cpus", "target-features", "target-libdir", "target-list", "target-spec-json", "tls-models"),
 		"profile":        action.ActionProfiles(rustcCmd),
 		"test":           action.ActionTargets(rustcCmd, action.TargetOpts{Test: true}),
 	})

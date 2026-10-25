@@ -29,7 +29,7 @@ func init() {
 	rootCmd.AddCommand(dumpCmd)
 
 	carapace.Gen(dumpCmd).FlagCompletion(carapace.ActionMap{
-		"skyframe":       carapace.ActionValues("off", "summary", "count", "keys", "value", "deps", "rdeps", "function_graph", "active_directories", "active_directories_frontier_deps"),
+		"skyframe":       carapace.ActionValues("active_directories", "active_directories_frontier_deps", "count", "deps", "function_graph", "keys", "off", "rdeps", "summary", "value"),
 		"skylark_memory": carapace.ActionFiles(),
 	})
 }

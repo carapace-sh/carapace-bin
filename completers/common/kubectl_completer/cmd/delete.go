@@ -39,7 +39,7 @@ func init() {
 	rootCmd.AddCommand(deleteCmd)
 
 	carapace.Gen(deleteCmd).FlagCompletion(carapace.ActionMap{
-		"cascade":   carapace.ActionValues("background", "orphan", "foreground"),
+		"cascade":   carapace.ActionValues("background", "foreground", "orphan"),
 		"dry-run":   kubectl.ActionDryRunModes(),
 		"filename":  carapace.ActionFiles(),
 		"kustomize": carapace.ActionDirectories(),

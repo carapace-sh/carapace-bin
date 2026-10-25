@@ -22,8 +22,8 @@ func init() {
 
 	carapace.Gen(bisect_runCmd).FlagCompletion(carapace.ActionMap{
 		"reset-when-found": carapace.ActionValuesDescribed(
-			"original", "reset to the original HEAD",
 			"found", "reset to the first bad commit",
+			"original", "reset to the original HEAD",
 		),
 	})
 

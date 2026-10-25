@@ -28,13 +28,13 @@ func init() {
 
 	carapace.Gen(package_initCmd).FlagCompletion(carapace.ActionMap{
 		"type": carapace.ActionValuesDescribed(
-			"library", "A package with a library",
-			"executable", "A package with an executable",
-			"tool", "A package with an executable that uses Swift Argument Parser",
 			"build-tool-plugin", "A package that vends a build tool plugin",
 			"command-plugin", "A package that vends a command plugin",
-			"macro", "A package that vends a macro",
 			"empty", "An empty package with a Package.swift manifest",
+			"executable", "A package with an executable",
+			"library", "A package with a library",
+			"macro", "A package that vends a macro",
+			"tool", "A package with an executable that uses Swift Argument Parser",
 		),
 	})
 }

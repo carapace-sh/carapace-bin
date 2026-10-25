@@ -20,10 +20,10 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.Batch(
-		carapace.ActionValues("clear", "enable", "disable"),
+		carapace.ActionValues("clear", "disable", "enable"),
 		carapace.ActionValuesDescribed(
-			"status", "check SIP status",
 			"netboot", "configure netboot settings",
+			"status", "check SIP status",
 		),
 	).ToA())
 }

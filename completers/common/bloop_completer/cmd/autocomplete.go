@@ -23,7 +23,7 @@ func init() {
 
 	carapace.Gen(autocompleteCmd).FlagCompletion(carapace.ActionMap{
 		"format":  carapace.ActionValues("bash", "fish", "zsh"),
-		"mode":    carapace.ActionValues("commands", "mainsfqcn", "projects", "project-commands", "protocols", "reporters", "testsfqcn"),
+		"mode":    carapace.ActionValues("commands", "mainsfqcn", "project-commands", "projects", "protocols", "reporters", "testsfqcn"),
 		"project": bloop.ActionProjects(),
 	})
 }

@@ -81,7 +81,7 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "output version information and exit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"color": carapace.ActionValues("true", "false", "always", "auto", "never", "debug"),
+		"color": carapace.ActionValues("always", "auto", "debug", "false", "never", "true"),
 		"config": carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
@@ -92,7 +92,7 @@ func init() {
 		}),
 		"config-file": carapace.ActionFiles(),
 		"cwd":         carapace.ActionDirectories(),
-		"pager":       carapace.ActionValues("true", "false", "always", "auto", "never"),
+		"pager":       carapace.ActionValues("always", "auto", "false", "never", "true"),
 		"repository":  carapace.ActionFiles(),
 	})
 

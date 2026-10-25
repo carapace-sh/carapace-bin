@@ -75,8 +75,8 @@ func init() {
 		"output":                carapace.ActionDirectories(),
 		"output-dir":            carapace.ActionDirectories(),
 		"pwa-strategy": carapace.ActionValuesDescribed(
-			"offline-first", "Attempt to cache the application shell eagerly and then lazily cache all subsequent assets as they are loaded. When making a network request for an asset, the offline cache will be preferred.",
 			"none", "Generate a service worker with no body. This is useful for local testing or in cases where the service worker caching functionality is not desirable",
+			"offline-first", "Attempt to cache the application shell eagerly and then lazily cache all subsequent assets as they are loaded. When making a network request for an asset, the offline cache will be preferred.",
 		),
 		"target":               carapace.ActionFiles(".dart"),
 		"web-define-from-file": carapace.ActionFiles(".json", ".env"),

@@ -20,12 +20,12 @@ func init() {
 
 	carapace.Gen(apps_configCmd).FlagCompletion(carapace.ActionMap{
 		"format": carapace.ActionValuesDescribed(
-			"uri", "app address",
 			"ca", "CA cert path",
 			"cert", "cert path",
-			"key", "key path",
 			"curl", "example curl command",
 			"json", "print everything as JSON",
+			"key", "key path",
+			"uri", "app address",
 			"yaml", "print everything as YAML",
 		),
 	})

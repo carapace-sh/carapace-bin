@@ -38,18 +38,18 @@ func init() {
 	rootCmd.AddCommand(treeCmd)
 
 	carapace.Gen(treeCmd).FlagCompletion(carapace.ActionMap{
-		"charset": carapace.ActionValues("utf8", "ascii"),
+		"charset": carapace.ActionValues("ascii", "utf8"),
 		"edges": carapace.ActionValues(
 			"all",
-			"normal",
 			"build",
 			"dev",
 			"features",
-			"public",
-			"no-normal",
 			"no-build",
 			"no-dev",
+			"no-normal",
 			"no-proc-macro",
+			"normal",
+			"public",
 		).UniqueList(","),
 		"exclude":       action.ActionWorkspaceMembers(treeCmd).UniqueList(","),
 		"features":      action.ActionFeatures(treeCmd).UniqueList(","),

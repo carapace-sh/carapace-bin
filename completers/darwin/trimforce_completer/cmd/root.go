@@ -20,6 +20,6 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValues("enable", "disable", "help"),
+		carapace.ActionValues("disable", "enable", "help"),
 	)
 }
