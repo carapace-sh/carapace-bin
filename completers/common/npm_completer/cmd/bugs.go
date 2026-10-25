@@ -23,11 +23,11 @@ func init() {
 
 	carapace.Gen(bugsCmd).FlagCompletion(carapace.ActionMap{
 		"browser": carapace.ActionValuesDescribed(
+			"false", "print urls to terminal",
 			"open", "osx default",
 			"start", "windows default",
-			"xdg-open", "others default",
-			"false", "print urls to terminal",
 			"true", "use system default",
+			"xdg-open", "others default",
 		),
 	})
 

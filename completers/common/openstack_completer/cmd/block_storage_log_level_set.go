@@ -20,6 +20,6 @@ func init() {
 	block_storage_log_levelCmd.AddCommand(block_storage_log_level_setCmd)
 
 	carapace.Gen(block_storage_log_level_setCmd).FlagCompletion(carapace.ActionMap{
-		"service": carapace.ActionValues("None", "*", "cinder-api", "cinder-volume", "cinder-scheduler", "cinder-backup"),
+		"service": carapace.ActionValues("*", "None", "cinder-api", "cinder-backup", "cinder-scheduler", "cinder-volume"),
 	})
 }

@@ -33,13 +33,13 @@ func init() {
 		"ref-format":       carapace.ActionValues("files", "flat", "tree"),
 		"separate-git-dir": carapace.ActionFiles(),
 		"shared": carapace.ActionValuesDescribed(
+			"all", "make repository readable by all users",
+			"everybody", "make repository readable by all users",
 			"false", "use permissions reported by umask",
+			"group", "make the repository group-writable",
 			"true", "make the repository group-writable",
 			"umask", "use permissions reported by umask",
-			"group", "make the repository group-writable",
-			"all", "make repository readable by all users",
 			"world", "make repository readable by all users",
-			"everybody", "make repository readable by all users",
 		),
 		"template": carapace.ActionDirectories(),
 	})

@@ -22,7 +22,7 @@ func init() {
 	sshKeyCmd.AddCommand(sshKey_addCmd)
 
 	carapace.Gen(sshKey_addCmd).FlagCompletion(carapace.ActionMap{
-		"usage-type": carapace.ActionValues("auth", "signing", "auth_and_signing"),
+		"usage-type": carapace.ActionValues("auth", "auth_and_signing", "signing"),
 	})
 	carapace.Gen(sshKey_addCmd).PositionalCompletion(
 		carapace.ActionFiles(),

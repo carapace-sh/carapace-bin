@@ -47,7 +47,7 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"alt-text":  carapace.ActionFiles(),
 		"display":   os.ActionDisplays(),
-		"selection": carapace.ActionValues("primary", "secondary", "clipboard", "buffer-cut"),
+		"selection": carapace.ActionValues("buffer-cut", "clipboard", "primary", "secondary"),
 		"target": carapace.Batch(
 			xclip.ActionTargets(),
 			carapace.ActionValues("TARGETS"),

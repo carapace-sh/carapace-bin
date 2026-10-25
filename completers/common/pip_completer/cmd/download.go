@@ -43,8 +43,8 @@ func init() {
 	carapace.Gen(downloadCmd).FlagCompletion(carapace.ActionMap{
 		"constraint":     carapace.ActionFiles(),
 		"find-links":     carapace.ActionFiles(),
-		"implementation": carapace.ActionValues("pp", "jy", "cp", "ip"),
-		"progress-bar":   carapace.ActionValues("off", "on", "ascii", "pretty", "emoji"),
+		"implementation": carapace.ActionValues("cp", "ip", "jy", "pp"),
+		"progress-bar":   carapace.ActionValues("ascii", "emoji", "off", "on", "pretty"),
 		"requirement":    carapace.ActionFiles(),
 		"src":            carapace.ActionDirectories(),
 	})

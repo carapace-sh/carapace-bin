@@ -66,7 +66,7 @@ func init() {
 		"share-type":        action.ActionShareTypes(share_listCmd),
 		"snapshot":          action.ActionShareSnapshots(share_listCmd),
 		"sort-column":       action.ActionColumns(share_listCmd),
-		"status":            carapace.ActionValues("available", "creating", "creating_from_snapshot", "deleting", "deleted", "error", "error_deleting", "manage_starting", "manage_error", "unmanage_starting", "unmanage_error", "extending", "extending_error", "shrinking", "shrinking_error", "reverting", "reverting_error", "awaiting_transfer", "replication_change", "server_migrating"),
+		"status":            carapace.ActionValues("available", "awaiting_transfer", "creating", "creating_from_snapshot", "deleted", "deleting", "error", "error_deleting", "extending", "extending_error", "manage_error", "manage_starting", "replication_change", "reverting", "reverting_error", "server_migrating", "shrinking", "shrinking_error", "unmanage_error", "unmanage_starting"),
 		"user":              action.ActionUsers(share_listCmd),
 		"user-domain":       action.ActionDomains(share_listCmd),
 	})

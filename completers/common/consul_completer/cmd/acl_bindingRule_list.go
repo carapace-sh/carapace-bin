@@ -23,6 +23,6 @@ func init() {
 	acl_bindingRuleCmd.AddCommand(acl_bindingRule_listCmd)
 
 	carapace.Gen(acl_bindingRule_listCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("pretty", "json"),
+		"format": carapace.ActionValues("json", "pretty"),
 	})
 }

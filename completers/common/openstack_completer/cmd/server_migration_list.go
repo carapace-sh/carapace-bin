@@ -48,7 +48,7 @@ func init() {
 		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
 		"server":         action.ActionServers(server_migration_listCmd),
 		"sort-column":    action.ActionColumns(server_migration_listCmd),
-		"type":           carapace.ActionValues("evacuation", "live-migration", "cold-migration", "resize"),
+		"type":           carapace.ActionValues("cold-migration", "evacuation", "live-migration", "resize"),
 		"user":           action.ActionUsers(server_migration_listCmd),
 		"user-domain":    action.ActionDomains(server_migration_listCmd),
 	})

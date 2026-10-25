@@ -8,10 +8,10 @@ import "github.com/carapace-sh/carapace"
 //	key
 func ActionDeployKeyFields() carapace.Action {
 	return carapace.ActionValues(
+		"createdAt",
 		"id",
 		"key",
-		"title",
-		"createdAt",
 		"readOnly",
+		"title",
 	)
 }

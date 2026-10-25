@@ -137,7 +137,7 @@ func init() {
 	carapace.Gen(logCmd).FlagCompletion(carapace.ActionMap{
 		"file":      carapace.ActionFiles(),
 		"formatter": carapace.ActionValues("json", "logfmt", "text"),
-		"level":     carapace.ActionValues("none", "debug", "info", "warn", "error", "fatal").StyleF(style.ForLogLevel),
+		"level":     carapace.ActionValues("debug", "error", "fatal", "info", "none", "warn").StyleF(style.ForLogLevel),
 		"time": carapace.ActionValuesDescribed(
 			"layout", time.Layout,
 			"ansic", time.ANSIC,
@@ -155,8 +155,8 @@ func init() {
 			"stampmilli", time.StampMilli,
 			"stampmicro", time.StampMicro,
 			"stampnano", time.StampNano,
-			"datetime", "2006-01-02 15:04:05",
 			"dateonly", "2006-01-02",
+			"datetime", "2006-01-02 15:04:05",
 			"timeonly", "15:04:05"),
 	})
 }

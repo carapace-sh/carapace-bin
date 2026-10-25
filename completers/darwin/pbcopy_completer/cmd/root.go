@@ -22,6 +22,6 @@ func init() {
 	rootCmd.Flags().StringP("pboard", "p", "", "Specify pasteboard: general, ruler, find, or font")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"pboard": carapace.ActionValues("general", "ruler", "find", "font"),
+		"pboard": carapace.ActionValues("find", "font", "general", "ruler"),
 	})
 }

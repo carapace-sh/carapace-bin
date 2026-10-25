@@ -31,8 +31,8 @@ func init() {
 		"assignee":      carapace.ActionValues(),
 		"author":        carapace.ActionValues(),
 		"label":         carapace.ActionValues(),
-		"output_format": carapace.ActionValues("table", "array"),
-		"state":         carapace.ActionValues("open", "closed", "all").StyleF(style.ForKeyword), // TODO custom states
+		"output_format": carapace.ActionValues("array", "table"),
+		"state":         carapace.ActionValues("all", "closed", "open").StyleF(style.ForKeyword), // TODO custom states
 		"story_points":  carapace.ActionValues(),
 		"type":          doing.ActionWorkItemTypes(),
 	})

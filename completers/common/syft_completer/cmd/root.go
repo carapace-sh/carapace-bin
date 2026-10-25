@@ -59,7 +59,7 @@ func addCommonFlags(cmd *cobra.Command) {
 				return carapace.ActionValues()
 			}
 		}),
-		"scope":    carapace.ActionValues("Squashed", "AllLayers"),
+		"scope":    carapace.ActionValues("AllLayers", "Squashed"),
 		"template": carapace.ActionFiles(),
 	})
 }

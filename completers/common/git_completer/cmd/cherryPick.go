@@ -44,7 +44,7 @@ func init() {
 
 	carapace.Gen(cherryPickCmd).FlagCompletion(carapace.ActionMap{
 		"cleanup":  git.ActionCleanupModes(),
-		"empty":    carapace.ActionValues("keep", "drop", "stop"),
+		"empty":    carapace.ActionValues("drop", "keep", "stop"),
 		"gpg-sign": os.ActionGpgKeyIds(),
 		"mainline": carapace.ActionValues("1", "2", "3", "4", "5"),
 		"strategy": git.ActionMergeStrategies(),

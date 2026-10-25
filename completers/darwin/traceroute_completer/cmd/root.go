@@ -47,7 +47,7 @@ func init() {
 	rootCmd.Flags().StringS("z", "z", "", "Pause between probes (milliseconds)")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"P": carapace.ActionValues("UDP", "TCP", "ICMP", "GRE", "IPIP"),
+		"P": carapace.ActionValues("GRE", "ICMP", "IPIP", "TCP", "UDP"),
 		"i": net.ActionDevices(net.AllDevices),
 	})
 

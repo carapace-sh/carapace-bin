@@ -19,7 +19,7 @@ func init() {
 	rootCmd.AddCommand(behaveScreenEdgeCmd)
 
 	carapace.Gen(behaveScreenEdgeCmd).PositionalCompletion(
-		carapace.ActionValues("left", "top-left", "top", "top-right", "right", "bottom-left", "bottom", "bottom-right"),
+		carapace.ActionValues("bottom", "bottom-left", "bottom-right", "left", "right", "top", "top-left", "top-right"),
 		// TODO command completion
 	)
 }

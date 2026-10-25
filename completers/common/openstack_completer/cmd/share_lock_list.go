@@ -52,17 +52,17 @@ func init() {
 
 	carapace.Gen(share_lock_listCmd).FlagCompletion(carapace.ActionMap{
 		"column":         action.ActionColumns(share_lock_listCmd),
-		"context":        carapace.ActionValues("user", "admin", "service"),
+		"context":        carapace.ActionValues("admin", "service", "user"),
 		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
-		"lock-context":   carapace.ActionValues("user", "admin", "service"),
+		"lock-context":   carapace.ActionValues("admin", "service", "user"),
 		"project":        action.ActionProjects(share_lock_listCmd),
 		"project-domain": action.ActionDomains(share_lock_listCmd),
 		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
 		"sort-column":    action.ActionColumns(share_lock_listCmd),
 		"sort-dir":       carapace.ActionValues("asc", "desc"),
-		"sort-key":       carapace.ActionValues("id", "created_at", "updated_at", "resource_id", "resource_type", "resource_action", "lock_reason"),
+		"sort-key":       carapace.ActionValues("created_at", "id", "lock_reason", "resource_action", "resource_id", "resource_type", "updated_at"),
 		"sort_dir":       carapace.ActionValues("asc", "desc"),
-		"sort_key":       carapace.ActionValues("id", "created_at", "updated_at", "resource_id", "resource_type", "resource_action", "lock_reason"),
+		"sort_key":       carapace.ActionValues("created_at", "id", "lock_reason", "resource_action", "resource_id", "resource_type", "updated_at"),
 		"user":           action.ActionUsers(share_lock_listCmd),
 		"user-domain":    action.ActionDomains(share_lock_listCmd),
 	})

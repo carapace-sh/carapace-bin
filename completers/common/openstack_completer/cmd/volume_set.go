@@ -36,7 +36,7 @@ func init() {
 	carapace.Gen(volume_setCmd).FlagCompletion(carapace.ActionMap{
 		"migration-policy": carapace.ActionValues("never", "on-demand"),
 		"retype-policy":    carapace.ActionValues("never", "on-demand"),
-		"state":            carapace.ActionValues("available", "error", "creating", "deleting", "in-use", "attaching", "detaching", "error_deleting", "maintenance"),
+		"state":            carapace.ActionValues("attaching", "available", "creating", "deleting", "detaching", "error", "error_deleting", "in-use", "maintenance"),
 	})
 
 	carapace.Gen(volume_setCmd).PositionalCompletion(action.ActionVolumes(volume_setCmd))

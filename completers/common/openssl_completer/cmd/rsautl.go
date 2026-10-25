@@ -41,7 +41,7 @@ func init() {
 	carapace.Gen(rsautlCmd).FlagCompletion(carapace.ActionMap{
 		"in":      carapace.ActionFiles(),
 		"inkey":   carapace.ActionFiles(),
-		"keyform": carapace.ActionValues("DER", "PEM", "P12"),
+		"keyform": carapace.ActionValues("DER", "P12", "PEM"),
 		"out":     carapace.ActionFiles(),
 	})
 }

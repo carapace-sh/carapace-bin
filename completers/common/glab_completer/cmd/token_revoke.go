@@ -27,7 +27,7 @@ func init() {
 	carapace.Gen(token_revokeCmd).FlagCompletion(carapace.ActionMap{
 		"group":  action.ActionGroups(token_revokeCmd),
 		"jq":     jq.ActionFilters(),
-		"output": carapace.ActionValues("text", "json"),
+		"output": carapace.ActionValues("json", "text"),
 		"repo":   action.ActionRepo(token_revokeCmd),
 		"user":   action.ActionUsers(token_revokeCmd),
 	})

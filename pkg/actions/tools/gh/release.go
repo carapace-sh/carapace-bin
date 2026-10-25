@@ -8,12 +8,12 @@ import "github.com/carapace-sh/carapace"
 //	tagName
 func ActionReleaseFields() carapace.Action {
 	return carapace.ActionValues(
-		"name",
-		"tagName",
+		"createdAt",
 		"isDraft",
 		"isLatest",
 		"isPrerelease",
-		"createdAt",
+		"name",
 		"publishedAt",
+		"tagName",
 	)
 }

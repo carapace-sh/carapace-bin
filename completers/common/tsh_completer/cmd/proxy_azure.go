@@ -24,7 +24,7 @@ func init() {
 
 	carapace.Gen(proxy_azureCmd).FlagCompletion(carapace.ActionMap{
 		"app":    tsh.ActionApps(),
-		"format": carapace.ActionValues("unix", "command-prompt", "powershell", "text"),
+		"format": carapace.ActionValues("command-prompt", "powershell", "text", "unix"),
 		"port":   net.ActionPorts(),
 	})
 }

@@ -89,16 +89,16 @@ func actionPoolStatusEntries(pool string, groupVdevs bool) carapace.Action {
 //	raidz1
 func ActionVdevTypes() carapace.Action {
 	return carapace.ActionValuesDescribed(
+		"cache", "L2ARC cache device",
+		"dedup", "dedup allocation class",
+		"draid", "distributed RAID",
+		"log", "ZFS Intent Log",
 		"mirror", "mirror vdev",
 		"raidz", "single-parity RAID-Z",
 		"raidz1", "single-parity RAID-Z",
 		"raidz2", "double-parity RAID-Z",
 		"raidz3", "triple-parity RAID-Z",
-		"draid", "distributed RAID",
 		"spare", "hot spare",
-		"log", "ZFS Intent Log",
-		"cache", "L2ARC cache device",
 		"special", "special allocation class",
-		"dedup", "dedup allocation class",
 	)
 }

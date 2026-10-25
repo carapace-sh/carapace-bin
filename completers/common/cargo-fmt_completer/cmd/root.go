@@ -31,6 +31,6 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"manifest-path":  carapace.ActionFiles(".toml"),
-		"message-format": carapace.ActionValues("short", "json", "human"),
+		"message-format": carapace.ActionValues("human", "json", "short"),
 	})
 }

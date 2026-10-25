@@ -24,7 +24,7 @@ func init() {
 	rootCmd.AddCommand(listClientsCmd)
 
 	carapace.Gen(listClientsCmd).FlagCompletion(carapace.ActionMap{
-		"O": carapace.ActionValues("name", "size", "creation", "activity"),
+		"O": carapace.ActionValues("activity", "creation", "name", "size"),
 		"t": tmux.ActionSessions(),
 	})
 }

@@ -62,7 +62,7 @@ func ActionConfigValues(key string) carapace.Action {
 		actions := map[string]carapace.Action{
 			"token":         carapace.ActionValues(),
 			"gitlab_uri":    carapace.ActionValues(),
-			"glab_pager":    carapace.ActionValues("bat --style grid", "more", "most", "less"),
+			"glab_pager":    carapace.ActionValues("bat --style grid", "less", "more", "most"),
 			"browser":       carapace.ActionFiles(),
 			"editor":        carapace.ActionFiles(),
 			"visual":        carapace.ActionFiles(),

@@ -24,8 +24,8 @@ func init() {
 	rootCmd.AddCommand(usageCmd)
 
 	carapace.Gen(usageCmd).FlagCompletion(carapace.ActionMap{
-		"breakdown": carapace.ActionValues("daily", "weekly", "monthly"),
-		"format":    carapace.ActionValues("plain", "json"),
+		"breakdown": carapace.ActionValues("daily", "monthly", "weekly"),
+		"format":    carapace.ActionValues("json", "plain"),
 		"group-by":  carapace.ActionValues("project", "region"),
 	})
 }

@@ -6,8 +6,8 @@ import (
 
 func ActionExecKinds() carapace.Action {
 	return carapace.ActionValues(
-		"auto.local",
 		"auto.inline",
+		"auto.local",
 		"cli",
 	)
 }

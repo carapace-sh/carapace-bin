@@ -21,6 +21,6 @@ func init() {
 	plugin_marketplaceCmd.AddCommand(plugin_marketplace_removeCmd)
 
 	carapace.Gen(plugin_marketplace_removeCmd).FlagCompletion(carapace.ActionMap{
-		"scope": carapace.ActionValues("user", "project", "local"),
+		"scope": carapace.ActionValues("local", "project", "user"),
 	})
 }

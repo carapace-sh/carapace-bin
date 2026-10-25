@@ -159,16 +159,16 @@ func init() {
 	rootCmd.AddCommand(modCmd)
 
 	carapace.Gen(modCmd).FlagCompletion(carapace.ActionMap{
-		"charset":          carapace.ActionValues("utf8", "ascii"),
-		"compilation_mode": carapace.ActionValues("fastbuild", "dbg", "opt"),
-		"experimental_exec_configuration_distinguisher": carapace.ActionValues("legacy", "fullhash", "off"),
-		"extension_info":                    carapace.ActionValues("hidden", "usages", "repos", "all"),
-		"host_compilation_mode":             carapace.ActionValues("fastbuild", "dbg", "opt"),
-		"include_config_fragments_provider": carapace.ActionValues("off", "direct", "transitive"),
-		"output":                            carapace.ActionValues("text", "json", "graph"),
+		"charset":          carapace.ActionValues("ascii", "utf8"),
+		"compilation_mode": carapace.ActionValues("dbg", "fastbuild", "opt"),
+		"experimental_exec_configuration_distinguisher": carapace.ActionValues("fullhash", "legacy", "off"),
+		"extension_info":                    carapace.ActionValues("all", "hidden", "repos", "usages"),
+		"host_compilation_mode":             carapace.ActionValues("dbg", "fastbuild", "opt"),
+		"include_config_fragments_provider": carapace.ActionValues("direct", "off", "transitive"),
+		"output":                            carapace.ActionValues("graph", "json", "text"),
 	})
 
 	carapace.Gen(modCmd).PositionalCompletion(
-		carapace.ActionValues("deps", "graph", "all_paths", "path", "explain", "show_repo", "show_extension", "dump_repo_mapping", "tidy"),
+		carapace.ActionValues("all_paths", "deps", "dump_repo_mapping", "explain", "graph", "path", "show_extension", "show_repo", "tidy"),
 	)
 }

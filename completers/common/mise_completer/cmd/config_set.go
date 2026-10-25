@@ -28,7 +28,7 @@ func init() {
 
 	carapace.Gen(config_setCmd).FlagCompletion(carapace.ActionMap{
 		"file": carapace.ActionFiles(),
-		"type": carapace.ActionValues("infer", "string", "integer", "float", "bool", "list", "set"),
+		"type": carapace.ActionValues("bool", "float", "infer", "integer", "list", "set", "string"),
 	})
 
 	carapace.Gen(config_setCmd).PositionalCompletion(

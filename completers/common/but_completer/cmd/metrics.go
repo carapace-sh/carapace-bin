@@ -24,12 +24,12 @@ func init() {
 
 	carapace.Gen(metricsCmd).FlagCompletion(carapace.ActionMap{
 		"command-name": carapace.ActionValues(
-			"init", "absorb", "discard", "status", "tui", "stf", "uncommit", "amend",
-			"squash", "move", "diff", "diff2", "edit", "show", "commit", "commit-empty",
-			"push", "reword", "oplog-list", "oplog-snapshot", "restore", "undo", "redo",
-			"gui", "open", "base-fetch", "base-check", "pull", "branch-new", "branch-delete",
-			"branch-list", "branch-show", "branch-unapply", "branch-apply", "branch-update",
-			"branch-move", "branch-tear-off",
+			"absorb", "amend", "base-check", "base-fetch", "branch-apply", "branch-delete", "branch-list", "branch-move",
+			"branch-new", "branch-show", "branch-tear-off", "branch-unapply", "branch-update", "commit", "commit-empty", "diff",
+			"diff2", "discard", "edit", "gui", "init", "move", "open",
+			"oplog-list", "oplog-snapshot", "pull", "push", "redo", "restore", "reword",
+			"show", "squash", "status", "stf", "tui",
+			"uncommit", "undo",
 		),
 	})
 }

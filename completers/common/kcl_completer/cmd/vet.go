@@ -22,8 +22,8 @@ func init() {
 	rootCmd.AddCommand(vetCmd)
 
 	carapace.Gen(vetCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("json", "yaml", "toml"),
-		"output": carapace.ActionValues("text", "json"),
+		"format": carapace.ActionValues("json", "toml", "yaml"),
+		"output": carapace.ActionValues("json", "text"),
 	})
 
 	carapace.Gen(vetCmd).PositionalCompletion(

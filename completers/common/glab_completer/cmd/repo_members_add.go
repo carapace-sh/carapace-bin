@@ -25,7 +25,7 @@ func init() {
 
 	carapace.Gen(repo_members_addCmd).FlagCompletion(carapace.ActionMap{
 		"repo":     action.ActionRepo(repo_members_addCmd),
-		"role":     carapace.ActionValues("guest", "reporter", "developer", "maintainer", "owner"),
+		"role":     carapace.ActionValues("developer", "guest", "maintainer", "owner", "reporter"),
 		"username": action.ActionUsers(repo_members_addCmd),
 	})
 }

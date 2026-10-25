@@ -86,9 +86,9 @@ func init() {
 		"keyring-provider": uv.ActionKeyringProviders(),
 		"link-mode":        uv.ActionLinkModes(),
 		"output-format": carapace.ActionValuesDescribed(
-			"text", "Display the result in a human-readable format",
 			"json", "Display the result in JSON format",
 			"sarif", "Display the result in SARIF format",
+			"text", "Display the result in a human-readable format",
 		),
 		"prerelease":      uv.ActionPreReleases(),
 		"python-platform": uv.ActionPythonPlatforms(),

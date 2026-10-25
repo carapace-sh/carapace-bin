@@ -23,7 +23,7 @@ func init() {
 	agentCmd.AddCommand(agent_startCmd)
 
 	carapace.Gen(agent_startCmd).FlagCompletion(carapace.ActionMap{
-		"kind": carapace.ActionValues("pi", "claude", "codex", "gemini", "cursor", "devin", "agy", "cline", "omp", "mastracode", "opencode", "copilot", "kimi", "kiro", "droid", "amp", "grok", "hermes", "kilo", "qodercli", "maki"),
+		"kind": carapace.ActionValues("agy", "amp", "claude", "cline", "codex", "copilot", "cursor", "devin", "droid", "gemini", "grok", "hermes", "kilo", "kimi", "kiro", "maki", "mastracode", "omp", "opencode", "pi", "qodercli"),
 		"pane": herdr.ActionPanes(herdr.PaneOpts{}),
 	})
 }

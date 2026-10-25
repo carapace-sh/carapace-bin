@@ -22,6 +22,6 @@ func init() {
 	acl_authMethodCmd.AddCommand(acl_authMethod_listCmd)
 
 	carapace.Gen(acl_authMethod_listCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("pretty", "json"),
+		"format": carapace.ActionValues("json", "pretty"),
 	})
 }

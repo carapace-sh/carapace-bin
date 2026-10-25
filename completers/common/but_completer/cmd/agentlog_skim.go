@@ -20,8 +20,8 @@ func init() {
 	carapace.Gen(agentlog_skimCmd).PositionalCompletion(
 		carapace.ActionValuesDescribed(
 			"branch", "Branch ref target",
-			"review", "GitButler review target, including pull request / merge request style reviews",
 			"change", "GitButler change id target",
+			"review", "GitButler review target, including pull request / merge request style reviews",
 		),
 	)
 }

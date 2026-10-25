@@ -28,8 +28,8 @@ func init() {
 
 	carapace.Gen(psCmd).FlagCompletion(carapace.ActionMap{
 		"filter": carapace.ActionValues("status"),
-		"format": carapace.ActionValues("table", "json"),
-		"status": carapace.ActionValues("paused", "restarting", "removing", "running", "dead", "created", "exited").StyleF(style.ForKeyword),
+		"format": carapace.ActionValues("json", "table"),
+		"status": carapace.ActionValues("created", "dead", "exited", "paused", "removing", "restarting", "running").StyleF(style.ForKeyword),
 	})
 
 	carapace.Gen(psCmd).PositionalAnyCompletion(

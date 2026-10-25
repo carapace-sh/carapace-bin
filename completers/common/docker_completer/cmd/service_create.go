@@ -102,13 +102,13 @@ func init() {
 
 	carapace.Gen(service_createCmd).FlagCompletion(carapace.ActionMap{
 		"config":                  docker.ActionConfigs(),
-		"endpoint-mode":           carapace.ActionValues("vip", "dnsrr"),
+		"endpoint-mode":           carapace.ActionValues("dnsrr", "vip"),
 		"env":                     env.ActionNameValues(false),
 		"env-file":                carapace.ActionFiles(),
 		"group":                   os.ActionGroups(),
 		"isolation":               carapace.ActionValues("default", "hyperv", "process"),
 		"log-driver":              docker.ActionLogDrivers(),
-		"mode":                    carapace.ActionValues("replicated", "global"),
+		"mode":                    carapace.ActionValues("global", "replicated"),
 		"network":                 docker.ActionNetworks(),
 		"restart-condition":       carapace.ActionValues("any", "none", "on-failure").StyleF(style.ForKeyword),
 		"rollback-failure-action": carapace.ActionValues("continue", "pause").StyleF(style.ForKeyword),

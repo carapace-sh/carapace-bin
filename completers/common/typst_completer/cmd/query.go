@@ -25,8 +25,8 @@ func init() {
 
 	carapace.Gen(queryCmd).FlagCompletion(carapace.ActionMap{
 		"target": carapace.ActionValuesDescribed(
-			"paged", "PDF and image formats",
 			"html", "HTML",
+			"paged", "PDF and image formats",
 		),
 	})
 

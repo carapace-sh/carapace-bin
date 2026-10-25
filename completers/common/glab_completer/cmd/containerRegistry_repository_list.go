@@ -31,7 +31,7 @@ func init() {
 	carapace.Gen(containerRegistry_repository_listCmd).FlagCompletion(carapace.ActionMap{
 		"group":  action.ActionGroups(containerRegistry_repository_listCmd),
 		"jq":     jq.ActionFilters(),
-		"output": carapace.ActionValues("text", "json"),
+		"output": carapace.ActionValues("json", "text"),
 		"repo":   action.ActionRepo(containerRegistry_repository_listCmd),
 	})
 }

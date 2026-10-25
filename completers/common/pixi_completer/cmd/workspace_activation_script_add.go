@@ -24,7 +24,7 @@ func init() {
 	carapace.Gen(workspace_activation_script_addCmd).FlagCompletion(carapace.ActionMap{
 		"environment": pixi.ActionEnvironments(),
 		"feature":     pixi.ActionFeatures(),
-		"target":      carapace.Batch(pixi.ActionPlatforms(), pixi.ActionKnownPlatforms(), carapace.ActionValues("unix", "linux", "win", "osx")).ToA(),
+		"target":      carapace.Batch(pixi.ActionPlatforms(), pixi.ActionKnownPlatforms(), carapace.ActionValues("linux", "osx", "unix", "win")).ToA(),
 	})
 
 	carapace.Gen(workspace_activation_script_addCmd).PositionalAnyCompletion(

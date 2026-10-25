@@ -23,11 +23,11 @@ func init() {
 	tokensCmd.AddCommand(tokens_addCmd)
 
 	carapace.Gen(tokens_addCmd).FlagCompletion(carapace.ActionMap{
-		"format":  carapace.ActionValues("plain", "json"),
+		"format":  carapace.ActionValues("json", "plain"),
 		"project": action.ActionProjects(tokens_addCmd),
 	})
 
 	carapace.Gen(tokens_addCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("plain", "json"),
+		"format": carapace.ActionValues("json", "plain"),
 	})
 }

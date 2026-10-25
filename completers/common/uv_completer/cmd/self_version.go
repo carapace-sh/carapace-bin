@@ -21,8 +21,8 @@ func init() {
 
 	carapace.Gen(self_versionCmd).FlagCompletion(carapace.ActionMap{
 		"output-format": carapace.ActionValuesDescribed(
-			"text", "Display the version as plain text",
 			"json", "Display the version as JSON",
+			"text", "Display the version as plain text",
 		),
 	})
 }

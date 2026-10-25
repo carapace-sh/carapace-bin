@@ -23,6 +23,6 @@ func init() {
 	rootCmd.AddCommand(analyticsCmd)
 
 	carapace.Gen(analyticsCmd).PositionalCompletion(
-		carapace.ActionValues("state", "on", "off").StyleF(style.ForKeyword),
+		carapace.ActionValues("off", "on", "state").StyleF(style.ForKeyword),
 	)
 }

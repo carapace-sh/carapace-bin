@@ -26,7 +26,7 @@ func init() {
 	releaseCmd.AddCommand(release_downloadCmd)
 
 	carapace.Gen(release_downloadCmd).FlagCompletion(carapace.ActionMap{
-		"archive": carapace.ActionValues("zip", "tar.gz"),
+		"archive": carapace.ActionValues("tar.gz", "zip"),
 		"dir":     carapace.ActionDirectories(),
 		"output": carapace.Batch(
 			carapace.ActionValuesDescribed("-", "standard output"),

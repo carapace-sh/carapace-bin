@@ -25,7 +25,7 @@ func init() {
 	bugreportCmd.Flag("diagnose").NoOptDefVal = " "
 
 	carapace.Gen(bugreportCmd).FlagCompletion(carapace.ActionMap{
-		"diagnose":         carapace.ActionValues("stats", "all").StyleF(style.ForKeyword),
+		"diagnose":         carapace.ActionValues("all", "stats").StyleF(style.ForKeyword),
 		"output-directory": carapace.ActionDirectories(),
 	})
 }

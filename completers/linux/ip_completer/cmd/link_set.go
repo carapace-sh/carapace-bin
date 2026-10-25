@@ -38,11 +38,11 @@ func init() {
 				case "address":
 					return carapace.ActionValues().NoSpace()
 				case "arp":
-					return carapace.ActionValues("on", "off").StyleF(style.ForKeyword)
+					return carapace.ActionValues("off", "on").StyleF(style.ForKeyword)
 				case "multicast":
-					return carapace.ActionValues("on", "off").StyleF(style.ForKeyword)
+					return carapace.ActionValues("off", "on").StyleF(style.ForKeyword)
 				case "dynamic":
-					return carapace.ActionValues("on", "off").StyleF(style.ForKeyword)
+					return carapace.ActionValues("off", "on").StyleF(style.ForKeyword)
 				case "group":
 					return carapace.ActionValues()
 				case "type":
@@ -55,7 +55,7 @@ func init() {
 					return carapace.ActionValues()
 				}
 			}
-			return carapace.ActionValues("up", "down", "dev", "master", "nomaster", "vrf", "mtu", "address", "arp", "multicast", "dynamic", "group", "name", "netns", "txqueuelen", "type")
+			return carapace.ActionValues("address", "arp", "dev", "down", "dynamic", "group", "master", "mtu", "multicast", "name", "netns", "nomaster", "txqueuelen", "type", "up", "vrf")
 		}),
 	)
 }

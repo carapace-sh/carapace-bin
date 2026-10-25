@@ -86,18 +86,18 @@ func ActionCodespacePorts(codespace string) carapace.Action {
 
 func ActionCodespaceFields() carapace.Action {
 	return carapace.ActionValues(
+		"createdAt",
+		"gitStatus",
+		"lastUsedAt",
 		"name",
 		"owner",
 		"repository",
 		"state",
-		"gitStatus",
-		"createdAt",
-		"lastUsedAt",
 	)
 }
 
 func ActionCodespacePortFields() carapace.Action {
-	return carapace.ActionValues(
+	return carapace.ActionValues( // carapace:curated
 		"sourcePort",
 		// "destinationPort", // TODO(mislav): this appears to always be blank?
 		"visibility",

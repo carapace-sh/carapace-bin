@@ -41,11 +41,11 @@ func init() {
 	switchCmd.Flag("recurse-submodules").NoOptDefVal = " "
 
 	carapace.Gen(switchCmd).FlagCompletion(carapace.ActionMap{
-		"conflict":           carapace.ActionValues("merge", "diff3"),
+		"conflict":           carapace.ActionValues("diff3", "merge"),
 		"create":             git.ActionRefs(git.RefOption{LocalBranches: true}),
 		"force-create":       git.ActionRefs(git.RefOption{LocalBranches: true}),
 		"orphan":             git.ActionRefs(git.RefOption{LocalBranches: true}),
-		"recurse-submodules": carapace.ActionValues("yes", "on-demand").StyleF(style.ForKeyword),
+		"recurse-submodules": carapace.ActionValues("on-demand", "yes").StyleF(style.ForKeyword),
 	})
 
 	carapace.Gen(switchCmd).PositionalCompletion(

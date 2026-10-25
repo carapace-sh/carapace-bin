@@ -16,6 +16,6 @@ func init() {
 	rootCmd.AddCommand(listCmd)
 
 	carapace.Gen(listCmd).PositionalCompletion(
-		carapace.ActionValues("blobs", "packs", "index", "snapshots", "keys", "locks"),
+		carapace.ActionValues("blobs", "index", "keys", "locks", "packs", "snapshots"),
 	)
 }

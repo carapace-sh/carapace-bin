@@ -77,18 +77,18 @@ func init() {
 
 	carapace.Gen(watchCmd).FlagCompletion(carapace.ActionMap{
 		"clear":               carapace.ActionValues("clear", "reset"),
-		"color":               carapace.ActionValues("auto", "always", "never"),
-		"emit-events-to":      carapace.ActionValues("environment", "stdio", "file", "json-stdio", "json-file", "none"),
+		"color":               carapace.ActionValues("always", "auto", "never"),
+		"emit-events-to":      carapace.ActionValues("environment", "file", "json-file", "json-stdio", "none", "stdio"),
 		"filter-file":         carapace.ActionFiles(),
-		"fs-events":           carapace.ActionValues("access", "create", "remove", "rename", "modify", "metadata"),
+		"fs-events":           carapace.ActionValues("access", "create", "metadata", "modify", "remove", "rename"),
 		"ignore-file":         carapace.ActionFiles(),
-		"on-busy-update":      carapace.ActionValues("queue", "do-nothing", "restart", "signal"),
+		"on-busy-update":      carapace.ActionValues("do-nothing", "queue", "restart", "signal"),
 		"project-origin":      carapace.ActionDirectories(),
 		"watch":               carapace.ActionFiles(),
 		"watch-file":          carapace.ActionFiles(),
 		"watch-non-recursive": carapace.ActionFiles(),
 		"workdir":             carapace.ActionDirectories(),
-		"wrap-process":        carapace.ActionValues("group", "session", "none"),
+		"wrap-process":        carapace.ActionValues("group", "none", "session"),
 	})
 
 	carapace.Gen(watchCmd).PositionalCompletion(

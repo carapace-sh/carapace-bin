@@ -15,6 +15,6 @@ func init() {
 	carapace.Gen(authorizationdbCmd).Standalone()
 	rootCmd.AddCommand(authorizationdbCmd)
 	carapace.Gen(authorizationdbCmd).PositionalCompletion(
-		carapace.ActionValues("read", "write", "remove"),
+		carapace.ActionValues("read", "remove", "write"),
 	)
 }

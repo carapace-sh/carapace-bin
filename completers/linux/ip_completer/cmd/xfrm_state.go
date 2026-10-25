@@ -17,6 +17,6 @@ func init() {
 	xfrmCmd.AddCommand(xfrm_stateCmd)
 
 	carapace.Gen(xfrm_stateCmd).PositionalCompletion(
-		carapace.ActionValues("add", "update", "allocspi", "delete", "get", "deleteall", "list", "flush", "count"),
+		carapace.ActionValues("add", "allocspi", "count", "delete", "deleteall", "flush", "get", "list", "update"),
 	)
 }

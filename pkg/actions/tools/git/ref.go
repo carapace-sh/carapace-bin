@@ -83,11 +83,11 @@ func ActionRefs(refOption RefOption) carapace.Action {
 				}
 				return carapace.Batch(
 					time.ActionDateTime(time.DateTimeOpts{}),
-					carapace.ActionValues("yesterday", "push", "upstream").Style(style.Blue).Suffix("}"),
+					carapace.ActionValues("push", "upstream", "yesterday").Style(style.Blue).Suffix("}"),
 					carapace.ActionMultiParts(".", func(c carapace.Context) carapace.Action {
 						b := carapace.Batch()
 						if len(c.Parts)%2 == 1 {
-							b = append(b, carapace.ActionValues("year", "month", "week", "day", "hour", "second").Style(style.Blue).Suffix("."))
+							b = append(b, carapace.ActionValues("day", "hour", "month", "second", "week", "year").Style(style.Blue).Suffix("."))
 						}
 						if len(c.Parts) > 0 && len(c.Parts)%2 == 0 {
 							b = append(b, carapace.ActionValues("ago").Style(style.Blue).Suffix("}"))

@@ -9,5 +9,5 @@ import (
 //	ctrl-@
 //	ctrl-[
 func ActionDetachKeys() carapace.Action {
-	return carapace.ActionValues("{a-z}", `ctrl-\`, "ctrl-@", "ctrl-[", "ctrl-]", "ctrl-^", "ctrl-_", "ctrl-{a-z}")
+	return carapace.ActionValues("ctrl-@", "ctrl-[", `ctrl-\`, "ctrl-]", "ctrl-^", "ctrl-_", "ctrl-{a-z}", "{a-z}")
 }

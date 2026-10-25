@@ -37,13 +37,13 @@ func init() {
 				case "ipproto":
 					return action.ActionIpProtocols()
 				case "lookup":
-					return carapace.ActionValues("local", "main", "default", "all")
+					return carapace.ActionValues("all", "default", "local", "main")
 				case "map-to":
 					return net.ActionIpv4Addresses()
 				case "nat":
 					return net.ActionIpv4Addresses()
 				case "not":
-					return carapace.ActionValues("from", "to", "tos", "dsfield", "fwmark", "iif", "oif", "priority", "preference", "order", "l3mdev", "uidrange", "ipproto", "sport", "dport", "tun_id")
+					return carapace.ActionValues("dport", "dsfield", "from", "fwmark", "iif", "ipproto", "l3mdev", "oif", "order", "preference", "priority", "sport", "to", "tos", "tun_id", "uidrange")
 				case "oif":
 					return net.ActionDevices(net.IncludedDevices{Wifi: true, Ethernet: true})
 				case "order":
@@ -53,9 +53,9 @@ func init() {
 				case "priority":
 					return carapace.ActionValues()
 				case "proto":
-					return carapace.ActionValues("kernel", "boot", "static")
+					return carapace.ActionValues("boot", "kernel", "static")
 				case "protocol":
-					return carapace.ActionValues("kernel", "boot", "static")
+					return carapace.ActionValues("boot", "kernel", "static")
 				case "realms":
 					return carapace.ActionValues()
 				case "sport":
@@ -65,7 +65,7 @@ func init() {
 				case "suppress_prefixlength":
 					return carapace.ActionValues()
 				case "table":
-					return carapace.ActionValues("local", "main", "default", "all")
+					return carapace.ActionValues("all", "default", "local", "main")
 				case "to":
 					return net.ActionSubnets()
 				case "tos":
@@ -73,12 +73,12 @@ func init() {
 				case "tun_id":
 					return carapace.ActionValues()
 				case "type":
-					return carapace.ActionValues("unicast", "blackhole", "unreachable", "prohibit", "nat")
+					return carapace.ActionValues("blackhole", "nat", "prohibit", "unicast", "unreachable")
 				case "uidrange":
 					return carapace.ActionValues()
 				}
 			}
-			return carapace.ActionValues("not", "from", "to", "tos", "dsfield", "fwmark", "iif", "oif", "priority", "preference", "order", "l3mdev", "uidrange", "ipproto", "sport", "dport", "tun_id", "table", "lookup", "protocol", "proto", "nat", "map-to", "realms", "goto", "type", "suppress_prefixlength", "suppress_ifgroup")
+			return carapace.ActionValues("dport", "dsfield", "from", "fwmark", "goto", "iif", "ipproto", "l3mdev", "lookup", "map-to", "nat", "not", "oif", "order", "preference", "priority", "proto", "protocol", "realms", "sport", "suppress_ifgroup", "suppress_prefixlength", "table", "to", "tos", "tun_id", "type", "uidrange")
 		}),
 	)
 }

@@ -26,7 +26,7 @@ func init() {
 
 	carapace.Gen(resizeCmd).FlagCompletion(carapace.ActionMap{
 		"format":        qemu.ActionImageFormats(),
-		"preallocation": carapace.ActionValues("off", "falloc", "full").StyleF(style.ForKeyword),
+		"preallocation": carapace.ActionValues("falloc", "full", "off").StyleF(style.ForKeyword),
 	})
 
 	carapace.Gen(resizeCmd).PositionalCompletion(

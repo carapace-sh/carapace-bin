@@ -29,7 +29,7 @@ func init() {
 	authCmd.AddCommand(auth_loginCmd)
 
 	carapace.Gen(auth_loginCmd).FlagCompletion(carapace.ActionMap{
-		"git-protocol": carapace.ActionValues("ssh", "https"),
+		"git-protocol": carapace.ActionValues("https", "ssh"),
 		"hostname":     action.ActionConfigHosts(),
 		"scopes":       gh.ActionAuthScopes().MultiParts(":").UniqueList(","),
 	})

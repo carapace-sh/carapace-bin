@@ -27,6 +27,6 @@ func init() {
 	carapace.Gen(label_listCmd).FlagCompletion(carapace.ActionMap{
 		"group":  action.ActionGroups(label_listCmd),
 		"jq":     jq.ActionFilters(),
-		"output": carapace.ActionValues("text", "json"),
+		"output": carapace.ActionValues("json", "text"),
 	})
 }

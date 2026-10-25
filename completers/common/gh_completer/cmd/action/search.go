@@ -102,10 +102,10 @@ func ActionSearchRange(a carapace.Action) carapace.Action {
 
 		return carapace.Batch(
 			carapace.ActionValuesDescribed(
-				">", "after",
-				">=", "on or after",
 				"<", "before",
 				"<=", "on or before",
+				">", "after",
+				">=", "on or after",
 			),
 			carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 				if prefix != "" {

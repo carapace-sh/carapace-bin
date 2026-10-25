@@ -34,8 +34,8 @@ func init() {
 	carapace.Gen(publishCmd).FlagCompletion(carapace.ActionMap{
 		"keyring-provider": uv.ActionKeyringProviders(),
 		"trusted-publishing": carapace.ActionValuesDescribed(
-			"automatic", "Attempt trusted publishing when we're in a supported environment, continue if that fails",
 			"always", "",
+			"automatic", "Attempt trusted publishing when we're in a supported environment, continue if that fails",
 			"never", "",
 		),
 	})

@@ -25,12 +25,12 @@ func init() {
 
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.ActionValuesDescribed(
-			"add", "append changes in files to archive",
 			"a", "append changes in files to archive",
+			"add", "append changes in files to archive",
 			"extract", "extract files from archive",
-			"x", "extract files from archive",
-			"list", "list the archive contents",
 			"l", "list the archive contents",
+			"list", "list the archive contents",
+			"x", "extract files from archive",
 		),
 	)
 
@@ -162,8 +162,8 @@ func actionMethods() carapace.Action {
 		"4", "higher compression",
 		"5", "highest compression",
 		"i", "create index (metadata only)",
-		"x", "experimental journaling mode",
 		"s", "experimental streaming mode",
+		"x", "experimental journaling mode",
 	)
 }
 
@@ -171,9 +171,9 @@ func actionNotList() carapace.Action {
 	return carapace.Batch(
 		carapace.ActionFiles(),
 		carapace.ActionValuesDescribed(
+			"=#", "exclude different files",
 			"=+", "exclude missing internal files",
 			"=-", "exclude missing external files",
-			"=#", "exclude different files",
 			"=?", "exclude identical files",
 			"=^", "exclude duplicates",
 		),

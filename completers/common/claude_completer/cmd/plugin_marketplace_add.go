@@ -22,7 +22,7 @@ func init() {
 	plugin_marketplaceCmd.AddCommand(plugin_marketplace_addCmd)
 
 	carapace.Gen(plugin_marketplace_addCmd).FlagCompletion(carapace.ActionMap{
-		"scope": carapace.ActionValues("user", "project", "local"),
+		"scope": carapace.ActionValues("local", "project", "user"),
 	})
 
 	carapace.Gen(plugin_marketplace_addCmd).PositionalCompletion(

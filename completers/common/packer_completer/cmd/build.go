@@ -30,7 +30,7 @@ func init() {
 
 	carapace.Gen(buildCmd).FlagCompletion(carapace.ActionMap{
 		// TODO except/only
-		"on-error": carapace.ActionValues("cleanup", "abort", "ask", "run-cleanup-provisioner"),
+		"on-error": carapace.ActionValues("abort", "ask", "cleanup", "run-cleanup-provisioner"),
 		"var": carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
 			if len(c.Parts) == 0 && len(c.Args) > 0 {
 				return action.ActionVariables(c.Args[0]).Invoke(c).Suffix("=").ToA()

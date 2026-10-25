@@ -25,7 +25,7 @@ func init() {
 	carapace.Gen(workItems_deleteCmd).FlagCompletion(carapace.ActionMap{
 		"group":  action.ActionGroups(workItems_deleteCmd),
 		"jq":     jq.ActionFilters(),
-		"output": carapace.ActionValues("text", "json"),
+		"output": carapace.ActionValues("json", "text"),
 		"repo":   action.ActionRepo(workItems_deleteCmd),
 	})
 

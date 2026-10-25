@@ -42,13 +42,13 @@ func init() {
 	carapace.Gen(objdumpCmd).FlagCompletion(carapace.ActionMap{
 		"elements": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return carapace.Batch(
-				carapace.ActionValues("file-type", "header-name", "member-path", "newlines", "table-header", "all"),
+				carapace.ActionValues("all", "file-type", "header-name", "member-path", "newlines", "table-header"),
 				carapace.ActionValues("-file-type", "-header-name", "-member-path", "-newlines", "-table-header"),
 			).ToA()
 		}),
 		"exports":       carapace.ActionValues("sort"),
 		"linker-member": carapace.ActionValues("1", "2", "longnames"),
-		"redact":        carapace.ActionValues("rva", "va", "ord", "size", "all"),
+		"redact":        carapace.ActionValues("all", "ord", "rva", "size", "va"),
 	})
 
 	carapace.Gen(objdumpCmd).PositionalCompletion(

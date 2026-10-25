@@ -49,11 +49,11 @@ func init() {
 	carapace.Gen(image_listCmd).FlagCompletion(carapace.ActionMap{
 		"column":         action.ActionColumns(image_listCmd),
 		"format":         carapace.ActionValues("csv", "json", "table", "value", "yaml"),
-		"member-status":  carapace.ActionValues("accepted", "pending", "rejected", "all"),
+		"member-status":  carapace.ActionValues("accepted", "all", "pending", "rejected"),
 		"project":        action.ActionProjects(image_listCmd),
 		"project-domain": action.ActionDomains(image_listCmd),
 		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
 		"sort-column":    action.ActionColumns(image_listCmd),
-		"status":         carapace.ActionValues("queued", "saving", "active", "killed", "deleted", "pending_delete", "deactivated", "reactivating"),
+		"status":         carapace.ActionValues("active", "deactivated", "deleted", "killed", "pending_delete", "queued", "reactivating", "saving"),
 	})
 }

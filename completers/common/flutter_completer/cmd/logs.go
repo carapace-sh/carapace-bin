@@ -26,8 +26,8 @@ func init() {
 	carapace.Gen(logsCmd).FlagCompletion(carapace.ActionMap{
 		"device-connection": carapace.ActionValuesDescribed(
 			"attached", "Only searches for devices connected by USB or built-in (such as simulators/emulators, MacOS/Windows, Chrome)",
-			"wireless", "Only searches for devices connected wirelessly. Discovering wireless devices may take longer.",
 			"both", "Searches for both attached and wireless devices.",
+			"wireless", "Only searches for devices connected wirelessly. Discovering wireless devices may take longer.",
 		),
 		"device-id": action.ActionDevices(),
 	})

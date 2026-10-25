@@ -32,7 +32,7 @@ func init() {
 		"login":  tea.ActionLogins(),
 		"output": tea.ActionOutputFormats(),
 		"remote": git.ActionRemotes(),
-		"style":  carapace.ActionValues("merge", "rebase", "squash", "rebase-merge"),
+		"style":  carapace.ActionValues("merge", "rebase", "rebase-merge", "squash"),
 	})
 
 	carapace.Gen(pulls_mergeCmd).PositionalCompletion(

@@ -28,8 +28,8 @@ func init() {
 	flagCacheCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
 
 	carapace.Gen(flagCacheCmd).FlagCompletion(carapace.ActionMap{
-		"arch":       carapace.ActionValues("x86_64", "arm64", "all"),
+		"arch":       carapace.ActionValues("all", "arm64", "x86_64"),
 		"bottle-tag": carapace.ActionValues(),
-		"os":         carapace.ActionValues("linux", "macos", "all"),
+		"os":         carapace.ActionValues("all", "linux", "macos"),
 	})
 }

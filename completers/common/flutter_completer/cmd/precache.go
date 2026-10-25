@@ -48,7 +48,7 @@ func init() {
 	precacheCmd.Flags().Bool("windows", false, "Precache artifacts for Windows desktop development.")
 	rootCmd.AddCommand(precacheCmd)
 	carapace.Gen(precacheCmd).FlagCompletion(carapace.ActionMap{
-		"host-arch": carapace.ActionValues("x64", "arm64"),
+		"host-arch": carapace.ActionValues("arm64", "x64"),
 	})
 
 }

@@ -22,6 +22,6 @@ func init() {
 	acl_tokenCmd.AddCommand(acl_token_listCmd)
 
 	carapace.Gen(acl_token_listCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("pretty", "json"),
+		"format": carapace.ActionValues("json", "pretty"),
 	})
 }

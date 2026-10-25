@@ -30,6 +30,6 @@ func init() {
 	carapace.Gen(mcpAddCmd).FlagCompletion(carapace.ActionMap{
 		"env":    env.ActionNameValues(false),
 		"header": http.ActionRequestHeaders(),
-		"type":   carapace.ActionValues("stdio", "http"),
+		"type":   carapace.ActionValues("http", "stdio"),
 	})
 }

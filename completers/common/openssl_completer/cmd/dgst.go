@@ -43,7 +43,7 @@ func init() {
 	rootCmd.AddCommand(dgstCmd)
 
 	carapace.Gen(dgstCmd).FlagCompletion(carapace.ActionMap{
-		"keyform":   carapace.ActionValues("DER", "PEM", "P12"),
+		"keyform":   carapace.ActionValues("DER", "P12", "PEM"),
 		"out":       carapace.ActionFiles(),
 		"prverify":  carapace.ActionFiles(),
 		"sign":      carapace.ActionFiles(),

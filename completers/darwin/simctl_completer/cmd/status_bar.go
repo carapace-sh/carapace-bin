@@ -17,6 +17,6 @@ func init() {
 	rootCmd.AddCommand(statusBarCmd)
 	carapace.Gen(statusBarCmd).PositionalCompletion(
 		simctl.ActionDevices(),
-		carapace.ActionValues("list", "clear", "override"),
+		carapace.ActionValues("clear", "list", "override"),
 	)
 }

@@ -42,7 +42,7 @@ func init() {
 
 	// TODO builder
 	carapace.Gen(buildCmd).FlagCompletion(carapace.ActionMap{
-		"progress": carapace.ActionValues("auto", "tty", "plain", "json", "quiet"),
+		"progress": carapace.ActionValues("auto", "json", "plain", "quiet", "tty"),
 	})
 
 	carapace.Gen(buildCmd).PositionalAnyCompletion(

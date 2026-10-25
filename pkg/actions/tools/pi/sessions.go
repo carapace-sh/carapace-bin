@@ -49,13 +49,13 @@ func ActionSessions() carapace.Action {
 //	bash
 func ActionTools() carapace.Action {
 	return carapace.ActionValues(
-		"read",
 		"bash",
-		"powershell",
 		"edit",
-		"write",
-		"grep",
 		"find",
+		"grep",
 		"ls",
+		"powershell",
+		"read",
+		"write",
 	).Tag("tools")
 }

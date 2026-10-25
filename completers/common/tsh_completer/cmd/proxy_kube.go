@@ -37,7 +37,7 @@ func init() {
 	carapace.Gen(proxy_kubeCmd).FlagCompletion(carapace.ActionMap{
 		"cluster":  tsh.ActionClusters(),
 		"exec-cmd": carapace.ActionExecutables(),
-		"format":   carapace.ActionValues("unix", "command-prompt", "powershell", "text"),
+		"format":   carapace.ActionValues("command-prompt", "powershell", "text", "unix"),
 		"port":     net.ActionPorts(),
 	})
 

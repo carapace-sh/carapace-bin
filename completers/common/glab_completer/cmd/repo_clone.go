@@ -35,7 +35,7 @@ func init() {
 	carapace.Gen(repo_cloneCmd).FlagCompletion(carapace.ActionMap{
 		"exclude-subgroup": action.ActionGroups(repo_cloneCmd).UniqueList(","),
 		"group":            action.ActionGroups(repo_cloneCmd),
-		"visibility":       carapace.ActionValues("public", "internal", "private"),
+		"visibility":       carapace.ActionValues("internal", "private", "public"),
 	})
 	carapace.Gen(repo_cloneCmd).PositionalCompletion(
 		action.ActionRepo(repo_cloneCmd), // TODO not yet correct - also needs to consider flags being set

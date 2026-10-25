@@ -36,9 +36,9 @@ func init() {
 	carapace.Gen(replaceCmd).FlagCompletion(carapace.ActionMap{
 		"edit": git.ActionRefs(git.RefOption{}.Default()),
 		"format": carapace.ActionValuesDescribed(
-			"short", "<replaced sha1>",
-			"medium", "<replaced sha1> → <replacement sha1>",
 			"long", "<replaced sha1> (<replaced type>) → <replacement sha1> (<replacement type>)",
+			"medium", "<replaced sha1> → <replacement sha1>",
+			"short", "<replaced sha1>",
 		),
 		"graft": git.ActionRefs(git.RefOption{}.Default()),
 		"list":  git.ActionRefs(git.RefOption{}.Default()),

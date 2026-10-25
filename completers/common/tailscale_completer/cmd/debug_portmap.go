@@ -22,6 +22,6 @@ func init() {
 	debugCmd.AddCommand(debug_portmapCmd)
 
 	carapace.Gen(debug_portmapCmd).FlagCompletion(carapace.ActionMap{
-		"type": carapace.ActionValues("pmp", "pcp", "upnp"),
+		"type": carapace.ActionValues("pcp", "pmp", "upnp"),
 	})
 }

@@ -34,7 +34,7 @@ func init() {
 	carapace.Gen(notifyCmd).FlagCompletion(carapace.ActionMap{
 		"icon":       carapace.ActionValues("error", "file-manager", "help", "info", "question", "system-monitor", "text-editor", "warn", "warning"),
 		"icon-path":  carapace.ActionFiles("png", "jpeg", "jpg", "gif"),
-		"sound-name": carapace.ActionValues("system", "silent"),
-		"urgency":    carapace.ActionValues("normal", "critical", "low"),
+		"sound-name": carapace.ActionValues("silent", "system"),
+		"urgency":    carapace.ActionValues("critical", "low", "normal"),
 	})
 }

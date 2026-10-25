@@ -36,7 +36,7 @@ func init() {
 	network_agentCmd.AddCommand(network_agent_listCmd)
 
 	carapace.Gen(network_agent_listCmd).FlagCompletion(carapace.ActionMap{
-		"agent-type":  carapace.ActionValues("bgp", "dhcp", "open-vswitch", "linux-bridge", "ofa", "l3", "loadbalancer", "metering", "metadata", "macvtap", "nic", "baremetal", "ovn-controller", "ovn-controller-gateway", "ovn-metadata", "ovn-agent"),
+		"agent-type":  carapace.ActionValues("baremetal", "bgp", "dhcp", "l3", "linux-bridge", "loadbalancer", "macvtap", "metadata", "metering", "nic", "ofa", "open-vswitch", "ovn-agent", "ovn-controller", "ovn-controller-gateway", "ovn-metadata"),
 		"column":      action.ActionColumns(network_agent_listCmd),
 		"format":      carapace.ActionValues("csv", "json", "table", "value", "yaml"),
 		"network":     action.ActionNetworks(network_agent_listCmd),

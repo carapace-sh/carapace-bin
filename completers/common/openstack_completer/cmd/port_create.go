@@ -71,9 +71,9 @@ func init() {
 		"network":        action.ActionNetworks(port_createCmd),
 		"project":        action.ActionProjects(port_createCmd),
 		"project-domain": action.ActionDomains(port_createCmd),
-		"pvlan-type":     carapace.ActionValues("promiscuous", "isolated", "community"),
+		"pvlan-type":     carapace.ActionValues("community", "isolated", "promiscuous"),
 		"qos-policy":     action.ActionNetworkQosPolicies(port_createCmd),
 		"security-group": action.ActionSecurityGroups(port_createCmd),
-		"vnic-type":      carapace.ActionValues("accelerator-direct", "accelerator-direct-physical", "direct", "direct-physical", "macvtap", "normal", "baremetal", "virtio-forwarder", "smart-nic", "vdpa", "remote-managed"),
+		"vnic-type":      carapace.ActionValues("accelerator-direct", "accelerator-direct-physical", "baremetal", "direct", "direct-physical", "macvtap", "normal", "remote-managed", "smart-nic", "vdpa", "virtio-forwarder"),
 	})
 }

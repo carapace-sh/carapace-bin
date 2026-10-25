@@ -53,13 +53,13 @@ func init() {
 
 	carapace.Gen(issue_listCmd).FlagCompletion(carapace.ActionMap{
 		"assignee": carapace.Batch(
-			carapace.ActionValues("@me", "@none", "@any"),
+			carapace.ActionValues("@any", "@me", "@none"),
 			action.ActionProjectMembers(issue_listCmd),
 		).ToA(),
 		"author":        action.ActionUsers(issue_listCmd),
 		"group":         action.ActionGroups(issue_listCmd),
-		"in":            carapace.ActionValues("title", "description").UniqueList(","),
-		"issue-type":    carapace.ActionValues("issue", "incident", "test_case"),
+		"in":            carapace.ActionValues("description", "title").UniqueList(","),
+		"issue-type":    carapace.ActionValues("incident", "issue", "test_case"),
 		"iteration":     action.ActionIterations(issue_listCmd),
 		"jq":            jq.ActionFilters(),
 		"label":         action.ActionLabels(issue_listCmd).UniqueList(","),
@@ -67,8 +67,8 @@ func init() {
 		"not-assignee":  action.ActionProjectMembers(issue_listCmd).UniqueList(","),
 		"not-author":    action.ActionUsers(issue_listCmd).UniqueList(","),
 		"not-label":     action.ActionLabels(issue_listCmd).UniqueList(","),
-		"order":         carapace.ActionValues("created_at", "updated_at", "priority", "due_date", "relative_position", "label_priority", "milestone_due", "popularity", "weight"),
-		"output":        carapace.ActionValues("text", "json"),
+		"order":         carapace.ActionValues("created_at", "due_date", "label_priority", "milestone_due", "popularity", "priority", "relative_position", "updated_at", "weight"),
+		"output":        carapace.ActionValues("json", "text"),
 		"output-format": carapace.ActionValues("details", "ids", "urls"),
 		"sort":          carapace.ActionValues("asc", "desc"),
 	})

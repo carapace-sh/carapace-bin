@@ -38,7 +38,7 @@ func init() {
 					return carapace.ActionValues()
 				}
 			}
-			return carapace.ActionValues("password", "wep-key-type", "ifname", "bssid", "name", "private", "hidden")
+			return carapace.ActionValues("bssid", "hidden", "ifname", "name", "password", "private", "wep-key-type")
 		}),
 	)
 }

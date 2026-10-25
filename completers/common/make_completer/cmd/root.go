@@ -72,7 +72,7 @@ func init() {
 		"jobserver-style": carapace.ActionValues("fifo", "pipe"),
 		"new-file":        carapace.ActionFiles(),
 		"old-file":        carapace.ActionFiles(),
-		"shuffle":         carapace.ActionValues("random", "reverse", "none"),
+		"shuffle":         carapace.ActionValues("none", "random", "reverse"),
 		"what-if":         carapace.ActionFiles(),
 	})
 

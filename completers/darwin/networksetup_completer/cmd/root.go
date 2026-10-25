@@ -74,7 +74,7 @@ func init() {
 		"setftpproxy":              action.ActionNetworkServices(),
 		"setmanual":                action.ActionNetworkServices(),
 		"setmanualwithdhcprouter":  action.ActionNetworkServices(),
-		"setnetworkserviceenabled": carapace.ActionValues("on", "off"),
+		"setnetworkserviceenabled": carapace.ActionValues("off", "on"),
 		"setproxybypassdomains":    action.ActionNetworkServices(),
 		"setsecurewebproxy":        action.ActionNetworkServices(),
 		"setsocksfirewallproxy":    action.ActionNetworkServices(),

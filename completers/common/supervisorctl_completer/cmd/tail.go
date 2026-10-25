@@ -22,6 +22,6 @@ func init() {
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return supervisor.ActionProcesses(rootCmd.Flag("configuration").Value.String())
 		}),
-		carapace.ActionValues("stdout", "stderr"),
+		carapace.ActionValues("stderr", "stdout"),
 	)
 }

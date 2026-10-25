@@ -64,7 +64,7 @@ func init() {
 		"libc":         carapace.ActionValues("glibc", "musl"),
 		"lockfile-dir": carapace.ActionDirectories(),
 		"os":           carapace.ActionValues("aix", "android", "darwin", "freebsd", "linux", "openbsd", "sunos", "win32"),
-		"save-prefix":  carapace.ActionValues("^", "~", "="),
+		"save-prefix":  carapace.ActionValues("=", "^", "~"),
 	})
 
 	carapace.Gen(addCmd).PositionalCompletion(

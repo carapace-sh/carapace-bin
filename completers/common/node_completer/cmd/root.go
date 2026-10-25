@@ -244,7 +244,7 @@ func init() {
 		"test-rerun-failures":      carapace.ActionFiles(),
 		"tls-cipher-list":          ssh.ActionCiphers().UniqueList(":"),
 		"tls-keylog":               carapace.ActionFiles(),
-		"unhandled-rejections":     carapace.ActionValues("strict", "warn", "none"),
+		"unhandled-rejections":     carapace.ActionValues("none", "strict", "warn"),
 		"use-largepages":           carapace.ActionValues("off", "on", "silent"),
 		"watch-kill-signal":        ps.ActionKillSignals("linux"),
 		"watch-path":               carapace.ActionDirectories(),

@@ -31,8 +31,8 @@ func init() {
 	rootCmd.Flags().Bool("v", false, "Increase verbosity")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"A": carapace.ActionValues("zlib", "lzma", "lzfse", "lz4"),
-		"a": carapace.ActionValues("zlib", "lzma", "lzfse", "lz4", "lz4_raw"),
+		"A": carapace.ActionValues("lz4", "lzfse", "lzma", "zlib"),
+		"a": carapace.ActionValues("lz4", "lz4_raw", "lzfse", "lzma", "zlib"),
 		"i": carapace.ActionFiles(),
 		"o": carapace.ActionFiles(),
 	})

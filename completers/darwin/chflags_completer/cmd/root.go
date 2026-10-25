@@ -29,7 +29,7 @@ func init() {
 	rootCmd.Flags().BoolP("verbose", "v", false, "Be verbose showing filenames as flags are modified")
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValues("arch", "archived", "nodump", "opaque", "sappnd", "sappend", "schg", "schange", "simmutable", "uappnd", "uappend", "uchg", "uchange", "uimmutable", "hidden", "noarch", "noarchived", "nonodump", "noopaque", "nosappnd", "nosappend", "noschg", "noschange", "nosimmutable", "nouappnd", "nouappend", "nouchg", "nouchange", "nouimmutable", "nohidden"),
+		carapace.ActionValues("arch", "archived", "hidden", "noarch", "noarchived", "nodump", "nohidden", "nonodump", "noopaque", "nosappend", "nosappnd", "noschange", "noschg", "nosimmutable", "nouappend", "nouappnd", "nouchange", "nouchg", "nouimmutable", "opaque", "sappend", "sappnd", "schange", "schg", "simmutable", "uappend", "uappnd", "uchange", "uchg", "uimmutable"),
 	)
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

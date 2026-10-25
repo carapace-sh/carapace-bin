@@ -57,13 +57,13 @@ func init() {
 	rootCmd.Flags().StringP("watch-interval", "W", "", "Watch mode with custom interval")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"color":              carapace.ActionValues("auto", "always", "disable").StyleF(style.ForKeyword),
+		"color":              carapace.ActionValues("always", "auto", "disable").StyleF(style.ForKeyword),
 		"gen-completion":     carapace.ActionValues("bash", "elvish", "fish", "powershell", "zsh"),
 		"gen-completion-out": carapace.ActionValues("bash", "elvish", "fish", "powershell", "zsh"),
 		"insert":             action.ActionColumns(),
 		"load-config":        carapace.ActionFiles(),
 		"only":               action.ActionColumns(),
-		"pager":              carapace.ActionValues("auto", "always", "disable").StyleF(style.ForKeyword),
+		"pager":              carapace.ActionValues("always", "auto", "disable").StyleF(style.ForKeyword),
 		"sorta":              action.ActionColumns(),
 		"sortd":              action.ActionColumns(),
 		"theme":              carapace.ActionValues("auto", "dark", "light"),

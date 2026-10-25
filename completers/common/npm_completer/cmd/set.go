@@ -20,7 +20,7 @@ func init() {
 	rootCmd.AddCommand(setCmd)
 
 	carapace.Gen(setCmd).FlagCompletion(carapace.ActionMap{
-		"location": carapace.ActionValues("user", "global", "project"),
+		"location": carapace.ActionValues("global", "project", "user"),
 	})
 
 	carapace.Gen(setCmd).PositionalAnyCompletion(

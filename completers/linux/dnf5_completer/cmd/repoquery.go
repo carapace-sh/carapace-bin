@@ -72,7 +72,7 @@ func init() {
 	rootCmd.AddCommand(repoqueryCmd)
 
 	carapace.Gen(repoqueryCmd).FlagCompletion(carapace.ActionMap{
-		"advisory-severities": carapace.ActionValues("critical", "important", "moderate", "low", "none"),
+		"advisory-severities": carapace.ActionValues("critical", "important", "low", "moderate", "none"),
 		"providers-of":        carapace.ActionValues("conflicts", "depends", "enhances", "obsoletes", "provides", "recommends", "requires", "requires_pre", "suggests", "supplements"),
 	})
 

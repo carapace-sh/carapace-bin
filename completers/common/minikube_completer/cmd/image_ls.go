@@ -19,6 +19,6 @@ func init() {
 	imageCmd.AddCommand(image_lsCmd)
 
 	carapace.Gen(image_lsCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("short", "table", "json", "yaml"),
+		"format": carapace.ActionValues("json", "short", "table", "yaml"),
 	})
 }

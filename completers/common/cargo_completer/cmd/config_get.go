@@ -22,8 +22,8 @@ func init() {
 	configCmd.AddCommand(config_getCmd)
 
 	carapace.Gen(config_getCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("toml", "json", "json-value"),
-		"merged": carapace.ActionValues("yes", "no").StyleF(style.ForKeyword),
+		"format": carapace.ActionValues("json", "json-value", "toml"),
+		"merged": carapace.ActionValues("no", "yes").StyleF(style.ForKeyword),
 	})
 
 	// TODO config keys

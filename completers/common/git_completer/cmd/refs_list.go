@@ -45,7 +45,7 @@ func init() {
 	)
 
 	carapace.Gen(refs_listCmd).FlagCompletion(carapace.ActionMap{
-		"color":       carapace.ActionValues("always", "never", "auto").StyleF(style.ForKeyword),
+		"color":       carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"contains":    git.ActionRefs(git.RefOption{}.Default()),
 		"exclude":     git.ActionRefs(git.RefOption{}.Default()),
 		"merged":      git.ActionRefs(git.RefOption{}.Default()),

@@ -31,7 +31,7 @@ func init() {
 			return carapace.ActionValues()
 		}),
 		"jq":     jq.ActionFilters(),
-		"output": carapace.ActionValues("text", "json"),
+		"output": carapace.ActionValues("json", "text"),
 	})
 	carapace.Gen(repo_viewCmd).PositionalCompletion(
 		action.ActionRepo(repo_viewCmd),

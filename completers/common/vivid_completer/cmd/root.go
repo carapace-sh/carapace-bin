@@ -24,7 +24,7 @@ func init() {
 	rootCmd.Flags().BoolP("version", "V", false, "Prints version information")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"color-mode": carapace.ActionValues("8-bit", "24-bit"),
+		"color-mode": carapace.ActionValues("24-bit", "8-bit"),
 		"database":   carapace.ActionFiles(),
 	})
 }

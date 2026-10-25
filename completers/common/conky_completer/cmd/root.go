@@ -44,9 +44,9 @@ func init() {
 		"alignment": carapace.ActionMultiParts("_", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				return carapace.ActionValues("top", "bottom", "middle").Invoke(c).Suffix("_").ToA()
+				return carapace.ActionValues("bottom", "middle", "top").Invoke(c).Suffix("_").ToA()
 			case 1:
-				return carapace.ActionValues("left", "right", "middle")
+				return carapace.ActionValues("left", "middle", "right")
 			default:
 				return carapace.ActionValues()
 			}

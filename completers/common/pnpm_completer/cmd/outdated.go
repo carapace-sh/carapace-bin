@@ -33,7 +33,7 @@ func init() {
 	rootCmd.AddCommand(outdatedCmd)
 
 	carapace.Gen(outdatedCmd).FlagCompletion(carapace.ActionMap{
-		"format":  carapace.ActionValues("table", "list", "json"),
+		"format":  carapace.ActionValues("json", "list", "table"),
 		"sort-by": carapace.ActionValues("name"),
 	})
 

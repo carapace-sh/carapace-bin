@@ -18,6 +18,6 @@ func init() {
 	notesCmd.Flags().BoolP("help", "h", false, "Show help")
 
 	carapace.Gen(notesCmd).FlagCompletion(carapace.ActionMap{
-		"annotations": carapace.ActionValues("FIXME", "OPTIMIZE", "TODO", "NOTE", "BUG"),
+		"annotations": carapace.ActionValues("BUG", "FIXME", "NOTE", "OPTIMIZE", "TODO"),
 	})
 }

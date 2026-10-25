@@ -33,7 +33,7 @@ func init() {
 	carapace.Gen(graphCmd).FlagCompletion(carapace.ActionMap{
 		"deprecation": action.ActionDeprecationLevels(),
 		"plan":        carapace.ActionFiles(),
-		"type":        carapace.ActionValues("plan", "plan-refresh-only", "plan-destroy", "apply"),
+		"type":        carapace.ActionValues("apply", "plan", "plan-destroy", "plan-refresh-only"),
 		"var-file":    carapace.ActionFiles(),
 	})
 }

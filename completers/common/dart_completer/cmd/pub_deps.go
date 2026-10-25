@@ -25,6 +25,6 @@ func init() {
 	pubCmd.AddCommand(pub_depsCmd)
 
 	carapace.Gen(pub_depsCmd).FlagCompletion(carapace.ActionMap{
-		"style": carapace.ActionValues("compact", "tree", "list"),
+		"style": carapace.ActionValues("compact", "list", "tree"),
 	})
 }

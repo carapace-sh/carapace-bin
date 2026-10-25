@@ -38,7 +38,7 @@ func init() {
 	carapace.Gen(image_importCmd).FlagCompletion(carapace.ActionMap{
 		"column": action.ActionColumns(image_importCmd),
 		"format": carapace.ActionValues("json", "shell", "table", "value", "yaml"),
-		"method": carapace.ActionValues("glance-direct", "web-download", "glance-download", "copy-image"),
+		"method": carapace.ActionValues("copy-image", "glance-direct", "glance-download", "web-download"),
 	})
 
 	carapace.Gen(image_importCmd).PositionalCompletion(action.ActionImages(image_importCmd))

@@ -64,19 +64,19 @@ func init() {
 	rootCmd.Flags().String("setwakeonnetworkaccess", "", "Enable/disable wake on network access (on/off)")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"setallowpowerbuttontosleep": carapace.ActionValues("on", "off").StyleF(style.ForKeyword),
-		"setcomputersleep":           carapace.ActionValues("Never", "1", "5", "10", "15", "30", "60", "120").StyleF(style.ForKeyword),
-		"setdisplaysleep":            carapace.ActionValues("Never", "1", "5", "10", "15", "30", "60", "120").StyleF(style.ForKeyword),
-		"setharddisksleep":           carapace.ActionValues("Never", "1", "5", "10", "15", "30", "60", "120").StyleF(style.ForKeyword),
-		"setremoteappleevents":       carapace.ActionValues("on", "off").StyleF(style.ForKeyword),
-		"setremotelogin":             carapace.ActionValues("on", "off").StyleF(style.ForKeyword),
-		"setremotemanagement":        carapace.ActionValues("on", "off").StyleF(style.ForKeyword),
-		"setrestartfreeze":           carapace.ActionValues("on", "off").StyleF(style.ForKeyword),
-		"setrestartpowerfailure":     carapace.ActionValues("on", "off").StyleF(style.ForKeyword),
-		"setsleep":                   carapace.ActionValues("Never", "1", "5", "10", "15", "30", "60", "120").StyleF(style.ForKeyword),
+		"setallowpowerbuttontosleep": carapace.ActionValues("off", "on").StyleF(style.ForKeyword),
+		"setcomputersleep":           carapace.ActionValues("1", "10", "120", "15", "30", "5", "60", "Never").StyleF(style.ForKeyword),
+		"setdisplaysleep":            carapace.ActionValues("1", "10", "120", "15", "30", "5", "60", "Never").StyleF(style.ForKeyword),
+		"setharddisksleep":           carapace.ActionValues("1", "10", "120", "15", "30", "5", "60", "Never").StyleF(style.ForKeyword),
+		"setremoteappleevents":       carapace.ActionValues("off", "on").StyleF(style.ForKeyword),
+		"setremotelogin":             carapace.ActionValues("off", "on").StyleF(style.ForKeyword),
+		"setremotemanagement":        carapace.ActionValues("off", "on").StyleF(style.ForKeyword),
+		"setrestartfreeze":           carapace.ActionValues("off", "on").StyleF(style.ForKeyword),
+		"setrestartpowerfailure":     carapace.ActionValues("off", "on").StyleF(style.ForKeyword),
+		"setsleep":                   carapace.ActionValues("1", "10", "120", "15", "30", "5", "60", "Never").StyleF(style.ForKeyword),
 		"setstartupdisk":             carapace.ActionDirectories(),
-		"setusingnetworktime":        carapace.ActionValues("on", "off").StyleF(style.ForKeyword),
-		"setwakeonmodem":             carapace.ActionValues("on", "off").StyleF(style.ForKeyword),
-		"setwakeonnetworkaccess":     carapace.ActionValues("on", "off").StyleF(style.ForKeyword),
+		"setusingnetworktime":        carapace.ActionValues("off", "on").StyleF(style.ForKeyword),
+		"setwakeonmodem":             carapace.ActionValues("off", "on").StyleF(style.ForKeyword),
+		"setwakeonnetworkaccess":     carapace.ActionValues("off", "on").StyleF(style.ForKeyword),
 	})
 }

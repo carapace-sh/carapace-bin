@@ -18,9 +18,9 @@ func init() {
 
 	carapace.Gen(agentCmd).PositionalCompletion(
 		carapace.ActionValuesDescribed(
-			"secret", "Runs nmcli as NetworkManager secret agent",
-			"polkit", "Registers nmcli as a polkit action for the user session",
 			"all", "Runs nmcli as both NetworkManager secret and a polkit agent.",
+			"polkit", "Registers nmcli as a polkit action for the user session",
+			"secret", "Runs nmcli as NetworkManager secret agent",
 		),
 	)
 }

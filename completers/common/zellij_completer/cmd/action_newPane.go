@@ -46,11 +46,11 @@ func init() {
 	actionCmd.AddCommand(action_newPaneCmd)
 
 	carapace.Gen(action_newPaneCmd).FlagCompletion(carapace.ActionMap{
-		"borderless": carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
+		"borderless": carapace.ActionValues("false", "true").StyleF(style.ForKeyword),
 		"cwd":        carapace.ActionDirectories(),
 		"direction":  zellij.ActionDirections(),
 		"pane-id":    zellij.ActionSelectablePanes(),
-		"pinned":     carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
+		"pinned":     carapace.ActionValues("false", "true").StyleF(style.ForKeyword),
 		"tab-id":     zellij.ActionTabs(),
 	})
 }

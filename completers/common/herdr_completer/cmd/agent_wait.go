@@ -22,6 +22,6 @@ func init() {
 	carapace.Gen(agent_waitCmd).PositionalCompletion(herdr.ActionAgents())
 
 	carapace.Gen(agent_waitCmd).FlagCompletion(carapace.ActionMap{
-		"until": carapace.ActionValues("idle", "working", "blocked", "done", "unknown"),
+		"until": carapace.ActionValues("blocked", "done", "idle", "unknown", "working"),
 	})
 }

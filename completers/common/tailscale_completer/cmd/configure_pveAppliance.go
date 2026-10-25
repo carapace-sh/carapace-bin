@@ -32,7 +32,7 @@ func init() {
 	carapace.Gen(configure_pveApplianceCmd).FlagCompletion(carapace.ActionMap{
 		"add-ssh-authorized-keys": carapace.ActionFiles(),
 		"gaf":                     carapace.ActionFiles(),
-		"track":                   carapace.ActionValues("stable", "release-candidate", "unstable"),
+		"track":                   carapace.ActionValues("release-candidate", "stable", "unstable"),
 		"variant":                 carapace.ActionValues("vm-amd64", "vm-arm64"),
 	})
 }

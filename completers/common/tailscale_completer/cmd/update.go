@@ -21,6 +21,6 @@ func init() {
 	rootCmd.AddCommand(updateCmd)
 
 	carapace.Gen(updateCmd).FlagCompletion(carapace.ActionMap{
-		"track": carapace.ActionValues("stable", "release-candidate", "unstable"),
+		"track": carapace.ActionValues("release-candidate", "stable", "unstable"),
 	})
 }

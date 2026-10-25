@@ -51,7 +51,7 @@ func init() {
 					return carapace.ActionValues()
 				}
 			}
-			return carapace.ActionValues("dev", "type", "master", "vrf", "netns", "address", "mtu", "up", "down", "group", "name")
+			return carapace.ActionValues("address", "dev", "down", "group", "master", "mtu", "name", "netns", "type", "up", "vrf")
 		}),
 	)
 }

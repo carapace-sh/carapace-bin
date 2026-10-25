@@ -22,6 +22,6 @@ func init() {
 	rootCmd.Flags().String("drive", "", "Specify a drive")
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.ActionValues("burn", "erase", "eject", "help", "info", "list", "status", "tray"),
+		carapace.ActionValues("burn", "eject", "erase", "help", "info", "list", "status", "tray"),
 	)
 }

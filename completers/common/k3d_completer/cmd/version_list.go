@@ -29,6 +29,6 @@ func init() {
 	})
 
 	carapace.Gen(version_listCmd).PositionalCompletion(
-		carapace.ActionValues("k3d", "k3s", "k3d-proxy", "k3d-tools"),
+		carapace.ActionValues("k3d", "k3d-proxy", "k3d-tools", "k3s"),
 	)
 }

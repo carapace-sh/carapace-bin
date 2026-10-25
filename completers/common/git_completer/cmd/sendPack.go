@@ -45,7 +45,7 @@ func init() {
 	carapace.Gen(sendPackCmd).FlagCompletion(carapace.ActionMap{
 		"force-with-lease": carapace.ActionValues(), // TODO ref:value completion
 		"push-option":      git.ActionPushOptions(),
-		"signed":           carapace.ActionValues("true", "false", "if-asked").StyleF(style.ForKeyword),
+		"signed":           carapace.ActionValues("false", "if-asked", "true").StyleF(style.ForKeyword),
 	})
 
 	carapace.Gen(sendPackCmd).PositionalCompletion(

@@ -62,7 +62,7 @@ func init() {
 		),
 		"disabled_rules": ActionRules().UniqueList(","),
 		"editorconfig":   carapace.ActionFiles(".editorconfig"),
-		"reporter":       carapace.ActionValues("plain", "plain?group_by_file", "json", "checkstyle", "html"),
+		"reporter":       carapace.ActionValues("checkstyle", "html", "json", "plain", "plain?group_by_file"),
 		"ruleset":        carapace.ActionFiles(".jar"),
 	})
 }

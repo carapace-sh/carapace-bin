@@ -13,9 +13,9 @@ func ActionNotifications() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"clipboard-copy", "Show a notification when text is copied to the clipboard",
 		"config-reload", "Show a notification when the configuration is reloaded",
+		"false", "disable all notifications",
 		"no-clipboard-copy", "Do not show a notification when text is copied to the clipboard",
 		"no-config-reload", "Do not show a notification when the configuration is reloaded",
-		"false", "disable all notifications",
 		"true", "will enable all notifications",
 	).StyleF(style.ForKeyword).Uid("ghostty", "notification")
 }

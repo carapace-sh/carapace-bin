@@ -32,7 +32,7 @@ func init() {
 
 	carapace.Gen(logsCmd).FlagCompletion(carapace.ActionMap{
 		"namespace": action.ActionNamespaces(),
-		"output":    carapace.ActionValues("plain", "keyvalue", "json"),
+		"output":    carapace.ActionValues("json", "keyvalue", "plain"),
 	})
 
 	carapace.Gen(logsCmd).PositionalCompletion(

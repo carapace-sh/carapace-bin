@@ -63,7 +63,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"device":    os.ActionSoundCards(),
-		"file-type": carapace.ActionValues("voc", "wav", "raw", "au"),
+		"file-type": carapace.ActionValues("au", "raw", "voc", "wav"),
 		"format":    action.ActionSampleFormats(),
 		"vumeter":   carapace.ActionValues("mono", "stereo"),
 	})

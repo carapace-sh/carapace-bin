@@ -33,8 +33,8 @@ func init() {
 func ActionJetbrainsPseudoFlags() carapace.Action {
 	// These behave like flags, but I don't think carapace can actually complete them as if they are
 	return carapace.ActionValuesDescribed(
-		"nosplash", "Do not show the splash screen when loading",
-		"dontReopenProjects", "Do not reopen projects and show the welcome screen",
 		"disableNonBundledPlugins", "Do not load manually installed plugins",
+		"dontReopenProjects", "Do not reopen projects and show the welcome screen",
+		"nosplash", "Do not show the splash screen when loading",
 	).FilterArgs()
 }

@@ -19,6 +19,6 @@ func init() {
 	rootCmd.AddCommand(serviceWatchdogsCmd)
 
 	carapace.Gen(serviceWatchdogsCmd).PositionalCompletion(
-		carapace.ActionValues("yes", "no").StyleF(style.ForKeyword),
+		carapace.ActionValues("no", "yes").StyleF(style.ForKeyword),
 	)
 }

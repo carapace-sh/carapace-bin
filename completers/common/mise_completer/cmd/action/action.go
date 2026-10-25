@@ -20,47 +20,47 @@ func ActionConfigKeys(subcommand string) carapace.Action {
 // ActionBootstrapParts completes parts of the bootstrap process
 func ActionBootstrapParts() carapace.Action {
 	return carapace.ActionValues(
-		"plugins",
-		"packages",
 		"accounts",
-		"files",
-		"services",
-		"firewall",
 		"compose",
-		"repos",
+		"defaults",
 		"dotfiles",
-		"mise-shell-activate",
+		"files",
+		"final-hook",
+		"firewall",
+		"launchd",
+		"linux-systemd-units",
 		"macos-defaults",
 		"macos-launchd-agents",
-		"linux-systemd-units",
-		"user",
-		"tools",
-		"task",
-		"final-hook",
+		"mise-shell-activate",
+		"packages",
+		"plugins",
+		"repos",
+		"services",
 		"shell",
-		"defaults",
-		"launchd",
 		"systemd",
+		"task",
+		"tools",
+		"user",
 	)
 }
 
 // ActionShells completes shells supported by mise
 func ActionShells() carapace.Action {
-	return carapace.ActionValues("bash", "elvish", "fish", "nu", "xonsh", "zsh", "pwsh", "powershell")
+	return carapace.ActionValues("bash", "elvish", "fish", "nu", "powershell", "pwsh", "xonsh", "zsh")
 }
 
 // ActionCompletionShells completes shells supported by `mise completion`
 func ActionCompletionShells() carapace.Action {
-	return carapace.ActionValues("bash", "fish", "powershell", "zsh", "pwsh")
+	return carapace.ActionValues("bash", "fish", "powershell", "pwsh", "zsh")
 }
 
 // ActionTaskCacheModes completes task cache access modes
 func ActionTaskCacheModes() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"read-write", "Read cached results and write new results.",
-		"read-only", "Read cached results without writing new results.",
-		"write-only", "Write new results without reading cached results.",
-		"off", "Disable task output caching for this run.",
 		"local-only", "Read and write only the local cache.",
+		"off", "Disable task output caching for this run.",
+		"read-only", "Read cached results without writing new results.",
+		"read-write", "Read cached results and write new results.",
+		"write-only", "Write new results without reading cached results.",
 	)
 }

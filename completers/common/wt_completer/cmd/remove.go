@@ -28,7 +28,7 @@ func init() {
 	rootCmd.AddCommand(removeCmd)
 
 	carapace.Gen(removeCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("text", "json"),
+		"format": carapace.ActionValues("json", "text"),
 	})
 
 	carapace.Gen(removeCmd).PositionalAnyCompletion(

@@ -53,9 +53,9 @@ func init() {
 	rootCmd.Flags().BoolS("z", "z", false, "Clear per-rule statistics")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"F": carapace.ActionValues("nat", "queue", "rules", "states", "Sources", "info", "Tables", "osfp", "all"),
+		"F": carapace.ActionValues("Sources", "Tables", "all", "info", "nat", "osfp", "queue", "rules", "states"),
 		"f": carapace.ActionFiles(),
-		"s": carapace.ActionValues("rules", "nat", "queue", "states", "Sources", "info", "Tables", "osfp", "anchors", "all"),
-		"x": carapace.ActionValues("none", "urgent", "misc", "loud", "insane"),
+		"s": carapace.ActionValues("Sources", "Tables", "all", "anchors", "info", "nat", "osfp", "queue", "rules", "states"),
+		"x": carapace.ActionValues("insane", "loud", "misc", "none", "urgent"),
 	})
 }

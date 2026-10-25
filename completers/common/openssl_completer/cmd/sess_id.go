@@ -29,6 +29,6 @@ func init() {
 		"in":      carapace.ActionFiles(),
 		"inform":  carapace.ActionValues("DER", "PEM"),
 		"out":     carapace.ActionFiles(),
-		"outform": carapace.ActionValues("DER", "PEM", "NSS"),
+		"outform": carapace.ActionValues("DER", "NSS", "PEM"),
 	})
 }

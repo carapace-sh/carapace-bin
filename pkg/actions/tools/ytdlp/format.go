@@ -61,24 +61,24 @@ func ActionThumbnailFormats() carapace.Action {
 //	flv
 func ActionVideoFormats() carapace.Action {
 	return carapace.ActionValues(
-		"avi",
-		"flv",
-		"gif",
-		"mkv",
-		"mov",
-		"mp4",
-		"webm",
 		"aac",
 		"aiff",
 		"alac",
+		"avi",
 		"flac",
+		"flv",
+		"gif",
 		"m4a",
 		"mka",
+		"mkv",
+		"mov",
 		"mp3",
+		"mp4",
 		"ogg",
 		"opus",
 		"vorbis",
 		"wav",
+		"webm",
 	).StyleF(func(s string, sc style.Context) string {
 		return style.ForPathExt("."+s, sc)
 	}).Tag("video formats")

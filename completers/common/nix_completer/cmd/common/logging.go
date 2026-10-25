@@ -15,6 +15,6 @@ func AddLoggingFlags(cmd *cobra.Command) {
 	cmd.Flags().BoolP("verbose", "v", false, "Increase the logging verbosity level")
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
-		"log-format": carapace.ActionValues("raw", "internal-json", "bar", "bar-with-logs"),
+		"log-format": carapace.ActionValues("bar", "bar-with-logs", "internal-json", "raw"),
 	})
 }

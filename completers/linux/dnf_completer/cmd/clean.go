@@ -17,6 +17,6 @@ func init() {
 	rootCmd.AddCommand(cleanCmd)
 
 	carapace.Gen(cleanCmd).PositionalCompletion(
-		carapace.ActionValues("all", "packages", "metadata", "dbcache", "expire-cache"),
+		carapace.ActionValues("all", "dbcache", "expire-cache", "metadata", "packages"),
 	)
 }

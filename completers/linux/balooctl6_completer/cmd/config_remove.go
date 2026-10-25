@@ -18,7 +18,7 @@ func init() {
 	configCmd.AddCommand(config_removeCmd)
 
 	carapace.Gen(config_removeCmd).PositionalCompletion(
-		carapace.ActionValues("includeFolders", "excludeFolders", "excludeFilters", "excludeMimetypes"),
+		carapace.ActionValues("excludeFilters", "excludeFolders", "excludeMimetypes", "includeFolders"),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return action.ActionConfigValues(c.Args[0])
 		}),

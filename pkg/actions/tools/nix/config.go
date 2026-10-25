@@ -118,7 +118,7 @@ func ActionConfigKeys() carapace.Action {
 //	true
 func ActionConfigValues(key string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		_bool := carapace.ActionValues("true", "false").StyleF(style.ForKeyword)
+		_bool := carapace.ActionValues("false", "true").StyleF(style.ForKeyword)
 		// TODO add missing completions
 		return map[string]carapace.Action{
 			"accept-flake-config":                        _bool,

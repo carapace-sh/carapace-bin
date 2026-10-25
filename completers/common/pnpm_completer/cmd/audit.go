@@ -31,6 +31,6 @@ func init() {
 	rootCmd.AddCommand(auditCmd)
 
 	carapace.Gen(auditCmd).FlagCompletion(carapace.ActionMap{
-		"audit-level": carapace.ActionValues("info", "low", "moderate", "high", "critical"),
+		"audit-level": carapace.ActionValues("critical", "high", "info", "low", "moderate"),
 	})
 }

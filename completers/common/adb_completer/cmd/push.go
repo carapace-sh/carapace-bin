@@ -22,7 +22,7 @@ func init() {
 	rootCmd.AddCommand(pushCmd)
 
 	carapace.Gen(pushCmd).FlagCompletion(carapace.ActionMap{
-		"z": carapace.ActionValues("any", "none", "brotli"),
+		"z": carapace.ActionValues("any", "brotli", "none"),
 	})
 
 	carapace.Gen(pushCmd).PositionalCompletion(

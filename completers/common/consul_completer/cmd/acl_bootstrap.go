@@ -20,6 +20,6 @@ func init() {
 	aclCmd.AddCommand(acl_bootstrapCmd)
 
 	carapace.Gen(acl_bootstrapCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("pretty", "json"),
+		"format": carapace.ActionValues("json", "pretty"),
 	})
 }

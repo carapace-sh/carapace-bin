@@ -22,7 +22,7 @@ func init() {
 	rootCmd.AddCommand(convertCmd)
 
 	carapace.Gen(convertCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("UDZO", "UDCO", "UDRO", "UDRW", "UDSP", "UDBZ", "UDIF"),
+		"format": carapace.ActionValues("UDBZ", "UDCO", "UDIF", "UDRO", "UDRW", "UDSP", "UDZO"),
 		"output": carapace.ActionFiles(),
 	})
 

@@ -55,6 +55,6 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"f": carapace.ActionFiles(),
-		"x": carapace.ActionValues("cpio", "sv4cpio", "sv4crc", "tar", "ustar", "pax"),
+		"x": carapace.ActionValues("cpio", "pax", "sv4cpio", "sv4crc", "tar", "ustar"),
 	})
 }

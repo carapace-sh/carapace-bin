@@ -14,7 +14,7 @@ func AddCommonRebuildFlags(cmd *cobra.Command) {
 	cmd.Flags().StringP("out-link", "o", "", "Path to save the result link")
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
-		"diff":     carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
+		"diff":     carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"out-link": carapace.ActionFiles(),
 	})
 

@@ -23,7 +23,7 @@ func init() {
 	paneCmd.AddCommand(pane_swapCmd)
 
 	carapace.Gen(pane_swapCmd).FlagCompletion(carapace.ActionMap{
-		"direction":   carapace.ActionValues("left", "right", "up", "down"),
+		"direction":   carapace.ActionValues("down", "left", "right", "up"),
 		"pane":        herdr.ActionPanes(herdr.PaneOpts{}),
 		"source-pane": herdr.ActionPanes(herdr.PaneOpts{}),
 		"target-pane": herdr.ActionPanes(herdr.PaneOpts{}),

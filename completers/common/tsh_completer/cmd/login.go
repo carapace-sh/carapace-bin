@@ -43,7 +43,7 @@ func init() {
 			carapace.ActionValuesDescribed("none", "suppress browser opening"),
 			carapace.ActionExecutables(),
 		).ToA(),
-		"format":        carapace.ActionValues("file", "openssh", "kubernetes"),
+		"format":        carapace.ActionValues("file", "kubernetes", "openssh"),
 		"kube-cluster":  tsh.ActionKubeClusters(),
 		"out":           carapace.ActionFiles(),
 		"request-id":    tsh.ActionRequests(),

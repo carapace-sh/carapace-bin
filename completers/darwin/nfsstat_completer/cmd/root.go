@@ -35,6 +35,6 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"f": carapace.ActionValues("JSON"),
-		"n": carapace.ActionValues("user", "net"),
+		"n": carapace.ActionValues("net", "user"),
 	})
 }

@@ -23,8 +23,8 @@ func init() {
 	carapace.Gen(package_completionToolCmd).PositionalCompletion(
 		carapace.ActionValues(
 			"generate-bash-script",
-			"generate-zsh-script",
 			"generate-fish-script",
+			"generate-zsh-script",
 			"list-dependencies",
 			"list-executables",
 			"list-snippets",

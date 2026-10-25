@@ -25,6 +25,6 @@ func init() {
 	rootCmd.PersistentFlags().BoolP("version", "v", false, "Show version information")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("multiline", "json", "simple"),
+		"format": carapace.ActionValues("json", "multiline", "simple"),
 	})
 }

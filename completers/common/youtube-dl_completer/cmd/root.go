@@ -177,18 +177,18 @@ func init() {
 	rootCmd.Flags().Bool("youtube-skip-dash-manifest", false, "Do not download the DASH manifests and")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"audio-format":    carapace.ActionValues("best", "aac", "flac", "mp3", "m4a", "opus", "vorbis", "wav"),
+		"audio-format":    carapace.ActionValues("aac", "best", "flac", "m4a", "mp3", "opus", "vorbis", "wav"),
 		"audio-quality":   carapace.ActionValues("0", "1", "2", "3", "4", "5", "6", "7", "8", "9"),
 		"batch-file":      carapace.ActionFiles(),
 		"cache-dir":       carapace.ActionDirectories(),
 		"config-location": carapace.ActionFiles(),
-		"convert-subs":    carapace.ActionValues("srt", "ass", "vtt", "lrc"),
+		"convert-subs":    carapace.ActionValues("ass", "lrc", "srt", "vtt"),
 		"cookies":         carapace.ActionFiles(),
 		"ffmpeg-location": carapace.ActionFiles(),
 		"fixup": carapace.ActionValuesDescribed(
+			"detect_or_warn", "fix file if we can, warn otherwise",
 			"never", "do nothing",
 			"warn", "only emit a warning",
-			"detect_or_warn", "fix file if we can, warn otherwise",
 		),
 		"format": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) == 0 {
@@ -196,8 +196,8 @@ func init() {
 			}
 			return youtubedl.ActionFormats(c.Args[0])
 		}),
-		"recode-video": carapace.ActionValues("mp4", "flv", "ogg", "webm", "mkv", "avi"),
-		"sub-format":   carapace.ActionValues("ass", "srt", "best").UniqueList("/"),
+		"recode-video": carapace.ActionValues("avi", "flv", "mkv", "mp4", "ogg", "webm"),
+		"sub-format":   carapace.ActionValues("ass", "best", "srt").UniqueList("/"),
 		"sub-lang": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) == 0 {
 				return carapace.ActionMessage("missing url")

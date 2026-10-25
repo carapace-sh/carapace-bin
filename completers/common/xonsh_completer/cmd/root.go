@@ -41,7 +41,7 @@ func init() {
 		"rc": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return carapace.ActionFiles().NoSpace()
 		}),
-		"shell-type": carapace.ActionValues("b", "best", "d", "dumb", "ptk", "ptk1", "ptk2", "prompt-toolkit", "prompt_toolkit", "prompt-toolkit1", "prompt-toolkit2", "prompt-toolkit3", "prompt_toolkit3", "ptk3", "rand", "random", "rl", "readline"),
+		"shell-type": carapace.ActionValues("b", "best", "d", "dumb", "prompt-toolkit", "prompt-toolkit1", "prompt-toolkit2", "prompt-toolkit3", "prompt_toolkit", "prompt_toolkit3", "ptk", "ptk1", "ptk2", "ptk3", "rand", "random", "readline", "rl"),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

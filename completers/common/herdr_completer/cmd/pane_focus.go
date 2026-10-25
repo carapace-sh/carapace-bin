@@ -21,6 +21,6 @@ func init() {
 	paneCmd.AddCommand(pane_focusCmd)
 
 	carapace.Gen(pane_focusCmd).FlagCompletion(carapace.ActionMap{
-		"direction": carapace.ActionValues("left", "right", "up", "down"),
+		"direction": carapace.ActionValues("down", "left", "right", "up"),
 	})
 }

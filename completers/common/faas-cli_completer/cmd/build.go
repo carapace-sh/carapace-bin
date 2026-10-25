@@ -37,6 +37,6 @@ func init() {
 		"copy-extra": carapace.ActionDirectories(),
 		"handler":    carapace.ActionDirectories(),
 		"lang":       action.ActionLanguageTemplates(),
-		"tag":        carapace.ActionValues("latest", "sha", "branch", "describe"),
+		"tag":        carapace.ActionValues("branch", "describe", "latest", "sha"),
 	})
 }

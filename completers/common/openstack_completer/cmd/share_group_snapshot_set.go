@@ -21,7 +21,7 @@ func init() {
 	share_group_snapshotCmd.AddCommand(share_group_snapshot_setCmd)
 
 	carapace.Gen(share_group_snapshot_setCmd).FlagCompletion(carapace.ActionMap{
-		"status": carapace.ActionValues("available", "error", "creating", "deleting", "error_deleting"),
+		"status": carapace.ActionValues("available", "creating", "deleting", "error", "error_deleting"),
 	})
 
 	carapace.Gen(share_group_snapshot_setCmd).PositionalCompletion(action.ActionShareGroupSnapshots(share_group_snapshot_setCmd))

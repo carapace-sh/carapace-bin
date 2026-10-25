@@ -34,7 +34,7 @@ func init() {
 
 	carapace.Gen(volume_type_setCmd).FlagCompletion(carapace.ActionMap{
 		"availability-zone":           action.ActionAvailabilityZones(volume_type_setCmd),
-		"encryption-control-location": carapace.ActionValues("front-end", "back-end"),
+		"encryption-control-location": carapace.ActionValues("back-end", "front-end"),
 		"project":                     action.ActionProjects(volume_type_setCmd),
 		"project-domain":              action.ActionDomains(volume_type_setCmd),
 	})

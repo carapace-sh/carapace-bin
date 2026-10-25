@@ -24,9 +24,9 @@ func init() {
 
 	carapace.Gen(fixupCmd).FlagCompletion(carapace.ActionMap{
 		"empty": carapace.ActionValuesDescribed(
+			"abort", "abort if any commit becomes empty",
 			"drop", "drop empty commits",
 			"keep", "keep empty commits",
-			"abort", "abort if any commit becomes empty",
 		),
 		"update-refs": git.ActionUpdateRefsModes(),
 	})

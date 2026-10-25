@@ -22,7 +22,7 @@ func init() {
 
 	carapace.Gen(mr_approversCmd).FlagCompletion(carapace.ActionMap{
 		"jq":     jq.ActionFilters(),
-		"output": carapace.ActionValues("text", "json"),
+		"output": carapace.ActionValues("json", "text"),
 	})
 	carapace.Gen(mr_approversCmd).PositionalCompletion(
 		action.ActionMergeRequestsAndBranches(mr_approversCmd, ""),

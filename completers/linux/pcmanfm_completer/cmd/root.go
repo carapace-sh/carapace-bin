@@ -46,7 +46,7 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"display":        os.ActionDisplays(),
 		"set-wallpaper":  carapace.ActionFiles(),
-		"wallpaper-mode": carapace.ActionValues("color", "stretch", "fit", "crop", "center", "tile", "screen"),
+		"wallpaper-mode": carapace.ActionValues("center", "color", "crop", "fit", "screen", "stretch", "tile"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())

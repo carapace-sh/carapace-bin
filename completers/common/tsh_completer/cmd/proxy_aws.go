@@ -28,12 +28,12 @@ func init() {
 	carapace.Gen(proxy_awsCmd).FlagCompletion(carapace.ActionMap{
 		"app": tsh.ActionApps(),
 		"format": carapace.ActionValues(
-			"unix",
+			"athena-jdbc",
+			"athena-odbc",
 			"command-prompt",
 			"powershell",
 			"text",
-			"athena-odbc",
-			"athena-jdbc",
+			"unix",
 		),
 		"port": net.ActionPorts(),
 	})

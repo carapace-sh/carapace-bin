@@ -27,7 +27,7 @@ func init() {
 	rootCmd.AddCommand(pullCmd)
 
 	carapace.Gen(pullCmd).FlagCompletion(carapace.ActionMap{
-		"policy": carapace.ActionValues("missing", "always"),
+		"policy": carapace.ActionValues("always", "missing"),
 	})
 
 	carapace.Gen(pullCmd).PositionalAnyCompletion(

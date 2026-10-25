@@ -54,13 +54,13 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"asset-pack-output-specifications": carapace.ActionFiles(),
 		"compile":                          carapace.ActionDirectories(),
-		"output-format":                    carapace.ActionValues("binary1", "xml1", "human-readable-text"),
+		"output-format":                    carapace.ActionValues("binary1", "human-readable-text", "xml1"),
 		"output-partial-info-plist":        carapace.ActionFiles(),
 		"platform":                         carapace.ActionValues("ios", "macos", "tvos", "watchos"),
-		"standalone-icon-behavior":         carapace.ActionValues("default", "all", "none"),
+		"standalone-icon-behavior":         carapace.ActionValues("all", "default", "none"),
 		"sticker-pack-strings-file":        carapace.ActionFiles(),
 		"stickers-icon-role":               carapace.ActionValues("app-host", "extension"),
-		"target-device":                    carapace.ActionValues("iphone", "ipad", "mac", "tv", "watch"),
+		"target-device":                    carapace.ActionValues("ipad", "iphone", "mac", "tv", "watch"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

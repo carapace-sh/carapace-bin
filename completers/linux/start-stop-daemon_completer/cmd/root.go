@@ -73,7 +73,7 @@ func init() {
 		"oom-score-adj": carapace.ActionValues("-1000", "0", "1000"),
 		"pidfile":       carapace.ActionFiles(),
 		"retry":         carapace.ActionValues("1", "5", "10", "15", "30", "60"),
-		"scheduler":     carapace.ActionValues("other", "batch", "idle", "fifo", "rr"),
+		"scheduler":     carapace.ActionValues("batch", "fifo", "idle", "other", "rr"),
 		"signal": ps.ActionKillSignals("linux").
 			Filter("POLL", "STKFLT"),
 		"startas":       carapace.ActionFiles(),

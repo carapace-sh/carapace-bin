@@ -97,7 +97,7 @@ func init() {
 			})
 		}),
 		"recovery-private-key": carapace.ActionFiles(),
-		"scope":                carapace.ActionValues("strict", "namespace-wide", "cluster-wide"),
+		"scope":                carapace.ActionValues("cluster-wide", "namespace-wide", "strict"),
 		"sealed-secret-file":   carapace.ActionFiles(),
 		"secret-file":          carapace.ActionFiles(),
 	})

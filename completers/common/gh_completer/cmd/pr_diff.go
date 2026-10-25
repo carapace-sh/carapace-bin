@@ -29,7 +29,7 @@ func init() {
 	prCmd.AddCommand(pr_diffCmd)
 
 	carapace.Gen(pr_diffCmd).FlagCompletion(carapace.ActionMap{
-		"color": carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
+		"color": carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"exclude": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			args := []string{"pr", "diff", "--name-only"}
 			if f := pr_diffCmd.Flag("repo"); f.Changed { // TODO use repoverride

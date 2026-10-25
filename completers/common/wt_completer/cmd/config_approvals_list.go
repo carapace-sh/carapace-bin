@@ -19,6 +19,6 @@ func init() {
 	config_approvalsCmd.AddCommand(config_approvals_listCmd)
 
 	carapace.Gen(config_approvals_listCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("text", "json"),
+		"format": carapace.ActionValues("json", "text"),
 	})
 }

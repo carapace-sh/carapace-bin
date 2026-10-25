@@ -25,7 +25,7 @@ func init() {
 	domainsCmd.AddCommand(domains_searchCmd)
 
 	carapace.Gen(domains_searchCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("plain", "json"),
+		"format": carapace.ActionValues("json", "plain"),
 		"order":  carapace.ActionValues("asc", "desc"),
 	})
 }

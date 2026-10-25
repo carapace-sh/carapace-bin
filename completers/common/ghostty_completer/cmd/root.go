@@ -344,14 +344,14 @@ func addConfigs(cmd *cobra.Command) {
 		"key-remap": carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				return carapace.ActionValues("ctrl", "alt", "shift", "super", "cmd", "command", "left_ctrl", "right_ctrl", "left_alt", "right_alt", "left_shift", "right_shift", "left_super", "right_super").Suffix("=")
+				return carapace.ActionValues("alt", "cmd", "command", "ctrl", "left_alt", "left_ctrl", "left_shift", "left_super", "right_alt", "right_ctrl", "right_shift", "right_super", "shift", "super").Suffix("=")
 			default:
-				return carapace.ActionValues("ctrl", "alt", "shift", "super", "cmd", "command", "left_ctrl", "right_ctrl", "left_alt", "right_alt", "left_shift", "right_shift", "left_super", "right_super")
+				return carapace.ActionValues("alt", "cmd", "command", "ctrl", "left_alt", "left_ctrl", "left_shift", "left_super", "right_alt", "right_ctrl", "right_shift", "right_super", "shift", "super")
 			}
 		}),
 		"link-previews":                         ghostty.ActionLinkPreviewses(),
 		"linux-cgroup":                          ghostty.ActionLinuxCgroups(),
-		"macos-applescript":                     carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
+		"macos-applescript":                     carapace.ActionValues("false", "true").StyleF(style.ForKeyword),
 		"macos-custom-icon":                     carapace.ActionFiles(),
 		"macos-dock-drop-behavior":              ghostty.ActionMacosDockDropBehaviors(),
 		"macos-hidden":                          ghostty.ActionMacosHiddenModes(),
@@ -378,10 +378,10 @@ func addConfigs(cmd *cobra.Command) {
 		"right-click-action":                    ghostty.ActionRightClickActions(),
 		"scroll-to-bottom":                      ghostty.ActionScrollToBottoms().UniqueList(","),
 		"scrollbar":                             ghostty.ActionScrollbarModes(),
-		"search-background":                     carapace.Batch(color.ActionHexColors(), color.ActionXtermColorNames(), carapace.ActionValues("cell-foreground", "cell-background")).ToA(),
-		"search-foreground":                     carapace.Batch(color.ActionHexColors(), color.ActionXtermColorNames(), carapace.ActionValues("cell-foreground", "cell-background")).ToA(),
-		"search-selected-background":            carapace.Batch(color.ActionHexColors(), color.ActionXtermColorNames(), carapace.ActionValues("cell-foreground", "cell-background")).ToA(),
-		"search-selected-foreground":            carapace.Batch(color.ActionHexColors(), color.ActionXtermColorNames(), carapace.ActionValues("cell-foreground", "cell-background")).ToA(),
+		"search-background":                     carapace.Batch(color.ActionHexColors(), color.ActionXtermColorNames(), carapace.ActionValues("cell-background", "cell-foreground")).ToA(),
+		"search-foreground":                     carapace.Batch(color.ActionHexColors(), color.ActionXtermColorNames(), carapace.ActionValues("cell-background", "cell-foreground")).ToA(),
+		"search-selected-background":            carapace.Batch(color.ActionHexColors(), color.ActionXtermColorNames(), carapace.ActionValues("cell-background", "cell-foreground")).ToA(),
+		"search-selected-foreground":            carapace.Batch(color.ActionHexColors(), color.ActionXtermColorNames(), carapace.ActionValues("cell-background", "cell-foreground")).ToA(),
 		"selection-background":                  color.ActionHexColors(),
 		"selection-foreground":                  color.ActionHexColors(),
 		"shell-integration":                     ghostty.ActionShellIntegrationModes(),
@@ -390,12 +390,12 @@ func addConfigs(cmd *cobra.Command) {
 			color.ActionHexColors(),
 			color.ActionXtermColorNames(),
 		).ToA(),
-		"split-inherit-working-directory": carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
+		"split-inherit-working-directory": carapace.ActionValues("false", "true").StyleF(style.ForKeyword),
 		"split-preserve-zoom":             ghostty.ActionSplitPreserveZooms(),
-		"tab-inherit-working-directory":   carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
+		"tab-inherit-working-directory":   carapace.ActionValues("false", "true").StyleF(style.ForKeyword),
 		"term":                            ghostty.ActionTerms(),
 		"theme":                           ghostty.ActionThemes(),
-		"title-report":                    carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
+		"title-report":                    carapace.ActionValues("false", "true").StyleF(style.ForKeyword),
 		"undo-timeout":                    carapace.ActionValues(),
 		"unfocused-split-fill":            color.ActionXtermColorNames(),
 		"window-colorspace":               ghostty.ActionWindowColorspaces(),

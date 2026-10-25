@@ -20,7 +20,7 @@ func init() {
 	configCmd.AddCommand(config_setCmd)
 
 	carapace.Gen(config_setCmd).FlagCompletion(carapace.ActionMap{
-		"type": carapace.ActionValues("auto", "string", "boolean", "integer", "float"),
+		"type": carapace.ActionValues("auto", "boolean", "float", "integer", "string"),
 	})
 
 	carapace.Gen(config_setCmd).PositionalCompletion(

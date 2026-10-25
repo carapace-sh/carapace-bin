@@ -35,6 +35,6 @@ func init() {
 	carapace.Gen(remoteControlCmd).FlagCompletion(carapace.ActionMap{
 		"debug-file":      carapace.ActionFiles(),
 		"permission-mode": carapace.ActionValues("acceptEdits", "auto", "bypassPermissions", "default", "dontAsk", "plan"),
-		"spawn":           carapace.ActionValues("same-dir", "worktree", "session"),
+		"spawn":           carapace.ActionValues("same-dir", "session", "worktree"),
 	})
 }

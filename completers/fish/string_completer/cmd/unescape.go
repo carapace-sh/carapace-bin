@@ -19,6 +19,6 @@ func init() {
 	rootCmd.AddCommand(unescapeCmd)
 
 	carapace.Gen(unescapeCmd).FlagCompletion(carapace.ActionMap{
-		"style": carapace.ActionValues("script", "var", "url"),
+		"style": carapace.ActionValues("script", "url", "var"),
 	})
 }

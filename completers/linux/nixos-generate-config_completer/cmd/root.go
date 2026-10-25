@@ -29,7 +29,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"dir":    carapace.ActionDirectories(),
-		"kernel": carapace.ActionValues("lts", "latest"),
+		"kernel": carapace.ActionValues("latest", "lts"),
 		"root":   carapace.ActionDirectories(),
 	})
 }

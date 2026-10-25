@@ -32,7 +32,7 @@ func init() {
 	carapace.Gen(milestone_listCmd).FlagCompletion(carapace.ActionMap{
 		"group":  action.ActionGroups(milestone_listCmd),
 		"jq":     jq.ActionFilters(),
-		"output": carapace.ActionValues("text", "json"),
+		"output": carapace.ActionValues("json", "text"),
 		"state":  carapace.ActionValues("active", "closed"),
 	})
 }

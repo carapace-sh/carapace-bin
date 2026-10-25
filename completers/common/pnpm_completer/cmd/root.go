@@ -97,7 +97,7 @@ func init() {
 		"loglevel":        pnpm.ActionLoglevels(),
 		"npmrc-auth-file": carapace.ActionFiles(),
 		"prefix":          carapace.ActionDirectories(),
-		"reporter":        carapace.ActionValuesDescribed("default", "Rich visual output: a progress line, a packages diff, lifecycle output, and a `Done in ...` summary", "append-only", "Like `default` but forces the append-only rendering even on a TTY", "ndjson", "Newline-delimited JSON on stderr", "silent", "No progress output"),
+		"reporter":        carapace.ActionValuesDescribed("append-only", "Like `default` but forces the append-only rendering even on a TTY", "default", "Rich visual output: a progress line, a packages diff, lifecycle output, and a `Done in ...` summary", "ndjson", "Newline-delimited JSON on stderr", "silent", "No progress output"),
 		"state-dir":       carapace.ActionDirectories(),
 		"store":           carapace.ActionDirectories(),
 		"store-dir":       carapace.ActionDirectories(),

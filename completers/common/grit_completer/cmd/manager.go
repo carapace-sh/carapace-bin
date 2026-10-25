@@ -18,6 +18,6 @@ func init() {
 	rootCmd.AddCommand(managerCmd)
 
 	carapace.Gen(managerCmd).PositionalCompletion(
-		carapace.ActionValues("get", "store", "erase"),
+		carapace.ActionValues("erase", "get", "store"),
 	)
 }

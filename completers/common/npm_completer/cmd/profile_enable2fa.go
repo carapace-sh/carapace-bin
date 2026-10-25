@@ -18,6 +18,6 @@ func init() {
 	profileCmd.AddCommand(profile_enable2faCmd)
 
 	carapace.Gen(profile_enable2faCmd).PositionalCompletion(
-		carapace.ActionValues("auth-only", "auth-and-writes"),
+		carapace.ActionValues("auth-and-writes", "auth-only"),
 	)
 }

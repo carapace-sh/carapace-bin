@@ -9,12 +9,12 @@ import "github.com/carapace-sh/carapace"
 func ActionMaintenanceTasks() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"commit-graph", "Update the commit-graph files incrementally",
-		"prefetch", "Updates the object directory with the latest objects from all registered remotes",
 		"gc", "Clean up unnecessary files and optimize the local repository",
 		"geometric", "Avoid all-into-one repacks when possible",
-		"loose-objects", "Clean up loose objects and places them into pack-files",
 		"incremental-repack", "Repack the object directory using the multi-pack-index feature",
+		"loose-objects", "Clean up loose objects and places them into pack-files",
 		"pack-refs", "Collect the loose reference files and collects them into a single file",
+		"prefetch", "Updates the object directory with the latest objects from all registered remotes",
 		"reflog-expire", "Delete entries in the reflog older than the expiry threshold",
 		"rerere-gc", "Garbage collection for stale entries in the rerere cache",
 		"worktree-prune", "Delete stale or broken worktrees",

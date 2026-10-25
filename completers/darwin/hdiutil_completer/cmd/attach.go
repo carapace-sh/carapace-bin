@@ -43,8 +43,8 @@ func init() {
 
 	carapace.Gen(attachCmd).FlagCompletion(carapace.ActionMap{
 		"encryption": carapace.ActionValues("AES-128", "AES-256"),
-		"mount":      carapace.ActionValues("required", "optional", "suppressed"),
-		"owners":     carapace.ActionValues("on", "off").StyleF(style.ForKeyword),
+		"mount":      carapace.ActionValues("optional", "required", "suppressed"),
+		"owners":     carapace.ActionValues("off", "on").StyleF(style.ForKeyword),
 		"shadow":     carapace.ActionFiles(),
 	})
 

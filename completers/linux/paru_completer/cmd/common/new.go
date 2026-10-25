@@ -187,7 +187,7 @@ func AddNewFlags(cmd *cobra.Command) {
 		"searchby":   carapace.ActionValues("checkdepends", "comaintainers", "depends", "groups", "keywords", "maintainer", "makedepends", "name", "name-desc", "provides", "replaces", "submitter"),
 		"sign":       carapace.ActionValues(),
 		"signdb":     carapace.ActionValues(),
-		"sortby":     carapace.ActionValues("votes", "popularity", "id", "baseid", "name", "base", "submitted", "modified"),
+		"sortby":     carapace.ActionValues("base", "baseid", "id", "modified", "name", "popularity", "submitted", "votes"),
 		"sudo": carapace.Batch(
 			carapace.ActionExecutables(),
 			carapace.ActionFiles(),

@@ -43,7 +43,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"G": carapace.ActionValues(),
-		"R": carapace.ActionValues("none", "system", "data", "preboot", "recovery", "vm"),
+		"R": carapace.ActionValues("data", "none", "preboot", "recovery", "system", "vm"),
 		"S": carapace.ActionValues(),
 		"U": carapace.ActionValues(),
 		"b": carapace.ActionValues("4096", "8192", "16384", "32768", "65536", "131072", "262144", "524288", "1048576"),

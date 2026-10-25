@@ -24,7 +24,7 @@ func init() {
 	cluster_agentCmd.AddCommand(cluster_agent_getTokenCmd)
 
 	carapace.Gen(cluster_agent_getTokenCmd).FlagCompletion(carapace.ActionMap{
-		"cache-mode": carapace.ActionValues("keyring-filesystem-fallback", "force-keyring", "force-filesystem", "no"),
+		"cache-mode": carapace.ActionValues("force-filesystem", "force-keyring", "keyring-filesystem-fallback", "no"),
 		"jq":         jq.ActionFilters(),
 	})
 }

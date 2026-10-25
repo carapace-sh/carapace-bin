@@ -38,20 +38,20 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"algorithm": carapace.ActionValuesDescribed(
-			"sysv", "equivalent to sum -s",
+			"blake2b", "equivalent to b2sum",
 			"bsd", "equivalent to sum -r",
 			"crc", "equivalent to cksum",
 			"crc32b", "only available through cksum",
 			"md5", "equivalent to md5sum",
 			"sha1", "equivalent to sha1sum",
+			"sha2", "equivalent to sha{224,256,384,512}sum",
 			"sha224", "equivalent to sha224sum",
 			"sha256", "equivalent to sha256sum",
+			"sha3", "only available through cksum",
 			"sha384", "equivalent to sha384sum",
 			"sha512", "equivalent to sha512sum",
-			"sha2", "equivalent to sha{224,256,384,512}sum",
-			"sha3", "only available through cksum",
-			"blake2b", "equivalent to b2sum",
 			"sm3", "only available through cksum",
+			"sysv", "equivalent to sum -s",
 		),
 	})
 

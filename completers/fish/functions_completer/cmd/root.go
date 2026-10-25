@@ -46,7 +46,7 @@ func init() {
 	rootCmd.Flags().Bool("verbose", false, "verbose output")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"color": carapace.ActionValues("always", "never", "auto").StyleF(style.ForKeyword),
+		"color": carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

@@ -73,13 +73,13 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"F":                    carapace.ActionFiles(),
-		"Q":                    carapace.ActionValues("in", "out", "inout"),
+		"Q":                    carapace.ActionValues("in", "inout", "out"),
 		"T":                    carapace.ActionValues("aodv", "carp", "cnfp", "domain", "lmp", "pgm", "pgm_zmtp1", "ptp", "radius", "resp", "rpc", "rtcp", "rtp", "snmp", "someip", "tftp", "vat", "vxlan", "wb", "zmtp1"),
 		"i":                    net.ActionDevices(net.AllDevices),
-		"j":                    carapace.ActionValues("host", "host_lowprec", "host_hiprec", "adapter", "adapter_unsynced", "adapter_unbiased"),
+		"j":                    carapace.ActionValues("adapter", "adapter_unbiased", "adapter_unsynced", "host", "host_hiprec", "host_lowprec"),
 		"r":                    carapace.ActionFiles(),
 		"time-stamp-precision": carapace.ActionValues("micro", "nano"),
 		"w":                    carapace.ActionFiles(),
-		"y":                    carapace.ActionValues("en10mb", "en3mb", "linux_sll", "raw", "null"),
+		"y":                    carapace.ActionValues("en10mb", "en3mb", "linux_sll", "null", "raw"),
 	})
 }

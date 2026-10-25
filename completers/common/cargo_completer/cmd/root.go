@@ -63,7 +63,7 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"C":     carapace.ActionDirectories(),
 		"Z":     cargo.ActionNightlyFlags(),
-		"color": carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
+		"color": carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 	})
 
 	carapace.Gen(rootCmd).PreRun(func(cmd *cobra.Command, args []string) {

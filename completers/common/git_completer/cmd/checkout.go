@@ -57,10 +57,10 @@ func init() {
 	carapace.Gen(checkoutCmd).FlagCompletion(carapace.ActionMap{
 		"B":                  git.ActionRefs(git.RefOption{LocalBranches: true}),
 		"b":                  git.ActionRefs(git.RefOption{LocalBranches: true}),
-		"conflict":           carapace.ActionValues("merge", "diff3"),
+		"conflict":           carapace.ActionValues("diff3", "merge"),
 		"orphan":             git.ActionRefs(git.RefOption{LocalBranches: true, RemoteBranches: true}),
 		"pathspec-from-file": carapace.ActionFiles(),
-		"recurse-submodules": carapace.ActionValues("yes", "on-demand").StyleF(style.ForKeyword),
+		"recurse-submodules": carapace.ActionValues("on-demand", "yes").StyleF(style.ForKeyword),
 		"track":              carapace.ActionValues("direct", "inherit"),
 	})
 

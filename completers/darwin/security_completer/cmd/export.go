@@ -23,9 +23,9 @@ func init() {
 	exportCmd.Flags().BoolP("wrap", "w", false, "Private keys are to be wrapped on export")
 	rootCmd.AddCommand(exportCmd)
 	carapace.Gen(exportCmd).FlagCompletion(carapace.ActionMap{
-		"format":   carapace.ActionValues("openssl", "bsafe", "pkcs7", "pkcs8", "pkcs12", "x509", "openssh1", "openssh2", "pemseq"),
+		"format":   carapace.ActionValues("bsafe", "openssh1", "openssh2", "openssl", "pemseq", "pkcs12", "pkcs7", "pkcs8", "x509"),
 		"keychain": security.ActionKeychains(),
 		"output":   carapace.ActionFiles(),
-		"type":     carapace.ActionValues("certs", "allKeys", "pubKeys", "privKeys", "identities", "all"),
+		"type":     carapace.ActionValues("all", "allKeys", "certs", "identities", "privKeys", "pubKeys"),
 	})
 }

@@ -128,9 +128,9 @@ func init() {
 		"o":    carapace.ActionDirectories(),
 		"r":    carapace.ActionValues("-", "0"),
 		"sa":   carapace.ActionValues("a", "e", "s"),
-		"scc":  carapace.ActionValues("UTF-8", "WIN", "DOS"),
-		"scrc": carapace.ActionValues("CRC32", "CRC64", "SHA1", "SHA256", "XXH64", "*"),
-		"scs":  carapace.ActionValues("UTF-8", "UTF-16LE", "UTF-16BE", "WIN", "DOS"),
+		"scc":  carapace.ActionValues("DOS", "UTF-8", "WIN"),
+		"scrc": carapace.ActionValues("*", "CRC32", "CRC64", "SHA1", "SHA256", "XXH64"),
+		"scs":  carapace.ActionValues("DOS", "UTF-16BE", "UTF-16LE", "UTF-8", "WIN"),
 		"seml": carapace.ActionValues("."),
 		"sfx":  carapace.ActionFiles(),
 		"slp":  carapace.ActionValues("-"),
@@ -140,8 +140,8 @@ func init() {
 		"t": carapace.ActionValues(
 			"7z", "bzip2", "cab", "gzip",
 			"iso", "lzma", "lzma86",
-			"tar", "udf", "wim", "xz", "zip",
-			"zstd", "split",
+			"split", "tar", "udf", "wim", "xz",
+			"zip", "zstd",
 		),
 		"w": carapace.ActionDirectories(),
 	})

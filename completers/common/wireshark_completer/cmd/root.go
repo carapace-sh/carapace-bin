@@ -69,8 +69,8 @@ func init() {
 			switch len(c.Parts) {
 			case 0:
 				return carapace.ActionValues(
-					"persconf", "personal configuration files",
-					"persdata", "personal data files",
+					"persconf", "persdata",
+					"personal configuration files", "personal data files",
 				).Invoke(c).Suffix(":").ToA()
 			case 1:
 				return carapace.ActionFiles()
@@ -83,8 +83,8 @@ func init() {
 			case 0:
 				return carapace.ActionValuesDescribed(
 					"duration", "stop after NUM seconds",
-					"filesize", "stop this file after NUM KB",
 					"files", "stop after NUM files",
+					"filesize", "stop this file after NUM KB",
 					"packets", "stop after NUM packets",
 				).Invoke(c).Suffix(":").ToA()
 			default:
@@ -129,17 +129,17 @@ func init() {
 			case 0:
 				return carapace.ActionValuesDescribed(
 					"duration", "switch to next file after NUM secs",
-					"filesize", "switch to next file after NUM KB",
 					"files", "ringbuffer: replace after NUM files",
-					"packets", "switch to next file after NUM packets",
+					"filesize", "switch to next file after NUM KB",
 					"interval", "switch to next file when the time is an exact multiple of NUM secs",
+					"packets", "switch to next file after NUM packets",
 				).Invoke(c).Suffix(":").ToA()
 			default:
 				return carapace.ActionValues()
 			}
 		}),
 		"t": carapace.ActionValues("a", "ad", "adoy", "d", "dd", "e", "r", "u", "ud", "udoy"),
-		"u": carapace.ActionValues("s", "hms"),
+		"u": carapace.ActionValues("hms", "s"),
 		"w": carapace.ActionFiles(),
 		"z": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return tshark.ActionStatistics().Invoke(c).ToMultiPartsA(",")

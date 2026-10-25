@@ -133,22 +133,22 @@ func init() {
 
 	// TODO complete styles
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"24-bit-color":          carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
+		"24-bit-color":          carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"config":                carapace.ActionFiles(),
-		"detect-dark-light":     carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
+		"detect-dark-light":     carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"diff-args":             bridge.ActionCarapaceBin("git", "diff").Split(),
 		"generate-completion":   carapace.ActionValues("bash", "elvish", "fish", "powershell", "zsh"),
-		"grep-output-type":      carapace.ActionValues("ripgrep", "classic"),
-		"grep-separator-symbol": carapace.ActionValues(":", "-", "keep"),
-		"inspect-raw-lines":     carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
+		"grep-output-type":      carapace.ActionValues("classic", "ripgrep"),
+		"grep-separator-symbol": carapace.ActionValues("-", ":", "keep"),
+		"inspect-raw-lines":     carapace.ActionValues("false", "true").StyleF(style.ForKeyword),
 		"line-fill-method":      carapace.ActionValues("ansi", "spaces"),
 		"pager": carapace.Batch(
 			carapace.ActionExecutables(),
 			carapace.ActionFiles(),
 		).ToA(),
-		"paging":         carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
+		"paging":         carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"syntax-theme":   delta.ActionSyntaxThemes(),
-		"true-color":     carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
+		"true-color":     carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"width":          carapace.ActionValues("variable"),
 		"wrap-max-lines": carapace.ActionValues("unlimited"),
 	})

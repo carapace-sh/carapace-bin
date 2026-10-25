@@ -17,6 +17,6 @@ func init() {
 	ioamCmd.AddCommand(ioam_schemaCmd)
 
 	carapace.Gen(ioam_schemaCmd).PositionalCompletion(
-		carapace.ActionValues("show", "add", "del"),
+		carapace.ActionValues("add", "del", "show"),
 	)
 }

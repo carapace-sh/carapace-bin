@@ -83,10 +83,10 @@ func init() {
 	carapace.Gen(agentCmd).FlagCompletion(carapace.ActionMap{
 		"config-dir":    carapace.ActionDirectories(),
 		"config-file":   carapace.ActionFiles(),
-		"config-format": carapace.ActionValues("json", "hcl"),
+		"config-format": carapace.ActionValues("hcl", "json"),
 		"data-dir":      carapace.ActionDirectories(),
 		"log-file":      carapace.ActionFiles(),
-		"log-level":     carapace.ActionValues("trace", "debug", "info", "warn", "err").StyleF(style.ForLogLevel),
+		"log-level":     carapace.ActionValues("debug", "err", "info", "trace", "warn").StyleF(style.ForLogLevel),
 		"pid-file":      carapace.ActionFiles(),
 		"ui-dir":        carapace.ActionDirectories(),
 	})

@@ -25,7 +25,7 @@ func init() {
 				case "dev":
 					return net.ActionDevices(net.IncludedDevices{Wifi: true, Ethernet: true})
 				case "nud":
-					return carapace.ActionValues("permanent", "noarp", "stale", "reachable", "none", "incomplete", "delay", "probe", "failed")
+					return carapace.ActionValues("delay", "failed", "incomplete", "noarp", "none", "permanent", "probe", "reachable", "stale")
 				case "vrf":
 					return carapace.ActionValues()
 				case "to":
@@ -34,7 +34,7 @@ func init() {
 					return carapace.ActionValues().NoSpace()
 				}
 			}
-			return carapace.ActionValues("dev", "nud", "vrf", "to", "proxy", "unused", "nomaster")
+			return carapace.ActionValues("dev", "nomaster", "nud", "proxy", "to", "unused", "vrf")
 		}),
 	)
 }

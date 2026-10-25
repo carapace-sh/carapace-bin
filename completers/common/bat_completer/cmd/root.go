@@ -69,13 +69,13 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"binary": carapace.ActionValuesDescribed(
-			"no-printing", "do not print any binary content",
 			"as-text", "treat binary content as normal text",
+			"no-printing", "do not print any binary content",
 		),
-		"color":       carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
-		"completion":  carapace.ActionValues("bash", "fish", "zsh", "ps1"),
-		"decorations": carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
-		"italic-text": carapace.ActionValues("never", "always").StyleF(style.ForKeyword),
+		"color":       carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
+		"completion":  carapace.ActionValues("bash", "fish", "ps1", "zsh"),
+		"decorations": carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
+		"italic-text": carapace.ActionValues("always", "never").StyleF(style.ForKeyword),
 		"language":    bat.ActionLanguages(),
 		"map-syntax": carapace.ActionMultiPartsN(":", 2, func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
@@ -90,13 +90,13 @@ func init() {
 			"unicode", "Use special Unicode code points to identify non-printable characters",
 		),
 		"pager":       bridge.ActionCarapaceBin().Split(),
-		"paging":      carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
-		"strip-ansi":  carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
+		"paging":      carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
+		"strip-ansi":  carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"style":       bat.ActionStyles().UniqueList(","),
 		"theme":       bat.ActionThemes(),
 		"theme-dark":  bat.ActionThemes(),
 		"theme-light": bat.ActionThemes(),
-		"wrap":        carapace.ActionValues("auto", "never", "character"),
+		"wrap":        carapace.ActionValues("auto", "character", "never"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

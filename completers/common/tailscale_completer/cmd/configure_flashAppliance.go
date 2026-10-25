@@ -26,7 +26,7 @@ func init() {
 		"add-ssh-authorized-keys": carapace.ActionFiles(),
 		"disk":                    carapace.ActionFiles(),
 		"gaf":                     carapace.ActionFiles(),
-		"track":                   carapace.ActionValues("stable", "release-candidate", "unstable"),
+		"track":                   carapace.ActionValues("release-candidate", "stable", "unstable"),
 		"variant":                 carapace.ActionValues("pi-arm64", "vm-amd64", "vm-arm64"),
 	})
 }

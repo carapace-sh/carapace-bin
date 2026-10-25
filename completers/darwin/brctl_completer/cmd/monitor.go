@@ -18,6 +18,6 @@ func init() {
 	monitorCmd.Flags().String("scope", "", "restrict the NSMDQ scope to DOCS, DATA, or BOTH")
 
 	carapace.Gen(monitorCmd).FlagCompletion(carapace.ActionMap{
-		"scope": carapace.ActionValues("DOCS", "DATA", "BOTH"),
+		"scope": carapace.ActionValues("BOTH", "DATA", "DOCS"),
 	})
 }

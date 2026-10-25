@@ -21,8 +21,8 @@ func init() {
 
 	carapace.Gen(operation_revertCmd).FlagCompletion(carapace.ActionMap{
 		"what": carapace.ActionValuesDescribed(
-			"repo", "The jj repo state and local bookmarks",
 			"remote-tracking", "The remote-tracking bookmarks. Do not restore these if you'd like to push after the undo",
+			"repo", "The jj repo state and local bookmarks",
 		),
 	})
 

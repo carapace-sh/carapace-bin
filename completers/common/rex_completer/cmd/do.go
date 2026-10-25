@@ -32,7 +32,7 @@ func init() {
 		"action":  action.ActionClientActions(doCmd),
 		"args":    carapace.ActionFiles().Prefix("@"),
 		"block":   action.ActionBlocks(doCmd),
-		"for":     carapace.ActionValues("1s", "10s", "1m", "10m"),
+		"for":     carapace.ActionValues("10m", "10s", "1m", "1s"),
 		"origin":  carapace.ActionValues("api", "cli", "key", "palette"),
 		"session": action.ActionSessions(doCmd),
 	})

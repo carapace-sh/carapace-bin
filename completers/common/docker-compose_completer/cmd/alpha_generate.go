@@ -21,7 +21,7 @@ func init() {
 	alphaCmd.AddCommand(alpha_generateCmd)
 
 	carapace.Gen(alpha_generateCmd).FlagCompletion(carapace.ActionMap{
-		"format":      carapace.ActionValues("yaml", "json"),
+		"format":      carapace.ActionValues("json", "yaml"),
 		"project-dir": carapace.ActionDirectories(),
 	})
 

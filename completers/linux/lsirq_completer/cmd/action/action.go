@@ -7,7 +7,7 @@ import (
 func ActionColumns() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"IRQ", "interrupts",
-		"TOTAL", "total count",
 		"NAME", "name",
+		"TOTAL", "total count",
 	)
 }

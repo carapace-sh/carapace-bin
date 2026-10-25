@@ -24,7 +24,7 @@ func init() {
 	createKeypairCmd.Flags().StringP("valid-to", "t", "", "Make key valid to specified date")
 	rootCmd.AddCommand(createKeypairCmd)
 	carapace.Gen(createKeypairCmd).FlagCompletion(carapace.ActionMap{
-		"algorithm": carapace.ActionValues("rsa", "dh", "dsa", "fee"),
+		"algorithm": carapace.ActionValues("dh", "dsa", "fee", "rsa"),
 		"keychain":  security.ActionKeychains(),
 	})
 }

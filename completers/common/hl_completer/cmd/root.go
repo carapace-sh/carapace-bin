@@ -71,23 +71,23 @@ func init() {
 	rootCmd.Flag("list-themes").NoOptDefVal = " "
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"ascii":               carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
-		"color":               carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
+		"ascii":               carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
+		"color":               carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"concurrency":         carapace.ActionValues(),
 		"config":              carapace.ActionFiles(),
-		"delimiter":           carapace.ActionValues("auto", "cr", "lf", "crlf", "newline", "nul"),
-		"expansion":           carapace.ActionValues("never", "inline", "auto", "always"),
-		"flatten":             carapace.ActionValues("never", "always").StyleF(style.ForKeyword),
-		"help":                carapace.ActionValues("short", "long"),
+		"delimiter":           carapace.ActionValues("auto", "cr", "crlf", "lf", "newline", "nul"),
+		"expansion":           carapace.ActionValues("always", "auto", "inline", "never"),
+		"flatten":             carapace.ActionValues("always", "never").StyleF(style.ForKeyword),
+		"help":                carapace.ActionValues("long", "short"),
 		"input-format":        carapace.ActionValues("auto", "json", "logfmt"),
-		"input-info":          carapace.ActionValues("auto", "none", "minimal", "compact", "full"),
-		"list-themes":         carapace.ActionValues("dark", "light", "16color", "256color", "truecolor", "overlay", "base"),
+		"input-info":          carapace.ActionValues("auto", "compact", "full", "minimal", "none"),
+		"list-themes":         carapace.ActionValues("16color", "256color", "base", "dark", "light", "overlay", "truecolor"),
 		"output":              carapace.ActionFiles(),
 		"output-delimiter":    carapace.ActionValues("newline", "nul"),
-		"paging":              carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
+		"paging":              carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"shell-completions":   carapace.ActionValues("bash", "elvish", "fish", "powershell", "zsh"),
 		"theme":               hl.ActionThemes(),
-		"unix-timestamp-unit": carapace.ActionValues("auto", "s", "ms", "us", "ns"),
+		"unix-timestamp-unit": carapace.ActionValues("auto", "ms", "ns", "s", "us"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

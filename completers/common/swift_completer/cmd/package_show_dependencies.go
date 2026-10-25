@@ -23,7 +23,7 @@ func init() {
 	packageCmd.AddCommand(package_showDependenciesCmd)
 
 	carapace.Gen(package_showDependenciesCmd).FlagCompletion(carapace.ActionMap{
-		"format":      carapace.ActionValues("text", "dot", "json", "flatlist"),
+		"format":      carapace.ActionValues("dot", "flatlist", "json", "text"),
 		"output-path": carapace.ActionFiles(),
 	})
 }

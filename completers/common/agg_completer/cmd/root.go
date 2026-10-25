@@ -45,9 +45,9 @@ func init() {
 		"emoji-font-family": os.ActionFontFamilies().UniqueList(","),
 		"font-dir":          carapace.ActionDirectories(),
 		"font-family":       os.ActionFontFamilies().UniqueList(","),
-		"renderer":          carapace.ActionValues("swash", "resvg"),
+		"renderer":          carapace.ActionValues("resvg", "swash"),
 		"text-font-family":  os.ActionFontFamilies().UniqueList(","),
-		"theme":             carapace.ActionValues("asciinema", "dracula", "github-dark", "github-light", "kanagawa", "kanagawa-dragon", "kanagawa-light", "monokai", "nord", "solarized-dark", "solarized-light", "gruvbox-dark", "custom"),
+		"theme":             carapace.ActionValues("asciinema", "custom", "dracula", "github-dark", "github-light", "gruvbox-dark", "kanagawa", "kanagawa-dragon", "kanagawa-light", "monokai", "nord", "solarized-dark", "solarized-light"),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

@@ -45,7 +45,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"config":         carapace.ActionValues(),
-		"target-version": carapace.ActionValues("py27", "py33", "py34", "py35", "py36", "py37", "py38", "py39", "py310"),
+		"target-version": carapace.ActionValues("py27", "py310", "py33", "py34", "py35", "py36", "py37", "py38", "py39"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

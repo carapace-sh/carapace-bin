@@ -26,6 +26,6 @@ func init() {
 	carapace.Gen(auth_statusCmd).FlagCompletion(carapace.ActionMap{
 		"hostname": action.ActionConfigHosts(),
 		"jq":       jq.ActionFilters(),
-		"output":   carapace.ActionValues("text", "json"),
+		"output":   carapace.ActionValues("json", "text"),
 	})
 }

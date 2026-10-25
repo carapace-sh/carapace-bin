@@ -17,6 +17,6 @@ func init() {
 	configCmd.AddCommand(config_listCmd)
 
 	carapace.Gen(config_listCmd).PositionalCompletion(
-		carapace.ActionValues("hidden", "contentIndexing", "includeFolders", "excludeFolders", "excludeFilters", "excludeMimetypes"),
+		carapace.ActionValues("contentIndexing", "excludeFilters", "excludeFolders", "excludeMimetypes", "hidden", "includeFolders"),
 	)
 }

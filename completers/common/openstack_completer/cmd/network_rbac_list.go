@@ -41,6 +41,6 @@ func init() {
 		"quote":          carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
 		"sort-column":    action.ActionColumns(network_rbac_listCmd),
 		"target-project": action.ActionProjects(network_rbac_listCmd),
-		"type":           carapace.ActionValues("address_group", "address_scope", "security_group", "subnetpool", "qos_policy", "network"),
+		"type":           carapace.ActionValues("address_group", "address_scope", "network", "qos_policy", "security_group", "subnetpool"),
 	})
 }

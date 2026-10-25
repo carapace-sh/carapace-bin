@@ -24,7 +24,7 @@ func init() {
 	carapace.Gen(mr_note_draft_listCmd).FlagCompletion(carapace.ActionMap{
 		"file":   carapace.ActionFiles(),
 		"jq":     jq.ActionFilters(),
-		"output": carapace.ActionValues("text", "json"),
+		"output": carapace.ActionValues("json", "text"),
 	})
 	carapace.Gen(mr_note_draft_listCmd).PositionalAnyCompletion(
 		action.ActionMergeRequestsAndBranches(mr_note_draft_listCmd, ""),

@@ -22,7 +22,7 @@ func init() {
 	carapace.Gen(sbomCmd).FlagCompletion(carapace.ActionMap{
 		"omit":        carapace.ActionValues("dev", "optional", "peer"),
 		"sbom-format": carapace.ActionValues("cyclonedx", "spdx"),
-		"sbom-type":   carapace.ActionValues("library", "application", "framework"),
+		"sbom-type":   carapace.ActionValues("application", "framework", "library"),
 	})
 
 	rootCmd.AddCommand(sbomCmd)

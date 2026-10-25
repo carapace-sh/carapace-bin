@@ -41,9 +41,9 @@ func init() {
 	rootCmd.Flag("header").NoOptDefVal = " "
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"from":    carapace.ActionValues("none", "auto", "si", "iec", "iec-i"),
-		"invalid": carapace.ActionValues("abort", "fail", "warn", "ignore"),
-		"round":   carapace.ActionValues("up", "down", "from-zero", "towards-zero", "nearest"),
-		"to":      carapace.ActionValues("none", "auto", "si", "iec", "iec-i"),
+		"from":    carapace.ActionValues("auto", "iec", "iec-i", "none", "si"),
+		"invalid": carapace.ActionValues("abort", "fail", "ignore", "warn"),
+		"round":   carapace.ActionValues("down", "from-zero", "nearest", "towards-zero", "up"),
+		"to":      carapace.ActionValues("auto", "iec", "iec-i", "none", "si"),
 	})
 }

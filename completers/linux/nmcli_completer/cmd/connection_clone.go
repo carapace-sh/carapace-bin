@@ -20,7 +20,7 @@ func init() {
 
 	carapace.Gen(connection_cloneCmd).PositionalCompletion(
 		carapace.Batch(
-			carapace.ActionValues("id", "uuid", "path"),
+			carapace.ActionValues("id", "path", "uuid"),
 			net.ActionConnections(),
 		).ToA(),
 		net.ActionConnections(),
@@ -38,7 +38,7 @@ func init() {
 			if len(c.Args)%2 == 0 && len(c.Args) >= 2 {
 				return carapace.ActionValues() // new name is freeform
 			}
-			return carapace.ActionValues("id", "uuid", "path")
+			return carapace.ActionValues("id", "path", "uuid")
 		}),
 	)
 }

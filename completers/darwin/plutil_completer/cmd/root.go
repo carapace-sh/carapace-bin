@@ -33,8 +33,8 @@ func init() {
 	rootCmd.Flags().String("type", "", "Set the type for the operation")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"convert": carapace.ActionValues("binary1", "xml1", "json", "objc", "swift").StyleF(style.ForKeyword),
-		"type":    carapace.ActionValues("string", "array", "dict", "bool", "integer", "float", "date").StyleF(style.ForKeyword),
+		"convert": carapace.ActionValues("binary1", "json", "objc", "swift", "xml1").StyleF(style.ForKeyword),
+		"type":    carapace.ActionValues("array", "bool", "date", "dict", "float", "integer", "string").StyleF(style.ForKeyword),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())

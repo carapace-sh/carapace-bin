@@ -47,11 +47,11 @@ func init() {
 	rootCmd.Flag("workdir").Hidden = true
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"ansi":              carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
+		"ansi":              carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"env-file":          carapace.ActionFiles(),
 		"file":              carapace.ActionFiles(),
 		"profile":           action.ActionProfiles(rootCmd),
-		"progress":          carapace.ActionValues("auto", "tty", "plain", "quiet"),
+		"progress":          carapace.ActionValues("auto", "plain", "quiet", "tty"),
 		"project-directory": carapace.ActionDirectories(),
 		"project-name":      compose.ActionProjects(),
 	})

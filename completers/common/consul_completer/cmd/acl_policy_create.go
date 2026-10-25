@@ -28,7 +28,7 @@ func init() {
 	acl_policyCmd.AddCommand(acl_policy_createCmd)
 
 	carapace.Gen(acl_policy_createCmd).FlagCompletion(carapace.ActionMap{
-		"format":           carapace.ActionValues("pretty", "json"),
+		"format":           carapace.ActionValues("json", "pretty"),
 		"rules":            action.ActionOptionalFiles(),
 		"valid-datacenter": action.ActionDatacenters(acl_policy_createCmd),
 	})

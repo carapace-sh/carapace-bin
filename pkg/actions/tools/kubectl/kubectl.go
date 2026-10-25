@@ -11,7 +11,7 @@ import (
 //	none
 //	server
 func ActionDryRunModes() carapace.Action {
-	return carapace.ActionValues("none", "server", "client")
+	return carapace.ActionValues("client", "none", "server")
 }
 
 // ActionOutputFormats completes output formats
@@ -20,17 +20,17 @@ func ActionDryRunModes() carapace.Action {
 //	yaml
 func ActionOutputFormats() carapace.Action {
 	return carapace.ActionValues(
-		"json",
-		"yaml",
-		"kyaml",
-		"name",
 		"go-template",
 		"go-template-file",
-		"template",
-		"templatefile",
+		"json",
 		"jsonpath",
 		"jsonpath-as-json",
 		"jsonpath-file",
+		"kyaml",
+		"name",
+		"template",
+		"templatefile",
+		"yaml",
 	)
 }
 
@@ -39,7 +39,7 @@ func ActionOutputFormats() carapace.Action {
 //	get
 //	list
 func ActionResourceVerbs() carapace.Action {
-	return carapace.ActionValues("get", "list", "create", "update", "patch", "watch", "delete", "deletecollection")
+	return carapace.ActionValues("create", "delete", "deletecollection", "get", "list", "patch", "update", "watch")
 }
 
 // ActionNamespaceServiceAccounts completes namespaces and serviceaccounts separately

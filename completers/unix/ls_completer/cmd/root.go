@@ -80,13 +80,13 @@ func init() {
 	rootCmd.Flags().BoolP("zero", "0", false, "end each output line with NUL, not newline")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"color":           carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
-		"format":          carapace.ActionValues("across", "horizontal", "single-column", "vertical", "commas", "long", "verbose"),
+		"color":           carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
+		"format":          carapace.ActionValues("across", "commas", "horizontal", "long", "single-column", "verbose", "vertical"),
 		"hyperlink":       carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"indicator-style": carapace.ActionValues("classify", "file-type", "none", "slash"),
 		"quoting-style":   carapace.ActionValues("c", "clocale", "escape", "literal", "locale", "shell", "shell-always", "shell-escape", "shell-escape-always"),
 		"sort":            carapace.ActionValues("extension", "name", "none", "size", "time", "version", "width"),
-		"time":            carapace.ActionValues("access", "atime", "birth", "creation", "ctime", "mtime", "modification", "status", "use"),
+		"time":            carapace.ActionValues("access", "atime", "birth", "creation", "ctime", "modification", "mtime", "status", "use"),
 		"time-style":      carapace.ActionValues("full-iso", "iso", "locale", "long-iso"),
 	})
 

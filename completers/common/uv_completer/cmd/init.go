@@ -54,14 +54,14 @@ func init() {
 			"none", "Do not infer the author information",
 		),
 		"build-backend": carapace.ActionValuesDescribed(
-			"uv", "Use uv as the project build backend",
-			"hatch", "Use [hatchling](https://pypi.org/project/hatchling) as the project build backend",
 			"flit", "Use [flit-core](https://pypi.org/project/flit-core) as the project build backend",
+			"hatch", "Use [hatchling](https://pypi.org/project/hatchling) as the project build backend",
+			"maturin", "Use [maturin](https://pypi.org/project/maturin) as the project build backend",
 			"pdm", "Use [pdm-backend](https://pypi.org/project/pdm-backend) as the project build backend",
 			"poetry", "Use [poetry-core](https://pypi.org/project/poetry-core) as the project build backend",
-			"setuptools", "Use [setuptools](https://pypi.org/project/setuptools) as the project build backend",
-			"maturin", "Use [maturin](https://pypi.org/project/maturin) as the project build backend",
 			"scikit", "Use [scikit-build-core](https://pypi.org/project/scikit-build-core) as the project build backend",
+			"setuptools", "Use [setuptools](https://pypi.org/project/setuptools) as the project build backend",
+			"uv", "Use uv as the project build backend",
 		),
 		"python": uv.ActionPythonInstallations(uv.InstallationsOpts{}),
 		"vcs": carapace.ActionValuesDescribed(

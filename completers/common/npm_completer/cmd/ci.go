@@ -45,8 +45,8 @@ func init() {
 		"allow-file":       carapace.ActionValues("all", "none", "root"),
 		"allow-git":        carapace.ActionValues("all", "none", "root"),
 		"allow-remote":     carapace.ActionValues("all", "none", "root"),
-		"include":          carapace.ActionValues("prod", "dev", "optional", "peer"),
-		"install-strategy": carapace.ActionValues("hoisted", "nested", "shallow", "linked"),
+		"include":          carapace.ActionValues("dev", "optional", "peer", "prod"),
+		"install-strategy": carapace.ActionValues("hoisted", "linked", "nested", "shallow"),
 		"omit":             carapace.ActionValues("dev", "optional", "peer"),
 	})
 }

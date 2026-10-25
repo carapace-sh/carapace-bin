@@ -17,6 +17,6 @@ func init() {
 	l2tpCmd.AddCommand(l2tp_addCmd)
 
 	carapace.Gen(l2tp_addCmd).PositionalCompletion(
-		carapace.ActionValues("tunnel", "session"),
+		carapace.ActionValues("session", "tunnel"),
 	)
 }

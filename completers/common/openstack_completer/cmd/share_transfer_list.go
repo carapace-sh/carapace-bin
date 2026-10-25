@@ -49,8 +49,8 @@ func init() {
 		"quote":       carapace.ActionValues("all", "minimal", "none", "nonnumeric"),
 		"sort-column": action.ActionColumns(share_transfer_listCmd),
 		"sort-dir":    carapace.ActionValues("asc", "desc"),
-		"sort-key":    carapace.ActionValues("id", "resource_type", "resource_id", "name", "source_project_id", "destination_project_id", "created_at", "expires_at"),
+		"sort-key":    carapace.ActionValues("created_at", "destination_project_id", "expires_at", "id", "name", "resource_id", "resource_type", "source_project_id"),
 		"sort_dir":    carapace.ActionValues("asc", "desc"),
-		"sort_key":    carapace.ActionValues("id", "resource_type", "resource_id", "name", "source_project_id", "destination_project_id", "created_at", "expires_at"),
+		"sort_key":    carapace.ActionValues("created_at", "destination_project_id", "expires_at", "id", "name", "resource_id", "resource_type", "source_project_id"),
 	})
 }

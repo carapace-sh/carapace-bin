@@ -157,12 +157,12 @@ func init() {
 	rootCmd.AddCommand(queryCmd)
 
 	carapace.Gen(queryCmd).FlagCompletion(carapace.ActionMap{
-		"compilation_mode": carapace.ActionValues("fastbuild", "dbg", "opt"),
-		"experimental_exec_configuration_distinguisher": carapace.ActionValues("legacy", "fullhash", "off"),
-		"host_compilation_mode":                         carapace.ActionValues("fastbuild", "dbg", "opt"),
-		"include_config_fragments_provider":             carapace.ActionValues("off", "direct", "transitive"),
-		"order_output":                                  carapace.ActionValues("no", "deps", "auto", "full"),
-		"output":                                        carapace.ActionValues("build", "graph", "streamed_jsonproto", "label", "label_kind", "location", "maxrank", "minrank", "package", "proto", "streamed_proto", "xml"),
+		"compilation_mode": carapace.ActionValues("dbg", "fastbuild", "opt"),
+		"experimental_exec_configuration_distinguisher": carapace.ActionValues("fullhash", "legacy", "off"),
+		"host_compilation_mode":                         carapace.ActionValues("dbg", "fastbuild", "opt"),
+		"include_config_fragments_provider":             carapace.ActionValues("direct", "off", "transitive"),
+		"order_output":                                  carapace.ActionValues("auto", "deps", "full", "no"),
+		"output":                                        carapace.ActionValues("build", "graph", "label", "label_kind", "location", "maxrank", "minrank", "package", "proto", "streamed_jsonproto", "streamed_proto", "xml"),
 	})
 
 	carapace.Gen(queryCmd).PositionalCompletion(

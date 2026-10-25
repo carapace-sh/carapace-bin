@@ -27,8 +27,8 @@ func init() {
 	logCmd.Flags().Bool("wait", false, "wait for new logs continuously")
 
 	carapace.Gen(logCmd).FlagCompletion(carapace.ActionMap{
-		"color":     carapace.ActionValues("yes", "no"),
-		"multiline": carapace.ActionValues("yes", "no"),
+		"color":     carapace.ActionValues("no", "yes"),
+		"multiline": carapace.ActionValues("no", "yes"),
 		"path":      carapace.ActionFiles(),
 	})
 }

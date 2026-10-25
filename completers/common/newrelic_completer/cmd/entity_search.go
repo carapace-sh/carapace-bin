@@ -25,6 +25,6 @@ func init() {
 
 	// TODO flag completion
 	carapace.Gen(entity_searchCmd).FlagCompletion(carapace.ActionMap{
-		"reporting": carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
+		"reporting": carapace.ActionValues("false", "true").StyleF(style.ForKeyword),
 	})
 }

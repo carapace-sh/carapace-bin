@@ -27,7 +27,7 @@ func init() {
 	cloudCmd.AddCommand(cloud_searchCmd)
 
 	carapace.Gen(cloud_searchCmd).FlagCompletion(carapace.ActionMap{
-		"order":    carapace.ActionValues("desc", "asc"),
+		"order":    carapace.ActionValues("asc", "desc"),
 		"provider": vagrant.ActionProviders(),
 	})
 }

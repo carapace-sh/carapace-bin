@@ -27,9 +27,9 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"e": carapace.ActionValuesDescribed(
-			"vi", "vi editor",
 			"emacs", "emacs editor",
 			"nano", "nano editor",
+			"vi", "vi editor",
 		),
 	})
 }

@@ -22,6 +22,6 @@ func init() {
 	packageCmd.AddCommand(package_describeCmd)
 
 	carapace.Gen(package_describeCmd).FlagCompletion(carapace.ActionMap{
-		"type": carapace.ActionValues("json", "text", "mermaid"),
+		"type": carapace.ActionValues("json", "mermaid", "text"),
 	})
 }

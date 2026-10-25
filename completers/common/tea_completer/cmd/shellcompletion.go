@@ -20,6 +20,6 @@ func init() {
 	rootCmd.AddCommand(shellcompletionCmd)
 
 	carapace.Gen(shellcompletionCmd).PositionalCompletion(
-		carapace.ActionValues("bash", "zsh", "powershell", "fish"),
+		carapace.ActionValues("bash", "fish", "powershell", "zsh"),
 	)
 }

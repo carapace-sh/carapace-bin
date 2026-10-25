@@ -35,6 +35,6 @@ func init() {
 	rootCmd.Flags().StringP("width", "w", "", "Clip the output to the specified line width")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"plane": carapace.ActionValues("IODeviceTree", "IOService", "IOAudio", "IOPlatformExpertDevice"),
+		"plane": carapace.ActionValues("IOAudio", "IODeviceTree", "IOPlatformExpertDevice", "IOService"),
 	})
 }

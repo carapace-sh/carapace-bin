@@ -19,6 +19,6 @@ func init() {
 	configCmd.AddCommand(config_metricsCmd)
 
 	carapace.Gen(config_metricsCmd).PositionalCompletion(
-		carapace.ActionValues("enable", "disable").StyleF(style.ForKeyword),
+		carapace.ActionValues("disable", "enable").StyleF(style.ForKeyword),
 	)
 }

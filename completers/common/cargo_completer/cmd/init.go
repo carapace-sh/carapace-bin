@@ -28,7 +28,7 @@ func init() {
 	carapace.Gen(initCmd).FlagCompletion(carapace.ActionMap{
 		"edition":  carapace.ActionValues("2015", "2018", "2021", "2024"),
 		"registry": action.ActionRegistries(),
-		"vcs":      carapace.ActionValues("git", "hg", "pijul", "fossil", "none"),
+		"vcs":      carapace.ActionValues("fossil", "git", "hg", "none", "pijul"),
 	})
 
 	carapace.Gen(initCmd).PositionalCompletion(

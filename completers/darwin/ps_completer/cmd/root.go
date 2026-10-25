@@ -55,7 +55,7 @@ func init() {
 		"U": os.ActionUsers(),
 		"g": os.ActionGroups(),
 		"p": ps.ActionProcessIds(),
-		"t": carapace.ActionValues("console", "ttys", "pts"),
+		"t": carapace.ActionValues("console", "pts", "ttys"),
 		"u": os.ActionUsers(),
 	})
 }

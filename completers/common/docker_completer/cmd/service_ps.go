@@ -35,7 +35,7 @@ func init() {
 			default:
 				switch c.Parts[0] {
 				case "desired-state":
-					return carapace.ActionValues("running", "shutdown", "accepted")
+					return carapace.ActionValues("accepted", "running", "shutdown")
 				case "node":
 					return docker.ActionNodes()
 				default:

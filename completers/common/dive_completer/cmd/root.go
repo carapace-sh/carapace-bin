@@ -34,7 +34,7 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"ci-config": carapace.ActionFiles(),
 		"json":      carapace.ActionFiles(),
-		"source":    carapace.ActionValues("docker", "podman", "docker-archive"),
+		"source":    carapace.ActionValues("docker", "docker-archive", "podman"),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

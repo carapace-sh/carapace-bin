@@ -28,15 +28,15 @@ func init() {
 				case "src":
 					return net.ActionIpv4Addresses()
 				case "table":
-					return carapace.ActionValues("local", "main", "default", "all")
+					return carapace.ActionValues("all", "default", "local", "main")
 				case "scope":
-					return carapace.ActionValues("global", "site", "link", "host", "nowhere")
+					return carapace.ActionValues("global", "host", "link", "nowhere", "site")
 				case "proto":
-					return carapace.ActionValues("kernel", "boot", "static", "redirect")
+					return carapace.ActionValues("boot", "kernel", "redirect", "static")
 				case "encap":
-					return carapace.ActionValues("mpls", "ip", "bpf", "seg6", "seg6local", "ioam6", "xfrm")
+					return carapace.ActionValues("bpf", "ioam6", "ip", "mpls", "seg6", "seg6local", "xfrm")
 				case "pref":
-					return carapace.ActionValues("low", "medium", "high")
+					return carapace.ActionValues("high", "low", "medium")
 				case "to":
 					return net.ActionSubnets()
 				case "congctl":
@@ -61,7 +61,7 @@ func init() {
 					return carapace.ActionValues()
 				}
 			}
-			return carapace.ActionValues("to", "via", "dev", "src", "table", "scope", "proto", "metric", "mtu", "encap", "pref", "onlink", "nexthop", "nhid", "window", "rtt", "initcwnd", "congctl", "expires", "ttl-propagate")
+			return carapace.ActionValues("congctl", "dev", "encap", "expires", "initcwnd", "metric", "mtu", "nexthop", "nhid", "onlink", "pref", "proto", "rtt", "scope", "src", "table", "to", "ttl-propagate", "via", "window")
 		}),
 	)
 }

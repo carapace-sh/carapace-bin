@@ -29,11 +29,11 @@ func init() {
 				case "src":
 					return net.ActionIpv4Addresses()
 				case "table":
-					return carapace.ActionValues("local", "main", "default", "all")
+					return carapace.ActionValues("all", "default", "local", "main")
 				case "scope":
-					return carapace.ActionValues("global", "site", "link", "host", "nowhere")
+					return carapace.ActionValues("global", "host", "link", "nowhere", "site")
 				case "proto":
-					return carapace.ActionValues("kernel", "boot", "static", "redirect")
+					return carapace.ActionValues("boot", "kernel", "redirect", "static")
 				case "to":
 					return net.ActionSubnets()
 				case "from":
@@ -42,7 +42,7 @@ func init() {
 					return carapace.ActionValues()
 				}
 			}
-			return carapace.ActionValues("to", "from", "via", "dev", "src", "table", "scope", "proto", "metric", "cached", "cloned")
+			return carapace.ActionValues("cached", "cloned", "dev", "from", "metric", "proto", "scope", "src", "table", "to", "via")
 		}),
 	)
 }

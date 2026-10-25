@@ -25,6 +25,6 @@ func init() {
 	rootCmd.Flags().StringS("s", "s", "", "Sleep seconds")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"l": carapace.ActionValues("warn", "critical"),
+		"l": carapace.ActionValues("critical", "warn"),
 	})
 }

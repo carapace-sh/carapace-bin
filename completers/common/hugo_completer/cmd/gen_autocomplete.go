@@ -19,6 +19,6 @@ func init() {
 
 	carapace.Gen(gen_autocompleteCmd).FlagCompletion(carapace.ActionMap{
 		"completionfile": carapace.ActionFiles(),
-		"type":           carapace.ActionValues("bash", "zsh", "fish", "powershell"),
+		"type":           carapace.ActionValues("bash", "fish", "powershell", "zsh"),
 	})
 }

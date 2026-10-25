@@ -52,7 +52,7 @@ func init() {
 				case 1:
 					switch c.Parts[0] {
 					case "pctab":
-						return carapace.ActionValues("pctospadj", "pctofile", "pctoline", "pctoinline", "pctopcdata").NoSpace()
+						return carapace.ActionValues("pctofile", "pctoinline", "pctoline", "pctopcdata", "pctospadj").NoSpace()
 					default:
 						return carapace.ActionValues()
 					}

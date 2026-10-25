@@ -109,13 +109,13 @@ func init() {
 			carapace.ActionExecutables(),
 			carapace.ActionFiles(),
 		).ToA(),
-		"color":           carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
+		"color":           carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"command":         bridge.ActionCarapaceBin().Split(),
-		"command-color":   carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
+		"command-color":   carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"completions":     carapace.ActionValues("bash", "elvish", "fish", "nushell", "powershell", "zsh"),
 		"cygpath":         carapace.ActionDirectories(),
 		"dotenv-path":     carapace.ActionDirectories(),
-		"dump-format":     carapace.ActionValues("just", "json"),
+		"dump-format":     carapace.ActionValues("json", "just"),
 		"evaluate-format": carapace.ActionValues("just", "shell"),
 		"group": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return just.ActionGroups(rootCmd.Flag("justfile").Value.String())

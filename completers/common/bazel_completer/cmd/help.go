@@ -23,7 +23,7 @@ func init() {
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return carapace.Batch(
 				carapace.ActionCommands(rootCmd),
-				carapace.ActionValues("startup_options", "target-syntax", "info-keys"),
+				carapace.ActionValues("info-keys", "startup_options", "target-syntax"),
 			).ToA()
 		}),
 	)

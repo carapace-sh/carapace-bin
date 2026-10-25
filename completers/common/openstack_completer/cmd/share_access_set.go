@@ -19,6 +19,6 @@ func init() {
 	share_accessCmd.AddCommand(share_access_setCmd)
 
 	carapace.Gen(share_access_setCmd).FlagCompletion(carapace.ActionMap{
-		"access-level": carapace.ActionValues("rw", "ro"),
+		"access-level": carapace.ActionValues("ro", "rw"),
 	})
 }

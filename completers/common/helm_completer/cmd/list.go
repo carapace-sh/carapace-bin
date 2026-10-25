@@ -34,6 +34,6 @@ func init() {
 	rootCmd.AddCommand(listCmd)
 
 	carapace.Gen(listCmd).FlagCompletion(carapace.ActionMap{
-		"output": carapace.ActionValues("table", "json", "yaml"),
+		"output": carapace.ActionValues("json", "table", "yaml"),
 	})
 }

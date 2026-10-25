@@ -24,7 +24,7 @@ func init() {
 	carapace.Gen(agent_readCmd).PositionalCompletion(herdr.ActionAgents())
 
 	carapace.Gen(agent_readCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("text", "ansi"),
-		"source": carapace.ActionValues("visible", "recent", "recent-unwrapped", "detection"),
+		"format": carapace.ActionValues("ansi", "text"),
+		"source": carapace.ActionValues("detection", "recent", "recent-unwrapped", "visible"),
 	})
 }

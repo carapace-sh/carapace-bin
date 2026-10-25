@@ -56,10 +56,10 @@ func init() {
 	rootCmd.PersistentFlags().BoolP("yes", "y", false, "Assume \"yes\" as answer to all prompts.")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"completion": carapace.ActionValues("bash", "zsh", "fish", "powershell"),
+		"completion": carapace.ActionValues("bash", "fish", "powershell", "zsh"),
 		"dir":        carapace.ActionDirectories(),
-		"output":     carapace.ActionValues("interleaved", "group", "prefixed"),
-		"sort":       carapace.ActionValues("default", "alphanumeric", "none"),
+		"output":     carapace.ActionValues("group", "interleaved", "prefixed"),
+		"sort":       carapace.ActionValues("alphanumeric", "default", "none"),
 		"taskfile":   carapace.ActionFiles(".yml", ".yaml"),
 	})
 

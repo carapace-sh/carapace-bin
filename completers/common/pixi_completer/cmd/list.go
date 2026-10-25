@@ -40,6 +40,6 @@ func init() {
 		"manifest-path": carapace.ActionFiles(),
 		"platform":      pixi.ActionPlatforms(),
 		"script":        carapace.ActionFiles(),
-		"sort-by":       carapace.ActionValues("size", "name", "kind"),
+		"sort-by":       carapace.ActionValues("kind", "name", "size"),
 	})
 }

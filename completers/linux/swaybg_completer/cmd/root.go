@@ -29,7 +29,7 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"color":  color.ActionHexColors(),
 		"image":  carapace.ActionFiles(),
-		"mode":   carapace.ActionValues("stretch", "fill", "fit", "center", "tile", "solid_color"),
+		"mode":   carapace.ActionValues("center", "fill", "fit", "solid_color", "stretch", "tile"),
 		"output": carapace.ActionFiles(),
 	})
 }

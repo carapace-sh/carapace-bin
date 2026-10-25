@@ -17,6 +17,6 @@ func init() {
 	rootCmd.AddCommand(pushCmd)
 
 	carapace.Gen(pushCmd).PositionalCompletion(
-		carapace.ActionValues("atlas", "ftp", "heroku", "sftp", "local-exec"),
+		carapace.ActionValues("atlas", "ftp", "heroku", "local-exec", "sftp"),
 	)
 }

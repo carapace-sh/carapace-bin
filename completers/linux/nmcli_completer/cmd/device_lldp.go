@@ -18,7 +18,7 @@ func init() {
 	deviceCmd.AddCommand(device_lldpCmd)
 
 	carapace.Gen(device_lldpCmd).PositionalCompletion(
-		carapace.ActionValues("list", "ifname"),
+		carapace.ActionValues("ifname", "list"),
 	)
 
 	carapace.Gen(device_lldpCmd).PositionalAnyCompletion(
@@ -29,7 +29,7 @@ func init() {
 					return net.ActionDevices(net.AllDevices)
 				}
 			}
-			return carapace.ActionValues("list", "ifname")
+			return carapace.ActionValues("ifname", "list")
 		}),
 	)
 }

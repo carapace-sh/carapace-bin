@@ -37,6 +37,6 @@ func init() {
 	rootCmd.AddCommand(versionCmd)
 
 	carapace.Gen(versionCmd).PositionalCompletion(
-		carapace.ActionValues("major", "minor", "patch", "premajor", "preminor", "prepatch", "prerelease", "from-git"),
+		carapace.ActionValues("from-git", "major", "minor", "patch", "premajor", "preminor", "prepatch", "prerelease"),
 	)
 }

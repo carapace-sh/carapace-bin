@@ -19,6 +19,6 @@ func init() {
 	rootCmd.AddCommand(showKeyCmd)
 
 	carapace.Gen(showKeyCmd).FlagCompletion(carapace.ActionMap{
-		"key-mode": carapace.ActionValues("normal", "application", "kitty", "unchanged"),
+		"key-mode": carapace.ActionValues("application", "kitty", "normal", "unchanged"),
 	})
 }

@@ -46,8 +46,8 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"I": net.ActionDevices(net.AllDevices),
-		"f": carapace.ActionValues("inet", "inet6", "local", "unix", "route"),
-		"p": carapace.ActionValues("tcp", "udp", "ip", "icmp", "igmp", "arp", "rarp", "sctp"),
+		"f": carapace.ActionValues("inet", "inet6", "local", "route", "unix"),
+		"p": carapace.ActionValues("arp", "icmp", "igmp", "ip", "rarp", "sctp", "tcp", "udp"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionValues())

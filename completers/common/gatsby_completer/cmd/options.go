@@ -18,7 +18,7 @@ func init() {
 
 	carapace.Gen(optionsCmd).PositionalCompletion(
 		carapace.ActionValues("set"),
-		carapace.ActionValues("pm", "package-manager"),
+		carapace.ActionValues("package-manager", "pm"),
 		carapace.ActionValues("npm", "yarn"),
 	)
 }

@@ -46,7 +46,7 @@ func init() {
 		"arch":         carapace.ActionValues("arm64", "arm64e", "x86_64", "x86_64h"),
 		"detached":     carapace.ActionFiles(),
 		"entitlements": carapace.ActionFiles(".plist"),
-		"options":      carapace.ActionValues("runtime", "kill", "hard", "host", "library", "resource", "executable", "internal"),
+		"options":      carapace.ActionValues("executable", "hard", "host", "internal", "kill", "library", "resource", "runtime"),
 		"requirements": carapace.ActionFiles(),
 		"sign": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return carapace.ActionExecCommand("security", "find-identity", "-v", "-p", "codesigning")(func(output []byte) carapace.Action {

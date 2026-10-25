@@ -21,7 +21,7 @@ func init() {
 	rootCmd.AddCommand(prefetchCmd)
 
 	carapace.Gen(prefetchCmd).FlagCompletion(carapace.ActionMap{
-		"t": carapace.ActionValues("ddt", "brt"),
+		"t": carapace.ActionValues("brt", "ddt"),
 	})
 
 	carapace.Gen(prefetchCmd).PositionalCompletion(

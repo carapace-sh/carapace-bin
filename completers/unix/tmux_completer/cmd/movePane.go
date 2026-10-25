@@ -36,7 +36,7 @@ func init() {
 	rootCmd.AddCommand(movePaneCmd)
 
 	carapace.Gen(movePaneCmd).FlagCompletion(carapace.ActionMap{
-		"P": carapace.ActionValues("top-left", "top-centre", "top-right", "centre-left", "centre", "centre-right", "bottom-left", "bottom-centre", "bottom-right", "front", "back", "forward", "backward", "forward-loop", "backward-loop"),
+		"P": carapace.ActionValues("back", "backward", "backward-loop", "bottom-centre", "bottom-left", "bottom-right", "centre", "centre-left", "centre-right", "forward", "forward-loop", "front", "top-centre", "top-left", "top-right"),
 		"s": tmux.ActionPanes(),
 		"t": tmux.ActionPanes(),
 	})

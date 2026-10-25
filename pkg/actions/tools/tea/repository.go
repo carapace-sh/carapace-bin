@@ -13,11 +13,11 @@ func ActionRepositoryFields() carapace.Action {
 		"id",
 		"name",
 		"owner",
-		"stars",
+		"permission",
 		"ssh",
+		"stars",
+		"type",
 		"updated",
 		"url",
-		"permission",
-		"type",
 	)
 }

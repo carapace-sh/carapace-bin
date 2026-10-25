@@ -20,6 +20,6 @@ func init() {
 	rootCmd.AddCommand(importCmd)
 
 	carapace.Gen(importCmd).PositionalCompletion(
-		carapace.ActionValues("codex", "gemini", "cursor"),
+		carapace.ActionValues("codex", "cursor", "gemini"),
 	)
 }

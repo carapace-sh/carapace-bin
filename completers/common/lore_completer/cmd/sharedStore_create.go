@@ -20,7 +20,7 @@ func init() {
 	sharedStoreCmd.AddCommand(sharedStore_createCmd)
 
 	carapace.Gen(sharedStore_createCmd).FlagCompletion(carapace.ActionMap{
-		"make-default": carapace.ActionValues("true", "false"),
+		"make-default": carapace.ActionValues("false", "true"),
 		"path":         carapace.ActionDirectories(),
 	})
 

@@ -36,7 +36,7 @@ func init() {
 			default:
 				switch c.Parts[0] {
 				case "dangling":
-					return carapace.ActionValues("true", "false").StyleF(style.ForKeyword)
+					return carapace.ActionValues("false", "true").StyleF(style.ForKeyword)
 				case "label":
 					return docker.ActionVolumeLabels()
 				default:

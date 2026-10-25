@@ -11,10 +11,10 @@ import (
 //	bar
 func ActionCursorStyles() carapace.Action {
 	return carapace.ActionValues(
-		"block",
 		"bar",
-		"underline",
+		"block",
 		"block_hollow",
+		"underline",
 	).Tag("cursor styles").Uid("ghostty", "cursor-style")
 }
 
@@ -24,7 +24,7 @@ func ActionCursorStyles() carapace.Action {
 //	false (The cursor does not blink)
 func ActionCursorStyleBlinks() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"true", "The cursor blinks by default",
 		"false", "The cursor does not blink",
+		"true", "The cursor blinks by default",
 	).StyleF(style.ForKeyword).Tag("cursor style blink modes").Uid("ghostty", "cursor-style-blink")
 }

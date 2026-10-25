@@ -10,9 +10,9 @@ func ActionTransports() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"audit", "read from the kernel audit subsystem",
 		"driver", "internally generated messages",
-		"syslog", "received via the local syslog socket with the syslog protocol",
 		"journal", "received via the native journal protocol",
-		"stdout", "read from a service's standard output or",
 		"kernel", "read from the kernel",
+		"stdout", "read from a service's standard output or",
+		"syslog", "received via the local syslog socket with the syslog protocol",
 	).Tag("transports")
 }

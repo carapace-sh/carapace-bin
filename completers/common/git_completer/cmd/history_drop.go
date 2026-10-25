@@ -23,9 +23,9 @@ func init() {
 
 	carapace.Gen(dropCmd).FlagCompletion(carapace.ActionMap{
 		"empty": carapace.ActionValuesDescribed(
+			"abort", "abort if any commit becomes empty",
 			"drop", "drop commits that become empty",
 			"keep", "keep commits that become empty",
-			"abort", "abort if any commit becomes empty",
 		),
 		"update-refs": git.ActionUpdateRefsModes(),
 	})

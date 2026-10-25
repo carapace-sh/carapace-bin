@@ -29,7 +29,7 @@ func init() {
 	paneCmd.AddCommand(pane_moveCmd)
 
 	carapace.Gen(pane_moveCmd).FlagCompletion(carapace.ActionMap{
-		"split":       carapace.ActionValues("right", "down"),
+		"split":       carapace.ActionValues("down", "right"),
 		"tab":         herdr.ActionTabs(herdr.TabOpts{}),
 		"target-pane": herdr.ActionPanes(herdr.PaneOpts{}),
 	})

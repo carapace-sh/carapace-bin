@@ -12,9 +12,9 @@ import (
 //	editor
 func ActionConfigNames() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"name", "Git user name (user.name)",
-		"email", "Git user email (user.email)",
 		"editor", "Git editor (core.editor)",
+		"email", "Git user email (user.email)",
+		"name", "Git user name (user.name)",
 	)
 }
 
@@ -47,7 +47,7 @@ func ActionUIConfigNames() carapace.Action {
 func ActionUIConfigValues(name string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionMap{
-			"tui": carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
+			"tui": carapace.ActionValues("false", "true").StyleF(style.ForKeyword),
 		}[name]
 	})
 }

@@ -32,6 +32,6 @@ func init() {
 			carapace.ActionValuesDescribed("-", "Read from STDIN"),
 			carapace.ActionValuesDescribed("fd:", "Read from a file descriptor").NoSpace(':'),
 		).ToA(),
-		"use-password": carapace.ActionValues("if-available", "always", "never"),
+		"use-password": carapace.ActionValues("always", "if-available", "never"),
 	})
 }

@@ -27,9 +27,9 @@ func init() {
 
 	carapace.Gen(createUserCmd).FlagCompletion(carapace.ActionMap{
 		"user-type": carapace.ActionValues(
-			"android.os.usertype.full.SYSTEM",
-			"android.os.usertype.full.SECONDARY",
 			"android.os.usertype.full.GUEST",
+			"android.os.usertype.full.SECONDARY",
+			"android.os.usertype.full.SYSTEM",
 			"android.os.usertype.profile.MANAGED",
 			"android.os.usertype.system.HEADLESS",
 		),

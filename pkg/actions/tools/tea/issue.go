@@ -13,21 +13,21 @@ import (
 //	state
 func ActionIssueFields() carapace.Action {
 	return carapace.ActionValues(
-		"index",
-		"state",
-		"kind",
+		"assignees",
 		"author",
 		"author-id",
-		"url",
-		"title",
 		"body",
-		"created",
-		"updated",
-		"deadline",
-		"assignees",
-		"milestone",
-		"labels",
 		"comments",
+		"created",
+		"deadline",
+		"index",
+		"kind",
+		"labels",
+		"milestone",
+		"state",
+		"title",
+		"updated",
+		"url",
 	)
 }
 

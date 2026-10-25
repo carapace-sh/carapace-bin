@@ -31,6 +31,6 @@ func init() {
 
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.ActionValues(),
-		carapace.ActionValuesDescribed("b", "block (buffered) special file", "c", "character (unbuffered) special file", "u", "character (unbuffered) special file", "p", "FIFO"),
+		carapace.ActionValuesDescribed("b", "block (buffered) special file", "c", "character (unbuffered) special file", "p", "FIFO", "u", "character (unbuffered) special file"),
 	)
 }

@@ -18,6 +18,6 @@ func init() {
 	rootCmd.AddCommand(killCmd)
 	carapace.Gen(killCmd).PositionalAnyCompletion(launchctl.ActionServices())
 	carapace.Gen(killCmd).FlagCompletion(carapace.ActionMap{
-		"signal": carapace.ActionValues("TERM", "KILL", "INT", "QUIT", "HUP", "USR1", "USR2"),
+		"signal": carapace.ActionValues("HUP", "INT", "KILL", "QUIT", "TERM", "USR1", "USR2"),
 	})
 }

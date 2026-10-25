@@ -76,8 +76,8 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"cache-dir": carapace.ActionDirectories(),
 		"color": carapace.ActionValuesDescribed(
-			"auto", "Enables colored output only when the output is going to a terminal or TTY with support",
 			"always", "Enables colored output regardless of the detected environment",
+			"auto", "Enables colored output only when the output is going to a terminal or TTY with support",
 			"never", "Disables colored output",
 		),
 		"config-file": carapace.ActionFiles(),
@@ -89,10 +89,10 @@ func init() {
 			"never", "Do not ever allow Python downloads",
 		),
 		"python-preference": carapace.ActionValuesDescribed(
-			"only-managed", "Only use managed Python installations; never use system Python installations",
 			"managed", "Prefer managed Python installations over system Python installations",
-			"system", "Prefer system Python installations over managed Python installations",
+			"only-managed", "Only use managed Python installations; never use system Python installations",
 			"only-system", "Only use system Python installations; never use managed Python installations",
+			"system", "Prefer system Python installations over managed Python installations",
 		),
 	})
 }

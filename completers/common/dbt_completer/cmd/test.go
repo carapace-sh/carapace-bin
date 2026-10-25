@@ -37,7 +37,7 @@ func init() {
 	rootCmd.AddCommand(testCmd)
 
 	carapace.Gen(testCmd).FlagCompletion(carapace.ActionMap{
-		"indirect-selection": carapace.ActionValues("eager", "cautious", "buildable"),
+		"indirect-selection": carapace.ActionValues("buildable", "cautious", "eager"),
 		"log-path":           carapace.ActionFiles(),
 		"state":              carapace.ActionDirectories(),
 		"target-path":        carapace.ActionDirectories(),

@@ -49,8 +49,8 @@ func init() {
 
 	// TODO flag completion
 	carapace.Gen(auditCmd).FlagCompletion(carapace.ActionMap{
-		"arch": carapace.ActionValues("x86_64", "arm64", "all"),
-		"os":   carapace.ActionValues("linux", "macos", "all"),
+		"arch": carapace.ActionValues("all", "arm64", "x86_64"),
+		"os":   carapace.ActionValues("all", "linux", "macos"),
 		"tap":  gh.ActionOwnerRepositories(gh.HostOpts{}),
 	})
 

@@ -120,15 +120,15 @@ func init() {
 	rootCmd.Flag("use-local-ssh-agent").Hidden = true
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"add-keys-to-agent": carapace.ActionValues("auto", "no", "yes", "only").StyleF(style.ForKeyword),
+		"add-keys-to-agent": carapace.ActionValues("auto", "no", "only", "yes").StyleF(style.ForKeyword),
 		"cpu-profile":       carapace.ActionFiles(),
 		"identity": carapace.Batch(
 			ssh.ActionPrivateKeys(),
 			carapace.ActionFiles(),
 		).ToA(),
 		"mem-profile":   carapace.ActionFiles(),
-		"mfa-mode":      carapace.ActionValues("auto", "cross-platform", "platform", "otp", "sso", "browser").StyleF(style.ForKeyword),
-		"mlock":         carapace.ActionValues("off", "auto", "best_effort", "strict").StyleF(style.ForKeyword),
+		"mfa-mode":      carapace.ActionValues("auto", "browser", "cross-platform", "otp", "platform", "sso").StyleF(style.ForKeyword),
+		"mlock":         carapace.ActionValues("auto", "best_effort", "off", "strict").StyleF(style.ForKeyword),
 		"proxy":         tsh.ActionProfiles(),
 		"trace-profile": carapace.ActionFiles(),
 	})

@@ -30,8 +30,8 @@ func init() {
 
 	carapace.Gen(watchCmd).FlagCompletion(carapace.ActionMap{
 		// TODO complete flags
-		"passingonly": carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
-		"type":        carapace.ActionValues("key", "keyprefix", "services", "nodes", "service", "checks", "event"),
+		"passingonly": carapace.ActionValues("false", "true").StyleF(style.ForKeyword),
+		"type":        carapace.ActionValues("checks", "event", "key", "keyprefix", "nodes", "service", "services"),
 	})
 
 	// TODO positional completion

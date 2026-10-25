@@ -38,8 +38,8 @@ func init() {
 		"revisions": jj.ActionRevsets(jj.RevOpts{}.Default()),
 		"sparse-patterns": carapace.ActionValuesDescribed(
 			"copy", "Copy all sparse patterns from the current workspace",
-			"full", "Include all files in the new workspace",
 			"empty", "Clear all files from the workspace (it will be empty)",
+			"full", "Include all files in the new workspace",
 		),
 	})
 

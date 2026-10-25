@@ -21,15 +21,15 @@ func ActionSources() carapace.Action {
 			switch len(splitted) {
 			case 1:
 				return carapace.ActionValuesDescribed(
+					"dir", "read directly from a path on disk (any directory)",
 					"docker", "use images from the Docker daemon",
-					"podman", "use images from the Podman daemon",
 					"docker-archive", "use a tarball from disk for archives created from \"docker save\"",
+					"file", "read directly from a path on disk (any single file)",
 					"oci-archive", "use a tarball from disk for OCI archives (from Skopeo or otherwise)",
 					"oci-dir", "read directly from a path on disk for OCI layout directories (from Skopeo or otherwise)",
-					"singularity", "read directly from a Singularity Image Format (SIF) container on disk",
-					"dir", "read directly from a path on disk (any directory)",
-					"file", "read directly from a path on disk (any single file)",
+					"podman", "use images from the Podman daemon",
 					"registry", "pull image directly from a registry (no container runtime required)",
+					"singularity", "read directly from a Singularity Image Format (SIF) container on disk",
 				).Suffix(":").Tag("sources")
 			case 2:
 				prefix := splitted[0] + ":"

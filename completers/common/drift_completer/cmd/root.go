@@ -38,7 +38,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"config":         carapace.ActionFiles(),
-		"diff-algorithm": carapace.ActionValues("myers", "minimal", "patience", "histogram"),
+		"diff-algorithm": carapace.ActionValues("histogram", "minimal", "myers", "patience"),
 		"directory":      carapace.ActionFiles(),
 	})
 

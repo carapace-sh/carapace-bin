@@ -19,7 +19,7 @@ func init() {
 	configCmd.AddCommand(config_addCmd)
 
 	carapace.Gen(config_addCmd).PositionalCompletion(
-		carapace.ActionValues("includeFolders", "excludeFolders", "excludeFilters", "excludeMimetypes"),
+		carapace.ActionValues("excludeFilters", "excludeFolders", "excludeMimetypes", "includeFolders"),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			switch strings.ToLower(c.Args[0]) {
 			case "includefolders", "excludefolders":

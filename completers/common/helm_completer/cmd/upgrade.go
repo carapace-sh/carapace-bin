@@ -64,7 +64,7 @@ func init() {
 		"cert-file":     carapace.ActionFiles(),
 		"key-file":      carapace.ActionFiles(),
 		"keyring":       carapace.ActionFiles(),
-		"output":        carapace.ActionValues("table", "json", "yaml"),
+		"output":        carapace.ActionValues("json", "table", "yaml"),
 		"post-renderer": carapace.ActionFiles(),
 		"set-file": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {

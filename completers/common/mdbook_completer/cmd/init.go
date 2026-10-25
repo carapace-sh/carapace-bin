@@ -23,7 +23,7 @@ func init() {
 	rootCmd.AddCommand(initCmd)
 
 	carapace.Gen(initCmd).FlagCompletion(carapace.ActionMap{
-		"ignore": carapace.ActionValues("none", "git"),
+		"ignore": carapace.ActionValues("git", "none"),
 	})
 
 	carapace.Gen(initCmd).PositionalCompletion(

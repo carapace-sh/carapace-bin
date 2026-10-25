@@ -52,8 +52,8 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"config":            carapace.ActionFiles(),
 		"font":              os.ActionFontFamilies(),
-		"log-colorize":      carapace.ActionValues("never", "always", "auto").StyleF(style.ForKeyword),
-		"log-level":         carapace.ActionValues("info", "warning", "error", "none").StyleF(style.ForLogLevel),
+		"log-colorize":      carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
+		"log-level":         carapace.ActionValues("error", "info", "none", "warning").StyleF(style.ForLogLevel),
 		"server":            carapace.ActionFiles(),
 		"working-directory": carapace.ActionDirectories(),
 	})

@@ -17,6 +17,6 @@ func init() {
 	rootCmd.AddCommand(scanCmd)
 
 	carapace.Gen(scanCmd).PositionalCompletion(
-		carapace.ActionValues("on", "off", "bredr", "le").StyleF(style.ForKeyword),
+		carapace.ActionValues("bredr", "le", "off", "on").StyleF(style.ForKeyword),
 	)
 }

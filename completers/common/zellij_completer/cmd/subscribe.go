@@ -24,7 +24,7 @@ func init() {
 	rootCmd.AddCommand(subscribeCmd)
 
 	carapace.Gen(subscribeCmd).FlagCompletion(carapace.ActionMap{
-		"format":  carapace.ActionValues("raw", "json"),
+		"format":  carapace.ActionValues("json", "raw"),
 		"pane-id": zellij.ActionSelectablePanes(),
 	})
 }

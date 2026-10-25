@@ -45,7 +45,7 @@ func init() {
 		// "sdk-dir":        carapace.ActionDirectories(),
 		// "sdk-extension":  carapace.ActionValues(),
 		// "tag":            carapace.ActionValues(),
-		"type": carapace.ActionValues("app", "runtime", "extension"),
+		"type": carapace.ActionValues("app", "extension", "runtime"),
 		// "var":            carapace.ActionValues(),
 	})
 
