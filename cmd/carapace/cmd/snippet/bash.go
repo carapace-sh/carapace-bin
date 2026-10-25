@@ -2,7 +2,8 @@ package snippet
 
 import (
 	"fmt"
-	"strings"
+
+	shlex "github.com/carapace-sh/carapace-shlex/v2"
 )
 
 const bashCompleter = `_carapace_completer() {
@@ -39,13 +40,10 @@ const bashCompleter = `_carapace_completer() {
 `
 
 func Bash(completers []string) string {
-	for i, completer := range completers {
-		completers[i] = fmt.Sprintf("%q", completer)
-	}
 	return fmt.Sprintf(`[[ ${BASH_VERSION:-} == 3.* ]] && { printf 'Error: legacy bash is not supported\n' >&2; return 1; }
 %v%v
 
 %v
 complete -o noquote -F _carapace_completer %v
-`, pathSnippet("bash"), envSnippet("bash"), bashCompleter, strings.Join(completers, " "))
+`, pathSnippet("bash"), envSnippet("bash"), bashCompleter, shlex.Join(completers, shlex.Bash))
 }

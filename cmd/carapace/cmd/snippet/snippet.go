@@ -3,10 +3,12 @@ package snippet
 import (
 	"sort"
 
+	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/completers"
 	"github.com/carapace-sh/carapace-bridge/pkg/bridges"
 	"github.com/carapace-sh/carapace-bridge/pkg/choices"
 	envbridges "github.com/carapace-sh/carapace-bridge/pkg/env"
+	shlex "github.com/carapace-sh/carapace-shlex/v2"
 )
 
 func Snippet(shell string) string {
@@ -75,7 +77,11 @@ func Snippet(shell string) string {
 
 	completerNames := make([]string, 0)
 	for name := range uniqueNames {
-		completerNames = append(completerNames, name)
+		if shlex.IsBareWord(name, "") {
+			completerNames = append(completerNames, name)
+		} else {
+			carapace.LOG.Printf("skipped invalid completer name %q", name)
+		}
 	}
 	sort.Strings(completerNames)
 

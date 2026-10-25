@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	"github.com/carapace-sh/carapace"
+	shlex "github.com/carapace-sh/carapace-shlex/v2"
 	spec "github.com/carapace-sh/carapace-spec"
 	"github.com/spf13/cobra"
 	"go.yaml.in/yaml/v3"
@@ -20,7 +21,6 @@ func ReadSpecs(dir, group string, parse bool) (CompleterMap, error) {
 	}
 
 	r := regexp.MustCompile(`^[^.]+\.yaml$`)
-
 	m := make(CompleterMap)
 	entries, err := os.ReadDir(dir)
 	if err != nil {
@@ -62,6 +62,11 @@ func ReadSpecs(dir, group string, parse bool) (CompleterMap, error) {
 
 			if entry.Name() != _spec.Name+".yaml" {
 				return nil, fmt.Errorf("spec filename %#v does not match name %#v", entry.Name(), _spec.Name)
+			}
+
+			if !shlex.IsBareWord(_spec.Name, "") {
+				carapace.LOG.Printf("skipped invalid completer name %q", _spec.Name)
+				continue
 			}
 
 			m[_spec.Name] = append(m[_spec.Name], Completer{

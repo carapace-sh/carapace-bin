@@ -2,13 +2,11 @@ package snippet
 
 import (
 	"fmt"
-	"strings"
+
+	shlex "github.com/carapace-sh/carapace-shlex/v2"
 )
 
 func Oil(completers []string) string {
-	for i, completer := range completers {
-		completers[i] = fmt.Sprintf("%q", completer)
-	}
 	return fmt.Sprintf(`%v%v
 
 _carapace_completer() {
@@ -31,5 +29,5 @@ _carapace_completer() {
 }
 
 complete -F _carapace_completer %v
-`, pathSnippet("oil"), envSnippet("oil"), strings.Join(completers, " "))
+`, pathSnippet("oil"), envSnippet("oil"), shlex.Join(completers, shlex.Oil))
 }

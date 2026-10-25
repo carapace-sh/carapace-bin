@@ -3,6 +3,8 @@ package snippet
 import (
 	"fmt"
 	"strings"
+
+	shlex "github.com/carapace-sh/carapace-shlex/v2"
 )
 
 func Fish(completers []string) string {
@@ -30,9 +32,10 @@ end
 `
 	complete := make([]string, 0, len(completers)*2)
 	for _, completer := range completers {
+		name := shlex.Quote(completer, shlex.Fish)
 		complete = append(complete,
-			fmt.Sprintf(`complete -e %q`, completer),
-			fmt.Sprintf(`complete -c %q -f -a '(_carapace_completer %q)'`, completer, completer),
+			fmt.Sprintf(`complete -e %v`, name),
+			fmt.Sprintf(`complete -c %v -f -a '(_carapace_completer %v)'`, name, name),
 		)
 	}
 	return fmt.Sprintf(snippet, pathSnippet("fish"), envSnippet("fish"), strings.Join(complete, "\n"))

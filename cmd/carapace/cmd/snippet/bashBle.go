@@ -2,13 +2,11 @@ package snippet
 
 import (
 	"fmt"
-	"strings"
+
+	shlex "github.com/carapace-sh/carapace-shlex/v2"
 )
 
 func BashBle(completers []string) string {
-	for i, completer := range completers {
-		completers[i] = fmt.Sprintf("%q", completer)
-	}
 	return fmt.Sprintf(`[[ ${BASH_VERSION:-} == 3.* ]] && { printf 'Error: legacy bash is not supported\n' >&2; return 1; }
 %v
 
@@ -37,5 +35,5 @@ _carapace_completer_ble() {
 }
 
 complete -F _carapace_completer_ble %v
-`, pathSnippet("bash-ble"), bashCompleter, strings.Join(completers, " "))
+`, pathSnippet("bash-ble"), bashCompleter, shlex.Join(completers, shlex.Bash))
 }

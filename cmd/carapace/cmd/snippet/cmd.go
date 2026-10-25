@@ -3,6 +3,8 @@ package snippet
 import (
 	"fmt"
 	"strings"
+
+	shlex "github.com/carapace-sh/carapace-shlex/v2"
 )
 
 func CmdClink(completers []string) string {
@@ -52,8 +54,10 @@ end
 `
 	argmatchers := make([]string, 0, len(completers))
 	for _, completer := range completers {
+		name := shlex.Escape(completer, shlex.Lua)
+		exe := shlex.Escape(completer+".exe", shlex.Lua)
 		argmatchers = append(argmatchers,
-			fmt.Sprintf(`clink.argmatcher(50, '%[1]s', '%[1]s.exe'):addarg({nowordbreakchars="'`+"`"+`=+;,", carapace_completion('%[1]s')}):loop(1)`, completer),
+			fmt.Sprintf(`clink.argmatcher(50, '%v', '%v'):addarg({nowordbreakchars="'`+"`"+`=+;,", carapace_completion('%v')}):loop(1)`, name, exe, name),
 		)
 	}
 	return fmt.Sprintf(snippet, strings.Join(argmatchers, "\n"))
