@@ -25,12 +25,12 @@ func init() {
 	rootCmd.Flags().Bool("acknowledgements", false, "Show acknowledgements")
 	rootCmd.Flags().String("binary", "", "How to treat binary content")
 	rootCmd.Flags().BoolP("chop-long-lines", "S", false, "Truncate all lines longer than screen width")
-	rootCmd.Flags().String("color", "", "When to use colors")
 	rootCmd.Flags().String("completion", "", "Show shell completion for a certain shell")
 	rootCmd.Flags().String("decorations", "", "When to show the decorations")
 	rootCmd.Flags().Bool("diagnostic", false, "Show diagnostic information for bug reports")
 	rootCmd.Flags().Bool("diagnostics", false, "Show diagnostic information for bug reports")
 	rootCmd.Flags().BoolP("diff", "d", false, "Only show lines that have been added/removed/modified")
+	rootCmd.Flags().String("color", "", "When to use colors")
 	rootCmd.Flags().String("diff-context", "", "Include N lines of context around added/removed/modified")
 	rootCmd.Flags().StringSlice("file-name", nil, "Specify the name to display for a file")
 	rootCmd.Flags().BoolP("force-colorization", "f", false, "Alias for '--decorations=always --color=always'")
@@ -68,10 +68,7 @@ func init() {
 	rootCmd.Flag("show-nonprintable").Hidden = true
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"binary": carapace.ActionValuesDescribed(
-			"no-printing", "do not print any binary content",
-			"as-text", "treat binary content as normal text",
-		),
+		"binary":      carapace.ActionValuesDescribed("no-printing", "do not print any binary content", "as-text", "treat binary content as normal text"),
 		"color":       carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
 		"completion":  carapace.ActionValues("bash", "fish", "zsh", "ps1"),
 		"decorations": carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
