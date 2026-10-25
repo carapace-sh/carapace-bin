@@ -19,7 +19,7 @@ Load the reference that matches your task. When in doubt, load multiple referenc
 | Keywords | Reference |
 |----------|----------|
 | Integrate carapace, cobra, PreRun, PreInvoke, bridge, standalone mode, flag config, non-POSIX flags | [references/integrate.md](references/integrate.md) |
-| Custom actions, ActionValues, ActionCallback, ActionExecCommand, modifiers, naming, caching, batch, MultiParts, UID, tags | [references/action.md](references/action.md) |
+| Effective actions, ActionValues, ActionCallback, ActionExecCommand, modifiers, naming, caching, batch, MultiParts, UID, tags, linting, carapace:curated | [references/action.md](references/action.md) |
 | YAML spec, user spec, flags, subcommands, parsing modes, exclusiveflags, aliases, completion, macros, modifiers, runnable specs | [references/spec.md](references/spec.md) |
 | Macro format, MacroN, MacroI, MacroV, $files, macro signatures, modifier chaining | [references/macro.md](references/macro.md) |
 | Choices, variants, bridges, CARAPACE_BRIDGES, --choice, --list, group priority | [references/choice.md](references/choice.md) |
