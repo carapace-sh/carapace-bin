@@ -1,11 +1,13 @@
 package shim
 
 import (
+	"bytes"
 	"fmt"
 	"os"
 	"path/filepath"
 	"runtime"
 	"strings"
+	"sync"
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace/pkg/xdg"
@@ -29,12 +31,51 @@ func Update() error {
 		return err
 	}
 
+	targets := make([]shim, 0, len(entries))
 	for _, entry := range entries {
 		if strings.HasSuffix(entry.Name(), ".yaml") {
-			s := shim{Target: fmt.Sprintf("%v/carapace/specs/%v", configDir, entry.Name())}
+			targets = append(targets, shim{Target: fmt.Sprintf("%v/carapace/specs/%v", configDir, entry.Name())})
+		}
+	}
+	return updateTargets(targets)
+}
+
+func updateTargets(targets []shim) error {
+	if len(targets) < 2 {
+		for _, s := range targets {
 			if err := s.Update(); err != nil {
 				return err
 			}
+		}
+		return nil
+	}
+
+	errs := make([]error, len(targets))
+	workers := min(runtime.NumCPU(), len(targets))
+
+	next := make(chan int)
+	go func() {
+		defer close(next)
+		for index := range targets {
+			next <- index
+		}
+	}()
+
+	var group sync.WaitGroup
+	group.Add(workers)
+	for range workers {
+		go func() {
+			defer group.Done()
+			for index := range next {
+				errs[index] = targets[index].Update()
+			}
+		}()
+	}
+	group.Wait()
+
+	for _, err := range errs {
+		if err != nil {
+			return err
 		}
 	}
 	return nil
@@ -103,6 +144,10 @@ func (s shim) NeedsUpdate() bool {
 func (s shim) IsRunnable() bool {
 	content, err := os.ReadFile(s.Target)
 	if err != nil {
+		return false
+	}
+
+	if !bytes.Contains(content, []byte("run")) {
 		return false
 	}
 
