@@ -24,6 +24,51 @@ func (o ChangeOpts) Default() ChangeOpts {
 	return o
 }
 
+// change describes a change of a file (status code and path relative to the repository root)
+type change struct {
+	status string
+	path   string
+}
+
+// actionChanges completes given changes
+//
+//	fileA (M)
+//	pathA/fileB (??)
+func actionChanges(c carapace.Context, changes []change, styleF func(change, string, style.Context) string, uidF func(change, uid.Context) (*url.URL, error)) carapace.Action {
+	root, err := rootDir(c)
+	if err != nil {
+		return carapace.ActionMessage(err.Error())
+	}
+	evaluatedDir, err := filepath.EvalSymlinks(c.Dir)
+	if err != nil {
+		return carapace.ActionMessage(err.Error())
+	}
+
+	batch := carapace.Batch()
+	for _, ce := range changes {
+		relativePath, err := filepath.Rel(evaluatedDir, filepath.Join(root, ce.path))
+		if err != nil {
+			return carapace.ActionMessage(err.Error())
+		}
+
+		action := carapace.ActionValuesDescribed(relativePath, ce.status).
+			StyleF(func(s string, sc style.Context) string {
+				return styleF(ce, relativePath, sc)
+			}).
+			UidF(func(s string, uc uid.Context) (*url.URL, error) {
+				return uidF(ce, uc)
+			})
+		switch {
+		case strings.HasPrefix(c.Value, "./"):
+			action = action.Prefix("./")
+		case strings.HasPrefix(c.Value, ".") && !strings.HasPrefix(relativePath, ".."):
+			action = action.Prefix("./")
+		}
+		batch = append(batch, action)
+	}
+	return batch.ToA()
+}
+
 // ActionChanges completes (un)staged changes
 //
 //	fileA ( M)
@@ -36,59 +81,35 @@ func ActionChanges(opts ChangeOpts) carapace.Action {
 			args = append(args, "--ignored")
 		}
 		return carapace.ActionExecCommand("git", args...)(func(output []byte) carapace.Action {
-			if root, err := rootDir(c); err != nil {
-				return carapace.ActionMessage(err.Error())
-			} else {
-				evaluatedDir, err := filepath.EvalSymlinks(c.Dir)
-				if err != nil {
-					return carapace.ActionMessage(err.Error())
-				}
+			changes := make([]change, 0)
+			for line := range strings.SplitSeq(string(output), "\n") {
+				switch {
+				case len(line) < 4:
+					continue
+				case opts.Unmerged && (strings.Contains(line[:2], "U") || line[:2] == "DD" || line[:2] == "AA"),
+					opts.Staged && line[1] == ' ',
+					opts.Unstaged && line[1] != ' ' && line[1] != '!',
+					opts.Ignored && line[1] == '!':
 
-				untracked := make([]string, 0)
-				for line := range strings.SplitSeq(string(output), "\n") {
-					switch {
-					case len(line) < 4:
-						// skip
-					case opts.Unmerged && (strings.Contains(line[:2], "U") || line[:2] == "DD" || line[:2] == "AA"),
-						opts.Staged && line[1] == ' ',
-						opts.Unstaged && line[1] != ' ' && line[1] != '!',
-						opts.Ignored && line[1] == '!':
-
-						path := line[3:]
-						if splitted := strings.SplitN(path, " -> ", 2); len(splitted) > 1 { // renamed
-							path = splitted[1]
-						}
-
-						relativePath, err := filepath.Rel(evaluatedDir, filepath.Join(root, path))
-						if err != nil {
-							return carapace.ActionMessage(err.Error())
-						}
-
-						switch status := line[:2]; {
-						case strings.Contains(status, "D"): // deleted
-							untracked = append(untracked, relativePath, status, style.ForPathExt(relativePath, c))
-						default:
-							untracked = append(untracked, relativePath, status, style.ForPath(relativePath, c))
-						}
+					path := line[3:]
+					if renamed := strings.SplitN(path, " -> ", 2); len(renamed) > 1 {
+						path = renamed[1]
 					}
+					changes = append(changes, change{line[:2], path})
 				}
-
-				action := carapace.ActionStyledValuesDescribed(untracked...)
-				if strings.HasPrefix(c.Value, "./") {
-					action = action.Prefix("./")
-				}
-				return action.UidF(func(s string, uc uid.Context) (*url.URL, error) {
-					abs, err := filepath.Abs(filepath.Join(evaluatedDir, s))
-					if err != nil {
-						return nil, err
-					}
-					rel, err := filepath.Rel(root, abs)
-					if err != nil {
-						return nil, err
-					}
-					return Uid("change")(rel, uc)
-				})
 			}
+
+			return actionChanges(c, changes,
+				func(ce change, path string, sc style.Context) string {
+					if strings.Contains(ce.status, "D") { // deleted
+						return style.ForPathExt(path, sc)
+					}
+					return style.ForPath(path, sc)
+				},
+				func(ce change, uc uid.Context) (*url.URL, error) {
+					return Uid("change")(ce.path, uc)
+				},
+			)
 		})
 	}).Tag("changes")
 }

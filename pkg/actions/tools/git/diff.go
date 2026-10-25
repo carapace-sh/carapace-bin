@@ -2,7 +2,6 @@ package git
 
 import (
 	"net/url"
-	"path/filepath"
 	"strings"
 
 	"github.com/carapace-sh/carapace"
@@ -173,44 +172,27 @@ func actionRefDiffs(cached bool, refs ...string) carapace.Action {
 		}
 
 		return carapace.ActionExecCommand("git", args...)(func(output []byte) carapace.Action {
-			lines := strings.Split(string(output), "\n")
-
-			root, err := rootDir(c)
-			if err != nil {
-				return carapace.ActionMessage(err.Error())
-			}
-
-			batch := carapace.Batch()
-			for _, line := range lines {
+			changes := make([]change, 0)
+			for line := range strings.SplitSeq(string(output), "\n") {
 				splitted := strings.Split(line, "\t")
 				if len(splitted) < 2 {
 					continue
 				}
+				changes = append(changes, change{splitted[0], splitted[1]})
+			}
 
-				relativePath, err := filepath.Rel(c.Dir, root+"/"+splitted[1])
-				if err != nil {
-					return carapace.ActionMessage(err.Error())
-				}
-
-				var action carapace.Action
-				switch {
-				case strings.HasPrefix(relativePath, "../"):
-					action = carapace.ActionValuesDescribed(relativePath, splitted[0])
-				case strings.HasPrefix(c.Value, "."):
-					action = carapace.ActionValuesDescribed("./"+relativePath, splitted[0])
-				default:
-					action = carapace.ActionValuesDescribed(relativePath, splitted[0])
-				}
-				batch = append(batch, action.UidF(func(s string, uc uid.Context) (*url.URL, error) {
+			return actionChanges(c, changes,
+				func(ce change, path string, sc style.Context) string {
+					return style.ForPathExt(path, sc)
+				},
+				func(ce change, uc uid.Context) (*url.URL, error) {
 					opts := make([]string, 0)
 					for _, ref := range refs {
 						opts = append(opts, "ref", ref)
 					}
-					return Uid("ref-diff", opts...)(splitted[1], uc)
-				}))
-
-			}
-			return batch.ToA().StyleF(style.ForPathExt)
+					return Uid("ref-diff", opts...)(ce.path, uc)
+				},
+			)
 		})
 	}).Tag("changed files")
 }
