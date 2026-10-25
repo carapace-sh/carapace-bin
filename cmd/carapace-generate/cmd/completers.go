@@ -62,6 +62,6 @@ func init() {
 
 	carapace.Gen(completersCmd).PositionalCompletion(
 		carapace.ActionDirectories(),
-		carapace.ActionValues("android", "linux", "darwin", "windows", "force_all"), // TODO others, termux as well?
+		carapace.ActionValues("android", "darwin", "force_all", "linux", "windows"), // TODO others, termux as well?
 	)
 }
