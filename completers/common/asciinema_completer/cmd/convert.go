@@ -7,26 +7,30 @@ import (
 
 var convertCmd = &cobra.Command{
 	Use:   "convert",
-	Short: "Convert a recording into another format",
+	Short: "Convert a recording to another format",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(convertCmd).Standalone()
 
-	convertCmd.Flags().StringP("format", "f", "", "Output file format")
 	convertCmd.Flags().BoolP("help", "h", false, "Print help")
-	convertCmd.Flags().Bool("overwrite", false, "Overwrite target file if it already exists")
-	convertCmd.Flags().BoolP("quiet", "q", false, "Quiet mode, i.e. suppress diagnostic messages")
-	convertCmd.Flags().String("server-url", "", "asciinema server URL")
+	convertCmd.Flags().StringP("output-format", "f", "", "Output file format")
+	convertCmd.Flags().Bool("overwrite", false, "Overwrite the output file if it already exists")
 	rootCmd.AddCommand(convertCmd)
 
 	carapace.Gen(convertCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("asciicast", "raw", "txt"),
+		"output-format": carapace.ActionValues("asciicast-v2", "asciicast-v3", "raw", "txt"),
 	})
 
 	carapace.Gen(convertCmd).PositionalCompletion(
-		carapace.ActionFiles(),
-		carapace.ActionFiles(),
+		carapace.Batch(
+			carapace.ActionFiles(),
+			carapace.ActionValuesDescribed("-", "standard input"),
+		).ToA(),
+		carapace.Batch(
+			carapace.ActionFiles(),
+			carapace.ActionValuesDescribed("-", "standard output"),
+		).ToA(),
 	)
 }

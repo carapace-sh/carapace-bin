@@ -7,7 +7,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "asciinema",
-	Short: "Record and share your terminal sessions, the right way.",
+	Short: "Terminal session recorder, streamer, and player",
 	Long:  "https://asciinema.org/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
@@ -18,8 +18,7 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.PersistentFlags().BoolP("help", "h", false, "show this help message and exit")
-	rootCmd.PersistentFlags().BoolP("quiet", "q", false, "Quiet mode, i.e. suppress diagnostic messages")
-	rootCmd.PersistentFlags().String("server-url", "", "asciinema server URL")
-	rootCmd.Flags().Bool("version", false, "show program's version number and exit")
+	rootCmd.PersistentFlags().BoolP("quiet", "q", false, "Quiet mode - suppress diagnostic messages")
+	rootCmd.Flags().BoolP("help", "h", false, "Print help")
+	rootCmd.Flags().BoolP("version", "V", false, "Print version")
 }
