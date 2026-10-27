@@ -9,6 +9,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "grit",
 	Short: "A simple Grit-powered CLI",
+	Long:  "https://grit-scm.com/",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
