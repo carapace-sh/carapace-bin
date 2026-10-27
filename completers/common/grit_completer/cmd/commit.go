@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/grit_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
 )
@@ -40,6 +41,10 @@ func init() {
 	rootCmd.AddCommand(commitCmd)
 
 	carapace.Gen(commitCmd).FlagCompletion(carapace.ActionMap{
+		"hunks": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return action.ActionHunkIds("unstaged")
+		}),
+		"lines":         action.ActionLineSelections("unstaged"),
 		"reuse-message": git.ActionRefs(git.RefOption{}.Default()),
 	})
 }

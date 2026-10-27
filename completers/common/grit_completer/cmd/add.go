@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/grit_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -31,4 +32,11 @@ func init() {
 	carapace.Gen(addCmd).PositionalAnyCompletion(
 		carapace.ActionFiles(),
 	)
+
+	carapace.Gen(addCmd).FlagCompletion(carapace.ActionMap{
+		"hunks": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return action.ActionHunkIds("unstaged")
+		}),
+		"lines": action.ActionLineSelections("unstaged"),
+	})
 }

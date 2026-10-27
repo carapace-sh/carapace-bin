@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/grit_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
 )
@@ -36,6 +37,10 @@ func init() {
 			"merge", "Standard two-section conflict markers",
 			"zdiff3", "Zealous diff3 (`zdiff3`)",
 		),
+		"hunks": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return action.ActionHunkIds("unstaged")
+		}),
+		"lines":  action.ActionLineSelections("unstaged"),
 		"source": git.ActionRefs(git.RefOption{}.Default()),
 	})
 

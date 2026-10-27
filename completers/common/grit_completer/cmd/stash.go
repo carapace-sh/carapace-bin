@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/grit_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -26,4 +27,11 @@ func init() {
 	stashCmd.Flags().String("pathspec-from-file", "", "Read pathspecs from a file (`-` for stdin) instead of or in addition to argv paths")
 	stashCmd.PersistentFlags().BoolP("staged", "S", false, "Stash only index changes vs `HEAD` (unstaged edits on other paths remain)")
 	rootCmd.AddCommand(stashCmd)
+
+	carapace.Gen(stashCmd).FlagCompletion(carapace.ActionMap{
+		"hunks": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
+			return action.ActionHunkIds("unstaged")
+		}),
+		"lines": action.ActionLineSelections("unstaged"),
+	})
 }

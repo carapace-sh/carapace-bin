@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/grit_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -18,6 +19,6 @@ func init() {
 	worktreeCmd.AddCommand(worktree_unlockCmd)
 
 	carapace.Gen(worktree_unlockCmd).PositionalCompletion(
-		carapace.ActionFiles(),
+		action.ActionWorktreePaths(),
 	)
 }
