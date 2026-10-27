@@ -42,7 +42,7 @@ func (o WorktreesOpts) Default() WorktreesOpts {
 //	docs (docs-site)
 func ActionWorktrees(opts WorktreesOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		args := []string{"--format", "json", "worktree", "list", "--active"}
+		args := []string{"--json", "worktree", "list", "--active"}
 		if opts.Archived {
 			args = append(args, "--archived")
 		}

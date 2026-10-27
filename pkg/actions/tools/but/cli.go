@@ -35,7 +35,7 @@ func ActionCliIds(opts CliIdsOpts) carapace.Action {
 			batch := carapace.Batch()
 
 			if opts.Changes {
-				for _, unassigned := range status.UnassignedChanges {
+				for _, unassigned := range status.UncommittedChanges {
 					batch = append(batch, carapace.ActionStyledValuesDescribed(unassigned.CliID, unassigned.Description(), styleForChangeType(unassigned.ChangeType)).UidF(
 						func(s string, uc uid.Context) (*url.URL, error) {
 							return git.Uid("change")(unassigned.FilePath, uc)
