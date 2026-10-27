@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/carapace-sh/carapace/pkg/style"
 )
 
@@ -60,7 +61,7 @@ func ActionWorktrees(opts WorktreesOpts) carapace.Action {
 					vals = append(vals, w.Name, ref, style.Default)
 				}
 			}
-			return carapace.ActionStyledValuesDescribed(vals...)
+			return carapace.ActionStyledValuesDescribed(vals...).Tag("worktrees").UidF(git.Uid("worktree"))
 		})
 	})
 }
