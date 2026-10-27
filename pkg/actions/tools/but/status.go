@@ -52,10 +52,10 @@ type butStack struct {
 }
 
 type butStatus struct {
-	UnassignedChanges []butChange `json:"unassignedChanges"`
-	Stacks            []butStack  `json:"stacks"`
-	MergeBase         butCommit   `json:"mergeBase"`
-	UpstreamState     struct {
+	UncommittedChanges []butChange `json:"uncommittedChanges"`
+	Stacks             []butStack  `json:"stacks"`
+	MergeBase          butCommit   `json:"mergeBase"`
+	UpstreamState      struct {
 		Behind       int       `json:"behind"`
 		LatestCommit butCommit `json:"latestCommit"`
 		LastFetched  any       `json:"lastFetched"`
@@ -64,7 +64,7 @@ type butStatus struct {
 
 func actionStatus(includeCommitted bool, f func(status butStatus) carapace.Action) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		args := []string{"--format", "json", "status"}
+		args := []string{"--json", "status"}
 		if includeCommitted {
 			args = append(args, "-f")
 		}
