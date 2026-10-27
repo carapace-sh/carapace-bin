@@ -7,7 +7,7 @@ import (
 
 var statusCmd = &cobra.Command{
 	Use:     "status",
-	Short:   "Overview of the project workspace state",
+	Short:   "Show an overview of the workspace state",
 	Run:     func(cmd *cobra.Command, args []string) {},
 	GroupID: "inspection",
 }
@@ -15,8 +15,8 @@ var statusCmd = &cobra.Command{
 func init() {
 	carapace.Gen(statusCmd).Standalone()
 
-	statusCmd.Flags().BoolS("f", "f", false, "Determines whether the committed files should be shown as well")
-	statusCmd.Flags().Bool("files", false, "Determines whether the committed files should be shown as well")
+	statusCmd.Flags().BoolS("f", "f", false, "Also list the files changed by each commit")
+	statusCmd.Flags().Bool("files", false, "Also list the files changed by each commit")
 	statusCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	statusCmd.Flags().Bool("no-hint", false, "Disable hints about available commands at the end of output")
 	statusCmd.Flags().BoolP("refresh-prs", "r", false, "Forces a sync of pull requests from the forge before showing status")

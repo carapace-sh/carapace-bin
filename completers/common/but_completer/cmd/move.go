@@ -20,7 +20,10 @@ func init() {
 	moveCmd.Flags().Bool("allow-merged", false, "Allow targeting branches and commits that are already merged upstream")
 	moveCmd.Flags().StringP("below", "B", "", "Place <SOURCES> below BRANCH_OR_COMMIT")
 	moveCmd.Flags().StringP("branch", "b", "", "Place <SOURCES> on the branch BRANCH")
+	moveCmd.Flags().StringP("file", "F", "", "Read the new commit's message from FILE, or from stdin when FILE is -")
 	moveCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	moveCmd.Flags().StringSliceP("message", "m", nil, "The message to use when moving changes into a new commit")
+	moveCmd.Flags().BoolP("switch", "s", false, "Switch to the destination branch instead of remaining in the GitButler workspace")
 	moveCmd.Flags().Bool("unstack", false, "Unstack <SOURCES> from their current stacks")
 	rootCmd.AddCommand(moveCmd)
 
@@ -28,6 +31,7 @@ func init() {
 		"above":  but.ActionTargets(),
 		"below":  but.ActionTargets(),
 		"branch": but.ActionLocalBranches(),
+		"file":   carapace.ActionFiles(),
 	})
 
 	carapace.Gen(moveCmd).PositionalCompletion(

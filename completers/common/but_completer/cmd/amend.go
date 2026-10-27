@@ -18,7 +18,7 @@ func init() {
 
 	amendCmd.Flags().Bool("allow-merged", false, "Allow targeting branches and commits that are already merged upstream")
 	amendCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
-	amendCmd.Flags().StringP("target", "t", "", "The commit or branch to amend into")
+	amendCmd.Flags().StringP("target", "t", "", "The commit to amend into; a branch means its newest commit")
 	amendCmd.MarkFlagRequired("target")
 	rootCmd.AddCommand(amendCmd)
 

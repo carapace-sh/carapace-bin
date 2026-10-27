@@ -30,7 +30,7 @@ func init() {
 	pushCmd.Flags().StringP("topic", "t", "", "Add custom topic to change (Gerrit). At most one topic can be set")
 	pushCmd.Flags().Bool("topic-from-branch", false, "Use branch name as topic (Gerrit)")
 	pushCmd.Flags().BoolP("wip", "w", false, "Mark change as work-in-progress (Gerrit). Mutually exclusive with --ready")
-	pushCmd.Flags().BoolP("with-force", "f", false, "Force push even if it's not fast-forward")
+	pushCmd.Flags().BoolP("with-force", "f", false, "Force push even if it's not fast-forward. Always on; the flag is kept for compatibility")
 	pushCmd.Flag("hashtag").Hidden = true
 	pushCmd.Flag("private").Hidden = true
 	pushCmd.Flag("ready").Hidden = true
@@ -39,6 +39,7 @@ func init() {
 	pushCmd.Flag("topic").Hidden = true
 	pushCmd.Flag("topic-from-branch").Hidden = true
 	pushCmd.Flag("wip").Hidden = true
+	pushCmd.Flag("with-force").Hidden = true
 	rootCmd.AddCommand(pushCmd)
 
 	carapace.Gen(pushCmd).PositionalCompletion(

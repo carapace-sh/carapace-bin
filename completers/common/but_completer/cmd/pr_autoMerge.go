@@ -8,7 +8,7 @@ import (
 
 var pr_autoMergeCmd = &cobra.Command{
 	Use:   "auto-merge",
-	Short: "Enable or disable the automatic merging of a review or reviews. If no reviews are specified, you will be prompted to select one or multiple of the review associated with branches in your workspace",
+	Short: "Enable or disable the automatic merging of reviews",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
@@ -16,7 +16,7 @@ func init() {
 	carapace.Gen(pr_autoMergeCmd).Standalone()
 
 	pr_autoMergeCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
-	pr_autoMergeCmd.Flags().BoolP("off", "d", false, "Whether to disable the automatic merging of the review(s)")
+	pr_autoMergeCmd.Flags().BoolP("off", "d", false, "Disable automatic merging instead of enabling it")
 	prCmd.AddCommand(pr_autoMergeCmd)
 
 	carapace.Gen(pr_autoMergeCmd).PositionalCompletion(

@@ -17,15 +17,17 @@ func init() {
 	carapace.Gen(squashCmd).Standalone()
 
 	squashCmd.Flags().Bool("allow-merged", false, "Allow targeting branches and commits that are already merged upstream")
+	squashCmd.Flags().StringP("file", "F", "", "Read the message for the new commit from FILE, or from stdin when FILE is -")
 	squashCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	squashCmd.Flags().StringSliceP("message", "m", nil, "The message to use for the new commit")
-	squashCmd.Flags().Bool("no-message", false, "Creates the commit without a commit message")
+	squashCmd.Flags().Bool("no-message", false, "Create the commit without a message")
 	squashCmd.Flags().StringP("target", "t", "", "The target to squash into")
 	squashCmd.Flags().Bool("use-source-message", false, "Use the message of the source(s)")
 	squashCmd.Flags().BoolP("use-target-message", "u", false, "Use the message of the target")
 	rootCmd.AddCommand(squashCmd)
 
 	carapace.Gen(squashCmd).FlagCompletion(carapace.ActionMap{
+		"file": carapace.ActionFiles(),
 		"target": carapace.Batch(
 			but.ActionCommits(),
 			but.ActionCliIds(but.CliIdsOpts{Commits: true}),
