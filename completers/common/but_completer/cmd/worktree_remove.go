@@ -21,6 +21,6 @@ func init() {
 	worktreeCmd.AddCommand(worktree_removeCmd)
 
 	carapace.Gen(worktree_removeCmd).PositionalCompletion(
-		but.ActionCliIds(but.CliIdsOpts{}.Default()),
+		but.ActionWorktrees(but.WorktreesOpts{}.Default()),
 	)
 }

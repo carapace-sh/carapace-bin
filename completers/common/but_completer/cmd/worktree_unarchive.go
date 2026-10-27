@@ -19,6 +19,6 @@ func init() {
 	worktreeCmd.AddCommand(worktree_unarchiveCmd)
 
 	carapace.Gen(worktree_unarchiveCmd).PositionalCompletion(
-		but.ActionCliIds(but.CliIdsOpts{}.Default()),
+		but.ActionWorktrees(but.WorktreesOpts{}.Default()),
 	)
 }
