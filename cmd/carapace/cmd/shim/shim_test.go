@@ -13,6 +13,8 @@ import (
 	"strings"
 	"sync"
 	"testing"
+
+	shlex "github.com/carapace-sh/carapace-shlex/v2"
 )
 
 func TestIsRunnable(t *testing.T) {
@@ -60,6 +62,42 @@ func TestIsRunnable(t *testing.T) {
 
 	if (shim{Target: filepath.Join(t.TempDir(), "missing.yaml")}).IsRunnable() {
 		t.Fatal("IsRunnable() = true for a missing file")
+	}
+}
+
+func TestBodyEscaping(t *testing.T) {
+	targets := []string{
+		"/root/cfg/carapace/specs/cal`touch PROOF`.yaml",
+		"/root/cfg/carapace/specs/d$(touch PROOF)z.yaml",
+		"/root/cfg/carapace/specs/a\" b.yaml",
+		"/root/cfg/carapace/specs/back\\slash.yaml",
+		"/root/cfg/carapace/specs/spa ce.yaml",
+		"$HOME/`back`/tick$(x)s/pipe|and$var.yaml",
+	}
+
+	for _, target := range targets {
+		t.Run(target, func(t *testing.T) {
+			full := strings.TrimPrefix(string(body(target)), "#!/bin/sh\n")
+			tokens, err := shlex.Split(full, shlex.Bash)
+			if err != nil {
+				t.Fatalf("Split(%q): %v", full, err)
+			}
+			want := []string{"exec", "carapace", "--run", target, "$@"}
+			if len(tokens) != len(want) {
+				t.Fatalf("token count = %v, want %v: %v", len(tokens), len(want), tokens)
+			}
+			for index, token := range tokens {
+				if token.Value != want[index] {
+					t.Fatalf("token %v = %q, want %q", index, token.Value, want[index])
+				}
+			}
+		})
+	}
+}
+
+func TestBodyStaysRunnable(t *testing.T) {
+	if got, want := string(body("/home/u/carapace/specs/demo.yaml")), "#!/bin/sh\nexec carapace --run \"/home/u/carapace/specs/demo.yaml\" \"$@\""; got != want {
+		t.Fatalf("body() = %q, want %q", got, want)
 	}
 }
 
