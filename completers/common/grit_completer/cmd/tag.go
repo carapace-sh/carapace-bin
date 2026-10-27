@@ -41,7 +41,7 @@ func init() {
 
 	carapace.Gen(tagCmd).FlagCompletion(carapace.ActionMap{
 		"contains":  git.ActionRefs(git.RefOption{}.Default()),
-		"points-at": git.ActionRefs(git.RefOption{Tags: true}),
+		"points-at": git.ActionRefs(git.RefOption{}.Default()),
 		"sort":      carapace.ActionValues("date", "name", "version"),
 	})
 

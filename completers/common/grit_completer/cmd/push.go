@@ -31,7 +31,7 @@ func init() {
 	rootCmd.AddCommand(pushCmd)
 
 	carapace.Gen(pushCmd).FlagCompletion(carapace.ActionMap{
-		"delete":           git.ActionRefs(git.RefOption{LocalBranches: true}),
+		"delete":           git.ActionRefs(git.RefOption{LocalBranches: true, RemoteBranches: true, Tags: true}),
 		"force-with-lease": git.ActionRefs(git.RefOption{}.Default()),
 		"remote":           git.ActionRemotes(),
 	})
