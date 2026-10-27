@@ -7,7 +7,7 @@ import (
 
 var help_tagCmd = &cobra.Command{
 	Use:   "tag",
-	Short: "List tags, or create / delete one. A new tag points at HEAD",
+	Short: "List tags, or create / delete one",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

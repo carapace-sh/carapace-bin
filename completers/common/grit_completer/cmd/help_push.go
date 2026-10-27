@@ -7,7 +7,7 @@ import (
 
 var help_pushCmd = &cobra.Command{
 	Use:   "push",
-	Short: "Publish the current branch to its remote",
+	Short: "Publish refs to a remote",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

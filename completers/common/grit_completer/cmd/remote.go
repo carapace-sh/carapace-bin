@@ -15,5 +15,6 @@ func init() {
 	carapace.Gen(remoteCmd).Standalone()
 
 	remoteCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	remoteCmd.Flags().BoolP("verbose", "v", false, "Show fetch and push URLs (like `git remote -v`)")
 	rootCmd.AddCommand(remoteCmd)
 }
