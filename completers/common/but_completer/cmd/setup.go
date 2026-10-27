@@ -7,7 +7,8 @@ import (
 
 var setupCmd = &cobra.Command{
 	Use:     "setup",
-	Short:   "Sets up a GitButler project from a git repository in the current directory",
+	Short:   "Explain that setup is no longer required",
+	Hidden:  true,
 	Run:     func(cmd *cobra.Command, args []string) {},
 	GroupID: "other commands",
 }
@@ -16,6 +17,6 @@ func init() {
 	carapace.Gen(setupCmd).Standalone()
 
 	setupCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
-	setupCmd.Flags().Bool("init", false, "Initialize a new git repository with an empty commit if one doesn't exist")
+	setupCmd.Flags().Bool("init", false, "Report an error with a hint to use but init instead")
 	rootCmd.AddCommand(setupCmd)
 }

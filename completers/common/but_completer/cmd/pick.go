@@ -21,6 +21,7 @@ func init() {
 	pickCmd.Flags().StringP("below", "B", "", "Place the picked commits below BRANCH_OR_COMMIT")
 	pickCmd.Flags().StringP("branch", "b", "", "Place the picked commits on the branch BRANCH")
 	pickCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	pickCmd.Flags().BoolP("switch", "s", false, "Switch to the target branch instead of remaining in the GitButler workspace")
 	rootCmd.AddCommand(pickCmd)
 
 	carapace.Gen(pickCmd).PositionalCompletion(

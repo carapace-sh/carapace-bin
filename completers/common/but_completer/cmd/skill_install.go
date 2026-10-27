@@ -19,6 +19,8 @@ func init() {
 	skill_installCmd.Flags().BoolP("global", "g", false, "Install the skill globally instead of in the current repository")
 	skill_installCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	skill_installCmd.Flags().StringP("path", "p", "", "Custom path where to install the skill (relative to repository root or absolute). Outside a repository, relative paths require --global")
+	skill_installCmd.Flags().Bool("stub", false, "Install a discovery stub that points agents at but skill instead of the full skill files. Team-internal while the approach is evaluated")
+	skill_installCmd.Flag("stub").Hidden = true
 	skillCmd.AddCommand(skill_installCmd)
 
 	carapace.Gen(skill_installCmd).FlagCompletion(carapace.ActionMap{

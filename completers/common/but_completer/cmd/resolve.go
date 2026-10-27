@@ -8,7 +8,7 @@ import (
 
 var resolveCmd = &cobra.Command{
 	Use:     "resolve",
-	Short:   "Resolve conflicts in a commit",
+	Short:   "Resolve conflicts in a commit or in uncommitted files",
 	Run:     func(cmd *cobra.Command, args []string) {},
 	GroupID: "branching and committing",
 }

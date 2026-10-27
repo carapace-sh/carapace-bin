@@ -16,7 +16,7 @@ var prCmd = &cobra.Command{
 func init() {
 	carapace.Gen(prCmd).Standalone()
 
-	prCmd.Flags().BoolP("draft", "d", false, "Whether to create reviews as a draft")
+	prCmd.Flags().BoolP("draft", "d", false, "Create the review as a draft")
 	prCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.AddCommand(prCmd)
 }

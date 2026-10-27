@@ -7,7 +7,7 @@ import (
 
 var pullCmd = &cobra.Command{
 	Use:     "pull",
-	Short:   "Updates all applied branches to be up to date with the target branch",
+	Short:   "Update applied branches and worktrees onto the latest target",
 	Run:     func(cmd *cobra.Command, args []string) {},
 	GroupID: "server interactions",
 }
@@ -15,17 +15,15 @@ var pullCmd = &cobra.Command{
 func init() {
 	carapace.Gen(pullCmd).Standalone()
 
-	pullCmd.Flags().BoolP("check", "c", false, "Only check the status without updating (equivalent to the old but base check)")
+	pullCmd.Flags().BoolP("check", "c", false, "Only check whether the update would apply cleanly, without updating")
 	pullCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
-	pullCmd.Flags().StringP("strategy", "s", "pull-rebase", "Strategy to use for the integration. If no strategy is specified, we default to pull-rebase")
+	pullCmd.Flags().StringSlice("update", []string{"worktrees", "workspace"}, "What to rebase onto the target, comma-separated")
 	rootCmd.AddCommand(pullCmd)
 
 	carapace.Gen(pullCmd).FlagCompletion(carapace.ActionMap{
-		"strategy": carapace.ActionValuesDescribed(
-			"merge", "Keeps your local history and merges the remote tip into it",
-			"pick-remote", "Rebuilds the branch picking only the commits on the remote",
-			"pull-rebase", "Rebuilds the branch picking first the commits on the remote, and then the commits on the local branch",
-			"smart-squash", "Tries to fold matching remote work into related local commits. This is done through matching Change IDs, and falling back to pull-rebase ordering otherwise",
+		"update": carapace.ActionValuesDescribed(
+			"workspace", "The applied branches, along with the linked worktrees based on them",
+			"worktrees", "The linked worktrees that are based on the target rather than on an applied branch",
 		),
 	})
 }
