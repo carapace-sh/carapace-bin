@@ -27,8 +27,6 @@ func init() {
 	})
 
 	carapace.Gen(splitCmd).PositionalAnyCompletion(
-		carapace.Batch(
-			but.ActionCliIds(but.CliIdsOpts{Changes: true}),
-		).ToA(),
+		but.ActionCliIds(but.CliIdsOpts{Changes: true}),
 	)
 }
