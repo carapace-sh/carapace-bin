@@ -15,6 +15,7 @@ import (
 	"testing"
 
 	shlex "github.com/carapace-sh/carapace-shlex/v2"
+	"github.com/carapace-sh/carapace/pkg/xdg"
 )
 
 func TestIsRunnable(t *testing.T) {
@@ -66,17 +67,33 @@ func TestIsRunnable(t *testing.T) {
 }
 
 func TestBodyEscaping(t *testing.T) {
-	targets := []string{
-		"/root/cfg/carapace/specs/cal`touch PROOF`.yaml",
-		"/root/cfg/carapace/specs/d$(touch PROOF)z.yaml",
-		"/root/cfg/carapace/specs/a\" b.yaml",
-		"/root/cfg/carapace/specs/back\\slash.yaml",
-		"/root/cfg/carapace/specs/spa ce.yaml",
-		"$HOME/`back`/tick$(x)s/pipe|and$var.yaml",
+	t.Setenv("XDG_CONFIG_HOME", t.TempDir())
+	configDir, err := xdg.UserConfigDir()
+	if err != nil {
+		t.Fatal(err)
 	}
 
-	for _, target := range targets {
-		t.Run(target, func(t *testing.T) {
+	names := []string{
+		"cal`touch PROOF`.yaml",
+		"d$(touch PROOF)z.yaml",
+		"a\" b.yaml",
+		`back\slash.yaml`,
+		"spa ce.yaml",
+		`test$(a)b,c'd.yaml`,
+	}
+
+	targets := make([]string, 0, len(names)+1)
+	subtests := make([]string, 0, len(names)+1)
+	for _, name := range names {
+		targets = append(targets, fmt.Sprintf("%v/carapace/specs/%v", configDir, name))
+		subtests = append(subtests, name)
+	}
+	// environment-dependent config dir
+	targets = append(targets, "$HOME/`back`/tick$(x)s/pipe|and$var.yaml")
+	subtests = append(subtests, "env substituted path")
+
+	for index, target := range targets {
+		t.Run(subtests[index], func(t *testing.T) {
 			full := strings.TrimPrefix(string(body(target)), "#!/bin/sh\n")
 			tokens, err := shlex.Split(full, shlex.Bash)
 			if err != nil {
@@ -96,7 +113,14 @@ func TestBodyEscaping(t *testing.T) {
 }
 
 func TestBodyStaysRunnable(t *testing.T) {
-	if got, want := string(body("/home/u/carapace/specs/demo.yaml")), "#!/bin/sh\nexec carapace --run \"/home/u/carapace/specs/demo.yaml\" \"$@\""; got != want {
+	t.Setenv("XDG_CONFIG_HOME", t.TempDir())
+	configDir, err := xdg.UserConfigDir()
+	if err != nil {
+		t.Fatal(err)
+	}
+	target := fmt.Sprintf("%v/carapace/specs/demo.yaml", configDir)
+
+	if got, want := string(body(target)), fmt.Sprintf("#!/bin/sh\nexec carapace --run \"%v\" \"$@\"", target); got != want {
 		t.Fatalf("body() = %q, want %q", got, want)
 	}
 }
