@@ -6,9 +6,10 @@ import (
 )
 
 var remoteCmd = &cobra.Command{
-	Use:   "remote",
-	Short: "List remotes, or add one",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "remote",
+	Short:   "List remotes, or add one",
+	GroupID: "remotes",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

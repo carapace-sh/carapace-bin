@@ -9,6 +9,7 @@ import (
 var shortlogCmd = &cobra.Command{
 	Use:     "shortlog",
 	Short:   "List the commits on this branch that aren't on the target branch yet",
+	GroupID: "history",
 	Aliases: []string{"sl", "ahead"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }

@@ -7,9 +7,10 @@ import (
 )
 
 var addCmd = &cobra.Command{
-	Use:   "add",
-	Short: "Stage changes. With no paths, stages everything",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "add",
+	Short:   "Stage changes. With no paths, stages everything",
+	GroupID: "changes",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

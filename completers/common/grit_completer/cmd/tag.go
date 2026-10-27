@@ -7,9 +7,10 @@ import (
 )
 
 var tagCmd = &cobra.Command{
-	Use:   "tag",
-	Short: "List tags, or create / delete one",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "tag",
+	Short:   "List tags, or create / delete one",
+	GroupID: "branches",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

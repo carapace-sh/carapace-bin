@@ -8,6 +8,7 @@ import (
 var fsckCmd = &cobra.Command{
 	Use:     "fsck",
 	Short:   "Check refs, objects, and pack indexes for problems",
+	GroupID: "maintenance",
 	Aliases: []string{"verify"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }

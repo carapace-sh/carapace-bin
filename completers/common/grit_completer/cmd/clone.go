@@ -7,9 +7,10 @@ import (
 )
 
 var cloneCmd = &cobra.Command{
-	Use:   "clone",
-	Short: "Copy a remote repository into a new directory",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "clone",
+	Short:   "Copy a remote repository into a new directory",
+	GroupID: "general",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

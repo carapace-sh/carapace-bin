@@ -6,9 +6,10 @@ import (
 )
 
 var completionsCmd = &cobra.Command{
-	Use:   "completions",
-	Short: "Generate shell completion scripts for bash, zsh, or fish",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "completions",
+	Short:   "Generate shell completion scripts for bash, zsh, or fish",
+	GroupID: "maintenance",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

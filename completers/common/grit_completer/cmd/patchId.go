@@ -7,9 +7,10 @@ import (
 )
 
 var patchIdCmd = &cobra.Command{
-	Use:   "patch-id",
-	Short: "Print stable patch-IDs for one or more commits",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "patch-id",
+	Short:   "Print stable patch-IDs for one or more commits",
+	GroupID: "plumbing",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

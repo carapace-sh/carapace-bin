@@ -19,6 +19,16 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.AddGroup(
+		&cobra.Group{ID: "general", Title: "Getting started"},
+		&cobra.Group{ID: "changes", Title: "Making changes"},
+		&cobra.Group{ID: "history", Title: "History"},
+		&cobra.Group{ID: "branches", Title: "Branches and tags"},
+		&cobra.Group{ID: "remotes", Title: "Remotes"},
+		&cobra.Group{ID: "maintenance", Title: "Maintenance"},
+		&cobra.Group{ID: "plumbing", Title: "Plumbing"},
+	)
+
 	rootCmd.Flags().BoolS("V", "V", false, "Print version")
 	rootCmd.PersistentFlags().String("filter", "", "jq-like expression applied to JSON output (requires `--json`)")
 	rootCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")

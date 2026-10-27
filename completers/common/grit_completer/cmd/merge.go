@@ -7,9 +7,10 @@ import (
 )
 
 var mergeCmd = &cobra.Command{
-	Use:   "merge",
-	Short: "Merge another branch into the current one",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "merge",
+	Short:   "Merge another branch into the current one",
+	GroupID: "branches",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

@@ -7,9 +7,10 @@ import (
 )
 
 var logCmd = &cobra.Command{
-	Use:   "log",
-	Short: "Show recent commits reachable from HEAD",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "log",
+	Short:   "Show recent commits reachable from HEAD",
+	GroupID: "history",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

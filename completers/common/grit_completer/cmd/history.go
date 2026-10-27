@@ -6,9 +6,10 @@ import (
 )
 
 var historyCmd = &cobra.Command{
-	Use:   "history",
-	Short: "Rewrite commits without a sequencer (plan, then apply refs atomically)",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "history",
+	Short:   "Rewrite commits without a sequencer (plan, then apply refs atomically)",
+	GroupID: "history",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

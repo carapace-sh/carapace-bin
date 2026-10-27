@@ -6,9 +6,10 @@ import (
 )
 
 var skillCmd = &cobra.Command{
-	Use:   "skill",
-	Short: "Print an agent skill (SKILL.md) that explains how to use grit",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "skill",
+	Short:   "Print an agent skill (SKILL.md) that explains how to use grit",
+	GroupID: "maintenance",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

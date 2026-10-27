@@ -8,6 +8,7 @@ import (
 var statusCmd = &cobra.Command{
 	Use:     "status",
 	Short:   "Show what's changed and where you are (this is the default)",
+	GroupID: "general",
 	Aliases: []string{"st"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }

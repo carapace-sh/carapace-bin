@@ -7,9 +7,10 @@ import (
 )
 
 var pullCmd = &cobra.Command{
-	Use:   "pull",
-	Short: "Fetch from the remote and integrate it into the current branch",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "pull",
+	Short:   "Fetch from the remote and integrate it into the current branch",
+	GroupID: "remotes",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

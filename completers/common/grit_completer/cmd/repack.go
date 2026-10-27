@@ -6,9 +6,10 @@ import (
 )
 
 var repackCmd = &cobra.Command{
-	Use:   "repack",
-	Short: "Pack reachable objects and remove redundant packs",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "repack",
+	Short:   "Pack reachable objects and remove redundant packs",
+	GroupID: "maintenance",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

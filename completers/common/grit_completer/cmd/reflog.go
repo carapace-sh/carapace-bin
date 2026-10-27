@@ -7,9 +7,10 @@ import (
 )
 
 var reflogCmd = &cobra.Command{
-	Use:   "reflog",
-	Short: "Show, delete, or expire reflog entries",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "reflog",
+	Short:   "Show, delete, or expire reflog entries",
+	GroupID: "history",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

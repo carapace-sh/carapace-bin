@@ -6,10 +6,11 @@ import (
 )
 
 var receivePackCmd = &cobra.Command{
-	Use:    "receive-pack",
-	Short:  "Accept a push over stdin/stdout (run by ssh and grit-http-server)",
-	Hidden: true,
-	Run:    func(cmd *cobra.Command, args []string) {},
+	Use:     "receive-pack",
+	Short:   "Accept a push over stdin/stdout (run by ssh and grit-http-server)",
+	GroupID: "plumbing",
+	Hidden:  true,
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

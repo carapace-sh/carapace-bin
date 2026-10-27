@@ -6,9 +6,10 @@ import (
 )
 
 var worktreeCmd = &cobra.Command{
-	Use:   "worktree",
-	Short: "List, add, or remove linked worktrees",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "worktree",
+	Short:   "List, add, or remove linked worktrees",
+	GroupID: "branches",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

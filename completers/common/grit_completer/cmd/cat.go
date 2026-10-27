@@ -7,9 +7,10 @@ import (
 )
 
 var catCmd = &cobra.Command{
-	Use:   "cat",
-	Short: "Show blob, tree, commit, or tag contents for a revision spec",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "cat",
+	Short:   "Show blob, tree, commit, or tag contents for a revision spec",
+	GroupID: "plumbing",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

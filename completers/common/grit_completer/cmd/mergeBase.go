@@ -7,9 +7,10 @@ import (
 )
 
 var mergeBaseCmd = &cobra.Command{
-	Use:   "merge-base",
-	Short: "Find merge bases or test whether one commit is an ancestor of another",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "merge-base",
+	Short:   "Find merge bases or test whether one commit is an ancestor of another",
+	GroupID: "history",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

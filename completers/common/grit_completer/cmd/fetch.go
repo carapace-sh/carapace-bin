@@ -7,9 +7,10 @@ import (
 )
 
 var fetchCmd = &cobra.Command{
-	Use:   "fetch",
-	Short: "Download refs and objects from a remote",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "fetch",
+	Short:   "Download refs and objects from a remote",
+	GroupID: "remotes",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

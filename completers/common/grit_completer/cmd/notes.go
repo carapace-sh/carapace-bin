@@ -6,9 +6,10 @@ import (
 )
 
 var notesCmd = &cobra.Command{
-	Use:   "notes",
-	Short: "List, show, add, or remove Git notes on commits",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "notes",
+	Short:   "List, show, add, or remove Git notes on commits",
+	GroupID: "history",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

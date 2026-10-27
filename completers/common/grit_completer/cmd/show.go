@@ -7,9 +7,10 @@ import (
 )
 
 var showCmd = &cobra.Command{
-	Use:   "show",
-	Short: "Show information about a commit, tag, or branch (defaults to HEAD)",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "show",
+	Short:   "Show information about a commit, tag, or branch (defaults to HEAD)",
+	GroupID: "history",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

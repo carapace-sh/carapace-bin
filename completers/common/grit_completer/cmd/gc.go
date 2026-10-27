@@ -6,9 +6,10 @@ import (
 )
 
 var gcCmd = &cobra.Command{
-	Use:   "gc",
-	Short: "Pack refs, expire reflogs, repack, prune, and refresh commit-graph",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "gc",
+	Short:   "Pack refs, expire reflogs, repack, prune, and refresh commit-graph",
+	GroupID: "maintenance",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

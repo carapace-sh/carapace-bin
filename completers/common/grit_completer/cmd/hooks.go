@@ -6,9 +6,10 @@ import (
 )
 
 var hooksCmd = &cobra.Command{
-	Use:   "hooks",
-	Short: "List hook scripts or run one by name",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "hooks",
+	Short:   "List hook scripts or run one by name",
+	GroupID: "plumbing",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

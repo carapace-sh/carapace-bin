@@ -6,9 +6,10 @@ import (
 )
 
 var ignoreCmd = &cobra.Command{
-	Use:   "ignore",
-	Short: "Query exclude (gitignore) rules",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "ignore",
+	Short:   "Query exclude (gitignore) rules",
+	GroupID: "plumbing",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

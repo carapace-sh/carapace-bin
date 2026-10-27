@@ -7,9 +7,10 @@ import (
 )
 
 var rebaseCmd = &cobra.Command{
-	Use:   "rebase",
-	Short: "Replay local commits onto a new base (atomic ref update)",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "rebase",
+	Short:   "Replay local commits onto a new base (atomic ref update)",
+	GroupID: "history",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

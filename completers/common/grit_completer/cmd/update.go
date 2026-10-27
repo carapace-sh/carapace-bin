@@ -6,9 +6,10 @@ import (
 )
 
 var updateCmd = &cobra.Command{
-	Use:   "update",
-	Short: "Update grit to the latest release (re-runs the install script)",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "update",
+	Short:   "Update grit to the latest release (re-runs the install script)",
+	GroupID: "maintenance",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

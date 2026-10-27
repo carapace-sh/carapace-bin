@@ -7,9 +7,10 @@ import (
 )
 
 var configCmd = &cobra.Command{
-	Use:   "config",
-	Short: "Read, set, or list configuration values",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "config",
+	Short:   "Read, set, or list configuration values",
+	GroupID: "general",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

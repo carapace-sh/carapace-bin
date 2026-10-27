@@ -7,9 +7,10 @@ import (
 )
 
 var revsCmd = &cobra.Command{
-	Use:   "revs",
-	Short: "List or count commits matching revision ranges",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "revs",
+	Short:   "List or count commits matching revision ranges",
+	GroupID: "history",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

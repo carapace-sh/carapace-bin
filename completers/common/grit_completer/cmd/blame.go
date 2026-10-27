@@ -7,9 +7,10 @@ import (
 )
 
 var blameCmd = &cobra.Command{
-	Use:   "blame",
-	Short: "Show who last modified each line of a file",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "blame",
+	Short:   "Show who last modified each line of a file",
+	GroupID: "history",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

@@ -7,9 +7,10 @@ import (
 )
 
 var resetCmd = &cobra.Command{
-	Use:   "reset",
-	Short: "Move the branch tip and optionally reset the index or worktree",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "reset",
+	Short:   "Move the branch tip and optionally reset the index or worktree",
+	GroupID: "branches",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

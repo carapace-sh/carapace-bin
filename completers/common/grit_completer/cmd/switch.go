@@ -9,6 +9,7 @@ import (
 var switchCmd = &cobra.Command{
 	Use:     "switch",
 	Short:   "Switch to another branch, remote branch, or detached commit",
+	GroupID: "branches",
 	Aliases: []string{"checkout", "co"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }

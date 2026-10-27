@@ -6,9 +6,10 @@ import (
 )
 
 var initCmd = &cobra.Command{
-	Use:   "init",
-	Short: "Create a new, empty repository",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "init",
+	Short:   "Create a new, empty repository",
+	GroupID: "general",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

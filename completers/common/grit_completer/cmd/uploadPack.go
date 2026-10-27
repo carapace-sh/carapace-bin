@@ -6,10 +6,11 @@ import (
 )
 
 var uploadPackCmd = &cobra.Command{
-	Use:    "upload-pack",
-	Short:  "Serve a fetch or clone over stdin/stdout (run by ssh and grit-http-server)",
-	Hidden: true,
-	Run:    func(cmd *cobra.Command, args []string) {},
+	Use:     "upload-pack",
+	Short:   "Serve a fetch or clone over stdin/stdout (run by ssh and grit-http-server)",
+	GroupID: "plumbing",
+	Hidden:  true,
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

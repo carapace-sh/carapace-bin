@@ -6,9 +6,10 @@ import (
 )
 
 var bundleCmd = &cobra.Command{
-	Use:   "bundle",
-	Short: "Create, verify, or list git bundle files",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "bundle",
+	Short:   "Create, verify, or list git bundle files",
+	GroupID: "remotes",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
