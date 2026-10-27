@@ -8,7 +8,7 @@ import (
 var remoteCmd = &cobra.Command{
 	Use:     "remote",
 	Short:   "List remotes, or add one",
-	GroupID: "remotes",
+	GroupID: "remote",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

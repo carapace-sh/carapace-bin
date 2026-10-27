@@ -8,7 +8,7 @@ import (
 var authCmd = &cobra.Command{
 	Use:     "auth",
 	Short:   "Sign in to GitHub (device flow) and store a token for HTTPS push/fetch",
-	GroupID: "remotes",
+	GroupID: "remote",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

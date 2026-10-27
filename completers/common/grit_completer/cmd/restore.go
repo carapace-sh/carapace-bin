@@ -10,7 +10,7 @@ import (
 var restoreCmd = &cobra.Command{
 	Use:     "restore",
 	Short:   "Restore working tree and/or index paths",
-	GroupID: "changes",
+	GroupID: "change",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

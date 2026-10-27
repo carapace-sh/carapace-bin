@@ -9,7 +9,7 @@ import (
 var pushCmd = &cobra.Command{
 	Use:     "push",
 	Short:   "Publish refs to a remote",
-	GroupID: "remotes",
+	GroupID: "remote",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

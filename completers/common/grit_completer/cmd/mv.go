@@ -8,7 +8,7 @@ import (
 var mvCmd = &cobra.Command{
 	Use:     "mv",
 	Short:   "Rename or move tracked paths",
-	GroupID: "changes",
+	GroupID: "change",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

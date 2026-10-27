@@ -9,7 +9,7 @@ import (
 var revertCmd = &cobra.Command{
 	Use:     "revert",
 	Short:   "Undo commits with new inverse commits",
-	GroupID: "branches",
+	GroupID: "branch",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

@@ -21,10 +21,10 @@ func init() {
 
 	rootCmd.AddGroup(
 		&cobra.Group{ID: "general", Title: "Getting started"},
-		&cobra.Group{ID: "changes", Title: "Making changes"},
+		&cobra.Group{ID: "change", Title: "Making changes"},
 		&cobra.Group{ID: "history", Title: "History"},
-		&cobra.Group{ID: "branches", Title: "Branches and tags"},
-		&cobra.Group{ID: "remotes", Title: "Remotes"},
+		&cobra.Group{ID: "branch", Title: "Branches and tags"},
+		&cobra.Group{ID: "remote", Title: "Remotes"},
 		&cobra.Group{ID: "maintenance", Title: "Maintenance"},
 		&cobra.Group{ID: "plumbing", Title: "Plumbing"},
 	)

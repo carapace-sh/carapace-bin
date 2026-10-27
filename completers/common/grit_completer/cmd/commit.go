@@ -10,7 +10,7 @@ import (
 var commitCmd = &cobra.Command{
 	Use:     "commit",
 	Short:   "Stage every change and record a new commit",
-	GroupID: "changes",
+	GroupID: "change",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

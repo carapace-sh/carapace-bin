@@ -9,7 +9,7 @@ import (
 var stashCmd = &cobra.Command{
 	Use:     "stash",
 	Short:   "Save or restore shelved work",
-	GroupID: "changes",
+	GroupID: "change",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

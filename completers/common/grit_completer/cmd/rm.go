@@ -8,7 +8,7 @@ import (
 var rmCmd = &cobra.Command{
 	Use:     "rm",
 	Short:   "Remove tracked paths from the working tree and index",
-	GroupID: "changes",
+	GroupID: "change",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

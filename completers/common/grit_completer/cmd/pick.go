@@ -9,7 +9,7 @@ import (
 var pickCmd = &cobra.Command{
 	Use:     "pick",
 	Short:   "Cherry-pick commits onto the current branch",
-	GroupID: "branches",
+	GroupID: "branch",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
