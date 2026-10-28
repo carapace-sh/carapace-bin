@@ -73,7 +73,7 @@ func init() {
 		"lang":       action.ActionLanguageTemplates(),
 		"name":       action.ActionFunctions(),
 		"namespace":  action.ActionNamespaces(),
-		"platforms":  action.ActionImageArchitectures(),
+		"platforms":  action.ActionPlatforms(),
 		"tag":        carapace.ActionValues("branch", "describe", "digest", "latest", "sha"),
 	})
 }

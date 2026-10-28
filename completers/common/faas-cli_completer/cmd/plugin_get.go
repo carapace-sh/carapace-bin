@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/faas-cli_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -24,7 +23,12 @@ func init() {
 	pluginCmd.AddCommand(plugin_getCmd)
 
 	carapace.Gen(plugin_getCmd).FlagCompletion(carapace.ActionMap{
-		"arch": action.ActionImageArchitectures(),
+		"arch": carapace.ActionValuesDescribed(
+			"aarch64", "ARMv8 64-bit (normalized to arm64)",
+			"amd64", "x86 64-bit",
+			"arm64", "ARMv8 64-bit",
+			"x86_64", "x86 64-bit (normalized to amd64)",
+		),
 		"os":   carapace.ActionValues("darwin", "linux", "windows"),
 		"path": carapace.ActionDirectories(),
 	})

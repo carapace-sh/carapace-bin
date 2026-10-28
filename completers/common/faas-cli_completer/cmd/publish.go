@@ -44,7 +44,7 @@ func init() {
 	carapace.Gen(publishCmd).FlagCompletion(carapace.ActionMap{
 		"lang":      action.ActionLanguageTemplates(),
 		"name":      action.ActionFunctions(),
-		"platforms": action.ActionImageArchitectures(), // TODO likely wrong as example is `linux/amd64`
+		"platforms": action.ActionPlatforms(),
 		"tag":       carapace.ActionValues("branch", "describe", "digest", "latest", "sha"),
 	})
 }

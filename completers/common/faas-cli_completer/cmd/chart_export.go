@@ -26,4 +26,8 @@ func init() {
 		"output": carapace.ActionDirectories(),
 		"values": carapace.ActionFiles("yaml", "yml"),
 	})
+
+	carapace.Gen(chart_exportCmd).PositionalCompletion(
+		carapace.ActionDirectories(),
+	)
 }

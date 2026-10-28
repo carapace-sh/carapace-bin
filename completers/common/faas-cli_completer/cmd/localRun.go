@@ -50,4 +50,8 @@ func init() {
 		"lang":       action.ActionLanguageTemplates(),
 		"tag":        carapace.ActionValues("branch", "describe", "digest", "latest", "sha"),
 	})
+
+	carapace.Gen(localRunCmd).PositionalCompletion(
+		action.ActionFunctions(),
+	)
 }

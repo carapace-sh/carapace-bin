@@ -22,4 +22,8 @@ func init() {
 	carapace.Gen(secret_unsealCmd).FlagCompletion(carapace.ActionMap{
 		"in": carapace.ActionFiles(),
 	})
+
+	carapace.Gen(secret_unsealCmd).PositionalCompletion(
+		carapace.ActionFiles(),
+	)
 }

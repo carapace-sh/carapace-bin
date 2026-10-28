@@ -25,14 +25,15 @@ func ActionLanguageTemplatesNew() carapace.Action {
 
 func ActionLanguageTemplates() carapace.Action {
 	return carapace.ActionExecCommand("faas-cli", "template", "store", "ls")(func(output []byte) carapace.Action {
-		r := regexp.MustCompile(`^(?P<lang>[^ ]+) +(?P<source>[^ ]+) +(?P<description>.*)$`)
+		// formatBasicOutput: NAME, RECOMMENDED ([x]/[ ]), SOURCE, DESCRIPTION
+		r := regexp.MustCompile(`^(?P<lang>\S+) +\[[x ]\] +\S+ +(?P<description>.+)$`)
 
 		vals := make([]string, 0)
 		lines := strings.Split(string(output), "\n")
 		for _, line := range lines[2:] {
 			if r.MatchString(line) {
 				matches := r.FindStringSubmatch(line)
-				vals = append(vals, matches[1], matches[3])
+				vals = append(vals, matches[1], matches[2])
 			}
 		}
 		return carapace.ActionValuesDescribed(vals...)

@@ -22,4 +22,8 @@ func init() {
 	carapace.Gen(secret_sealCmd).FlagCompletion(carapace.ActionMap{
 		"output": carapace.ActionFiles(),
 	})
+
+	carapace.Gen(secret_sealCmd).PositionalCompletion(
+		carapace.ActionFiles(".pub"),
+	)
 }

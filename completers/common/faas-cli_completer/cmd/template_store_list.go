@@ -24,6 +24,6 @@ func init() {
 	template_storeCmd.AddCommand(template_store_listCmd)
 
 	carapace.Gen(template_store_listCmd).FlagCompletion(carapace.ActionMap{
-		"platform": action.ActionImageArchitectures(),
+		"platform": action.ActionArchitectures(),
 	})
 }
