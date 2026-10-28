@@ -2,4 +2,4 @@
 name: describe
 description: Show details of OpenFaaS function from a store
 flags:
-    -v, --verbose: Verbose output for the field values
+    -j, --json: Output function details as JSON

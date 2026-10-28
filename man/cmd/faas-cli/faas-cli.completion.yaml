@@ -2,4 +2,4 @@
 name: completion
 description: Generates shell auto completion
 flags:
-    --shell=: Outputs shell completion, must be bash or zsh
+    --shell=!: Outputs shell completion, must be bash or zsh

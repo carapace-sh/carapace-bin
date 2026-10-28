@@ -4,10 +4,14 @@ description: Deploy OpenFaaS functions from a store
 flags:
     --annotation=*: Set one or more annotation (ANNOTATION=VALUE)
     --constraint=*: Apply a constraint to the function
+    --cpu-limit=: Supply the CPU limit for the function in Mi
+    --cpu-request=: Supply the CPU request for the function in Mi
+    --memory-limit=: Supply the memory limit for the function in Mi
+    --memory-request=: Supply the memory request for the function in Mi
     --name=: Name of the deployed function (overriding name from the store)
-    --network=: Name of the network
     --replace: Replace any existing function
     --secret=*: Give the function access to a secure secret
+    --timeout=: Timeout for any HTTP calls made to the OpenFaaS API.
     --tls-no-verify: Disable TLS validation
     --update: Update existing functions
     -e, --env=*: Adds one or more environment variables to the defined ones by store (ENVVAR=VALUE)

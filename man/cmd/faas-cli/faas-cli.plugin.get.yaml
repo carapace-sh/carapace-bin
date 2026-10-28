@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: get
+description: Get a plugin
+flags:
+    --arch=: The architecture to pull the plugin for, give a value or leave blank for auto-detection
+    --os=: The OS to pull the plugin for, give a value or leave blank for auto-detection
+    --path=: The path for the plugin
+    --registry=: The registry to pull the plugin from
+    --version=: Version or SHA for plugin
+    -v, --verbose: Verbose output

@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: update
+description: Update a namespace
+flags:
+    --annotation=*: Set one or more annotation (ANNOTATION=VALUE)
+    -l, --label=*: Set one or more label (LABEL=VALUE)

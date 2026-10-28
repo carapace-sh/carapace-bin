@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: diff
+description: Diff stack.yaml against deployed functions
+flags:
+    --env=: 'Environment diff mode: local, remote, or all'
+    --envsubst: Substitute environment variables in stack.yaml file
+    --tag=: Override latest tag on function Docker image, accepts 'digest', 'sha', 'branch', or 'describe', or 'latest'
+    --tls-no-verify: Disable TLS validation
+    -g, --gateway=: Gateway URL starting with http(s)://
+    -k, --token=: Pass a JWT token to use instead of basic auth
+    -n, --namespace=: Namespace override for the diff

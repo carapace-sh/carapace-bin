@@ -7,16 +7,18 @@ import (
 )
 
 var listCmd = &cobra.Command{
-	Use:   "list",
-	Short: "List OpenFaaS functions",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "list",
+	Short:   "List OpenFaaS functions",
+	Aliases: []string{"ls"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(listCmd).Standalone()
 
-	listCmd.Flags().Bool("envsubst", true, "Substitute environment variables in stack.yml file")
+	listCmd.Flags().Bool("envsubst", true, "Substitute environment variables in stack.yaml file")
 	listCmd.Flags().StringP("gateway", "g", "http://127.0.0.1:8080", "Gateway URL starting with http(s)://")
+	listCmd.Flags().BoolP("json", "j", false, "Output functions as JSON")
 	listCmd.Flags().StringP("namespace", "n", "", "Namespace of the function")
 	listCmd.Flags().BoolP("quiet", "q", false, "Quiet mode - print out only the function's ID")
 	listCmd.Flags().String("sort", "name", "Sort the functions by \"name\" or \"invocations\"")

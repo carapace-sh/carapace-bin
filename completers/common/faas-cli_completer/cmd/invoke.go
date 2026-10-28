@@ -17,8 +17,9 @@ func init() {
 	carapace.Gen(invokeCmd).Standalone()
 
 	invokeCmd.Flags().BoolP("async", "a", false, "Invoke the function asynchronously")
+	invokeCmd.Flags().Bool("auth", false, "Authenticate with an OpenFaaS token when invoking the function")
 	invokeCmd.Flags().String("content-type", "text/plain", "The content-type HTTP header such as application/json")
-	invokeCmd.Flags().Bool("envsubst", true, "Substitute environment variables in stack.yml file")
+	invokeCmd.Flags().Bool("envsubst", true, "Substitute environment variables in stack.yaml file")
 	invokeCmd.Flags().StringP("gateway", "g", "http://127.0.0.1:8080", "Gateway URL starting with http(s)://")
 	invokeCmd.Flags().StringArrayP("header", "H", nil, "pass HTTP request header")
 	invokeCmd.Flags().String("key", "", "key to be used to sign the request (must be used with --sign)")
@@ -32,8 +33,19 @@ func init() {
 
 	carapace.Gen(invokeCmd).FlagCompletion(carapace.ActionMap{
 		"content-type": http.ActionMediaTypes().MultiParts("/"),
-		"method":       http.ActionRequestMethods(),
-		"namespace":    action.ActionNamespaces(),
+		"header": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return http.ActionRequestHeaderNames().Invoke(c).Suffix(":").ToA()
+			case 1:
+				return http.ActionRequestHeaderValues(c.Parts[0])
+			default:
+				return carapace.ActionValues()
+			}
+		}),
+		"method":    http.ActionRequestMethods(),
+		"namespace": action.ActionNamespaces(),
+		"sign":      http.ActionRequestHeaderNames(),
 	})
 
 	carapace.Gen(invokeCmd).PositionalCompletion(

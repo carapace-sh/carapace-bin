@@ -18,6 +18,7 @@ func init() {
 	carapace.Gen(logsCmd).Standalone()
 	logsCmd.Flags().StringP("gateway", "g", "http://127.0.0.1:8080", "Gateway URL starting with http(s)://")
 	logsCmd.Flags().Bool("instance", false, "print the function instance name/id")
+	logsCmd.Flags().BoolP("json", "j", false, "Output logs as JSON (equivalent to --output=json)")
 	logsCmd.Flags().Int("lines", -1, "number of recent log lines file to display. Defaults to -1, unlimited if <=0")
 	logsCmd.Flags().Bool("name", false, "print the function name")
 	logsCmd.Flags().StringP("namespace", "n", "", "Namespace of the function")
