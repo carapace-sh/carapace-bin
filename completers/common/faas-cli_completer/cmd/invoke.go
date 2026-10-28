@@ -33,8 +33,19 @@ func init() {
 
 	carapace.Gen(invokeCmd).FlagCompletion(carapace.ActionMap{
 		"content-type": http.ActionMediaTypes().MultiParts("/"),
-		"method":       http.ActionRequestMethods(),
-		"namespace":    action.ActionNamespaces(),
+		"header": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return http.ActionRequestHeaderNames().Invoke(c).Suffix(":").ToA()
+			case 1:
+				return http.ActionRequestHeaderValues(c.Parts[0])
+			default:
+				return carapace.ActionValues()
+			}
+		}),
+		"method":    http.ActionRequestMethods(),
+		"namespace": action.ActionNamespaces(),
+		"sign":      http.ActionRequestHeaderNames(),
 	})
 
 	carapace.Gen(invokeCmd).PositionalCompletion(

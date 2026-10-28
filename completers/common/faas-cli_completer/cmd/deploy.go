@@ -50,7 +50,9 @@ func init() {
 		"env":       env.ActionNameValues(false),
 		"handler":   carapace.ActionDirectories(),
 		"lang":      action.ActionLanguageTemplates(),
+		"name":      action.ActionFunctions(),
 		"namespace": action.ActionNamespaces(),
+		"secret":    action.ActionSecrets(),
 		"tag":       carapace.ActionValues("branch", "describe", "digest", "latest", "sha"),
 	})
 }

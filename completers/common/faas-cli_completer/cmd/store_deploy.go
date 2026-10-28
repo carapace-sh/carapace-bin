@@ -28,7 +28,6 @@ func init() {
 	store_deployCmd.Flags().String("memory-request", "", "Supply the memory request for the function in Mi")
 	store_deployCmd.Flags().String("name", "", "Name of the deployed function (overriding name from the store)")
 	store_deployCmd.Flags().StringP("namespace", "n", "", "Namespace of the function")
-	store_deployCmd.Flags().String("network", "", "Name of the network")
 	store_deployCmd.Flags().Bool("replace", false, "Replace any existing function")
 	store_deployCmd.Flags().StringArray("secret", nil, "Give the function access to a secure secret")
 	store_deployCmd.Flags().Duration("timeout", time.Minute, "Timeout for any HTTP calls made to the OpenFaaS API.")
@@ -40,9 +39,10 @@ func init() {
 	carapace.Gen(store_deployCmd).FlagCompletion(carapace.ActionMap{
 		"env":       env.ActionNameValues(false),
 		"namespace": action.ActionNamespaces(),
+		"secret":    action.ActionSecrets(),
 	})
 
 	carapace.Gen(store_deployCmd).PositionalCompletion(
-		action.ActionFunctions(),
+		action.ActionFunctionsStore(),
 	)
 }

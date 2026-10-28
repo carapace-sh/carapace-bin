@@ -15,6 +15,7 @@ func init() {
 	carapace.Gen(pushCmd).Standalone()
 	pushCmd.Flags().Bool("envsubst", true, "Substitute environment variables in stack.yaml file")
 	pushCmd.Flags().Int("parallel", 1, "Push images in parallel to depth specified.")
+	pushCmd.Flags().Bool("quiet", false, "Perform a quiet build, without showing output from Docker")
 	pushCmd.Flags().String("tag", "latest", "Override latest tag on function Docker image, accepts 'digest', 'latest', 'sha', 'branch', 'describe'")
 	rootCmd.AddCommand(pushCmd)
 

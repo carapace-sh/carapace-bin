@@ -74,6 +74,7 @@ func init() {
 		"name":       action.ActionFunctions(),
 		"namespace":  action.ActionNamespaces(),
 		"platforms":  action.ActionPlatforms(),
+		"secret":     action.ActionSecrets(),
 		"tag":        carapace.ActionValues("branch", "describe", "digest", "latest", "sha"),
 	})
 }

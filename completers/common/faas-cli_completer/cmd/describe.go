@@ -26,6 +26,7 @@ func init() {
 	rootCmd.AddCommand(describeCmd)
 
 	carapace.Gen(describeCmd).FlagCompletion(carapace.ActionMap{
+		"name":      action.ActionFunctions(),
 		"namespace": action.ActionNamespaces(),
 	})
 
