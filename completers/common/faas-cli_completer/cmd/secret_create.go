@@ -18,6 +18,7 @@ func init() {
 	secret_createCmd.Flags().String("from-literal", "", "Literal value for the secret")
 	secret_createCmd.Flags().StringP("gateway", "g", "http://127.0.0.1:8080", "Gateway URL starting with http(s)://")
 	secret_createCmd.Flags().StringP("namespace", "n", "", "Namespace of the function")
+	secret_createCmd.Flags().Bool("replace", false, "Replace the secret if it already exists using an update")
 	secret_createCmd.Flags().Bool("tls-no-verify", false, "Disable TLS validation")
 	secret_createCmd.Flags().StringP("token", "k", "", "Pass a JWT token to use instead of basic auth")
 	secret_createCmd.Flags().Bool("trim", true, "Trim whitespace from the start and end of the secret value")

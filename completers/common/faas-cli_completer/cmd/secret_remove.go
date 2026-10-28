@@ -7,9 +7,10 @@ import (
 )
 
 var secret_removeCmd = &cobra.Command{
-	Use:   "remove",
-	Short: "remove a secret",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "remove",
+	Short:   "remove a secret",
+	Aliases: []string{"rm", "delete"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

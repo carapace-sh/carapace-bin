@@ -2,6 +2,7 @@
 name: push
 description: Push OpenFaaS functions to remote registry (Docker Hub)
 flags:
-    --envsubst: Substitute environment variables in stack.yml file
+    --envsubst: Substitute environment variables in stack.yaml file
     --parallel=: Push images in parallel to depth specified.
-    --tag=: Override latest tag on function Docker image, accepts 'latest', 'sha', 'branch', 'describe'
+    --quiet: Perform a quiet build, without showing output from Docker
+    --tag=: Override latest tag on function Docker image, accepts 'digest', 'latest', 'sha', 'branch', 'describe'

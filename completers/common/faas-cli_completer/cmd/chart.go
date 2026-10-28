@@ -5,14 +5,14 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var cloudCmd = &cobra.Command{
-	Use:   "cloud",
-	Short: "OpenFaaS Cloud commands",
+var chartCmd = &cobra.Command{
+	Use:   "chart",
+	Short: "Helm chart commands",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
-	carapace.Gen(cloudCmd).Standalone()
+	carapace.Gen(chartCmd).Standalone()
 
-	rootCmd.AddCommand(cloudCmd)
+	rootCmd.AddCommand(chartCmd)
 }

@@ -16,17 +16,19 @@ func init() {
 	carapace.Gen(generateCmd).Standalone()
 
 	generateCmd.Flags().StringArray("annotation", nil, "Any annotations you want to add (to store functions only)")
-	generateCmd.Flags().String("api", "openfaas.com/v1", "CRD API version e.g openfaas.com/v1, serving.knative.dev/v1")
+	generateCmd.Flags().String("api", "openfaas.com/v1", "CRD API version e.g openfaas.com/v1")
 	generateCmd.Flags().String("arch", "x86_64", "Desired image arch. (Default x86_64)")
-	generateCmd.Flags().Bool("envsubst", true, "Substitute environment variables in stack.yml file")
+	generateCmd.Flags().Bool("envsubst", true, "Substitute environment variables in stack.yaml file")
 	generateCmd.Flags().String("from-store", "", "generate using a store image")
-	generateCmd.Flags().StringP("namespace", "n", "", "Kubernetes namespace for functions")
-	generateCmd.Flags().String("tag", "latest", "Override latest tag on function Docker image, accepts 'latest', 'sha', 'branch', 'describe'")
+	generateCmd.Flags().String("name", "", "for use with --from-store, override the name for the generated function")
+	generateCmd.Flags().StringP("namespace", "n", "openfaas-fn", "Kubernetes namespace for functions")
+	generateCmd.Flags().String("output", "", "output format e.g stack.yaml, for use with --from-store to generate an OpenFaaS stack.yaml")
+	generateCmd.Flags().String("tag", "latest", "Override latest tag on function Docker image, accepts 'digest', 'latest', 'sha', 'branch', 'describe'")
 	rootCmd.AddCommand(generateCmd)
 
 	carapace.Gen(generateCmd).FlagCompletion(carapace.ActionMap{
 		"arch":      action.ActionImageArchitectures(),
 		"namespace": action.ActionNamespaces(),
-		"tag":       carapace.ActionValues("branch", "describe", "latest", "sha"),
+		"tag":       carapace.ActionValues("branch", "describe", "digest", "latest", "sha"),
 	})
 }

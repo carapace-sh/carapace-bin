@@ -1,0 +1,3 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: print-token
+description: Pretty-print the contents of a JWT token

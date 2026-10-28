@@ -14,6 +14,6 @@ var template_pullCmd = &cobra.Command{
 func init() {
 	carapace.Gen(template_pullCmd).Standalone()
 	template_pullCmd.Flags().Bool("debug", false, "Enable debug output")
-	template_pullCmd.Flags().Bool("overwrite", false, "Overwrite existing templates?")
+	template_pullCmd.Flags().Bool("overwrite", true, "Overwrite existing templates?")
 	templateCmd.AddCommand(template_pullCmd)
 }

@@ -7,9 +7,10 @@ import (
 )
 
 var secret_updateCmd = &cobra.Command{
-	Use:   "update",
-	Short: "Update a secret",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "update",
+	Short:   "Update a secret",
+	Aliases: []string{"u"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

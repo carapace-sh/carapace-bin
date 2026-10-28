@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: local-run
+description: Start a function with docker for local testing (experimental feature)
+flags:
+    --build: Build function prior to local-run
+    --build-label=*: Add a label for Docker image (LABEL=VALUE)
+    --copy-extra=*: Extra paths that will be copied into the function build context
+    --debug: Enable debug output when pulling templates
+    --disable-stack-pull: Disables the template configuration in the stack.yaml
+    --envsubst: Substitute environment variables in stack.yaml file
+    --handler=: Directory with handler for function, e.g. handler.js
+    --image=: Docker image name to build
+    --lang=: Programming language template
+    --name=: Name of the deployed function
+    --network=: connect function to an existing network, use 'host' to access other process already running on localhost. When using this, '--port' is ignored, if you have port collisions, you may change the port using '-e port=NEW_PORT'
+    --no-cache: Do not use Docker's build cache
+    --overwrite: Overwrite existing templates from the template repository
+    --parallel=: Build in parallel to depth specified.
+    --print: Print the docker command instead of running it
+    --pull: Force a re-pull of base images in template during build, useful for publishing images
+    --quiet: Perform a quiet build, without showing output from Docker
+    --shrinkwrap: Just write files to ./build/ folder for shrink-wrapping
+    --squash: 'Use Docker''s squash flag for smaller images [experimental] '
+    --tag=: Override latest tag on function Docker image, accepts 'digest', 'sha', 'branch', or 'describe', or 'latest'
+    --watch: Watch for changes in files and re-deploy
+    -b, --build-arg=*: Add a build-arg for Docker (KEY=VALUE)
+    -e, --env=: additional environment variables (ENVVAR=VALUE), use this to experiment with different values for your function
+    -o, --build-option=*: Set a build option, e.g. dev
+    -p, --port=: port to bind the function to, set to "0" to use a random port

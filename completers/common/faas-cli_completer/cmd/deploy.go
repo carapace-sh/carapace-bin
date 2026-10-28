@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"time"
+
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/faas-cli_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/env"
@@ -18,14 +20,18 @@ func init() {
 
 	deployCmd.Flags().StringArray("annotation", nil, "Set one or more annotation (ANNOTATION=VALUE)")
 	deployCmd.Flags().StringArray("constraint", nil, "Apply a constraint to the function")
+	deployCmd.Flags().String("cpu-limit", "", "Supply the CPU limit for the function in Mi (when not using a YAML file)")
+	deployCmd.Flags().String("cpu-request", "", "Supply the CPU request for the function in Mi (when not using a YAML file)")
 	deployCmd.Flags().StringArrayP("env", "e", nil, "Set one or more environment variables (ENVVAR=VALUE)")
-	deployCmd.Flags().Bool("envsubst", true, "Substitute environment variables in stack.yml file")
+	deployCmd.Flags().Bool("envsubst", true, "Substitute environment variables in stack.yaml file")
 	deployCmd.Flags().String("fprocess", "", "fprocess value to be run as a serverless function by the watchdog")
 	deployCmd.Flags().StringP("gateway", "g", "http://127.0.0.1:8080", "Gateway URL starting with http(s)://")
 	deployCmd.Flags().String("handler", "", "Directory with handler for function, e.g. handler.js")
 	deployCmd.Flags().String("image", "", "Docker image name to build")
 	deployCmd.Flags().StringArrayP("label", "l", nil, "Set one or more label (LABEL=VALUE)")
 	deployCmd.Flags().String("lang", "", "Programming language template")
+	deployCmd.Flags().String("memory-limit", "", "Supply the memory limit for the function in Mi (when not using a YAML file)")
+	deployCmd.Flags().String("memory-request", "", "Supply the memory request for the function in Mi (when not using a YAML file)")
 	deployCmd.Flags().String("name", "", "Name of the deployed function")
 	deployCmd.Flags().StringP("namespace", "n", "", "Namespace of the function")
 	deployCmd.Flags().String("network", "", "Name of the network")
@@ -34,6 +40,7 @@ func init() {
 	deployCmd.Flags().Bool("replace", false, "Remove and re-create existing function(s)")
 	deployCmd.Flags().StringArray("secret", nil, "Give the function access to a secure secret")
 	deployCmd.Flags().String("tag", "latest", "Override latest tag on function Docker image, accepts 'latest', 'sha', 'branch', or 'describe'")
+	deployCmd.Flags().Duration("timeout", time.Minute, "Timeout for any HTTP calls made to the OpenFaaS API.")
 	deployCmd.Flags().Bool("tls-no-verify", false, "Disable TLS validation")
 	deployCmd.Flags().StringP("token", "k", "", "Pass a JWT token to use instead of basic auth")
 	deployCmd.Flags().Bool("update", true, "Perform rolling update on existing function(s)")
@@ -44,6 +51,6 @@ func init() {
 		"handler":   carapace.ActionDirectories(),
 		"lang":      action.ActionLanguageTemplates(),
 		"namespace": action.ActionNamespaces(),
-		"tag":       carapace.ActionValues("branch", "describe", "latest", "sha"),
+		"tag":       carapace.ActionValues("branch", "describe", "digest", "latest", "sha"),
 	})
 }

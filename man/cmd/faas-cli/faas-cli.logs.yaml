@@ -10,6 +10,7 @@ flags:
     --time-format=: string format for the timestamp, any value go time format string is allowed, empty will not print the timestamp
     --tls-no-verify: Disable TLS validation
     -g, --gateway=: Gateway URL starting with http(s)://
+    -j, --json: Output logs as JSON (equivalent to --output=json)
     -k, --token=: Pass a JWT token to use instead of basic auth
     -n, --namespace=: Namespace of the function
     -o, --output=: output logs as (plain|keyvalue|json), JSON includes all available keys
