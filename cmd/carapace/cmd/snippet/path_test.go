@@ -8,7 +8,7 @@ import (
 )
 
 func TestPathSnippetEscaping(t *testing.T) {
-	configHome := "/opt/\"d$(id)" + "`" + "pa/th\\\\x"
+	configHome := "/opt/\"d$(id)'" + "`" + "pa/th\\\\x"
 	t.Setenv("XDG_CONFIG_HOME", configHome)
 
 	binDir := configHome + "/carapace/bin"

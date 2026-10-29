@@ -27,8 +27,9 @@ func removeObsoleteIn(configDir string) error {
 	}
 
 	for _, entry := range entries {
-		specPath := filepath.Join(configDir, "carapace", "specs", strings.TrimSuffix(entry.Name(), ".exe")+".yaml")
-		if _, err := os.Stat(specPath); os.IsNotExist(err) {
+		specName := strings.TrimSuffix(entry.Name(), ".exe") + ".yaml"
+		specPath := filepath.Join(configDir, "carapace", "specs", specName)
+		if _, err := os.Stat(specPath); os.IsNotExist(err) || !validSpecName(specName) {
 			shimPath := filepath.Join(configDir, "carapace", "bin", entry.Name())
 
 			carapace.LOG.Printf("removing shim %#v", shimPath)
