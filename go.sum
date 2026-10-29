@@ -12,8 +12,8 @@ github.com/carapace-sh/carapace-pnpm v0.0.2 h1:+hOrliH7O1bq1jonNbZPMbvijBafHxEP0
 github.com/carapace-sh/carapace-pnpm v0.0.2/go.mod h1:f9I//SNUgRPSdU/qrZQf49lgOQMxUlX+0CJonGSCeCk=
 github.com/carapace-sh/carapace-selfupdate v0.1.0 h1:ZU8usLo3moT+QzyrMp3HQp2HLQKR+UMc4/6jwkcQRpc=
 github.com/carapace-sh/carapace-selfupdate v0.1.0/go.mod h1:ONNyHxhjDo6A0yYO3rKlF5jO6Bs2JwZeQt4C52pfz3s=
-github.com/carapace-sh/carapace-shlex/v2 v2.1.2 h1:TZBiAqg/85LGoM7flkVXVn49/qlAXhrtLmrbYKuEoOg=
-github.com/carapace-sh/carapace-shlex/v2 v2.1.2/go.mod h1:07CXBqTrzzdZRgkFRpnDQ9zvIcGbKppjmaxNLyP+zgY=
+github.com/carapace-sh/carapace-shlex/v2 v2.1.3 h1:U5pT/ykSY9385tNIZ3dP2J8oxsGdPN8XL/0hoOYsMAc=
+github.com/carapace-sh/carapace-shlex/v2 v2.1.3/go.mod h1:07CXBqTrzzdZRgkFRpnDQ9zvIcGbKppjmaxNLyP+zgY=
 github.com/carapace-sh/carapace-spec v1.10.0 h1:HZfoAtegDCRO8XYH6r/ooft8qdXKuWcsQ4g6f69Ho3Q=
 github.com/carapace-sh/carapace-spec v1.10.0/go.mod h1:skMC7y5/84ZK4/P5y1ZtNQC8AdFX5v2lUc1ztd/0u5Y=
 github.com/carapace-sh/ssh_config v1.4.1-0.20260319075335-4f04016b8b4b h1:f4NGFmIRWxmaQIVX8vt2pEJdFLjz3qwoQWqMxhKjlBI=
