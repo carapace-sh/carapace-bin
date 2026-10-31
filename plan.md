@@ -49,12 +49,31 @@ This file is the tracker: update a row when you start or finish it.
 Scrapers for batch 1 live in `../scrape` on `feat/completers-batch-1` (da99f55):
 `scrapers/{kind,skaffold,ruff,pre-commit}` plus their `package.json` entries.
 
+## Batch 2 (done)
+
+| command | approach | source | status |
+|---|---|---|---|
+| meson | scrape:argparse | mesonbuild/meson 1.12.1 | done (fa2da5914) |
+| llm | scrape:click | simonw/llm 0.36 | done (fa2da5914) |
+
+Scrapers for batch 2 live in `../scrape` on `feat/completers-batch-2` (4e61f8e):
+`scrapers/{meson,llm}`. `scrapers/llm` is the first click scraper and can be
+reused for other click CLIs by pointing it at another package.
+
 ## Suggested next batch
 
-Scraper-based wins from Queue A, in this order (each is a new scraper):
-`sfdx` (oclif), `heroku` (oclif), `firewall-cmd` (argparse), `s3cmd` (argparse),
-`waydroid` (argparse), `llm` (click). Then the two manual high-value ones:
-`btrfs` (mirror `pkg/actions/tools/zfs`) and `svn`.
+In this order:
+
+1. `btrfs` (manual, mirror `pkg/actions/tools/zfs`). The installed binary can
+   dump its own help (`btrfs --help`, `btrfs <group> <cmd> --help`); parse that
+   into the command tree and then verify the option names against the current
+   upstream `cmds/*.c`.
+2. `svn` (manual; subcommands and options from `svn help <cmd>`).
+3. `firewall-cmd` (argparse) and `waydroid` (argparse) - both scrapers are
+   close to the existing argparse recipe; confirm the parser is reachable.
+4. `sfdx` and `heroku` (oclif) - requires the oclif carapace spec plugin, which
+   is not wired into `../scrape` yet; verify the plugin still works for these
+   versions before adding the scrapers.
 
 ## Queue A: fish surface >= 4 KB (127 commands)
 
@@ -71,7 +90,7 @@ Scraper-based wins from Queue A, in this order (each is a new scraper):
 | 9 | `magento` | 35 KB | manual | magento/magento2 bin/magento | todo |
 | 10 | `cvs` | 32 KB | manual | cvs --help-commands | todo |
 | 11 | `fossil` | 31 KB | manual | fossil-scm/fossil (fossil help) | todo |
-| 12 | `meson` | 27 KB | ? | mesonbuild/meson (check argparse) | todo |
+| 12 | `meson` | 27 KB | scrape:argparse | mesonbuild/meson 1.12.1 | done (fa2da5914) |
 | 13 | `quilt` | 25 KB | manual | quilt(1) man page | todo |
 | 14 | `arc` | 22 KB | manual | phacility/arcanist | todo |
 | 15 | `firewall-cmd` | 21 KB | scrape:argparse | firewalld/firewalld | todo |
@@ -126,7 +145,7 @@ Scraper-based wins from Queue A, in this order (each is a new scraper):
 | 64 | `john` | 8 KB | manual | openwall/john | todo |
 | 65 | `zef` | 8 KB | manual | Raku zef | todo |
 | 66 | `gio` | 8 KB | manual | GNOME glib | todo |
-| 67 | `llm` | 8 KB | scrape:click | simonw/llm | todo |
+| 67 | `llm` | 8 KB | scrape:click | simonw/llm | done (fa2da5914) |
 | 68 | `qubes-gpg-client` | 7 KB | manual | Qubes OS | todo |
 | 69 | `cdrecord` | 7 KB | skip | - | skip (cdrkit, retired) |
 | 70 | `yadm` | 7 KB | manual | yadm/yadm | todo |
@@ -770,3 +789,10 @@ Grouped by domain so one session can take a whole category. All rows are
   parser; `scrapers/pre-commit/clean.py` strips it.
 - Verify completion output without a shell:
   `./carapace <tool> export <tool> <args...> "prefix"`.
+- Group commands in a spec (for example `llm keys`) do not carry the flags of
+  their children; register flag completion per leaf command. Where a shared map
+  is convenient, filter it with `cmd.LocalFlags().Lookup(name)`.
+- Follow-ups for batch 2: `llm` cannot complete model names, keys, schemas,
+  templates, fragments or conversation ids yet (they live in the llm database
+  or config directory); `meson` leaves `-D` project options and `test` names
+  alone because both need a configured build directory.
