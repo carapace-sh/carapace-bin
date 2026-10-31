@@ -55,6 +55,7 @@ Scrapers for batch 1 live in `../scrape` on `feat/completers-batch-1` (da99f55):
 |---|---|---|---|
 | meson | scrape:argparse | mesonbuild/meson 1.12.1 | done (fa2da5914) |
 | llm | scrape:click | simonw/llm 0.36 | done (fa2da5914) |
+| pg_dump | manual | PostgreSQL 18 (pg_dump help) | done (fda7e7ffd) |
 
 Scrapers for batch 2 live in `../scrape` on `feat/completers-batch-2` (4e61f8e):
 `scrapers/{meson,llm}`. `scrapers/llm` is the first click scraper and can be
@@ -190,7 +191,7 @@ In this order:
 | 109 | `lxc` | 5 KB | manual | lxc/lxc | todo |
 | 110 | `cwebp` | 5 KB | manual | webmproject/libwebp | todo |
 | 111 | `connmanctl` | 5 KB | manual | connman | todo |
-| 112 | `pg_dump` | 5 KB | manual | PostgreSQL (extend psql_completer pattern) | todo |
+| 112 | `pg_dump` | 5 KB | manual | PostgreSQL 18 | done (fda7e7ffd) |
 | 113 | `travis` | 5 KB | skip | - | skip (Travis CLI, retired) |
 | 114 | `rbenv` | 4 KB | manual | rbenv/rbenv | todo |
 | 115 | `configure` | 4 KB | manual | autoconf (generic configure flags) | todo |
