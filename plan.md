@@ -56,6 +56,8 @@ Scrapers for batch 1 live in `../scrape` on `feat/completers-batch-1` (da99f55):
 | meson | scrape:argparse | mesonbuild/meson 1.12.1 | done (fa2da5914) |
 | llm | scrape:click | simonw/llm 0.36 | done (fa2da5914) |
 | pg_dump | manual | PostgreSQL 18 (pg_dump help) | done (fda7e7ffd) |
+| rbenv | manual | rbenv/rbenv v1.3.2 (libexec) | done (983821109) |
+| pyenv | manual | pyenv/pyenv v2.8.14 (libexec) | done (983821109) |
 
 Scrapers for batch 2 live in `../scrape` on `feat/completers-batch-2` (4e61f8e):
 `scrapers/{meson,llm}`. `scrapers/llm` is the first click scraper and can be
@@ -193,12 +195,12 @@ In this order:
 | 111 | `connmanctl` | 5 KB | manual | connman | todo |
 | 112 | `pg_dump` | 5 KB | manual | PostgreSQL 18 | done (fda7e7ffd) |
 | 113 | `travis` | 5 KB | skip | - | skip (Travis CLI, retired) |
-| 114 | `rbenv` | 4 KB | manual | rbenv/rbenv | todo |
+| 114 | `rbenv` | 4 KB | manual | rbenv/rbenv v1.3.2 | done (983821109) |
 | 115 | `configure` | 4 KB | manual | autoconf (generic configure flags) | todo |
 | 116 | `btrbk` | 4 KB | manual | digint/btrbk | todo |
 | 117 | `gsettings` | 4 KB | manual | GNOME glib | todo |
 | 118 | `udisksctl` | 4 KB | manual | storaged-project/udisks | todo |
-| 119 | `pyenv` | 4 KB | manual | pyenv/pyenv | todo |
+| 119 | `pyenv` | 4 KB | manual | pyenv/pyenv v2.8.14 | done (983821109) |
 | 120 | `portmaster` | 4 KB | manual | FreeBSD ports | todo |
 | 121 | `guile` | 4 KB | manual | guile scheme | todo |
 | 122 | `msfvenom` | 4 KB | manual | rapid7/metasploit-framework | todo |
@@ -796,4 +798,6 @@ Grouped by domain so one session can take a whole category. All rows are
 - Follow-ups for batch 2: `llm` cannot complete model names, keys, schemas,
   templates, fragments or conversation ids yet (they live in the llm database
   or config directory); `meson` leaves `-D` project options and `test` names
-  alone because both need a configured build directory.
+  alone because both need a configured build directory; `rbenv`/`pyenv` do not
+  complete hook script paths (`hooks <command>` second argument) and `exec`
+  arguments after the command name.
