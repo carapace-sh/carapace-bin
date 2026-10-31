@@ -1,10 +1,11 @@
 # Adding missing completers (batch 1)
 
-Source of the shortlist: a diff of the ~1000 completion files shipped by fish
+Source of the shortlist: a diff of the 1098 completion files shipped by fish
 (`share/completions/`) against `completers/*/*_completer` here, minus the 76
 commands already served by known bridges (`cmd/carapace/cmd/completers/bridges.go`).
-627 fish-supported commands had no native completer; the entries below are the
-subset worth implementing in this batch.
+408 fish commands have a native completer, 21 more are bridge-only, and 669 have
+neither (61%). Even restricting to fish files of at least 4 KB, coverage is 102
+of 234. The entries below are the first slice of that gap.
 
 fish files are only used as a popularity/surface-size signal. Every flag,
 subcommand and argument is verified against the source code or documentation of
