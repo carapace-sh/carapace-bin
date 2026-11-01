@@ -30,7 +30,7 @@ func pathSnippet(shell string) (snippet string) {
 		snippet = fmt.Sprintf(`fish_add_path "%v"`, shlex.Escape(binDir, shlex.Fish))
 
 	case "nushell":
-		fixedBinDir := strings.NewReplacer(`\`, `\\`, `"`, `\"`, "\n", `\n`, "\r", `\r`, "\t", `\t`).Replace(binDir)
+		fixedBinDir := shlex.Escape(binDir, shlex.Nushell)
 		if runtime.GOOS == "windows" {
 			snippet = fmt.Sprintf(`$env.Path = ($env.Path | split row (char esep) | where { $in != "%v" } | prepend "%v")`, fixedBinDir, fixedBinDir)
 		} else {

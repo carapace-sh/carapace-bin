@@ -9,7 +9,7 @@ require (
 	github.com/carapace-sh/carapace-jq v0.0.4
 	github.com/carapace-sh/carapace-pnpm v0.0.2
 	github.com/carapace-sh/carapace-selfupdate v0.1.0
-	github.com/carapace-sh/carapace-shlex/v2 v2.1.3
+	github.com/carapace-sh/carapace-shlex/v2 v2.1.4
 	github.com/carapace-sh/carapace-spec v1.10.0
 	github.com/micromdm/plist v0.3.0
 	github.com/pelletier/go-toml v1.9.5
