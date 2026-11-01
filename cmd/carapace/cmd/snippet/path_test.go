@@ -8,7 +8,7 @@ import (
 )
 
 func TestPathSnippetEscaping(t *testing.T) {
-	configHome := "/opt/\"d$(id)'" + "`" + "pa/th\\\\x"
+	configHome := "/opt/\"d$(id)'" + "`" + "pa/th\\\\x\t\nmore"
 	t.Setenv("XDG_CONFIG_HOME", configHome)
 
 	binDir := configHome + "/carapace/bin"
@@ -45,33 +45,23 @@ func TestPathSnippetEscaping(t *testing.T) {
 				t.Fatalf("Split failed: %v", err)
 			}
 
+			expected := binDir
+			if shell == "xonsh" {
+				// shlex's xonsh lexer keeps the \n and \r escapes literally
+				// (Value differs from the actual xonsh value)
+				expected = strings.NewReplacer("\n", `\n`, "\r", `\r`).Replace(binDir)
+			}
+
 			found := false
 			for _, token := range tokens {
-				if strings.Contains(token.Value, binDir) {
+				if strings.Contains(token.Value, expected) {
 					found = true
 					break
 				}
 			}
 			if !found {
-				t.Fatalf("no token containing literal binDir %q after splitting : %q", binDir, snippet)
+				t.Fatalf("no token containing literal binDir %q after splitting : %q", expected, snippet)
 			}
 		})
 	}
-}
-
-func TestPathSnippetNushellRoundTrip(t *testing.T) {
-	configHome := "/opt/\"d$(id)'`pa/th\\\\x\t\nmore"
-	t.Setenv("XDG_CONFIG_HOME", configHome)
-
-	binDir := configHome + "/carapace/bin"
-	tokens, err := shlex.Split(pathSnippet("nushell"), shlex.Nushell)
-	if err != nil {
-		t.Fatalf("Split: %v", err)
-	}
-	for _, token := range tokens {
-		if strings.Contains(token.Value, binDir) {
-			return
-		}
-	}
-	t.Fatalf("no token containing literal binDir %q after splitting", binDir)
 }

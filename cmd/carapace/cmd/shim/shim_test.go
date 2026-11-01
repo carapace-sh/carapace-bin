@@ -68,33 +68,18 @@ func TestIsRunnable(t *testing.T) {
 }
 
 func TestBodyEscaping(t *testing.T) {
-	t.Setenv("XDG_CONFIG_HOME", t.TempDir())
-	configDir, err := xdg.UserConfigDir()
-	if err != nil {
-		t.Fatal(err)
+	targets := map[string]string{
+		"tick in name":         "$CONFIG/carapace/specs/cal`touch PROOF`.yaml",
+		"subshell in name":     "$CONFIG/carapace/specs/d$(touch PROOF)z.yaml",
+		"quote in name":        `$CONFIG/carapace/specs/a" b.yaml`,
+		"backslash in name":    `$CONFIG/carapace/specs/back\slash.yaml`,
+		"space in name":        "$CONFIG/carapace/specs/spa ce.yaml",
+		"mixed specials":       `$CONFIG/carapace/specs/test$(a)b,c'd.yaml`,
+		"env substituted path": "$HOME/`back`/tick$(x)s/pipe|and$var.yaml",
 	}
 
-	names := []string{
-		"cal`touch PROOF`.yaml",
-		"d$(touch PROOF)z.yaml",
-		"a\" b.yaml",
-		`back\slash.yaml`,
-		"spa ce.yaml",
-		`test$(a)b,c'd.yaml`,
-	}
-
-	targets := make([]string, 0, len(names)+1)
-	subtests := make([]string, 0, len(names)+1)
-	for _, name := range names {
-		targets = append(targets, fmt.Sprintf("%v/carapace/specs/%v", configDir, name))
-		subtests = append(subtests, name)
-	}
-	// environment-dependent config dir
-	targets = append(targets, "$HOME/`back`/tick$(x)s/pipe|and$var.yaml")
-	subtests = append(subtests, "env substituted path")
-
-	for index, target := range targets {
-		t.Run(subtests[index], func(t *testing.T) {
+	for name, target := range targets {
+		t.Run(name, func(t *testing.T) {
 			full := strings.TrimPrefix(string(body(target)), "#!/bin/sh\n")
 			tokens, err := shlex.Split(full, shlex.Bash)
 			if err != nil {
@@ -137,6 +122,7 @@ func TestValidSpecName(t *testing.T) {
 		"-lead.yaml":         false,
 		"new\nline.yaml":     false,
 		"carriage\ract.yaml": false,
+		"tab\tchar.yaml":     false,
 	}
 
 	for name, want := range tests {
