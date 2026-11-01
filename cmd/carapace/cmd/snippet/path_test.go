@@ -58,3 +58,20 @@ func TestPathSnippetEscaping(t *testing.T) {
 		})
 	}
 }
+
+func TestPathSnippetNushellRoundTrip(t *testing.T) {
+	configHome := "/opt/\"d$(id)'`pa/th\\\\x\t\nmore"
+	t.Setenv("XDG_CONFIG_HOME", configHome)
+
+	binDir := configHome + "/carapace/bin"
+	tokens, err := shlex.Split(pathSnippet("nushell"), shlex.Nushell)
+	if err != nil {
+		t.Fatalf("Split: %v", err)
+	}
+	for _, token := range tokens {
+		if strings.Contains(token.Value, binDir) {
+			return
+		}
+	}
+	t.Fatalf("no token containing literal binDir %q after splitting", binDir)
+}

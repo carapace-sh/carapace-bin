@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/carapace-sh/carapace"
 	shlex "github.com/carapace-sh/carapace-shlex/v2"
 )
 
@@ -15,6 +16,7 @@ func Tcsh(completers []string) string {
 		// second occurrence sits inside a hand-built quote sequence that cannot
 		// represent arbitrary characters, so only inert barewords are supported
 		if !shlex.IsBareWord(c, shlex.Tcsh) {
+			carapace.LOG.Printf("tcsh: skipped completer %#v: only bareword names are supported", c)
 			continue
 		}
 		snippet = append(snippet, fmt.Sprintf("complete \"%v\" 'p@*@`echo \"$COMMAND_LINE'\"''\"'\" | xargs env CARAPACE_SHELL=tcsh carapace %v tcsh `@@' ;", c, c))
