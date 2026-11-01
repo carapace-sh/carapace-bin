@@ -9,10 +9,13 @@ import (
 	"path/filepath"
 	"regexp"
 	"runtime"
+	"slices"
 	"sort"
 	"strings"
 	"sync"
 	"testing"
+
+	shlex "github.com/carapace-sh/carapace-shlex/v2"
 )
 
 func TestIsRunnable(t *testing.T) {
@@ -60,6 +63,119 @@ func TestIsRunnable(t *testing.T) {
 
 	if (shim{Target: filepath.Join(t.TempDir(), "missing.yaml")}).IsRunnable() {
 		t.Fatal("IsRunnable() = true for a missing file")
+	}
+}
+
+func TestBodyEscaping(t *testing.T) {
+	targets := map[string]string{
+		"tick in name":         "$CONFIG/carapace/specs/cal`touch PROOF`.yaml",
+		"subshell in name":     "$CONFIG/carapace/specs/d$(touch PROOF)z.yaml",
+		"quote in name":        `$CONFIG/carapace/specs/a" b.yaml`,
+		"backslash in name":    `$CONFIG/carapace/specs/back\slash.yaml`,
+		"space in name":        "$CONFIG/carapace/specs/spa ce.yaml",
+		"mixed specials":       `$CONFIG/carapace/specs/test$(a)b,c'd.yaml`,
+		"env substituted path": "$HOME/`back`/tick$(x)s/pipe|and$var.yaml",
+	}
+
+	for name, target := range targets {
+		t.Run(name, func(t *testing.T) {
+			full := strings.TrimPrefix(string(body(target)), "#!/bin/sh\n")
+			tokens, err := shlex.Split(full, shlex.Bash)
+			if err != nil {
+				t.Fatalf("Split(%q): %v", full, err)
+			}
+			want := []string{"exec", "carapace", "--run", target, "$@"}
+			if len(tokens) != len(want) {
+				t.Fatalf("token count = %v, want %v: %v", len(tokens), len(want), tokens)
+			}
+			for index, token := range tokens {
+				if token.Value != want[index] {
+					t.Fatalf("token %v = %q, want %q", index, token.Value, want[index])
+				}
+			}
+		})
+	}
+}
+
+func TestBodyStaysRunnable(t *testing.T) {
+	target := "/demo/config/carapace/specs/demo.yaml"
+
+	if got, want := string(body(target)), fmt.Sprintf("#!/bin/sh\nexec carapace --run \"%v\" \"$@\"", target); got != want {
+		t.Fatalf("body() = %q, want %q", got, want)
+	}
+}
+
+func TestValidSpecName(t *testing.T) {
+	tests := map[string]bool{
+		"demo.yaml":          true,
+		"my.tool-2.yaml":     true,
+		"with space.yaml":    true,
+		"tick`name`.yaml":    true,
+		".yaml":              false,
+		"..yaml":             false,
+		"-lead.yaml":         false,
+		"new\nline.yaml":     false,
+		"carriage\ract.yaml": false,
+		"tab\tchar.yaml":     false,
+	}
+
+	for name, want := range tests {
+		if got := validSpecName(name); got != want {
+			t.Errorf("validSpecName(%q) = %v, want %v", name, got, want)
+		}
+	}
+}
+
+func TestUpdateSkipsInvalidSpecNames(t *testing.T) {
+	configDir := t.TempDir()
+	cacheDir := t.TempDir()
+	t.Setenv("XDG_CONFIG_HOME", configDir)
+	t.Setenv("XDG_CACHE_HOME", cacheDir)
+
+	specDir := filepath.Join(configDir, "carapace", "specs")
+	if err := os.MkdirAll(specDir, 0o755); err != nil {
+		t.Fatal(err)
+	}
+
+	runnable := []byte("name: valid\ndescription: test\nrun: \"[echo]\"\n")
+	invalid := []string{"..yaml", "-lead.yaml"}
+	if runtime.GOOS != "windows" {
+		invalid = append(invalid, "new\nline.yaml")
+	}
+	for _, name := range append([]string{"valid.yaml"}, invalid...) {
+		if err := os.WriteFile(filepath.Join(specDir, name), runnable, 0o644); err != nil {
+			t.Fatalf("write spec %q: %v", name, err)
+		}
+	}
+
+	binDir := filepath.Join(configDir, "carapace", "bin")
+	if err := os.MkdirAll(binDir, 0o755); err != nil {
+		t.Fatal(err)
+	}
+	for _, name := range []string{"-lead", "stale"} {
+		if err := os.WriteFile(filepath.Join(binDir, name), []byte("#!/bin/sh\n"), 0o755); err != nil {
+			t.Fatalf("write shim %q: %v", name, err)
+		}
+	}
+
+	if err := Update(); err != nil {
+		t.Fatal(err)
+	}
+
+	entries, err := os.ReadDir(binDir)
+	if err != nil {
+		t.Fatal(err)
+	}
+	shims := make([]string, 0, len(entries))
+	for _, entry := range entries {
+		shims = append(shims, entry.Name())
+	}
+	if want := []string{"valid"}; !slices.Equal(shims, want) {
+		t.Fatalf("shims = %v, want %v", shims, want)
+	}
+
+	if _, err := os.Stat(filepath.Join(cacheDir, "carapace", ".shims")); !os.IsNotExist(err) {
+		t.Fatalf("dummy shims written for invalid spec names: %v", err)
 	}
 }
 

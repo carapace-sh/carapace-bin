@@ -8,6 +8,7 @@ import (
 	"runtime"
 	"strings"
 	"sync"
+	"unicode"
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace/pkg/xdg"
@@ -33,11 +34,28 @@ func Update() error {
 
 	targets := make([]shim, 0, len(entries))
 	for _, entry := range entries {
-		if strings.HasSuffix(entry.Name(), ".yaml") {
-			targets = append(targets, shim{Target: fmt.Sprintf("%v/carapace/specs/%v", configDir, entry.Name())})
+		if !strings.HasSuffix(entry.Name(), ".yaml") {
+			continue
 		}
+		if !validSpecName(entry.Name()) {
+			carapace.LOG.Printf("skipped invalid spec filename %q", entry.Name())
+			continue
+		}
+		targets = append(targets, shim{Target: fmt.Sprintf("%v/carapace/specs/%v", configDir, entry.Name())})
 	}
 	return updateTargets(targets)
+}
+
+func validSpecName(name string) bool {
+	stem := strings.TrimSuffix(name, ".yaml")
+	switch stem {
+	case "", ".", "..":
+		return false
+	}
+	if stem[0] == '-' {
+		return false
+	}
+	return !strings.ContainsFunc(stem, unicode.IsControl)
 }
 
 func updateTargets(targets []shim) error {
