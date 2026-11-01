@@ -1,6 +1,7 @@
 package snippet
 
 import (
+	"runtime"
 	"strings"
 	"testing"
 
@@ -8,7 +9,12 @@ import (
 )
 
 func TestPathSnippetEscaping(t *testing.T) {
+	// the fixture must be an absolute path: xdg.UserConfigDir falls back to
+	// OS defaults otherwise. Windows additionally exercises backslashes.
 	configHome := "/opt/\"d$(id)'" + "`" + "pa/th\\\\x\t\nmore"
+	if runtime.GOOS == "windows" {
+		configHome = `C:\opt\` + "\"d$(id)'" + "`" + `pa\\th\\x` + "\t\nmore"
+	}
 	t.Setenv("XDG_CONFIG_HOME", configHome)
 
 	binDir := configHome + "/carapace/bin"

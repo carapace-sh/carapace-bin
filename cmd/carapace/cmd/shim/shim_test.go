@@ -67,6 +67,10 @@ func TestIsRunnable(t *testing.T) {
 }
 
 func TestBodyEscaping(t *testing.T) {
+	if runtime.GOOS == "windows" {
+		t.Skip("windows shims are embedded executables, escaping doesn't apply")
+	}
+
 	targets := map[string]string{
 		"tick in name":         "$CONFIG/carapace/specs/cal`touch PROOF`.yaml",
 		"subshell in name":     "$CONFIG/carapace/specs/d$(touch PROOF)z.yaml",
@@ -98,6 +102,10 @@ func TestBodyEscaping(t *testing.T) {
 }
 
 func TestBodyStaysRunnable(t *testing.T) {
+	if runtime.GOOS == "windows" {
+		t.Skip("windows shims are embedded executables, escaping doesn't apply")
+	}
+
 	target := "/demo/config/carapace/specs/demo.yaml"
 
 	if got, want := string(body(target)), fmt.Sprintf("#!/bin/sh\nexec carapace --run \"%v\" \"$@\"", target); got != want {
@@ -152,7 +160,11 @@ func TestUpdateSkipsInvalidSpecNames(t *testing.T) {
 	if err := os.MkdirAll(binDir, 0o755); err != nil {
 		t.Fatal(err)
 	}
-	for _, name := range []string{"-lead", "stale"} {
+	extension := ""
+	if runtime.GOOS == "windows" {
+		extension = ".exe"
+	}
+	for _, name := range []string{"-lead" + extension, "stale" + extension} {
 		if err := os.WriteFile(filepath.Join(binDir, name), []byte("#!/bin/sh\n"), 0o755); err != nil {
 			t.Fatalf("write shim %q: %v", name, err)
 		}
@@ -170,7 +182,7 @@ func TestUpdateSkipsInvalidSpecNames(t *testing.T) {
 	for _, entry := range entries {
 		shims = append(shims, entry.Name())
 	}
-	if want := []string{"valid"}; !slices.Equal(shims, want) {
+	if want := []string{"valid" + extension}; !slices.Equal(shims, want) {
 		t.Fatalf("shims = %v, want %v", shims, want)
 	}
 
