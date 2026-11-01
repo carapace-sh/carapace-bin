@@ -6,7 +6,7 @@ import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/but"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
-	shlex "github.com/carapace-sh/carapace-shlex"
+	shlex "github.com/carapace-sh/carapace-shlex/v2"
 	"github.com/carapace-sh/carapace/pkg/traverse"
 	"github.com/carapace-sh/carapace/pkg/util"
 	"github.com/spf13/cobra"
@@ -35,16 +35,22 @@ func init() {
 		&cobra.Group{ID: "server interactions"},
 		&cobra.Group{ID: "rules"},
 		&cobra.Group{ID: "other commands"},
+		&cobra.Group{ID: "alias"},
 	)
 
-	rootCmd.Flags().StringP("current-dir", "C", "", "Run as if but was started in PATH instead of the current working directory")
-	rootCmd.PersistentFlags().String("format", "", "Explicitly control how output should be formatted")
+	rootCmd.Flags().StringP("current-dir", "C", ".", "Run as if but was started in PATH instead of the current working directory")
 	rootCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	rootCmd.PersistentFlags().Bool("json", false, "Output detailed information as JSON for tool consumption")
+	rootCmd.Flags().String("log-file", "", "Log to this file instead of stderr")
+	rootCmd.PersistentFlags().Bool("status-after", false, "Append workspace status when supported by a mutation command")
+	rootCmd.Flags().CountP("trace", "t", "Enable tracing for debug and performance information printed to stderr")
 	rootCmd.Flags().BoolP("version", "V", false, "Print version")
+	rootCmd.Flag("log-file").Hidden = true
+	rootCmd.Flag("trace").Hidden = true
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"current-dir": carapace.ActionDirectories(),
-		"format":      carapace.ActionValues("human", "agent", "shell", "json", "none"),
+		"log-file":    carapace.ActionFiles(),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
@@ -77,7 +83,7 @@ func init() {
 				aliasCmd := &cobra.Command{
 					Use:                key,
 					Short:              strings.TrimSpace(value),
-					GroupID:            "other commands",
+					GroupID:            "alias",
 					DisableFlagParsing: true,
 					Run:                func(cmd *cobra.Command, args []string) {},
 				}
@@ -85,7 +91,7 @@ func init() {
 
 				carapace.Gen(aliasCmd).PositionalAnyCompletion(
 					carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-						splitted, err := shlex.Split(aliasCmd.Short)
+						splitted, err := shlex.Split(aliasCmd.Short, shlex.Default)
 						if err != nil {
 							return carapace.ActionMessage(err.Error())
 						}

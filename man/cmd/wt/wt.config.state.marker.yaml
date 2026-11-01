@@ -3,3 +3,16 @@ name: marker
 description: Branch markers
 flags:
     -h, --help: Print help (see more with '--help')
+persistentflags:
+    --format=:
+        description: 'Output format (text, json) [default: text]'
+        default: text
+completion:
+    flag:
+        C:
+            - $files
+        config:
+            - $files
+        format:
+            - text
+            - json

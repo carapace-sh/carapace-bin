@@ -2,4 +2,7 @@
 name: blame
 description: Start a blame viewer on the specified file on the given version
 flags:
-  --line=: Loads annotations as described above and automatically scrolls the view
+  --line=: loads annotations as described above and automatically scrolls the view
+documentation:
+  flag:
+    line: loads annotations as described above and automatically scrolls the view

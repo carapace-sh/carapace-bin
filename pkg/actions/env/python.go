@@ -61,7 +61,7 @@ func init() {
 				"PYTHONWARNINGS":          python.ActionWarningControls().List(","),
 				"PYTHONHASHSEED":          carapace.ActionValues(),
 				"PYTHONINTMAXSTRDIGITS":   carapace.ActionValues(),
-				"PYTHONMALLOC":            carapace.ActionValues("malloc", "pymalloc", "debug", "malloc_debug", "pymalloc_debug"), // TODO verify
+				"PYTHONMALLOC":            carapace.ActionValues("debug", "malloc", "malloc_debug", "pymalloc", "pymalloc_debug"), // TODO verify
 				"PYTHONMALLOCSTATS":       carapace.ActionValues("1"),
 				"PYTHONASYNCIODEBUG":      carapace.ActionValues("1"),
 				"PYTHONTRACEMALLOC":       carapace.ActionValues("1", "5", "10", "25", "50", "100"),

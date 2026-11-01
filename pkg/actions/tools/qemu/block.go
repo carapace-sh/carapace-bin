@@ -58,11 +58,11 @@ func ActionImageFormats() carapace.Action {
 //	writeback (write-back caching (default))
 func ActionCacheModes() carapace.Action {
 	return carapace.ActionValuesDescribed(
+		"directsync", "direct sync",
 		"none", "no caching",
+		"unsafe", "unsafe caching",
 		"writeback", "write-back caching (default)",
 		"writethrough", "write-through caching",
-		"directsync", "direct sync",
-		"unsafe", "unsafe caching",
 	).Tag("cache modes").Uid("qemu", "cache-mode")
 }
 
@@ -72,9 +72,9 @@ func ActionCacheModes() carapace.Action {
 //	native (Linux native AIO)
 func ActionAioModes() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"threads", "pthreads based AIO",
-		"native", "Linux native AIO",
 		"io_uring", "Linux io_uring AIO",
+		"native", "Linux native AIO",
+		"threads", "pthreads based AIO",
 	).Tag("aio modes").Uid("qemu", "aio-mode")
 }
 
@@ -84,9 +84,9 @@ func ActionAioModes() carapace.Action {
 //	fuse (Filesystem in Userspace)
 func ActionExportTypes() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"nbd", "Network Block Device",
 		"fuse", "Filesystem in Userspace",
-		"vhost-user-blk", "vhost-user block device",
+		"nbd", "Network Block Device",
 		"vduse-blk", "VDUSE block device",
+		"vhost-user-blk", "vhost-user block device",
 	).Tag("export types").Uid("qemu", "export-type")
 }

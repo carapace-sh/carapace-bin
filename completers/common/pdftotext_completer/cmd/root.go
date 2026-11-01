@@ -49,7 +49,7 @@ func init() {
 	rootCmd.Flags().StringS("y", "y", "", "y-coordinate of the crop area top left corner")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"eol": carapace.ActionValues("unix", "dos", "mac"),
+		"eol": carapace.ActionValues("dos", "mac", "unix"),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

@@ -4,30 +4,44 @@ description: Builds, pushes and deploys OpenFaaS function containers
 flags:
     --annotation=*: Set one or more annotation (ANNOTATION=VALUE)
     --build-label=*: Add a label for Docker image (LABEL=VALUE)
+    --builder-public-key=: Builder public key as a literal value, or a path to a file containing raw base64 or the JSON response from /publickey
     --constraint=*: Apply a constraint to the function
     --copy-extra=*: Extra paths that will be copied into the function build context
-    --disable-stack-pull: Disables the template configuration in the stack.yml
-    --envsubst: Substitute environment variables in stack.yml file
+    --cpu-limit=: Supply the CPU limit for the function in Mi (when not using a YAML file)
+    --cpu-request=: Supply the CPU request for the function in Mi (when not using a YAML file)
+    --debug: Enable debug output when pulling templates
+    --disable-stack-pull: Disables the template configuration in the stack.yaml
+    --envsubst: Substitute environment variables in stack.yaml file
     --fprocess=: fprocess value to be run as a serverless function by the watchdog
     --handler=: Directory with handler for function, e.g. handler.js
     --image=: Docker image name to build
     --lang=: Programming language template
+    --memory-limit=: Supply the memory limit for the function in Mi (when not using a YAML file)
+    --memory-request=: Supply the memory request for the function in Mi (when not using a YAML file)
     --name=: Name of the deployed function
     --network=: Name of the network
     --no-cache: Do not use Docker's build cache
+    --overwrite: Overwrite existing templates from the template repository
     --parallel=: Build in parallel to depth specified.
+    --payload-secret=: Path to the payload secret file
+    --platforms=: Publish for these platforms, when used with --publish
+    --publish: Use faas-cli publish instead of faas-cli build followed by faas-cli push
+    --pull: Force a re-pull of base images in template during build, useful for publishing images
     --quiet: Perform a quiet build, without showing output from Docker
     --read-template: Read the function's template
     --readonly: Force the root container filesystem to be read only
+    --remote-builder=: URL to the builder
     --replace: Remove and re-create existing function(s)
     --secret=*: Give the function access to a secure secret
     --shrinkwrap: Just write files to ./build/ folder for shrink-wrapping
     --skip-deploy: Skip function deployment
     --skip-push: Skip pushing function to remote registry
     --squash: 'Use Docker''s squash flag for smaller images [experimental] '
-    --tag=: Override latest tag on function Docker image, accepts 'latest', 'sha', 'branch', or 'describe'
+    --tag=: Override latest tag on function Docker image, accepts 'digest', 'sha', 'branch', or 'describe', or 'latest'
+    --timeout=: Timeout for any HTTP calls made to the OpenFaaS API.
     --tls-no-verify: Disable TLS validation
     --update: Perform rolling update on existing function(s)
+    --watch: Watch for changes in files and re-deploy
     -b, --build-arg=*: Add a build-arg for Docker (KEY=VALUE)
     -e, --env=*: Set one or more environment variables (ENVVAR=VALUE)
     -g, --gateway=: Gateway URL starting with http(s)://

@@ -16,5 +16,6 @@ func init() {
 
 	hook_approvals_clearCmd.Flags().BoolP("global", "g", false, "Clear global approvals")
 	hook_approvals_clearCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	hook_approvals_clearCmd.Flags().Bool("stale", false, "Clear only stale approvals")
 	hook_approvalsCmd.AddCommand(hook_approvals_clearCmd)
 }

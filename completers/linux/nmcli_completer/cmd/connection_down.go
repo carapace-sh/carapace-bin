@@ -19,7 +19,7 @@ func init() {
 
 	carapace.Gen(connection_downCmd).PositionalCompletion(
 		carapace.Batch(
-			carapace.ActionValues("id", "uuid", "path", "apath"),
+			carapace.ActionValues("apath", "id", "path", "uuid"),
 			net.ActionConnections(),
 		).ToA(),
 	)
@@ -33,7 +33,7 @@ func init() {
 				}
 			}
 			return carapace.Batch(
-				carapace.ActionValues("id", "uuid", "path", "apath"),
+				carapace.ActionValues("apath", "id", "path", "uuid"),
 				net.ActionConnections(),
 			).ToA()
 		}),

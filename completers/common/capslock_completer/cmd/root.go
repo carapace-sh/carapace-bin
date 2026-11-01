@@ -30,7 +30,7 @@ func init() {
 		"buildtags": golang.ActionBuildTags(),
 		"goarch":    golang.ActionArchitectures(),
 		"goos":      golang.ActionOperatingSystems(),
-		"output":    carapace.ActionValues("json", "m", "v", "graph", "compare"),
+		"output":    carapace.ActionValues("compare", "graph", "json", "m", "v"),
 		"packages":  golang.ActionPackages(),
 	})
 

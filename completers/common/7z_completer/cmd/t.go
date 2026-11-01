@@ -1,0 +1,22 @@
+package cmd
+
+import (
+	"github.com/carapace-sh/carapace"
+	"github.com/spf13/cobra"
+)
+
+var tCmd = &cobra.Command{
+	Use:   "t",
+	Short: "Test integrity of archive",
+	Run:   func(cmd *cobra.Command, args []string) {},
+}
+
+func init() {
+	carapace.Gen(tCmd).Standalone()
+
+	rootCmd.AddCommand(tCmd)
+
+	carapace.Gen(tCmd).PositionalAnyCompletion(
+		carapace.ActionFiles().FilterArgs(),
+	)
+}

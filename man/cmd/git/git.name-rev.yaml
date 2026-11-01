@@ -4,14 +4,41 @@ description: Find symbolic names for given revs
 group: low-level interrogator
 flags:
   --all: list all commits reachable from all refs
-  --always: show abbreviated commit object as fallback
-  --exclude=: ignore refs matching <pattern>
-  --name-only: print only names (no SHA-1)
-  --refs=: only use refs matching <pattern>
-  --stdin: read from stdin
+  --always: show uniquely abbreviated commit object as fallback
+  --annotate-stdin: transform stdin by substituting all the 40-character SHA-1 hexes
+  --exclude=*: do not use any ref whose name matches a given shell pattern
+  --name-only: print only the name
+  --refs=*: only use refs whose names match a given shell pattern
   --tags: only use tags to name the commits
-  --undefined: allow to print `undefined` names (default)
+  --undefined: allow to print undefined names
 documentation:
   command: |-
     Finds symbolic names suitable for human digestion for revisions given in any
     format parsable by `git rev-parse`.
+  flag:
+    all: |-
+      Update the index not only where the working tree has a file matching **\<pathspec\>**
+      but also where the index already has an entry.
+      This adds, modifies, and removes index entries to match the working tree.
+      
+      If no **\<pathspec\>** is given when `-A` option is used,
+      all files in the entire working tree are updated
+      (old versions of Git used to limit the update to the current directory and its subdirectories).
+    always: Show uniquely abbreviated commit object as fallback.
+    exclude: |-
+      These flags are passed to the *git apply* (see
+      [git-apply](cmd://git/apply)) program that applies the patch.
+      
+      Valid \<action\> for the `--whitespace` option are: `nowarn`, `warn`, `fix`, `error`, and `error-all`.
+    name-only: |-
+      Show only the name of each changed file in the post-image tree.
+      The file names are often encoded in UTF-8.
+      For more information see the discussion about encoding in the [git-log](cmd://git/log)
+      manual page.
+    tags: |-
+      Instead of using only the annotated tags, use any tag
+      found in `refs/tags` namespace.  This option enables matching
+      a lightweight (non-annotated) tag.
+    annotate-stdin: transform stdin by substituting all the 40-character SHA-1 hexes
+    refs: only use refs whose names match a given shell pattern
+    undefined: allow to print undefined names

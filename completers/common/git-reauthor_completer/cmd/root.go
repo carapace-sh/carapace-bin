@@ -27,6 +27,6 @@ func init() {
 	rootCmd.Flags().BoolP("use-config", "c", false, "Use values from Git config")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"type": carapace.ActionValues("author", "committer", "both"),
+		"type": carapace.ActionValues("author", "both", "committer"),
 	})
 }

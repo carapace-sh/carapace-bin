@@ -8,7 +8,7 @@ import (
 
 var mr_issuesCmd = &cobra.Command{
 	Use:     "issues [<id> | <branch>]",
-	Short:   "Get issues related to a particular merge request.",
+	Short:   "Get issues that close when a merge request is merged.",
 	Aliases: []string{"issue"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }

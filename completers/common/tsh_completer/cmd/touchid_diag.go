@@ -7,7 +7,7 @@ import (
 
 var touchid_diagCmd = &cobra.Command{
 	Use:    "diag",
-	Short:  "Run Touch ID diagnostics",
+	Short:  "Run Touch ID diagnostics.",
 	Hidden: true,
 	Run:    func(cmd *cobra.Command, args []string) {},
 }

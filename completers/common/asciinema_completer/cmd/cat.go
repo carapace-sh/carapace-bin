@@ -7,16 +7,17 @@ import (
 
 var catCmd = &cobra.Command{
 	Use:   "cat",
-	Short: "Print full output of recorded session",
+	Short: "Concatenate multiple recordings",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(catCmd).Standalone()
 
+	catCmd.Flags().BoolP("help", "h", false, "Print help")
 	rootCmd.AddCommand(catCmd)
 
-	carapace.Gen(catCmd).PositionalCompletion(
+	carapace.Gen(catCmd).PositionalAnyCompletion(
 		carapace.ActionFiles(),
 	)
 }

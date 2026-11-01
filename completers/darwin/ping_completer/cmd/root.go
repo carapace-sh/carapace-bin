@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/net"
 	"github.com/spf13/cobra"
 )
 
@@ -40,6 +41,11 @@ func init() {
 	rootCmd.Flags().StringS("s", "s", "", "Packet size")
 	rootCmd.Flags().StringS("t", "t", "", "Timeout")
 	rootCmd.Flags().StringS("w", "w", "", "Deadline timeout")
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"I": net.ActionDevices(net.AllDevices),
+		"b": net.ActionDevices(net.AllDevices),
+	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionValues())
 }

@@ -15,6 +15,10 @@ var buildCmd = &cobra.Command{
 func init() {
 	carapace.Gen(buildCmd).Standalone()
 
+	buildCmd.Flags().BoolP("install", "i", false, "Install built packages")
+	buildCmd.Flags().Bool("needed", false, "Do not reinstall the targets already up to date")
+	buildCmd.Flags().CountP("nodeps", "d", "Skip dependency version checks (-dd to skip all checks)")
+
 	carapace.Gen(buildCmd).PositionalCompletion(
 		carapace.ActionDirectories(),
 	)

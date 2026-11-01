@@ -21,6 +21,11 @@ func init() {
 	config_setContextCmd.Flags().String("user", "", "user for the context entry in kubeconfig")
 	configCmd.AddCommand(config_setContextCmd)
 
+	carapace.Gen(config_setContextCmd).FlagCompletion(carapace.ActionMap{
+		"cluster": kubectl.ActionClusters(),
+		"user":    kubectl.ActionUsers(),
+	})
+
 	carapace.Gen(config_setContextCmd).PositionalCompletion(
 		kubectl.ActionContexts(),
 	)

@@ -46,12 +46,12 @@ func init() {
 	rootCmd.Flags().BoolP("version", "V", false, "Show version and quit")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"backend":    carapace.ActionValues("webkit", "webengine"),
+		"backend":    carapace.ActionValues("webengine", "webkit"),
 		"basedir":    carapace.ActionDirectories(),
 		"config-py":  carapace.ActionFiles(),
-		"loglevel":   carapace.ActionValues("critical", "error", "warning", "info", "debug", "vdebug").StyleF(style.ForLogLevel),
-		"qt-wrapper": carapace.ActionValues("PyQt6", "PyQt5"),
-		"target":     carapace.ActionValues("auto", "tab", "tab-bg", "tab-silent", "tab-bg-silent", "window", "private-window"),
+		"loglevel":   carapace.ActionValues("critical", "debug", "error", "info", "vdebug", "warning").StyleF(style.ForLogLevel),
+		"qt-wrapper": carapace.ActionValues("PyQt5", "PyQt6"),
+		"target":     carapace.ActionValues("auto", "private-window", "tab", "tab-bg", "tab-bg-silent", "tab-silent", "window"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

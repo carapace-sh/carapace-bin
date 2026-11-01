@@ -29,10 +29,10 @@ func ActionNotes() carapace.Action {
 //	theirs (favor the remote version)
 func ActionNotesMergeStrategies() carapace.Action {
 	return carapace.ActionValuesDescribed(
+		"cat_sort_uniq", "similar to \"union\", but also sorts removes duplicate lines",
 		"manual", "check out conflicting notes in a special work tree",
 		"ours", "favor the local version",
 		"theirs", "favor the remote version",
 		"union", "concatenate the local and remote versions",
-		"cat_sort_uniq", "similar to \"union\", but also sorts removes duplicate lines",
 	).Uid("git", "notes-merge-strategy")
 }

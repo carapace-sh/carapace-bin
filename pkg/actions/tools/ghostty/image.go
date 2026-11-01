@@ -13,8 +13,8 @@ func ActionBackgroundImageFits() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"contain", "scale to the largest size that can still be contained",
 		"cover", "scale to the smallest size that can completely cover the terminal",
-		"stretch", "stretch the background image to the full size of the terminal",
 		"none", "don't scale the background image",
+		"stretch", "stretch the background image to the full size of the terminal",
 	).StyleF(style.ForKeyword).
 		Tag("background image fits").Uid("ghostty", "background-image-fit")
 }
@@ -25,14 +25,14 @@ func ActionBackgroundImageFits() carapace.Action {
 //	top-center
 func ActionBackgroundImagePositions() carapace.Action {
 	return carapace.ActionValues(
-		"top-left",
-		"top-center",
-		"top-right",
-		"center-left",
-		"center",
-		"center-right",
-		"bottom-left",
 		"bottom-center",
+		"bottom-left",
 		"bottom-right",
+		"center",
+		"center-left",
+		"center-right",
+		"top-center",
+		"top-left",
+		"top-right",
 	).Tag("background image positions").Uid("ghostty", "background-image-position")
 }

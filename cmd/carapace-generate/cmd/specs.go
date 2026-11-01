@@ -37,11 +37,11 @@ func init() {
 	rootCmd.AddCommand(specsCmd)
 
 	carapace.Gen(specsCmd).FlagCompletion(carapace.ActionMap{
-		"group": carapace.ActionValues("user", "system"),
+		"group": carapace.ActionValues("system", "user"),
 	})
 
 	carapace.Gen(specsCmd).PositionalCompletion(
 		carapace.ActionDirectories(),
-		carapace.ActionValues("linux", "darwin", "windows"), // TODO others, termux as well?
+		carapace.ActionValues("darwin", "linux", "windows"), // TODO others, termux as well?
 	)
 }

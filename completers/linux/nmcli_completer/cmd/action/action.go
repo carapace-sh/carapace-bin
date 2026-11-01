@@ -6,5 +6,5 @@ import (
 )
 
 func ActionYesNo() carapace.Action {
-	return carapace.ActionValues("yes", "no").StyleF(style.ForKeyword)
+	return carapace.ActionValues("no", "yes").StyleF(style.ForKeyword)
 }

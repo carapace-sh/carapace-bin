@@ -38,15 +38,6 @@ jobs:
       - name: Test
         run: go test -v ./cmd/...
 
-      - name: "Check formatting"
-        run: '[ "$(gofmt -d -s . | tee -a /dev/stderr)" = "" ]'
-
-      - name: "staticcheck"
-        run: go install honnef.co/go/tools/cmd/staticcheck@latest && staticcheck ./...
-
-      - name: "carapace-lint"
-        run: go run ./cmd/carapace-lint completers/*/*/cmd/*.go
-
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v7
         if: startsWith(github.ref, 'refs/tags/')
@@ -58,6 +49,40 @@ jobs:
           AUR_KEY: ${{ secrets.AUR_KEY }}
           FURY_TOKEN: ${{ secrets.FURY_TOKEN }}
           GORELEASER_GITHUB_TOKEN: ${{ secrets.GORELEASER_GITHUB_TOKEN }}
+
+  lint:
+    runs-on: ubuntu-latest
+    container: ghcr.io/carapace-sh/go:1.26.3
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - name: shallow clone
+        uses: actions/checkout@v7
+        if: "!startsWith(github.ref, 'refs/tags/')"
+
+      - name: deep clone
+        uses: actions/checkout@v7
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          fetch-depth: 0
+
+      - name: fix git safe.directory
+        run:  git config --global --add safe.directory '*'
+
+      - name: Generate
+        run: go generate ./cmd/...
+
+      - name: "golangci-lint"
+        uses: golangci/golangci-lint-action@v9
+        with:
+          version: v2.15.0
+
+      - name: "Upload SARIF"
+        if: always()
+        uses: github/codeql-action/upload-sarif@v4
+        with:
+          sarif_file: golangci-lint.sarif
 
   build-windows:
     runs-on: windows-latest

@@ -57,7 +57,7 @@ func init() {
 		"export-environment":   carapace.ActionFiles(),
 		"globals":              carapace.ActionFiles(),
 		"iteration-data":       carapace.ActionFiles(),
-		"reporters":            carapace.ActionValues("cli", "json", "junit", "progress", "emojitrain").UniqueList(","),
+		"reporters":            carapace.ActionValues("cli", "emojitrain", "json", "junit", "progress").UniqueList(","),
 		"ssl-client-cert":      carapace.ActionFiles(),
 		"ssl-client-cert-list": carapace.ActionFiles(),
 		"ssl-client-key":       carapace.ActionFiles(),

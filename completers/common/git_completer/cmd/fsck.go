@@ -7,6 +7,7 @@ import (
 
 var fsckCmd = &cobra.Command{
 	Use:     "fsck",
+	Aliases: []string{"fsck-objects"},
 	Short:   "Verifies the connectivity and validity of the objects in the database",
 	Run:     func(cmd *cobra.Command, args []string) {},
 	GroupID: groups[group_interrogator].ID,
@@ -26,6 +27,8 @@ func init() {
 	fsckCmd.Flags().Bool("no-progress", false, "do no report progress status")
 	fsckCmd.Flags().Bool("no-reflogs", false, "do not consider commits that are referenced only by an entry in a reflog to be reachable")
 	fsckCmd.Flags().Bool("progress", false, "report progress status")
+	fsckCmd.Flags().Bool("references", false, "check reference database consistency")
+	fsckCmd.Flags().Bool("reflogs", false, "make reflogs head nodes (default)")
 	fsckCmd.Flags().Bool("root", false, "report root nodes")
 	fsckCmd.Flags().Bool("strict", false, "enable more strict checking")
 	fsckCmd.Flags().Bool("tags", false, "report tags")

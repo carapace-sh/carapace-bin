@@ -28,7 +28,7 @@ func init() {
 
 	carapace.Gen(plugin_pane_openCmd).FlagCompletion(carapace.ActionMap{
 		"cwd":       carapace.ActionFiles(),
-		"direction": carapace.ActionValues("right", "down"),
+		"direction": carapace.ActionValues("down", "right"),
 		"placement": carapace.ActionValues("overlay", "split", "tab", "zoomed"),
 	})
 }

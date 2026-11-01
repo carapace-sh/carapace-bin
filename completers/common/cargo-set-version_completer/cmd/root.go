@@ -31,7 +31,7 @@ func init() {
 
 	// TODO flag completion
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"bump":          carapace.ActionValues("major", "minor", "patch", "release", "rc", "beta", "alpha"),
+		"bump":          carapace.ActionValues("alpha", "beta", "major", "minor", "patch", "rc", "release"),
 		"manifest-path": carapace.ActionFiles(".toml"),
 	})
 

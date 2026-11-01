@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debug::revlog-reencoded-delta-info
+description: -c|-m|FILE
+hidden: true
+flags:
+    --delete: delete the result
+    --dir=: open directory manifest
+    --report: report statistic about the result
+    --reuse-stored-delta: reuse stored delta when using the same base
+    --start-rev=: start at rev
+    --stop-rev=: stop at rev
+    -c, --changelog: open changelog
+    -m, --manifest: open manifest
+documentation:
+    command: |
+        show revlog statistic if delta where to be reencoded
+
+        The reencoded delta are NOT persisted to the storage. This is not a command
+        to upgrade the on disk storage.

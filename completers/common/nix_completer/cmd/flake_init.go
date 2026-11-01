@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/nix_completer/cmd/common"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix"
 	"github.com/spf13/cobra"
 )
@@ -17,8 +18,8 @@ func init() {
 
 	flake_initCmd.Flags().StringP("template", "t", "default", "The template to use")
 
-	addEvaluationFlags(flake_initCmd)
-	addLoggingFlags(flake_initCmd)
+	common.AddEvaluationFlags(flake_initCmd)
+	common.AddLoggingFlags(flake_initCmd)
 
 	carapace.Gen(flake_initCmd).FlagCompletion(carapace.ActionMap{
 		"template": nix.ActionTemplates(),

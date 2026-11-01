@@ -30,6 +30,8 @@ func init() {
 	revertCmd.MarkFlagRequired("revisions")
 	rootCmd.AddCommand(revertCmd)
 
+	revertCmd.MarkFlagsMutuallyExclusive("onto", "insert-after", "insert-before", "after", "before", "destination")
+
 	carapace.Gen(revertCmd).FlagCompletion(carapace.ActionMap{
 		"after":         jj.ActionRevsets(jj.RevOpts{}.Default()),
 		"before":        jj.ActionRevsets(jj.RevOpts{}.Default()),

@@ -13,8 +13,9 @@ var versionCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(versionCmd).Standalone()
-	versionCmd.Flags().Bool("envsubst", true, "Substitute environment variables in stack.yml file")
+	versionCmd.Flags().Bool("envsubst", true, "Substitute environment variables in stack.yaml file")
 	versionCmd.Flags().StringP("gateway", "g", "http://127.0.0.1:8080", "Gateway URL starting with http(s)://")
+	versionCmd.Flags().BoolP("json", "j", false, "Output version as JSON")
 	versionCmd.Flags().Bool("short-version", false, "Just print Git SHA")
 	versionCmd.Flags().Bool("tls-no-verify", false, "Disable TLS validation")
 	versionCmd.Flags().StringP("token", "k", "", "Pass a JWT token to use instead of basic auth")

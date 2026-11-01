@@ -2,6 +2,10 @@
 name: pack-redundant
 description: Find redundant pack files
 group: low-level interrogator
+flags:
+  --all: processes all packs
+  --alt-odb: don’t require objects from alternate odb to be present
+  --verbose: outputs some statistics to stderr
 documentation:
   command: |-
     This program computes which packs in your repository
@@ -15,3 +19,14 @@ documentation:
 
     git fsck --full --unreachable | cut -d ' ' -f3 | \
     git pack-redundant --all | xargs rm
+  flag:
+    all: |-
+      Update the index not only where the working tree has a file matching **\<pathspec\>**
+      but also where the index already has an entry.
+      This adds, modifies, and removes index entries to match the working tree.
+      
+      If no **\<pathspec\>** is given when `-A` option is used,
+      all files in the entire working tree are updated
+      (old versions of Git used to limit the update to the current directory and its subdirectories).
+    verbose: Be verbose.
+    alt-odb: don’t require objects from alternate odb to be present

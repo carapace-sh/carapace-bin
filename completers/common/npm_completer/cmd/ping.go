@@ -13,6 +13,7 @@ var pingCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(pingCmd).Standalone()
+	pingCmd.Flags().String("registry", "", "base URL of the npm registry")
 
 	rootCmd.AddCommand(pingCmd)
 }

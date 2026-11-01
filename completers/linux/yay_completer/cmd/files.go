@@ -24,6 +24,9 @@ func init() {
 	filesCmd.Flags().StringP("dbpath", "b", "", "set an alternate database location")
 	filesCmd.Flags().Bool("debug", false, "display debug messages")
 	filesCmd.Flags().Bool("disable-download-timeout", false, "use relaxed timeouts for download")
+	filesCmd.Flags().Bool("disable-sandbox", false, "disable sandbox features used for the downloader process")
+	filesCmd.Flags().Bool("disable-sandbox-filesystem", false, "disable the filesystem part of the downloader process sandbox")
+	filesCmd.Flags().Bool("disable-sandbox-syscalls", false, "disable the syscalls part of the downloader process sandbox")
 	filesCmd.Flags().String("gpgdir", "", "set an alternate home directory for GnuPG")
 	filesCmd.Flags().String("hookdir", "", "set an alternate hook location")
 	filesCmd.Flags().BoolP("list", "l", false, "list the files owned by the queried package")
@@ -40,7 +43,7 @@ func init() {
 	carapace.Gen(filesCmd).FlagCompletion(carapace.ActionMap{
 		"arch":     carapace.ActionValues("i686", "x86_64"),
 		"cachedir": carapace.ActionDirectories(),
-		"color":    carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
+		"color":    carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"config":   carapace.ActionFiles(),
 		"dbpath":   carapace.ActionFiles(),
 		"gpgdir":   carapace.ActionDirectories(),

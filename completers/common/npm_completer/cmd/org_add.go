@@ -6,9 +6,10 @@ import (
 )
 
 var org_setCmd = &cobra.Command{
-	Use:   "set",
-	Short: "Add a new developer to an org",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "set",
+	Short:   "Add a new developer to an org",
+	Aliases: []string{"add"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
@@ -19,6 +20,6 @@ func init() {
 	carapace.Gen(org_setCmd).PositionalCompletion(
 		carapace.ActionValues(),
 		carapace.ActionValues(),
-		carapace.ActionValues("developer", "admin", "owner"),
+		carapace.ActionValues("admin", "developer", "owner"),
 	)
 }

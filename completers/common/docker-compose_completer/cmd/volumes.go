@@ -15,12 +15,12 @@ var volumesCmd = &cobra.Command{
 func init() {
 	carapace.Gen(volumesCmd).Standalone()
 
-	volumesCmd.Flags().String("format", "", "Format output using a custom template:")
+	volumesCmd.Flags().String("format", "table", "Format output using a custom template:")
 	volumesCmd.Flags().BoolP("quiet", "q", false, "Only display volume names")
 	rootCmd.AddCommand(volumesCmd)
 
 	carapace.Gen(volumesCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("table", "json"),
+		"format": carapace.ActionValues("json", "table"),
 	})
 
 	carapace.Gen(volumesCmd).PositionalAnyCompletion(

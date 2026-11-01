@@ -44,7 +44,7 @@ func init() {
 	rootCmd.Flags().Bool("viewall", false, "adjust camera to fit object")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"colorscheme": carapace.ActionValues("Cornfield", "Metallic", "Sunset", "Starnight", "BeforeDawn", "Nature", "DeepOcean", "Solarized", "Tomorrow", "Tomorrow Night", "Monotone"),
+		"colorscheme": carapace.ActionValues("BeforeDawn", "Cornfield", "DeepOcean", "Metallic", "Monotone", "Nature", "Solarized", "Starnight", "Sunset", "Tomorrow", "Tomorrow Night"),
 		"d":           carapace.ActionFiles(),
 		"o":           carapace.ActionFiles(),
 		"p":           carapace.ActionFiles(),

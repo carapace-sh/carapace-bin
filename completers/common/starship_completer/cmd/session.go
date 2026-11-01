@@ -14,7 +14,6 @@ var sessionCmd = &cobra.Command{
 func init() {
 	carapace.Gen(sessionCmd).Standalone()
 
-	sessionCmd.Flags().BoolP("help", "h", false, "Prints help information")
-	sessionCmd.Flags().BoolP("version", "V", false, "Prints version information")
+	sessionCmd.Flags().BoolP("help", "h", false, "Print help")
 	rootCmd.AddCommand(sessionCmd)
 }

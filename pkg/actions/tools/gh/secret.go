@@ -8,10 +8,10 @@ import "github.com/carapace-sh/carapace"
 //	visibility
 func ActionSecretFields() carapace.Action {
 	return carapace.ActionValues(
-		"selectedReposURL",
 		"name",
-		"visibility",
-		"updatedAt",
 		"numSelectedRepos",
+		"selectedReposURL",
+		"updatedAt",
+		"visibility",
 	)
 }

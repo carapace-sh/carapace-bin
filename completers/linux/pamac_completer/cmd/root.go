@@ -22,7 +22,7 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "show version")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"help": carapace.ActionValues("search", "list", "info", "install", "reinstall", "remove", "checkupdates", "update", "upgrade", "clone", "build", "clean"),
+		"help": carapace.ActionValues("build", "checkupdates", "clean", "clone", "info", "install", "list", "reinstall", "remove", "search", "update", "upgrade"),
 	})
 
 }

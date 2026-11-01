@@ -2,12 +2,33 @@
 name: save
 description: Save local modifications to a new stash (deprecated, use push)
 flags:
-    -S, --staged: only stash staged
-    -k, --keep-index: keep changed added to index
-    -m, --message=: set description
-    -p, --patch: interactively select hunks between HEAD and working tree
-    -q, --quiet: suppress feedback messages
-
+  -S, --staged: only stash staged
+  -a, --all: also stash ignored and untracked
+  -k, --keep-index: keep changed added to index
+  -m, --message=: set description
+  -p, --patch: interactively select hunks between HEAD and working tree
+  -q, --quiet: suppress feedback messages
+  -u, --include-untracked: also stash untracked
 documentation:
-  command: >-
-    Save local modifications to a new stash. This option is deprecated in favour of `git stash push`. It differs from `stash push` in that it cannot take pathspec. Instead, all non-option arguments are concatenated to form the stash message.
+  command: Save local modifications to a new stash. This option is deprecated in favour of `git stash push`. It differs from `stash push` in that it cannot take pathspec. Instead, all non-option arguments are concatenated to form the stash message.
+  flag:
+    all: |-
+      Update the index not only where the working tree has a file matching **\<pathspec\>**
+      but also where the index already has an entry.
+      This adds, modifies, and removes index entries to match the working tree.
+      
+      If no **\<pathspec\>** is given when `-A` option is used,
+      all files in the entire working tree are updated
+      (old versions of Git used to limit the update to the current directory and its subdirectories).
+    message: |-
+      Use the given note message (instead of prompting).
+      If multiple `-m` options are given, their values
+      are concatenated as separate paragraphs.
+    quiet: Be quiet. Only print error messages.
+    staged: |-
+      Specify the restore location. If neither option is specified,
+      by default the working tree is restored. Specifying `--staged`
+      will only restore the index. Specifying both restores both.
+    include-untracked: also stash untracked
+    keep-index: keep changed added to index
+    patch: interactively select hunks between HEAD and working tree

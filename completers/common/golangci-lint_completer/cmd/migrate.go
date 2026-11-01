@@ -22,6 +22,6 @@ func init() {
 
 	carapace.Gen(migrateCmd).FlagCompletion(carapace.ActionMap{
 		"config": carapace.ActionFiles(),
-		"format": carapace.ActionValues("yml", "yaml", "toml", "json"),
+		"format": carapace.ActionValues("json", "toml", "yaml", "yml"),
 	})
 }

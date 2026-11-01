@@ -17,7 +17,7 @@ var getpkgbuildCmd = &cobra.Command{
 func init() {
 	carapace.Gen(getpkgbuildCmd).Standalone()
 
-	getpkgbuildCmd.Flags().BoolP("comments", "c", false, "Print AUR comments for pkgbuild")
+	getpkgbuildCmd.Flags().CountP("comments", "c", "Print AUR comments for pkgbuild")
 	getpkgbuildCmd.Flags().BoolP("print", "p", false, "Print pkgbuild to stdout")
 	getpkgbuildCmd.Flags().BoolP("ssh", "s", false, "Clone package using SSH")
 	common.AddNewFlags(getpkgbuildCmd)

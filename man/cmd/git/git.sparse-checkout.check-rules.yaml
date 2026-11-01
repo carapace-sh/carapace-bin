@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: check-rules
+description: Check whether sparsity rules match one or more paths
+flags:
+  --no-cone: use non-cone mode
+  -z, --null: terminate input and output paths with NUL byte
+documentation:
+  command: >-
+    Check whether sparsity rules match one or more paths. By default,
+    reads paths from stdin and outputs only the ones that match the
+    current sparsity rules. The input is expected to consist of one
+    path per line, matching the output of `git ls-tree --name-only`.
+  flag:
+    no-cone: use non-cone mode
+    "null": terminate input and output paths with NUL byte

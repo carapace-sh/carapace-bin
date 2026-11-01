@@ -8,15 +8,23 @@ import (
 )
 
 var env_rmCmd = &cobra.Command{
-	Use:   "rm",
-	Short: "Remove an Environment Variable",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "rm",
+	Aliases: []string{"remove"},
+	Short:   "Remove an Environment Variable",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(env_rmCmd).Standalone()
 
+	env_rmCmd.Flags().String("project", "", "Project name or ID")
+	env_rmCmd.Flags().Bool("yes", false, "Skip confirmation")
+
 	envCmd.AddCommand(env_rmCmd)
+
+	carapace.Gen(env_rmCmd).FlagCompletion(carapace.ActionMap{
+		"project": action.ActionProjects(env_rmCmd),
+	})
 
 	carapace.Gen(env_rmCmd).PositionalCompletion(
 		action.ActionEnvironmentVariables(env_rmCmd),

@@ -19,6 +19,6 @@ func init() {
 
 	carapace.Gen(radioCmd).PositionalCompletion(
 		carapace.ActionValues("all", "wifi", "wwan"),
-		carapace.ActionValues("on", "off").StyleF(style.ForKeyword),
+		carapace.ActionValues("off", "on").StyleF(style.ForKeyword),
 	)
 }

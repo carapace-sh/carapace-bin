@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ready
+description: Block until the gateway or a function is ready for use
+flags:
+    --attempts=: Number of attempts to check the gateway
+    --interval=: Interval between attempts in seconds
+    --tls-no-verify: Disable TLS validation
+    -g, --gateway=: Gateway URL starting with http(s)://
+    -n, --namespace=: Namespace of the function

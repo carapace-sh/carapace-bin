@@ -20,9 +20,15 @@ func init() {
 	carapace.Gen(rangeDiffCmd).Standalone()
 
 	rangeDiffCmd.Flags().String("creation-factor", "", "set the creation/deletion cost fudge factor to <percent>")
+	rangeDiffCmd.Flags().String("diff-merges", "", "passed to 'git log'")
+	rangeDiffCmd.Flags().Bool("dual-color", false, "opposite of --no-dual-color")
+	rangeDiffCmd.Flags().Bool("left-only", false, "only emit output related to the first range")
+	rangeDiffCmd.Flags().String("max-memory", "", "limit memory consumption during diff generation")
 	rangeDiffCmd.Flags().Bool("no-dual-color", false, "do not recreate the original diffs’ coloring")
 	rangeDiffCmd.Flags().String("no-notes", "", "this flag is passed to the git log progeram")
 	rangeDiffCmd.Flags().String("notes", "", "this flag is passed to the git log program")
+	rangeDiffCmd.Flags().Bool("remerge-diff", false, "passed to 'git log'")
+	rangeDiffCmd.Flags().Bool("right-only", false, "only emit output related to the second range")
 	common.AddDiffFlags(rangeDiffCmd)
 	rootCmd.AddCommand(rangeDiffCmd)
 

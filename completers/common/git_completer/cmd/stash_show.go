@@ -15,7 +15,7 @@ var stash_showCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(stash_showCmd).Standalone()
-	stash_showCmd.Flags().Bool("include-untracked", false, "include untracked")
+	stash_showCmd.Flags().BoolP("include-untracked", "u", false, "include untracked")
 	stash_showCmd.Flags().Bool("only-untracked", false, "only untracked")
 	common.AddDiffFlags(stash_showCmd)
 

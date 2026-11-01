@@ -36,10 +36,10 @@ func init() {
 		carapace.Batch(
 			carapace.ActionFiles(),
 			carapace.ActionValuesDescribed(
-				"on", "adds torsocks to the LD_PRELOAD environment variable",
 				"off", "removes torsocks from the LD_PRELOAD environment variable",
-				"show", "Show the current value of the LD_PRELOAD environment variable",
+				"on", "adds torsocks to the LD_PRELOAD environment variable",
 				"sh", "Show the current value of the LD_PRELOAD environment variable",
+				"show", "Show the current value of the LD_PRELOAD environment variable",
 			),
 		).ToA(),
 	)

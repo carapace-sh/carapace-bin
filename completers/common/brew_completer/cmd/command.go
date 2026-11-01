@@ -20,4 +20,8 @@ func init() {
 	commandCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
 	commandCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
 	rootCmd.AddCommand(commandCmd)
+
+	carapace.Gen(commandCmd).PositionalAnyCompletion(
+		carapace.ActionCommands(rootCmd),
+	)
 }

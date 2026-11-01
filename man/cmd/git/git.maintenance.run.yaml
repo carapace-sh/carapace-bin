@@ -3,6 +3,19 @@ name: run
 description: Start running maintenance on the current repository
 flags:
   --auto: run tasks based on the state of the repository
+  --detach: perform maintenance in the background
   --quiet: don't report progress or other information to stderr
-  --schedule: run tasks based on frequency
-  --task*=: run a specific task
+  --schedule=: run tasks based on frequency
+  --task=*: run a specific task
+documentation:
+  flag:
+    detach: |-
+      Rather than checking out a branch to work on it, check out a
+      commit for inspection and discardable experiments.
+      This is the default behavior of `git checkout <commit>` when
+      _<commit>_ is not a branch name.  See the "DETACHED HEAD" section
+      below for details.
+    quiet: Be quiet. Only print error messages.
+    auto: run tasks based on the state of the repository
+    schedule: run tasks based on frequency
+    task: run a specific task

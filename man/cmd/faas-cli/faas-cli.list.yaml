@@ -2,10 +2,11 @@
 name: list
 description: List OpenFaaS functions
 flags:
-    --envsubst: Substitute environment variables in stack.yml file
+    --envsubst: Substitute environment variables in stack.yaml file
     --sort=: Sort the functions by "name" or "invocations"
     --tls-no-verify: Disable TLS validation
     -g, --gateway=: Gateway URL starting with http(s)://
+    -j, --json: Output functions as JSON
     -k, --token=: Pass a JWT token to use instead of basic auth
     -n, --namespace=: Namespace of the function
     -q, --quiet: Quiet mode - print out only the function's ID

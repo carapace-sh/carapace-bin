@@ -33,7 +33,7 @@ func init() {
 		"out-file":         carapace.ActionFiles(),
 		"project":          bloop.ActionProjects(),
 		"projects":         bloop.ActionProjects(),
-		"repl":             carapace.ActionValues("scalac", "ammonite"),
+		"repl":             carapace.ActionValues("ammonite", "scalac"),
 		"reporter":         bloop.ActionReporters(),
 	})
 

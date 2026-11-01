@@ -36,16 +36,27 @@ func ActionSources() carapace.Action {
 					return carapace.ActionValues()
 				}
 			})
+		case "windows":
+			keyValues = carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
+				switch len(c.Parts) {
+				case 0:
+					return carapace.ActionValuesDescribed(
+						"VolumeGUID", "specifies device by volume GUID",
+					).Suffix("=")
+				default:
+					return carapace.ActionValues()
+				}
+			})
 		default:
 			keyValues = carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
 				switch len(c.Parts) {
 				case 0:
 					return carapace.ActionValuesDescribed(
+						"ID", "specifies device by udev hardware ID",
 						"LABEL", "specifies device by filesystem label",
-						"UUID", "specifies device by filesystem UUID",
 						"PARTLABEL", "specifies device by partition label",
 						"PARTUUID", "specifies device by partition UUID",
-						"ID", "specifies device by udev hardware ID",
+						"UUID", "specifies device by filesystem UUID",
 					).Suffix("=")
 				case 1:
 					switch c.Parts[0] {

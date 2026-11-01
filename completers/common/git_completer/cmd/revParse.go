@@ -17,6 +17,7 @@ var revParseCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(revParseCmd).Standalone()
+	revParseCmd.Flags().SetInterspersed(false)
 
 	revParseCmd.Flags().String("abbrev-ref", "", "a non-ambiguous short name of the objects name")
 	revParseCmd.Flags().Bool("absolute-git-dir", false, "like --git-dir, but its output is always the canonicalized absolute path")
@@ -74,7 +75,7 @@ func init() {
 	revParseCmd.Flag("show-object-format").NoOptDefVal = " "
 
 	carapace.Gen(revParseCmd).FlagCompletion(carapace.ActionMap{
-		"abbrev-ref":           carapace.ActionValues("strict", "loose").StyleF(style.ForKeyword),
+		"abbrev-ref":           carapace.ActionValues("loose", "strict").StyleF(style.ForKeyword),
 		"after":                time.ActionDate(),
 		"before":               time.ActionDate(),
 		"branches":             carapace.ActionValues(),
@@ -87,7 +88,7 @@ func init() {
 		"prefix":               carapace.ActionDirectories().ChdirF(traverse.GitWorkTree),
 		"remotes":              carapace.ActionValues(),
 		"resolve-git-dir":      carapace.ActionFiles(),
-		"show-object-format":   carapace.ActionValues("storage", "input", "output"),
+		"show-object-format":   carapace.ActionValues("input", "output", "storage"),
 		"since":                time.ActionDate(),
 		"tags":                 carapace.ActionValues(),
 		"until":                time.ActionDate(),

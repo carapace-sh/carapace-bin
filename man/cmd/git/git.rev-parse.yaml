@@ -2,6 +2,55 @@
 name: rev-parse
 description: Pick out and massage parameters
 group: low-level interrogator
+flags:
+  --abbrev-ref?: a non-ambiguous short name of the objects name
+  --absolute-git-dir: like --git-dir, but its output is always the canonicalized absolute path
+  --after=: parse the date string, and output the corresponding --max-age= parameter
+  --all: show all refs found in refs/
+  --before=: parse the date string, and output the corresponding --min-age= parameter
+  --branches?: show all branches matching pattern
+  --default=: if there is no parameter given by the user, use <arg> instead
+  --exclude-hidden=: exclude refs hidden by given option
+  --exclude=: exclude refs matching pattern
+  --flags: do not output non-flag parameters
+  --git-common-dir: show $GIT_COMMON_DIR if defined, else $GIT_DIR
+  --git-dir: show $GIT_DIR if defined
+  --git-path=: resolve "$GIT_DIR/<path>" and takes other path relocation variables
+  --glob=: show all refs matching pattern
+  --is-inside-git-dir: true, when the current working directory is below the repository directory
+  --is-inside-work-tree: true, when the current working directory is inside the work tree of the repository
+  --is-shallow-repository: true, when the repository is shallow
+  --keep-dashdash: echo out the first -- met instead of skipping it
+  --local-env-vars: list the GIT_* environment variables that are local to the repository
+  --no-flags: do not output flag parameters
+  --no-revs: do not output flags and parameters meant for git rev-list command
+  --not: prefix object names with ^ and strip ^ prefix from the object names that already have one
+  --output-object-format=: allow oids to be input from any object format that the current repository supports
+  --parseopt: use in option parsing mode
+  --path-format=: controls the behavior of certain other options
+  --prefix=: behave as if git rev-parse was invoked from the <arg> subdirectory of the working tree
+  --remotes=: show all remotes matching pattern
+  --resolve-git-dir=: check if <path> is a valid repository or a gitfile that points at a valid repository
+  --revs-only: do not output flags and parameters not meant for git rev-list command
+  --shared-index-path: show the path to the shared index file in split index mode
+  --short?: same as --verify but shortens the object name to a unique prefix with at least length characters
+  --show-cdup: show the path of the top-level directory relative to the current directory
+  --show-object-format?: show the object format used for the repository for storage
+  --show-prefix: show the path of the current directory relative to the top-level directory
+  --show-ref-format: show the reference storage format used for the repository
+  --show-superproject-working-tree: show the absolute path of the root of the superproject’s working tree
+  --show-toplevel: show the path of the top-level directory of the working tree
+  --since=: parse the date string, and output the corresponding --max-age= parameter
+  --sq: output a single line
+  --sq-quote: use in shell quoting mode
+  --stop-at-non-option: stop at the first non-option argument
+  --stuck-long: output the options in their long form
+  --symbolic: output object names in a form as close to the original input as possible
+  --symbolic-full-name: similar to --symbolic, but omits input that are not refs
+  --tags=: show all tags matching pattern
+  --until=: parse the date string, and output the corresponding --min-age= parameter
+  --verify: verify that exactly one parameter is provided
+  -q, --quiet: do not output an error message if the first argument is not a valid object name
 documentation:
   command: |-
     Many Git porcelainish commands take a mixture of flags
@@ -17,3 +66,105 @@ documentation:
     require you to run this command inside a git repository or a working
     tree that is under the control of a git repository, and will give you
     a fatal error otherwise.
+  flag:
+    after: |-
+      Show commits more recent than _<date>_.  As a special case,
+      `today` means the last midnight.
+    all: |-
+      Update the index not only where the working tree has a file matching **\<pathspec\>**
+      but also where the index already has an entry.
+      This adds, modifies, and removes index entries to match the working tree.
+      
+      If no **\<pathspec\>** is given when `-A` option is used,
+      all files in the entire working tree are updated
+      (old versions of Git used to limit the update to the current directory and its subdirectories).
+    before: Show commits older than _<date>_.
+    exclude: |-
+      These flags are passed to the *git apply* (see
+      [git-apply](cmd://git/apply)) program that applies the patch.
+      
+      Valid \<action\> for the `--whitespace` option are: `nowarn`, `warn`, `fix`, `error`, and `error-all`.
+    exclude-hidden: |-
+      Do not include refs that would be hidden by `git-fetch`,
+      `git-receive-pack` or `git-upload-pack` by consulting the appropriate
+      `fetch.hideRefs`, `receive.hideRefs` or `uploadpack.hideRefs`
+      configuration along with `transfer.hideRefs` (see
+      [git-config](cmd://git/config)). This option affects the next pseudo-ref option
+      `--all` or `--glob` and is cleared after processing them.
+    git-dir: |-
+      Set the path to the repository (".git" directory). This can also be
+      controlled by setting the `GIT_DIR` environment variable. It can be an
+      absolute path or relative path to current working directory.
+      
+      Specifying the location of the ".git" directory using this option (or
+      `GIT_DIR` environment variable) turns off the repository discovery that
+      tries to find a directory with ".git" subdirectory (which is how the
+      repository and the top-level of the working tree are discovered), and
+      tells Git that you are at the top level of the working tree. If you are
+      not at the top-level directory of the working tree, you should tell Git
+      where the top-level of the working tree is, with the
+      `--work-tree=<path>` option (or `GIT_WORK_TREE` environment variable)
+      
+      If you just want to run git as if it was started in `<path>` then use
+      `git -C <path>`.
+    glob: |-
+      Pretend as if all the refs matching shell glob _<glob-pattern>_
+      are listed on the command line as _<commit>_. Leading `refs/`,
+      is automatically prepended if missing. If pattern lacks '?', '*',
+      or '[', '/*' at the end is implied.
+    not: |-
+      Specify how multiple patterns are combined using Boolean
+      expressions.  `--or` is the default operator.  `--and` has
+      higher precedence than `--or`.  `-e` has to be used for all
+      patterns.
+    prefix: |-
+      Prepend &lt;prefix&gt;/ to paths in the archive. Can be repeated; its
+      rightmost value is used for all tracked files. See below which value
+      gets used by `--add-file`.
+    remotes: |-
+      List or delete (if used with `-d`) the remote-tracking branches.
+      Combine with `--list` to match the optional pattern(s).
+    tags: |-
+      Instead of using only the annotated tags, use any tag
+      found in `refs/tags` namespace.  This option enables matching
+      a lightweight (non-annotated) tag.
+    verify: Verify the cryptographic signature of the given tags.
+    quiet: Be quiet. Only print error messages.
+    short: Give the output in the short-format.
+    abbrev-ref: a non-ambiguous short name of the objects name
+    absolute-git-dir: like --git-dir, but its output is always the canonicalized absolute path
+    branches: show all branches matching pattern
+    default: if there is no parameter given by the user, use <arg> instead
+    flags: do not output non-flag parameters
+    git-common-dir: show $GIT_COMMON_DIR if defined, else $GIT_DIR
+    git-path: resolve "$GIT_DIR/<path>" and takes other path relocation variables
+    is-inside-git-dir: true, when the current working directory is below the repository directory
+    is-inside-work-tree: |-
+      true, when the current working directory is inside the work tree of the repository
+    is-shallow-repository: true, when the repository is shallow
+    keep-dashdash: echo out the first -- met instead of skipping it
+    local-env-vars: list the GIT_* environment variables that are local to the repository
+    no-flags: do not output flag parameters
+    no-revs: do not output flags and parameters meant for git rev-list command
+    output-object-format: |-
+      allow oids to be input from any object format that the current repository supports
+    parseopt: use in option parsing mode
+    path-format: controls the behavior of certain other options
+    resolve-git-dir: |-
+      check if <path> is a valid repository or a gitfile that points at a valid repository
+    revs-only: do not output flags and parameters not meant for git rev-list command
+    shared-index-path: show the path to the shared index file in split index mode
+    show-cdup: show the path of the top-level directory relative to the current directory
+    show-object-format: show the object format used for the repository for storage
+    show-prefix: show the path of the current directory relative to the top-level directory
+    show-ref-format: show the reference storage format used for the repository
+    show-superproject-working-tree: show the absolute path of the root of the superproject’s working tree
+    show-toplevel: show the path of the top-level directory of the working tree
+    since: parse the date string, and output the corresponding --max-age= parameter
+    sq: output a single line
+    sq-quote: use in shell quoting mode
+    stop-at-non-option: stop at the first non-option argument
+    stuck-long: output the options in their long form
+    symbolic: output object names in a form as close to the original input as possible
+    symbolic-full-name: similar to --symbolic, but omits input that are not refs
+    until: parse the date string, and output the corresponding --min-age= parameter

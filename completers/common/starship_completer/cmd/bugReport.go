@@ -14,7 +14,6 @@ var bugReportCmd = &cobra.Command{
 func init() {
 	carapace.Gen(bugReportCmd).Standalone()
 
-	bugReportCmd.Flags().BoolP("help", "h", false, "Prints help information")
-	bugReportCmd.Flags().BoolP("version", "V", false, "Prints version information")
+	bugReportCmd.Flags().BoolP("help", "h", false, "Print help")
 	rootCmd.AddCommand(bugReportCmd)
 }

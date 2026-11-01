@@ -22,8 +22,8 @@ func init() {
 	variable_setCmd.Flags().BoolP("masked", "m", false, "Whether the variable is masked.")
 	variable_setCmd.Flags().BoolP("protected", "p", false, "Whether the variable is protected.")
 	variable_setCmd.Flags().BoolP("raw", "r", false, "Whether the variable is treated as a raw string.")
-	variable_setCmd.Flags().StringP("scope", "s", "", "The environment_scope of the variable. Values: all (*), or specific environments.")
-	variable_setCmd.Flags().StringP("type", "t", "", "The type of a variable: env_var, file.")
+	variable_setCmd.Flags().StringP("scope", "s", "*", "The environment_scope of the variable. Values: all (*), or specific environments.")
+	variable_setCmd.Flags().StringP("type", "t", "env_var", "The type of a variable: env_var, file.")
 	variable_setCmd.Flags().StringP("value", "v", "", "The value of a variable.")
 	variableCmd.AddCommand(variable_setCmd)
 
@@ -37,7 +37,6 @@ func init() {
 		}),
 		"type": carapace.ActionValues("env_var", "file"),
 	})
-
 	carapace.Gen(variable_setCmd).PositionalCompletion(
 		action.ActionVariables(variable_setCmd),
 	)

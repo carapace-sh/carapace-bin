@@ -39,7 +39,7 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"c":  kak.ActionSessions(),
 		"p":  kak.ActionSessions(),
-		"ui": carapace.ActionValues("terminal", "dummy", "json"),
+		"ui": carapace.ActionValues("dummy", "json", "terminal"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

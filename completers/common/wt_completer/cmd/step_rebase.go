@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/wt"
 	"github.com/spf13/cobra"
 )
 
@@ -15,10 +15,15 @@ var step_rebaseCmd = &cobra.Command{
 func init() {
 	carapace.Gen(step_rebaseCmd).Standalone()
 
+	step_rebaseCmd.Flags().String("format", "", "Output format (text, json)")
 	step_rebaseCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	stepCmd.AddCommand(step_rebaseCmd)
 
+	carapace.Gen(step_rebaseCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("json", "text"),
+	})
+
 	carapace.Gen(step_rebaseCmd).PositionalCompletion(
-		git.ActionRefs(git.RefOption{}.Default()),
+		wt.ActionBranches(),
 	)
 }

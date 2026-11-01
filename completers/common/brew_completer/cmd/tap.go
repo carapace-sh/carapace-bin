@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/brew"
 	"github.com/spf13/cobra"
 )
 
@@ -26,4 +27,9 @@ func init() {
 	tapCmd.Flags().Bool("repair", false, "Migrate tapped formulae from symlink-based to directory-based structure.")
 	tapCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
 	rootCmd.AddCommand(tapCmd)
+
+	carapace.Gen(tapCmd).PositionalCompletion(
+		brew.ActionInstalledTaps(),
+		carapace.ActionValues(),
+	)
 }

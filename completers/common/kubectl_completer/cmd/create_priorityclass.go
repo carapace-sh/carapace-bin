@@ -33,9 +33,10 @@ func init() {
 	createCmd.AddCommand(create_priorityclassCmd)
 
 	carapace.Gen(create_priorityclassCmd).FlagCompletion(carapace.ActionMap{
-		"dry-run":  kubectl.ActionDryRunModes(),
-		"output":   kubectl.ActionOutputFormats(),
-		"template": carapace.ActionFiles(),
-		"validate": kubectl.ActionValidationModes(),
+		"dry-run":           kubectl.ActionDryRunModes(),
+		"output":            kubectl.ActionOutputFormats(),
+		"preemption-policy": carapace.ActionValues("Never", "PreemptLowerPriority"),
+		"template":          carapace.ActionFiles(),
+		"validate":          kubectl.ActionValidationModes(),
 	})
 }

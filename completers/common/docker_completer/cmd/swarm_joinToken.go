@@ -19,6 +19,6 @@ func init() {
 	swarmCmd.AddCommand(swarm_joinTokenCmd)
 
 	carapace.Gen(swarm_joinTokenCmd).PositionalCompletion(
-		carapace.ActionValues("worker", "manager"),
+		carapace.ActionValues("manager", "worker"),
 	)
 }

@@ -1,0 +1,40 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugupgraderepo
+description: upgrade a repository to use different features
+hidden: true
+flags:
+    --backup: keep the old repository content around
+    --changelog: select the changelog for upgrade
+    --filelogs: select all filelogs for upgrade
+    --manifest: select the manifest for upgrade
+    --run: performs an upgrade
+    -o, --optimize=*: extra optimization to perform
+documentation:
+    command: |
+        upgrade a repository to use different features
+
+        If no arguments are specified, the repository is evaluated for upgrade
+        and a list of problems and potential optimizations is printed.
+
+        With `--run`, a repository upgrade is performed. Behavior of the upgrade
+        can be influenced via additional arguments. More details will be provided
+        by the command output when run without `--run`.
+
+        During the upgrade, the repository will be locked and no writes will be
+        allowed.
+
+        At the end of the upgrade, the repository may not be readable while new
+        repository data is swapped in. This window will be as long as it takes to
+        rename some directories inside the `.hg` directory. On most machines, this
+        should complete almost instantaneously and the chances of a consumer being
+        unable to access the repository should be low.
+
+        By default, all revlogs will be upgraded. You can restrict this using flags
+        such as `--manifest`:
+
+          * `--manifest`: only optimize the manifest
+          * `--no-manifest`: optimize all revlog but the manifest
+          * `--changelog`: optimize the changelog only
+          * `--no-changelog --no-manifest`: optimize filelogs only
+          * `--filelogs`: optimize the filelogs only
+          * `--no-changelog --no-manifest --no-filelogs`: skip all revlog optimizations

@@ -35,10 +35,7 @@ func init() {
 	logCmd.Flags().Bool("no-decorate", false, "do not print out the ref names of any commits that are shown")
 	logCmd.Flags().Bool("no-diff-merges", false, "disable output of diffs for merge commits")
 	logCmd.Flags().Bool("no-mailmap", false, "do not use mailmap file to map author and committer names and email addresses to canonical real names and email addresses")
-	logCmd.Flags().Bool("no-notes", false, "do not show notes")
-	logCmd.Flags().Bool("no-relative", false, "do not show pathnames relative to the current directory")
 	logCmd.Flags().Bool("no-use-mailmap", false, "do not use mailmap file to map author and committer names and email addresses to canonical real names and email addresses")
-	logCmd.Flags().StringArray("notes", nil, "show the notes that annotate the commit")
 	logCmd.Flags().Bool("source", false, "print out the ref name given on the command line by which each commit was reached")
 	logCmd.Flags().BoolS("t", "t", false, "show the tree objects in the diff output")
 	logCmd.Flags().Bool("use-mailmap", false, "use mailmap file to map author and committer names and email addresses to canonical real names and email addresses")
@@ -55,26 +52,23 @@ func init() {
 	logCmd.Flag("decorate").NoOptDefVal = "short"
 
 	carapace.Gen(logCmd).FlagCompletion(carapace.ActionMap{
-		"decorate": carapace.ActionValuesDescribed(
-			"short", "do not print ref prefixes",
-			"full", "print ref prefixes",
-			"auto", "short format when output to terminal",
-			"no", "no decoration",
-		),
+		"decorate":              git.ActionDecorateModes(),
+		"decorate-refs":         git.ActionRefs(git.RefOption{}.Default()),
+		"decorate-refs-exclude": git.ActionRefs(git.RefOption{}.Default()),
 		"diff-merges": carapace.ActionValuesDescribed(
-			"off", "Disable output of diffs for merge commits.",
-			"none", "Disable output of diffs for merge commits.",
-			"on", "This option makes diff output for merge commits to be shown in the default format.",
-			"m", "This option makes diff output for merge commits to be shown in the default format.",
-			"first-parent", "This option makes merge commits show the full diff with respect to the first parent only.",
 			"1", "This option makes merge commits show the full diff with respect to the first parent only.",
-			"separate", "This makes merge commits show the full diff with respect to each of the parents.",
-			"remerge", "With this option, two-parent merge commits are remerged to create a temporary tree object",
-			"r", "With this option, two-parent merge commits are remerged to create a temporary tree object",
-			"combined", "With this option, diff output for a merge commit shows the differences from each of the parents to the merge result simultaneously.",
 			"c", "With this option, diff output for a merge commit shows the differences from each of the parents to the merge result simultaneously.",
-			"dense-combined", "With this option the output produced by --diff-merges=combined is further compressed.",
 			"cc", "With this option the output produced by --diff-merges=combined is further compressed.",
+			"combined", "With this option, diff output for a merge commit shows the differences from each of the parents to the merge result simultaneously.",
+			"dense-combined", "With this option the output produced by --diff-merges=combined is further compressed.",
+			"first-parent", "This option makes merge commits show the full diff with respect to the first parent only.",
+			"m", "This option makes diff output for merge commits to be shown in the default format.",
+			"none", "Disable output of diffs for merge commits.",
+			"off", "Disable output of diffs for merge commits.",
+			"on", "This option makes diff output for merge commits to be shown in the default format.",
+			"r", "With this option, two-parent merge commits are remerged to create a temporary tree object",
+			"remerge", "With this option, two-parent merge commits are remerged to create a temporary tree object",
+			"separate", "This makes merge commits show the full diff with respect to each of the parents.",
 		),
 	})
 

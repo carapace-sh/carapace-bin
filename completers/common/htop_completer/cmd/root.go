@@ -46,8 +46,8 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"drop-capabilities": carapace.ActionValuesDescribed(
-			"off", "do not drop any capabilities",
 			"basic", "drop all capabilities not needed by htop",
+			"off", "do not drop any capabilities",
 			"strict", "drop all capabilities except those needed for core functionality",
 		),
 		"pid":      ps.ActionProcessIds().UniqueList(","),

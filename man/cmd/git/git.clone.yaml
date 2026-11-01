@@ -3,31 +3,45 @@ name: clone
 description: Clone a repository into a new directory
 group: main
 flags:
+  --also-filter-submodules: apply partial clone filter to submodules
   --bare: create a bare repository
+  --bundle-uri=: fetch additional objects from this URI
+  --checkout: opposite of --no-checkout
   --depth=: create a shallow clone of that depth
   --dissociate: use --reference only while cloning
-  --filter=: object filtering
+  --filter=*: object filtering
+  --hardlinks: opposite of --no-hardlinks
   --mirror: create a mirror repository (implies bare)
+  --naked&: create a bare repository
   --no-hardlinks: don't use local hardlinks, always copy
+  --no-local: override --local, as if file:/// URL was given
+  --no-reject-shallow: do not reject shallow repository
+  --no-remote-submodules: do not use remote-tracking branch for submodules
+  --no-shallow-submodules: do not clone submodules as shallow
+  --no-single-branch: clone history leading up to each branch
   --no-tags: don't clone any tags, and make later fetches not to follow them
   --progress: force progress reporting
-  --recurse-submodules=: initialize submodules in the clone
-  --recursive=: alias of --recurse-submodules
-  --reference-if-able=: reference repository
-  --reference=: reference repository
+  --recurse-submodules?: initialize submodules in the clone
+  --recursive?: alias of --recurse-submodules
+  --ref-format=: specify the reference format for the repository
+  --reference-if-able=*: reference repository
+  --reference=*: reference repository
+  --reject-shallow: do not clone shallow repository
   --remote-submodules: any cloned submodules will use their remote-tracking branch
+  --revision=: clone a specific revision
   --separate-git-dir=: separate git dir from working tree
-  --server-option=: option to transmit
-  --shallow-exclude=: deepen history of shallow clone, excluding rev
+  --server-option=*: option to transmit
+  --shallow-exclude=*: deepen history of shallow clone, excluding rev
   --shallow-since=: create a shallow clone since a specific time
   --shallow-submodules: any cloned submodules will be shallow
   --single-branch: clone only one branch, HEAD or --branch
   --sparse: initialize sparse-checkout file to include only files at root
+  --tags: clone tags
   --template=: directory from which templates will be used
   -4, --ipv4: use IPv4 addresses only
   -6, --ipv6: use IPv6 addresses only
   -b, --branch=: checkout <branch> instead of the remote's HEAD
-  -c, --config=: set config inside the new repository
+  -c, --config=*: set config inside the new repository
   -j, --jobs=: number of submodules cloned in parallel
   -l, --local: to clone from a local repository
   -n, --no-checkout: don't create a checkout
@@ -37,22 +51,6 @@ flags:
   -u, --upload-pack=: path to git-upload-pack on the remote
   -v, --verbose: be more verbose
 documentation:
-  command: |-
-    Clones a repository into a newly created directory, creates
-    remote-tracking branches for each branch in the cloned repository
-    (visible using `git branch --remotes`), and creates and checks out an
-    initial branch that is forked from the cloned repository's
-    currently active branch.
-
-    After the clone, a plain `git fetch` without arguments will update
-    all the remote-tracking branches, and a `git pull` without
-    arguments will in addition merge the remote master branch into the
-    current master branch, if any (this is untrue when `--single-branch`
-    is given; see below).
-
-    This default configuration is achieved by creating references to
-    the remote branch heads under `refs/remotes/origin` and by initializing `remote.origin.url` and `remote.origin.fetch`
-    configuration variables.
   flag:
     bare: |-
       Make a `bare` Git repository.  That is, instead of
@@ -206,6 +204,11 @@ documentation:
 
       NOTE: see the NOTE for the `--shared` option, and also the
       `--dissociate` option.
+    remote-submodules: |-
+      All submodules which are cloned will use the status of the submodule's
+      remote-tracking branch to update the submodule, rather than the
+      superproject's recorded SHA-1. Equivalent to passing `--remote` to
+      `git submodule update`.
     separate-git-dir: |-
       Instead of placing the cloned repository where it is supposed
       to be, place the cloned repository at the specified directory,
@@ -226,6 +229,7 @@ documentation:
       reachable from a specified remote branch or tag.  This option
       can be specified multiple times.
     shallow-since: Create a shallow clone with a history after the specified time.
+    shallow-submodules: All submodules which are cloned will be shallow with a depth of 1.
     shared: |-
       When the repository to clone is on the local machine,
       instead of using hard links, automatically setup
@@ -252,6 +256,15 @@ documentation:
       If you want to break the dependency of a repository cloned with `--shared` on
       its source repository, you can simply run `git repack -a` to copy all
       objects from the source repository into a pack in the cloned repository.
+    single-branch: |-
+      Clone only the history leading to the tip of a single branch,
+      either specified by the `--branch` option or the primary
+      branch remote's `HEAD` points at.
+      Further fetches into the resulting repository will only update the
+      remote-tracking branch for the branch this option was used for the
+      initial cloning.  If the `HEAD` at the remote did not point at any
+      branch when `--single-branch` clone was made, no remote-tracking
+      branch is created.
     sparse: |-
       Employ a sparse-checkout, with only files in the toplevel
       directory initially being present.  The
@@ -266,18 +279,69 @@ documentation:
     verbose: |-
       Run verbosely. Does not affect the reporting of progress status
       to the standard error stream.
-    remote-submodules: |-
-      All submodules which are cloned will use the status of the submodule's
-      remote-tracking branch to update the submodule, rather than the
-      superproject's recorded SHA-1. Equivalent to passing `--remote` to
-      `git submodule update`.
-    shallow-submodules: All submodules which are cloned will be shallow with a depth of 1.
-    single-branch: |-
-      Clone only the history leading to the tip of a single branch,
-      either specified by the `--branch` option or the primary
-      branch remote's `HEAD` points at.
-      Further fetches into the resulting repository will only update the
-      remote-tracking branch for the branch this option was used for the
-      initial cloning.  If the `HEAD` at the remote did not point at any
-      branch when `--single-branch` clone was made, no remote-tracking
-      branch is created.
+    checkout: |-
+      Checkout the commit recorded in the superproject on a detached `HEAD`
+      in the submodule. This option is only valid for the `update` command.
+      This is the default behavior, the main use of
+      this option is to override `submodule.<name>.update` when set to
+      a value other than `checkout`.
+      If the key `submodule.<name>.update` is either not explicitly set or
+      set to `checkout`, this option is implicit.
+    ref-format: |-
+      The ref format to migrate the ref store to. Can be one of:
+      
+      `files`;; for loose files with packed-refs.
+      
+      This is the default.
+      
+      `reftable`;; for the reftable format.
+      
+      This is the default.
+    reference: |-
+      Pass the local _<repository>_ as a reference when cloning the submodule.
+      This option is only valid for `add` and `update` commands.
+      These commands sometimes need to clone a remote repository. In this case,
+      this option will be passed to the [git-clone](cmd://git/clone) command.
+      
+      NOTE: Do *not* use this option unless you have read the note
+      for [git-clone](cmd://git/clone)'s `--reference`, `--shared`, and `--dissociate`
+      options carefully.
+    tags: |-
+      Instead of using only the annotated tags, use any tag
+      found in `refs/tags` namespace.  This option enables matching
+      a lightweight (non-annotated) tag.
+    recurse-submodules: |-
+      THIS OPTION IS EXPERIMENTAL! Cause the current command to
+      recurse into submodules if `submodule.propagateBranches` is
+      enabled. See `submodule.propagateBranches` in
+      [git-config](cmd://git/config). Currently, only branch creation is
+      supported.
+      
+      When used in branch creation, a new branch _<branch-name>_ will be created
+      in the superproject and all of the submodules in the superproject's
+      _<start-point>_. In submodules, the branch will point to the submodule
+      commit in the superproject's _<start-point>_ but the branch's tracking
+      information will be set up based on the submodule's branches and remotes
+      e.g. `git branch --recurse-submodules topic origin/main` will create the
+      submodule branch "topic" that points to the submodule commit in the
+      superproject's "origin/main", but tracks the submodule's "origin/main".
+    recursive: |-
+      Traverse submodules recursively. This option is only valid for `foreach`,
+      `update`, `status` and `sync` commands. The operation is performed not
+      only in the submodules of the current repo, but also
+      in any nested submodules inside those submodules (and so on).
+    no-local: |-
+      override --local, as if file:/// URL was given
+    no-single-branch: clone history leading up to each branch
+    also-filter-submodules: apply partial clone filter to submodules
+    bundle-uri: fetch additional objects from this URI
+    hardlinks: opposite of --no-hardlinks
+    ipv4: use IPv4 addresses only
+    ipv6: use IPv6 addresses only
+    naked&: create a bare repository
+    no-reject-shallow: do not reject shallow repository
+    no-remote-submodules: do not use remote-tracking branch for submodules
+    no-shallow-submodules: do not clone submodules as shallow
+    reject-shallow: do not clone shallow repository
+    revision: clone a specific revision
+

@@ -7,24 +7,27 @@ import (
 )
 
 var bugsCmd = &cobra.Command{
-	Use:   "bugs",
-	Short: "Report bugs for a package in a web browser",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "bugs",
+	Short:   "Report bugs for a package in a web browser",
+	Aliases: []string{"issues"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(bugsCmd).Standalone()
 	bugsCmd.Flags().String("browser", "", "browser called to open websites")
+	bugsCmd.Flags().Bool("no-browser", false, "print urls to terminal instead of opening browser")
+	bugsCmd.Flags().String("registry", "", "base URL of the npm registry")
 
 	rootCmd.AddCommand(bugsCmd)
 
 	carapace.Gen(bugsCmd).FlagCompletion(carapace.ActionMap{
 		"browser": carapace.ActionValuesDescribed(
+			"false", "print urls to terminal",
 			"open", "osx default",
 			"start", "windows default",
-			"xdg-open", "others default",
-			"false", "print urls to terminal",
 			"true", "use system default",
+			"xdg-open", "others default",
 		),
 	})
 

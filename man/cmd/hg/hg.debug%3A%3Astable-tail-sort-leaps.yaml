@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debug::stable-tail-sort-leaps
+description: REV
+hidden: true
+flags:
+    -T, --template=: display with template
+    -s, --specific: restrict to specific leaps
+documentation:
+    command: |
+        display the leaps in the stable-tail sort of a node, one per line

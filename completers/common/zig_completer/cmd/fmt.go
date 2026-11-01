@@ -21,6 +21,7 @@ func init() {
 	fmtCmd.Flags().Bool("ast-check", false, "Run zig ast-check on every file")
 	fmtCmd.Flags().Bool("check", false, "List non-conforming files and exit with an error if the list is non-empty")
 	fmtCmd.Flags().String("color", "", "Enable or disable colored error messages")
+	fmtCmd.Flags().Bool("complexity", false, "Print a complexity report for each file as well as total")
 	fmtCmd.Flags().StringSlice("exclude", nil, "Exclude file or directory from formatting")
 	fmtCmd.Flags().BoolP("help", "h", false, "Print help")
 	fmtCmd.Flags().Bool("stdin", false, "Format code from stdin; output to stdout")

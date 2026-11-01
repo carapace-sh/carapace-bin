@@ -15,13 +15,13 @@ documentation:
 
     By default, the following information is captured in the archive:
 
-      * 'git version --build-options'
-      * The path to the repository root
-      * The available disk space on the filesystem
-      * The name and size of each packfile, including those in alternate object
-        stores
-      * The total count of loose objects, as well as counts broken down by
-        `.git/objects` subdirectory
+     * 'git version --build-options'
+     * The path to the repository root
+     * The available disk space on the filesystem
+     * The name and size of each packfile, including those in alternate object
+      stores
+     * The total count of loose objects, as well as counts broken down by
+      `.git/objects` subdirectory
 
     Additional information can be collected by selecting a different diagnostic mode
     using the `--mode` option.
@@ -29,3 +29,7 @@ documentation:
     This tool differs from [git-bugreport](cmd://git/bugreport) in that it collects much more
     detailed information with a greater focus on reporting the size and data shape
     of repository contents.
+  flag:
+    mode: specify the type of diagnostics that should be collected
+    output-directory: place the resulting diagnostics archive in <path>
+    suffix: specify an alternate suffix for the diagnostics archive name

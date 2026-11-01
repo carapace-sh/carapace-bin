@@ -8,27 +8,27 @@ A single command can have completers from multiple sources:
 
 | Source | Location | Group |
 |--------|----------|-------|
-| Native Go completers | `completers/` (built-in) | `common`, `unix`, `linux`, `darwin`, `bsd`, `windows`, `android` |
+| Native Go completers | `completers/` (built-in) | `common`, `unix`, `linux`, `darwin`, `bsd`, `freebsd`, `netbsd`, `openbsd`, `windows`, `android` |
 | User YAML specs | `${UserConfigDir}/carapace/specs/` | `user` |
-| System YAML specs | `${UserConfigDir}/carapace/specs/` | `system` |
-| Known bridges | hardcoded in `bridges.go` (~80 commands) | `bridge` |
+| Known bridges | hardcoded in `bridges.go` (72 commands) | `bridge` |
 | Shell bridges | enabled via `CARAPACE_BRIDGES` | `bridge` |
 | Overlays | `${UserConfigDir}/carapace/overlays/` | modifies existing variant |
+
+> The `system` group exists in the priority map but no loader currently populates it; specs in `${UserConfigDir}/carapace/specs/` are loaded as group `user`.
 
 ## Group Priority
 
 When multiple groups provide a completer for the same command, they resolve in this order (highest wins):
 
-1. **`user`** — user YAML specs
-2. **`system`** — system YAML specs
-3. **OS-specific** (`linux`, `darwin`, `windows`, `android`, `bsd`) — matches current OS
-4. **`unix`** — Unix-like
-5. **`common`** — cross-platform
-6. **`bridge`** — lowest priority
+1. **A choice** (set via `--choice`) — overrides everything
+2. **`user`** — user YAML specs
+3. **Current shell** — the group matching `CARAPACE_SHELL` (e.g. `bash`, `zsh`) is boosted above all OS groups
+4. **Current OS group** (`runtime.GOOS`)
+5. **Other OS groups** — base priority order: `linux`, `unix`, `darwin`, `freebsd`, `netbsd`, `openbsd`, `bsd`, `windows`, `android`, `common`
+6. **`bridge`** — lowest priority above shell-builtin bridges
+7. **Shell builtin groups** (`bash`, `zsh`, `fish`, …) — below `bridge` so they don't shadow real command completers
 
-A **choice** (set via `--choice`) overrides all of the above — see [Choices](#choices) below.
-
-Within the same group, variants are ordered alphabetically by name.
+Within the same group, variants are ordered alphabetically by name — except group `bridge`, which follows the order in `CARAPACE_BRIDGES`.
 
 ## Listing Variants
 
@@ -68,7 +68,7 @@ carapace/
     └── tldr             # content: tldr/tldr-python-client
 ```
 
-To remove a choice, delete the file: `rm ~/.config/carapace/choices/gh`
+To remove a choice: `carapace --choice -d gh` (deletes the persisted file).
 
 A choice gives that variant the **highest priority**, overriding all group ordering.
 
@@ -91,13 +91,13 @@ export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense'
 | `bash` | Bash's completion system | Requires bash and completions loaded |
 | `inshellisense` | [inshellisense](https://github.com/microsoft/inshellisense) | Requires inshellisense installed |
 
-Default order: `zsh,fish,bash,inshellisense`. The completer list is **cached** — clear with `carapace --clear-cache` after installing new shells or commands.
+Unset by default — shell bridges are only active when `CARAPACE_BRIDGES` is set. The completer list is **cached** — clear with `carapace --clear-cache` after installing new shells or commands.
 
 > Shell bridges should be a fallback — framework bridges produce better completions with less overhead.
 
 ### Explicit Bridges (Framework-Based)
 
-These must be set explicitly via `--choice` or a user spec because carapace **doesn't auto-detect** which framework a tool was built with by default. For example, carapace doesn't know that `gh` (GitHub CLI) uses cobra — you must tell it. (There is an experimental `bridge.Detect()` function in carapace-bridge that probes a command to auto-detect its framework, but it is not used at runtime.)
+These must be set explicitly via `--choice` or a user spec because carapace **doesn't auto-detect** which framework a tool was built with by default. For example, carapace doesn't know that `gh` (GitHub CLI) uses cobra — you must tell it. To probe a command, use `carapace --detect <cmd>` (wraps the experimental `bridge.Detect()` from carapace-bridge, which tests each bridge type).
 
 **Via choice:**
 ```sh
@@ -116,7 +116,7 @@ completion:
 
 ### Known Bridges
 
-carapace-bin includes a hardcoded map of ~80 commands with their known framework (in `cmd/carapace/cmd/completers/bridges.go`). These are low-priority `bridge` group defaults — a native completer or user choice always overrides them.
+carapace-bin includes a hardcoded map of 72 commands with their known framework (in `cmd/carapace/cmd/completers/bridges.go`). These are low-priority `bridge` group defaults — a native completer or user choice always overrides them.
 
 Full list of bridge types:
 
@@ -135,10 +135,11 @@ Full list of bridge types:
 | `fish` | [fish](https://fishshell.com/) | `$carapace.bridge.Fish([cmd])` |
 | `gcloud` | [Google Cloud SDK](https://docs.cloud.google.com/sdk/gcloud) | `$carapace.bridge.Gcloud([cmd])` |
 | `inshellisense` | [inshellisense](https://github.com/microsoft/inshellisense) | `$carapace.bridge.Inshellisense([cmd])` |
-| `jj` | [jj-vcs](https://www.jj-vcs.dev) | `$carapace.bridge.Jj([cmd])` |
+| `jj` | [jj-vcs](https://www.jj-vcs.dev) | `$carapace.bridge.JJ([cmd])` |
 | `kingpin` | [alecthomas/kingpin](https://github.com/alecthomas/kingpin) | `$carapace.bridge.Kingpin([cmd])` |
 | `kitten` | [kitty](https://sw.kovidgoyal.net/kitty/) | `$carapace.bridge.Kitten([cmd])` |
 | `powershell` | [powershell](https://microsoft.com/powershell) | `$carapace.bridge.Powershell([cmd])` |
+| `typer` | [fastapi/typer](https://github.com/fastapi/typer) | `$carapace.bridge.Typer([cmd])` |
 | `urfavecli` | [urfave/cli](https://github.com/urfave/cli) | `$carapace.bridge.Urfavecli([cmd])` |
 | `urfavecli_v1` | urfave/cli (legacy) | `$carapace.bridge.UrfavecliV1([cmd])` |
 | `yargs` | [yargs/yargs](https://github.com/yargs/yargs) | `$carapace.bridge.Yargs([cmd])` |
@@ -161,7 +162,7 @@ An agent can look up a tool's framework by:
 2. Searching the tool's source code for framework imports (e.g. `import "github.com/spf13/cobra"`)
 3. Checking the tool's documentation or `--help` output for framework clues
 4. Checking the hardcoded map in `cmd/carapace/cmd/completers/bridges.go` for known mappings
-5. Using the experimental `bridge.Detect()` function from carapace-bridge, which probes a command to auto-detect its completion framework by testing each bridge type
+5. Using `carapace --detect <cmd>` (wraps the experimental `bridge.Detect()` from carapace-bridge, which probes a command to auto-detect its completion framework by testing each bridge type)
 
 Common framework signatures:
 - **Cobra** (Go): `import "github.com/spf13/cobra"`, completion command `cmd completion <shell>`

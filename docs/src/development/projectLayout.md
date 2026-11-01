@@ -4,9 +4,7 @@
 .
 ├── cmd
 │  ├── carapace # main application
-│  ├── carapace-fmt # simple formatter
 │  ├── carapace-generate # executed by `go generate`
-│  ├── carapace-lint # simple linter
 │  ├── carapace-parse # simple help output parser
 │  └── carapace-shim # binary for runnable specs in windows
 ├── completers # completers

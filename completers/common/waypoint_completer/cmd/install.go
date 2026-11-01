@@ -28,6 +28,6 @@ func init() {
 	rootCmd.AddCommand(installCmd)
 
 	carapace.Gen(installCmd).FlagCompletion(carapace.ActionMap{
-		"platform": carapace.ActionValues("kubernetes", "nomad", "ecs", "docker"),
+		"platform": carapace.ActionValues("docker", "ecs", "kubernetes", "nomad"),
 	})
 }

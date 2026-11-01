@@ -17,8 +17,8 @@ func init() {
 
 	signCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	signCmd.Flags().String("key", "", "The key used for signing")
-	signCmd.Flags().StringSliceP("revision", "r", []string{"@"}, "What revision(s) to sign")
-	signCmd.Flags().StringSlice("revisions", []string{"@"}, "What revision(s) to sign")
+	signCmd.Flags().StringSliceP("revision", "r", nil, "What revision(s) to sign")
+	signCmd.Flags().StringSlice("revisions", nil, "What revision(s) to sign")
 	signCmd.Flag("revisions").Hidden = true
 	rootCmd.AddCommand(signCmd)
 

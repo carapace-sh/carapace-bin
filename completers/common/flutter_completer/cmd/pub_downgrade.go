@@ -15,11 +15,14 @@ var pub_downgradeCmd = &cobra.Command{
 func init() {
 	carapace.Gen(pub_downgradeCmd).Standalone()
 
-	pub_downgradeCmd.Flags().StringP("directory", "C", "", "Run this in the directory<dir>.")
+	pub_downgradeCmd.Flags().StringP("directory", "C", "", "Run this in the directory <dir>.")
 	pub_downgradeCmd.Flags().BoolP("dry-run", "n", false, "Report what dependencies would change but don't change any.")
+	pub_downgradeCmd.Flags().Bool("example", false, "Also run in `example/` (if it exists).")
 	pub_downgradeCmd.Flags().BoolP("help", "h", false, "Print this usage information.")
+	pub_downgradeCmd.Flags().Bool("no-example", false, "Do not run in `example/`.")
 	pub_downgradeCmd.Flags().Bool("no-offline", false, "Do not use cached packages instead of accessing the network.")
 	pub_downgradeCmd.Flags().Bool("offline", false, "Use cached packages instead of accessing the network.")
+	pub_downgradeCmd.Flags().Bool("tighten", false, "Updates lower bounds in pubspec.yaml to match the resolved version.")
 	pubCmd.AddCommand(pub_downgradeCmd)
 
 	carapace.Gen(pub_downgradeCmd).PositionalAnyCompletion(

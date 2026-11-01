@@ -2,10 +2,10 @@
 name: delete
 description: Delete single entries from the reflog
 flags:
-  --rewrite: Adjust a reflogs "old" SHA-1 to be equal to the "new" SHA-1 field of the entry that now precedes it
-  --updateref: Update the reference to the value of the top reflog entry
-  --verbose: Print extra information on screen.
-  -n, --dry-run: Do not actually prune any entries
+  --rewrite: adjust a reflogs "old" SHA-1 to be equal to the "new" SHA-1 field of the entry that now precedes it
+  --updateref: update the reference to the value of the top reflog entry
+  --verbose: print extra information on screen
+  -n, --dry-run: do not actually prune any entries
 documentation:
   flag:
     dry-run: |-

@@ -1,3 +1,16 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: run
 description: run script to automatically bisect
+flags:
+  --reset-when-found?: automatically run "git bisect reset" when the first bad commit has been determined
+documentation:
+  flag:
+    reset-when-found: |-
+      Once the first bad commit is found, report it and clean up the
+      bisection state. `<where>` may be `original` to return to the commit
+      checked out before `git bisect start`, or `found` to leave the first
+      bad commit checked out. If `<where>` is omitted, it defaults to
+      `original`.
+
+      This option may be given to `git bisect start` or to `git bisect run`. It
+      cannot be used for a bisection started with `--no-checkout`.

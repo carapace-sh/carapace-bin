@@ -48,7 +48,7 @@ func addRunFlags(cmd *cobra.Command) {
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
 		"cache-dir": carapace.ActionDirectories(),
-		"dry-run":   carapace.ActionValues("text", "json"),
+		"dry-run":   carapace.ActionValues("json", "text"),
 		"filter": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if index := strings.LastIndexAny(c.Value, "[]"); index != -1 && []rune(c.Value)[index] == '[' {
 				return git.ActionRefs(git.RefOption{}.Default()).Invoke(c).Prefix(c.Value[:index+1]).Suffix("]").ToA().NoSpace()

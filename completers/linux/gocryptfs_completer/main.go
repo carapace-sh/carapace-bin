@@ -1,6 +1,6 @@
 package main
 
-import "github.com/carapace-sh/carapace-bin/completers/linux/free_completer/cmd"
+import "github.com/carapace-sh/carapace-bin/completers/linux/gocryptfs_completer/cmd"
 
 func main() {
 	cmd.Execute()

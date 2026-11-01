@@ -2,13 +2,11 @@ package snippet
 
 import (
 	"fmt"
-	"strings"
+
+	shlex "github.com/carapace-sh/carapace-shlex/v2"
 )
 
 func Zsh(completers []string) string {
-	for i, completer := range completers {
-		completers[i] = fmt.Sprintf("%q", completer)
-	}
 	return fmt.Sprintf(`%v%v
 
 function _carapace_completer {
@@ -55,5 +53,5 @@ function _carapace_completer {
 }
 
 compdef _carapace_completer %v
-`, pathSnippet("zsh"), envSnippet("zsh"), strings.Join(completers, " "))
+`, pathSnippet("zsh"), envSnippet("zsh"), shlex.Join(completers, shlex.Zsh))
 }

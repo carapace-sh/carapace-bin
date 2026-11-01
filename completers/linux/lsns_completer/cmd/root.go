@@ -43,7 +43,7 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"output": action.ActionColumns().UniqueList(","),
 		"task":   ps.ActionProcessIds(),
-		"tree":   carapace.ActionValues("parent", "owner", "process"),
-		"type":   carapace.ActionValues("mnt", "net", "ipc", "user", "pid", "uts", "cgroup", "time"),
+		"tree":   carapace.ActionValues("owner", "parent", "process"),
+		"type":   carapace.ActionValues("cgroup", "ipc", "mnt", "net", "pid", "time", "user", "uts"),
 	})
 }

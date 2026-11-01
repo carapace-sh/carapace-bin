@@ -15,6 +15,7 @@ var showBranchCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(showBranchCmd).Standalone()
+	showBranchCmd.Flags().SetInterspersed(false)
 
 	showBranchCmd.Flags().BoolP("all", "a", false, "show remote-tracking and local branches")
 	showBranchCmd.Flags().String("color", "", "color '*!+-' corresponding to the branch")
@@ -24,6 +25,7 @@ func init() {
 	showBranchCmd.Flags().Bool("list", false, "synonym to more=-1")
 	showBranchCmd.Flags().Bool("merge-base", false, "show possible merge bases")
 	showBranchCmd.Flags().String("more", "", "show <n> more commits after the common ancestor")
+	showBranchCmd.Flags().Bool("name", false, "opposite of --no-name")
 	showBranchCmd.Flags().Bool("no-name", false, "suppress naming strings")
 	showBranchCmd.Flags().StringP("reflog", "g", "", "show <n> most recent ref-log entries starting at base")
 	showBranchCmd.Flags().BoolP("remotes", "r", false, "show remote-tracking branches")

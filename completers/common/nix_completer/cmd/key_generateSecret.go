@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/nix_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
 
@@ -17,5 +18,5 @@ func init() {
 	key_generateSecretCmd.Flags().String("key-name", "", "Identifier of the key")
 	keyCmd.AddCommand(key_generateSecretCmd)
 
-	addLoggingFlags(key_generateSecretCmd)
+	common.AddLoggingFlags(key_generateSecretCmd)
 }

@@ -7,9 +7,10 @@ import (
 )
 
 var distTag_lsCmd = &cobra.Command{
-	Use:   "ls",
-	Short: "show all the dist-tags for a package",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "ls",
+	Short:   "show all the dist-tags for a package",
+	Aliases: []string{"l", "sl", "list"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

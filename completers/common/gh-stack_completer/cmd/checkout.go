@@ -8,9 +8,10 @@ import (
 )
 
 var checkoutCmd = &cobra.Command{
-	Use:   "checkout [<pr-number> | <branch>]",
-	Short: "Checkout a stack from a PR number or branch name",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "checkout [<stack-number> | <pr-number> | <pr-url> | <branch>]",
+	Short:   "Checkout a stack by stack number, PR number, PR URL, or branch name",
+	GroupID: "stack",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
@@ -21,7 +22,7 @@ func init() {
 	carapace.Gen(checkoutCmd).PositionalCompletion(
 		carapace.Batch(
 			git.ActionLocalBranches(),
-			gh.ActionPullRequests(gh.PullRequestOpts{}), // TODO needs to support implicit repo mapping
+			gh.ActionPullRequests(gh.PullRequestOpts{}.Default()),
 		).ToA(),
 	)
 }

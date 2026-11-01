@@ -8,10 +8,10 @@ import "github.com/carapace-sh/carapace"
 //	bun
 func ActionJavaScriptOptions() carapace.Action {
 	return carapace.ActionValues(
-		"importmap",
 		"bun",
-		"webpack",
 		"esbuild",
+		"importmap",
 		"rollup",
+		"webpack",
 	).Tag("javascript options").Uid("rails", "javascript-option")
 }

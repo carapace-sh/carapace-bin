@@ -25,3 +25,10 @@ documentation:
     immediately fetched from the fetch URL.  If you are trying to
     fetch from one place (e.g. your upstream) and push to another (e.g.
     your publishing repository), use two separate remotes.
+  flag:
+    delete: |-
+      Delete a branch. The branch must be fully merged in its
+      upstream branch, or in `HEAD` if no upstream was set with
+      `--track` or `--set-upstream-to`.
+    add: add URL
+    push: manipulate push URLs

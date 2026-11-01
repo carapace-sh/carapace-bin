@@ -38,7 +38,7 @@ func init() {
 	rootCmd.AddCommand(pmCmd)
 
 	carapace.Gen(pmCmd).FlagCompletion(carapace.ActionMap{
-		"backend":   carapace.ActionValues("hadlink", "symlink", "copyfile"),
+		"backend":   carapace.ActionValues("copyfile", "hadlink", "symlink"),
 		"cache-dir": carapace.ActionDirectories(),
 		"config":    carapace.ActionFiles(),
 		"cwd":       carapace.ActionDirectories(),

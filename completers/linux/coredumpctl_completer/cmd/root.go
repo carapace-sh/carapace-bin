@@ -49,7 +49,7 @@ func init() {
 		).ToA(),
 		"directory": carapace.ActionDirectories(),
 		"image":     carapace.ActionFiles(),
-		"json":      carapace.ActionValues("pretty", "short", "off"),
+		"json":      carapace.ActionValues("off", "pretty", "short"),
 		"output":    carapace.ActionFiles(),
 		"root":      carapace.ActionDirectories(),
 		"since":     time.ActionDate(),

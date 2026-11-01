@@ -16,6 +16,7 @@ func init() {
 
 	upload_s3Cmd.Flags().String("access-key-id", "", "The access key ID for the S3 bucket")
 	upload_s3Cmd.Flags().String("addressing-style", "virtual-host", "How to address the bucket")
+	upload_s3Cmd.Flags().String("attestation", "", "Publish an attestation sidecar alongside the package")
 	upload_s3Cmd.Flags().StringP("channel", "c", "", "The channel URL in the S3 bucket to upload the package to, e.g., `s3://my-bucket/my-channel`")
 	upload_s3Cmd.Flags().String("endpoint-url", "", "The endpoint URL of the S3 backend")
 	upload_s3Cmd.Flags().Bool("force", false, "Replace files if it already exists")
@@ -26,6 +27,7 @@ func init() {
 	uploadCmd.AddCommand(upload_s3Cmd)
 
 	carapace.Gen(upload_s3Cmd).FlagCompletion(carapace.ActionMap{
-		"addressing-style": carapace.ActionValues("virtual-host", "path"),
+		"addressing-style": carapace.ActionValues("path", "virtual-host"),
+		"attestation":      carapace.ActionFiles(),
 	})
 }

@@ -12,3 +12,29 @@ documentation:
   command: |-
     For every pathname, this command will list if each attribute is 'unspecified',
     'set', or 'unset' as a gitattribute on that pathname.
+  flag:
+    cached: |-
+      Apply the patch to just the index, without touching the working
+      tree. If `--check` is in effect, merely check that it would
+      apply cleanly to the index entry.
+    source: |-
+      Print out the ref name given on the command line by which each
+      commit was reached.
+    stdin: |-
+      The list of patterns is read from standard input instead of from
+      the argument list.
+    z: |-
+      When `--numstat` has been given, do not munge pathnames,
+      but use a NUL-terminated machine-readable format.
+      
+      Without this option, pathnames with "unusual" characters are quoted as
+      explained for the configuration variable `core.quotePath` (see
+      [git-config](cmd://git/config)).
+    all: |-
+      Update the index not only where the working tree has a file matching **\<pathspec\>**
+      but also where the index already has an entry.
+      This adds, modifies, and removes index entries to match the working tree.
+      
+      If no **\<pathspec\>** is given when `-A` option is used,
+      all files in the entire working tree are updated
+      (old versions of Git used to limit the update to the current directory and its subdirectories).

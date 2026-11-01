@@ -27,8 +27,8 @@ func init() {
 	formatRevCmd.Flag("notes").NoOptDefVal = " "
 
 	carapace.Gen(formatRevCmd).FlagCompletion(carapace.ActionMap{
-		"format":     carapace.ActionValues("oneline", "short", "medium", "full", "fuller", "reference", "email", "raw", "format:"),
+		"format":     carapace.ActionValues("email", "format:", "full", "fuller", "medium", "oneline", "raw", "reference", "short"),
 		"notes":      git.ActionRefs(git.RefOption{}.Default()),
-		"stdin-mode": carapace.ActionValues("walk", "single"),
+		"stdin-mode": carapace.ActionValues("single", "walk"),
 	})
 }

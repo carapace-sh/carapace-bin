@@ -20,7 +20,7 @@ func init() {
 	getCmd.AddCommand(get_valuesCmd)
 
 	carapace.Gen(get_valuesCmd).FlagCompletion(carapace.ActionMap{
-		"output": carapace.ActionValues("table", "json", "yaml"),
+		"output": carapace.ActionValues("json", "table", "yaml"),
 	})
 
 	carapace.Gen(get_valuesCmd).PositionalCompletion(

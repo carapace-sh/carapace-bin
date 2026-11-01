@@ -12,13 +12,13 @@ import (
 func ActionNotificationFields() carapace.Action {
 	return carapace.ActionValues(
 		"id",
-		"status",
-		"updated",
 		"index",
-		"type",
-		"state",
-		"title",
 		"repository",
+		"state",
+		"status",
+		"title",
+		"type",
+		"updated",
 	)
 }
 
@@ -40,10 +40,10 @@ func ActionNotificationStates() carapace.Action {
 //	pull
 func ActionNotificationTypes() carapace.Action {
 	return carapace.ActionValues(
+		"commit",
 		"issue",
 		"pull",
 		"repository",
-		"commit",
 	)
 
 }

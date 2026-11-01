@@ -26,9 +26,9 @@ func ReadCompleters(dir, goos string) (completer.CompleterMap, error) {
 		"linux":   {"common", "unix", "linux", "bash", "zsh", "fish", "elvish"},
 		"netbsd":  {"common", "unix", "bsd", "netbsd", "bash", "zsh", "fish", "elvish"},
 		"openbsd": {"common", "unix", "bsd", "openbsd", "bash", "zsh", "fish", "elvish"},
-		"windows": {"common", "windows", "elvish"},
+		"windows": {"common", "windows", "cmd", "elvish"},
 
-		"force_all": {"common", "unix", "linux", "bsd", "darwin", "android", "windows", "freebsd", "netbsd", "openbsd", "bash", "zsh", "fish", "elvish"},
+		"force_all": {"common", "unix", "linux", "bsd", "darwin", "android", "windows", "cmd", "freebsd", "netbsd", "openbsd", "bash", "zsh", "fish", "elvish"},
 	}
 
 	completers, err := readCompleters(dir)

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/time"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
 )
@@ -49,8 +50,9 @@ func init() {
 				return carapace.ActionValues()
 			}
 		}),
-		"format": carapace.ActionValues("tar", "zip"),
-		"mtime":  carapace.ActionValues(), // TODO date completion
+		"exec":   carapace.ActionFiles(),
+		"format": carapace.ActionValues("tar", "tar.gz", "tgz", "zip"),
+		"mtime":  time.ActionDate(),
 		"output": carapace.ActionFiles(),
 		"remote": git.ActionRemotes(),
 	})

@@ -32,7 +32,7 @@ func init() {
 	carapace.Gen(discussion_viewCmd).FlagCompletion(carapace.ActionMap{
 		"jq":    jq.ActionFilters(),
 		"json":  gh.ActionDiscussionViewFields().UniqueList(","),
-		"order": carapace.ActionValues("oldest", "newest"),
+		"order": carapace.ActionValues("newest", "oldest"),
 		"repo":  gh.ActionHostOwnerRepositories(),
 	})
 

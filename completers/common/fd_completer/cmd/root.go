@@ -79,26 +79,26 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"base-directory": carapace.ActionDirectories(),
-		"color":          carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
+		"color":          carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"exec":           carapace.ActionFiles(),
 		"exec-batch":     carapace.ActionFiles(),
 		"extension":      fs.ActionFilenameExtensions(),
-		"hyperlink":      carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
+		"hyperlink":      carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"owner":          os.ActionUserGroup(),
 		"path-separator": carapace.ActionValuesDescribed(
 			"/", "Unix",
 			`\`, "Windows",
 		),
 		"search-path":      carapace.ActionDirectories(),
-		"strip-cwd-prefix": carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
+		"strip-cwd-prefix": carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"type": carapace.ActionValues(
-			"file",
 			"directory",
-			"symlink",
-			"executable",
 			"empty",
-			"socket",
+			"executable",
+			"file",
 			"pipe",
+			"socket",
+			"symlink",
 		),
 	})
 

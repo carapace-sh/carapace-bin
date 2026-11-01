@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: root
+description: print the root (top) of the current working directory
+group: working-dir
+flags:
+    --share-source: print the share source root instead
+    -T, --template=: display with template
+documentation:
+    command: |
+        print the root (top) of the current working directory
+
+        Print the root directory of the current repository.
+
+        .. container:: verbose
+
+          Template:
+
+          The following keywords are supported in addition to the common template
+          keywords and functions. See also `hg help templates`.
+
+          :hgpath:    String. Path to the .hg directory.
+          :storepath: String. Path to the directory holding versioned data.
+
+        Returns 0 on success.

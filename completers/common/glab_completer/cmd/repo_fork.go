@@ -7,7 +7,7 @@ import (
 )
 
 var repo_forkCmd = &cobra.Command{
-	Use:   "fork <repo>",
+	Use:   "fork [<repo>]",
 	Short: "Fork a GitLab repository.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
@@ -20,8 +20,6 @@ func init() {
 	repo_forkCmd.Flags().StringP("path", "p", "", "The path assigned to the new project after forking.")
 	repo_forkCmd.Flags().Bool("remote", false, "Add a remote for the fork. Options: true, false.")
 	repoCmd.AddCommand(repo_forkCmd)
-
-	// TODO path completion
 
 	carapace.Gen(repo_forkCmd).PositionalCompletion(
 		action.ActionRepo(repo_forkCmd),

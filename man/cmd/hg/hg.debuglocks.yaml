@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debuglocks
+description: show or modify state of locks
+hidden: true
+flags:
+    -L, --force-free-lock: free the store lock (DANGEROUS)
+    -S, --set-wlock: set the working state lock until stopped
+    -W, --force-free-wlock: free the working state lock (DANGEROUS)
+    -s, --set-lock: set the store lock until stopped
+documentation:
+    command: |
+        show or modify state of locks
+
+        By default, this command will show which locks are held. This
+        includes the user and process holding the lock, the amount of time
+        the lock has been held, and the machine name where the process is
+        running if it's not local.
+
+        Locks protect the integrity of Mercurial's data, so should be
+        treated with care. System crashes or other interruptions may cause
+        locks to not be properly released, though Mercurial will usually
+        detect and remove such stale locks automatically.
+
+        However, detecting stale locks may not always be possible (for
+        instance, on a shared filesystem). Removing locks may also be
+        blocked by filesystem permissions.
+
+        Setting a lock will prevent other commands from changing the data.
+        The command will wait until an interruption (SIGINT, SIGTERM, ...) occurs.
+        The set locks are removed when the command exits.
+
+        Returns 0 if no locks are held.

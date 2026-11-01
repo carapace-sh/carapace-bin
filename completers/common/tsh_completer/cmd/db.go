@@ -15,7 +15,7 @@ var dbCmd = &cobra.Command{
 func init() {
 	carapace.Gen(dbCmd).Standalone()
 
-	dbCmd.Flags().StringP("cluster", "c", "", "Specify the Teleport cluster to connect")
+	dbCmd.Flags().StringP("cluster", "c", "", "Specify the Teleport cluster to connect.")
 	rootCmd.AddCommand(dbCmd)
 
 	carapace.Gen(dbCmd).FlagCompletion(carapace.ActionMap{

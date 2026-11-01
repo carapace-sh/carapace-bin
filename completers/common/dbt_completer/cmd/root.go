@@ -47,7 +47,7 @@ func init() {
 	rootCmd.PersistentFlags().String("profiles-dir", "", "Which directory to look in for the profiles.yml file")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"log-format":         carapace.ActionValues("text", "json", "default"),
+		"log-format":         carapace.ActionValues("default", "json", "text"),
 		"profiles-dir":       carapace.ActionDirectories(),
 		"record-timing-info": carapace.ActionFiles(),
 	})

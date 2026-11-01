@@ -8,17 +8,17 @@ import "github.com/carapace-sh/carapace"
 //	intro
 func ActionSponsorblockCategories() carapace.Action {
 	return carapace.ActionValues(
-		"sponsor",
-		"intro",
-		"outro",
-		"selfpromo",
-		"preview",
+		"all",
+		"chapter",
+		"default",
 		"filler",
 		"interaction",
+		"intro",
 		"music_offtopic",
+		"outro",
 		"poi_highlight",
-		"chapter",
-		"all",
-		"default",
+		"preview",
+		"selfpromo",
+		"sponsor",
 	).Tag("sponsorblock categories")
 }

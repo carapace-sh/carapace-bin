@@ -7,7 +7,7 @@ import (
 
 var domains_buyCmd = &cobra.Command{
 	Use:   "buy",
-	Short: "Buy a domain that you don't yet own",
+	Short: "Purchase a new domain name",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
@@ -16,5 +16,7 @@ func init() {
 
 	domainsCmd.AddCommand(domains_buyCmd)
 
-	// TODO positional completion
+	carapace.Gen(domains_buyCmd).PositionalCompletion(
+		carapace.ActionValues(),
+	)
 }

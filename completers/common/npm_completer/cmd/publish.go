@@ -16,6 +16,8 @@ func init() {
 	publishCmd.Flags().String("access", "restricted", "publish as public or restricted")
 	publishCmd.Flags().Bool("dry-run", false, "only report changes")
 	publishCmd.Flags().String("otp", "", "one-time password")
+	publishCmd.Flags().Bool("provenance", false, "link package to where it was built and published from")
+	publishCmd.Flags().String("provenance-file", "", "file to use for provenance")
 	publishCmd.Flags().String("tag", "latest", "register with given tag")
 	addWorkspaceFlags(publishCmd)
 

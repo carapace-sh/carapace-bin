@@ -4,3 +4,9 @@ description: Store approvals in approvals.toml
 flags:
     --all: Show all commands
     -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        C:
+            - $files
+        config:
+            - $files

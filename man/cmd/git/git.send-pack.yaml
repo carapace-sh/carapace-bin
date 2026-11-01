@@ -3,24 +3,25 @@ name: send-pack
 description: Push objects over Git protocol to another repository
 group: low-level synching
 flags:
-  --all: push all refs
-  --atomic: request atomic transaction on remote side
-  --exec=: receive pack program
-  --force-with-lease=: require old value of ref to be at this value
+  --all: update all heads that locally exist
+  --atomic: use an atomic transaction for updating the refs
+  --dry-run: do everything except actually send the updates
+  --exec=: same as --receive-pack=<git-receive-pack>
+  --force-if-includes: require remote updates to be integrated locally
+  --force-with-lease?: require old value of ref to be at this value
   --helper-status: print status from remote helper
   --mirror: mirror all refs
   --progress: force progress reporting
-  --push-option=: option to transmit
-  --receive-pack=: receive pack program
+  --push-option=*: pass the specified string as a push option
+  --receive-pack=: path to the git-receive-pack program on the remote end
   --remote=: remote name
-  --signed=: GPG sign the push
+  --signed?: GPG-sign the push request
   --stateless-rpc: use stateless RPC protocol
-  --stdin: read refs from stdin
-  --thin: use thin pack
-  -f, --force: force updates
-  -n, --dry-run: dry run
+  --stdin: take the list of refs from stdin, one per line
+  --thin: send a "thin" pack
+  --verbose: run verbosely
+  -f, --force: disable ancestor check
   -q, --quiet: be more quiet
-  -v, --verbose: be more verbose
 documentation:
   command: |-
     Usually you would want to use 'git push', which is a
@@ -28,3 +29,70 @@ documentation:
 
     Invokes 'git-receive-pack' on a possibly remote repository, and
     updates it from the current repository, sending named refs.
+  flag:
+    all: |-
+      Update the index not only where the working tree has a file matching **\<pathspec\>**
+      but also where the index already has an entry.
+      This adds, modifies, and removes index entries to match the working tree.
+      
+      If no **\<pathspec\>** is given when `-A` option is used,
+      all files in the entire working tree are updated
+      (old versions of Git used to limit the update to the current directory and its subdirectories).
+    atomic: |-
+      Use an atomic transaction on the remote side if available.
+      Either all refs are updated, or on error, no refs are updated.
+      If the server does not support atomic pushes the push will fail.
+    dry-run: |-
+      Don't actually add the file(s), just show if they exist and/or will
+      be ignored.
+    exec: |-
+      Used with --remote to specify the path to the *git-upload-archive* on
+      the remote side.
+    mirror: |-
+      Set up a mirror of the source repository.  This implies `--bare`.
+      Compared to `--bare`, `--mirror` not only maps local branches of the
+      source to local branches of the target, it maps all refs (including
+      remote-tracking branches, notes etc.) and sets up a refspec configuration such
+      that all these refs are overwritten by a `git remote update` in the
+      target repository.
+    progress: |-
+      Enable progress reporting on the standard error stream even if
+      not attached to a terminal. By default, progress status is
+      reported only when it is attached. You can't use `--progress`
+      together with `--porcelain` or `--incremental`.
+    push-option: |-
+      Transmit the given string to the server, which passes them to
+      the pre-receive as well as the post-receive hook. The given string
+      must not contain a _NUL_ or _LF_ character.
+      When multiple `--push-option=<option>` are given, they are
+      all sent to the other side in the order listed on the
+      command line.
+      When no `--push-option=<option>` is given from the command line, the values of configuration variable `push.pushOption`
+      are used instead.
+    remote: |-
+      Instead of making a tar archive from the local repository, retrieve a
+      tar archive from a remote repository. Note that the remote repository
+      may place restrictions on which sha1 expressions may be allowed in
+      `<tree-ish>`. See [git-upload-archive](cmd://git/upload-archive)
+      for details.
+    stdin: |-
+      The list of patterns is read from standard input instead of from
+      the argument list.
+    thin: |-
+      These options are passed to [git-send-pack](cmd://git/send-pack). A thin transfer
+      significantly reduces the amount of sent data when the sender and
+      receiver share many of the same objects in common. The default is
+      `--thin`.
+    verbose: Be verbose.
+    force: |-
+      Allow adding otherwise ignored files. The option is also used when
+      `submodule.<name>.ignore=all` is set, but you want to stage an
+      update of the submodule. The `path` to the submodule must be explicitly
+      specified.
+    quiet: Be quiet. Only print error messages.
+    force-if-includes: require remote updates to be integrated locally
+    force-with-lease: require old value of ref to be at this value
+    helper-status: print status from remote helper
+    receive-pack: path to the git-receive-pack program on the remote end
+    signed: GPG-sign the push request
+    stateless-rpc: use stateless RPC protocol

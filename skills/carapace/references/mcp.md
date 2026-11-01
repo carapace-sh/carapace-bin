@@ -41,7 +41,7 @@ The server implements JSON-RPC 2.0 with these methods:
 | Method | Description |
 |--------|-------------|
 | `initialize` | Returns server info and capabilities |
-| `tools/list` | Returns the four tool definitions |
+| `tools/list` | Returns the tool definitions (three tools; `complete_macro` is currently disabled) |
 | `tools/call` | Executes a tool by name |
 
 Capabilities: `{tools: {}}` — only tools are supported (no resources, no prompts).
@@ -62,19 +62,19 @@ Returns context‑aware, dynamic completions for shell commands.
 
 **How it works:**
 
-The first element in `args` is the command name (not a flag). The remaining elements are the arguments to complete, including the partial word being completed.
+The first element in `args` is the command name (not a flag). The remaining elements are the arguments to complete, including the partial word being completed. The command name is `args[0]` — it selects which completer to invoke. It is **not** stripped: the full `args` array (including `args[0]`) is passed through to the completer, so the CLI equivalent is `carapace <args[0]> export <args[0]> <args[1]> ...`. See the worked examples and CLI equivalents table below.
 
 The behavior depends on which optional parameters are provided:
 
 | `executable` | `bridge` | Behavior | Confirmation |
 |-------------|----------|----------|--------------|
-| not set | not set | Default completion using `carapace` from `PATH` | Not required |
+| not set | not set | Default completion using the running carapace binary (`os.Executable()`) | Not required |
 | not set | set | Explicit bridge using `carapace <command>/<bridge> export <args...>` | Not required |
 | set | set | Custom executable with specified bridge | Required |
 
 **Mode details:**
 
-1. **Default** (no `executable`, no `bridge`): Invokes `carapace <command> export <args...>` using the carapace binary from `PATH`. This is the standard completion flow.
+1. **Default** (no `executable`, no `bridge`): Invokes `carapace <command> export <args...>` using the running carapace binary itself (`os.Executable()`), not a PATH lookup. This is the standard completion flow.
 
 2. **Bridge only** (no `executable`, `bridge` set): Uses the explicit bridge variant. Invokes `carapace <command>/<bridge> export <args...>`. For example, with `bridge: "zsh"`, it completes `tail` using zsh's completion system. The `carapace-bin/<bridge>` syntax is also supported to use an explicit bridge within carapace-bin (e.g. `bridge: "carapace-bin/cobra"`).
 
@@ -90,7 +90,7 @@ The behavior depends on which optional parameters are provided:
 - Arguments must not contain NUL bytes (`\0`)
 - `bridge` is required when `executable` is set
 
-**Response:** Plain text containing the completion output (one completion candidate per line). On error, the response has `isError: true` with the error message as text.
+**Response:** For carapace-bin invocations (default, bridge, and `carapace-bin` executable modes): plain text with the completion output (one candidate per line). For executable mode with a non-`carapace-bin` bridge: JSON-marshalled invoked action. On error, the response has `isError: true` with the error message as text.
 
 **Examples:**
 
@@ -119,15 +119,19 @@ The behavior depends on which optional parameters are provided:
 
 **CLI equivalents:**
 
-| Mode | CLI equivalent |
-|------|---------------|
-| Default | `carapace <cmd> export <args...>` |
-| Bridge only | `carapace <cmd>/<bridge> export <args...>` |
-| Executable + carapace-bin | `<executable> <cmd> export <args...>` |
-| Executable + carapace-bin/bridge | `<executable> <cmd>/<bridge> export <args...>` |
-| Executable + other bridge | Bridge action invoked directly with `executable` as target (e.g. cobra: `<executable> __complete <args...>`, carapace: `<executable> _carapace export <args...>`) |
+The command name (`args[0]`) appears **twice** in the CLI form: once as `<cmd>` to select the completer, and again as the first element of `<args...>` since the args array is passed verbatim. For example, `{"args": ["git", "checkout", ""]}` maps to `carapace git export git checkout ""`.
 
-### `complete_macro` — Macro Completion
+| Mode | MCP input | CLI equivalent |
+|------|-----------|----------------|
+| Default | `{"args": ["git", "checkout", ""]}` | `carapace git export git checkout ""` |
+| Bridge only | `{"args": ["tail", ""], "bridge": "zsh"}` | `carapace tail/zsh export tail ""` |
+| Executable + carapace-bin | `{"args": ["git", ""], "executable": "/p/carapace", "bridge": "carapace-bin"}` | `/p/carapace git export git ""` |
+| Executable + carapace-bin/bridge | `{"args": ["git", ""], "executable": "/p/carapace", "bridge": "carapace-bin/cobra"}` | `/p/carapace git/cobra export git ""` |
+| Executable + other bridge | `{"args": ["myapp", ""], "executable": "/p/myapp", "bridge": "cobra"}` | cobra bridge calls `/p/myapp __complete myapp ""` directly |
+
+### `complete_macro` — Macro Completion (currently disabled)
+
+> **This tool is currently disabled** and not returned by `tools/list` ("TODO: re-enable complete_macro once macro invocation is properly implemented"). The schema below documents the intended interface for when it returns. To test a macro from the CLI instead, use `carapace --macro <name> <TAB>`.
 
 Returns context‑aware, dynamic completions for a carapace macro.
 
@@ -280,7 +284,7 @@ On error (missing path, invalid spec, codegen failure), the response has `isErro
 |----------|-------------|-------|
 | `complete_command` | `carapace <cmd> export <args...>` | Default mode; bridge/executable modes use different invocations |
 | `list_macros` | `carapace --macro` | Default mode; custom executable mode uses `<executable> _carapace macro` |
-| `complete_macro` | `carapace _carapace macro <macro> <args...>` | Invokes macro completion on current or custom executable |
+| `complete_macro` | `carapace _carapace macro <macro> <args...>` | Currently disabled in `tools/list` |
 | `codegen` | `carapace --codegen <path>` | Shells out to the same executable |
 
 ## Relationship to Other Skills

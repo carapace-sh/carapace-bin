@@ -16,6 +16,7 @@ func init() {
 	carapace.Gen(packRefsCmd).Standalone()
 
 	packRefsCmd.Flags().Bool("all", false, "pack everything")
+	packRefsCmd.Flags().Bool("auto", false, "auto-pack refs as needed")
 	packRefsCmd.Flags().String("exclude", "", "references to exclude")
 	packRefsCmd.Flags().String("include", "", "references to include")
 	packRefsCmd.Flags().Bool("prune", false, "prune loose refs (default)")

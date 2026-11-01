@@ -18,3 +18,10 @@ func ActionSecrets() carapace.Action {
 		}).Style(styles.Docker.Secret)
 	}).Tag("secrets")
 }
+
+// ActionSecretLabels completes existing labels
+//
+//	key	value
+func ActionSecretLabels() carapace.Action {
+	return actionLabels("secret", "ls", "--format", "{{.Labels}}").Tag("labels")
+}

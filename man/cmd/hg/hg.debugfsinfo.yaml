@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugfsinfo
+description: show information detected about current filesystem
+hidden: true
+documentation:
+    command: |
+        show information detected about current filesystem

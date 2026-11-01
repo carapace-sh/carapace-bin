@@ -2,9 +2,10 @@
 name: version
 description: Display the clients version information
 flags:
-    --envsubst: Substitute environment variables in stack.yml file
+    --envsubst: Substitute environment variables in stack.yaml file
     --short-version: Just print Git SHA
     --tls-no-verify: Disable TLS validation
     --warn-update: Check for new version and warn about updating
     -g, --gateway=: Gateway URL starting with http(s)://
+    -j, --json: Output version as JSON
     -k, --token=: Pass a JWT token to use instead of basic auth

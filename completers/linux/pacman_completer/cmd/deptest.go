@@ -33,19 +33,20 @@ func init() {
 	deptestCmd.Flags().String("logfile", "", "set an alternate log file")
 	deptestCmd.Flags().Bool("noconfirm", false, "do not ask for any confirmation")
 	deptestCmd.Flags().StringP("root", "r", "", "set an alternate installation root")
-	deptestCmd.Flags().Bool("sysroot", false, "operate on a mounted guest system (root-only)")
+	deptestCmd.Flags().String("sysroot", "", "operate on a mounted guest system (root-only)")
 	deptestCmd.Flags().BoolP("verbose", "v", false, "be verbose")
 
 	carapace.Gen(deptestCmd).FlagCompletion(carapace.ActionMap{
 		"arch":     carapace.ActionValues("i686", "x86_64"),
 		"cachedir": carapace.ActionDirectories(),
-		"color":    carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
+		"color":    carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"config":   carapace.ActionFiles(),
 		"dbpath":   carapace.ActionFiles(),
 		"gpgdir":   carapace.ActionDirectories(),
 		"hookdir":  carapace.ActionDirectories(),
 		"logfile":  carapace.ActionFiles(),
 		"root":     carapace.ActionDirectories(),
+		"sysroot":  carapace.ActionDirectories(),
 	})
 
 	carapace.Gen(deptestCmd).PositionalAnyCompletion(

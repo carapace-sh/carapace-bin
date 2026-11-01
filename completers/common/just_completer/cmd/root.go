@@ -7,6 +7,7 @@ import (
 	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/just"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
+	shlex "github.com/carapace-sh/carapace-shlex/v2"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
@@ -108,13 +109,13 @@ func init() {
 			carapace.ActionExecutables(),
 			carapace.ActionFiles(),
 		).ToA(),
-		"color":           carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
+		"color":           carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"command":         bridge.ActionCarapaceBin().Split(),
-		"command-color":   carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
+		"command-color":   carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"completions":     carapace.ActionValues("bash", "elvish", "fish", "nushell", "powershell", "zsh"),
 		"cygpath":         carapace.ActionDirectories(),
 		"dotenv-path":     carapace.ActionDirectories(),
-		"dump-format":     carapace.ActionValues("just", "json"),
+		"dump-format":     carapace.ActionValues("json", "just"),
 		"evaluate-format": carapace.ActionValues("just", "shell"),
 		"group": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return just.ActionGroups(rootCmd.Flag("justfile").Value.String())
@@ -133,7 +134,12 @@ func init() {
 		"shell-arg": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if f := rootCmd.Flag("shell"); f.Changed {
 				shell := filepath.Base(f.Value.String())
-				return bridge.ActionCarapaceBin(shell).Split()
+				switch shlex.Format(shell) {
+				case shlex.Bash, shlex.Elvish, shlex.Fish, shlex.Nushell, shlex.Powershell, shlex.Xonsh, shlex.Zsh:
+					return bridge.ActionCarapaceBin(shell).Split(shlex.Format(shell))
+				default:
+					return bridge.ActionCarapaceBin(shell).Split()
+				}
 			}
 			return carapace.ActionValues()
 		}),

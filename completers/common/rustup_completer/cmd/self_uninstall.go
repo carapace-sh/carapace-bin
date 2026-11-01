@@ -15,6 +15,7 @@ func init() {
 	carapace.Gen(self_uninstallCmd).Standalone()
 
 	self_uninstallCmd.Flags().BoolP("help", "h", false, "Print help")
-	self_uninstallCmd.Flags().BoolS("y", "y", false, "")
+	self_uninstallCmd.Flags().Bool("no-modify-path", false, "Do not clean up the `PATH` environment variable")
+	self_uninstallCmd.Flags().BoolS("y", "y", false, "Disable confirmation prompt")
 	selfCmd.AddCommand(self_uninstallCmd)
 }

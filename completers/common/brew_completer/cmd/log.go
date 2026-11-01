@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/brew_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -20,11 +21,15 @@ func init() {
 	logCmd.Flags().Bool("debug", false, "Display any debugging information.")
 	logCmd.Flags().Bool("formula", false, "Treat all named arguments as formulae.")
 	logCmd.Flags().Bool("help", false, "Show this message.")
-	logCmd.Flags().Bool("max-count", false, "Print only a specified number of commits.")
+	logCmd.Flags().String("max-count", "", "Print only a specified number of commits.")
 	logCmd.Flags().Bool("oneline", false, "Print only one line per commit.")
 	logCmd.Flags().Bool("patch", false, "Also print patch from commit.")
 	logCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
 	logCmd.Flags().Bool("stat", false, "Also print diffstat from commit.")
 	logCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
 	rootCmd.AddCommand(logCmd)
+
+	carapace.Gen(logCmd).PositionalAnyCompletion(
+		action.ActionSearch(logCmd).FilterArgs(),
+	)
 }

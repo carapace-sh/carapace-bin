@@ -30,9 +30,9 @@ func init() {
 	rootCmd.AddCommand(streamCmd)
 
 	carapace.Gen(streamCmd).FlagCompletion(carapace.ActionMap{
-		"color": carapace.ActionValues("auto", "always", "none"),
-		"level": carapace.ActionValues("default", "info", "debug"),
-		"style": carapace.ActionValues("default", "syslog", "json", "ndjson", "compact"),
+		"color": carapace.ActionValues("always", "auto", "none"),
+		"level": carapace.ActionValues("debug", "default", "info"),
+		"style": carapace.ActionValues("compact", "default", "json", "ndjson", "syslog"),
 		"type":  carapace.ActionValues("activity", "log", "trace"),
 	})
 }

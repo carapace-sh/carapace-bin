@@ -24,7 +24,6 @@ func init() {
 	rootCmd.Flags().BoolS("d", "d", false, "Decode input")
 	rootCmd.Flags().BoolS("h", "h", false, "Display help")
 	rootCmd.Flags().StringS("i", "i", "", "Input file")
-	rootCmd.Flags().BoolS("m", "m", false, "Use Base64 encoding method (not traditional uuencode)")
 	rootCmd.Flags().StringS("o", "o", "", "Output file")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{

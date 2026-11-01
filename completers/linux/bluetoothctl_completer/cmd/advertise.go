@@ -16,6 +16,6 @@ func init() {
 	carapace.Gen(advertiseCmd).Standalone()
 	rootCmd.AddCommand(advertiseCmd)
 	carapace.Gen(advertiseCmd).PositionalCompletion(
-		carapace.ActionValues("on", "off", "broadcast", "peripheral").StyleF(style.ForKeyword),
+		carapace.ActionValues("broadcast", "off", "on", "peripheral").StyleF(style.ForKeyword),
 	)
 }

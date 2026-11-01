@@ -3,3 +3,12 @@ name: get
 description: List hints that have been shown
 flags:
     -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        C:
+            - $files
+        config:
+            - $files
+        format:
+            - text
+            - json

@@ -48,6 +48,6 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"exec":   carapace.ActionFiles(),
 		"file":   carapace.ActionFiles(),
-		"format": carapace.ActionValues("png", "jpg", "jpeg", "gif", "bmp"),
+		"format": carapace.ActionValues("bmp", "gif", "jpeg", "jpg", "png"),
 	})
 }

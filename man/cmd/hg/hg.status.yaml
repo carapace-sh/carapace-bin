@@ -1,0 +1,118 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: status
+aliases:
+    - st
+description: show changed files in the working directory
+group: working-dir
+flags:
+    --change=: list the changed files of a revision
+    --rev=: show difference from revision
+    -0, --print0: end filenames with NUL, for use with xargs
+    -A, --all: show status of all files
+    -C, --copies: 'show source of copied files (DEFAULT: ui.statuscopies)'
+    -I, --include=*: include names matching the given patterns
+    -S, --subrepos: recurse into subrepositories
+    -T, --template=: display with template
+    -X, --exclude=*: exclude names matching the given patterns
+    -a, --added: show only added files
+    -c, --clean: show only files without changes
+    -d, --deleted: show only missing files
+    -i, --ignored: show only ignored files
+    -m, --modified: show only modified files
+    -n, --no-status: hide status prefix
+    -r, --removed: show only removed files
+    -t, --terse=: show the terse output (EXPERIMENTAL)
+    -u, --unknown: show only unknown (not tracked) files
+documentation:
+    command: |
+        show changed files in the working directory
+
+        Show status of files in the repository. If names are given, only
+        files that match are shown. Files that are clean or ignored or
+        the source of a copy/move operation, are not listed unless
+        -c/--clean, -i/--ignored, -C/--copies or -A/--all are given.
+        Unless options described with "show only ..." are given, the
+        options -mardu are used.
+
+        Option -q/--quiet hides untracked (unknown and ignored) files
+        unless explicitly requested with -u/--unknown or -i/--ignored.
+
+        .. note::
+
+           `hg status` may appear to disagree with diff if permissions have
+           changed or a merge has occurred. The standard diff format does
+           not report permission changes and diff only reports changes
+           relative to one merge parent.
+
+        If one revision is given, it is used as the base revision.
+        If two revisions are given, the differences between them are
+        shown. The --change option can also be used as a shortcut to list
+        the changed files of a revision from its first parent.
+
+        The codes used to show the status of files are::
+
+          M = modified
+          A = added
+          R = removed
+          C = clean
+          ! = missing (deleted by non-hg command, but still tracked)
+          ? = not tracked
+          I = ignored
+            = origin of the previous file (with --copies)
+
+        .. container:: verbose
+
+          The -t/--terse option abbreviates the output by showing only the directory
+          name if all the files in it share the same status. The option takes an
+          argument indicating the statuses to abbreviate: 'm' for 'modified', 'a'
+          for 'added', 'r' for 'removed', 'd' for 'deleted', 'u' for 'unknown', 'i'
+          for 'ignored' and 'c' for clean.
+
+          It abbreviates only those statuses which are passed. Note that clean and
+          ignored files are not displayed with '--terse ic' unless the -c/--clean
+          and -i/--ignored options are also used.
+
+          The -v/--verbose option shows information when the repository is in an
+          unfinished merge, shelve, rebase state etc. You can have this behavior
+          turned on by default by enabling the `commands.status.verbose` option.
+
+          You can skip displaying some of these states by setting
+          `commands.status.skipstates` to one or more of: 'bisect', 'graft',
+          'histedit', 'merge', 'rebase', or 'unshelve'.
+
+          Template:
+
+          The following keywords are supported in addition to the common template
+          keywords and functions. See also `hg help templates`.
+
+          :path:    String. Repository-absolute path of the file.
+          :source:  String. Repository-absolute path of the file originated from.
+                    Available if `--copies` is specified.
+          :status:  String. Character denoting file's status.
+
+          Examples:
+
+          - show changes in the working directory relative to a
+            changeset::
+
+              hg status --rev 9353
+
+          - show changes in the working directory relative to the
+            current directory (see `hg help patterns` for more information)::
+
+              hg status re:
+
+          - show all changes including copies in an existing changeset::
+
+              hg status --copies --change 9353
+
+          - get a NUL separated list of added files, suitable for xargs::
+
+              hg status -an0
+
+          - show more information about the repository status, abbreviating
+            added, removed, modified, deleted, and untracked paths::
+
+              hg status -v -t mardu
+
+        Returns 0 on success.

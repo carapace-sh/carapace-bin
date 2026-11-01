@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugshell
+description: run an interactive Python interpreter
+hidden: true
+flags:
+    -c, --command=: program passed in as a string
+documentation:
+    command: |
+        run an interactive Python interpreter
+
+        The local namespace is provided with a reference to the ui and the repo
+        instance (if available).
+
+        If `ui.debugger` is configured to be `ipdb`, an IPython shell will be used
+        instead of the standard Python shell.

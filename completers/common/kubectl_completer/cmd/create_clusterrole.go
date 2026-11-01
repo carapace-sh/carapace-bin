@@ -36,6 +36,7 @@ func init() {
 	carapace.Gen(create_clusterroleCmd).FlagCompletion(carapace.ActionMap{
 		"dry-run":  kubectl.ActionDryRunModes(),
 		"output":   kubectl.ActionOutputFormats(),
+		"resource": kubectl.ActionApiResources(),
 		"template": carapace.ActionFiles(),
 		"validate": kubectl.ActionValidationModes(),
 		"verb":     kubectl.ActionResourceVerbs(),

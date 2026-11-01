@@ -1,0 +1,126 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: graft
+description: copy changes from other branches onto the current branch
+group: change-manipulation
+flags:
+    --abort: abort interrupted graft
+    --base=: base revision when doing the graft merge (ADVANCED)
+    --log: append graft info to log message
+    --no-commit: don't commit, just apply the changes in working directory
+    --stop: stop interrupted graft
+    --to=: graft to this destination, in-memory (EXPERIMENTAL)
+    -D, --currentdate: record the current date as commit date
+    -U, --currentuser: record the current user as committer
+    -c, --continue: resume interrupted graft
+    -d, --date=: record the specified date as commit date
+    -e, --edit: invoke editor on commit messages
+    -f, --force: force graft
+    -n, --dry-run: do not perform actions, just print output
+    -r, --rev=*: revisions to graft
+    -t, --tool=: specify merge tool
+    -u, --user=: record the specified user as committer
+documentation:
+    command: |
+        copy changes from other branches onto the current branch
+
+        This command uses Mercurial's merge logic to copy individual
+        changes from other branches without merging branches in the
+        history graph. This is sometimes known as 'backporting' or
+        'cherry-picking'. By default, graft will copy user, date, and
+        description from the source changesets.
+
+        Changesets that are ancestors of the current revision, that have
+        already been grafted, or that are merges will be skipped.
+
+        If --log is specified, log messages will have a comment appended
+        of the form::
+
+          (grafted from CHANGESETHASH)
+
+        If --force is specified, revisions will be grafted even if they
+        are already ancestors of, or have been grafted to, the destination.
+        This is useful when the revisions have since been backed out.
+
+        If a graft merge results in conflicts, the graft process is
+        interrupted so that the current merge can be manually resolved.
+        Once all conflicts are addressed, the graft process can be
+        continued with the -c/--continue option.
+
+        The -c/--continue option reapplies all the earlier options.
+
+        .. container:: verbose
+
+          The --base option exposes more of how graft internally uses merge with a
+          custom base revision. --base can be used to specify another ancestor than
+          the first and only parent.
+
+          The command::
+
+            hg graft -r 345 --base 234
+
+          is thus pretty much the same as::
+
+            hg diff --from 234 --to 345 | hg import
+
+          but using merge to resolve conflicts and track moved files.
+
+          The result of a merge can thus be backported as a single commit by
+          specifying one of the merge parents as base, and thus effectively
+          grafting the changes from the other side.
+
+          It is also possible to collapse multiple changesets and clean up history
+          by specifying another ancestor as base, much like rebase --collapse
+          --keep.
+
+          The commit message can be tweaked after the fact using commit --amend .
+
+          For using non-ancestors as the base to backout changes, see the backout
+          command and the hidden --parent option.
+
+        .. container:: verbose
+
+            The experimental --to option allows grafting a revision in-memory,
+            independent of the working copy. Merge conflicts are not currently
+            supported, and the operation will be aborted if the configured tool
+            cannot handle the conflicts that might be encountered.
+
+            As the operation is performed in-memory, the on-disk files will not be
+            modified, and some hooks might not be run.
+
+        .. container:: verbose
+
+          Examples:
+
+          - copy a single change to the stable branch and edit its description::
+
+              hg update stable
+              hg graft --edit 9393
+
+          - graft a range of changesets with one exception, updating dates::
+
+              hg graft -D "2085::2093 and not 2091"
+
+          - continue a graft after resolving conflicts::
+
+              hg graft -c
+
+          - show the source of a grafted changeset::
+
+              hg log --debug -r .
+
+          - show revisions sorted by date::
+
+              hg log -r "sort(all(), date)"
+
+          - backport the result of a merge as a single commit::
+
+              hg graft -r 123 --base 123^
+
+          - land a feature branch as one changeset::
+
+              hg up -cr default
+              hg graft -r featureX --base "ancestor('featureX', 'default')"
+
+        See `hg help revisions` for more about specifying revisions.
+
+        Returns 0 on successful completion, 1 if there are unresolved files.

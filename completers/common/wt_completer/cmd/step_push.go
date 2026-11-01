@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/wt"
 	"github.com/spf13/cobra"
 )
 
@@ -15,11 +15,17 @@ var step_pushCmd = &cobra.Command{
 func init() {
 	carapace.Gen(step_pushCmd).Standalone()
 
+	step_pushCmd.Flags().Bool("ff", false, "Allow fast-forward (default)")
+	step_pushCmd.Flags().String("format", "", "Output format (text, json)")
 	step_pushCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	step_pushCmd.Flags().Bool("no-ff", false, "Create a merge commit (no fast-forward)")
 	stepCmd.AddCommand(step_pushCmd)
 
+	carapace.Gen(step_pushCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("json", "text"),
+	})
+
 	carapace.Gen(step_pushCmd).PositionalCompletion(
-		git.ActionRefs(git.RefOption{}.Default()),
+		wt.ActionBranches(),
 	)
 }

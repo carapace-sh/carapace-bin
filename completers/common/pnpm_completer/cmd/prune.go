@@ -7,7 +7,7 @@ import (
 
 var pruneCmd = &cobra.Command{
 	Use:     "prune",
-	Short:   "Removes extraneous packages",
+	Short:   "Remove extraneous packages",
 	GroupID: "manage",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
@@ -15,7 +15,13 @@ var pruneCmd = &cobra.Command{
 func init() {
 	carapace.Gen(pruneCmd).Standalone()
 
-	pruneCmd.Flags().Bool("no-optional", false, "Remove the packages specified in `optionalDependencies`")
-	pruneCmd.Flags().Bool("prod", false, "Remove the packages specified in `devDependencies`")
+	pruneCmd.Flags().BoolP("dev", "D", false, "")
+	pruneCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	pruneCmd.Flags().Bool("ignore-scripts", false, "")
+	pruneCmd.Flags().Bool("no-ignore-scripts", false, "Run lifecycle scripts even if scripts are disabled by configuration")
+	pruneCmd.Flags().Bool("no-optional", false, "")
+	pruneCmd.Flags().Bool("optional", false, "")
+	pruneCmd.Flags().BoolP("prod", "P", false, "")
+	pruneCmd.Flags().Bool("production", false, "")
 	rootCmd.AddCommand(pruneCmd)
 }

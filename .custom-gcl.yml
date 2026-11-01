@@ -1,0 +1,6 @@
+version: v2.15.0
+
+plugins:
+  - module: github.com/carapace-sh/carapace-lint
+    import: github.com/carapace-sh/carapace-lint
+    version: latest

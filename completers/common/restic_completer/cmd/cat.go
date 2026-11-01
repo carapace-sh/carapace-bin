@@ -17,7 +17,7 @@ func init() {
 	rootCmd.AddCommand(catCmd)
 
 	carapace.Gen(catCmd).PositionalCompletion(
-		carapace.ActionValues("pack", "blob", "snapshot", "index", "key", "masterkey", "config", "lock"),
+		carapace.ActionValues("blob", "config", "index", "key", "lock", "masterkey", "pack", "snapshot"),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			// TODO complete more objects
 			switch c.Args[0] {

@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: help
+description: Show long usage description
+documentation:
+  command: >-
+    Get a long usage description for `git bisect`.
+    Use `git bisect` (without arguments) to get a short usage description,
+    and `git bisect help` or `git bisect -h` to get a long usage description.

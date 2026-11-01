@@ -13,14 +13,14 @@ func ActionOptions() carapace.Action {
 				"application", "Override the default FIDO application/origin string of `“ssh:`”",
 				"challenge", "Specifies a path to a challenge string that will be passed to the FIDO token during key generation",
 				"device", "Explicitly specify a fido device to use",
+				"hashalg", "Selects the hash algorithm to use for hashing the message to be signed",
 				"no-touch-required", "Indicate that the generated private key should not require touch events when making signatures",
+				"print-pubkey", "Print the full public key to standard output after signature verification",
 				"resident", "Indicate that the key should be stored on the FIDO authenticator itself",
 				"user", "A username to be associated with a resident key",
 				"verify-required", "Indicate that this private key should require user verification for each signature",
-				"write-attestation", "Record the attestation data returned from FIDO tokens during key generation",
-				"hashalg", "Selects the hash algorithm to use for hashing the message to be signed",
-				"print-pubkey", "Print the full public key to standard output after signature verification",
 				"verify-time", "Specifies a time to use when validating signatures instead of the current time",
+				"write-attestation", "Record the attestation data returned from FIDO tokens during key generation",
 			).Invoke(c).Suffix("=").ToA()
 		case 1:
 			return map[string]carapace.Action{

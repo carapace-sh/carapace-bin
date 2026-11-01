@@ -1,0 +1,94 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: bisect
+description: subdivision search of changesets
+group: navigation
+flags:
+    -U, --noupdate: do not update to target
+    -b, --bad: mark changeset bad
+    -c, --command=: use command to check changeset state
+    -e, --extend: extend the bisect range
+    -g, --good: mark changeset good
+    -r, --reset: reset bisect state
+    -s, --skip: skip testing changeset
+documentation:
+    command: |
+        subdivision search of changesets
+
+        This command helps to find changesets which introduce problems. To
+        use, mark the earliest changeset you know exhibits the problem as
+        bad, then mark the latest changeset which is free from the problem
+        as good. Bisect will update your working directory to a revision
+        for testing (unless the -U/--noupdate option is specified). Once
+        you have performed tests, mark the working directory as good or
+        bad, and bisect will either update to another candidate changeset
+        or announce that it has found the bad revision.
+
+        As a shortcut, you can also use the revision argument to mark a
+        revision as good or bad without checking it out first.
+
+        If you supply a command, it will be used for automatic bisection.
+        The environment variable HG_NODE will contain the ID of the
+        changeset being tested. The exit status of the command will be
+        used to mark revisions as good or bad: status 0 means good, 125
+        means to skip the revision, 127 (command not found) will abort the
+        bisection, and any other non-zero exit status means the revision
+        is bad.
+
+        .. container:: verbose
+
+          Some examples:
+
+          - start a bisection with known bad revision 34, and good revision 12::
+
+              hg bisect --bad 34
+              hg bisect --good 12
+
+          - advance the current bisection by marking current revision as good or
+            bad::
+
+              hg bisect --good
+              hg bisect --bad
+
+          - mark the current revision, or a known revision, to be skipped (e.g. if
+            that revision is not usable because of another issue)::
+
+              hg bisect --skip
+              hg bisect --skip 23
+
+          - skip all revisions that do not touch directories `foo` or `bar`::
+
+              hg bisect --skip "!( file('path:foo') & file('path:bar') )"
+
+          - forget the current bisection::
+
+              hg bisect --reset
+
+          - use 'make && make tests' to automatically find the first broken
+            revision::
+
+              hg bisect --reset
+              hg bisect --bad 34
+              hg bisect --good 12
+              hg bisect --command "make && make tests"
+
+          - see all changesets whose states are already known in the current
+            bisection::
+
+              hg log -r "bisect(pruned)"
+
+          - see the changeset currently being bisected (especially useful
+            if running with -U/--noupdate)::
+
+              hg log -r "bisect(current)"
+
+          - see all changesets that took part in the current bisection::
+
+              hg log -r "bisect(range)"
+
+          - you can even get a nice graph::
+
+              hg log --graph -r "bisect(range)"
+
+          See `hg help revisions.bisect` for more about the `bisect()` predicate.
+
+        Returns 0 on success.

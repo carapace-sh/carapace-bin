@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: tip
+description: show the tip revision (DEPRECATED)
+group: navigation
+flags:
+    --style=: display using template map file (DEPRECATED)
+    -T, --template=: display with template
+    -g, --git: use git extended diff format
+    -p, --patch: show patch
+documentation:
+    command: |
+        show the tip revision (DEPRECATED)
+
+        The tip revision (usually just called the tip) is the changeset
+        most recently added to the repository (and therefore the most
+        recently changed head).
+
+        If you have just made a commit, that commit will be the tip. If
+        you have just pulled changes from another repository, the tip of
+        that repository becomes the current tip. The "tip" tag is special
+        and cannot be renamed or assigned to a different changeset.
+
+        This command is deprecated, please use `hg heads` instead.
+
+        Returns 0 on success.

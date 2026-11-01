@@ -3,33 +3,33 @@ name: daemon
 description: A really simple server for Git repositories
 group: low-level synching
 flags:
-  --access-hook=: Every time a client connects, first run an external command specified by the <path>
-  --allow-override=: Allow overriding the site-wide default with per repository configuration
-  --base-path-relaxed: Attempt to lookup without prefixing the base path
-  --base-path=: Remap all the path requests as relative to the given path
-  --detach: Detach from the shell
-  --disable=: Disable the service site-wide per default
-  --enable=: Enablethe service site-wide per default
-  --export-all: Allow pulling from all directories that look like Git repositories
-  --forbid-override=: Forbid overriding the site-wide default with per repository configuration
-  --group=: Change daemon’s gid before entering the service loop
-  --inetd: Have the server run as an inetd service
-  --informative-errors: Report more verbose errors to the client
-  --init-timeout=: Timeout (in seconds) between the moment the connection is established and the client request is received
-  --interpolated-path=: Use an interpolated path template can be used to dynamically construct alternate paths
-  --listen=: Listen on a specific IP address or hostname
-  --log-destination=: Send log messages to the specified destination
-  --max-connections=: Maximum number of concurrent clients
-  --no-informative-errors: Do not report more verbose errors to the client
-  --pid-file=: Save the process id in file
-  --port=: Listen on an alternative port
-  --reuseaddr: Use SO_REUSEADDR when binding the listening socket
-  --strict-paths: Match paths exactly and don’t do user-relative paths
-  --syslog: Short for --log-destination=syslog
-  --timeout=: Timeout (in seconds) for specific client sub-requests
-  --user-path?: Allow ~user notation to be used in requests
-  --user=: Change daemon’s uid before entering the service loop
-  --verbose: Log details about the incoming connections and requested files
+  --access-hook=: every time a client connects, first run an external command specified by the <path>
+  --allow-override=: allow overriding the site-wide default with per repository configuration
+  --base-path-relaxed: attempt to lookup without prefixing the base path
+  --base-path=: remap all the path requests as relative to the given path
+  --detach: detach from the shell
+  --disable=: disable the service site-wide per default
+  --enable=: enablethe service site-wide per default
+  --export-all: allow pulling from all directories that look like Git repositories
+  --forbid-override=: forbid overriding the site-wide default with per repository configuration
+  --group=: change daemon’s gid before entering the service loop
+  --inetd: have the server run as an inetd service
+  --informative-errors: report more verbose errors to the client
+  --init-timeout=: timeout (in seconds) between the moment the connection is established and the client request is received
+  --interpolated-path=: use an interpolated path template can be used to dynamically construct alternate paths
+  --listen=*: listen on a specific IP address or hostname
+  --log-destination=: send log messages to the specified destination
+  --max-connections=: maximum number of concurrent clients
+  --no-informative-errors: do not report more verbose errors to the client
+  --pid-file=: save the process id in file
+  --port=: listen on an alternative port
+  --reuseaddr: use SO_REUSEADDR when binding the listening socket
+  --strict-paths: match paths exactly and don’t do user-relative paths
+  --syslog: short for --log-destination=syslog
+  --timeout=: timeout (in seconds) for specific client sub-requests
+  --user-path?: allow ~user notation to be used in requests
+  --user=: change daemon’s uid before entering the service loop
+  --verbose: log details about the incoming connections and requested files
 documentation:
   command: |-
     A really simple TCP Git daemon that normally listens on port "DEFAULT_GIT_PORT"
@@ -113,6 +113,14 @@ documentation:
       be overridden with `--log-destination=`).
       Incompatible with `--detach`, `--port`, `--listen`, `--user` and
       `--group` options.
+    informative-errors: |-
+      When informative errors are turned on, git-daemon will report
+      more verbose errors to the client, differentiating conditions
+      like "no such repository" from "repository not exported". This
+      is more convenient for clients, but may leak information about
+      the existence of unexported repositories.  When informative
+      errors are not enabled, all errors report "access denied" to the
+      client. The default is `--no-informative-errors`.
     init-timeout: |-
       Timeout (in seconds) between the moment the connection is established
       and the client request is received (typically a rather low value, since
@@ -176,11 +184,6 @@ documentation:
       taken as a request to access `<path>/foo` repository in
       the home directory of user `alice`.
     verbose: Log details about the incoming connections and requested files.
-    informative-errors: |-
-      When informative errors are turned on, git-daemon will report
-      more verbose errors to the client, differentiating conditions
-      like "no such repository" from "repository not exported". This
-      is more convenient for clients, but may leak information about
-      the existence of unexported repositories.  When informative
-      errors are not enabled, all errors report "access denied" to the
-      client. The default is `--no-informative-errors`.
+    allow-override: allow overriding the site-wide default with per repository configuration
+    enable: enablethe service site-wide per default
+    user: change daemon’s uid before entering the service loop

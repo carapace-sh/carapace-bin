@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/brew"
 	"github.com/spf13/cobra"
 )
 
@@ -21,4 +22,11 @@ func init() {
 	homepageCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
 	homepageCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
 	rootCmd.AddCommand(homepageCmd)
+
+	carapace.Gen(homepageCmd).PositionalAnyCompletion(
+		carapace.Batch(
+			brew.ActionAllCasks().Unless(homepageCmd.Flag("formula").Changed),
+			brew.ActionAllFormulae().Unless(homepageCmd.Flag("cask").Changed),
+		).ToA().FilterArgs(),
+	)
 }

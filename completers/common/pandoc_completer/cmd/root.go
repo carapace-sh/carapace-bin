@@ -133,7 +133,7 @@ func init() {
 		"csl":                     carapace.ActionFiles(),
 		"data-dir":                carapace.ActionDirectories(),
 		"defaults":                carapace.ActionFiles(),
-		"email-obfuscation":       carapace.ActionValues("none", "javascript", "references"),
+		"email-obfuscation":       carapace.ActionValues("javascript", "none", "references"),
 		"eol":                     carapace.ActionValues("crlf", "lf", "native"),
 		"epub-cover-image":        carapace.ActionFiles(),
 		"epub-embed-font":         carapace.ActionFiles(),
@@ -150,11 +150,11 @@ func init() {
 		"include-after-body":      carapace.ActionFiles(),
 		"include-before-body":     carapace.ActionFiles(),
 		"include-in-header":       carapace.ActionFiles(),
-		"ipynb-output":            carapace.ActionValues("all", "none", "best"),
+		"ipynb-output":            carapace.ActionValues("all", "best", "none"),
 		"list-extensions":         pandoc.ActionFormats(),
 		"log":                     carapace.ActionFiles(),
 		"lua-filter":              carapace.ActionFiles(".lua"),
-		"markdown-headings":       carapace.ActionValues("setext", "atx"),
+		"markdown-headings":       carapace.ActionValues("atx", "setext"),
 		"metadata-file":           carapace.ActionFiles(),
 		"output":                  carapace.ActionFiles(),
 		"pdf-engine":              carapace.ActionFiles(),
@@ -166,7 +166,7 @@ func init() {
 		).ToA(),
 		"read":               pandoc.ActionInputFormats(),
 		"reference-doc":      carapace.ActionFiles(),
-		"reference-location": carapace.ActionValues("block", "section", "document"),
+		"reference-location": carapace.ActionValues("block", "document", "section"),
 		"request-header": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
@@ -178,13 +178,13 @@ func init() {
 			}
 		}),
 		"resource-path":          carapace.ActionDirectories(),
-		"sandbox":                carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
+		"sandbox":                carapace.ActionValues("false", "true").StyleF(style.ForKeyword),
 		"syntax-definition":      carapace.ActionFiles(),
 		"table-caption-position": carapace.ActionValues("above", "below"),
 		"template":               carapace.ActionFiles(),
 		"to":                     pandoc.ActionOutputFormats(),
-		"top-level-division":     carapace.ActionValues("default", "section", "chapter", "part"),
-		"track-changes":          carapace.ActionValues("accept", "reject", "all"),
+		"top-level-division":     carapace.ActionValues("chapter", "default", "part", "section"),
+		"track-changes":          carapace.ActionValues("accept", "all", "reject"),
 		"wrap":                   carapace.ActionValues("auto", "none", "preserve"),
 		"write":                  pandoc.ActionOutputFormats(),
 	})

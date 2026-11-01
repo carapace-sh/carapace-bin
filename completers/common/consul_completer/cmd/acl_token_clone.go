@@ -23,6 +23,6 @@ func init() {
 	acl_tokenCmd.AddCommand(acl_cloneCmd)
 
 	carapace.Gen(acl_cloneCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("pretty", "json"),
+		"format": carapace.ActionValues("json", "pretty"),
 	})
 }

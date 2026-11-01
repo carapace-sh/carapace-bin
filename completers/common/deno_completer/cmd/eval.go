@@ -35,7 +35,7 @@ func init() {
 	carapace.Gen(evalCmd).FlagCompletion(carapace.ActionMap{
 		"cert":        carapace.ActionFiles(),
 		"config":      carapace.ActionFiles(),
-		"ext":         carapace.ActionValues("ts", "tsx", "js", "jsx"),
+		"ext":         carapace.ActionValues("js", "jsx", "ts", "tsx"),
 		"import-map":  carapace.ActionFiles(),
 		"inspect":     action.ActionHostPort(),
 		"inspect-brk": action.ActionHostPort(),

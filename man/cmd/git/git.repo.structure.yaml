@@ -1,6 +1,11 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: structure
-description: show repository structure
+description: Retrieve statistics about the current repository structure
+flags:
+  --format=: output format
+  --no-progress: do not show progress
+  --progress: show progress
+  -z: synonym for --format=nul
 documentation:
   command: |-
     Retrieve statistics about the current repository structure. The
@@ -34,3 +39,28 @@ documentation:
     quoted.
 
     `-z` is an alias for `--format=nul`.
+  flag:
+    format: |-
+      Format of the resulting archive. Possible values are `tar`, `zip`,
+      `tar.gz`, `tgz`, and any format defined using the configuration option
+      `tar.<format>.command`. If `--format` is not given, and the output file
+      is specified, the format is inferred from the filename if possible (e.g.
+      writing to `foo.zip` makes the output to be in the `zip` format).
+      Otherwise the output format is `tar`.
+    no-progress: |-
+      Progress status is reported on the standard error stream
+      by default when it is attached to a terminal, unless `--quiet`
+      is specified. This flag enables progress reporting even if not
+      attached to a terminal, regardless of `--quiet`.
+    progress: |-
+      Enable progress reporting on the standard error stream even if
+      not attached to a terminal. By default, progress status is
+      reported only when it is attached. You can't use `--progress`
+      together with `--porcelain` or `--incremental`.
+    z: |-
+      When `--numstat` has been given, do not munge pathnames,
+      but use a NUL-terminated machine-readable format.
+      
+      Without this option, pathnames with "unusual" characters are quoted as
+      explained for the configuration variable `core.quotePath` (see
+      [git-config](cmd://git/config)).

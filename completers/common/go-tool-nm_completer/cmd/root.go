@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/golang"
 	"github.com/spf13/cobra"
 )
 
@@ -25,7 +24,7 @@ func init() {
 	rootCmd.Flags().BoolS("type", "type", false, "print symbol type after name")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"sort": golang.ActionSymbolTypes().UniqueList(","),
+		"sort": carapace.ActionValues("address", "name", "none", "size"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

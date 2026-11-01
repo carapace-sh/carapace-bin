@@ -27,7 +27,7 @@ func init() {
 	acl_bindingRuleCmd.AddCommand(acl_bindingRule_createCmd)
 
 	carapace.Gen(acl_bindingRule_createCmd).FlagCompletion(carapace.ActionMap{
-		"bind-type": carapace.ActionValues("service", "role"),
-		"format":    carapace.ActionValues("pretty", "json"),
+		"bind-type": carapace.ActionValues("role", "service"),
+		"format":    carapace.ActionValues("json", "pretty"),
 	})
 }

@@ -9,8 +9,8 @@ import "github.com/carapace-sh/carapace"
 func ActionEnvironments() carapace.Action {
 	return carapace.ActionValues(
 		"development",
-		"test",
 		"production",
 		"staging",
+		"test",
 	).Tag("environments").Uid("rails", "environment")
 }

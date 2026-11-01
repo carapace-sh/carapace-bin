@@ -1,0 +1,19 @@
+package cmd
+
+import (
+	"github.com/carapace-sh/carapace"
+	"github.com/spf13/cobra"
+)
+
+var logoutCmd = &cobra.Command{
+	Use:   "logout",
+	Short: "Disconnect from Tailscale and expire current node key",
+	Run:   func(cmd *cobra.Command, args []string) {},
+}
+
+func init() {
+	carapace.Gen(logoutCmd).Standalone()
+
+	logoutCmd.Flags().String("reason", "", "reason for the logout, if required by a policy")
+	rootCmd.AddCommand(logoutCmd)
+}

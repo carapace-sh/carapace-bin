@@ -13,3 +13,16 @@ documentation:
     be updated.  (See [git-config](cmd://git/config)).
 
     With `--prune` option, run pruning against all the remotes that are updated.
+  flag:
+    prune: |-
+      Before fetching, remove any remote-tracking references that no
+      longer exist on the remote.  Tags are not subject to pruning
+      if they are fetched only because of the default tag
+      auto-following or due to a `--tags` option.  However, if tags
+      are fetched due to an explicit refspec (either on the command
+      line or in the remote configuration, for example if the remote
+      was cloned with the `--mirror` option), then they are also
+      subject to pruning. Supplying `--prune-tags` is a shorthand for
+      providing the tag refspec.
+      
+      See the PRUNING section below for more details.

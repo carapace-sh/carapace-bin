@@ -34,19 +34,19 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"encoding": carapace.ActionValuesDescribed(
-			"s", "7-bit",
+			"B", "32-bit",
+			"L", "32-bit",
 			"S", "8-bit",
 			"b", "16-bit",
 			"l", "16-bit",
-			"B", "32-bit",
-			"L", "32-bit",
+			"s", "7-bit",
 		),
 		"radix": carapace.ActionValuesDescribed(
-			"o", "8",
 			"d", "10",
+			"o", "8",
 			"x", "16",
 		),
-		"unicode": carapace.ActionValues("default", "locale", "invalid", "hex", "escape", "highlight"),
+		"unicode": carapace.ActionValues("default", "escape", "hex", "highlight", "invalid", "locale"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())

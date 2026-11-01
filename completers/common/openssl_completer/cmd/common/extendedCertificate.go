@@ -15,9 +15,9 @@ func AddExtendedCertificateOptions(cmd *cobra.Command) {
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
 		"xcert":     carapace.ActionFiles(),
-		"xcertform": carapace.ActionValues("DER", "PEM", "P12"),
+		"xcertform": carapace.ActionValues("DER", "P12", "PEM"),
 		"xchain":    carapace.ActionFiles(),
 		"xkey":      carapace.ActionFiles(),
-		"xkeyform":  carapace.ActionValues("DER", "PEM", "P12"),
+		"xkeyform":  carapace.ActionValues("DER", "P12", "PEM"),
 	})
 }

@@ -32,7 +32,7 @@ func init() {
 	carapace.Gen(spkacCmd).FlagCompletion(carapace.ActionMap{
 		"in":      carapace.ActionFiles(),
 		"key":     carapace.ActionFiles(),
-		"keyform": carapace.ActionValues("DER", "PEM", "P12"),
+		"keyform": carapace.ActionValues("DER", "P12", "PEM"),
 		"out":     carapace.ActionFiles(),
 	})
 }

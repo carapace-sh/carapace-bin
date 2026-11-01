@@ -7,9 +7,10 @@ import (
 )
 
 var config_deleteCmd = &cobra.Command{
-	Use:   "delete",
-	Short: "Deletes the specified keys from all configuration files",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "delete",
+	Short:   "Deletes the specified keys from all configuration files",
+	Aliases: []string{"rm", "del"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

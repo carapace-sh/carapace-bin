@@ -24,6 +24,7 @@ func init() {
 
 	carapace.Gen(container_startCmd).FlagCompletion(carapace.ActionMap{
 		// TODO checkpoint completion
-		"detach-keys": docker.ActionDetachKeys(),
+		"checkpoint-dir": carapace.ActionDirectories(),
+		"detach-keys":    docker.ActionDetachKeys(),
 	})
 }

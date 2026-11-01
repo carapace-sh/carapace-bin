@@ -32,7 +32,7 @@ func init() {
 	rootCmd.AddCommand(installMultiPackageCmd)
 
 	carapace.Gen(installMultiPackageCmd).FlagCompletion(carapace.ActionMap{
-		"abi": carapace.ActionValues("armeabi-v7a", "arm64-v8a", "x86", "x86_64"),
+		"abi": carapace.ActionValues("arm64-v8a", "armeabi-v7a", "x86", "x86_64"),
 	})
 
 	carapace.Gen(installMultiPackageCmd).PositionalAnyCompletion(

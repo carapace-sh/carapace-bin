@@ -36,7 +36,7 @@ func init() {
 	carapace.Gen(create_cronjobCmd).FlagCompletion(carapace.ActionMap{
 		"dry-run":  kubectl.ActionDryRunModes(),
 		"output":   kubectl.ActionOutputFormats(),
-		"restart":  carapace.ActionValues("OnFailure", "Never"),
+		"restart":  carapace.ActionValues("Never", "OnFailure"),
 		"template": carapace.ActionFiles(),
 		"validate": kubectl.ActionValidationModes(),
 	})

@@ -13,7 +13,13 @@ var loginCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(loginCmd).Standalone()
+	loginCmd.Flags().String("auth-type", "", "authentication strategy")
+	loginCmd.Flags().String("registry", "", "base URL of the npm registry")
 	loginCmd.Flags().String("scope", "", "associate with scope")
 
 	rootCmd.AddCommand(loginCmd)
+
+	carapace.Gen(loginCmd).FlagCompletion(carapace.ActionMap{
+		"auth-type": carapace.ActionValues("legacy", "web"),
+	})
 }

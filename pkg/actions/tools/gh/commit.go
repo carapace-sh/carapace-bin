@@ -11,10 +11,10 @@ func ActionCommitFields() carapace.Action {
 		"author",
 		"commit",
 		"committer",
-		"sha",
 		"id",
 		"parents",
 		"repository",
+		"sha",
 		"url",
 	)
 }

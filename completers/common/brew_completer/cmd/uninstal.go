@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/brew_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -24,4 +25,8 @@ func init() {
 	uninstalCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
 	uninstalCmd.Flags().Bool("zap", false, "Remove all files associated with a <cask>. *May remove files which are shared between applications.*")
 	rootCmd.AddCommand(uninstalCmd)
+
+	carapace.Gen(uninstalCmd).PositionalAnyCompletion(
+		action.ActionList(uninstalCmd).FilterArgs(),
+	)
 }

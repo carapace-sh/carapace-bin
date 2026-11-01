@@ -32,13 +32,13 @@ func init() {
 			carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 				if index := strings.LastIndex(c.Value, "."); index != -1 {
 					return carapace.ActionValuesDescribed(
-						"mobi", "Mobipocket",
-						"epub", "Electronic Publication",
 						"azw3", "Amazon KF8",
+						"epub", "Electronic Publication",
 						"fb2", "Fiction Book",
 						"htmlz", "Zipped HTML eBook",
 						"lit", "Microsoft LIT",
 						"lrf", "Sony LRF",
+						"mobi", "Mobipocket",
 						"pdb", "PalmDoc Book",
 						"pdf", "Portable Document",
 						"pmlz", "Zipped Palm Markup Language",

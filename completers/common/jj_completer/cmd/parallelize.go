@@ -16,6 +16,8 @@ func init() {
 	carapace.Gen(parallelizeCmd).Standalone()
 
 	parallelizeCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	parallelizeCmd.Flags().StringSliceS("r", "r", nil, "")
+	parallelizeCmd.Flag("r").Hidden = true
 	rootCmd.AddCommand(parallelizeCmd)
 
 	carapace.Gen(parallelizeCmd).PositionalAnyCompletion(

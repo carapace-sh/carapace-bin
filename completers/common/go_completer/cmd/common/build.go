@@ -10,22 +10,42 @@ import (
 )
 
 func AddBuildFlags(cmd *cobra.Command) {
+	AddBuildFlagsMask(cmd, 0)
+}
+
+func AddBuildFlagsMask(cmd *cobra.Command, mask uint) {
 	cmd.Flags().BoolS("cover", "cover", false, "enable code coverage instrumentation")
 	cmd.Flags().StringS("coverpkg", "coverpkg", "", "apply coverage analysis to each package matching the patterns")
 	cmd.Flags().StringS("mod", "mod", "", "module download mode to use")
 	cmd.Flags().BoolS("modcacherw", "modcacherw", false, "leave newly-created directories in the module cache read-write")
 	cmd.Flags().StringS("modfile", "modfile", "", "read and possibly write an alternate go.mod file")
-	AddPackageBuildFlags(cmd)
+	AddPackageBuildFlagsMask(cmd, mask)
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
 		"coverpkg": golang.ActionPackages().UniqueList(","),
-		"mod":      carapace.ActionValues("readonly", "vendor", "mod"),
+		"mod":      carapace.ActionValues("mod", "readonly", "vendor"),
 		"modfile":  carapace.ActionFiles(".mod"),
 	})
 }
 
+func AddCoverFlags(cmd *cobra.Command) {
+	cmd.Flags().StringS("covermode", "covermode", "", "set the mode for coverage analysis")
+	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
+		"covermode": carapace.ActionValues("atomic", "count", "set"),
+	})
+}
+
+const (
+	OmitVFlag = 1 << iota
+)
+
 func AddPackageBuildFlags(cmd *cobra.Command) {
+	AddPackageBuildFlagsMask(cmd, 0)
+}
+
+func AddPackageBuildFlagsMask(cmd *cobra.Command, mask uint) {
 	cmd.Flags().StringS("C", "C", "", "Change to dir before running the command")
+	cmd.Flags().BoolS("a", "a", false, "force rebuilding of packages that are already up-to-date")
 	cmd.Flags().BoolS("asan", "asan", false, "enable interoperation with address sanitizer")
 	cmd.Flags().StringS("asmflags", "asmflags", "", "arguments to pass on each go tool asm invocation")
 	cmd.Flags().StringS("buildmode", "buildmode", "", "build mode to use")
@@ -33,7 +53,6 @@ func AddPackageBuildFlags(cmd *cobra.Command) {
 	cmd.Flags().StringS("compiler", "compiler", "", "name of compiler to use")
 	cmd.Flags().StringS("gccgoflags", "gccgoflags", "", "arguments to pass on each gccgo compiler/linker invocation")
 	cmd.Flags().StringS("gcflags", "gcflags", "", "arguments to pass on each go tool compile invocation")
-	cmd.Flags().BoolS("a", "a", false, "force rebuilding of packages that are already up-to-date")
 	cmd.Flags().StringS("installsuffix", "installsuffix", "", "a suffix to use in the name of the package installation directory")
 	cmd.Flags().StringS("ldflags", "ldflags", "", "arguments to pass on each go tool link invocation")
 	cmd.Flags().BoolS("linkshared", "linkshared", false, "build code that will be linked against shared libraries")
@@ -49,15 +68,17 @@ func AddPackageBuildFlags(cmd *cobra.Command) {
 	cmd.Flags().BoolS("trimpath", "trimpath", false, "remove all file system paths from the resulting executable")
 	cmd.Flags().BoolS("work", "work", false, "print the name of the temporary work directory")
 	cmd.Flags().BoolS("x", "x", false, "print the commands")
-	cmd.Flags().BoolS("v", "v", false, "print the names of packages as they are compiled")
+	if mask&OmitVFlag == 0 {
+		cmd.Flags().BoolS("v", "v", false, "print the names of packages as they are compiled")
+	}
 	cmd.Flags().Lookup("buildvcs").NoOptDefVal = "auto"
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
 		"C":         carapace.ActionDirectories(),
 		"asmflags":  bridge.ActionCarapaceBin("go", "tool", "asm").Split(),
 		"buildmode": golang.ActionBuildmodes(),
-		"buildvcs":  carapace.ActionValues("true", "false", "auto").StyleF(style.ForKeyword),
-		"compiler":  carapace.ActionValues("gccgo", "gc"),
+		"buildvcs":  carapace.ActionValues("auto", "false", "true").StyleF(style.ForKeyword),
+		"compiler":  carapace.ActionValues("gc", "gccgo"),
 		"gcflags":   bridge.ActionCarapaceBin("go", "tool", "compile").Split(),
 		"ldflags":   bridge.ActionCarapaceBin("go", "tool", "link").Split(),
 		"overlay":   carapace.ActionFiles(".json"),

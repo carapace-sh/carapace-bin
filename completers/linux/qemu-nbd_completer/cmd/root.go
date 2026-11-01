@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/qemu"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -59,7 +60,7 @@ func init() {
 		"aio":           qemu.ActionAioModes(),
 		"cache":         qemu.ActionCacheModes(),
 		"connect":       carapace.ActionFiles("/dev/nbd*"),
-		"detect-zeroes": carapace.ActionValues("off", "on", "unmap"),
+		"detect-zeroes": carapace.ActionValues("off", "on", "unmap").StyleF(style.ForKeyword),
 		"discard":       carapace.ActionValues("ignore", "unmap"),
 		"format":        qemu.ActionImageFormats(),
 		"pid-file":      carapace.ActionFiles(),

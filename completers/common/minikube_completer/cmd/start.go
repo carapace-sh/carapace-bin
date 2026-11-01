@@ -133,10 +133,10 @@ func init() {
 			carapace.ActionFiles(),
 			carapace.ActionValues("auto", "bridge", "calico", "cilium", "flannel", "kindnet"),
 		).ToA(),
-		"container-runtime":  carapace.ActionValues("docker", "cri-o", "containerd"),
+		"container-runtime":  carapace.ActionValues("containerd", "cri-o", "docker"),
 		"cri-socket":         carapace.ActionFiles(),
-		"driver":             carapace.ActionValues("virtualbox", "vmwarefusion", "kvm2", "vmware", "none", "docker", "podman", "ssh", "auto-detect"),
-		"host-only-nic-type": carapace.ActionValues("Am79C970A", "Am79C973", "82540EM", "82543GC", "82545EM", "virtio"),
+		"driver":             carapace.ActionValues("auto-detect", "docker", "kvm2", "none", "podman", "ssh", "virtualbox", "vmware", "vmwarefusion"),
+		"host-only-nic-type": carapace.ActionValues("82540EM", "82543GC", "82545EM", "Am79C970A", "Am79C973", "virtio"),
 		"hyperkit-vpnkit-sock": carapace.Batch(
 			carapace.ActionFiles(),
 			carapace.ActionValues("auto"),
@@ -152,20 +152,20 @@ func init() {
 				return carapace.ActionValues()
 			}
 		}),
-		"nat-nic-type":   carapace.ActionValues("Am79C970A", "Am79C973", "82540EM", "82543GC", "82545EM", "virtio"),
-		"output":         carapace.ActionValues("text", "json"),
-		"preload-source": carapace.ActionValues("gcs", "github", "auto").StyleF(style.ForKeyword),
+		"nat-nic-type":   carapace.ActionValues("82540EM", "82543GC", "82545EM", "Am79C970A", "Am79C973", "virtio"),
+		"output":         carapace.ActionValues("json", "text"),
+		"preload-source": carapace.ActionValues("auto", "gcs", "github").StyleF(style.ForKeyword),
 		"ssh-key":        carapace.ActionFiles(),
 		"ssh-user":       os.ActionUsers(),
 		"wait": carapace.ActionValues(
-			"apiserver",
-			"system_pods",
-			"default_sa",
-			"apps_running",
-			"node_ready",
-			"kubelet",
 			"all",
+			"apiserver",
+			"apps_running",
+			"default_sa",
+			"kubelet",
+			"node_ready",
 			"none",
+			"system_pods",
 		).UniqueList(","),
 	})
 }

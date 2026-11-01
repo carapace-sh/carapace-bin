@@ -18,6 +18,6 @@ func init() {
 	setCmd.AddCommand(set_profileCmd)
 
 	carapace.Gen(set_profileCmd).PositionalCompletion(
-		carapace.ActionValues("minimal", "default", "complete"),
+		carapace.ActionValues("complete", "default", "minimal"),
 	)
 }

@@ -8,11 +8,11 @@ import "github.com/carapace-sh/carapace"
 //	hidden
 func ActionBorders() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"none", "",
+		"double", "╔═",
 		"hidden", "",
+		"none", "",
 		"normal", "┌─",
 		"rounded", "╭─",
 		"thick", "┏━",
-		"double", "╔═",
 	)
 }

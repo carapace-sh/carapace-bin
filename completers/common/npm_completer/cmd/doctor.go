@@ -13,6 +13,7 @@ var doctorCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(doctorCmd).Standalone()
+	doctorCmd.Flags().String("registry", "", "base URL of the npm registry")
 
 	rootCmd.AddCommand(doctorCmd)
 }

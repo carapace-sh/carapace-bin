@@ -27,6 +27,7 @@ func init() {
 	shellCmd.Flags().Bool("force-activate", false, "Do not use the environment activation cache. (default: true except in experimental mode)")
 	shellCmd.Flags().Bool("frozen", false, "Install the environment as defined in the lock file, doesn't update lock file if it isn't up-to-date with the manifest file")
 	shellCmd.Flags().Bool("locked", false, "Check if lock file is up-to-date before installing the environment, aborts when lock file isn't up-to-date with the manifest file")
+	shellCmd.Flags().Bool("offline", false, "Run without network access, using only cached data. Commands fail if data is missing from the cache. Pass `--offline=false` to override an `offline` setting from the configuration")
 	shellCmd.PersistentFlags().StringP("manifest-path", "m", "", "The path to `pixi.toml`, `pyproject.toml`, or the workspace directory")
 	shellCmd.Flags().Bool("no-completions", false, "Do not source the autocompletion scripts from the environment")
 	shellCmd.Flags().Bool("no-config", false, "Don't read system or user-level configuration files. Project-local `<project>/.pixi/config.toml` is still loaded")
@@ -45,12 +46,12 @@ func init() {
 
 	carapace.Gen(shellCmd).FlagCompletion(carapace.ActionMap{
 		"auth-file":             carapace.ActionFiles(),
-		"change-ps1":            carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
+		"change-ps1":            carapace.ActionValues("false", "true").StyleF(style.ForKeyword),
 		"config-file":           carapace.ActionFiles(),
 		"environment":           pixi.ActionEnvironments(),
 		"manifest-path":         carapace.ActionFiles(),
-		"pinning-strategy":      carapace.ActionValues("semver", "minor", "major", "latest-up", "exact-version", "no-pin"),
+		"pinning-strategy":      carapace.ActionValues("exact-version", "latest-up", "major", "minor", "no-pin", "semver"),
 		"pypi-keyring-provider": carapace.ActionValues("disabled", "subprocess"),
-		"tls-root-certs":        carapace.ActionValues("webpki", "system"),
+		"tls-root-certs":        carapace.ActionValues("system", "webpki"),
 	})
 }

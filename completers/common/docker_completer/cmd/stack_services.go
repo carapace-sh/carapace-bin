@@ -20,6 +20,21 @@ func init() {
 	stack_servicesCmd.Flags().BoolP("quiet", "q", false, "Only display IDs")
 	stackCmd.AddCommand(stack_servicesCmd)
 
+	carapace.Gen(stack_servicesCmd).FlagCompletion(carapace.ActionMap{
+		"filter": carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return carapace.ActionValuesDescribed(
+					"id", "Filter by ID",
+					"label", "Filter by label (key or key=value)",
+					"name", "Filter by name",
+				).Suffix("=")
+			default:
+				return carapace.ActionValues()
+			}
+		}),
+	})
+
 	carapace.Gen(stack_servicesCmd).PositionalAnyCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if stack_servicesCmd.Flag("orchestrator").Changed {

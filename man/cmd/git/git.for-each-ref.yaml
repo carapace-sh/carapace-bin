@@ -6,9 +6,10 @@ flags:
   --color=: respect any colors specified in the --format option
   --contains=: only list refs which contain the specified commit
   --count=: limit refs
-  --exclude*=: only list refs which do not match any excluded pattern(s)
+  --exclude=*: only list refs which do not match any excluded pattern(s)
   --format=: a string that interpolates %(fieldname) from a ref being shown
   --ignore-case: sorting and filtering refs are case insensitive
+  --include-root-refs: also list root refs (refs pointing to root commits)
   --merged=: only list refs whose tips are reachable from the specified commit
   --no-contains=: only list refs which don’t contain the specified commit
   --no-merged=: only list refs whose tips are not reachable from the specified commit
@@ -17,17 +18,11 @@ flags:
   --points-at=: only list refs which points at the given object
   --python: quote strings for python
   --shell: 'quote strings for shell '
-  --sort*=: field name to sort on
+  --sort=*: field name to sort on
+  --start-after=: start listing refs after the given marker
   --stdin: read patterns from standard input
   --tcl: quote strings for tcl
 documentation:
-  command: |-
-    Iterate over all refs that match _<pattern>_ and show them
-    according to the given _<format>_, after sorting them according
-    to the given set of _<key>_.  If _<count>_ is given, stop after
-    showing that many refs.  The interpolated values in _<format>_
-    can optionally be quoted as string literals in the specified
-    host language allowing their direct evaluation in that language.
   flag:
     count: Stop after showing _<count>_ refs.
     ignore-case: Sorting and filtering refs are case insensitive.
@@ -43,3 +38,42 @@ documentation:
       placeholders are quoted as string literals suitable for
       the specified host language.  This is meant to produce
       a scriptlet that can directly be "eval"ed.
+    color: |-
+      Turn off branch colors, even when the configuration file gives the
+      default to color output.
+      Same as `--color=never`.
+    contains: |-
+      Instead of finding the tag that predates the commit, find
+      the tag that comes after the commit, and thus contains it.
+      Automatically implies `--tags`.
+    exclude: |-
+      These flags are passed to the *git apply* (see
+      [git-apply](cmd://git/apply)) program that applies the patch.
+      
+      Valid \<action\> for the `--whitespace` option are: `nowarn`, `warn`, `fix`, `error`, and `error-all`.
+    format: |-
+      Format of the resulting archive. Possible values are `tar`, `zip`,
+      `tar.gz`, `tgz`, and any format defined using the configuration option
+      `tar.<format>.command`. If `--format` is not given, and the output file
+      is specified, the format is inferred from the filename if possible (e.g.
+      writing to `foo.zip` makes the output to be in the `zip` format).
+      Otherwise the output format is `tar`.
+    sort: |-
+      Sort based on _<key>_. Prefix `-` to sort in descending
+      order of the value. You may use the `--sort=<key>` option
+      multiple times, in which case the last key becomes the primary
+      key. The keys supported are the same as those in [git-for-each-ref](cmd://git/for-each-ref).
+      Sort order defaults to the value configured for the
+      `branch.sort` variable if it exists, or to sorting based on the
+      full refname (including `refs/...` prefix). This lists
+      detached `HEAD` (if present) first, then local branches and
+      finally remote-tracking branches. See [git-config](cmd://git/config).
+    no-contains: only list refs which don’t contain the specified commit
+    include-root-refs: also list root refs (refs pointing to root commits)
+    merged: only list refs whose tips are reachable from the specified commit
+    no-merged: only list refs whose tips are not reachable from the specified commit
+    perl: quote strings for perl
+    python: quote strings for python
+    shell: quote strings for shell
+    start-after: start listing refs after the given marker
+

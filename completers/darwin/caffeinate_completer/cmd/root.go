@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/ps"
 	"github.com/spf13/cobra"
 )
 
@@ -20,10 +21,15 @@ func init() {
 
 	rootCmd.Flags().BoolP("display", "d", false, "Create an assertion to prevent the display from sleeping")
 	rootCmd.Flags().StringP("pid", "w", "", "Wait for the process with the specified pid to exit")
+	rootCmd.Flags().BoolP("prevent-disk", "m", false, "Create an assertion to prevent the disk from idle sleeping")
 	rootCmd.Flags().BoolP("prevent-idle", "i", false, "Create an assertion to prevent the system from idle sleeping")
 	rootCmd.Flags().BoolP("prevent-sleep", "s", false, "Create an assertion to prevent the system from sleeping")
 	rootCmd.Flags().BoolP("prevent-user", "u", false, "Create an assertion to declare that user is active")
 	rootCmd.Flags().StringP("timeout", "t", "", "Specifies the timeout value in seconds")
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"pid": ps.ActionProcessIds(),
+	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		carapace.ActionFiles(),

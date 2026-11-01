@@ -7,9 +7,10 @@ import (
 )
 
 var addCmd = &cobra.Command{
-	Use:   "add [branch]",
-	Short: "Add a new branch on top of the current stack",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "add [branch]",
+	Short:   "Add a new branch on top of the current stack",
+	GroupID: "stack",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

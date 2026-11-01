@@ -3,13 +3,16 @@ name: merge-file
 description: Run a three-way file merge
 group: low-level manipulator
 flags:
-  --diff3: use a diff3 based merge
-  --marker-size=: for conflicts, use this marker size
-  --ours: for conflicts, use our version
-  --theirs: for conflicts, use their version
-  --union: for conflicts, use a union version
-  -L=: set labels for file1/orig-file/file2
-  -p, --stdout: send results to standard output
+  --diff-algorithm=: use a different diff algorithm while merging
+  --diff3: show conflicts in "diff3" style
+  --marker-size=: conflict marker size
+  --object-id: specify the contents to merge as blobs in the current repository instead of files
+  --ours: resolve conflicts favouring our side of the lines
+  --theirs: resolve conflicts favouring their side of the lines
+  --union: resolve conflicts favouring both side of the lines
+  --zdiff3: show conflicts in "zdiff3" style
+  -L=*: use labels in place of the file names in conflict reports
+  -p, --stdout: send results to standard output instead of overwriting <current>
   -q, --quiet: do not warn about conflicts
 documentation:
   command: |-
@@ -48,3 +51,71 @@ documentation:
     `git merge-file` is designed to be a minimal clone of RCS 'merge`; that is, it`
     implements all of RCS 'merges functionality which is needed by
     [git](man://git/1).
+  flag:
+    L: |-
+      Annotate only the line range given by *&lt;start&gt;,&lt;end&gt;*, or by
+      the function name regex *&lt;funcname&gt;*. May be specified multiple
+      times. Overlapping ranges are allowed.
+      
+      *&lt;start&gt;* and *&lt;end&gt;* are optional. `-L <start>` or
+      `-L <start>,` spans from *&lt;start&gt;* to end of file. `-L ,<end>`
+      spans from start of file to *&lt;end&gt;*.
+      
+      *&lt;start&gt;* and *&lt;end&gt;* can take one of these forms:
+      
+      -   number
+      
+        If *&lt;start&gt;* or *&lt;end&gt;* is a number, it specifies an
+        absolute line number (lines count from 1).
+      
+      -   `/regex/`
+      
+        This form will use the first line matching the given POSIX regex. If
+        *&lt;start&gt;* is a regex, it will search from the end of the
+        previous `-L` range, if any, otherwise from the start of file. If
+        *&lt;start&gt;* is `^/regex/`, it will search from the start of
+        file. If *&lt;end&gt;* is a regex, it will search starting at the
+        line given by *&lt;start&gt;*.
+      
+      -   +offset or -offset
+      
+        This is only valid for *&lt;end&gt;* and will specify a number of
+        lines before or after the line given by *&lt;start&gt;*.
+      
+      If `:<funcname>` is given in place of *&lt;start&gt;* and *&lt;end&gt;*,
+      it is a regular expression that denotes the range from the first
+      funcname line that matches *&lt;funcname&gt;*, up to the next funcname
+      line. `:<funcname>` searches from the end of the previous `-L` range, if
+      any, otherwise from the start of file. `^:<funcname>` searches from the
+      start of file. The function names are determined in the same way as
+      `git diff` works out patch hunk headers (see *Defining a custom
+      hunk-header* in [gitattributes](man://gitattributes/5)).
+    diff-algorithm: |-
+      Choose a diff algorithm. The variants are as follows:
+    theirs: |-
+      When checking out paths from the index, check out stage #2
+      (`ours`) or #3 (`theirs`) for unmerged paths.
+      
+      Note that during `git rebase` and `git pull --rebase`, `ours` and
+      `theirs` may appear swapped; `--ours` gives the version from the
+      branch the changes are rebased onto, while `--theirs` gives the
+      version from the branch that holds your work that is being rebased.
+      
+      This is because `rebase` is used in a workflow that treats the
+      history at the remote as the shared canonical one, and treats the
+      work done on the branch you are rebasing as the third-party work to
+      be integrated, and you are temporarily assuming the role of the
+      keeper of the canonical history during the rebase.  As the keeper of
+      the canonical history, you need to view the history from the remote
+      as `ours` (i.e. "our shared canonical history"), while what you did
+      on your side branch as `theirs` (i.e. "one contributor's work on top
+      of it").
+    quiet: Be quiet. Only print error messages.
+    diff3: show conflicts in "diff3" style
+    marker-size: conflict marker size
+    object-id: |-
+      specify the contents to merge as blobs in the current repository instead of files
+    ours: resolve conflicts favouring our side of the lines
+    stdout: send results to standard output instead of overwriting <current>
+    union: resolve conflicts favouring both side of the lines
+    zdiff3: show conflicts in "zdiff3" style

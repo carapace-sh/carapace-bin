@@ -41,3 +41,92 @@ documentation:
     shown, and each file may be printed multiple times if there are
     multiple entries in the index or if multiple statuses are applicable for
     the relevant file selection options.
+  flag:
+    abbrev: |-
+      Instead of using the default _7+1_ hexadecimal digits as the
+      abbreviated object name, use _<m>+1_ digits, where _<m>_ is at
+      least _<n>_ but ensures the commit object names are unique.
+      Note that 1 column
+      is used for a caret to mark the boundary commit.
+    debug: |-
+      Verbosely display information about the searching strategy
+      being employed to standard error.  The tag name will still
+      be printed to standard out.
+    directory: |-
+      These flags are passed to the *git apply* (see
+      [git-apply](cmd://git/apply)) program that applies the patch.
+      
+      Valid \<action\> for the `--whitespace` option are: `nowarn`, `warn`, `fix`, `error`, and `error-all`.
+    exclude-standard: |-
+      Do not pay attention to ignored files specified via the `.gitignore`
+      mechanism.  Only useful when searching files in the current directory
+      with `--no-index`.
+    f: |-
+      Use the fast patchset import strategy. This can be significantly faster
+      for large trees, but cannot handle directory renames or permissions
+      changes. The default strategy is slow and safe.
+    format: |-
+      Format of the resulting archive. Possible values are `tar`, `zip`,
+      `tar.gz`, `tgz`, and any format defined using the configuration option
+      `tar.<format>.command`. If `--format` is not given, and the output file
+      is specified, the format is inferred from the filename if possible (e.g.
+      writing to `foo.zip` makes the output to be in the `zip` format).
+      Otherwise the output format is `tar`.
+    full-name: |-
+      When run from a subdirectory, the command usually
+      outputs paths relative to the current directory.  This
+      option forces paths to be output relative to the project
+      top directory.
+    recurse-submodules: |-
+      THIS OPTION IS EXPERIMENTAL! Cause the current command to
+      recurse into submodules if `submodule.propagateBranches` is
+      enabled. See `submodule.propagateBranches` in
+      [git-config](cmd://git/config). Currently, only branch creation is
+      supported.
+      
+      When used in branch creation, a new branch _<branch-name>_ will be created
+      in the superproject and all of the submodules in the superproject's
+      _<start-point>_. In submodules, the branch will point to the submodule
+      commit in the superproject's _<start-point>_ but the branch's tracking
+      information will be set up based on the submodule's branches and remotes
+      e.g. `git branch --recurse-submodules topic origin/main` will create the
+      submodule branch "topic" that points to the submodule commit in the
+      superproject's "origin/main", but tracks the submodule's "origin/main".
+    sparse: |-
+      Employ a sparse-checkout, with only files in the toplevel
+      directory initially being present.  The
+      [git-sparse-checkout](cmd://git/sparse-checkout) command can be used to grow the
+      working directory as needed.
+    t: Override the default tempdir.
+    v: Verbose output.
+    z: |-
+      When `--numstat` has been given, do not munge pathnames,
+      but use a NUL-terminated machine-readable format.
+      
+      Without this option, pathnames with "unusual" characters are quoted as
+      explained for the configuration variable `core.quotePath` (see
+      [git-config](cmd://git/config)).
+    cached: |-
+      Apply the patch to just the index, without touching the working
+      tree. If `--check` is in effect, merely check that it would
+      apply cleanly to the index entry.
+    exclude: |-
+      These flags are passed to the *git apply* (see
+      [git-apply](cmd://git/apply)) program that applies the patch.
+      
+      Valid \<action\> for the `--whitespace` option are: `nowarn`, `warn`, `fix`, `error`, and `error-all`.
+    deduplicate: suppress duplicate entries
+    deleted: show deleted files in the output
+    empty-directory: don't show empty directories
+    eol: show line endings of files
+    error-unmatch: if any <file> is not in the index, treat this as an error
+    exclude-from: read exclude patterns from <file>
+    exclude-per-directory: read additional per-directory exclude patterns in <file>
+    ignored: show ignored files in the output
+    killed: show files on the filesystem that need to be removed
+    modified: show modified files in the output
+    others: show other files in the output
+    resolve-undo: show resolve-undo information
+    stage: show staged contents' object name in the output
+    unmerged: show unmerged files in the output
+    with-tree: pretend that paths removed since <tree-ish> are still present

@@ -8,15 +8,20 @@ import (
 
 var step_forEachCmd = &cobra.Command{
 	Use:   "for-each",
-	Short: "[experimental] Run command in each worktree",
+	Short: "Run command in each worktree",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(step_forEachCmd).Standalone()
 
+	step_forEachCmd.Flags().String("format", "", "Output format (text, json)")
 	step_forEachCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	stepCmd.AddCommand(step_forEachCmd)
+
+	carapace.Gen(step_forEachCmd).FlagCompletion(carapace.ActionMap{
+		"format": carapace.ActionValues("json", "text"),
+	})
 
 	carapace.Gen(step_forEachCmd).DashAnyCompletion(
 		bridge.ActionCarapaceBin(),

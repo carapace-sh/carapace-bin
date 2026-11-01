@@ -7,7 +7,7 @@ import (
 
 var help_branchCmd = &cobra.Command{
 	Use:   "branch",
-	Short: "List branches, or create / delete one",
+	Short: "List branches, or create / delete / rename / configure one",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

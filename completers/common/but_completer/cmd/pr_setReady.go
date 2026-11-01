@@ -8,7 +8,7 @@ import (
 
 var pr_setReadyCmd = &cobra.Command{
 	Use:   "set-ready",
-	Short: "Set an existing review (or set of reviews) as ready-to-review. If no reviews are specified, you will be prompted to select one or multiple of the review associated with branches in your workspace",
+	Short: "Mark existing reviews as ready for review",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

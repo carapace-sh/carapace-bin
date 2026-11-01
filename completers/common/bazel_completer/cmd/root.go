@@ -83,4 +83,16 @@ func init() {
 	rootCmd.Flags().String("workspace_directory", "", "The root of the workspace, that is, the directory that Bazel uses as the root of the build. This flag is only to be set by the bazel client.")
 	rootCmd.Flags().Bool("workspace_rc", false, "Whether or not to look for the workspace bazelrc file at `$workspace/.bazelrc`")
 	rootCmd.Flags().Bool("write_command_log", false, "WARNING: This option is deprecated and will be removed soon. Please use the command option instead.")
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"bazelrc":                 carapace.ActionFiles(),
+		"default_system_javabase": carapace.ActionDirectories(),
+		"failure_detail_out":      carapace.ActionFiles(),
+		"install_base":            carapace.ActionDirectories(),
+		"output_base":             carapace.ActionDirectories(),
+		"output_user_root":        carapace.ActionDirectories(),
+		"server_javabase":         carapace.ActionDirectories(),
+		"server_jvm_out":          carapace.ActionFiles(),
+		"workspace_directory":     carapace.ActionDirectories(),
+	})
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/carapace-sh/carapace-jjlex/pkg/actions/tools/jj"
 	"github.com/spf13/cobra"
 )
@@ -17,8 +18,10 @@ func init() {
 
 	absorbCmd.Flags().StringP("from", "f", "@", "Source revision to absorb from")
 	absorbCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	absorbCmd.Flags().BoolP("interactive", "i", false, "Interactively choose which parts to absorb")
 	absorbCmd.Flags().StringSliceP("into", "t", []string{"mutable()"}, "Destination revisions to absorb into")
 	absorbCmd.Flags().StringSlice("to", []string{"mutable()"}, "Destination revisions to absorb into")
+	absorbCmd.Flags().String("tool", "", "Specify diff editor to be used (implies --interactive)")
 	rootCmd.AddCommand(absorbCmd)
 
 	absorbCmd.MarkFlagsMutuallyExclusive("into", "to")
@@ -27,6 +30,7 @@ func init() {
 		"from": jj.ActionRevsets(jj.RevOpts{}.Default()),
 		"into": jj.ActionRevsets(jj.RevOpts{}.Default()),
 		"to":   jj.ActionRevsets(jj.RevOpts{}.Default()),
+		"tool": bridge.ActionCarapaceBin().Split(),
 	})
 
 	carapace.Gen(absorbCmd).PositionalAnyCompletion(

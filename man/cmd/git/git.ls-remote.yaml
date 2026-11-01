@@ -6,9 +6,10 @@ flags:
   --exit-code: exit with exit code 2 if no matching refs are found
   --get-url: take url.<base>.insteadOf into account
   --refs: do not show peeled tags
-  --sort?: field name to sort on
+  --sort?*: field name to sort on
   --symref: show underlying ref in addition to the object pointed by it
   --upload-pack=: path of git-upload-pack on the remote host
+  -b, --branches: limit to branches
   -h, --heads: limit to heads
   -o, --server-option=: option to transmit
   -q, --quiet: do not print remote URL
@@ -17,3 +18,32 @@ documentation:
   command: |-
     Displays references available in a remote repository along with the associated
     commit IDs.
+  flag:
+    exit-code: |-
+      Make the program exit with codes similar to `diff`(1).
+      That is, it exits with 1 if there were differences and
+      0 means no differences.
+    upload-pack: |-
+      Specify a non-default path for the command run on the other end when the
+      repository to clone from is accessed via ssh.
+    quiet: Be quiet. Only print error messages.
+    sort: |-
+      Sort based on _<key>_. Prefix `-` to sort in descending
+      order of the value. You may use the `--sort=<key>` option
+      multiple times, in which case the last key becomes the primary
+      key. The keys supported are the same as those in [git-for-each-ref](cmd://git/for-each-ref).
+      Sort order defaults to the value configured for the
+      `branch.sort` variable if it exists, or to sorting based on the
+      full refname (including `refs/...` prefix). This lists
+      detached `HEAD` (if present) first, then local branches and
+      finally remote-tracking branches. See [git-config](cmd://git/config).
+    tags: |-
+      Instead of using only the annotated tags, use any tag
+      found in `refs/tags` namespace.  This option enables matching
+      a lightweight (non-annotated) tag.
+    branches: limit to branches
+    get-url: take url.<base>.insteadOf into account
+    heads: limit to heads
+    refs: do not show peeled tags
+    server-option: option to transmit
+    symref: show underlying ref in addition to the object pointed by it

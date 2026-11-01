@@ -6,8 +6,8 @@ import (
 )
 
 var ci_config_compileCmd = &cobra.Command{
-	Use:   "compile",
-	Short: "View the fully expanded CI/CD configuration.",
+	Use:   "compile [<path>]",
+	Short: "View the merged CI/CD configuration.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
@@ -15,4 +15,8 @@ func init() {
 	carapace.Gen(ci_config_compileCmd).Standalone()
 
 	ci_configCmd.AddCommand(ci_config_compileCmd)
+
+	carapace.Gen(ci_config_compileCmd).PositionalCompletion(
+		carapace.ActionFiles(".gitlab-ci.yml", ".gitlab-ci.yaml"),
+	)
 }

@@ -3,244 +3,246 @@ name: log
 description: Show commit logs
 group: main
 flags:
-  --abbrev-commit: Instead of showing the full 40-byte hexadecimal commit object name, show a prefix that names the object uniquely.
-  --abbrev=: Show the shortest prefix that is at least <n> hexdigits long that uniquely refers
-  --after=: Show commits more recent than a specific date.
-  --all: Pretend as if all the refs in refs/, along with HEAD, are listed on the command line as <commit>.
-  --all-match: Limit the commits output to ones that match all given --grep, instead of ones that match at least one.
-  --alternate-refs: Pretend as if all objects mentioned as ref tips of alternate repositories were listed on the command line.
-  --ancestry-path: When given a range of commits to display, only display commits that exist directly on the ancestry chain.
-  --anchored=: Generate a diff using the "anchored diff" algorithm.
-  --author-date-order: Show no parents before all of its children are shown, but otherwise show commits in the author timestamp order.
-  --author=: Limit the commits output to ones with author/committer header lines that match the specified pattern
-  --basic-regexp: Consider the limiting patterns to be basic regular expressions; this is the default.
-  --before=: Show commits older than a specific date.
-  --binary: In addition to --full-index, output a binary diff that can be applied with git-apply. Implies --patch.
-  --bisect: Pretend as if the bad bisection ref refs/bisect/bad was listed and as if it was followed by --not and the good bisection refs refs/bisect/good-* on the command line.
-  --boundary: Output excluded boundary commits. Boundary commits are prefixed with -.
-  --branches=: Pretend as if all the refs in refs/heads are listed on the command line as <commit>.
-  --check: Warn if changes introduce conflict markers or whitespace errors.
-  --cherry: A synonym for --right-only --cherry-mark --no-merges
-  --cherry-mark: Like --cherry-pick (see below) but mark equivalent commits with = rather than omitting them, and inequivalent ones with +.
-  --cherry-pick: Omit any commit that introduces the same change as another commit on the “other side” when the set of commits are limited with symmetric difference.
-  --children: Print also the children of the commit.
-  --color-moved-ws?: This configures how whitespace is ignored when performing the move detection for --color-moved.
-  --color-moved?: Moved lines of code are colored differently.
-  --color-words=: Equivalent to --word-diff=color plus (if a regex was specified) --word-diff-regex=<regex>.
-  --color?: Show colored diff.
-  --combined-all-paths: This flag causes combined diffs (used for merge commits) to list the name of the file from all parents.
-  --committer=: Limit the commits output to ones with author/committer header lines that match the specified pattern
-  --compact-summary: Output a condensed summary of extended header information.
-  --cumulative: Synonym for --dirstat=cumulative
-  --date-order: Show no parents before all of its children are shown, but otherwise show commits in the commit timestamp order.
-  --date=: Only takes effect for dates shown in human-readable format, such as when using --pretty.
-  --decorate-refs-exclude=: Do not decorete refs matching pattern.
-  --decorate-refs=: Decorate refs matching pattern.
-  --decorate?: Print out the ref names of any commits that are shown.
-  --diff-algorithm=: Choose a diff algorithm.
-  --diff-filter?: Select only files that are of given change.
-  --diff-merges=: Specify diff format to be used for merge commits.
-  --dirstat-by-file=: Synonym for --dirstat=files,param1,param2...
-  --do-walk: Overrides a previous --no-walk.
-  --dst-prefix=: Show the given destination prefix instead of "b/".
-  --encoding=: Commit objects record the character encoding used for the log message in their encoding header.
-  --exclude-first-parent-only: When finding commits to exclude (with a ^), follow only the first parent commit upon seeing a merge commit.
-  --exclude=: Do not include refs matching <glob-pattern> that the next --all, --branches, --tags, --remotes, or --glob would otherwise consider.
-  --expand-tabs=: Perform a tab expansion
-  --ext-diff: Allow an external diff helper to be executed.
-  --find-copies-harder: For performance reasons, by default, -C option finds copies only if the original file of the copy was modified in the same changeset.
-  --find-object=: Look for differences that change the number of occurrences of the specified object.
-  --first-parent: When finding commits to include, follow only the first parent commit upon seeing a merge commit.
-  --follow: Continue listing the history of a file beyond renames (works only for a single file).
-  --format?: Pretty-print the contents of the commit logs in a given format
-  --full-diff: With this, the full diff is shown for commits that touch the specified paths
-  --full-history: Same as the default mode, but does not prune some history.
-  --full-index: Instead of the first handful of characters, show the full pre- and post-image blob object names on the "index" line when generating patch format output.
-  --glob=: Pretend as if all the refs matching shell glob <glob-pattern> are listed on the command line as <commit>.
-  --graph: Draw a text-based graphical representation of the commit history on the left hand side of the output.
-  --grep-reflog=: Limit the commits output to ones with reflog entries that match the specified pattern
-  --grep=: Limit the commits output to ones with log message that matches the specified pattern
-  --histogram: Generate a diff using the "histogram diff" algorithm.
-  --ignore-blank-lines: Ignore changes whose lines are all blank.
-  --ignore-cr-at-eol: Ignore carriage-return at the end of line when doing a comparison.
-  --ignore-missing: Upon seeing an invalid object name in the input, pretend as if the bad input was not given.
-  --ignore-space-at-eol: Ignore changes in whitespace at EOL.
-  --ignore-submodules?: Ignore changes to submodules in the diff generation.
-  --indent-heuristic: Enable the heuristic that shifts diff hunk boundaries to make patches easier to read. This is the default.
-  --inter-hunk-context=: Show the context between diff hunks, up to the specified number of lines, thereby fusing hunks that are close to each other.
-  --invert-grep: Limit the commits output to ones with log message that do not match the pattern specified with --grep=<pattern>.
-  --ita-invisible-in-index: . This option makes the entry appear as a new file in "git diff" and non-existent in "git diff --cached".
-  --left-only: List only commits on the respective side of a symmetric difference.
-  --left-right: Mark which side of a symmetric difference a commit is reachable from.
-  --line-prefix=: Prepend an additional prefix to every line of output.
-  --log-size: Include a line “log size <number>” in the output for each commit.
-  --mailmap: Use mailmap file to map author and committer names and email addresses to canonical real names and email addresses.
-  --max-parents=: Show only commits which have at least (or at most) that many parent commits.
-  --merge: After a failed merge, show refs that touch files having a conflict and don’t exist on all heads to merge.
-  --merges: Print only merge commits. This is exactly the same as --min-parents=2.
-  --min-parents=: Show only commits which have at least (or at most) that many parent commits.
-  --minimal: Spend extra time to make sure the smallest possible diff is produced.
-  --name-only: Show only names of changed files.
-  --name-status: Show only names and status of changed files.
-  --no-abbrev-commit: Show the full 40-byte hexadecimal commit object name.
-  --no-color: Turn off colored diff.
-  --no-color-moved: Turn off move detection.
-  --no-color-moved-ws: Do not ignore whitespace when performing move detection.
-  --no-decorate: Print out the ref names of any commits that are shown.
-  --no-diff-merges: Specify diff format to be used for merge commits.
-  --no-expand-tabs: Do not perform a tab expansion
-  --no-ext-diff: Disallow external diff drivers.
-  --no-indent-heuristic: Disable the indent heuristic.
-  --no-mailmap: Do not use mailmap file to map author and committer names and email addresses to canonical real names and email addresses.
-  --no-max-parents: Show only commits which have at least (or at most) that many parent commits.
-  --no-merges: Do not print commits with more than one parent. This is exactly the same as --max-parents=1.
-  --no-min-parents: Show only commits which have at least (or at most) that many parent commits.
-  --no-notes: Do not show notes.
-  --no-prefix: Do not show any source or destination prefix.
-  --no-relative: When run from a subdirectory of the project, it can be told to exclude changes outside the directory and show pathnames relative to it with this option.
-  --no-rename-empty: Whether to use empty blobs as rename source.
-  --no-renames: Turn off rename detection, even when the configuration file gives the default to do so.
-  --no-textconv: Disallow external text conversion filters to be run when comparing binary files.
-  --no-use-mailmap: Do not use mailmap file to map author and committer names and email addresses to canonical real names and email addresses.
-  --no-walk?: Only show the given commits, but do not traverse their ancestors.
-  --not: Reverses the meaning of the ^ prefix (or lack thereof) for all following revision specifiers, up to the next --not.
-  --notes=: Show the notes that annotate the commit
-  --numstat: Similar to --stat, but shows number of added and deleted lines in decimal notation and pathname without abbreviation.
-  --oneline: This is a shorthand for "--pretty=oneline --abbrev-commit" used together.
-  --output-indicator-context=: Specify the character used to indicate context lines in the generated patch.
-  --output-indicator-new=: Specify the character used to indicate new lines in the generated patch.
-  --output-indicator-old=: Specify the character used to indicate old lines in the generated patch.
-  --output=: Output to a specific file instead of stdout.
-  --parents: Print also the parents of the commit.
-  --patch-with-raw: Synonym for -p --raw.
-  --patch-with-stat: Synonym for -p --stat.
-  --patience: Generate a diff using the "patience diff" algorithm.
-  --pickaxe-all: When -S or -G finds a change, show all the changes in that changeset, not just the files that contain the change in <string>.
-  --pickaxe-regex: Treat the <string> given to -S as an extended POSIX regular expression to match.
-  --pretty?: Pretty-print the contents of the commit logs in a given format
-  --raw: For each commit, show a summary of changes using the raw diff format.
-  --reflog: Pretend as if all objects mentioned by reflogs are listed on the command line as <commit>.
-  --relative-date: Synonym for --date=relative.
-  --relative=: When run from a subdirectory of the project, it can be told to exclude changes outside the directory and show pathnames relative to it with this option.
-  --remotes=: Pretend as if all the refs in refs/remotes are listed on the command line as <commit>.
-  --remove-empty: Stop when a given path disappears from the tree.
-  --rename-empty: Whether to use empty blobs as rename source.
-  --reverse: Output the commits chosen to be shown (see Commit Limiting section above) in reverse order. Cannot be combined with --walk-reflogs.
-  --right-only: List only commits on the respective side of a symmetric difference.
-  --rotate-to=: Discard the files before the named <file> from the output (i.e.  skip to), or move them to the end of the output (i.e.  rotate to).
-  --shortstat: Output only the last line of the --stat format containing total number of modified files, as well as number of added and deleted lines.
-  --show-linear-break=: When --graph is not used, all history branches are flattened which can make it hard to see that the two consecutive commits do not belong to a linear branch.
-  --show-pulls: Include all commits from the default mode, but also any merge commits that are not TREESAME to the first parent but are TREESAME to a later parent.
-  --show-signature: Check the validity of a signed commit object by passing the signature to gpg --verify and show the output.
-  --simplify-by-decoration: Commits that are referred by some branch or tag are selected.
-  --simplify-merges: First, build a history graph in the same way that --full-history with parent rewriting does.
-  --since=: Show commits more recent than a specific date.
-  --single-worktree: This option forces them to examine the current working tree only.
-  --skip-to=: Discard the files before the named <file> from the output (i.e.  skip to), or move them to the end of the output (i.e.  rotate to).
-  --skip=: Skip number commits before starting to show the commit output.
-  --source: Print out the ref name given on the command line by which each commit was reached.
-  --sparse: All commits that are walked are included.
-  --src-prefix=: Show the given source prefix instead of "a/".
-  --stat=: Generate a diffstat.
-  --stdin: In addition to the <commit> listed on the command line, read them from the standard input.
-  --submodule=: Specify how differences in submodules are shown.
-  --summary: Output a condensed summary of extended header information such as creations, renames and mode changes.
-  --tags=: Pretend as if all the refs in refs/tags are listed on the command line as <commit>.
-  --textconv: Allow external text conversion filters to be run when comparing binary files.
-  --topo-order: Show no parents before all of its children are shown, and avoid showing commits on multiple lines of history intermixed.
-  --until=: Show commits older than a specific date.
-  --use-mailmap: Use mailmap file to map author and committer names and email addresses to canonical real names and email addresses.
-  --word-diff-regex=: Use <regex> to decide what a word is, instead of considering runs of non-whitespace to be a word.
-  --word-diff?: Show a word diff, using the <mode> to delimit changed words.
-  --ws-error-highlight?: Highlight whitespace errors in the context, old or new lines of the diff.
-  -B, --break-rewrites=: Break complete rewrite changes into pairs of delete and create.
-  -C, --find-copies=: Detect copies as well as renames.
-  -D, --irreversible-delete: Omit the preimage for deletes, i.e. print only the header but not the diff between the preimage and /dev/null.
-  -E, --extended-regexp: Consider the limiting patterns to be extended regular expressions instead of the default basic regular expressions.
-  -F, --fixed-strings: Consider the limiting patterns to be fixed strings (don’t interpret pattern as a regular expression).
-  -G=: Look for differences whose patch text contains added/removed lines that match <regex>.
-  -I, --ignore-matching-lines=: Ignore changes whose all lines match <regex>.
-  -L=: Trace the evolution of the line range given by <start>,<end>, or by the function name regex <funcname>, within the <file>.
-  -O=: Control the order in which files appear in the output.
-  -P, --perl-regexp: Consider the limiting patterns to be Perl-compatible regular expressions.
-  -R: Swap two inputs
-  -S=: Look for differences that change the number of occurrences of the specified string.
-  -U, --unified=: Generate diffs with <n> lines of context instead of the usual three.
-  -W, --function-context: Show whole function as context lines for each change.
-  -X, --dirstat=: Output the distribution of relative amount of changes for each sub-directory.
-  -a, --text: Treat all files as text.
-  -b, --ignore-space-change: Ignore changes in amount of whitespace.
-  -g, --walk-reflogs: Instead of walking the commit ancestry chain, walk reflog entries from the most recent one to older ones.
-  -i, --regexp-ignore-case: Match the regular expression limiting patterns without regard to letter case.
-  -l=: This option prevents the exhaustive portion of rename/copy detection from running if the number of source/destination files involved exceeds the specified number.
-  -n, --max-count=: Limit the number of commits to output.
-  -p, --patch: Generate patch.
-  -s, --no-patch: Suppress diff output.
-  -t: Show the tree objects in the diff output.
-  -w, --ignore-all-space: Ignore whitespace when comparing lines.
-  -z: Separate the commits with NULs instead of with new newlines.
+  --abbrev-commit: show a prefix that names the object uniquely
+  --abbrev=: show only a partial prefix
+  --after=: show commits more recent than a specific date
+  --all: pretend as if all the refs in refs/ are listed on the command line
+  --all-match: limit output to ones matching all given --grep
+  --alternate-refs: pretend as if all alternate ref tips are listed on the command line
+  --ancestry-path?: only display commits in that range that are ancestors of <commit>, descendants of <commit>, or <commit> itself
+  --anchored=*: generate a diff using the "anchored diff" algorithm
+  --author-date-order: show commits in the author timestamp order
+  --author=*: limit output to ones with matching author header
+  --basic-regexp: consider the limiting patterns to be basic regular expressions
+  --before=: show commits older than a specific date
+  --binary: output a binary diff
+  --bisect: limit output to the one commit object which is roughly halfway between included and excluded commits
+  --bisect-all: output all the commit objects between the included and excluded commits
+  --bisect-vars: calculate the same as --bisect, except that refs in refs/bisect/ are not used
+  --boundary: output excluded boundary commits
+  --branches?*: pretend as if all the refs in refs/heads are listed on the command line
+  --cached: view the changes you staged in the index/cache
+  --check: warn if changes introduce conflict markers or whitespace errors
+  --cherry: a synonym for --right-only --cherry-mark --no-merges
+  --cherry-mark: like --cherry-pick but mark commits rather than omitting them
+  --cherry-pick: omit any commit that introduces the same change as another commit
+  --children: print also the children of the commit
+  --clear-decorations: clear all previous decorate-refs options
+  --color-moved-ws?: configure how whitespace is ignored when performing move detection
+  --color-moved?: moved lines of code are colored differently
+  --color-words=: equivalent to --word-diff=color plus (if a regex was specified)
+  --color?: show colored diff
+  --combined-all-paths: list the name of the file from all parents in combined diffs for merge commits
+  --commit-header: overrides a previous --no-commit-header
+  --committer=*: limit output to ones with matching committer header
+  --compact-summary: output a condensed summary of extended header information
+  --count: only print a number stating how many commits would have been listed
+  --cumulative: synonym for --dirstat=cumulative
+  --date-order: show commits in the commit timestamp order
+  --date=: date format
+  --decorate-refs-exclude=*: do not decorate refs matching pattern
+  --decorate-refs=*: decorate refs matching pattern
+  --decorate?: print out the ref names of any commits that are shown
+  --default: use argument as default revision
+  --default-prefix: use the default source and destination prefixes
+  --dense: only the selected commits are shown, plus some to have a meaningful history
+  --diff-algorithm=: choose a diff algorithm
+  --diff-filter=: filter files
+  --diff-merges=: specify diff format to be used for merge commits
+  --dirstat-by-file=: synonym for --dirstat=files,param1,param2...
+  --disk-usage?: suppress normal output and print disk usage
+  --do-walk: overrides a previous --no-walk
+  --dst-prefix=: show the given destination prefix instead of "b/"
+  --early-output: undocumented
+  --encoding=: re-code the commit log message in given encoding
+  --exclude-first-parent-only: for excluded commits follow only the first parent commit upon merge
+  --exclude-hidden?: do not include refs that would be hidden
+  --exclude-promisor-objects: prefilter object traversal at promisor boundary
+  --exclude=*: do not include matching refs the next option would consider
+  --exit-code: make the program exit with codes similar to diff(1)
+  --expand-tabs=: perform a tab expansion
+  --ext-diff: allow an external diff helper to be executed
+  --filter-print-omitted: print a list of the objects omitted by the filter
+  --filter-provided-objects: filter the list of explicitly provided objects
+  --filter=: omit objects from the list of printed objects
+  --find-copies-harder: inspect unmodified files as candidates for the source of copy
+  --find-object=: look for differences that change the number of occurrences of the specified object
+  --first-parent: for included commits follow only the first parent commit upon merge
+  --follow: continue listing the history of a file beyond renames
+  --format=: pretty-print the contents of the commit logs in a given format
+  --full-diff: with this, the full diff is shown for commits that touch the specified paths
+  --full-history: same as the default mode, but does not prune some history
+  --full-index: show the full pre- and post-image blob object names
+  --glob=*: pretend as if all matching refs are listed on the command line
+  --graph: draw a text-based graphical representation of the commit history
+  --graph-lane-limit=: limit the number of lanes in graph output
+  --grep-reflog=*: limit output to ones with matching reflog entries
+  --grep=*: limit output to ones with matching log message
+  --header: print the contents of the commit in raw-format
+  --histogram: generate a diff using the "histogram diff" algorithm
+  --ignore-blank-lines: ignore changes whose lines are all blank
+  --ignore-cr-at-eol: ignore carriage-return at the end of line when doing a comparison
+  --ignore-missing: pretend as if the bad input was not given
+  --ignore-space-at-eol: ignore changes in whitespace at EOL
+  --ignore-submodules=: ignore changes to submodules in the diff generation
+  --in-commit-order: print tree and blob ids in order of the commits
+  --indent-heuristic: enable the heuristic that shifts diff hunk boundaries to make patches easier to read
+  --indexed-objects: pretend as if all trees and blobs used by the index are listed on the command line
+  --inter-hunk-context=: show the context between diff hunks
+  --invert-grep: limit output to ones with non-matching log message
+  --ita-invisible-in-index: this option makes the entry appear as a new file
+  --ita-visible-in-index: treat 'git add -N' entries as real in the index
+  --left-only: list only commits on the left side of a symmetric difference
+  --left-right: mark which side of a symmetric difference a commit is reachable from
+  --line-prefix=: prepend an additional prefix to every line of output
+  --log-size: include a line "log size <number>" in the output for each commit
+  --mailmap: use mailmap file to map author and committer names and email addresses to canonical real names and email addresses
+  --max-age=: limit the commits output to specified time range
+  --max-count-oldest=: limit the number of commits to output, picking the oldest N
+  --max-depth=: maximum tree depth to recurse
+  --max-parents=: show only commits which have at most that many parent commits
+  --maximal-only: restrict output to commits not reachable from other commits in the range
+  --merge: show refs that touch files having a conflict and don't exist on all heads to merge
+  --merges: print only merge commits
+  --min-age=: limit the commits output to specified time range
+  --min-parents=: show only commits which have at least that many parent commits
+  --minimal: spend extra time to make sure the smallest possible diff is produced
+  --missing=: specify how missing objects are handled
+  --name-only: show only names of changed files
+  --name-status: show only names and status of changed files
+  --no-abbrev: show the full 40-byte hexadecimal commit object name
+  --no-abbrev-commit: show the full 40-byte hexadecimal commit object name
+  --no-color: turn off colored diff
+  --no-color-moved: turn off move detection
+  --no-color-moved-ws: do not ignore whitespace when performing move detection
+  --no-commit-header: suppress the header line containing "commit"
+  --no-compact-summary: do not output a condensed summary of extended header information
+  --no-decorate: do not print out the ref names of any commits that are shown
+  --no-diff-merges: disable output of diffs for merge commits
+  --no-exit-code: do not make the program exit with codes similar to diff(1)
+  --no-expand-tabs: do not perform a tab expansion
+  --no-ext-diff: disallow external diff drivers
+  --no-filter: turn off any previous --filter= argument
+  --no-find-copies-harder: do not inspect unmodified files as candidates for the source of copy
+  --no-follow: do not continue listing the history of a file beyond renames
+  --no-full-index: do not show the full pre- and post-image blob object names
+  --no-indent-heuristic: disable the indent heuristic
+  --no-index: compare paths on the file system
+  --no-mailmap: do not use mailmap file to map author and committer names and email addresses to canonical real names and email addresses
+  --no-max-parents: reset max-parents limit
+  --no-merges: do not print commits with more than one parent
+  --no-min-parents: reset min-parents limit
+  --no-notes: do not show notes
+  --no-object-names: do not print the names of the object IDs that are found
+  --no-prefix: do not show any source or destination prefix
+  --no-quiet: do not disable all output of the program
+  --no-relative: do not exclude changes outside the directory
+  --no-rename-empty: whether to use empty blobs as rename source
+  --no-renames: turn off rename detection
+  --no-text: do not treat all files as text
+  --no-textconv: disallow external text conversion filters to be run when comparing binary files
+  --no-use-mailmap: do not use mailmap file to map author and committer names and email addresses to canonical real names and email addresses
+  --no-walk=: only show the given commits, but do not traverse their ancestors
+  --not: reverses the meaning of the ^ prefix
+  --notes?*: show the notes that annotate the commit
+  --numstat: similar to --stat, but shows number of added and deleted lines in decimal notation
+  --object-names: print the names of the object IDs that are found
+  --objects: print the object IDs of any object referenced by the listed commits
+  --objects-edge: similar to --objects, but also print the IDs of excluded commits
+  --objects-edge-aggressive: similar to --objects-edge, but tries harder to find excluded commits
+  --oneline: shorthand for "--pretty=oneline --abbrev-commit" used together
+  --output-indicator-context=: specify the character used to indicate context lines in the generated patch
+  --output-indicator-new=: specify the character used to indicate new lines in the generated patch
+  --output-indicator-old=: specify the character used to indicate old lines in the generated patch
+  --output=: output to a specific file instead of stdout
+  --parents: print also the parents of the commit
+  --patch-with-raw: synonym for -p --raw
+  --patch-with-stat: synonym for -p --stat
+  --patience: generate a diff using the "patience diff" algorithm
+  --pickaxe-all: when -S or -G finds a change, show all the changes in that changeset
+  --pickaxe-regex: treat the <string> given to -S as an extended POSIX regular expression to match
+  --pretty=: pretty-print the contents of the commit logs in a given format
+  --progress=: show progress reports on stderr as objects are considered
+  --quiet: disable all output of the program
+  --raw: generate the diff in raw format
+  --reflog: pretend as if all reflog objects are listed on the command line
+  --relative-date: synonym for --date=relative
+  --relative=: exclude changes outside the directory
+  --remotes?*: pretend as if all the refs in refs/remotes are listed on the command line
+  --remove-empty: stop when a given path disappears from the tree
+  --rename-empty: whether to use empty blobs as rename source
+  --reverse: output the commits in reverse order
+  --right-only: list only commits on the right side of a symmetric difference
+  --rotate-to=: move the files before the named <file> to the end
+  --shortstat: output only the last line of the --stat format
+  --show-linear-break=: put a barrier in between branches in graph output
+  --show-notes-by-default: show the default notes
+  --show-pulls: include also any merge commits that are not TREESAME to the first parent but are TREESAME to a later parent
+  --show-signature: check the validity of a signed commit object
+  --simplify-by-decoration: commits that are referred by some branch or tag are selected
+  --simplify-merges: additional option to --full-history to remove some needless merges from the resulting history
+  --since-as-filter=: show all commits more recent than a specific date
+  --since=: show commits more recent than a specific date
+  --single-worktree: examine the current working tree only
+  --skip-to=: discard the files before the named <file> from the output
+  --skip=: skip number commits before starting to show the commit output
+  --source: print out the ref name given on the command line by which each commit was reached
+  --sparse: all commits in the simplified history are shown
+  --src-prefix=: show the given source prefix instead of "a/"
+  --staged: synonym for --cached (view the changes you staged)
+  --stat-count=: generate diffstat with limited lines
+  --stat-graph-width=: generate diffstat with a given graph width
+  --stat-name-width=: generate diffstat with a given filename width
+  --stat-width=: generate diffstat with a given width
+  --stat=: generate a diffstat
+  --stdin: read arguments from standard input as well
+  --submodule=: specify how differences in submodules are shown
+  --summary: output a condensed summary of extended header information
+  --tags?*: pretend as if all the refs in refs/tags are listed on the command line
+  --textconv=: allow external text conversion filters to be run when comparing binary files
+  --timestamp: print the raw commit timestamp
+  --topo-order: avoid showing commits on multiple lines of history intermixed
+  --unpacked: print the object IDs that are not in packs
+  --until=: show commits older than a specific date
+  --use-bitmap-index: try to speed up the traversal using the pack bitmap index
+  --use-mailmap: use mailmap file to map author and committer names and email addresses to canonical real names and email addresses
+  --word-diff-regex=: use <regex> to decide what a word is
+  --word-diff?: show a word diff, using the <mode> to delimit changed words
+  --ws-error-highlight=: highlight whitespace errors in the context, old or new lines of the diff
+  "-0": omit diff output for unmerged entries
+  -1, --base: compare with base
+  -2, --ours: compare with our branch
+  -3, --theirs: compare with their branch
+  -B, --break-rewrites=: break complete rewrite changes into pairs of delete and create
+  -C, --find-copies=: detect copies as well as renames
+  -D, --irreversible-delete: omit the preimage for deletes
+  -E, --extended-regexp: consider the limiting patterns to be extended regular expressions
+  -F, --fixed-strings: consider the limiting patterns to be fixed strings
+  -G=*: look for differences whose patch text contains added/removed lines that match <regex>
+  -I, --ignore-matching-lines=*: ignore changes whose all lines match <regex>
+  -L=*: trace the evolution of the line range given by <start>,<end>, or by the function name regex <funcname>, within the <file>
+  -M, --find-renames=: detect renames
+  -O=: control the order in which files appear in the output
+  -P, --perl-regexp: consider the limiting patterns to be Perl-compatible regular expressions
+  -R: swap two inputs
+  -S=: look for differences that change the number of occurrences of the specified string
+  -U, --unified=: generate diffs with <n> lines of context instead of the usual three
+  -W, --function-context: show whole surrounding functions of changes
+  -X, --dirstat=: output the distribution of relative amount of changes for each sub-directory
+  -a, --text: treat all files as text
+  -b, --ignore-space-change: ignore changes in amount of whitespace
+  -c, --cc: combined diff format for merge commits
+  -g, --walk-reflogs: walk reflog entries from the most recent one to older ones
+  -h, --help: show help
+  -i, --regexp-ignore-case: match the regular expression case insensitive
+  -l=: prevent rename/copy detection from running if the number of rename/copy targets exceeds the specified number
+  -n, --max-count=: limit the number of commits to output
+  -p, --patch: generate patch
+  -s, --no-patch: suppress diff output
+  -t: show the tree objects in the diff output
+  -w, --ignore-all-space: ignore whitespace when comparing lines
+  -z: do not munge pathnames and use NULs as output field terminators
 documentation:
-  command: |-
-    Shows the commit logs.
-
-    :git-log: 1
-    List commits that are reachable by following the `parent` links from the
-    given commit(s), but exclude commits that are reachable from the one(s)
-    given with a `^` in front of them.  The output is given in reverse
-    chronological order by default.
-
-    You can think of this as a set operation. Commits reachable from any of
-    the commits given on the command line form a set, and then commits reachable
-    from any of the ones given with '^' in front are subtracted from that
-    set.  The remaining commits are what comes out in the command's output.
-    Various other options and paths parameters can be used to further limit the
-    result.
-
-    Thus, the following command:
-
-    ```
-    $ git rev-list foo bar ^baz
-    ```
-
-    ```
-    $ git log foo bar ^baz
-    ```
-
-    means "list all the commits which are reachable from 'foo' or 'bar', but
-    not from 'baz'".
-
-    A special notation "`<commit1>..<commit2>`" can be used as a
-    short-hand for "`^<commit1> <commit2>`". For example, either of
-    the following may be used interchangeably:
-
-    ```
-    $ git rev-list origin..HEAD
-    $ git rev-list HEAD ^origin
-    ```
-
-    ```
-    $ git log origin..HEAD
-    $ git log HEAD ^origin
-    ```
-
-    Another special notation is "`<commit1>...<commit2>`" which is useful
-    for merges.  The resulting set of commits is the symmetric difference
-    between the two operands.  The following two commands are equivalent:
-
-    ```
-    $ git rev-list A B --not $(git merge-base --all A B)
-    $ git rev-list A...B
-    ```
-
-    ```
-    $ git log A B --not $(git merge-base --all A B)
-    $ git log A...B
-    ```
-
-    The command takes options applicable to the [git-rev-list](cmd://git/rev-list)
-    command to control what is shown and how, and options applicable to
-    the [git-diff](cmd://git/diff) command to control how the changes
-    each commit introduces are shown.
   flag:
     G: |-
       Look for differences whose patch text contains added/removed
@@ -384,6 +386,15 @@ documentation:
     children: |-
       Print also the children of the commit (in the form "commit child...").
       Also enables parent rewriting, see `History Simplification` above.
+    color: |-
+      Turn off colored diff.
+
+      This can be used to override configuration settings.
+
+      It is the same as `--color=never`.
+    color-moved: |-
+      Turn off move detection. This can be used to override configuration
+      settings. It is the same as `--color-moved=no`.
     color-moved-ws: |-
       This configures how whitespace is ignored when performing the
       move detection for `--color-moved`.
@@ -490,6 +501,17 @@ documentation:
       This can be used to find the set of changes in a topic branch
       from the point where it diverged from the remote branch, given
       that arbitrary merges can be valid topic branch changes.
+    expand-tabs: |-
+      Perform a tab expansion (replace each tab with enough spaces
+      to fill to the next display column that is a multiple of _<n>_)
+      in the log message before showing it in the output.
+      `--expand-tabs` is a short-hand for `--expand-tabs=8`, and
+      `--no-expand-tabs` is a short-hand for `--expand-tabs=0`,
+      which disables tab expansion.
+
+      By default, tabs are expanded in pretty formats that indent the log
+      message by 4 spaces (i.e.  `medium`, which is the default, `full`,
+      and `fuller`).
     ext-diff: |-
       Allow an external diff helper to be executed. If you set an
       external diff driver with [gitattributes](man://gitattributes/5), you need
@@ -662,11 +684,11 @@ documentation:
       For example, if you have this topology:
 
       ```
-           y---b---b  branch B
-          / \ /
-         /   .
-        /   / \
-       o---x---a---a  branch A
+        y---b---b  branch B
+        / \ /
+       /   .
+       /   / \
+      o---x---a---a  branch A
       ```
 
       you would get an output like this:
@@ -688,6 +710,15 @@ documentation:
       Intended to speed up tools that read log messages from `git log`
       output by allowing them to allocate space in advance.
     max-count: Limit the output to the first _<number>_ commits that would be shown.
+    max-parents: |-
+      Show only commits which have at least (or at most) that many parent
+      commits. In particular, `--max-parents=1` is the same as `--no-merges`,
+      `--min-parents=2` is the same as `--merges`.  `--max-parents=0`
+      gives all root commits and `--min-parents=3` all octopus merges.
+
+      `--no-min-parents` and `--no-max-parents` reset these limits (to no limit)
+      again.  Equivalent forms are `--min-parents=0` (any commit has 0 or more
+      parents) and `--max-parents=-1` (negative numbers denote no upper limit).
     merge: |-
       Show commits touching conflicted paths in the range `HEAD...<other>`,
       where `<other>` is the first existing pseudoref in `MERGE_HEAD`,
@@ -795,6 +826,12 @@ documentation:
       through stdin will not be affected by it. Conversely, when passed
       via standard input, the revisions passed on the command line will
       not be affected by it.
+    notes: |-
+      Do not show notes. This negates the above `--notes` option, by
+      resetting the list of notes refs from which notes are shown.
+      Options are parsed in the order given on the command line, so e.g.
+      "`--notes --notes=foo --no-notes --notes=bar`" will only show notes
+      from `refs/notes/bar`.
     numstat: |-
       Similar to `--stat`, but shows number of added and
       deleted lines in decimal notation and pathname without
@@ -849,8 +886,18 @@ documentation:
     regexp-ignore-case: |-
       Match the regular expression limiting patterns without regard to letter
       case.
+    relative: |-
+      When run from a subdirectory of the project, it can be
+      told to exclude changes outside the directory and show
+      pathnames relative to it with this option.  When you are
+      not in a subdirectory (e.g. in a bare repository), you
+      can name which subdirectory to make the output relative
+      to by giving a _<path>_ as an argument.
+      `--no-relative` can be used to countermand both `diff.relative` config
+      option and previous `--relative`.
     relative-date: Synonym for `--date=relative`.
     remove-empty: Stop when a given path disappears from the tree.
+    rename-empty: Whether to use empty blobs as rename source.
     reverse: |-
       Output the commits chosen to be shown (see `Commit Limiting`
       section above) in reverse order. Cannot be combined with
@@ -921,24 +968,33 @@ documentation:
       such as creations, renames and mode changes.
     t: Show the tree objects in the diff output.
     text: Treat all files as text.
+    textconv: |-
+      Allow (or disallow) external text conversion filters to be run
+      when comparing binary files. See [gitattributes](man://gitattributes/5) for
+      details. Because textconv filters are typically a one-way
+      conversion, the resulting diff is suitable for human
+      consumption, but cannot be applied. For this reason, textconv
+      filters are enabled by default only for [git-diff](cmd://git/diff) and
+      [git-log](cmd://git/log), but not for [git-format-patch](cmd://git/format-patch) or
+      diff plumbing commands.
     topo-order: |-
       Show no parents before all of its children are shown, and
       avoid showing commits on multiple lines of history
       intermixed.
-      
+
       For example, in a commit history like this:
-      
+
       ```
-      
-          ---1----2----4----7
+
+        ---1----2----4----7
       \	       \
-       3----5----6----8---
-      
+      3----5----6----8---
+
       ```
-      
+
       where the numbers denote the order of commit timestamps, `git rev-list` and friends with `--date-order` show the commits in the
       timestamp order: 8 7 6 5 4 3 2 1.
-      
+
       With `--topo-order`, they would show 8 6 5 3 7 4 2 1 (or 8 7 4 2 6 5
       3 1); some older commits are shown before newer ones in order to
       avoid showing the commits from two parallel development track mixed
@@ -950,6 +1006,10 @@ documentation:
       `-p` due to a historical accident).
 
       Implies `--patch`.
+    use-mailmap: |-
+      Use mailmap file to map author and committer names and email
+      addresses to canonical real names and email addresses. See
+      [git-shortlog](cmd://git/shortlog).
     walk-reflogs: |-
       Instead of walking the commit ancestry chain, walk
       reflog entries from the most recent one to older ones.
@@ -1017,61 +1077,359 @@ documentation:
       `--missing` output options.
 
       History Simplification
-    color-moved: |-
-      Turn off move detection. This can be used to override configuration
-      settings. It is the same as `--color-moved=no`.
-    color: |-
-      Turn off colored diff.
+    0: |-
+      Specify compression level. Larger values allow the command to spend more
+      time to compress to smaller size. Supported values are from `-0`
+      (store-only) to `-9` (best ratio). Default is `-6` if not given.
+    L: |-
+      Annotate only the line range given by *&lt;start&gt;,&lt;end&gt;*, or by
+      the function name regex *&lt;funcname&gt;*. May be specified multiple
+      times. Overlapping ranges are allowed.
+      
+      *&lt;start&gt;* and *&lt;end&gt;* are optional. `-L <start>` or
+      `-L <start>,` spans from *&lt;start&gt;* to end of file. `-L ,<end>`
+      spans from start of file to *&lt;end&gt;*.
+      
+      *&lt;start&gt;* and *&lt;end&gt;* can take one of these forms:
+      
+      -   number
+      
+        If *&lt;start&gt;* or *&lt;end&gt;* is a number, it specifies an
+        absolute line number (lines count from 1).
+      
+      -   `/regex/`
+      
+        This form will use the first line matching the given POSIX regex. If
+        *&lt;start&gt;* is a regex, it will search from the end of the
+        previous `-L` range, if any, otherwise from the start of file. If
+        *&lt;start&gt;* is `^/regex/`, it will search from the start of
+        file. If *&lt;end&gt;* is a regex, it will search starting at the
+        line given by *&lt;start&gt;*.
+      
+      -   +offset or -offset
+      
+        This is only valid for *&lt;end&gt;* and will specify a number of
+        lines before or after the line given by *&lt;start&gt;*.
+      
+      If `:<funcname>` is given in place of *&lt;start&gt;* and *&lt;end&gt;*,
+      it is a regular expression that denotes the range from the first
+      funcname line that matches *&lt;funcname&gt;*, up to the next funcname
+      line. `:<funcname>` searches from the end of the previous `-L` range, if
+      any, otherwise from the start of file. `^:<funcname>` searches from the
+      start of file. The function names are determined in the same way as
+      `git diff` works out patch hunk headers (see *Defining a custom
+      hunk-header* in [gitattributes](man://gitattributes/5)).
+    abbrev: |-
+      Instead of using the default _7+1_ hexadecimal digits as the
+      abbreviated object name, use _<m>+1_ digits, where _<m>_ is at
+      least _<n>_ but ensures the commit object names are unique.
+      Note that 1 column
+      is used for a caret to mark the boundary commit.
+    author: |-
+      Override the commit author. Specify an explicit author using the
+      standard `A U Thor <author@example.com>` format. Otherwise _<author>_
+      is assumed to be a pattern and is used to search for an existing
+      commit by that author (i.e. `git rev-list --all -i --author=<author>`);
+      the commit author is then copied from the first such commit found.
+    bisect-all: |-
+      This outputs all the commit objects between the included and excluded
+      commits, ordered by their distance to the included and excluded
+      commits. Refs in `refs/bisect/` are not used. The farthest
+      from them is displayed first. (This is the only one displayed by
+      `--bisect`.)
+      
+      This is useful because it makes it easy to choose a good commit to
+      test when you want to avoid to test some of them for some reason (they
+      may not compile for example).
+      
+      This option can be used along with `--bisect-vars`, in this case,
+      after all the sorted commit objects, there will be the same text as if
+      `--bisect-vars` had been used alone.
+      
+      Commit Ordering
+    bisect-vars: |-
+      This calculates the same as `--bisect`, except that refs in
+      `refs/bisect/` are not used, and except that this outputs
+      text ready to be eval'ed by the shell. These lines will assign the
+      name of the midpoint revision to the variable `bisect_rev`, and the
+      expected number of commits to be tested after `bisect_rev` is tested
+      to `bisect_nr`, the expected number of commits to be tested if
+      `bisect_rev` turns out to be good to `bisect_good`, the expected
+      number of commits to be tested if `bisect_rev` turns out to be bad to
+      `bisect_bad`, and the number of commits we are bisecting right now to
+      `bisect_all`.
+    cached: |-
+      Apply the patch to just the index, without touching the working
+      tree. If `--check` is in effect, merely check that it would
+      apply cleanly to the index entry.
+    commit-header: Overrides a previous `--no-commit-header`.
+    count: Stop after showing _<count>_ refs.
+    default-prefix: |-
+      Use the default source and destination prefixes ("a/" and "b/").
+      This overrides configuration variables such as `format.noprefix`,
+      `diff.srcPrefix`, `diff.dstPrefix`, and `diff.mnemonicPrefix`
+      (see [git-config](cmd://git/config)).
+      
+      Use the default source and destination prefixes ("a/" and "b/").
+      This overrides configuration variables such as `diff.noprefix`,
+      `diff.srcPrefix`, `diff.dstPrefix`, and `diff.mnemonicPrefix`
+      (see [git-config](cmd://git/config)).
+    dense: |-
+      Only the selected commits are shown, plus some to have a
+      meaningful history.
+    diff-algorithm: |-
+      Choose a diff algorithm. The variants are as follows:
+    exclude-promisor-objects: |-
+      (For internal use only.)  Prefilter object traversal at
+      promisor boundary.  This is used with partial clone.  This is
+      stronger than `--missing=allow-promisor` because it limits the
+      traversal, rather than just silencing errors about missing
+      objects.
+    exit-code: |-
+      Make the program exit with codes similar to `diff`(1).
+      That is, it exits with 1 if there were differences and
+      0 means no differences.
+    filter: |-
+      Use the partial clone feature and request that the server sends
+      a subset of reachable objects according to a given object filter.
+      When using `--filter`, the supplied _<filter-spec>_ is used for
+      the partial clone filter.
+      
+      If `--filter=auto` is used the filter specification is determined
+      automatically through the `promisor-remote` protocol (see
+      [gitprotocol-v2](man://gitprotocol-v2/5)) by combining the filter specifications
+      advertised by the server for the promisor remotes that the client
+      accepts (see the `promisor.acceptFromServer` configuration option in
+      [git-config](cmd://git/config)). This allows the server to suggest the optimal
+      filter for the available promisor remotes.
+      
+      As with other filter specifications, the "auto" value is persisted in
+      the configuration. This ensures that future fetches will continue to
+      adapt to the server's current recommendation.
+      
+      For details on all other available filter specifications, see the
+      `--filter=<filter-spec>` option in [git-rev-list](cmd://git/rev-list).
+      
+      For example, `--filter=blob:none` will filter out all blobs (file
+      contents) until needed by Git. Also, `--filter=blob:limit=<size>` will
+      filter out all blobs of size at least _<size>_.
+    filter-print-omitted: |-
+      Only useful with `--filter=`; prints a list of the objects omitted
+      by the filter.  Object IDs are prefixed with a *~* character.
+    filter-provided-objects: |-
+      Filter the list of explicitly provided objects, which would otherwise
+      always be printed even if they did not match any of the filters. Only
+      useful with `--filter=`.
+    header: |-
+      Print the contents of the commit in raw-format; each record is
+      separated with a NUL character.
+    in-commit-order: |-
+      Print tree and blob ids in order of the commits. The tree
+      and blob ids are printed after they are first referenced
+      by a commit.
+    indexed-objects: |-
+      Pretend as if all trees and blobs used by the index are listed
+      on the command line.  Note that you probably want to use
+      `--objects`, too.
+    min-age: Limit the commits output to specified time range.
+    missing: |-
+      A debug option to help with future "partial clone" development.
+      This option specifies how missing objects are handled.
+      
+      The form `--missing=error` requests that rev-list stop with an error if
+      a missing object is encountered.  This is the default action.
+      
+      The form `--missing=allow-any` will allow object traversal to continue
+      if a missing object is encountered.  Missing objects will silently be
+      omitted from the results.
+      
+      The form `--missing=allow-promisor` is like `allow-any`, but will only
+      allow object traversal to continue for EXPECTED promisor missing objects.
+      Unexpected missing objects will raise an error.
+      
+      The form `--missing=print` is like `allow-any`, but will also print a
+      list of the missing objects.  Object IDs are prefixed with a *?* character.
+      
+      The form `--missing=print-info` is like `print`, but will also print additional
+      information about the missing object inferred from its containing object. The
+      information is all printed on the same line with the missing object ID in the
+      form: `?<oid> [<token>=<value>]...`. The `<token>=<value>` pairs containing
+      additional information are separated from each other by a _SP_. The value is
+      encoded in a token specific fashion, but _SP_ or _LF_ contained in value are always
+      expected to be represented in such a way that the resulting encoded value does
+      not have either of these two problematic bytes. Each `<token>=<value>` may be
+      one of the following:
+    no-abbrev: Display the full sha1s in the output listing rather than abbreviating them.
+    no-commit-header: |-
+      Suppress the header line containing "commit" and the object ID printed before
+      the specified format.  This has no effect on the built-in formats; only custom
+      formats are affected.
+    no-filter: Turn off any previous `--filter=` argument.
+    no-index: |-
+      Search files in the current directory that is not managed by Git,
+      or by ignoring that the current directory is managed by Git.  This
+      is rather similar to running the regular `grep`(1) utility with its
+      `-r` option specified, but with some additional benefits, such as
+      using pathspec patterns to limit paths;  see the `pathspec` entry
+      in [gitglossary](man://gitglossary/7) for more information.
+      
+      This option cannot be used together with `--cached` or `--untracked`.
+      See also `grep.fallbackToNoIndex` in `CONFIGURATION` below.
+    no-object-names: |-
+      Only useful with `--objects`; does not print the names of the object
+      IDs that are found. This inverts `--object-names`. This flag allows
+      the output to be more easily parsed by commands such as
+      [git-cat-file](cmd://git/cat-file).
+    object-names: |-
+      Only useful with `--objects`; print the names of the object IDs
+      that are found. This is the default behavior. Note that the
+      "name" of each object is ambiguous, and mostly intended as a
+      hint for packing objects. In particular: no distinction is made between
+      the names of tags, trees, and blobs; path names may be modified
+      to remove newlines; and if an object would appear multiple times
+      with different names, only one name is shown.
+    objects: |-
+      Print the object IDs of any object referenced by the listed
+      commits.  `--objects foo ^bar` thus means "send me
+      all object IDs which I need to download if I have the commit
+      object `bar` but not `foo`". See also `--object-names` below.
+    objects-edge: |-
+      Similar to `--objects`, but also print the IDs of excluded
+      commits prefixed with a "`-`" character.  This is used by
+      [git-pack-objects](cmd://git/pack-objects) to build a *thin* pack, which records
+      objects in deltified form based on objects contained in these
+      excluded commits to reduce network traffic.
+    objects-edge-aggressive: |-
+      Similar to `--objects-edge`, but it tries harder to find excluded
+      commits at the cost of increased time.  This is used instead of
+      `--objects-edge` to build *thin* packs for shallow repositories.
+    progress: |-
+      Enable progress reporting on the standard error stream even if
+      not attached to a terminal. By default, progress status is
+      reported only when it is attached. You can't use `--progress`
+      together with `--porcelain` or `--incremental`.
+    quiet: Be quiet. Only print error messages.
+    show-notes-by-default: |-
+      Show the default notes unless options for displaying specific
+      notes are given.
+    since-as-filter: |-
+      Show all commits more recent than _<date>_. This visits
+      all commits in the range, rather than stopping at the first commit which
+      is older than _<date>_.
+    staged: |-
+      Specify the restore location. If neither option is specified,
+      by default the working tree is restored. Specifying `--staged`
+      will only restore the index. Specifying both restores both.
+    stat: |-
+      Instead of applying the patch, output diffstat for the
+      input.  Turns off "apply".
+    timestamp: Print the raw commit timestamp.
+    unpacked: |-
+      Only useful with `--objects`; print the object IDs that are not
+      in packs.
+    use-bitmap-index: |-
+      Try to speed up the traversal using the pack bitmap index (if
+      one is available). Note that when traversing with `--objects`,
+      trees and blobs will not have their associated path printed.
+    base: |-
+      Add prerequisite tree info to the patch series. The argument can be
+      `auto` (use the current branch as the base), a commit object name,
+      or a reference in `refs/notes/`. This option is useful when the
+      patches need to be applied on top of a specific commit.
+    cc: |-
+      Produce dense combined diff output for merge commits.
+      Shortcut for `--diff-merges=dense-combined -p`.
+    exclude-hidden: |-
+      Do not include refs that would be hidden by `git-fetch`,
+      `git-receive-pack` or `git-upload-pack` by consulting the appropriate
+      `fetch.hideRefs`, `receive.hideRefs` or `uploadpack.hideRefs`
+      configuration along with `transfer.hideRefs` (see
+      [git-config](cmd://git/config)). This option affects the next pseudo-ref option
+      `--all` or `--glob` and is cleared after processing them.
+    help: |-
+      Prints the synopsis and a list of the most commonly used commands. If
+      the option `--all` or `-a` is given then all available commands are
+      printed. If a Git command is named this option will bring up the manual
+      page for that command.
+      
+      Other options are available to control how the manual page is displayed.
+      See [git-help](cmd://git/help) for more information, because
+      `git --help ...` is converted internally into `git help ...`.
+    remotes: |-
+      List or delete (if used with `-d`) the remote-tracking branches.
+      Combine with `--list` to match the optional pattern(s).
+    tags: |-
+      Instead of using only the annotated tags, use any tag
+      found in `refs/tags` namespace.  This option enables matching
+      a lightweight (non-annotated) tag.
+    theirs: |-
+      When checking out paths from the index, check out stage #2
+      (`ours`) or #3 (`theirs`) for unmerged paths.
+      
+      Note that during `git rebase` and `git pull --rebase`, `ours` and
+      `theirs` may appear swapped; `--ours` gives the version from the
+      branch the changes are rebased onto, while `--theirs` gives the
+      version from the branch that holds your work that is being rebased.
+      
+      This is because `rebase` is used in a workflow that treats the
+      history at the remote as the shared canonical one, and treats the
+      work done on the branch you are rebasing as the third-party work to
+      be integrated, and you are temporarily assuming the role of the
+      keeper of the canonical history during the rebase.  As the keeper of
+      the canonical history, you need to view the history from the remote
+      as `ours` (i.e. "our shared canonical history"), while what you did
+      on your side branch as `theirs` (i.e. "one contributor's work on top
+      of it").
+    no-compact-summary: do not output a condensed summary of extended header information
+    no-exit-code: do not make the program exit with codes similar to diff(1)
+    no-find-copies-harder: do not inspect unmodified files as candidates for the source of copy
+    no-follow: do not continue listing the history of a file beyond renames
+    no-full-index: do not show the full pre- and post-image blob object names
+    no-quiet: do not disable all output of the program
+    ancestry-path: |-
+      only display commits in that range that are ancestors of <commit>, descendants of <commit>, or <commit> itself
+    branches: pretend as if all the refs in refs/heads are listed on the command line
+    break-rewrites: break complete rewrite changes into pairs of delete and create
+    clear-decorations: clear all previous decorate-refs options
+    color-words: equivalent to --word-diff=color plus (if a regex was specified)
+    decorate: print out the ref names of any commits that are shown
+    decorate-refs: decorate refs matching pattern
+    default: use argument as default revision
+    dirstat: output the distribution of relative amount of changes for each sub-directory
+    dirstat-by-file: synonym for --dirstat=files,param1,param2...
+    disk-usage: suppress normal output and print disk usage
+    early-output: undocumented
+    find-copies: detect copies as well as renames
+    find-renames: detect renames
+    graph-lane-limit: limit the number of lanes in graph output
+    ignore-submodules: ignore changes to submodules in the diff generation
+    ita-visible-in-index: treat 'git add -N' entries as real in the index
+    left-only: list only commits on the left side of a symmetric difference
+    mailmap: |-
+      use mailmap file to map author and committer names and email addresses to canonical real names and email addresses
+    max-age: limit the commits output to specified time range
+    max-count-oldest: limit the number of commits to output, picking the oldest N
+    max-depth: maximum tree depth to recurse
+    maximal-only: restrict output to commits not reachable from other commits in the range
+    min-parents: show only commits which have at least that many parent commits
+    no-decorate: do not print out the ref names of any commits that are shown
+    no-mailmap: |-
+      do not use mailmap file to map author and committer names and email addresses to canonical real names and email addresses
+    no-min-parents: reset min-parents limit
+    no-text: do not treat all files as text
+    no-walk: only show the given commits, but do not traverse their ancestors
+    ours: compare with our branch
+    output-indicator-new: specify the character used to indicate new lines in the generated patch
+    output-indicator-old: specify the character used to indicate old lines in the generated patch
+    pretty: pretty-print the contents of the commit logs in a given format
+    show-linear-break: put a barrier in between branches in graph output
+    since: show commits more recent than a specific date
+    skip-to: discard the files before the named <file> from the output
+    stat-count: generate diffstat with limited lines
+    stat-graph-width: generate diffstat with a given graph width
+    stat-name-width: generate diffstat with a given filename width
+    stat-width: generate diffstat with a given width
+    submodule: specify how differences in submodules are shown
+    until: show commits older than a specific date
+    word-diff: show a word diff, using the <mode> to delimit changed words
 
-      This can be used to override configuration settings.
-
-      It is the same as `--color=never`.
-    expand-tabs: |-
-      Perform a tab expansion (replace each tab with enough spaces
-      to fill to the next display column that is a multiple of _<n>_)
-      in the log message before showing it in the output.
-      `--expand-tabs` is a short-hand for `--expand-tabs=8`, and
-      `--no-expand-tabs` is a short-hand for `--expand-tabs=0`,
-      which disables tab expansion.
-
-      By default, tabs are expanded in pretty formats that indent the log
-      message by 4 spaces (i.e.  `medium`, which is the default, `full`,
-      and `fuller`).
-    max-parents: |-
-      Show only commits which have at least (or at most) that many parent
-      commits. In particular, `--max-parents=1` is the same as `--no-merges`,
-      `--min-parents=2` is the same as `--merges`.  `--max-parents=0`
-      gives all root commits and `--min-parents=3` all octopus merges.
-
-      `--no-min-parents` and `--no-max-parents` reset these limits (to no limit)
-      again.  Equivalent forms are `--min-parents=0` (any commit has 0 or more
-      parents) and `--max-parents=-1` (negative numbers denote no upper limit).
-    notes: |-
-      Do not show notes. This negates the above `--notes` option, by
-      resetting the list of notes refs from which notes are shown.
-      Options are parsed in the order given on the command line, so e.g.
-      "`--notes --notes=foo --no-notes --notes=bar`" will only show notes
-      from `refs/notes/bar`.
-    relative: |-
-      When run from a subdirectory of the project, it can be
-      told to exclude changes outside the directory and show
-      pathnames relative to it with this option.  When you are
-      not in a subdirectory (e.g. in a bare repository), you
-      can name which subdirectory to make the output relative
-      to by giving a _<path>_ as an argument.
-      `--no-relative` can be used to countermand both `diff.relative` config
-      option and previous `--relative`.
-    rename-empty: Whether to use empty blobs as rename source.
-    textconv: |-
-      Allow (or disallow) external text conversion filters to be run
-      when comparing binary files. See [gitattributes](man://gitattributes/5) for
-      details. Because textconv filters are typically a one-way
-      conversion, the resulting diff is suitable for human
-      consumption, but cannot be applied. For this reason, textconv
-      filters are enabled by default only for [git-diff](cmd://git/diff) and
-      [git-log](cmd://git/log), but not for [git-format-patch](cmd://git/format-patch) or
-      diff plumbing commands.
-    use-mailmap: |-
-      Use mailmap file to map author and committer names and email
-      addresses to canonical real names and email addresses. See
-      [git-shortlog](cmd://git/shortlog).

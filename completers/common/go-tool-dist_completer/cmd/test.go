@@ -18,6 +18,7 @@ func init() {
 	testCmd.Flags().BoolS("asan", "asan", false, "run in address sanitizer builder mode")
 	testCmd.Flags().StringS("banner", "banner", "", "banner prefix")
 	testCmd.Flags().BoolS("compile-only", "compile-only", false, "compile tests, but don't run them")
+	testCmd.Flags().BoolS("json", "json", false, "report test results in JSON")
 	testCmd.Flags().BoolS("k", "k", false, "keep going even when error occurred")
 	testCmd.Flags().BoolS("list", "list", false, "list available tests")
 	testCmd.Flags().BoolS("msan", "msan", false, "run in memory sanitizer builder mode")

@@ -1,0 +1,47 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: purge
+aliases:
+    - clean
+description: removes files not tracked by Mercurial
+group: working-dir
+flags:
+    --all: purge ignored files too
+    --confirm: ask before permanently deleting files
+    --dirs: purge empty directories
+    --files: purge files
+    -0, --print0: end filenames with NUL, for use with xargs (implies -p/--print)
+    -I, --include=*: include names matching the given patterns
+    -X, --exclude=*: exclude names matching the given patterns
+    -a, --abort-on-err: abort if an error occurs
+    -i, --ignored: purge only ignored files
+    -p, --print: print filenames instead of deleting them
+documentation:
+    command: |
+        removes files not tracked by Mercurial
+
+        Delete files not known to Mercurial. This is useful to test local
+        and uncommitted changes in an otherwise-clean source tree.
+
+        This means that purge will delete the following by default:
+
+        - Unknown files: files marked with "?" by `hg status`
+        - Empty directories: in fact Mercurial ignores directories unless
+          they contain files under source control management
+
+        But it will leave untouched:
+
+        - Modified and unmodified tracked files
+        - Ignored files (unless -i or --all is specified)
+        - New files added to the repository (with `hg add`)
+
+        The --files and --dirs options can be used to direct purge to delete
+        only files, only directories, or both. If neither option is given,
+        both will be deleted.
+
+        If directories are given on the command line, only files in these
+        directories are considered.
+
+        Be careful with purge, as you could irreversibly delete some files
+        you forgot to add to the repository. If you only want to print the
+        list of files that this program would delete, use the --print
+        option.

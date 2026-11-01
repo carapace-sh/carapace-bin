@@ -31,7 +31,7 @@ func init() {
 
 	carapace.Gen(statsCmd).FlagCompletion(carapace.ActionMap{
 		"archive": carapace.ActionFiles(),
-		"sort":    carapace.ActionValues("events", "bytes"),
+		"sort":    carapace.ActionValues("bytes", "events"),
 		"style":   carapace.ActionValues("human", "json"),
 	})
 }

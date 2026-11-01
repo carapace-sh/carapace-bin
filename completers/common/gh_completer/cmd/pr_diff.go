@@ -20,6 +20,7 @@ var pr_diffCmd = &cobra.Command{
 func init() {
 	carapace.Gen(pr_diffCmd).Standalone()
 
+	pr_diffCmd.Flags().Bool("allow-escape-sequences", false, "Allow printing terminal escape sequences")
 	pr_diffCmd.Flags().String("color", "", "Use color in diff output: {always|never|auto}")
 	pr_diffCmd.Flags().StringSliceP("exclude", "e", nil, "Exclude files matching glob `patterns` from the diff")
 	pr_diffCmd.Flags().Bool("name-only", false, "Display only names of changed files")
@@ -28,7 +29,7 @@ func init() {
 	prCmd.AddCommand(pr_diffCmd)
 
 	carapace.Gen(pr_diffCmd).FlagCompletion(carapace.ActionMap{
-		"color": carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
+		"color": carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"exclude": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			args := []string{"pr", "diff", "--name-only"}
 			if f := pr_diffCmd.Flag("repo"); f.Changed { // TODO use repoverride

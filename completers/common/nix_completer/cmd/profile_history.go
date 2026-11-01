@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/nix_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
 
@@ -17,8 +18,8 @@ func init() {
 	profile_historyCmd.Flags().String("profile", "", "The profile to operate on")
 	profileCmd.AddCommand(profile_historyCmd)
 
-	addEvaluationFlags(profile_historyCmd)
-	addLoggingFlags(profile_historyCmd)
+	common.AddEvaluationFlags(profile_historyCmd)
+	common.AddLoggingFlags(profile_historyCmd)
 
 	carapace.Gen(profile_historyCmd).FlagCompletion(carapace.ActionMap{
 		"profile": carapace.ActionDirectories(),

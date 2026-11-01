@@ -14,6 +14,7 @@ import (
 type ChangeOpts struct {
 	Ignored  bool
 	Staged   bool
+	Unmerged bool
 	Unstaged bool
 }
 
@@ -48,7 +49,8 @@ func ActionChanges(opts ChangeOpts) carapace.Action {
 					switch {
 					case len(line) < 4:
 						// skip
-					case opts.Staged && line[1] == ' ',
+					case opts.Unmerged && (strings.Contains(line[:2], "U") || line[:2] == "DD" || line[:2] == "AA"),
+						opts.Staged && line[1] == ' ',
 						opts.Unstaged && line[1] != ' ' && line[1] != '!',
 						opts.Ignored && line[1] == '!':
 

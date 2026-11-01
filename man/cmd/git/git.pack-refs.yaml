@@ -4,6 +4,7 @@ description: Pack heads and tags for efficient repository access
 group: manipulator
 flags:
   --all: pack everything
+  --auto: auto-pack refs as needed
   --exclude=: references to exclude
   --include=: references to include
   --prune: prune loose refs (default)
@@ -36,3 +37,35 @@ documentation:
     only the currently active branch heads will become unpacked,
     and the next `pack-refs` (without `--all`) will leave them
     unpacked.
+  flag:
+    all: |-
+      Update the index not only where the working tree has a file matching **\<pathspec\>**
+      but also where the index already has an entry.
+      This adds, modifies, and removes index entries to match the working tree.
+      
+      If no **\<pathspec\>** is given when `-A` option is used,
+      all files in the entire working tree are updated
+      (old versions of Git used to limit the update to the current directory and its subdirectories).
+    exclude: |-
+      These flags are passed to the *git apply* (see
+      [git-apply](cmd://git/apply)) program that applies the patch.
+      
+      Valid \<action\> for the `--whitespace` option are: `nowarn`, `warn`, `fix`, `error`, and `error-all`.
+    include: |-
+      These flags are passed to the *git apply* (see
+      [git-apply](cmd://git/apply)) program that applies the patch.
+      
+      Valid \<action\> for the `--whitespace` option are: `nowarn`, `warn`, `fix`, `error`, and `error-all`.
+    prune: |-
+      Before fetching, remove any remote-tracking references that no
+      longer exist on the remote.  Tags are not subject to pruning
+      if they are fetched only because of the default tag
+      auto-following or due to a `--tags` option.  However, if tags
+      are fetched due to an explicit refspec (either on the command
+      line or in the remote configuration, for example if the remote
+      was cloned with the `--mirror` option), then they are also
+      subject to pruning. Supplying `--prune-tags` is a shorthand for
+      providing the tag refspec.
+      
+      See the PRUNING section below for more details.
+    auto: auto-pack refs as needed

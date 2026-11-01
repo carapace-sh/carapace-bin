@@ -13,6 +13,7 @@ flags:
   --date=: override date for commit
   --dry-run: show what would be committed
   --fixup=: use autosquash formatted message to fixup specified commit
+  --inter-hunk-context=: show context between diff hunks up to the specified number of lines
   --interactive: interactively add files
   --long: show status in long format (default)
   --no-ahead-behind: do not compute full ahead/behind values
@@ -24,14 +25,17 @@ flags:
   --pathspec-file-nul: pathspec elements are separated with NUL character
   --pathspec-from-file=: read pathspec from file
   --porcelain: machine-readable output
+  --post-rewrite: opposite of --no-post-rewrite
   --reset-author: the commit is authored by me now (used with -C/-c/--amend)
   --short: show status concisely
   --squash=: use autosquash formatted message to squash specified commit
   --status: include status in commit message template
-  --trailer*=: add custom trailer(s)
+  --trailer=*: add custom trailer(s)
+  --verify: run pre-commit and commit-msg hooks
   -C, --reuse-message=: reuse message from specified commit
   -F, --file=: read message from file
-  -S, --gpg-sign?: GPG sign commit
+  -S, --gpg-sign?: GPG-sign commits
+  -U, --unified=: generate diffs with <n> lines of context instead of the usual three
   -a, --all: commit all changed files
   -c, --reedit-message=: reuse and edit message from specified commit
   -e, --edit: force edit of commit
@@ -47,49 +51,6 @@ flags:
   -v, --verbose: show diff in commit message template
   -z, --null: terminate entries with NUL
 documentation:
-  command: |-
-    Create a new commit containing the current contents of the index and
-    the given log message describing the changes. The new commit is a
-    direct child of HEAD, usually the tip of the current branch, and the
-    branch is updated to point to it (unless no branch is associated with
-    the working tree, in which case `HEAD` is "detached" as described in
-    [git-checkout](cmd://git/checkout)).
-
-    The content to be committed can be specified in several ways:
-
-    1. by using [git-add](cmd://git/add) to incrementally "add" changes to the
-       index before using the `commit` command (Note: even modified files
-       must be "added");
-
-    2. by using [git-rm](cmd://git/rm) to remove files from the working tree
-       and the index, again before using the `commit` command;
-
-    3. by listing files as arguments to the `commit` command
-       (without `--interactive` or `--patch` switch), in which
-       case the commit will ignore changes staged in the index, and instead
-       record the current content of the listed files (which must already
-       be known to Git);
-
-    4. by using the `-a` switch with the `commit` command to automatically
-       "add" changes from all known files (i.e. all files that are already
-       listed in the index) and to automatically "rm" files in the index
-       that have been removed from the working tree, and then perform the
-       actual commit;
-
-    5. by using the `--interactive` or `--patch` switches with the `commit` command
-       to decide one by one which files or hunks should be part of the commit
-       in addition to contents in the index,
-       before finalizing the operation. See the *Interactive Mode* section of
-       [git-add](cmd://git/add) to learn how to operate these modes.
-
-    The `--dry-run` option can be used to obtain a
-    summary of what is included by any of the above for the next
-    commit by giving the same set of parameters (options and paths).
-
-    If you make a commit and then find a mistake immediately after
-    that, you can recover from it with `git reset`.
-
-    :git-commit: 1
   flag:
     all: |-
       Automatically stage files that have
@@ -244,7 +205,7 @@ documentation:
       By default, the pre-commit and commit-msg hooks are run. When any of
       `--no-verify` or `-n` is given, these are bypassed. See also
       [githooks](man://githooks/5).
-    'null': |-
+    "null": |-
       When showing `short` or `porcelain` [git-status](cmd://git/status) output, print the
       filename verbatim and terminate the entries with _NUL_, instead of _LF_.
       If no format is given, implies the `--porcelain` output format.
@@ -376,3 +337,23 @@ documentation:
       If specified twice, show in addition the unified diff between
       what would be committed and the worktree files, i.e. the unstaged
       changes to tracked files.
+    ahead-behind: |-
+      Display or do not display detailed ahead/behind counts for the
+      branch relative to its upstream branch.  Defaults to `true`.
+    inter-hunk-context: |-
+      Show the context between diff hunks, up to the specified _<number>_
+      of lines, thereby fusing hunks that are close to each other.
+      Defaults to `diff.interHunkContext` or 0 if the config option
+      is unset.
+    interactive: |-
+      Add modified contents in the working tree interactively to
+      the index. Optional path arguments may be supplied to limit
+      operation to a subset of the working tree. See *Interactive
+      mode* for details.
+    no-ahead-behind: |-
+      Display or do not display detailed ahead/behind counts for the
+      branch relative to its upstream branch.  Defaults to `true`.
+    verify: Verify the cryptographic signature of the given tags.
+    post-rewrite: opposite of --no-post-rewrite
+    unified: generate diffs with <n> lines of context instead of the usual three
+

@@ -4,7 +4,7 @@ import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/carapace-sh/carapace-jjlex/pkg/actions/tools/jj"
-	shlex "github.com/carapace-sh/carapace-shlex"
+	shlex "github.com/carapace-sh/carapace-shlex/v2"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/carapace-sh/carapace/third_party/golang.org/x/sys/execabs"
 	"github.com/pelletier/go-toml"
@@ -39,16 +39,14 @@ func init() {
 	rootCmd.PersistentFlags().Bool("no-pager", false, "Disable the pager")
 	rootCmd.PersistentFlags().Bool("quiet", false, "Silence non-primary command output")
 	rootCmd.PersistentFlags().StringP("repository", "R", "", "Path to repository to operate on")
-	rootCmd.PersistentFlags().BoolP("verbose", "v", false, "Enable verbose logging")
 	rootCmd.Flags().BoolP("version", "V", false, "Print version")
 
 	rootCmd.MarkFlagsMutuallyExclusive("at-op", "at-operation")
-	rootCmd.MarkFlagsMutuallyExclusive("quiet", "verbose")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"at-op":        jj.ActionOperations(100),
 		"at-operation": jj.ActionOperations(100),
-		"color":        carapace.ActionValues("always", "never", "debug", "auto").StyleF(style.ForKeyword),
+		"color":        carapace.ActionValues("always", "auto", "debug", "never").StyleF(style.ForKeyword),
 		"config-file":  carapace.ActionFiles(),
 		"repository":   carapace.ActionDirectories(),
 	})
@@ -90,7 +88,7 @@ func init() {
 		for name, alias := range config.Aliases {
 			aliasCmd := &cobra.Command{
 				Use:                name,
-				Short:              shlex.Join(alias),
+				Short:              shlex.Join(alias, shlex.Default),
 				GroupID:            "alias",
 				DisableFlagParsing: true,
 				Run:                func(cmd *cobra.Command, args []string) {},

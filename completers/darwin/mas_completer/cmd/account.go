@@ -7,7 +7,7 @@ import (
 
 var accountCmd = &cobra.Command{
 	Use:   "account",
-	Short: "Print account information",
+	Short: "Display the currently signed-in Apple ID",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

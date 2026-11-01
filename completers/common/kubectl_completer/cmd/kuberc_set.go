@@ -33,8 +33,8 @@ func init() {
 		"command":         carapace.ActionCommands(rootCmd).Split(),
 		"kuberc":          carapace.ActionFiles(),
 		"option":          carapace.ActionValues(), // TODO
-		"policy":          carapace.ActionValues("AllowAll", "DenyAll", "Allowlist"),
+		"policy":          carapace.ActionValues("AllowAll", "Allowlist", "DenyAll"),
 		"prependarg":      carapace.ActionValues(), // TODO
-		"section":         carapace.ActionValues("defaults", "aliases", "credentialplugin"),
+		"section":         carapace.ActionValues("aliases", "credentialplugin", "defaults"),
 	})
 }

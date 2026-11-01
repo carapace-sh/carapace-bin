@@ -86,10 +86,10 @@ func init() {
 		"convert-segments":             actionOption(),
 		"convert-shapes":               actionOption(),
 		"group-by-style":               actionOption(),
-		"indent":                       carapace.ActionValues("none", "0", "1", "2", "3", "4", "tabs").StyleF(style.ForKeyword),
+		"indent":                       carapace.ActionValues("0", "1", "2", "3", "4", "none", "tabs").StyleF(style.ForKeyword),
 		"join-arcto-flags":             actionOption(),
-		"join-style-attributes":        carapace.ActionValues("no", "some", "all").StyleF(style.ForKeyword),
-		"list-separator":               carapace.ActionValues("space", "comma", "comma-space"),
+		"join-style-attributes":        carapace.ActionValues("all", "no", "some").StyleF(style.ForKeyword),
+		"list-separator":               carapace.ActionValues("comma", "comma-space", "space"),
 		"merge-gradients":              actionOption(),
 		"paths-to-relative":            actionOption(),
 		"regroup-gradient-stops":       actionOption(),
@@ -135,5 +135,5 @@ func init() {
 }
 
 func actionOption() carapace.Action {
-	return carapace.ActionValues("true", "false", "yes", "no", "y", "n").StyleF(style.ForKeyword)
+	return carapace.ActionValues("false", "n", "no", "true", "y", "yes").StyleF(style.ForKeyword)
 }

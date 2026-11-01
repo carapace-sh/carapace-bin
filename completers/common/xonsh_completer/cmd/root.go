@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
+	shlex "github.com/carapace-sh/carapace-shlex/v2"
 	"github.com/spf13/cobra"
 )
 
@@ -36,11 +37,11 @@ func init() {
 	rootCmd.Flags().BoolP("version", "V", false, "Show version information and exit.")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"c": bridge.ActionCarapaceBin().SplitP(),
+		"c": bridge.ActionCarapaceBin().SplitP(shlex.Xonsh),
 		"rc": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return carapace.ActionFiles().NoSpace()
 		}),
-		"shell-type": carapace.ActionValues("b", "best", "d", "dumb", "ptk", "ptk1", "ptk2", "prompt-toolkit", "prompt_toolkit", "prompt-toolkit1", "prompt-toolkit2", "prompt-toolkit3", "prompt_toolkit3", "ptk3", "rand", "random", "rl", "readline"),
+		"shell-type": carapace.ActionValues("b", "best", "d", "dumb", "prompt-toolkit", "prompt-toolkit1", "prompt-toolkit2", "prompt-toolkit3", "prompt_toolkit", "prompt_toolkit3", "ptk", "ptk1", "ptk2", "ptk3", "rand", "random", "readline", "rl"),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

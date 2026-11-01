@@ -45,10 +45,10 @@ func init() {
 	rootCmd.AddCommand(panelCmd)
 
 	carapace.Gen(panelCmd).FlagCompletion(carapace.ActionMap{
-		"edge":         carapace.ActionValues("top", "background", "bottom", "center", "center-sized", "left", "none", "right"),
-		"focus-policy": carapace.ActionValues("not-allowed", "exclusive", "on-demand"),
-		"layer":        carapace.ActionValues("bottom", "background", "overlay", "top"),
-		"listen-on":    carapace.ActionValues("unix:", "tcp:").NoSpace(':'),
+		"edge":         carapace.ActionValues("background", "bottom", "center", "center-sized", "left", "none", "right", "top"),
+		"focus-policy": carapace.ActionValues("exclusive", "not-allowed", "on-demand"),
+		"layer":        carapace.ActionValues("background", "bottom", "overlay", "top"),
+		"listen-on":    carapace.ActionValues("tcp:", "unix:").NoSpace(':'),
 	})
 
 	carapace.Gen(panelCmd).PositionalAnyCompletion(carapace.ActionFiles())

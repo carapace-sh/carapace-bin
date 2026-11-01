@@ -2,9 +2,10 @@
 name: is-needed
 description: Check if maintenance needs to be run
 flags:
-    --auto: check if required thresholds are met without actually running maintenance
-    --task=*: check a specific task
-
+  --auto: check if required thresholds are met without actually running maintenance
+  --task=*: check a specific task
 documentation:
-  command: >-
-    Check whether maintenance needs to be run without actually running it. Exits with status 0 if maintenance needs to be run, 1 otherwise. Ideally used with the `--auto` flag. If one or more `--task` options are specified, those tasks are checked in that order. Otherwise, the tasks are determined by which `maintenance.<task>.enabled` config options are true.
+  command: Check whether maintenance needs to be run without actually running it. Exits with status 0 if maintenance needs to be run, 1 otherwise. Ideally used with the `--auto` flag. If one or more `--task` options are specified, those tasks are checked in that order. Otherwise, the tasks are determined by which `maintenance.<task>.enabled` config options are true.
+  flag:
+    auto: check if required thresholds are met without actually running maintenance
+    task: check a specific task

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/nix_completer/cmd/common"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix"
 	"github.com/spf13/cobra"
 )
@@ -20,17 +21,10 @@ func init() {
 	store_copyLogCmd.Flags().String("to", "", "URL of the destination Nix store")
 	storeCmd.AddCommand(store_copyLogCmd)
 
-	addEvaluationFlags(store_copyLogCmd)
-	addFlakeFlags(store_copyLogCmd)
-	addLoggingFlags(store_copyLogCmd)
+	common.AddEvaluationFlags(store_copyLogCmd)
+	common.AddFlakeFlags(store_copyLogCmd)
+	common.AddLoggingFlags(store_copyLogCmd)
 
-	carapace.Gen(store_copyLogCmd).FlagCompletion(carapace.ActionMap{
-		"inputs-from": carapace.Batch(
-			carapace.ActionDirectories(),
-			nix.ActionFlakes(),
-		).ToA(),
-		"output-lock-file":    carapace.ActionFiles(),
-		"reference-lock-file": carapace.ActionFiles("lock"),
-	})
+	carapace.Gen(store_copyLogCmd).FlagCompletion(carapace.ActionMap{})
 	carapace.Gen(store_copyLogCmd).PositionalAnyCompletion(nix.ActionInstallables())
 }

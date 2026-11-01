@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/nix_completer/cmd/common"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix"
 	"github.com/spf13/cobra"
 )
@@ -15,19 +16,14 @@ var store_diffClosuresCmd = &cobra.Command{
 func init() {
 	carapace.Gen(store_diffClosuresCmd).Standalone()
 
+	store_diffClosuresCmd.Flags().Bool("derivation", false, "Operate on the store derivation rather than its outputs")
 	storeCmd.AddCommand(store_diffClosuresCmd)
 
-	addEvaluationFlags(store_diffClosuresCmd)
-	addFlakeFlags(store_diffClosuresCmd)
-	addLoggingFlags(store_diffClosuresCmd)
+	common.AddEvaluationFlags(store_diffClosuresCmd)
+	common.AddFlakeFlags(store_diffClosuresCmd)
+	common.AddInterpretationFlags(store_diffClosuresCmd)
+	common.AddLoggingFlags(store_diffClosuresCmd)
 
-	carapace.Gen(store_diffClosuresCmd).FlagCompletion(carapace.ActionMap{
-		"inputs-from": carapace.Batch(
-			carapace.ActionDirectories(),
-			nix.ActionFlakes(),
-		).ToA(),
-		"output-lock-file":    carapace.ActionFiles(),
-		"reference-lock-file": carapace.ActionFiles("lock"),
-	})
-	// TODO positional completion
+	carapace.Gen(store_diffClosuresCmd).FlagCompletion(carapace.ActionMap{})
+	carapace.Gen(store_diffClosuresCmd).PositionalAnyCompletion(nix.ActionInstallables())
 }

@@ -3,3 +3,6 @@ name: start
 description: Start running maintenance on the current repository
 flags:
   --scheduler=: specify scheduler
+documentation:
+  flag:
+    scheduler: specify scheduler

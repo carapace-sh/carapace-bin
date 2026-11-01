@@ -40,7 +40,7 @@ func init() {
 	rootCmd.AddCommand(replaceCmd)
 
 	carapace.Gen(replaceCmd).FlagCompletion(carapace.ActionMap{
-		"cascade":   carapace.ActionValues("background", "orphan", "foreground"),
+		"cascade":   carapace.ActionValues("background", "foreground", "orphan"),
 		"dry-run":   kubectl.ActionDryRunModes(),
 		"filename":  carapace.ActionFiles(),
 		"kustomize": carapace.ActionDirectories(),

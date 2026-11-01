@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"runtime"
 	"strings"
 
 	"github.com/carapace-sh/carapace"
@@ -45,10 +46,10 @@ func init() {
 	rootCmd.Flag("ignore-signal").NoOptDefVal = " "
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"block-signal":   ps.ActionKillSignals(),
+		"block-signal":   ps.ActionKillSignals(runtime.GOOS),
 		"chdir":          carapace.ActionDirectories(),
-		"default-signal": ps.ActionKillSignals(),
-		"ignore-signal":  ps.ActionKillSignals(),
+		"default-signal": ps.ActionKillSignals(runtime.GOOS),
+		"ignore-signal":  ps.ActionKillSignals(runtime.GOOS),
 		"unset":          os.ActionEnvironmentVariables(),
 	})
 

@@ -15,8 +15,8 @@ var portCmd = &cobra.Command{
 func init() {
 	carapace.Gen(portCmd).Standalone()
 
-	portCmd.Flags().String("index", "", "Index of the container if service has multiple replicas")
-	portCmd.Flags().String("protocol", "", "tcp or udp")
+	portCmd.Flags().Int("index", 0, "Index of the container if service has multiple replicas")
+	portCmd.Flags().String("protocol", "tcp", "tcp or udp")
 	rootCmd.AddCommand(portCmd)
 
 	// TODO index
@@ -27,6 +27,8 @@ func init() {
 
 	carapace.Gen(portCmd).PositionalCompletion(
 		action.ActionServices(portCmd),
-		carapace.ActionMessage("TODO: read ports form serice (first agument)"),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			return action.ActionPorts(portCmd, c.Args[0])
+		}),
 	)
 }

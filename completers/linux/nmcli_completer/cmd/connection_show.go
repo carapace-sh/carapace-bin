@@ -24,9 +24,9 @@ func init() {
 		"order": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				return carapace.ActionValues("+active", "-active", "+name", "-name", "+type", "-type", "+path", "-path", "active", "name", "type", "path").Suffix(":")
+				return carapace.ActionValues("+active", "+name", "+path", "+type", "-active", "-name", "-path", "-type", "active", "name", "path", "type").Suffix(":")
 			default:
-				return carapace.ActionValues("active", "name", "type", "path")
+				return carapace.ActionValues("active", "name", "path", "type")
 			}
 		}),
 	})
@@ -40,7 +40,7 @@ func init() {
 				}
 			}
 			return carapace.Batch(
-				carapace.ActionValues("id", "uuid", "path", "apath"),
+				carapace.ActionValues("apath", "id", "path", "uuid"),
 				net.ActionConnections(),
 			).ToA()
 		}),

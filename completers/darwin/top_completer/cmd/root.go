@@ -46,9 +46,9 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"User":         os.ActionUsers(),
 		"command":      carapace.ActionValues("a", "d", "e"),
-		"order":        carapace.ActionValues("pid", "command", "cpu", "cpu_me", "cpu_others", "csw", "time", "threads", "ports", "mregion", "mem", "rprvt", "purg", "vsize", "vprvt", "kprvt", "kshrd", "pgrp", "ppid", "state", "uid", "wq", "faults", "cow", "user", "msgsent", "msgrecv", "sysbsd", "sysmach", "pageins", "boosts", "instrs", "cycles"),
-		"secondaryKey": carapace.ActionValues("pid", "command", "cpu", "cpu_me", "cpu_others", "csw", "time", "threads", "ports", "mregion", "mem", "rprvt", "purg", "vsize", "vprvt", "kprvt", "kshrd", "pgrp", "ppid", "state", "uid", "wq", "faults", "cow", "user", "msgsent", "msgrecv", "sysbsd", "sysmach", "pageins", "boosts", "instrs", "cycles"),
-		"stats":        carapace.ActionValues("pid", "command", "cpu", "cpu_me", "cpu_others", "csw", "time", "threads", "ports", "mregion", "mem", "rprvt", "purg", "vsize", "vprvt", "kprvt", "kshrd", "pgrp", "ppid", "state", "uid", "wq", "faults", "cow", "user", "msgsent", "msgrecv", "sysbsd", "sysmach", "pageins", "boosts", "instrs", "cycles"),
+		"order":        carapace.ActionValues("boosts", "command", "cow", "cpu", "cpu_me", "cpu_others", "csw", "cycles", "faults", "instrs", "kprvt", "kshrd", "mem", "mregion", "msgrecv", "msgsent", "pageins", "pgrp", "pid", "ports", "ppid", "purg", "rprvt", "state", "sysbsd", "sysmach", "threads", "time", "uid", "user", "vprvt", "vsize", "wq"),
+		"secondaryKey": carapace.ActionValues("boosts", "command", "cow", "cpu", "cpu_me", "cpu_others", "csw", "cycles", "faults", "instrs", "kprvt", "kshrd", "mem", "mregion", "msgrecv", "msgsent", "pageins", "pgrp", "pid", "ports", "ppid", "purg", "rprvt", "state", "sysbsd", "sysmach", "threads", "time", "uid", "user", "vprvt", "vsize", "wq"),
+		"stats":        carapace.ActionValues("boosts", "command", "cow", "cpu", "cpu_me", "cpu_others", "csw", "cycles", "faults", "instrs", "kprvt", "kshrd", "mem", "mregion", "msgrecv", "msgsent", "pageins", "pgrp", "pid", "ports", "ppid", "purg", "rprvt", "state", "sysbsd", "sysmach", "threads", "time", "uid", "user", "vprvt", "vsize", "wq"),
 		"user":         os.ActionUsers(),
 	})
 }

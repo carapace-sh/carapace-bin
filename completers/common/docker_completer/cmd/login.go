@@ -7,7 +7,7 @@ import (
 
 var loginCmd = &cobra.Command{
 	Use:     "login [OPTIONS] [SERVER]",
-	Short:   "Log in to a registry",
+	Short:   "Authenticate to a registry",
 	GroupID: "common",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
@@ -15,7 +15,7 @@ var loginCmd = &cobra.Command{
 func init() {
 	carapace.Gen(loginCmd).Standalone()
 
-	loginCmd.Flags().StringP("password", "p", "", "Password or Personal Access Token (PAT)")
+	loginCmd.Flags().StringP("password", "p", "", "Password or Personal Access Token (PAT), or \"-\" to read from stdin")
 	loginCmd.Flags().Bool("password-stdin", false, "Take the Password or Personal Access Token (PAT) from stdin")
 	loginCmd.Flags().StringP("username", "u", "", "Username")
 	rootCmd.AddCommand(loginCmd)

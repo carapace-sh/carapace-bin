@@ -56,7 +56,7 @@ func init() {
 	carapace.Gen(blameCmd).FlagCompletion(carapace.ActionMap{
 		"S":                carapace.ActionFiles(),
 		"contents":         carapace.ActionFiles(),
-		"diff-algorithm":   carapace.ActionValues("myers", "minimal", "patience", "histogram"),
+		"diff-algorithm":   carapace.ActionValues("histogram", "minimal", "myers", "patience"),
 		"ignore-rev":       git.ActionRefs(git.RefOption{}.Default()),
 		"ignore-revs-file": carapace.ActionFiles(),
 	})

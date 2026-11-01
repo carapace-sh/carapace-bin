@@ -8,7 +8,7 @@ import (
 
 var pr_setDraftCmd = &cobra.Command{
 	Use:   "set-draft",
-	Short: "Set an existing review (or set of reviews) as draft. If no reviews are specified, you will be prompted to select one or multiple of the review associated with branches in your workspace",
+	Short: "Mark existing reviews as draft",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

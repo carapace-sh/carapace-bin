@@ -7,8 +7,9 @@ import (
 )
 
 var unstackCmd = &cobra.Command{
-	Use:     "unstack [branch]",
-	Short:   "Delete a stack locally and on GitHub",
+	Use:     "unstack [<stack-number>]",
+	Short:   "Remove a stack locally and on GitHub",
+	GroupID: "stack",
 	Aliases: []string{"delete"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }

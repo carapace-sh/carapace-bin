@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: init
+description: Initialize the sparse-checkout file
+flags:
+  --no-cone: use non-cone mode
+  --no-sparse-index: do not use sparse index
+  --sparse-index: use sparse index
+documentation:
+  command: >-
+    Deprecated command that behaves like `set` with no specified paths.
+    May be removed in the future. Historically, `set` did not handle all
+    the necessary config settings, which meant that both `init` and `set`
+    had to be called.
+  flag:
+    no-cone: use non-cone mode
+    no-sparse-index: do not use sparse index
+    sparse-index: use sparse index

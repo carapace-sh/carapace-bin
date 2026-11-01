@@ -1,0 +1,21 @@
+package cmd
+
+import (
+	"github.com/carapace-sh/carapace"
+	"github.com/spf13/cobra"
+)
+
+var bootstrap_macos_defaults_applyCmd = &cobra.Command{
+	Use:   "apply",
+	Short: "Write the configured macOS preferences",
+	Run:   func(cmd *cobra.Command, args []string) {},
+}
+
+func init() {
+	carapace.Gen(bootstrap_macos_defaults_applyCmd).Standalone()
+
+	bootstrap_macos_defaults_applyCmd.Flags().BoolP("dry-run", "n", false, "Show what would change without changing anything")
+	bootstrap_macos_defaults_applyCmd.Flags().BoolP("help", "h", false, "Print help")
+	bootstrap_macos_defaults_applyCmd.Flags().BoolP("yes", "y", false, "Skip the confirmation prompt")
+	bootstrap_macos_defaultsCmd.AddCommand(bootstrap_macos_defaults_applyCmd)
+}

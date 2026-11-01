@@ -23,6 +23,8 @@ func init() {
 	duplicateCmd.Flags().StringSliceP("insert-after", "A", nil, "The revision(s) to insert after (can be repeated to create a merge commit)")
 	duplicateCmd.Flags().StringSliceP("insert-before", "B", nil, "The revision(s) to insert before (can be repeated to create a merge commit)")
 	duplicateCmd.Flags().StringSliceP("onto", "o", nil, "The revision(s) to duplicate onto (can be repeated to create a merge commit)")
+	duplicateCmd.Flags().StringSliceS("r", "r", nil, "")
+	duplicateCmd.Flag("r").Hidden = true
 	rootCmd.AddCommand(duplicateCmd)
 
 	duplicateCmd.MarkFlagsMutuallyExclusive(
@@ -34,6 +36,8 @@ func init() {
 	)
 
 	carapace.Gen(duplicateCmd).FlagCompletion(carapace.ActionMap{
+		"after":         jj.ActionRevsets(jj.RevOpts{}.Default()),
+		"before":        jj.ActionRevsets(jj.RevOpts{}.Default()),
 		"destination":   jj.ActionRevsets(jj.RevOpts{}.Default()),
 		"insert-after":  jj.ActionRevsets(jj.RevOpts{}.Default()),
 		"insert-before": jj.ActionRevsets(jj.RevOpts{}.Default()),

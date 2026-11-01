@@ -17,6 +17,6 @@ func init() {
 	synthetics_monitorCmd.AddCommand(synthetics_monitor_listCmd)
 
 	carapace.Gen(synthetics_monitor_listCmd).FlagCompletion(carapace.ActionMap{
-		"statusFilter": carapace.ActionValues("ENABLED", "DISABLED", "MUTED").UniqueList(","),
+		"statusFilter": carapace.ActionValues("DISABLED", "ENABLED", "MUTED").UniqueList(","),
 	})
 }

@@ -16,4 +16,8 @@ func init() {
 
 	util_completionCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	utilCmd.AddCommand(util_completionCmd)
+
+	carapace.Gen(util_completionCmd).PositionalCompletion(
+		carapace.ActionValues("bash", "elvish", "fish", "nushell", "power-shell", "zsh"),
+	)
 }

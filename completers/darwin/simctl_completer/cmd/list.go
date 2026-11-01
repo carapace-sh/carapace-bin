@@ -16,6 +16,6 @@ func init() {
 	listCmd.Flags().BoolP("json", "j", false, "Produce JSON output")
 	rootCmd.AddCommand(listCmd)
 	carapace.Gen(listCmd).PositionalCompletion(
-		carapace.ActionValues("devices", "devicetypes", "runtimes", "pairs"),
+		carapace.ActionValues("devices", "devicetypes", "pairs", "runtimes"),
 	)
 }

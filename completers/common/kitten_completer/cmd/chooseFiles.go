@@ -31,8 +31,8 @@ func init() {
 
 	carapace.Gen(chooseFilesCmd).FlagCompletion(carapace.ActionMap{
 		"config":                   carapace.ActionFiles("~/.config/kitty"),
-		"mode":                     carapace.ActionValues("file", "dir", "dirs", "files", "save-dir", "save-file", "save-files"),
-		"output-format":            carapace.ActionValues("text", "json", "shell", "shell-relative"),
+		"mode":                     carapace.ActionValues("dir", "dirs", "file", "files", "save-dir", "save-file", "save-files"),
+		"output-format":            carapace.ActionValues("json", "shell", "shell-relative", "text"),
 		"suggested-save-file-path": carapace.ActionFiles(),
 		"write-output-to":          carapace.ActionFiles(),
 		"write-pid-to":             carapace.ActionFiles(),

@@ -54,14 +54,14 @@ func init() {
 	syncCmd.Flags().CountP("refresh", "y", "download fresh package databases from the server")
 	syncCmd.Flags().StringP("root", "r", "", "set an alternate installation root")
 	syncCmd.Flags().StringP("search", "s", "", "search remote repositories for matching strings")
-	syncCmd.Flags().Bool("sysroot", false, "operate on a mounted guest system (root-only)")
+	syncCmd.Flags().String("sysroot", "", "operate on a mounted guest system (root-only)")
 	syncCmd.Flags().CountP("sysupgrade", "u", "upgrade installed packages (-uu enables downgrades)")
 	syncCmd.Flags().BoolP("verbose", "v", false, "be verbose")
 
 	carapace.Gen(syncCmd).FlagCompletion(carapace.ActionMap{
 		"arch":     carapace.ActionValues("i686", "x86_64"),
 		"cachedir": carapace.ActionDirectories(),
-		"color":    carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
+		"color":    carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"config":   carapace.ActionFiles(),
 		"dbpath":   carapace.ActionFiles(),
 		"gpgdir":   carapace.ActionDirectories(),
@@ -76,7 +76,8 @@ func init() {
 			}
 			return carapace.ActionValues()
 		}),
-		"root": carapace.ActionDirectories(),
+		"root":    carapace.ActionDirectories(),
+		"sysroot": carapace.ActionDirectories(),
 	})
 
 	carapace.Gen(syncCmd).PositionalAnyCompletion(

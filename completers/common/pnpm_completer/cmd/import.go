@@ -7,7 +7,7 @@ import (
 
 var importCmd = &cobra.Command{
 	Use:     "import",
-	Short:   "Generates pnpm-lock.yaml from an npm package-lock.json",
+	Short:   "Generates a pnpm-lock.yaml from an external lockfile",
 	GroupID: "manage",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
@@ -15,5 +15,7 @@ var importCmd = &cobra.Command{
 func init() {
 	carapace.Gen(importCmd).Standalone()
 
+	importCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	importCmd.Flags().String("pnpr-server", "", "URL of a pnpr server. Accepted for symmetry with the other installing commands; `pnpm import` always resolves locally")
 	rootCmd.AddCommand(importCmd)
 }

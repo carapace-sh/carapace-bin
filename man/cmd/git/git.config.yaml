@@ -4,10 +4,12 @@ description: Get and set repository or global options
 group: manipulator
 flags:
   --add: 'add a new variable: name value'
+  --append: add a new line without altering any existing values
   --blob=: read config from given blob object
   --bool: value is "true" or "false"
   --bool-or-int: value is --bool or --int
   --bool-or-str: value is --bool or string
+  --comment=: append a comment at the end of new or modified lines
   --default=: with --get, use default value when missing entry
   --expiry-date: value is an expiry date
   --fixed-value: use string equality when comparing values to 'value-pattern'
@@ -22,15 +24,20 @@ flags:
   --int: value is decimal number
   --local: use repository config file
   --name-only: show variable names only
+  --no-show-names: do not show config keys
+  --no-type: un-sets the previously set type specifier
   --path: value is a path (file or directory name)
   --remove-section: 'remove a section: name'
   --rename-section: 'rename section: old-name new-name'
   --replace-all: 'replace all matching variables: name value [value-pattern]'
+  --show-names: show config keys in addition to their values
   --show-origin: show origin of config (file, standard input, blob, command line)
   --show-scope: show scope of config (worktree, local, global, system, command)
   --system: use system config file
   --unset: 'remove a variable: name [value-pattern]'
   --unset-all: 'remove all matches: name [value-pattern]'
+  --url=: show config matching the given URL
+  --value=: show config with values matching the pattern
   --worktree: use per-worktree config file
   -e, --edit: open an editor
   -f, --file=: use given config file
@@ -85,3 +92,100 @@ documentation:
 
     A list of all available configuration variables can be obtained using the
     `git help --config` command.
+  flag:
+    append: |-
+      Append ref names and object names of fetched refs to the
+      existing contents of `.git/FETCH_HEAD`.  Without this
+      option old data in `.git/FETCH_HEAD` will be overwritten.
+    local: |-
+      When the repository to clone from is on a local machine,
+      this flag bypasses the normal "Git aware" transport
+      mechanism and clones the repository by making a copy of
+      `HEAD` and everything under objects and refs directories.
+      The files under `.git/objects/` directory are hardlinked
+      to save space when possible.
+      
+      If the repository is specified as a local path (e.g., `/path/to/repo`),
+      this is the default, and `--local` is essentially a no-op.  If the
+      repository is specified as a URL, then this flag is ignored (and we
+      never use the local optimizations).  Specifying `--no-local` will
+      override the default when `/path/to/repo` is given, using the regular
+      Git transport instead.
+      
+      If the repository's `$GIT_DIR/objects` has symbolic links or is a
+      symbolic link, the clone will fail. This is a security measure to
+      prevent the unintentional copying of files by dereferencing the symbolic
+      links.
+      
+      This option does not work with repositories owned by other users for security
+      reasons, and `--no-local` must be specified for the clone to succeed.
+      
+      *NOTE*: this operation can race with concurrent modification to the
+      source repository, similar to running `cp -r <src> <dst>` while modifying
+      _<src>_.
+    name-only: |-
+      Show only the name of each changed file in the post-image tree.
+      The file names are often encoded in UTF-8.
+      For more information see the discussion about encoding in the [git-log](cmd://git/log)
+      manual page.
+    edit: |-
+      Open the diff vs. the index in an editor and let the user
+      edit it.  After the editor was closed, adjust the hunk headers
+      and apply the patch to the index.
+      
+      The intent of this option is to pick and choose lines of the patch to
+      apply, or even to modify the contents of lines to be staged. This can be
+      quicker and more flexible than using the interactive hunk selector.
+      However, it is easy to confuse oneself and create a patch that does not
+      apply to the index. See EDITING PATCHES below.
+    file: |-
+      Take the commit message from _<file>_.  Use `-` to
+      read the message from the standard input.
+    list: Show all available formats.
+    add: |-
+      add a new variable: name value
+    blob: read config from given blob object
+    bool: value is "true" or "false"
+    bool-or-int: value is --bool or --int
+    bool-or-str: value is --bool or string
+    comment: append a comment at the end of new or modified lines
+    default: with --get, use default value when missing entry
+    expiry-date: value is an expiry date
+    fixed-value: use string equality when comparing values to 'value-pattern'
+    get: |-
+      get value: name [value-pattern]
+    get-all: |-
+      get all values: key [value-pattern]
+    get-color: |-
+      find the color configured: slot [default]
+    get-colorbool: |-
+      find the color setting: slot [stdout-is-tty]
+    get-regexp: |-
+      get values for regexp: name-regex [value-pattern]
+    get-urlmatch: |-
+      get value specific for the URL: section[.var] URL
+    global: use global config file
+    includes: respect include directives on lookup
+    int: value is decimal number
+    no-show-names: do not show config keys
+    no-type: un-sets the previously set type specifier
+    "null": terminate values with NUL byte
+    path: value is a path (file or directory name)
+    remove-section: |-
+      remove a section: name
+    rename-section: |-
+      rename section: old-name new-name
+    replace-all: |-
+      replace all matching variables: name value [value-pattern]
+    show-names: show config keys in addition to their values
+    show-origin: show origin of config (file, standard input, blob, command line)
+    show-scope: show scope of config (worktree, local, global, system, command)
+    system: use system config file
+    type: value is given this type
+    unset: |-
+      remove a variable: name [value-pattern]
+    unset-all: |-
+      remove all matches: name [value-pattern]
+    url: show config matching the given URL
+    value: show config with values matching the pattern
+    worktree: use per-worktree config file

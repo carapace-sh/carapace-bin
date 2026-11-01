@@ -23,6 +23,6 @@ func init() {
 
 	carapace.Gen(unpauseCmd).FlagCompletion(carapace.ActionMap{
 		"namespaces": action.ActionNamespaces().UniqueList(","),
-		"output":     carapace.ActionValues("text", "json"),
+		"output":     carapace.ActionValues("json", "text"),
 	})
 }

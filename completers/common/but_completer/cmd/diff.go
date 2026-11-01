@@ -9,7 +9,7 @@ import (
 
 var diffCmd = &cobra.Command{
 	Use:     "diff",
-	Short:   "Displays the diff of changes in the repo",
+	Short:   "Show the diff of changes in the repo",
 	Run:     func(cmd *cobra.Command, args []string) {},
 	GroupID: "inspection",
 }
@@ -18,8 +18,6 @@ func init() {
 	carapace.Gen(diffCmd).Standalone()
 
 	diffCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
-	diffCmd.Flags().Bool("no-tui", false, "Disable the interactive TUI diff viewer (overrides but.ui.tui config)")
-	diffCmd.Flags().Bool("tui", false, "Open an interactive TUI diff viewer")
 	rootCmd.AddCommand(diffCmd)
 
 	carapace.Gen(diffCmd).PositionalCompletion(

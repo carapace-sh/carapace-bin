@@ -7,7 +7,7 @@ import (
 
 var config_forge_authCmd = &cobra.Command{
 	Use:   "auth",
-	Short: "Authenticate with your forge provider (currently only GitHub is supported)",
+	Short: "Authenticate with the forge (GitHub, GitLab, or Bitbucket)",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

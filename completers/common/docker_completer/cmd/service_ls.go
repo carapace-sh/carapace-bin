@@ -19,4 +19,20 @@ func init() {
 	service_lsCmd.Flags().String("format", "", "Format output using a custom template:")
 	service_lsCmd.Flags().BoolP("quiet", "q", false, "Only display IDs")
 	serviceCmd.AddCommand(service_lsCmd)
+
+	carapace.Gen(service_lsCmd).FlagCompletion(carapace.ActionMap{
+		"filter": carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return carapace.ActionValuesDescribed(
+					"id", "Filter by ID",
+					"label", "Filter by label (key or key=value)",
+					"mode", "Filter by service mode",
+					"name", "Filter by name",
+				).Suffix("=")
+			default:
+				return carapace.ActionValues()
+			}
+		}),
+	})
 }

@@ -11,8 +11,8 @@ import (
 //	clipboard (always copy text to the selection clipboard)
 func ActionCopyOnSelectModes() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"true", "prefer to copy to the selection clipboard if supported by the OS",
 		"clipboard", "always copy text to the selection clipboard",
 		"false", "do not automatically copy selected text to the clipboard",
+		"true", "prefer to copy to the selection clipboard if supported by the OS",
 	).StyleF(style.ForKeyword).Tag("copy-on-select modes").Uid("ghostty", "copy-on-select")
 }

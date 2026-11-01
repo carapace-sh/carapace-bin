@@ -64,5 +64,5 @@ func init() {
 }
 
 func ActionTests() carapace.Action {
-	return carapace.ActionValues("apptype", "ascii", "cdf", "compress", "csv", "elf", "encoding", "soft", "tar", "json", "text", "tokens")
+	return carapace.ActionValues("apptype", "ascii", "cdf", "compress", "csv", "elf", "encoding", "json", "soft", "tar", "text", "tokens")
 }

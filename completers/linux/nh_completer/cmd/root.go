@@ -23,6 +23,6 @@ func init() {
 	rootCmd.PersistentFlags().StringP("elevation-strategy", "e", "", "Choose the privilege elevation strategy")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"elevation-strategy": carapace.ActionValues("none", "auto", "passwordless"),
+		"elevation-strategy": carapace.ActionValues("auto", "none", "passwordless"),
 	})
 }

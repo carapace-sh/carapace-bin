@@ -21,6 +21,7 @@ func init() {
 	carapace.Gen(showCmd).Standalone()
 
 	showCmd.Flags().StringArrayS("L", "L", nil, "process line range n,m in file, counting from 1")
+	showCmd.Flags().Bool("clear-decorations", false, "clear all previously-defined decoration filters")
 	showCmd.Flags().String("decorate", "", "decorate options")
 	showCmd.Flags().StringArray("decorate-refs", nil, "only decorate refs that match <pattern>")
 	showCmd.Flags().StringArray("decorate-refs-exclude", nil, "do not decorate refs that match <pattern>")
@@ -39,12 +40,9 @@ func init() {
 	showCmd.Flag("decorate").NoOptDefVal = "short"
 
 	carapace.Gen(showCmd).FlagCompletion(carapace.ActionMap{
-		"decorate": carapace.ActionValuesDescribed(
-			"short", "do not print ref prefixes",
-			"full", "print ref prefixes",
-			"auto", "short format when output to terminal",
-			"no", "no decoration",
-		),
+		"decorate":              git.ActionDecorateModes(),
+		"decorate-refs":         git.ActionRefs(git.RefOption{}.Default()),
+		"decorate-refs-exclude": git.ActionRefs(git.RefOption{}.Default()),
 	})
 
 	carapace.Gen(showCmd).PositionalAnyCompletion(

@@ -19,5 +19,6 @@ func init() {
 	workspace_reportMetadataCmd.Flags().String("source", "", "")
 	workspace_reportMetadataCmd.Flags().StringSlice("token", nil, "")
 	workspace_reportMetadataCmd.Flags().String("ttl-ms", "", "")
+	workspace_reportMetadataCmd.MarkFlagRequired("source")
 	workspaceCmd.AddCommand(workspace_reportMetadataCmd)
 }

@@ -60,11 +60,13 @@ func init() {
 	rootCmd.AddCommand(runCmd)
 
 	carapace.Gen(runCmd).FlagCompletion(carapace.ActionMap{
+		"cascade":           carapace.ActionValues("background", "foreground", "orphan"),
 		"dry-run":           kubectl.ActionDryRunModes(),
 		"env":               env.ActionNameValues(false),
-		"image-pull-policy": carapace.ActionValues("Never", "Always", "IfNotPresent"),
+		"image-pull-policy": carapace.ActionValues("Always", "IfNotPresent", "Never"),
 		"output":            kubectl.ActionOutputFormats(),
-		"restart":           carapace.ActionValues("Always", "OnFailure", "Never"),
+		"override-type":     carapace.ActionValues("json", "merge", "strategic"),
+		"restart":           carapace.ActionValues("Always", "Never", "OnFailure"),
 		"template":          carapace.ActionFiles(),
 	})
 }

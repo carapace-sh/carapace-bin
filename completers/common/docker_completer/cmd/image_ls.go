@@ -17,7 +17,7 @@ var image_lsCmd = &cobra.Command{
 func init() {
 	carapace.Gen(image_lsCmd).Standalone()
 
-	image_lsCmd.Flags().BoolP("all", "a", false, "Show all images (default hides intermediate images)")
+	image_lsCmd.Flags().BoolP("all", "a", false, "Show all images (default hides intermediate and dangling images)")
 	image_lsCmd.Flags().Bool("digests", false, "Show digests")
 	image_lsCmd.Flags().StringP("filter", "f", "", "Filter output based on conditions provided")
 	image_lsCmd.Flags().String("format", "", "Format output using a custom template:")
@@ -27,20 +27,20 @@ func init() {
 	imageCmd.AddCommand(image_lsCmd)
 
 	carapace.Gen(image_lsCmd).FlagCompletion(carapace.ActionMap{
-		"filter": carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
+		"filter": carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
 				return carapace.ActionValuesDescribed(
+					"before", "filter images created before given id or references",
 					"dangling", "filter images by dangling state",
 					"label", "filter images by label",
-					"before", "filter images created before given id or references",
-					"since", "filter images created since given id or references",
 					"reference", "filter images whose reference matches the specified pattern",
-				).Invoke(c).Suffix("=").ToA()
-			case 1:
+					"since", "filter images created since given id or references",
+				).Suffix("=")
+			default:
 				switch c.Parts[0] {
 				case "dangling":
-					return carapace.ActionValues("true", "false").StyleF(style.ForKeyword)
+					return carapace.ActionValues("false", "true").StyleF(style.ForKeyword)
 				case "before":
 					return docker.ActionRepositoryTags()
 				case "since":
@@ -48,8 +48,6 @@ func init() {
 				default:
 					return carapace.ActionValues()
 				}
-			default:
-				return carapace.ActionValues()
 			}
 		}),
 	})

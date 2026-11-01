@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/glab_completer/cmd/action"
+	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
 )
 
@@ -16,18 +17,21 @@ func init() {
 	carapace.Gen(variable_getCmd).Standalone()
 
 	variable_getCmd.Flags().StringP("group", "g", "", "Get variable for a group.")
-	variable_getCmd.Flags().StringP("output", "F", "", "Format output as: text, json.")
-	variable_getCmd.Flags().StringP("scope", "s", "", "The environment_scope of the variable. Values: all (*), or specific environments.")
+	variable_getCmd.Flags().Bool("inherited", false, "If the key is not defined at the selected level, look in the groups above it, then in instance variables.")
+	variable_getCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
+	variable_getCmd.Flags().StringP("output", "F", "text", "Format output as: text, json.")
+	variable_getCmd.Flags().StringP("scope", "s", "*", "The environment_scope of the variable. Values: all (*), or specific environments.")
 	variableCmd.AddCommand(variable_getCmd)
 
 	carapace.Gen(variable_getCmd).FlagCompletion(carapace.ActionMap{
-		"group": action.ActionGroups(variable_getCmd),
+		"group":  action.ActionGroups(variable_getCmd),
+		"jq":     jq.ActionFilters(),
+		"output": carapace.ActionValues("json", "text"),
 		"scope": carapace.Batch(
 			carapace.ActionValues("*"),
 			action.ActionEnvironments(variable_getCmd),
 		).ToA(),
 	})
-
 	carapace.Gen(variable_getCmd).PositionalCompletion(
 		action.ActionVariables(variable_getCmd),
 	)

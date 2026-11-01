@@ -26,6 +26,6 @@ func init() {
 	})
 
 	carapace.Gen(completionsCmd).PositionalCompletion(
-		carapace.ActionValues("zsh", "bash", "fish", "powershell", "elvish"),
+		carapace.ActionValues("bash", "elvish", "fish", "powershell", "zsh"),
 	)
 }

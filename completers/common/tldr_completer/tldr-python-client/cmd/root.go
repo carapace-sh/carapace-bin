@@ -41,8 +41,8 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"language":         os.ActionLanguages(),
-		"platform":         carapace.ActionValues("android", "freebsd", "linux", "netbsd", "openbsd", "osx", "sunos", "windows", "common"),
-		"print-completion": carapace.ActionValues("bash", "zsh", "tcsh"),
+		"platform":         carapace.ActionValues("android", "common", "freebsd", "linux", "netbsd", "openbsd", "osx", "sunos", "windows"),
+		"print-completion": carapace.ActionValues("bash", "tcsh", "zsh"),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

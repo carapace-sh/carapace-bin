@@ -116,8 +116,8 @@ func ActionOptionNames() carapace.Action {
 //	css
 func ActionOptionValues(option string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		actionBool := carapace.ActionValues("true", "false").StyleF(style.ForKeyword)
-		actionTlsVersions := carapace.ActionValues("UNBOUNDED", "SSL3", "TLS1", "TLS1_1", "TLS1_2", "TLS1_3")
+		actionBool := carapace.ActionValues("false", "true").StyleF(style.ForKeyword)
+		actionTlsVersions := carapace.ActionValues("SSL3", "TLS1", "TLS1_1", "TLS1_2", "TLS1_3", "UNBOUNDED")
 		return map[string]carapace.Action{
 			"add_upstream_certs_to_client_chain": actionBool,
 			"allow_hosts":                        carapace.ActionValues(),
@@ -155,9 +155,9 @@ func ActionOptionValues(option string) carapace.Action {
 			"confdir":                   carapace.ActionDirectories(),
 			"connect_addr":              carapace.ActionValues(),
 			"connection_strategy":       carapace.ActionValues("eager", "lazy"),
-			"console_default_contentview": carapace.ActionValues("auto", "raw", "hex", "graphql", "json", "xml/html", "wbxml", "javascript",
-				"css", "url-encoded", "multipart form", "image", "query", "protocol buffer", "msgpack", "grpc/protocol buffer"),
-			"console_eventlog_verbosity":      carapace.ActionValues("error", "warn", "info", "alert", "debug").StyleF(style.ForLogLevel),
+			"console_default_contentview": carapace.ActionValues("auto", "css", "graphql", "grpc/protocol buffer", "hex", "image", "javascript", "json",
+				"msgpack", "multipart form", "protocol buffer", "query", "raw", "url-encoded", "wbxml", "xml/html"),
+			"console_eventlog_verbosity":      carapace.ActionValues("alert", "debug", "error", "info", "warn").StyleF(style.ForLogLevel),
 			"console_flowlist_layout":         carapace.ActionValues("default", "list", "table"),
 			"console_focus_follow":            actionBool,
 			"console_layout":                  ActionConsoleLayouts(),
@@ -243,7 +243,7 @@ func ActionOptionValues(option string) carapace.Action {
 			"upstream_cert":                       actionBool,
 			"validate_inbound_headers":            actionBool,
 			"view_filter":                         carapace.ActionValues(), // TODO completion?
-			"view_order":                          carapace.ActionValues("time", "method", "url", "size"),
+			"view_order":                          carapace.ActionValues("method", "size", "time", "url"),
 			"view_order_reversed":                 actionBool,
 			"websocket":                           actionBool,
 		}[option]

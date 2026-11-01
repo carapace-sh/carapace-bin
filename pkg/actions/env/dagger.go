@@ -39,7 +39,7 @@ func init() {
 				"DAGGER_DRY_RUN":              carapace.ActionValues("1"),
 				"DAGGER_NO_CACHE":             carapace.ActionValues("1"),
 				"DAGGER_OUTPUT":               carapace.ActionFiles(),
-				"DAGGER_OUTPUT_FORMAT":        carapace.ActionValues("plain", "json", "yaml"),
+				"DAGGER_OUTPUT_FORMAT":        carapace.ActionValues("json", "plain", "yaml"),
 				"DAGGER_PLATFORM":             carapace.ActionValues(),
 				"DAGGER_WITH":                 carapace.ActionValues(),
 			},

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/brew"
 	"github.com/spf13/cobra"
 )
 
@@ -30,4 +31,11 @@ func init() {
 	usesCmd.Flags().Bool("skip-recommended", false, "Skip all formulae that specify <formula> as a `:recommended` dependency.")
 	usesCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
 	rootCmd.AddCommand(usesCmd)
+
+	carapace.Gen(usesCmd).PositionalAnyCompletion(
+		carapace.Batch(
+			brew.ActionAllCasks().Unless(usesCmd.Flag("formula").Changed),
+			brew.ActionAllFormulae().Unless(usesCmd.Flag("cask").Changed),
+		).ToA().FilterArgs(),
+	)
 }

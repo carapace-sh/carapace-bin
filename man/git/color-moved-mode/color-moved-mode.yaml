@@ -1,4 +1,4 @@
-no: |
+"no": |
   Moved lines are not highlighted.
 default: |
   Synonym for [zebra](git://color-moved-mode/zebra). May change to a more sensible mode in the future.

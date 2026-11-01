@@ -40,7 +40,7 @@ func init() {
 	add_legacy_flags(rootCmd)
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"colored": carapace.ActionValues("yes", "no").StyleF(style.ForKeyword),
+		"colored": carapace.ActionValues("no", "yes").StyleF(style.ForKeyword),
 		"conf":    carapace.ActionFiles(),
 		"root":    carapace.ActionDirectories(),
 		"workdir": carapace.ActionDirectories(),
@@ -104,6 +104,6 @@ func addCommonRunFlags(cmd *cobra.Command) {
 	cmd.Flags().Bool("skip-pkg-install", false, "skip package installation for this run (default: False)")
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
-		"skip-missing-interpreters": carapace.ActionValues("config", "true", "false").StyleF(style.ForKeyword),
+		"skip-missing-interpreters": carapace.ActionValues("config", "false", "true").StyleF(style.ForKeyword),
 	})
 }

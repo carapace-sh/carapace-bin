@@ -7,12 +7,13 @@ import (
 
 var searchCmd = &cobra.Command{
 	Use:   "search",
-	Short: "Search for apps",
+	Short: "Search for apps in the App Store",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(searchCmd).Standalone()
-	searchCmd.Flags().String("account", "", "Account to use for search")
+	searchCmd.Flags().Bool("json", false, "Output JSON")
+	searchCmd.Flags().Bool("price", false, "Output the price of each app")
 	rootCmd.AddCommand(searchCmd)
 }

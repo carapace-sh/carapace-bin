@@ -8,11 +8,11 @@ import "github.com/carapace-sh/carapace"
 //	create
 func ActionTimeFields() carapace.Action {
 	return carapace.ActionValues(
-		"id",
 		"created",
-		"repo",
-		"issue",
-		"user",
 		"duration",
+		"id",
+		"issue",
+		"repo",
+		"user",
 	)
 }

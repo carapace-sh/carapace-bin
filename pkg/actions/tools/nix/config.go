@@ -48,8 +48,8 @@ func ActionConfigKeys() carapace.Action {
 		"fsync-metadata", "changes to the Nix store metadata are synchronously flushed to disk",
 		"gc-reserved-space", "Amount of reserved disk space for the garbage collector",
 		"hashed-mirrors", "A  list of web servers used by builtins.fetchurl to obtain files by hash",
-		"http-connections", "The maximum number of parallel TCP connections used to fetch files",
 		"http2", "Whether to enable HTTP/2 support.",
+		"http-connections", "The maximum number of parallel TCP connections used to fetch files",
 		"id-count", "The number of UIDs/GIDs to use for dynamic ID allocation.",
 		"ignore-try", "ignore exceptions inside ‘tryEval’ calls when evaluating nix expressions in debug mode",
 		"ignored-acls", "A list of ACLs that should be ignored",
@@ -118,7 +118,7 @@ func ActionConfigKeys() carapace.Action {
 //	true
 func ActionConfigValues(key string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		_bool := carapace.ActionValues("true", "false").StyleF(style.ForKeyword)
+		_bool := carapace.ActionValues("false", "true").StyleF(style.ForKeyword)
 		// TODO add missing completions
 		return map[string]carapace.Action{
 			"accept-flake-config":                        _bool,

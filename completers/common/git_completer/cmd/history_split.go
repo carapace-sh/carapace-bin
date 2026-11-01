@@ -21,10 +21,7 @@ func init() {
 	historyCmd.AddCommand(splitCmd)
 
 	carapace.Gen(splitCmd).FlagCompletion(carapace.ActionMap{
-		"update-refs": carapace.ActionValuesDescribed(
-			"branches", "all local branches will be rewritten",
-			"head", "only the current HEAD reference will be rewritten",
-		),
+		"update-refs": git.ActionUpdateRefsModes(),
 	})
 
 	carapace.Gen(splitCmd).PositionalCompletion(

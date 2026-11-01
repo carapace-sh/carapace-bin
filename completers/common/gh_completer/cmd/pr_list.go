@@ -45,6 +45,6 @@ func init() {
 		"jq":       jq.ActionFilters(),
 		"json":     action.ActionPullRequestFields().UniqueList(","),
 		"label":    action.ActionLabels(pr_listCmd).UniqueList(","),
-		"state":    carapace.ActionValues("open", "closed", "merged", "all").StyleF(styles.Gh.ForState),
+		"state":    carapace.ActionValues("all", "closed", "merged", "open").StyleF(styles.Gh.ForState),
 	})
 }

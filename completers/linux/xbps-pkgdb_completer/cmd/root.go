@@ -31,9 +31,9 @@ func init() {
 	rootCmd.Flags().BoolP("version", "V", false, "Show XBPS version")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"checks":  carapace.ActionValues("files", "dependencies", "alternatives", "pkgdb"),
+		"checks":  carapace.ActionValues("alternatives", "dependencies", "files", "pkgdb"),
 		"config":  carapace.ActionDirectories(),
-		"mode":    carapace.ActionValues("auto", "manual", "hold", "unhold", "repolock", "repounlock"),
+		"mode":    carapace.ActionValues("auto", "hold", "manual", "repolock", "repounlock", "unhold"),
 		"rootdir": carapace.ActionDirectories(),
 	})
 	carapace.Gen(rootCmd).PositionalAnyCompletion(xbps.ActionPackageSearch())

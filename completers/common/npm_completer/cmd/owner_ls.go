@@ -7,9 +7,10 @@ import (
 )
 
 var owner_lsCmd = &cobra.Command{
-	Use:   "ls",
-	Short: "List all the users who have access to modify a package",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "ls",
+	Short:   "List all the users who have access to modify a package",
+	Aliases: []string{"list"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

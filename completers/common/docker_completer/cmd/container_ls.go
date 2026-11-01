@@ -28,7 +28,7 @@ func init() {
 	containerCmd.AddCommand(container_lsCmd)
 
 	carapace.Gen(container_lsCmd).FlagCompletion(carapace.ActionMap{
-		"filter": carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
+		"filter": carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
 				return carapace.ActionValuesDescribed(
@@ -47,8 +47,8 @@ func init() {
 					"since", "Filters containers created before or after a given container ID or name",
 					"status", "Container status",
 					"volume", "	Filters running containers which have mounted a given volume or bind mount",
-				).Invoke(c).Suffix("=").ToA()
-			case 1:
+				).Suffix("=")
+			default:
 				switch c.Parts[0] {
 				case "ancestor":
 					return docker.ActionRepositoryTags()
@@ -57,13 +57,13 @@ func init() {
 				case "expose":
 					return docker.ActionPorts()
 				case "health":
-					return carapace.ActionValues("starting", "healthy", "unhealthy", "none")
+					return carapace.ActionValues("healthy", "none", "starting", "unhealthy").StyleF(style.ForKeyword)
 				case "is-task":
-					return carapace.ActionValues("true", "false").StyleF(style.ForKeyword)
+					return carapace.ActionValues("false", "true").StyleF(style.ForKeyword)
 				case "id":
 					return docker.ActionContainerIds()
 				case "isolation":
-					return carapace.ActionValues("default", "process", "hyperv")
+					return carapace.ActionValues("default", "hyperv", "process")
 				case "name":
 					return docker.ActionContainers()
 				case "network":
@@ -73,14 +73,14 @@ func init() {
 				case "since":
 					return docker.ActionContainers()
 				case "status":
-					return carapace.ActionValues("created", "restarting", "removing", "running", "paused", "exited", "dead")
+					return carapace.ActionValues("created", "dead", "exited", "paused", "removing", "restarting", "running").StyleF(style.ForKeyword)
 				case "volume":
 					return docker.ActionVolumes()
+				case "label":
+					return docker.ActionContainerLabels()
 				default:
 					return carapace.ActionValues()
 				}
-			default:
-				return carapace.ActionValues()
 			}
 		}),
 	})

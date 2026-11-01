@@ -21,6 +21,7 @@ func init() {
 	global_uninstallCmd.Flags().Bool("no-hard-links", false, "Disallow hard links during package installation")
 	global_uninstallCmd.Flags().Bool("no-ref-links", false, "Disallow ref links (copy-on-write) during package installation")
 	global_uninstallCmd.Flags().Bool("no-symbolic-links", false, "Disallow symbolic links during package installation")
+	global_uninstallCmd.Flags().Bool("offline", false, "Run without network access, using only cached data. Commands fail if data is missing from the cache. Pass `--offline=false` to override an `offline` setting from the configuration")
 	global_uninstallCmd.Flags().String("pinning-strategy", "", "Set pinning strategy")
 	global_uninstallCmd.Flags().String("pypi-keyring-provider", "", "Specifies whether to use the keyring to look up credentials for PyPI")
 	global_uninstallCmd.Flags().Bool("run-post-link-scripts", false, "Run post-link scripts (insecure)")
@@ -31,9 +32,9 @@ func init() {
 
 	carapace.Gen(global_uninstallCmd).FlagCompletion(carapace.ActionMap{
 		"auth-file":             carapace.ActionFiles(),
-		"pinning-strategy":      carapace.ActionValues("semver", "minor", "major", "latest-up", "exact-version", "no-pin"),
+		"pinning-strategy":      carapace.ActionValues("exact-version", "latest-up", "major", "minor", "no-pin", "semver"),
 		"pypi-keyring-provider": carapace.ActionValues("disabled", "subprocess"),
-		"tls-root-certs":        carapace.ActionValues("webpki", "system"),
+		"tls-root-certs":        carapace.ActionValues("system", "webpki"),
 	})
 
 	carapace.Gen(global_uninstallCmd).PositionalAnyCompletion(

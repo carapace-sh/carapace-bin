@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/nix_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
 
@@ -21,7 +22,7 @@ func init() {
 	hash_fileCmd.Flags().String("type", "", "hash algorithm")
 	hashCmd.AddCommand(hash_fileCmd)
 
-	addLoggingFlags(hash_fileCmd)
+	common.AddLoggingFlags(hash_fileCmd)
 
 	carapace.Gen(hash_fileCmd).FlagCompletion(carapace.ActionMap{
 		"type": carapace.ActionValues("md5", "sha1", "sha256", "sha512"),

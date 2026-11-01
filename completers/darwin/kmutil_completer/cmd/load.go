@@ -34,7 +34,7 @@ func init() {
 		"arch":        carapace.ActionValues("arm64", "arm64e", "x86_64", "x86_64h"),
 		"bundle-path": carapace.ActionFiles(),
 		"kdk":         carapace.ActionFiles(),
-		"load-style":  carapace.ActionValues("start-only", "match-only", "start-and-match"),
+		"load-style":  carapace.ActionValues("match-only", "start-and-match", "start-only"),
 		"repository":  carapace.ActionDirectories(),
 		"sdk":         carapace.ActionDirectories(),
 		"volume-root": carapace.ActionDirectories(),

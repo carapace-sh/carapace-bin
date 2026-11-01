@@ -1,0 +1,45 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: cat
+description: output the current or given revision of files
+group: content
+flags:
+    --decode: apply any matching decode filter
+    -I, --include=*: include names matching the given patterns
+    -T, --template=: display with template
+    -X, --exclude=*: exclude names matching the given patterns
+    -o, --output=: print output to file with formatted name
+    -r, --rev=: print the given revision
+documentation:
+    command: |
+        output the current or given revision of files
+
+        Print the specified files as they were at the given revision. If
+        no revision is given, the parent of the working directory is used.
+
+        Output may be to a file, in which case the name of the file is
+        given using a template string. See `hg help templates`. In addition
+        to the common template keywords, the following formatting rules are
+        supported:
+
+        :`%%`: literal "%" character
+        :`%s`: basename of file being printed
+        :`%d`: dirname of file being printed, or '.' if in repository root
+        :`%p`: root-relative path name of file being printed
+        :`%H`: changeset hash (40 hexadecimal digits)
+        :`%R`: changeset revision number
+        :`%h`: short-form changeset hash (12 hexadecimal digits)
+        :`%r`: zero-padded changeset revision number
+        :`%b`: basename of the exporting repository
+        :`\`: literal "\" character
+
+        .. container:: verbose
+
+          Template:
+
+          The following keywords are supported in addition to the common template
+          keywords and functions. See also `hg help templates`.
+
+          :data:    String. File content.
+          :path:    String. Repository-absolute path of the file.
+
+        Returns 0 on success.

@@ -3,7 +3,8 @@ package snippet
 import (
 	"fmt"
 	"runtime"
-	"strings"
+
+	shlex "github.com/carapace-sh/carapace-shlex/v2"
 )
 
 func Elvish(completers []string) string {
@@ -12,11 +13,13 @@ func Elvish(completers []string) string {
 		windowsSnippet = "\n    set edit:completion:arg-completer[$c.exe] = $edit:completion:arg-completer[$c]\n"
 	}
 
-	snippet := `%v
+	snippet := `use builtin
+%v
 
 put %v | each {|c|
     set edit:completion:arg-completer[$c] = {|@arg|
-        carapace $c elvish (all $arg) | from-json | each {|completion|
+        with [E:CARAPACE_SHELL = 'elvish'] [E:CARAPACE_SHELL_BUILTINS = (keys $builtin: | to-lines | slurp)] {
+            carapace $c elvish (all $arg) | from-json | each {|completion|
     		put $completion[Messages] | all (one) | each {|m|
     			edit:notify (styled "error: " red)$m
     		}
@@ -30,15 +33,11 @@ put %v | each {|c|
     		    	edit:complex-candidate $c[Value] &display=(styled $c[Display] $c[Style])(styled " " $completion[DescriptionStyle]" bg-default")(styled "("$c[Description]")" $completion[DescriptionStyle]) &code-suffix=$c[CodeSuffix]
     			}
     		}
-        }
-    }%v
+            }
+        }%v
+    }
 }
 `
 
-	var quotedCompleters []string
-	for _, c := range completers {
-		quotedCompleters = append(quotedCompleters, fmt.Sprintf("%q", c))
-	}
-
-	return fmt.Sprintf(snippet, pathSnippet("elvish"), strings.Join(quotedCompleters, " "), windowsSnippet)
+	return fmt.Sprintf(snippet, pathSnippet("elvish"), shlex.Join(completers, shlex.Elvish), windowsSnippet)
 }

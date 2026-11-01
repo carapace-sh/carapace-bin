@@ -2,6 +2,7 @@ package common
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/text"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/time"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
@@ -41,9 +42,9 @@ func AddCommitLimitingOptions(cmd *cobra.Command) {
 	cmd.Flags().StringP("max-count", "n", "", "limit the number of commits to output")
 	cmd.Flags().String("max-count-oldest", "", "limit the number of commits to output, picking the oldest N")
 	cmd.Flags().String("max-parents", "", "show only commits which have at most that many parent commits")
+	cmd.Flags().Bool("maximal-only", false, "restrict output to commits not reachable from other commits in the range")
 	cmd.Flags().Bool("merge", false, "show refs that touch files having a conflict and don't exist on all heads to merge")
 	cmd.Flags().Bool("merges", false, "print only merge commits")
-	cmd.Flags().Bool("maximal-only", false, "restrict output to commits not reachable from other commits in the range")
 	cmd.Flags().String("min-age", "", "limit the commits output to specified time range")
 	cmd.Flags().String("min-parents", "", "show only commits which have at least that many parent commits")
 	cmd.Flags().Bool("no-max-parents", false, "reset max-parents limit")
@@ -52,7 +53,6 @@ func AddCommitLimitingOptions(cmd *cobra.Command) {
 	cmd.Flags().Bool("not", false, "reverses the meaning of the ^ prefix")
 	cmd.Flags().BoolP("perl-regexp", "P", false, "consider the limiting patterns to be Perl-compatible regular expressions")
 	cmd.Flags().String("progress", "", "show progress reports on stderr as objects are considered")
-	cmd.Flags().Bool("quiet", false, "don't print anything to standard output")
 	cmd.Flags().Bool("reflog", false, "pretend as if all reflog objects are listed on the command line")
 	cmd.Flags().BoolP("regexp-ignore-case", "i", false, "match the regular expression case insensitive")
 	cmd.Flags().StringArray("remotes", nil, "pretend as if all the refs in refs/remotes are listed on the command line")
@@ -162,36 +162,42 @@ func AddCommitFormattingOptions(cmd *cobra.Command) {
 	cmd.Flags().Bool("no-abbrev-commit", false, "show the full 40-byte hexadecimal commit object name")
 	cmd.Flags().Bool("no-commit-header", false, "suppress the header line containing \"commit\"")
 	cmd.Flags().Bool("no-expand-tabs", false, "do not perform a tab expansion")
+	cmd.Flags().Bool("no-notes", false, "do not show notes")
+	cmd.Flags().StringArray("notes", nil, "show the notes that annotate the commit")
 	cmd.Flags().Bool("oneline", false, "shorthand for \"--pretty=oneline --abbrev-commit\" used together")
 	cmd.Flags().Bool("parents", false, "print also the parents of the commit")
 	cmd.Flags().String("pretty", "", "pretty-print the contents of the commit logs in a given format")
 	cmd.Flags().Bool("relative-date", false, "synonym for --date=relative")
 	cmd.Flags().String("show-linear-break", "", "put a barrier in between branches in graph output")
+	cmd.Flags().Bool("show-notes-by-default", false, "show the default notes")
 	cmd.Flags().Bool("show-signature", false, "check the validity of a signed commit object")
 	cmd.Flags().Bool("timestamp", false, "print the raw commit timestamp")
 
+	cmd.Flag("notes").NoOptDefVal = " "
+
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
 		"date": carapace.ActionValuesDescribed(
-			"relative", "shows dates relative to the current time",
-			"local", "is an alias for --date=default-local",
+			"default", "the default format",
+			"format:", "feeds the given format to your system strftime",
+			"format:%c", "show the date in your system locale's preferred format",
+			"human", "shows the date in human readable format",
 			"iso", "shows timestamps in a ISO 8601-like format",
 			"iso8601", "shows timestamps in a ISO 8601-like format",
-			"iso-strict", "shows timestamps in strict ISO 8601 format",
 			"iso8601-strict", "shows timestamps in strict ISO 8601 format",
+			"iso-strict", "shows timestamps in strict ISO 8601 format",
+			"local", "is an alias for --date=default-local",
+			"raw", "shows the date as seconds since the epoch (1970-01-01 00:00:00 UTC)",
+			"relative", "shows dates relative to the current time",
 			"rfc", "shows timestamps in RFC 2822 format",
 			"rfc2822", "shows timestamps in RFC 2822 format",
 			"short", "shows only the date, but not the time, in YYYY-MM-DD format",
-			"raw", "shows the date as seconds since the epoch (1970-01-01 00:00:00 UTC)",
-			"human", "shows the date in human readable format",
 			"unix", "shows the date as a Unix epoch timestamp (seconds since 1970)",
-			"format:", "feeds the given format to your system strftime",
-			"format:%c", "show the date in your system locale’s preferred format",
-			"default", "the default format",
 		),
-		"encoding":          carapace.ActionValues(), // TODO
+		"encoding":          text.ActionEncodings(),
 		"expand-tabs":       carapace.ActionValues(), // TODO
-		"format":            carapace.ActionValues("oneline", "short", "medium", "full", "fuller", "reference", "email", "raw", "format:"),
-		"pretty":            carapace.ActionValues("oneline", "short", "medium", "full", "fuller", "reference", "email", "raw", "format:"),
+		"format":            git.ActionPrettyFormats(),
+		"notes":             git.ActionRefs(git.RefOption{}.Default()),
+		"pretty":            git.ActionPrettyFormats(),
 		"show-linear-break": carapace.ActionValues(), // TODO
 	})
 }
@@ -218,12 +224,13 @@ func AddObjectTraversalOptions(cmd *cobra.Command) {
 	cmd.Flags().Bool("unpacked", false, "print the object IDs that are not in packs")
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
-		"filter": carapace.ActionValues(), // TODO
+		"filter": git.ActionObjectFilters(),
 		"missing": carapace.ActionValues(
-			"error", "requests that rev-list stop with an error if a missing object is encountered",
-			"allow-any", "allow object traversal to continue if a missing object is encountered",
-			"allow-promisor", "is like allow-any, but will only allow object traversal to continue for EXPECTED promisor missing objects",
-			"print", "is like allow-any, but will also print a list of the missing objects",
+			"allow object traversal to continue if a missing object is encountered", "allow-any",
+			"allow-promisor", "error",
+			"is like allow-any, but will also print a list of the missing objects", "is like allow-any, but will only allow object traversal to continue for EXPECTED promisor missing objects",
+			"is like print, but will also print the path and type of each missing object", "print",
+			"print-info", "requests that rev-list stop with an error if a missing object is encountered",
 		),
 		"no-walk": carapace.ActionValues("sorted", "unsorted"),
 	})

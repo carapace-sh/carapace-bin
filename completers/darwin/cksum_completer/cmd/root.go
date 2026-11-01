@@ -21,5 +21,9 @@ func init() {
 
 	rootCmd.Flags().StringS("o", "o", "", "Use historical checksum format 1, 2, or 3")
 
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"o": carapace.ActionValues("1", "2", "3"),
+	})
+
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

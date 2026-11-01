@@ -6,9 +6,10 @@ import (
 )
 
 var cache_cleanCmd = &cobra.Command{
-	Use:   "clean",
-	Short: "delete all data out of the cache folder",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "clean",
+	Short:   "delete all data out of the cache folder",
+	Aliases: []string{"rm", "clear"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

@@ -1,6 +1,14 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: http-fetch
-description: download from a remote git repository via HTTP
+description: Download from a remote Git repository via HTTP
+group: low-level synching
+flags:
+  --index-pack-args=: command to run on the contents of the downloaded pack
+  --packfile=: fetch the packfile directly
+  --recover: erify that everything reachable from target is fetched
+  --stdin: expect commit-id lines on stdin
+  -v: report what is downloaded
+  -w=: write the commit-id into the specified filename
 documentation:
   command: |-
     Downloads a remote Git repository via HTTP.
@@ -8,3 +16,14 @@ documentation:
     This command always gets all objects. Historically, there were three options
     `-a`, `-c` and `-t` for choosing which objects to download. They are now
     silently ignored.
+  flag:
+    stdin: |-
+      The list of patterns is read from standard input instead of from
+      the argument list.
+    v: Verbose output.
+    w: |-
+      Ignore whitespace when comparing the parent's version and
+      the child's to find where the lines came from.
+    index-pack-args: command to run on the contents of the downloaded pack
+    packfile: fetch the packfile directly
+    recover: erify that everything reachable from target is fetched

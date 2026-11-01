@@ -39,7 +39,7 @@ func init() {
 
 	carapace.Gen(rsaCmd).FlagCompletion(carapace.ActionMap{
 		"in":      carapace.ActionFiles(),
-		"inform":  carapace.ActionValues("DER", "PEM", "P12"),
+		"inform":  carapace.ActionValues("DER", "P12", "PEM"),
 		"out":     carapace.ActionFiles(),
 		"outform": carapace.ActionValues("DER", "PEM"),
 	})

@@ -10,10 +10,10 @@ func ActionCssNamespaces() carapace.Action {
 // ActionCssInstallTasks completes css:install:* tasks
 func ActionCssInstallTasks() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"tailwind", "Install Tailwind CSS",
 		"bootstrap", "Install Bootstrap CSS",
 		"postcss", "Install PostCSS",
 		"sass", "Install Sass",
+		"tailwind", "Install Tailwind CSS",
 	).Tag("css install tasks").UidF(taskUid("css.install"))
 }
 
@@ -67,10 +67,10 @@ func ActionTurboNamespaces() carapace.Action {
 // ActionTurboInstallTasks completes turbo:install:* tasks
 func ActionTurboInstallTasks() carapace.Action {
 	return carapace.ActionValuesDescribed(
+		"bun", "Install with bun",
 		"importmap", "Install with importmap",
 		"node", "Install with node",
 		"redis", "Install with Redis",
-		"bun", "Install with bun",
 	).Tag("turbo install tasks").UidF(taskUid("turbo.install"))
 }
 

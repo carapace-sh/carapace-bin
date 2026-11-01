@@ -15,7 +15,9 @@ var packCmd = &cobra.Command{
 func init() {
 	carapace.Gen(packCmd).Standalone()
 	packCmd.Flags().Bool("dry-run", false, "only report changes")
+	packCmd.Flags().Bool("ignore-scripts", false, "do not run scripts specified in package.json")
 	packCmd.Flags().Bool("json", false, "output as json")
+	packCmd.Flags().String("pack-destination", "", "directory to save tarball")
 	addWorkspaceFlags(packCmd)
 
 	rootCmd.AddCommand(packCmd)

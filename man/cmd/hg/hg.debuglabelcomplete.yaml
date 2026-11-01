@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debuglabelcomplete
+description: LABEL...
+hidden: true
+documentation:
+    command: |
+        backwards compatibility with old bash completion scripts (DEPRECATED)

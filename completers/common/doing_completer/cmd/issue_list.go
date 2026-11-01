@@ -34,7 +34,7 @@ func init() {
 		"assignee":      carapace.ActionValues(),
 		"author":        carapace.ActionValues(),
 		"label":         carapace.ActionValues(),
-		"output_format": carapace.ActionValues("table", "array"),
+		"output_format": carapace.ActionValues("array", "table"),
 		"state":         carapace.ActionValues(),
 		"story_points":  carapace.ActionValues(),
 		"type":          doing.ActionWorkItemTypes(),

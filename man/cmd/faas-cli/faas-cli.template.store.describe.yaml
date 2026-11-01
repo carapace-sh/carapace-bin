@@ -3,3 +3,5 @@ name: describe
 description: Describe the template
 persistentflags:
     -u, --url=: Use as alternative store for templates
+flags:
+    -j, --json: Output template details as JSON

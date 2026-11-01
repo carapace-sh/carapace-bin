@@ -26,3 +26,9 @@ documentation:
     Use _<branch>_ to set the symbolic-ref `refs/remotes/<name>/HEAD` explicitly. e.g., `git remote set-head origin master` will set the symbolic-ref `refs/remotes/origin/HEAD` to
     `refs/remotes/origin/master`. This will only work if
     `refs/remotes/origin/master` already exists; if not it must be fetched first.
+  flag:
+    delete: |-
+      Delete a branch. The branch must be fully merged in its
+      upstream branch, or in `HEAD` if no upstream was set with
+      `--track` or `--set-upstream-to`.
+    auto: set refs/remotes/<name>/HEAD according to remote

@@ -17,6 +17,6 @@ func init() {
 	rootCmd.AddCommand(powerCmd)
 
 	carapace.Gen(powerCmd).PositionalCompletion(
-		carapace.ActionValues("on", "off").StyleF(style.ForKeyword),
+		carapace.ActionValues("off", "on").StyleF(style.ForKeyword),
 	)
 }

@@ -13,6 +13,7 @@ flags:
     --build-id?: Embed a build ID in binaries
     --builtin: Enable implicit builtin knowledge of functions
     --cache-dir=: Override the local cache directory
+    --build-root=: Override path to project source files
     --cflags=: Set extra flags for the next positional C source files
     --clang: Force using Clang as the C/C++ compilation backend
     --color=: Enable or disable colored error messages
@@ -59,6 +60,7 @@ flags:
     --global-base=: 'WebAssembly: where to start placing global data'
     --global-cache-dir=: Override the global cache directory
     --headerpad-max-install-names: 'Darwin: set enough space as if all paths were MAXPATHLEN'
+    --growable-table: WebAssembly: remove maximum size from function table, allowing table to grow
     --headerpad=: 'Darwin: set minimum space for future expansion of load commands'
     --idirafter=: Add directory to AFTER include search path
     --image-base=: Set base address for executable image
@@ -130,7 +132,6 @@ flags:
     --no-stack-check: Disable stack probing in safe builds
     --no-stack-protector: Disable stack protection in safe builds
     --no-strip: Keep debug symbols
-    --no-structured-cfg: Force SPIR-V kernels to not use structured control flow
     --no-ubsan-rt: Prevent including ubsan-rt symbols in the output
     --no-undefined-version: Disallow version scripts from referring to undefined symbols
     --no-unwind-tables: Never produce unwind table entries
@@ -140,6 +141,7 @@ flags:
     --opt-bisect-limit?: Only run first N LLVM optimization passes
     --optimize=: Choose what to optimize for
     --pagezero-size=: 'Darwin: size of __PAGEZERO segment in hexadecimal'
+    --patchable-function-entry?: Add num NOPs of padding in function prologues
     --rcflags=: Set extra flags for the next positional .rc source files
     --rcincludes=: Set the type of includes for .rc files
     --rdynamic: Add all symbols to the dynamic symbol table
@@ -159,7 +161,6 @@ flags:
     --stack=: Override default stack size
     --static: Force output to be statically linked
     --strip: Omit debug symbols
-    --structured-cfg: Force SPIR-V kernels to use structured control flow
     --subsystem=: Windows /SUBSYSTEM:<subsystem> to the linker
     --sysroot=: Set the system root directory (usually /)
     --target=: Target triple (e.g. x86_64-linux-gnu)

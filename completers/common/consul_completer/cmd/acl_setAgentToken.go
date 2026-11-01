@@ -20,8 +20,8 @@ func init() {
 
 	carapace.Gen(acl_setAgentTokenCmd).PositionalCompletion(
 		carapace.ActionValuesDescribed(
-			"default", "The token for both internal agent operations and operations initiated by the HTTP and DNS interfaces",
 			"agent", "The token that the agent will use for internal agent operations.",
+			"default", "The token for both internal agent operations and operations initiated by the HTTP and DNS interfaces",
 			"master", "This sets the token that can be used to access the Agent APIs in the event that the ACL datacenter cannot be reached.",
 			"replication", "This is the token that the agent will use for replication operations.",
 		),

@@ -23,9 +23,9 @@ func init() {
 	carapace.Gen(getCmd).FlagCompletion(carapace.ActionMap{
 		"file-path": carapace.ActionFiles(),
 		"output-format": carapace.ActionValuesDescribed(
-			"value", "Extract the value outputting it in a text format",
 			"json", "Output format in JSON",
 			"toml", "Output format in TOML",
+			"value", "Extract the value outputting it in a text format",
 		),
 	})
 }

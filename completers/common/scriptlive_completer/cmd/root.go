@@ -32,7 +32,7 @@ func init() {
 	rootCmd.Flags().BoolP("version", "V", false, "display version")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"echo":       carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
+		"echo":       carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"log-in":     carapace.ActionFiles(),
 		"log-io":     carapace.ActionFiles(),
 		"log-timing": carapace.ActionFiles(),

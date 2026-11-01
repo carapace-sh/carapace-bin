@@ -3,13 +3,24 @@ name: format-rev
 description: 'EXPERIMENTAL: Pretty format revisions on demand'
 group: low-level interrogator
 flags:
-    --format=: Pretty format to use
-    --notes?*: Display notes for pretty format
-    --null-input: Use NUL for input termination
-    --null-output: Use NUL for output termination
-    --stdin-mode=: How revs are processed
-    -z, --null: Use NUL for input and output termination
-
+  --format=: pretty format to use
+  --notes?*: display notes for pretty format
+  --null-input: use NUL for input termination
+  --null-output: use NUL for output termination
+  --stdin-mode=: how revs are processed
+  -z, --null: use NUL for input and output termination
 documentation:
-  command: >-
-    Pretty format revisions from standard input. THIS COMMAND IS EXPERIMENTAL; THE BEHAVIOR MAY CHANGE.
+  command: Pretty format revisions from standard input. THIS COMMAND IS EXPERIMENTAL; THE BEHAVIOR MAY CHANGE.
+  flag:
+    format: |-
+      Format of the resulting archive. Possible values are `tar`, `zip`,
+      `tar.gz`, `tgz`, and any format defined using the configuration option
+      `tar.<format>.command`. If `--format` is not given, and the output file
+      is specified, the format is inferred from the filename if possible (e.g.
+      writing to `foo.zip` makes the output to be in the `zip` format).
+      Otherwise the output format is `tar`.
+    notes: display notes for pretty format
+    "null": use NUL for input and output termination
+    null-input: use NUL for input termination
+    null-output: use NUL for output termination
+    stdin-mode: how revs are processed

@@ -24,8 +24,7 @@ documentation:
     This can be used to make a mapping from patch ID to commit ID for a
     set or range of commits.
   flag:
-    stable: |-
-      Use a "stable" sum of hashes as the patch ID. With this option:
+    stable: 'Use a "stable" sum of hashes as the patch ID. With this option:'
     unstable: |-
       Use an "unstable" hash as the patch ID. With this option,
       the result produced is compatible with the patch ID value produced

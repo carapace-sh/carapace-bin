@@ -37,19 +37,20 @@ func init() {
 	filesCmd.Flags().CountP("refresh", "y", "download fresh package databases from the server")
 	filesCmd.Flags().BoolP("regex", "x", false, "enable searching using regular expressions")
 	filesCmd.Flags().StringP("root", "r", "", "set an alternate installation root")
-	filesCmd.Flags().Bool("sysroot", false, "operate on a mounted guest system (root-only)")
+	filesCmd.Flags().String("sysroot", "", "operate on a mounted guest system (root-only)")
 	filesCmd.Flags().BoolP("verbose", "v", false, "be verbose")
 
 	carapace.Gen(filesCmd).FlagCompletion(carapace.ActionMap{
 		"arch":     carapace.ActionValues("i686", "x86_64"),
 		"cachedir": carapace.ActionDirectories(),
-		"color":    carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
+		"color":    carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"config":   carapace.ActionFiles(),
 		"dbpath":   carapace.ActionFiles(),
 		"gpgdir":   carapace.ActionDirectories(),
 		"hookdir":  carapace.ActionDirectories(),
 		"logfile":  carapace.ActionFiles(),
 		"root":     carapace.ActionDirectories(),
+		"sysroot":  carapace.ActionDirectories(),
 	})
 
 	carapace.Gen(filesCmd).PositionalAnyCompletion(

@@ -15,15 +15,16 @@ var pub_upgradeCmd = &cobra.Command{
 func init() {
 	carapace.Gen(pub_upgradeCmd).Standalone()
 
-	pub_upgradeCmd.Flags().StringP("directory", "C", "", "Run this in the directory<dir>.")
+	pub_upgradeCmd.Flags().StringP("directory", "C", "", "Run this in the directory <dir>.")
 	pub_upgradeCmd.Flags().BoolP("dry-run", "n", false, "Report what dependencies would change but don't change any.")
+	pub_upgradeCmd.Flags().Bool("example", false, "Also run in `example/` (if it exists).")
 	pub_upgradeCmd.Flags().BoolP("help", "h", false, "Print this usage information.")
 	pub_upgradeCmd.Flags().Bool("major-versions", false, "Upgrades packages to their latest resolvable versions, and updates pubspec.yaml.")
+	pub_upgradeCmd.Flags().Bool("no-example", false, "Do not run in `example/`.")
 	pub_upgradeCmd.Flags().Bool("no-offline", false, "Do not use cached packages instead of accessing the network.")
-	pub_upgradeCmd.Flags().Bool("no-precompile", false, "Do not precompile executables in immediate dependencies.")
-	pub_upgradeCmd.Flags().Bool("null-safety", false, "Upgrade constraints in pubspec.yaml to null-safety versions")
 	pub_upgradeCmd.Flags().Bool("offline", false, "Use cached packages instead of accessing the network.")
-	pub_upgradeCmd.Flags().Bool("precompile", false, "Precompile executables in immediate dependencies.")
+	pub_upgradeCmd.Flags().Bool("tighten", false, "Updates lower bounds in pubspec.yaml to match the resolved version.")
+	pub_upgradeCmd.Flags().Bool("unlock-transitive", false, "Also upgrades the transitive dependencies of the listed dependencies.")
 	pubCmd.AddCommand(pub_upgradeCmd)
 
 	carapace.Gen(pub_upgradeCmd).FlagCompletion(carapace.ActionMap{

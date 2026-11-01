@@ -10,10 +10,10 @@ func AddSourceFlags(cmd *cobra.Command) {
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
 		"from": carapace.ActionValuesDescribed(
-			"system", "all system sources",
-			"repositories", "exclude installed database",
 			"installed", "exclude normal repositories",
 			"none", "commandline repositories only",
+			"repositories", "exclude installed database",
+			"system", "all system sources",
 		),
 	})
 

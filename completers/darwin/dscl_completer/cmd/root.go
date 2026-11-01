@@ -22,17 +22,17 @@ func init() {
 	rootCmd.Flags().BoolP("interactive", "i", false, "Interactive mode")
 	rootCmd.Flags().BoolP("plist", "p", false, "Output in plist format")
 	rootCmd.Flags().BoolP("quiet", "q", false, "Quiet mode")
-	rootCmd.Flags().BoolP("raw", "raw", false, "Print raw data")
-	rootCmd.Flags().BoolP("url", "url", false, "Print data as URL-encoded strings")
+	rootCmd.Flags().Bool("raw", false, "Print raw data")
+	rootCmd.Flags().Bool("url", false, "Print data as URL-encoded strings")
 	rootCmd.Flags().BoolP("verbose", "v", false, "Verbose mode")
 
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.ActionValuesDescribed(
-			"localhost", "Local directory node",
-			"localonly", "Separate DirectoryService daemon with only the Local plugin",
-			"/Local/Default", "Local default directory",
 			"/Active Directory", "Active directory",
 			"/LDAPv3", "LDAP v3 directory",
+			"/Local/Default", "Local default directory",
+			"localhost", "Local directory node",
+			"localonly", "Separate DirectoryService daemon with only the Local plugin",
 		),
 		carapace.ActionValuesDescribed(
 			"append", "Append to an attribute",

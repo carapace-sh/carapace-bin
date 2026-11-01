@@ -6,9 +6,10 @@ import (
 )
 
 var aliasCmd = &cobra.Command{
-	Use:   "alias [name]",
-	Short: "Create a shell alias for gh stack",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "alias [name]",
+	Short:   "Create a shell alias for gh stack",
+	GroupID: "utils",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

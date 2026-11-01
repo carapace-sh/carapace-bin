@@ -14,7 +14,9 @@ var deprecateCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(deprecateCmd).Standalone()
+	deprecateCmd.Flags().Bool("dry-run", false, "only report changes")
 	deprecateCmd.Flags().String("otp", "", "one-time password")
+	deprecateCmd.Flags().String("registry", "", "base URL of the npm registry")
 
 	rootCmd.AddCommand(deprecateCmd)
 

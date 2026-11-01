@@ -7,7 +7,7 @@ import (
 
 var schedule_deleteCmd = &cobra.Command{
 	Use:   "delete <id> [flags]",
-	Short: "Delete the schedule with the specified ID.",
+	Short: "Delete a pipeline schedule by ID.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
@@ -15,6 +15,4 @@ func init() {
 	carapace.Gen(schedule_deleteCmd).Standalone()
 
 	scheduleCmd.AddCommand(schedule_deleteCmd)
-
-	// TODO positional completion
 }

@@ -28,18 +28,9 @@ This produces one or more `.go` files in a temp directory containing:
 
 Copy the generated files into the carapace-bin completer directory (e.g. `cmd/traverse/`).
 
-## Step 2: Add Standandalone Mode
+> The codegen `init()` already includes `carapace.Gen(rootCmd).Standalone()` — no need to add it manually.
 
-In the `init()` function, add `carapace.Gen(rootCmd).Standalone()` so the completer runs as a standalone completion provider:
-
-```go
-func init() {
-	carapace.Gen(rootCmd).Standalone()
-	// ... flag definitions ...
-}
-```
-
-## Step 3: Translate Completion Actions
+## Step 2: Translate Completion Actions
 
 Add `FlagCompletion`, `PositionalCompletion`, and/or `PositionalAnyCompletion` calls to `init()`. The mappings below translate YAML spec macros and modifiers to their Go equivalents.
 
@@ -80,6 +71,7 @@ Modifiers are applied to the preceding action using the `|||` delimiter in specs
 | `$list(separator)` | `.List(separator)` | |
 | `$multiparts(chars...)` | `.MultiParts(chars...)` | |
 | `$nospace(chars)` | `.NoSpace(chars...)` | |
+| `$noprefix(prefix)` | `.NoPrefix(prefix)` | Prevent common-prefix insertion (for given prefixes, or all) |
 | `$prefix(prefix)` | `.Prefix(prefix)` | |
 | `$retain(pattern...)` | `.Retain(pattern...)` | |
 | `$shift(n)` | `.Shift(n)` | |

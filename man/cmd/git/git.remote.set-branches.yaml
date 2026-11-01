@@ -14,3 +14,5 @@ documentation:
 
     With `--add`, instead of replacing the list of currently tracked
     branches, adds to that list.
+  flag:
+    add: add branch

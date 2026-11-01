@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugsidedata
+description: -c|-m|FILE REV
+hidden: true
+flags:
+    --dir=: open directory manifest
+    -c, --changelog: open changelog
+    -m, --manifest: open manifest
+documentation:
+    command: |
+        dump the side data for a cl/manifest/file revision
+
+        Use --verbose to dump the sidedata content.

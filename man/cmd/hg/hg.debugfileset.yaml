@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugfileset
+description: parse and apply a fileset specification
+hidden: true
+flags:
+    --all-files: test files from all revisions and working directory
+    -p, --show-stage=*: print parsed tree at the given stage
+    -r, --rev=: apply the filespec on this revision
+    -s, --show-matcher: print internal representation of matcher
+documentation:
+    command: |
+        parse and apply a fileset specification

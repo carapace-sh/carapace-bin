@@ -1,2 +1,27 @@
-name: push
-description: push a subtree
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: push <repository> [+][<local-commit>:]<remote-ref>
+description: Push your subtree to different branches of the remote repository
+flags:
+  --annotate=: add <annotation> as a prefix to each commit message
+  --ignore-joins: regenerate the entire history
+  --onto=: specify the commit ID <onto> to build history from
+  --rejoin: merge the newly created synthetic history back into your main project
+  -b, --branch=: create a new branch called <branch> that contains the new history
+  -m, --message=: specify <message> as the commit message for the merge commit
+documentation:
+  flag:
+    annotate: Make an unsigned, annotated tag object
+    onto: |-
+      Starting point at which to create the new commits. If `--onto` is not specified, the starting point is `<upstream>`. May be any valid commit, and not just an existing branch name. As a special case, you may use "A...B" as a shortcut for the merge base of A and B if there is exactly one merge base.
+    branch: |-
+      Point the newly created `HEAD` to _<name>_ branch instead of the branch
+      pointed to by the cloned repository's `HEAD`. In a non-bare repository,
+      this is the branch that will be checked out.
+      `--branch` can also take tags and detaches the `HEAD` at that commit
+      in the resulting repository.
+    message: |-
+      Use the given note message (instead of prompting).
+      If multiple `-m` options are given, their values
+      are concatenated as separate paragraphs.
+    ignore-joins: regenerate the entire history
+    rejoin: merge the newly created synthetic history back into your main project

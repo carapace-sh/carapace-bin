@@ -8,12 +8,12 @@ import "github.com/carapace-sh/carapace"
 //	postgresql
 func ActionDatabases() carapace.Action {
 	return carapace.ActionValues(
-		"sqlite3",
-		"postgresql",
-		"mysql",
-		"oracle",
-		"sqlserver",
 		"jdbc",
+		"mysql",
 		"none",
+		"oracle",
+		"postgresql",
+		"sqlite3",
+		"sqlserver",
 	).Tag("databases").Uid("rails", "database")
 }

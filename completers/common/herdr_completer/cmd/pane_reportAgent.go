@@ -22,6 +22,8 @@ func init() {
 	pane_reportAgentCmd.Flags().String("seq", "", "")
 	pane_reportAgentCmd.Flags().String("source", "", "")
 	pane_reportAgentCmd.Flags().String("state", "", "")
+	pane_reportAgentCmd.MarkFlagRequired("agent")
+	pane_reportAgentCmd.MarkFlagRequired("source")
 	pane_reportAgentCmd.MarkFlagRequired("state")
 	paneCmd.AddCommand(pane_reportAgentCmd)
 
@@ -29,6 +31,6 @@ func init() {
 
 	carapace.Gen(pane_reportAgentCmd).FlagCompletion(carapace.ActionMap{
 		"agent-session-path": carapace.ActionFiles(),
-		"state":              carapace.ActionValues("idle", "working", "blocked", "unknown"),
+		"state":              carapace.ActionValues("blocked", "idle", "unknown", "working"),
 	})
 }

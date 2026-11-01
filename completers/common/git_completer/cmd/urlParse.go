@@ -19,7 +19,7 @@ func init() {
 	rootCmd.AddCommand(urlParseCmd)
 
 	carapace.Gen(urlParseCmd).FlagCompletion(carapace.ActionMap{
-		"component": carapace.ActionValues("scheme", "user", "host", "port", "path"),
+		"component": carapace.ActionValues("host", "path", "port", "scheme", "user"),
 	})
 
 	carapace.Gen(urlParseCmd).PositionalAnyCompletion(

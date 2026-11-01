@@ -35,7 +35,7 @@ func ActionCliIds(opts CliIdsOpts) carapace.Action {
 			batch := carapace.Batch()
 
 			if opts.Changes {
-				for _, unassigned := range status.UnassignedChanges {
+				for _, unassigned := range status.UncommittedChanges {
 					batch = append(batch, carapace.ActionStyledValuesDescribed(unassigned.CliID, unassigned.Description(), styleForChangeType(unassigned.ChangeType)).UidF(
 						func(s string, uc uid.Context) (*url.URL, error) {
 							return git.Uid("change")(unassigned.FilePath, uc)
@@ -45,7 +45,7 @@ func ActionCliIds(opts CliIdsOpts) carapace.Action {
 
 			if opts.Stacks {
 				// TODO when to add this - is stacks as condition correct?
-				batch = append(batch, carapace.ActionValuesDescribed("zz", "unstaged area").UidF(
+				batch = append(batch, carapace.ActionValuesDescribed("@", "uncommitted area").UidF(
 					func(s string, uc uid.Context) (*url.URL, error) {
 						return git.Uid("status")("", uc)
 					}))

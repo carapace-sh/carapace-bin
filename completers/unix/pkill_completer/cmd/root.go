@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"runtime"
+
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/env"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
@@ -63,7 +65,7 @@ func init() {
 		"pidfile":   carapace.ActionFiles(),
 		"runstates": ps.ActionProcessStates().UniqueList(","),
 		"session":   os.ActionSessionIds().UniqueList(","),
-		"signal":    ps.ActionKillSignals(),
+		"signal":    ps.ActionKillSignals(runtime.GOOS),
 		"terminal":  os.ActionTerminals().UniqueList(","),
 		"uid":       os.ActionUsers(),
 	})

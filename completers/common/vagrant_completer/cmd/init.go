@@ -25,7 +25,7 @@ func init() {
 	carapace.Gen(initCmd).FlagCompletion(carapace.ActionMap{
 		"box-version": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) > 0 {
-				return vagrant.ActionCloudBoxVersions(c.Args[0], "")
+				return vagrant.ActionCloudBoxVersions(vagrant.CloudBoxVersionsOpts{Box: c.Args[0]})
 			}
 			return carapace.ActionValues("")
 		}),

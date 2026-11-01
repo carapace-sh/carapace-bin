@@ -34,8 +34,11 @@ func init() {
 	tagCmd.Flags().String("merged", "", "print only tags that are merged")
 	tagCmd.Flags().StringP("message", "m", "", "tag message")
 	tagCmd.Flags().BoolS("n", "n", false, "print <n> lines of each tag message")
+	tagCmd.Flags().Bool("no-column", false, "do not show tag list in columns")
 	tagCmd.Flags().String("no-contains", "", "print only tags that don't contain the commit")
+	tagCmd.Flags().Bool("no-create-reflog", false, "do not create a reflog")
 	tagCmd.Flags().String("no-merged", "", "print only tags that are not merged")
+	tagCmd.Flags().Bool("no-sign", false, "do not sign the annotated tag")
 	tagCmd.Flags().Bool("omit-empty", false, "do not output empty tags")
 	tagCmd.Flags().String("points-at", "", "print only tags of the object")
 	tagCmd.Flags().BoolP("sign", "s", false, "annotated and GPG-signed tag")
@@ -49,6 +52,7 @@ func init() {
 	carapace.Gen(tagCmd).FlagCompletion(carapace.ActionMap{
 		"cleanup":     git.ActionCleanupModes(),
 		"color":       git.ActionColorModes(),
+		"column":      git.ActionColumnLayoutModes(),
 		"contains":    git.ActionRefs(git.RefOption{}.Default()),
 		"file":        carapace.ActionFiles(),
 		"local-user":  os.ActionGpgKeyIds(),
@@ -56,6 +60,8 @@ func init() {
 		"no-contains": git.ActionRefs(git.RefOption{}.Default()),
 		"no-merged":   git.ActionRefs(git.RefOption{}.Default()),
 		"points-at":   git.ActionRefs(git.RefOption{}.Default()),
+		"sort":        git.ActionFieldNames(),
+		"trailer":     git.ActionTrailers(),
 	})
 
 	carapace.Gen(tagCmd).PositionalAnyCompletion(

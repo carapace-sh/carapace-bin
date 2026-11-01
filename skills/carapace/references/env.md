@@ -189,7 +189,7 @@ Merges two sources:
 1. `actionKnownEnvironmentVariables()` — all groups from `knownVariables` where `Condition` passes
 2. `actionCustomEnvironmentVariables()` — all YAML files from `~/.config/carapace/variables/`
 
-Also includes OS-level environment variables (from `os.ActionEnvironmentVariables()`) styled in blue.
+OS-level environment variables (from `os.ActionEnvironmentVariables()`, styled in blue) are **not** part of `ActionNames` — they are only added by the combined `ActionNameValues` completion for its name position.
 
 ### Value Completion (`ActionValues`)
 

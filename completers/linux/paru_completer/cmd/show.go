@@ -17,7 +17,8 @@ func init() {
 	carapace.Gen(showCmd).Standalone()
 
 	showCmd.Flags().BoolP("complete", "c", false, "Used for completions")
-	showCmd.Flags().BoolP("news", "w", false, "Print arch news")
+	showCmd.Flags().CountP("news", "w", "Print arch news")
+	showCmd.Flags().BoolP("order", "o", false, "Print buildorder for targets")
 	showCmd.Flags().BoolP("stats", "s", false, "Display system package statistics")
 	common.AddNewFlags(showCmd)
 }

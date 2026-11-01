@@ -41,6 +41,6 @@ func init() {
 		"in":      carapace.ActionFiles(".json"),
 		"out":     carapace.ActionFiles(),
 		"profile": carapace.ActionFiles(),
-		"term":    carapace.ActionValues("iterm2", "xrdb", "xresources", "terminator", "konsole", "terminal", "remmina", "termite", "tilda", "xcfe"),
+		"term":    carapace.ActionValues("iterm2", "konsole", "remmina", "terminal", "terminator", "termite", "tilda", "xcfe", "xrdb", "xresources"),
 	})
 }

@@ -10,6 +10,7 @@ flags:
   --list: synonym to more=-1
   --merge-base: show possible merge bases
   --more?: show <n> more commits after the common ancestor
+  --name: opposite of --no-name
   --no-name: suppress naming strings
   --sha1-name: name commits with their object names
   --sparse: show merges reachable from only one tip
@@ -28,3 +29,63 @@ documentation:
 
     It uses `showbranch.default` multi-valued configuration items if
     no <rev> or <glob> is given on the command line.
+  flag:
+    date-order: |-
+      Show no parents before all of its children are shown, but
+      otherwise show commits in the commit timestamp order.
+    list: Show all available formats.
+    name: |-
+      Set the submodule's name to the given string instead of defaulting to its path. _<name>_
+      must be valid as a directory name and may not end with a `/`.
+    sparse: |-
+      Employ a sparse-checkout, with only files in the toplevel
+      directory initially being present.  The
+      [git-sparse-checkout](cmd://git/sparse-checkout) command can be used to grow the
+      working directory as needed.
+    topo-order: |-
+      Show no parents before all of its children are shown, and
+      avoid showing commits on multiple lines of history
+      intermixed.
+      
+      For example, in a commit history like this:
+      
+      ```
+      
+        ---1----2----4----7
+      \	       \
+      3----5----6----8---
+      
+      ```
+      
+      where the numbers denote the order of commit timestamps, `git rev-list` and friends with `--date-order` show the commits in the
+      timestamp order: 8 7 6 5 4 3 2 1.
+      
+      With `--topo-order`, they would show 8 6 5 3 7 4 2 1 (or 8 7 4 2 6 5
+      3 1); some older commits are shown before newer ones in order to
+      avoid showing the commits from two parallel development track mixed
+      together.
+    all: |-
+      Update the index not only where the working tree has a file matching **\<pathspec\>**
+      but also where the index already has an entry.
+      This adds, modifies, and removes index entries to match the working tree.
+      
+      If no **\<pathspec\>** is given when `-A` option is used,
+      all files in the entire working tree are updated
+      (old versions of Git used to limit the update to the current directory and its subdirectories).
+    color: |-
+      Turn off branch colors, even when the configuration file gives the
+      default to color output.
+      Same as `--color=never`.
+    reflog: |-
+      Pretend as if all objects mentioned by reflogs are listed on the
+      command line as _<commit>_.
+    remotes: |-
+      List or delete (if used with `-d`) the remote-tracking branches.
+      Combine with `--list` to match the optional pattern(s).
+    no-name: suppress naming strings
+    current: include the current branch
+    independent: show refs unreachable from any other ref
+    merge-base: show possible merge bases
+    more: show <n> more commits after the common ancestor
+    sha1-name: name commits with their object names
+    topics: show only commits not on the first branch

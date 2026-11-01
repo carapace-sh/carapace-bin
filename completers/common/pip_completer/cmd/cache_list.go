@@ -18,6 +18,6 @@ func init() {
 	cacheCmd.AddCommand(cache_listCmd)
 
 	carapace.Gen(cache_listCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("human", "abspath"),
+		"format": carapace.ActionValues("abspath", "human"),
 	})
 }

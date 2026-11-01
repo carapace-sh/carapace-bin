@@ -94,7 +94,7 @@ func init() {
 		"output.tab.path":          action.ActionOutputPaths(),
 		"output.teamcity.path":     action.ActionOutputPaths(),
 		"output.text.path":         action.ActionOutputPaths(),
-		"path-mode":                carapace.ActionValues("empty", "abs"),
+		"path-mode":                carapace.ActionValues("abs", "empty"),
 		"skip-dirs":                carapace.ActionDirectories().List(","),
 		"skip-files":               carapace.ActionFiles().List(","),
 		"trace-path":               carapace.ActionFiles(),

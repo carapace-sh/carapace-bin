@@ -16,6 +16,4 @@ func init() {
 
 	config_state_hints_clearCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	config_state_hintsCmd.AddCommand(config_state_hints_clearCmd)
-
-	// TODO complete names
 }

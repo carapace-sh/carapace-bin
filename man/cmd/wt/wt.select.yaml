@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: select
+description: 'Deprecated: use wt switch instead'
+hidden: true
+flags:
+    --branches: Include branches without worktrees
+    --remotes: Include remote branches
+    -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        C:
+            - $files
+        config:
+            - $files
+documentation:
+    command: |-
+        Deprecated: use wt switch instead
+
+        Interactive worktree picker (now integrated into wt switch).

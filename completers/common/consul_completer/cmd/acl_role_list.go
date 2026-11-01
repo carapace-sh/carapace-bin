@@ -22,6 +22,6 @@ func init() {
 	acl_roleCmd.AddCommand(acl_role_listCmd)
 
 	carapace.Gen(acl_role_listCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("pretty", "json"),
+		"format": carapace.ActionValues("json", "pretty"),
 	})
 }

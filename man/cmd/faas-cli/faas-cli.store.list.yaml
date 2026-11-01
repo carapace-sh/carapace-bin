@@ -2,4 +2,5 @@
 name: list
 description: List available OpenFaaS functions in a store
 flags:
+    -j, --json: Output functions as JSON
     -v, --verbose: Enable verbose output to see the full description of each function in the store

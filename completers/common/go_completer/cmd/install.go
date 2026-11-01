@@ -18,10 +18,10 @@ func init() {
 	carapace.Gen(installCmd).Standalone()
 	installCmd.Flags().SetInterspersed(false)
 
-	installCmd.Flags().BoolS("i", "i", false, "install the packages that are dependencies of the target")
 	installCmd.Flags().BoolS("json", "json", false, "Emit build output in JSON suitable for automated processing")
 	installCmd.Flags().StringS("o", "o", "", "set output file or directory")
 	common.AddBuildFlags(installCmd)
+	common.AddCoverFlags(installCmd)
 	rootCmd.AddCommand(installCmd)
 
 	carapace.Gen(installCmd).FlagCompletion(carapace.ActionMap{

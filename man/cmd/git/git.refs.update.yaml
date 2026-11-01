@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: update
+description: Update a reference
+flags:
+  --create-reflog: create a reflog
+  --message=: reason of the update
+  --no-deref: update <refname> not the one it points to
+documentation:
+  command: |-
+    Update the given reference to point at `<new-value>`. If `<old-value>`
+    is given, the reference is only updated after verifying that it
+    currently contains `<old-value>`. As a special case, an all-zeroes
+    `<new-value>` deletes the branch, whereas an all-zeroes `<old-value>`
+    ensures that the branch does not yet exist.
+  flag:
+    create-reflog: |-
+      Create a reflog for the reference even if one would not ordinarily be
+      created.
+    message: |-
+      Use the given <reason> string for the reflog entry associated with the
+      update. An empty message is rejected.
+    no-deref: |-
+      Operate on <ref> itself rather than the reference it points to via a
+      symbolic ref.

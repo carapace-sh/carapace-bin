@@ -30,10 +30,12 @@ func init() {
 	workspace_export_condaExplicitSpecCmd.Flags().Bool("no-install", false, "Don't modify the environment, only modify the lock file")
 	workspace_export_condaExplicitSpecCmd.Flags().Bool("no-ref-links", false, "Disallow ref links (copy-on-write) during package installation")
 	workspace_export_condaExplicitSpecCmd.Flags().Bool("no-symbolic-links", false, "Disallow symbolic links during package installation")
+	workspace_export_condaExplicitSpecCmd.Flags().Bool("offline", false, "Run without network access, using only cached data. Commands fail if data is missing from the cache. Pass `--offline=false` to override an `offline` setting from the configuration")
 	workspace_export_condaExplicitSpecCmd.Flags().String("pinning-strategy", "", "Set pinning strategy")
 	workspace_export_condaExplicitSpecCmd.Flags().StringSliceP("platform", "p", nil, "The platform to render. Can be repeated for multiple platforms. Defaults to all platforms available for selected environments")
 	workspace_export_condaExplicitSpecCmd.Flags().String("pypi-keyring-provider", "", "Specifies whether to use the keyring to look up credentials for PyPI")
 	workspace_export_condaExplicitSpecCmd.Flags().Bool("run-post-link-scripts", false, "Run post-link scripts (insecure)")
+	workspace_export_condaExplicitSpecCmd.Flags().StringP("script", "s", "", "The path to a script with an embedded manifest: PEP 723 Python metadata or a conda-script block. Pixi run also accepts an HTTP(S) URL or '-' for stdin")
 	workspace_export_condaExplicitSpecCmd.Flags().Bool("tls-no-verify", false, "Do not verify the TLS certificate of the server")
 	workspace_export_condaExplicitSpecCmd.Flags().String("tls-root-certs", "", "Which TLS root certificates to use: 'webpki' (bundled Mozilla roots) or 'system' (system store)")
 	workspace_export_condaExplicitSpecCmd.Flags().Bool("use-environment-activation-cache", false, "Use environment activation cache (experimental)")
@@ -43,9 +45,10 @@ func init() {
 		"auth-file":             carapace.ActionFiles(),
 		"config-file":           carapace.ActionFiles(),
 		"environment":           pixi.ActionEnvironments(),
-		"pinning-strategy":      carapace.ActionValues("semver", "minor", "major", "latest-up", "exact-version", "no-pin"),
+		"pinning-strategy":      carapace.ActionValues("exact-version", "latest-up", "major", "minor", "no-pin", "semver"),
 		"platform":              pixi.ActionPlatforms(),
 		"pypi-keyring-provider": carapace.ActionValues("disabled", "subprocess"),
-		"tls-root-certs":        carapace.ActionValues("webpki", "system"),
+		"script":                carapace.ActionFiles(),
+		"tls-root-certs":        carapace.ActionValues("system", "webpki"),
 	})
 }

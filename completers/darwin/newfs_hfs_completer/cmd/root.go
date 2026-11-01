@@ -2,6 +2,8 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/fs"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
 	"github.com/spf13/cobra"
 )
 
@@ -32,6 +34,12 @@ func init() {
 	rootCmd.Flags().StringS("i", "i", "", "First CNID")
 	rootCmd.Flags().StringS("n", "n", "", "Node size list")
 	rootCmd.Flags().StringS("v", "v", "", "Volume name")
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"G": os.ActionGroups(),
+		"U": os.ActionUsers(),
+		"v": fs.ActionLabels(),
+	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

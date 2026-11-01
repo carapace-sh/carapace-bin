@@ -22,7 +22,7 @@ func init() {
 
 	carapace.Gen(statsCmd).FlagCompletion(carapace.ActionMap{
 		"host": action.ActionSnapshotHosts(statsCmd),
-		"mode": carapace.ActionValues("restore-size", "files-by-contents", "blobs-per-file", "raw-data"),
+		"mode": carapace.ActionValues("blobs-per-file", "files-by-contents", "raw-data", "restore-size"),
 		"path": carapace.ActionFiles(),
 		"tag":  action.ActionSnapshotTags(statsCmd).UniqueList(","),
 	})

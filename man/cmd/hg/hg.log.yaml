@@ -1,0 +1,159 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: log
+aliases:
+    - history
+description: show revision history of entire repository or files
+group: navigation
+flags:
+    --follow-first: only follow the first parent of merge changesets (DEPRECATED)
+    --only-branch=: show only changesets within the given named branch (DEPRECATED)
+    --removed: include revisions where files were removed
+    --stat: output diffstat-style summary of changes
+    --style=: display using template map file (DEPRECATED)
+    -B, --bookmark=*: show changesets within the given bookmark
+    -C, --copies: show copied files
+    -G, --graph: show the revision DAG
+    -I, --include=*: include names matching the given patterns
+    -L, --line-range=*: follow line range of specified file (EXPERIMENTAL)
+    -M, --no-merges: do not show merges
+    -P, --prune=*: do not display revision or any of its ancestors
+    -T, --template=: display with template
+    -X, --exclude=*: exclude names matching the given patterns
+    -b, --branch=*: show changesets within the given named branch
+    -d, --date=: show revisions matching date spec
+    -f, --follow: follow changeset history, or file history across copies and renames
+    -g, --git: use git extended diff format
+    -k, --keyword=*: do case-insensitive search for a given text
+    -l, --limit=: limit number of changes displayed
+    -m, --only-merges: show only merges (DEPRECATED) (use -r "merge()" instead)
+    -p, --patch: show patch
+    -r, --rev=*: revisions to select or follow from
+    -u, --user=*: revisions committed by user
+documentation:
+    command: |
+        show revision history of entire repository or files
+
+        Print the revision history of the specified files or the entire
+        project.
+
+        If no revision range is specified, the default is `tip:0` unless
+        --follow is set.
+
+        File history is shown without following rename or copy history of
+        files. Use -f/--follow with a filename to follow history across
+        renames and copies. --follow without a filename will only show
+        ancestors of the starting revisions. The starting revisions can be
+        specified by -r/--rev, which default to the working directory parent.
+
+        By default this command prints revision number and changeset id,
+        tags, non-trivial parents, user, date and time, and a summary for
+        each commit. When the -v/--verbose switch is used, the list of
+        changed files and full commit message are shown.
+
+        With --graph the revisions are shown as an ASCII art DAG with the most
+        recent changeset at the top.
+        'o' is a changeset, '@' is a working directory parent, '%' is a changeset
+        involved in an unresolved merge conflict, '_' closes a branch,
+        'x' is obsolete, '*' is unstable, and '+' represents a fork where the
+        changeset from the lines below is a parent of the 'o' merge on the same
+        line.
+        Paths in the DAG are represented with '|', '/' and so forth. ':' in place
+        of a '|' indicates one or more revisions in a path are omitted.
+
+        .. container:: verbose
+
+           Use -L/--line-range FILE,M:N options to follow the history of lines
+           from M to N in FILE. With -p/--patch only diff hunks affecting
+           specified line range will be shown. This option requires --follow;
+           it can be specified multiple times. Currently, this option is not
+           compatible with --graph. This option is experimental.
+
+        .. note::
+
+           `hg log --patch` may generate unexpected diff output for merge
+           changesets, as it will only compare the merge changeset against
+           its first parent. Also, only files different from BOTH parents
+           will appear in files:.
+
+        .. note::
+
+           For performance reasons, `hg log FILE` may omit duplicate changes
+           made on branches and will not show removals or mode changes. To
+           see all such changes, use the --removed switch.
+
+        .. container:: verbose
+
+           .. note::
+
+              The history resulting from -L/--line-range options depends on diff
+              options; for instance if white-spaces are ignored, respective changes
+              with only white-spaces in specified line range will not be listed.
+
+        .. container:: verbose
+
+          Some examples:
+
+          - changesets with full descriptions and file lists::
+
+              hg log -v
+
+          - changesets ancestral to the working directory::
+
+              hg log -f
+
+          - last 10 commits on the current branch::
+
+              hg log -l 10 -b .
+
+          - changesets showing all modifications of a file, including removals::
+
+              hg log --removed file.c
+
+          - all changesets that touch a directory, with diffs, excluding merges::
+
+              hg log -Mp lib/
+
+          - all revision numbers that match a keyword::
+
+              hg log -k bug --template "{rev}\n"
+
+          - the full hash identifier of the working directory parent::
+
+              hg log -r . --template "{node}\n"
+
+          - list available log templates::
+
+              hg log -T list
+
+          - check if a given changeset is included in a tagged release::
+
+              hg log -r "a21ccf and ancestor(1.9)"
+
+          - find all changesets by some user in a date range::
+
+              hg log -k alice -d "may 2008 to jul 2008"
+
+          - summary of all changesets after the last tag::
+
+              hg log -r "last(tagged())::" --template "{desc|firstline}\n"
+
+          - changesets touching lines 13 to 23 for file.c::
+
+              hg log -L file.c,13:23
+
+          - changesets touching lines 13 to 23 for file.c and lines 2 to 6 of
+            main.c with patch::
+
+              hg log -L file.c,13:23 -L main.c,2:6 -p
+
+        See `hg help dates` for a list of formats valid for -d/--date.
+
+        See `hg help revisions` for more about specifying and ordering
+        revisions.
+
+        See `hg help templates` for more about pre-packaged styles and
+        specifying custom templates. The default template used by the log
+        command can be customized via the `command-templates.log` configuration
+        setting.
+
+        Returns 0 on success.

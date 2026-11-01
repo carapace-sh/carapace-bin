@@ -23,11 +23,11 @@ func init() {
 			carapace.ActionValues("%1", "%@"),
 		).ToA(),
 		carapace.ActionValuesDescribed(
+			"blur", "Fires when the window loses focus",
+			"focus", "Fires when the window gets input focus",
+			"mouse-click", "Fires when the mouse is clicked",
 			"mouse-enter", "Fires when the mouse enters a window",
 			"mouse-leave", "Fires when the mouse leaves a window",
-			"mouse-click", "Fires when the mouse is clicked",
-			"focus", "Fires when the window gets input focus",
-			"blur", "Fires when the window loses focus",
 		),
 	)
 }

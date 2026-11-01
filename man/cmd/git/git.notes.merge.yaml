@@ -2,11 +2,11 @@
 name: merge
 description: Merge the given notes ref into the current notes ref
 flags:
-  --abort: Abort/reset an in-progress git notes merge
-  --commit: Finalize an in-progress git notes merge
-  -q, --quiet: When merging notes, operate quietly
-  -s, --strategy=: Resolve notes conflicts using the given strategy
-  -v, --verbose: When merging notes, be more verbose
+  --abort: abort/reset an in-progress git notes merge
+  --commit: finalize an in-progress git notes merge
+  -q, --quiet: when merging notes, operate quietly
+  -s, --strategy=: resolve notes conflicts using the given strategy
+  -v, --verbose: when merging notes, be more verbose
 documentation:
   flag:
     abort: |-

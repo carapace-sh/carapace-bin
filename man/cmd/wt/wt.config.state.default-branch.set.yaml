@@ -3,3 +3,9 @@ name: set
 description: Set the default branch
 flags:
     -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        C:
+            - $files
+        config:
+            - $files

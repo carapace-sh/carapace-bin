@@ -78,13 +78,16 @@ func ActionRefs(refOption RefOption) carapace.Action {
 			case '^':
 				return ActionRefParents(c.Value[:index])
 			case '@':
+				if index == 0 && strings.HasPrefix(c.Value[index+1:], "{-") {
+					return ActionPriorCheckouts().Suffix("}").Prefix(c.Value[:index+1] + "{-")
+				}
 				return carapace.Batch(
 					time.ActionDateTime(time.DateTimeOpts{}),
-					carapace.ActionValues("yesterday", "push", "upstream").Style(style.Blue).Suffix("}"),
+					carapace.ActionValues("push", "upstream", "yesterday").Style(style.Blue).Suffix("}"),
 					carapace.ActionMultiParts(".", func(c carapace.Context) carapace.Action {
 						b := carapace.Batch()
 						if len(c.Parts)%2 == 1 {
-							b = append(b, carapace.ActionValues("year", "month", "week", "day", "hour", "second").Style(style.Blue).Suffix("."))
+							b = append(b, carapace.ActionValues("day", "hour", "month", "second", "week", "year").Style(style.Blue).Suffix("."))
 						}
 						if len(c.Parts) > 0 && len(c.Parts)%2 == 0 {
 							b = append(b, carapace.ActionValues("ago").Style(style.Blue).Suffix("}"))
@@ -98,6 +101,26 @@ func ActionRefs(refOption RefOption) carapace.Action {
 				return ActionRefCommits(c.Value[:index])
 			}
 		}).UidF(Uid("ref"))
+	})
+}
+
+// ActionRefObjectIDs completes the object id of the given ref
+//
+//	c9cac841afb9ac0265ef7b35b47194756b160d8f (current value of master)
+func ActionRefObjectIDs(ref string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		if ref == "" {
+			return carapace.ActionValues()
+		}
+		return carapace.ActionExecCommandE("git", "rev-parse", "--verify", "--quiet", ref)(func(output []byte, err error) carapace.Action {
+			if err != nil {
+				return carapace.ActionValues()
+			}
+			if oid := strings.TrimSpace(string(output)); oid != "" {
+				return carapace.ActionValuesDescribed(oid, "current value of "+ref)
+			}
+			return carapace.ActionValues()
+		})
 	})
 }
 

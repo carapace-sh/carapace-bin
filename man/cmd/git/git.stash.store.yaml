@@ -2,9 +2,13 @@
 name: store
 description: Store a given stash entry in the reflog
 flags:
-    -m, --message=: set description
-    -q, --quiet: suppress feedback messages
-
+  -m, --message=: set description
+  -q, --quiet: suppress feedback messages
 documentation:
-  command: >-
-    Store a given stash created via `git stash create` (which is a dangling merge commit) in the stash ref, updating the stash reflog. This is intended to be useful for scripts. It is probably not the command you want to use; see `git stash push` instead.
+  command: Store a given stash created via `git stash create` (which is a dangling merge commit) in the stash ref, updating the stash reflog. This is intended to be useful for scripts. It is probably not the command you want to use; see `git stash push` instead.
+  flag:
+    message: |-
+      Use the given note message (instead of prompting).
+      If multiple `-m` options are given, their values
+      are concatenated as separate paragraphs.
+    quiet: Be quiet. Only print error messages.

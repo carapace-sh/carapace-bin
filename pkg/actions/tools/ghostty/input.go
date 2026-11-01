@@ -10,7 +10,7 @@ import (
 //	path (Read a filepath and send the contents)
 func ActionInputTypes() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"raw", "Send raw text as-is",
 		"path", "Read a filepath and send the contents",
+		"raw", "Send raw text as-is",
 	).Tag("input types").Uid("ghostty", "input-type")
 }

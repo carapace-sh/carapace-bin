@@ -28,7 +28,7 @@ func init() {
 	generateCmd.AddCommand(generate_applicationCmd)
 
 	carapace.Gen(generate_applicationCmd).FlagCompletion(carapace.ActionMap{
-		"style":              carapace.ActionValues("css", "scss", "sass", "less"),
+		"style":              carapace.ActionValues("css", "less", "sass", "scss"),
 		"view-encapsulation": carapace.ActionValues("Emulated", "None", "ShadowDom"),
 	})
 }

@@ -27,6 +27,6 @@ func init() {
 	rootCmd.AddCommand(runParallelCmd)
 
 	carapace.Gen(runParallelCmd).FlagCompletion(carapace.ActionMap{
-		"parallel": carapace.ActionValues("all", "auto", "0").StyleF(style.ForKeyword), // or any positive integer
+		"parallel": carapace.ActionValues("0", "all", "auto").StyleF(style.ForKeyword), // or any positive integer
 	})
 }

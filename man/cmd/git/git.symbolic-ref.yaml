@@ -3,10 +3,12 @@ name: symbolic-ref
 description: Read, modify and delete symbolic refs
 group: low-level manipulator
 flags:
-  --short: shorten ref output
-  -d, --delete: delete symbolic ref
-  -m=: reason of the update
-  -q, --quiet: suppress error message for non-symbolic (detached) refs
+  --no-recurse: stop after dereferencing single level of symbolic ref
+  --recurse: follow symbolicReferences
+  --short: try to shorten the symbolicRef
+  -d, --delete: delete the symbolicRef <name>
+  -m=: update the reflog for <name> with <reason>
+  -q, --quiet: do not issue an error message if the <name> is not a symbolicRef
 documentation:
   command: |-
     Given one argument, reads which branch head the given symbolic
@@ -23,3 +25,18 @@ documentation:
     A symbolic ref is a regular file that stores a string that
     begins with `ref: refs/`.  For example, your `.git/HEAD` is
     a regular file whose content is `ref: refs/heads/master`.
+  flag:
+    m: |-
+      Show diffs for merge commits in the default format. This is
+      similar to `--diff-merges=on`, except `-m` will
+      produce no output unless `-p` is given as well.
+    short: |-
+      When doing a dry-run, give the output in the short-format. See
+      [git-status](cmd://git/status) for details. Implies `--dry-run`.
+    delete: |-
+      Delete a branch. The branch must be fully merged in its
+      upstream branch, or in `HEAD` if no upstream was set with
+      `--track` or `--set-upstream-to`.
+    quiet: Be quiet. Only print error messages.
+    no-recurse: stop after dereferencing single level of symbolic ref
+    recurse: follow symbolicReferences

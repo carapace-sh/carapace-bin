@@ -46,7 +46,7 @@ func init() {
 	rootCmd.Flags().String("width", "", "Width of the svg treemap")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("text", "json", "html", "svg"),
+		"format": carapace.ActionValues("html", "json", "svg", "text"),
 		"listen": carapace.ActionMultiPartsN(":", 2, func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:

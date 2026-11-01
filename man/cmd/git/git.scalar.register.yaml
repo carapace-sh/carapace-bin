@@ -2,8 +2,8 @@
 name: register
 description: Register a repository with Scalar
 flags:
-    --maintenance: enable automatic maintenance
-
+  --maintenance: enable automatic maintenance
 documentation:
-  command: >-
-    Add the enlistment's repository to the list of registered repositories and start background maintenance. If `<enlistment>` is not provided, the enlistment associated with the current working directory is registered. When called in a worktree called `src/`, its parent directory is considered to be the Scalar enlistment.
+  command: Add the enlistment's repository to the list of registered repositories and start background maintenance. If `<enlistment>` is not provided, the enlistment associated with the current working directory is registered. When called in a worktree called `src/`, its parent directory is considered to be the Scalar enlistment.
+  flag:
+    maintenance: enable automatic maintenance

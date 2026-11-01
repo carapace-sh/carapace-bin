@@ -36,7 +36,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"add":              carapace.ActionFiles(".xbps"),
-		"compression":      carapace.ActionValues("none", "gzip", "bzip2", "lz4", "xz", "zstd"),
+		"compression":      carapace.ActionValues("bzip2", "gzip", "lz4", "none", "xz", "zstd"),
 		"privkey":          carapace.ActionFiles(),
 		"remove-obsoletes": carapace.ActionDirectories(),
 		"sign":             carapace.ActionDirectories(),

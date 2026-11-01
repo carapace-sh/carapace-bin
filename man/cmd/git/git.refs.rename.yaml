@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rename
+description: Rename a reference
+flags:
+  --message=: reason of the update
+documentation:
+  command: |-
+    Rename the reference `<oldref>` to `<newref>`. The old reference must
+    exist and the new reference must not yet exist, and both must have a
+    well-formed name (see [git-check-ref-format](cmd://git/check-ref-format)).
+  flag:
+    message: |-
+      Use the given <reason> string for the reflog entry associated with the
+      update. An empty message is rejected.

@@ -7,14 +7,15 @@ import (
 )
 
 var store_describeCmd = &cobra.Command{
-	Use:   "describe",
-	Short: "Show details of OpenFaaS function from a store",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "describe",
+	Short:   "Show details of OpenFaaS function from a store",
+	Aliases: []string{"inspect"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(store_describeCmd).Standalone()
-	store_describeCmd.Flags().BoolP("verbose", "v", false, "Verbose output for the field values")
+	store_describeCmd.Flags().BoolP("json", "j", false, "Output function details as JSON")
 	storeCmd.AddCommand(store_describeCmd)
 
 	carapace.Gen(store_describeCmd).PositionalCompletion(

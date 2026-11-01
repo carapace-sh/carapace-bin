@@ -3,10 +3,11 @@ name: commit-tree
 description: Create a new commit object
 group: low-level manipulator
 flags:
+  --no-gpg-sign: do not GPG sign commit
   -F=: read commit log message from file
-  -S, --gpg-sign=: GPG sign commit
+  -S, --gpg-sign?: GPG-sign commits
   -m=: commit message
-  -p=: id of a parent commit object
+  -p=*: id of a parent commit object
 documentation:
   command: |-
     This is usually not what an end user wants to run directly.  See
@@ -34,3 +35,21 @@ documentation:
     tend to just write the result to the file that is pointed at by
     `.git/HEAD`, so that we can always see what the last committed
     state was.
+  flag:
+    m: |-
+      Show diffs for merge commits in the default format. This is
+      similar to `--diff-merges=on`, except `-m` will
+      produce no output unless `-p` is given as well.
+    no-gpg-sign: |-
+      GPG-sign commits. The _<key-id>_ is optional and
+      defaults to the committer identity; if specified, it must be
+      stuck to the option without a space. `--no-gpg-sign` is useful to
+      countermand both `commit.gpgSign` configuration variable, and
+      earlier `--gpg-sign`.
+    p: |-
+      These flags are passed to the *git apply* (see
+      [git-apply](cmd://git/apply)) program that applies the patch.
+      
+      Valid \<action\> for the `--whitespace` option are: `nowarn`, `warn`, `fix`, `error`, and `error-all`.
+    F: read commit log message from file
+    gpg-sign: GPG-sign commits

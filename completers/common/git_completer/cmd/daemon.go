@@ -58,9 +58,9 @@ func init() {
 		"forbid-override": carapace.ActionValues(), // TODO
 		"group":           os.ActionGroups(),
 		"log-destination": carapace.ActionValuesDescribed(
+			"none", "Disable all logging",
 			"stderr", "Write to standard error",
 			"syslog", "Write to syslog, using the git-daemon identifier",
-			"none", "Disable all logging",
 		),
 		"pid-file": carapace.ActionFiles(),
 		"port":     net.ActionPorts(),

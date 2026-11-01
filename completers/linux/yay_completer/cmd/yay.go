@@ -21,21 +21,24 @@ func init() {
 	yayCmd.Flags().String("answerdiff", "", "Set a predetermined answer for the diff menu")
 	yayCmd.Flags().String("answeredit", "", "Set a predetermined answer for the edit pkgbuild menu")
 	yayCmd.Flags().String("answerupgrade", "", "Set a predetermined answer for the upgrade menu")
-	yayCmd.Flags().Bool("arch", false, "Assume targets are from the repositories")
+	yayCmd.Flags().String("arch", "", "set an alternate architecture")
 	yayCmd.Flags().Bool("asdeps", false, "Install packages as non-explicitly installed")
 	yayCmd.Flags().Bool("asexplicit", false, "Install packages as explicitly installed")
 	yayCmd.Flags().Bool("askremovemake", false, "Ask to remove makedepends after install")
 	yayCmd.Flags().Bool("askyesremovemake", false, "Ask to remove makedepends after install (Y as default)")
 	yayCmd.Flags().String("assume-installed", "", "Add a virtual package to satisfy dependencies")
+	yayCmd.Flags().BoolP("aur", "a", false, "Assume targets are from the AUR")
 	yayCmd.Flags().String("aurrpcurl", "", "Set an alternative URL for the AUR /rpc endpoint")
 	yayCmd.Flags().String("aururl", "", "Set an alternative AUR URL")
+	yayCmd.Flags().Bool("batchinstall", false, "Build multiple packages at once")
 	yayCmd.Flags().Bool("bottomup", false, "Shows AUR's packages first and then repository's")
 	yayCmd.Flags().String("builddir", "", "Directory used to download and run PKGBUILDS")
 	yayCmd.Flags().String("cachedir", "", "Directory used to store downloaded packages")
-	yayCmd.Flags().BoolP("clean", "c", false, "Remove unneeded dependencies")
+	yayCmd.Flags().CountP("clean", "c", "Remove unneeded dependencies (-cc to ignore optdepends)")
 	yayCmd.Flags().Bool("cleanafter", false, "Remove package sources after successful install")
 	yayCmd.Flags().Bool("cleanmenu", false, "Give the option to clean build PKGBUILDS")
 	yayCmd.Flags().String("color", "", "Colorize the output")
+	yayCmd.Flags().Bool("combinedupgrade", false, "Combine upgrade and sync upgrade operations")
 	yayCmd.Flags().String("completioninterval", "", "Time in days to refresh completion cache")
 	yayCmd.Flags().String("config", "", "pacman.conf file to use")
 	yayCmd.Flags().Bool("confirm", false, "Always prompt for confirmation")
@@ -88,9 +91,11 @@ func init() {
 	yayCmd.Flags().Bool("redownload", false, "Always download pkgbuilds of targets")
 	yayCmd.Flags().Bool("redownloadall", false, "Always download pkgbuilds of all AUR packages")
 	yayCmd.Flags().Bool("removemake", false, "Remove makedepends after install")
+	yayCmd.Flags().BoolP("repo", "N", false, "Assume targets are from the repositories")
 	yayCmd.Flags().String("requestsplitn", "", "Max amount of packages to query per AUR request")
 	yayCmd.Flags().Bool("save", false, "Causes the following options to be saved back to the config file")
 	yayCmd.Flags().String("searchby", "", "Search for packages using a specified field")
+	yayCmd.Flags().Bool("separatesources", false, "Separate sources when building")
 	yayCmd.Flags().Bool("singlelineresults", false, "List each search result on its own line")
 	yayCmd.Flags().String("sortby", "", "Sort AUR results by a specific field during search")
 	yayCmd.Flags().String("sudo", "", "sudo command to use")
@@ -101,13 +106,14 @@ func init() {
 	yayCmd.Flags().Bool("useask", false, "Automatically resolve conflicts using pacman's ask flag")
 
 	carapace.Gen(yayCmd).FlagCompletion(carapace.ActionMap{
-		"answerclean":   carapace.ActionValues("Yes", "No", "All", "None", "Editor", "Diff"),
-		"answerdiff":    carapace.ActionValues("Yes", "No", "All", "None", "Editor", "Diff"),
-		"answeredit":    carapace.ActionValues("Yes", "No", "All", "None", "Editor", "Diff"),
-		"answerupgrade": carapace.ActionValues("Yes", "No", "All", "None", "Editor", "Diff"),
+		"answerclean":   carapace.ActionValues("All", "Diff", "Editor", "No", "None", "Yes"),
+		"answerdiff":    carapace.ActionValues("All", "Diff", "Editor", "No", "None", "Yes"),
+		"answeredit":    carapace.ActionValues("All", "Diff", "Editor", "No", "None", "Yes"),
+		"answerupgrade": carapace.ActionValues("All", "Diff", "Editor", "No", "None", "Yes"),
+		"arch":          carapace.ActionValues("i686", "x86_64"),
 		"builddir":      carapace.ActionDirectories(),
 		"cachedir":      carapace.ActionDirectories(),
-		"color":         carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
+		"color":         carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"config":        carapace.ActionFiles(),
 		"editor":        carapace.ActionExecutables(),
 		"git":           carapace.ActionExecutables(),
@@ -118,7 +124,7 @@ func init() {
 		"makepkg":       carapace.ActionExecutables(),
 		"makepkgconf":   carapace.ActionFiles(),
 		"pacman":        carapace.ActionExecutables(),
-		"searchby":      carapace.ActionValues("name-desc", "name", "maintainer", "submitter", "depends", "makedepends", "optdepends", "checkdepends", "provides", "conflicts", "replaces", "groups", "keywords", "comaintainers"),
+		"searchby":      carapace.ActionValues("checkdepends", "comaintainers", "conflicts", "depends", "groups", "keywords", "maintainer", "makedepends", "name", "name-desc", "optdepends", "provides", "replaces", "submitter"),
 		"sortby":        carapace.ActionValues("base", "modified", "name", "popularity", "submitted", "votes"),
 		"sudo":          carapace.ActionExecutables(),
 		"sysroot":       carapace.ActionDirectories(),

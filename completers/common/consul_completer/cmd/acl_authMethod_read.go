@@ -23,6 +23,6 @@ func init() {
 	acl_authMethodCmd.AddCommand(acl_authMethod_readCmd)
 
 	carapace.Gen(acl_authMethod_readCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("pretty", "json"),
+		"format": carapace.ActionValues("json", "pretty"),
 	})
 }

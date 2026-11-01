@@ -58,13 +58,13 @@ func init() {
 	carapace.Gen(installCmd).FlagCompletion(carapace.ActionMap{
 		"constraint":       carapace.ActionFiles(),
 		"editable":         carapace.ActionDirectories(),
-		"implementation":   carapace.ActionValues("pp", "jy", "cp", "ip"),
-		"progress-bar":     carapace.ActionValues("off", "on", "ascii", "pretty", "emoji"),
+		"implementation":   carapace.ActionValues("cp", "ip", "jy", "pp"),
+		"progress-bar":     carapace.ActionValues("ascii", "emoji", "off", "on", "pretty"),
 		"requirement":      carapace.ActionFiles(),
 		"root":             carapace.ActionDirectories(),
 		"src":              carapace.ActionDirectories(),
 		"target":           carapace.ActionDirectories(),
-		"upgrade-strategy": carapace.ActionValues("only-if-needed", "eager"),
+		"upgrade-strategy": carapace.ActionValues("eager", "only-if-needed"),
 	})
 
 	carapace.Gen(installCmd).PositionalAnyCompletion(

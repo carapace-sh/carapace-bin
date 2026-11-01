@@ -26,7 +26,7 @@ func init() {
 
 	carapace.Gen(generateCiCmd).FlagCompletion(carapace.ActionMap{
 		"output":   carapace.ActionFiles(),
-		"platform": carapace.ActionValues("all", "manylinux", "musllinux", "windows", "macos", "emscripten", "android"),
+		"platform": carapace.ActionValues("all", "android", "emscripten", "macos", "manylinux", "musllinux", "windows"),
 	})
 
 	carapace.Gen(generateCiCmd).PositionalCompletion(

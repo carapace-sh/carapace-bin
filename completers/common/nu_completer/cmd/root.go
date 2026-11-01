@@ -4,6 +4,7 @@ import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/net"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
+	shlex "github.com/carapace-sh/carapace-shlex/v2"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
@@ -58,20 +59,20 @@ func init() {
 	rootCmd.Flags().BoolP("version", "v", false, "print the version")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"commands":      bridge.ActionCarapaceBin().SplitP(),
+		"commands":      bridge.ActionCarapaceBin().SplitP(shlex.Nushell),
 		"config":        carapace.ActionFiles(),
 		"env-config":    carapace.ActionFiles(),
 		"error-style":   carapace.ActionValues("fancy", "plain"),
-		"execute":       bridge.ActionCarapaceBin().SplitP(),
+		"execute":       bridge.ActionCarapaceBin().SplitP(shlex.Nushell),
 		"include-path":  carapace.ActionDirectories().List(";"),
 		"log-file":      carapace.ActionFiles(),
-		"log-level":     carapace.ActionValues("error", "warn", "info", "debug", "trace").StyleF(style.ForLogLevel),
-		"log-target":    carapace.ActionValues("stdout", "stderr", "mixed", "file"),
+		"log-level":     carapace.ActionValues("debug", "error", "info", "trace", "warn").StyleF(style.ForLogLevel),
+		"log-target":    carapace.ActionValues("file", "mixed", "stderr", "stdout"),
 		"mcp-port":      net.ActionPorts(),
-		"mcp-transport": carapace.ActionValues("stdio", "http"),
+		"mcp-transport": carapace.ActionValues("http", "stdio"),
 		"plugin-config": carapace.ActionFiles(),
 		"plugins":       carapace.ActionFiles(),
-		"table-mode":    carapace.ActionValues("rounded", "basic", "compact", "compact_double", "light", "thin", "with_love", "reinforced", "heavy", "none", "other"),
+		"table-mode":    carapace.ActionValues("basic", "compact", "compact_double", "heavy", "light", "none", "other", "reinforced", "rounded", "thin", "with_love"),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

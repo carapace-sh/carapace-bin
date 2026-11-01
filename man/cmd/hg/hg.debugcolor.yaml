@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugcolor
+description: hg debugcolor
+hidden: true
+flags:
+    --style: show all configured styles
+documentation:
+    command: |
+        show available color, effects or style

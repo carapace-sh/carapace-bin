@@ -23,6 +23,7 @@ func init() {
 	issue_developCmd.Flags().StringP("issue-repo", "i", "", "Name or URL of the issue's repository")
 	issue_developCmd.Flags().BoolP("list", "l", false, "List linked branches for the issue")
 	issue_developCmd.Flags().StringP("name", "n", "", "Name of the branch to create")
+	issue_developCmd.Flags().String("worktree", "", "Check out the branch into a worktree at the given `path`")
 	issue_developCmd.Flag("issue-repo").Hidden = true
 	issueCmd.AddCommand(issue_developCmd)
 
@@ -31,6 +32,7 @@ func init() {
 		"branch-repo": gh.ActionOwnerRepositories(gh.HostOpts{}),
 		"issue-repo":  gh.ActionOwnerRepositories(gh.HostOpts{}),
 		"name":        action.ActionBranches(issue_developCmd),
+		"worktree":    carapace.ActionDirectories(),
 	})
 
 	carapace.Gen(issue_developCmd).PositionalCompletion(

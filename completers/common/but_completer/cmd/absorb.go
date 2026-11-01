@@ -8,7 +8,7 @@ import (
 
 var absorbCmd = &cobra.Command{
 	Use:     "absorb",
-	Short:   "Amends changes into the appropriate commits where they belong.",
+	Short:   "Amend uncommitted changes into the commits they belong to",
 	Run:     func(cmd *cobra.Command, args []string) {},
 	GroupID: "editing commits",
 }
@@ -16,6 +16,7 @@ var absorbCmd = &cobra.Command{
 func init() {
 	carapace.Gen(absorbCmd).Standalone()
 
+	absorbCmd.Flags().Bool("allow-merged", false, "Allow targeting branches and commits that are already merged upstream")
 	absorbCmd.Flags().Bool("dry-run", false, "Show the absorption plan without making any changes")
 	absorbCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.AddCommand(absorbCmd)

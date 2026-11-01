@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
@@ -16,11 +17,15 @@ func init() {
 	carapace.Gen(gsutilCmd).Standalone()
 
 	gsutilCmd.Flags().String("app", "", "Optional name of the GCP application to use if logged into multiple.")
+	gsutilCmd.Flags().String("gcp-service-account", "", "(For GCP CLI access only) GCP service account name.")
 	rootCmd.AddCommand(gsutilCmd)
 
 	gsutilCmd.Flags().SetInterspersed(false)
 
-	// TODO proxy the gsutil command
+	carapace.Gen(gsutilCmd).FlagCompletion(carapace.ActionMap{
+		"app": tsh.ActionApps(),
+	})
+
 	carapace.Gen(gsutilCmd).PositionalAnyCompletion(
 		bridge.ActionCarapaceBin("gsutil"),
 	)

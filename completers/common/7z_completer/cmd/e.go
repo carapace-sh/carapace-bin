@@ -1,0 +1,22 @@
+package cmd
+
+import (
+	"github.com/carapace-sh/carapace"
+	"github.com/spf13/cobra"
+)
+
+var eCmd = &cobra.Command{
+	Use:   "e",
+	Short: "Extract files from archive (without using directory names)",
+	Run:   func(cmd *cobra.Command, args []string) {},
+}
+
+func init() {
+	carapace.Gen(eCmd).Standalone()
+
+	rootCmd.AddCommand(eCmd)
+
+	carapace.Gen(eCmd).PositionalAnyCompletion(
+		carapace.ActionFiles().FilterArgs(),
+	)
+}

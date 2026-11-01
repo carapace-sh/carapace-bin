@@ -19,6 +19,7 @@ func init() {
 	formatPatchCmd.Flags().StringArray("add-header", nil, "add email header")
 	formatPatchCmd.Flags().String("attach", "", "attach the patch")
 	formatPatchCmd.Flags().String("base", "", "add prerequisite tree info to the patch series")
+	formatPatchCmd.Flags().Bool("binary", false, "opposite of --no-binary")
 	formatPatchCmd.Flags().StringArray("cc", nil, "add Cc: header")
 	formatPatchCmd.Flags().String("commit-list-format", "", "format for commit list in cover letter")
 	formatPatchCmd.Flags().String("cover-from-description", "", "generate parts of a cover letter based on a branch's description")
@@ -28,6 +29,7 @@ func init() {
 	formatPatchCmd.Flags().String("filename-max-length", "", "max length of output filename")
 	formatPatchCmd.Flags().Bool("force-in-body-from", false, "force From: header in body even if it matches the author")
 	formatPatchCmd.Flags().String("from", "", "set From address to <ident> (or committer ident if absent)")
+	formatPatchCmd.Flags().Bool("ignore-if-in-upstream", false, "don't include a patch that matches a commit on an upstream branch")
 	formatPatchCmd.Flags().String("in-reply-to", "", "make first mail a reply to <message-id>")
 	formatPatchCmd.Flags().String("inline", "", "inline the patch")
 	formatPatchCmd.Flags().String("interdiff", "", "show changes against <rev> in cover letter or single patch")
@@ -63,9 +65,13 @@ func init() {
 	rootCmd.AddCommand(formatPatchCmd)
 
 	carapace.Gen(formatPatchCmd).FlagCompletion(carapace.ActionMap{
-		"description-file": carapace.ActionFiles(),
-		"output-directory": carapace.ActionDirectories(),
-		"thread":           carapace.ActionValues("shallow", "deep"),
+		"base":                   git.ActionRefs(git.RefOption{}.Default()),
+		"cover-from-description": carapace.ActionValues("auto", "default", "message", "none", "subject"),
+		"description-file":       carapace.ActionFiles(),
+		"interdiff":              git.ActionRefs(git.RefOption{}.Default()),
+		"output-directory":       carapace.ActionDirectories(),
+		"signature-file":         carapace.ActionFiles(),
+		"thread":                 carapace.ActionValues("deep", "shallow"),
 	})
 
 	carapace.Gen(formatPatchCmd).PositionalCompletion(

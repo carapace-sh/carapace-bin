@@ -94,9 +94,9 @@ func init() {
 			}
 		}),
 		"Y": carapace.ActionValuesDescribed(
+			"check-novalidate", "Checks that a signature generated using ssh-keygen -Y sign has a valid structure",
 			"find-principals", "Find the principal(s) associated with the public key of a signature",
 			"match-principals", "Find principal matching the principal name provided using the -I flag",
-			"check-novalidate", "Checks that a signature generated using ssh-keygen -Y sign has a valid structure",
 			"sign", "Cryptographically sign a file or some data using a SSH key",
 			"verify", "Request to verify a signature generated using ssh-keygen -Y sign",
 		),
@@ -115,9 +115,9 @@ func init() {
 		}),
 		"f": carapace.ActionFiles(),
 		"m": carapace.ActionValuesDescribed(
-			"RFC4716", "RFC 4716/SSH2 public or private key",
-			"PKCS8", "PKCS8 public or private key",
 			"PEM", "PEM public key",
+			"PKCS8", "PKCS8 public or private key",
+			"RFC4716", "RFC 4716/SSH2 public or private key",
 		),
 		"n": carapace.Batch(
 			os.ActionUsers(),

@@ -16,8 +16,7 @@ func init() {
 
 	dnsCmd.AddCommand(dns_importCmd)
 
-	// TODO positional completion
-	carapace.Gen(dnsCmd).PositionalCompletion(
+	carapace.Gen(dns_importCmd).PositionalCompletion(
 		carapace.ActionValues(),
 		carapace.ActionFiles(),
 	)

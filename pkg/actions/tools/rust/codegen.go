@@ -90,8 +90,8 @@ func ActionCodegenOptionValues(s string) carapace.Action {
 
 		return map[string]carapace.Action{
 			// TODO complete more
-			"code-model": carapace.ActionValues("tiny", "small", "kernel", "medium", "large"),
-			"strip":      carapace.ActionValues("none", "debuginfo", "symbols").StyleF(style.ForKeyword),
+			"code-model": carapace.ActionValues("kernel", "large", "medium", "small", "tiny"),
+			"strip":      carapace.ActionValues("debuginfo", "none", "symbols").StyleF(style.ForKeyword),
 		}[s]
 	})
 }

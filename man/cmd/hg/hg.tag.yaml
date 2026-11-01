@@ -1,0 +1,45 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: tag
+description: add one or more tags for the current or given revision
+group: change-organization
+flags:
+    --remove: remove a tag
+    -d, --date=: record the specified date as commit date
+    -e, --edit: invoke editor on commit messages
+    -f, --force: force tag
+    -l, --local: make the tag local
+    -m, --message=: use text as commit message
+    -r, --rev=: revision to tag
+    -u, --user=: record the specified user as committer
+documentation:
+    command: |
+        add one or more tags for the current or given revision
+
+        Name a particular revision using <name>.
+
+        Tags are used to name particular revisions of the repository and are
+        very useful to compare different revisions, to go back to significant
+        earlier versions or to mark branch points as releases, etc. Changing
+        an existing tag is normally disallowed; use -f/--force to override.
+
+        If no revision is given, the parent of the working directory is
+        used.
+
+        To facilitate version control, distribution, and merging of tags,
+        they are stored as a file named ".hgtags" which is managed similarly
+        to other project files and can be hand-edited if necessary. This
+        also means that tagging creates a new commit. The file
+        ".hg/localtags" is used for local tags (not shared among
+        repositories).
+
+        Tag commits are usually made at the head of a branch. If the parent
+        of the working directory is not a branch head, `hg tag` aborts; use
+        -f/--force to force the tag commit to be based on a non-head
+        changeset.
+
+        See `hg help dates` for a list of formats valid for -d/--date.
+
+        Since tag names have priority over branch names during revision
+        lookup, using an existing branch name as a tag name is discouraged.
+
+        Returns 0 on success.

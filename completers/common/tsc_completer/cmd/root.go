@@ -161,13 +161,13 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"baseUrl":          carapace.ActionDirectories(),
 		"declarationDir":   carapace.ActionDirectories(),
-		"fallbackPolling":  carapace.ActionValues("fixedinterval", "priorityinterval", "dynamicpriority", "fixedchunksize"),
-		"jsx":              carapace.ActionValues("preserve", "react-native", "react", "react-jsx", "react-jsxdev"),
+		"fallbackPolling":  carapace.ActionValues("dynamicpriority", "fixedchunksize", "fixedinterval", "priorityinterval"),
+		"jsx":              carapace.ActionValues("preserve", "react", "react-jsx", "react-jsxdev", "react-native"),
 		"lib":              action.ActionLibs().UniqueList(","),
 		"mapRoot":          carapace.ActionDirectories(),
-		"module":           carapace.ActionValues("none", "commonjs", "amd", "system", "umd", "es6", "es2015", "es2020", "esnext"),
-		"moduleDetection":  carapace.ActionValues("legacy", "auto", "force"),
-		"moduleResolution": carapace.ActionValues("node", "classic"),
+		"module":           carapace.ActionValues("amd", "commonjs", "es6", "es2015", "es2020", "esnext", "none", "system", "umd"),
+		"moduleDetection":  carapace.ActionValues("auto", "force", "legacy"),
+		"moduleResolution": carapace.ActionValues("classic", "node"),
 		"newLine":          carapace.ActionValues("crlf", "lf"),
 		"outDir":           carapace.ActionDirectories(),
 		"outFile":          carapace.ActionFiles(),
@@ -182,8 +182,8 @@ func init() {
 		"typeRoots": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			return carapace.ActionDirectories().NoSpace()
 		}),
-		"watchDirectory": carapace.ActionValues("usefsevents", "fixedpollinginterval", "dynamicprioritypolling", "fixedchunksizepolling"),
-		"watchFile":      carapace.ActionValues("fixedpollinginterval", "prioritypollinginterval", "dynamicprioritypolling", "fixedchunksizepolling", "usefsevents", "usefseventsonparentdirectory"),
+		"watchDirectory": carapace.ActionValues("dynamicprioritypolling", "fixedchunksizepolling", "fixedpollinginterval", "usefsevents"),
+		"watchFile":      carapace.ActionValues("dynamicprioritypolling", "fixedchunksizepolling", "fixedpollinginterval", "prioritypollinginterval", "usefsevents", "usefseventsonparentdirectory"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

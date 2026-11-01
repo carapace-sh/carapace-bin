@@ -149,10 +149,10 @@ func init() {
 		),
 		"XshowSettings": carapace.ActionValuesDescribed(
 			"all", "show all settings and continue",
-			"vm", "show all vm related settings and continue",
-			"system", "show host system or container configuration and continue",
-			"properties", "show all property settings and continue",
 			"locale", "show all locale related settings and continue",
+			"properties", "show all property settings and continue",
+			"system", "show host system or container configuration and continue",
+			"vm", "show all vm related settings and continue",
 		),
 		"agentpath": carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {

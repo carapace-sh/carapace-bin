@@ -7,12 +7,13 @@ import (
 
 var listCmd = &cobra.Command{
 	Use:   "list",
-	Short: "List installed apps",
+	Short: "List apps installed from the App Store",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(listCmd).Standalone()
-	listCmd.Flags().Bool("installed", false, "List only installed apps")
+	listCmd.Flags().Bool("bundle", false, "Process all app IDs as bundle IDs")
+	listCmd.Flags().Bool("json", false, "Output JSON")
 	rootCmd.AddCommand(listCmd)
 }

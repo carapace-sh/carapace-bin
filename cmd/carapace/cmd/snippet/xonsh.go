@@ -3,6 +3,8 @@ package snippet
 import (
 	"fmt"
 	"strings"
+
+	shlex "github.com/carapace-sh/carapace-shlex/v2"
 )
 
 // Xonsh creates a generic completer (not lazy).
@@ -28,7 +30,12 @@ def _carapace_completer(context):
         return s.translate(str.maketrans('', '', '\'"'))
 
     output, _ = sub_proc_get_output(
-        'carapace', context.command, 'xonsh', *[a.value for a in context.args], fix_prefix(context.prefix)
+        'carapace', context.command, 'xonsh', *[a.value for a in context.args], fix_prefix(context.prefix),
+        CARAPACE_SHELL='xonsh',
+        CARAPACE_SHELL_ALIASES='\n'.join(__xonsh__.aliases.keys()),
+        CARAPACE_SHELL_BUILTINS='\n'.join(vars(__xonsh__.builtins).keys()),
+        CARAPACE_SHELL_FUNCTIONS='\n'.join(k for k, v in __xonsh__.ctx.items() if callable(v)),
+        CARAPACE_SHELL_VARIABLES='\n'.join(__xonsh__.env.keys()),
     )
 
     try:
@@ -43,7 +50,7 @@ add_one_completer('carapace', _carapace_completer, 'start')
 `
 	complete := make([]string, len(completers))
 	for index, completer := range completers {
-		complete[index] = fmt.Sprintf(`'%v'`, completer)
+		complete[index] = fmt.Sprintf(`'%v'`, shlex.Escape(completer, shlex.Xonsh))
 	}
 	return fmt.Sprintf(snippet, pathSnippet("xonsh"), envSnippet("xonsh"), strings.Join(complete, ", "))
 }

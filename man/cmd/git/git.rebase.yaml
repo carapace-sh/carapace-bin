@@ -4,6 +4,8 @@ description: Reapply commits on top of another base tip
 group: main
 flags:
   --abort: abort and check out the original branch
+  --allow-empty: allow commits with no diff to be rebased
+  --allow-empty-message: allow commits with empty messages to be rebased
   --apply: use apply strategies to rebase
   --autosquash: move commits that begin with squash!/fixup! under -i
   --autostash: automatically stash/stash pop before and after
@@ -11,21 +13,38 @@ flags:
   --continue: continue
   --edit-todo: edit the todo list during an interactive rebase
   --empty=: how to handle commits that become empty
+  --ff: cherry-pick all commits, even if unchanged
   --fork-point: use 'merge-base --fork-point' to refine upstream
   --ignore-date: passed to 'git am'
   --ignore-whitespace: passed to 'git am'
   --keep-base: use the merge-base of upstream and branch as the current base
+  --keep-empty: keep commits that become empty
+  --no-autosquash: do not move commits that begin with squash!/fixup! under -i
+  --no-autostash: do not automatically stash/stash pop before and after
   --no-ff: cherry-pick all commits, even if unchanged
+  --no-fork-point: do not use 'merge-base --fork-point' to refine upstream
+  --no-gpg-sign: do not GPG-sign commits
+  --no-keep-empty: do not keep commits that become empty
+  --no-reapply-cherry-picks: do not apply changes already present upstream
+  --no-rebase-merges: do not try to rebase merges
+  --no-rerere-autoupdate: do not update the index with reused conflict resolution
+  --no-reschedule-failed-exec: do not automatically re-schedule any `exec` that fails
+  --no-update-refs: do not update branches that point to commits that are being rebased
   --no-verify: allow pre-rebase hook to run
   --onto=: rebase onto given branch instead of upstream
   --quit: abort but keep HEAD where it is
   --reapply-cherry-picks: apply all changes, even those already present upstream
   --rerere-autoupdate: update the index with reused conflict resolution if possible
   --reschedule-failed-exec: automatically re-schedule any `exec` that fails
+  --reset-author-date: ignore author date and use current date
   --root: rebase all reachable commits up to the root(s)
   --show-current-patch: show the patch file being applied or merged
   --signoff: 'add a Signed-off-by: line to each commit'
   --skip: skip current patch and continue
+  --stat: show diffstat of what changed upstream
+  --trailer=*: add custom trailer(s)
+  --update-refs: update branches that point to commits that are being rebased
+  --verify: allow pre-rebase hook to run
   --whitespace=: passed to 'git apply'
   -C=: passed to 'git apply'
   -S, --gpg-sign?: GPG-sign commits
@@ -40,173 +59,12 @@ flags:
   -v, --verbose: display a diffstat of what changed upstream
   -x, --exec=: add exec lines after each commit of the editable list
 documentation:
-  command: |-
-    Transplant a series of commits onto a different starting point.
-    You can also use `git rebase` to reorder or combine commits: see INTERACTIVE
-    MODE below for how to do that.
-
-    For example, imagine that you have been working on the `topic` branch in this
-    history, and you want to "catch up" to the work done on the `master` branch.
-
-    ```
-              A---B---C topic
-             /
-        D---E---F---G master
-    ```
-
-    You want to transplant the commits you made on `topic` since it diverged from
-    `master` (i.e. A, B, and C), on top of the current `master`.  You can do this
-    by running `git rebase master` while the `topic` branch is checked out.  If you
-    want to rebase `topic` while on another branch, `git rebase master topic` is a
-    shortcut for `git checkout topic && git rebase master`.
-
-    ```
-                      A`--B'--C` topic
-                     /
-        D---E---F---G master
-    ```
-
-    If there is a merge conflict during this process, `git rebase` will stop at the
-    first problematic commit and leave conflict markers. If this happens, you can do
-    one of these things:
-
-    1. Resolve the conflict. You can use `git diff` to find the markers (<<<<<<)
-       and make edits to resolve the conflict. For each file you edit, you need to
-       tell Git that the conflict has been resolved. You can mark the conflict as
-       resolved with  `git add <filename>`. After resolving all of the conflicts,
-       you can continue the rebasing process with
-
-       git rebase --continue
-
-    2. Stop the `git rebase` and return your branch to its original state with
-
-       git rebase --abort
-
-    3. Skip the commit that caused the merge conflict with
-
-       git rebase --skip
-
-    If you don't specify an `<upstream>` to rebase onto, the upstream configured in
-    `branch.<name>.remote` and `branch.<name>.merge` options will be used (see
-    [git-config](cmd://git/config) for details) and the `--fork-point` option is
-    assumed.  If you are currently not on any branch or if the current
-    branch does not have a configured upstream, the rebase will abort.
-
-    Here is a simplified description of what `git rebase <upstream>` does:
-
-    1. Make a list of all commits on your current branch since it branched
-       off from `<upstream>` that do not have an equivalent commit in
-       `<upstream>`.
-    2. Check out `<upstream>` with the equivalent of
-       `git checkout --detach <upstream>`.
-    3. Replay the commits, one by one, in order. This is similar to running
-       `git cherry-pick <commit>` for each commit. See REBASING MERGES for how merges
-       are handled.
-    4. Update your branch to point to the final commit with the equivalent
-       of `git checkout -B <branch>`.
-
-    When starting the rebase, `ORIG_HEAD` is set to point to the commit at the tip
-    of the to-be-rebased branch. However, `ORIG_HEAD` is not guaranteed to still
-    point to that commit at the end of the rebase if other commands that change
-    `ORIG_HEAD` (like `git reset`) are used during the rebase. The previous branch
-    tip, however, is accessible using the reflog of the current branch (i.e. `@{1}`,
-    see [gitrevisions](man://gitrevisions/7)).
-
-    ### TRANSPLANTING A TOPIC BRANCH WITH --ONTO
-
-    Here is how you would transplant a topic branch based on one
-    branch to another, to pretend that you forked the topic branch
-    from the latter branch, using `rebase --onto`.
-
-    First let's assume your 'topic' is based on branch 'next'.
-    For example, a feature developed in 'topic' depends on some
-    functionality which is found in 'next'.
-
-    ```
-        o---o---o---o---o  master
-             \
-              o---o---o---o---o  next
-                               \
-                                o---o---o  topic
-    ```
-
-    We want to make 'topic' forked from branch 'master'; for example,
-    because the functionality on which 'topic' depends was merged into the
-    more stable 'master' branch. We want our tree to look like this:
-
-    ```
-        o---o---o---o---o  master
-            |            \
-            |             o'--o'--o'  topic
-             \
-              o---o---o---o---o  next
-    ```
-
-    We can get this using the following command:
-
-        git rebase --onto master next topic
-
-    Another example of --onto option is to rebase part of a
-    branch.  If we have the following situation:
-
-    ```
-                                H---I---J topicB
-                               /
-                      E---F---G  topicA
-                     /
-        A---B---C---D  master
-    ```
-
-    then the command
-
-        git rebase --onto master topicA topicB
-
-    would result in:
-
-    ```
-                     H'--I'--J'  topicB
-                    /
-                    | E---F---G  topicA
-                    |/
-        A---B---C---D  master
-    ```
-
-    This is useful when topicB does not depend on topicA.
-
-    A range of commits could also be removed with rebase.  If we have
-    the following situation:
-
-    ```
-        E---F---G---H---I---J  topicA
-    ```
-
-    then the command
-
-        git rebase --onto topicA~5 topicA~3 topicA
-
-    would result in the removal of commits F and G:
-
-    ```
-        E---H'---I'---J'  topicA
-    ```
-
-    This is useful if F and G were flawed in some way, or should not be
-    part of topicA.  Note that the argument to `--onto` and the `<upstream>`
-    parameter can be any valid commit-ish.
   flag:
     C: |-
       Ensure at least `<n>` lines of surrounding context match before
       and after each change.  When fewer lines of surrounding
       context exist they all must match.  By default no context is
       ever ignored.  Implies `--apply`.
-    rerere-autoupdate: |-
-      After the rerere mechanism reuses a recorded resolution on
-      the current conflict to update the files in the working
-      tree, allow it to also update the index with the result of
-      resolution.  `--no-rerere-autoupdate` is a good way to
-      double-check what [git-rerere](cmd://git/rerere) did and catch potential
-      mismerges, before committing the result to the index with a
-      separate [git-add](cmd://git/add).
     autosquash: |-
       Automatically squash commits with specially formatted messages into
       previous commits being rebased.  If a commit message starts with
@@ -270,7 +128,10 @@ documentation:
       stuck to the option without a space. `--no-gpg-sign` is useful to
       countermand both `commit.gpgSign` configuration variable, and
       earlier `--gpg-sign`.
-    ignore-date: "Instead of using the author date of the original commit, use\nthe current time as the\tauthor date of the rebased commit.  This\noption implies `--force-rebase`."
+    ignore-date: |-
+      Instead of using the author date of the original commit, use
+      the current time as the	author date of the rebased commit.  This
+      option implies `--force-rebase`.
     ignore-whitespace: |-
       Ignore whitespace differences when trying to reconcile
       differences. Currently, each backend implements an approximation of
@@ -308,7 +169,8 @@ documentation:
       revert-a-faulty-merge How-To for
       details).
     no-stat: Do not show a diffstat as part of the rebase process.
-    no-verify: This option bypasses the pre-rebase hook.  See also [githooks](man://githooks/5).
+    no-verify: |-
+      This option bypasses the pre-rebase hook.  See also [githooks](man://githooks/5).
     onto: Starting point at which to create the new commits. If `--onto` is not specified, the starting point is `<upstream>`. May be any valid commit, and not just an existing branch name. As a special case, you may use "A...B" as a shortcut for the merge base of A and B if there is exactly one merge base.
     quiet: Be quiet. Implies `--no-stat`.
     reapply-cherry-picks: Reapply all clean cherry-picks of any upstream commit instead of preemptively dropping them. If these commits become empty after rebasing, the behavior is controlled by `--empty`. In the absence of `--keep-base`, these commits are automatically dropped by default.
@@ -337,6 +199,14 @@ documentation:
       explicit `exec git merge -s <strategy> [...]` commands.
 
       See also REBASING MERGES and INCOMPATIBLE OPTIONS below.
+    rerere-autoupdate: |-
+      After the rerere mechanism reuses a recorded resolution on
+      the current conflict to update the files in the working
+      tree, allow it to also update the index with the result of
+      resolution.  `--no-rerere-autoupdate` is a good way to
+      double-check what [git-rerere](cmd://git/rerere) did and catch potential
+      mismerges, before committing the result to the index with a
+      separate [git-add](cmd://git/add).
     reschedule-failed-exec: |-
       Automatically reschedule `exec` commands that failed. This only makes
       sense in interactive mode (or when an `--exec` option was provided).
@@ -364,3 +234,107 @@ documentation:
       This flag is passed to the `git apply` program
       (see [git-apply](cmd://git/apply)) that applies the patch.
       Implies `--apply`.
+    abort: |-
+      Restore the original branch and abort the patching operation.
+      Revert the contents of files involved in the am operation to their
+      pre-am state.
+    allow-empty: |-
+      Preserve commits that are empty (i.e. that do not change the tree)
+      in the output. The default is to drop such commits, requiring the
+      use of `--allow-empty` with `git commit` to create them explicitly.
+    allow-empty-message: |-
+      Create a commit with an empty commit message without using plumbing
+      commands like [git-commit-tree](cmd://git/commit-tree). Like `--allow-empty`, this
+      command is primarily for use by foreign SCM interface scripts.
+    apply: |-
+      If you use any of the options marked "Turns off
+      *apply*" above, `git apply` reads and outputs the
+      requested information without actually applying the
+      patch.  Give this flag after those flags to also apply
+      the patch.
+    continue: |-
+      After a patch failure (e.g. attempting to apply conflicting patch),
+      the user has applied it by hand and the index file stores the result
+      of the application. Make a commit using the authorship and commit
+      log extracted from the e-mail message and the current index file,
+      and continue.
+    ff: |-
+      If the current HEAD is the same as the parent of the cherry-picked
+      commit, then a fast forward merge to the cherry-picked commit will
+      be performed. This is the default behavior when no conflicting
+      changes are present.
+    no-autostash: |-
+      Automatically create a temporary stash entry before the operation
+      begins, record it in the ref `MERGE_AUTOSTASH`
+      and apply it after the operation ends.  This means
+      that you can run the operation on a dirty worktree.  However, use
+      with care: the final stash application after a successful
+      merge might result in non-trivial conflicts.
+    no-gpg-sign: |-
+      GPG-sign commits. The _<key-id>_ is optional and
+      defaults to the committer identity; if specified, it must be
+      stuck to the option without a space. `--no-gpg-sign` is useful to
+      countermand both `commit.gpgSign` configuration variable, and
+      earlier `--gpg-sign`.
+    no-rerere-autoupdate: |-
+      After the rerere mechanism reuses a recorded resolution on
+      the current conflict to update the files in the working
+      tree, allow it to also update the index with the result of
+      resolution.  `--no-rerere-autoupdate` is a good way to
+      double-check what [git-rerere](cmd://git/rerere) did and catch potential
+      mismerges, before committing the result to the index with a
+      separate [git-add](cmd://git/add).
+    quit: |-
+      Abort the patching operation but keep `HEAD` and the index
+      untouched.
+    show-current-patch: |-
+      Show the message at which `git am` has stopped due to conflicts. If
+      `raw` is specified, show the raw contents of the e-mail message; if
+      `diff`, show the diff portion only. Defaults to `raw`.
+    skip: |-
+      Skip the current patch.  This is only meaningful when
+      restarting an aborted patch.
+    stat: |-
+      Instead of applying the patch, output diffstat for the
+      input.  Turns off "apply".
+    trailer: |-
+      Specify a (&lt;token&gt;, &lt;value&gt;) pair that should be applied as
+      a trailer. (e.g.
+      `git commit --trailer "Signed-off-by:C O Mitter \ <committer@example.com>" --trailer "Helped-by:C O Mitter \ <committer@example.com>"`
+      will add the "Signed-off-by" trailer and the "Helped-by" trailer to the
+      commit message.) The `trailer.*` configuration variables
+      ([git-interpret-trailers](cmd://git/interpret-trailers)) can be
+      used to define if a duplicated trailer is omitted, where in the run of
+      trailers each trailer would appear, and other details.
+    verify: Verify the cryptographic signature of the given tags.
+    merge: |-
+      When switching branches,
+      if you have local modifications to one or more files that
+      are different between the current branch and the branch to
+      which you are switching, the command refuses to switch
+      branches in order to preserve your modifications in context.
+      With this option, the conflicting local changes are
+      automatically stashed before the switch and reapplied
+      afterwards.  If the local changes do not overlap with the
+      differences between branches, the switch proceeds without
+      stashing.  If reapplying the stash results in conflicts, the
+      entry is saved to the stash list.  Resolve the conflicts
+      and run `git stash drop` when done, or clear the working
+      tree (e.g. with `git reset --hard`) before running `git stash pop` later to re-apply your changes.
+      
+      When checking out paths from the index, this option lets you recreate
+      the conflicted merge in the specified paths.  This option cannot be
+      used when checking out paths from a tree-ish.
+    no-fork-point: do not use 'merge-base --fork-point' to refine upstream
+    edit-todo: edit the todo list during an interactive rebase
+    force-rebase: cherry-pick all commits, even if unchanged
+    keep-empty: keep commits that become empty
+    no-autosquash: do not move commits that begin with squash!/fixup! under -i
+    no-keep-empty: do not keep commits that become empty
+    no-reapply-cherry-picks: do not apply changes already present upstream
+    no-rebase-merges: do not try to rebase merges
+    no-reschedule-failed-exec: do not automatically re-schedule any `exec` that fails
+    no-update-refs: do not update branches that point to commits that are being rebased
+    reset-author-date: ignore author date and use current date
+    update-refs: update branches that point to commits that are being rebased
+

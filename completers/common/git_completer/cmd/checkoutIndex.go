@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -16,6 +17,7 @@ func init() {
 	carapace.Gen(checkoutIndexCmd).Standalone()
 
 	checkoutIndexCmd.Flags().BoolP("all", "a", false, "check out all files in the index")
+	checkoutIndexCmd.Flags().Bool("create", false, "opposite of --no-create")
 	checkoutIndexCmd.Flags().BoolP("force", "f", false, "force overwrite of existing files")
 	checkoutIndexCmd.Flags().Bool("ignore-skip-worktree-bits", false, "do not skip files with skip-worktree set")
 	checkoutIndexCmd.Flags().BoolP("index", "u", false, "update stat information in the index file")
@@ -29,7 +31,7 @@ func init() {
 	rootCmd.AddCommand(checkoutIndexCmd)
 
 	carapace.Gen(checkoutIndexCmd).FlagCompletion(carapace.ActionMap{
-		"stage": carapace.ActionValues("1", "2", "3", "all"),
+		"stage": carapace.ActionValues("1", "2", "3", "all").StyleF(style.ForKeyword),
 	})
 
 	carapace.Gen(checkoutIndexCmd).PositionalAnyCompletion(

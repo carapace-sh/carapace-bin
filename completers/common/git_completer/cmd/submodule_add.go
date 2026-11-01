@@ -20,6 +20,7 @@ func init() {
 	submodule_addCmd.Flags().BoolP("force", "f", false, "alllow adding an otherwise ignored submodule path")
 	submodule_addCmd.Flags().String("name", "", "set submodule name")
 	submodule_addCmd.Flags().Bool("progress", false, "report progress status")
+	submodule_addCmd.Flags().String("ref-format", "", "ref storage format for the cloned submodule")
 	submodule_addCmd.Flags().String("reference", "", "reference repository")
 
 	submoduleCmd.AddCommand(submodule_addCmd)
@@ -31,7 +32,8 @@ func init() {
 			}
 			return git.ActionLsRemoteRefs(git.LsRemoteRefOption{Url: c.Args[0], Branches: true})
 		}),
-		"reference": carapace.ActionDirectories(),
+		"ref-format": carapace.ActionValues("reftable"),
+		"reference":  carapace.ActionDirectories(),
 	})
 
 	carapace.Gen(submodule_addCmd).PositionalCompletion(

@@ -44,8 +44,8 @@ func init() {
 	rootCmd.Flags().String("wait-rssi", "", "wait for device RSSI value")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"discoverable": carapace.ActionValues("1", "0", "on", "off", "toggle"),
-		"format":       carapace.ActionValues("default", "new-default", "json", "json-pretty"),
-		"power":        carapace.ActionValues("1", "0", "on", "off", "toggle"),
+		"discoverable": carapace.ActionValues("0", "1", "off", "on", "toggle"),
+		"format":       carapace.ActionValues("default", "json", "json-pretty", "new-default"),
+		"power":        carapace.ActionValues("0", "1", "off", "on", "toggle"),
 	})
 }

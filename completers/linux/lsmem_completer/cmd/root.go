@@ -38,19 +38,19 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"output":  ActionColumns().UniqueList(","),
 		"split":   ActionColumns().UniqueList(","),
-		"summary": carapace.ActionValues("never", "always", "only").StyleF(style.ForKeyword),
+		"summary": carapace.ActionValues("always", "never", "only").StyleF(style.ForKeyword),
 		"sysroot": carapace.ActionDirectories(),
 	})
 }
 
 func ActionColumns() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"RANGE", "start and end address of the memory range",
-		"SIZE", "size of the memory range",
-		"STATE", "online status of the memory range",
-		"REMOVABLE", "memory is removable",
 		"BLOCK", "memory block number or blocks range",
 		"NODE", "numa node of memory",
+		"RANGE", "start and end address of the memory range",
+		"REMOVABLE", "memory is removable",
+		"SIZE", "size of the memory range",
+		"STATE", "online status of the memory range",
 		"ZONES", "valid zones for the memory range",
 	)
 }

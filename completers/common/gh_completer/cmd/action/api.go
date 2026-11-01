@@ -123,6 +123,6 @@ func fakeRepoFlag(cmd *cobra.Command, owner, repo string) {
 }
 
 func ActionPackageTypes() carapace.Action {
-	return carapace.ActionValues("npm", "maven", "rubygems", "nuget", "docker", "container").
+	return carapace.ActionValues("container", "docker", "maven", "npm", "nuget", "rubygems").
 		Tag("package types")
 }

@@ -4,7 +4,7 @@ description: Print lines matching a pattern
 group: main
 flags:
   --all-match: show only matches from files that match all patterns
-  --and: combine patterns specified with -e
+  --and: combine patterns specified with -e using logical AND
   --break: print empty line between matches from different files
   --cached: search in index instead of in the work tree
   --color?: highlight matches
@@ -13,11 +13,12 @@ flags:
   --ext-grep: allow calling of grep(1) (ignored by this build)
   --full-name: show filenames relative to top directory
   --heading: show filename only once above matches from same file
+  --index: opposite of --no-index
   --max-depth=: descend at most <depth> levels
   --name-only: synonym for --files-with-matches
   --no-index: find in contents not managed by git
-  --not: ''
-  --or: ''
+  --not: combine patterns with logical NOT
+  --or: combine patterns with logical OR
   --recurse-submodules: recursively search in each submodule
   --textconv: process binary files with textconv filters
   --threads=: use <n> worker threads
@@ -33,13 +34,15 @@ flags:
   -L, --files-without-match: show only the names of files without match
   -O, --open-files-in-pager?: show matching files in the pager
   -P, --perl-regexp: use Perl-compatible regular expressions
+  -W, --function-context: show whole surrounding functions of matches
   -a, --text: process binary files as text
   -c, --count: show the number of matches instead of matching lines
   -e=: match <pattern>
-  -f=: read patterns from file
+  -f=*: read patterns from file
   -h: don't show filenames
   -i, --ignore-case: case insensitive matching
   -l, --files-with-matches: show only filenames instead of matching lines
+  -m, --max-count=: limit the number of matches per file
   -n, --line-number: show line numbers
   -o, --only-matching: show only matching parts of a line
   -p, --show-function: show a line with the function name before matches
@@ -49,11 +52,6 @@ flags:
   -w, --word-regexp: match patterns only at word boundaries
   -z, --null: print NUL after filenames
 documentation:
-  command: |-
-    Look for specified patterns in the tracked files in the work tree, blobs
-    registered in the index file, or blobs in given tree objects.  Patterns
-    are lists of one or more search expressions separated by newline
-    characters.  An empty string as search expression matches all lines.
   flag:
     I: Don't match the pattern in binary files.
     all-match: |-
@@ -67,6 +65,10 @@ documentation:
     cached: |-
       Instead of searching tracked files in the working tree, search
       blobs registered in the index file.
+    color: |-
+      Turn off match highlighting, even when the configuration file
+      gives the default to color output.
+      Same as `--color=never`.
     column: |-
       Prefix the 1-indexed byte-offset of the first match from the start of the
       matching line.
@@ -124,7 +126,7 @@ documentation:
       expressions.  `--or` is the default operator.  `--and` has
       higher precedence than `--or`.  `-e` has to be used for all
       patterns.
-    'null': |-
+    "null": |-
       Use \0 as the delimiter for pathnames in the output, and print
       them verbatim. Without this option, pathnames with "unusual"
       characters are quoted as explained for the configuration
@@ -163,7 +165,35 @@ documentation:
       Match the pattern only at word boundary (either begin at the
       beginning of a line, or preceded by a non-word character; end at
       the end of a line or followed by a non-word character).
-    color: |-
-      Turn off match highlighting, even when the configuration file
-      gives the default to color output.
-      Same as `--color=never`.
+    f: |-
+      Use the fast patchset import strategy. This can be significantly faster
+      for large trees, but cannot handle directory renames or permissions
+      changes. The default strategy is slow and safe.
+    index: |-
+      Apply the patch to both the index and the working tree (or
+      merely check that it would apply cleanly to both if `--check` is
+      in effect). Note that `--index` expects index entries and
+      working tree copies for relevant paths to be identical (their
+      contents and metadata such as file mode must match), and will
+      raise an error if they are not, even if the patch would apply
+      cleanly to both the index and the working tree in isolation.
+    name-only: |-
+      Show only the name of each changed file in the post-image tree.
+      The file names are often encoded in UTF-8.
+      For more information see the discussion about encoding in the [git-log](cmd://git/log)
+      manual page.
+    H: show filenames
+    after-context: show <n> context lines after matches
+    and: combine patterns specified with -e using logical AND
+    before-context: show <n> context lines before matches
+    context: show <n> context lines before and after matches
+    ext-grep: allow calling of grep(1) (ignored by this build)
+    extended-regexp: use extended POSIX regular expressions
+    files-with-matches: show only filenames instead of matching lines
+    function-context: show whole surrounding functions of matches
+    max-count: limit the number of matches per file
+    max-depth: descend at most <depth> levels
+    open-files-in-pager: show matching files in the pager
+    or: combine patterns with logical OR
+    threads: use <n> worker threads
+

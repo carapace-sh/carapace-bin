@@ -25,11 +25,11 @@ func init() {
 	rootCmd.AddCommand(transferCmd)
 
 	carapace.Gen(transferCmd).FlagCompletion(carapace.ActionMap{
-		"compress":        carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
-		"confirm-paths":   carapace.ActionValues("yes", "no").StyleF(style.ForKeyword),
+		"compress":        carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
+		"confirm-paths":   carapace.ActionValues("no", "yes").StyleF(style.ForKeyword),
 		"direction":       carapace.ActionValues("download", "receive", "send", "upload"),
-		"mode":            carapace.ActionValues("normal", "mirror"),
-		"transmit-deltas": carapace.ActionValues("yes", "no").StyleF(style.ForKeyword),
+		"mode":            carapace.ActionValues("mirror", "normal"),
+		"transmit-deltas": carapace.ActionValues("no", "yes").StyleF(style.ForKeyword),
 	})
 
 	carapace.Gen(transferCmd).PositionalAnyCompletion(carapace.Batch(

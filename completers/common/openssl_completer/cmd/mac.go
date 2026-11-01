@@ -34,14 +34,14 @@ func init() {
 			switch len(c.Parts) {
 			case 0:
 				return carapace.ActionValues(
-					"key",
-					"hexkey",
-					"iv",
-					"hexiv",
-					"size",
+					"cipher",
 					"custom",
 					"digest",
-					"cipher",
+					"hexiv",
+					"hexkey",
+					"iv",
+					"key",
+					"size",
 				).Suffix(":")
 			case 1:
 				switch c.Parts[0] {

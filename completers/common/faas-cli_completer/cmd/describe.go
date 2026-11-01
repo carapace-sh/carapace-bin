@@ -15,15 +15,18 @@ var describeCmd = &cobra.Command{
 func init() {
 	carapace.Gen(describeCmd).Standalone()
 
-	describeCmd.Flags().Bool("envsubst", true, "Substitute environment variables in stack.yml file")
+	describeCmd.Flags().Bool("envsubst", true, "Substitute environment variables in stack.yaml file")
 	describeCmd.Flags().StringP("gateway", "g", "http://127.0.0.1:8080", "Gateway URL starting with http(s)://")
+	describeCmd.Flags().BoolP("json", "j", false, "Output function details as JSON")
 	describeCmd.Flags().String("name", "", "Name of the function")
 	describeCmd.Flags().StringP("namespace", "n", "", "Namespace of the function")
 	describeCmd.Flags().Bool("tls-no-verify", false, "Disable TLS validation")
 	describeCmd.Flags().StringP("token", "k", "", "Pass a JWT token to use instead of basic auth")
+	describeCmd.Flags().BoolP("verbose", "v", false, "Enable verbose output")
 	rootCmd.AddCommand(describeCmd)
 
 	carapace.Gen(describeCmd).FlagCompletion(carapace.ActionMap{
+		"name":      action.ActionFunctions(),
 		"namespace": action.ActionNamespaces(),
 	})
 

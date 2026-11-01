@@ -45,11 +45,11 @@ func init() {
 	rootCmd.Flags().BoolP("nonblock", "N", false, "nonblocking mode")
 	rootCmd.Flags().String("period-size", "", "distance between interrupts is # frames")
 	rootCmd.Flags().StringP("period-time", "F", "", "distance between interrupts is # microseconds")
-	rootCmd.Flags().Bool("process-id-file", false, "write the process ID here")
+	rootCmd.Flags().String("process-id-file", "", "write the process ID here")
 	rootCmd.Flags().BoolP("quiet", "q", false, "quiet mode")
 	rootCmd.Flags().StringP("rate", "r", "", "sample rate")
 	rootCmd.Flags().StringP("samples", "s", "", "interrupt after # samples per channel")
-	rootCmd.Flags().StringP("separate-channels", "I", "", "one file for each channel")
+	rootCmd.Flags().BoolP("separate-channels", "I", false, "one file for each channel")
 	rootCmd.Flags().StringP("start-delay", "R", "", "delay for automatic PCM start is # microseconds ")
 	rootCmd.Flags().StringP("stop-delay", "T", "", "delay for automatic PCM stop is # microseconds from xrun")
 	rootCmd.Flags().String("subformat", "", "sample subformat (case insensitive)")
@@ -63,7 +63,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"device":    os.ActionSoundCards(),
-		"file-type": carapace.ActionValues("voc", "wav", "raw", "au"),
+		"file-type": carapace.ActionValues("au", "raw", "voc", "wav"),
 		"format":    action.ActionSampleFormats(),
 		"vumeter":   carapace.ActionValues("mono", "stereo"),
 	})

@@ -16,15 +16,19 @@ func init() {
 	carapace.Gen(stash_pushCmd).Standalone()
 
 	stash_pushCmd.Flags().BoolP("all", "a", false, "also stash ignored and untracked")
+	stash_pushCmd.Flags().Bool("auto-advance", false, "auto advance to the next file when selecting hunks interactively")
 	stash_pushCmd.Flags().BoolP("include-untracked", "u", false, "also stash untracked")
+	stash_pushCmd.Flags().String("inter-hunk-context", "", "show inter-hunk context")
 	stash_pushCmd.Flags().BoolP("keep-index", "k", false, "keep changed added to index")
 	stash_pushCmd.Flags().StringP("message", "m", "", "set description")
+	stash_pushCmd.Flags().Bool("no-auto-advance", false, "do not auto advance to the next file when selecting hunks interactively")
 	stash_pushCmd.Flags().Bool("no-keep-index", false, "also apply to index")
 	stash_pushCmd.Flags().BoolP("patch", "p", false, "interactively select hunks between HEAD and working tree")
-	stash_pushCmd.Flags().Bool("pathspec-file-nul", false, "pathspec elemts are seperated by NUL")
+	stash_pushCmd.Flags().Bool("pathspec-file-nul", false, "pathspec elements are separated by NUL character")
 	stash_pushCmd.Flags().String("pathspec-from-file", "", "read pathspec from file")
 	stash_pushCmd.Flags().BoolP("quiet", "q", false, "suppress feedback messages")
 	stash_pushCmd.Flags().BoolP("staged", "S", false, "only stash staged")
+	stash_pushCmd.Flags().StringP("unified", "U", "", "generate diffs with <n> lines context")
 	stashCmd.AddCommand(stash_pushCmd)
 
 	carapace.Gen(stash_pushCmd).FlagCompletion(carapace.ActionMap{

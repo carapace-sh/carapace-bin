@@ -3,3 +3,6 @@ name: verify
 description: check that a bundle file is valid
 flags:
   -q, --quiet: do not show bundle details
+documentation:
+  flag:
+    quiet: Be quiet. Only print error messages.

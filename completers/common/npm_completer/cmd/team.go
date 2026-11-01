@@ -13,9 +13,10 @@ var teamCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(teamCmd).Standalone()
+	teamCmd.PersistentFlags().Bool("json", false, "output as json")
 	teamCmd.PersistentFlags().String("otp", "", "one-time password")
 	teamCmd.PersistentFlags().BoolP("parseable", "p", false, "output parseable results")
-	teamCmd.PersistentFlags().String("json", "", "output as json")
+	teamCmd.PersistentFlags().String("registry", "", "base URL of the npm registry")
 
 	rootCmd.AddCommand(teamCmd)
 }

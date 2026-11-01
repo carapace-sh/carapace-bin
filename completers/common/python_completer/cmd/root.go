@@ -70,14 +70,14 @@ func init() {
 			switch len(c.Parts) {
 			case 0:
 				return carapace.ActionValuesDescribed(
+					"dev", "enable CPython's \"development mode\"",
 					"faulthandler", "enable faulthandler",
+					"importtime", "show how long each import takes",
 					"oldparser", "enable the traditional LL(1) parser; also PYTHONOLDPARSER",
+					"pycache_prefix=", "enable writing .pyc files to a parallel tree",
 					"showrefcount", "output the total reference count and number of used memory",
 					"tracemalloc", "start tracing Python memory allocations using the tracemalloc module",
-					"importtime", "show how long each import takes",
-					"dev", "enable CPython's \"development mode\"",
 					"utf8", "enable UTF-8 mode for operating system interfaces",
-					"pycache_prefix=", "enable writing .pyc files to a parallel tree",
 				)
 			case 1:
 				switch c.Parts[0] {

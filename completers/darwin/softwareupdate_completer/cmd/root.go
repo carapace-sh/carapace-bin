@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/softwareupdate"
 	"github.com/spf13/cobra"
 )
@@ -45,6 +46,13 @@ func init() {
 	rootCmd.Flags().Bool("stdinpass", false, "Read password from stdin")
 	rootCmd.Flags().String("user", "", "Local username to authenticate as an owner")
 	rootCmd.Flags().Bool("verbose", false, "Enable verbose output")
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"force":                  carapace.ActionValues("download", "install", "list", "scan"),
+		"full-installer-version": carapace.ActionValues(),
+		"product-types":          carapace.ActionValues("AppStore", "BridgeOS", "Firmware", "Safari", "iOS", "macOS", "tvOS", "watchOS"),
+		"user":                   os.ActionUsers(),
+	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
 		softwareupdate.ActionUpdates(),

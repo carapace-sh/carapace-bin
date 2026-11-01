@@ -17,6 +17,6 @@ func init() {
 	rootCmd.AddCommand(ioCmd)
 	carapace.Gen(ioCmd).PositionalCompletion(
 		simctl.ActionDevices(),
-		carapace.ActionValues("screenshot", "recordVideo"),
+		carapace.ActionValues("recordVideo", "screenshot"),
 	)
 }

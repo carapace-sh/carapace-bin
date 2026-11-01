@@ -32,9 +32,9 @@ func init() {
 	rootCmd.Flags().StringP("view", "V", "", "starting view mode: playback/capture/all")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"abstraction": carapace.ActionValues("none", "basic"),
+		"abstraction": carapace.ActionValues("basic", "none"),
 		"card":        os.ActionSoundCards(),
 		"config":      carapace.ActionFiles(),
-		"view":        carapace.ActionValues("playback", "capture", "all"),
+		"view":        carapace.ActionValues("all", "capture", "playback"),
 	})
 }

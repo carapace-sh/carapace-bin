@@ -18,7 +18,7 @@ func init() {
 	rootCmd.AddCommand(documentationCmd)
 
 	carapace.Gen(documentationCmd).FlagCompletion(carapace.ActionMap{
-		"format":    carapace.ActionValues("markdown", "manpage"),
+		"format":    carapace.ActionValues("manpage", "markdown"),
 		"outputDir": carapace.ActionDirectories(),
 	})
 }

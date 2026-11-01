@@ -8,7 +8,7 @@ import (
 )
 
 func ActionNamespaces() carapace.Action {
-	return carapace.ActionExecCommand("faas-cli", "namespaces")(func(output []byte) carapace.Action {
+	return carapace.ActionExecCommand("faas-cli", "namespace", "list")(func(output []byte) carapace.Action {
 		r := regexp.MustCompile(`^ - (?P<namespace>.*)$`)
 
 		vals := make([]string, 0)

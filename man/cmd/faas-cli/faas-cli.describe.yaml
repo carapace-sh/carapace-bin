@@ -2,9 +2,11 @@
 name: describe
 description: Describe an OpenFaaS function
 flags:
-    --envsubst: Substitute environment variables in stack.yml file
+    --envsubst: Substitute environment variables in stack.yaml file
     --name=: Name of the function
     --tls-no-verify: Disable TLS validation
     -g, --gateway=: Gateway URL starting with http(s)://
+    -j, --json: Output function details as JSON
     -k, --token=: Pass a JWT token to use instead of basic auth
     -n, --namespace=: Namespace of the function
+    -v, --verbose: Enable verbose output

@@ -30,7 +30,7 @@ func init() {
 			}
 			return action.ActionBuilderConfigurations(c.Args[0], "").UniqueList(",")
 		}),
-		"format":      carapace.ActionValues("xmb", "xlf", "xlif", "xliff", "xlf2", "xliff2", "json", "arb", "legacy-migrate"),
+		"format":      carapace.ActionValues("arb", "json", "legacy-migrate", "xlf", "xlf2", "xlif", "xliff", "xliff2", "xmb"),
 		"out-file":    carapace.ActionFiles(),
 		"output-path": carapace.ActionDirectories(),
 	})

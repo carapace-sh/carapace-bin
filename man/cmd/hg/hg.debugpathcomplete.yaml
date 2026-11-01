@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugpathcomplete
+description: FILESPEC...
+hidden: true
+flags:
+    -a, --added: show only added files
+    -f, --full: complete an entire path
+    -n, --normal: show only normal files
+    -r, --removed: show only removed files
+documentation:
+    command: |
+        complete part or all of a tracked path
+
+        This command supports shells that offer path name completion. It
+        currently completes only files already known to the dirstate.
+
+        Completion extends only to the next path segment unless
+        --full is specified, in which case entire paths are used.

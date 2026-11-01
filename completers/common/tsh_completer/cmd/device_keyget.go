@@ -7,7 +7,7 @@ import (
 
 var device_keygetCmd = &cobra.Command{
 	Use:    "keyget",
-	Short:  "Get information about the device key",
+	Short:  "Get information about the device key.",
 	Hidden: true,
 	Run:    func(cmd *cobra.Command, args []string) {},
 }

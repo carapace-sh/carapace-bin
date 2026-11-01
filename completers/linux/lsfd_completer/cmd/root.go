@@ -46,10 +46,10 @@ func init() {
 	rootCmd.Flag("summary").NoOptDefVal = " "
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"hyperlink": carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
+		"hyperlink": carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"inet":      carapace.ActionValues("4", "6"),
 		"output":    action.ActionColumns().UniqueList(","),
 		"pid":       ps.ActionProcessIds().UniqueList(","),
-		"summary":   carapace.ActionValues("only", "append", "never").StyleF(style.ForKeyword),
+		"summary":   carapace.ActionValues("append", "never", "only").StyleF(style.ForKeyword),
 	})
 }

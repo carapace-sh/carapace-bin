@@ -1,0 +1,44 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: hg
+description: Mercurial distributed SCM
+flags:
+    --color=: when to colorize (boolean, always, auto, never, or debug)
+    --config-file=: load config file to set/override config options
+    --config=: set/override config option (use 'section.name=value')
+    --cwd=: change working directory
+    --debug: enable debugging output
+    --debugger: start debugger
+    --encoding=: set the charset encoding
+    --encodingmode=: set the charset encoding mode
+    --hidden: consider hidden changesets
+    --pager=: when to paginate (boolean, always, auto, or never)
+    --profile: print command execution profile
+    --time: time how long the command takes
+    --traceback: always print a traceback on exception
+    --version: output version information and exit
+    -R, --repository=: repository root directory or name of overlay bundle file
+    -h, --help: display help and exit
+    -q, --quiet: suppress output
+    -v, --verbose: enable additional output
+    -y, --noninteractive: do not prompt, automatically pick the first choice for all prompts
+documentation:
+    command: |
+        The **hg** command provides a command line interface to the Mercurial
+        system.
+
+        Mercurial is a free, distributed source control management tool. It
+        efficiently handles projects of any size and offers a simple and
+        intuitive interface.
+
+        Global options are accepted before the command name; see the flags
+        below. Run `hg help` for an overview of commands and `hg help <topic>`
+        for detailed documentation, including [revisions](hg help revisions),
+        [date formats](hg help dates), [file name patterns](hg help patterns)
+        and [templating](hg help templating).
+    flag:
+        color: 'When to colorize output: boolean, always, auto, never, or debug.'
+        config: Set or override a configuration option as `section.name=value`. Can be specified multiple times.
+        config-file: Load an additional config file to set or override configuration options.
+        cwd: Change the working directory before executing the command.
+        pager: 'When to paginate output: boolean, always, auto, or never.'
+        repository: Use the given repository root directory or overlay bundle file instead of the current directory.

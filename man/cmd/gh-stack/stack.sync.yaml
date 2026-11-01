@@ -2,4 +2,5 @@
 name: sync
 description: Sync the current stack with the remote
 flags:
+    --prune: Delete local branches for merged PRs
     --remote=: Remote to fetch from and push to (defaults to auto-detected remote)

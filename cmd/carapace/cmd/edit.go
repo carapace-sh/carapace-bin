@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"github.com/carapace-sh/carapace"
-	shlex "github.com/carapace-sh/carapace-shlex"
+	shlex "github.com/carapace-sh/carapace-shlex/v2"
 	"github.com/carapace-sh/carapace/pkg/execlog"
 	"github.com/carapace-sh/carapace/pkg/traverse"
 	"github.com/spf13/cobra"
@@ -92,7 +92,7 @@ func editor() ([]string, error) {
 		e = "notepad"
 	}
 
-	tokens, err := shlex.Split(e)
+	tokens, err := shlex.Split(e, shlex.Default)
 	if err != nil {
 		return nil, err
 	}

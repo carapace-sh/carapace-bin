@@ -24,6 +24,6 @@ func init() {
 	common.AddEnvironmentFlag(dbconsoleCmd, "development")
 
 	carapace.Gen(dbconsoleCmd).FlagCompletion(carapace.ActionMap{
-		"mode": carapace.ActionValues("html", "list", "line", "column"),
+		"mode": carapace.ActionValues("column", "html", "line", "list"),
 	})
 }

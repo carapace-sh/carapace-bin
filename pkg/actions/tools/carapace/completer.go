@@ -115,6 +115,7 @@ func ActionGroups(nameVariant string) carapace.Action {
 			"bsd":     "bsd-like completers",
 			"common":  "common completers",
 			"darwin":  "macos completers",
+			"elvish":  "elvish completers",
 			"fish":    "fish completers",
 			"linux":   "linux completers",
 			"unix":    "unix-like completers",

@@ -19,6 +19,6 @@ func init() {
 	rootCmd.AddCommand(suggestCmd)
 
 	carapace.Gen(suggestCmd).FlagCompletion(carapace.ActionMap{
-		"target": carapace.ActionValues("shell", "gh", "git"),
+		"target": carapace.ActionValues("gh", "git", "shell"),
 	})
 }

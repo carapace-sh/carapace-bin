@@ -8,16 +8,16 @@ import "github.com/carapace-sh/carapace"
 //	state
 func ActionMilestoneFields() carapace.Action {
 	return carapace.ActionValues(
-		"title",
-		"state",
-		"items_open",
-		"items_closed",
-		"items",
-		"duedate",
-		"description",
-		"created",
-		"updated",
 		"closed",
+		"created",
+		"description",
+		"duedate",
 		"id",
+		"items",
+		"items_closed",
+		"items_open",
+		"state",
+		"title",
+		"updated",
 	)
 }

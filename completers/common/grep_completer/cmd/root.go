@@ -76,8 +76,8 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"binary-files": carapace.ActionValues("binary", "test", "without-match"),
-		"color":        carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
-		"colour":       carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
+		"color":        carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
+		"colour":       carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"devices":      carapace.ActionValues("read", "skip"),
 		"directories":  carapace.ActionValues("read", "recurse", "skip"),
 		"exclude-from": carapace.ActionFiles(),

@@ -56,12 +56,12 @@ func init() {
 	carapace.Gen(completersCmd).Standalone()
 
 	completersCmd.Flags().Bool("code", false, "output go code")
-	completersCmd.Flags().String("tag", "", "build tag for code output")
 	completersCmd.Flags().String("output", "", "file to write to")
+	completersCmd.Flags().String("tag", "", "build tag for code output")
 	rootCmd.AddCommand(completersCmd)
 
 	carapace.Gen(completersCmd).PositionalCompletion(
 		carapace.ActionDirectories(),
-		carapace.ActionValues("android", "linux", "darwin", "windows", "force_all"), // TODO others, termux as well?
+		carapace.ActionValues("android", "darwin", "force_all", "linux", "windows"), // TODO others, termux as well?
 	)
 }

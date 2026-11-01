@@ -7,7 +7,7 @@ import (
 
 var help_initCmd = &cobra.Command{
 	Use:   "init",
-	Short: "Creates a new workspace",
+	Short: "Creates a new workspace or script",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

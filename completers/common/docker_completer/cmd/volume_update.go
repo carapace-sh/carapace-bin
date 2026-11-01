@@ -19,7 +19,7 @@ func init() {
 	volumeCmd.AddCommand(volume_updateCmd)
 
 	carapace.Gen(volume_updateCmd).FlagCompletion(carapace.ActionMap{
-		"availability": carapace.ActionValues("active", "pause", "drain"),
+		"availability": carapace.ActionValues("active", "drain", "pause"),
 	})
 
 	carapace.Gen(volume_updateCmd).PositionalCompletion(

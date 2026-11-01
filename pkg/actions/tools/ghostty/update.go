@@ -8,9 +8,9 @@ import "github.com/carapace-sh/carapace"
 //	check (Check for updates)
 func ActionAutoUpdateModes() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"off", "Disable auto-updates",
 		"check", "Check for updates",
 		"download", "Check for updates, automatically download the update",
+		"off", "Disable auto-updates",
 	).Tag("auto-update modes").Uid("ghostty", "auto-update")
 }
 

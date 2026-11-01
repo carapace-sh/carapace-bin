@@ -4,23 +4,42 @@ description: Download objects and refs from another repository
 group: main
 flags:
   --all: fetch from all remotes
-  --auto-gc: run 'gc --auto' after fetching
+  --atomic: use an atomic transaction to update local refs
+  --auto-gc: run git maintenance run --auto at the end
+  --auto-maintenance: run git maintenance run --auto at the end
   --deepen=: deepen history of shallow clone
   --depth=: deepen history of shallow clone
   --dry-run: dry run
-  --filter=: object filtering
-  --negotiation-tip=: report that we have only objects reachable from this object
+  --filter=*: object filtering
+  --negotiate-only: do not fetch anything from the server
+  --negotiation-include=*: ensure that the commits at the given tips are always sent as "have" lines during fetch negotiation
+  --negotiation-restrict=*: report only commits reachable from the given tips as "have" lines during fetch negotiation
+  --negotiation-tip=*: report that we have only objects reachable from this object
+  --no-all: do not fetch from all remotes
+  --no-auto-gc: do not run git maintenance run --auto at the end
+  --no-auto-maintenance: do not run git maintenance run --auto at the end
+  --no-recurse-submodules: disable recursive fetching of submodules
+  --no-show-forced-updates: do not check if a branch is force-updated during fetch
+  --no-write-commit-graph: do not write a commit-graph after fetching
+  --no-write-fetch-head: do not write the list of remote refs fetched
+  --porcelain: produce machine-readable output
+  --prefetch: place all refs into the refs/prefetch/ namespace
   --progress: force progress reporting
+  --recurse-submodules-default=: used internally to temporarily provide a non-negative default value
   --recurse-submodules=: control recursive fetching of submodules
-  --refmap=: specify fetch refmap
+  --refetch: re-fetch without negotiating common commits
+  --refmap=*: specify fetch refmap
   --set-upstream: set upstream for git pull/fetch
-  --shallow-exclude=: deepen history of shallow clone, excluding rev
+  --shallow-exclude=*: deepen history of shallow clone, excluding rev
   --shallow-since=: deepen history of shallow repository based on time
   --show-forced-updates: check for forced-updates on all updated branches
+  --stdin: read refspecs, one per line, from stdin
+  --submodule-prefix=: prepend <path> to paths printed in informative messages
   --unshallow: convert to a complete repository
   --update-shallow: accept refs that update .git/shallow
   --upload-pack=: path to upload pack on remote end
   --write-commit-graph: write the commit-graph after fetching
+  --write-fetch-head: write the list of remote refs fetched
   -4, --ipv4: use IPv4 addresses only
   -6, --ipv6: use IPv6 addresses only
   -P, --prune-tags: prune local tags no longer on remote and clobber changed tags
@@ -29,7 +48,7 @@ flags:
   -j, --jobs=: number of submodules fetched in parallel
   -k, --keep: keep downloaded pack
   -m, --multiple: fetch from multiple remotes
-  -n: do not fetch all tags (--no-tags)
+  -n, --no-tags: disable automatic tag following
   -o, --server-option=: option to transmit
   -p, --prune: prune remote-tracking branches no longer on remote
   -q, --quiet: be more quiet
@@ -37,36 +56,19 @@ flags:
   -u, --update-head-ok: allow updating of HEAD ref
   -v, --verbose: be more verbose
 documentation:
-  command: |-
-    Fetch branches and/or tags (collectively, "refs") from one or more
-    other repositories, along with the objects necessary to complete their
-    histories.  Remote-tracking branches are updated (see the description
-    of _<refspec>_ below for ways to control this behavior).
-
-    By default, any tag that points into the histories being fetched is
-    also fetched; the effect is to fetch tags that
-    point at branches that you are interested in.  This default behavior
-    can be changed by using the `--tags` or `--no-tags` options or by
-    configuring `remote.<name>.tagOpt`.  By using a refspec that fetches tags
-    explicitly, you can fetch tags that do not point into branches you
-    are interested in as well.
-
-    `git fetch` can fetch from either a single named repository or URL,
-    or from several repositories at once if _<group>_ is given and
-    there is a `remotes.<group>` entry in the configuration file.
-    (See [git-config](cmd://git/config)).
-
-    When no remote is specified, by default the `origin` remote will be used,
-    unless there's an upstream branch configured for the current branch.
-
-    The names of refs that are fetched, together with the object names
-    they point at, are written to `.git/FETCH_HEAD`.  This information
-    may be used by scripts or other git commands, such as [git-pull](cmd://git/pull).
   flag:
+    all: |-
+      Fetch all remotes, except for the ones that have the
+      `remote.<name>.skipFetchAll` configuration variable set.
+      This overrides the configuration variable `fetch.all`.
     append: |-
       Append ref names and object names of fetched refs to the
       existing contents of `.git/FETCH_HEAD`.  Without this
       option old data in `.git/FETCH_HEAD` will be overwritten.
+    auto-gc: |-
+      Run `git maintenance run --auto` at the end to perform automatic
+      repository maintenance if needed.
+      This is enabled by default.
     deepen: |-
       Similar to `--depth`, except it specifies the number of commits
       from the current shallow boundary instead of from the tip of
@@ -176,6 +178,9 @@ documentation:
       Pass `--quiet` to `git-fetch-pack` and silence any other internally
       used git commands. Progress is not reported to the standard error
       stream.
+    recurse-submodules: |-
+      Disable recursive fetching of submodules (this has the same effect as
+      using the `--recurse-submodules=no` option).
     refmap: |-
       When fetching refs listed on the command line, use the
       specified refspec (can be given more than once) to map the
@@ -240,17 +245,63 @@ documentation:
       `.git/shallow`. This option updates `.git/shallow` and accepts such
       refs.
     verbose: Be verbose.
-    all: |-
-      Fetch all remotes, except for the ones that have the
-      `remote.<name>.skipFetchAll` configuration variable set.
-      This overrides the configuration variable `fetch.all`.
-    auto-gc: |-
-      Run `git maintenance run --auto` at the end to perform automatic
-      repository maintenance if needed.
-      This is enabled by default.
-    recurse-submodules: |-
-      Disable recursive fetching of submodules (this has the same effect as
-      using the `--recurse-submodules=no` option).
     write-commit-graph: |-
       Write a commit-graph after fetching. This overrides the config
       setting `fetch.writeCommitGraph`.
+    atomic: |-
+      Use an atomic transaction on the remote side if available.
+      Either all refs are updated, or on error, no refs are updated.
+      If the server does not support atomic pushes the push will fail.
+    no-all: |-
+      Update the index by adding new files that are unknown to the index and files modified in the working tree,
+      but ignore files that have been removed from the working tree.
+      This option is a no-op when no **\<pathspec\>** is used.
+      
+      This option is primarily to help users who are used to older versions of Git,
+      whose `git add <pathspec>...` was a synonym for `git add –no-all <pathspec>...`, i.e. ignored removed files.
+    no-recurse-submodules: |-
+      Using `--recurse-submodules` will update the content of all active
+      submodules according to the commit recorded in the superproject. If
+      local modifications in a submodule would be overwritten the checkout
+      will fail unless `-f` is used. If nothing (or `--no-recurse-submodules`)
+      is used, submodules working trees will not be updated.
+      Just like [git-submodule](cmd://git/submodule), this will detach `HEAD` of the
+      submodule.
+    porcelain: Show in a format designed for machine consumption.
+    stdin: |-
+      The list of patterns is read from standard input instead of from
+      the argument list.
+    upload-pack: |-
+      Specify a non-default path for the command run on the other end when the
+      repository to clone from is accessed via ssh.
+    no-tags: |-
+      Control whether or not tags will be cloned. When `--no-tags` is
+      given, the option will be become permanent by setting the
+      `remote.<remote>.tagOpt=--no-tags` configuration. This ensures that
+      future `git pull` and `git fetch` won't follow any tags. Subsequent
+      explicit tag fetches will still work (see [git-fetch](cmd://git/fetch)).
+      
+      By default, tags are cloned and passing `--tags` is thus typically a
+      no-op, unless it cancels out a previous `--no-tags`.
+      
+      Can be used in conjunction with `--single-branch` to clone and
+      maintain a branch with no references other than a single cloned
+      branch. This is useful e.g. to maintain minimal clones of the default
+      branch of some repository for search indexing.
+    auto-maintenance: run git maintenance run --auto at the end
+    negotiate-only: do not fetch anything from the server
+    negotiation-include: |-
+      ensure that the commits at the given tips are always sent as "have" lines during fetch negotiation
+    negotiation-restrict: |-
+      report only commits reachable from the given tips as "have" lines during fetch negotiation
+    no-auto-gc: do not run git maintenance run --auto at the end
+    no-auto-maintenance: do not run git maintenance run --auto at the end
+    no-show-forced-updates: do not check if a branch is force-updated during fetch
+    no-write-commit-graph: do not write a commit-graph after fetching
+    no-write-fetch-head: do not write the list of remote refs fetched
+    prefetch: place all refs into the refs/prefetch/ namespace
+    recurse-submodules-default: used internally to temporarily provide a non-negative default value
+    refetch: re-fetch without negotiating common commits
+    submodule-prefix: prepend <path> to paths printed in informative messages
+    write-fetch-head: write the list of remote refs fetched
+

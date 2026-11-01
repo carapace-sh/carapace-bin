@@ -4,3 +4,9 @@ description: Create configuration file
 flags:
     --project: Create project config (.config/wt.toml) instead of user config
     -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        C:
+            - $files
+        config:
+            - $files

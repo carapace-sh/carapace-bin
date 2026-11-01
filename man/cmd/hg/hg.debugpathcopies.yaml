@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugpathcopies
+description: hg debugpathcopies REV1 REV2 [FILE]
+hidden: true
+flags:
+    -I, --include=*: include names matching the given patterns
+    -X, --exclude=*: exclude names matching the given patterns
+documentation:
+    command: |
+        show copies between two revisions

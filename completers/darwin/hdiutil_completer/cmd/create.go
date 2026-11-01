@@ -27,8 +27,8 @@ func init() {
 
 	carapace.Gen(createCmd).FlagCompletion(carapace.ActionMap{
 		"encryption": carapace.ActionValues("AES-128", "AES-256"),
-		"filesystem": carapace.ActionValues("HFS+", "JHFS+", "APFS", "UFS", "MS-DOS", "FAT32"),
-		"format":     carapace.ActionValues("UDZO", "UDCO", "UDRO", "UDRW", "UDSP", "UDBZ"),
+		"filesystem": carapace.ActionValues("APFS", "FAT32", "HFS+", "JHFS+", "MS-DOS", "UFS"),
+		"format":     carapace.ActionValues("UDBZ", "UDCO", "UDRO", "UDRW", "UDSP", "UDZO"),
 		"srcfolder":  carapace.ActionDirectories(),
 	})
 

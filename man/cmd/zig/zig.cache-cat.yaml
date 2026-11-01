@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: cache-cat <paths>
+description: Print a zig-cache manifest file as zon
+flags:
+    -h, --help: Print help

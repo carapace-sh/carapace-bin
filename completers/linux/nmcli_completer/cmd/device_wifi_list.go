@@ -20,11 +20,11 @@ func init() {
 	device_wifiCmd.AddCommand(device_wifi_wifi_listCmd)
 
 	carapace.Gen(device_wifi_wifi_listCmd).FlagCompletion(carapace.ActionMap{
-		"rescan": carapace.ActionValues("yes", "no", "auto").StyleF(style.ForKeyword),
+		"rescan": carapace.ActionValues("auto", "no", "yes").StyleF(style.ForKeyword),
 	})
 
 	carapace.Gen(device_wifi_wifi_listCmd).PositionalCompletion(
-		carapace.ActionValues("ifname", "bssid"),
+		carapace.ActionValues("bssid", "ifname"),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			switch c.Args[0] {
 			case "ifname":

@@ -16,6 +16,9 @@ var webCmd = &cobra.Command{
 func init() {
 	carapace.Gen(webCmd).Standalone()
 
+	webCmd.Flags().BoolP("unvote", "u", false, "Remove vote from packages")
+	webCmd.Flags().BoolP("vote", "v", false, "Vote for packages")
+
 	carapace.Gen(webCmd).PositionalAnyCompletion(
 		yay.ActionPackageSearch().FilterArgs(),
 	)

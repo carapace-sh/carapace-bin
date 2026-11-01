@@ -45,16 +45,19 @@ func init() {
 	rootCmd.AddCommand(exposeCmd)
 
 	carapace.Gen(exposeCmd).FlagCompletion(carapace.ActionMap{
-		"dry-run":   kubectl.ActionDryRunModes(),
-		"filename":  carapace.ActionFiles(),
-		"kustomize": carapace.ActionDirectories(),
-		"output":    kubectl.ActionOutputFormats(),
-		"template":  carapace.ActionFiles(),
-		"type":      carapace.ActionValues("ClusterIP", "NodePort", "LoadBalancer", "ExternalName"),
+		"dry-run":          kubectl.ActionDryRunModes(),
+		"filename":         carapace.ActionFiles(),
+		"kustomize":        carapace.ActionDirectories(),
+		"output":           kubectl.ActionOutputFormats(),
+		"override-type":    carapace.ActionValues("json", "merge", "strategic"),
+		"protocol":         carapace.ActionValues("SCTP", "TCP", "UDP"),
+		"session-affinity": carapace.ActionValues("ClientIP", "None"),
+		"template":         carapace.ActionFiles(),
+		"type":             carapace.ActionValues("ClusterIP", "ExternalName", "LoadBalancer", "NodePort"),
 	})
 
 	carapace.Gen(exposeCmd).PositionalCompletion(
-		carapace.ActionValues("pod", "service", "replicationcontroller", "deployment", "replicaset"),
+		carapace.ActionValues("deployment", "pod", "replicaset", "replicationcontroller", "service"),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return kubectl.ActionResources(kubectl.ResourceOpts{
 				Context:   rootCmd.Flag("context").Value.String(),

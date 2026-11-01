@@ -8,7 +8,7 @@ import (
 var helpStoresCmd = &cobra.Command{
 	Use:     "help",
 	Short:   "show help about store types and their settings",
-	GroupID: "main",
+	GroupID: "help",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 

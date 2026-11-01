@@ -31,7 +31,7 @@ func init() {
 	addCmd.Flags().String("git", "", "Git repository location")
 	addCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	addCmd.Flags().Bool("ignore-rust-version", false, "Ignore `rust-version` specification in packages")
-	addCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
+	addCmd.Flags().StringP("manifest-path", "m", "", "Path to Cargo.toml")
 	addCmd.Flags().Bool("no-default-features", false, "Disable the default features")
 	addCmd.Flags().Bool("no-optional", false, "Mark the dependency as required")
 	addCmd.Flags().Bool("no-public", false, "Mark the dependency as private (unstable)")
@@ -46,7 +46,6 @@ func init() {
 	addCmd.Flags().String("target", "", "Add as dependency to the given target platform")
 	rootCmd.AddCommand(addCmd)
 
-	// TODO flag completion
 	carapace.Gen(addCmd).FlagCompletion(carapace.ActionMap{
 		"branch": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if f := addCmd.Flag("git"); f.Changed && strings.HasPrefix(f.Value.String(), "https://github.com/") {
@@ -61,12 +60,11 @@ func init() {
 			}
 			return carapace.ActionValues()
 		}),
-		"git": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return git.ActionRepositorySearch(git.SearchOpts{}.Default())
-		}),
+		"git":           git.ActionRepositorySearch(git.SearchOpts{}.Default()),
 		"manifest-path": carapace.ActionFiles(),
 		"package":       action.ActionDependencies(addCmd, true),
 		"path":          carapace.ActionDirectories(),
+		"registry":      action.ActionRegistries(),
 	})
 
 	carapace.Gen(addCmd).PositionalAnyCompletion(

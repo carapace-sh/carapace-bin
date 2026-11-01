@@ -1,7 +1,10 @@
 package cmd
 
 import (
+	"strings"
+
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/golang"
 	"github.com/carapace-sh/carapace/pkg/condition"
 	"github.com/spf13/cobra"
@@ -27,6 +30,7 @@ func init() {
 	rootCmd.Flags().BoolS("all", "all", false, "Show all the documentation for the package")
 	rootCmd.Flags().BoolS("c", "c", false, "Respect case when matching symbols")
 	rootCmd.Flags().BoolS("cmd", "cmd", false, "Treat a command like a regular package")
+	rootCmd.Flags().BoolS("ex", "ex", false, "Include executable examples")
 	rootCmd.Flags().BoolS("http", "http", false, "Serve HTML docs over HTTP")
 	rootCmd.Flags().BoolS("short", "short", false, "One-line representation for each symbol")
 	rootCmd.Flags().BoolS("src", "src", false, "Show the full source code for the symbol")
@@ -37,11 +41,32 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.Batch(
-			carapace.ActionDirectories(),
-			golang.ActionPackages().UnlessF(condition.CompletingPath),
-		).ToA(),
-		carapace.ActionMultiParts(".", func(c carapace.Context) carapace.Action {
+		carapace.ActionMultiPartsN("@", 2, func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return carapace.Batch(
+					carapace.ActionDirectories(),
+					golang.ActionPackages().UnlessF(condition.CompletingPath),
+				).ToA()
+			default:
+				// TODO complete versions for other packages
+				var url string
+				switch {
+				case strings.HasPrefix(c.Parts[0], "github.com/"):
+					if splitted := strings.Split(c.Parts[0], "/"); len(splitted) > 2 {
+						url = "https://" + strings.Join(splitted[:3], "/")
+					}
+				case strings.HasPrefix(c.Parts[0], "golang.org/x/tools/"):
+					url = "https://github.com/golang/tools"
+				}
+
+				if url != "" {
+					return git.ActionLsRemoteRefs(git.LsRemoteRefOption{Url: url, Tags: true})
+				}
+				return carapace.ActionValues()
+			}
+		}),
+		carapace.ActionMultiPartsN(".", 2, func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
 				return golang.ActionSymbols(golang.SymbolOpts{
@@ -49,15 +74,12 @@ func init() {
 					Unexported: rootCmd.Flag("u").Changed,
 				}).NoSpace()
 
-			case 1:
+			default:
 				return golang.ActionMethodOrFields(golang.MethodOrFieldOpts{
 					Package:    c.Args[0],
 					Symbol:     c.Parts[0],
 					Unexported: rootCmd.Flag("u").Changed,
 				})
-
-			default:
-				return carapace.ActionValues()
 			}
 		}),
 	)

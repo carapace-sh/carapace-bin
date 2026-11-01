@@ -11,8 +11,8 @@ import (
 //	always (Always use cgroups)
 func ActionLinuxCgroups() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"never", "Never use cgroups",
 		"always", "Always use cgroups",
+		"never", "Never use cgroups",
 		"single-instance", "Enable cgroups only for Ghostty instances launched",
 	).StyleF(style.ForKeyword).Tag("linux cgroup modes").Uid("ghostty", "linux-cgroup")
 }
@@ -24,9 +24,9 @@ func ActionLinuxCgroups() carapace.Action {
 func ActionBackgroundBlurs() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"false", "equivalent to a blur intensity of 0",
-		"true", "equivalent to the default blur intensity of 20",
-		"macos-glass-regular", "macOS standard glass blur effect",
 		"macos-glass-clear", "macOS clear glass blur effect",
+		"macos-glass-regular", "macOS standard glass blur effect",
+		"true", "equivalent to the default blur intensity of 20",
 	).StyleF(style.ForKeyword).Tag("background blur modes").Uid("ghostty", "background-blur")
 }
 
@@ -45,9 +45,9 @@ func ActionFontShapingBreaks() carapace.Action {
 //	false (Do not run in single-instance mode)
 func ActionGtkSingleInstances() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"true", "Run in single-instance mode",
-		"false", "Do not run in single-instance mode",
 		"detect", "Automatically detect whether to use single-instance mode",
+		"false", "Do not run in single-instance mode",
+		"true", "Run in single-instance mode",
 	).StyleF(style.ForKeyword).Tag("gtk single instance modes").Uid("ghostty", "gtk-single-instance")
 }
 
@@ -57,8 +57,8 @@ func ActionGtkSingleInstances() carapace.Action {
 //	bottom (Tab bar at the bottom of the window)
 func ActionGtkTabsLocations() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"top", "Tab bar at the top of the window",
 		"bottom", "Tab bar at the bottom of the window",
+		"top", "Tab bar at the top of the window",
 	).Tag("gtk tabs locations").Uid("ghostty", "gtk-tabs-location")
 }
 
@@ -69,9 +69,9 @@ func ActionGtkTabsLocations() carapace.Action {
 func ActionMacosOptionsAsAlt() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"false", "Do not treat the Option key as Alt",
-		"true", "Treat both left and right Option keys as Alt",
 		"left", "Treat only the left Option key as Alt",
 		"right", "Treat only the right Option key as Alt",
+		"true", "Treat both left and right Option keys as Alt",
 	).StyleF(style.ForKeyword).Tag("macos option-as-alt modes").Uid("ghostty", "macos-option-as-alt")
 }
 
@@ -81,8 +81,8 @@ func ActionMacosOptionsAsAlt() carapace.Action {
 //	hidden (Hide the proxy icon)
 func ActionMacosTitlebarProxyIcons() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"visible", "Show the proxy icon in the macOS titlebar",
 		"hidden", "Hide the proxy icon in the macOS titlebar",
+		"visible", "Show the proxy icon in the macOS titlebar",
 	).Tag("macos titlebar proxy icon visibility").Uid("ghostty", "macos-titlebar-proxy-icon")
 }
 
@@ -92,9 +92,9 @@ func ActionMacosTitlebarProxyIcons() carapace.Action {
 //	on-demand (The quick terminal would only receive keyboard input when it is focused)
 func ActionQuickTerminalKeyboardInteractivities() carapace.Action {
 	return carapace.ActionValuesDescribed(
+		"exclusive", "The quick terminal will always receive keyboard input",
 		"none", "The quick terminal will not receive any keyboard input",
 		"on-demand", "The quick terminal would only receive keyboard input when it is focused",
-		"exclusive", "The quick terminal will always receive keyboard input",
 	).StyleF(style.ForKeyword).Tag("quick terminal keyboard interactivities").Uid("ghostty", "quick-terminal-keyboard-interactivity")
 }
 
@@ -114,7 +114,7 @@ func ActionScrollToBottoms() carapace.Action {
 //	srgb
 //	display-p3
 func ActionWindowColorspaces() carapace.Action {
-	return carapace.ActionValues("srgb", "display-p3").Tag("window colorspaces").Uid("ghostty", "window-colorspace")
+	return carapace.ActionValues("display-p3", "srgb").Tag("window colorspaces").Uid("ghostty", "window-colorspace")
 }
 
 // ActionWindowDecorations completes window decoration modes
@@ -123,9 +123,9 @@ func ActionWindowColorspaces() carapace.Action {
 //	auto (Automatically choose window decorations)
 func ActionWindowDecorations() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"none", "No window decorations",
 		"auto", "Automatically choose window decorations based on the platform",
 		"client", "Use client-side decorations",
+		"none", "No window decorations",
 		"server", "Use server-side decorations",
 	).Tag("window decoration modes").Uid("ghostty", "window-decoration")
 }
@@ -136,9 +136,9 @@ func ActionWindowDecorations() carapace.Action {
 //	false (Never confirm before closing)
 func ActionConfirmCloseSurfaces() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"true", "Always confirm before closing a surface",
-		"false", "Never confirm before closing a surface",
 		"always", "Always confirm, even when no shell is running",
+		"false", "Never confirm before closing a surface",
+		"true", "Always confirm before closing a surface",
 	).StyleF(style.ForKeyword).Tag("confirm close surface modes").Uid("ghostty", "confirm-close-surface")
 }
 
@@ -148,9 +148,9 @@ func ActionConfirmCloseSurfaces() carapace.Action {
 //	false (Do not show link previews)
 func ActionLinkPreviewses() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"true", "Show link previews for matched URLs",
 		"false", "Do not show link previews",
 		"osc8", "Show link previews only for OSC 8 hyperlinks",
+		"true", "Show link previews for matched URLs",
 	).StyleF(style.ForKeyword).Tag("link preview modes").Uid("ghostty", "link-previews")
 }
 
@@ -159,5 +159,5 @@ func ActionLinkPreviewses() carapace.Action {
 //	xterm-ghostty
 //	xterm-256color
 func ActionTerms() carapace.Action {
-	return carapace.ActionValues("xterm-ghostty", "xterm-256color", "xterm-kitty", "xterm-terminfo").Tag("term values").Uid("ghostty", "term")
+	return carapace.ActionValues("xterm-256color", "xterm-ghostty", "xterm-kitty", "xterm-terminfo").Tag("term values").Uid("ghostty", "term")
 }

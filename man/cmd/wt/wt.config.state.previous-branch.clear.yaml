@@ -3,3 +3,9 @@ name: clear
 description: Clear the previous branch
 flags:
     -h, --help: Print help
+completion:
+    flag:
+        C:
+            - $files
+        config:
+            - $files

@@ -8,7 +8,7 @@ import (
 
 var execCmd = &cobra.Command{
 	Use:                "exec",
-	Short:              "Executes a shell command in scope of a project",
+	Short:              "Run a shell command in the context of a project",
 	GroupID:            "run",
 	Run:                func(cmd *cobra.Command, args []string) {},
 	DisableFlagParsing: true,
@@ -17,6 +17,8 @@ var execCmd = &cobra.Command{
 func init() {
 	carapace.Gen(execCmd).Standalone()
 
+	execCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	execCmd.Flags().BoolP("shell-mode", "c", false, "Run the command inside of a shell. Uses `/bin/sh` on UNIX and `cmd.exe` on Windows")
 	rootCmd.AddCommand(execCmd)
 
 	carapace.Gen(execCmd).PositionalAnyCompletion(

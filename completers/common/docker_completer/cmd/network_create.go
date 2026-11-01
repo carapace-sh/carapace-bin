@@ -37,6 +37,8 @@ func init() {
 	carapace.Gen(network_createCmd).FlagCompletion(carapace.ActionMap{
 		"config-from": docker.ActionNetworks(),
 		"driver":      carapace.ActionValues("bridge", "host", "null", "overlay"),
+		"ipam-driver": carapace.ActionValues("default"),
+		"scope":       carapace.ActionValues("local", "swarm"),
 	})
 
 	carapace.Gen(network_createCmd).PositionalCompletion(

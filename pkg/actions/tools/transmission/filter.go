@@ -24,16 +24,16 @@ func ActionFilters() carapace.Action {
 func actionFilterConditions() carapace.Action {
 	return carapace.Batch(
 		carapace.ActionValuesDescribed(
+			"d", "currently downloading",
 			"i", "currently idle",
 			"u", "currently uploading",
-			"d", "currently downloading",
 			"w", "torrent has unwanted files",
 		),
 		carapace.ActionMultiPartsN(":", 2, func(c carapace.Context) carapace.Action {
 			if len(c.Parts) == 0 {
 				return carapace.ActionValuesDescribed(
-					"n:", "torrent name includes the string following :",
 					"l:", "torrent has the label following :",
+					"n:", "torrent name includes the string following :",
 					"r:", "torrent has an upload ratio greater than or equal to the ratio following :",
 				)
 			}
@@ -57,8 +57,8 @@ func ActionIds(filters []string) carapace.Action {
 
 func actionIdsValues() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"all", "select all filtered torrents",
 		"active", "select active filtered torrents",
+		"all", "select all filtered torrents",
 	)
 }
 

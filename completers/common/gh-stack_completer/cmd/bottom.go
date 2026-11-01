@@ -6,9 +6,10 @@ import (
 )
 
 var bottomCmd = &cobra.Command{
-	Use:   "bottom",
-	Short: "Check out the bottom branch of the stack (closest to the trunk)",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "bottom",
+	Short:   "Check out the bottom branch of the stack (closest to the trunk)",
+	GroupID: "nav",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

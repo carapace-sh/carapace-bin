@@ -6,9 +6,10 @@ import (
 )
 
 var certs_rmCmd = &cobra.Command{
-	Use:   "rm",
-	Short: "Remove a certificate by id",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "rm",
+	Aliases: []string{"remove"},
+	Short:   "Remove a certificate by id",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
@@ -16,5 +17,7 @@ func init() {
 
 	certsCmd.AddCommand(certs_rmCmd)
 
-	// TODO positional completion
+	carapace.Gen(certs_rmCmd).PositionalCompletion(
+		carapace.ActionValues(),
+	)
 }

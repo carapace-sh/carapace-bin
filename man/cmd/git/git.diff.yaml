@@ -4,203 +4,118 @@ description: Show changes between commits
 group: main
 flags:
   --abbrev=: show only a partial prefix
-  --anchored=: Generate a diff using the "anchored diff" algorithm
+  --anchored=*: generate a diff using the "anchored diff" algorithm
   --binary: output a binary diff
-  --cached: View the changes you staged in the index/cache
-  --check: Warn if changes introduce conflict markers or whitespace errors
-  --color-moved-ws?: This configures how whitespace is ignored when performing the move detection
-  --color-moved?: Moved lines of code are colored differently
-  --color-words=: Equivalent to --word-diff=color plus (if a regex was specified)
-  --color=: Show colored diff
-  --compact-summary: Output a condensed summary of extended header information
-  --cumulative: Synonym for --dirstat=cumulative
-  --diff-algorithm=: ''
+  --cached: view the changes you staged in the index/cache
+  --check: warn if changes introduce conflict markers or whitespace errors
+  --color-moved-ws?: configure how whitespace is ignored when performing move detection
+  --color-moved?: moved lines of code are colored differently
+  --color-words=: equivalent to --word-diff=color plus (if a regex was specified)
+  --color?: show colored diff
+  --compact-summary: output a condensed summary of extended header information
+  --cumulative: synonym for --dirstat=cumulative
+  --default-prefix: use the default source and destination prefixes
+  --diff-algorithm=: choose a diff algorithm
   --diff-filter=: filter files
-  --dirstat-by-file=: Synonym for --dirstat=files,param1,param2...
-  --dst-prefix=: Show the given destination prefix instead of "b/"
-  --exit-code: Make the program exit with codes similar to diff(1)
-  --ext-diff: Allow an external diff helper to be executed
+  --dirstat-by-file=: synonym for --dirstat=files,param1,param2...
+  --dst-prefix=: show the given destination prefix instead of "b/"
+  --exit-code: make the program exit with codes similar to diff(1)
+  --ext-diff: allow an external diff helper to be executed
   --find-copies-harder: inspect unmodified files as candidates for the source of copy
-  --find-object=: Look for differences that change the number of occurrences of the specified object
+  --find-object=: look for differences that change the number of occurrences of the specified object
+  --follow: continue listing the history of a file beyond renames
   --full-index: show the full pre- and post-image blob object names
-  --histogram: Generate a diff using the "histogram diff" algorithm
-  --ignore-blank-lines: Ignore changes whose lines are all blank
-  --ignore-cr-at-eol: Ignore carriage-return at the end of line when doing a comparison
-  --ignore-space-at-eol: Ignore changes in whitespace at EOL
-  --ignore-submodules=: Ignore changes to submodules in the diff generation
-  --indent-heuristic: Enable the heuristic that shifts diff hunk boundaries to make patches easier to read
-  --inter-hunk-context=: Show the context between diff hunks
+  --histogram: generate a diff using the "histogram diff" algorithm
+  --ignore-blank-lines: ignore changes whose lines are all blank
+  --ignore-cr-at-eol: ignore carriage-return at the end of line when doing a comparison
+  --ignore-space-at-eol: ignore changes in whitespace at EOL
+  --ignore-submodules=: ignore changes to submodules in the diff generation
+  --indent-heuristic: enable the heuristic that shifts diff hunk boundaries to make patches easier to read
+  --inter-hunk-context=: show the context between diff hunks
   --ita-invisible-in-index: this option makes the entry appear as a new file
-  --line-prefix=: Prepend an additional prefix to every line of output
-  --minimal: Spend extra time to make sure the smallest possible diff is produced
-  --name-only: Show only names of changed files
-  --name-status: Show only names and status of changed files
-  --no-color: Turn off colored diff
-  --no-color-moved: Turn off move detection
-  --no-color-moved-ws: Do not ignore whitespace when performing move detection
-  --no-ext-diff: Disallow external diff drivers
-  --no-indent-heuristic: Disable the indent heuristic
-  --no-index: Compare paths on the file system
-  --no-prefix: Do not show any source or destination prefix
-  --no-rename-empty: Whether to use empty blobs as rename source
-  --no-renames: Turn off rename detection
-  --numstat: Similar to --stat, but shows number of added and deleted lines in decimal notation
-  --output-indicator-context=: Specify the character used to indicate context lines in the generated patch
-  --output-indicator-new=: Specify the character used to indicate new lines in the generated patch
-  --output-indicator-old=: Specify the character used to indicate old lines in the generated patch
-  --output=: Output to a specific file instead of stdout
-  --patch-with-raw: Synonym for -p --raw
-  --patch-with-stat: Synonym for -p --stat
-  --patience: Generate a diff using the "patience diff" algorithm
-  --pickaxe-all: When -S or -G finds a change, show all the changes in that changeset
-  --pickaxe-regex: Treat the <string> given to -S as an extended POSIX regular expression to match
-  --raw: Generate the diff in raw format
-  --relative,=: exclude changes outside the directory
-  --rename-empty: Whether to use empty blobs as rename source
-  --shortstat: Output only the last line of the --stat format
-  --src-prefix=: Show the given source prefix instead of "a/"
-  --stat-count=: Generate diffstat with limited lines
-  --stat-graph-width=: Generate diffstat with a given graph width
-  --stat-name-width=: Generate diffstat with a given filename width
-  --stat-width=: Generate diffstat with a given width
-  --stat=: Generate a diffstat
-  --submodule=: Specify how differences in submodules are shown
-  --summary: Output a condensed summary of extended header information
-  --textconv=: Allow (or disallow) external text conversion filters to be run when comparing binary files
-  --word-diff-regex=: Use <regex> to decide what a word is
-  --word-diff?: Show a word diff, using the <mode> to delimit changed words
-  --ws-error-highlight=: Highlight whitespace errors in the context, old or new lines of the diff
-  '-0': Omit diff output for unmerged entries
+  --ita-visible-in-index: treat 'git add -N' entries as real in the index
+  --line-prefix=: prepend an additional prefix to every line of output
+  --max-depth=: maximum tree depth to recurse
+  --merge-base: use merge base instead of commit for comparison
+  --minimal: spend extra time to make sure the smallest possible diff is produced
+  --name-only: show only names of changed files
+  --name-status: show only names and status of changed files
+  --no-abbrev: show the full 40-byte hexadecimal commit object name
+  --no-color: turn off colored diff
+  --no-color-moved: turn off move detection
+  --no-color-moved-ws: do not ignore whitespace when performing move detection
+  --no-compact-summary: do not output a condensed summary of extended header information
+  --no-exit-code: do not make the program exit with codes similar to diff(1)
+  --no-ext-diff: disallow external diff drivers
+  --no-find-copies-harder: do not inspect unmodified files as candidates for the source of copy
+  --no-follow: do not continue listing the history of a file beyond renames
+  --no-full-index: do not show the full pre- and post-image blob object names
+  --no-indent-heuristic: disable the indent heuristic
+  --no-index: compare paths on the file system
+  --no-prefix: do not show any source or destination prefix
+  --no-quiet: do not disable all output of the program
+  --no-relative: do not exclude changes outside the directory
+  --no-rename-empty: whether to use empty blobs as rename source
+  --no-renames: turn off rename detection
+  --no-text: do not treat all files as text
+  --no-textconv: disallow external text conversion filters to be run when comparing binary files
+  --numstat: similar to --stat, but shows number of added and deleted lines in decimal notation
+  --output-indicator-context=: specify the character used to indicate context lines in the generated patch
+  --output-indicator-new=: specify the character used to indicate new lines in the generated patch
+  --output-indicator-old=: specify the character used to indicate old lines in the generated patch
+  --output=: output to a specific file instead of stdout
+  --patch-with-raw: synonym for -p --raw
+  --patch-with-stat: synonym for -p --stat
+  --patience: generate a diff using the "patience diff" algorithm
+  --pickaxe-all: when -S or -G finds a change, show all the changes in that changeset
+  --pickaxe-regex: treat the <string> given to -S as an extended POSIX regular expression to match
+  --quiet: disable all output of the program
+  --raw: generate the diff in raw format
+  --relative=: exclude changes outside the directory
+  --rename-empty: whether to use empty blobs as rename source
+  --rotate-to=: move the files before the named <file> to the end
+  --shortstat: output only the last line of the --stat format
+  --skip-to=: discard the files before the named <file> from the output
+  --src-prefix=: show the given source prefix instead of "a/"
+  --staged: synonym for --cached (view the changes you staged)
+  --stat-count=: generate diffstat with limited lines
+  --stat-graph-width=: generate diffstat with a given graph width
+  --stat-name-width=: generate diffstat with a given filename width
+  --stat-width=: generate diffstat with a given width
+  --stat=: generate a diffstat
+  --submodule=: specify how differences in submodules are shown
+  --summary: output a condensed summary of extended header information
+  --textconv=: allow external text conversion filters to be run when comparing binary files
+  --word-diff-regex=: use <regex> to decide what a word is
+  --word-diff?: show a word diff, using the <mode> to delimit changed words
+  --ws-error-highlight=: highlight whitespace errors in the context, old or new lines of the diff
+  "-0": omit diff output for unmerged entries
   -1, --base: compare with base
   -2, --ours: compare with our branch
   -3, --theirs: compare with their branch
-  -B, --break-rewrites=: Break complete rewrite changes into pairs of delete and create
-  -C, --find-copies=: Detect copies as well as renames
-  -D, --irreversible-delete: Omit the preimage for deletes
-  -M, --find-renames=: Detect renames
-  -O=: Control the order in which files appear in the output
-  -R: Swap two inputs
-  -S=: Look for differences that change the number of occurrences of the specified string
-  -U, --unified=: Generate diffs with <n> lines of context instead of the usual three
-  -W, --function-context: Show whole surrounding functions of changes
-  -X, --dirstat=: Output the distribution of relative amount of changes for each sub-directory
-  -a, --text: Treat all files as text
-  -b, --ignore-space-change: Ignore changes in amount of whitespace
+  -B, --break-rewrites=: break complete rewrite changes into pairs of delete and create
+  -C, --find-copies=: detect copies as well as renames
+  -D, --irreversible-delete: omit the preimage for deletes
+  -G=: look for differences whose patch text contains added/removed lines that match <regex>
+  -I, --ignore-matching-lines=*: ignore changes whose all lines match <regex>
+  -M, --find-renames=: detect renames
+  -O=: control the order in which files appear in the output
+  -R: swap two inputs
+  -S=: look for differences that change the number of occurrences of the specified string
+  -U, --unified=: generate diffs with <n> lines of context instead of the usual three
+  -W, --function-context: show whole surrounding functions of changes
+  -X, --dirstat=: output the distribution of relative amount of changes for each sub-directory
+  -a, --text: treat all files as text
+  -b, --ignore-space-change: ignore changes in amount of whitespace
+  -c, --cc: combined diff format for merge commits
   -l=: prevent rename/copy detection from running if the number of rename/copy targets exceeds the specified number
-  -p, --patch: Generate patch
-  -s, --no-patch: Suppress diff output
-  -u: Generate patch
-  -w, --ignore-all-space: Ignore whitespace when comparing lines
+  -p, --patch: generate patch
+  -s, --no-patch: suppress diff output
+  -w, --ignore-all-space: ignore whitespace when comparing lines
   -z: do not munge pathnames and use NULs as output field terminators
 documentation:
-  command: |-
-    Show changes between the working tree and the index or a tree, changes
-    between the index and a tree, changes between two trees, changes resulting
-    from a merge, changes between two blob objects, or changes between two
-    files on disk.
-
-    **git diff [<options>] [--] [<path>...]**
-
-    This form is to view the changes you made relative to
-    the index (staging area for the next commit).  In other
-    words, the differences are what you _could_ tell Git to
-    further add to the index but you still haven't.  You can
-    stage these changes by using [git-add](cmd://git/add).
-
-    **git diff [<options>] --no-index [--] <path> <path> [<pathspec>...]**
-
-    This form is to compare the given two paths on the
-    filesystem.  You can omit the `--no-index` option when
-    running the command in a working tree controlled by Git and
-    at least one of the paths points outside the working tree,
-    or when running the command outside a working tree
-    controlled by Git. This form implies `--exit-code`. If both
-    paths point to directories, additional pathspecs may be
-    provided. These will limit the files included in the
-    difference. All such pathspecs must be relative as they
-    apply to both sides of the diff.
-
-    **git diff [<options>] --cached [--merge-base] [<commit>] [--] [<path>...]**
-
-    This form is to view the changes you staged for the next
-    commit relative to the named _<commit>_.  Typically you
-    would want comparison with the latest commit, so if you
-    do not give _<commit>_, it defaults to `HEAD`.
-    If `HEAD` does not exist (e.g. unborn branches) and
-    _<commit>_ is not given, it shows all staged changes.
-    `--staged` is a synonym of `--cached`.
-
-    If `--merge-base` is given, instead of using _<commit>_, use the merge base
-    of _<commit>_ and `HEAD`.  `git diff --cached --merge-base A` is equivalent to
-    `git diff --cached $(git merge-base A HEAD)`.
-
-    **git diff [<options>] [--merge-base] <commit> [--] [<path>...]**
-
-    This form is to view the changes you have in your
-    working tree relative to the named _<commit>_.  You can
-    use `HEAD` to compare it with the latest commit, or a
-    branch name to compare with the tip of a different
-    branch.
-
-    If `--merge-base` is given, instead of using _<commit>_, use the merge base
-    of _<commit>_ and `HEAD`.  `git diff --merge-base A` is equivalent to
-    `git diff $(git merge-base A HEAD)`.
-
-    **git diff [<options>] [--merge-base] <commit> <commit> [--] [<path>...]**
-
-    This is to view the changes between two arbitrary
-    _<commit>_.
-
-    If `--merge-base` is given, use the merge base of the two commits for the
-    "before" side.  `git diff --merge-base A B` is equivalent to
-    `git diff $(git merge-base A B) B`.
-
-    **git diff [<options>] <commit> <commit>...<commit> [--] [<path>...]**
-
-    This form is to view the results of a merge commit.  The first
-    listed _<commit>_ must be the merge itself; the remaining two or
-    more commits should be its parents.  Convenient ways to produce
-    the desired set of revisions are to use the suffixes `@` and
-    `^!`.  If `A` is a merge commit, then `git diff A A^@`,
-    `git diff A^!` and `git show A` all give the same combined diff.
-
-    **git diff [<options>] <commit>..<commit> [--] [<path>...]**
-
-    This is synonymous to the earlier form (without the `..`) for
-    viewing the changes between two arbitrary _<commit>_.  If _<commit>_ on
-    one side is omitted, it will have the same effect as
-    using `HEAD` instead.
-
-    **git diff [<options>] <commit>...<commit> [--] [<path>...]**
-
-    This form is to view the changes on the branch containing
-    and up to the second _<commit>_, starting at a common ancestor
-    of both _<commit>_.  `git diff A...B` is equivalent to
-    `git diff $(git merge-base A B) B`.  You can omit any one
-    of _<commit>_, which has the same effect as using `HEAD` instead.
-
-    Just in case you are doing something exotic, it should be
-    noted that all of the _<commit>_ in the above description, except
-    in the `--merge-base` case and in the last two forms that use `..`
-    notations, can be any _<tree>_. A tree of interest is the one pointed to
-    by the ref named `AUTO_MERGE`, which is written by the `ort` merge
-    strategy upon hitting merge conflicts (see [git-merge](cmd://git/merge)).
-    Comparing the working tree with `AUTO_MERGE` shows changes you've made
-    so far to resolve textual conflicts (see the examples below).
-
-    For a more complete list of ways to spell _<commit>_, see
-    "SPECIFYING REVISIONS" section in [gitrevisions](man://gitrevisions/7).
-    However, `diff` is about comparing two _endpoints_, not ranges,
-    and the range notations (`<commit>..<commit>` and `<commit>...<commit>`)
-    do not mean a range as defined in the
-    "SPECIFYING RANGES" section in [gitrevisions](man://gitrevisions/7).
-
-    **git diff [<options>] <blob> <blob>**
-
-    This form is to view the differences between the raw
-    contents of two blob objects.
   flag:
-    '0': |-
+    "0": |-
       Omit diff output for unmerged entries and just show
       "Unmerged".  Can be used only when comparing the working tree
       with the index.
@@ -261,6 +176,15 @@ documentation:
       initial indent of the line are considered whitespace errors.
       Exits with non-zero status if problems are found. Not compatible
       with `--exit-code`.
+    color: |-
+      Turn off colored diff.
+
+      This can be used to override configuration settings.
+
+      It is the same as `--color=never`.
+    color-moved: |-
+      Turn off move detection. This can be used to override configuration
+      settings. It is the same as `--color-moved=no`.
     color-moved-ws: |-
       This configures how whitespace is ignored when performing the
       move detection for `--color-moved`.
@@ -275,10 +199,8 @@ documentation:
       or removing executable bit respectively) in diffstat. The
       information is put between the filename part and the graph
       part. Implies `--stat`.
-    cumulative: |-
-      Synonym for `--dirstat=cumulative`.
-    diff-algorithm: |-
-      Choose a diff algorithm. The variants are as follows:
+    cumulative: Synonym for `--dirstat=cumulative`.
+    diff-algorithm: 'Choose a diff algorithm. The variants are as follows:'
     diff-filter: |-
       Select only files that are Added (`A`), Copied (`C`),
       Deleted (`D`), Modified (`M`), Renamed (`R`), have their
@@ -453,6 +375,16 @@ documentation:
       [git-diff](cmd://git/diff). This is different from showing the log
       itself in raw format, which you can achieve with
       `--format=raw`.
+    relative: |-
+      When run from a subdirectory of the project, it can be
+      told to exclude changes outside the directory and show
+      pathnames relative to it with this option.  When you are
+      not in a subdirectory (e.g. in a bare repository), you
+      can name which subdirectory to make the output relative
+      to by giving a _<path>_ as an argument.
+      `--no-relative` can be used to countermand both `diff.relative` config
+      option and previous `--relative`.
+    rename-empty: Whether to use empty blobs as rename source.
     shortstat: |-
       Output only the last line of the `--stat` format containing total
       number of modified files, as well as number of added and deleted
@@ -462,6 +394,15 @@ documentation:
       Output a condensed summary of extended header information
       such as creations, renames and mode changes.
     text: Treat all files as text.
+    textconv: |-
+      Allow (or disallow) external text conversion filters to be run
+      when comparing binary files. See [gitattributes](man://gitattributes/5) for
+      details. Because textconv filters are typically a one-way
+      conversion, the resulting diff is suitable for human
+      consumption, but cannot be applied. For this reason, textconv
+      filters are enabled by default only for [git-diff](cmd://git/diff) and
+      [git-log](cmd://git/log), but not for [git-format-patch](cmd://git/format-patch) or
+      diff plumbing commands.
     theirs: Compare the working tree with
     unified: |-
       Generate diffs with _<n>_ lines of context. The number of context
@@ -511,16 +452,63 @@ documentation:
       Without this option, pathnames with "unusual" characters are quoted as
       explained for the configuration variable `core.quotePath` (see
       [git-config](cmd://git/config)).
-    color-moved: |-
-      Turn off move detection. This can be used to override configuration
-      settings. It is the same as `--color-moved=no`.
-    color: |-
-      Turn off colored diff.
-
-      This can be used to override configuration settings.
-
-      It is the same as `--color=never`.
-    relative: |-
+    G: |-
+      Look for differences whose patch text contains added/removed
+      lines that match _<regex>_.
+      
+      To illustrate the difference between `-S<regex>` `--pickaxe-regex` and
+      `-G<regex>`, consider a commit with the following diff in the same
+      file:
+      
+      ```
+      +    return frotz(nitfol, two->ptr, 1, 0);
+      ...
+      -    hit = frotz(nitfol, mf2.ptr, 1, 0);
+      ```
+      
+      While `git log -G"frotz\(nitfol"` will show this commit, `git log -S"frotz\(nitfol" --pickaxe-regex` will not (because the number of
+      occurrences of that string did not change).
+      
+      Unless `--text` is supplied patches of binary files without a textconv
+      filter will be ignored.
+      
+      See the `pickaxe` entry in [gitdiffcore](man://gitdiffcore/7) for more
+      information.
+    abbrev: |-
+      Instead of using the default _7+1_ hexadecimal digits as the
+      abbreviated object name, use _<m>+1_ digits, where _<m>_ is at
+      least _<n>_ but ensures the commit object names are unique.
+      Note that 1 column
+      is used for a caret to mark the boundary commit.
+    cached: |-
+      Apply the patch to just the index, without touching the working
+      tree. If `--check` is in effect, merely check that it would
+      apply cleanly to the index entry.
+    default-prefix: |-
+      Use the default source and destination prefixes ("a/" and "b/").
+      This overrides configuration variables such as `format.noprefix`,
+      `diff.srcPrefix`, `diff.dstPrefix`, and `diff.mnemonicPrefix`
+      (see [git-config](cmd://git/config)).
+      
+      Use the default source and destination prefixes ("a/" and "b/").
+      This overrides configuration variables such as `diff.noprefix`,
+      `diff.srcPrefix`, `diff.dstPrefix`, and `diff.mnemonicPrefix`
+      (see [git-config](cmd://git/config)).
+    follow: |-
+      Continue listing the history of a file beyond renames
+      (works only for a single file).
+    no-abbrev: Display the full sha1s in the output listing rather than abbreviating them.
+    no-index: |-
+      Search files in the current directory that is not managed by Git,
+      or by ignoring that the current directory is managed by Git.  This
+      is rather similar to running the regular `grep`(1) utility with its
+      `-r` option specified, but with some additional benefits, such as
+      using pathspec patterns to limit paths;  see the `pathspec` entry
+      in [gitglossary](man://gitglossary/7) for more information.
+      
+      This option cannot be used together with `--cached` or `--untracked`.
+      See also `grep.fallbackToNoIndex` in `CONFIGURATION` below.
+    no-relative: |-
       When run from a subdirectory of the project, it can be
       told to exclude changes outside the directory and show
       pathnames relative to it with this option.  When you are
@@ -529,8 +517,7 @@ documentation:
       to by giving a _<path>_ as an argument.
       `--no-relative` can be used to countermand both `diff.relative` config
       option and previous `--relative`.
-    rename-empty: Whether to use empty blobs as rename source.
-    textconv: |-
+    no-textconv: |-
       Allow (or disallow) external text conversion filters to be run
       when comparing binary files. See [gitattributes](man://gitattributes/5) for
       details. Because textconv filters are typically a one-way
@@ -539,3 +526,54 @@ documentation:
       filters are enabled by default only for [git-diff](cmd://git/diff) and
       [git-log](cmd://git/log), but not for [git-format-patch](cmd://git/format-patch) or
       diff plumbing commands.
+    quiet: Be quiet. Only print error messages.
+    rotate-to: |-
+      Discard the files before the named _<file>_ from the output
+      (i.e. `skip to`), or move them to the end of the output
+      (i.e. 'rotate to').  These options were invented primarily for the use
+      of the `git difftool` command, and may not be very useful
+      otherwise.
+    staged: |-
+      Specify the restore location. If neither option is specified,
+      by default the working tree is restored. Specifying `--staged`
+      will only restore the index. Specifying both restores both.
+    stat: |-
+      Instead of applying the patch, output diffstat for the
+      input.  Turns off "apply".
+    base: |-
+      Add prerequisite tree info to the patch series. The argument can be
+      `auto` (use the current branch as the base), a commit object name,
+      or a reference in `refs/notes/`. This option is useful when the
+      patches need to be applied on top of a specific commit.
+    cc: |-
+      Produce dense combined diff output for merge commits.
+      Shortcut for `--diff-merges=dense-combined -p`.
+    no-compact-summary: do not output a condensed summary of extended header information
+    no-exit-code: do not make the program exit with codes similar to diff(1)
+    no-find-copies-harder: do not inspect unmodified files as candidates for the source of copy
+    no-follow: do not continue listing the history of a file beyond renames
+    no-full-index: do not show the full pre- and post-image blob object names
+    no-quiet: do not disable all output of the program
+    break-rewrites: break complete rewrite changes into pairs of delete and create
+    color-words: equivalent to --word-diff=color plus (if a regex was specified)
+    dirstat: output the distribution of relative amount of changes for each sub-directory
+    dirstat-by-file: synonym for --dirstat=files,param1,param2...
+    find-copies: detect copies as well as renames
+    find-renames: detect renames
+    ignore-matching-lines: ignore changes whose all lines match <regex>
+    ignore-submodules: ignore changes to submodules in the diff generation
+    ita-visible-in-index: treat 'git add -N' entries as real in the index
+    max-depth: maximum tree depth to recurse
+    merge-base: use merge base instead of commit for comparison
+    no-text: do not treat all files as text
+    ours: compare with our branch
+    output-indicator-new: specify the character used to indicate new lines in the generated patch
+    output-indicator-old: specify the character used to indicate old lines in the generated patch
+    skip-to: discard the files before the named <file> from the output
+    stat-count: generate diffstat with limited lines
+    stat-graph-width: generate diffstat with a given graph width
+    stat-name-width: generate diffstat with a given filename width
+    stat-width: generate diffstat with a given width
+    submodule: specify how differences in submodules are shown
+    word-diff: show a word diff, using the <mode> to delimit changed words
+

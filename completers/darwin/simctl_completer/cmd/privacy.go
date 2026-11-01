@@ -17,19 +17,19 @@ func init() {
 	rootCmd.AddCommand(privacyCmd)
 	carapace.Gen(privacyCmd).PositionalCompletion(
 		simctl.ActionDevices(),
-		carapace.ActionValues("grant", "revoke", "reset"),
+		carapace.ActionValues("grant", "reset", "revoke"),
 		carapace.ActionValues(
 			"all",
 			"calendar",
-			"contacts-limited",
 			"contacts",
+			"contacts-limited",
 			"location",
 			"location-always",
-			"photos-add",
-			"photos",
 			"media-library",
 			"microphone",
 			"motion",
+			"photos",
+			"photos-add",
 			"reminders",
 			"siri",
 		),

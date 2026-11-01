@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"strconv"
+
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
 	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
@@ -16,6 +18,8 @@ var project_itemListCmd = &cobra.Command{
 func init() {
 	carapace.Gen(project_itemListCmd).Standalone()
 
+	project_itemListCmd.Flags().StringSlice("field", nil, "Name of a field to show as an extra column")
+	project_itemListCmd.Flags().StringSlice("field-id", nil, "ID of a field to show as an extra column")
 	project_itemListCmd.Flags().String("format", "", "Output format: {json}")
 	project_itemListCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
 	project_itemListCmd.Flags().StringP("limit", "L", "", "Maximum number of items to fetch")
@@ -25,6 +29,20 @@ func init() {
 	projectCmd.AddCommand(project_itemListCmd)
 
 	carapace.Gen(project_itemListCmd).FlagCompletion(carapace.ActionMap{
+		"field-id": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			owner := project_itemListCmd.Flag("owner").Value.String()
+			opts := gh.ProjectFieldOpts{
+				Owner:   owner,
+				Project: 0,
+			}
+			// project number is positional arg
+			if len(c.Args) > 0 {
+				if n, err := strconv.Atoi(c.Args[0]); err == nil {
+					opts.Project = n
+				}
+			}
+			return gh.ActionProjectFields(opts)
+		}),
 		"format": carapace.ActionValues("json"),
 		"jq":     jq.ActionFilters(),
 		"owner":  gh.ActionOwners(gh.HostOpts{}),

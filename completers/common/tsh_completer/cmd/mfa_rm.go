@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -15,4 +16,8 @@ func init() {
 	carapace.Gen(mfa_rmCmd).Standalone()
 
 	mfaCmd.AddCommand(mfa_rmCmd)
+
+	carapace.Gen(mfa_rmCmd).PositionalCompletion(
+		tsh.ActionMFADevices(),
+	)
 }

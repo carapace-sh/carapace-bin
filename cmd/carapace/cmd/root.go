@@ -131,9 +131,12 @@ func Execute(version string) error {
 		if os.Args[1] == "carapace" {
 			os.Args[1] = "_carapace"
 		} else if len(os.Args) < 4 && os.Args[1] == "_carapace" {
-			shell := ps.DetermineShell()
-			if len(os.Args) > 2 {
+			var shell string
+			switch {
+			case len(os.Args) > 2:
 				shell = os.Args[2]
+			default:
+				shell = ps.DetermineShell()
 			}
 
 			if err := shim.Update(); err != nil {
@@ -181,8 +184,8 @@ func init() {
 	rootCmd.Flags().Bool("macro", false, "list or execute macros")
 	rootCmd.Flags().Bool("mcp", false, "run MCP server")
 	rootCmd.Flags().Bool("run", false, "run spec")
-	rootCmd.Flags().Bool("selfupdate", false, "update to nightly/stable")
 	rootCmd.Flags().Bool("schema", false, "json schema for spec files")
+	rootCmd.Flags().Bool("selfupdate", false, "update to nightly/stable")
 	rootCmd.Flags().Bool("style", false, "set style")
 	rootCmd.Flags().BoolP("version", "v", false, "version for carapace")
 

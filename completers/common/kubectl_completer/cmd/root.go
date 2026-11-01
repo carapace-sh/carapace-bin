@@ -77,7 +77,7 @@ func init() {
 				Types:   "namespaces",
 			})
 		}),
-		"profile":        carapace.ActionValues("none", "cpu", "heap", "goroutine", "threadcreate", "block", "mutex"),
+		"profile":        carapace.ActionValues("block", "cpu", "goroutine", "heap", "mutex", "none", "threadcreate"),
 		"profile-output": carapace.ActionFiles(),
 		// TODO add completions for kubeconfig based flags
 	})

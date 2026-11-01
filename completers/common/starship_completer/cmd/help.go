@@ -6,8 +6,8 @@ import (
 )
 
 var helpCmd = &cobra.Command{
-	Use:   "help",
-	Short: "Prints this message or the help of the given subcommand(s)",
+	Use:   "help [command]",
+	Short: "Print this message or the help of the given subcommand(s)",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
@@ -15,4 +15,8 @@ func init() {
 	carapace.Gen(helpCmd).Standalone()
 
 	rootCmd.AddCommand(helpCmd)
+
+	carapace.Gen(helpCmd).PositionalAnyCompletion(
+		carapace.ActionCommands(rootCmd),
+	)
 }

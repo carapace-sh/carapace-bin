@@ -24,7 +24,7 @@ func init() {
 	operation_diffCmd.Flags().Bool("ignore-all-space", false, "Ignore whitespace when comparing lines")
 	operation_diffCmd.Flags().Bool("ignore-space-change", false, "Ignore changes in amount of whitespace when comparing lines")
 	operation_diffCmd.Flags().Bool("name-only", false, "For each path, show only its path")
-	operation_diffCmd.Flags().BoolP("no-graph", "G", false, "Don't show the graph, show a flat list of modified changes")
+	operation_diffCmd.Flags().BoolP("no-graph", "G", false, "Show a flat list of modified changes instead of a graph")
 	operation_diffCmd.Flags().String("op", "", "Show repository changes in this operation, compared to its parent")
 	operation_diffCmd.Flags().String("operation", "", "Show repository changes in this operation, compared to its parent")
 	operation_diffCmd.Flags().BoolP("patch", "p", false, "Show patch of modifications to changes")
@@ -36,14 +36,14 @@ func init() {
 	operation_diffCmd.Flags().Bool("types", false, "For each path, show only its type before and after")
 	operationCmd.AddCommand(operation_diffCmd)
 
-	operation_diffCmd.MarkFlagsMutuallyExclusive("from", "to")
+	operation_diffCmd.MarkFlagsMutuallyExclusive("op", "operation")
 
-	// TODO from/to completion might be wrong
 	carapace.Gen(operation_diffCmd).FlagCompletion(carapace.ActionMap{
-		"from":            jj.ActionRevsets(jj.RevOpts{}.Default()),
+		"from":            jj.ActionOperations(100),
+		"op":              jj.ActionOperations(100),
 		"operation":       jj.ActionOperations(100),
 		"show-changes-in": jj.ActionRevsets(jj.RevOpts{}.Default()),
-		"to":              jj.ActionRevsets(jj.RevOpts{}.Default()),
+		"to":              jj.ActionOperations(100),
 		"tool":            bridge.ActionCarapaceBin().Split(),
 	})
 }

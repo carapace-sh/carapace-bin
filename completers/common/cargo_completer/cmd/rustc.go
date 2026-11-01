@@ -31,7 +31,7 @@ func init() {
 	rustcCmd.Flags().StringP("jobs", "j", "", "Number of parallel jobs, defaults to # of CPUs.")
 	rustcCmd.Flags().Bool("keep-going", false, "Do not abort the build as soon as there is an error")
 	rustcCmd.Flags().Bool("lib", false, "Build only this package's library")
-	rustcCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
+	rustcCmd.Flags().StringP("manifest-path", "m", "", "Path to Cargo.toml")
 	rustcCmd.Flags().StringSlice("message-format", nil, "Error format")
 	rustcCmd.Flags().Bool("no-default-features", false, "Do not activate the `default` feature")
 	rustcCmd.Flags().StringP("package", "p", "", "Package to build")
@@ -50,13 +50,13 @@ func init() {
 	carapace.Gen(rustcCmd).FlagCompletion(carapace.ActionMap{
 		"bench":          action.ActionTargets(rustcCmd, action.TargetOpts{Bench: true}),
 		"bin":            action.ActionTargets(rustcCmd, action.TargetOpts{Bin: true}),
-		"crate-type":     carapace.ActionValues("bin", "lib", "rlib", "dylib", "cdylib", "staticlib", "and proc-macr").UniqueList(","),
+		"crate-type":     carapace.ActionValues("and proc-macr", "bin", "cdylib", "dylib", "lib", "rlib", "staticlib").UniqueList(","),
 		"example":        action.ActionTargets(rustcCmd, action.TargetOpts{Example: true}),
 		"features":       action.ActionFeatures(rustcCmd).UniqueList(","),
 		"manifest-path":  carapace.ActionFiles(),
 		"message-format": action.ActionMessageFormats(),
 		"package":        action.ActionDependencies(rustcCmd, false),
-		"print":          carapace.ActionValues("crate-name", "file-names", "sysroot", "target-libdir", "cfg", "calling-conventions", "target-list", "target-cpus", "target-features", "relocation-models", "code-models", "tls-models", "target-spec-json", "native-static-libs", "stack-protector-strategies", "link-args"),
+		"print":          carapace.ActionValues("calling-conventions", "cfg", "code-models", "crate-name", "file-names", "link-args", "native-static-libs", "relocation-models", "stack-protector-strategies", "sysroot", "target-cpus", "target-features", "target-libdir", "target-list", "target-spec-json", "tls-models"),
 		"profile":        action.ActionProfiles(rustcCmd),
 		"test":           action.ActionTargets(rustcCmd, action.TargetOpts{Test: true}),
 	})

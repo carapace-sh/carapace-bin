@@ -18,6 +18,6 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolP("help", "h", false, "Prints help information")
-	rootCmd.Flags().BoolP("version", "V", false, "Prints version information")
+	rootCmd.Flags().BoolP("help", "h", false, "Print help")
+	rootCmd.Flags().BoolP("version", "V", false, "Print version")
 }

@@ -34,7 +34,7 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"config":    carapace.ActionFiles(),
 		"env-file":  carapace.ActionFiles(),
-		"log.level": carapace.ActionValues("off", "error", "warn", "info", "debug", "trace").StyleF(style.ForLogLevel),
+		"log.level": carapace.ActionValues("debug", "error", "info", "off", "trace", "warn").StyleF(style.ForLogLevel),
 		"resources": carapace.ActionValues(), // TODO
 		"set":       carapace.ActionValues(), // TODO
 		"templates": carapace.ActionValues(), // TODO

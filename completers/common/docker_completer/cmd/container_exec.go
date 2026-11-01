@@ -16,6 +16,7 @@ var container_execCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(container_execCmd).Standalone()
+	container_execCmd.Flags().SetInterspersed(false)
 
 	container_execCmd.Flags().BoolP("detach", "d", false, "Detached mode: run command in the background")
 	container_execCmd.Flags().String("detach-keys", "", "Override the key sequence for detaching a container")

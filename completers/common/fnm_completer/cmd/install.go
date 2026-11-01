@@ -21,6 +21,6 @@ func init() {
 	rootCmd.AddCommand(installCmd)
 
 	carapace.Gen(installCmd).FlagCompletion(carapace.ActionMap{
-		"progress": carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
+		"progress": carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 	})
 }

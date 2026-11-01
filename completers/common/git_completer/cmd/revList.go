@@ -17,6 +17,9 @@ var revListCmd = &cobra.Command{
 func init() {
 	carapace.Gen(revListCmd).Standalone()
 
+	revListCmd.Flags().String("abbrev", "", "show only a partial prefix of the object name")
+	revListCmd.Flags().Bool("missing-only", false, "only show missing objects")
+	revListCmd.Flags().Bool("quiet", false, "don't print anything to standard output")
 	common.AddBisectionHelperOptions(revListCmd)
 	common.AddCommitFormattingOptions(revListCmd)
 	common.AddCommitLimitingOptions(revListCmd)
@@ -24,6 +27,8 @@ func init() {
 	common.AddHistorySimplificationOptions(revListCmd)
 	common.AddObjectTraversalOptions(revListCmd)
 	rootCmd.AddCommand(revListCmd)
+
+	revListCmd.MarkFlagsMutuallyExclusive("missing-only", "count", "disk-usage")
 
 	carapace.Gen(revListCmd).PositionalAnyCompletion(
 		git.ActionRefs(git.RefOption{}.Default()),

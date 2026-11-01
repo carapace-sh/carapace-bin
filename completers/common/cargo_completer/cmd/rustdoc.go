@@ -29,7 +29,7 @@ func init() {
 	rustdocCmd.Flags().StringP("jobs", "j", "", "Number of parallel jobs, defaults to # of CPUs.")
 	rustdocCmd.Flags().Bool("keep-going", false, "Do not abort the build as soon as there is an error")
 	rustdocCmd.Flags().Bool("lib", false, "Build only this package's library")
-	rustdocCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
+	rustdocCmd.Flags().StringP("manifest-path", "m", "", "Path to Cargo.toml")
 	rustdocCmd.Flags().StringSlice("message-format", nil, "Error format")
 	rustdocCmd.Flags().Bool("no-default-features", false, "Do not activate the `default` feature")
 	rustdocCmd.Flags().Bool("open", false, "Opens the docs in a browser after the operation")
@@ -45,7 +45,6 @@ func init() {
 	rustdocCmd.Flags().Bool("unit-graph", false, "Output build graph in JSON (unstable)")
 	rootCmd.AddCommand(rustdocCmd)
 
-	// TODO flag completion
 	carapace.Gen(rustdocCmd).FlagCompletion(carapace.ActionMap{
 		"bench":          action.ActionTargets(rustdocCmd, action.TargetOpts{Bench: true}),
 		"bin":            action.ActionTargets(rustdocCmd, action.TargetOpts{Bin: true}),

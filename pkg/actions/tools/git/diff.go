@@ -16,10 +16,10 @@ import (
 //	minimal (Spend extra time to make sure the smallest possible diff is produced)
 func ActionDiffAlgorithms() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"myers", "The basic greedy diff algorithm",
-		"minimal", "Spend extra time to make sure the smallest possible diff is produced",
-		"patience", "Use patience diff algorithm when generating patches",
 		"histogram", "This algorithm extends the patience algorithm to support low-occurrence common elements",
+		"minimal", "Spend extra time to make sure the smallest possible diff is produced",
+		"myers", "The basic greedy diff algorithm",
+		"patience", "Use patience diff algorithm when generating patches",
 	).Tag("diff algorithms").Uid("git", "diff-algorithm")
 }
 
@@ -29,7 +29,9 @@ func ActionDiffAlgorithms() carapace.Action {
 //	C (Copied)
 func ActionDiffFilters() carapace.Action {
 	return carapace.ActionValuesDescribed(
+		"*", "All-or-none",
 		"A", "Added",
+		"B", "Broken",
 		"C", "Copied",
 		"D", "Deleted",
 		"M", "Modified",
@@ -37,8 +39,6 @@ func ActionDiffFilters() carapace.Action {
 		"T", "Changed",
 		"U", "Unmerged",
 		"X", "Unknown",
-		"B", "Broken",
-		"*", "All-or-none",
 	).Uid("git", "diff-filter")
 }
 
@@ -48,12 +48,12 @@ func ActionDiffFilters() carapace.Action {
 //	default (default mode)
 func ActionColorMovedModes() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"no", "Moved lines are not highlighted",
-		"default", "default mode",
-		"plain", "plain mode",
 		"blocks", "greedily detects blocks",
-		"zebra", "Blocks of moved text are detected as in blocks mode",
+		"default", "default mode",
 		"dimmed-zebra", "Similar to zebra, but additional dimming of uninteresting parts of moved code",
+		"no", "Moved lines are not highlighted",
+		"plain", "plain mode",
+		"zebra", "Blocks of moved text are detected as in blocks mode",
 	).Uid("git", "color-moved-mode")
 }
 
@@ -63,11 +63,11 @@ func ActionColorMovedModes() carapace.Action {
 //	ignore-space-at-eol (Ignore changes in whitespace at EOL)
 func ActionColorMovedWsModes() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"no", "Do not ignore whitespace when performing move detection",
+		"allow-indentation-change", "Initially ignore any whitespace in the move detection",
+		"ignore-all-space", "Ignore whitespace when comparing lines.",
 		"ignore-space-at-eol", "Ignore changes in whitespace at EOL",
 		"ignore-space-change", "Ignore changes in amount of whitespace.",
-		"ignore-all-space", "Ignore whitespace when comparing lines.",
-		"allow-indentation-change", "Initially ignore any whitespace in the move detection",
+		"no", "Do not ignore whitespace when performing move detection",
 	).Uid("git", "color-moved-ws-mode")
 }
 
@@ -78,9 +78,9 @@ func ActionColorMovedWsModes() carapace.Action {
 func ActionWordDiffModes() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"color", "Highlight changed words using only colors",
+		"none", "Disable word diff again",
 		"plain", "Show words as [-removed-] and {+added+}",
 		"porcelain", "Use a special line-based format intended for script consumption",
-		"none", "Disable word diff again",
 	).Uid("git", "word-diff-mode")
 }
 
@@ -90,12 +90,12 @@ func ActionWordDiffModes() carapace.Action {
 //	old (old lines)
 func ActionWsErrorHighlightModes() carapace.Action {
 	return carapace.ActionValuesDescribed(
+		"all", "shorthand for old,new,context",
 		"context", "context lines",
-		"old", "old lines",
+		"default", "reset to new",
 		"new", "new linex",
 		"none", "reset previous values",
-		"default", "reset to new",
-		"all", "shorthand for old,new,context",
+		"old", "old lines",
 	).Uid("git", "ws-error-highlight-mode")
 }
 

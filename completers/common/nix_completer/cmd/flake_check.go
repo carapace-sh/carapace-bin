@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/nix_completer/cmd/common"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix"
 	"github.com/spf13/cobra"
 )
@@ -17,19 +18,14 @@ func init() {
 
 	flake_checkCmd.Flags().Bool("all-systems", false, "Check the outputs for all systems")
 	flake_checkCmd.Flags().Bool("no-build", false, "Do not build checks")
+	flake_checkCmd.Flags().StringP("out-link", "o", "", "Use path as prefix for the symlinks to the check results")
+	flake_checkCmd.Flags().Bool("print-out-paths", false, "Print the resulting output paths")
 
-	addEvaluationFlags(flake_checkCmd)
-	addFlakeFlags(flake_checkCmd)
-	addLoggingFlags(flake_checkCmd)
+	common.AddEvaluationFlags(flake_checkCmd)
+	common.AddFlakeFlags(flake_checkCmd)
+	common.AddLoggingFlags(flake_checkCmd)
 
-	carapace.Gen(flake_checkCmd).FlagCompletion(carapace.ActionMap{
-		"inputs-from": carapace.Batch(
-			carapace.ActionDirectories(),
-			nix.ActionFlakes(),
-		).ToA(),
-		"output-lock-file":    carapace.ActionFiles(),
-		"reference-lock-file": carapace.ActionFiles("lock"),
-	})
+	carapace.Gen(flake_checkCmd).FlagCompletion(carapace.ActionMap{})
 	carapace.Gen(flake_checkCmd).PositionalCompletion(carapace.Batch(
 		carapace.ActionDirectories(),
 		nix.ActionFlakes(),

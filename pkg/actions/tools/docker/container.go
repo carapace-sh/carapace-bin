@@ -98,3 +98,10 @@ func ActionContainerPath() carapace.Action {
 		}
 	})
 }
+
+// ActionContainerLabels completes existing labels
+//
+//	key	value
+func ActionContainerLabels() carapace.Action {
+	return actionLabels("container", "ls", "--all", "--format", "{{.Labels}}").Tag("labels")
+}

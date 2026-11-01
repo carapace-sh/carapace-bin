@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -63,15 +64,19 @@ func init() {
 	rootCmd.Flags().String("setwakeonnetworkaccess", "", "Enable/disable wake on network access (on/off)")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"setallowpowerbuttontosleep": carapace.ActionValues("on", "off"),
-		"setremoteappleevents":       carapace.ActionValues("on", "off"),
-		"setremotelogin":             carapace.ActionValues("on", "off"),
-		"setremotemanagement":        carapace.ActionValues("on", "off"),
-		"setrestartfreeze":           carapace.ActionValues("on", "off"),
-		"setrestartpowerfailure":     carapace.ActionValues("on", "off"),
+		"setallowpowerbuttontosleep": carapace.ActionValues("off", "on").StyleF(style.ForKeyword),
+		"setcomputersleep":           carapace.ActionValues("1", "5", "10", "15", "30", "60", "120", "Never").StyleF(style.ForKeyword),
+		"setdisplaysleep":            carapace.ActionValues("1", "5", "10", "15", "30", "60", "120", "Never").StyleF(style.ForKeyword),
+		"setharddisksleep":           carapace.ActionValues("1", "5", "10", "15", "30", "60", "120", "Never").StyleF(style.ForKeyword),
+		"setremoteappleevents":       carapace.ActionValues("off", "on").StyleF(style.ForKeyword),
+		"setremotelogin":             carapace.ActionValues("off", "on").StyleF(style.ForKeyword),
+		"setremotemanagement":        carapace.ActionValues("off", "on").StyleF(style.ForKeyword),
+		"setrestartfreeze":           carapace.ActionValues("off", "on").StyleF(style.ForKeyword),
+		"setrestartpowerfailure":     carapace.ActionValues("off", "on").StyleF(style.ForKeyword),
+		"setsleep":                   carapace.ActionValues("1", "5", "10", "15", "30", "60", "120", "Never").StyleF(style.ForKeyword),
 		"setstartupdisk":             carapace.ActionDirectories(),
-		"setusingnetworktime":        carapace.ActionValues("on", "off"),
-		"setwakeonmodem":             carapace.ActionValues("on", "off"),
-		"setwakeonnetworkaccess":     carapace.ActionValues("on", "off"),
+		"setusingnetworktime":        carapace.ActionValues("off", "on").StyleF(style.ForKeyword),
+		"setwakeonmodem":             carapace.ActionValues("off", "on").StyleF(style.ForKeyword),
+		"setwakeonnetworkaccess":     carapace.ActionValues("off", "on").StyleF(style.ForKeyword),
 	})
 }

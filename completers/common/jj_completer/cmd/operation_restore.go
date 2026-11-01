@@ -16,11 +16,14 @@ func init() {
 	carapace.Gen(operation_restoreCmd).Standalone()
 
 	operation_restoreCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
-	operation_restoreCmd.Flags().StringSlice("what", nil, "What portions of the local state to restore (can be repeated)")
+	operation_restoreCmd.Flags().StringSlice("what", []string{"repo", "remote-tracking"}, "What portions of the local state to restore (can be repeated)")
 	operationCmd.AddCommand(operation_restoreCmd)
 
 	carapace.Gen(operation_restoreCmd).FlagCompletion(carapace.ActionMap{
-		"what": carapace.ActionValues("repo", "remote-tracking"),
+		"what": carapace.ActionValuesDescribed(
+			"remote-tracking", "The remote-tracking bookmarks. Do not restore these if you'd like to push after the undo",
+			"repo", "The jj repo state and local bookmarks",
+		),
 	})
 
 	carapace.Gen(operation_restoreCmd).PositionalCompletion(

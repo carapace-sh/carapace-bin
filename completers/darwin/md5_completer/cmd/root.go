@@ -19,6 +19,7 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().BoolS("b", "b", false, "Binary mode")
 	rootCmd.Flags().BoolS("p", "p", false, "Echo stdin to stdout and compute checksum")
 	rootCmd.Flags().BoolS("q", "q", false, "Quiet mode")
 	rootCmd.Flags().BoolS("r", "r", false, "Reverse format")

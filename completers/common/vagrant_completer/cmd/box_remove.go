@@ -24,13 +24,13 @@ func init() {
 	carapace.Gen(box_removeCmd).FlagCompletion(carapace.ActionMap{
 		"box-version": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) > 0 {
-				return vagrant.ActionBoxVersions(c.Args[0], box_removeCmd.Flag("provider").Value.String())
+				return vagrant.ActionBoxVersions(vagrant.BoxVersionsOpts{Box: c.Args[0], Provider: box_removeCmd.Flag("provider").Value.String()})
 			}
 			return carapace.ActionValues()
 		}),
 		"provider": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) > 0 {
-				return vagrant.ActionBoxProviders(c.Args[0], box_removeCmd.Flag("provider").Value.String())
+				return vagrant.ActionBoxProviders(vagrant.BoxProvidersOpts{Box: c.Args[0], Version: box_removeCmd.Flag("provider").Value.String()})
 			}
 			return vagrant.ActionProviders()
 		}),

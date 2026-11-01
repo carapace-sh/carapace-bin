@@ -11,14 +11,14 @@ func ActionRepo() carapace.Action {
 			switch len(c.Parts) {
 			case 0:
 				return carapace.ActionValuesDescribed(
-					"sftp", "SFTP",
-					"rest", "HTTP",
-					"s3", "Amazon S3",
-					"swift", "OpenStack Swift",
-					"b2", "Backblaze B2",
 					"azure", "Microsoft Azure Blob Storage",
+					"b2", "Backblaze B2",
 					"gs", "Google Cloud Storage",
 					"rclone", "rclone",
+					"rest", "HTTP",
+					"s3", "Amazon S3",
+					"sftp", "SFTP",
+					"swift", "OpenStack Swift",
 				).Suffix(":")
 			default:
 				// TODO completion

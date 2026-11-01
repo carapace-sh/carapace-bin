@@ -21,7 +21,7 @@ func init() {
 	rootCmd.AddCommand(diffCmd)
 
 	carapace.Gen(diffCmd).FlagCompletion(carapace.ActionMap{
-		"config": carapace.Batch(carapace.ActionFiles(), carapace.ActionValues("NONE", "-", "/dev/stdin")).ToA(),
+		"config": carapace.Batch(carapace.ActionFiles(), carapace.ActionValues("-", "/dev/stdin", "NONE")).ToA(),
 	})
 
 	carapace.Gen(diffCmd).PositionalAnyCompletion(carapace.Batch(

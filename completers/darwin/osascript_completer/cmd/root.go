@@ -25,7 +25,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"flags":    carapace.ActionValues("e", "h", "o", ""),
-		"language": carapace.ActionValues("AppleScript", "JavaScript", "JXA", "Generic"),
+		"language": carapace.ActionValues("AppleScript", "Generic", "JXA", "JavaScript"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())

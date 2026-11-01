@@ -4,9 +4,17 @@ prefetch: |
   Updates the object directory with the latest objects from all registered remotes. For each remote, runs `git fetch` with refspec modified to place refs within `refs/prefetch/`. Tags are not updated.
 gc: |
   Clean up unnecessary files and optimize the local repository. "GC" stands for "garbage collection," but performs many smaller tasks. Can be expensive for large repositories as it repacks all Git objects into a single pack-file.
+geometric: |
+  Avoid all-into-one repacks when possible. Instead, use a geometric sequence of pack sizes so that only a few packs need to be combined.
 loose-objects: |
   Cleans up loose objects and places them into pack-files. Two-step process: deletes loose objects that already exist in a pack-file, then creates a new pack-file containing a batch of loose objects.
 incremental-repack: |
   Repacks the object directory using the multi-pack-index feature. Two-step process: calls `git multi-pack-index expire` then `git multi-pack-index repack`.
 pack-refs: |
   Collects loose reference files into a single file. Speeds up operations that need to iterate across many references.
+reflog-expire: |
+  Delete entries in the reflog older than the expiry threshold. Ensures that reflogs are kept up to date and don't grow unboundedly.
+rerere-gc: |
+  Garbage collection for stale entries in the rerere cache. Removes old conflict resolution records that are no longer needed.
+worktree-prune: |
+  Delete stale or broken worktrees. Checks for worktree administrative files that no longer correspond to a valid working tree.

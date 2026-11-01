@@ -5,7 +5,8 @@ group: low-level synching
 documentation:
   command: |-
     A simple CGI program to serve the contents of a Git repository to Git
-    clients accessing the repository over http:// and https:// protocols.
+    clients accessing the repository over http: |-
+      // and https:// protocols.
     The program supports clients fetching using both the smart HTTP protocol
     and the backwards-compatible dumb HTTP protocol, as well as clients
     pushing using the smart HTTP protocol. It also supports Git's
@@ -22,3 +23,4 @@ documentation:
     'git fetch', 'git pull', and 'git clone'.  If the client is authenticated,
     the `receive-pack` service is enabled, which serves `git send-pack`
     clients, which is invoked from 'git push'.
+

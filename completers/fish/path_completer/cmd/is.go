@@ -34,7 +34,7 @@ func init() {
 	rootCmd.AddCommand(isCmd)
 
 	carapace.Gen(isCmd).FlagCompletion(carapace.ActionMap{
-		"perm": carapace.ActionValues("read", "write", "exec", "suid", "sgid", "user", "group"),
-		"type": carapace.ActionValues("dir", "file", "link", "block", "char", "fifo", "socket"),
+		"perm": carapace.ActionValues("exec", "group", "read", "sgid", "suid", "user", "write"),
+		"type": carapace.ActionValues("block", "char", "dir", "fifo", "file", "link", "socket"),
 	})
 }

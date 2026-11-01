@@ -28,6 +28,6 @@ func init() {
 		"assignee": carapace.ActionValues(),
 		"label":    carapace.ActionValues(),
 		"limit":    carapace.ActionValues(),
-		"state":    carapace.ActionValues("open", "closed", "merged", "all"),
+		"state":    carapace.ActionValues("all", "closed", "merged", "open"),
 	})
 }

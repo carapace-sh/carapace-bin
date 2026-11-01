@@ -1,0 +1,43 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: bundle
+description: create a bundle file
+group: import-export
+flags:
+    --base=: a base changeset assumed to be available at the destination
+    --exact: compute the base from the revision specified
+    --insecure: do not verify server certificate (ignoring web.cacerts config)
+    --remotecmd=: specify hg command to run on the remote side
+    -a, --all: bundle all changesets in the repository
+    -b, --branch=*: a specific branch you would like to bundle
+    -e, --ssh=: specify ssh command to use
+    -f, --force: run even when the destination is unrelated
+    -r, --rev=*: a changeset intended to be added to the destination
+    -t, --type=: bundle compression type to use
+documentation:
+    command: |
+        create a bundle file
+
+        Generate a bundle file containing data to be transferred to another
+        repository.
+
+        To create a bundle containing all changesets, use -a/--all
+        (or --base null). Otherwise, hg assumes the destination will have
+        all the nodes you specify with --base parameters. Otherwise, hg
+        will assume the repository has all the nodes in destination, or
+        default-push/default if no destination is specified, where destination
+        is the repositories you provide through DEST option.
+
+        You can change bundle format with the -t/--type option. See
+        `hg help bundlespec` for documentation on this format. By default,
+        the most appropriate format is used and compression defaults to
+        bzip2.
+
+        The bundle file can then be transferred using conventional means
+        and applied to another repository with the unbundle or pull
+        command. This is useful when direct push and pull are not
+        available or when exporting an entire repository is undesirable.
+
+        Applying bundles preserves all changeset contents including
+        permissions, copy/rename information, and revision history.
+
+        Returns 0 on success, 1 if no changes found.

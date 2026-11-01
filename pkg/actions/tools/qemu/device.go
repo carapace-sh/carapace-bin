@@ -11,8 +11,8 @@ func ActionCharDevices() carapace.Action {
 		"chardev", "use a named character device defined with -chardev",
 		"file", "log to a file",
 		"mon", "multiplexed character backend (monitor + device)",
-		"null", "discard all output",
 		"none", "no device allocated",
+		"null", "discard all output",
 		"parport", "use host parallel port (Linux only)",
 		"pipe", "named pipe (Windows only)",
 		"pty", "pseudo TTY (Linux only)",
@@ -32,16 +32,16 @@ func ActionCharDevices() carapace.Action {
 //	sdl (SDL window)
 func ActionDisplayTypes() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"gtk", "GTK window",
-		"sdl", "SDL window",
+		"cocoa", "macOS Cocoa window",
+		"curses", "curses/ncurses interface",
+		"dbus", "D-Bus display",
 		"egl-headless", "EGL headless rendering",
-		"gl=on", "OpenGL rendering",
 		"gl=core", "OpenGL core profile",
 		"gl=es", "OpenGL ES",
-		"curses", "curses/ncurses interface",
+		"gl=on", "OpenGL rendering",
+		"gtk", "GTK window",
 		"none", "no display output",
-		"dbus", "D-Bus display",
-		"cocoa", "macOS Cocoa window",
+		"sdl", "SDL window",
 	).Tag("display types").Uid("qemu", "display-type")
 }
 
@@ -51,15 +51,15 @@ func ActionDisplayTypes() carapace.Action {
 //	std (standard VGA)
 func ActionVgaTypes() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"cirrus", "Cirrus Logic GD5446",
-		"std", "standard VGA",
-		"vmware", "VMware SVGA-II",
-		"virtio", "VirtIO GPU",
-		"qxl", "QXL (SPICE)",
-		"xenfb", "Xen framebuffer",
-		"tcx", "TCX (Sun)",
 		"cg3", "CG3 (Sun)",
+		"cirrus", "Cirrus Logic GD5446",
 		"none", "no VGA",
+		"qxl", "QXL (SPICE)",
+		"std", "standard VGA",
+		"tcx", "TCX (Sun)",
+		"virtio", "VirtIO GPU",
+		"vmware", "VMware SVGA-II",
+		"xenfb", "Xen framebuffer",
 	).Tag("vga types").Uid("qemu", "vga-type")
 }
 
@@ -69,12 +69,12 @@ func ActionVgaTypes() carapace.Action {
 //	shutdown (shutdown the guest)
 func ActionWatchdogActions() carapace.Action {
 	return carapace.ActionValuesDescribed(
+		"debug", "print debug message",
+		"inject-nmi", "inject an NMI into the guest",
+		"none", "do nothing",
+		"pause", "pause the guest",
+		"poweroff", "power off the guest",
 		"reset", "reset the guest",
 		"shutdown", "shutdown the guest",
-		"poweroff", "power off the guest",
-		"pause", "pause the guest",
-		"debug", "print debug message",
-		"none", "do nothing",
-		"inject-nmi", "inject an NMI into the guest",
 	).Tag("watchdog actions").Uid("qemu", "watchdog-action")
 }

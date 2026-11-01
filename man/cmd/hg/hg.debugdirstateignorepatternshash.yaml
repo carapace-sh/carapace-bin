@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugdirstateignorepatternshash
+description: show the hash of ignore patterns stored in dirstate if v2,
+hidden: true
+documentation:
+    command: |
+        show the hash of ignore patterns stored in dirstate if v2,
+        or nothing for dirstate-v2

@@ -3,3 +3,14 @@ name: step
 description: Run individual operations
 flags:
     -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        C:
+            - $files
+        config:
+            - $files
+documentation:
+    command: |-
+        Run individual operations
+
+        The building blocks of wt merge — commit, squash, rebase, push — plus standalone utilities.

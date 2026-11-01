@@ -10,7 +10,7 @@ import (
 
 func init() {
 	knownVariables["tofu"] = func() variables {
-		_bool := carapace.ActionValues("true", "false").StyleF(style.ForKeyword)
+		_bool := carapace.ActionValues("false", "true").StyleF(style.ForKeyword)
 		return variables{
 			Condition: conditions.ConditionPath("tofu"),
 			Variables: map[string]string{

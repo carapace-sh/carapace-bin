@@ -31,7 +31,7 @@ var listCmd = &cobra.Command{
 
 		if cmd.Flag("all").Changed {
 			os.Setenv(env.CARAPACE_EXCLUDES, "")
-			os.Setenv(env.CARAPACE_BUILTINS, "bash,fish,zsh") // TODO add more later
+			os.Setenv(env.CARAPACE_BUILTINS, "bash,cmd,elvish,fish,zsh")
 		}
 
 		filter := choices.Choice{}
@@ -63,14 +63,14 @@ var listCmd = &cobra.Command{
 func init() {
 	carapace.Gen(listCmd).Standalone()
 	listCmd.Flags().Bool("all", false, "return unfiltered results")
-	listCmd.Flags().Bool("names", false, "only list names")
 	listCmd.Flags().Bool("init", false, "update shims")
+	listCmd.Flags().Bool("names", false, "only list names")
 
 	carapace.Gen(listCmd).PositionalCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if listCmd.Flag("all").Changed {
 				c.Setenv(env.CARAPACE_EXCLUDES, "")
-				c.Setenv(env.CARAPACE_BUILTINS, "bash,fish,zsh") // TODO add more later
+				c.Setenv(env.CARAPACE_BUILTINS, "bash,cmd,elvish,fish,zsh")
 			}
 			return carapacebin.ActionCompleters(false).NoSpace().Invoke(c).ToA()
 		}),

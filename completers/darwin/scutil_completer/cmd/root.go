@@ -37,8 +37,8 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"error": carapace.ActionValues(),
-		"get":   carapace.ActionValues("ComputerName", "LocalHostName", "HostName"),
+		"get":   carapace.ActionValues("ComputerName", "HostName", "LocalHostName"),
 		"reach": carapace.ActionValues(),
-		"set":   carapace.ActionValues("ComputerName", "LocalHostName", "HostName"),
+		"set":   carapace.ActionValues("ComputerName", "HostName", "LocalHostName"),
 	})
 }

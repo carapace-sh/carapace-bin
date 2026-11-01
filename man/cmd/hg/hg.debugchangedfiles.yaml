@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugchangedfiles
+description: REV
+hidden: true
+flags:
+    --compute: compute information instead of reading it from storage
+documentation:
+    command: |
+        list the stored files changes for a revision

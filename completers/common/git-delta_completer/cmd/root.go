@@ -24,15 +24,15 @@ func init() {
 	carapace.Gen(rootCmd).PositionalCompletion(
 		git.ActionLocalBranches(),
 		carapace.ActionValuesDescribed(
-			"M", "Modified",
-			"T", "Type changed",
-			"R", "Renamed",
-			"D", "Deleted",
 			"A", "Added",
+			"B", "Broken pairing",
 			"C", "Copied",
+			"D", "Deleted",
+			"M", "Modified",
+			"R", "Renamed",
+			"T", "Type changed",
 			"U", "Unmerged",
 			"X", "Unknown",
-			"B", "Broken pairing",
 		),
 	)
 }

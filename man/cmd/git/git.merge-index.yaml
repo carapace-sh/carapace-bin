@@ -2,9 +2,24 @@
 name: merge-index
 description: Run a merge for files needing merging
 group: low-level manipulator
+flags:
+  -a: run merge against all files in the index that need merging
+  -o: instead of stopping at the first failed merge, do all of them in one shot
+  -q: do not complain about a failed merge program
 documentation:
   command: |-
     This looks up the <file>(s) in the index and, if there are any merge
     entries, passes the SHA-1 hash for those files as arguments 1, 2, 3 (empty
     argument if no file), and <file> as argument 4.  File modes for the three
     files are passed as arguments 5, 6 and 7.
+  flag:
+    a: |-
+      Attempt to auto-register archives at `http://mirrors.sourcecontrol.net`
+      This is particularly useful with the -D option.
+    o: |-
+      Use this for compatibility with old-style branch names used by earlier
+      versions of *git archimport*. Old-style branch names were
+      category--branch, whereas new-style branch names are
+      archive,category--branch--version. In both cases, names given on the
+      command-line will override the automatically-generated ones.
+    q: do not complain about a failed merge program

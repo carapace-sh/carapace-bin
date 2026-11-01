@@ -1,6 +1,6 @@
 package main
 
-import "github.com/carapace-sh/carapace-bin/completers/linux/xbps-reconfigure_completer/cmd"
+import "github.com/carapace-sh/carapace-bin/completers/linux/xbps-dgraph_completer/cmd"
 
 func main() {
 	cmd.Execute()

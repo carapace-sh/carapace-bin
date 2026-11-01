@@ -82,13 +82,13 @@ func init() {
 
 	carapace.Gen(caCmd).FlagCompletion(carapace.ActionMap{
 		"cert":     carapace.ActionFiles(),
-		"certform": carapace.ActionValues("DER", "PEM", "P12"),
+		"certform": carapace.ActionValues("DER", "P12", "PEM"),
 		"config":   carapace.ActionFiles(),
 		"extfile":  carapace.ActionFiles(),
 		"in":       carapace.ActionFiles(),
 		"inform":   carapace.ActionValues("DER", "PEM"),
 		"keyfile":  carapace.ActionFiles(),
-		"keyform":  carapace.ActionValues("DER", "PEM", "P12"),
+		"keyform":  carapace.ActionValues("DER", "P12", "PEM"),
 		"out":      carapace.ActionFiles(),
 		"outdir":   carapace.ActionDirectories(),
 		"revoke":   carapace.ActionFiles(),

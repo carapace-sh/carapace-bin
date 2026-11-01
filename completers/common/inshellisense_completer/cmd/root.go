@@ -26,6 +26,6 @@ func init() {
 	rootCmd.Flags().BoolP("version", "v", false, "output the current version")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"shell": carapace.ActionValues("bash", "pwsh", "zsh", "fish", "xonsh", "nu"),
+		"shell": carapace.ActionValues("bash", "fish", "nu", "pwsh", "xonsh", "zsh"),
 	})
 }

@@ -47,7 +47,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"classpath": carapace.ActionDirectories(),
-		"howtorun":  carapace.ActionValues("guess", "classfile", "jar", "script"),
+		"howtorun":  carapace.ActionValues("classfile", "guess", "jar", "script"),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

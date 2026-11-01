@@ -15,6 +15,7 @@ var skillCmd = &cobra.Command{
 func init() {
 	carapace.Gen(skillCmd).Standalone()
 
+	skillCmd.Flags().Bool("full", false, "Also print every reference document after the core guide")
 	skillCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.AddCommand(skillCmd)
 }

@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"runtime"
 	"strings"
+
+	shlex "github.com/carapace-sh/carapace-shlex/v2"
 )
 
 func Powershell(completers []string) string {
@@ -15,6 +17,7 @@ using namespace System.Management.Automation.Language
 $_carapace_completer = {
     [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingInvokeExpression", "", Scope="Function", Target="*")]
     param($wordToComplete, $commandAst, $cursorPosition)
+
     $commandElements = $commandAst.CommandElements
 
     # double quoted value works but seems single quoted needs some fixing (e.g. "example 'acti" -> "example acti")
@@ -41,10 +44,33 @@ $_carapace_completer = {
     }
 
     $completions = @(
-      if (!$wordToComplete) {
-        carapace ($elems[0] -replace ('\.exe$', '')) powershell $($elems| ForEach-Object {$_}) '' | ConvertFrom-Json | ForEach-Object { [CompletionResult]::new($_.CompletionText, $_.ListItemText.replace('` + "`" + `e[', "` + "`" + `e["), [CompletionResultType]::ParameterValue, $_.ToolTip.replace('` + "`" + `e[', "` + "`" + `e[")) }
-      } else {
-        carapace ($elems[0] -replace ('\.exe$', '')) powershell $($elems| ForEach-Object {$_}) | ConvertFrom-Json | ForEach-Object { [CompletionResult]::new($_.CompletionText, $_.ListItemText.replace('` + "`" + `e[', "` + "`" + `e["), [CompletionResultType]::ParameterValue, $_.ToolTip.replace('` + "`" + `e[', "` + "`" + `e[")) }
+      $old = @{
+        CARAPACE_SHELL = $env:CARAPACE_SHELL
+        CARAPACE_SHELL_ALIASES = $env:CARAPACE_SHELL_ALIASES
+        CARAPACE_SHELL_BUILTINS = $env:CARAPACE_SHELL_BUILTINS
+        CARAPACE_SHELL_FUNCTIONS = $env:CARAPACE_SHELL_FUNCTIONS
+        CARAPACE_SHELL_VARIABLES = $env:CARAPACE_SHELL_VARIABLES
+      }
+      try {
+        $env:CARAPACE_SHELL = "powershell"
+        $env:CARAPACE_SHELL_ALIASES = (Get-Alias | ForEach-Object { $_.Name } | Out-String).TrimEnd()
+        $env:CARAPACE_SHELL_BUILTINS = (Get-Command -CommandType Cmdlet | ForEach-Object { $_.Name } | Out-String).TrimEnd()
+        $env:CARAPACE_SHELL_FUNCTIONS = (Get-Command -CommandType Function | ForEach-Object { $_.Name } | Out-String).TrimEnd()
+        $env:CARAPACE_SHELL_VARIABLES = (Get-Variable | ForEach-Object { $_.Name } | Out-String).TrimEnd()
+
+        if (!$wordToComplete) {
+          carapace ($elems[0] -replace ('\.exe$', '')) powershell $($elems| ForEach-Object {$_}) '' | ConvertFrom-Json | ForEach-Object { [CompletionResult]::new($_.CompletionText, $_.ListItemText.replace('` + "`" + `e[', "` + "`" + `e["), [CompletionResultType]::ParameterValue, $_.ToolTip.replace('` + "`" + `e[', "` + "`" + `e[")) }
+        } else {
+          carapace ($elems[0] -replace ('\.exe$', '')) powershell $($elems| ForEach-Object {$_}) | ConvertFrom-Json | ForEach-Object { [CompletionResult]::new($_.CompletionText, $_.ListItemText.replace('` + "`" + `e[', "` + "`" + `e["), [CompletionResultType]::ParameterValue, $_.ToolTip.replace('` + "`" + `e[', "` + "`" + `e[")) }
+        }
+      } finally {
+        foreach ($kv in $old.GetEnumerator()) {
+          if ($null -eq $kv.Value) {
+            Remove-Item "env:$($kv.Key)" -ErrorAction SilentlyContinue
+          } else {
+            Set-Item "env:$($kv.Key)" $kv.Value
+          }
+        }
       }
     )
 
@@ -65,7 +91,9 @@ $_carapace_completer = {
 
 	complete := make([]string, 0, len(completers)*2)
 	for _, completer := range completers {
-		complete = append(complete, fmt.Sprintf(`Register-ArgumentCompleter -Native -ScriptBlock $_carapace_completer -CommandName '%v'%v,'%v.exe'`, completer, prefix, completer))
+		name := shlex.Quote(completer, shlex.Powershell)
+		exe := shlex.Quote(completer+".exe", shlex.Powershell)
+		complete = append(complete, fmt.Sprintf(`Register-ArgumentCompleter -Native -ScriptBlock $_carapace_completer -CommandName %v%v,%v`, name, prefix, exe))
 	}
 	return fmt.Sprintf(snippet, pathSnippet("powershell"), envSnippet("powershell"), strings.Join(complete, "\n"))
 }

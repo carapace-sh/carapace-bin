@@ -22,6 +22,10 @@ func init() {
 	rootCmd.Flags().BoolS("gnu", "gnu", false, "print GNU assembly next to Go assembly")
 	rootCmd.Flags().StringS("s", "s", "", "only dump symbols matching this regexp")
 
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"s": carapace.ActionValues(),
+	})
+
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.ActionFiles(),
 	)

@@ -7,15 +7,15 @@ import (
 )
 
 var repo_deleteCmd = &cobra.Command{
-	Use:   "delete [<NAMESPACE>/]<NAME>",
-	Short: "Delete an existing repository on GitLab.",
+	Use:   "delete [[<NAMESPACE>/]<NAME>]",
+	Short: "Delete an existing project on GitLab.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(repo_deleteCmd).Standalone()
 
-	repo_deleteCmd.Flags().BoolP("yes", "y", false, "Skip the confirmation prompt and immediately delete the repository.")
+	repo_deleteCmd.Flags().BoolP("yes", "y", false, "Skip the confirmation prompt and immediately delete the project.")
 	repoCmd.AddCommand(repo_deleteCmd)
 
 	carapace.Gen(repo_deleteCmd).PositionalCompletion(

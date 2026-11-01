@@ -124,15 +124,15 @@ func ActionMethodOrFields(opts MethodOrFieldOpts) carapace.Action {
 //	R (read-only data segment symbol)
 func ActionSymbolTypes() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"T", "text (code) segment symbol",
-		"t", "static text segment symbol",
-		"R", "read-only data segment symbol",
-		"r", "static read-only data segment symbol",
-		"D", "data segment symbol",
-		"d", "static data segment symbol",
 		"B", "bss segment symbol",
-		"b", "static bss segment symbol",
 		"C", "constant address",
+		"D", "data segment symbol",
+		"R", "read-only data segment symbol",
+		"T", "text (code) segment symbol",
 		"U", "referenced but undefined symbol",
+		"b", "static bss segment symbol",
+		"d", "static data segment symbol",
+		"r", "static read-only data segment symbol",
+		"t", "static text segment symbol",
 	)
 }

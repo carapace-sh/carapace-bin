@@ -21,6 +21,7 @@ func init() {
 	fetchPackCmd.Flags().Bool("check-self-contained-and-connected", false, "output \"connectivity-ok\" if the received pack is self-contained and connected")
 	fetchPackCmd.Flags().Bool("deepen-relative", false, "argument --depth specifies the number of commits from the current shallow boundary instead of from the tip of each remote branch history")
 	fetchPackCmd.Flags().String("depth", "", "limit fetching to ancestor-chains not longer than n")
+	fetchPackCmd.Flags().Bool("diag-url", false, "show the type of the remote")
 	fetchPackCmd.Flags().String("exec", "", "same as --upload-pack=<git-upload-pack>")
 	fetchPackCmd.Flags().Bool("include-tag", false, "if the remote side supports it, annotated tags objects will be downloaded on the same connection")
 	fetchPackCmd.Flags().BoolP("keep", "k", false, "do not invoke git unpack-objects on received data, but create a single packfile out of it instead")

@@ -28,6 +28,7 @@ func init() {
 	pane_reportMetadataCmd.Flags().String("title", "", "")
 	pane_reportMetadataCmd.Flags().StringArray("token", nil, "")
 	pane_reportMetadataCmd.Flags().String("ttl-ms", "", "")
+	pane_reportMetadataCmd.MarkFlagRequired("source")
 	paneCmd.AddCommand(pane_reportMetadataCmd)
 
 	carapace.Gen(pane_reportMetadataCmd).PositionalCompletion(herdr.ActionPanes(herdr.PaneOpts{}))

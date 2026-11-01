@@ -35,18 +35,18 @@ func init() {
 		"output":          carapace.ActionFiles(),
 		"prepend-include": carapace.ActionDirectories(),
 		"warnings": carapace.ActionValuesDescribed(
+			"all", "all the warnings",
 			"cross", "cross compilation issues",
+			"extra-portability", "extra portability issues related to obscure tools",
 			"gnu", "GNU coding standards (default in gnu and gnits modes)",
+			"no-CATEGORY", "turn off warnings in CATEGORY",
+			"none", "turn off all the warnings",
 			"obsolete", "obsolete features or constructions (default)",
 			"override", "user redefinitions of Automake rules or variables",
 			"portability", "portability issues (default in gnu and gnits modes)",
 			"portability-recursive", "nested Make variables (default with -Wportability)",
-			"extra-portability", "extra portability issues related to obscure tools",
 			"syntax", "dubious syntactic constructs (default)",
 			"unsupported", "unsupported or incomplete features (default)",
-			"all", "all the warnings",
-			"no-CATEGORY", "turn off warnings in CATEGORY",
-			"none", "turn off all the warnings",
 		),
 	})
 

@@ -3,20 +3,20 @@ name: filter-branch
 description: Rewrite branches
 group: manipulator
 flags:
-  --commit-filter=: This is the filter for performing the commit
-  --env-filter=: This filter may be used if you only need to modify the environment in which the commit will be performed
-  --index-filter=: This is the filter for rewriting the index
-  --msg-filter=: This is the filter for rewriting the commit messages
-  --original=: Use this option to set the namespace where the original commits will be stored
-  --parent-filter=: This is the filter for rewriting the commit’s parent list
-  --prune-empty: Some filters will generate empty commits that leave the tree untouched
-  --setup=: This is not a real filter executed for each commit but a one time setup just before the loop
-  --state-branch=: This option will cause the mapping from old to new objects to be loaded from named branch
-  --subdirectory-filter=: Only look at the history which touches the given subdirectory
-  --tag-name-filter=: This is the filter for rewriting tag names
-  --tree-filter=: This is the filter for rewriting the tree and its contents
-  -d=: Use this option to set the path to the temporary directory used for rewriting
-  -f, --force: Force to start with an existing temporary directory or when there are already refs starting with refs/original/
+  --commit-filter=: this is the filter for performing the commit
+  --env-filter=: this filter may be used if you only need to modify the environment in which the commit will be performed
+  --index-filter=: this is the filter for rewriting the index
+  --msg-filter=: this is the filter for rewriting the commit messages
+  --original=: use this option to set the namespace where the original commits will be stored
+  --parent-filter=: this is the filter for rewriting the commit’s parent list
+  --prune-empty: some filters will generate empty commits that leave the tree untouched
+  --setup=: this is not a real filter executed for each commit but a one time setup just before the loop
+  --state-branch=: this option will cause the mapping from old to new objects to be loaded from named branch
+  --subdirectory-filter=: only look at the history which touches the given subdirectory
+  --tag-name-filter=: this is the filter for rewriting tag names
+  --tree-filter=: this is the filter for rewriting the tree and its contents
+  -d=: use this option to set the path to the temporary directory used for rewriting
+  -f, --force: force to start with an existing temporary directory or when there are already refs starting with refs/original/
 documentation:
   command: |-
     Lets you rewrite Git revision history by rewriting the branches mentioned
@@ -56,7 +56,7 @@ documentation:
     `-d` option, e.g. on tmpfs.  Reportedly the speedup is very noticeable.
 
     ### Filters
-    
+
     The filters are applied in the order as listed below.  The <command>
     argument is always evaluated in the shell context using the `eval` command
     (with the notable exception of the commit filter, for technical reasons).
@@ -76,3 +76,25 @@ documentation:
     rewritten, and "original sha1 id" otherwise; the 'map' function can
     return several ids on separate lines if your commit filter emitted
     multiple commits.
+  flag:
+    force: |-
+      Allow adding otherwise ignored files. The option is also used when
+      `submodule.<name>.ignore=all` is set, but you want to stage an
+      update of the submodule. The `path` to the submodule must be explicitly
+      specified.
+    commit-filter: this is the filter for performing the commit
+    d: use this option to set the path to the temporary directory used for rewriting
+    env-filter: |-
+      this filter may be used if you only need to modify the environment in which the commit will be performed
+    index-filter: this is the filter for rewriting the index
+    msg-filter: this is the filter for rewriting the commit messages
+    original: use this option to set the namespace where the original commits will be stored
+    parent-filter: this is the filter for rewriting the commit’s parent list
+    prune-empty: some filters will generate empty commits that leave the tree untouched
+    setup: |-
+      this is not a real filter executed for each commit but a one time setup just before the loop
+    state-branch: |-
+      this option will cause the mapping from old to new objects to be loaded from named branch
+    subdirectory-filter: only look at the history which touches the given subdirectory
+    tag-name-filter: this is the filter for rewriting tag names
+    tree-filter: this is the filter for rewriting the tree and its contents

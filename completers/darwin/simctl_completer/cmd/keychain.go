@@ -17,7 +17,7 @@ func init() {
 	rootCmd.AddCommand(keychainCmd)
 	carapace.Gen(keychainCmd).PositionalCompletion(
 		simctl.ActionDevices(),
-		carapace.ActionValues("add-root-cert", "add-cert", "reset"),
+		carapace.ActionValues("add-cert", "add-root-cert", "reset"),
 	)
 	carapace.Gen(keychainCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

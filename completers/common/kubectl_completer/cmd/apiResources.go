@@ -28,8 +28,8 @@ func init() {
 
 	carapace.Gen(apiResourcesCmd).FlagCompletion(carapace.ActionMap{
 		"api-group": kubectl.ActionApiGroups(),
-		"output":    carapace.ActionValues("json", "yaml", "name", "wide"),
-		"sort-by":   carapace.ActionValues("name", "kind"),
+		"output":    carapace.ActionValues("json", "name", "wide", "yaml"),
+		"sort-by":   carapace.ActionValues("kind", "name"),
 		"verbs":     kubectl.ActionResourceVerbs(),
 	})
 }

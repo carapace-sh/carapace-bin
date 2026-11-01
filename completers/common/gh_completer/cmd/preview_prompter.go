@@ -18,15 +18,15 @@ func init() {
 
 	carapace.Gen(preview_prompterCmd).PositionalCompletion(
 		carapace.ActionValues(
-			"select",
-			"multi-select",
-			"input",
-			"password",
-			"confirm",
 			"auth-token",
+			"confirm",
 			"confirm-deletion",
+			"input",
 			"input-hostname",
 			"markdown-editor",
+			"multi-select",
+			"password",
+			"select",
 		),
 	)
 }

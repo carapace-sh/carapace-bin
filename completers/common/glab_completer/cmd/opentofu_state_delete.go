@@ -7,7 +7,7 @@ import (
 
 var opentofu_state_deleteCmd = &cobra.Command{
 	Use:   "delete <state> [<serial>] [flags]",
-	Short: "Delete the given state or if the serial is provided only that version of the given state.",
+	Short: "Delete a state or a specific version of a state.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

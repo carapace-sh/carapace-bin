@@ -7,9 +7,10 @@ import (
 )
 
 var projects_rmCmd = &cobra.Command{
-	Use:   "rm",
-	Short: "Remove a project",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "rm",
+	Aliases: []string{"remove"},
+	Short:   "Delete a project",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

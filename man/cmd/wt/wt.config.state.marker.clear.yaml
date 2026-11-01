@@ -5,3 +5,12 @@ flags:
     --all: Clear all markers
     --branch=: Target branch (defaults to current)
     -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        C:
+            - $files
+        config:
+            - $files
+        format:
+            - text
+            - json

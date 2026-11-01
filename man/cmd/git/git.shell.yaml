@@ -2,10 +2,22 @@
 name: shell
 description: Restricted login shell for Git-only SSH access
 flags:
-  --c: run command
+  -c: run command
 documentation:
   command: |-
     This is a login shell for SSH accounts to provide restricted Git access.
     It permits execution only of server-side Git commands implementing the
     pull/push functionality, plus custom commands present in a subdirectory
     named `git-shell-commands` in the user's home directory.
+  flag:
+    c: |-
+      Pass a configuration parameter to the command. The value given will
+      override values from configuration files. The &lt;name&gt; is expected
+      in the same format as listed by *git config* (subkeys separated by
+      dots).
+      
+      Note that omitting the `=` in `git -c foo.bar ...` is allowed and sets
+      `foo.bar` to the boolean true value (just like `[foo]bar` would in a
+      config file). Including the equals but with an empty value (like
+      `git -c foo.bar= ...`) sets `foo.bar` to the empty string which
+      `git config --type=bool` will convert to `false`.

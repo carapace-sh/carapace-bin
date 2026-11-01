@@ -16,6 +16,7 @@ func init() {
 
 	upload_quetzCmd.Flags().StringP("api-key", "a", "", "The Quetz API key, if none is provided, the token is read from the keychain / auth-file")
 	upload_quetzCmd.Flags().StringP("channel", "c", "", "The URL to your channel")
+	upload_quetzCmd.Flags().Bool("force", false, "Force overwrite existing packages")
 	upload_quetzCmd.Flags().StringP("url", "u", "", "The URL to your Quetz server")
 	upload_quetzCmd.MarkFlagRequired("channel")
 	upload_quetzCmd.MarkFlagRequired("url")

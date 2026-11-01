@@ -18,14 +18,19 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().Bool("allow-oroms", false, "Permit option roms execution")
 	rootCmd.Flags().Bool("check", false, "Check firmware password")
 	rootCmd.Flags().Bool("delete", false, "Delete firmware password")
 	rootCmd.Flags().Bool("disable-reset-capability", false, "Disable reset capability")
 	rootCmd.Flags().Bool("enable-reset-capability", false, "Enable reset capability")
 	rootCmd.Flags().BoolS("h", "h", false, "Display help")
 	rootCmd.Flags().Bool("mode", false, "Show mode")
-	rootCmd.Flags().Bool("setmode", false, "Set mode")
+	rootCmd.Flags().String("setmode", "", "Set mode (command/full)")
 	rootCmd.Flags().Bool("setpasswd", false, "Set password")
 	rootCmd.Flags().Bool("unlockseed", false, "Generate unlock seed")
 	rootCmd.Flags().Bool("verify", false, "Verify password")
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"setmode": carapace.ActionValues("command", "full"),
+	})
 }

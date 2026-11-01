@@ -29,6 +29,16 @@ func ActionFilesystemTypes() carapace.Action {
 				"udf", "Universal Disk Format",
 				"webdav", "WebDAV filesystem",
 			).Tag("filesystem types")
+		case "windows":
+			return carapace.ActionValuesDescribed(
+				"cdfs", "CD-ROM file system (ISO 9660)",
+				"exfat", "exFAT file system",
+				"fat", "FAT file system",
+				"fat32", "FAT32 file system",
+				"ntfs", "NTFS file system (default Windows filesystem)",
+				"refs", "Resilient File System (Windows Server)",
+				"udf", "Universal Disk Format",
+			).Tag("filesystem types")
 		default:
 			return carapace.ActionValuesDescribed(
 				"bfs", "is the native file system for the BeOS",
@@ -39,8 +49,8 @@ func ActionFilesystemTypes() carapace.Action {
 				"ext2", "is the high performance disk filesystem used by Linux  for  fixed  disks  as  well  as removable  media.",
 				"ext3", "is a journaling version of the ext2 filesystem.",
 				"ext4", "is  a  set  of  upgrades  to  ext3  including  substantial performance and reliability enhancements.",
-				"fat", "is a file system developed for personal computers",
 				"f2fs", "s a flash file system initially developed by Samsung Electronics",
+				"fat", "is a file system developed for personal computers",
 				"hpfs", "is  the High Performance Filesystem, used in OS/2.",
 				"iso9660", "is a CD-ROM filesystem type conforming to the ISO 9660 standard.",
 				"jfs", "is a journaling filesystem, developed by IBM.",

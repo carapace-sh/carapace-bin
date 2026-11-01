@@ -18,7 +18,7 @@ func init() {
 	os_infoCmd.Flags().StringP("profile", "P", "/nix/var/nix/profiles/system", "Path to Nix profiles directory")
 
 	carapace.Gen(os_infoCmd).FlagCompletion(carapace.ActionMap{
-		"fields":  carapace.ActionValues("id", "date", "nver", "kernel", "confRev", "spec", "size").UniqueList(","),
+		"fields":  carapace.ActionValues("confRev", "date", "id", "kernel", "nver", "size", "spec").UniqueList(","),
 		"profile": carapace.ActionFiles(),
 	})
 

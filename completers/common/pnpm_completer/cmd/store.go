@@ -7,7 +7,7 @@ import (
 
 var storeCmd = &cobra.Command{
 	Use:     "store",
-	Short:   "Reads and performs actions on pnpm store that is on the current filesystem",
+	Short:   "Managing the package store",
 	GroupID: "store",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
@@ -15,5 +15,6 @@ var storeCmd = &cobra.Command{
 func init() {
 	carapace.Gen(storeCmd).Standalone()
 
+	storeCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.AddCommand(storeCmd)
 }

@@ -27,7 +27,7 @@ func init() {
 	rootCmd.AddCommand(migrateCmd)
 
 	carapace.Gen(migrateCmd).FlagCompletion(carapace.ActionMap{
-		"preview-hostname": carapace.ActionValues("localhost", "any"),
+		"preview-hostname": carapace.ActionValues("any", "localhost"),
 		"summary":          carapace.ActionFiles(),
 	})
 

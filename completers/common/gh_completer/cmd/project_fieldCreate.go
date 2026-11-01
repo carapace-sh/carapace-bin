@@ -28,7 +28,7 @@ func init() {
 	projectCmd.AddCommand(project_fieldCreateCmd)
 
 	carapace.Gen(project_fieldCreateCmd).FlagCompletion(carapace.ActionMap{
-		"data-type": carapace.ActionValues("TEXT", "SINGLE_SELECT", "DATE", "NUMBER"),
+		"data-type": carapace.ActionValues("DATE", "NUMBER", "SINGLE_SELECT", "TEXT"),
 		"format":    carapace.ActionValues("json"),
 		"jq":        jq.ActionFilters(),
 		"owner":     gh.ActionOwners(gh.HostOpts{}),

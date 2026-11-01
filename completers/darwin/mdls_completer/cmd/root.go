@@ -18,10 +18,16 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().StringP("attr", "n", "", "Fetch the specified attribute")
 	rootCmd.Flags().BoolP("help", "h", false, "Display usage information")
-	rootCmd.Flags().StringP("name", "name", "", "Get the specified attribute")
-	rootCmd.Flags().BoolP("plist", "plist", false, "Print in plist format")
-	rootCmd.Flags().BoolP("raw", "raw", false, "Print raw attribute data")
+	rootCmd.Flags().StringP("nullMarker", "m", "", "Substitute string for null attributes in raw mode")
+	rootCmd.Flags().StringP("plist", "p", "", "Output attributes in XML format to file")
+	rootCmd.Flags().BoolP("raw", "r", false, "Print raw attribute data")
+	rootCmd.Flags().BoolP("sdb", "s", false, "Get kMDItemSDBInfo attribute")
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"plist": carapace.ActionFiles(),
+	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionFiles())
 }

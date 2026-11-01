@@ -18,4 +18,18 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
+	rootCmd.Flags().BoolS("v", "v", false, "verbosity")
+
+	carapace.Gen(rootCmd).PositionalCompletion(
+		carapace.ActionValuesDescribed(
+			"banner", "print installation banner",
+			"bootstrap", "rebuild everything",
+			"clean", "deletes all built files",
+			"env", "print environment",
+			"install", "install individual directory",
+			"list", "list all supported platforms",
+			"test", "run Go test(s)",
+			"version", "print Go version",
+		),
+	)
 }

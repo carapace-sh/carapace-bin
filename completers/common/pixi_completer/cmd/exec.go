@@ -28,6 +28,7 @@ func init() {
 	execCmd.Flags().Bool("no-modify-ps1", false, "Disable modification of the PS1 prompt to indicate the temporary environment")
 	execCmd.Flags().Bool("no-ref-links", false, "Disallow ref links (copy-on-write) during package installation")
 	execCmd.Flags().Bool("no-symbolic-links", false, "Disallow symbolic links during package installation")
+	execCmd.Flags().Bool("offline", false, "Run without network access, using only cached data. Commands fail if data is missing from the cache. Pass `--offline=false` to override an `offline` setting from the configuration")
 	execCmd.Flags().String("pinning-strategy", "", "Set pinning strategy")
 	execCmd.Flags().StringP("platform", "p", "", "The platform to create the environment for. Defaults to the current machine's subdir. Accepts a workspace platform name or a bare conda subdir (e.g. `linux-64`); `pixi exec` runs outside any workspace so the value resolves to a conda subdir either way")
 	execCmd.Flags().String("pypi-keyring-provider", "", "Specifies whether to use the keyring to look up credentials for PyPI")
@@ -42,10 +43,10 @@ func init() {
 
 	carapace.Gen(execCmd).FlagCompletion(carapace.ActionMap{
 		"auth-file":             carapace.ActionFiles(),
-		"pinning-strategy":      carapace.ActionValues("semver", "minor", "major", "latest-up", "exact-version", "no-pin"),
+		"pinning-strategy":      carapace.ActionValues("exact-version", "latest-up", "major", "minor", "no-pin", "semver"),
 		"platform":              pixi.ActionPlatforms(),
 		"pypi-keyring-provider": carapace.ActionValues("disabled", "subprocess"),
-		"tls-root-certs":        carapace.ActionValues("webpki", "system"),
+		"tls-root-certs":        carapace.ActionValues("system", "webpki"),
 	})
 
 	carapace.Gen(execCmd).PositionalAnyCompletion(

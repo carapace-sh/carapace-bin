@@ -41,8 +41,8 @@ func ActionConfigValues(key string) carapace.Action {
 		switch key {
 		case "pnpMode":
 			return carapace.ActionValuesDescribed(
-				"strict", "generate standard PnP maps",
 				"loose", "merge with the n_m resolution",
+				"strict", "generate standard PnP maps",
 			).StyleF(style.ForKeyword)
 		case "checksumBehavior":
 			return carapace.ActionStyledValuesDescribed(
@@ -52,7 +52,7 @@ func ActionConfigValues(key string) carapace.Action {
 			)
 
 		case "nodeLinker":
-			return carapace.ActionValues("pnp", "pnpm", "node-modules")
+			return carapace.ActionValues("node-modules", "pnp", "pnpm")
 
 		default:
 			return carapace.ActionExecCommand("yarn", "config", "--json")(func(output []byte) carapace.Action {
@@ -72,7 +72,7 @@ func ActionConfigValues(key string) carapace.Action {
 						case "ABSOLUTE_PATH":
 							return carapace.ActionFiles()
 						case "BOOLEAN":
-							return carapace.ActionValues("true", "false").StyleF(style.ForKeyword)
+							return carapace.ActionValues("false", "true").StyleF(style.ForKeyword)
 						default:
 							return carapace.ActionValues()
 						}

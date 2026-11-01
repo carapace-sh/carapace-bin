@@ -3,9 +3,13 @@ name: generate
 description: Generate Kubernetes CRD YAML file
 flags:
     --annotation=*: Any annotations you want to add (to store functions only)
-    --api=: CRD API version e.g openfaas.com/v1, serving.knative.dev/v1
+    --api=: CRD API version e.g openfaas.com/v1
     --arch=: Desired image arch. (Default x86_64)
-    --envsubst: Substitute environment variables in stack.yml file
+    --envsubst: Substitute environment variables in stack.yaml file
     --from-store=: generate using a store image
-    --tag=: Override latest tag on function Docker image, accepts 'latest', 'sha', 'branch', 'describe'
+    --label=*: Any labels you want to add (to store functions only)
+    --name=: for use with --from-store, override the name for the generated function
+    --output=: output format e.g stack.yaml, for use with --from-store to generate an OpenFaaS stack.yaml
+    --tag=: Override latest tag on function Docker image, accepts 'digest', 'latest', 'sha', 'branch', 'describe'
+    -e, --env=*: Set one or more environment variables (ENVVAR=VALUE) (to store functions only)
     -n, --namespace=: Kubernetes namespace for functions

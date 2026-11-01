@@ -25,7 +25,7 @@ func init() {
 	rootCmd.AddCommand(quickAccessTerminalCmd)
 
 	carapace.Gen(quickAccessTerminalCmd).FlagCompletion(carapace.ActionMap{
-		"config": carapace.Batch(carapace.ActionFiles(), carapace.ActionValues("NONE", "-", "/dev/stdin")).ToA(),
+		"config": carapace.Batch(carapace.ActionFiles(), carapace.ActionValues("-", "/dev/stdin", "NONE")).ToA(),
 	})
 
 	carapace.Gen(quickAccessTerminalCmd).PositionalAnyCompletion(carapace.ActionFiles())

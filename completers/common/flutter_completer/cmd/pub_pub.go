@@ -14,6 +14,10 @@ var pub_pubCmd = &cobra.Command{
 func init() {
 	carapace.Gen(pub_pubCmd).Standalone()
 
+	pub_pubCmd.Flags().Bool("color", false, "Use colors in terminal output.")
+	pub_pubCmd.Flags().StringP("directory", "C", "", "Run the subcommand in the directory <dir>.")
 	pub_pubCmd.Flags().BoolP("help", "h", false, "Print this usage information.")
+	pub_pubCmd.Flags().Bool("no-color", false, "Do not use colors in terminal output.")
+	pub_pubCmd.Flags().BoolP("verbose", "v", false, "Print detailed logging.")
 	pubCmd.AddCommand(pub_pubCmd)
 }

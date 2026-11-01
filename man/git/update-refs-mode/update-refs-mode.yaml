@@ -1,0 +1,4 @@
+branches: |
+  All local branches will be rewritten. This rewrites all branches that have been checked out locally.
+head: |
+  Only the current HEAD reference will be rewritten.

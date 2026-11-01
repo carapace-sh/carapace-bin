@@ -16,8 +16,10 @@ func init() {
 	carapace.Gen(abandonCmd).Standalone()
 
 	abandonCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	abandonCmd.Flags().StringSliceS("r", "r", nil, "")
 	abandonCmd.Flags().Bool("restore-descendants", false, "Do not modify the content of the children of the abandoned commits")
 	abandonCmd.Flags().Bool("retain-bookmarks", false, "Do not delete bookmarks pointing to the revisions to abandon")
+	abandonCmd.Flag("r").Hidden = true
 	rootCmd.AddCommand(abandonCmd)
 
 	carapace.Gen(abandonCmd).PositionalAnyCompletion(

@@ -2,8 +2,27 @@
 name: write
 description: Write a new MIDX file
 flags:
+  --base=: base MIDX for incremental writes
   --bitmap: write a multi-pack bitmap
+  --incremental: write a new incremental MIDX
   --no-bitmap: do not write a multi-pack bitmap
+  --no-write-chain-file: do not write the multi-pack-index chain file
   --preferred-pack=: specify the tie-breaking pack used when multiple packs contain the same object
   --refs-snapshot=: specify a file which contains a "refs snapshot" taken prior to repacking
   --stdin-packs: provide pack index basenames over stdin
+documentation:
+  flag:
+    base: |-
+      Add prerequisite tree info to the patch series. The argument can be
+      `auto` (use the current branch as the base), a commit object name,
+      or a reference in `refs/notes/`. This option is useful when the
+      patches need to be applied on top of a specific commit.
+    incremental: |-
+      Show the result incrementally in a format designed for
+      machine consumption.
+    bitmap: write a multi-pack bitmap
+    no-bitmap: do not write a multi-pack bitmap
+    no-write-chain-file: do not write the multi-pack-index chain file
+    preferred-pack: specify the tie-breaking pack used when multiple packs contain the same object
+    refs-snapshot: specify a file which contains a "refs snapshot" taken prior to repacking
+    stdin-packs: provide pack index basenames over stdin

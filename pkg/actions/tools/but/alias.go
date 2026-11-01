@@ -3,6 +3,7 @@ package but
 import (
 	"encoding/json"
 	"os/exec"
+	"slices"
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace/pkg/style"
@@ -21,15 +22,15 @@ func (o AliasOpts) Default() AliasOpts {
 
 type butAliases struct {
 	User []struct {
-		Name  string
-		Value string
-		Scope string
+		Name   string
+		Value  string
+		Scopes []string
 	}
 	Default map[string]string
 }
 
 func Aliases() (*butAliases, error) {
-	output, err := exec.Command("but", "--format", "json", "alias", "list").Output() // TODO support context?
+	output, err := exec.Command("but", "--json", "alias", "list").Output() // TODO support context?
 	if err != nil {
 		return nil, err
 	}
@@ -56,7 +57,7 @@ func ActionAliases(opts AliasOpts) carapace.Action {
 		if opts.User {
 			for _, alias := range aliases.User {
 				s := style.Blue
-				if alias.Scope == "global" {
+				if slices.Contains(alias.Scopes, "global") {
 					s = style.Yellow
 				}
 				vals = append(vals, alias.Name, alias.Value, s)

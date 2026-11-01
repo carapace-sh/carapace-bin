@@ -33,7 +33,7 @@ func init() {
 				return carapace.ActionValues()
 			}
 		}),
-		"mirror": carapace.ActionValues("push", "fetch"),
+		"mirror": carapace.ActionValues("fetch", "push"),
 		"track": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) > 1 {
 				return git.ActionLsRemoteRefs(git.LsRemoteRefOption{Url: c.Args[1], Branches: true})

@@ -2,8 +2,9 @@
 name: invoke
 description: Invoke an OpenFaaS function
 flags:
+    --auth: Authenticate with an OpenFaaS token when invoking the function
     --content-type=: The content-type HTTP header such as application/json
-    --envsubst: Substitute environment variables in stack.yml file
+    --envsubst: Substitute environment variables in stack.yaml file
     --key=: key to be used to sign the request (must be used with --sign)
     --name=: Name of the deployed function
     --query=*: pass query-string options

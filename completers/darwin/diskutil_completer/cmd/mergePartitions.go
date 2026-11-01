@@ -16,7 +16,7 @@ func init() {
 	carapace.Gen(mergePartitionsCmd).Standalone()
 	rootCmd.AddCommand(mergePartitionsCmd)
 	carapace.Gen(mergePartitionsCmd).PositionalCompletion(
-		carapace.ActionValues("HFS+", "APFS"),
+		carapace.ActionValues("APFS", "HFS+"),
 		fs.ActionBlockDevices(),
 	)
 	carapace.Gen(mergePartitionsCmd).PositionalAnyCompletion(fs.ActionBlockDevices())

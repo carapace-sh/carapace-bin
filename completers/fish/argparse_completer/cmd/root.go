@@ -31,6 +31,6 @@ func init() {
 	rootCmd.Flags().String("unknown-arguments", "", "parsing for unknown options")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"unknown-arguments": carapace.ActionValues("optional", "required", "none"),
+		"unknown-arguments": carapace.ActionValues("none", "optional", "required"),
 	})
 }

@@ -20,6 +20,7 @@ func init() {
 	clean_cacheCmd.Flags().Bool("conda", false, "Clean only the conda related cache")
 	clean_cacheCmd.Flags().Bool("exec", false, "Clean only `exec` cache")
 	clean_cacheCmd.Flags().Bool("mapping", false, "Clean only the mapping cache")
+	clean_cacheCmd.Flags().Bool("notices", false, "Clean only the viewed channel notices cache")
 	clean_cacheCmd.Flags().Bool("pypi", false, "Clean only the pypi related cache")
 	clean_cacheCmd.Flags().Bool("repodata", false, "Clean only the repodata cache")
 	clean_cacheCmd.Flags().BoolP("yes", "y", false, "Answer yes to all questions")

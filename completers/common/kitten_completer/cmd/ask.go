@@ -28,6 +28,6 @@ func init() {
 	rootCmd.AddCommand(askCmd)
 
 	carapace.Gen(askCmd).FlagCompletion(carapace.ActionMap{
-		"type": carapace.ActionValues("line", "choices", "file", "password", "yesno"),
+		"type": carapace.ActionValues("choices", "file", "line", "password", "yesno"),
 	})
 }

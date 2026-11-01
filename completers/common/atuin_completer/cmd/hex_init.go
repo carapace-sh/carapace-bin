@@ -18,6 +18,6 @@ func init() {
 	hexCmd.AddCommand(hexInitCmd)
 
 	carapace.Gen(hexInitCmd).PositionalCompletion(
-		carapace.ActionValues("zsh", "bash", "fish", "nu"),
+		carapace.ActionValues("bash", "fish", "nu", "zsh"),
 	)
 }

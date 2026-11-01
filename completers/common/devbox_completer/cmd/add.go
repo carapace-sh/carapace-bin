@@ -30,7 +30,7 @@ func init() {
 	// TODO flag completion
 	carapace.Gen(addCmd).FlagCompletion(carapace.ActionMap{
 		"config": carapace.ActionDirectories(),
-		"patch":  carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
+		"patch":  carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 	})
 
 	// TODO devbox is currently hardcoded against `nixpkgs` alias which is implicitly added as prefix.

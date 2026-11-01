@@ -173,28 +173,28 @@ func init() {
 	rootCmd.Flag("use-aes").NoOptDefVal = " "
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"accessibility":         carapace.ActionValues("y", "n"),
+		"accessibility":         carapace.ActionValues("n", "y"),
 		"add-attachment":        carapace.ActionFiles(),
-		"annotate":              carapace.ActionValues("y", "n"),
-		"assemble":              carapace.ActionValues("y", "n"),
+		"annotate":              carapace.ActionValues("n", "y"),
+		"assemble":              carapace.ActionValues("n", "y"),
 		"bits":                  carapace.ActionValues("48", "128", "256"),
-		"compress-streams":      carapace.ActionValues("y", "n"),
+		"compress-streams":      carapace.ActionValues("n", "y"),
 		"copy-attachments-from": carapace.ActionFiles(),
 		"copy-encryption":       carapace.ActionFiles(),
-		"extract":               carapace.ActionValues("y", "n"),
+		"extract":               carapace.ActionValues("n", "y"),
 		"file":                  carapace.ActionFiles(),
 		"flatten-annotations": carapace.ActionValuesDescribed(
 			"all", "include all annotations that are not marked invisible or hidden",
 			"print", "only include annotations that should appear when the page is printed",
 			"screen", "omit annotations that should not appear on the screen",
 		),
-		"form": carapace.ActionValues("y", "n"),
+		"form": carapace.ActionValues("n", "y"),
 		"help": carapace.Batch(
 			carapace.ActionValuesDescribed(
 
-				"all", "all available help",
 				"add-attachment", "attach (embed) files",
 				"advanced-control", "tweak qpdf's behavior",
+				"all", "all available help",
 				"attachments", "work with embedded files",
 				"completion", "shell completion",
 				"copy-attachments", "copy attachments from another file",
@@ -224,8 +224,8 @@ func init() {
 			}),
 		).ToA(),
 		"job-json-file":    carapace.ActionFiles(),
-		"json-stream-data": carapace.ActionValues("none", "inline", "file"),
-		"keep-files-open":  carapace.ActionValues("y", "n"),
+		"json-stream-data": carapace.ActionValues("file", "inline", "none"),
+		"keep-files-open":  carapace.ActionValues("n", "y"),
 		"linearize-pass1":  carapace.ActionFiles(),
 		"modify": carapace.ActionValuesDescribed(
 			"all", "allow full document modification",
@@ -234,23 +234,23 @@ func init() {
 			"form", "assembly permissions plus filling in form fields and signing",
 			"none", "allow no modifications",
 		),
-		"modify-other":      carapace.ActionValues("y", "n"),
-		"normalize-content": carapace.ActionValues("y", "n"),
+		"modify-other":      carapace.ActionValues("n", "y"),
+		"normalize-content": carapace.ActionValues("n", "y"),
 		"object-streams": carapace.ActionValuesDescribed(
-			"preserve", "preserve original object streams, if any",
 			"disable", "create output files with no object streams",
 			"generate", "create object streams, and compress objects when possible",
+			"preserve", "preserve original object streams, if any",
 		),
 		"overlay":       carapace.ActionFiles(),
 		"pages":         carapace.ActionFiles(),
 		"password-file": carapace.ActionFiles(),
-		"password-mode": carapace.ActionValues("auto", "unicode", "bytes", "hex-bytes"),
+		"password-mode": carapace.ActionValues("auto", "bytes", "hex-bytes", "unicode"),
 		"print": carapace.ActionValuesDescribed(
-			"none", "disallow printing",
-			"low", "allow low-resolution printing only",
 			"full", "allow full printing",
+			"low", "allow low-resolution printing only",
+			"none", "disallow printing",
 		),
-		"remove-unreferenced-resources": carapace.ActionValues("auto", "yes", "no").StyleF(style.ForKeyword),
+		"remove-unreferenced-resources": carapace.ActionValues("auto", "no", "yes").StyleF(style.ForKeyword),
 		"stream-data": carapace.ActionValuesDescribed(
 			"compress", "recompress stream data when possible",
 			"preserve", "leave all stream data as is",
@@ -258,7 +258,7 @@ func init() {
 		),
 		"underlay":         carapace.ActionFiles(),
 		"update-from-json": carapace.ActionFiles(),
-		"use-aes":          carapace.ActionValues("y", "n"),
+		"use-aes":          carapace.ActionValues("n", "y"),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

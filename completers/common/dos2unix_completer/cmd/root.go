@@ -45,7 +45,7 @@ func init() {
 	rootCmd.Flag("info").NoOptDefVal = " "
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"convmode":    carapace.ActionValues("ascii", "7bit", "iso", "mac"),
+		"convmode":    carapace.ActionValues("7bit", "ascii", "iso", "mac"),
 		"display-enc": carapace.ActionValues("ansi", "unicode", "unicodebom", "utf8", "utf8bom"),
 	})
 

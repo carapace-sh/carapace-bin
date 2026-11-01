@@ -19,7 +19,6 @@ func init() {
 
 	kubectlCmd.Flags().SetInterspersed(false)
 
-	// TODO proxy the kubectl command
 	carapace.Gen(kubectlCmd).PositionalAnyCompletion(
 		bridge.ActionCarapaceBin("kubectl"),
 	)

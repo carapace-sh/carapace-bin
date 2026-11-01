@@ -37,8 +37,8 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"format": carapace.ActionValuesDescribed(
 			"docx", "Google Docs",
-			"xlsx", "Spreadsheet",
 			"pptx", "Slides",
+			"xlsx", "Spreadsheet",
 		),
 		"output": carapace.ActionFiles(),
 		"speed":  actions.ActionSpeed(),

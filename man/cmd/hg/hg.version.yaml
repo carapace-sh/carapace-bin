@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: version
+description: output version and copyright information
+group: help
+flags:
+    -T, --template=: display with template
+documentation:
+    command: |
+        output version and copyright information
+
+        .. container:: verbose
+
+          Template:
+
+          The following keywords are supported. See also `hg help templates`.
+
+          :extensions: List of extensions.
+          :ver:     String. Version number.
+
+          And each entry of `{extensions}` provides the following sub-keywords
+          in addition to `{ver}`.
+
+          :bundled: Boolean. True if included in the release.
+          :name:    String. Extension name.

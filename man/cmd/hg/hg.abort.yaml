@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: abort
+description: abort an unfinished operation (EXPERIMENTAL)
+group: change-manipulation
+flags:
+    -n, --dry-run: do not perform actions, just print output
+documentation:
+    command: |
+        abort an unfinished operation (EXPERIMENTAL)
+
+        Aborts a multistep operation like graft, histedit, rebase, merge,
+        and unshelve if they are in an unfinished state.
+
+        use --dry-run/-n to dry run the command.

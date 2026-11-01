@@ -3,12 +3,12 @@ name: mergetool
 description: Run merge conflict resolution tools to resolve merge conflicts
 group: manipulator
 flags:
-  --no-gui: This overrides a previous -g or --gui setting
-  --prompt: Prompt before each invocation of the merge resolution program to give the user a chance to skip the path
-  --tool-help: Print a list of merge tools that may be used with --tool
-  --tool?: Use the merge resolution program specified by <tool>
-  -g, --gui: Read from the configured merge.guitool variable instead of merge.tool.
-  -y, --no-prompt: Don’t prompt before each invocation of the merge resolution program
+  --no-gui: this overrides a previous -g or --gui setting
+  --prompt: prompt before each invocation of the merge resolution program to give the user a chance to skip the path
+  --tool-help: print a list of merge tools that may be used with --tool
+  --tool?: use the merge resolution program specified by <tool>
+  -g, --gui: read from the configured merge.guitool variable instead of merge.tool
+  -y, --no-prompt: don’t prompt before each invocation of the merge resolution program
 documentation:
   command: |-
     Use `git mergetool` to run one of several merge utilities to resolve

@@ -52,10 +52,10 @@ func init() {
 		"kdk":            carapace.ActionFiles(),
 		"kernel":         carapace.ActionFiles(),
 		"manifest":       carapace.ActionFiles(),
-		"new":            carapace.ActionValues("boot", "sys", "aux"),
+		"new":            carapace.ActionValues("aux", "boot", "sys"),
 		"repository":     carapace.ActionDirectories(),
 		"sdk":            carapace.ActionDirectories(),
-		"strip":          carapace.ActionValues("none", "all", "allkexts"),
+		"strip":          carapace.ActionValues("all", "allkexts", "none"),
 		"system-path":    carapace.ActionFiles(),
 		"volume-root":    carapace.ActionDirectories(),
 	})

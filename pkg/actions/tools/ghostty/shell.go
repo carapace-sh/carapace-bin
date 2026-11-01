@@ -8,13 +8,13 @@ import "github.com/carapace-sh/carapace"
 //	detect (Detect the shell based on the filename)
 func ActionShellIntegrationModes() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"none", "Do not do any automatic injection",
-		"detect", "Detect the shell based on the filename",
 		"bash", "",
+		"detect", "Detect the shell based on the filename",
 		"elvish", "",
 		"fish", "",
-		"zsh", "",
+		"none", "Do not do any automatic injection",
 		"nushell", "",
+		"zsh", "",
 	).Tag("shell integration modes").Uid("ghostty", "shell-integration-mode")
 }
 
@@ -25,10 +25,10 @@ func ActionShellIntegrationModes() carapace.Action {
 func ActionShellIntegrationFeatures() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"cursor", "Set the cursor to a blinking bar at the prompt",
-		"sudo", "Set sudo wrapper to preserve terminfo",
-		"title", "Set the window title via shell integration",
+		"path", "Add Ghostty to PATH on remote hosts",
 		"ssh-env", "Set SSH environment variables for remote hosts",
 		"ssh-terminfo", "Copy Ghostty terminfo to remote hosts via SSH",
-		"path", "Add Ghostty to PATH on remote hosts",
+		"sudo", "Set sudo wrapper to preserve terminfo",
+		"title", "Set the window title via shell integration",
 	).Tag("shell integration features").Uid("ghostty", "shell-integration-feature")
 }

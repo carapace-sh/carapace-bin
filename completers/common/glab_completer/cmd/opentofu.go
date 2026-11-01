@@ -16,7 +16,7 @@ var opentofuCmd = &cobra.Command{
 func init() {
 	carapace.Gen(opentofuCmd).Standalone()
 
-	opentofuCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. Can use either `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format. Also accepts full URL or Git URL.")
+	opentofuCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. You can use either OWNER/REPO or GROUP/NAMESPACE/REPO. The full URL or Git URL is also accepted.")
 	rootCmd.AddCommand(opentofuCmd)
 
 	carapace.Gen(opentofuCmd).FlagCompletion(carapace.ActionMap{

@@ -8,7 +8,7 @@ import (
 	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
-	shlex "github.com/carapace-sh/carapace-shlex"
+	shlex "github.com/carapace-sh/carapace-shlex/v2"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 )
@@ -79,6 +79,7 @@ func init() {
 	rootCmd.Flags().BoolP("version", "v", false, "display version information")
 	rootCmd.Flags().String("work-tree", "", "path to working tree")
 
+	rootCmd.Flag("exec-path").NoOptDefVal = " "
 	rootCmd.Flag("list-cmds").NoOptDefVal = " "
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
@@ -89,7 +90,7 @@ func init() {
 			case 0:
 				return git.ActionConfigs().NoSpace()
 			default:
-				return carapace.ActionValues()
+				return git.ActionConfigValues(c.Parts[0])
 			}
 		}).UniqueList(" "),
 		"config-env": carapace.ActionMultiPartsN("=", 2, func(c carapace.Context) carapace.Action {
@@ -102,7 +103,7 @@ func init() {
 		}),
 		"exec-path": carapace.ActionDirectories(),
 		"git-dir":   carapace.ActionDirectories(),
-		"list-cmds": carapace.ActionValues("main", "others", "alias", "nohelpers", "builtins", "config", "deprecated"),
+		"list-cmds": carapace.ActionValues("alias", "builtins", "config", "deprecated", "main", "nohelpers", "others"),
 		"work-tree": carapace.ActionDirectories(),
 	})
 
@@ -169,7 +170,7 @@ func addAliasCompletion(args []string) {
 
 		switch {
 		case strings.HasPrefix(value, "!"): // shell alias
-			tokens, err := shlex.Split(strings.TrimPrefix(value, "!"))
+			tokens, err := shlex.Split(strings.TrimPrefix(value, "!"), shlex.Default)
 			if err != nil {
 				carapace.LOG.Println("failed to parse shell alias: " + err.Error())
 				continue
@@ -182,7 +183,7 @@ func addAliasCompletion(args []string) {
 			)
 
 		default: // git alias
-			tokens, err := shlex.Split(value)
+			tokens, err := shlex.Split(value, shlex.Default)
 			if err != nil {
 				carapace.LOG.Println("failed to parse git alias: " + err.Error())
 				continue
@@ -235,6 +236,7 @@ func othersDescription(name string) string {
 		"clear-soft":               "Soft clean up a repository",
 		"coauthor":                 "Add a co-author to the last commit",
 		"commits-since":            "Show commit logs since some date",
+		"continue":                 "Continue current git operation",
 		"contrib":                  "Show user's contributions",
 		"count":                    "Show commit count",
 		"cp":                       "Copy a file keeping its history",
@@ -249,6 +251,7 @@ func othersDescription(name string) string {
 		"effort":                   "Show effort statistics on file(s)",
 		"extras":                   "Awesome GIT utilities",
 		"feature":                  "Create/Merge feature branch",
+		"filter-repo":              "Rewrite repository history",
 		"force-clone":              "overwrite local repositories with clone",
 		"fork":                     "Fork a repo on github",
 		"fresh-branch":             "Create fresh branches",

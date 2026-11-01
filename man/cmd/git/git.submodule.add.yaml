@@ -6,48 +6,11 @@ flags:
   --dissociate: use --reference only when cloning
   --name=: set submodule name
   --progress: report progress status
+  --ref-format=: ref storage format for the cloned submodule
   --reference=: reference repository
   -b, --branch=: branch of repository to add as submodule
   -f, --force: alllow adding an otherwise ignored submodule path
 documentation:
-  command: |-
-    Add the given repository as a submodule at the given path
-    to the changeset to be committed next to the current
-    project: the current project is termed the "superproject".
-
-    _<repository>_ is the URL of the new submodule's `origin` repository. This may be either an absolute URL, or (if it begins with `./`
-    or `../`), the location relative to the superproject's default remote repository (Please note that to specify a repository `foo.git`
-    which is located right next to a superproject `bar.git`, you'll
-    have to use `../foo.git` instead of `./foo.git` - as one might expect
-    when following the rules for relative URLs - because the evaluation
-    of relative URLs in Git is identical to that of relative directories).
-
-    The default remote is the remote of the remote-tracking branch
-    of the current branch. If no such remote-tracking branch exists or
-    the `HEAD` is detached, `origin` is assumed to be the default remote.
-    If the superproject doesn't have a default remote configured
-    the superproject is its own authoritative upstream and the current
-    working directory is used instead.
-
-    The optional argument _<path>_ is the relative location for the cloned
-    submodule to exist in the superproject. If _<path>_ is not given, the
-    canonical part of the source repository is used (`repo` for
-    `/path/to/repo.git` and `foo` for `host.xz:foo/.git`). If _<path>_
-    exists and is already a valid Git repository, then it is staged
-    for commit without cloning. The _<path>_ is also used as the submodule's
-    logical name in its configuration entries unless `--name <name>` is used
-    to specify a logical name.
-
-    The given URL is recorded into `.gitmodules` for use by subsequent users
-    cloning the superproject. If the URL is given relative to the
-    superproject's repository, the presumption is the superproject and
-    submodule repositories will be kept together in the same relative
-    location, and only the superproject's URL needs to be provided.
-    git-submodule will correctly locate the submodule using the relative
-    URL in `.gitmodules`.
-
-    If `--ref-format <format>`  is specified, the ref storage format of newly
-    cloned submodules will be set accordingly.
   flag:
     branch: |-
       Branch of repository to add as submodule.
@@ -103,3 +66,14 @@ documentation:
       NOTE: Do *not* use this option unless you have read the note
       for [git-clone](cmd://git/clone)'s `--reference`, `--shared`, and `--dissociate`
       options carefully.
+    ref-format: |-
+      The ref format to migrate the ref store to. Can be one of:
+      
+      `files`;; for loose files with packed-refs.
+      
+      This is the default.
+      
+      `reftable`;; for the reftable format.
+      
+      This is the default.
+

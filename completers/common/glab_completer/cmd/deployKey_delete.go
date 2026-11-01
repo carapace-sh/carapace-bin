@@ -15,6 +15,4 @@ func init() {
 	carapace.Gen(deployKey_deleteCmd).Standalone()
 
 	deployKeyCmd.AddCommand(deployKey_deleteCmd)
-
-	// TODO positional completion
 }

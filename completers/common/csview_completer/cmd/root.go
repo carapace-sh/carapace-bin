@@ -33,9 +33,9 @@ func init() {
 	rootCmd.Flags().BoolP("version", "V", false, "Print version information")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"body-align":   carapace.ActionValues("Left", "Center", "Right"),
-		"header-align": carapace.ActionValues("Left", "Center", "Right"),
-		"style":        carapace.ActionValues("None", "Ascii", "Ascii2", "Sharp", "Rounded", "Reinforced", "Markdown", "Grid"),
+		"body-align":   carapace.ActionValues("Center", "Left", "Right"),
+		"header-align": carapace.ActionValues("Center", "Left", "Right"),
+		"style":        carapace.ActionValues("Ascii", "Ascii2", "Grid", "Markdown", "None", "Reinforced", "Rounded", "Sharp"),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

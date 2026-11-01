@@ -25,6 +25,6 @@ func init() {
 
 	carapace.Gen(token_createCmd).FlagCompletion(carapace.ActionMap{
 		"config": carapace.ActionFiles(),
-		"usages": carapace.ActionValues("signing", "authentication").UniqueList(","),
+		"usages": carapace.ActionValues("authentication", "signing").UniqueList(","),
 	})
 }

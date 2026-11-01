@@ -1,6 +1,13 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: info
-description: show repository info
+description: Retrieve metadata-related information about the current repository
+flags:
+  --all: print all keys/values
+  --format=: output format
+  --keys: show keys
+  --no-all: do not  print all keys/values
+  --no-keys: do not show keys
+  -z: synonym for --format=nul
 documentation:
   command: |-
     List all the available keys, one per line. The output format can be chosen
@@ -11,3 +18,35 @@ documentation:
 
     **nul**
     Similar to `lines`, but using a _NUL_ character after each value.
+  flag:
+    all: |-
+      Update the index not only where the working tree has a file matching **\<pathspec\>**
+      but also where the index already has an entry.
+      This adds, modifies, and removes index entries to match the working tree.
+      
+      If no **\<pathspec\>** is given when `-A` option is used,
+      all files in the entire working tree are updated
+      (old versions of Git used to limit the update to the current directory and its subdirectories).
+    format: |-
+      Format of the resulting archive. Possible values are `tar`, `zip`,
+      `tar.gz`, `tgz`, and any format defined using the configuration option
+      `tar.<format>.command`. If `--format` is not given, and the output file
+      is specified, the format is inferred from the filename if possible (e.g.
+      writing to `foo.zip` makes the output to be in the `zip` format).
+      Otherwise the output format is `tar`.
+    no-all: |-
+      Update the index by adding new files that are unknown to the index and files modified in the working tree,
+      but ignore files that have been removed from the working tree.
+      This option is a no-op when no **\<pathspec\>** is used.
+      
+      This option is primarily to help users who are used to older versions of Git,
+      whose `git add <pathspec>...` was a synonym for `git add –no-all <pathspec>...`, i.e. ignored removed files.
+    z: |-
+      When `--numstat` has been given, do not munge pathnames,
+      but use a NUL-terminated machine-readable format.
+      
+      Without this option, pathnames with "unusual" characters are quoted as
+      explained for the configuration variable `core.quotePath` (see
+      [git-config](cmd://git/config)).
+    keys: show keys
+    no-keys: do not show keys

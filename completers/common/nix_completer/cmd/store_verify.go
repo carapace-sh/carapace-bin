@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/nix_completer/cmd/common"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix"
 	"github.com/spf13/cobra"
 )
@@ -22,17 +23,11 @@ func init() {
 	store_verifyCmd.Flags().StringP("substituter", "s", "", "Use signatures from the specified store")
 	storeCmd.AddCommand(store_verifyCmd)
 
-	addEvaluationFlags(store_verifyCmd)
-	addFlakeFlags(store_verifyCmd)
-	addLoggingFlags(store_verifyCmd)
+	common.AddBuiltPathsFlags(store_verifyCmd)
+	common.AddEvaluationFlags(store_verifyCmd)
+	common.AddFlakeFlags(store_verifyCmd)
+	common.AddLoggingFlags(store_verifyCmd)
 
-	carapace.Gen(store_verifyCmd).FlagCompletion(carapace.ActionMap{
-		"inputs-from": carapace.Batch(
-			carapace.ActionDirectories(),
-			nix.ActionFlakes(),
-		).ToA(),
-		"output-lock-file":    carapace.ActionFiles(),
-		"reference-lock-file": carapace.ActionFiles("lock"),
-	})
+	carapace.Gen(store_verifyCmd).FlagCompletion(carapace.ActionMap{})
 	carapace.Gen(store_verifyCmd).PositionalAnyCompletion(nix.ActionInstallables())
 }

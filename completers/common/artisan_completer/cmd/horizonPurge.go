@@ -19,6 +19,6 @@ func init() {
 	rootCmd.AddCommand(horizonPurgeCmd)
 
 	carapace.Gen(horizonPurgeCmd).FlagCompletion(carapace.ActionMap{
-		"signal": ps.ActionKillSignals(),
+		"signal": ps.ActionKillSignals("linux"),
 	})
 }

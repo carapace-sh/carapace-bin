@@ -2,7 +2,21 @@
 name: verify
 description: Read the commit-graph file and verify its contents against the object database
 flags:
-  --no-progress: Turn progress off explicitly
-  --object-dir=: Use given directory for the location of packfiles and commit-graph file
-  --progress: Turn progress on explicitly
-  --shallow: Only check the tip commit-graph file in a chain of split commit-graphs
+  --no-progress: turn progress off explicitly
+  --object-dir=: use given directory for the location of packfiles and commit-graph file
+  --progress: turn progress on explicitly
+  --shallow: only check the tip commit-graph file in a chain of split commit-graphs
+documentation:
+  flag:
+    no-progress: |-
+      Progress status is reported on the standard error stream
+      by default when it is attached to a terminal, unless `--quiet`
+      is specified. This flag enables progress reporting even if not
+      attached to a terminal, regardless of `--quiet`.
+    progress: |-
+      Enable progress reporting on the standard error stream even if
+      not attached to a terminal. By default, progress status is
+      reported only when it is attached. You can't use `--progress`
+      together with `--porcelain` or `--incremental`.
+    object-dir: use given directory for the location of packfiles and commit-graph file
+    shallow: only check the tip commit-graph file in a chain of split commit-graphs

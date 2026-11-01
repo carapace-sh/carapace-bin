@@ -7,6 +7,7 @@ import (
 
 var initCmd = &cobra.Command{
 	Use:     "init",
+	Aliases: []string{"init-db"},
 	Short:   "Create an empty Git repository or reinitialize an existing one",
 	Run:     func(cmd *cobra.Command, args []string) {},
 	GroupID: groups[group_main].ID,
@@ -32,13 +33,13 @@ func init() {
 		"ref-format":       carapace.ActionValues("files", "flat", "tree"),
 		"separate-git-dir": carapace.ActionFiles(),
 		"shared": carapace.ActionValuesDescribed(
+			"all", "make repository readable by all users",
+			"everybody", "make repository readable by all users",
 			"false", "use permissions reported by umask",
+			"group", "make the repository group-writable",
 			"true", "make the repository group-writable",
 			"umask", "use permissions reported by umask",
-			"group", "make the repository group-writable",
-			"all", "make repository readable by all users",
 			"world", "make repository readable by all users",
-			"everybody", "make repository readable by all users",
 		),
 		"template": carapace.ActionDirectories(),
 	})

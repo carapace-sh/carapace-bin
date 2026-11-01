@@ -20,7 +20,6 @@ func init() {
 	configure_exportCmd.Flags().String("module", "", "The module of the resource to export.")
 	configure_exportCmd.Flags().StringP("output", "o", "", "File where the result is to be written")
 	configure_exportCmd.Flags().String("package-id", "", "The package identifier to export.")
-	configure_exportCmd.Flags().BoolP("recurse", "r", false, "Exports all package configurations.")
 	configure_exportCmd.Flags().String("resource", "", "The configuration resource to export.")
 	configure_exportCmd.Flags().StringP("source", "s", "", "Export packages from the specified source")
 	configureCmd.AddCommand(configure_exportCmd)

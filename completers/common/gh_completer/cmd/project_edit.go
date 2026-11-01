@@ -31,7 +31,7 @@ func init() {
 		"format":     carapace.ActionValues("json"),
 		"jq":         jq.ActionFilters(),
 		"owner":      gh.ActionOwners(gh.HostOpts{}),
-		"visibility": carapace.ActionValues("PUBLIC", "PRIVATE").StyleF(style.ForKeyword),
+		"visibility": carapace.ActionValues("PRIVATE", "PUBLIC").StyleF(style.ForKeyword),
 	})
 
 	carapace.Gen(project_editCmd).PositionalCompletion(

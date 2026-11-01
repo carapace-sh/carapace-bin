@@ -65,7 +65,7 @@ func addFilterOptions(cmd *cobra.Command) {
 	cmd.Flags().String("state", "", "Filter values to have the given status.")
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
-		"order-by":       carapace.ActionValues("start-time", "complete-time"),
+		"order-by":       carapace.ActionValues("complete-time", "start-time"),
 		"physical-state": carapace.ActionValues("any", "created", "destroyed", "pending"),
 		"state":          carapace.ActionValues("error", "running", "success", "unknown"),
 	})

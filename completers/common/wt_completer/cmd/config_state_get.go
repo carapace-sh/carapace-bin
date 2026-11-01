@@ -19,6 +19,6 @@ func init() {
 	config_stateCmd.AddCommand(config_state_getCmd)
 
 	carapace.Gen(config_state_getCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("table", "json"),
+		"format": carapace.ActionValues("json", "table"),
 	})
 }

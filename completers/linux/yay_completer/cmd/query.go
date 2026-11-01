@@ -28,6 +28,9 @@ func init() {
 	queryCmd.Flags().Bool("debug", false, "display debug messages")
 	queryCmd.Flags().BoolP("deps", "d", false, "list packages installed as dependencies [filter]")
 	queryCmd.Flags().Bool("disable-download-timeout", false, "use relaxed timeouts for download")
+	queryCmd.Flags().Bool("disable-sandbox", false, "disable sandbox features used for the downloader process")
+	queryCmd.Flags().Bool("disable-sandbox-filesystem", false, "disable the filesystem part of the downloader process sandbox")
+	queryCmd.Flags().Bool("disable-sandbox-syscalls", false, "disable the syscalls part of the downloader process sandbox")
 	queryCmd.Flags().BoolP("explicit", "e", false, "list packages explicitly installed [filter]")
 	queryCmd.Flags().StringP("file", "p", "", "query a package file instead of the database")
 	queryCmd.Flags().BoolP("foreign", "m", false, "list installed packages not found in sync db(s) [filter]")
@@ -51,7 +54,7 @@ func init() {
 	carapace.Gen(queryCmd).FlagCompletion(carapace.ActionMap{
 		"arch":     carapace.ActionValues("i686", "x86_64"),
 		"cachedir": carapace.ActionDirectories(),
-		"color":    carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
+		"color":    carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"config":   carapace.ActionFiles(),
 		"dbpath":   carapace.ActionFiles(),
 		"file":     carapace.ActionFiles(),

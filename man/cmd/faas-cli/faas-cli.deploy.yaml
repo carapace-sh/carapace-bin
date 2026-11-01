@@ -4,11 +4,15 @@ description: Deploy OpenFaaS functions
 flags:
     --annotation=*: Set one or more annotation (ANNOTATION=VALUE)
     --constraint=*: Apply a constraint to the function
-    --envsubst: Substitute environment variables in stack.yml file
+    --cpu-limit=: Supply the CPU limit for the function in Mi (when not using a YAML file)
+    --cpu-request=: Supply the CPU request for the function in Mi (when not using a YAML file)
+    --envsubst: Substitute environment variables in stack.yaml file
     --fprocess=: fprocess value to be run as a serverless function by the watchdog
     --handler=: Directory with handler for function, e.g. handler.js
     --image=: Docker image name to build
     --lang=: Programming language template
+    --memory-limit=: Supply the memory limit for the function in Mi (when not using a YAML file)
+    --memory-request=: Supply the memory request for the function in Mi (when not using a YAML file)
     --name=: Name of the deployed function
     --network=: Name of the network
     --read-template: Read the function's template
@@ -16,6 +20,7 @@ flags:
     --replace: Remove and re-create existing function(s)
     --secret=*: Give the function access to a secure secret
     --tag=: Override latest tag on function Docker image, accepts 'latest', 'sha', 'branch', or 'describe'
+    --timeout=: Timeout for any HTTP calls made to the OpenFaaS API.
     --tls-no-verify: Disable TLS validation
     --update: Perform rolling update on existing function(s)
     -e, --env=*: Set one or more environment variables (ENVVAR=VALUE)

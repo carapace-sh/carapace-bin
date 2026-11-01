@@ -2,16 +2,21 @@ package snippet
 
 import (
 	"fmt"
-	"strings"
+
+	shlex "github.com/carapace-sh/carapace-shlex/v2"
 )
 
 func Oil(completers []string) string {
-	for i, completer := range completers {
-		completers[i] = fmt.Sprintf("%q", completer)
-	}
 	return fmt.Sprintf(`%v%v
 
 _carapace_completer() {
+  declare -x CARAPACE_SHELL=oil
+  declare -x CARAPACE_SHELL_ALIASES="$(alias | sed 's/alias //' | sed 's/=.*//')"
+  declare -x CARAPACE_SHELL_BUILTINS="$(compgen -b)"
+  declare -x CARAPACE_SHELL_FUNCTIONS="$(compgen -A function)"
+  declare -x CARAPACE_SHELL_JOBS="$(jobs 2>/dev/null | while read -r line; do [[ $line =~ \[([0-9]+)\] ]] && echo "%%${BASH_REMATCH[1]}"; done)"
+  declare -x CARAPACE_SHELL_VARIABLES="$(compgen -v)"
+
   local command="${COMP_WORDS[0]}"
   local compline="${COMP_LINE:0:${COMP_POINT}}"
   local IFS=$'\n'
@@ -24,5 +29,5 @@ _carapace_completer() {
 }
 
 complete -F _carapace_completer %v
-`, pathSnippet("oil"), envSnippet("oil"), strings.Join(completers, " "))
+`, pathSnippet("oil"), envSnippet("oil"), shlex.Join(completers, shlex.Oil))
 }

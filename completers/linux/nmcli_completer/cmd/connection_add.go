@@ -96,7 +96,7 @@ func options() map[string]map[string]carapace.Action {
 			"mac":        carapace.ActionValues(),
 			"cloned-mac": carapace.ActionValues(),
 			"mtu":        carapace.ActionValues(),
-			"mode":       carapace.ActionValues("infrastructure", "ap", "adhoc"),
+			"mode":       carapace.ActionValues("adhoc", "ap", "infrastructure"),
 		},
 		"wimax": {
 			"mac": carapace.ActionValues(),
@@ -121,13 +121,13 @@ func options() map[string]map[string]carapace.Action {
 		"infiniband": {
 			"mac":            carapace.ActionValues(),
 			"mtu":            carapace.ActionValues(),
-			"transport-mode": carapace.ActionValues("datagram", "connected"),
+			"transport-mode": carapace.ActionValues("connected", "datagram"),
 			"parent":         carapace.ActionValues(), // TODO ifname
 			"p-key":          carapace.ActionValues(),
 		},
 		"bluetooth": {
 			"addr":    carapace.ActionValues(),
-			"bt-type": carapace.ActionValues("panu", "nap", "dun-gsm", "dun-cdma"),
+			"bt-type": carapace.ActionValues("dun-cdma", "dun-gsm", "nap", "panu"),
 		},
 		"vlan": {
 			"dev":     carapace.ActionValues(),
@@ -138,14 +138,14 @@ func options() map[string]map[string]carapace.Action {
 			"mtu":     carapace.ActionValues(),
 		},
 		"bond": {
-			"mode":          carapace.ActionValues("balance-rr", "active-backup", "balance-xor", "broadcast", "802.3ad", "balance-tlb", "balance-alb"),
+			"mode":          carapace.ActionValues("802.3ad", "active-backup", "balance-alb", "balance-rr", "balance-tlb", "balance-xor", "broadcast"),
 			"primary":       carapace.ActionValues(), // TODO ifname
 			"miimon":        carapace.ActionValues(),
 			"downdelay":     carapace.ActionValues(),
 			"updelay":       carapace.ActionValues(),
 			"arp-interval":  carapace.ActionValues(),
 			"arp-ip-target": carapace.ActionValues(),
-			"lacp-rate":     carapace.ActionValues("slow", "fast"),
+			"lacp-rate":     carapace.ActionValues("fast", "slow"),
 		},
 		"bond-slave": {
 			"master":   carapace.ActionValues(),
@@ -175,7 +175,7 @@ func options() map[string]map[string]carapace.Action {
 			"hairpin":   action.ActionYesNo(),
 		},
 		"vpn": {
-			"vpn-type": carapace.ActionValues("vpnc", "openvpn", "pptp", "openconnect", "openswan", "libreswan", "ssh", "l2tp", "iodine"),
+			"vpn-type": carapace.ActionValues("iodine", "l2tp", "libreswan", "openconnect", "openswan", "openvpn", "pptp", "ssh", "vpnc"),
 			"user":     carapace.ActionValues(),
 		},
 		"olpc-mesh": {
@@ -185,12 +185,12 @@ func options() map[string]map[string]carapace.Action {
 		},
 		"adsl": {
 			"username":      carapace.ActionValues(),
-			"protocol":      carapace.ActionValues("pppoa", "pppoe", "ipoatm"),
+			"protocol":      carapace.ActionValues("ipoatm", "pppoa", "pppoe"),
 			"password":      carapace.ActionValues(),
-			"encapsulation": carapace.ActionValues("vcmux", "llc"),
+			"encapsulation": carapace.ActionValues("llc", "vcmux"),
 		},
 		"tun": {
-			"mode":        carapace.ActionValues("tun", "tap"),
+			"mode":        carapace.ActionValues("tap", "tun"),
 			"owner":       os.ActionUsers(),
 			"group":       os.ActionGroups(),
 			"pi":          action.ActionYesNo(),
@@ -198,14 +198,14 @@ func options() map[string]map[string]carapace.Action {
 			"multi-queue": action.ActionYesNo(),
 		},
 		"ip-tunnel": {
-			"mode":   carapace.ActionValues("ipip", "gre", "sit", "isatap", "vti", "ip6ip6", "ipip6", "ip6gre", "vti6"),
+			"mode":   carapace.ActionValues("gre", "ip6gre", "ip6ip6", "ipip", "ipip6", "isatap", "sit", "vti", "vti6"),
 			"remote": carapace.ActionValues(),
 			"local":  carapace.ActionValues(),
 			"dev":    carapace.ActionValues(),
 		},
 		"macsec": {
 			"dev":     carapace.ActionValues(),
-			"mode":    carapace.ActionValues("psk", "eap"),
+			"mode":    carapace.ActionValues("eap", "psk"),
 			"cak":     carapace.ActionValues(),
 			"ckn":     carapace.ActionValues(),
 			"encrypt": action.ActionYesNo(),
@@ -213,7 +213,7 @@ func options() map[string]map[string]carapace.Action {
 		},
 		"macvlan": {
 			"dev":  carapace.ActionValues(),
-			"mode": carapace.ActionValues("vepa", "bridge", "private", "passthru", "source"),
+			"mode": carapace.ActionValues("bridge", "passthru", "private", "source", "vepa"),
 			"tap":  action.ActionYesNo(),
 		},
 		"vxlan": {

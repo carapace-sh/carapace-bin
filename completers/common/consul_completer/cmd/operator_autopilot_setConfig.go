@@ -28,7 +28,7 @@ func init() {
 	operator_autopilotCmd.AddCommand(operator_autopilot_setConfigCmd)
 
 	carapace.Gen(operator_autopilot_setConfigCmd).FlagCompletion(carapace.ActionMap{
-		"cleanup-dead-servers":      carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
-		"disable-upgrade-migration": carapace.ActionValues("true", "false").StyleF(style.ForKeyword),
+		"cleanup-dead-servers":      carapace.ActionValues("false", "true").StyleF(style.ForKeyword),
+		"disable-upgrade-migration": carapace.ActionValues("false", "true").StyleF(style.ForKeyword),
 	})
 }

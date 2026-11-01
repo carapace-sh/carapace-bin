@@ -34,6 +34,6 @@ func init() {
 		"login":  tea.ActionLogins(),
 		"output": tea.ActionOutputFormats(),
 		"remote": git.ActionRemotes(),
-		"state":  carapace.ActionValues("all", "open", "closed").StyleF(style.ForKeyword),
+		"state":  carapace.ActionValues("all", "closed", "open").StyleF(style.ForKeyword),
 	})
 }

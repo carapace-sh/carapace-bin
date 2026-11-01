@@ -128,6 +128,19 @@ completion:
   positionalany: ["$carapace.bridge.Kingpin([tsh])"]
 ```
 
+### Typer
+
+[fastapi/typer] based commands can be bridged with the [`bridge.Typer`] macro:
+
+```yaml
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: clab-connector
+description: Connector for Containerlab
+parsing: disabled
+completion:
+  positionalany: ["$carapace.bridge.Typer([clab-connector])"]
+```
+
 ### Urfavecli
 
 [urfave/cli] based commands can be bridged with the [`bridge.Urfavecli`] macro:
@@ -228,6 +241,7 @@ completion:
 [`bridge.Clap`]:https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge#ActionClap
 
 [pallets/click]:https://github.com/pallets/click
+[fastapi/typer]:https://github.com/fastapi/typer
 [`bridge.Click`]:https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge#ActionClick
 
 [spf13/cobra]:https://github.com/spf13/cobra
@@ -241,6 +255,7 @@ completion:
 
 [alecthomas/kingpin]:https://github.com/alecthomas/kingpin
 [`bridge.Kingpin`]:https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge#ActionKingpin
+[`bridge.Typer`]:https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge#ActionTyper
 
 [powershell]:https://microsoft.com/powershell
 [`bridge.Powershell`]:https://pkg.go.dev/github.com/carapace-sh/carapace-bridge/pkg/actions/bridge#ActionPowershell

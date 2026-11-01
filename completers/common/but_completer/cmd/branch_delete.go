@@ -8,7 +8,7 @@ import (
 
 var branch_deleteCmd = &cobra.Command{
 	Use:   "delete",
-	Short: "Deletes a branch from the workspace",
+	Short: "Delete branches and their commits from the workspace",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

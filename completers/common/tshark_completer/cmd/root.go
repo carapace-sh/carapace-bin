@@ -89,27 +89,27 @@ func init() {
 			switch len(c.Parts) {
 			case 0:
 				return carapace.ActionValuesDescribed(
+					"aggregator", "select comma, space, printable character as aggregator",
 					"bom", "print a UTF-8 BOM",
 					"header", "switch headers on and off",
-					"separator", "select tab, space, printable character as separator",
 					"occurrence", "print first, last or all occurrences of each field",
-					"aggregator", "select comma, space, printable character as aggregator",
 					"quote", "select double, single, no quotes for values",
+					"separator", "select tab, space, printable character as separator",
 				).Invoke(c).Suffix("=").ToA()
 			case 1:
 				switch c.Parts[0] {
 				case "bom":
-					return carapace.ActionValues("y", "n")
+					return carapace.ActionValues("n", "y")
 				case "header":
-					return carapace.ActionValues("y", "n")
+					return carapace.ActionValues("n", "y")
 				case "separator":
-					return carapace.ActionValues("/t", "/s")
+					return carapace.ActionValues("/s", "/t")
 				case "occurrence":
-					return carapace.ActionValues("f", "l", "a")
+					return carapace.ActionValues("a", "f", "l")
 				case "aggregator":
 					return carapace.ActionValues(",", "/s")
 				case "quote":
-					return carapace.ActionValues("d", "s", "n")
+					return carapace.ActionValues("d", "n", "s")
 				default:
 					return carapace.ActionValues()
 				}
@@ -120,22 +120,22 @@ func init() {
 		"F": tshark.ActionFileTypes(),
 		"G": carapace.ActionValuesDescribed(
 			"column-formats", "dump column format codes and exit",
+			"currentprefs", "dump current preferences and exit",
 			"decodes", "dump \"layer type\"/\"decode as\" associations and exit",
+			"defaultprefs", "dump default preferences and exit",
 			"dissector-tables", "dump dissector table names, types, and properties",
 			"elastic-mapping", "dump ElasticSearch mapping file",
 			"fieldcount", "dump count of header fields and exit",
 			"fields", "dump fields glossary and exit",
+			"folders", "dump about:folders",
 			"ftypes", "dump field type basic and descriptive names",
 			"heuristic-decodes", "dump heuristic dissector tables",
 			"plugins", "dump installed plugins and exit",
 			"protocols", "dump protocols in registration database and exit",
 			"values", "dump value, range, true/false strings and exit",
-			"currentprefs", "dump current preferences and exit",
-			"defaultprefs", "dump default preferences and exit",
-			"folders", "dump about:folders",
 		),
 		"K": carapace.ActionFiles(),
-		"T": carapace.ActionValues("pdml", "ps", "psml", "json", "jsonraw", "ek", "tabs", "text", "fields", "?"),
+		"T": carapace.ActionValues("?", "ek", "fields", "json", "jsonraw", "pdml", "ps", "psml", "tabs", "text"),
 		"X": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
@@ -167,8 +167,8 @@ func init() {
 			case 0:
 				return carapace.ActionValuesDescribed(
 					"duration", "stop after NUM seconds",
-					"filesize", "stop this file after NUM KB",
 					"files", "stop after NUM files",
+					"filesize", "stop this file after NUM KB",
 					"packets", "stop after NUM packets",
 				).Invoke(c).Suffix(":").ToA()
 			default:
@@ -226,17 +226,17 @@ func init() {
 			case 0:
 				return carapace.ActionValuesDescribed(
 					"duration", "switch to next file after NUM secs",
-					"filesize", "switch to next file after NUM KB",
 					"files", "ringbuffer: replace after NUM files",
-					"packets", "switch to next file after NUM packets",
+					"filesize", "switch to next file after NUM KB",
 					"interval", "switch to next file when the time is an exact multiple of NUM secs",
+					"packets", "switch to next file after NUM packets",
 				).Invoke(c).Suffix(":").ToA()
 			default:
 				return carapace.ActionValues()
 			}
 		}),
 		"t": carapace.ActionValues("a", "ad", "adoy", "d", "dd", "e", "r", "u", "ud", "udoy"),
-		"u": carapace.ActionValues("s", "hms"),
+		"u": carapace.ActionValues("hms", "s"),
 		"w": carapace.ActionFiles(),
 		"z": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return tshark.ActionStatistics().Invoke(c).ToMultiPartsA(",")

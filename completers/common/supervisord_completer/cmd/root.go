@@ -47,9 +47,9 @@ func init() {
 		"configuration":   carapace.ActionFiles(),
 		"directory":       carapace.ActionDirectories(),
 		"logfile":         carapace.ActionFiles(),
-		"loglevel":        carapace.ActionValues("trace", "debug", "info", "warn", "error", "critical").StyleF(style.ForLogLevel),
+		"loglevel":        carapace.ActionValues("critical", "debug", "error", "info", "trace", "warn").StyleF(style.ForLogLevel),
 		"pidfile":         carapace.ActionFiles(),
-		"profile_options": carapace.ActionValues("cumulative", "calls", "callers").UniqueList(","),
+		"profile_options": carapace.ActionValues("callers", "calls", "cumulative").UniqueList(","),
 		"umask":           fs.ActionFileModesNumeric(),
 		"user":            os.ActionUsers(),
 	})

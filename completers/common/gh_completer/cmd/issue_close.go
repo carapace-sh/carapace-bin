@@ -24,7 +24,7 @@ func init() {
 	carapace.Gen(issue_closeCmd).FlagCompletion(carapace.ActionMap{
 		"comment":      action.ActionBody(issue_closeCmd),
 		"duplicate-of": action.ActionIssues(issue_closeCmd, action.IssueOpts{Closed: true, Open: true}),
-		"reason":       carapace.ActionValues("completed", "not planned", "duplicate"),
+		"reason":       carapace.ActionValues("completed", "duplicate", "not planned"),
 	})
 
 	carapace.Gen(issue_closeCmd).PositionalCompletion(

@@ -41,7 +41,7 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"cachedir":      carapace.ActionDirectories(),
 		"configdir":     carapace.ActionDirectories(),
-		"d":             carapace.ActionValues("all", "cache", "camctl", "camsupport", "control", "dev", "fswatch", "input", "lighttable", "lua", "masks", "memory", "nan", "opencl", "perf", "pwstorage", "print", "sql", "ioporder", "imageio", "act_on", "expose", "params", "pipe", "signal", "tiling", "picker", "undo", "common", "verbose"),
+		"d":             carapace.ActionValues("act_on", "all", "cache", "camctl", "camsupport", "common", "control", "dev", "expose", "fswatch", "imageio", "input", "ioporder", "lighttable", "lua", "masks", "memory", "nan", "opencl", "params", "perf", "picker", "pipe", "print", "pwstorage", "signal", "sql", "tiling", "undo", "verbose"),
 		"datadir":       carapace.ActionDirectories(),
 		"dumpdir":       carapace.ActionDirectories(),
 		"library":       carapace.ActionFiles(".db"),

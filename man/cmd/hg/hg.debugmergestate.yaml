@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugmergestate
+description: print merge state
+hidden: true
+flags:
+    --style=: display using template map file (DEPRECATED)
+    -T, --template=: display with template
+documentation:
+    command: |
+        print merge state
+
+        Use --verbose to print out information about whether v1 or v2 merge state
+        was chosen.

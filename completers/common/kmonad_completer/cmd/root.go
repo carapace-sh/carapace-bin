@@ -24,7 +24,7 @@ func init() {
 	rootCmd.Flags().StringP("log-level", "l", "", "How much info to print out")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"log-level": carapace.ActionValues("debug", "info", "warn", "error").StyleF(style.ForLogLevel),
+		"log-level": carapace.ActionValues("debug", "error", "info", "warn").StyleF(style.ForLogLevel),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

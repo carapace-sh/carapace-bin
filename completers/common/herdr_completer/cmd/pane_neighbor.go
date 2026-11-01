@@ -17,9 +17,10 @@ func init() {
 	pane_neighborCmd.Flags().Bool("current", false, "")
 	pane_neighborCmd.Flags().String("direction", "", "")
 	pane_neighborCmd.Flags().String("pane", "", "")
+	pane_neighborCmd.MarkFlagRequired("direction")
 	paneCmd.AddCommand(pane_neighborCmd)
 
 	carapace.Gen(pane_neighborCmd).FlagCompletion(carapace.ActionMap{
-		"direction": carapace.ActionValues("left", "right", "up", "down"),
+		"direction": carapace.ActionValues("down", "left", "right", "up"),
 	})
 }

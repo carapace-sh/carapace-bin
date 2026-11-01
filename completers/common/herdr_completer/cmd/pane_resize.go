@@ -18,9 +18,10 @@ func init() {
 	pane_resizeCmd.Flags().Bool("current", false, "")
 	pane_resizeCmd.Flags().String("direction", "", "")
 	pane_resizeCmd.Flags().String("pane", "", "")
+	pane_resizeCmd.MarkFlagRequired("direction")
 	paneCmd.AddCommand(pane_resizeCmd)
 
 	carapace.Gen(pane_resizeCmd).FlagCompletion(carapace.ActionMap{
-		"direction": carapace.ActionValues("left", "right", "up", "down"),
+		"direction": carapace.ActionValues("down", "left", "right", "up"),
 	})
 }

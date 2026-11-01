@@ -49,7 +49,7 @@ func (o PullRequestOpts) Default() PullRequestOpts {
 	o.Closed = true
 	o.Merged = true
 	o.Open = true
-	o.DraftOnly = true
+	o.DraftOnly = false
 	return o
 }
 

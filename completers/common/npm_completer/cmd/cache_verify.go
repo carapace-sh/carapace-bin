@@ -6,9 +6,10 @@ import (
 )
 
 var cache_verifyCmd = &cobra.Command{
-	Use:   "verify",
-	Short: "verify the contents of the cache folder",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "verify",
+	Short:   "verify the contents of the cache folder",
+	Aliases: []string{"check"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

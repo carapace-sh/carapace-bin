@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -35,7 +36,7 @@ func init() {
 	rootCmd.Flags().BoolP("show", "s", false, "show all abbreviations")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"color":    carapace.ActionValues("always", "never", "auto"),
-		"position": carapace.ActionValues("command", "anywhere"),
+		"color":    carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
+		"position": carapace.ActionValues("anywhere", "command"),
 	})
 }

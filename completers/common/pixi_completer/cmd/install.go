@@ -24,6 +24,7 @@ func init() {
 	installCmd.Flags().StringSliceP("environment", "e", nil, "The environment to install")
 	installCmd.Flags().Bool("frozen", false, "Install the environment as defined in the lock file, doesn't update lock file if it isn't up-to-date with the manifest file")
 	installCmd.Flags().Bool("locked", false, "Check if lock file is up-to-date before installing the environment, aborts when lock file isn't up-to-date with the manifest file")
+	installCmd.Flags().Bool("offline", false, "Run without network access, using only cached data. Commands fail if data is missing from the cache. Pass `--offline=false` to override an `offline` setting from the configuration")
 	installCmd.PersistentFlags().StringP("manifest-path", "m", "", "The path to `pixi.toml`, `pyproject.toml`, or the workspace directory")
 	installCmd.Flags().Bool("no-config", false, "Don't read system or user-level configuration files. Project-local `<project>/.pixi/config.toml` is still loaded")
 	installCmd.Flags().Bool("no-hard-links", false, "Disallow hard links during package installation")
@@ -34,6 +35,7 @@ func init() {
 	installCmd.Flags().StringP("platform", "p", "", "Install for the given platform; a warning is printed when it doesn't run on this machine")
 	installCmd.Flags().String("pypi-keyring-provider", "", "Specifies whether to use the keyring to look up credentials for PyPI")
 	installCmd.Flags().Bool("run-post-link-scripts", false, "Run post-link scripts (insecure)")
+	installCmd.PersistentFlags().StringP("script", "s", "", "The path to a script with an embedded manifest: PEP 723 Python metadata or a conda-script block. Pixi run also accepts an HTTP(S) URL or '-' for stdin")
 	installCmd.Flags().StringSlice("skip", nil, "Skip installation of specific packages present in the lock file. This uses a soft exclusion: the package will be skipped but its dependencies are installed")
 	installCmd.Flags().StringSlice("skip-with-deps", nil, "Skip a package and its entire dependency subtree. This performs a hard exclusion: the package and its dependencies are not installed unless reachable from another non-skipped root")
 	installCmd.Flags().Bool("tls-no-verify", false, "Do not verify the TLS certificate of the server")
@@ -47,9 +49,10 @@ func init() {
 		"config-file":           carapace.ActionFiles(),
 		"environment":           pixi.ActionEnvironments(),
 		"manifest-path":         carapace.ActionFiles(),
-		"pinning-strategy":      carapace.ActionValues("semver", "minor", "major", "latest-up", "exact-version", "no-pin"),
+		"pinning-strategy":      carapace.ActionValues("exact-version", "latest-up", "major", "minor", "no-pin", "semver"),
 		"platform":              pixi.ActionPlatforms(),
 		"pypi-keyring-provider": carapace.ActionValues("disabled", "subprocess"),
-		"tls-root-certs":        carapace.ActionValues("webpki", "system"),
+		"script":                carapace.ActionFiles(),
+		"tls-root-certs":        carapace.ActionValues("system", "webpki"),
 	})
 }

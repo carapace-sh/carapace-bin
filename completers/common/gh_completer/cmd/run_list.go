@@ -42,7 +42,7 @@ func init() {
 		"event":    gh.ActionWorkflowEvents(),
 		"jq":       jq.ActionFilters(),
 		"json":     action.ActionRunFields(),
-		"status":   carapace.ActionValues("queued", "completed", "in_progress", "requested", "waiting", "pending", "action_required", "cancelled", "failure", "neutral", "skipped", "stale", "startup_failure", "success", "timed_out"),
+		"status":   carapace.ActionValues("action_required", "cancelled", "completed", "failure", "in_progress", "neutral", "pending", "queued", "requested", "skipped", "stale", "startup_failure", "success", "timed_out", "waiting"),
 		"user":     gh.ActionUsers(gh.HostOpts{}),
 		"workflow": action.ActionWorkflows(run_listCmd, action.WorkflowOpts{Enabled: true, Id: true, Name: true}),
 	})

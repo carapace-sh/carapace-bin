@@ -1,0 +1,18 @@
+package cmd
+
+import (
+	"github.com/carapace-sh/carapace"
+	"github.com/spf13/cobra"
+)
+
+var help_unstageCmd = &cobra.Command{
+	Use:   "unstage",
+	Short: "Unstage changes to a file or directory",
+	Run:   func(cmd *cobra.Command, args []string) {},
+}
+
+func init() {
+	carapace.Gen(help_unstageCmd).Standalone()
+
+	helpCmd.AddCommand(help_unstageCmd)
+}

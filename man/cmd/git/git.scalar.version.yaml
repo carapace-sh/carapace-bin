@@ -2,9 +2,10 @@
 name: version
 description: Show Scalar version
 flags:
-    --build-options: also print build options
-    -v, --verbose: include Git version
-
+  --build-options: also print build options
+  -v, --verbose: include Git version
 documentation:
-  command: >-
-    Show the Scalar version.
+  command: Show the Scalar version.
+  flag:
+    verbose: Report progress to stderr.
+    build-options: also print build options

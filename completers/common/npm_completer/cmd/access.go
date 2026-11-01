@@ -13,5 +13,13 @@ var accessCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(accessCmd).Standalone()
+	accessCmd.PersistentFlags().Bool("json", false, "output as json")
+	accessCmd.PersistentFlags().String("otp", "", "one-time password")
+	accessCmd.PersistentFlags().String("registry", "", "base URL of the npm registry")
+
 	rootCmd.AddCommand(accessCmd)
+
+	carapace.Gen(accessCmd).FlagCompletion(carapace.ActionMap{
+		"registry": carapace.ActionValues(),
+	})
 }

@@ -21,7 +21,7 @@ func init() {
 	rootCmd.AddCommand(streamsCmd)
 
 	carapace.Gen(streamsCmd).FlagCompletion(carapace.ActionMap{
-		"orderBy": carapace.ActionValues("LogStreamName", "LastEventTime"),
+		"orderBy": carapace.ActionValues("LastEventTime", "LogStreamName"),
 	})
 
 	carapace.Gen(streamsCmd).PositionalCompletion(

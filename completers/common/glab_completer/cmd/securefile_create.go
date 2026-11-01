@@ -6,8 +6,8 @@ import (
 )
 
 var securefile_createCmd = &cobra.Command{
-	Use:     "create <fileName> <inputFilePath>",
-	Short:   "Create a new project secure file.",
+	Use:     "create <name> <path>",
+	Short:   "Upload a new secure file to a project.",
 	Aliases: []string{"upload"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }

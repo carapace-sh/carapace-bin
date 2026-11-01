@@ -9,9 +9,9 @@ import "github.com/carapace-sh/carapace"
 func ActionOutputFormats() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"json", "The output is formatted as a JSON string",
+		"table", "The output is formatted as a table",
+		"text", "The output is formatted as multiple lines of tab-separated string values",
 		"yaml", "The output is formatted as a YAML string",
 		"yaml-stream", "The output is streamed and formatted as a YAML string",
-		"text", "The output is formatted as multiple lines of tab-separated string values",
-		"table", "The output is formatted as a table",
 	)
 }

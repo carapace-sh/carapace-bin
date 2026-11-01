@@ -18,14 +18,14 @@ func Execute() error {
 func init() {
 	carapace.Gen(rootCmd).Standalone()
 
-	rootCmd.Flags().BoolP("bootBlocks", "bootBlocks", false, "Bless with boot blocks")
-	rootCmd.Flags().BoolP("bootinfo", "bootinfo", false, "Create boot info files")
-	rootCmd.Flags().StringP("file", "file", "", "Specify the file to boot")
-	rootCmd.Flags().StringP("folder", "folder", "", "Specify the folder to bless")
+	rootCmd.Flags().Bool("bootBlocks", false, "Bless with boot blocks")
+	rootCmd.Flags().Bool("bootinfo", false, "Create boot info files")
+	rootCmd.Flags().String("file", "", "Specify the file to boot")
+	rootCmd.Flags().String("folder", "", "Specify the folder to bless")
 	rootCmd.Flags().BoolP("help", "h", false, "Display usage information")
-	rootCmd.Flags().BoolP("mount", "mount", false, "Mount the volume")
-	rootCmd.Flags().BoolP("setBoot", "setBoot", false, "Set the boot volume")
-	rootCmd.Flags().BoolP("unmount", "unmount", false, "Unmount the volume")
+	rootCmd.Flags().Bool("mount", false, "Mount the volume")
+	rootCmd.Flags().Bool("setBoot", false, "Set the boot volume")
+	rootCmd.Flags().Bool("unmount", false, "Unmount the volume")
 	rootCmd.Flags().BoolP("verbose", "v", false, "Verbose mode")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{

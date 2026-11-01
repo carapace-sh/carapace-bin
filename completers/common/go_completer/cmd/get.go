@@ -19,9 +19,10 @@ func init() {
 	getCmd.Flags().SetInterspersed(false)
 
 	getCmd.Flags().BoolS("d", "d", false, "only download the source code needed to build")
+	getCmd.Flags().BoolS("json", "json", false, "Emit build output in JSON suitable for automated processing")
 	getCmd.Flags().BoolS("t", "t", false, "consider modules needed to build tests")
 	getCmd.Flags().StringS("tool", "tool", "", "add tool line to for each listed package")
-	getCmd.Flags().BoolS("u", "u", false, "update modules providing dependencies")
+	getCmd.Flags().StringS("u", "u", "", "update modules providing dependencies to newer minor or patch releases")
 	common.AddBuildFlags(getCmd)
 	rootCmd.AddCommand(getCmd)
 

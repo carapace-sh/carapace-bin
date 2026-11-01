@@ -7,9 +7,10 @@ import (
 )
 
 var explainCmd = &cobra.Command{
-	Use:   "explain",
-	Short: "Explain installed packages",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "explain",
+	Short:   "Explain installed packages",
+	Aliases: []string{"why"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

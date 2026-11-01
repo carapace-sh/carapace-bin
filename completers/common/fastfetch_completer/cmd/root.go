@@ -64,7 +64,7 @@ func init() {
 					switch flag.Arg.Type {
 					case "bool":
 						rootCmd.Flags().BoolP(flag.Long, flag.Short, false, flag.Desc)
-						actionMap[flag.Long] = carapace.ActionValues("true", "false").StyleF(style.ForKeyword)
+						actionMap[flag.Long] = carapace.ActionValues("false", "true").StyleF(style.ForKeyword)
 
 					case "color":
 						rootCmd.Flags().StringP(flag.Long, flag.Short, "", flag.Desc)

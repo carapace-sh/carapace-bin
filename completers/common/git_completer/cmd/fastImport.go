@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
 )
 
@@ -46,23 +47,7 @@ func init() {
 		"import-marks-if-exists":  carapace.ActionFiles(),
 		"rewrite-submodules-from": carapace.ActionValues(), // TODO
 		"rewrite-submodules-to":   carapace.ActionValues(), // TODO
-		"signed-commits": carapace.ActionValuesDescribed(
-			"verbatim", "store signatures as-is",
-			"warn-verbatim", "warn if signature does not verify and store as-is",
-			"warn-strip", "warn if signature does not verify and strip it",
-			"strip", "strip any signature",
-			"strip-if-invalid", "strip only invalid signatures",
-			"sign-if-invalid", "replace invalid signatures with newly created ones",
-			"abort", "abort if signature does not verify",
-		),
-		"signed-tags": carapace.ActionValuesDescribed(
-			"verbatim", "store signatures as-is",
-			"warn-verbatim", "warn if signature does not verify and store as-is",
-			"warn-strip", "warn if signature does not verify and strip it",
-			"strip", "strip any signature",
-			"strip-if-invalid", "strip only invalid signatures",
-			"sign-if-invalid", "replace invalid signatures with newly created ones",
-			"abort", "abort if signature does not verify",
-		),
+		"signed-commits":          git.ActionSignedModes(),
+		"signed-tags":             git.ActionSignedModes(),
 	})
 }

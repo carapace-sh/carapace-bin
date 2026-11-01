@@ -3,6 +3,8 @@ package snippet
 import (
 	"fmt"
 	"strings"
+
+	shlex "github.com/carapace-sh/carapace-shlex/v2"
 )
 
 func CmdClink(completers []string) string {
@@ -11,9 +13,14 @@ local function carapace_completion(command)
     return function(word, word_index, line_state, match_builder)
         match_builder:setnosort()
         match_builder:setvolatile()
+        local old_shell = os.getenv('CARAPACE_SHELL')
+        local old_compline = os.getenv('CARAPACE_COMPLINE')
+        os.setenv('CARAPACE_SHELL', 'cmd-clink')
         os.setenv('CARAPACE_COMPLINE', line_state:getline():sub(1, line_state:getcursor()))
 
         local file, pclose = io.popenyield(string.format('carapace %%s cmd-clink ""', command))
+        os.setenv('CARAPACE_SHELL', old_shell or '')
+        os.setenv('CARAPACE_COMPLINE', old_compline or '')
 
         if not file then
             return false
@@ -47,8 +54,10 @@ end
 `
 	argmatchers := make([]string, 0, len(completers))
 	for _, completer := range completers {
+		name := shlex.Escape(completer, shlex.Lua)
+		exe := shlex.Escape(completer+".exe", shlex.Lua)
 		argmatchers = append(argmatchers,
-			fmt.Sprintf(`clink.argmatcher(50, '%[1]s', '%[1]s.exe'):addarg({nowordbreakchars="'`+"`"+`=+;,", carapace_completion('%[1]s')}):loop(1)`, completer),
+			fmt.Sprintf(`clink.argmatcher(50, '%v', '%v'):addarg({nowordbreakchars="'`+"`"+`=+;,", carapace_completion('%v')}):loop(1)`, name, exe, name),
 		)
 	}
 	return fmt.Sprintf(snippet, strings.Join(argmatchers, "\n"))

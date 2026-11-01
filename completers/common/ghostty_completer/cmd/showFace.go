@@ -22,7 +22,7 @@ func init() {
 	rootCmd.AddCommand(showFaceCmd)
 
 	carapace.Gen(showFaceCmd).FlagCompletion(carapace.ActionMap{
-		"presentation": carapace.ActionValues("text", "emoji"),
-		"style":        carapace.ActionValues("regular", "bold", "italic", "bold_italic"),
+		"presentation": carapace.ActionValues("emoji", "text"),
+		"style":        carapace.ActionValues("bold", "bold_italic", "italic", "regular"),
 	})
 }

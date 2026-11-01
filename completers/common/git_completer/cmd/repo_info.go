@@ -26,7 +26,7 @@ func init() {
 
 	carapace.Gen(repo_infoCmd).FlagCompletion(carapace.ActionMap{
 		"format": carapace.ActionValuesDescribed(
-			"keyvalue", "use the = character as the delimiter",
+			"lines", "use the = character as the delimiter",
 			"nul", "use a newline character as the delimiter",
 		),
 	})
@@ -36,6 +36,10 @@ func init() {
 			"layout.bare", "true if this is a bare repository, otherwise false",
 			"layout.shallow", "true if this is a shallow repository, otherwise false",
 			"object.format", "The object format (hash algorithm) used in the repository",
+			"path.commondir.absolute", "The absolute path to the common directory",
+			"path.commondir.relative", "The relative path to the common directory",
+			"path.gitdir.absolute", "The absolute path to the git directory",
+			"path.gitdir.relative", "The relative path to the git directory",
 			"references.format", "The reference storage format",
 		).FilterArgs(),
 	)

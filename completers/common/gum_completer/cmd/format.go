@@ -30,7 +30,7 @@ func init() {
 			carapace.ActionValues("ascii", "dark", "dracula", "light", "notty", "pink").Tag("themes"),
 			carapace.ActionFiles(),
 		).ToA(),
-		"type": carapace.ActionValues("markdown", "template", "code", "emoji"),
+		"type": carapace.ActionValues("code", "emoji", "markdown", "template"),
 	})
 
 	carapace.Gen(formatCmd).PositionalAnyCompletion(

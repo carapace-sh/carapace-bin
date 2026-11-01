@@ -58,7 +58,7 @@ func init() {
 			return action.ActionRepoTopics(repo_editCmd).UniqueList(",")
 		}),
 		"squash-merge-commit-message": carapace.ActionValues("default", "pr-title", "pr-title-commits", "pr-title-description"),
-		"visibility":                  carapace.ActionValues("public", "private", "internal"),
+		"visibility":                  carapace.ActionValues("internal", "private", "public"),
 	})
 
 	carapace.Gen(repo_editCmd).PositionalCompletion(

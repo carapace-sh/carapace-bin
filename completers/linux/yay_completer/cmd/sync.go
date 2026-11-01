@@ -31,6 +31,9 @@ func init() {
 	syncCmd.Flags().StringP("dbpath", "b", "", "set an alternate database location")
 	syncCmd.Flags().Bool("debug", false, "display debug messages")
 	syncCmd.Flags().Bool("disable-download-timeout", false, "use relaxed timeouts for download")
+	syncCmd.Flags().Bool("disable-sandbox", false, "disable sandbox features used for the downloader process")
+	syncCmd.Flags().Bool("disable-sandbox-filesystem", false, "disable the filesystem part of the downloader process sandbox")
+	syncCmd.Flags().Bool("disable-sandbox-syscalls", false, "disable the syscalls part of the downloader process sandbox")
 	syncCmd.Flags().BoolP("downloadonly", "w", false, "download packages but do not install/upgrade anything")
 	syncCmd.Flags().String("gpgdir", "", "set an alternate home directory for GnuPG")
 	syncCmd.Flags().CountP("groups", "g", "view all members of a package group")
@@ -59,7 +62,7 @@ func init() {
 	carapace.Gen(syncCmd).FlagCompletion(carapace.ActionMap{
 		"arch":     carapace.ActionValues("i686", "x86_64"),
 		"cachedir": carapace.ActionDirectories(),
-		"color":    carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
+		"color":    carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"config":   carapace.ActionFiles(),
 		"dbpath":   carapace.ActionFiles(),
 		"gpgdir":   carapace.ActionDirectories(),

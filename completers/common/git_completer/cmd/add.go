@@ -39,6 +39,7 @@ func init() {
 	addCmd.Flags().String("pathspec-from-file", "", "pathspec is passed in <file> instead of commandline args")
 	addCmd.Flags().Bool("refresh", false, "don't add the file(s), but only refresh their stat() information in the index")
 	addCmd.Flags().Bool("renormalize", false, "apply the \"clean\" process freshly to all tracked files to forcibly add them again to the index")
+	addCmd.Flags().Bool("resolved", false, "add conflict-resolved tracked files")
 	addCmd.Flags().Bool("sparse", false, "allow updating index entries outside of the sparse-checkout cone")
 	addCmd.Flags().BoolP("update", "u", false, "update the index just where it already has an entry matching <pathspec>")
 	addCmd.Flags().BoolP("verbose", "v", false, "be verbose")
@@ -54,7 +55,12 @@ func init() {
 	})
 
 	carapace.Gen(addCmd).PositionalAnyCompletion(
-		git.ActionChanges(git.ChangeOpts{Unstaged: true}).FilterArgs(),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if addCmd.Flags().Lookup("resolved").Changed {
+				return git.ActionChanges(git.ChangeOpts{Unmerged: true}).FilterArgs()
+			}
+			return git.ActionChanges(git.ChangeOpts{Unstaged: true}).FilterArgs()
+		}),
 	)
 
 	carapace.Gen(addCmd).DashAnyCompletion(

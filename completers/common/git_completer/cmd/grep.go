@@ -15,6 +15,7 @@ var grepCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(grepCmd).Standalone()
+	grepCmd.Flags().SetInterspersed(false)
 
 	grepCmd.Flags().BoolS("H", "H", false, "show filenames")
 	grepCmd.Flags().BoolS("I", "I", false, "don't match patterns in binary files")
@@ -42,6 +43,7 @@ func init() {
 	grepCmd.Flags().BoolS("h", "h", false, "don't show filenames")
 	grepCmd.Flags().Bool("heading", false, "show filename only once above matches from same file")
 	grepCmd.Flags().BoolP("ignore-case", "i", false, "case insensitive matching")
+	grepCmd.Flags().Bool("index", false, "opposite of --no-index")
 	grepCmd.Flags().BoolP("invert-match", "v", false, "show non-matching lines")
 	grepCmd.Flags().BoolP("line-number", "n", false, "show line numbers")
 	grepCmd.Flags().StringP("max-count", "m", "", "limit the number of matches per file")

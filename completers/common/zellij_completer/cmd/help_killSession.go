@@ -1,0 +1,18 @@
+package cmd
+
+import (
+	"github.com/carapace-sh/carapace"
+	"github.com/spf13/cobra"
+)
+
+var help_killSessionCmd = &cobra.Command{
+	Use:   "kill-session",
+	Short: "Kill a specific session",
+	Run:   func(cmd *cobra.Command, args []string) {},
+}
+
+func init() {
+	carapace.Gen(help_killSessionCmd).Standalone()
+
+	helpCmd.AddCommand(help_killSessionCmd)
+}

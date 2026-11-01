@@ -56,7 +56,7 @@ func init() {
 		"import-map": carapace.ActionFiles(),
 		"lock":       carapace.ActionFiles(),
 		"output":     carapace.ActionFiles(),
-		"target":     carapace.ActionValues("x86_64-unknown-linux-gnu", "x86_64-pc-windows-msvc", "x86_64-apple-darwin", "aarch64-apple-darwin"),
+		"target":     carapace.ActionValues("aarch64-apple-darwin", "x86_64-apple-darwin", "x86_64-pc-windows-msvc", "x86_64-unknown-linux-gnu"),
 	})
 
 	carapace.Gen(compileCmd).PositionalAnyCompletion(

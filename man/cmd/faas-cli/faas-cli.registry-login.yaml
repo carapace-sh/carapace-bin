@@ -3,7 +3,7 @@ name: registry-login
 description: Generate and save the registry authentication file
 flags:
     --account-id=: Your AWS Account id
-    --ecr: If we are using ECR we need a different set of flags, so if this is set, we need to set --username and --password
+    --ecr: If we are using ECR we need a different set of flags, so if this is set, we need to set --account-id and --region
     --password=: The registry password
     --region=: Your AWS region
     --server=: The server URL, it is defaulted to the docker registry

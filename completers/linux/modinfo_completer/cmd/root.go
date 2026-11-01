@@ -34,7 +34,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"basedir": carapace.ActionDirectories(),
-		"field":   carapace.ActionValues("author", "description", "license", "parm", "filename"),
+		"field":   carapace.ActionValues("author", "description", "filename", "license", "parm"),
 		"set-version": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			return os.ActionKernelReleases(rootCmd.Flag("basedir").Value.String())
 		}),

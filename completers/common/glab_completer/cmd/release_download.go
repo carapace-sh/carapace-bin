@@ -7,7 +7,7 @@ import (
 )
 
 var release_downloadCmd = &cobra.Command{
-	Use:   "download <tag>",
+	Use:   "download [<tag>]",
 	Short: "Download asset files from a GitLab release.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
@@ -16,7 +16,7 @@ func init() {
 	carapace.Gen(release_downloadCmd).Standalone()
 
 	release_downloadCmd.Flags().StringSliceP("asset-name", "n", nil, "Download only assets that match the name or a glob pattern.")
-	release_downloadCmd.Flags().StringP("dir", "D", "", "Directory to download the release assets to.")
+	release_downloadCmd.Flags().StringP("dir", "D", ".", "Directory to download the release assets to.")
 	releaseCmd.AddCommand(release_downloadCmd)
 
 	carapace.Gen(release_downloadCmd).FlagCompletion(carapace.ActionMap{
@@ -28,7 +28,6 @@ func init() {
 		}),
 		"dir": carapace.ActionDirectories(),
 	})
-
 	carapace.Gen(release_downloadCmd).PositionalCompletion(
 		action.ActionReleases(release_downloadCmd),
 	)

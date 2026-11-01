@@ -62,7 +62,7 @@ func init() {
 		"pidfile":   carapace.ActionFiles(),
 		"runstates": ps.ActionProcessStates().UniqueList(","),
 		"session":   os.ActionSessionIds().UniqueList(","),
-		"signal":    ps.ActionKillSignals(),
+		"signal":    ps.ActionKillSignals("linux"),
 		"terminal":  os.ActionTerminals().UniqueList(","),
 		"uid":       os.ActionUsers(),
 	})

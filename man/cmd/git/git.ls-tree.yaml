@@ -3,11 +3,16 @@ name: ls-tree
 description: List the contents of a tree object
 group: low-level interrogator
 flags:
-  --abbrev=: use <n> digits to display SHA-1s
+  --abbrev?: use <n> digits to display object names
+  --format=: format to use for the output
   --full-name: use full path names
-  --full-tree: list entire tree; not just current directory (implies --full-name)
+  --full-tree: list entire tree
   --name-only: list only filenames
   --name-status: list only filenames
+  --no-abbrev: do not use abbreviated digits to display object names
+  --no-full-name: do not use full path names
+  --no-full-tree: do not list entire tree
+  --object-only: list only objects
   -d: only show trees
   -l, --long: include object size
   -r: recurse into subtrees
@@ -18,17 +23,63 @@ documentation:
     Lists the contents of a given tree object, like what "/bin/ls -a" does
     in the current working directory.  Note that:
 
-     - the behaviour is slightly different from that of "/bin/ls" in that the
-       '<path>' denotes just a list of patterns to match, e.g. so specifying
-       directory name (without `-r`) will behave differently, and order of the
-       arguments does not matter.
+    - the behaviour is slightly different from that of "/bin/ls" in that the
+     '<path>' denotes just a list of patterns to match, e.g. so specifying
+     directory name (without `-r`) will behave differently, and order of the
+     arguments does not matter.
 
-     - the behaviour is similar to that of "/bin/ls" in that the `<path>` is
-       taken as relative to the current working directory.  E.g. when you are
-       in a directory 'sub' that has a directory 'dir', you can run 'git
-       ls-tree -r HEAD dir' to list the contents of the tree (that is
-       `sub/dir` in `HEAD`).  You don't want to give a tree that is not at the
-       root level (e.g. `git ls-tree -r HEAD:sub dir`) in this case, as that
-       would result in asking for `sub/sub/dir` in the `HEAD` commit.
-       However, the current working directory can be ignored by passing
-       --full-tree option.
+    - the behaviour is similar to that of "/bin/ls" in that the `<path>` is
+     taken as relative to the current working directory.  E.g. when you are
+     in a directory 'sub' that has a directory 'dir', you can run 'git
+     ls-tree -r HEAD dir' to list the contents of the tree (that is
+     `sub/dir` in `HEAD`).  You don't want to give a tree that is not at the
+     root level (e.g. `git ls-tree -r HEAD:sub dir`) in this case, as that
+     would result in asking for `sub/sub/dir` in the `HEAD` commit.
+     However, the current working directory can be ignored by passing
+     --full-tree option.
+  flag:
+    format: |-
+      Format of the resulting archive. Possible values are `tar`, `zip`,
+      `tar.gz`, `tgz`, and any format defined using the configuration option
+      `tar.<format>.command`. If `--format` is not given, and the output file
+      is specified, the format is inferred from the filename if possible (e.g.
+      writing to `foo.zip` makes the output to be in the `zip` format).
+      Otherwise the output format is `tar`.
+    full-name: |-
+      When run from a subdirectory, the command usually
+      outputs paths relative to the current directory.  This
+      option forces paths to be output relative to the project
+      top directory.
+    name-only: |-
+      Show only the name of each changed file in the post-image tree.
+      The file names are often encoded in UTF-8.
+      For more information see the discussion about encoding in the [git-log](cmd://git/log)
+      manual page.
+    name-status: |-
+      Show only the name(s) and status of each changed file. See the description
+      of the `--diff-filter` option on what the status letters mean.
+      Just like `--name-only` the file names are often encoded in UTF-8.
+    no-abbrev: Display the full sha1s in the output listing rather than abbreviating them.
+    r: |-
+      Allow recursive removal when a leading directory name is
+          given.
+    t: Override the default tempdir.
+    z: |-
+      When `--numstat` has been given, do not munge pathnames,
+      but use a NUL-terminated machine-readable format.
+      
+      Without this option, pathnames with "unusual" characters are quoted as
+      explained for the configuration variable `core.quotePath` (see
+      [git-config](cmd://git/config)).
+    abbrev: |-
+      Instead of using the default _7+1_ hexadecimal digits as the
+      abbreviated object name, use _<m>+1_ digits, where _<m>_ is at
+      least _<n>_ but ensures the commit object names are unique.
+      Note that 1 column
+      is used for a caret to mark the boundary commit.
+    long: Give the output in the long-format. This is the default.
+    no-full-name: do not use full path names
+    d: only show trees
+    full-tree: list entire tree
+    no-full-tree: do not list entire tree
+    object-only: list only objects

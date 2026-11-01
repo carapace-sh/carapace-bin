@@ -8,14 +8,14 @@ import "github.com/carapace-sh/carapace"
 //	tcg (Tiny Code Generator (software emulation))
 func ActionAccels() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"kvm", "Linux KVM",
-		"tcg", "Tiny Code Generator (software emulation)",
-		"xen", "Xen",
 		"hvf", "macOS Hypervisor.framework",
-		"whpx", "Windows Hypervisor Platform",
-		"nvmm", "NetBSD virtual machine monitor",
-		"nitro", "AWS Nitro Enclaves",
+		"kvm", "Linux KVM",
 		"mshv", "Microsoft Hyper-V",
+		"nitro", "AWS Nitro Enclaves",
+		"nvmm", "NetBSD virtual machine monitor",
+		"tcg", "Tiny Code Generator (software emulation)",
+		"whpx", "Windows Hypervisor Platform",
+		"xen", "Xen",
 	).Tag("accelerators").Uid("qemu", "accel")
 }
 
@@ -39,27 +39,27 @@ func ActionBootDrives() carapace.Action {
 //	exec (show trace before each executed TB)
 func ActionDebugItems() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"out_asm", "show generated host assembly code for each compiled TB",
-		"in_asm", "show target assembly code for each compiled TB",
-		"op", "show micro ops for each compiled TB",
-		"op_opt", "show micro ops after optimization",
-		"op_ind", "show micro ops before indirect lowering",
-		"op_plugin", "show micro ops before plugin injection",
-		"int", "show interrupts/exceptions in short format",
-		"exec", "show trace before each executed TB",
 		"cpu", "show CPU registers before entering a TB",
-		"fpu", "include FPU registers in the 'cpu' logging",
-		"mmu", "log MMU-related activities",
-		"pcall", "x86 only: show protected mode far calls/returns/exceptions",
 		"cpu_reset", "show CPU state before CPU resets",
-		"unimp", "log unimplemented functionality",
+		"exec", "show trace before each executed TB",
+		"fpu", "include FPU registers in the 'cpu' logging",
 		"guest_errors", "log when the guest OS does something invalid",
-		"page", "dump pages at beginning of user mode emulation",
+		"in_asm", "show target assembly code for each compiled TB",
+		"int", "show interrupts/exceptions in short format",
+		"invalid_mem", "log invalid memory accesses",
+		"mmu", "log MMU-related activities",
 		"nochain", "do not chain compiled TBs",
+		"op", "show micro ops for each compiled TB",
+		"op_ind", "show micro ops before indirect lowering",
+		"op_opt", "show micro ops after optimization",
+		"op_plugin", "show micro ops before plugin injection",
+		"out_asm", "show generated host assembly code for each compiled TB",
+		"page", "dump pages at beginning of user mode emulation",
+		"pcall", "x86 only: show protected mode far calls/returns/exceptions",
 		"plugin", "output from TCG plugins",
 		"strace", "log every user-mode syscall",
 		"tid", "open a separate log file per thread",
+		"unimp", "log unimplemented functionality",
 		"vpu", "include VPU registers in the 'cpu' logging",
-		"invalid_mem", "log invalid memory accesses",
 	).Tag("debug items").Uid("qemu", "debug-item")
 }

@@ -21,12 +21,12 @@ func init() {
 
 	carapace.Gen(versionCmd).PositionalCompletion(
 		carapace.ActionValuesDescribed(
+			"decline", "the nonce will be increased for yarn version check to pass without version bump",
 			"major", "the first number from the semver range will be increased (X.0.0)",
 			"minor", "the second number from the semver range will be increased (0.X.0)",
 			"patch", "the third number from the semver range will be increased (0.0.X)",
 			"pre", "when prefixed with 'pre' a -0 suffix will be set (0.0.0-0)", // TODO prefix completion
 			"prerelease", "the suffix will be increased (0.0.0-X)",
-			"decline", "the nonce will be increased for yarn version check to pass without version bump",
 		),
 	)
 }

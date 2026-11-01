@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/brew_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -27,4 +28,8 @@ func init() {
 	outdatedCmd.Flags().Bool("quiet", false, "List only the names of outdated kegs (takes precedence over `--verbose`).")
 	outdatedCmd.Flags().Bool("verbose", false, "Include detailed version information.")
 	rootCmd.AddCommand(outdatedCmd)
+
+	carapace.Gen(outdatedCmd).PositionalAnyCompletion(
+		action.ActionList(outdatedCmd).FilterArgs(),
+	)
 }

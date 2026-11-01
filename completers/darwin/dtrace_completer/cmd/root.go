@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/ps"
 	"github.com/spf13/cobra"
 )
 
@@ -26,6 +27,12 @@ func init() {
 	rootCmd.Flags().StringS("o", "o", "", "Output file")
 	rootCmd.Flags().StringS("p", "p", "", "Process ID")
 	rootCmd.Flags().StringS("s", "s", "", "Script file")
+
+	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
+		"o": carapace.ActionFiles(),
+		"p": ps.ActionProcessIds(),
+		"s": carapace.ActionFiles(),
+	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(carapace.ActionValues())
 }

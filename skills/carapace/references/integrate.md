@@ -361,10 +361,23 @@ Available bridge functions (all return `carapace.Action`):
 | `bridge.ActionFish(cmd ...string)` | Fish native completions |
 | `bridge.ActionZsh(cmd ...string)` | Zsh native completions |
 | `bridge.ActionArgcomplete(cmd ...string)` | Python argcomplete |
+| `bridge.ActionArgcompleteV1(cmd ...string)` | Python argcomplete (legacy, fd 8/9 — not on powershell/windows) |
 | `bridge.ActionClap(cmd ...string)` | Rust clap |
 | `bridge.ActionClick(cmd ...string)` | Python Click |
 | `bridge.ActionYargs(cmd ...string)` | Node.js yargs |
-| `bridge.ActionBridge(cmd ...string)` | Auto-detect via CARAPACE_BRIDGES env |
+| `bridge.ActionAws(cmd ...string)` | aws-cli |
+| `bridge.ActionComplete(cmd ...string)` | posener/complete |
+| `bridge.ActionGcloud(cmd ...string)` | Google Cloud SDK |
+| `bridge.ActionInshellisense(cmd ...string)` | inshellisense |
+| `bridge.ActionJJ(cmd ...string)` | Jujutsu VCS |
+| `bridge.ActionKingpin(cmd ...string)` | alecthomas/kingpin |
+| `bridge.ActionKitten(cmd ...string)` | kitty kitten |
+| `bridge.ActionPowershell(cmd ...string)` | PowerShell native completions |
+| `bridge.ActionTyper(cmd ...string)` | fastapi/typer |
+| `bridge.ActionUrfavecli(cmd ...string)` | urfave/cli |
+| `bridge.ActionUrfavecliV1(cmd ...string)` | urfave/cli (legacy) |
+| `bridge.ActionMacro(command ...string)` | registered macro (command string like `$carapace.tools.git.Refs`) |
+| `bridge.ActionBridge(cmd ...string)` | Auto-detect — choices first, then CARAPACE_BRIDGES env |
 
 ### Split and SplitP — Completing Command-String Flag Values
 
@@ -604,7 +617,7 @@ Available `*S` methods mirror the `*N` methods: `BoolS`, `CountS`, `IntS`, `Stri
 
 ### Argument Style
 
-`ArgumentStyle` is a bitmask on `Flag` that controls which argument variants are accepted. The zero value accepts all variants.
+`ArgumentStyle` is a bitmask on `Flag` that controls which argument variants are accepted. The zero value accepts all variants (backward compatible).
 
 | Constant | Value | Accepts | Example |
 |----------|-------|---------|---------|
@@ -616,6 +629,40 @@ Available `*S` methods mirror the `*N` methods: `BoolS`, `CountS`, `IntS`, `Stri
 cmd.Flag("mode").ArgumentStyle = AcceptNext | AcceptDelimited // accept -m val and -m=val, but not -mval
 ```
 
+Helper methods on `ArgumentStyle` check individual bits and all return `true` when the style is zero (accept-all default):
+
+| Method | Returns true when |
+|--------|-------------------|
+| `AcceptsNext()` | Next-arg form (`-f arg`) is accepted |
+| `AcceptsDelimited()` | Delimited form (`-f=arg`) is accepted |
+| `AcceptsAttached()` | Attached form (`-farg`) is accepted |
+
+When a form is rejected, parsing returns a `ValueRequiredError`. The bitmask is embedded directly in `Flag` (access via `flag.ArgumentStyle`).
+
+### Disabled Delimiter
+
+Setting `OptargDelimiter` to the sentinel constant `DelimiterDisabled` (`-1`, also any rune `< 0x20`) disables delimiter-based argument parsing. Combined with a non-empty `NoOptDefVal`, this allows directly-attached values without a delimiter character — e.g. `-rvalue` is parsed as flag `r` with value `value`:
+
+```go
+cmd.Flags().StringP("r", "r", "", "recurse")
+cmd.Flag("r").NoOptDefVal = " "
+cmd.Flag("r").OptargDelimiter = DelimiterDisabled // -rvalue works (no `=` needed)
+```
+
+Always use `flag.HasDisabledDelimiter()` to check this condition rather than comparing the raw rune value:
+
+```go
+if flag.HasDisabledDelimiter() {
+    // directly-attached values are accepted
+}
+```
+
+Notes:
+- Only affects short-form (shorthand) flags; long form (`--flagvalue`) is not supported.
+- Interaction with `ArgumentStyle`: directly-attached values are only accepted when `AcceptsAttached()` is true (the default). Setting `ArgumentStyle` to exclude `AcceptAttached` disables this behavior even with `DelimiterDisabled`.
+- Works in both POSIX and non-POSIX modes.
+- Prefix ambiguity: when two flags share a shorthand prefix (e.g. `r` and `root` both with `DelimiterDisabled`), the longer match wins.
+
 ### Custom Flag Prefix
 
 `FlagSet.SetPrefix` sets the flag prefix character (default `-`). This is useful for shells like elvish that use `&` instead of `-`:
@@ -625,6 +672,8 @@ rootCmd.Flags().SetPrefix('&') // flags now look like &f, &&verbose, &&
 ```
 
 The prefix controls token recognition, long/short disambiguation (`&&flag` vs `&f`), the terminator (`&&`), error messages, and usage output. `FlagSet.Prefix()` returns the active prefix (defaults to `-` for zero-value `FlagSet{}`).
+
+The custom prefix only affects the fork's own parser — `golangflag.go` always uses `-` for go test flags and stdlib interop.
 
 ### Non-POSIX Example
 

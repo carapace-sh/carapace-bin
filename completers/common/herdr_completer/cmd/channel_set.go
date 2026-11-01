@@ -17,6 +17,6 @@ func init() {
 	channelCmd.AddCommand(channel_setCmd)
 
 	carapace.Gen(channel_setCmd).PositionalCompletion(
-		carapace.ActionValues("stable", "preview"),
+		carapace.ActionValues("preview", "stable"),
 	)
 }

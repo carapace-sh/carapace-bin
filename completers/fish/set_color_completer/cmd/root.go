@@ -44,7 +44,7 @@ func init() {
 		"background":      fish.ActionColorNames(),
 		"f":               fish.ActionColorNames(),
 		"foreground":      fish.ActionColorNames(),
-		"u":               carapace.ActionValues("single", "double", "curly", "dotted", "dashed", "off"),
+		"u":               carapace.ActionValues("curly", "dashed", "dotted", "double", "off", "single"),
 		"underline-color": fish.ActionColorNames(),
 	})
 

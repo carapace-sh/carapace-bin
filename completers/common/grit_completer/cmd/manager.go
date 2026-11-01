@@ -6,9 +6,10 @@ import (
 )
 
 var managerCmd = &cobra.Command{
-	Use:   "manager",
-	Short: "Git credential helper backed by the Windows Credential Manager",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "manager",
+	Short:   "Git credential helper backed by the Windows Credential Manager",
+	GroupID: "plumbing",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
@@ -18,6 +19,6 @@ func init() {
 	rootCmd.AddCommand(managerCmd)
 
 	carapace.Gen(managerCmd).PositionalCompletion(
-		carapace.ActionValues("get", "store", "erase"),
+		carapace.ActionValues("erase", "get", "store"),
 	)
 }

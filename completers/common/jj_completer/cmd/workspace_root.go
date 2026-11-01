@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-jjlex/pkg/actions/tools/jj"
 	"github.com/spf13/cobra"
 )
 
@@ -17,4 +18,8 @@ func init() {
 	workspace_rootCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	workspace_rootCmd.Flags().String("name", "", "Name of the workspace (defaults to current)")
 	workspaceCmd.AddCommand(workspace_rootCmd)
+
+	carapace.Gen(workspace_rootCmd).FlagCompletion(carapace.ActionMap{
+		"name": jj.ActionWorkspaces(),
+	})
 }

@@ -24,7 +24,7 @@ func init() {
 	runCmd.Flags().Bool("ignore-rust-version", false, "Ignore `rust-version` specification in packages")
 	runCmd.Flags().StringP("jobs", "j", "", "Number of parallel jobs, defaults to # of CPUs.")
 	runCmd.Flags().Bool("keep-going", false, "Do not abort the build as soon as there is an error")
-	runCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
+	runCmd.Flags().StringP("manifest-path", "m", "", "Path to Cargo.toml")
 	runCmd.Flags().StringSlice("message-format", nil, "Error format")
 	runCmd.Flags().Bool("no-default-features", false, "Do not activate the `default` feature")
 	runCmd.Flags().StringP("package", "p", "", "Package with the target to run")

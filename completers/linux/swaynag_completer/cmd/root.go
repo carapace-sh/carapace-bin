@@ -61,9 +61,9 @@ func init() {
 		"button-text":        color.ActionHexColors(),
 		"config":             carapace.ActionFiles(),
 		"details-background": color.ActionHexColors(),
-		"edge":               carapace.ActionValues("top", "bottom"),
+		"edge":               carapace.ActionValues("bottom", "top"),
 		"font":               os.ActionFontFamilies(),
-		"layer":              carapace.ActionValues("overlay", "top", "bottom", "background"),
+		"layer":              carapace.ActionValues("background", "bottom", "overlay", "top"),
 		"text":               color.ActionHexColors(),
 	})
 }

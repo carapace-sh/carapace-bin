@@ -2,9 +2,14 @@
 name: push
 description: save your local modifications to a new stash
 flags:
+  --auto-advance: auto advance to the next file when selecting hunks interactively
+  --inter-hunk-context=: show inter-hunk context
+  --no-auto-advance: do not auto advance to the next file when selecting hunks interactively
   --no-keep-index: also apply to index
-  --pathspec-file-nul: pathspec elemts are seperated by NUL
+  --pathspec-file-nul: pathspec elements are separated by NUL character
   --pathspec-from-file=: read pathspec from file
+  -S, --staged: only stash staged
+  -U, --unified=: generate diffs with <n> lines context
   -a, --all: also stash ignored and untracked
   -k, --keep-index: keep changed added to index
   -m, --message=: set description
@@ -12,21 +17,23 @@ flags:
   -q, --quiet: suppress feedback messages
   -u, --include-untracked: also stash untracked
 documentation:
-  command: |-
-    Save your local modifications to a new 'stash entry' and roll them
-    back to `HEAD` (in the working tree and in the index).
-    The _<message>_ part is optional and gives
-    the description along with the stashed state.
-
-    For quickly making a snapshot, you can omit "push".  In this mode,
-    pathspec elements are only allowed after a double hyphen `--`
-    to prevent a misspelled subcommand from making an unwanted stash entry.
   flag:
     all: |-
       This option is only valid for `push` and `save` commands.
 
       All ignored and untracked files are also stashed and then cleaned
       up with `git clean`.
+    include-untracked: |-
+      When used with the `push` and `save` commands,
+      all untracked files are also stashed and then cleaned up with
+      `git clean`.
+
+      When used with the `show` command, show the untracked files in the stash
+      entry as part of the diff.
+    keep-index: |-
+      This option is only valid for `push` and `save` commands.
+
+      All changes already added to the index are left intact.
     no-keep-index: |-
       This option is only valid for `push` and `save` commands.
 
@@ -64,14 +71,20 @@ documentation:
       `save`, `store` commands.
 
       Quiet, suppress feedback messages.
-    keep-index: |-
-      This option is only valid for `push` and `save` commands.
+    inter-hunk-context: |-
+      Show the context between diff hunks, up to the specified _<number>_
+      of lines, thereby fusing hunks that are close to each other.
+      Defaults to `diff.interHunkContext` or 0 if the config option
+      is unset.
+    message: |-
+      Use the given note message (instead of prompting).
+      If multiple `-m` options are given, their values
+      are concatenated as separate paragraphs.
+    staged: |-
+      Specify the restore location. If neither option is specified,
+      by default the working tree is restored. Specifying `--staged`
+      will only restore the index. Specifying both restores both.
+    auto-advance: auto advance to the next file when selecting hunks interactively
+    no-auto-advance: do not auto advance to the next file when selecting hunks interactively
+    unified: generate diffs with <n> lines context
 
-      All changes already added to the index are left intact.
-    include-untracked: |-
-      When used with the `push` and `save` commands,
-      all untracked files are also stashed and then cleaned up with
-      `git clean`.
-
-      When used with the `show` command, show the untracked files in the stash
-      entry as part of the diff.

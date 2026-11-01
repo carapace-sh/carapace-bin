@@ -8,16 +8,16 @@ import (
 
 func ActionColumns() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"TYPE", "type",
-		"ID", "numeric id",
 		"CLOCK", "symbolic name",
-		"NAME", "readable name",
-		"TIME", "numeric time",
+		"ID", "numeric id",
 		"ISO_TIME", "human readable ISO time",
+		"NAME", "readable name",
+		"NS_OFFSET", "namespace offset",
+		"REL_TIME", "human readable relative time",
 		"RESOL", "human readable resolution",
 		"RESOL_RAW", "resolution",
-		"REL_TIME", "human readable relative time",
-		"NS_OFFSET", "namespace offset",
+		"TIME", "numeric time",
+		"TYPE", "type",
 	)
 }
 

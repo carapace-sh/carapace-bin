@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: tags
+description: list repository tags
+group: change-organization
+flags:
+    -T, --template=: display with template
+documentation:
+    command: |
+        list repository tags
+
+        This lists both regular and local tags. When the -v/--verbose
+        switch is used, a third column "local" is printed for local tags.
+        When the -q/--quiet switch is used, only the tag name is printed.
+
+        .. container:: verbose
+
+          Template:
+
+          The following keywords are supported in addition to the common template
+          keywords and functions such as `{tag}`. See also
+          `hg help templates`.
+
+          :type:    String. `local` for local tags.
+
+        Returns 0 on success.

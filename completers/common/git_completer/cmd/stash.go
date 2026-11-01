@@ -15,6 +15,7 @@ var stashCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(stashCmd).Standalone()
+	stashCmd.Flags().SetInterspersed(false)
 	rootCmd.AddCommand(stashCmd)
 
 	carapace.Gen(stashCmd).DashAnyCompletion(

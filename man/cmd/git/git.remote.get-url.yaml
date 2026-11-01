@@ -12,3 +12,13 @@ documentation:
     With `--push`, push URLs are queried rather than fetch URLs.
 
     With `--all`, all URLs for the remote will be listed.
+  flag:
+    all: |-
+      Update the index not only where the working tree has a file matching **\<pathspec\>**
+      but also where the index already has an entry.
+      This adds, modifies, and removes index entries to match the working tree.
+      
+      If no **\<pathspec\>** is given when `-A` option is used,
+      all files in the entire working tree are updated
+      (old versions of Git used to limit the update to the current directory and its subdirectories).
+    push: query push URLs rather than fetch URLs

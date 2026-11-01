@@ -13,6 +13,7 @@ var cacheCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(cacheCmd).Standalone()
+	cacheCmd.PersistentFlags().String("cache", "", "location of npm's cache directory")
 
 	rootCmd.AddCommand(cacheCmd)
 }

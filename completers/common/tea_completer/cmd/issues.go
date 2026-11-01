@@ -45,12 +45,12 @@ func init() {
 	carapace.Gen(issuesCmd).FlagCompletion(carapace.ActionMap{
 		"fields": tea.ActionIssueFields().UniqueList(","),
 		"from":   time.ActionDate(),
-		"kind":   carapace.ActionValues("issues", "pulls", "all"),
+		"kind":   carapace.ActionValues("all", "issues", "pulls"),
 		"labels": action.ActionLabels(issuesCmd).UniqueList(","),
 		"login":  tea.ActionLogins(),
 		"output": tea.ActionOutputFormats(),
 		"remote": git.ActionRemotes(),
-		"state":  carapace.ActionValues("all", "open", "closed").StyleF(style.ForKeyword),
+		"state":  carapace.ActionValues("all", "closed", "open").StyleF(style.ForKeyword),
 		"until":  time.ActionDate(),
 	})
 }

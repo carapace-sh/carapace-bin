@@ -8,9 +8,9 @@ import "github.com/carapace-sh/carapace"
 //	never (never capture)
 func ActionMouseShiftCaptureModes() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"true", "capture, but allow override",
-		"false", "don't capture, but allow override",
 		"always", "always capture",
+		"false", "don't capture, but allow override",
 		"never", "never capture",
+		"true", "capture, but allow override",
 	).Tag("mouse shift capture modes").Uid("ghostty", "mouse-shift-capture")
 }

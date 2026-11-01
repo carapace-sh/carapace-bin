@@ -6,12 +6,14 @@ import (
 )
 
 var vendorCmd = &cobra.Command{
-	Use:   "vendor",
-	Short: "Open vendor page for an app",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "vendor",
+	Aliases: []string{"seller"},
+	Short:   "Open app seller pages in the default web browser",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(vendorCmd).Standalone()
+	vendorCmd.Flags().Bool("bundle", false, "Process all app IDs as bundle IDs")
 	rootCmd.AddCommand(vendorCmd)
 }

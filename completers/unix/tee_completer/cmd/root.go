@@ -27,10 +27,10 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"output-error": carapace.ActionValuesDescribed(
-			"warn", "diagnose errors writing to any output",
-			"warn-nopipe", "diagnose errors writing to any output not a pipe",
 			"exit", "exit on error writing to any output",
 			"exit-nopipe", "exit on error writing to any output not a pipe",
+			"warn", "diagnose errors writing to any output",
+			"warn-nopipe", "diagnose errors writing to any output not a pipe",
 		),
 	})
 

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/brew_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -28,4 +29,8 @@ func init() {
 	carapace.Gen(cleanupCmd).FlagCompletion(carapace.ActionMap{
 		"prune": carapace.ActionValues("all"),
 	})
+
+	carapace.Gen(cleanupCmd).PositionalAnyCompletion(
+		action.ActionList(cleanupCmd).FilterArgs(),
+	)
 }

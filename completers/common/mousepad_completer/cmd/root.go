@@ -38,7 +38,7 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"display":      os.ActionDisplays(),
 		"encoding":     action.ActionEncoding(),
-		"opening-mode": carapace.ActionValues("tab", "window", "mixed"),
+		"opening-mode": carapace.ActionValues("mixed", "tab", "window"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

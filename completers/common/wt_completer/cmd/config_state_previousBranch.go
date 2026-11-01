@@ -6,9 +6,10 @@ import (
 )
 
 var config_state_previousBranchCmd = &cobra.Command{
-	Use:   "previous-branch",
-	Short: "Previous branch (for wt switch -)",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:    "previous-branch",
+	Short:  "Previous branch (for wt switch -)",
+	Hidden: true,
+	Run:    func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

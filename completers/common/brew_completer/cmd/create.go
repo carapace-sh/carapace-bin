@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
 	"github.com/spf13/cobra"
 )
 
@@ -32,10 +33,14 @@ func init() {
 	createCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
 	createCmd.Flags().Bool("ruby", false, "Create a basic template for a Ruby build.")
 	createCmd.Flags().Bool("rust", false, "Create a basic template for a Rust build.")
-	createCmd.Flags().Bool("set-license", false, "Explicitly set the <license> of the new formula.")
-	createCmd.Flags().Bool("set-name", false, "Explicitly set the <name> of the new formula or cask.")
-	createCmd.Flags().Bool("set-version", false, "Explicitly set the <version> of the new formula or cask.")
-	createCmd.Flags().Bool("tap", false, "Generate the new formula within the given tap, specified as <user>`/`<repo>.")
+	createCmd.Flags().String("set-license", "", "Explicitly set the <license> of the new formula.")
+	createCmd.Flags().String("set-name", "", "Explicitly set the <name> of the new formula or cask.")
+	createCmd.Flags().String("set-version", "", "Explicitly set the <version> of the new formula or cask.")
+	createCmd.Flags().String("tap", "", "Generate the new formula within the given tap, specified as <user>`/`<repo>.")
 	createCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
 	rootCmd.AddCommand(createCmd)
+
+	carapace.Gen(createCmd).FlagCompletion(carapace.ActionMap{
+		"tap": gh.ActionOwnerRepositories(gh.HostOpts{}),
+	})
 }

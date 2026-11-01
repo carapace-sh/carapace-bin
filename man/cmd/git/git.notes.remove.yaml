@@ -2,8 +2,8 @@
 name: remove
 description: Remove the notes for given objects
 flags:
-  --ignore-missing: Do not consider it an error to request removing non existing notes
-  --stdin: Also read the object names to remove notes from the standard input
+  --ignore-missing: do not consider it an error to request removing non existing notes
+  --stdin: also read the object names to remove notes from the standard input
 documentation:
   flag:
     ignore-missing: |-

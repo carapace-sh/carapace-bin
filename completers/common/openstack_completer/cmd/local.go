@@ -1,0 +1,18 @@
+package cmd
+
+import (
+	"github.com/carapace-sh/carapace"
+	"github.com/spf13/cobra"
+)
+
+var localCmd = &cobra.Command{
+	Use:   "local",
+	Short: "",
+	Run:   func(cmd *cobra.Command, args []string) {},
+}
+
+func init() {
+	carapace.Gen(localCmd).Standalone()
+
+	rootCmd.AddCommand(localCmd)
+}

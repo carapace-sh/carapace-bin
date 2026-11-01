@@ -22,10 +22,12 @@ func init() {
 	addCmd.Flags().String("concurrent-solves", "", "Max concurrent solves, default is the number of CPUs")
 	addCmd.Flags().String("config-file", "", "Load configuration from this file instead of searching system and user-level paths. Project-local `<project>/.pixi/config.toml` is still merged on top")
 	addCmd.Flags().Bool("editable", false, "Whether the pypi requirement should be editable")
+	addCmd.Flags().StringP("environment", "e", "", "The environment for which the dependency should be modified. The dependency is written to the content defined inline on the environment, creating the environment if it does not exist")
 	addCmd.Flags().StringP("feature", "f", "default", "The feature for which the dependency should be modified")
 	addCmd.Flags().Bool("frozen", false, "Install the environment as defined in the lock file, doesn't update lock file if it isn't up-to-date with the manifest file")
 	addCmd.Flags().StringP("git", "g", "", "The git url to use when adding a git dependency")
 	addCmd.Flags().Bool("locked", false, "Check if lock file is up-to-date before installing the environment, aborts when lock file isn't up-to-date with the manifest file")
+	addCmd.Flags().Bool("offline", false, "Run without network access, using only cached data. Commands fail if data is missing from the cache. Pass `--offline=false` to override an `offline` setting from the configuration")
 	addCmd.PersistentFlags().StringP("manifest-path", "m", "", "The path to `pixi.toml`, `pyproject.toml`, or the workspace directory")
 	addCmd.Flags().String("index", "", "The PyPI index URL to use for this dependency. Only applicable when adding pypi dependencies")
 	addCmd.Flags().Bool("no-config", false, "Don't read system or user-level configuration files. Project-local `<project>/.pixi/config.toml` is still loaded")
@@ -33,13 +35,15 @@ func init() {
 	addCmd.Flags().Bool("no-install", false, "Don't modify the environment, only modify the lock file")
 	addCmd.Flags().Bool("no-ref-links", false, "Disallow ref links (copy-on-write) during package installation")
 	addCmd.Flags().Bool("no-symbolic-links", false, "Disallow symbolic links during package installation")
+	addCmd.Flags().String("path", "", "The local path to use when adding a local dependency")
 	addCmd.Flags().String("pinning-strategy", "", "Set pinning strategy")
 	addCmd.Flags().StringSliceP("platform", "p", nil, "The platform for which the dependency should be modified. Must be the name of a platform already defined in the workspace")
 	addCmd.Flags().Bool("pypi", false, "The specified dependencies are pypi dependencies. Conflicts with `host` and `build`")
 	addCmd.Flags().String("pypi-keyring-provider", "", "Specifies whether to use the keyring to look up credentials for PyPI")
 	addCmd.Flags().String("rev", "", "The git revision")
 	addCmd.Flags().Bool("run-post-link-scripts", false, "Run post-link scripts (insecure)")
-	addCmd.Flags().StringP("subdir", "s", "", "The subdirectory of the git repository to use")
+	addCmd.PersistentFlags().StringP("script", "s", "", "The path to a script with an embedded manifest: PEP 723 Python metadata or a conda-script block. Pixi run also accepts an HTTP(S) URL or '-' for stdin")
+	addCmd.Flags().String("subdirectory", "", "The subdirectory of the git repository to use")
 	addCmd.Flags().String("tag", "", "The git tag")
 	addCmd.Flags().Bool("tls-no-verify", false, "Do not verify the TLS certificate of the server")
 	addCmd.Flags().String("tls-root-certs", "", "Which TLS root certificates to use: 'webpki' (bundled Mozilla roots) or 'system' (system store)")
@@ -50,12 +54,15 @@ func init() {
 	carapace.Gen(addCmd).FlagCompletion(carapace.ActionMap{
 		"auth-file":             carapace.ActionFiles(),
 		"config-file":           carapace.ActionFiles(),
+		"environment":           pixi.ActionEnvironments(),
 		"feature":               pixi.ActionFeatures(),
 		"manifest-path":         carapace.ActionFiles(),
-		"pinning-strategy":      carapace.ActionValues("semver", "minor", "major", "latest-up", "exact-version", "no-pin"),
+		"path":                  carapace.ActionFiles(),
+		"pinning-strategy":      carapace.ActionValues("exact-version", "latest-up", "major", "minor", "no-pin", "semver"),
 		"platform":              pixi.ActionPlatforms(),
 		"pypi-keyring-provider": carapace.ActionValues("disabled", "subprocess"),
-		"tls-root-certs":        carapace.ActionValues("webpki", "system"),
+		"script":                carapace.ActionFiles(),
+		"tls-root-certs":        carapace.ActionValues("system", "webpki"),
 	})
 
 	carapace.Gen(addCmd).PositionalAnyCompletion(

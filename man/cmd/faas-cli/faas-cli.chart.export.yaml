@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: export
+description: Render a Helm chart and export each resource as a separate YAML file
+flags:
+    --crds: Include CRDs in the output
+    --release=: Helm release name
+    --set=*: Set individual values (key=value)
+    --values=*: Path to values file(s) to use during rendering
+    -n, --namespace=: Kubernetes namespace for rendered manifests
+    -o, --output=: Output directory for rendered YAML files

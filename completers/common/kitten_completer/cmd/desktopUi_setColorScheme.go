@@ -18,6 +18,6 @@ func init() {
 	desktopUiCmd.AddCommand(desktopUi_setColorSchemeCmd)
 
 	carapace.Gen(desktopUi_setColorSchemeCmd).PositionalCompletion(
-		carapace.ActionValues("light", "dark", "no-preference", "toggle"),
+		carapace.ActionValues("dark", "light", "no-preference", "toggle"),
 	)
 }

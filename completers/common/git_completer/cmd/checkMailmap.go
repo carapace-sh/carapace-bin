@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
 )
 
@@ -15,6 +16,13 @@ var checkMailmapCmd = &cobra.Command{
 func init() {
 	carapace.Gen(checkMailmapCmd).Standalone()
 
+	checkMailmapCmd.Flags().String("mailmap-blob", "", "read mailmap from a blob")
+	checkMailmapCmd.Flags().String("mailmap-file", "", "read mailmap from a file")
 	checkMailmapCmd.Flags().Bool("stdin", false, "also read contacts from stdin")
 	rootCmd.AddCommand(checkMailmapCmd)
+
+	carapace.Gen(checkMailmapCmd).FlagCompletion(carapace.ActionMap{
+		"mailmap-blob": git.ActionRefs(git.RefOption{}.Default()),
+		"mailmap-file": carapace.ActionFiles(),
+	})
 }

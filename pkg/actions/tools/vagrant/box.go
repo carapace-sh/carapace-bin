@@ -27,11 +27,17 @@ func ActionBoxes() carapace.Action {
 	})
 }
 
+// BoxProvidersOpts provides target filters for box provider completion
+type BoxProvidersOpts struct {
+	Box     string // box name
+	Version string // box version
+}
+
 // ActionBoxProviders completes box providers
 //
 //	virtualbox
 //	vmware
-func ActionBoxProviders(name string, version string) carapace.Action {
+func ActionBoxProviders(opts BoxProvidersOpts) carapace.Action {
 	return carapace.ActionExecCommand("vagrant", "box", "list")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
 
@@ -40,8 +46,8 @@ func ActionBoxProviders(name string, version string) carapace.Action {
 		for _, line := range lines {
 			if r.MatchString(line) {
 				matches := r.FindStringSubmatch(line)
-				if name == matches[1] &&
-					(version == "" || version == matches[3]) {
+				if opts.Box == matches[1] &&
+					(opts.Version == "" || opts.Version == matches[3]) {
 					vals = append(vals, matches[2])
 				}
 			}
@@ -50,11 +56,17 @@ func ActionBoxProviders(name string, version string) carapace.Action {
 	})
 }
 
+// BoxVersionsOpts provides target filters for box version completion
+type BoxVersionsOpts struct {
+	Box      string // box name
+	Provider string // box provider
+}
+
 // ActionBoxVersions completes box versions
 //
 //	2024.01.01
 //	2024.02.01
-func ActionBoxVersions(name string, provider string) carapace.Action {
+func ActionBoxVersions(opts BoxVersionsOpts) carapace.Action {
 	return carapace.ActionExecCommand("vagrant", "box", "list")(func(output []byte) carapace.Action {
 		lines := strings.Split(string(output), "\n")
 
@@ -63,8 +75,8 @@ func ActionBoxVersions(name string, provider string) carapace.Action {
 		for _, line := range lines {
 			if r.MatchString(line) {
 				matches := r.FindStringSubmatch(line)
-				if name == matches[1] &&
-					(provider == "" || provider == matches[2]) {
+				if opts.Box == matches[1] &&
+					(opts.Provider == "" || opts.Provider == matches[2]) {
 					vals = append(vals, matches[3])
 				}
 			}

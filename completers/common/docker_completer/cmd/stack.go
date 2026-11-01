@@ -20,6 +20,6 @@ func init() {
 	rootCmd.AddCommand(stackCmd)
 
 	carapace.Gen(stackCmd).FlagCompletion(carapace.ActionMap{
-		"orchestrator": carapace.ActionValues("swarm", "all"),
+		"orchestrator": carapace.ActionValues("all", "swarm"),
 	})
 }

@@ -67,12 +67,14 @@ func init() {
 		"moniker":                carapace.ActionValues(),
 		"name":                   carapace.ActionValues(),
 		"override":               carapace.ActionValues(),
-		"query":                  carapace.ActionValues(),
+		"query":                  winget.ActionSearchPackages(),
 		"rename":                 carapace.ActionValues(),
 		"scope":                  winget.ActionScopes(),
 		"source":                 carapace.ActionValues(),
 		"version":                carapace.ActionValues(),
 	})
 
-	// TODO positional completion
+	carapace.Gen(installCmd).PositionalCompletion(
+		winget.ActionSearchPackages(),
+	)
 }

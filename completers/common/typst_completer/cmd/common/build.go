@@ -41,8 +41,8 @@ func AddBuildFlags(cmd *cobra.Command) {
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
 		"diagnostic-format": carapace.ActionValues("human", "short"),
-		"features":          carapace.ActionValues("html", "a11y-extras").StyleF(style.ForExtension),
-		"format":            carapace.ActionValues("pdf", "png", "svg", "html").StyleF(style.ForExtension),
+		"features":          carapace.ActionValues("a11y-extras", "html").StyleF(style.ForExtension),
+		"format":            carapace.ActionValues("html", "pdf", "png", "svg").StyleF(style.ForExtension),
 		"root":              carapace.ActionDirectories(),
 	})
 }
@@ -64,8 +64,8 @@ func AddPdfFlags(cmd *cobra.Command) {
 		"deps": carapace.ActionFiles(),
 		"deps-format": carapace.ActionValuesDescribed(
 			"json", "Encodes as JSON, failing for non-Unicode paths",
-			"zero", "Separates paths with NULL bytes and can express all paths",
 			"make", "Emits in Make format, omitting inexpressible paths",
+			"zero", "Separates paths with NULL bytes and can express all paths",
 		),
 		"make-deps": carapace.ActionFiles(),
 		"pdf-standard": carapace.ActionValuesDescribed(
@@ -74,17 +74,17 @@ func AddPdfFlags(cmd *cobra.Command) {
 			"1.6", "PDF 1.6",
 			"1.7", "PDF 1.7",
 			"2.0", "PDF 2.0",
-			"a-1b", "PDF/A-1b",
 			"a-1a", "PDF/A-1a",
+			"a-1b", "PDF/A-1b",
+			"a-2a", "PDF/A-2a",
 			"a-2b", "PDF/A-2b",
 			"a-2u", "PDF/A-2u",
-			"a-2a", "PDF/A-2a",
+			"a-3a", "PDF/A-3a",
 			"a-3b", "PDF/A-3b",
 			"a-3u", "PDF/A-3u",
-			"a-3a", "PDF/A-3a",
 			"a-4", "PDF/A-4",
-			"a-4f", "PDF/A-4f",
 			"a-4e", "PDF/A-4e",
+			"a-4f", "PDF/A-4f",
 			"ua-1", "PDF/UA-1",
 		),
 	})

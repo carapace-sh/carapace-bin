@@ -20,7 +20,7 @@ func init() {
 	psCmd.Flags().String("filter", "", "Filter services by a property (supported filters: status)")
 	psCmd.Flags().String("format", "", "Format output using a custom template:")
 	psCmd.Flags().Bool("no-trunc", false, "Don't truncate output")
-	psCmd.Flags().Bool("orphans", false, "Include orphaned services (not declared by project)")
+	psCmd.Flags().Bool("orphans", true, "Include orphaned services (not declared by project)")
 	psCmd.Flags().BoolP("quiet", "q", false, "Only display IDs")
 	psCmd.Flags().Bool("services", false, "Display services")
 	psCmd.Flags().StringSlice("status", nil, "Filter services by status. Values: [paused | restarting | removing | running | dead | created | exited]")
@@ -28,8 +28,8 @@ func init() {
 
 	carapace.Gen(psCmd).FlagCompletion(carapace.ActionMap{
 		"filter": carapace.ActionValues("status"),
-		"format": carapace.ActionValues("table", "json"),
-		"status": carapace.ActionValues("paused", "restarting", "removing", "running", "dead", "created", "exited").StyleF(style.ForKeyword),
+		"format": carapace.ActionValues("json", "table"),
+		"status": carapace.ActionValues("created", "dead", "exited", "paused", "removing", "restarting", "running").StyleF(style.ForKeyword),
 	})
 
 	carapace.Gen(psCmd).PositionalAnyCompletion(

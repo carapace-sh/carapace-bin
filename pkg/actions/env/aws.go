@@ -12,7 +12,7 @@ import (
 
 func init() {
 	knownVariables["aws"] = func() variables {
-		_bool := carapace.ActionValues("true", "false").StyleF(style.ForKeyword)
+		_bool := carapace.ActionValues("false", "true").StyleF(style.ForKeyword)
 		return variables{
 			Condition: conditions.ConditionPath("aws"),
 			Variables: map[string]string{
@@ -64,7 +64,7 @@ func init() {
 				"AWS_PAGER":                           bridge.ActionCarapaceBin().Split(),
 				"AWS_PROFILE":                         aws.ActionProfiles(),
 				"AWS_REGION":                          aws.ActionRegions(),
-				"AWS_RETRY_MODE":                      carapace.ActionValues("legacy", "standard", "adaptive"),
+				"AWS_RETRY_MODE":                      carapace.ActionValues("adaptive", "legacy", "standard"),
 				"AWS_ROLE_ARN":                        carapace.ActionValues(),
 				"AWS_ROLE_SESSION_NAME":               carapace.ActionValues(),
 				"AWS_SECRET_ACCESS_KEY":               carapace.ActionValues(),

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/brew"
 	"github.com/spf13/cobra"
 )
 
@@ -22,4 +23,8 @@ func init() {
 	tapInfoCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
 	tapInfoCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
 	rootCmd.AddCommand(tapInfoCmd)
+
+	carapace.Gen(tapInfoCmd).PositionalAnyCompletion(
+		brew.ActionInstalledTaps().FilterArgs(),
+	)
 }

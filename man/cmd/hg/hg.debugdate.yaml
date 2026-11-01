@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugdate
+description: parse and display a date
+hidden: true
+flags:
+    -e, --extended: try extended date formats
+documentation:
+    command: |
+        parse and display a date

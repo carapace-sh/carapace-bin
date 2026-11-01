@@ -76,7 +76,7 @@ func init() {
 	rootCmd.Flags().StringS("y", "y", "", "y-coordinate of the crop area top left corner")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"tiffcompression": carapace.ActionValues("none", "packbits", "jpeg", "lzw", "deflate"),
+		"tiffcompression": carapace.ActionValues("deflate", "jpeg", "lzw", "none", "packbits"),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

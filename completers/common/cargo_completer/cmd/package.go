@@ -25,7 +25,7 @@ func init() {
 	packageCmd.Flags().StringP("jobs", "j", "", "Number of parallel jobs, defaults to # of CPUs.")
 	packageCmd.Flags().Bool("keep-going", false, "Do not abort the build as soon as there is an error")
 	packageCmd.Flags().BoolP("list", "l", false, "Print files included in a package without making one")
-	packageCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
+	packageCmd.Flags().StringP("manifest-path", "m", "", "Path to Cargo.toml")
 	packageCmd.Flags().String("message-format", "", "Output representation (unstable)")
 	packageCmd.Flags().Bool("no-default-features", false, "Do not activate the `default` feature")
 	packageCmd.Flags().Bool("no-metadata", false, "Ignore warnings about a lack of human-usable metadata")
@@ -38,10 +38,11 @@ func init() {
 	rootCmd.AddCommand(packageCmd)
 
 	carapace.Gen(packageCmd).FlagCompletion(carapace.ActionMap{
-		"exclude":       action.ActionDependencies(packageCmd, false),
-		"features":      action.ActionFeatures(packageCmd).UniqueList(","),
-		"manifest-path": carapace.ActionFiles(),
-		"package":       action.ActionDependencies(packageCmd, false),
-		"target-dir":    carapace.ActionDirectories(),
+		"exclude":        action.ActionDependencies(packageCmd, false),
+		"features":       action.ActionFeatures(packageCmd).UniqueList(","),
+		"manifest-path":  carapace.ActionFiles(),
+		"message-format": carapace.ActionValues("human", "json"),
+		"package":        action.ActionDependencies(packageCmd, false),
+		"target-dir":     carapace.ActionDirectories(),
 	})
 }

@@ -39,10 +39,10 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"config":   carapace.ActionFiles(),
-		"fail-on":  carapace.ActionValues("negligible", "low", "medium", "high", "critical"),
+		"fail-on":  carapace.ActionValues("critical", "high", "low", "medium", "negligible"),
 		"file":     carapace.ActionFiles(),
 		"output":   syft.ActionOutputFormats(),
-		"scope":    carapace.ActionValues("Squashed", "AllLayers"),
+		"scope":    carapace.ActionValues("AllLayers", "Squashed"),
 		"template": carapace.ActionFiles(),
 	})
 

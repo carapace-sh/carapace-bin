@@ -37,7 +37,7 @@ func init() {
 	carapace.Gen(ecCmd).FlagCompletion(carapace.ActionMap{
 		"conv_form": carapace.ActionValues("compressed", "hybrid", "uncompressed"),
 		"in":        carapace.ActionFiles(),
-		"inform":    carapace.ActionValues("DER", "PEM", "P12"),
+		"inform":    carapace.ActionValues("DER", "P12", "PEM"),
 		"out":       carapace.ActionFiles(),
 		"outform":   carapace.ActionValues("DER", "PEM"),
 		"param_enc": carapace.ActionValues("explicit", "named_curve"),

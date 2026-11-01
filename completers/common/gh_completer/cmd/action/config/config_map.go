@@ -3,7 +3,7 @@ package config
 import (
 	"errors"
 
-	"gopkg.in/yaml.v3"
+	"go.yaml.in/yaml/v3"
 )
 
 // ConfigMap This type implements a low-level get/set config that is backed by an in-memory tree of Yaml

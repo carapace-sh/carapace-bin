@@ -25,6 +25,6 @@ func init() {
 	atCmd.AddCommand(at_getTextCmd)
 
 	carapace.Gen(at_getTextCmd).FlagCompletion(carapace.ActionMap{
-		"extent": carapace.ActionValues("screen", "all", "first_cmd_output_on_screen", "last_cmd_output", "last_non_empty_output", "last_visited_cmd_output", "selection"),
+		"extent": carapace.ActionValues("all", "first_cmd_output_on_screen", "last_cmd_output", "last_non_empty_output", "last_visited_cmd_output", "screen", "selection"),
 	})
 }

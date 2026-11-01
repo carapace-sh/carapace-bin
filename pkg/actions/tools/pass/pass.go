@@ -48,6 +48,9 @@ func ActionPasswords() carapace.Action {
 		} else {
 			names := make([]string, 0)
 			filepath.Walk(path, func(walkPath string, info os.FileInfo, err error) error {
+				if err != nil {
+					return err
+				}
 				if !info.IsDir() && strings.HasSuffix(info.Name(), ".gpg") {
 					names = append(names, strings.TrimSuffix(strings.TrimPrefix(walkPath, path+"/"), ".gpg"))
 				}

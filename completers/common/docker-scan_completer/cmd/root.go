@@ -33,7 +33,7 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"file":     carapace.ActionFiles(),
-		"severity": carapace.ActionValues("low", "medium", "high"),
+		"severity": carapace.ActionValues("high", "low", "medium"),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

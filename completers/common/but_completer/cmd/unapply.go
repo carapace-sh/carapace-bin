@@ -8,7 +8,7 @@ import (
 
 var unapplyCmd = &cobra.Command{
 	Use:     "unapply",
-	Short:   "Unapply a branch from the workspace",
+	Short:   "Remove a branch and the rest of its stack from the workspace, keeping them to apply again later",
 	Run:     func(cmd *cobra.Command, args []string) {},
 	GroupID: "branching and committing",
 }

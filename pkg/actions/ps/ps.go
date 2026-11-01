@@ -10,13 +10,29 @@ import (
 	"github.com/carapace-sh/carapace/third_party/github.com/mitchellh/go-ps"
 )
 
-// ActionKillSignals completes kill signals
+// ActionKillSignals completes kill signals for the given operating system.
 //
 //	ABRT (Abnormal termination)
 //	STOP (Stop process, unblockable)
-func ActionKillSignals() carapace.Action {
+//	CTRL_C_EVENT (Ctrl+C signal)
+//
+//	carapace.ActionKillSignals("linux")
+//	carapace.ActionKillSignals("darwin")
+//	carapace.ActionKillSignals("windows")
+func ActionKillSignals(goos string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		switch runtime.GOOS {
+		if goos == "" {
+			goos = runtime.GOOS
+		}
+		switch goos {
+		case "windows":
+			return carapace.ActionStyledValuesDescribed(
+				"CTRL_C_EVENT", "Ctrl+C signal", styles.CarapaceBin.KillSignalTerm,
+				"CTRL_BREAK_EVENT", "Ctrl+Break signal", styles.CarapaceBin.KillSignalTerm,
+				"CTRL_CLOSE_EVENT", "Console window close", styles.CarapaceBin.KillSignalTerm,
+				"CTRL_LOGOFF_EVENT", "User logoff", styles.CarapaceBin.KillSignalTerm,
+				"CTRL_SHUTDOWN_EVENT", "System shutdown", styles.CarapaceBin.KillSignalTerm,
+			)
 		case "darwin":
 			return carapace.ActionStyledValuesDescribed(
 				"ABRT", "Abnormal termination", styles.CarapaceBin.KillSignalCore,
@@ -141,6 +157,13 @@ func ActionProcessStates() carapace.Action {
 				"T", "stopped",
 				"U", "uninterruptible wait (usually IO)",
 				"Z", "zombie: terminated but not reaped by its parent",
+			).Tag("process states").Uid("ps", "state")
+		case "windows":
+			return carapace.ActionValuesDescribed(
+				"Ready", "process is ready to run",
+				"Running", "process is running",
+				"Terminated", "process has terminated",
+				"Waiting", "process is waiting for a resource",
 			).Tag("process states").Uid("ps", "state")
 		default:
 			return carapace.ActionValuesDescribed(

@@ -22,7 +22,7 @@ func init() {
 	carapace.Gen(cloud_version_releaseCmd).PositionalCompletion(
 		vagrant.ActionCloudBoxSearch(""),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return vagrant.ActionCloudBoxVersions(c.Args[0], "")
+			return vagrant.ActionCloudBoxVersions(vagrant.CloudBoxVersionsOpts{Box: c.Args[0]})
 		}),
 	)
 }

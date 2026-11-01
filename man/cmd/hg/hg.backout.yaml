@@ -1,0 +1,70 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: backout
+description: reverse effect of earlier changeset
+group: change-manipulation
+flags:
+    --commit: commit if no conflicts were encountered (DEPRECATED)
+    --merge: merge with old dirstate parent after backout
+    --no-commit: do not commit
+    --parent=: parent to choose when backing out merge (DEPRECATED)
+    -I, --include=*: include names matching the given patterns
+    -X, --exclude=*: exclude names matching the given patterns
+    -d, --date=: record the specified date as commit date
+    -e, --edit: invoke editor on commit messages
+    -l, --logfile=: read commit message from file
+    -m, --message=: use text as commit message
+    -r, --rev=: revision to backout
+    -t, --tool=: specify merge tool
+    -u, --user=: record the specified user as committer
+documentation:
+    command: |
+        reverse effect of earlier changeset
+
+        Prepare a new changeset with the effect of REV undone in the
+        current working directory. If no conflicts were encountered,
+        it will be committed immediately.
+
+        If REV is the parent of the working directory, then this new changeset
+        is committed automatically (unless --no-commit is specified).
+
+        .. note::
+
+           `hg backout` cannot be used to fix either an unwanted or
+           incorrect merge.
+
+        .. container:: verbose
+
+          Examples:
+
+          - Reverse the effect of the parent of the working directory.
+            This backout will be committed immediately::
+
+              hg backout -r .
+
+          - Reverse the effect of previous bad revision 23::
+
+              hg backout -r 23
+
+          - Reverse the effect of previous bad revision 23 and
+            leave changes uncommitted::
+
+              hg backout -r 23 --no-commit
+              hg commit -m "Backout revision 23"
+
+          By default, the pending changeset will have one parent,
+          maintaining a linear history. With --merge, the pending
+          changeset will instead have two parents: the old parent of the
+          working directory and a new child of REV that simply undoes REV.
+
+          Before version 1.7, the behavior without --merge was equivalent
+          to specifying --merge followed by `hg update --clean .` to
+          cancel the merge and leave the child of REV as a head to be
+          merged separately.
+
+        See `hg help dates` for a list of formats valid for -d/--date.
+
+        See `hg help revert` for a way to restore files to the state
+        of another revision.
+
+        Returns 0 on success, 1 if nothing to backout or there are unresolved
+        files.

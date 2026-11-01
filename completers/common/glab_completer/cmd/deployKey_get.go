@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
 )
 
@@ -14,7 +15,12 @@ var deployKey_getCmd = &cobra.Command{
 func init() {
 	carapace.Gen(deployKey_getCmd).Standalone()
 
+	deployKey_getCmd.Flags().String("jq", "", "Filter JSON output with a jq expression.")
+	deployKey_getCmd.Flags().StringP("output", "F", "text", "Format output as: text, json.")
 	deployKeyCmd.AddCommand(deployKey_getCmd)
 
-	// TODO positional completion
+	carapace.Gen(deployKey_getCmd).FlagCompletion(carapace.ActionMap{
+		"jq":     jq.ActionFilters(),
+		"output": carapace.ActionValues("json", "text"),
+	})
 }

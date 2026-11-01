@@ -1,0 +1,70 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: update
+aliases:
+    - up
+    - checkout
+    - co
+description: update working directory (or switch revisions)
+group: working-dir
+flags:
+    -C, --clean: discard uncommitted changes (no backup)
+    -c, --check: require clean working directory
+    -d, --date=: tipmost revision matching date
+    -m, --merge: merge uncommitted changes
+    -r, --rev=: revision
+    -t, --tool=: specify merge tool
+documentation:
+    command: |
+        update working directory (or switch revisions)
+
+        Update the repository's working directory to the specified
+        changeset. If no changeset is specified, update to the tip of the
+        current named branch and move the active bookmark (see `hg help
+        bookmarks`).
+
+        Update sets the working directory's parent revision to the specified
+        changeset (see `hg help parents`).
+
+        If the changeset is not a descendant or ancestor of the working
+        directory's parent and there are uncommitted changes, the update is
+        aborted. With the -c/--check option, the working directory is checked
+        for uncommitted changes; if none are found, the working directory is
+        updated to the specified changeset.
+
+        .. container:: verbose
+
+          The -C/--clean, -c/--check, and -m/--merge options control what
+          happens if the working directory contains uncommitted changes.
+          At most of one of them can be specified.
+
+          1. If no option is specified, and if
+             the requested changeset is an ancestor or descendant of
+             the working directory's parent, the uncommitted changes
+             are merged into the requested changeset and the merged
+             result is left uncommitted. If the requested changeset is
+             not an ancestor or descendant (that is, it is on another
+             branch), the update is aborted and the uncommitted changes
+             are preserved.
+
+          2. With the -m/--merge option, the update is allowed even if the
+             requested changeset is not an ancestor or descendant of
+             the working directory's parent.
+
+          3. With the -c/--check option, the update is aborted and the
+             uncommitted changes are preserved.
+
+          4. With the -C/--clean option, uncommitted changes are discarded and
+             the working directory is updated to the requested changeset.
+
+        To cancel an uncommitted merge (and lose your changes), use
+        `hg merge --abort`.
+
+        Use null as the changeset to remove the working directory (like
+        `hg clone -U`).
+
+        If you want to revert just one file to an older revision, use
+        `hg revert [-r REV] NAME`.
+
+        See `hg help dates` for a list of formats valid for -d/--date.
+
+        Returns 0 on success, 1 if there are unresolved files.

@@ -22,8 +22,8 @@ func init() {
 	nodeCmd.AddCommand(node_updateCmd)
 
 	carapace.Gen(node_updateCmd).FlagCompletion(carapace.ActionMap{
-		"availability": carapace.ActionValues("active", "pause", "drain"),
-		"role":         carapace.ActionValues("worker", "manager"),
+		"availability": carapace.ActionValues("active", "drain", "pause"),
+		"role":         carapace.ActionValues("manager", "worker"),
 	})
 
 	carapace.Gen(node_updateCmd).PositionalCompletion(

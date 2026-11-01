@@ -21,7 +21,7 @@ func init() {
 	rootCmd.AddCommand(winrmCmd)
 
 	carapace.Gen(winrmCmd).FlagCompletion(carapace.ActionMap{
-		"shell": carapace.ActionValues("powershell", "cmd"),
+		"shell": carapace.ActionValues("cmd", "powershell"),
 	})
 
 	carapace.Gen(winrmCmd).PositionalCompletion(

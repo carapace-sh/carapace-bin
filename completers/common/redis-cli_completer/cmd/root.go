@@ -95,7 +95,7 @@ func init() {
 		"p":             net.ActionPorts(),
 		"rdb":           carapace.ActionFiles(),
 		"s":             carapace.ActionFiles(),
-		"show-pushes":   carapace.ActionValues("yes", "no").StyleF(style.ForKeyword),
+		"show-pushes":   carapace.ActionValues("no", "yes").StyleF(style.ForKeyword),
 		"tls-ciphers":   ssh.ActionCiphers().UniqueList(":"),
 	})
 }

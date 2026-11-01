@@ -33,7 +33,7 @@ func init() {
 	checkCmd.Flags().StringP("jobs", "j", "", "Number of parallel jobs, defaults to # of CPUs.")
 	checkCmd.Flags().Bool("keep-going", false, "Do not abort the build as soon as there is an error")
 	checkCmd.Flags().Bool("lib", false, "Check only this package's library")
-	checkCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
+	checkCmd.Flags().StringP("manifest-path", "m", "", "Path to Cargo.toml")
 	checkCmd.Flags().StringSlice("message-format", nil, "Error format")
 	checkCmd.Flags().Bool("no-default-features", false, "Do not activate the `default` feature")
 	checkCmd.Flags().StringSliceP("package", "p", nil, "Package(s) to check")

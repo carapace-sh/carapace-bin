@@ -81,14 +81,14 @@ func init() {
 	rootCmd.Flags().BoolP("wide", "w", false, "wider output with additional statistics")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"cocomo-project-type": carapace.ActionValues("organic", "semi-detached", "embedded", "custom,"),
+		"cocomo-project-type": carapace.ActionValues("custom,", "embedded", "organic", "semi-detached"),
 		"format": carapace.ActionValues(
-			"tabular", "wide", "json", "json2", "csv", "csv-stream",
-			"cloc-yaml", "html", "html-table", "sql", "sql-insert", "openmetrics",
+			"cloc-yaml", "csv", "csv-stream", "html", "html-table", "json",
+			"json2", "openmetrics", "sql", "sql-insert", "tabular", "wide",
 		),
 		"output":    carapace.ActionFiles(),
-		"size-unit": carapace.ActionValues("si", "binary", "mixed", "xkcd-kb", "xkcd-kelly", "xkcd-imaginary", "xkcd-intel", "xkcd-drive", "xkcd-bakers"),
-		"sort":      carapace.ActionValues("files", "name", "lines", "blanks", "code", "comments", "complexity"),
+		"size-unit": carapace.ActionValues("binary", "mixed", "si", "xkcd-bakers", "xkcd-drive", "xkcd-imaginary", "xkcd-intel", "xkcd-kb", "xkcd-kelly"),
+		"sort":      carapace.ActionValues("blanks", "code", "comments", "complexity", "files", "lines", "name"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

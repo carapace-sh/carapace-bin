@@ -27,4 +27,9 @@ func init() {
 	dumpCmd.Flags().String("skykey_filter", "", "Regex filter of SkyKey names to output. Only used with --skyframe=deps, rdeps, function_graph.")
 	dumpCmd.Flags().String("skylark_memory", "", "Dumps a pprof-compatible memory profile to the specified path. To learn more please see https://github.com/google/pprof.")
 	rootCmd.AddCommand(dumpCmd)
+
+	carapace.Gen(dumpCmd).FlagCompletion(carapace.ActionMap{
+		"skyframe":       carapace.ActionValues("active_directories", "active_directories_frontier_deps", "count", "deps", "function_graph", "keys", "off", "rdeps", "summary", "value"),
+		"skylark_memory": carapace.ActionFiles(),
+	})
 }

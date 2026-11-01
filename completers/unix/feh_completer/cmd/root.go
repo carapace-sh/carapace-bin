@@ -129,8 +129,8 @@ func init() {
 		"output":        carapace.ActionFiles(),
 		"output-dir":    carapace.ActionDirectories(),
 		"output-only":   carapace.ActionFiles(),
-		"sort":          carapace.ActionValues("name", "none", "dirname", "filename", "mtime", "width", "height", "pixels", "size", "format"),
-		"zoom":          carapace.ActionValues("max", "fill"),
+		"sort":          carapace.ActionValues("dirname", "filename", "format", "height", "mtime", "name", "none", "pixels", "size", "width"),
+		"zoom":          carapace.ActionValues("fill", "max"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

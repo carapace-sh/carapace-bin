@@ -7,7 +7,7 @@ import (
 
 var changelogCmd = &cobra.Command{
 	Use:   "changelog <command> [flags]",
-	Short: "Interact with the changelog API.",
+	Short: "Generate changelogs from your project's commit history.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

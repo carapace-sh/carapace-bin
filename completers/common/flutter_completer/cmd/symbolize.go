@@ -18,11 +18,13 @@ func init() {
 	symbolizeCmd.Flags().BoolP("help", "h", false, "Print this usage information.")
 	symbolizeCmd.Flags().StringP("input", "i", "", "A file path containing a Dart stack trace.")
 	symbolizeCmd.Flags().StringP("output", "o", "", "A file path for a symbolized stack trace to be written to.")
+	symbolizeCmd.Flags().StringSliceP("unit-id-debug-info", "u", nil, "A loading unit id and the path to the symbols file for that unit generated with \"--split-debug-info\".")
 	rootCmd.AddCommand(symbolizeCmd)
 
 	carapace.Gen(symbolizeCmd).FlagCompletion(carapace.ActionMap{
-		"debug-info": carapace.ActionFiles(),
-		"input":      carapace.ActionFiles(),
-		"output":     carapace.ActionFiles(),
+		"debug-info":         carapace.ActionFiles(),
+		"input":              carapace.ActionFiles(),
+		"output":             carapace.ActionFiles(),
+		"unit-id-debug-info": carapace.ActionFiles(),
 	})
 }

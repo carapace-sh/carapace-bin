@@ -7,7 +7,7 @@ import (
 
 var dnsCmd = &cobra.Command{
 	Use:   "dns",
-	Short: "Manages your DNS records",
+	Short: "Manage DNS records",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

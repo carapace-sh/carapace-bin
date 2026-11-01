@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/cargo_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -24,5 +25,7 @@ func init() {
 	yankCmd.Flag("vers").Hidden = true
 	rootCmd.AddCommand(yankCmd)
 
-	// TODO flag completion
+	carapace.Gen(yankCmd).FlagCompletion(carapace.ActionMap{
+		"registry": action.ActionRegistries(),
+	})
 }

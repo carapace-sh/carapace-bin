@@ -22,8 +22,9 @@ func init() {
 }
 
 func addWorkspaceFlags(cmd *cobra.Command) {
+	cmd.Flags().Bool("include-workspace-root", false, "Include the workspace root when workspaces are enabled")
 	cmd.Flags().StringArrayP("workspace", "w", []string{""}, "Enable running a command in the context of the given workspace")
-	cmd.Flags().Bool("workspaces", false, "Enable running a command in the context fo all workspaces")
+	cmd.Flags().Bool("workspaces", false, "Enable running a command in the context of all workspaces")
 
 	carapace.Gen(cmd).FlagCompletion(carapace.ActionMap{
 		"workspace": npm.ActionWorkspaces(),

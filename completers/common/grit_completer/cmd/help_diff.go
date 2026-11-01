@@ -7,7 +7,7 @@ import (
 
 var help_diffCmd = &cobra.Command{
 	Use:   "diff",
-	Short: "Show changes as a diff. No argument: uncommitted changes; with a commit: the change that commit introduced",
+	Short: "Show changes as a diff. No argument: uncommitted changes; with a commit: the change that commit introduced; with two commits (or `A..B`) diff their trees",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

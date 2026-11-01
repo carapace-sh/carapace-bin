@@ -18,8 +18,8 @@ func init() {
 	pullCmd.Flags().Bool("ignore-buildable", false, "Ignore images that can be built")
 	pullCmd.Flags().Bool("ignore-pull-failures", false, "Pull what it can and ignores images with pull failures")
 	pullCmd.Flags().Bool("include-deps", false, "Also pull services declared as dependencies")
-	pullCmd.Flags().Bool("no-parallel", false, "DEPRECATED disable parallel pulling")
-	pullCmd.Flags().Bool("parallel", false, "DEPRECATED pull multiple images in parallel")
+	pullCmd.Flags().Bool("no-parallel", true, "DEPRECATED disable parallel pulling")
+	pullCmd.Flags().Bool("parallel", true, "DEPRECATED pull multiple images in parallel")
 	pullCmd.Flags().String("policy", "", "Apply pull policy (\"missing\"|\"always\")")
 	pullCmd.Flags().BoolP("quiet", "q", false, "Pull without printing progress information")
 	pullCmd.Flag("no-parallel").Hidden = true
@@ -27,7 +27,7 @@ func init() {
 	rootCmd.AddCommand(pullCmd)
 
 	carapace.Gen(pullCmd).FlagCompletion(carapace.ActionMap{
-		"policy": carapace.ActionValues("missing", "always"),
+		"policy": carapace.ActionValues("always", "missing"),
 	})
 
 	carapace.Gen(pullCmd).PositionalAnyCompletion(

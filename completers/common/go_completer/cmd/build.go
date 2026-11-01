@@ -21,6 +21,7 @@ func init() {
 	buildCmd.Flags().BoolS("json", "json", false, "Emit build output in JSON suitable for automated processing")
 	buildCmd.Flags().StringS("o", "o", "", "set output file or directory")
 	common.AddBuildFlags(buildCmd)
+	common.AddCoverFlags(buildCmd)
 	rootCmd.AddCommand(buildCmd)
 
 	carapace.Gen(buildCmd).FlagCompletion(carapace.ActionMap{

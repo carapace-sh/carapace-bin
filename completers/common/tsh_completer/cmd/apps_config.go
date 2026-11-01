@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/tsh"
 	"github.com/spf13/cobra"
 )
 
@@ -19,15 +20,17 @@ func init() {
 
 	carapace.Gen(apps_configCmd).FlagCompletion(carapace.ActionMap{
 		"format": carapace.ActionValuesDescribed(
-			"uri", "app address",
 			"ca", "CA cert path",
 			"cert", "cert path",
-			"key", "key path",
 			"curl", "example curl command",
 			"json", "print everything as JSON",
+			"key", "key path",
+			"uri", "app address",
 			"yaml", "print everything as YAML",
 		),
 	})
 
-	// TODO complete apps
+	carapace.Gen(apps_configCmd).PositionalCompletion(
+		tsh.ActionApps(),
+	)
 }

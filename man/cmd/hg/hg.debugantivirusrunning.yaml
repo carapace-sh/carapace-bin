@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugantivirusrunning
+description: attempt to trigger an antivirus scanner to see if one is active
+hidden: true
+documentation:
+    command: |
+        attempt to trigger an antivirus scanner to see if one is active

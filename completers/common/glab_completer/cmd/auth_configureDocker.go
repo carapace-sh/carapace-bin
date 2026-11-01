@@ -7,7 +7,7 @@ import (
 
 var auth_configureDockerCmd = &cobra.Command{
 	Use:   "configure-docker",
-	Short: "Register glab as a Docker credential helper",
+	Short: "Register glab as a Docker credential helper.",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

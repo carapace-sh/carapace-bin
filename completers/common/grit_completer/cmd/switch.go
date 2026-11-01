@@ -8,7 +8,8 @@ import (
 
 var switchCmd = &cobra.Command{
 	Use:     "switch",
-	Short:   "Switch to another branch",
+	Short:   "Switch to another branch, remote branch, or detached commit",
+	GroupID: "branch",
 	Aliases: []string{"checkout", "co"},
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
@@ -17,6 +18,8 @@ func init() {
 	carapace.Gen(switchCmd).Standalone()
 
 	switchCmd.Flags().BoolP("create", "c", false, "Create the branch first, then switch to it")
+	switchCmd.Flags().Bool("detach", false, "Check out a commit in detached HEAD mode")
+	switchCmd.Flags().Bool("dry-run", false, "Run overwrite checks without updating refs, the index, or the worktree")
 	switchCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.AddCommand(switchCmd)
 
@@ -25,9 +28,6 @@ func init() {
 			git.ActionRemoteBranchNames(""),
 			git.ActionRefs(git.RefOption{LocalBranches: true}),
 		).ToA(),
-	)
-
-	carapace.Gen(switchCmd).DashAnyCompletion(
-		carapace.ActionPositional(switchCmd),
+		git.ActionRefs(git.RefOption{}.Default()),
 	)
 }

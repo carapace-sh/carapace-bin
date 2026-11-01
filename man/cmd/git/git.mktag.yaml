@@ -13,8 +13,8 @@ documentation:
     invoked with `-t tag -w --stdin`. I.e. both of these will create and
     write a tag found in `my-tag`:
 
-        git mktag <my-tag
-        git hash-object -t tag -w --stdin <my-tag
+      git mktag <my-tag
+      git hash-object -t tag -w --stdin <my-tag
 
     The difference is that mktag will die before writing the tag if the
     tag doesn't pass a [git-fsck](cmd://git/fsck) check.
@@ -27,4 +27,6 @@ documentation:
     by [git-fsck](cmd://git/fsck). This extra check can be turned off by setting
     the appropriate `fsck.<msg-id>` variable:
 
-        git -c fsck.extraHeaderEntry=ignore mktag <my-tag-with-headers
+      git -c fsck.extraHeaderEntry=ignore mktag <my-tag-with-headers
+  flag:
+    strict: enable more strict checking

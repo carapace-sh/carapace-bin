@@ -2,13 +2,34 @@
 name: clone
 description: Clone a repository with Scalar optimizations
 flags:
-    --full-clone: do not create a partial clone
-    --maintenance: enable automatic maintenance
-    --single-branch: clone only the history leading to the tip of a single branch
-    --src: show source URL
-    --tags: clone tags
-    -b, --branch=: clone only the history leading to the tip of the specified branch
-
+  --full-clone: do not create a partial clone
+  --maintenance: enable automatic maintenance
+  --single-branch: clone only the history leading to the tip of a single branch
+  --src: show source URL
+  --tags: clone tags
+  -b, --branch=: clone only the history leading to the tip of the specified branch
 documentation:
-  command: >-
-    Clone the specified repository, similar to [git-clone](cmd://git/clone). By default, only commit and tree objects are cloned. Once finished, the worktree is located at `<enlistment>/src`. The sparse-checkout feature is enabled (except when run with `--full-clone`) and the only files present are those in the top-level directory. Use `git sparse-checkout set` to expand the set of directories you want to see.
+  command: Clone the specified repository, similar to [git-clone](cmd://git/clone). By default, only commit and tree objects are cloned. Once finished, the worktree is located at `<enlistment>/src`. The sparse-checkout feature is enabled (except when run with `--full-clone`) and the only files present are those in the top-level directory. Use `git sparse-checkout set` to expand the set of directories you want to see.
+  flag:
+    single-branch: |-
+      Clone only the history leading to the tip of a single branch,
+      either specified by the `--branch` option or the primary
+      branch remote's `HEAD` points at.
+      Further fetches into the resulting repository will only update the
+      remote-tracking branch for the branch this option was used for the
+      initial cloning.  If the `HEAD` at the remote did not point at any
+      branch when `--single-branch` clone was made, no remote-tracking
+      branch is created.
+    tags: |-
+      Instead of using only the annotated tags, use any tag
+      found in `refs/tags` namespace.  This option enables matching
+      a lightweight (non-annotated) tag.
+    branch: |-
+      Point the newly created `HEAD` to _<name>_ branch instead of the branch
+      pointed to by the cloned repository's `HEAD`. In a non-bare repository,
+      this is the branch that will be checked out.
+      `--branch` can also take tags and detaches the `HEAD` at that commit
+      in the resulting repository.
+    full-clone: do not create a partial clone
+    maintenance: enable automatic maintenance
+    src: show source URL

@@ -22,7 +22,7 @@ func init() {
 	rootCmd.AddCommand(serveCmd)
 
 	carapace.Gen(serveCmd).FlagCompletion(carapace.ActionMap{
-		"host": carapace.ActionValues("localhost", "127.0.0.1"),
+		"host": carapace.ActionValues("127.0.0.1", "localhost"),
 		"port": net.ActionPorts(),
 	})
 }

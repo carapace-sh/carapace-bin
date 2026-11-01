@@ -16,12 +16,15 @@ var workspace_platform_addCmd = &cobra.Command{
 func init() {
 	carapace.Gen(workspace_platform_addCmd).Standalone()
 
-	workspace_platform_addCmd.Flags().String("archspec", "", "Declare a `__archspec` virtual package with the given microarchitecture string, e.g. `x86-64-v3`. Valid on any subdir")
+	workspace_platform_addCmd.Flags().Bool("amdgpu", false, "Declare a `__amdgpu` virtual package, stating that an AMD GPU is present. Valid on any subdir. Serialized as `amdgpu = true`")
+	workspace_platform_addCmd.Flags().String("amdgpu-arch", "", "Declare a `__amdgpu_arch` virtual package from an AMDGPU target name, e.g. `gfx90a`. Also declares `__amdgpu`. Serialized as `amdgpu = \"<target>\"`")
+	workspace_platform_addCmd.Flags().String("archspec", "", "Declare a `__archspec` virtual package with the given microarchitecture string, e.g. `x86_64_v3`. Valid on any subdir")
 	workspace_platform_addCmd.Flags().Bool("auto-detect", false, "Detect this machine's platform (subdir and virtual packages) instead of naming a subdir. Optionally pass a single `<name>` to name it; any virtual-package flags override the detected values. The detected platform is placed at the top of the list")
 	workspace_platform_addCmd.Flags().Bool("auto-detected", false, "Detect this machine's platform (subdir and virtual packages) instead of naming a subdir. Optionally pass a single `<name>` to name it; any virtual-package flags override the detected values. The detected platform is placed at the top of the list")
 	workspace_platform_addCmd.Flags().String("cuda", "", "Declare a `__cuda` virtual package at the given version, e.g. `12.0`. Valid on any subdir")
 	workspace_platform_addCmd.Flags().String("cuda-arch", "", "Declare a `__cuda_arch` virtual package (GPU compute capability) at the given version, e.g. `8.6`. Requires `--cuda` (or an existing `__cuda`), matching the conda CEP coupling. Serialized as `cuda = { driver, arch }`")
 	workspace_platform_addCmd.Flags().Bool("current", false, "Detect this machine's platform (subdir and virtual packages) instead of naming a subdir. Optionally pass a single `<name>` to name it; any virtual-package flags override the detected values. The detected platform is placed at the top of the list")
+	workspace_platform_addCmd.Flags().StringP("environment", "e", "", "The environment to add the platform to. The platform is written to the platforms defined inline on the environment")
 	workspace_platform_addCmd.Flags().StringP("feature", "f", "", "The name of the feature to add the platform to")
 	workspace_platform_addCmd.Flags().String("glibc", "", "Declare a `__glibc` virtual package at the given version, e.g. `2.28`. Only valid on linux subdirs")
 	workspace_platform_addCmd.Flags().String("linux", "", "Declare a `__linux` virtual package at the given kernel version, e.g. `5.10`. Only valid on linux subdirs")
@@ -32,7 +35,8 @@ func init() {
 	workspace_platformCmd.AddCommand(workspace_platform_addCmd)
 
 	carapace.Gen(workspace_platform_addCmd).FlagCompletion(carapace.ActionMap{
-		"feature": pixi.ActionFeatures(),
+		"environment": pixi.ActionEnvironments(),
+		"feature":     pixi.ActionFeatures(),
 	})
 
 	carapace.Gen(workspace_platform_addCmd).PositionalAnyCompletion(

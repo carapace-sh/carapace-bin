@@ -21,6 +21,7 @@ func init() {
 	releases_createCmd.Flags().BoolP("draft", "d", false, "Is a draft")
 	releases_createCmd.Flags().StringP("login", "l", "", "Use a different Gitea Login. Optional")
 	releases_createCmd.Flags().StringP("note", "n", "", "Release notes")
+	releases_createCmd.Flags().StringP("note-file", "f", "", "Release notes file name. If set, --note is ignored")
 	releases_createCmd.Flags().StringP("output", "o", "", "Output format. (simple, table, csv, tsv, yaml, json)")
 	releases_createCmd.Flags().BoolP("prerelease", "p", false, "Is a pre-release")
 	releases_createCmd.Flags().StringP("remote", "R", "", "Discover Gitea login from remote. Optional")
@@ -32,8 +33,10 @@ func init() {
 
 	// TODO completion
 	carapace.Gen(releases_createCmd).FlagCompletion(carapace.ActionMap{
-		"login":  tea.ActionLogins(),
-		"output": tea.ActionOutputFormats(),
-		"remote": git.ActionRemotes(),
+		"asset":     carapace.ActionFiles(),
+		"login":     tea.ActionLogins(),
+		"note-file": carapace.ActionFiles(),
+		"output":    tea.ActionOutputFormats(),
+		"remote":    git.ActionRemotes(),
 	})
 }

@@ -16,7 +16,7 @@ func init() {
 	carapace.Gen(pkgidCmd).Standalone()
 
 	pkgidCmd.Flags().BoolP("help", "h", false, "Print help")
-	pkgidCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
+	pkgidCmd.Flags().StringP("manifest-path", "m", "", "Path to Cargo.toml")
 	pkgidCmd.Flags().StringP("package", "p", "", "Argument to get the package ID specifier for")
 	rootCmd.AddCommand(pkgidCmd)
 

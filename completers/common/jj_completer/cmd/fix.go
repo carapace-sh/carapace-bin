@@ -24,4 +24,8 @@ func init() {
 	carapace.Gen(fixCmd).FlagCompletion(carapace.ActionMap{
 		"source": jj.ActionRevsets(jj.RevOpts{}.Default()),
 	})
+
+	carapace.Gen(fixCmd).PositionalAnyCompletion(
+		carapace.ActionFiles().FilterArgs(),
+	)
 }

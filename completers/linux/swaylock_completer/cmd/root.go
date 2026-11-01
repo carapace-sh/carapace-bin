@@ -121,7 +121,7 @@ func init() {
 		"ring-color":             color.ActionHexColors(),
 		"ring-ver-color":         color.ActionHexColors(),
 		"ring-wrong-color":       color.ActionHexColors(),
-		"scaling":                carapace.ActionValues("stretch", "fill", "fit", "center", "tile", "solid_color"),
+		"scaling":                carapace.ActionValues("center", "fill", "fit", "solid_color", "stretch", "tile"),
 		"separator-color":        color.ActionHexColors(),
 		"text-caps-lock-color":   color.ActionHexColors(),
 		"text-clear-color":       color.ActionHexColors(),

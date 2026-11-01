@@ -73,39 +73,39 @@ func init() {
 func actionConvs() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"ascii", "from EBCDIC to ASCII",
-		"ebcdic", "from ASCII to EBCDIC",
-		"ibm", "from ASCII to alternate EBCDIC",
 		"block", "pad newline-terminated records with spaces to cbs-size",
-		"unblock", "replace trailing spaces in cbs-size records with newline",
+		"ebcdic", "from ASCII to EBCDIC",
+		"excl", "fail if the output file already exists",
+		"fdatasync", "physically write output file data before finishing",
+		"fsync", "likewise, but also write metadata",
+		"ibm", "from ASCII to alternate EBCDIC",
 		"lcase", "change upper case to lower case",
-		"ucase", "change lower case to upper case",
+		"nocreat", "do not create the output file",
+		"noerror", "continue after read errors",
+		"notrunc", "do not truncate the output file",
 		"sparse", "try to seek rather than write all-NUL output blocks",
 		"swab", "swap every pair of input bytes",
 		"sync", "pad every input block with NULs to ibs-size",
-		"excl", "fail if the output file already exists",
-		"nocreat", "do not create the output file",
-		"notrunc", "do not truncate the output file",
-		"noerror", "continue after read errors",
-		"fdatasync", "physically write output file data before finishing",
-		"fsync", "likewise, but also write metadata",
+		"ucase", "change lower case to upper case",
+		"unblock", "replace trailing spaces in cbs-size records with newline",
 	)
 }
 
 func actionIFlags() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"append", "append mode",
+		"count_bytes", "treat 'count=N' as a byte count",
 		"direct", "use direct I/O for data",
 		"directory", "fail unless a directory",
 		"dsync", "use synchronized I/O for data",
-		"sync", "likewise, but also for metadata",
 		"fullblock", "accumulate full blocks of input",
-		"nonblock", "use non-blocking I/O",
 		"noatime", "do not update access time",
 		"nocache", "Request to drop cache",
 		"noctty", "do not assign controlling terminal from file",
 		"nofollow", "do not follow symlinks",
-		"count_bytes", "treat 'count=N' as a byte count",
+		"nonblock", "use non-blocking I/O",
 		"skip_bytes", "treat 'skip=N' as a byte count",
+		"sync", "likewise, but also for metadata",
 	)
 }
 
@@ -115,12 +115,12 @@ func actionOFlags() carapace.Action {
 		"direct", "use direct I/O for data",
 		"directory", "fail unless a directory",
 		"dsync", "use synchronized I/O for data",
-		"sync", "likewise, but also for metadata",
-		"nonblock", "use non-blocking I/O",
 		"noatime", "do not update access time",
 		"nocache", "Request to drop cache",
 		"noctty", "do not assign controlling terminal from file",
 		"nofollow", "do not follow symlinks",
+		"nonblock", "use non-blocking I/O",
 		"seek_bytes", "treat 'seek=N' as a byte count",
+		"sync", "likewise, but also for metadata",
 	)
 }

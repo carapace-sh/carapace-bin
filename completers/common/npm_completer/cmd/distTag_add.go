@@ -9,9 +9,10 @@ import (
 )
 
 var distTag_addCmd = &cobra.Command{
-	Use:   "add",
-	Short: "tag specified version of the package",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "add",
+	Short:   "tag specified version of the package",
+	Aliases: []string{"a", "set", "s"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

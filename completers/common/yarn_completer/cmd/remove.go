@@ -21,7 +21,7 @@ func init() {
 	rootCmd.AddCommand(removeCmd)
 
 	carapace.Gen(removeCmd).FlagCompletion(carapace.ActionMap{
-		"mode": carapace.ActionStyledValuesDescribed(
+		"mode": carapace.ActionValuesDescribed(
 			"skip-build", "do not run the build scripts at all",
 			"update-lockfile", "skip the link step altogether",
 		),

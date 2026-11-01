@@ -19,8 +19,8 @@ func init() {
 	rootCmd.AddCommand(listCmd)
 
 	carapace.Gen(listCmd).FlagCompletion(carapace.ActionMap{
-		"format": carapace.ActionValues("text", "json", "cue"),
-		"status": carapace.ActionValues("stable", "beta", "experimental"),
+		"format": carapace.ActionValues("cue", "json", "text"),
+		"status": carapace.ActionValues("beta", "experimental", "stable"),
 	})
 
 	carapace.Gen(listCmd).PositionalAnyCompletion(

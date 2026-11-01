@@ -2,13 +2,28 @@
 name: compact
 description: Compact a multi-pack-index
 flags:
-    --base=: base MIDX for incremental writes
-    --bitmap: write multi-pack bitmap
-    --incremental: write a new incremental MIDX
-    --no-write-chain-file: do not write the multi-pack-index chain file
-    --object-dir=: use given directory for the location of Git objects
-    --progress: force progress reporting
-
+  --base=: base MIDX for incremental writes
+  --bitmap: write multi-pack bitmap
+  --incremental: write a new incremental MIDX
+  --no-write-chain-file: do not write the multi-pack-index chain file
+  --object-dir=: use given directory for the location of Git objects
+  --progress: force progress reporting
 documentation:
-  command: >-
-    Write a new MIDX layer containing only objects and packs present in the range `<from>` to `<to>`, where both arguments are checksums of existing layers in the MIDX chain. Note that the compact command requires writing a version-2 midx that cannot be read by versions of Git prior to v2.54.
+  command: Write a new MIDX layer containing only objects and packs present in the range `<from>` to `<to>`, where both arguments are checksums of existing layers in the MIDX chain. Note that the compact command requires writing a version-2 midx that cannot be read by versions of Git prior to v2.54.
+  flag:
+    base: |-
+      Add prerequisite tree info to the patch series. The argument can be
+      `auto` (use the current branch as the base), a commit object name,
+      or a reference in `refs/notes/`. This option is useful when the
+      patches need to be applied on top of a specific commit.
+    incremental: |-
+      Show the result incrementally in a format designed for
+      machine consumption.
+    progress: |-
+      Enable progress reporting on the standard error stream even if
+      not attached to a terminal. By default, progress status is
+      reported only when it is attached. You can't use `--progress`
+      together with `--porcelain` or `--incremental`.
+    bitmap: write multi-pack bitmap
+    no-write-chain-file: do not write the multi-pack-index chain file
+    object-dir: use given directory for the location of Git objects

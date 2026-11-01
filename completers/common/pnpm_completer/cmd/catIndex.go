@@ -14,5 +14,6 @@ var catIndexCmd = &cobra.Command{
 func init() {
 	carapace.Gen(catIndexCmd).Standalone()
 
+	catIndexCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
 	rootCmd.AddCommand(catIndexCmd)
 }

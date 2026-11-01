@@ -217,7 +217,7 @@ func init() {
 		"newer":                    carapace.ActionFiles(),
 		"owner":                    os.ActionUsers(),
 		"owner-map":                carapace.ActionFiles(),
-		"quoting-style":            carapace.ActionValues("c", "clocale", "c-maybe", "escape", "literal", "locale", "shell", "shell-always"),
+		"quoting-style":            carapace.ActionValues("c", "c-maybe", "clocale", "escape", "literal", "locale", "shell", "shell-always"),
 		"to-command":               carapace.ActionFiles(),
 		"use-compress-program":     carapace.ActionFiles(),
 		"volno-file":               carapace.ActionFiles(),

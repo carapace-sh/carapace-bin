@@ -14,6 +14,8 @@ var stash_saveCmd = &cobra.Command{
 func init() {
 	carapace.Gen(stash_saveCmd).Standalone()
 
+	stash_saveCmd.Flags().BoolP("all", "a", false, "also stash ignored and untracked")
+	stash_saveCmd.Flags().BoolP("include-untracked", "u", false, "also stash untracked")
 	stash_saveCmd.Flags().BoolP("keep-index", "k", false, "keep changed added to index")
 	stash_saveCmd.Flags().StringP("message", "m", "", "set description")
 	stash_saveCmd.Flags().BoolP("patch", "p", false, "interactively select hunks between HEAD and working tree")

@@ -91,21 +91,21 @@ func ActionReleaseAssets(cmd *cobra.Command, tag string) carapace.Action {
 
 func ActionReleaseFields() carapace.Action {
 	return carapace.ActionValues(
-		"url",
 		"apiUrl",
-		"uploadUrl",
-		"tarballUrl",
-		"zipballUrl",
-		"id",
-		"tagName",
-		"name",
+		"assets",
+		"author",
 		"body",
+		"createdAt",
+		"id",
 		"isDraft",
 		"isPrerelease",
-		"createdAt",
+		"name",
 		"publishedAt",
+		"tagName",
+		"tarballUrl",
 		"targetCommitish",
-		"author",
-		"assets",
+		"uploadUrl",
+		"url",
+		"zipballUrl",
 	)
 }

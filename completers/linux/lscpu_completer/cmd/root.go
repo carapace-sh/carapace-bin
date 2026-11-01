@@ -49,10 +49,10 @@ func init() {
 	rootCmd.Flag("parse").NoOptDefVal = " "
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"annotate":   carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
+		"annotate":   carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"caches":     ActionCacheColumns().UniqueList(","),
 		"extended":   ActionFormatColumns().UniqueList(","),
-		"hierarchic": carapace.ActionValues("auto", "always", "never").StyleF(style.ForKeyword),
+		"hierarchic": carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"parse":      ActionFormatColumns().UniqueList(","),
 		"sysroot":    carapace.ActionDirectories(),
 	})
@@ -60,39 +60,39 @@ func init() {
 
 func ActionFormatColumns() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"BOGOMIPS", "crude measurement of CPU speed",
-		"CPU", "logical CPU number",
-		"CORE", "logical core number",
-		"SOCKET", "logical socket number",
-		"CLUSTER", "logical cluster number",
-		"NODE", "logical NUMA node number",
-		"BOOK", "logical book number",
-		"DRAWER", "logical drawer number",
-		"CACHE", "shows how caches are shared between CPUs",
-		"POLARIZATION", "CPU dispatching mode on virtual hardware",
 		"ADDRESS", "physical address of a CPU",
+		"BOGOMIPS", "crude measurement of CPU speed",
+		"BOOK", "logical book number",
+		"CACHE", "shows how caches are shared between CPUs",
+		"CLUSTER", "logical cluster number",
 		"CONFIGURED", "shows if the hypervisor has allocated the CPU",
-		"ONLINE", "shows if Linux currently makes use of the CPU",
-		"MHZ", "shows the current MHz of the CPU",
-		"SCALMHZ%", "shows scaling percentage of the CPU frequency",
+		"CORE", "logical core number",
+		"CPU", "logical CPU number",
+		"DRAWER", "logical drawer number",
 		"MAXMHZ", "shows the maximum MHz of the CPU",
+		"MHZ", "shows the current MHz of the CPU",
 		"MINMHZ", "shows the minimum MHz of the CPU",
 		"MODELNAME", "shows CPU model name",
+		"NODE", "logical NUMA node number",
+		"ONLINE", "shows if Linux currently makes use of the CPU",
+		"POLARIZATION", "CPU dispatching mode on virtual hardware",
+		"SCALMHZ%", "shows scaling percentage of the CPU frequency",
+		"SOCKET", "logical socket number",
 	)
 }
 
 func ActionCacheColumns() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"ALL-SIZE", "size of all system caches",
+		"ALLOC-POLICY", "allocation policy",
+		"COHERENCY-SIZE", "minimum amount of data in bytes transferred from memory to cache",
 		"LEVEL", "cache level",
 		"NAME", "cache name",
 		"ONE-SIZE", "size of one cache",
-		"TYPE", "cache type",
-		"WAYS", "ways of associativity",
-		"ALLOC-POLICY", "allocation policy",
-		"WRITE-POLICY", "write policy",
 		"PHY-LINE", "number of physical cache line per cache t",
 		"SETS", "number of sets in the cache; set lines has the same cache index",
-		"COHERENCY-SIZE", "minimum amount of data in bytes transferred from memory to cache",
+		"TYPE", "cache type",
+		"WAYS", "ways of associativity",
+		"WRITE-POLICY", "write policy",
 	)
 }

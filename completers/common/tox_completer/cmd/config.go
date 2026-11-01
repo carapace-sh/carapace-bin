@@ -27,6 +27,6 @@ func init() {
 	rootCmd.AddCommand(configCmd)
 
 	carapace.Gen(configCmd).FlagCompletion(carapace.ActionMap{
-		"skip-missing-interpreters": carapace.ActionValues("config", "true", "false").StyleF(style.ForKeyword),
+		"skip-missing-interpreters": carapace.ActionValues("config", "false", "true").StyleF(style.ForKeyword),
 	})
 }

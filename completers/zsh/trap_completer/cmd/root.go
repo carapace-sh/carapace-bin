@@ -22,11 +22,11 @@ func init() {
 	// TODO fix positional completion
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.ActionValues(
-			"HUP", "INT", "QUIT", "ILL", "TRAP", "IOT", "BUS", "FPE", "KILL",
-			"USR1", "SEGV", "USR2", "PIPE", "ALRM", "TERM", "STKFLT", "CHLD",
-			"CONT", "STOP", "TSTP", "TTIN", "TTOU", "URG", "XCPU", "XFSZ",
-			"VTALRM", "PROF", "WINCH", "POLL", "PWR", "SYS", "ZERR", "DEBUG",
-			"EXIT", "0",
+			"0", "ALRM", "BUS", "CHLD", "CONT", "DEBUG", "EXIT", "FPE", "HUP",
+			"ILL", "INT", "IOT", "KILL", "PIPE", "POLL", "PROF", "PWR",
+			"QUIT", "SEGV", "STKFLT", "STOP", "SYS", "TERM", "TRAP", "TSTP",
+			"TTIN", "TTOU", "URG", "USR1", "USR2", "VTALRM", "WINCH", "XCPU",
+			"XFSZ", "ZERR",
 		).Usage("signal"),
 	)
 

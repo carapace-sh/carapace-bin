@@ -22,6 +22,7 @@ func init() {
 	importCmd.Flags().StringP("environment", "e", "", "A name for the created environment")
 	importCmd.Flags().StringP("feature", "f", "", "A name for the created feature")
 	importCmd.Flags().String("format", "", "Which format to interpret the file as")
+	importCmd.Flags().Bool("offline", false, "Run without network access, using only cached data. Commands fail if data is missing from the cache. Pass `--offline=false` to override an `offline` setting from the configuration")
 	importCmd.PersistentFlags().StringP("manifest-path", "m", "", "The path to `pixi.toml`, `pyproject.toml`, or the workspace directory")
 	importCmd.Flags().Bool("no-config", false, "Don't read system or user-level configuration files. Project-local `<project>/.pixi/config.toml` is still loaded")
 	importCmd.Flags().Bool("no-hard-links", false, "Disallow hard links during package installation")
@@ -44,9 +45,9 @@ func init() {
 		"feature":               pixi.ActionFeatures(),
 		"format":                carapace.ActionValues("conda-env", "pypi-txt"),
 		"manifest-path":         carapace.ActionFiles(),
-		"pinning-strategy":      carapace.ActionValues("semver", "minor", "major", "latest-up", "exact-version", "no-pin"),
+		"pinning-strategy":      carapace.ActionValues("exact-version", "latest-up", "major", "minor", "no-pin", "semver"),
 		"platform":              pixi.ActionPlatforms(),
 		"pypi-keyring-provider": carapace.ActionValues("disabled", "subprocess"),
-		"tls-root-certs":        carapace.ActionValues("webpki", "system"),
+		"tls-root-certs":        carapace.ActionValues("system", "webpki"),
 	})
 }

@@ -3,11 +3,11 @@ name: cvsserver
 description: A CVS server emulator for Git
 group: interaction
 flags:
-  --base-path=: Prepend path to requested CVSROOT
-  --export-all: 'Don’t check for gitcvs.enabled in config '
-  --strict-paths: Don’t allow recursing into subdirectories
-  -V, --version: Print version information and exit
-  -h, --help: Print usage information and exit
+  --base-path=: prepend path to requested CVSROOT
+  --export-all: 'don’t check for gitcvs.enabled in config '
+  --strict-paths: don’t allow recursing into subdirectories
+  -V, --version: print version information and exit
+  -h, --help: print usage information and exit
 documentation:
   command: |-
     This application is a CVS emulation layer for Git.
@@ -18,3 +18,34 @@ documentation:
 
     Testing has been done using both the CLI CVS client, and the Eclipse CVS
     plugin. Most functionality works fine with both of these clients.
+  flag:
+    base-path: |-
+      Remap all the path requests as relative to the given path.
+      This is sort of "Git root" - if you run `git daemon` with
+      `--base-path=/srv/git` on `example.com`, then if you later try
+      to pull from `git://example.com/hello.git`, `git daemon` will
+      interpret the path as `/srv/git/hello.git`.
+    export-all: |-
+      Allow pulling from all directories that look like Git repositories
+      (have the `objects` and 'refs` subdirectories), even if they`
+      do not have the `git-daemon-export-ok` file.
+    strict-paths: |-
+      Match paths exactly (i.e. don't allow "/foo/repo" when the real path is
+      "/foo/repo.git" or "/foo/repo/.git") and don't do user-relative paths.
+      `git daemon` will refuse to start when this option is enabled and no
+      directory arguments are provided.
+    help: |-
+      Prints the synopsis and a list of the most commonly used commands. If
+      the option `--all` or `-a` is given then all available commands are
+      printed. If a Git command is named this option will bring up the manual
+      page for that command.
+      
+      Other options are available to control how the manual page is displayed.
+      See [git-help](cmd://git/help) for more information, because
+      `git --help ...` is converted internally into `git help ...`.
+    version: |-
+      Prints the Git suite version that the *git* program came from.
+      
+      This option is internally converted to `git version ...` and accepts the
+      same options as the [git-version](cmd://git/version) command. If
+      `--help` is also given, it takes precedence over `--version`.

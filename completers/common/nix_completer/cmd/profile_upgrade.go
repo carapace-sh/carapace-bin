@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/nix"
+	"github.com/carapace-sh/carapace-bin/completers/common/nix_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
 
@@ -18,17 +18,11 @@ func init() {
 	profile_upgradeCmd.Flags().String("profile", "", "The profile to operate on")
 	profileCmd.AddCommand(profile_upgradeCmd)
 
-	addEvaluationFlags(profile_upgradeCmd)
-	addFlakeFlags(profile_upgradeCmd)
-	addLoggingFlags(profile_upgradeCmd)
+	common.AddEvaluationFlags(profile_upgradeCmd)
+	common.AddFlakeFlags(profile_upgradeCmd)
+	common.AddLoggingFlags(profile_upgradeCmd)
 
 	carapace.Gen(profile_upgradeCmd).FlagCompletion(carapace.ActionMap{
-		"inputs-from": carapace.Batch(
-			carapace.ActionDirectories(),
-			nix.ActionFlakes(),
-		).ToA(),
-		"output-lock-file":    carapace.ActionFiles(),
-		"profile":             carapace.ActionDirectories(),
-		"reference-lock-file": carapace.ActionFiles("lock"),
+		"profile": carapace.ActionDirectories(),
 	})
 }

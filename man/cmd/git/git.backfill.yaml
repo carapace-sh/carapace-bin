@@ -1,6 +1,13 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: backfill
-description: backfill missing objects in a partial clone
+description: Fetch missing objects in a partial clone on demand
+group: main
+flags:
+  --include-edges: request objects at the edges of the partial clone
+  --min-batch-size=: minimum number of objects to request at a time
+  --no-include-edges: do not request objects at the edges of the partial clone
+  --no-sparse: do not restrict the missing objects to the current sparse-checkout
+  --sparse: restrict the missing objects to the current sparse-checkout
 documentation:
   command: |-
     Blobless partial clones are created using `git clone --filter=blob:none`
@@ -34,3 +41,13 @@ documentation:
     commit. This set can be restricted or expanded using various options below.
 
     THIS COMMAND IS EXPERIMENTAL. ITS BEHAVIOR MAY CHANGE IN THE FUTURE.
+  flag:
+    sparse: |-
+      Employ a sparse-checkout, with only files in the toplevel
+      directory initially being present.  The
+      [git-sparse-checkout](cmd://git/sparse-checkout) command can be used to grow the
+      working directory as needed.
+    no-sparse: do not restrict the missing objects to the current sparse-checkout
+    include-edges: request objects at the edges of the partial clone
+    min-batch-size: minimum number of objects to request at a time
+    no-include-edges: do not request objects at the edges of the partial clone

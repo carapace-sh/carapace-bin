@@ -18,6 +18,7 @@ var apiCmd = &cobra.Command{
 func init() {
 	carapace.Gen(apiCmd).Standalone()
 
+	apiCmd.Flags().Bool("allow-escape-sequences", false, "Allow printing terminal escape sequences")
 	apiCmd.Flags().String("cache", "", "Cache the response, e.g. \"3600s\", \"60m\", \"1h\"")
 	apiCmd.Flags().StringSliceP("field", "F", nil, "Add a typed parameter in `key=value` format (use \"@<path>\" or \"@-\" to read value from file or stdin)")
 	apiCmd.Flags().StringSliceP("header", "H", nil, "Add a HTTP request header in `key:value` format")

@@ -8,7 +8,7 @@ import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/cargo"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
-	shlex "github.com/carapace-sh/carapace-shlex"
+	shlex "github.com/carapace-sh/carapace-shlex/v2"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
@@ -63,7 +63,7 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"C":     carapace.ActionDirectories(),
 		"Z":     cargo.ActionNightlyFlags(),
-		"color": carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
+		"color": carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 	})
 
 	carapace.Gen(rootCmd).PreRun(func(cmd *cobra.Command, args []string) {
@@ -73,6 +73,16 @@ func init() {
 			re := regexp.MustCompile(`^    (?P<command>[^ ]+)( +(?P<description>.*))?$`)
 			for line := range strings.SplitSeq(string(output), "\n") {
 				if matches := re.FindStringSubmatch(line); matches != nil {
+					skip := false
+					for _, ec := range rootCmd.Commands() {
+						if ec.Name() == matches[1] {
+							skip = true
+							break
+						}
+					}
+					if skip {
+						continue
+					}
 					pluginCmd := &cobra.Command{
 						Use:                matches[1],
 						Short:              matches[3],
@@ -84,7 +94,7 @@ func init() {
 					carapace.Gen(pluginCmd).PositionalAnyCompletion(
 						carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 							if alias, ok := strings.CutPrefix(matches[3], "alias: "); ok {
-								tokens, err := shlex.Split(alias)
+								tokens, err := shlex.Split(alias, shlex.Default)
 								if err != nil {
 									return carapace.ActionMessage(err.Error())
 								}

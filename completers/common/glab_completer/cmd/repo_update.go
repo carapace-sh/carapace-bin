@@ -23,7 +23,6 @@ func init() {
 	carapace.Gen(repo_updateCmd).FlagCompletion(carapace.ActionMap{
 		"defaultBranch": action.ActionBranches(repo_updateCmd),
 	})
-
 	carapace.Gen(repo_updateCmd).PositionalCompletion(
 		carapace.ActionDirectories(),
 	)

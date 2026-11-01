@@ -25,7 +25,7 @@ func init() {
 	rootCmd.AddCommand(clipboardCmd)
 
 	carapace.Gen(clipboardCmd).FlagCompletion(carapace.ActionMap{
-		"password": carapace.ActionValues("text:", "fd:", "file:<file>").MultiPartsP(":", "<.*>", func(placeholder string, matches map[string]string) carapace.Action {
+		"password": carapace.ActionValues("fd:", "file:<file>", "text:").MultiPartsP(":", "<.*>", func(placeholder string, matches map[string]string) carapace.Action {
 			switch placeholder {
 			case "<file>":
 				return carapace.ActionFiles()

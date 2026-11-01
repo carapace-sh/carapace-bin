@@ -8,9 +8,9 @@ import "github.com/carapace-sh/carapace"
 //	never (Never show resize overlays)
 func ActionResizeOverlayModes() carapace.Action {
 	return carapace.ActionValuesDescribed(
+		"after-first", "Show up if the surface is resized after creation",
 		"always", "Always show resize overlays",
 		"never", "Never show resize overlays",
-		"after-first", "Show up if the surface is resized after creation",
 	).Tag("resize overlay modes").Uid("ghostty", "resize-overlay-mode")
 }
 
@@ -20,12 +20,12 @@ func ActionResizeOverlayModes() carapace.Action {
 //	top-left
 func ActionResizeOverlayPositions() carapace.Action {
 	return carapace.ActionValues(
-		"center",
-		"top-left",
-		"top-center",
-		"top-right",
-		"bottom-left",
 		"bottom-center",
+		"bottom-left",
 		"bottom-right",
+		"center",
+		"top-center",
+		"top-left",
+		"top-right",
 	).Tag("resize overlay positions").Uid("ghostty", "resize-overlay-position")
 }

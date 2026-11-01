@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: clear
+description: Clear a key or all keys
+flags:
+    --all: Clear all keys for the branch
+    --branch=: Target branch (defaults to current)
+    -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        C:
+            - $files
+        config:
+            - $files

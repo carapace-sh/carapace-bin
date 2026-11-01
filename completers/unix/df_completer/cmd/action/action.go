@@ -8,18 +8,18 @@ import (
 
 func ActionColumns() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"source", "The source of the mount point, usually a device",
+		"avail", "Number of available blocks",
+		"file", "The file name if specified on the command line",
 		"fstype", "File system type",
-		"itotal", "Total number of inodes",
-		"iused", "Number of used inodes",
 		"iavail", "Number of available inodes",
 		"ipcent", "Percentage of IUSED divided by ITOTAL",
-		"size", "Total number of blocks",
-		"used", "Number of used blocks",
-		"avail", "Number of available blocks",
+		"itotal", "Total number of inodes",
+		"iused", "Number of used inodes",
 		"pcent", "Percentage of USED divided by SIZE",
-		"file", "The file name if specified on the command line",
+		"size", "Total number of blocks",
+		"source", "The source of the mount point, usually a device",
 		"target", "The mount point",
+		"used", "Number of used blocks",
 	)
 }
 

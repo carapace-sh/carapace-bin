@@ -20,6 +20,7 @@ func init() {
 	catFileCmd.Flags().String("batch", "", "show info and content of objects fed from the standard input")
 	catFileCmd.Flags().Bool("batch-all-objects", false, "show all objects with --batch or --batch-check")
 	catFileCmd.Flags().String("batch-check", "", "show info about objects fed from the standard input")
+	catFileCmd.Flags().String("batch-command", "", "enter a batch mode on stdin that takes queries and returns results")
 	catFileCmd.Flags().Bool("buffer", false, "buffer --batch output")
 	catFileCmd.Flags().BoolS("e", "e", false, "exit with zero when there's no error")
 	catFileCmd.Flags().String("filter", "", "omit objects from the list of printed objects (batch mode)")
@@ -40,9 +41,10 @@ func init() {
 
 	carapace.Gen(catFileCmd).FlagCompletion(carapace.ActionMap{
 		"filter": git.ActionObjectFilters(),
+		"path":   carapace.ActionFiles(),
 	})
 	carapace.Gen(catFileCmd).PositionalCompletion(
-		carapace.ActionValues("blob", "tree", "commit", "tag"),
+		carapace.ActionValues("blob", "commit", "tag", "tree"),
 		git.ActionRefs(git.RefOption{}.Default()),
 	)
 

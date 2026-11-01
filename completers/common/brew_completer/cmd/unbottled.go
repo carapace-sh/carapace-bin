@@ -21,7 +21,7 @@ func init() {
 	unbottledCmd.Flags().Bool("help", false, "Show this message.")
 	unbottledCmd.Flags().Bool("lost", false, "Print the `homebrew/core` commits where bottles were lost in the last week.")
 	unbottledCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	unbottledCmd.Flags().Bool("tag", false, "Use the specified bottle tag (e.g. `big_sur`) instead of the current OS.")
+	unbottledCmd.Flags().String("tag", "", "Use the specified bottle tag (e.g. `big_sur`) instead of the current OS.")
 	unbottledCmd.Flags().Bool("total", false, "Print the number of unbottled and total formulae.")
 	unbottledCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
 	rootCmd.AddCommand(unbottledCmd)

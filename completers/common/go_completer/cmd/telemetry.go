@@ -18,6 +18,6 @@ func init() {
 	rootCmd.AddCommand(telemetryCmd)
 
 	carapace.Gen(telemetryCmd).PositionalCompletion(
-		carapace.ActionValues("off", "local", "on").StyleF(style.ForKeyword),
+		carapace.ActionValues("local", "off", "on").StyleF(style.ForKeyword),
 	)
 }

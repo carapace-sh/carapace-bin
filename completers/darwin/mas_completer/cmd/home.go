@@ -7,11 +7,12 @@ import (
 
 var homeCmd = &cobra.Command{
 	Use:   "home",
-	Short: "Open Mac App Store page for an app",
+	Short: "Open app page in the default web browser",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(homeCmd).Standalone()
+	homeCmd.Flags().Bool("bundle", false, "Process all app IDs as bundle IDs")
 	rootCmd.AddCommand(homeCmd)
 }

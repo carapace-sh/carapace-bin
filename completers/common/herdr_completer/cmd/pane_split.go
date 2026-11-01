@@ -27,7 +27,7 @@ func init() {
 
 	carapace.Gen(pane_splitCmd).FlagCompletion(carapace.ActionMap{
 		"cwd":       carapace.ActionFiles(),
-		"direction": carapace.ActionValues("right", "down"),
+		"direction": carapace.ActionValues("down", "right"),
 		"pane":      herdr.ActionPanes(herdr.PaneOpts{}),
 	})
 

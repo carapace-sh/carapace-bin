@@ -4,8 +4,9 @@ import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/git_completer/cmd/common"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/os"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/time"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -50,6 +51,7 @@ func init() {
 	commitCmd.Flags().Bool("pathspec-file-nul", false, "pathspec elements are separated with NUL character")
 	commitCmd.Flags().String("pathspec-from-file", "", "read pathspec from file")
 	commitCmd.Flags().Bool("porcelain", false, "machine-readable output")
+	commitCmd.Flags().Bool("post-rewrite", false, "opposite of --no-post-rewrite")
 	commitCmd.Flags().BoolP("quiet", "q", false, "suppress summary after successful commit")
 	commitCmd.Flags().StringP("reedit-message", "c", "", "reuse and edit message from specified commit")
 	commitCmd.Flags().Bool("reset-author", false, "the commit is authored by me now (used with -C/-c/--amend)")
@@ -62,6 +64,7 @@ func init() {
 	commitCmd.Flags().StringSlice("trailer", nil, "add custom trailer(s)")
 	commitCmd.Flags().StringP("untracked-files", "u", "", "show untracked files")
 	commitCmd.Flags().BoolP("verbose", "v", false, "show diff in commit message template")
+	commitCmd.Flags().Bool("verify", false, "run pre-commit and commit-msg hooks")
 	common.AddPatchContextFlags(commitCmd)
 	rootCmd.AddCommand(commitCmd)
 
@@ -69,7 +72,9 @@ func init() {
 	commitCmd.Flag("untracked-files").NoOptDefVal = " "
 
 	carapace.Gen(commitCmd).FlagCompletion(carapace.ActionMap{
+		"author":             git.ActionAuthors(),
 		"cleanup":            git.ActionCleanupModes(),
+		"date":               time.ActionDate(),
 		"file":               carapace.ActionFiles(),
 		"fixup":              git.ActionRefs(git.RefOption{}.Default()),
 		"gpg-sign":           os.ActionGpgKeyIds(),
@@ -78,22 +83,8 @@ func init() {
 		"reuse-message":      git.ActionRefs(git.RefOption{}.Default()),
 		"squash":             git.ActionRefs(git.RefOption{}.Default()),
 		"template":           carapace.ActionFiles(),
-		"trailer": carapace.ActionMultiPartsN(":", 2, func(c carapace.Context) carapace.Action {
-			switch len(c.Parts) {
-			case 0:
-				return carapace.ActionValues(
-					"Co-authored-by",
-					"Signed-off-by",
-					"Helped-by",
-				).Suffix(":")
-			default:
-				return carapace.Batch(
-					gh.ActionOwners(gh.HostOpts{}), // TODO include email
-					git.ActionAuthors(),
-				).ToA()
-			}
-		}),
-		"untracked-files": carapace.ActionValues("all", "normal", "no"),
+		"trailer":            git.ActionTrailers(),
+		"untracked-files":    carapace.ActionValues("all", "no", "normal").StyleF(style.ForKeyword),
 	})
 
 	carapace.Gen(commitCmd).PositionalAnyCompletion(

@@ -56,8 +56,8 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"ascii-mode": carapace.ActionValuesDescribed(
-			"standard", "basic ASCII chars",
 			"extended", "Unicode chars",
+			"standard", "basic ASCII chars",
 		),
 		"browser": carapace.Batch(
 			carapace.ActionExecutables(),
@@ -75,7 +75,7 @@ func init() {
 		"layout":             d2.ActionLayouts(),
 		"pad":                carapace.ActionValues(),
 		"port":               net.ActionPorts(),
-		"stdout-format":      carapace.ActionValues("svg", "png", "ascii", "txt", "pdf", "pptx", "gif"),
+		"stdout-format":      carapace.ActionValues("ascii", "gif", "pdf", "png", "pptx", "svg", "txt"),
 		"target":             carapace.ActionValues(), // TODO
 		"theme":              d2.ActionThemes(d2.ThemeOpts{}.Default()),
 	})

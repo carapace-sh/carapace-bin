@@ -16,7 +16,7 @@ func init() {
 
 	report_rebuildsCmd.Flags().BoolP("help", "h", false, "Print help")
 	report_rebuildsCmd.Flags().String("id", "", "Session ID to report on")
-	report_rebuildsCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
+	report_rebuildsCmd.Flags().StringP("manifest-path", "m", "", "Path to Cargo.toml")
 	reportCmd.AddCommand(report_rebuildsCmd)
 
 	carapace.Gen(report_rebuildsCmd).FlagCompletion(carapace.ActionMap{

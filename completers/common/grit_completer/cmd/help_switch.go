@@ -7,7 +7,7 @@ import (
 
 var help_switchCmd = &cobra.Command{
 	Use:   "switch",
-	Short: "Switch to another branch",
+	Short: "Switch to another branch, remote branch, or detached commit",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

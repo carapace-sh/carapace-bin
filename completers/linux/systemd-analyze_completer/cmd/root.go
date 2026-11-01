@@ -65,13 +65,13 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"drm-device":       carapace.ActionDirectories(),
-		"generators":       carapace.ActionValues("yes", "no").StyleF(style.ForKeyword),
+		"generators":       carapace.ActionValues("no", "yes").StyleF(style.ForKeyword),
 		"image":            carapace.ActionFiles(),
-		"json":             carapace.ActionValues("pretty", "short", "off"),
-		"man":              carapace.ActionValues("yes", "no").StyleF(style.ForKeyword),
-		"offline":          carapace.ActionValues("yes", "no").StyleF(style.ForKeyword),
+		"json":             carapace.ActionValues("off", "pretty", "short"),
+		"man":              carapace.ActionValues("no", "yes").StyleF(style.ForKeyword),
+		"offline":          carapace.ActionValues("no", "yes").StyleF(style.ForKeyword),
 		"profile":          carapace.ActionFiles(),
-		"recursive-errors": carapace.ActionValues("yes", "no", "one").StyleF(style.ForKeyword),
+		"recursive-errors": carapace.ActionValues("no", "one", "yes").StyleF(style.ForKeyword),
 		"root":             carapace.ActionDirectories(),
 		"security-policy":  carapace.ActionFiles(),
 		"unit": carapace.ActionCallback(func(c carapace.Context) carapace.Action {

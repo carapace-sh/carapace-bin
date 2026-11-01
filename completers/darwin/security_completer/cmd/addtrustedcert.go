@@ -29,8 +29,8 @@ func init() {
 	carapace.Gen(addTrustedCertCmd).PositionalCompletion(carapace.ActionFiles())
 	carapace.Gen(addTrustedCertCmd).FlagCompletion(carapace.ActionMap{
 		"keychain":     security.ActionKeychains(),
-		"policy":       carapace.ActionValues("ssl", "smime", "codeSign", "IPSec", "iChat", "basic", "swUpdate", "pkgSign", "pkinitClient", "pkinitServer", "eap"),
-		"result-type":  carapace.ActionValues("trustRoot", "trustAsRoot", "deny", "unspecified"),
+		"policy":       carapace.ActionValues("IPSec", "basic", "codeSign", "eap", "iChat", "pkgSign", "pkinitClient", "pkinitServer", "smime", "ssl", "swUpdate"),
+		"result-type":  carapace.ActionValues("deny", "trustAsRoot", "trustRoot", "unspecified"),
 		"settings-in":  carapace.ActionFiles(),
 		"settings-out": carapace.ActionFiles(),
 	})

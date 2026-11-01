@@ -46,6 +46,6 @@ func init() {
 		"order":    carapace.ActionValues("asc", "desc"),
 		"repo":     gh.ActionHostOwnerRepositories(),
 		"sort":     carapace.ActionValues("created", "updated"),
-		"state":    carapace.ActionValues("open", "closed", "all").StyleF(styles.Gh.ForState),
+		"state":    carapace.ActionValues("all", "closed", "open").StyleF(styles.Gh.ForState),
 	})
 }

@@ -16,10 +16,14 @@ var request_showCmd = &cobra.Command{
 func init() {
 	carapace.Gen(request_showCmd).Standalone()
 
-	request_showCmd.Flags().StringP("format", "f", "", "Format output (text, json, yaml)")
+	request_showCmd.Flags().StringP("format", "f", "text", "Format output (text, json, yaml).")
 	requestCmd.AddCommand(request_showCmd)
 
 	carapace.Gen(request_showCmd).FlagCompletion(carapace.ActionMap{
 		"format": tsh.ActionFormats(),
 	})
+
+	carapace.Gen(request_showCmd).PositionalCompletion(
+		tsh.ActionRequests(),
+	)
 }

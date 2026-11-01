@@ -16,7 +16,7 @@ func init() {
 
 	generateLockfileCmd.Flags().BoolP("help", "h", false, "Print help")
 	generateLockfileCmd.Flags().Bool("ignore-rust-version", false, "Ignore `rust-version` specification in packages")
-	generateLockfileCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
+	generateLockfileCmd.Flags().StringP("manifest-path", "m", "", "Path to Cargo.toml")
 	generateLockfileCmd.Flags().String("publish-time", "", "Latest publish time allowed for registry packages (unstable)")
 	rootCmd.AddCommand(generateLockfileCmd)
 

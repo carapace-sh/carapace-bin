@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: pop
 aliases:
-- apply
+  - apply
 description: remove a single stashed state
 flags:
   --index: try to reinstate index changes as well

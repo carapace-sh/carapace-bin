@@ -2,14 +2,15 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/npm_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/npm"
 	"github.com/spf13/cobra"
 )
 
 var lsCmd = &cobra.Command{
-	Use:   "ll",
-	Short: "List installed packages",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "ls",
+	Short:   "List installed packages",
+	Aliases: []string{"list"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
@@ -17,6 +18,7 @@ func init() {
 	lsCmd.Flags().BoolP("all", "a", false, "show all outdated or installed packages")
 	lsCmd.Flags().String("depth", "", "depth to ge when recursing packages")
 	lsCmd.Flags().BoolP("global", "g", false, "operate in global mode")
+	lsCmd.Flags().String("include", "", "include dependency types")
 	lsCmd.Flags().Bool("json", false, "output as json")
 	lsCmd.Flags().Bool("link", false, "output only packages that are linked")
 	lsCmd.Flags().BoolP("long", "l", false, "show extended information")
@@ -33,6 +35,6 @@ func init() {
 	})
 
 	carapace.Gen(lsCmd).PositionalAnyCompletion(
-		action.ActionPackages(lsCmd),
+		npm.ActionDependencyNames(),
 	)
 }

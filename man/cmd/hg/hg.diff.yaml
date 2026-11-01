@@ -1,0 +1,88 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: diff
+description: diff repository (or selected files)
+group: content
+flags:
+    --binary: generate binary diffs in git mode (default)
+    --from=: revision to diff from
+    --ignore-changes-from-ancestors: only compare the change made by the selected revision (EXPERIMENTAL)
+    --nodates: omit dates from diff headers
+    --noprefix: omit a/ and b/ prefixes from filenames
+    --reverse: produce a diff that undoes the changes
+    --root=: produce diffs relative to subdirectory
+    --stat: output diffstat-style summary of changes
+    --to=: revision to diff to
+    -B, --ignore-blank-lines: ignore changes whose lines are all blank
+    -I, --include=*: include names matching the given patterns
+    -S, --subrepos: recurse into subrepositories
+    -U, --unified=: number of lines of context to show
+    -X, --exclude=*: exclude names matching the given patterns
+    -Z, --ignore-space-at-eol: ignore changes in whitespace at EOL
+    -a, --text: treat all files as text
+    -b, --ignore-space-change: ignore changes in the amount of white space
+    -c, --change=: change made by revision
+    -g, --git: 'use git extended diff format (DEFAULT: diff.git)'
+    -p, --show-function: 'show which function each change is in (DEFAULT: diff.showfunc)'
+    -r, --rev=*: revision (DEPRECATED)
+    -w, --ignore-all-space: ignore white space when comparing lines
+documentation:
+    command: |
+        diff repository (or selected files)
+
+        Show differences between revisions for the specified files.
+
+        Differences between files are shown using the unified diff format.
+
+        .. note::
+
+           `hg diff` may generate unexpected results for merges, as it will
+           default to comparing against the working directory's first
+           parent changeset if no revisions are specified.  To diff against the
+           conflict regions, you can use `--config diff.merge=yes`.
+
+        By default, the working directory files are compared to its first parent. To
+        see the differences from another revision, use --from. To see the difference
+        to another revision, use --to. For example, `hg diff --from .^` will show
+        the differences from the working copy's grandparent to the working copy,
+        `hg diff --to .` will show the diff from the working copy to its parent
+        (i.e. the reverse of the default), and `hg diff --from 1.0 --to 1.2` will
+        show the diff between those two revisions.
+
+        Alternatively you can specify -c/--change with a revision to see the changes
+        in that changeset relative to its first parent (i.e. `hg diff -c 42` is
+        equivalent to `hg diff --from 42^ --to 42`)
+
+        Without the -a/--text option, diff will avoid generating diffs of
+        files it detects as binary. With -a, diff will generate a diff
+        anyway, probably with undesirable results.
+
+        Use the -g/--git option to generate diffs in the git extended diff
+        format. For more information, read `hg help diffs`.
+
+        .. container:: verbose
+
+          Examples:
+
+          - compare a file in the current working directory to its parent::
+
+              hg diff foo.c
+
+          - compare two historical versions of a directory, with rename info::
+
+              hg diff --git --from 1.0 --to 1.2 lib/
+
+          - get change stats relative to the last change on some date::
+
+              hg diff --stat --from "date('may 2')"
+
+          - diff all newly-added files that contain a keyword::
+
+              hg diff "set:added() and grep(GNU)"
+
+          - compare a revision and its parents::
+
+              hg diff -c 9353                  # compare against first parent
+              hg diff --from 9353^ --to 9353   # same using revset syntax
+              hg diff --from 9353^2 --to 9353  # compare against the second parent
+
+        Returns 0 on success.

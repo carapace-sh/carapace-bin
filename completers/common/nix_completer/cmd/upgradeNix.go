@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/nix_completer/cmd/common"
 	"github.com/spf13/cobra"
 )
 
@@ -20,7 +21,7 @@ func init() {
 	upgradeNixCmd.Flags().StringP("profile", "p", "", "The path to the Nix profile to upgrade")
 	rootCmd.AddCommand(upgradeNixCmd)
 
-	addLoggingFlags(upgradeNixCmd)
+	common.AddLoggingFlags(upgradeNixCmd)
 
 	carapace.Gen(upgradeNixCmd).FlagCompletion(carapace.ActionMap{
 		"profile": carapace.ActionFiles(),

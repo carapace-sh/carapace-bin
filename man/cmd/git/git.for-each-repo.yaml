@@ -3,7 +3,7 @@ name: for-each-repo
 description: Run a Git command on a list of repositories
 group: low-level interrogator
 flags:
-  --config=: use the given config variable as a multi-valued list storing absolute path names.
+  --config=: use the given config variable as a multi-valued list storing absolute path names
   --keep-going: continue with the remaining repositories if the command failed on a repository
 documentation:
   command: |-
@@ -22,3 +22,20 @@ documentation:
 
     This will run `git -C <repo> maintenance run` for each value `<repo>`
     in the multi-valued config variable `maintenance.repo`.
+  flag:
+    config: |-
+      Set a configuration variable in the newly-created repository;
+      this takes effect immediately after the repository is
+      initialized, but before the remote history is fetched or any
+      files checked out.  The _<key>_ is in the same format as expected by
+      [git-config](cmd://git/config) (e.g., `core.eol=true`). If multiple
+      values are given for the same key, each value will be written to
+      the config file. This makes it safe, for example, to add
+      additional fetch refspecs to the origin remote.
+      
+      Due to limitations of the current implementation, some configuration
+      variables do not take effect until after the initial fetch and checkout.
+      Configuration variables known to not take effect are:
+      `remote.<name>.mirror` and `remote.<name>.tagOpt`.  Use the
+      corresponding `--mirror` and `--no-tags` options instead.
+    keep-going: continue with the remaining repositories if the command failed on a repository

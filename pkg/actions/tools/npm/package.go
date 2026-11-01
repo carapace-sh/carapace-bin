@@ -33,18 +33,27 @@ func ActionPackageSearch(registry string) carapace.Action {
 //	lodash
 func ActionPackageNames(registry string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		args := []string{"search", "--parseable", "--searchlimit", "250", fmt.Sprintf(`/^%v`, c.Value)}
+		args := []string{"search", "--json", "--searchlimit", "250", fmt.Sprintf(`/^%v`, c.Value)}
 		if registry != "" {
 			args = append(args, "--registry", registry)
 		}
 
 		return carapace.ActionExecCommand("npm", args...)(func(output []byte) carapace.Action {
-			lines := strings.Split(string(output), "\n")
+			var results []struct {
+				Name        string `json:"name"`
+				Description string `json:"description"`
+			}
+			if err := json.Unmarshal(output, &results); err != nil {
+				return carapace.ActionMessage(err.Error())
+			}
 
-			vals := make([]string, 0)
-			for _, line := range lines[:len(lines)-1] {
-				fields := strings.Split(line, "\t")
-				vals = append(vals, fields[0], fields[1])
+			vals := make([]string, 0, len(results)*2)
+			for _, result := range results {
+				description := result.Description
+				if index := strings.IndexAny(description, "\r\n"); index >= 0 {
+					description = description[:index]
+				}
+				vals = append(vals, result.Name, strings.TrimSpace(description))
 			}
 			return carapace.ActionValuesDescribed(vals...)
 		})
@@ -106,6 +115,66 @@ func ActionPackageTags(opts PackageOpts) carapace.Action {
 type packageJson struct {
 	Scripts    map[string]string
 	Workspaces []string
+}
+
+// ActionPackumentFields completes field names for a published package
+//
+//	name
+//	version
+//	description
+func ActionPackumentFields(opts PackageOpts) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		args := []string{"view", opts.Package, "--json"}
+		if opts.Registry != "" {
+			args = append(args, "--registry", opts.Registry)
+		}
+
+		return carapace.ActionExecCommand("npm", args...)(func(output []byte) carapace.Action {
+			var pkg map[string]any
+			if err := json.Unmarshal(output, &pkg); err == nil {
+				fields := getCompletionFields(pkg, nil)
+				return carapace.ActionValues(fields...)
+			}
+
+			var pkgs []map[string]any
+			if err := json.Unmarshal(output, &pkgs); err != nil {
+				return carapace.ActionMessage(err.Error())
+			}
+
+			merged := make(map[string]any)
+			for _, p := range pkgs {
+				for k, v := range p {
+					merged[k] = v
+				}
+			}
+			fields := getCompletionFields(merged, nil)
+			return carapace.ActionValues(fields...)
+		})
+	})
+}
+
+func getCompletionFields(d map[string]any, pref []string) []string {
+	var fields []string
+	for key, val := range d {
+		if len(key) > 0 && (key[0] == '_' || strings.Contains(key, ".")) {
+			continue
+		}
+		path := strings.Join(append(pref, key), ".")
+		fields = append(fields, path)
+		switch v := val.(type) {
+		case map[string]any:
+			fields = append(fields, getCompletionFields(v, append(pref, key))...)
+		case []any:
+			for i, item := range v {
+				idxPath := fmt.Sprintf("%s[%d]", path, i)
+				fields = append(fields, idxPath)
+				if m, ok := item.(map[string]any); ok {
+					fields = append(fields, getCompletionFields(m, append(pref, key))...)
+				}
+			}
+		}
+	}
+	return fields
 }
 
 func loadPackageJson(c carapace.Context) (pj packageJson, err error) {

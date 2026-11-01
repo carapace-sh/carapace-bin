@@ -28,7 +28,7 @@ func init() {
 	splitCmd.Flags().StringSliceP("message", "m", nil, "The change description to use for the selected changes (don't open editor)")
 	splitCmd.Flags().StringSliceP("onto", "o", nil, "The revision(s) to rebase the selected changes onto (can be repeated to create a merge commit)")
 	splitCmd.Flags().BoolP("parallel", "p", false, "Split the revision into two parallel revisions instead of a parent and child")
-	splitCmd.Flags().StringP("revision", "r", "", "The revision to split")
+	splitCmd.Flags().StringP("revision", "r", "@", "The revision to split")
 	splitCmd.Flags().String("tool", "", "Specify diff editor to be used (implies --interactive)")
 	rootCmd.AddCommand(splitCmd)
 

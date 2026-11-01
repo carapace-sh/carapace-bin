@@ -38,12 +38,12 @@ func init() {
 	syncCmd.Flags().String("hookdir", "", "set an alternate hook location")
 	syncCmd.Flags().StringSlice("ignore", nil, "ignore a package upgrade")
 	syncCmd.Flags().StringSlice("ignoregroup", nil, "ignore a group upgrade")
-	syncCmd.Flags().BoolP("info", "i", false, "view package information (-ii for extended information)")
+	syncCmd.Flags().CountP("info", "i", "view package information (-ii for extended information)")
 	syncCmd.Flags().StringP("list", "l", "", "view a list of packages in a repo")
 	syncCmd.Flags().String("logfile", "", "set an alternate log file")
 	syncCmd.Flags().Bool("needed", false, "do not reinstall up to date packages")
 	syncCmd.Flags().Bool("noconfirm", false, "do not ask for any confirmation")
-	syncCmd.Flags().BoolP("nodeps", "d", false, "skip dependency version checks (-dd to skip all checks)")
+	syncCmd.Flags().CountP("nodeps", "d", "skip dependency version checks (-dd to skip all checks)")
 	syncCmd.Flags().Bool("noprogressbar", false, "do not show a progress bar when downloading files")
 	syncCmd.Flags().Bool("noscriptlet", false, "do not execute the install scriptlet if one exists")
 	syncCmd.Flags().StringSlice("overwrite", nil, "overwrite conflicting files")
@@ -61,7 +61,7 @@ func init() {
 	carapace.Gen(syncCmd).FlagCompletion(carapace.ActionMap{
 		"arch":     carapace.ActionValues("i686", "x86_64"),
 		"cachedir": carapace.ActionDirectories(),
-		"color":    carapace.ActionValues("auto", "never", "always").StyleF(style.ForKeyword),
+		"color":    carapace.ActionValues("always", "auto", "never").StyleF(style.ForKeyword),
 		"config":   carapace.ActionFiles(),
 		"dbpath":   carapace.ActionFiles(),
 		"gpgdir":   carapace.ActionDirectories(),

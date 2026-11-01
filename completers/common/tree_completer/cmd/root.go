@@ -94,7 +94,7 @@ func init() {
 		"houtro":   carapace.ActionFiles(),
 		"infofile": carapace.ActionFiles(),
 		"o":        carapace.ActionFiles(),
-		"sort":     carapace.ActionValues("name", "version", "size", "mtime", "ctime", "none"),
+		"sort":     carapace.ActionValues("ctime", "mtime", "name", "none", "size", "version"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

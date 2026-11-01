@@ -1,0 +1,65 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: grep
+description: search for a pattern in specified files
+group: content
+flags:
+    --all: an alias to --diff (DEPRECATED)
+    --all-files: include all files in the changeset while grepping (DEPRECATED)
+    --diff: search revision differences for when the pattern was added or removed
+    -0, --print0: end fields with NUL
+    -I, --include=*: include names matching the given patterns
+    -T, --template=: display with template
+    -X, --exclude=*: exclude names matching the given patterns
+    -a, --text: treat all files as text
+    -d, --date: list the date (short with -q)
+    -f, --follow: follow changeset history, or file history across copies and renames
+    -i, --ignore-case: ignore case when matching
+    -l, --files-with-matches: print only filenames and revisions that match
+    -n, --line-number: print matching line numbers
+    -r, --rev=*: search files changed within revision range
+    -u, --user: list the author (long with -v)
+documentation:
+    command: |
+        search for a pattern in specified files
+
+        Search the working directory or revision history for a regular
+        expression in the specified files for the entire repository.
+
+        By default, grep searches the repository files in the working
+        directory and prints the files where it finds a match. To specify
+        historical revisions instead of the working directory, use the
+        --rev flag.
+
+        To search instead historical revision differences that contains a
+        change in match status ("-" for a match that becomes a non-match,
+        or "+" for a non-match that becomes a match), use the --diff flag.
+
+        PATTERN can be any Python (roughly Perl-compatible) regular
+        expression.
+
+        If no FILEs are specified and the --rev flag isn't supplied, all
+        files in the working directory are searched. When using the --rev
+        flag and specifying FILEs, use the --follow argument to also
+        follow the specified FILEs across renames and copies.
+
+        .. container:: verbose
+
+          Template:
+
+          The following keywords are supported in addition to the common template
+          keywords and functions. See also `hg help templates`.
+
+          :change:  String. Character denoting insertion `+` or removal `-`.
+                    Available if `--diff` is specified.
+          :lineno:  Integer. Line number of the match.
+          :path:    String. Repository-absolute path of the file.
+          :texts:   List of text chunks.
+
+          And each entry of `{texts}` provides the following sub-keywords.
+
+          :matched: Boolean. True if the chunk matches the specified pattern.
+          :text:    String. Chunk content.
+
+          See `hg help templates.operators` for the list expansion syntax.
+
+        Returns 0 if a match is found, 1 otherwise.

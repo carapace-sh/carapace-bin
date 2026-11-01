@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugcapabilities
+description: PATH
+hidden: true
+flags:
+    --bundle2-cap=: only display the matching capabilities
+documentation:
+    command: |
+        lists the capabilities of a remote peer

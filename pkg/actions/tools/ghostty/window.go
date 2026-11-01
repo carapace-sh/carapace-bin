@@ -31,9 +31,9 @@ func ActionWindowPaddingColors() carapace.Action {
 //	never (will never save window state)
 func ActionWindowSaveStates() carapace.Action {
 	return carapace.ActionValuesDescribed(
+		"always", "will always save window state",
 		"default", "will use the default system behavior",
 		"never", "will never save window state",
-		"always", "will always save window state",
 	).Tag("window save states").Uid("ghostty", "window-save-state")
 }
 
@@ -44,9 +44,9 @@ func ActionWindowSaveStates() carapace.Action {
 func ActionWindowThemes() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"auto", "Determine the theme based on the configured terminal background color",
-		"system", "Use the system theme",
-		"light", "Use the light theme regardless of system theme",
 		"dark", "Use the dark theme regardless of system theme",
 		"ghostty", "Use the background and foreground colors specified in the Ghostty configuration",
+		"light", "Use the light theme regardless of system theme",
+		"system", "Use the system theme",
 	).Tag("window themes").Uid("ghostty", "window-theme")
 }

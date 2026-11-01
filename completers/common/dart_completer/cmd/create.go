@@ -23,8 +23,8 @@ func init() {
 
 	carapace.Gen(createCmd).FlagCompletion(carapace.ActionMap{
 		"template": carapace.ActionValuesDescribed(
-			"console-simple", "A simple command-line application.",
 			"console-full", "A command-line application sample.",
+			"console-simple", "A simple command-line application.",
 			"package-simple", "A starting point for Dart libraries or applications.",
 			"server-simple", "A web server built using package:shelf.",
 			"web-simple", "A web app that uses only core Dart libraries.",

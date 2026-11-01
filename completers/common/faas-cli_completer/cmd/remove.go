@@ -7,14 +7,15 @@ import (
 )
 
 var removeCmd = &cobra.Command{
-	Use:   "remove",
-	Short: "Remove deployed OpenFaaS functions",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "remove",
+	Short:   "Remove deployed OpenFaaS functions",
+	Aliases: []string{"rm", "delete"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(removeCmd).Standalone()
-	removeCmd.Flags().Bool("envsubst", true, "Substitute environment variables in stack.yml file")
+	removeCmd.Flags().Bool("envsubst", true, "Substitute environment variables in stack.yaml file")
 	removeCmd.Flags().StringP("gateway", "g", "http://127.0.0.1:8080", "Gateway URL starting with http(s)://")
 	removeCmd.Flags().StringP("namespace", "n", "", "Namespace of the function")
 	removeCmd.Flags().Bool("tls-no-verify", false, "Disable TLS validation")

@@ -77,14 +77,14 @@ func init() {
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"build-file":              carapace.ActionFiles(),
-		"console":                 carapace.ActionValues("plain", "auto", "rich", "verbose"),
-		"dependency-verification": carapace.ActionValues("strict", "lenient", "off"),
+		"console":                 carapace.ActionValues("auto", "plain", "rich", "verbose"),
+		"dependency-verification": carapace.ActionValues("lenient", "off", "strict"),
 		"exclude-task":            ActionTasks(),
-		"priority":                carapace.ActionValues("normal", "low"),
+		"priority":                carapace.ActionValues("low", "normal"),
 		"project-cache-dir":       carapace.ActionDirectories(),
 		"project-dir":             carapace.ActionDirectories(),
 		"settings-file":           carapace.ActionFiles("settings.gradle"),
-		"warning-mode":            carapace.ActionValues("all", "fail", "summary", "none"),
+		"warning-mode":            carapace.ActionValues("all", "fail", "none", "summary"),
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(

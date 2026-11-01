@@ -19,6 +19,6 @@ func init() {
 	searchCmd.AddCommand(search_hubCmd)
 
 	carapace.Gen(search_hubCmd).FlagCompletion(carapace.ActionMap{
-		"output": carapace.ActionValues("table", "json", "yaml"),
+		"output": carapace.ActionValues("json", "table", "yaml"),
 	})
 }

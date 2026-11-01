@@ -39,8 +39,8 @@ func init() {
 	rootCmd.Flag("lock").NoOptDefVal = " "
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"endianness": carapace.ActionValues("native", "little", "big"),
-		"lock":       carapace.ActionValues("yes", "no", "nonblock").StyleF(style.ForKeyword),
+		"endianness": carapace.ActionValues("big", "little", "native"),
+		"lock":       carapace.ActionValues("no", "nonblock", "yes").StyleF(style.ForKeyword),
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(

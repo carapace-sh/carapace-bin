@@ -7,11 +7,6 @@ flags:
   -v, --verbose: show extended annotations and reasons, if available
   -z: terminate records with a NUL character
 documentation:
-  command: |-
-    If a worktree is on a portable device or network share which is not always
-    mounted, lock it to prevent its administrative files from being pruned
-    automatically. This also prevents it from being moved or deleted.
-    Optionally, specify a reason for the lock with `--reason`.
   flag:
     porcelain: |-
       With `list`, output in an easy-to-parse format for scripts.
@@ -27,3 +22,11 @@ documentation:
       `--porcelain` is specified with `list`. This makes it possible
       to parse the output when a worktree path contains a newline
       character.
+    expire: |-
+      Prune entries older than the specified time. If this option is
+      not specified, the expiration time is taken from the
+      configuration setting `gc.reflogExpire`, which in turn
+      defaults to 90 days. `--expire=all` prunes entries regardless
+      of their age; `--expire=never` turns off pruning of reachable
+      entries (but see `--expire-unreachable`).
+

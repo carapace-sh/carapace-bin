@@ -19,6 +19,6 @@ func init() {
 	rootCmd.AddCommand(storeCmd)
 
 	carapace.Gen(storeCmd).FlagCompletion(carapace.ActionMap{
-		"platform": action.ActionImageArchitectures(), // TODO verify
+		"platform": action.ActionArchitectures(),
 	})
 }

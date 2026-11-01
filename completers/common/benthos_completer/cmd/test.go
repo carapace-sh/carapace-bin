@@ -19,7 +19,7 @@ func init() {
 	rootCmd.AddCommand(testCmd)
 
 	carapace.Gen(testCmd).FlagCompletion(carapace.ActionMap{
-		"log": carapace.ActionValues("error", "warn", "info", "debug", "trace").StyleF(style.ForLogLevel),
+		"log": carapace.ActionValues("debug", "error", "info", "trace", "warn").StyleF(style.ForLogLevel),
 	})
 
 	carapace.Gen(testCmd).PositionalAnyCompletion(

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/cargo_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -22,4 +23,8 @@ func init() {
 	ownerCmd.Flags().StringSliceP("remove", "r", nil, "Name of a user or team to remove as an owner")
 	ownerCmd.Flags().String("token", "", "API token to use when authenticating")
 	rootCmd.AddCommand(ownerCmd)
+
+	carapace.Gen(ownerCmd).FlagCompletion(carapace.ActionMap{
+		"registry": action.ActionRegistries(),
+	})
 }

@@ -2,7 +2,9 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/time"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
+	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
 
@@ -20,18 +22,24 @@ func init() {
 	cloneCmd.Flags().Bool("bare", false, "create a bare repository")
 	cloneCmd.Flags().StringP("branch", "b", "", "checkout <branch> instead of the remote's HEAD")
 	cloneCmd.Flags().String("bundle-uri", "", "fetch additional objects from this URI")
+	cloneCmd.Flags().Bool("checkout", false, "opposite of --no-checkout")
 	cloneCmd.Flags().StringArrayP("config", "c", nil, "set config inside the new repository")
 	cloneCmd.Flags().String("depth", "", "create a shallow clone of that depth")
 	cloneCmd.Flags().Bool("dissociate", false, "use --reference only while cloning")
 	cloneCmd.Flags().StringArray("filter", nil, "object filtering")
+	cloneCmd.Flags().Bool("hardlinks", false, "opposite of --no-hardlinks")
 	cloneCmd.Flags().BoolP("ipv4", "4", false, "use IPv4 addresses only")
 	cloneCmd.Flags().BoolP("ipv6", "6", false, "use IPv6 addresses only")
 	cloneCmd.Flags().StringP("jobs", "j", "", "number of submodules cloned in parallel")
 	cloneCmd.Flags().BoolP("local", "l", false, "to clone from a local repository")
 	cloneCmd.Flags().Bool("mirror", false, "create a mirror repository (implies bare)")
+	cloneCmd.Flags().Bool("naked", false, "create a bare repository")
 	cloneCmd.Flags().BoolP("no-checkout", "n", false, "don't create a checkout")
 	cloneCmd.Flags().Bool("no-hardlinks", false, "don't use local hardlinks, always copy")
 	cloneCmd.Flags().Bool("no-local", false, "override --local, as if file:/// URL was given")
+	cloneCmd.Flags().Bool("no-reject-shallow", false, "do not reject shallow repository")
+	cloneCmd.Flags().Bool("no-remote-submodules", false, "do not use remote-tracking branch for submodules")
+	cloneCmd.Flags().Bool("no-shallow-submodules", false, "do not clone submodules as shallow")
 	cloneCmd.Flags().Bool("no-single-branch", false, "clone history leading up to each branch")
 	cloneCmd.Flags().Bool("no-tags", false, "don't clone any tags, and make later fetches not to follow them")
 	cloneCmd.Flags().StringP("origin", "o", "", "use <name> instead of 'origin' to track upstream")
@@ -57,6 +65,7 @@ func init() {
 	cloneCmd.Flags().String("template", "", "directory from which templates will be used")
 	cloneCmd.Flags().StringP("upload-pack", "u", "", "path to git-upload-pack on the remote")
 	cloneCmd.Flags().BoolP("verbose", "v", false, "be more verbose")
+	cloneCmd.Flag("naked").Hidden = true
 	cloneCmd.Flag("recurse-submodules").NoOptDefVal = "."
 	cloneCmd.Flag("recursive").NoOptDefVal = "."
 
@@ -69,12 +78,27 @@ func init() {
 			}
 			return carapace.ActionValues()
 		}),
-		"filter":           git.ActionObjectFilters(),
-		"ref-format":       carapace.ActionValues("files", "flat", "tree"),
-		"revision":         git.ActionRefs(git.RefOption{}.Default()),
-		"separate-git-dir": carapace.ActionFiles(),
-		"server-option":    carapace.ActionValues(),
-		"template":         carapace.ActionDirectories(),
+		"config": carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
+			switch len(c.Parts) {
+			case 0:
+				return git.ActionConfigs().NoSpace()
+			default:
+				return git.ActionConfigValues(c.Parts[0])
+			}
+		}).UniqueList(" "),
+		"filter":             git.ActionObjectFilters(),
+		"recurse-submodules": carapace.ActionValues("on-demand", "yes").StyleF(style.ForKeyword),
+		"recursive":          carapace.ActionValues("on-demand", "yes").StyleF(style.ForKeyword),
+		"ref-format":         carapace.ActionValues("files", "flat", "tree"),
+		"reference":          carapace.ActionDirectories(),
+		"reference-if-able":  carapace.ActionDirectories(),
+		"revision":           git.ActionRefs(git.RefOption{}.Default()),
+		"separate-git-dir":   carapace.ActionFiles(),
+		"server-option":      carapace.ActionValues(),
+		"shallow-exclude":    git.ActionRefs(git.RefOption{}.Default()),
+		"shallow-since":      time.ActionDate(),
+		"template":           carapace.ActionDirectories(),
+		"upload-pack":        carapace.ActionFiles(),
 	})
 
 	carapace.Gen(cloneCmd).PositionalCompletion(

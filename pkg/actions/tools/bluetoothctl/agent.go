@@ -8,10 +8,10 @@ import "github.com/carapace-sh/carapace"
 //	KeyboardOnly
 func ActionAgentCapabilities() carapace.Action {
 	return carapace.ActionValues(
-		"NoInputNoOutput",
-		"KeyboardOnly",
-		"KeyboardDisplay",
-		"DisplayYesNo",
 		"DisplayOnly",
+		"DisplayYesNo",
+		"KeyboardDisplay",
+		"KeyboardOnly",
+		"NoInputNoOutput",
 	).Tag("bluetooth agent capabilities")
 }

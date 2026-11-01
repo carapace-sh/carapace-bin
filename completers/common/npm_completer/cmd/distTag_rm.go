@@ -7,9 +7,10 @@ import (
 )
 
 var distTag_rmCmd = &cobra.Command{
-	Use:   "rm",
-	Short: "clear a tag that is no longer in use from the package",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "rm",
+	Short:   "clear a tag that is no longer in use from the package",
+	Aliases: []string{"r", "del", "d", "remove"},
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

@@ -3,4 +3,6 @@ name: libc
 description: Display native libc paths file or validate one
 flags:
     --color=: Enable or disable colored error messages
+    --includes: Print the libc include directories for the target
+    --target=: Target triple (e.g. x86_64-linux-gnu)
     -h, --help: Print help

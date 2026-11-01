@@ -21,7 +21,9 @@ func init() {
 	restoreCmd.Flags().Bool("ignore-skip-worktree-bits", false, "do not limit pathspecs to sparse entries only")
 	restoreCmd.Flags().Bool("ignore-unmerged", false, "ignore unmerged entries")
 	restoreCmd.Flags().BoolP("merge", "m", false, "perform a 3-way merge with the new branch")
+	restoreCmd.Flags().Bool("no-overlay", false, "do not use overlay mode")
 	restoreCmd.Flags().Bool("no-progress", false, "do not report progress on the standard error stream")
+	restoreCmd.Flags().Bool("no-recurse-submodules", false, "disable recursive updating of submodules")
 	restoreCmd.Flags().BoolP("ours", "2", false, "checkout our version for unmerged files")
 	restoreCmd.Flags().Bool("overlay", false, "use overlay mode")
 	restoreCmd.Flags().BoolP("patch", "p", false, "select hunks interactively")
@@ -38,7 +40,7 @@ func init() {
 	rootCmd.AddCommand(restoreCmd)
 
 	carapace.Gen(restoreCmd).FlagCompletion(carapace.ActionMap{
-		"conflict":           carapace.ActionValues("merge", "diff3"),
+		"conflict":           carapace.ActionValues("diff3", "merge"),
 		"pathspec-from-file": carapace.ActionFiles(),
 		"recurse-submodules": git.ActionRefs(git.RefOption{}.Default()),
 		"source":             git.ActionRefs(git.RefOption{}.Default()),

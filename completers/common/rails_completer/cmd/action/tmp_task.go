@@ -13,7 +13,7 @@ func ActionTmpTasks() carapace.Action {
 // ActionTmpNamespaces completes tmp:* sub-namespaces
 func ActionTmpNamespaces() carapace.Action {
 	return carapace.ActionValues(
-		"cache", "sockets", "pids", "screenshots", "storage",
+		"cache", "pids", "screenshots", "sockets", "storage",
 	).Tag("tmp namespaces").UidF(namespaceUid("tmp"))
 }
 

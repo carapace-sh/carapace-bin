@@ -31,8 +31,8 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"cached": carapace.ActionValuesDescribed(
 			"always", "use cached attributes if available",
-			"never", "try to synchronize with the latest attributes",
 			"default", "leave it up to the underlying file system",
+			"never", "try to synchronize with the latest attributes",
 		).StyleF(style.ForKeyword),
 	})
 

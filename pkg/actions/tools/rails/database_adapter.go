@@ -8,11 +8,11 @@ import "github.com/carapace-sh/carapace"
 //	trilogy (MySQL via Trilogy)
 func ActionDatabaseAdapters() carapace.Action {
 	return carapace.ActionValuesDescribed(
-		"mysql", "MySQL adapter",
-		"trilogy", "MySQL via Trilogy",
-		"postgresql", "PostgreSQL adapter",
-		"sqlite3", "SQLite3 adapter",
 		"mariadb-mysql", "MariaDB via mysql2",
 		"mariadb-trilogy", "MariaDB via Trilogy",
+		"mysql", "MySQL adapter",
+		"postgresql", "PostgreSQL adapter",
+		"sqlite3", "SQLite3 adapter",
+		"trilogy", "MySQL via Trilogy",
 	).Tag("database adapters").Uid("rails", "database-adapter")
 }

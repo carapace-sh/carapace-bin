@@ -14,6 +14,15 @@ Which implicit [bridges](https://github.com/carapace-sh/carapace-bridge) to enab
 > The list of completers is cached to not impact shell startup time.
 > Clear the cache with `carapace --clear-cache` if your system changes.
 
+
+## CARAPACE_BUILTINS
+
+Enabled shell builtin groups.
+
+![](./builtins.cast)
+
+> **experimental**
+
 ## CARAPACE_COLOR
 
 Whether to output color (default).

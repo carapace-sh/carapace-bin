@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugsetparents
+description: REV1 [REV2]
+hidden: true
+documentation:
+    command: |
+        manually set the parents of the current working directory (DANGEROUS)
+
+        This command is not what you are looking for and should not be used. Using
+        this command will most certainly results in slight corruption of the file
+        level histories within your repository. DO NOT USE THIS COMMAND.
+
+        The command updates the p1 and p2 fields in the dirstate, without touching
+        anything else. This useful for writing repository conversion tools, but
+        should be used with extreme care. For example, neither the working
+        directory nor the dirstate is updated, so file statuses may be incorrect
+        after running this command. Use it only if you are one of the few people who
+        deeply understands both conversion tools and file level histories. If you are
+        reading this help, you are not one of those people (most of them sailed west
+        from Mithlond anyway).
+
+        So, one more time, DO NOT USE THIS COMMAND.
+
+        Returns 0 on success.

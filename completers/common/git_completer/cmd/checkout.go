@@ -21,6 +21,7 @@ func init() {
 	carapace.Gen(checkoutCmd).Standalone()
 
 	checkoutCmd.Flags().StringS("B", "B", "", "create/reset and checkout a branch")
+	checkoutCmd.Flags().Bool("auto-advance", false, "auto advance to the next file when selecting hunks interactively")
 	checkoutCmd.Flags().StringS("b", "b", "", "create and checkout a new branch")
 	checkoutCmd.Flags().String("conflict", "", "conflict style (merge or diff3)")
 	checkoutCmd.Flags().BoolP("detach", "d", false, "detach HEAD at named commit")
@@ -56,9 +57,10 @@ func init() {
 	carapace.Gen(checkoutCmd).FlagCompletion(carapace.ActionMap{
 		"B":                  git.ActionRefs(git.RefOption{LocalBranches: true}),
 		"b":                  git.ActionRefs(git.RefOption{LocalBranches: true}),
-		"conflict":           carapace.ActionValues("merge", "diff3"),
+		"conflict":           carapace.ActionValues("diff3", "merge"),
 		"orphan":             git.ActionRefs(git.RefOption{LocalBranches: true, RemoteBranches: true}),
 		"pathspec-from-file": carapace.ActionFiles(),
+		"recurse-submodules": carapace.ActionValues("on-demand", "yes").StyleF(style.ForKeyword),
 		"track":              carapace.ActionValues("direct", "inherit"),
 	})
 

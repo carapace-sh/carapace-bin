@@ -31,6 +31,7 @@ func init() {
 	indexPackCmd.Flags().String("strict", "", "die, if the pack contains broken objects or links")
 	indexPackCmd.Flags().String("threads", "", "specifies the number of threads to spawn when resolving deltas")
 	indexPackCmd.Flags().BoolS("v", "v", false, "be verbose about what is going on")
+	indexPackCmd.Flags().Bool("verify", false, "verify the pack without writing anything")
 	rootCmd.AddCommand(indexPackCmd)
 
 	indexPackCmd.Flag("fsck-objects").NoOptDefVal = " "

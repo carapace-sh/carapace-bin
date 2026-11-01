@@ -20,7 +20,7 @@ func init() {
 	notificationCmd.AddCommand(notification_showCmd)
 
 	carapace.Gen(notification_showCmd).FlagCompletion(carapace.ActionMap{
-		"position": carapace.ActionValues("top-left", "top-right", "bottom-left", "bottom-right"),
-		"sound":    carapace.ActionValues("none", "done", "request"),
+		"position": carapace.ActionValues("bottom-left", "bottom-right", "top-left", "top-right"),
+		"sound":    carapace.ActionValues("done", "none", "request"),
 	})
 }

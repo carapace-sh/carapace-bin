@@ -15,6 +15,7 @@ var updateIndexCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(updateIndexCmd).Standalone()
+	updateIndexCmd.Flags().SetInterspersed(false)
 
 	updateIndexCmd.Flags().Bool("add", false, "if a specified file isn’t in the index already then it’s added")
 	updateIndexCmd.Flags().BoolP("again", "g", false, "runs git update-index itself on the paths whose index entries differ from HEAD")
@@ -24,6 +25,7 @@ func init() {
 	updateIndexCmd.Flags().Bool("clear-resolve-undo", false, "forget saved unresolved conflicts")
 	updateIndexCmd.Flags().Bool("force-remove", false, "remove the file from the index even when the working directory still has such a file")
 	updateIndexCmd.Flags().Bool("force-untracked-cache", false, "same as --untracked-cache")
+	updateIndexCmd.Flags().Bool("force-write-index", false, "opposite of --no-force-write-index")
 	updateIndexCmd.Flags().Bool("fsmonitor", false, "enable files system monitor feature")
 	updateIndexCmd.Flags().Bool("fsmonitor-valid", false, "set the \"fsmonitor valid\" bit for paths")
 	updateIndexCmd.Flags().Bool("ignore-missing", false, "ignores missing files during a --refresh")

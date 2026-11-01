@@ -1,6 +1,10 @@
 # yaml-language-server: $schema=https://carapace.sh/schemas/command.json
 name: split
-description: split a commit
+description: Interactively split up <commit> into two commits
+flags:
+  --dry-run: perform a dry-run without updating any refs
+  --no-dry-run: do not perform a dry-run without updating any refs
+  --update-refs=: control which refs should be updated
 documentation:
   command: |-
     Interactively split up <commit> into two commits by choosing
@@ -21,3 +25,9 @@ documentation:
 
     It is invalid to select either all or no hunks, as that would lead to
     one of the commits becoming empty.
+  flag:
+    dry-run: |-
+      Don't actually add the file(s), just show if they exist and/or will
+      be ignored.
+    no-dry-run: do not perform a dry-run without updating any refs
+    update-refs: control which refs should be updated

@@ -8,7 +8,7 @@ import (
 
 var moveCmd = &cobra.Command{
 	Use:     "move",
-	Short:   "Move a commit or branch to a different location",
+	Short:   "Move commits and changes around",
 	Run:     func(cmd *cobra.Command, args []string) {},
 	GroupID: "editing commits",
 }
@@ -16,12 +16,28 @@ var moveCmd = &cobra.Command{
 func init() {
 	carapace.Gen(moveCmd).Standalone()
 
-	moveCmd.Flags().BoolP("after", "a", false, "Move the commit after (above) the target instead of before (below). Only valid for commit-to-commit moves")
+	moveCmd.Flags().StringP("above", "A", "", "Place <SOURCES> above BRANCH_OR_COMMIT")
+	moveCmd.Flags().Bool("allow-merged", false, "Allow targeting branches and commits that are already merged upstream")
+	moveCmd.Flags().StringP("below", "B", "", "Place <SOURCES> below BRANCH_OR_COMMIT")
+	moveCmd.Flags().StringP("branch", "b", "", "Place <SOURCES> on the branch BRANCH")
+	moveCmd.Flags().StringP("file", "F", "", "Read the new commit's message from FILE, or from stdin when FILE is -")
 	moveCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	moveCmd.Flags().StringSliceP("message", "m", nil, "The message to use when moving changes into a new commit")
+	moveCmd.Flags().BoolP("switch", "s", false, "Switch to the destination branch instead of remaining in the GitButler workspace")
+	moveCmd.Flags().Bool("unstack", false, "Unstack <SOURCES> from their current stacks")
 	rootCmd.AddCommand(moveCmd)
 
+	carapace.Gen(moveCmd).FlagCompletion(carapace.ActionMap{
+		"above":  but.ActionTargets(),
+		"below":  but.ActionTargets(),
+		"branch": but.ActionLocalBranches(),
+		"file":   carapace.ActionFiles(),
+	})
+
 	carapace.Gen(moveCmd).PositionalCompletion(
-		but.ActionCommits(),
-		but.ActionTargets(),
+		carapace.Batch(
+			but.ActionCommits(),
+			but.ActionCliIds(but.CliIdsOpts{Commits: true}),
+		).ToA(),
 	)
 }

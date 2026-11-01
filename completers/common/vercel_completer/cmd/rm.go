@@ -9,12 +9,16 @@ import (
 var rmCmd = &cobra.Command{
 	Use:     "rm",
 	Aliases: []string{"remove"},
-	Short:   "Removes a deployment",
+	Short:   "Remove deployment(s) by project name or deployment ID",
 	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(rmCmd).Standalone()
+
+	rmCmd.Flags().Bool("hard", false, "Hard delete")
+	rmCmd.Flags().BoolP("safe", "s", false, "Skip deployments with an active alias")
+	rmCmd.Flags().BoolP("yes", "y", false, "Skip confirmation")
 
 	rootCmd.AddCommand(rmCmd)
 

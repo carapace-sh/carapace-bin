@@ -7,9 +7,10 @@ import (
 )
 
 var teams_switchCmd = &cobra.Command{
-	Use:   "switch",
-	Short: "Switch to a different team",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "switch",
+	Aliases: []string{"change"},
+	Short:   "Switch to a different team",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

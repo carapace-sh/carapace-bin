@@ -2,7 +2,7 @@
 name: sync
 description: Synchronizes submodules remote URL to .gitmodules
 flags:
-  --recursive: ''
+  --recursive: traverse nested submodules recursively
 documentation:
   command: |-
     Synchronize submodules' remote URL configuration setting

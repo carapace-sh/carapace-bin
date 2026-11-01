@@ -23,6 +23,6 @@ func init() {
 	})
 
 	carapace.Gen(config_shell_initCmd).PositionalCompletion(
-		carapace.ActionValues("bash", "fish", "nu", "zsh", "powershell"),
+		carapace.ActionValues("bash", "fish", "nu", "powershell", "zsh"),
 	)
 }

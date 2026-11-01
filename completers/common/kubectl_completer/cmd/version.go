@@ -19,6 +19,6 @@ func init() {
 	rootCmd.AddCommand(versionCmd)
 
 	carapace.Gen(versionCmd).FlagCompletion(carapace.ActionMap{
-		"output": carapace.ActionValues("yaml", "json"),
+		"output": carapace.ActionValues("json", "yaml"),
 	})
 }

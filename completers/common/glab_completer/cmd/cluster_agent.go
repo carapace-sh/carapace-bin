@@ -15,7 +15,7 @@ var cluster_agentCmd = &cobra.Command{
 func init() {
 	carapace.Gen(cluster_agentCmd).Standalone()
 
-	cluster_agentCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. Can use either `OWNER/REPO` or `GROUP/NAMESPACE/REPO` format. Also accepts full URL or Git URL.")
+	cluster_agentCmd.PersistentFlags().StringP("repo", "R", "", "Select another repository. You can use either OWNER/REPO or GROUP/NAMESPACE/REPO. The full URL or Git URL is also accepted.")
 	clusterCmd.AddCommand(cluster_agentCmd)
 
 	carapace.Gen(cluster_agentCmd).FlagCompletion(carapace.ActionMap{

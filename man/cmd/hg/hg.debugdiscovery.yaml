@@ -1,0 +1,59 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: debugdiscovery
+description: runs the changeset discovery protocol in isolation
+hidden: true
+flags:
+    --insecure: do not verify server certificate (ignoring web.cacerts config)
+    --local-as-revs=: treat local has having these revisions only
+    --nonheads: use old-style discovery with non-heads included
+    --old: use old-style discovery
+    --remote-as-revs=: use local as remote, with only these revisions
+    --remotecmd=: specify hg command to run on the remote side
+    --rev=: restrict discovery to this set of revs
+    --seed=: specify the random seed use for discovery
+    -T, --template=: display with template
+    -e, --ssh=: specify ssh command to use
+documentation:
+    command: |
+        runs the changeset discovery protocol in isolation
+
+        The local peer can be "replaced" by a subset of the local repository by
+        using the `--local-as-revs` flag. In the same way, the usual `remote` peer
+        can be "replaced" by a subset of the local repository using the
+        `--remote-as-revs` flag. This is useful to efficiently debug pathological
+        discovery situations.
+
+        The following developer oriented config are relevant for people playing with this command:
+
+        * devel.discovery.exchange-heads=True
+
+          If False, the discovery will not start with
+          remote head fetching and local head querying.
+
+        * devel.discovery.grow-sample=True
+
+          If False, the sample size used in set discovery will not be increased
+          through the process
+
+        * devel.discovery.grow-sample.dynamic=True
+
+          When discovery.grow-sample.dynamic is True, the default, the sample size is
+          adapted to the shape of the undecided set (it is set to the max of:
+          <target-size>, len(roots(undecided)), len(heads(undecided)
+
+        * devel.discovery.grow-sample.rate=1.05
+
+          the rate at which the sample grow
+
+        * devel.discovery.randomize=True
+
+          If andom sampling during discovery are deterministic. It is meant for
+          integration tests.
+
+        * devel.discovery.sample-size=200
+
+          Control the initial size of the discovery sample
+
+        * devel.discovery.sample-size.initial=100
+
+          Control the initial size of the discovery for initial change

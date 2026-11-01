@@ -19,22 +19,27 @@ func init() {
 	carapace.Gen(rootCmd).Standalone()
 	rootCmd.Flags().SetInterspersed(false)
 
+	rootCmd.Flags().BoolS("V", "V", false, "print version and exit")
 	rootCmd.Flags().StringS("func", "func", "", "output coverage profile information for each function")
 	rootCmd.Flags().StringS("html", "html", "", "generate HTML representation of coverage profile")
 	rootCmd.Flags().StringS("mode", "mode", "", "coverage mode: set, count, atomic")
 	rootCmd.Flags().StringS("o", "o", "", "file for output")
 	rootCmd.Flags().StringS("outfilelist", "outfilelist", "", "file containing list of output files (one per line) if -pkgcfg is in use")
 	rootCmd.Flags().StringS("pkgcfg", "pkgcfg", "", "enable full-package instrumentation mode using params from specified config file")
-	rootCmd.Flags().StringS("var", "var", "", "name of coverage variable to generate (default \"GoCover\")")
+	rootCmd.Flags().StringS("var", "var", "", "name of coverage variable to generate")
 
 	rootCmd.MarkFlagsMutuallyExclusive("html", "func", "mode")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"func":        carapace.ActionFiles(),
 		"html":        carapace.ActionFiles(),
-		"mode":        carapace.ActionValues("set", "count", "atomic"),
+		"mode":        carapace.ActionValues("atomic", "count", "set"),
 		"o":           carapace.ActionFiles(),
 		"outfilelist": carapace.ActionFiles(),
 		"pkgcfg":      carapace.ActionFiles(),
 	})
+
+	carapace.Gen(rootCmd).PositionalAnyCompletion(
+		carapace.ActionFiles(".go"),
+	)
 }

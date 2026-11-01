@@ -17,7 +17,7 @@ func init() {
 	carapace.Gen(file_chmodCmd).Standalone()
 
 	file_chmodCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
-	file_chmodCmd.Flags().StringP("revision", "r", "", "The revision to update")
+	file_chmodCmd.Flags().StringP("revision", "r", "@", "The revision to update")
 	fileCmd.AddCommand(file_chmodCmd)
 
 	carapace.Gen(file_chmodCmd).FlagCompletion(carapace.ActionMap{

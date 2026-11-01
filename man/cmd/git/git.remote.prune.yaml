@@ -15,3 +15,7 @@ documentation:
 
     With `--dry-run` option, report what branches would be pruned, but do not
     actually prune them.
+  flag:
+    dry-run: |-
+      Don't actually add the file(s), just show if they exist and/or will
+      be ignored.

@@ -6,18 +6,18 @@ import "github.com/carapace-sh/carapace"
 func ActionTestSubcommands() carapace.Action {
 	return carapace.ActionValuesDescribed(
 		"all", "Run all tests including system tests",
-		"system", "Run system tests only",
-		"functionals", "Run functional tests",
-		"units", "Run unit tests",
-		"generators", "Run generator tests",
-		"models", "Run model tests",
-		"helpers", "Run helper tests",
 		"channels", "Run channel tests",
 		"controllers", "Run controller tests",
-		"mailers", "Run mailer tests",
+		"db", "Reset test database and run tests",
+		"functionals", "Run functional tests",
+		"generators", "Run generator tests",
+		"helpers", "Run helper tests",
 		"integration", "Run integration tests",
 		"jobs", "Run job tests",
 		"mailboxes", "Run mailbox tests",
-		"db", "Reset test database and run tests",
+		"mailers", "Run mailer tests",
+		"models", "Run model tests",
+		"system", "Run system tests only",
+		"units", "Run unit tests",
 	).Tag("test tasks").UidF(taskUid("test"))
 }

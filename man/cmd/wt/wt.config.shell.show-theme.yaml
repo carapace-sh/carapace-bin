@@ -3,3 +3,9 @@ name: show-theme
 description: Show output theme samples
 flags:
     -h, --help: Print help (see more with '--help')
+completion:
+    flag:
+        C:
+            - $files
+        config:
+            - $files

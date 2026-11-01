@@ -2,19 +2,25 @@
 name: update
 description: Update the registered submodule
 flags:
-  --checkout: Checkout commit of superproject as detached HEAD
-  --depth=: Create a shallow clone
-  --init: Initialize all submodules
-  --jobs=: Clone new submodules in parallel
-  --merge: Merge commit of superproject into submodule
-  --no-recommend-shallow: Ignore configured shallow recommendation
-  --rebase: Rebase current branch onto commit of superproject
-  --recommend-shallow: Initial clone will use recommended configuration
-  --recursive: Traverse submodules recursively
+  --checkout: checkout commit of superproject as detached HEAD
+  --depth=: create a shallow clone
+  --dissociate: use --reference only while cloning
+  --filter=*: object filtering
+  --no-recommend-shallow: ignore configured shallow recommendation
+  --progress: force cloning progress
+  --recommend-shallow: initial clone will use recommended configuration
+  --recursive: traverse submodules recursively
+  --ref-format=: specify the reference storage format to use
   --reference=: reference repository
-  --remote: Use submodules's remote tracking branch to update
-  -N, --no-Fetch: Don't fetch from remote
+  --remote: use submodules's remote tracking branch to update
+  --require-init: disallow cloning into non-empty directory, implies --init
+  --single-branch: clone only one branch, HEAD or --branch
+  -N, --no-fetch: don't fetch new objects from the remote
   -f, --force: throw away local changes
+  -i, --init: initialize all submodules
+  -j, --jobs=: clone new submodules in parallel
+  -m, --merge: merge commit of superproject into submodule
+  -r, --rebase: rebase current branch onto commit of superproject
 documentation:
   command: |-
     Update the registered submodules to match what the superproject
@@ -100,7 +106,10 @@ documentation:
       submodule, even if the commit listed in the index of the
       containing repository matches the commit checked out in the
       submodule.
-    init: "Initialize all submodules for which `git submodule init` has not been\ncalled so far before updating. \tThis option is only valid for the `update`\ncommand."
+    init: |-
+      Initialize all submodules for which `git submodule init` has not been
+      called so far before updating. 	This option is only valid for the `update`
+      command.
     jobs: |-
       Clone new submodules in parallel with _<n>_ jobs.
       This option is only valid for the `update` command.
@@ -127,6 +136,12 @@ documentation:
       to resolve these failures with [git-rebase](cmd://git/rebase).
       If the key `submodule.<name>.update` is set to `rebase`, this option is
       implicit.
+    recommend-shallow: |-
+      Recommend or not shallow cloning of submodules.
+      This option is only valid for the `update` command.
+      The initial clone of a submodule will use the recommended
+      `submodule.<name>.shallow` as provided by the `.gitmodules` file
+      by default. To ignore the suggestions use `--no-recommend-shallow`.
     recursive: |-
       Traverse submodules recursively. This option is only valid for `foreach`,
       `update`, `status` and `sync` commands. The operation is performed not
@@ -169,9 +184,29 @@ documentation:
       to distribute the default upstream branch with the superproject and
       `branch.<name>.merge` if you want a more native feel while working in
       the submodule itself.
-    recommend-shallow: |-
-      Recommend or not shallow cloning of submodules.
-      This option is only valid for the `update` command.
-      The initial clone of a submodule will use the recommended
-      `submodule.<name>.shallow` as provided by the `.gitmodules` file
-      by default. To ignore the suggestions use `--no-recommend-shallow`.
+    dissociate: |-
+      After using a reference repository to clone from, do not rely on it
+      anymore. This option is only valid for `add` and `update` commands.
+      These commands sometimes need to clone a remote repository. In this
+      case, this option will be passed to the [git-clone](cmd://git/clone) command.
+
+      NOTE: See the NOTE above for the `--reference` option.
+    filter: |-
+      If `--filter <filter-spec>` is specified, the given partial clone filter
+      will be applied to the submodule. See [git-rev-list](cmd://git/rev-list) for
+      details on filter specifications.
+    progress: |-
+      Report progress status on the standard error stream by default when it
+      is attached to a terminal, unless `-q` is specified. This flag forces
+      progress status even if the standard error stream is not directed to a
+      terminal. It is only valid for `add` and `update` commands.
+    ref-format: |-
+      If `--ref-format <format>` is specified, the ref storage format of newly
+      cloned submodules will be set accordingly.
+    require-init: |-
+      Disallow cloning into a non-empty directory. Implies `--init`.
+    single-branch: |-
+      Clone only one branch during update: `HEAD` or one specified by
+      `--branch`. This option is only valid for the `update` command.
+    no-fetch: |-
+      Don't fetch new objects from the remote site.

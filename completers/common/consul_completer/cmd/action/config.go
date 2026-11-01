@@ -7,7 +7,7 @@ import (
 )
 
 func ActionConfigKinds() carapace.Action {
-	return carapace.ActionValues("service-defaults", "proxy-defaults")
+	return carapace.ActionValues("proxy-defaults", "service-defaults")
 }
 
 func ActionConfigEntries(kind string) carapace.Action {

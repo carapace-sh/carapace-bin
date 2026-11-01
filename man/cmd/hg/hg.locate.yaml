@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: locate
+description: locate files matching specific patterns (DEPRECATED)
+group: working-dir
+flags:
+    -0, --print0: end filenames with NUL, for use with xargs
+    -I, --include=*: include names matching the given patterns
+    -X, --exclude=*: exclude names matching the given patterns
+    -f, --fullpath: print complete paths from the filesystem root
+    -r, --rev=: search the repository as it is in REV
+documentation:
+    command: |
+        locate files matching specific patterns (DEPRECATED)
+
+        Print files under Mercurial control in the working directory whose
+        names match the given patterns.
+
+        By default, this command searches all directories in the working
+        directory. To search just the current directory and its
+        subdirectories, use "--include .".
+
+        If no patterns are given to match, this command prints the names
+        of all files under Mercurial control in the working directory.
+
+        If you want to feed the output of this command into the "xargs"
+        command, use the -0 option to both this command and "xargs". This
+        will avoid the problem of "xargs" treating single filenames that
+        contain whitespace as multiple filenames.
+
+        See `hg help files` for a more versatile command.
+
+        Returns 0 if a match is found, 1 otherwise.

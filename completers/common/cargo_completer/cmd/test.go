@@ -33,7 +33,7 @@ func init() {
 	testCmd.Flags().Bool("ignore-rust-version", false, "Ignore `rust-version` specification in packages")
 	testCmd.Flags().StringP("jobs", "j", "", "Number of parallel jobs, defaults to # of CPUs.")
 	testCmd.Flags().Bool("lib", false, "Test only this package's library")
-	testCmd.Flags().String("manifest-path", "", "Path to Cargo.toml")
+	testCmd.Flags().StringP("manifest-path", "m", "", "Path to Cargo.toml")
 	testCmd.Flags().StringSlice("message-format", nil, "Error format")
 	testCmd.Flags().Bool("no-default-features", false, "Do not activate the `default` feature")
 	testCmd.Flags().Bool("no-fail-fast", false, "Run all tests regardless of failure")
