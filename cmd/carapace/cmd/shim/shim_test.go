@@ -16,7 +16,6 @@ import (
 	"testing"
 
 	shlex "github.com/carapace-sh/carapace-shlex/v2"
-	"github.com/carapace-sh/carapace/pkg/xdg"
 )
 
 func TestIsRunnable(t *testing.T) {
@@ -99,12 +98,7 @@ func TestBodyEscaping(t *testing.T) {
 }
 
 func TestBodyStaysRunnable(t *testing.T) {
-	t.Setenv("XDG_CONFIG_HOME", t.TempDir())
-	configDir, err := xdg.UserConfigDir()
-	if err != nil {
-		t.Fatal(err)
-	}
-	target := fmt.Sprintf("%v/carapace/specs/demo.yaml", configDir)
+	target := "/demo/config/carapace/specs/demo.yaml"
 
 	if got, want := string(body(target)), fmt.Sprintf("#!/bin/sh\nexec carapace --run \"%v\" \"$@\"", target); got != want {
 		t.Fatalf("body() = %q, want %q", got, want)
