@@ -9,7 +9,6 @@ Supported shells:
 - [Cmd](https://en.wikipedia.org/wiki/Cmd.exe) ([experimental](https://github.com/carapace-sh/carapace/issues/1107))
 - [Elvish](https://elv.sh/)
 - [Fish](https://fishshell.com/)
-- [Ion](https://doc.redox-os.org/ion-manual/) ([experimental](https://github.com/carapace-sh/carapace/issues/88))
 - [Nushell](https://www.nushell.sh/)
 - [Oil](http://oils.pub/)
 - [Powershell](https://microsoft.com/powershell)
