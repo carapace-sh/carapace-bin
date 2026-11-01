@@ -1,6 +1,7 @@
 package snippet
 
 import (
+	"path/filepath"
 	"runtime"
 	"strings"
 	"testing"
@@ -9,15 +10,15 @@ import (
 )
 
 func TestPathSnippetEscaping(t *testing.T) {
-	// the fixture must be an absolute path: xdg.UserConfigDir falls back to
-	// OS defaults otherwise. Windows additionally exercises backslashes.
 	configHome := "/opt/\"d$(id)'" + "`" + "pa/th\\\\x\t\nmore"
 	if runtime.GOOS == "windows" {
-		configHome = `C:\opt\` + "\"d$(id)'" + "`" + `pa\\th\\x` + "\t\nmore"
+		// must be an absolute path: xdg.UserConfigDir falls back to the OS
+		// default directory otherwise (and forwards slashes paths anyway)
+		configHome = "C:" + configHome
 	}
 	t.Setenv("XDG_CONFIG_HOME", configHome)
 
-	binDir := configHome + "/carapace/bin"
+	binDir := filepath.ToSlash(configHome) + "/carapace/bin"
 
 	for _, shell := range []string{"bash", "bash-ble", "oil", "zsh", "elvish", "fish", "nushell", "powershell", "xonsh"} {
 		t.Run(shell, func(t *testing.T) {
