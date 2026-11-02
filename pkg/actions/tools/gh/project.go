@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"strconv"
 
+	"strings"
+
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace/pkg/style"
 )
@@ -371,4 +373,64 @@ func actionOrganizationProjectFields(opts ProjectFieldOpts) carapace.Action {
 			}
 			return carapace.ActionValuesDescribed(vals...)
 		})
+}
+
+// RepositoryProjectOpts completes legacy repository (classic) projects
+type RepositoryProjectOpts struct {
+	Host  string
+	Owner string
+	Name  string
+
+	Closed bool
+	Open   bool
+}
+
+func (o RepositoryProjectOpts) Default() RepositoryProjectOpts {
+	o.Open = true
+	o.Closed = true
+	return o
+}
+
+func (o RepositoryProjectOpts) repo() RepoOpts {
+	return RepoOpts{Host: o.Host, Owner: o.Owner, Name: o.Name}
+}
+
+func (o *RepositoryProjectOpts) states() string {
+	states := make([]string, 0)
+	for index, include := range []bool{o.Closed, o.Open} {
+		if include {
+			states = append(states, []string{"CLOSED", "OPEN"}[index])
+		}
+	}
+	return fmt.Sprintf("[%v]", strings.Join(states, ","))
+}
+
+// ActionRepositoryProjects completes legacy repository (classic) projects
+//
+//	project-a (Description of project A)
+//	project-b
+func ActionRepositoryProjects(opts RepositoryProjectOpts) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		var queryResult struct {
+			Data struct {
+				Repository struct {
+					Projects struct {
+						Nodes []struct {
+							Name string
+							Body string
+						}
+					}
+				}
+			}
+		}
+		return graphQlAction(opts.repo(), fmt.Sprintf(`repository(owner: $owner, name: $repo){ projects(first: 100, states: %v, orderBy: {direction: DESC, field: UPDATED_AT}) { nodes { name, body } } }`, opts.states()), &queryResult, func() carapace.Action {
+			projects := queryResult.Data.Repository.Projects.Nodes
+			vals := make([]string, len(projects)*2)
+			for index, project := range projects {
+				vals[index*2] = project.Name
+				vals[index*2+1] = strings.SplitN(project.Body, "\n", 2)[0]
+			}
+			return carapace.ActionValuesDescribed(vals...)
+		})
+	}).Tag("projects")
 }

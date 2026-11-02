@@ -250,3 +250,88 @@ func ActionIssueAssignees(opts IssueOpts) carapace.Action {
 		})
 	})
 }
+
+type issueArtifact struct {
+	Number int
+	Type   string
+	Name   string
+}
+
+type IssueArtifactOpts struct {
+	Host  string
+	Owner string
+	Name  string
+
+	IssueNumber int
+}
+
+func (o IssueArtifactOpts) Default() IssueArtifactOpts {
+	return o
+}
+
+func (o IssueArtifactOpts) repo() RepoOpts {
+	return RepoOpts{Host: o.Host, Owner: o.Owner, Name: o.Name}
+}
+
+// ActionIssueArtifacts completes issue artifacts
+//
+//	538 (logs: build.log)
+func ActionIssueArtifacts(opts IssueArtifactOpts) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		return resolveRepo(c, opts.repo(), func(resolved RepoOpts) carapace.Action {
+			var queryResult []issueArtifact
+			return apiV3Action(resolved, fmt.Sprintf("repos/%v/%v/issues/%v/artifacts", resolved.Owner, resolved.Name, opts.IssueNumber), &queryResult, func() carapace.Action {
+				vals := make([]string, 0)
+				for _, artifact := range queryResult {
+					vals = append(vals, strconv.Itoa(artifact.Number), fmt.Sprintf("%v: %v", artifact.Type, artifact.Name))
+				}
+				return carapace.ActionValuesDescribed(vals...)
+			})
+		})
+	}).Tag("issue artifacts")
+}
+
+type IssueArtifactVersionOpts struct {
+	Host  string
+	Owner string
+	Name  string
+
+	IssueNumber    int
+	ArtifactNumber int
+}
+
+func (o IssueArtifactVersionOpts) Default() IssueArtifactVersionOpts {
+	return o
+}
+
+func (o IssueArtifactVersionOpts) repo() RepoOpts {
+	return RepoOpts{Host: o.Host, Owner: o.Owner, Name: o.Name}
+}
+
+// ActionIssueArtifactVersions completes issue artifact versions
+//
+//	3 (Earlier state)
+//	4 (current content)
+func ActionIssueArtifactVersions(opts IssueArtifactVersionOpts) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		return resolveRepo(c, opts.repo(), func(resolved RepoOpts) carapace.Action {
+			var queryResult struct {
+				Versions []struct {
+					Version int
+					Name    string
+				}
+			}
+			return apiV3Action(resolved, fmt.Sprintf("repos/%v/%v/issues/%v/artifacts/%v", resolved.Owner, resolved.Name, opts.IssueNumber, opts.ArtifactNumber), &queryResult, func() carapace.Action {
+				vals := make([]string, 0)
+				for _, version := range queryResult.Versions {
+					name := version.Name
+					if name == "" {
+						name = "(current content)"
+					}
+					vals = append(vals, strconv.Itoa(version.Version), name)
+				}
+				return carapace.ActionValuesDescribed(vals...)
+			})
+		})
+	}).Tag("issue artifact versions")
+}
