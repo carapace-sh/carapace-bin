@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/gh_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
 	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
 )
@@ -34,10 +35,10 @@ func init() {
 			}
 		}),
 		"jq":   jq.ActionFilters(),
-		"json": action.ActionRepositoryFields().UniqueList(","),
+		"json": gh.ActionRepositoryFields().UniqueList(","),
 	})
 
 	carapace.Gen(repo_viewCmd).PositionalCompletion(
-		action.ActionOwnerRepositories(repo_viewCmd),
+		gh.ActionOwnerRepositories(gh.HostOpts{}),
 	)
 }

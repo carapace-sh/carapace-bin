@@ -31,20 +31,15 @@ type autolink struct {
 //	2222222 (STORY-)
 func ActionAutolinks(opts RepoOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		// TODO handle this generally for apiV3 actions
-		if opts.Owner == "" {
-			opts.Owner = ":owner"
-		}
-		if opts.Name == "" {
-			opts.Name = ":repo"
-		}
-		var queryResult []autolink
-		return apiV3Action(opts, fmt.Sprintf("repos/%v/%v/autolinks", opts.Owner, opts.Name), &queryResult, func() carapace.Action {
-			vals := make([]string, 0)
-			for _, al := range queryResult {
-				vals = append(vals, strconv.Itoa(al.ID), al.KeyPrefix)
-			}
-			return carapace.ActionValuesDescribed(vals...)
+		return resolveRepo(c, opts, func(resolved RepoOpts) carapace.Action {
+			var queryResult []autolink
+			return apiV3Action(resolved, fmt.Sprintf("repos/%v/%v/autolinks", resolved.Owner, resolved.Name), &queryResult, func() carapace.Action {
+				vals := make([]string, 0)
+				for _, al := range queryResult {
+					vals = append(vals, strconv.Itoa(al.ID), al.KeyPrefix)
+				}
+				return carapace.ActionValuesDescribed(vals...)
+			})
 		})
 	}).Tag("auto links")
 }

@@ -83,7 +83,7 @@ func init() {
 		}),
 		"involves": gh.ActionUsers(gh.HostOpts{}),
 		"jq":       jq.ActionFilters(),
-		"json":     action.ActionSearchIssueFields().UniqueList(","),
+		"json":     gh.ActionSearchIssueFields().UniqueList(","),
 		"label": action.ActionSearchMultiRepo(search_prsCmd, func(cmd *cobra.Command) carapace.Action {
 			return action.ActionLabels(cmd).UniqueList(",")
 		}),
@@ -99,7 +99,7 @@ func init() {
 		"repo": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			dummyCmd := &cobra.Command{}
 			dummyCmd.Flags().String("repo", c.Value, "fake repo flag")
-			return action.ActionOwnerRepositories(dummyCmd).NoSpace()
+			return gh.ActionOwnerRepositories(gh.HostOpts{}).NoSpace()
 		}),
 		"review": carapace.ActionValues("approved", "changes_requested", "none", "required"),
 		"review-requested": action.ActionSearchMultiRepo(search_prsCmd, func(cmd *cobra.Command) carapace.Action {

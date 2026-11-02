@@ -1,11 +1,14 @@
 package gh
 
 import (
+	"fmt"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/styles"
+	"github.com/carapace-sh/carapace/pkg/cache/key"
 	"github.com/carapace-sh/carapace/pkg/style"
 )
 
@@ -109,4 +112,273 @@ func ActionPinnedIssues(opts RepoOpts) carapace.Action {
 			return carapace.ActionStyledValuesDescribed(vals...)
 		})
 	})
+}
+
+type issueQuery struct {
+	Data struct {
+		Repository struct {
+			Issues struct {
+				Nodes []issue
+			}
+		}
+	}
+}
+
+type IssueOpts struct {
+	Host  string
+	Owner string
+	Name  string
+
+	Closed bool
+	Open   bool
+
+	Number string
+}
+
+func (o IssueOpts) Default() IssueOpts {
+	o.Closed = true
+	o.Open = true
+	return o
+}
+
+func (o IssueOpts) repo() RepoOpts {
+	return RepoOpts{Host: o.Host, Owner: o.Owner, Name: o.Name}
+}
+
+func (o IssueOpts) cacheKey() key.Key {
+	return key.String(o.Host, o.Owner, o.Name, strconv.FormatBool(o.Closed), strconv.FormatBool(o.Open))
+}
+
+func (o IssueOpts) states() string {
+	states := make([]string, 0)
+	for index, include := range []bool{o.Closed, o.Open} {
+		if include {
+			states = append(states, []string{"CLOSED", "OPEN"}[index])
+		}
+	}
+	return fmt.Sprintf("[%v]", strings.Join(states, ","))
+}
+
+func (o IssueOpts) stateFilter() string {
+	switch {
+	case o.Open && o.Closed:
+		return ""
+	case o.Open:
+		return "open"
+	case o.Closed:
+		return "closed"
+	default:
+		return "" // this doesn't really make any sense
+	}
+}
+
+// ActionIssues completes issues
+//
+//	42 (Fix login bug)
+//	43 (Add feature)
+func ActionIssues(opts IssueOpts) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		var queryResult issueQuery
+		return graphQlAction(opts.repo(), fmt.Sprintf(`repository(owner: $owner, name: $repo){ issues(first: 100, states: %v, orderBy: {direction: DESC, field: UPDATED_AT}) { nodes { number, title, state } } }`, opts.states()), &queryResult, func() carapace.Action {
+			issues := queryResult.Data.Repository.Issues.Nodes
+			vals := make([]string, 0)
+			for _, issue := range issues {
+				s := style.Default
+				switch issue.State {
+				case "OPEN":
+					s = styles.Gh.StateOpen
+				case "CLOSED":
+					s = styles.Gh.StateClosed
+				case "MERGED":
+					s = styles.Gh.StateMerged
+				default:
+				}
+
+				vals = append(vals, strconv.Itoa(issue.Number), issue.Title, s)
+			}
+			return carapace.ActionStyledValuesDescribed(vals...)
+		}).Uid("gh", "issue", "repo", opts.repo().fullName()).
+			Query("gh", "issue", "",
+				"repo", opts.repo().fullName(),
+				"state", opts.stateFilter(),
+			).
+			Cache(24*time.Hour, opts.cacheKey())
+	}).Tag("issues")
+}
+
+// ActionIssueFields completes issue fields
+//
+//	author
+//	labels
+func ActionIssueFields() carapace.Action {
+	return carapace.ActionValues(
+		"assignees",
+		"author",
+		"body",
+		"closed",
+		"closedAt",
+		"comments",
+		"createdAt",
+		"id",
+		"labels",
+		"milestone",
+		"number",
+		"projectCards",
+		"reactionGroups",
+		"state",
+		"title",
+		"updatedAt",
+		"url",
+	)
+}
+
+// ActionIssueLabels completes labels of an issue
+//
+//	bug (Something that doesn't work)
+func ActionIssueLabels(opts IssueOpts) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		return resolveRepo(c, opts.repo(), func(resolved RepoOpts) carapace.Action {
+			var queryResult issue
+			return apiV3Action(resolved, fmt.Sprintf("repos/%v/%v/issues/%v", resolved.Owner, resolved.Name, opts.Number), &queryResult, func() carapace.Action {
+				vals := make([]string, 0)
+				for _, label := range queryResult.Labels {
+					vals = append(vals, label.Name, label.Description, "#"+label.Color)
+				}
+				return carapace.ActionStyledValuesDescribed(vals...)
+			})
+		})
+	})
+}
+
+// ActionIssueAssignees completes assignees of an issue
+//
+//	userA
+//	userB
+func ActionIssueAssignees(opts IssueOpts) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		return resolveRepo(c, opts.repo(), func(resolved RepoOpts) carapace.Action {
+			var queryResult issue
+			return apiV3Action(resolved, fmt.Sprintf("repos/%v/%v/issues/%v", resolved.Owner, resolved.Name, opts.Number), &queryResult, func() carapace.Action {
+				vals := make([]string, 0)
+				for _, assignee := range queryResult.Assignees {
+					vals = append(vals, assignee.Login)
+				}
+				return carapace.ActionValues(vals...)
+			})
+		})
+	})
+}
+
+type issueArtifact struct {
+	Number int
+	Type   string
+	Name   string
+}
+
+type IssueArtifactOpts struct {
+	Host  string
+	Owner string
+	Name  string
+
+	IssueNumber int
+}
+
+func (o IssueArtifactOpts) Default() IssueArtifactOpts {
+	return o
+}
+
+func (o IssueArtifactOpts) repo() RepoOpts {
+	return RepoOpts{Host: o.Host, Owner: o.Owner, Name: o.Name}
+}
+
+// ActionIssueArtifacts completes issue artifacts
+//
+//	538 (logs: build.log)
+func ActionIssueArtifacts(opts IssueArtifactOpts) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		return resolveRepo(c, opts.repo(), func(resolved RepoOpts) carapace.Action {
+			var queryResult []issueArtifact
+			return apiV3Action(resolved, fmt.Sprintf("repos/%v/%v/issues/%v/artifacts", resolved.Owner, resolved.Name, opts.IssueNumber), &queryResult, func() carapace.Action {
+				vals := make([]string, 0)
+				for _, artifact := range queryResult {
+					vals = append(vals, strconv.Itoa(artifact.Number), fmt.Sprintf("%v: %v", artifact.Type, artifact.Name))
+				}
+				return carapace.ActionValuesDescribed(vals...)
+			})
+		})
+	}).Tag("issue artifacts")
+}
+
+type IssueArtifactVersionOpts struct {
+	Host  string
+	Owner string
+	Name  string
+
+	IssueNumber    int
+	ArtifactNumber int
+}
+
+func (o IssueArtifactVersionOpts) Default() IssueArtifactVersionOpts {
+	return o
+}
+
+func (o IssueArtifactVersionOpts) repo() RepoOpts {
+	return RepoOpts{Host: o.Host, Owner: o.Owner, Name: o.Name}
+}
+
+// ActionIssueArtifactVersions completes issue artifact versions
+//
+//	3 (Earlier state)
+//	4 (current content)
+func ActionIssueArtifactVersions(opts IssueArtifactVersionOpts) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		return resolveRepo(c, opts.repo(), func(resolved RepoOpts) carapace.Action {
+			var queryResult struct {
+				Versions []struct {
+					Version int
+					Name    string
+				}
+			}
+			return apiV3Action(resolved, fmt.Sprintf("repos/%v/%v/issues/%v/artifacts/%v", resolved.Owner, resolved.Name, opts.IssueNumber, opts.ArtifactNumber), &queryResult, func() carapace.Action {
+				vals := make([]string, 0)
+				for _, version := range queryResult.Versions {
+					name := version.Name
+					if name == "" {
+						name = "(current content)"
+					}
+					vals = append(vals, strconv.Itoa(version.Version), name)
+				}
+				return carapace.ActionValuesDescribed(vals...)
+			})
+		})
+	}).Tag("issue artifact versions")
+}
+
+// ActionSearchIssueFields completes issue search fields
+//
+//	authorAssociation
+//	isPullRequest
+func ActionSearchIssueFields() carapace.Action {
+	return carapace.ActionValues(
+		"assignees",
+		"author",
+		"authorAssociation",
+		"body",
+		"closedAt",
+
+		"commentsCount",
+		"createdAt",
+		"id",
+		"isLocked",
+		"isPullRequest",
+
+		"labels",
+		"number",
+		"repository",
+		"state",
+		"title",
+
+		"updatedAt",
+		"url",
+	)
 }

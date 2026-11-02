@@ -33,7 +33,7 @@ func init() {
 		"env":        action.ActionEnvironments(secret_setCmd),
 		"env-file":   carapace.ActionFiles(),
 		"org":        gh.ActionOrganizations(gh.HostOpts{}),
-		"repos":      action.ActionOwnerRepositories(secret_setCmd).UniqueList(","),
+		"repos":      gh.ActionOwnerRepositories(gh.HostOpts{}).UniqueList(","),
 		"visibility": carapace.ActionValues("all", "private", "selected"),
 	})
 

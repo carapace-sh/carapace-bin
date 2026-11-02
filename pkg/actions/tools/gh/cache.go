@@ -20,20 +20,15 @@ type actionCache struct {
 //	42 (refs/heads/master)
 func ActionCaches(opts RepoOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		// TODO handle this generally for apiV3 actions
-		if opts.Owner == "" {
-			opts.Owner = ":owner"
-		}
-		if opts.Name == "" {
-			opts.Name = ":repo"
-		}
-		var queryResult actionCache
-		return apiV3Action(opts, fmt.Sprintf("repos/%v/%v/actions/caches?per_page=100&sort=last_accessed_at&direction=desc", opts.Owner, opts.Name), &queryResult, func() carapace.Action {
-			vals := make([]string, 0)
-			for _, cache := range queryResult.ActionsCaches {
-				vals = append(vals, strconv.Itoa(cache.ID), cache.Ref)
-			}
-			return carapace.ActionValuesDescribed(vals...)
+		return resolveRepo(c, opts, func(resolved RepoOpts) carapace.Action {
+			var queryResult actionCache
+			return apiV3Action(resolved, fmt.Sprintf("repos/%v/%v/actions/caches?per_page=100&sort=last_accessed_at&direction=desc", resolved.Owner, resolved.Name), &queryResult, func() carapace.Action {
+				vals := make([]string, 0)
+				for _, cache := range queryResult.ActionsCaches {
+					vals = append(vals, strconv.Itoa(cache.ID), cache.Ref)
+				}
+				return carapace.ActionValuesDescribed(vals...)
+			})
 		})
 	}).Tag("caches")
 }
@@ -44,25 +39,20 @@ func ActionCaches(opts RepoOpts) carapace.Action {
 //	refs/heads/master
 func ActionCacheRefs(opts RepoOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		// TODO handle this generally for apiV3 actions
-		if opts.Owner == "" {
-			opts.Owner = ":owner"
-		}
-		if opts.Name == "" {
-			opts.Name = ":repo"
-		}
-		var queryResult actionCache
-		return apiV3Action(opts, fmt.Sprintf("repos/%v/%v/actions/caches?per_page=100&sort=last_accessed_at&direction=desc", opts.Owner, opts.Name), &queryResult, func() carapace.Action {
-			unique := make(map[string]bool)
-			for _, cache := range queryResult.ActionsCaches {
-				unique[cache.Ref] = true
-			}
+		return resolveRepo(c, opts, func(resolved RepoOpts) carapace.Action {
+			var queryResult actionCache
+			return apiV3Action(resolved, fmt.Sprintf("repos/%v/%v/actions/caches?per_page=100&sort=last_accessed_at&direction=desc", resolved.Owner, resolved.Name), &queryResult, func() carapace.Action {
+				unique := make(map[string]bool)
+				for _, cache := range queryResult.ActionsCaches {
+					unique[cache.Ref] = true
+				}
 
-			vals := make([]string, 0)
-			for ref := range unique {
-				vals = append(vals, ref)
-			}
-			return carapace.ActionValues(vals...)
+				vals := make([]string, 0)
+				for ref := range unique {
+					vals = append(vals, ref)
+				}
+				return carapace.ActionValues(vals...)
+			})
 		})
 	}).Tag("cache refs")
 }

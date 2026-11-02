@@ -1,18 +1,23 @@
 package gh
 
 import (
+	"bytes"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"strings"
+	"time"
 
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/cache"
+	"github.com/carapace-sh/carapace/pkg/cache/key"
 )
 
 func graphQlAction(opts RepoOpts, query string, v any, transform func() carapace.Action) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		needsRepo := strings.Contains(query, "$owner") || strings.Contains(query, "$repo")
 		if needsRepo {
-			return resolveRepo(opts, func(resolved RepoOpts) carapace.Action {
+			return resolveRepo(c, opts, func(resolved RepoOpts) carapace.Action {
 				return executeGraphQl(resolved, query, v, transform)
 			})
 		}
@@ -68,18 +73,50 @@ func executeGraphQl(opts RepoOpts, query string, v any, transform func() carapac
 // resolveRepo resolves the repository owner and name when they are empty,
 // using `gh repo view` which performs the same implicit repo detection as
 // the gh CLI (git remotes, gh-resolved config, GH_REPO env var).
-func resolveRepo(opts RepoOpts, f func(RepoOpts) carapace.Action) carapace.Action {
+// The hostname is not covered by that: `gh api` ignores the repository
+// context (it only honors --hostname or GH_HOST), so the host part of
+// GH_REPO is parsed here to keep enterprise hosts working.
+func resolveRepo(c carapace.Context, opts RepoOpts, f func(RepoOpts) carapace.Action) carapace.Action {
 	if opts.Owner != "" && opts.Name != "" {
 		return f(opts)
 	}
-	return carapace.ActionExecCommand("gh", "repo", "view", "--json", "owner,name")(func(output []byte) carapace.Action {
+
+	if opts.Host == "" {
+		if envRepo := c.Getenv("GH_REPO"); envRepo != "" {
+			splitted := strings.Split(envRepo, "/")
+			if len(splitted) > 2 && strings.Contains(splitted[0], ".") {
+				opts.Host = splitted[0] // enterprise host given with GH_REPO=HOST/OWNER/REPO
+			}
+		}
+	}
+
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		content, err := cache.Cache(24*time.Hour,
+			key.String("gh", "repoView", opts.Host, opts.Owner, opts.Name, c.Getenv("GH_REPO"), c.Dir),
+		)(func() ([]byte, error) {
+			var stdout, stderr bytes.Buffer
+			cmd := c.Command("gh", "repo", "view", "--json", "owner,name")
+			cmd.Stdout = &stdout
+			cmd.Stderr = &stderr
+			if err := cmd.Run(); err != nil {
+				if firstLine := strings.SplitN(stderr.String(), "\n", 2)[0]; strings.TrimSpace(firstLine) != "" {
+					err = errors.New(firstLine)
+				}
+				return nil, err
+			}
+			return stdout.Bytes(), nil
+		})
+		if err != nil {
+			return carapace.ActionMessage("failed to resolve repository: " + err.Error())
+		}
+
 		var identity struct {
 			Owner struct {
 				Login string `json:"login"`
 			} `json:"owner"`
 			Name string `json:"name"`
 		}
-		if err := json.Unmarshal(output, &identity); err != nil {
+		if err := json.Unmarshal(content, &identity); err != nil {
 			return carapace.ActionMessage("failed to resolve repository: " + err.Error())
 		}
 		if opts.Owner == "" {

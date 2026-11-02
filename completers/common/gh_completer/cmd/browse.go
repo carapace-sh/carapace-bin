@@ -8,7 +8,6 @@ import (
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/gh_completer/cmd/action"
-	_git "github.com/carapace-sh/carapace-bin/completers/common/gh_completer/cmd/action/git"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
 	"github.com/carapace-sh/carapace/pkg/util"
 	"github.com/spf13/cobra"
@@ -54,7 +53,7 @@ func init() {
 			if flag := browseCmd.Flag("commit"); flag.Changed {
 				switch flag.Value.String() {
 				case "", "last":
-					commit, err := _git.LastCommit()
+					commit, err := action.LastCommit()
 					if err != nil {
 						return carapace.ActionMessage(err.Error())
 					}

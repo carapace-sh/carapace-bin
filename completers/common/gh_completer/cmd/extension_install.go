@@ -5,6 +5,7 @@ import (
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/gh_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/git"
 	"github.com/spf13/cobra"
 )
@@ -38,7 +39,7 @@ func init() {
 	carapace.Gen(extension_installCmd).PositionalCompletion(
 		carapace.Batch(
 			action.ActionTopExtensions(),
-			action.ActionOwnerRepositories(extension_installCmd),
+			gh.ActionOwnerRepositories(gh.HostOpts{}),
 		).ToA(),
 	)
 }

@@ -36,7 +36,7 @@ type repositoryQuery struct {
 func ActionRepositories(opts OwnerOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		var queryResult repositoryQuery
-		return graphQlAction(opts.repo(), fmt.Sprintf(`search( type:REPOSITORY, query: """ user:%v "%v" in:name fork:true""", first: 100) { repos: edges { repo: node { ... on Repository { name description isArchived isPrivate isFork isMirror isTemplate isLocked } } } }`, opts.Owner, c.Value), &queryResult, func() carapace.Action {
+		return graphQlAction(opts.repo(), fmt.Sprintf(`search( type:REPOSITORY, query: %q, first: 100) { repos: edges { repo: node { ... on Repository { name description isArchived isPrivate isFork isMirror isTemplate isLocked } } } }`, fmt.Sprintf(`user:%v %q in:name fork:true`, opts.Owner, c.Value)), &queryResult, func() carapace.Action {
 			repositories := queryResult.Data.Search.Repos
 			vals := make([]string, 0)
 			for _, repo := range repositories {
@@ -103,4 +103,128 @@ func ActionHostOwnerRepositories() carapace.Action {
 			return carapace.ActionValues()
 		}
 	})
+}
+
+// ActionRepositoryFields completes repository fields
+//
+//	description
+//	nameWithOwner
+func ActionRepositoryFields() carapace.Action {
+	return carapace.ActionValues(
+		"assignableUsers",
+		"codeOfConduct",
+		"contactLinks",
+		"createdAt",
+		"defaultBranchRef",
+		"deleteBranchOnMerge",
+		"description",
+		"diskUsage",
+		"forkCount",
+		"fundingLinks",
+
+		"hasIssuesEnabled",
+		"hasProjectsEnabled",
+		"hasWikiEnabled",
+		"homepageUrl",
+		"id",
+		"isArchived",
+
+		"isBlankIssuesEnabled",
+		"isEmpty",
+		"isFork",
+		"isInOrganization",
+		"isMirror",
+
+		"isPrivate",
+		"isSecurityPolicyEnabled",
+		"isTemplate",
+		"isUserConfigurationRepository",
+		"issueTemplates",
+
+		"issues",
+		"labels",
+		"languages",
+		"latestRelease",
+		"licenseInfo",
+
+		"mentionableUsers",
+		"mergeCommitAllowed",
+		"milestones",
+		"mirrorUrl",
+		"name",
+
+		"nameWithOwner",
+		"openGraphImageUrl",
+		"owner",
+		"parent",
+		"primaryLanguage",
+
+		"projects",
+		"pullRequestTemplates",
+		"pullRequests",
+		"pushedAt",
+		"rebaseMergeAllowed",
+
+		"repositoryTopics",
+		"securityPolicyUrl",
+		"squashMergeAllowed",
+		"sshUrl",
+		"stargazerCount",
+
+		"templateRepository",
+		"updatedAt",
+		"url",
+		"usesCustomOpenGraphImage",
+		"viewerCanAdminister",
+
+		"viewerDefaultCommitEmail",
+		"viewerDefaultMergeMethod",
+		"viewerHasStarred",
+		"viewerPermission",
+		"viewerPossibleCommitEmails",
+
+		"viewerSubscription",
+		"watchers",
+	)
+}
+
+// ActionRepositorySearchFields completes repository search fields
+//
+//	defaultBranch
+//	stargazersRange
+func ActionRepositorySearchFields() carapace.Action {
+	return carapace.ActionValues(
+		"createdAt",
+		"defaultBranch",
+		"description",
+		"forksCount",
+		"fullName",
+
+		"hasDownloads",
+		"hasIssues",
+		"hasPages",
+		"hasProjects",
+		"hasWiki",
+
+		"homepage",
+		"id",
+		"isArchived",
+		"isDisabled",
+		"isFork",
+
+		"isPrivate",
+		"language",
+		"license",
+		"name",
+		"openIssuesCount",
+
+		"owner",
+		"pushedAt",
+		"size",
+		"stargazersCount",
+		"updatedAt",
+
+		"visibility",
+		"watchersCount",
+	)
 }

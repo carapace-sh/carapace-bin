@@ -6,22 +6,14 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// ActionDiscussions completes discussions
 func ActionDiscussions(cmd *cobra.Command) carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		repo, err := repoOverride(cmd, c)
-		if err != nil {
-			return carapace.ActionMessage(err.Error())
-		}
-		return gh.ActionDiscussions(gh.RepoOpts{Host: repo.RepoHost(), Owner: repo.RepoOwner(), Name: repo.RepoName()})
-	})
+	repo := repoOpts(cmd)
+	return gh.ActionDiscussions(gh.RepoOpts{Host: repo.Host, Owner: repo.Owner, Name: repo.Name})
 }
 
+// ActionDiscussionCategories completes discussion categories
 func ActionDiscussionCategories(cmd *cobra.Command) carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		repo, err := repoOverride(cmd, c)
-		if err != nil {
-			return carapace.ActionMessage(err.Error())
-		}
-		return gh.ActionDiscussionCategories(gh.RepoOpts{Host: repo.RepoHost(), Owner: repo.RepoOwner(), Name: repo.RepoName()})
-	})
+	repo := repoOpts(cmd)
+	return gh.ActionDiscussionCategories(gh.RepoOpts{Host: repo.Host, Owner: repo.Owner, Name: repo.Name})
 }

@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/gh_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/spf13/cobra"
 )
@@ -24,7 +24,7 @@ func init() {
 	repoCmd.AddCommand(repo_cloneCmd)
 
 	carapace.Gen(repo_cloneCmd).PositionalCompletion(
-		action.ActionOwnerRepositories(repo_cloneCmd),
+		gh.ActionOwnerRepositories(gh.HostOpts{}),
 		carapace.ActionDirectories(),
 	)
 

@@ -1,63 +1,19 @@
 package action
 
 import (
-	"fmt"
-
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
 	"github.com/spf13/cobra"
 )
 
-type mentionableUsersQuery struct {
-	Data struct {
-		Repository struct {
-			MentionableUsers struct {
-				Nodes []user
-			}
-		}
-	}
-}
-
+// ActionMentionableUsers completes mentionable users
 func ActionMentionableUsers(cmd *cobra.Command) carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		var queryResult mentionableUsersQuery
-		return GraphQlAction(cmd, fmt.Sprintf(`repository(owner: $owner, name: $repo){ mentionableUsers(first: 100, query: "%v") { nodes { login, name } } }`, c.Value), &queryResult, func() carapace.Action {
-			users := queryResult.Data.Repository.MentionableUsers.Nodes
-			vals := make([]string, len(users)*2)
-			for index, user := range users {
-				vals[index*2] = user.Login
-				vals[index*2+1] = user.Name
-			}
-			return carapace.ActionValuesDescribed(vals...)
-		})
-	})
+	repo := repoOpts(cmd)
+	return gh.ActionMentionableUsers(gh.RepoOpts{Host: repo.Host, Owner: repo.Owner, Name: repo.Name})
 }
 
-type user struct {
-	Login string
-	Name  string
-}
-
-type assignableUserQuery struct {
-	Data struct {
-		Repository struct {
-			AssignableUsers struct {
-				Nodes []user
-			}
-		}
-	}
-}
-
+// ActionAssignableUsers completes assignable users
 func ActionAssignableUsers(cmd *cobra.Command) carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		var queryResult assignableUserQuery
-		return GraphQlAction(cmd, fmt.Sprintf(`repository(owner: $owner, name: $repo){ assignableUsers(first: 100, query: "%v") { nodes { login, name } } }`, c.Value), &queryResult, func() carapace.Action {
-			users := queryResult.Data.Repository.AssignableUsers.Nodes
-			vals := make([]string, len(users)*2)
-			for index, user := range users {
-				vals[index*2] = user.Login
-				vals[index*2+1] = user.Name
-			}
-			return carapace.ActionValuesDescribed(vals...)
-		})
-	}).Tag("assignable users")
+	repo := repoOpts(cmd)
+	return gh.ActionAssignableUsers(gh.RepoOpts{Host: repo.Host, Owner: repo.Owner, Name: repo.Name})
 }

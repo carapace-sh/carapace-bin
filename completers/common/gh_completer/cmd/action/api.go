@@ -1,9 +1,7 @@
 package action
 
 import (
-	"fmt"
 	"strings"
-	"sync"
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
@@ -46,32 +44,32 @@ func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
 
 		return carapace.ActionValuesDescribed(v3Paths[method]...).
 			MultiPartsP("/", `{(.*)}`, func(placeholder string, matches map[string]string) carapace.Action {
-				fakeRepoFlag(cmd, matches["{owner}"], matches["{repo}"])
+				repo := gh.RepoOpts{Owner: matches["{owner}"], Name: matches["{repo}"]}
 
 				switch placeholder {
 				// TODO completion for other placeholders
 				case "{archive_format}":
 					return carapace.ActionValues("zip")
 				case "{artifact_id}":
-					return ActionWorkflowArtifactIds(cmd, "")
+					return gh.ActionWorkflowArtifactIds(gh.ArtifactOpts{Owner: repo.Owner, Name: repo.Name})
 				case "{assignee}":
-					return ActionAssignableUsers(cmd)
+					return gh.ActionAssignableUsers(repo)
 				case "{branch}":
-					return ActionBranches(cmd)
+					return gh.ActionBranches(repo)
 				case "{coc_key}":
-					return ActionCocs(cmd)
+					return gh.ActionCocs(gh.HostOpts{Host: repo.Host})
 				case "{environment_name}":
-					return ActionEnvironments(cmd)
+					return gh.ActionEnvironments(repo)
 				case "{gist_id}":
-					return ActionGists(cmd)
+					return gh.ActionGistIds(gh.GistOpts{Owner: repo.Owner})
 				case "{gitignore_name}":
-					return ActionGitignoreTemplates(cmd)
+					return gh.ActionGitignoreTemplates(gh.HostOpts{Host: repo.Host})
 				case "{label}":
 					return gh.ActionLabels(gh.RepoOpts{Owner: matches["{owner}"], Name: matches["{repo}"]})
 				case "{license}":
 					return gh.ActionLicenses(gh.HostOpts{})
 				case "{issue_number}":
-					return ActionIssues(cmd, IssueOpts{Open: true, Closed: true})
+					return gh.ActionIssues(gh.IssueOpts{Host: repo.Host, Owner: repo.Owner, Name: repo.Name, Open: true, Closed: true})
 				case "{owner}":
 					if strings.HasPrefix(c.Value, ":") {
 						return carapace.ActionValues(":owner")
@@ -81,9 +79,9 @@ func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
 				case "{org}":
 					return gh.ActionOrganizations(gh.HostOpts{})
 				case "{package_type}":
-					return ActionPackageTypes()
+					return gh.ActionPackageTypes()
 				case "{pull_number}":
-					return ActionPullRequests(cmd, PullRequestOpts{Open: true, Closed: true, Merged: true})
+					return gh.ActionPullRequests(gh.PullRequestOpts{Host: repo.Host, Owner: repo.Owner, Name: repo.Name, Open: true, Closed: true, Merged: true})
 				case "{repo}":
 					if strings.HasPrefix(c.Value, ":") {
 						return carapace.ActionValues(":repo")
@@ -91,7 +89,7 @@ func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
 						return gh.ActionRepositories(gh.OwnerOpts{Owner: matches["{owner}"]})
 					}
 				case "{tag}": // only used with releases
-					return ActionReleases(cmd)
+					return gh.ActionReleases(gh.ReleaseOpts{Host: repo.Host, Owner: repo.Owner, Name: repo.Name})
 				case "{template_owner}": // ignore this as it is already provided by `{owner}`
 					return carapace.ActionValues()
 				case "{template_repo}": // ignore this as it is already provided by `{repo}`
@@ -99,27 +97,13 @@ func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
 				case "{username}":
 					return gh.ActionUsers(gh.HostOpts{})
 				case "{workflow_id}":
-					return ActionWorkflows(cmd, WorkflowOpts{Enabled: true, Disabled: true, Id: true})
+					return gh.ActionWorkflows(gh.WorkflowOpts{Enabled: true, Disabled: true, ById: true, Owner: matches["{owner}"], Name: matches["{repo}"]})
 				default:
 					// static value or placeholder not yet handled
 					return carapace.ActionValues(placeholder)
 				}
 			})
 	})
-}
-
-var fakeRepoFlagMutex sync.Mutex
-
-func fakeRepoFlag(cmd *cobra.Command, owner, repo string) {
-	if cmd.Flag("repo") == nil {
-		fakeRepoFlagMutex.Lock()
-		defer fakeRepoFlagMutex.Unlock()
-
-		if cmd.Flag("repo") == nil {
-			cmd.Flags().String("repo", fmt.Sprintf("%v/%v", owner, repo), "fake repo flag")
-			cmd.Flag("repo").Changed = true
-		}
-	}
 }
 
 func ActionPackageTypes() carapace.Action {

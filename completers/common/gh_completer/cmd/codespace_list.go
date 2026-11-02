@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/gh_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
 	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
@@ -32,7 +31,7 @@ func init() {
 
 	carapace.Gen(codespace_listCmd).FlagCompletion(carapace.ActionMap{
 		"jq":   jq.ActionFilters(),
-		"json": action.ActionCodespaceFields().UniqueList(","),
+		"json": gh.ActionCodespaceFields().UniqueList(","),
 		"org":  gh.ActionOrganizations(gh.HostOpts{}),
 		"repo": gh.ActionOwnerRepositories(gh.HostOpts{}),
 		"user": gh.ActionUsers(gh.HostOpts{}),

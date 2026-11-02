@@ -13,7 +13,7 @@ import (
 type pullrequest struct {
 	Number    int
 	Title     string
-	IsDraft   bool
+	IsDraft   bool `json:"draft"`
 	State     string
 	Labels    []label
 	Assignees []struct {
@@ -43,6 +43,8 @@ type PullRequestOpts struct {
 	Merged    bool
 	Open      bool
 	DraftOnly bool
+
+	Number string
 }
 
 func (o PullRequestOpts) Default() PullRequestOpts {
@@ -103,4 +105,130 @@ func ActionPullRequests(opts PullRequestOpts) carapace.Action {
 			return carapace.ActionStyledValuesDescribed(vals...)
 		})
 	}).Tag("pull requests")
+}
+
+// ActionPullRequestFields completes pull request fields
+//
+//	baseRefName
+//	headRefName
+func ActionPullRequestFields() carapace.Action {
+	return carapace.ActionValues(
+		"additions",
+		"baseRefName",
+		"changedFiles",
+		"commits",
+		"deletions",
+		"files",
+		"headRefName",
+		"headRepository",
+		"headRepositoryOwner",
+		"isCrossRepository",
+		"isDraft",
+		"maintainerCanModify",
+		"mergeCommit",
+		"mergeStateStatus",
+		"mergeable",
+		"mergedAt",
+		"mergedBy",
+		"potentialMergeCommit",
+		"reviewDecision",
+		"reviewRequests",
+		"reviews",
+		"statusCheckRollup",
+	)
+}
+
+// ActionPullRequestCheckFields completes pull request check fields
+//
+//	name
+//	state
+func ActionPullRequestCheckFields() carapace.Action {
+	return carapace.ActionValues(
+		"bucket",
+		"completedAt",
+		"description",
+		"event",
+		"link",
+		"name",
+		"startedAt",
+		"state",
+		"workflow",
+	)
+}
+
+func actionPullRequest(repo RepoOpts, opts PullRequestOpts, f func(p pullrequest) carapace.Action) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		return resolveRepo(c, repo, func(resolved RepoOpts) carapace.Action {
+			var queryResult pullrequest
+			return apiV3Action(resolved, fmt.Sprintf("repos/%v/%v/pulls/%v", resolved.Owner, resolved.Name, opts.Number), &queryResult, func() carapace.Action {
+				return f(queryResult)
+			})
+		})
+	})
+}
+
+// ActionPullRequestLabels completes labels of a pull request
+//
+//	bug (Something that doesn't work)
+func ActionPullRequestLabels(opts PullRequestOpts) carapace.Action {
+	return actionPullRequest(opts.repo(), opts, func(p pullrequest) carapace.Action {
+		vals := make([]string, 0)
+		for _, label := range p.Labels {
+			vals = append(vals, label.Name, label.Description, "#"+label.Color)
+		}
+		return carapace.ActionStyledValuesDescribed(vals...)
+	})
+}
+
+// ActionPullRequestAssignees completes assignees of a pull request
+//
+//	userA
+//	userB
+func ActionPullRequestAssignees(opts PullRequestOpts) carapace.Action {
+	return actionPullRequest(opts.repo(), opts, func(p pullrequest) carapace.Action {
+		vals := make([]string, 0)
+		for _, assignee := range p.Assignees {
+			vals = append(vals, assignee.Login)
+		}
+		return carapace.ActionValues(vals...)
+	})
+}
+
+// ActionPullRequestReviewers completes reviewers of a pull request
+//
+//	userA
+//	userB
+func ActionPullRequestReviewers(opts PullRequestOpts) carapace.Action {
+	return actionPullRequest(opts.repo(), opts, func(p pullrequest) carapace.Action {
+		vals := make([]string, 0)
+		for _, reviewer := range p.RequestedReviewers {
+			vals = append(vals, reviewer.Login)
+		}
+		return carapace.ActionValues(vals...)
+	})
+}
+
+type pullRequestCommit struct {
+	Sha    string
+	Commit struct {
+		Message string
+	}
+}
+
+// ActionPullRequestCommits completes commits of a pull request
+//
+//	3fbdef3c6a10 (fix use of mutable closure variable)
+func ActionPullRequestCommits(opts PullRequestOpts) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		return resolveRepo(c, opts.repo(), func(resolved RepoOpts) carapace.Action {
+			var queryResult []pullRequestCommit
+			return apiV3Action(resolved, fmt.Sprintf("repos/%v/%v/pulls/%v/commits", resolved.Owner, resolved.Name, opts.Number), &queryResult, func() carapace.Action {
+				vals := make([]string, 0)
+				for _, commit := range queryResult {
+					vals = append(vals, commit.Sha, commit.Commit.Message)
+				}
+				return carapace.ActionValuesDescribed(vals...)
+			})
+		})
+	})
 }

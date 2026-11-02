@@ -1,7 +1,6 @@
 package action
 
 import (
-	"fmt"
 	"strings"
 
 	"github.com/carapace-sh/carapace"
@@ -9,25 +8,10 @@ import (
 	"github.com/spf13/cobra"
 )
 
-type gist struct {
-	Name        string
-	Description string
-	Files       []struct {
-		Name string
-		Size int
-	}
-}
-
-type gistQuery struct {
-	Data struct {
-		User struct {
-			Gists struct {
-				Edges []struct {
-					Node gist
-				}
-			}
-		}
-	}
+// gistApiHost strips the `gist.` prefix from a gist url host,
+// returning the corresponding api host.
+func gistApiHost(host string) string {
+	return strings.TrimPrefix(host, "gist.")
 }
 
 func ActionGistUrls(cmd *cobra.Command) carapace.Action {
@@ -52,8 +36,7 @@ func ActionGistUrls(cmd *cobra.Command) carapace.Action {
 				case 1:
 					return gh.ActionUsers(gh.HostOpts{}).Invoke(c).Suffix("/").ToA()
 				case 2:
-					fakeRepoFlag(cmd, c.Parts[0], c.Parts[1])
-					return ActionGistIds(cmd)
+					return gh.ActionGistIds(gh.GistOpts{Host: gistApiHost(c.Parts[0]), Owner: c.Parts[1]})
 				default:
 					return carapace.ActionValues()
 				}
@@ -63,27 +46,7 @@ func ActionGistUrls(cmd *cobra.Command) carapace.Action {
 }
 
 func ActionGistIds(cmd *cobra.Command) carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		user := "$owner"
-		if cmd.Flag("repo") == nil || !cmd.Flag("repo").Changed {
-			if u, err := defaultUser(); err != nil {
-				return carapace.ActionMessage(err.Error())
-			} else {
-				user = fmt.Sprintf(`"%v"`, u)
-			}
-		}
-
-		var queryResult gistQuery
-		return GraphQlAction(cmd, fmt.Sprintf(`user(login: %v) { gists(first:100, privacy:ALL, orderBy: {field: UPDATED_AT, direction: DESC}) { edges { node { name, description } } } }`, user), &queryResult, func() carapace.Action {
-			gists := queryResult.Data.User.Gists.Edges
-			vals := make([]string, len(gists)*2)
-			for index, gist := range gists {
-				vals[index*2] = gist.Node.Name
-				vals[index*2+1] = gist.Node.Description
-			}
-			return carapace.ActionValuesDescribed(vals...)
-		})
-	})
+	return gh.ActionGistIds(gh.GistOpts{})
 }
 
 func ActionGists(cmd *cobra.Command) carapace.Action {
@@ -97,40 +60,16 @@ func ActionGists(cmd *cobra.Command) carapace.Action {
 }
 
 func ActionGistFiles(cmd *cobra.Command, name string) carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		splitted := strings.Split(name, "/")
-		gistName := splitted[len(splitted)-1]
-		switch len(splitted) {
-		case 1:
-		case 5:
-			fakeRepoFlag(cmd, splitted[2], splitted[3])
-		default:
-			return carapace.ActionMessage("invalid gist id/url: " + name)
-		}
-
-		user := "$owner"
-		if cmd.Flag("repo") == nil || !cmd.Flag("repo").Changed {
-			if u, err := defaultUser(); err != nil {
-				return carapace.ActionMessage(err.Error())
-			} else {
-				user = fmt.Sprintf(`"%v"`, u)
-			}
-		}
-
-		// TODO query/filter specific gist by name (this is slow)
-		var queryResult gistQuery
-		return GraphQlAction(cmd, fmt.Sprintf(`user(login: %v) { gists(first:100, privacy:ALL, orderBy: {field: UPDATED_AT, direction: DESC}) { edges { node { name, description, files { name, size } } } } }`, user), &queryResult, func() carapace.Action {
-			gists := queryResult.Data.User.Gists.Edges
-			vals := make([]string, 0)
-			for _, gist := range gists {
-				if gist.Node.Name == gistName {
-					for _, file := range gist.Node.Files {
-						vals = append(vals, file.Name, byteCountSI(file.Size))
-					}
-
-				}
-			}
-			return carapace.ActionValuesDescribed(vals...)
-		})
-	})
+	splitted := strings.Split(name, "/")
+	gistId := splitted[len(splitted)-1]
+	var host string
+	var owner string
+	switch len(splitted) {
+	case 1:
+		host = gistApiHost(splitted[2])
+		owner = splitted[3]
+	default:
+		return carapace.ActionMessage("invalid gist id/url: " + name)
+	}
+	return gh.ActionGistFiles(gh.GistOpts{Host: host, Owner: owner, Gist: gistId})
 }

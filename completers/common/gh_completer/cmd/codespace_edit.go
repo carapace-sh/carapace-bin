@@ -26,7 +26,7 @@ func init() {
 	codespaceCmd.AddCommand(codespace_editCmd)
 
 	carapace.Gen(codespace_editCmd).FlagCompletion(carapace.ActionMap{
-		"codespace":  action.ActionCodespaces(),
+		"codespace":  gh.ActionCodespaces(),
 		"machine":    action.ActionCodespaceMachines(),
 		"repo":       gh.ActionOwnerRepositories(gh.HostOpts{}),
 		"repo-owner": gh.ActionOwners(gh.HostOpts{}),

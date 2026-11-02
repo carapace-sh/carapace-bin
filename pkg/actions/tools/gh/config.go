@@ -5,6 +5,7 @@ import (
 	"path/filepath"
 
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/config"
 	"github.com/carapace-sh/carapace/pkg/traverse"
 	"go.yaml.in/yaml/v3"
 )
@@ -46,12 +47,16 @@ func actionHostConfig(f func(config hostConfig) carapace.Action) carapace.Action
 //	github.com
 //	another.com
 func ActionConfigHosts() carapace.Action {
-	return actionHostConfig(func(config hostConfig) carapace.Action {
-		vals := make([]string, 0)
-		for host := range config {
-			vals = append(vals, host)
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		hostConfig, err := config.ParseDefaultConfig()
+		if err != nil {
+			return carapace.ActionMessage("failed to parse DefaultConfig: " + err.Error())
 		}
-		return carapace.ActionValues(vals...)
+		hosts, err := hostConfig.Hosts()
+		if err != nil {
+			return carapace.ActionMessage("failed to load hosts: " + err.Error())
+		}
+		return carapace.ActionValues(hosts...).Tag("config hosts")
 	})
 }
 

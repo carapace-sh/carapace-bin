@@ -4,8 +4,8 @@ import (
 	"strings"
 
 	"github.com/carapace-sh/carapace"
-	gh "github.com/carapace-sh/carapace-bin/completers/common/gh_completer/cmd/action"     // TODO move to pkg/actions/tools
 	glab "github.com/carapace-sh/carapace-bin/completers/common/glab_completer/cmd/action" // TODO move to pkg/actions/tools
+	gh "github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
 	"github.com/spf13/cobra"
 )
 
@@ -61,7 +61,7 @@ func ActionRepositorySearch(opts SearchOpts) carapace.Action {
 				return gh.ActionConfigHosts().Invoke(c).Suffix("/").ToA()
 			default:
 				c.Value = strings.TrimPrefix(c.Value, splitted[0]+"/")
-				return gh.ActionOwnerRepositories(&cobra.Command{}).Invoke(c).Prefix(prefix + splitted[0] + "/").ToA()
+				return gh.ActionOwnerRepositories(gh.HostOpts{}).Invoke(c).Prefix(prefix + splitted[0] + "/").ToA()
 			}
 
 		case "gitlab.com/":

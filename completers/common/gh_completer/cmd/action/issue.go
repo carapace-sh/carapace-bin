@@ -1,200 +1,63 @@
 package action
 
 import (
-	"fmt"
-	"strconv"
-	"strings"
-
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/gh_completer/cmd/action/ghrepo"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
-	"github.com/carapace-sh/carapace-bin/pkg/styles"
-	"github.com/carapace-sh/carapace/pkg/style"
 	"github.com/spf13/cobra"
 )
-
-type issue struct {
-	Number    int
-	Title     string
-	State     string
-	Labels    []label
-	Assignees []struct {
-		Login string
-	}
-}
-
-type issueQuery struct {
-	Data struct {
-		Repository struct {
-			Issues struct {
-				Nodes []issue
-			}
-		}
-	}
-}
 
 type IssueOpts struct {
 	Closed bool
 	Open   bool
 }
 
-func (i *IssueOpts) states() string {
-	states := make([]string, 0)
-	for index, include := range []bool{i.Closed, i.Open} {
-		if include {
-			states = append(states, []string{"CLOSED", "OPEN"}[index])
-		}
-	}
-	return fmt.Sprintf("[%v]", strings.Join(states, ","))
-}
-
-func (i IssueOpts) stateFilter() string {
-	// TODO yuck, just for query
-	switch {
-	case i.Open && i.Closed:
-		return ""
-	case i.Open:
-		return "open"
-	case i.Closed:
-		return "closed"
-	default:
-		return "" // this doesn't really make any sense
-	}
-}
-
+// ActionIssues completes issues
 func ActionIssues(cmd *cobra.Command, opts IssueOpts) carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		repo, err := repoOverride(cmd, c)
-		if err != nil {
-			return carapace.ActionMessage(err.Error())
-		}
-		var queryResult issueQuery
-		return GraphQlAction(cmd, fmt.Sprintf(`repository(owner: $owner, name: $repo){ issues(first: 100, states: %v, orderBy: {direction: DESC, field: UPDATED_AT}) { nodes { number, title, state } } }`, opts.states()), &queryResult, func() carapace.Action {
-			issues := queryResult.Data.Repository.Issues.Nodes
-			vals := make([]string, 0)
-			for _, issue := range issues {
-				s := style.Default
-				switch issue.State {
-				case "OPEN":
-					s = styles.Gh.StateOpen
-				case "CLOSED":
-					s = styles.Gh.StateClosed
-				case "MERGED":
-					s = styles.Gh.StateMerged
-				default:
-				}
-
-				vals = append(vals, strconv.Itoa(issue.Number), issue.Title, s)
-			}
-			return carapace.ActionStyledValuesDescribed(vals...)
-		}).Uid("gh", "issue", "repo", ghrepo.FullName(repo)).
-			Query("gh", "issue", "",
-				"repo", ghrepo.FullName(repo),
-				"state", opts.stateFilter(),
-			)
-	}).Tag("issues")
-}
-
-type pinnedIssueQuery struct {
-	Data struct {
-		Repository struct {
-			PinnedIssues struct {
-				Nodes []struct {
-					Issue issue
-				}
-			}
-		}
-	}
-}
-
-func ActionPinnedIssues(cmd *cobra.Command) carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		var queryResult pinnedIssueQuery
-		return GraphQlAction(cmd, `repository(owner: $owner, name: $repo){ pinnedIssues(first: 3) { nodes { issue { number, title, state } } } }`, &queryResult, func() carapace.Action {
-			issues := queryResult.Data.Repository.PinnedIssues.Nodes
-			vals := make([]string, 0)
-			for _, issue := range issues {
-				s := style.Default
-				switch issue.Issue.State {
-				case "OPEN":
-					s = styles.Gh.StateOpen
-				case "CLOSED":
-					s = styles.Gh.StateClosed
-				case "MERGED":
-					s = styles.Gh.StateMerged
-				default:
-				}
-
-				vals = append(vals, strconv.Itoa(issue.Issue.Number), issue.Issue.Title, s)
-			}
-			return carapace.ActionStyledValuesDescribed(vals...)
-		})
+	repo := repoOpts(cmd)
+	return gh.ActionIssues(gh.IssueOpts{
+		Host:   repo.Host,
+		Owner:  repo.Owner,
+		Name:   repo.Name,
+		Closed: opts.Closed,
+		Open:   opts.Open,
 	})
 }
 
-func ActionIssueTypes(cmd *cobra.Command) carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		repo, err := repoOverride(cmd, c)
-		if err != nil {
-			return carapace.ActionMessage(err.Error())
-		}
-		return gh.ActionIssueTypes(gh.RepoOpts{Host: repo.RepoHost(), Owner: repo.RepoOwner(), Name: repo.RepoName()})
-	})
-}
-
+// ActionIssueFields completes issue fields
 func ActionIssueFields() carapace.Action {
-	return carapace.ActionValues(
-		"assignees",
-		"author",
-		"body",
-		"closed",
-		"closedAt",
-		"comments",
-		"createdAt",
-		"id",
-		"labels",
-		"milestone",
-		"number",
-		"projectCards",
-		"reactionGroups",
-		"state",
-		"title",
-		"updatedAt",
-		"url",
-	)
+	return gh.ActionIssueFields()
 }
 
-func actionIssue(cmd *cobra.Command, issueId string, f func(i issue) carapace.Action) carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		repo, err := repoOverride(cmd, c)
-		if err != nil {
-			return carapace.ActionMessage(err.Error())
-		}
-
-		var queryResult issue
-		return ApiV3Action(cmd, fmt.Sprintf(`repos/%v/%v/issues/%v`, repo.RepoOwner(), repo.RepoName(), issueId), &queryResult, func() carapace.Action {
-			return f(queryResult)
-		})
-
-	})
-}
-
+// ActionIssueLabels completes labels of an issue
 func ActionIssueLabels(cmd *cobra.Command, issueId string) carapace.Action {
-	return actionIssue(cmd, issueId, func(i issue) carapace.Action {
-		vals := make([]string, 0)
-		for _, label := range i.Labels {
-			vals = append(vals, label.Name, label.Description, "#"+label.Color)
-		}
-		return carapace.ActionStyledValuesDescribed(vals...)
+	repo := repoOpts(cmd)
+	return gh.ActionIssueLabels(gh.IssueOpts{
+		Host:   repo.Host,
+		Owner:  repo.Owner,
+		Name:   repo.Name,
+		Number: issueId,
 	})
 }
 
+// ActionIssueAssignees completes assignees of an issue
 func ActionIssueAssignees(cmd *cobra.Command, issueId string) carapace.Action {
-	return actionIssue(cmd, issueId, func(i issue) carapace.Action {
-		vals := make([]string, 0)
-		for _, assignee := range i.Assignees {
-			vals = append(vals, assignee.Login)
-		}
-		return carapace.ActionValues(vals...)
+	repo := repoOpts(cmd)
+	return gh.ActionIssueAssignees(gh.IssueOpts{
+		Host:   repo.Host,
+		Owner:  repo.Owner,
+		Name:   repo.Name,
+		Number: issueId,
 	})
+}
+
+// ActionIssueTypes completes issue types
+func ActionIssueTypes(cmd *cobra.Command) carapace.Action {
+	repo := repoOpts(cmd)
+	return gh.ActionIssueTypes(gh.RepoOpts{Host: repo.Host, Owner: repo.Owner, Name: repo.Name})
+}
+
+// ActionPinnedIssues completes pinned issues
+func ActionPinnedIssues(cmd *cobra.Command) carapace.Action {
+	repo := repoOpts(cmd)
+	return gh.ActionPinnedIssues(gh.RepoOpts{Host: repo.Host, Owner: repo.Owner, Name: repo.Name})
 }

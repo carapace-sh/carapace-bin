@@ -6,22 +6,14 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// ActionIssueTemplates completes issue templates
 func ActionIssueTemplates(cmd *cobra.Command) carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		repo, err := repoOverride(cmd, c)
-		if err != nil {
-			return carapace.ActionMessage(err.Error())
-		}
-		return gh.ActionIssueTemplates(gh.RepoOpts{Host: repo.RepoHost(), Owner: repo.RepoOwner(), Name: repo.RepoName()})
-	})
+	repo := repoOpts(cmd)
+	return gh.ActionIssueTemplates(gh.RepoOpts{Host: repo.Host, Owner: repo.Owner, Name: repo.Name})
 }
 
+// ActionPullRequestTemplates completes pull request templates
 func ActionPullRequestTemplates(cmd *cobra.Command) carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		repo, err := repoOverride(cmd, c)
-		if err != nil {
-			return carapace.ActionMessage(err.Error())
-		}
-		return gh.ActionPullRequestTemplates(gh.RepoOpts{Host: repo.RepoHost(), Owner: repo.RepoOwner(), Name: repo.RepoName()})
-	})
+	repo := repoOpts(cmd)
+	return gh.ActionPullRequestTemplates(gh.RepoOpts{Host: repo.Host, Owner: repo.Owner, Name: repo.Name})
 }
