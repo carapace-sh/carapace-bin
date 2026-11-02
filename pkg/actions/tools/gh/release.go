@@ -109,7 +109,10 @@ func ActionNextReleases(opts ReleaseOpts) carapace.Action {
 	}).Tag("release versions")
 }
 
-// ActionReleaseAssets completes assets of a recent release
+// ActionReleaseAssets completes assets of a release
+//
+//	carapace-bin-linux.tar.gz (1.1 MB)
+//	carapace-bin-darwin.zip (0.9 MB)
 func ActionReleaseAssets(opts ReleaseOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		var queryResult releaseQuery

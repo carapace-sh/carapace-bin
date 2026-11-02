@@ -76,17 +76,19 @@ func ActionContents(opts ContentOpts) carapace.Action {
 			ref = fmt.Sprintf("ref=%v", opts.Branch)
 		}
 
-		var queryResult []content
-		return apiV3Action(opts.repo(), fmt.Sprintf(`repos/%v/%v/contents/%v?%v`, opts.Owner, opts.Name, url.PathEscape(opts.Path), ref), &queryResult, func() carapace.Action {
-			vals := make([]string, 0)
-			for _, content := range queryResult {
-				name := content.Name
-				if content.Type == "dir" {
-					name = content.Name + "/"
+		return resolveRepo(c, opts.repo(), func(resolved RepoOpts) carapace.Action {
+			var queryResult []content
+			return apiV3Action(resolved, fmt.Sprintf(`repos/%v/%v/contents/%v?%v`, resolved.Owner, resolved.Name, url.PathEscape(opts.Path), ref), &queryResult, func() carapace.Action {
+				vals := make([]string, 0)
+				for _, content := range queryResult {
+					name := content.Name
+					if content.Type == "dir" {
+						name = content.Name + "/"
+					}
+					vals = append(vals, name, style.ForPathExt(name, c))
 				}
-				vals = append(vals, name, style.ForPathExt(name, c))
-			}
-			return carapace.ActionStyledValues(vals...).NoSpace('/')
+				return carapace.ActionStyledValues(vals...).NoSpace('/')
+			})
 		})
 	}).Tag("contents")
 }

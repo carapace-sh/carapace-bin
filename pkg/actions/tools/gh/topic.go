@@ -48,6 +48,10 @@ func ActionTopicSearch(opts HostOpts) carapace.Action {
 }
 
 // ActionTopics completes topics of a user or organisation
+//
+//	cli
+//	shell
+//	completion
 func ActionTopics(opts TopicOpts) carapace.Action {
 	args := []string{"repo", "list", "--limit", "500", "--json", "repositoryTopics", "--jq", "[ .[].repositoryTopics | select(. != null) | .[].name ] | sort | unique | .[]"}
 	if opts.User != "" {
