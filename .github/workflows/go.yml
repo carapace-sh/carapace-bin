@@ -36,7 +36,7 @@ jobs:
           retention-days: 1
 
       - name: Test
-        run: go test -v ./cmd/...
+        run: go test -v ./cmd/... ./man/...
 
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v7
@@ -101,7 +101,7 @@ jobs:
         run: go install -v -tags release,force_all ./cmd/...
 
       - name: Test
-        run: go test -v ./cmd/...
+        run: go test -v ./cmd/... ./man/...
 
   build-macos:
     runs-on: macos-latest
@@ -120,7 +120,7 @@ jobs:
         run: go install -v -tags release,force_all ./cmd/...
 
       - name: Test
-        run: go test -v ./cmd/...
+        run: go test -v ./cmd/... ./man/...
 
   doc:
     runs-on: ubuntu-latest
