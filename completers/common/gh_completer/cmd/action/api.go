@@ -79,7 +79,7 @@ func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
 				case "{org}":
 					return gh.ActionOrganizations(gh.HostOpts{})
 				case "{package_type}":
-					return ActionPackageTypes()
+					return gh.ActionPackageTypes()
 				case "{pull_number}":
 					return gh.ActionPullRequests(gh.PullRequestOpts{Host: repo.Host, Owner: repo.Owner, Name: repo.Name, Open: true, Closed: true, Merged: true})
 				case "{repo}":

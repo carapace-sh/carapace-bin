@@ -59,3 +59,19 @@ func ActionSecrets(opts SecretsOpts) carapace.Action {
 		return carapace.ActionValuesDescribed(vals...)
 	})
 }
+
+// ActionPackageTypes completes package types
+//
+//	container
+//	docker
+func ActionPackageTypes() carapace.Action {
+	return carapace.ActionValues(
+		"container",
+		"docker",
+		"maven",
+
+		"npm",
+		"nuget",
+		"rubygems",
+	).Tag("package types")
+}

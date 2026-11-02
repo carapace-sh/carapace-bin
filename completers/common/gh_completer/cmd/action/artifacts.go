@@ -16,14 +16,3 @@ func ActionWorkflowArtifactNames(cmd *cobra.Command, runId string) carapace.Acti
 		RunId: runId,
 	})
 }
-
-// ActionWorkflowArtifactIds completes artifact ids
-func ActionWorkflowArtifactIds(cmd *cobra.Command, runId string) carapace.Action {
-	repo := repoOpts(cmd)
-	return gh.ActionWorkflowArtifactIds(gh.ArtifactOpts{
-		Host:  repo.Host,
-		Owner: repo.Owner,
-		Name:  repo.Name,
-		RunId: runId,
-	})
-}
