@@ -38,7 +38,7 @@ func init() {
 
 	carapace.Gen(repo_readFileCmd).PositionalCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionContents(repo_readFileCmd, "", repo_readFileCmd.Flag("ref").Value.String())
+			return action.ActionContents(repo_readFileCmd, repo_readFileCmd.Flag("ref").Value.String())
 		}),
 	)
 }

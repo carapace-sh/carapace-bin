@@ -64,9 +64,11 @@ func init() {
 				}
 			}
 
-			path := filepath.Dir(c.Value)
-			path = strings.TrimPrefix(path, "/")
+			rooted := false
 			if !strings.HasPrefix(c.Value, "/") && !browseCmd.Flag("repo").Changed && c.Getenv("GH_REPO") != "" {
+				// GH_REPO pins the repository root, so the value is
+				// relative to the current directory until it is shifted
+				// to be relative to the repository root.
 				root, err := util.FindReverse(c.Dir, ".git")
 				if err != nil {
 					return carapace.ActionMessage(err.Error())
@@ -84,12 +86,16 @@ func init() {
 						break
 					}
 				}
-				path = filepath.Dir(abs)
+				if rooted = !strings.Contains(abs, "/../") && !strings.HasSuffix(abs, "/.."); rooted {
+					c.Value = abs
+				}
 			}
-			// TODO merge with issue/pr ids (show all with prefix search using callbackvalue)
-			return carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {
-				return action.ActionContents(browseCmd, path, ref)
-			})
+
+			contents := action.ActionContents(browseCmd, ref)
+			if rooted {
+				return contents.Invoke(c).ToA()
+			}
+			return contents
 		}),
 	)
 }

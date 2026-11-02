@@ -1,9 +1,6 @@
 package cmd
 
 import (
-	"path/filepath"
-	"strings"
-
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/gh_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
@@ -36,16 +33,10 @@ func init() {
 
 	// TODO devcontainer-path
 	carapace.Gen(codespace_createCmd).FlagCompletion(carapace.ActionMap{
-		"branch": action.ActionBranches(codespace_createCmd),
-		"devcontainer-path": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			path := filepath.Dir(c.Value)
-			path = strings.TrimPrefix(path, "/")
-			return carapace.ActionMultiParts("/", func(c carapace.Context) carapace.Action {
-				return action.ActionContents(codespace_createCmd, path, codespace_createCmd.Flag("branch").Value.String())
-			})
-		}),
-		"location": carapace.ActionValues("EastUs", "SouthEastAsia", "WestEurope", "WestUs2"),
-		"machine":  action.ActionCodespaceMachines(),
-		"repo":     gh.ActionOwnerRepositories(gh.HostOpts{}),
+		"branch":            action.ActionBranches(codespace_createCmd),
+		"devcontainer-path": action.ActionContents(codespace_createCmd, codespace_createCmd.Flag("branch").Value.String()),
+		"location":          carapace.ActionValues("EastUs", "SouthEastAsia", "WestEurope", "WestUs2"),
+		"machine":           action.ActionCodespaceMachines(),
+		"repo":              gh.ActionOwnerRepositories(gh.HostOpts{}),
 	})
 }
