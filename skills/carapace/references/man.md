@@ -208,7 +208,25 @@ For each completer:
    - If neither available, run `<command> --help`
    - Stay close to official wording; rephrase only for consistency and length
 4. **Write**: Fill in `documentation.command` and `documentation.flag` entries
-5. **Validate**: Re-read edited files, verify no `[AI]` prefixes remain
+5. **Validate**: Re-read edited files, verify no `[AI]` prefixes remain and run `go test ./man/` (see [YAML Quoting](#yaml-quoting))
+
+### YAML Quoting
+
+`man/cmd/` is YAML data consumed by external tooling (carapace-man, editor language servers, downstream completion catalogs). These parsers stop at the first invalid file, so every file must stay valid YAML.
+
+Flag descriptions are plain scalars: an unquoted `": "` is parsed as a new mapping key and invalidates the whole file. Quote such values (single quotes, doubled to escape a literal `'`):
+
+```yaml
+flags:
+  --dead-strip: 'Darwin: remove functions and data unreachable by entry point'
+  --seed=: 'Override the random seed (default: 0)'
+```
+
+Files written by `carapace-man update` are serialized with a YAML marshaller and are safe; manual edits must be validated:
+
+```bash
+go test ./man/
+```
 
 ### Research Source Material
 
