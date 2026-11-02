@@ -6,6 +6,6 @@ flags:
     --deps=*: Set dependency names for the root package
     --main-mod-path=: Set the directory of the root module
     --mod=*: Make a module available for dependency under the given name
-    --seed=: Override the random seed (default: 0)
+    --seed=: 'Override the random seed (default: 0)'
     --skip-smoke-test: Skip interestingness check smoke test
     -h, --help: Print help

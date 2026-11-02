@@ -60,7 +60,7 @@ flags:
     --global-base=: 'WebAssembly: where to start placing global data'
     --global-cache-dir=: Override the global cache directory
     --headerpad-max-install-names: 'Darwin: set enough space as if all paths were MAXPATHLEN'
-    --growable-table: WebAssembly: remove maximum size from function table, allowing table to grow
+    --growable-table: 'WebAssembly: remove maximum size from function table, allowing table to grow'
     --headerpad=: 'Darwin: set minimum space for future expansion of load commands'
     --idirafter=: Add directory to AFTER include search path
     --image-base=: Set base address for executable image
