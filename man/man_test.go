@@ -1,6 +1,10 @@
 package man
 
 import (
+	"bytes"
+	"errors"
+	"fmt"
+	"io"
 	"io/fs"
 	"os"
 	"path/filepath"
@@ -30,17 +34,42 @@ func TestCmdYaml(t *testing.T) {
 			return err
 		}
 
-		var node yaml.Node
-		if err := yaml.Unmarshal(content, &node); err != nil {
+		if err := validateCmdYAML(content); err != nil {
 			t.Errorf("%s: %v", path, err)
-			return nil
-		}
-		if node.Kind != yaml.DocumentNode || len(node.Content) != 1 || node.Content[0].Kind != yaml.MappingNode {
-			t.Errorf("%s: expected a YAML mapping", path)
 		}
 		return nil
 	})
 	if err != nil {
 		t.Fatal(err)
+	}
+}
+
+func validateCmdYAML(content []byte) error {
+	var node yaml.Node
+	decoder := yaml.NewDecoder(bytes.NewReader(content))
+	if err := decoder.Decode(&node); err != nil {
+		return err
+	}
+	if node.Kind != yaml.DocumentNode || len(node.Content) != 1 || node.Content[0].Kind != yaml.MappingNode {
+		return fmt.Errorf("expected a YAML mapping")
+	}
+	if err := decoder.Decode(&node); !errors.Is(err, io.EOF) {
+		if err != nil {
+			return fmt.Errorf("after the command document: %w", err)
+		}
+		return fmt.Errorf("expected exactly one YAML document")
+	}
+	return nil
+}
+
+func TestValidateCmdYAMLRejectsTrailingDocuments(t *testing.T) {
+	for _, content := range []string{
+		"name: tool\n---\nname: other\n",
+		"name: tool\n---\nflags: [unterminated\n",
+		"name: tool\n---\n",
+	} {
+		if err := validateCmdYAML([]byte(content)); err == nil {
+			t.Errorf("accepted trailing YAML document: %q", content)
+		}
 	}
 }
