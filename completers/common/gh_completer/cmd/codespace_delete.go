@@ -29,7 +29,7 @@ func init() {
 	codespaceCmd.AddCommand(codespace_deleteCmd)
 
 	carapace.Gen(codespace_deleteCmd).FlagCompletion(carapace.ActionMap{
-		"codespace":  action.ActionCodespaces(),
+		"codespace":  gh.ActionCodespaces(),
 		"org":        gh.ActionOrganizations(gh.HostOpts{}),
 		"repo":       action.ActionOwnerRepositories(codespace_deleteCmd),
 		"repo-owner": gh.ActionOwners(gh.HostOpts{}),

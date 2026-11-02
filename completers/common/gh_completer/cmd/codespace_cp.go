@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/gh_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
 	"github.com/carapace-sh/carapace/pkg/condition"
 	"github.com/spf13/cobra"
@@ -27,7 +26,7 @@ func init() {
 
 	// TODO profile completion
 	carapace.Gen(codespace_cpCmd).FlagCompletion(carapace.ActionMap{
-		"codespace":  action.ActionCodespaces(),
+		"codespace":  gh.ActionCodespaces(),
 		"repo":       gh.ActionOwnerRepositories(gh.HostOpts{}),
 		"repo-owner": gh.ActionOwners(gh.HostOpts{}),
 	})
@@ -35,9 +34,11 @@ func init() {
 	carapace.Gen(codespace_cpCmd).PositionalAnyCompletion(
 		carapace.Batch(
 			carapace.ActionFiles(),
-			action.ActionCodespacePath(
-				codespace_cpCmd.Flag("codespace").Value.String(),
-				codespace_cpCmd.Flag("expand").Changed,
+			gh.ActionCodespacePath(
+				gh.CodespacePathOpts{
+					Codespace: codespace_cpCmd.Flag("codespace").Value.String(),
+					Expand:    codespace_cpCmd.Flag("expand").Changed,
+				},
 			).Prefix("remote:").UnlessF(condition.CompletingPath),
 		).ToA(),
 	)

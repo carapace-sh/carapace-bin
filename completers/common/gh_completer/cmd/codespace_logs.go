@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/gh_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
 	"github.com/spf13/cobra"
 )
@@ -23,7 +22,7 @@ func init() {
 	codespaceCmd.AddCommand(codespace_logsCmd)
 
 	carapace.Gen(codespace_logsCmd).FlagCompletion(carapace.ActionMap{
-		"codespace":  action.ActionCodespaces(),
+		"codespace":  gh.ActionCodespaces(),
 		"repo":       gh.ActionOwnerRepositories(gh.HostOpts{}),
 		"repo-owner": gh.ActionOwners(gh.HostOpts{}),
 	})
