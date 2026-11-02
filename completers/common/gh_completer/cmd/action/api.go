@@ -53,7 +53,7 @@ func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
 				case "{archive_format}":
 					return carapace.ActionValues("zip")
 				case "{artifact_id}":
-					return ActionWorkflowArtifactIds(cmd, "")
+					return gh.ActionWorkflowArtifactIds(gh.ArtifactOpts{Owner: matches["{owner}"], Name: matches["{repo}"]})
 				case "{assignee}":
 					return ActionAssignableUsers(cmd)
 				case "{branch}":
@@ -99,7 +99,7 @@ func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
 				case "{username}":
 					return gh.ActionUsers(gh.HostOpts{})
 				case "{workflow_id}":
-					return ActionWorkflows(cmd, WorkflowOpts{Enabled: true, Disabled: true, Id: true})
+					return gh.ActionWorkflows(gh.WorkflowOpts{Enabled: true, Disabled: true, ById: true, Owner: matches["{owner}"], Name: matches["{repo}"]})
 				default:
 					// static value or placeholder not yet handled
 					return carapace.ActionValues(placeholder)

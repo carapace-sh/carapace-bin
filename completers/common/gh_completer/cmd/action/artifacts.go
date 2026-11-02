@@ -1,65 +1,29 @@
 package action
 
 import (
-	"fmt"
-	"strconv"
-
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
 	"github.com/spf13/cobra"
 )
 
-type artifact struct {
-	Id          int
-	Name        string
-	SizeInBytes int `json:"size_in_bytes"`
-}
-
-type artifactQuery struct {
-	Artifacts []artifact
-}
-
+// ActionWorkflowArtifactNames completes artifact names
 func ActionWorkflowArtifactNames(cmd *cobra.Command, runId string) carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		repo, err := repoOverride(cmd, c)
-		if err != nil {
-			return carapace.ActionMessage(err.Error())
-		}
-
-		query := fmt.Sprintf(`repos/%v/%v/actions/artifacts`, repo.RepoOwner(), repo.RepoName())
-		if runId != "" {
-			query = fmt.Sprintf(`repos/%v/%v/actions/runs/%v/artifacts`, repo.RepoOwner(), repo.RepoName(), runId)
-		}
-
-		var queryResult artifactQuery
-		return ApiV3Action(cmd, query, &queryResult, func() carapace.Action {
-			vals := make([]string, 0)
-			for _, artifact := range queryResult.Artifacts {
-				vals = append(vals, artifact.Name, byteCountSI(artifact.SizeInBytes))
-			}
-			return carapace.ActionValuesDescribed(vals...)
-		})
-	}).Tag("artifact names")
+	repo := repoOpts(cmd)
+	return gh.ActionWorkflowArtifactNames(gh.ArtifactOpts{
+		Host:  repo.Host,
+		Owner: repo.Owner,
+		Name:  repo.Name,
+		RunId: runId,
+	})
 }
 
+// ActionWorkflowArtifactIds completes artifact ids
 func ActionWorkflowArtifactIds(cmd *cobra.Command, runId string) carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		repo, err := repoOverride(cmd, c)
-		if err != nil {
-			return carapace.ActionMessage(err.Error())
-		}
-
-		query := fmt.Sprintf(`repos/%v/%v/actions/artifacts`, repo.RepoOwner(), repo.RepoName())
-		if runId != "" {
-			query = fmt.Sprintf(`repos/%v/%v/actions/runs/%v/artifacts`, repo.RepoOwner(), repo.RepoName(), runId)
-		}
-
-		var queryResult artifactQuery
-		return ApiV3Action(cmd, query, &queryResult, func() carapace.Action {
-			vals := make([]string, 0)
-			for _, artifact := range queryResult.Artifacts {
-				vals = append(vals, strconv.Itoa(artifact.Id), fmt.Sprintf("%v (%v)", artifact.Name, byteCountSI(artifact.SizeInBytes)))
-			}
-			return carapace.ActionValuesDescribed(vals...)
-		})
-	}).Tag("artifact ids")
+	repo := repoOpts(cmd)
+	return gh.ActionWorkflowArtifactIds(gh.ArtifactOpts{
+		Host:  repo.Host,
+		Owner: repo.Owner,
+		Name:  repo.Name,
+		RunId: runId,
+	})
 }
