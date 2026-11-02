@@ -1,7 +1,6 @@
 package cmd
 
 import (
-	"path/filepath"
 	"strings"
 
 	"github.com/carapace-sh/carapace"
@@ -75,15 +74,9 @@ func init() {
 				if n == 4 {
 					opts.Host = c.Parts[0]
 				}
-				opts.Path = filepath.Dir(c.Value)
-				prefix := filepath.Dir(c.Value)
-				switch {
-				case prefix == ".":
-					prefix = ""
-				default:
-					prefix += "/"
-				}
-				return gh.ActionContents(opts).Prefix(prefix)
+				repoParts := c.Parts[n-2:]
+				c.Value = strings.Join(append(repoParts, c.Value), "/")
+				return gh.ActionContents(opts).Invoke(c).ToA()
 			})
 		}),
 		"source-ref": action.ActionBranches(attestation_verifyCmd), // TODO verify

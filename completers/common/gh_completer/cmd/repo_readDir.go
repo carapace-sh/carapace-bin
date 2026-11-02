@@ -34,7 +34,7 @@ func init() {
 
 	carapace.Gen(repo_readDirCmd).PositionalCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return action.ActionContents(repo_readDirCmd, "", repo_readDirCmd.Flag("ref").Value.String())
+			return action.ActionContents(repo_readDirCmd, repo_readDirCmd.Flag("ref").Value.String())
 		}),
 	)
 }

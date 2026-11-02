@@ -1,7 +1,6 @@
 package golang
 
 import (
-	"net/url"
 	"path/filepath"
 	"strings"
 
@@ -28,11 +27,9 @@ func ActionModuleSearch() carapace.Action {
 				splitted := strings.Split(c.Value, "/")
 				prefix := strings.Join(splitted[:3], "/") + "/"
 				return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-					// TODO this should be done in ActionContents using `Context.Value` instead of `ContentOpts.Path`
 					dir := filepath.Dir(c.Value)
 					dirPrefix := dir + "/"
 					if dir == "." {
-						dir = ""
 						dirPrefix = ""
 					}
 					return gh.ActionContents(gh.ContentOpts{
@@ -40,7 +37,6 @@ func ActionModuleSearch() carapace.Action {
 						Owner:  splitted[1],
 						Name:   splitted[2],
 						Branch: "",
-						Path:   url.PathEscape(dir),
 					}).Prefix(dirPrefix)
 				}).Prefix(prefix)
 			}
