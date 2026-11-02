@@ -56,7 +56,7 @@ func ActionConfigHosts() carapace.Action {
 		if err != nil {
 			return carapace.ActionMessage("failed to load hosts: " + err.Error())
 		}
-		return carapace.ActionValues(hosts...)
+		return carapace.ActionValues(hosts...).Tag("config hosts")
 	})
 }
 
