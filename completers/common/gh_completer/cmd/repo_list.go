@@ -38,7 +38,7 @@ func init() {
 
 	carapace.Gen(repo_listCmd).FlagCompletion(carapace.ActionMap{
 		"jq":       jq.ActionFilters(),
-		"json":     action.ActionRepositoryFields().UniqueList(","),
+		"json":     gh.ActionRepositoryFields().UniqueList(","),
 		"language": gh.ActionLanguages(),
 		"topic": carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if len(c.Args) > 0 {

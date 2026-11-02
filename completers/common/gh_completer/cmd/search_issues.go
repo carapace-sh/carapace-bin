@@ -69,7 +69,7 @@ func init() {
 		"created":   action.ActionSearchRange(time.ActionDateTime(time.DateTimeOpts{Strict: true})),
 		"involves":  gh.ActionUsers(gh.HostOpts{}),
 		"jq":        jq.ActionFilters(),
-		"json":      action.ActionSearchIssueFields().UniqueList(","),
+		"json":      gh.ActionSearchIssueFields().UniqueList(","),
 		"label": action.ActionSearchMultiRepo(search_issuesCmd, func(cmd *cobra.Command) carapace.Action {
 			return action.ActionLabels(cmd).UniqueList(",")
 		}),
@@ -84,7 +84,7 @@ func init() {
 		"repo": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			dummyCmd := &cobra.Command{}
 			dummyCmd.Flags().String("repo", c.Value, "fake repo flag")
-			return action.ActionOwnerRepositories(dummyCmd).NoSpace()
+			return gh.ActionOwnerRepositories(gh.HostOpts{}).NoSpace()
 		}),
 		"search-type": carapace.ActionValues("hybrid", "lexical", "semantic"),
 		"sort":        carapace.ActionValues("comments", "created", "interactions", "reactions", "reactions-+1", "reactions--1", "reactions-heart", "reactions-smile", "reactions-tada", "reactions-thinking_face", "updated"),

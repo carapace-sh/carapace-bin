@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/gh_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
 	"github.com/spf13/cobra"
 )
 
@@ -20,6 +21,6 @@ func init() {
 
 	carapace.Gen(issue_transferCmd).PositionalCompletion(
 		action.ActionIssues(issue_transferCmd, action.IssueOpts{Open: true, Closed: true}),
-		action.ActionOwnerRepositories(issue_transferCmd),
+		gh.ActionOwnerRepositories(gh.HostOpts{}),
 	)
 }

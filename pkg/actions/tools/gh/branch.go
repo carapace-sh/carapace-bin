@@ -107,3 +107,11 @@ func ActionBranchCommits(opts BranchOpts) carapace.Action {
 		})
 	}).Tag("branch commits")
 }
+
+// ActionSearchRepositoryFields completes repository search fields variant
+//
+//	stargazersCount
+//	visibility
+func ActionSearchRepositoryFields() carapace.Action {
+	return ActionRepositorySearchFields()
+}

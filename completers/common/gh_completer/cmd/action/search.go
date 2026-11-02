@@ -25,7 +25,6 @@ func ActionSearchMultiRepo(cmd *cobra.Command, f func(cmd *cobra.Command) carapa
 			name := repo
 			batch = append(batch, carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 				dummyCmd := &cobra.Command{}
-				// TODO use fakeRepoFlag?
 				dummyCmd.Flags().String("repo", name, "fake repo flag")
 				if name != "" {
 					dummyCmd.Flag("repo").Changed = true
@@ -37,60 +36,7 @@ func ActionSearchMultiRepo(cmd *cobra.Command, f func(cmd *cobra.Command) carapa
 	})
 }
 
-func ActionSearchIssueFields() carapace.Action {
-	return carapace.ActionValues(
-		"assignees",
-		"author",
-		"authorAssociation",
-		"body",
-		"closedAt",
-		"commentsCount",
-		"createdAt",
-		"id",
-		"isLocked",
-		"isPullRequest",
-		"labels",
-		"number",
-		"repository",
-		"state",
-		"title",
-		"updatedAt",
-		"url",
-	)
-}
-
-func ActionSearchRepositoryFields() carapace.Action {
-	return carapace.ActionValues(
-		"createdAt",
-		"defaultBranch",
-		"description",
-		"forksCount",
-		"fullName",
-		"hasDownloads",
-		"hasIssues",
-		"hasPages",
-		"hasProjects",
-		"hasWiki",
-		"homepage",
-		"id",
-		"isArchived",
-		"isDisabled",
-		"isFork",
-		"isPrivate",
-		"language",
-		"license",
-		"name",
-		"openIssuesCount",
-		"owner",
-		"pushedAt",
-		"size",
-		"stargazersCount",
-		"updatedAt",
-		"visibility",
-		"watchersCount",
-	)
-}
-
+// ActionSearchRange completes dates and ranges for search qualifiers
 func ActionSearchRange(a carapace.Action) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		prefix := ""

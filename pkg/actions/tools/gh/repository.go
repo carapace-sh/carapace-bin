@@ -104,3 +104,127 @@ func ActionHostOwnerRepositories() carapace.Action {
 		}
 	})
 }
+
+// ActionRepositoryFields completes repository fields
+//
+//	description
+//	nameWithOwner
+func ActionRepositoryFields() carapace.Action {
+	return carapace.ActionValues(
+		"assignableUsers",
+		"codeOfConduct",
+		"contactLinks",
+		"createdAt",
+		"defaultBranchRef",
+		"deleteBranchOnMerge",
+		"description",
+		"diskUsage",
+		"forkCount",
+		"fundingLinks",
+
+		"hasIssuesEnabled",
+		"hasProjectsEnabled",
+		"hasWikiEnabled",
+		"homepageUrl",
+		"id",
+		"isArchived",
+
+		"isBlankIssuesEnabled",
+		"isEmpty",
+		"isFork",
+		"isInOrganization",
+		"isMirror",
+
+		"isPrivate",
+		"isSecurityPolicyEnabled",
+		"isTemplate",
+		"isUserConfigurationRepository",
+		"issueTemplates",
+
+		"issues",
+		"labels",
+		"languages",
+		"latestRelease",
+		"licenseInfo",
+
+		"mentionableUsers",
+		"mergeCommitAllowed",
+		"milestones",
+		"mirrorUrl",
+		"name",
+
+		"nameWithOwner",
+		"openGraphImageUrl",
+		"owner",
+		"parent",
+		"primaryLanguage",
+
+		"projects",
+		"pullRequestTemplates",
+		"pullRequests",
+		"pushedAt",
+		"rebaseMergeAllowed",
+
+		"repositoryTopics",
+		"securityPolicyUrl",
+		"squashMergeAllowed",
+		"sshUrl",
+		"stargazerCount",
+
+		"templateRepository",
+		"updatedAt",
+		"url",
+		"usesCustomOpenGraphImage",
+		"viewerCanAdminister",
+
+		"viewerDefaultCommitEmail",
+		"viewerDefaultMergeMethod",
+		"viewerHasStarred",
+		"viewerPermission",
+		"viewerPossibleCommitEmails",
+
+		"viewerSubscription",
+		"watchers",
+	)
+}
+
+// ActionRepositorySearchFields completes repository search fields
+//
+//	defaultBranch
+//	stargazersRange
+func ActionRepositorySearchFields() carapace.Action {
+	return carapace.ActionValues(
+		"createdAt",
+		"defaultBranch",
+		"description",
+		"forksCount",
+		"fullName",
+
+		"hasDownloads",
+		"hasIssues",
+		"hasPages",
+		"hasProjects",
+		"hasWiki",
+
+		"homepage",
+		"id",
+		"isArchived",
+		"isDisabled",
+		"isFork",
+
+		"isPrivate",
+		"language",
+		"license",
+		"name",
+		"openIssuesCount",
+
+		"owner",
+		"pushedAt",
+		"size",
+		"stargazersCount",
+		"updatedAt",
+
+		"visibility",
+		"watchersCount",
+	)
+}

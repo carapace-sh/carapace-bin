@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/gh_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
 	"github.com/spf13/cobra"
 )
 
@@ -19,6 +19,6 @@ func init() {
 	labelCmd.AddCommand(label_cloneCmd)
 
 	carapace.Gen(label_cloneCmd).PositionalCompletion(
-		action.ActionOwnerRepositories(label_cloneCmd),
+		gh.ActionOwnerRepositories(gh.HostOpts{}),
 	)
 }

@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/completers/common/gh_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
 	"github.com/carapace-sh/carapace-jq/pkg/actions/tools/jq"
 	"github.com/spf13/cobra"
@@ -53,7 +52,7 @@ func init() {
 		"repo": carapace.ActionMultiParts(",", func(c carapace.Context) carapace.Action {
 			dummyCmd := &cobra.Command{}
 			dummyCmd.Flags().String("repo", c.Value, "fake repo flag")
-			return action.ActionOwnerRepositories(dummyCmd).NoSpace()
+			return gh.ActionOwnerRepositories(gh.HostOpts{}).NoSpace()
 		}),
 		"sort":       carapace.ActionValues("author-date", "committer-date"),
 		"visibility": carapace.ActionValues("internal", "private", "public").UniqueList(","),

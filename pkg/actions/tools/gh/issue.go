@@ -335,3 +335,32 @@ func ActionIssueArtifactVersions(opts IssueArtifactVersionOpts) carapace.Action 
 		})
 	}).Tag("issue artifact versions")
 }
+
+// ActionSearchIssueFields completes issue search fields
+//
+//	authorAssociation
+//	isPullRequest
+func ActionSearchIssueFields() carapace.Action {
+	return carapace.ActionValues(
+		"assignees",
+		"author",
+		"authorAssociation",
+		"body",
+		"closedAt",
+
+		"commentsCount",
+		"createdAt",
+		"id",
+		"isLocked",
+		"isPullRequest",
+
+		"labels",
+		"number",
+		"repository",
+		"state",
+		"title",
+
+		"updatedAt",
+		"url",
+	)
+}

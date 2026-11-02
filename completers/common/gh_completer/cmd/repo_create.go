@@ -48,6 +48,6 @@ func init() {
 		"license":   gh.ActionLicenses(gh.HostOpts{}),
 		"source":    carapace.ActionDirectories(),
 		// TODO team
-		"template": action.ActionOwnerRepositories(repo_createCmd),
+		"template": gh.ActionOwnerRepositories(gh.HostOpts{}),
 	})
 }
