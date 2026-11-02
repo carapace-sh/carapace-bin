@@ -159,6 +159,19 @@ func (o IssueOpts) states() string {
 	return fmt.Sprintf("[%v]", strings.Join(states, ","))
 }
 
+func (o IssueOpts) stateFilter() string {
+	switch {
+	case o.Open && o.Closed:
+		return ""
+	case o.Open:
+		return "open"
+	case o.Closed:
+		return "closed"
+	default:
+		return "" // this doesn't really make any sense
+	}
+}
+
 // ActionIssues completes issues
 //
 //	42 (Fix login bug)
@@ -184,7 +197,12 @@ func ActionIssues(opts IssueOpts) carapace.Action {
 				vals = append(vals, strconv.Itoa(issue.Number), issue.Title, s)
 			}
 			return carapace.ActionStyledValuesDescribed(vals...)
-		}).Cache(24*time.Hour, opts.cacheKey())
+		}).Uid("gh", "issue", "repo", opts.repo().fullName()).
+			Query("gh", "issue", "",
+				"repo", opts.repo().fullName(),
+				"state", opts.stateFilter(),
+			).
+			Cache(24*time.Hour, opts.cacheKey())
 	}).Tag("issues")
 }
 

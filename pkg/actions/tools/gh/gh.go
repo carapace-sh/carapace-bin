@@ -30,3 +30,10 @@ type RepoOpts struct {
 }
 
 func (o RepoOpts) cacheKey() key.Key { return key.String(o.Host, o.Owner, o.Name) }
+
+func (o RepoOpts) fullName() string {
+	if o.Host != "" && o.Host != "github.com" {
+		return o.Host + "/" + o.Owner + "/" + o.Name
+	}
+	return o.Owner + "/" + o.Name
+}
