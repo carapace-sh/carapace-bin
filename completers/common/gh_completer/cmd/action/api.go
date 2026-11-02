@@ -57,13 +57,13 @@ func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
 				case "{branch}":
 					return gh.ActionBranches(repo)
 				case "{coc_key}":
-					return gh.ActionCocs()
+					return gh.ActionCocs(gh.HostOpts{Host: repo.Host})
 				case "{environment_name}":
 					return gh.ActionEnvironments(repo)
 				case "{gist_id}":
-					return gh.ActionGistIds(gh.GistOpts{})
+					return gh.ActionGistIds(gh.GistOpts{Owner: repo.Owner})
 				case "{gitignore_name}":
-					return gh.ActionGitignoreTemplates(gh.HostOpts{})
+					return gh.ActionGitignoreTemplates(gh.HostOpts{Host: repo.Host})
 				case "{label}":
 					return gh.ActionLabels(gh.RepoOpts{Owner: matches["{owner}"], Name: matches["{repo}"]})
 				case "{license}":

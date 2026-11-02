@@ -11,10 +11,10 @@ type coc struct {
 //
 //	agpl-3.0 (GNU Affero General Public License v3.0)
 //	mit (MIT License)
-func ActionCocs() carapace.Action {
+func ActionCocs(opts HostOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		var queryResult []coc
-		return apiV3Action(RepoOpts{}, `codes_of_conduct`, &queryResult, func() carapace.Action {
+		return apiV3Action(opts.repo(), `codes_of_conduct`, &queryResult, func() carapace.Action {
 			vals := make([]string, 0, len(queryResult)*2)
 			for _, coc := range queryResult {
 				vals = append(vals, coc.Key, coc.Name)

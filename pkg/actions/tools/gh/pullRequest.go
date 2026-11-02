@@ -13,7 +13,7 @@ import (
 type pullrequest struct {
 	Number    int
 	Title     string
-	IsDraft   bool
+	IsDraft   bool `json:"draft"`
 	State     string
 	Labels    []label
 	Assignees []struct {

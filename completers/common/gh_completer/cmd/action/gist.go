@@ -8,6 +8,12 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// gistApiHost strips the `gist.` prefix from a gist url host,
+// returning the corresponding api host.
+func gistApiHost(host string) string {
+	return strings.TrimPrefix(host, "gist.")
+}
+
 func ActionGistUrls(cmd *cobra.Command) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		prefix := "https://gist."
@@ -30,7 +36,7 @@ func ActionGistUrls(cmd *cobra.Command) carapace.Action {
 				case 1:
 					return gh.ActionUsers(gh.HostOpts{}).Invoke(c).Suffix("/").ToA()
 				case 2:
-					return gh.ActionGistIds(gh.GistOpts{Owner: c.Parts[1]})
+					return gh.ActionGistIds(gh.GistOpts{Host: gistApiHost(c.Parts[0]), Owner: c.Parts[1]})
 				default:
 					return carapace.ActionValues()
 				}
@@ -56,13 +62,14 @@ func ActionGists(cmd *cobra.Command) carapace.Action {
 func ActionGistFiles(cmd *cobra.Command, name string) carapace.Action {
 	splitted := strings.Split(name, "/")
 	gistId := splitted[len(splitted)-1]
+	var host string
 	var owner string
 	switch len(splitted) {
 	case 1:
-	case 5:
+		host = gistApiHost(splitted[2])
 		owner = splitted[3]
 	default:
 		return carapace.ActionMessage("invalid gist id/url: " + name)
 	}
-	return gh.ActionGistFiles(gh.GistOpts{Owner: owner, Gist: gistId})
+	return gh.ActionGistFiles(gh.GistOpts{Host: host, Owner: owner, Gist: gistId})
 }
