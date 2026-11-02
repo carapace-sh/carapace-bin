@@ -8,7 +8,6 @@ import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/styles"
 	"github.com/carapace-sh/carapace-bin/pkg/util"
-	"github.com/carapace-sh/carapace/pkg/cache/key"
 	"github.com/carapace-sh/carapace/pkg/style"
 )
 
@@ -43,15 +42,6 @@ func (o RunOpts) Default() RunOpts {
 
 func (o RunOpts) repo() RepoOpts {
 	return RepoOpts{Host: o.Host, Owner: o.Owner, Name: o.Name}
-}
-
-func (o RunOpts) cacheKey() key.Key {
-	return key.String(o.Host, o.Owner, o.Name,
-		strconv.FormatBool(o.All),
-		strconv.FormatBool(o.InProgress),
-		strconv.FormatBool(o.Failed),
-		strconv.FormatBool(o.Successful),
-	)
 }
 
 func (o RunOpts) includes(r run) bool {

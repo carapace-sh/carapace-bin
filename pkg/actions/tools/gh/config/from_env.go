@@ -3,8 +3,6 @@ package config
 import (
 	"fmt"
 	"os"
-
-	"github.com/carapace-sh/carapace-bin/completers/common/gh_completer/cmd/action/ghinstance"
 )
 
 const (
@@ -35,13 +33,13 @@ func (c *envConfig) Hosts() ([]string, error) {
 	hasDefault := false
 	hosts, err := c.Config.Hosts()
 	for _, h := range hosts {
-		if h == ghinstance.Default() {
+		if h == DefaultHost() {
 			hasDefault = true
 		}
 	}
-	token, _ := AuthTokenFromEnv(ghinstance.Default())
+	token, _ := AuthTokenFromEnv(DefaultHost())
 	if (err != nil || !hasDefault) && token != "" {
-		hosts = append([]string{ghinstance.Default()}, hosts...)
+		hosts = append([]string{DefaultHost()}, hosts...)
 		return hosts, nil
 	}
 	return hosts, err
@@ -85,7 +83,7 @@ func (c *envConfig) CheckWriteable(hostname, key string) error {
 }
 
 func AuthTokenFromEnv(hostname string) (string, string) {
-	if ghinstance.IsEnterprise(hostname) {
+	if IsEnterprise(hostname) {
 		if token := os.Getenv(GH_ENTERPRISE_TOKEN); token != "" {
 			return token, GH_ENTERPRISE_TOKEN
 		}

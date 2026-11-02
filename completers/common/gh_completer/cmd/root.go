@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/gh_completer/cmd/action"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	shlex "github.com/carapace-sh/carapace-shlex/v2"
 	"github.com/spf13/cobra"
@@ -32,7 +33,7 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "Show gh version")
 
 	carapace.Gen(rootCmd).PreRun(func(cmd *cobra.Command, args []string) {
-		if aliases, err := action.Aliases(); err == nil {
+		if aliases, err := gh.Aliases(); err == nil {
 			for key, value := range aliases {
 				aliasCmd := &cobra.Command{
 					Use:                key,

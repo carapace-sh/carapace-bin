@@ -7,7 +7,6 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/carapace-sh/carapace-bin/completers/common/gh_completer/cmd/action/ghinstance"
 	"go.yaml.in/yaml/v3"
 )
 
@@ -232,7 +231,7 @@ func (c *fileConfig) Hosts() ([]string, error) {
 		hostnames = append(hostnames, entry.Host)
 	}
 
-	sort.SliceStable(hostnames, func(i, j int) bool { return hostnames[i] == ghinstance.Default() })
+	sort.SliceStable(hostnames, func(i, j int) bool { return hostnames[i] == DefaultHost() })
 
 	return hostnames, nil
 }
@@ -248,7 +247,7 @@ func (c *fileConfig) DefaultHostWithSource() (string, string, error) {
 		return hosts[0], HostsConfigFile(), nil
 	}
 
-	return ghinstance.Default(), "", nil
+	return DefaultHost(), "", nil
 }
 
 func (c *fileConfig) makeConfigForHost(hostname string) *HostConfig {
