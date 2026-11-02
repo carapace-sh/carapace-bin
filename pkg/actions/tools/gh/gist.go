@@ -2,45 +2,24 @@ package gh
 
 import (
 	"fmt"
-	"os"
-	"sort"
 
 	"github.com/carapace-sh/carapace"
-	"go.yaml.in/yaml/v3"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/config"
 )
 
 // gistUser resolves host and owner for gist access (the authenticated user),
-// following gh's own host precedence: GH_HOST env, else the hosts.yml entries
-// (github.com first), else no host.
+// following gh's own host precedence (GH_HOST env, else hosts.yml, else github.com).
 func gistUser(c carapace.Context) (host string, user string, err error) {
-	content, err := os.ReadFile(configDir(c) + "/hosts.yml")
+	conf, err := config.ParseDefaultConfig()
 	if err != nil {
 		return "", "", err
 	}
-
-	var config hostConfig
-	if err := yaml.Unmarshal(content, &config); err != nil {
+	if host, err = conf.DefaultHost(); err != nil {
 		return "", "", err
 	}
-
-	hosts := make([]string, 0, len(config))
-	for h := range config {
-		hosts = append(hosts, h)
-	}
-	sort.SliceStable(hosts, func(i, j int) bool { return hosts[i] == "github.com" })
-
-	host = c.Getenv("GH_HOST")
-	if host == "" && len(hosts) > 0 {
-		host = hosts[0]
-	}
-	conf, ok := config[host]
-	if !ok {
-		return "", "", fmt.Errorf("unknown host %q", host)
-	}
-	if conf.User == "" {
+	if user, err = conf.Get(host, "user"); err != nil || user == "" {
 		return "", "", fmt.Errorf("could not retrieve default user")
 	}
-	user = conf.User
 	return host, user, nil
 }
 

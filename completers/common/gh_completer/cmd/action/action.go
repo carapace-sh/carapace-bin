@@ -6,7 +6,6 @@ import (
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/config"
 	"github.com/carapace-sh/carapace/pkg/execlog"
 	"github.com/spf13/cobra"
 )
@@ -36,17 +35,7 @@ func repoOpts(cmd *cobra.Command) gh.RepoOpts {
 }
 
 func ActionConfigHosts() carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		if config, err := config.ParseDefaultConfig(); err != nil {
-			return carapace.ActionMessage("failed to parse DefaultConfig: " + err.Error())
-		} else {
-			if hosts, err := config.Hosts(); err != nil {
-				return carapace.ActionMessage("failed to load hosts: " + err.Error())
-			} else {
-				return carapace.ActionValues(hosts...)
-			}
-		}
-	}).Tag("config hosts")
+	return gh.ActionConfigHosts()
 }
 
 type Commit struct {
