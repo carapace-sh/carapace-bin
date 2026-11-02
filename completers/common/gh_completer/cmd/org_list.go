@@ -16,6 +16,6 @@ var org_listCmd = &cobra.Command{
 func init() {
 	carapace.Gen(org_listCmd).Standalone()
 
-	org_listCmd.Flags().StringP("limit", "L", "", "Maximum number of organizations to list")
+	org_listCmd.Flags().StringP("limit", "L", "30", "Maximum number of organizations to list")
 	orgCmd.AddCommand(org_listCmd)
 }

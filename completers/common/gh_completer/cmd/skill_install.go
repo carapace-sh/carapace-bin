@@ -27,7 +27,7 @@ func init() {
 	skill_installCmd.Flags().BoolP("force", "f", false, "Overwrite existing skills without prompting")
 	skill_installCmd.Flags().Bool("from-local", false, "Treat the argument as a local directory path instead of a repository")
 	skill_installCmd.Flags().String("pin", "", "Pin to a specific git tag or commit SHA")
-	skill_installCmd.Flags().String("scope", "", "Installation scope: {project|user}")
+	skill_installCmd.Flags().String("scope", "project", "Installation scope: {project|user}")
 	skill_installCmd.Flags().Bool("upstream", false, "Install from the upstream source when a re-published skill is detected")
 	skillCmd.AddCommand(skill_installCmd)
 

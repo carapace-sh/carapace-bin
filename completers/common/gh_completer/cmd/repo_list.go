@@ -24,7 +24,7 @@ func init() {
 	repo_listCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
 	repo_listCmd.Flags().StringSlice("json", nil, "Output JSON with the specified `fields`")
 	repo_listCmd.Flags().StringP("language", "l", "", "Filter by primary coding language")
-	repo_listCmd.Flags().StringP("limit", "L", "", "Maximum number of repositories to list")
+	repo_listCmd.Flags().StringP("limit", "L", "30", "Maximum number of repositories to list")
 	repo_listCmd.Flags().Bool("no-archived", false, "Omit archived repositories")
 	repo_listCmd.Flags().Bool("private", false, "Show only private repositories")
 	repo_listCmd.Flags().Bool("public", false, "Show only public repositories")

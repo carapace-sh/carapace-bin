@@ -20,7 +20,7 @@ func init() {
 	project_listCmd.Flags().Bool("closed", false, "Include closed projects")
 	project_listCmd.Flags().String("format", "", "Output format: {json}")
 	project_listCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
-	project_listCmd.Flags().StringP("limit", "L", "", "Maximum number of projects to fetch")
+	project_listCmd.Flags().StringP("limit", "L", "30", "Maximum number of projects to fetch")
 	project_listCmd.Flags().String("owner", "", "Login of the owner")
 	project_listCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	project_listCmd.Flags().BoolP("web", "w", false, "Open projects list in the browser")

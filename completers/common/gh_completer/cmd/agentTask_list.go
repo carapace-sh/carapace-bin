@@ -18,7 +18,7 @@ func init() {
 
 	agentTask_listCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
 	agentTask_listCmd.Flags().StringSlice("json", nil, "Output JSON with the specified `fields`")
-	agentTask_listCmd.Flags().StringP("limit", "L", "", "Maximum number of agent tasks to fetch")
+	agentTask_listCmd.Flags().StringP("limit", "L", "30", "Maximum number of agent tasks to fetch")
 	agentTask_listCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	agentTask_listCmd.Flags().BoolP("web", "w", false, "Open agent tasks in the browser")
 	agentTaskCmd.AddCommand(agentTask_listCmd)

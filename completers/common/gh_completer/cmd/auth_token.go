@@ -17,6 +17,7 @@ func init() {
 	carapace.Gen(auth_tokenCmd).Standalone()
 
 	auth_tokenCmd.Flags().StringP("hostname", "h", "", "The hostname of the GitHub instance authenticated with")
+	auth_tokenCmd.Flags().Bool("no-refresh", false, "Do not automatically refresh an expired token")
 	auth_tokenCmd.Flags().Bool("secure-storage", false, "Search only secure credential store for authentication token")
 	auth_tokenCmd.Flags().StringP("user", "u", "", "The account to output the token for")
 	auth_tokenCmd.Flag("secure-storage").Hidden = true

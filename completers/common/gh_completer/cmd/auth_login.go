@@ -17,6 +17,7 @@ func init() {
 	carapace.Gen(auth_loginCmd).Standalone()
 
 	auth_loginCmd.Flags().BoolP("clipboard", "c", false, "Copy one-time OAuth device code to clipboard")
+	auth_loginCmd.Flags().Bool("expiring", false, "Prefer expiring credentials that gh refreshes automatically, if the host supports them")
 	auth_loginCmd.Flags().StringP("git-protocol", "p", "", "The protocol to use for git operations on this host: {ssh|https}")
 	auth_loginCmd.Flags().StringP("hostname", "h", "", "The hostname of the GitHub instance to authenticate with")
 	auth_loginCmd.Flags().Bool("insecure-storage", false, "Save authentication credentials in plain text instead of credential store")

@@ -17,7 +17,7 @@ func init() {
 	carapace.Gen(ruleset_viewCmd).Standalone()
 
 	ruleset_viewCmd.Flags().StringP("org", "o", "", "Organization name if the provided ID is an organization-level ruleset")
-	ruleset_viewCmd.Flags().BoolP("parents", "p", false, "Whether to include rulesets configured at higher levels that also apply")
+	ruleset_viewCmd.Flags().BoolP("parents", "p", true, "Whether to include rulesets configured at higher levels that also apply")
 	ruleset_viewCmd.Flags().BoolP("web", "w", false, "Open the ruleset in the browser")
 	rulesetCmd.AddCommand(ruleset_viewCmd)
 

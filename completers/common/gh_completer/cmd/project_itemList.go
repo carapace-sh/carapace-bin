@@ -22,7 +22,7 @@ func init() {
 	project_itemListCmd.Flags().StringSlice("field-id", nil, "ID of a field to show as an extra column")
 	project_itemListCmd.Flags().String("format", "", "Output format: {json}")
 	project_itemListCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
-	project_itemListCmd.Flags().StringP("limit", "L", "", "Maximum number of items to fetch")
+	project_itemListCmd.Flags().StringP("limit", "L", "30", "Maximum number of items to fetch")
 	project_itemListCmd.Flags().String("owner", "", "Login of the owner. Use \"@me\" for the current user")
 	project_itemListCmd.Flags().String("query", "", "Filter items using the Projects filter syntax, e.g. \"assignee:octocat -status:Done\"")
 	project_itemListCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")

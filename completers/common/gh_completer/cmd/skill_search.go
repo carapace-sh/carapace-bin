@@ -18,9 +18,9 @@ func init() {
 
 	skill_searchCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
 	skill_searchCmd.Flags().StringSlice("json", nil, "Output JSON with the specified `fields`")
-	skill_searchCmd.Flags().StringP("limit", "L", "", "Maximum number of results per page")
+	skill_searchCmd.Flags().StringP("limit", "L", "15", "Maximum number of results per page")
 	skill_searchCmd.Flags().String("owner", "", "Filter results to a specific GitHub user or organization")
-	skill_searchCmd.Flags().String("page", "", "Page number of results to fetch")
+	skill_searchCmd.Flags().String("page", "1", "Page number of results to fetch")
 	skill_searchCmd.Flags().StringP("template", "t", "", "Format JSON output using a Go template; see \"gh help formatting\"")
 	skillCmd.AddCommand(skill_searchCmd)
 

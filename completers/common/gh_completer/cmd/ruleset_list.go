@@ -16,9 +16,9 @@ var ruleset_listCmd = &cobra.Command{
 func init() {
 	carapace.Gen(ruleset_listCmd).Standalone()
 
-	ruleset_listCmd.Flags().StringP("limit", "L", "", "Maximum number of rulesets to list")
+	ruleset_listCmd.Flags().StringP("limit", "L", "30", "Maximum number of rulesets to list")
 	ruleset_listCmd.Flags().StringP("org", "o", "", "List organization-wide rulesets for the provided organization")
-	ruleset_listCmd.Flags().BoolP("parents", "p", false, "Whether to include rulesets configured at higher levels that also apply")
+	ruleset_listCmd.Flags().BoolP("parents", "p", true, "Whether to include rulesets configured at higher levels that also apply")
 	ruleset_listCmd.Flags().BoolP("web", "w", false, "Open the list of rulesets in the web browser")
 	rulesetCmd.AddCommand(ruleset_listCmd)
 
