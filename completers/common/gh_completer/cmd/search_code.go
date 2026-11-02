@@ -20,7 +20,7 @@ func init() {
 	search_codeCmd.Flags().StringP("jq", "q", "", "Filter JSON output using a jq `expression`")
 	search_codeCmd.Flags().StringSlice("json", nil, "Output JSON with the specified `fields`")
 	search_codeCmd.Flags().String("language", "", "Filter results by language")
-	search_codeCmd.Flags().StringP("limit", "L", "", "Maximum number of code results to fetch")
+	search_codeCmd.Flags().StringP("limit", "L", "30", "Maximum number of code results to fetch")
 	search_codeCmd.Flags().StringSlice("match", nil, "Restrict search to file contents or file path: {file|path}")
 	search_codeCmd.Flags().StringSlice("owner", nil, "Filter on owner")
 	search_codeCmd.Flags().StringSliceP("repo", "R", nil, "Filter on repository, in `OWNER/REPO` format")

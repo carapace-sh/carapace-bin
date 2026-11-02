@@ -21,10 +21,12 @@ func init() {
 	pr_checkoutCmd.Flags().Bool("detach", false, "Checkout PR with a detached HEAD")
 	pr_checkoutCmd.Flags().BoolP("force", "f", false, "Reset the existing local branch to the latest state of the pull request")
 	pr_checkoutCmd.Flags().Bool("recurse-submodules", false, "Update all submodules after checkout")
+	pr_checkoutCmd.Flags().String("worktree", "", "Check out the pull request into a worktree at the given `path`")
 	prCmd.AddCommand(pr_checkoutCmd)
 
 	carapace.Gen(pr_checkoutCmd).FlagCompletion(carapace.ActionMap{
-		"branch": action.ActionBranches(pr_checkoutCmd),
+		"branch":   action.ActionBranches(pr_checkoutCmd),
+		"worktree": carapace.ActionDirectories(),
 	})
 
 	carapace.Gen(pr_checkoutCmd).PositionalCompletion(

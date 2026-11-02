@@ -9,7 +9,7 @@ import (
 )
 
 var project_itemEditCmd = &cobra.Command{
-	Use:   "item-edit",
+	Use:   "item-edit [<number>]",
 	Short: "Edit an item in a project",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
