@@ -10,8 +10,33 @@ import (
 	"github.com/carapace-sh/carapace-bin/completers/common/gh_completer/cmd/action/config"
 	"github.com/carapace-sh/carapace-bin/completers/common/gh_completer/cmd/action/ghrepo"
 	"github.com/carapace-sh/carapace-bin/completers/common/gh_completer/cmd/action/git"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh"
 	"github.com/spf13/cobra"
 )
+
+// repoOpts parses the `--repo` flag (`[HOST/]OWNER/REPO`) into gh.RepoOpts.
+// Missing fields are resolved by the corresponding public action,
+// `GH_REPO` and git-remotes detection happen inside `gh repo view`.
+func repoOpts(cmd *cobra.Command) gh.RepoOpts {
+	if flag := cmd.Flag("repo"); flag != nil {
+		value := flag.Value.String()
+		if value != "" {
+			splitted := strings.Split(value, "/")
+			switch len(splitted) {
+			case 1:
+				return gh.RepoOpts{Owner: splitted[0]} // assume owner
+			case 2:
+				if strings.Contains(splitted[0], ".") {
+					return gh.RepoOpts{Host: splitted[0], Name: splitted[1]}
+				}
+				return gh.RepoOpts{Owner: splitted[0], Name: splitted[1]}
+			default:
+				return gh.RepoOpts{Host: splitted[0], Owner: splitted[1], Name: splitted[2]}
+			}
+		}
+	}
+	return gh.RepoOpts{}
+}
 
 func ghExecutable() string {
 	return "gh"
