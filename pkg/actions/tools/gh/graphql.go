@@ -73,10 +73,23 @@ func executeGraphQl(opts RepoOpts, query string, v any, transform func() carapac
 // resolveRepo resolves the repository owner and name when they are empty,
 // using `gh repo view` which performs the same implicit repo detection as
 // the gh CLI (git remotes, gh-resolved config, GH_REPO env var).
+// The hostname is not covered by that: `gh api` ignores the repository
+// context (it only honors --hostname or GH_HOST), so the host part of
+// GH_REPO is parsed here to keep enterprise hosts working.
 func resolveRepo(c carapace.Context, opts RepoOpts, f func(RepoOpts) carapace.Action) carapace.Action {
 	if opts.Owner != "" && opts.Name != "" {
 		return f(opts)
 	}
+
+	if opts.Host == "" {
+		if envRepo := c.Getenv("GH_REPO"); envRepo != "" {
+			splitted := strings.Split(envRepo, "/")
+			if len(splitted) > 2 && strings.Contains(splitted[0], ".") {
+				opts.Host = splitted[0] // enterprise host given with GH_REPO=HOST/OWNER/REPO
+			}
+		}
+	}
+
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		content, err := cache.Cache(24*time.Hour,
 			key.String("gh", "repoView", opts.Host, opts.Owner, opts.Name, c.Getenv("GH_REPO"), c.Dir),
