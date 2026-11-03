@@ -57,7 +57,7 @@ func ActionCacheRefs(opts RepoOpts) carapace.Action {
 	}).Tag("cache refs")
 }
 
-// ActionCacheFields completes label fields
+// ActionCacheFields completes cache fields
 //
 //	id
 //	key

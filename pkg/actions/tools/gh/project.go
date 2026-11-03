@@ -166,11 +166,6 @@ func actionOrganizationProjects(opts ProjectOpts) carapace.Action {
 //
 //	PVTI_lADOA48Fh84ABd_DzgBCG7c (Issue commands do not work with non-classic Projects)
 //	PVTI_lADOA48Fh84ABd_DzgBCHAo (Checkout branch for issue)
-//
-// ActionProjectItems completes project items
-//
-//	PVTI_lADOA48Fh84ABd_DzgBCG7c (Issue commands do not work with non-classic Projects)
-//	PVTI_lADOA48Fh84ABd_DzgBCHAo (Checkout branch for issue)
 func ActionProjectItems(opts ProjectItemOpts) carapace.Action {
 	return carapace.Batch(
 		actionUserProjectItems(opts),

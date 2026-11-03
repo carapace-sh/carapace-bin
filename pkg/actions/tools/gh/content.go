@@ -74,11 +74,6 @@ func ActionReadFileFields() carapace.Action {
 //
 //	/README.md
 //	/.github/workflows/go.yml
-//
-// ActionContents completes contents
-//
-//	/.github/
-//	/README.md
 func ActionContents(opts ContentOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		path := opts.Path

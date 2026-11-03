@@ -18,7 +18,7 @@ func ActionSecrets(cmd *cobra.Command, opts SecretOpts) carapace.Action {
 	if flag := cmd.Flag("repo"); flag != nil {
 		repo = flag.Value.String()
 	}
-	return gh.ActionSecrets(gh.SecretsOpts{
+	return gh.ActionSecrets(gh.SecretOpts{
 		Repo: repo,
 		App:  opts.App,
 		Org:  opts.Org,

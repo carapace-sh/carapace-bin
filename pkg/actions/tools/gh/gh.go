@@ -20,7 +20,6 @@ type OwnerOpts struct {
 
 func (o OwnerOpts) repo() RepoOpts {
 	return RepoOpts{Host: o.Host, Owner: o.Owner}
-
 }
 
 type RepoOpts struct {

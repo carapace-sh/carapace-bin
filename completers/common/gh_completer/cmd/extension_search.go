@@ -30,7 +30,7 @@ func init() {
 
 	carapace.Gen(extension_searchCmd).FlagCompletion(carapace.ActionMap{
 		"jq":      jq.ActionFilters(),
-		"json":    gh.ActionSearchRepositoryFields().UniqueList(","),
+		"json":    gh.ActionRepositorySearchFields().UniqueList(","),
 		"license": gh.ActionLicenses(gh.HostOpts{}).UniqueList(","),
 		"order":   carapace.ActionValues("asc", "desc").StyleF(style.ForKeyword),
 		"owner":   gh.ActionOwners(gh.HostOpts{}),

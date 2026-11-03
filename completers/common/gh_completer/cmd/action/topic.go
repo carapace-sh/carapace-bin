@@ -12,7 +12,7 @@ func ActionTopicSearch(cmd *cobra.Command) carapace.Action {
 	return gh.ActionTopicSearch(gh.HostOpts{Host: repo.Host})
 }
 
-// ActionTopics completes topics of a user or organisation
+// ActionTopics completes topics of a user or organization
 func ActionTopics(cmd *cobra.Command, user string) carapace.Action {
 	repo := repoOpts(cmd)
 	return gh.ActionTopics(gh.TopicOpts{Host: repo.Host, User: user})
@@ -21,5 +21,5 @@ func ActionTopics(cmd *cobra.Command, user string) carapace.Action {
 // ActionRepoTopics completes topics of a repository
 func ActionRepoTopics(cmd *cobra.Command) carapace.Action {
 	repo := repoOpts(cmd)
-	return gh.ActionRepoTopics(gh.RepoOpts{Host: repo.Host, Owner: repo.Owner, Name: repo.Name})
+	return gh.ActionRepositoryTopics(gh.RepoOpts{Host: repo.Host, Owner: repo.Owner, Name: repo.Name})
 }

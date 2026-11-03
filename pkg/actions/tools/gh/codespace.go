@@ -82,17 +82,23 @@ func (o CodespaceOpts) Default() CodespaceOpts {
 //
 //	80 (nginx - private)
 func ActionCodespacePorts(opts CodespaceOpts) carapace.Action {
-	return carapace.ActionExecCommand("gh", "codespace", "ports", "--codespace", opts.Codespace, "--json", "label,sourcePort,visibility")(func(output []byte) carapace.Action {
-		var ports []codespacePort
-		if err := json.Unmarshal(output, &ports); err != nil {
-			return carapace.ActionMessage(err.Error())
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		args := []string{"codespace", "ports", "--json", "label,sourcePort,visibility"}
+		if opts.Codespace != "" {
+			args = append(args, "--codespace", opts.Codespace)
 		}
+		return carapace.ActionExecCommand("gh", args...)(func(output []byte) carapace.Action {
+			var ports []codespacePort
+			if err := json.Unmarshal(output, &ports); err != nil {
+				return carapace.ActionMessage(err.Error())
+			}
 
-		vals := make([]string, 0)
-		for _, port := range ports {
-			vals = append(vals, strconv.Itoa(port.SourcePort), fmt.Sprintf("%v - %v", port.Label, port.Visibility))
-		}
-		return carapace.ActionValuesDescribed(vals...)
+			vals := make([]string, 0)
+			for _, port := range ports {
+				vals = append(vals, strconv.Itoa(port.SourcePort), fmt.Sprintf("%v - %v", port.Label, port.Visibility))
+			}
+			return carapace.ActionValuesDescribed(vals...)
+		})
 	})
 }
 

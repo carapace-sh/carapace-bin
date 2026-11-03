@@ -12,10 +12,6 @@ type emailQuery struct {
 			Name  string
 			Email string
 		}
-		Organization struct {
-			Name  string
-			Email string
-		}
 	}
 }
 
@@ -31,22 +27,6 @@ func ActionUserEmails(opts OwnerOpts) carapace.Action {
 				queryResult.Data.User.Email = fmt.Sprintf(`%v@users.noreply.github.com`, opts.Owner)
 			}
 			return carapace.ActionValuesDescribed(queryResult.Data.User.Email, queryResult.Data.User.Email)
-		})
-	})
-}
-
-// ActionOrganizationEmails completes email for given organization
-//
-//	team@example.com
-//	dev@example.com
-func ActionOrganizationEmails(opts OwnerOpts) carapace.Action {
-	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		var queryResult emailQuery
-		return graphQlAction(opts.repo(), fmt.Sprintf(`organization(login: %#v) { name email }`, opts.Owner), &queryResult, func() carapace.Action {
-			if queryResult.Data.Organization.Email == "" {
-				queryResult.Data.Organization.Email = fmt.Sprintf(`%v@organizations.noreply.github.com`, opts.Owner)
-			}
-			return carapace.ActionValuesDescribed(queryResult.Data.Organization.Email, queryResult.Data.Organization.Email)
 		})
 	})
 }

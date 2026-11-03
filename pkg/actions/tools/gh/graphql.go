@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/gh/config"
 	"github.com/carapace-sh/carapace/pkg/cache"
 	"github.com/carapace-sh/carapace/pkg/cache/key"
 )
@@ -26,47 +27,55 @@ func graphQlAction(opts RepoOpts, query string, v any, transform func() carapace
 }
 
 func executeGraphQl(opts RepoOpts, query string, v any, transform func() carapace.Action) carapace.Action {
-	return actionHostConfig(func(config hostConfig) carapace.Action {
-		params := make([]string, 0)
-		if strings.Contains(query, "$owner") {
-			params = append(params, "$owner: String!")
-		}
-		if strings.Contains(query, "$repo") {
-			params = append(params, "$repo: String!")
-		}
-		queryParams := strings.Join(params, ",")
-		if queryParams != "" {
-			queryParams = "(" + queryParams + ")"
-		}
+	params := make([]string, 0)
+	if strings.Contains(query, "$owner") {
+		params = append(params, "$owner: String!")
+	}
+	if strings.Contains(query, "$repo") {
+		params = append(params, "$repo: String!")
+	}
+	queryParams := strings.Join(params, ",")
+	if queryParams != "" {
+		queryParams = "(" + queryParams + ")"
+	}
 
-		if opts.Owner == "@me" {
-			conf, ok := config[opts.Host]
-			if !ok {
-				return carapace.ActionMessage("unknown host")
+	if opts.Owner == "@me" {
+		conf, err := config.ParseDefaultConfig()
+		if err != nil {
+			return carapace.ActionMessage("failed to parse DefaultConfig: " + err.Error())
+		}
+		host := opts.Host
+		if host == "" {
+			if host, err = conf.DefaultHost(); err != nil {
+				return carapace.ActionMessage("failed to resolve default host: " + err.Error())
 			}
-			opts.Owner = conf.User
 		}
+		user, err := conf.Get(host, "user")
+		if err != nil || user == "" {
+			return carapace.ActionMessage("unknown host")
+		}
+		opts.Owner = user
+	}
 
-		args := []string{"api", "graphql",
-			"--header", "Accept: application/vnd.github.merge-info-preview+json",
-		}
-		if strings.Contains(query, "$owner") {
-			args = append(args, "-F", "owner="+opts.Owner)
-		}
-		if strings.Contains(query, "$repo") {
-			args = append(args, "-F", "repo="+opts.Name)
-		}
-		args = append(args, "-f", fmt.Sprintf("query=query%v {%v}", queryParams, query))
+	args := []string{"api", "graphql",
+		"--header", "Accept: application/vnd.github.merge-info-preview+json",
+	}
+	if strings.Contains(query, "$owner") {
+		args = append(args, "-F", "owner="+opts.Owner)
+	}
+	if strings.Contains(query, "$repo") {
+		args = append(args, "-F", "repo="+opts.Name)
+	}
+	args = append(args, "-f", fmt.Sprintf("query=query%v {%v}", queryParams, query))
 
-		if opts.Host != "" {
-			args = append(args, "--hostname", opts.Host)
+	if opts.Host != "" {
+		args = append(args, "--hostname", opts.Host)
+	}
+	return carapace.ActionExecCommand("gh", args...)(func(output []byte) carapace.Action {
+		if err := json.Unmarshal(output, &v); err != nil {
+			return carapace.ActionMessage("failed to unmarshall response: " + err.Error())
 		}
-		return carapace.ActionExecCommand("gh", args...)(func(output []byte) carapace.Action {
-			if err := json.Unmarshal(output, &v); err != nil {
-				return carapace.ActionMessage("failed to unmarshall response: " + err.Error())
-			}
-			return transform()
-		})
+		return transform()
 	})
 }
 

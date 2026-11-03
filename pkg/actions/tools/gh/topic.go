@@ -47,7 +47,7 @@ func ActionTopicSearch(opts HostOpts) carapace.Action {
 	}).Tag("topic search")
 }
 
-// ActionTopics completes topics of a user or organisation
+// ActionTopics completes topics of a user or organization
 //
 //	cli
 //	shell
@@ -70,11 +70,11 @@ type repoTopicsQuery struct {
 	Names []string
 }
 
-// ActionRepoTopics completes topics of a repository
+// ActionRepositoryTopics completes topics of a repository
 //
 //	completion
 //	shell
-func ActionRepoTopics(opts RepoOpts) carapace.Action {
+func ActionRepositoryTopics(opts RepoOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return resolveRepo(c, opts, func(resolved RepoOpts) carapace.Action {
 			var queryResult repoTopicsQuery

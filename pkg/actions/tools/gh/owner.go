@@ -40,7 +40,7 @@ func ActionOwners(opts HostOpts) carapace.Action {
 func ActionUsers(opts HostOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if len(c.Value) < 2 {
-			return carapace.ActionMessage("organization search needs at least two characters")
+			return carapace.ActionMessage("user search needs at least two characters")
 		}
 
 		var queryResult ownerQuery
@@ -63,16 +63,16 @@ func ActionUsers(opts HostOpts) carapace.Action {
 func ActionOrganizations(opts HostOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if len(c.Value) < 2 {
-			return carapace.ActionMessage("user search needs at least two characters")
+			return carapace.ActionMessage("organization search needs at least two characters")
 		}
 
 		var queryResult ownerQuery
 		return graphQlAction(opts.repo(), fmt.Sprintf(`search(query: %q, type: USER, first: 100) { edges { node { ... on Organization { login name } } } }`, c.Value+" in:login"), &queryResult, func() carapace.Action {
-			users := queryResult.Data.Search.Edges
-			vals := make([]string, len(users)*2)
-			for index, user := range users {
-				vals[index*2] = user.Node.Login
-				vals[index*2+1] = user.Node.Name
+			organizations := queryResult.Data.Search.Edges
+			vals := make([]string, len(organizations)*2)
+			for index, organization := range organizations {
+				vals[index*2] = organization.Node.Login
+				vals[index*2+1] = organization.Node.Name
 			}
 			return carapace.ActionValuesDescribed(vals...).Style(styles.Gh.OwnerOrganization)
 		})
