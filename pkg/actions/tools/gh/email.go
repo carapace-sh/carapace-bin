@@ -15,11 +15,10 @@ type emailQuery struct {
 	}
 }
 
-// ActionUserEmails completes email for given user
+// ActionUserEmail completes the email of a user
 //
 //	user@example.com (primary)
-//	other@example.com
-func ActionUserEmails(opts OwnerOpts) carapace.Action {
+func ActionUserEmail(opts OwnerOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		var queryResult emailQuery
 		return graphQlAction(opts.repo(), fmt.Sprintf(`user(login: %#v) { name email }`, opts.Owner), &queryResult, func() carapace.Action {

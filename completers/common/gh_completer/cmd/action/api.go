@@ -66,7 +66,7 @@ func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
 				case "{cache_id}":
 					return gh.ActionCaches(repo)
 				case "{coc_key}":
-					return gh.ActionCocs(gh.HostOpts{Host: repo.Host})
+					return gh.ActionCodesOfConduct(gh.HostOpts{Host: repo.Host})
 				case "{codespace_name}":
 					return gh.ActionCodespaces()
 				case "{environment_name}":
