@@ -37,7 +37,7 @@ func init() {
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			if formatCmd.Flag("type").Value.String() == "emoji" {
 				if index := strings.LastIndex(c.Value, ":"); index != -1 {
-					return gh.ActionEmojis().Prefix(c.Value[:index])
+					return gh.ActionEmojis().Prefix(c.Value[:index] + ":").Suffix(":")
 				}
 			}
 			return carapace.ActionValues()

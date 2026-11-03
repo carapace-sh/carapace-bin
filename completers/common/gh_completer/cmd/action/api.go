@@ -66,7 +66,7 @@ func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
 				case "{cache_id}":
 					return gh.ActionCaches(repo)
 				case "{coc_key}":
-					return gh.ActionCocs(gh.HostOpts{Host: repo.Host})
+					return gh.ActionCodesOfConduct(gh.HostOpts{Host: repo.Host})
 				case "{codespace_name}":
 					return gh.ActionCodespaces()
 				case "{environment_name}":
@@ -135,12 +135,12 @@ func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
 					switch {
 					case matches["{org}"] != "": // TODO distinguishing app scopes of the path
 						return carapace.Batch(
-							gh.ActionSecrets(gh.SecretsOpts{Org: matches["{org}"], App: "actions"}),
-							gh.ActionSecrets(gh.SecretsOpts{Org: matches["{org}"], App: "codespaces"}),
-							gh.ActionSecrets(gh.SecretsOpts{Org: matches["{org}"], App: "dependabot"}),
+							gh.ActionSecrets(gh.SecretOpts{Org: matches["{org}"], App: "actions"}),
+							gh.ActionSecrets(gh.SecretOpts{Org: matches["{org}"], App: "codespaces"}),
+							gh.ActionSecrets(gh.SecretOpts{Org: matches["{org}"], App: "dependabot"}),
 						).ToA()
 					case repo.Owner != "" && repo.Name != "":
-						return gh.ActionSecrets(gh.SecretsOpts{Repo: fmt.Sprintf("%v/%v", repo.Owner, repo.Name)})
+						return gh.ActionSecrets(gh.SecretOpts{Repo: fmt.Sprintf("%v/%v", repo.Owner, repo.Name)})
 					default:
 						return carapace.ActionValues(placeholder)
 					}

@@ -48,7 +48,7 @@ func init() {
 		"created":       action.ActionSearchRange(time.ActionDateTime(time.DateTimeOpts{Strict: true})),
 		"include-forks": carapace.ActionValues("false", "only", "true"),
 		"jq":            jq.ActionFilters(),
-		"json":          gh.ActionSearchRepositoryFields().UniqueList(","),
+		"json":          gh.ActionRepositorySearchFields().UniqueList(","),
 		"language":      gh.ActionLanguages(),
 		"license":       gh.ActionLicenses(gh.HostOpts{}).UniqueList(","),
 		"match":         carapace.ActionValues("description", "name", "readme").UniqueList(","),

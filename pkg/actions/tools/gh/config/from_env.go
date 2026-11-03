@@ -45,6 +45,10 @@ func (c *envConfig) Hosts() ([]string, error) {
 	return hosts, err
 }
 
+func (c *envConfig) Users(hostname string) ([]string, error) {
+	return c.Config.Users(hostname)
+}
+
 func (c *envConfig) DefaultHost() (string, error) {
 	val, _, err := c.DefaultHostWithSource()
 	return val, err

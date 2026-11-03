@@ -1747,5 +1747,5 @@ func ActionEmojis() carapace.Action {
 		"zombie_man", "🧟‍♂️ man zombie",
 		"zombie_woman", "🧟‍♀️ woman zombie",
 		"zzz", "💤 zzz",
-	).Prefix(":").Suffix(":")
+	)
 }

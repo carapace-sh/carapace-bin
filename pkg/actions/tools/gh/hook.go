@@ -26,7 +26,7 @@ func ActionRepositoryHooks(opts RepoOpts) carapace.Action {
 				return hookAction(queryResult)
 			})
 		})
-	}).Tag("webhooks")
+	}).Tag("repository webhooks")
 }
 
 // ActionOrganizationHooks completes organization webhooks
@@ -38,7 +38,7 @@ func ActionOrganizationHooks(opts OwnerOpts) carapace.Action {
 		return apiV3Action(opts.repo(), fmt.Sprintf("orgs/%v/hooks", opts.Owner), &queryResult, func() carapace.Action {
 			return hookAction(queryResult)
 		})
-	}).Tag("webhooks")
+	}).Tag("organization webhooks")
 }
 
 func hookAction(hooks []hook) carapace.Action {

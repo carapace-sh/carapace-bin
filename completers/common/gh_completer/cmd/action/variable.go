@@ -6,7 +6,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// ActionVariables completes variables (repository, environment or organisation)
+// ActionVariables completes variables (repository, environment or organization)
 func ActionVariables(cmd *cobra.Command) carapace.Action {
 	repo := repoOpts(cmd)
 	repoHost := repo.Host
@@ -14,7 +14,7 @@ func ActionVariables(cmd *cobra.Command) carapace.Action {
 	repoName := repo.Name
 
 	if flag := cmd.Flag("org"); flag != nil && flag.Changed {
-		return gh.ActionOrganisationVariables(gh.OwnerOpts{
+		return gh.ActionOrganizationVariables(gh.OwnerOpts{
 			Host:  repoHost,
 			Owner: flag.Value.String(),
 		})

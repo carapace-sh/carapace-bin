@@ -14,6 +14,7 @@ type Config interface {
 	Set(string, string, string) error
 	UnsetHost(string)
 	Hosts() ([]string, error)
+	Users(string) ([]string, error)
 	DefaultHost() (string, error)
 	DefaultHostWithSource() (string, string, error)
 	Aliases() (*AliasConfig, error)

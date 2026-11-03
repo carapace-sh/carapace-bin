@@ -32,7 +32,7 @@ func ActionBody(opts BodyOpts) carapace.Action {
 	return carapace.ActionMultiParts(" ", func(c carapace.Context) carapace.Action {
 		switch {
 		case strings.HasPrefix(c.Value, ":"):
-			return ActionEmojis()
+			return ActionEmojis().Prefix(":").Suffix(":")
 
 		case strings.HasPrefix(c.Value, "@"):
 			c.Value = strings.TrimPrefix(c.Value, "@")

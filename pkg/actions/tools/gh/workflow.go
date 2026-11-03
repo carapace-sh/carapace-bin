@@ -53,7 +53,7 @@ func ActionWorkflowEvents() carapace.Action {
 	)
 }
 
-// ActionWorkflowFields completes workflow fields.
+// ActionWorkflowFields completes workflow fields
 //
 //	name
 //	state
@@ -81,10 +81,14 @@ type WorkflowOpts struct {
 	Owner string
 	Name  string
 
-	Enabled  bool
+	// Enabled filters workflows by their active state
+	Enabled bool
+	// Disabled filters workflows by inactive states
 	Disabled bool
 
-	ById   bool
+	// ById completes workflow id values
+	ById bool
+	// ByName completes workflow name values with their id as description
 	ByName bool
 }
 
@@ -112,8 +116,6 @@ func (o WorkflowOpts) cacheKey() key.Key {
 //
 //	1234567 (build)
 //	2345678 (test)
-//
-//	carapace.ActionWorkflows(gh.WorkflowOpts{Enabled: true})
 func ActionWorkflows(opts WorkflowOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return resolveRepo(c, opts.repo(), func(resolved RepoOpts) carapace.Action {

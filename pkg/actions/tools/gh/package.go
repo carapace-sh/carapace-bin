@@ -79,3 +79,19 @@ func ActionPackageVersions(opts PackageOpts) carapace.Action {
 		})
 	}).Tag("package versions")
 }
+
+// ActionPackageTypes completes package types
+//
+//	container
+//	docker
+func ActionPackageTypes() carapace.Action {
+	return carapace.ActionValues(
+		"container",
+		"docker",
+		"maven",
+
+		"npm",
+		"nuget",
+		"rubygems",
+	).Tag("package types")
+}

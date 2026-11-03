@@ -67,11 +67,11 @@ func ActionRepositoryVariables(opts RepoOpts) carapace.Action {
 	}).Tag("variables")
 }
 
-// ActionOrganisationVariables completes organisation variables
+// ActionOrganizationVariables completes organization variables
 //
 //	first (value1)
 //	second (value2)
-func ActionOrganisationVariables(opts OwnerOpts) carapace.Action {
+func ActionOrganizationVariables(opts OwnerOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		var queryResult struct {
 			Variables []variable

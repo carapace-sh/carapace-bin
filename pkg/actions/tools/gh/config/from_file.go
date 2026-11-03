@@ -236,6 +236,32 @@ func (c *fileConfig) Hosts() ([]string, error) {
 	return hostnames, nil
 }
 
+// Users returns usernames stored in the `users` entry of the given host,
+// or of all hosts when the hostname is empty.
+func (c *fileConfig) Users(hostname string) ([]string, error) {
+	entries, err := c.hostEntries()
+	if err != nil {
+		return nil, err
+	}
+
+	users := []string{}
+	for _, entry := range entries {
+		if hostname != "" && !strings.EqualFold(entry.Host, hostname) {
+			continue
+		}
+		userEntry, err := entry.FindEntry("users")
+		if err != nil || userEntry.ValueNode == nil || userEntry.ValueNode.Kind != yaml.MappingNode {
+			continue
+		}
+		for _, key := range userEntry.ValueNode.Content {
+			if key.Kind == yaml.ScalarNode {
+				users = append(users, key.Value)
+			}
+		}
+	}
+	return users, nil
+}
+
 func (c *fileConfig) DefaultHost() (string, error) {
 	val, _, err := c.DefaultHostWithSource()
 	return val, err

@@ -24,7 +24,7 @@ func init() {
 	carapace.Gen(rootCmd).PositionalCompletion(
 		gh.ActionUsers(gh.HostOpts{}),
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			return gh.ActionUserEmails(gh.OwnerOpts{Owner: c.Args[0]})
+			return gh.ActionUserEmail(gh.OwnerOpts{Owner: c.Args[0]})
 		}),
 	)
 }
