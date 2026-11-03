@@ -1,6 +1,8 @@
 package action
 
 import (
+	"fmt"
+	"strconv"
 	"strings"
 
 	"github.com/carapace-sh/carapace"
@@ -52,6 +54,11 @@ func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
 					return carapace.ActionValues("zip")
 				case "{artifact_id}":
 					return gh.ActionWorkflowArtifactIds(gh.ArtifactOpts{Owner: repo.Owner, Name: repo.Name})
+				case "{artifact_number}":
+					issueNumber, _ := strconv.Atoi(matches["{issue_number}"]) // TODO hidden issues
+					return gh.ActionIssueArtifacts(gh.IssueArtifactOpts{Owner: repo.Owner, Name: repo.Name, IssueNumber: issueNumber})
+				case "{autolink_id}":
+					return gh.ActionAutolinks(repo)
 				case "{assignee}":
 					return gh.ActionAssignableUsers(repo)
 				case "{branch}":
@@ -62,10 +69,17 @@ func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
 					return gh.ActionEnvironments(repo)
 				case "{gist_id}":
 					return gh.ActionGistIds(gh.GistOpts{Owner: repo.Owner})
+				case "{gpg_key_id}":
+					return gh.ActionGpgKeys(gh.HostOpts{Host: repo.Host})
 				case "{gitignore_name}":
 					return gh.ActionGitignoreTemplates(gh.HostOpts{Host: repo.Host})
 				case "{label}":
 					return gh.ActionLabels(gh.RepoOpts{Owner: matches["{owner}"], Name: matches["{repo}"]})
+				case "{key_id}":
+					return carapace.Batch(
+						gh.ActionDeployKeys(repo),                      // repos/{owner}/{repo}/keys/{key_id}
+						gh.ActionSshKeys(gh.HostOpts{Host: repo.Host}), // user/keys/{key_id}
+					).ToA()
 				case "{license}":
 					return gh.ActionLicenses(gh.HostOpts{})
 				case "{issue_number}":
@@ -88,6 +102,14 @@ func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
 					} else {
 						return gh.ActionRepositories(gh.OwnerOpts{Owner: matches["{owner}"]})
 					}
+				case "{ruleset_id}":
+					return gh.ActionRulesets(repo)
+				case "{run_id}":
+					return gh.ActionWorkflowRuns(gh.RunOpts{Host: repo.Host, Owner: repo.Owner, Name: repo.Name, All: true})
+				case "{secret_name}":
+					return gh.ActionSecrets(gh.SecretsOpts{Repo: fmt.Sprintf("%v/%v", repo.Owner, repo.Name)})
+				case "{team_slug}":
+					return gh.ActionTeams(gh.OwnerOpts{Host: repo.Host, Owner: matches["{org}"]})
 				case "{tag}": // only used with releases
 					return gh.ActionReleases(gh.ReleaseOpts{Host: repo.Host, Owner: repo.Owner, Name: repo.Name})
 				case "{template_owner}": // ignore this as it is already provided by `{owner}`
