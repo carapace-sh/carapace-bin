@@ -54,6 +54,8 @@ func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
 					return carapace.ActionValues("zip")
 				case "{artifact_id}":
 					return gh.ActionWorkflowArtifactIds(gh.ArtifactOpts{Owner: repo.Owner, Name: repo.Name})
+				case "{cache_id}":
+					return gh.ActionCaches(repo)
 				case "{artifact_number}":
 					issueNumber, _ := strconv.Atoi(matches["{issue_number}"]) // TODO hidden issues
 					return gh.ActionIssueArtifacts(gh.IssueArtifactOpts{Owner: repo.Owner, Name: repo.Name, IssueNumber: issueNumber})
@@ -65,6 +67,8 @@ func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
 					return gh.ActionBranches(repo)
 				case "{coc_key}":
 					return gh.ActionCocs(gh.HostOpts{Host: repo.Host})
+				case "{codespace_name}":
+					return gh.ActionCodespaces()
 				case "{environment_name}":
 					return gh.ActionEnvironments(repo)
 				case "{gist_id}":
@@ -92,6 +96,8 @@ func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
 					}
 				case "{org}":
 					return gh.ActionOrganizations(gh.HostOpts{})
+				case "{milestone_number}":
+					return gh.ActionMilestoneNumbers(repo)
 				case "{package_type}":
 					return gh.ActionPackageTypes()
 				case "{pull_number}":
@@ -107,7 +113,18 @@ func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
 				case "{run_id}":
 					return gh.ActionWorkflowRuns(gh.RunOpts{Host: repo.Host, Owner: repo.Owner, Name: repo.Name, All: true})
 				case "{secret_name}":
-					return gh.ActionSecrets(gh.SecretsOpts{Repo: fmt.Sprintf("%v/%v", repo.Owner, repo.Name)})
+					switch {
+					case matches["{org}"] != "": // TODO distinguishing app scopes of the path
+						return carapace.Batch(
+							gh.ActionSecrets(gh.SecretsOpts{Org: matches["{org}"], App: "actions"}),
+							gh.ActionSecrets(gh.SecretsOpts{Org: matches["{org}"], App: "codespaces"}),
+							gh.ActionSecrets(gh.SecretsOpts{Org: matches["{org}"], App: "dependabot"}),
+						).ToA()
+					case repo.Owner != "" && repo.Name != "":
+						return gh.ActionSecrets(gh.SecretsOpts{Repo: fmt.Sprintf("%v/%v", repo.Owner, repo.Name)})
+					default:
+						return carapace.ActionValues(placeholder)
+					}
 				case "{team_slug}":
 					return gh.ActionTeams(gh.OwnerOpts{Host: repo.Host, Owner: matches["{org}"]})
 				case "{tag}": // only used with releases
