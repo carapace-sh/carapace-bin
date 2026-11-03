@@ -49,22 +49,22 @@ func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
 				repo := gh.RepoOpts{Owner: matches["{owner}"], Name: matches["{repo}"]}
 
 				switch placeholder {
-				// TODO completion for other placeholders
+
 				case "{archive_format}":
 					return carapace.ActionValues("zip")
 				case "{artifact_id}":
 					return gh.ActionWorkflowArtifactIds(gh.ArtifactOpts{Owner: repo.Owner, Name: repo.Name})
-				case "{cache_id}":
-					return gh.ActionCaches(repo)
 				case "{artifact_number}":
 					issueNumber, _ := strconv.Atoi(matches["{issue_number}"]) // TODO hidden issues
 					return gh.ActionIssueArtifacts(gh.IssueArtifactOpts{Owner: repo.Owner, Name: repo.Name, IssueNumber: issueNumber})
-				case "{autolink_id}":
-					return gh.ActionAutolinks(repo)
 				case "{assignee}":
 					return gh.ActionAssignableUsers(repo)
+				case "{autolink_id}":
+					return gh.ActionAutolinks(repo)
 				case "{branch}":
 					return gh.ActionBranches(repo)
+				case "{cache_id}":
+					return gh.ActionCaches(repo)
 				case "{coc_key}":
 					return gh.ActionCocs(gh.HostOpts{Host: repo.Host})
 				case "{codespace_name}":
@@ -73,36 +73,36 @@ func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
 					return gh.ActionEnvironments(repo)
 				case "{gist_id}":
 					return gh.ActionGistIds(gh.GistOpts{Owner: repo.Owner})
+				case "{gitignore_name}":
+					return gh.ActionGitignoreTemplates(gh.HostOpts{Host: repo.Host})
+				case "{gpg_key_id}":
+					return gh.ActionGpgKeys(gh.HostOpts{Host: repo.Host})
 				case "{hook_id}":
 					if matches["{org}"] != "" {
 						return gh.ActionOrganizationHooks(gh.OwnerOpts{Host: repo.Host, Owner: matches["{org}"]})
 					}
 					return gh.ActionRepositoryHooks(repo)
-				case "{gpg_key_id}":
-					return gh.ActionGpgKeys(gh.HostOpts{Host: repo.Host})
-				case "{gitignore_name}":
-					return gh.ActionGitignoreTemplates(gh.HostOpts{Host: repo.Host})
-				case "{label}":
-					return gh.ActionLabels(gh.RepoOpts{Owner: matches["{owner}"], Name: matches["{repo}"]})
+				case "{issue_number}":
+					return gh.ActionIssues(gh.IssueOpts{Host: repo.Host, Owner: repo.Owner, Name: repo.Name, Open: true, Closed: true})
 				case "{key_id}":
 					return carapace.Batch(
 						gh.ActionDeployKeys(repo),                      // repos/{owner}/{repo}/keys/{key_id}
 						gh.ActionSshKeys(gh.HostOpts{Host: repo.Host}), // user/keys/{key_id}
 					).ToA()
+				case "{label}":
+					return gh.ActionLabels(gh.RepoOpts{Owner: matches["{owner}"], Name: matches["{repo}"]})
 				case "{license}":
 					return gh.ActionLicenses(gh.HostOpts{})
-				case "{issue_number}":
-					return gh.ActionIssues(gh.IssueOpts{Host: repo.Host, Owner: repo.Owner, Name: repo.Name, Open: true, Closed: true})
+				case "{milestone_number}":
+					return gh.ActionMilestoneNumbers(repo)
+				case "{org}":
+					return gh.ActionOrganizations(gh.HostOpts{})
 				case "{owner}":
 					if strings.HasPrefix(c.Value, ":") {
 						return carapace.ActionValues(":owner")
 					} else {
 						return gh.ActionOwners(gh.HostOpts{}) // TODO host
 					}
-				case "{org}":
-					return gh.ActionOrganizations(gh.HostOpts{})
-				case "{milestone_number}":
-					return gh.ActionMilestoneNumbers(repo)
 				case "{package_name}":
 					return packageAction(matches, repo.Host, false)
 				case "{package_type}":
@@ -117,6 +117,10 @@ func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
 					} else {
 						return gh.ActionRepositories(gh.OwnerOpts{Owner: matches["{owner}"]})
 					}
+				case "{ruleset_id}":
+					return gh.ActionRulesets(repo)
+				case "{run_id}":
+					return gh.ActionWorkflowRuns(gh.RunOpts{Host: repo.Host, Owner: repo.Owner, Name: repo.Name, All: true})
 				case "{runner_group_id}":
 					if matches["{org}"] != "" {
 						return gh.ActionOrganizationRunnerGroups(gh.OwnerOpts{Host: repo.Host, Owner: matches["{org}"]})
@@ -127,10 +131,6 @@ func ActionApiV3Paths(cmd *cobra.Command) carapace.Action {
 						return gh.ActionOrganizationRunners(gh.OwnerOpts{Host: repo.Host, Owner: matches["{org}"]})
 					}
 					return gh.ActionRepositoryRunners(repo)
-				case "{ruleset_id}":
-					return gh.ActionRulesets(repo)
-				case "{run_id}":
-					return gh.ActionWorkflowRuns(gh.RunOpts{Host: repo.Host, Owner: repo.Owner, Name: repo.Name, All: true})
 				case "{secret_name}":
 					switch {
 					case matches["{org}"] != "": // TODO distinguishing app scopes of the path
@@ -169,8 +169,6 @@ func packagesOpts(matches map[string]string, host string) (gh.PackageOpts, bool)
 	switch {
 	case matches["{org}"] != "":
 		opts.Owner, opts.Organization = matches["{org}"], true
-	case matches["{owner}"] != "" && matches["{repo}"] != "":
-		opts.Owner = matches["{owner}"]
 	case matches["{username}"] != "":
 		opts.Owner = matches["{username}"]
 	default:
@@ -192,9 +190,4 @@ func packageAction(matches map[string]string, host string, versions bool) carapa
 		return gh.ActionPackageVersions(opts)
 	}
 	return gh.ActionPackages(opts)
-}
-
-func ActionPackageTypes() carapace.Action {
-	return carapace.ActionValues("container", "docker", "maven", "npm", "nuget", "rubygems").
-		Tag("package types")
 }

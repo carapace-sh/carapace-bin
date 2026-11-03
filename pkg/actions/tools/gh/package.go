@@ -67,18 +67,13 @@ func ActionPackageVersions(opts PackageOpts) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		var queryResult []struct {
 			Id        int
-			Name      string
 			Version   string
 			CreatedAt string `json:"created_at"`
 		}
 		return apiV3Action(RepoOpts{Host: opts.Host}, opts.versionsRoute(), &queryResult, func() carapace.Action {
 			vals := make([]string, 0, len(queryResult)*2)
 			for _, version := range queryResult {
-				label := version.Version
-				if label == "" {
-					label = version.Name
-				}
-				vals = append(vals, fmt.Sprintf("%v", version.Id), label)
+				vals = append(vals, fmt.Sprintf("%v", version.Id), version.Version)
 			}
 			return carapace.ActionValuesDescribed(vals...)
 		})
