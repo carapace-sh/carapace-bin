@@ -50,6 +50,19 @@ jobs:
           FURY_TOKEN: ${{ secrets.FURY_TOKEN }}
           GORELEASER_GITHUB_TOKEN: ${{ secrets.GORELEASER_GITHUB_TOKEN }}
 
+  man:
+    runs-on: ubuntu-latest
+    container: ghcr.io/carapace-sh/go:1.26.3
+    steps:
+      - name: shallow clone
+        uses: actions/checkout@v7
+
+      - name: install carapace-man
+        run: curl -fsSL https://github.com/carapace-sh/carapace-man/releases/download/v0.0.3/carapace-man_0.0.3_linux_amd64.tar.gz | tar -xz -C /usr/local/bin
+
+      - name: compile man pages
+        run: carapace-man compile man carapace.db
+
   lint:
     runs-on: ubuntu-latest
     container: ghcr.io/carapace-sh/go:1.26.3

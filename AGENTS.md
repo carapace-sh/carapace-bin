@@ -11,7 +11,7 @@ For carapace library concepts (actions, macros, specs, integration, scraping), s
 | `go generate ./cmd/...` | Regenerate all code (completer lists, macros, conditions). **Required after adding/modifying public actions or completers** |
 | `go install -v -tags force_all ./cmd/carapace` | Build with all platform completers |
 | `go install -v ./cmd/carapace` | Build for current platform only |
-| `go test -v ./cmd/...` | Run tests |
+| `go test -v ./cmd/... ./man/...` | Run tests (man/ validates the YAML man pages) |
 | `golangci-lint custom && ./custom-gcl run ./...` | Run linter: formatting (gofmt), static analysis (staticcheck), carapace checks (see `.custom-gcl.yml`/`.golangci.yml`) |
 | `./custom-gcl run --fix ./...` | Auto-fix linter findings |
 
@@ -275,7 +275,7 @@ Compound values (e.g. `KEY=VALUE`, `user@host`, `repo/branch`) use `carapace.Act
 
 - **Sandbox integration tests**: `sandbox.Package(t, <import-path>)` + `s.Run(args).Expect(action)` — validates actual completion output
 - **No per-completer tests**: Completers don't have `_test.go` files; validation is through the sandbox framework
-- **CI runs**: `go test -v ./cmd/...` (not `./...` — there are few test files)
+- **CI runs**: `go test -v ./cmd/... ./man/...` (not `./...` — there are few test files)
 
 ## Two-Tier Dispatch in the Main Binary
 

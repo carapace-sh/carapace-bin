@@ -673,7 +673,7 @@ flags:
     --oremove-metadata-toggle?: ""
     --osc?: Whether to load the on-screen-controller
     --osd-align-x?: Control to which corner of the screen OSD should be aligned to
-    --osd-align-y?: Vertical position (default: top). Details see --osd-align-x
+    --osd-align-y?: 'Vertical position (default: top). Details see --osd-align-x'
     --osd-back-color?: See --sub-color. Color used for OSD text background
     --osd-bar?: Enable display of the OSD bar
     --osd-bar-align-x?: Position of the OSD bar
@@ -1300,8 +1300,8 @@ flags:
     --wayland-app-id?: Set the client app id for Wayland-based video output methods
     --wayland-configure-bounds?: Controls whether or not mpv opts into the configure bounds event if sent by the compositor
     --wayland-content-type?: If supported by the compositor, mpv will send a hint using the content-type protocol telling the compositor what type of content is being displayed
-    --wayland-edge-pixels-pointer?: Defines the size of an edge border (default: 16) to initiate client side resize events in the wayland contexts with the mouse
-    --wayland-edge-pixels-touch?: Defines the size of an edge border (default: 32) to initiate client side resizes events in the wayland contexts with touch events
+    --wayland-edge-pixels-pointer?: 'Defines the size of an edge border (default: 16) to initiate client side resize events in the wayland contexts with the mouse'
+    --wayland-edge-pixels-touch?: 'Defines the size of an edge border (default: 32) to initiate client side resizes events in the wayland contexts with touch events'
     --wayland-internal-vsync?: Controls whether to use mpv's internal vsync for Wayland-base video outputs
     --wayland-present?: Enable the use of wayland's presentation time protocol for more accurate frame presentation if it is supported by the compositor
     --wayland-session?: Set the wayland session name for window restoration
