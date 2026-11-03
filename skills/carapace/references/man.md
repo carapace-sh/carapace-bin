@@ -208,7 +208,7 @@ For each completer:
    - If neither available, run `<command> --help`
    - Stay close to official wording; rephrase only for consistency and length
 4. **Write**: Fill in `documentation.command` and `documentation.flag` entries
-5. **Validate**: Re-read edited files, verify no `[AI]` prefixes remain and run `go test ./man/` (see [YAML Quoting](#yaml-quoting))
+5. **Validate**: Re-read edited files, verify no `[AI]` prefixes remain and run `carapace-man compile man carapace.db` (see [YAML Quoting](#yaml-quoting))
 
 ### YAML Quoting
 
@@ -222,10 +222,10 @@ flags:
   --seed=: 'Override the random seed (default: 0)'
 ```
 
-Files written by `carapace-man update` are serialized with a YAML marshaller and are safe; manual edits must be validated:
+Files written by `carapace-man update` are serialized with a YAML marshaller and are safe; manual edits must be validated by compiling the man pages:
 
 ```bash
-go test ./man/
+carapace-man compile man carapace.db
 ```
 
 ### Research Source Material
