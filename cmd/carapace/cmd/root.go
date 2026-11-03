@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/completers"
 	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/shim"
 	"github.com/carapace-sh/carapace-bin/cmd/carapace/cmd/snippet"
 	"github.com/carapace-sh/carapace-bin/pkg/actions"
@@ -51,8 +52,8 @@ var rootCmd = &cobra.Command{
   Shell parameter is optional and if left out carapace will try to detect it by parent process name.
   Some completions are cached at [%v/carapace].
   Config is written to [%v/carapace].
-  Specs are loaded from [%v/carapace/specs].
-  `, suppressErr(xdg.UserCacheDir), suppressErr(xdg.UserConfigDir), suppressErr(xdg.UserConfigDir)),
+  Specs are loaded from [%v/carapace/specs], [$CARAPACE_SPECS_PATH] and system-wide dirs [%v].
+  `, suppressErr(xdg.UserCacheDir), suppressErr(xdg.UserConfigDir), suppressErr(xdg.UserConfigDir), suppressErr(specDirsDisplay)),
 	Args:               cobra.MinimumNArgs(1),
 	DisableFlagParsing: true,
 	Run: func(cmd *cobra.Command, args []string) {
@@ -115,6 +116,19 @@ var rootCmd = &cobra.Command{
 }
 
 func suppressErr(f func() (string, error)) string { s, _ := f(); return s }
+
+// specDirsDisplay lists the additional spec directories for the help text.
+func specDirsDisplay() (string, error) {
+	dirs, err := completers.SpecDirs()
+	if err != nil {
+		return "", err
+	}
+	paths := make([]string, 0, len(dirs))
+	for _, dir := range dirs[1:] { // the user dir is shown separately above
+		paths = append(paths, dir.Path)
+	}
+	return strings.Join(paths, ", "), nil
+}
 
 func createOverlayDir() error {
 	configDir, err := xdg.UserConfigDir()
