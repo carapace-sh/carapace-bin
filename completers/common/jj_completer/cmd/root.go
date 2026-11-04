@@ -1,12 +1,13 @@
 package cmd
 
 import (
+	"os/exec"
+
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bridge/pkg/actions/bridge"
 	"github.com/carapace-sh/carapace-jjlex/pkg/actions/tools/jj"
 	shlex "github.com/carapace-sh/carapace-shlex/v2"
 	"github.com/carapace-sh/carapace/pkg/style"
-	"github.com/carapace-sh/carapace/third_party/golang.org/x/sys/execabs"
 	"github.com/pelletier/go-toml"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
@@ -71,7 +72,7 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PreRun(func(cmd *cobra.Command, args []string) {
-		output, err := execabs.Command("jj", "config", "list", "--include-defaults", "aliases").Output()
+		output, err := exec.Command("jj", "config", "list", "--include-defaults", "aliases").Output()
 		if err != nil {
 			carapace.LOG.Println(err.Error())
 			return

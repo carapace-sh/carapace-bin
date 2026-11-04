@@ -7,7 +7,7 @@ import (
 
 var config_gcCmd = &cobra.Command{
 	Use:   "gc",
-	Short: "Find and optionally delete repo-level config directories whose repo path no longer exists",
+	Short: "Find and optionally delete repo and workspace config directories whose paths no longer exist",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
