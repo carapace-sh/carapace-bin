@@ -7,7 +7,7 @@ import (
 )
 
 var file_listCmd = &cobra.Command{
-	Use:   "files [OPTIONS] [PATHS]...",
+	Use:   "list [OPTIONS] [FILESETS]...",
 	Short: "List files in a revision",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
