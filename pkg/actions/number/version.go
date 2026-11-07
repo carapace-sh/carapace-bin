@@ -55,9 +55,13 @@ func ActionSemanticVersions(versions ...string) carapace.Action {
 			minor, _ := strconv.Atoi(matches[2])
 			patch, _ := strconv.Atoi(matches[3])
 
-			if semver.Prerelease(canonical) != "" {
+			if prerelease := semver.Prerelease(canonical); prerelease != "" {
 				vals = append(vals,
+					fmt.Sprintf("%v%v.%v.%v%v", prefix, major, minor, patch, nextPrerelease(prerelease)), "next prerelease version",
 					fmt.Sprintf("%v%v.%v.%v", prefix, major, minor, patch), "next version",
+					fmt.Sprintf("%v%v.%v.%v", prefix, major+1, 0, 0), "next major version",
+					fmt.Sprintf("%v%v.%v.%v", prefix, major, minor+1, 0), "next minor version",
+					fmt.Sprintf("%v%v.%v.%v", prefix, major, minor, patch+1), "next patch version",
 				)
 			} else {
 				vals = append(vals,
@@ -69,4 +73,19 @@ func ActionSemanticVersions(versions ...string) carapace.Action {
 		}
 		return carapace.ActionValuesDescribed(vals...)
 	})
+}
+
+// nextPrerelease increments the trailing numeric identifier of a prerelease suffix.
+func nextPrerelease(prerelease string) string {
+	prerelease = strings.TrimPrefix(prerelease, "-")
+	if prerelease == "" {
+		return ""
+	}
+	// Increment a trailing numeric run (e.g. "rc1" -> "rc2", "tabdance.1" -> "tabdance.2").
+	if loc := regexp.MustCompile(`[0-9]+$`).FindStringIndex(prerelease); loc != nil {
+		prefix := prerelease[:loc[0]]
+		value, _ := strconv.Atoi(prerelease[loc[0]:])
+		return "-" + prefix + strconv.Itoa(value+1)
+	}
+	return "-" + prerelease + ".1"
 }
