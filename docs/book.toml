@@ -20,3 +20,4 @@ follow-web-links = true
 exclude = [ 'archlinux\.org', 'fury\.site', 'github\.com']
 
 [preprocessor.asciinema]
+[preprocessor.catppuccin]
