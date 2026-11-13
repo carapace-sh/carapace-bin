@@ -41,3 +41,5 @@
 /golangci-lint.sarif
 /pkg/actions/actions_generated.go
 /pkg/conditions/conditions_generated.go
+/docs/src/asciinema
+/docs/theme/catppuccin.css
