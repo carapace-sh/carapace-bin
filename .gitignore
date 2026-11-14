@@ -35,6 +35,7 @@
 /dist
 /docs/book
 /carapace.db
+/carapace.db.gz
 /out.gif
 /custom-gcl
 /custom-gcl.exe
