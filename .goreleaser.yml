@@ -39,16 +39,10 @@ archives:
     format_overrides:
       - goos: windows
         formats: ['zip']
-    files:
-      - src: carapace.db.gz
-        dst: usr/share/carapace/man/carapace.db.gz
   - id: termux
     ids:
       - termux
     name_template: 'carapace-bin_{{ .Version }}_termux_{{ .Arch }}{{ with .Arm }}v{{ . }}{{ end }}{{ with .Mips }}_{{ . }}{{ end }}{{ if not (eq .Amd64 "v1") }}{{ .Amd64 }}{{ end }}'
-    files:
-      - src: carapace.db.gz
-        dst: usr/share/carapace/man/carapace.db.gz
 release:
   extra_files:
     - glob: ./carapace.db.gz
