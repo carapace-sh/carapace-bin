@@ -38,6 +38,14 @@ jobs:
       - name: Test
         run: go test -v ./cmd/...
 
+      - name: install carapace-man
+        if: startsWith(github.ref, 'refs/tags/')
+        run: curl -fsSL https://github.com/carapace-sh/carapace-man/releases/download/v0.0.7/carapace-man_0.0.7_linux_amd64.tar.gz | tar -xz -C /usr/local/bin
+
+      - name: compile man pages
+        if: startsWith(github.ref, 'refs/tags/')
+        run: carapace-man compile man carapace.db.gz
+
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v7
         if: startsWith(github.ref, 'refs/tags/')
