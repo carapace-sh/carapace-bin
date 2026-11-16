@@ -3,7 +3,7 @@ module github.com/carapace-sh/carapace-bin
 go 1.26.2
 
 require (
-	github.com/carapace-sh/carapace v1.18.1
+	github.com/carapace-sh/carapace v1.18.2
 	github.com/carapace-sh/carapace-bridge v1.8.1
 	github.com/carapace-sh/carapace-jjlex v0.1.19
 	github.com/carapace-sh/carapace-jq v0.0.4
@@ -14,7 +14,7 @@ require (
 	github.com/micromdm/plist v0.4.0
 	github.com/pelletier/go-toml v1.9.5
 	github.com/spf13/cobra v1.10.2
-	github.com/spf13/pflag v1.0.10
+	github.com/spf13/pflag v1.1.0
 	go.yaml.in/yaml/v3 v3.0.6
 	golang.org/x/mod v0.43.0
 	gopkg.in/ini.v1 v1.67.3
