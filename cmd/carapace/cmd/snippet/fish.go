@@ -2,22 +2,29 @@ package snippet
 
 import (
 	"fmt"
+	"slices"
 	"strings"
 
+	"github.com/carapace-sh/carapace-bin/pkg/env"
 	shlex "github.com/carapace-sh/carapace-shlex/v2"
 )
 
 func Fish(completers []string) string {
-	snippet := `%v%v
-
-function _carapace_completer
-  set --local --export CARAPACE_SHELL fish
-  set --local --export CARAPACE_SHELL_ALIASES (alias | string replace -r 'alias ' '' | string replace -r '=.*' '')
+	builtins := ""
+	if slices.Contains(env.Builtins(), "fish") {
+		builtins = `  set --local --export CARAPACE_SHELL_ALIASES (alias | string replace -r 'alias ' '' | string replace -r '=.*' '')
   set --local --export CARAPACE_SHELL_BUILTINS (builtin --names)
   set --local --export CARAPACE_SHELL_FUNCTIONS (functions --all)
   set --local --export CARAPACE_SHELL_JOBS (jobs 2>/dev/null | string match -r '^\d+\s+\d+\s+(running|stopped|suspended|continued)' | string replace -r '^(\d+).*' '%%$1')
   set --local --export CARAPACE_SHELL_VARIABLES (set --names)
-  set --local data
+`
+	}
+
+	snippet := `%v%v
+
+function _carapace_completer
+  set --local --export CARAPACE_SHELL fish
+%v  set --local data
   IFS='' set data (echo (commandline -cp)'' | sed "s/ \$/ ''/" | xargs carapace $argv[1] fish 2>/dev/null)
   if [ $status -eq 1 ]
     IFS='' set data (echo (commandline -cp)"'" | sed "s/ \$/ ''/" | xargs carapace $argv[1] fish 2>/dev/null)
@@ -38,5 +45,5 @@ end
 			fmt.Sprintf(`complete -c %v -f -a '(_carapace_completer %v)'`, name, name),
 		)
 	}
-	return fmt.Sprintf(snippet, pathSnippet("fish"), envSnippet("fish"), strings.Join(complete, "\n"))
+	return fmt.Sprintf(snippet, pathSnippet("fish"), envSnippet("fish"), builtins, strings.Join(complete, "\n"))
 }

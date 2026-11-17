@@ -2,23 +2,31 @@ package snippet
 
 import (
 	"fmt"
+	"slices"
 
+	"github.com/carapace-sh/carapace-bin/pkg/env"
 	shlex "github.com/carapace-sh/carapace-shlex/v2"
 )
 
-const bashCompleter = `_carapace_completer() {
+func bashCompleter(captureBuiltins bool) string {
+	builtins := ""
+	if captureBuiltins {
+		builtins = `  declare -x CARAPACE_SHELL_ALIASES="$(compgen -a)"
+  declare -x CARAPACE_SHELL_BUILTINS="$(compgen -b)"
+  declare -x CARAPACE_SHELL_FUNCTIONS="$(compgen -A function)"
+  declare -x CARAPACE_SHELL_JOBS="$(jobs 2>/dev/null | while read -r line; do [[ $line =~ \[([0-9]+)\] ]] && echo "%${BASH_REMATCH[1]}"; done)"
+  declare -x CARAPACE_SHELL_VARIABLES="$(compgen -v)"
+`
+	}
+
+	return fmt.Sprintf(`_carapace_completer() {
   export COMP_LINE
   export COMP_POINT
   export COMP_TYPE
   export COMP_WORDBREAKS
 
   declare -x CARAPACE_SHELL=bash
-  declare -x CARAPACE_SHELL_ALIASES="$(compgen -a)"
-  declare -x CARAPACE_SHELL_BUILTINS="$(compgen -b)"
-  declare -x CARAPACE_SHELL_FUNCTIONS="$(compgen -A function)"
-  declare -x CARAPACE_SHELL_JOBS="$(jobs 2>/dev/null | while read -r line; do [[ $line =~ \[([0-9]+)\] ]] && echo "%${BASH_REMATCH[1]}"; done)"
-  declare -x CARAPACE_SHELL_VARIABLES="$(compgen -v)"
-
+%v
   local command="${COMP_WORDS[0]}" nospace data compline="${COMP_LINE:0:${COMP_POINT}}"
 
   data=$(echo "${compline}''" | xargs carapace "${command}" bash 2>/dev/null)
@@ -37,13 +45,15 @@ const bashCompleter = `_carapace_completer() {
   local IFS=$'\n'
   [[ "${COMPREPLY[*]}" == "" ]] && COMPREPLY=() # fix for mapfile creating a non-empty array from empty command output
 }
-`
+`, builtins)
+}
 
 func Bash(completers []string) string {
+	capture := slices.Contains(env.Builtins(), "bash")
 	return fmt.Sprintf(`[[ ${BASH_VERSION:-} == 3.* ]] && { printf 'Error: legacy bash is not supported\n' >&2; return 1; }
 %v%v
 
 %v
 complete -o noquote -F _carapace_completer %v
-`, pathSnippet("bash"), envSnippet("bash"), bashCompleter, shlex.Join(completers, shlex.Bash))
+`, pathSnippet("bash"), envSnippet("bash"), bashCompleter(capture), shlex.Join(completers, shlex.Bash))
 }
