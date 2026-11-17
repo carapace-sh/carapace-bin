@@ -23,10 +23,9 @@ func testSnippetFixture(t *testing.T, shell string, file string, content string)
 	}
 }
 
-func snippetFixtures(t *testing.T) map[string]string {
+func snippetFixtures(t *testing.T, env string, builtins func(shell string) string) map[string]string {
 	t.Helper()
-	t.Setenv("CARAPACE_ENV", "0")
-	t.Setenv("CARAPACE_BUILTINS", "")
+	t.Setenv("CARAPACE_ENV", env)
 
 	configDir := filepath.Join(os.TempDir(), "carapace-snippet-fixtures")
 	binDir := filepath.Join(configDir, "carapace", "bin")
@@ -37,39 +36,72 @@ func snippetFixtures(t *testing.T) map[string]string {
 	t.Setenv("PATH", binDir+string(os.PathListSeparator)+os.Getenv("PATH"))
 
 	completers := []string{"example"}
-	return map[string]string{
-		"bash":       Bash(completers),
-		"bash-ble":   BashBle(completers),
-		"cmd-clink":  CmdClink(completers),
-		"elvish":     Elvish(completers),
-		"fish":       Fish(completers),
-		"nushell":    Nushell(completers),
-		"oil":        Oil(completers),
-		"powershell": Powershell(completers),
-		"tcsh":       Tcsh(completers),
-		"xonsh":      Xonsh(completers),
-		"zsh":        Zsh(completers),
+	fixtures := map[string]string{}
+	for _, shell := range []string{"bash", "bash-ble", "cmd-clink", "elvish", "fish", "nushell", "oil", "powershell", "tcsh", "xonsh", "zsh"} {
+		t.Setenv("CARAPACE_BUILTINS", builtins(shell))
+		switch shell {
+		case "bash":
+			fixtures[shell] = Bash(completers)
+		case "bash-ble":
+			fixtures[shell] = BashBle(completers)
+		case "cmd-clink":
+			fixtures[shell] = CmdClink(completers)
+		case "elvish":
+			fixtures[shell] = Elvish(completers)
+		case "fish":
+			fixtures[shell] = Fish(completers)
+		case "nushell":
+			fixtures[shell] = Nushell(completers)
+		case "oil":
+			fixtures[shell] = Oil(completers)
+		case "powershell":
+			fixtures[shell] = Powershell(completers)
+		case "tcsh":
+			fixtures[shell] = Tcsh(completers)
+		case "xonsh":
+			fixtures[shell] = Xonsh(completers)
+		case "zsh":
+			fixtures[shell] = Zsh(completers)
+		}
 	}
+	return fixtures
 }
 
 func TestSnippetFixtures(t *testing.T) {
-	fixtures := snippetFixtures(t)
-	for shell, file := range map[string]string{
-		"bash":       "_test/bash.sh",
-		"bash-ble":   "_test/bash-ble.sh",
-		"cmd-clink":  "_test/cmd-clink.lua",
-		"elvish":     "_test/elvish.elv",
-		"fish":       "_test/fish.fish",
-		"nushell":    "_test/nushell.nu",
-		"oil":        "_test/oil.sh",
-		"powershell": "_test/powershell.ps1",
-		"tcsh":       "_test/tcsh.tcsh",
-		"xonsh":      "_test/xonsh.py",
-		"zsh":        "_test/zsh.sh",
-	} {
-		shell, file := shell, file
-		t.Run(shell, func(t *testing.T) {
-			testSnippetFixture(t, shell, file, fixtures[shell])
+	files := map[string]string{
+		"bash":       "bash.sh",
+		"bash-ble":   "bash-ble.sh",
+		"cmd-clink":  "cmd-clink.lua",
+		"elvish":     "elvish.elv",
+		"fish":       "fish.fish",
+		"nushell":    "nushell.nu",
+		"oil":        "oil.sh",
+		"powershell": "powershell.ps1",
+		"tcsh":       "tcsh.tcsh",
+		"xonsh":      "xonsh.py",
+		"zsh":        "zsh.sh",
+	}
+	variants := []struct {
+		name     string
+		env      string
+		builtins func(string) string
+	}{
+		{"noenv", "0", func(string) string { return "" }},
+		{"env", "1", func(string) string { return "" }},
+		{"builtins", "0", func(shell string) string { return shell }},
+		{"env_builtins", "1", func(shell string) string { return shell }},
+	}
+
+	for _, variant := range variants {
+		variant := variant
+		t.Run(variant.name, func(t *testing.T) {
+			fixtures := snippetFixtures(t, variant.env, variant.builtins)
+			for shell, file := range files {
+				shell, file := shell, file
+				t.Run(shell, func(t *testing.T) {
+					testSnippetFixture(t, shell, filepath.Join("_test", variant.name, file), fixtures[shell])
+				})
+			}
 		})
 	}
 }

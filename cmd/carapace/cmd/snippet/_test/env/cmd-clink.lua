@@ -1,0 +1,44 @@
+
+local function carapace_completion(command)
+    return function(word, word_index, line_state, match_builder)
+        match_builder:setnosort()
+        match_builder:setvolatile()
+        local old_shell = os.getenv('CARAPACE_SHELL')
+        local old_compline = os.getenv('CARAPACE_COMPLINE')
+        os.setenv('CARAPACE_SHELL', 'cmd-clink')
+        os.setenv('CARAPACE_COMPLINE', line_state:getline():sub(1, line_state:getcursor()))
+
+        local file, pclose = io.popenyield(string.format('carapace %s cmd-clink ""', command))
+        os.setenv('CARAPACE_SHELL', old_shell or '')
+        os.setenv('CARAPACE_COMPLINE', old_compline or '')
+
+        if not file then
+            return false
+        end
+
+        for line in file:lines() do
+            local matches = string.explode(line, '\t')
+
+            if matches[1] then
+                match_builder:addmatch({
+                    match       = matches[1],
+                    display     = matches[2],
+                    description = matches[3],
+                    type        = 'word',
+                    appendchar  = matches[4] or ''
+                })
+            end
+        end
+
+        if pclose then
+            pclose()
+        else
+            file:close()
+        end
+
+        return not match_builder:isempty()
+    end
+end
+
+clink.argmatcher(50, 'example', 'example.exe'):addarg({nowordbreakchars="'`=+;,", carapace_completion('example')}):loop(1)
+
