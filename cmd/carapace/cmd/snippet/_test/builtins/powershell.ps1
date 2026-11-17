@@ -42,10 +42,10 @@ $_carapace_completer = {
       }
       try {
         $env:CARAPACE_SHELL = "powershell"
-        $env:CARAPACE_SHELL_ALIASES = (Get-Alias | ForEach-Object { $_.Name } | Out-String).TrimEnd()
-        $env:CARAPACE_SHELL_BUILTINS = (Get-Command -CommandType Cmdlet | ForEach-Object { $_.Name } | Out-String).TrimEnd()
-        $env:CARAPACE_SHELL_FUNCTIONS = (Get-Command -CommandType Function | ForEach-Object { $_.Name } | Out-String).TrimEnd()
-        $env:CARAPACE_SHELL_VARIABLES = (Get-Variable | ForEach-Object { $_.Name } | Out-String).TrimEnd()
+        $env:CARAPACE_SHELL_ALIASES = ((Get-Alias).Name -join [char]10)
+        $env:CARAPACE_SHELL_BUILTINS = ((Get-Command -CommandType Cmdlet).Name -join [char]10)
+        $env:CARAPACE_SHELL_FUNCTIONS = ((Get-Command -CommandType Function).Name -join [char]10)
+        $env:CARAPACE_SHELL_VARIABLES = ((Get-Variable).Name -join [char]10)
 
         if (!$wordToComplete) {
           carapace ($elems[0] -replace ('\.exe$', '')) powershell $($elems| ForEach-Object {$_}) '' | ConvertFrom-Json | ForEach-Object { [CompletionResult]::new($_.CompletionText, $_.ListItemText.replace('`e[', "`e["), [CompletionResultType]::ParameterValue, $_.ToolTip.replace('`e[', "`e[")) }

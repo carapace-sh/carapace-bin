@@ -11,12 +11,18 @@ import (
 )
 
 func Powershell(completers []string) string {
+	oldVars := `        CARAPACE_SHELL = $env:CARAPACE_SHELL`
 	builtins := ""
 	if slices.Contains(env.Builtins(), "powershell") {
-		builtins = `        $env:CARAPACE_SHELL_ALIASES = (Get-Alias | ForEach-Object { $_.Name } | Out-String).TrimEnd()
-        $env:CARAPACE_SHELL_BUILTINS = (Get-Command -CommandType Cmdlet | ForEach-Object { $_.Name } | Out-String).TrimEnd()
-        $env:CARAPACE_SHELL_FUNCTIONS = (Get-Command -CommandType Function | ForEach-Object { $_.Name } | Out-String).TrimEnd()
-        $env:CARAPACE_SHELL_VARIABLES = (Get-Variable | ForEach-Object { $_.Name } | Out-String).TrimEnd()
+		oldVars = `        CARAPACE_SHELL = $env:CARAPACE_SHELL
+        CARAPACE_SHELL_ALIASES = $env:CARAPACE_SHELL_ALIASES
+        CARAPACE_SHELL_BUILTINS = $env:CARAPACE_SHELL_BUILTINS
+        CARAPACE_SHELL_FUNCTIONS = $env:CARAPACE_SHELL_FUNCTIONS
+        CARAPACE_SHELL_VARIABLES = $env:CARAPACE_SHELL_VARIABLES`
+		builtins = `        $env:CARAPACE_SHELL_ALIASES = ((Get-Alias).Name -join [char]10)
+        $env:CARAPACE_SHELL_BUILTINS = ((Get-Command -CommandType Cmdlet).Name -join [char]10)
+        $env:CARAPACE_SHELL_FUNCTIONS = ((Get-Command -CommandType Function).Name -join [char]10)
+        $env:CARAPACE_SHELL_VARIABLES = ((Get-Variable).Name -join [char]10)
 `
 	}
 
@@ -56,11 +62,7 @@ $_carapace_completer = {
 
     $completions = @(
       $old = @{
-        CARAPACE_SHELL = $env:CARAPACE_SHELL
-        CARAPACE_SHELL_ALIASES = $env:CARAPACE_SHELL_ALIASES
-        CARAPACE_SHELL_BUILTINS = $env:CARAPACE_SHELL_BUILTINS
-        CARAPACE_SHELL_FUNCTIONS = $env:CARAPACE_SHELL_FUNCTIONS
-        CARAPACE_SHELL_VARIABLES = $env:CARAPACE_SHELL_VARIABLES
+%v
       }
       try {
         $env:CARAPACE_SHELL = "powershell"
@@ -102,5 +104,5 @@ $_carapace_completer = {
 		exe := shlex.Quote(completer+".exe", shlex.Powershell)
 		complete = append(complete, fmt.Sprintf(`Register-ArgumentCompleter -Native -ScriptBlock $_carapace_completer -CommandName %v%v,%v`, name, prefix, exe))
 	}
-	return fmt.Sprintf(snippet, pathSnippet("powershell"), envSnippet("powershell"), builtins, strings.Join(complete, "\n"))
+	return fmt.Sprintf(snippet, pathSnippet("powershell"), envSnippet("powershell"), oldVars, builtins, strings.Join(complete, "\n"))
 }
