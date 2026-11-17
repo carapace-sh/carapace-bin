@@ -2,14 +2,27 @@ package snippet
 
 import (
 	"fmt"
+	"slices"
 	"strings"
 
+	"github.com/carapace-sh/carapace-bin/pkg/env"
 	shlex "github.com/carapace-sh/carapace-shlex/v2"
 )
 
 // Xonsh creates a generic completer (not lazy).
 // Name overlaps with specific `carapace` completer but that shouldn't be an issue.
 func Xonsh(completers []string) string {
+	builtins := ""
+	if slices.Contains(env.Builtins(), "xonsh") {
+		builtins = `    carapace_env.update({
+        'CARAPACE_SHELL_ALIASES': '\n'.join(__xonsh__.aliases.keys()),
+        'CARAPACE_SHELL_BUILTINS': '\n'.join(vars(__xonsh__.builtins).keys()),
+        'CARAPACE_SHELL_FUNCTIONS': '\n'.join(k for k, v in __xonsh__.ctx.items() if callable(v)),
+        'CARAPACE_SHELL_VARIABLES': '\n'.join(__xonsh__.env.keys()),
+    })
+`
+	}
+
 	snippet := `from xonsh.completers.completer import add_one_completer
 from xonsh.completers.tools import contextual_command_completer
 import os
@@ -29,13 +42,10 @@ def _carapace_completer(context):
         """quick fix for partially quoted prefix completion ('prefix',<TAB>)"""
         return s.translate(str.maketrans('', '', '\'"'))
 
-    output, _ = sub_proc_get_output(
+    carapace_env = {'CARAPACE_SHELL': 'xonsh'}
+%v    output, _ = sub_proc_get_output(
         'carapace', context.command, 'xonsh', *[a.value for a in context.args], fix_prefix(context.prefix),
-        CARAPACE_SHELL='xonsh',
-        CARAPACE_SHELL_ALIASES='\n'.join(__xonsh__.aliases.keys()),
-        CARAPACE_SHELL_BUILTINS='\n'.join(vars(__xonsh__.builtins).keys()),
-        CARAPACE_SHELL_FUNCTIONS='\n'.join(k for k, v in __xonsh__.ctx.items() if callable(v)),
-        CARAPACE_SHELL_VARIABLES='\n'.join(__xonsh__.env.keys()),
+        **carapace_env,
     )
 
     try:
@@ -52,5 +62,5 @@ add_one_completer('carapace', _carapace_completer, 'start')
 	for index, completer := range completers {
 		complete[index] = fmt.Sprintf(`'%v'`, shlex.Escape(completer, shlex.Xonsh))
 	}
-	return fmt.Sprintf(snippet, pathSnippet("xonsh"), envSnippet("xonsh"), strings.Join(complete, ", "))
+	return fmt.Sprintf(snippet, pathSnippet("xonsh"), envSnippet("xonsh"), strings.Join(complete, ", "), builtins)
 }

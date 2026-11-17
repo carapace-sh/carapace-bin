@@ -2,11 +2,15 @@ package snippet
 
 import (
 	"fmt"
+	"slices"
 
+	"github.com/carapace-sh/carapace-bin/pkg/env"
 	shlex "github.com/carapace-sh/carapace-shlex/v2"
 )
 
 func BashBle(completers []string) string {
+	builtins := env.Builtins()
+	capture := slices.Contains(builtins, "bash") || slices.Contains(builtins, "bash-ble")
 	return fmt.Sprintf(`[[ ${BASH_VERSION:-} == 3.* ]] && { printf 'Error: legacy bash is not supported\n' >&2; return 1; }
 %v
 
@@ -35,5 +39,5 @@ _carapace_completer_ble() {
 }
 
 complete -F _carapace_completer_ble %v
-`, pathSnippet("bash-ble"), bashCompleter, shlex.Join(completers, shlex.Bash))
+`, pathSnippet("bash-ble"), bashCompleter(capture), shlex.Join(completers, shlex.Bash))
 }

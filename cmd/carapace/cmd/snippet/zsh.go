@@ -2,11 +2,23 @@ package snippet
 
 import (
 	"fmt"
+	"slices"
 
+	"github.com/carapace-sh/carapace-bin/pkg/env"
 	shlex "github.com/carapace-sh/carapace-shlex/v2"
 )
 
 func Zsh(completers []string) string {
+	builtins := ""
+	if slices.Contains(env.Builtins(), "zsh") {
+		builtins = `  declare -x CARAPACE_SHELL_ALIASES="${(k)aliases}"
+  declare -x CARAPACE_SHELL_BUILTINS="$(print -roC1 -- ${(k)builtins})"
+  declare -x CARAPACE_SHELL_FUNCTIONS="$(print -l ${(ok)functions})"
+  declare -x CARAPACE_SHELL_JOBS="$(print -l ${${(k)jobtexts}/#/%%%%})"
+  declare -x CARAPACE_SHELL_VARIABLES="$(print -l ${(ok)parameters})"
+`
+	}
+
 	return fmt.Sprintf(`%v%v
 
 function _carapace_completer {
@@ -18,12 +30,7 @@ function _carapace_completer {
   declare -x CARAPACE_COMPLINE="${words}"
   declare -x CARAPACE_ZSH_HASH_DIRS="$(hash -d)"
   declare -x CARAPACE_SHELL=zsh
-  declare -x CARAPACE_SHELL_ALIASES="${(k)aliases}"
-  declare -x CARAPACE_SHELL_BUILTINS="$(print -roC1 -- ${(k)builtins})"
-  declare -x CARAPACE_SHELL_FUNCTIONS="$(print -l ${(ok)functions})"
-  declare -x CARAPACE_SHELL_JOBS="$(print -l ${${(k)jobtexts}/#/%%%%})"
-  declare -x CARAPACE_SHELL_VARIABLES="$(print -l ${(ok)parameters})"
-
+%v
   # shellcheck disable=SC2086,SC2154,SC2155
   lines="$(echo "${compline}''" | xargs carapace "${command}" zsh 2>/dev/null)"
   if [ $? -eq 1 ]; then
@@ -53,5 +60,5 @@ function _carapace_completer {
 }
 
 compdef _carapace_completer %v
-`, pathSnippet("zsh"), envSnippet("zsh"), shlex.Join(completers, shlex.Zsh))
+`, pathSnippet("zsh"), envSnippet("zsh"), builtins, shlex.Join(completers, shlex.Zsh))
 }
