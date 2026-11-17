@@ -7,7 +7,7 @@ import (
 
 var skillCmd = &cobra.Command{
 	Use:   "skill",
-	Short: "Manage the agent skill",
+	Short: "Set up agents to use Rex",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

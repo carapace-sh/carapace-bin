@@ -20,6 +20,7 @@ func init() {
 
 	windowNewCmd.Flags().StringP("cwd", "c", "", "working directory for the terminal")
 	windowNewCmd.Flags().Bool("focus", true, "make the new window active")
+	windowNewCmd.Flags().Bool("interactive", false, "also read the shell's interactive startup files")
 	windowNewCmd.Flags().Bool("json", false, "output the created window as JSON")
 	windowNewCmd.Flags().Bool("keep-open", false, "keep the terminal open after its command exits")
 	windowNewCmd.Flags().StringP("session", "s", "", "scope to session SESSION")

@@ -7,7 +7,7 @@ import (
 
 var serverTailscaleCmd = &cobra.Command{
 	Use:   "tailscale",
-	Short: "Toggle tailnet serving on the running server",
+	Short: "Manage the server's Tailscale node",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

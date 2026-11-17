@@ -14,5 +14,7 @@ var serverTailscaleOffCmd = &cobra.Command{
 func init() {
 	carapace.Gen(serverTailscaleOffCmd).Standalone()
 
+	serverTailscaleOffCmd.Flags().Bool("json", false, "output the resulting state as JSON")
+
 	serverTailscaleCmd.AddCommand(serverTailscaleOffCmd)
 }

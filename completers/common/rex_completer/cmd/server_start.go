@@ -14,9 +14,11 @@ var serverStartCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(serverStartCmd).Standalone()
+
 	common.AddServerFlags(serverStartCmd)
+	serverStartCmd.Flags().StringArray("env", nil, "pass environment variable NAME or NAME=VALUE to a new server (repeatable)")
 	serverStartCmd.Flags().Bool("json", false, "output server information as JSON")
-	serverStartCmd.Flags().String("log-max-size", "", "limit the active detached log to SIZE by clearing old contents")
+	serverStartCmd.Flags().String("log-max-size", "50MiB", "limit the active detached log to SIZE by clearing old contents")
 
 	serverCmd.AddCommand(serverStartCmd)
 }

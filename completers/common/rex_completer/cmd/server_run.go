@@ -14,6 +14,7 @@ var serverRunCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(serverRunCmd).Standalone()
+
 	common.AddServerFlags(serverRunCmd)
 
 	serverCmd.AddCommand(serverRunCmd)
