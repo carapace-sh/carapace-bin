@@ -13,10 +13,10 @@ import (
 func Powershell(completers []string) string {
 	builtins := ""
 	if slices.Contains(env.Builtins(), "powershell") {
-		builtins = `        $env:CARAPACE_SHELL_ALIASES = (Get-Alias | ForEach-Object { $_.Name } | Out-String).TrimEnd()
-        $env:CARAPACE_SHELL_BUILTINS = (Get-Command -CommandType Cmdlet | ForEach-Object { $_.Name } | Out-String).TrimEnd()
-        $env:CARAPACE_SHELL_FUNCTIONS = (Get-Command -CommandType Function | ForEach-Object { $_.Name } | Out-String).TrimEnd()
-        $env:CARAPACE_SHELL_VARIABLES = (Get-Variable | ForEach-Object { $_.Name } | Out-String).TrimEnd()
+		builtins = `        $env:CARAPACE_SHELL_ALIASES = ((Get-Alias).Name -join [char]10)
+        $env:CARAPACE_SHELL_BUILTINS = ((Get-Command -CommandType Cmdlet).Name -join [char]10)
+        $env:CARAPACE_SHELL_FUNCTIONS = ((Get-Command -CommandType Function).Name -join [char]10)
+        $env:CARAPACE_SHELL_VARIABLES = ((Get-Variable).Name -join [char]10)
 `
 	}
 
