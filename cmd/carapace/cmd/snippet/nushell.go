@@ -3,6 +3,9 @@ package snippet
 import (
 	"fmt"
 	"runtime"
+	"slices"
+
+	"github.com/carapace-sh/carapace-bin/pkg/env"
 )
 
 func Nushell(completers []string) string {
@@ -10,6 +13,19 @@ func Nushell(completers []string) string {
 	if runtime.GOOS == "windows" {
 		windowsSnippet = " | str replace --regex  '\\.exe$' ''"
 	}
+
+	carapaceEnv := "    let carapace_env = { CARAPACE_SHELL: 'nushell' }\n"
+	if slices.Contains(env.Builtins(), "nushell") {
+		carapaceEnv = `    let carapace_env = {
+      CARAPACE_SHELL: 'nushell'
+      CARAPACE_SHELL_ALIASES: (scope aliases | get name | uniq | str join "\n")
+      CARAPACE_SHELL_BUILTINS: (help commands | where category != "" | get name | each { split row " " | first } | uniq  | str join "\n")
+      CARAPACE_SHELL_FUNCTIONS: (help commands | where category == "" | get name | each { split row " " | first } | uniq  | str join "\n")
+      CARAPACE_SHELL_VARIABLES: (scope variables | get name | uniq | str join "\n")
+    }
+`
+	}
+
 	snippet := `%v%v
 
 let carapace_completer = {|place|
@@ -30,13 +46,7 @@ let carapace_completer = {|place|
   if ($spans | length) == 1 {
     null
   } else {
-    with-env {
-      CARAPACE_SHELL: 'nushell'
-      CARAPACE_SHELL_ALIASES: (scope aliases | get name | uniq | str join "\n")
-      CARAPACE_SHELL_BUILTINS: (help commands | where category != "" | get name | each { split row " " | first } | uniq  | str join "\n")
-      CARAPACE_SHELL_FUNCTIONS: (help commands | where category == "" | get name | each { split row " " | first } | uniq  | str join "\n")
-      CARAPACE_SHELL_VARIABLES: (scope variables | get name | uniq | str join "\n")
-    } {
+%v    with-env $carapace_env {
       carapace $spans.0 nushell ...$spans | from json
     }
   }
@@ -52,5 +62,5 @@ $current.completions.external = ($current.completions.external
 $env.config = $current
     `
 
-	return fmt.Sprintf(snippet, pathSnippet("nushell"), envSnippet("nushell"), windowsSnippet, windowsSnippet)
+	return fmt.Sprintf(snippet, pathSnippet("nushell"), envSnippet("nushell"), windowsSnippet, windowsSnippet, carapaceEnv)
 }

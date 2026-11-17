@@ -3,12 +3,29 @@ package snippet
 import (
 	"fmt"
 	"runtime"
+	"slices"
 	"strings"
 
+	"github.com/carapace-sh/carapace-bin/pkg/env"
 	shlex "github.com/carapace-sh/carapace-shlex/v2"
 )
 
 func Powershell(completers []string) string {
+	oldVars := `        CARAPACE_SHELL = $env:CARAPACE_SHELL`
+	builtins := ""
+	if slices.Contains(env.Builtins(), "powershell") {
+		oldVars = `        CARAPACE_SHELL = $env:CARAPACE_SHELL
+        CARAPACE_SHELL_ALIASES = $env:CARAPACE_SHELL_ALIASES
+        CARAPACE_SHELL_BUILTINS = $env:CARAPACE_SHELL_BUILTINS
+        CARAPACE_SHELL_FUNCTIONS = $env:CARAPACE_SHELL_FUNCTIONS
+        CARAPACE_SHELL_VARIABLES = $env:CARAPACE_SHELL_VARIABLES`
+		builtins = `        $env:CARAPACE_SHELL_ALIASES = ((Get-Alias).Name -join [char]10)
+        $env:CARAPACE_SHELL_BUILTINS = ((Get-Command -CommandType Cmdlet).Name -join [char]10)
+        $env:CARAPACE_SHELL_FUNCTIONS = ((Get-Command -CommandType Function).Name -join [char]10)
+        $env:CARAPACE_SHELL_VARIABLES = ((Get-Variable).Name -join [char]10)
+`
+	}
+
 	snippet := `using namespace System.Management.Automation
 using namespace System.Management.Automation.Language
 
@@ -45,19 +62,11 @@ $_carapace_completer = {
 
     $completions = @(
       $old = @{
-        CARAPACE_SHELL = $env:CARAPACE_SHELL
-        CARAPACE_SHELL_ALIASES = $env:CARAPACE_SHELL_ALIASES
-        CARAPACE_SHELL_BUILTINS = $env:CARAPACE_SHELL_BUILTINS
-        CARAPACE_SHELL_FUNCTIONS = $env:CARAPACE_SHELL_FUNCTIONS
-        CARAPACE_SHELL_VARIABLES = $env:CARAPACE_SHELL_VARIABLES
+%v
       }
       try {
         $env:CARAPACE_SHELL = "powershell"
-        $env:CARAPACE_SHELL_ALIASES = (Get-Alias | ForEach-Object { $_.Name } | Out-String).TrimEnd()
-        $env:CARAPACE_SHELL_BUILTINS = (Get-Command -CommandType Cmdlet | ForEach-Object { $_.Name } | Out-String).TrimEnd()
-        $env:CARAPACE_SHELL_FUNCTIONS = (Get-Command -CommandType Function | ForEach-Object { $_.Name } | Out-String).TrimEnd()
-        $env:CARAPACE_SHELL_VARIABLES = (Get-Variable | ForEach-Object { $_.Name } | Out-String).TrimEnd()
-
+%v
         if (!$wordToComplete) {
           carapace ($elems[0] -replace ('\.exe$', '')) powershell $($elems| ForEach-Object {$_}) '' | ConvertFrom-Json | ForEach-Object { [CompletionResult]::new($_.CompletionText, $_.ListItemText.replace('` + "`" + `e[', "` + "`" + `e["), [CompletionResultType]::ParameterValue, $_.ToolTip.replace('` + "`" + `e[', "` + "`" + `e[")) }
         } else {
@@ -95,5 +104,5 @@ $_carapace_completer = {
 		exe := shlex.Quote(completer+".exe", shlex.Powershell)
 		complete = append(complete, fmt.Sprintf(`Register-ArgumentCompleter -Native -ScriptBlock $_carapace_completer -CommandName %v%v,%v`, name, prefix, exe))
 	}
-	return fmt.Sprintf(snippet, pathSnippet("powershell"), envSnippet("powershell"), strings.Join(complete, "\n"))
+	return fmt.Sprintf(snippet, pathSnippet("powershell"), envSnippet("powershell"), oldVars, builtins, strings.Join(complete, "\n"))
 }

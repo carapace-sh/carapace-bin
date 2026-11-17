@@ -3,7 +3,9 @@ package snippet
 import (
 	"fmt"
 	"runtime"
+	"slices"
 
+	"github.com/carapace-sh/carapace-bin/pkg/env"
 	shlex "github.com/carapace-sh/carapace-shlex/v2"
 )
 
@@ -13,12 +15,17 @@ func Elvish(completers []string) string {
 		windowsSnippet = "\n    set edit:completion:arg-completer[$c.exe] = $edit:completion:arg-completer[$c]\n"
 	}
 
+	envVars := "[E:CARAPACE_SHELL = 'elvish']"
+	if slices.Contains(env.Builtins(), "elvish") {
+		envVars = "[E:CARAPACE_SHELL = 'elvish'] [E:CARAPACE_SHELL_BUILTINS = (keys $builtin: | to-lines | slurp)]"
+	}
+
 	snippet := `use builtin
 %v
 
 put %v | each {|c|
     set edit:completion:arg-completer[$c] = {|@arg|
-        with [E:CARAPACE_SHELL = 'elvish'] [E:CARAPACE_SHELL_BUILTINS = (keys $builtin: | to-lines | slurp)] {
+        with %v {
             carapace $c elvish (all $arg) | from-json | each {|completion|
     		put $completion[Messages] | all (one) | each {|m|
     			edit:notify (styled "error: " red)$m
@@ -39,5 +46,5 @@ put %v | each {|c|
 }
 `
 
-	return fmt.Sprintf(snippet, pathSnippet("elvish"), shlex.Join(completers, shlex.Elvish), windowsSnippet)
+	return fmt.Sprintf(snippet, pathSnippet("elvish"), shlex.Join(completers, shlex.Elvish), envVars, windowsSnippet)
 }
