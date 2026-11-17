@@ -15,8 +15,8 @@ var hostsEditCmd = &cobra.Command{
 func init() {
 	carapace.Gen(hostsEditCmd).Standalone()
 
-	hostsEditCmd.Flags().String("endpoint", "", "reach the host at ENDPOINT (repeatable, replaces all endpoints)")
-	hostsEditCmd.Flags().String("icon", "", "show the icon NAME next to the host (empty removes it)")
+	hostsEditCmd.Flags().StringArray("endpoint", nil, "reach the host at ENDPOINT (repeatable, replaces all endpoints)")
+	hostsEditCmd.Flags().String("icon", "", "show the icon NAME next to the host")
 	hostsEditCmd.Flags().String("label", "", "rename the host to NEW")
 
 	hostsCmd.AddCommand(hostsEditCmd)

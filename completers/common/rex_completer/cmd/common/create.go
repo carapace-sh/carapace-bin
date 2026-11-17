@@ -11,6 +11,7 @@ func AddCreateFlags(cmd *cobra.Command, splitDefault string) {
 	cmd.Flags().StringP("block", "b", "", "use BLOCK as the split anchor")
 	cmd.Flags().StringP("cwd", "c", "", "working directory for the terminal")
 	cmd.Flags().Bool("focus", true, "focus the new block")
+	cmd.Flags().Bool("interactive", false, "also read the shell's interactive startup files")
 	cmd.Flags().Bool("json", false, "output the creation result as JSON")
 	cmd.Flags().Bool("keep-open", false, "keep the terminal open after its command exits")
 	cmd.Flags().String("label", "", "set the new block label to TEXT")
@@ -33,6 +34,7 @@ func AddCreateFlags(cmd *cobra.Command, splitDefault string) {
 
 func AddSessionCreateFlags(cmd *cobra.Command) {
 	cmd.Flags().StringP("cwd", "c", "", "working directory for the terminal")
+	cmd.Flags().Bool("interactive", false, "also read the shell's interactive startup files")
 	cmd.Flags().Bool("json", false, "output the created session as JSON")
 	cmd.Flags().Bool("keep-open", false, "keep the terminal open after its command exits")
 	cmd.Flags().String("shell", "", "run COMMAND through SHELL's login environment")

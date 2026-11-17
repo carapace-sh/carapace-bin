@@ -6,13 +6,15 @@ import (
 )
 
 var serverTailscaleRenameCmd = &cobra.Command{
-	Use:   "rename",
+	Use:   "rename NAME",
 	Short: "Rename the enabled Tailscale node",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(serverTailscaleRenameCmd).Standalone()
+
+	serverTailscaleRenameCmd.Flags().Bool("json", false, "output the resulting state as JSON")
 
 	serverTailscaleCmd.AddCommand(serverTailscaleRenameCmd)
 }

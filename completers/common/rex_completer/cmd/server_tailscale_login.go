@@ -14,5 +14,7 @@ var serverTailscaleLoginCmd = &cobra.Command{
 func init() {
 	carapace.Gen(serverTailscaleLoginCmd).Standalone()
 
+	serverTailscaleLoginCmd.Flags().Bool("json", false, "output the resulting state as JSON")
+
 	serverTailscaleCmd.AddCommand(serverTailscaleLoginCmd)
 }

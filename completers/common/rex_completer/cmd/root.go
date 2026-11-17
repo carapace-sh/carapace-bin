@@ -23,10 +23,10 @@ func init() {
 
 	rootCmd.PersistentFlags().Bool("autostart", true, "start a missing local server")
 	rootCmd.PersistentFlags().StringP("client", "C", "", "act on client `CLIENT`, given as a label or ID")
-	rootCmd.PersistentFlags().String("color", "", "set color WHEN to auto, always, or never")
+	rootCmd.PersistentFlags().String("color", "auto", "set color WHEN to auto, always, or never")
 	rootCmd.Flags().BoolP("help", "h", false, "help for rex")
 	rootCmd.PersistentFlags().StringP("server", "S", "", "connect to `SERVER`, a host's label or a server address")
-	rootCmd.PersistentFlags().String("timeout", "", "limit each connection and nonstreaming request to `duration`")
+	rootCmd.PersistentFlags().String("timeout", "10s", "limit each connection and nonstreaming request to `duration`")
 	rootCmd.PersistentFlags().CountP("verbose", "v", "increase diagnostic verbosity (repeatable)")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{

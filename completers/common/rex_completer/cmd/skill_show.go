@@ -7,7 +7,7 @@ import (
 
 var skillShowCmd = &cobra.Command{
 	Use:   "show",
-	Short: "Print the guide the skill gives agents",
+	Short: "Print the guide that Rex's skill gives agents",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

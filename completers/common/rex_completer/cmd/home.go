@@ -7,12 +7,14 @@ import (
 
 var homeCmd = &cobra.Command{
 	Use:   "home",
-	Short: "Show the home server",
+	Short: "Show or choose your home server",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
 	carapace.Gen(homeCmd).Standalone()
+
+	homeCmd.Flags().Bool("json", false, "output the home and your identity as JSON")
 
 	rootCmd.AddCommand(homeCmd)
 }
