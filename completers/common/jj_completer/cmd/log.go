@@ -51,7 +51,17 @@ func init() {
 			if err != nil {
 				return carapace.ActionMessage(err.Error())
 			}
-			return jj.ActionRevChanges(revisions...)
+			if len(revisions) == 0 {
+				return jj.ActionRevFiles("@")
+			}
+			if len(revisions) == 1 {
+				return jj.ActionRevFiles(revisions[0])
+			}
+			batch := carapace.Batch()
+			for _, revision := range revisions {
+				batch = append(batch, jj.ActionRevFiles(revision))
+			}
+			return batch.ToA()
 		}),
 	)
 }
