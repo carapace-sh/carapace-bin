@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/gh_completer/cmd/action"
 	"github.com/spf13/cobra"
 )
 
@@ -32,5 +33,6 @@ func init() {
 			"com.github.pull_request.review.submitted.v1",
 			"com.github.pull_request.state.changed.v1",
 		).UniqueList(","),
+		"resource": action.ActionPullRequestUrls(event_listenCmd, action.PullRequestOpts{Open: true, Closed: true, Merged: true}),
 	})
 }
