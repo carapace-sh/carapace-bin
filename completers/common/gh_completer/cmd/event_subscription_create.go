@@ -30,6 +30,7 @@ func init() {
 			"com.github.pull_request.review.submitted.v1",
 			"com.github.pull_request.state.changed.v1",
 		).UniqueList(","),
+		"json":     action.ActionEventSubscriptionFields().UniqueList(","),
 		"resource": action.ActionPullRequestUrls(event_subscription_createCmd, action.PullRequestOpts{Open: true, Closed: true, Merged: true}),
 	})
 }
