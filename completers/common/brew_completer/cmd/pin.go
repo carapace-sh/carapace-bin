@@ -16,10 +16,10 @@ var pinCmd = &cobra.Command{
 func init() {
 	carapace.Gen(pinCmd).Standalone()
 
-	pinCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	pinCmd.Flags().Bool("help", false, "Show this message.")
-	pinCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	pinCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	pinCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	pinCmd.Flags().BoolP("help", "h", false, "Show this message.")
+	pinCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	pinCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(pinCmd)
 
 	carapace.Gen(pinCmd).PositionalAnyCompletion(

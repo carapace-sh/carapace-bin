@@ -17,15 +17,15 @@ func init() {
 	carapace.Gen(styleCmd).Standalone()
 
 	styleCmd.Flags().Bool("cask", false, "Treat all named arguments as casks.")
-	styleCmd.Flags().Bool("debug", false, "Display any debugging information.")
+	styleCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
 	styleCmd.Flags().String("except-cops", "", "Specify a comma-separated <cops> list to skip checking for violations of the listed RuboCop cops.")
 	styleCmd.Flags().Bool("fix", false, "Fix style violations automatically using RuboCop's auto-correct feature.")
 	styleCmd.Flags().Bool("formula", false, "Treat all named arguments as formulae.")
-	styleCmd.Flags().Bool("help", false, "Show this message.")
+	styleCmd.Flags().BoolP("help", "h", false, "Show this message.")
 	styleCmd.Flags().String("only-cops", "", "Specify a comma-separated <cops> list to check for violations of only the listed RuboCop cops.")
-	styleCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
+	styleCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
 	styleCmd.Flags().Bool("reset-cache", false, "Reset the RuboCop cache.")
-	styleCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	styleCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(styleCmd)
 
 	carapace.Gen(styleCmd).PositionalAnyCompletion(

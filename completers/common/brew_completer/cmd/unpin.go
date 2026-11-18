@@ -16,10 +16,10 @@ var unpinCmd = &cobra.Command{
 func init() {
 	carapace.Gen(unpinCmd).Standalone()
 
-	unpinCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	unpinCmd.Flags().Bool("help", false, "Show this message.")
-	unpinCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	unpinCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	unpinCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	unpinCmd.Flags().BoolP("help", "h", false, "Show this message.")
+	unpinCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	unpinCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(unpinCmd)
 
 	carapace.Gen(unpinCmd).PositionalAnyCompletion(

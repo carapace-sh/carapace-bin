@@ -17,13 +17,13 @@ func init() {
 	carapace.Gen(migrateCmd).Standalone()
 
 	migrateCmd.Flags().Bool("cask", false, "Only migrate casks.")
-	migrateCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	migrateCmd.Flags().Bool("dry-run", false, "Show what would be migrated, but do not actually migrate anything.")
-	migrateCmd.Flags().Bool("force", false, "Treat installed <formula> and provided <formula> as if they are from the same taps and migrate them anyway.")
+	migrateCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	migrateCmd.Flags().BoolP("dry-run", "n", false, "Show what would be migrated, but do not actually migrate anything.")
+	migrateCmd.Flags().BoolP("force", "f", false, "Treat installed <formula> and provided <formula> as if they are from the same taps and migrate them anyway.")
 	migrateCmd.Flags().Bool("formula", false, "Only migrate formulae.")
-	migrateCmd.Flags().Bool("help", false, "Show this message.")
-	migrateCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	migrateCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	migrateCmd.Flags().BoolP("help", "h", false, "Show this message.")
+	migrateCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	migrateCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(migrateCmd)
 
 	carapace.Gen(migrateCmd).PositionalAnyCompletion(

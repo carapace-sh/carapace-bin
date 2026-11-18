@@ -15,11 +15,11 @@ func init() {
 	carapace.Gen(upCmd).Standalone()
 
 	upCmd.Flags().Bool("auto-update", false, "Run on auto-updates (e.g. before `brew install`). Skips some slower steps.")
-	upCmd.Flags().Bool("debug", false, "Display a trace of all shell commands as they are executed.")
-	upCmd.Flags().Bool("force", false, "Always do a slower, full update check (even if unnecessary).")
-	upCmd.Flags().Bool("help", false, "Show this message.")
+	upCmd.Flags().BoolP("debug", "d", false, "Display a trace of all shell commands as they are executed.")
+	upCmd.Flags().BoolP("force", "f", false, "Always do a slower, full update check (even if unnecessary).")
+	upCmd.Flags().BoolP("help", "h", false, "Show this message.")
 	upCmd.Flags().Bool("merge", false, "Use `git merge` to apply updates (rather than `git rebase`).")
-	upCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	upCmd.Flags().Bool("verbose", false, "Print the directories checked and `git` operations performed.")
+	upCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	upCmd.Flags().BoolP("verbose", "v", false, "Print the directories checked and `git` operations performed.")
 	rootCmd.AddCommand(upCmd)
 }

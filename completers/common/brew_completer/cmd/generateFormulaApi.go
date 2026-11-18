@@ -15,10 +15,10 @@ var generateFormulaApiCmd = &cobra.Command{
 func init() {
 	carapace.Gen(generateFormulaApiCmd).Standalone()
 
-	generateFormulaApiCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	generateFormulaApiCmd.Flags().Bool("dry-run", false, "Generate API data without writing it to files.")
-	generateFormulaApiCmd.Flags().Bool("help", false, "Show this message.")
-	generateFormulaApiCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	generateFormulaApiCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	generateFormulaApiCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	generateFormulaApiCmd.Flags().BoolP("dry-run", "n", false, "Generate API data without writing it to files.")
+	generateFormulaApiCmd.Flags().BoolP("help", "h", false, "Show this message.")
+	generateFormulaApiCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	generateFormulaApiCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(generateFormulaApiCmd)
 }

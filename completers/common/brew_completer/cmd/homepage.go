@@ -16,11 +16,11 @@ func init() {
 	carapace.Gen(homepageCmd).Standalone()
 
 	homepageCmd.Flags().Bool("cask", false, "Treat all named arguments as casks.")
-	homepageCmd.Flags().Bool("debug", false, "Display any debugging information.")
+	homepageCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
 	homepageCmd.Flags().Bool("formula", false, "Treat all named arguments as formulae.")
-	homepageCmd.Flags().Bool("help", false, "Show this message.")
-	homepageCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	homepageCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	homepageCmd.Flags().BoolP("help", "h", false, "Show this message.")
+	homepageCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	homepageCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(homepageCmd)
 
 	carapace.Gen(homepageCmd).PositionalAnyCompletion(

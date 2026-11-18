@@ -15,9 +15,9 @@ var updateLicenseDataCmd = &cobra.Command{
 func init() {
 	carapace.Gen(updateLicenseDataCmd).Standalone()
 
-	updateLicenseDataCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	updateLicenseDataCmd.Flags().Bool("help", false, "Show this message.")
-	updateLicenseDataCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	updateLicenseDataCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	updateLicenseDataCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	updateLicenseDataCmd.Flags().BoolP("help", "h", false, "Show this message.")
+	updateLicenseDataCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	updateLicenseDataCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(updateLicenseDataCmd)
 }

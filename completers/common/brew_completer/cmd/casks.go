@@ -15,9 +15,9 @@ var casksCmd = &cobra.Command{
 func init() {
 	carapace.Gen(casksCmd).Standalone()
 
-	casksCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	casksCmd.Flags().Bool("help", false, "Show this message.")
-	casksCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	casksCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	casksCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	casksCmd.Flags().BoolP("help", "h", false, "Show this message.")
+	casksCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	casksCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(casksCmd)
 }

@@ -16,11 +16,11 @@ func init() {
 	carapace.Gen(shCmd).Standalone()
 
 	shCmd.Flags().String("cmd", "", "Execute commands in a non-interactive shell.")
-	shCmd.Flags().Bool("debug", false, "Display any debugging information.")
+	shCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
 	shCmd.Flags().String("env", "", "Use the standard `PATH` instead of superenv's when `std` is passed.")
-	shCmd.Flags().Bool("help", false, "Show this message.")
-	shCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	shCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	shCmd.Flags().BoolP("help", "h", false, "Show this message.")
+	shCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	shCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(shCmd)
 
 	carapace.Gen(shCmd).FlagCompletion(carapace.ActionMap{

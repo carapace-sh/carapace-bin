@@ -16,10 +16,10 @@ var generateZapCmd = &cobra.Command{
 func init() {
 	carapace.Gen(generateZapCmd).Standalone()
 
-	generateZapCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	generateZapCmd.Flags().Bool("help", false, "Show this message.")
-	generateZapCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	generateZapCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	generateZapCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	generateZapCmd.Flags().BoolP("help", "h", false, "Show this message.")
+	generateZapCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	generateZapCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(generateZapCmd)
 
 	carapace.Gen(generateZapCmd).PositionalAnyCompletion(

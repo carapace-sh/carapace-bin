@@ -15,11 +15,11 @@ var releaseCmd = &cobra.Command{
 func init() {
 	carapace.Gen(releaseCmd).Standalone()
 
-	releaseCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	releaseCmd.Flags().Bool("help", false, "Show this message.")
+	releaseCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	releaseCmd.Flags().BoolP("help", "h", false, "Show this message.")
 	releaseCmd.Flags().Bool("major", false, "Create a major release.")
 	releaseCmd.Flags().Bool("minor", false, "Create a minor release.")
-	releaseCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	releaseCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	releaseCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	releaseCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(releaseCmd)
 }

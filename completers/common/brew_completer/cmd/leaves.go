@@ -15,11 +15,11 @@ var leavesCmd = &cobra.Command{
 func init() {
 	carapace.Gen(leavesCmd).Standalone()
 
-	leavesCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	leavesCmd.Flags().Bool("help", false, "Show this message.")
-	leavesCmd.Flags().Bool("installed-as-dependency", false, "Only list leaves that were installed as dependencies.")
-	leavesCmd.Flags().Bool("installed-on-request", false, "Only list leaves that were manually installed.")
-	leavesCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	leavesCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	leavesCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	leavesCmd.Flags().BoolP("help", "h", false, "Show this message.")
+	leavesCmd.Flags().BoolP("installed-as-dependency", "p", false, "Only list leaves that were installed as dependencies.")
+	leavesCmd.Flags().BoolP("installed-on-request", "r", false, "Only list leaves that were manually installed.")
+	leavesCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	leavesCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(leavesCmd)
 }

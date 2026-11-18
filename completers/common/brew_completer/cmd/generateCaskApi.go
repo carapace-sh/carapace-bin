@@ -15,10 +15,10 @@ var generateCaskApiCmd = &cobra.Command{
 func init() {
 	carapace.Gen(generateCaskApiCmd).Standalone()
 
-	generateCaskApiCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	generateCaskApiCmd.Flags().Bool("dry-run", false, "Generate API data without writing it to files.")
-	generateCaskApiCmd.Flags().Bool("help", false, "Show this message.")
-	generateCaskApiCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	generateCaskApiCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	generateCaskApiCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	generateCaskApiCmd.Flags().BoolP("dry-run", "n", false, "Generate API data without writing it to files.")
+	generateCaskApiCmd.Flags().BoolP("help", "h", false, "Show this message.")
+	generateCaskApiCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	generateCaskApiCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(generateCaskApiCmd)
 }

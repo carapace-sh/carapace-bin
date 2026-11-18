@@ -15,10 +15,10 @@ var autoremoveCmd = &cobra.Command{
 func init() {
 	carapace.Gen(autoremoveCmd).Standalone()
 
-	autoremoveCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	autoremoveCmd.Flags().Bool("dry-run", false, "List what would be uninstalled, but do not actually uninstall anything.")
-	autoremoveCmd.Flags().Bool("help", false, "Show this message.")
-	autoremoveCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	autoremoveCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	autoremoveCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	autoremoveCmd.Flags().BoolP("dry-run", "n", false, "List what would be uninstalled, but do not actually uninstall anything.")
+	autoremoveCmd.Flags().BoolP("help", "h", false, "Show this message.")
+	autoremoveCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	autoremoveCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(autoremoveCmd)
 }

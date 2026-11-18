@@ -15,11 +15,11 @@ var vendorGemsCmd = &cobra.Command{
 func init() {
 	carapace.Gen(vendorGemsCmd).Standalone()
 
-	vendorGemsCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	vendorGemsCmd.Flags().Bool("help", false, "Show this message.")
+	vendorGemsCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	vendorGemsCmd.Flags().BoolP("help", "h", false, "Show this message.")
 	vendorGemsCmd.Flags().Bool("no-commit", false, "Do not generate a new commit upon completion.")
-	vendorGemsCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
+	vendorGemsCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
 	vendorGemsCmd.Flags().String("update", "", "Update the specified list of vendored gems to the latest version.")
-	vendorGemsCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	vendorGemsCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(vendorGemsCmd)
 }

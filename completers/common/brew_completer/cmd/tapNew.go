@@ -16,12 +16,12 @@ func init() {
 	carapace.Gen(tapNewCmd).Standalone()
 
 	tapNewCmd.Flags().String("branch", "", "Initialize Git repository and setup GitHub Actions workflows with the specified branch name (default: `main`).")
-	tapNewCmd.Flags().Bool("debug", false, "Display any debugging information.")
+	tapNewCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
 	tapNewCmd.Flags().Bool("github-packages", false, "Upload bottles to GitHub Packages.")
-	tapNewCmd.Flags().Bool("help", false, "Show this message.")
+	tapNewCmd.Flags().BoolP("help", "h", false, "Show this message.")
 	tapNewCmd.Flags().Bool("no-git", false, "Don't initialize a Git repository for the tap.")
 	tapNewCmd.Flags().String("pull-label", "", "Label name for pull requests ready to be pulled (default: `pr-pull`).")
-	tapNewCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	tapNewCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	tapNewCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	tapNewCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(tapNewCmd)
 }

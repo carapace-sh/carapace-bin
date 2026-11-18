@@ -16,10 +16,10 @@ var unaliasCmd = &cobra.Command{
 func init() {
 	carapace.Gen(unaliasCmd).Standalone()
 
-	unaliasCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	unaliasCmd.Flags().Bool("help", false, "Show this message.")
-	unaliasCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	unaliasCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	unaliasCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	unaliasCmd.Flags().BoolP("help", "h", false, "Show this message.")
+	unaliasCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	unaliasCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(unaliasCmd)
 
 	carapace.Gen(unaliasCmd).PositionalAnyCompletion(

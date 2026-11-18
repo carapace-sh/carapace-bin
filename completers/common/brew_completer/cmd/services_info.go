@@ -17,11 +17,11 @@ func init() {
 	carapace.Gen(services_infoCmd).Standalone()
 
 	services_infoCmd.Flags().Bool("all", false, "List all managed services.")
-	services_infoCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	services_infoCmd.Flags().Bool("help", false, "Show this message.")
+	services_infoCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	services_infoCmd.Flags().BoolP("help", "h", false, "Show this message.")
 	services_infoCmd.Flags().Bool("json", false, "Output as JSON.")
-	services_infoCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	services_infoCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	services_infoCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	services_infoCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	servicesCmd.AddCommand(services_infoCmd)
 
 	carapace.Gen(services_infoCmd).PositionalAnyCompletion(

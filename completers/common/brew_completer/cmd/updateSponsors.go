@@ -15,9 +15,9 @@ var updateSponsorsCmd = &cobra.Command{
 func init() {
 	carapace.Gen(updateSponsorsCmd).Standalone()
 
-	updateSponsorsCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	updateSponsorsCmd.Flags().Bool("help", false, "Show this message.")
-	updateSponsorsCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	updateSponsorsCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	updateSponsorsCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	updateSponsorsCmd.Flags().BoolP("help", "h", false, "Show this message.")
+	updateSponsorsCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	updateSponsorsCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(updateSponsorsCmd)
 }

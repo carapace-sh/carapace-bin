@@ -17,15 +17,15 @@ func init() {
 	flagCacheCmd.Flags().Bool("HEAD", false, "Show the cache file used when building from HEAD.")
 	flagCacheCmd.Flags().String("arch", "", "Show cache file for the given CPU architecture. (Pass `all` to show cache files for all architectures.)")
 	flagCacheCmd.Flags().String("bottle-tag", "", "Show the cache file used when pouring a bottle for the given tag.")
-	flagCacheCmd.Flags().Bool("build-from-source", false, "Show the cache file used when building from source.")
+	flagCacheCmd.Flags().BoolP("build-from-source", "s", false, "Show the cache file used when building from source.")
 	flagCacheCmd.Flags().Bool("cask", false, "Only show cache files for casks.")
-	flagCacheCmd.Flags().Bool("debug", false, "Display any debugging information.")
+	flagCacheCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
 	flagCacheCmd.Flags().Bool("force-bottle", false, "Show the cache file used when pouring a bottle.")
 	flagCacheCmd.Flags().Bool("formula", false, "Only show cache files for formulae.")
-	flagCacheCmd.Flags().Bool("help", false, "Show this message.")
+	flagCacheCmd.Flags().BoolP("help", "h", false, "Show this message.")
 	flagCacheCmd.Flags().String("os", "", "Show cache file for the given operating system. (Pass `all` to show cache files for all operating systems.)")
-	flagCacheCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	flagCacheCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	flagCacheCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	flagCacheCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 
 	carapace.Gen(flagCacheCmd).FlagCompletion(carapace.ActionMap{
 		"arch":       carapace.ActionValues("all", "arm64", "x86_64"),

@@ -18,11 +18,11 @@ func init() {
 
 	servicesCmd.PersistentFlags().String("sudo-service-user", "", "When run as root on macOS, run the service(s) as this user.")
 
-	servicesCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	servicesCmd.Flags().Bool("help", false, "Show this message.")
+	servicesCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	servicesCmd.Flags().BoolP("help", "h", false, "Show this message.")
 	servicesCmd.Flags().Bool("json", false, "Output as JSON.")
-	servicesCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	servicesCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	servicesCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	servicesCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(servicesCmd)
 
 	carapace.Gen(servicesCmd).FlagCompletion(carapace.ActionMap{

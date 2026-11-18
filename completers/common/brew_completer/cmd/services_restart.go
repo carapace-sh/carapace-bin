@@ -17,11 +17,11 @@ func init() {
 	carapace.Gen(services_restartCmd).Standalone()
 
 	services_restartCmd.Flags().Bool("all", false, "Restart all services.")
-	services_restartCmd.Flags().Bool("debug", false, "Display any debugging information.")
+	services_restartCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
 	services_restartCmd.Flags().String("file", "", "Use the service file from this location to `start` the service.")
-	services_restartCmd.Flags().Bool("help", false, "Show this message.")
-	services_restartCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	services_restartCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	services_restartCmd.Flags().BoolP("help", "h", false, "Show this message.")
+	services_restartCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	services_restartCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	servicesCmd.AddCommand(services_restartCmd)
 
 	carapace.Gen(services_restartCmd).FlagCompletion(carapace.ActionMap{

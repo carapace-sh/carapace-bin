@@ -15,9 +15,9 @@ var postgresqlUpgradeDatabaseCmd = &cobra.Command{
 func init() {
 	carapace.Gen(postgresqlUpgradeDatabaseCmd).Standalone()
 
-	postgresqlUpgradeDatabaseCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	postgresqlUpgradeDatabaseCmd.Flags().Bool("help", false, "Show this message.")
-	postgresqlUpgradeDatabaseCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	postgresqlUpgradeDatabaseCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	postgresqlUpgradeDatabaseCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	postgresqlUpgradeDatabaseCmd.Flags().BoolP("help", "h", false, "Show this message.")
+	postgresqlUpgradeDatabaseCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	postgresqlUpgradeDatabaseCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(postgresqlUpgradeDatabaseCmd)
 }

@@ -15,9 +15,9 @@ var updateResetCmd = &cobra.Command{
 func init() {
 	carapace.Gen(updateResetCmd).Standalone()
 
-	updateResetCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	updateResetCmd.Flags().Bool("help", false, "Show this message.")
-	updateResetCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	updateResetCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	updateResetCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	updateResetCmd.Flags().BoolP("help", "h", false, "Show this message.")
+	updateResetCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	updateResetCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(updateResetCmd)
 }

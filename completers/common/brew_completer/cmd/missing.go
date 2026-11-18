@@ -16,11 +16,11 @@ var missingCmd = &cobra.Command{
 func init() {
 	carapace.Gen(missingCmd).Standalone()
 
-	missingCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	missingCmd.Flags().Bool("help", false, "Show this message.")
+	missingCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	missingCmd.Flags().BoolP("help", "h", false, "Show this message.")
 	missingCmd.Flags().String("hide", "", "Act as if none of the specified <hidden> are installed. <hidden> should be a comma-separated list of formulae.")
-	missingCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	missingCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	missingCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	missingCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(missingCmd)
 
 	carapace.Gen(missingCmd).PositionalAnyCompletion(

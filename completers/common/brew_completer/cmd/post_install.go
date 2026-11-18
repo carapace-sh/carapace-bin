@@ -15,10 +15,10 @@ var post_installCmd = &cobra.Command{
 func init() {
 	carapace.Gen(post_installCmd).Standalone()
 
-	post_installCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	post_installCmd.Flags().Bool("help", false, "Show this message.")
-	post_installCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	post_installCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	post_installCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	post_installCmd.Flags().BoolP("help", "h", false, "Show this message.")
+	post_installCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	post_installCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(post_installCmd)
 
 	carapace.Gen(post_installCmd).PositionalAnyCompletion(

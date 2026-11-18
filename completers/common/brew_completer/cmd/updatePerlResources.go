@@ -16,10 +16,10 @@ var updatePerlResourcesCmd = &cobra.Command{
 func init() {
 	carapace.Gen(updatePerlResourcesCmd).Standalone()
 
-	updatePerlResourcesCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	updatePerlResourcesCmd.Flags().Bool("help", false, "Show this message.")
-	updatePerlResourcesCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	updatePerlResourcesCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	updatePerlResourcesCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	updatePerlResourcesCmd.Flags().BoolP("help", "h", false, "Show this message.")
+	updatePerlResourcesCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	updatePerlResourcesCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(updatePerlResourcesCmd)
 
 	carapace.Gen(updatePerlResourcesCmd).PositionalAnyCompletion(

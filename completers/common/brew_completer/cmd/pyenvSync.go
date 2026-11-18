@@ -15,9 +15,9 @@ var pyenvSyncCmd = &cobra.Command{
 func init() {
 	carapace.Gen(pyenvSyncCmd).Standalone()
 
-	pyenvSyncCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	pyenvSyncCmd.Flags().Bool("help", false, "Show this message.")
-	pyenvSyncCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	pyenvSyncCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	pyenvSyncCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	pyenvSyncCmd.Flags().BoolP("help", "h", false, "Show this message.")
+	pyenvSyncCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	pyenvSyncCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(pyenvSyncCmd)
 }

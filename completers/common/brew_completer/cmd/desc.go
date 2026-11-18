@@ -18,14 +18,14 @@ func init() {
 
 	descCmd.Flags().Bool("cask", false, "Treat all named arguments as casks.")
 	descCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	descCmd.Flags().Bool("description", false, "Search just descriptions for <text>. If <text> is flanked by slashes, it is interpreted as a regular expression.")
+	descCmd.Flags().BoolP("description", "d", false, "Search just descriptions for <text>. If <text> is flanked by slashes, it is interpreted as a regular expression.")
 	descCmd.Flags().Bool("eval-all", false, "Evaluate all available formulae and casks, whether installed or not, to search their descriptions. Implied if `HOMEBREW_EVAL_ALL` is set.")
 	descCmd.Flags().Bool("formula", false, "Treat all named arguments as formulae.")
-	descCmd.Flags().Bool("help", false, "Show this message.")
-	descCmd.Flags().Bool("name", false, "Search just names for <text>. If <text> is flanked by slashes, it is interpreted as a regular expression.")
-	descCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	descCmd.Flags().Bool("search", false, "Search both names and descriptions for <text>. If <text> is flanked by slashes, it is interpreted as a regular expression.")
-	descCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	descCmd.Flags().BoolP("help", "h", false, "Show this message.")
+	descCmd.Flags().BoolP("name", "n", false, "Search just names for <text>. If <text> is flanked by slashes, it is interpreted as a regular expression.")
+	descCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	descCmd.Flags().BoolP("search", "s", false, "Search both names and descriptions for <text>. If <text> is flanked by slashes, it is interpreted as a regular expression.")
+	descCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(descCmd)
 
 	carapace.Gen(descCmd).PositionalAnyCompletion(

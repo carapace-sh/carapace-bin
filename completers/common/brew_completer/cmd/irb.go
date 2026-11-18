@@ -15,11 +15,11 @@ var irbCmd = &cobra.Command{
 func init() {
 	carapace.Gen(irbCmd).Standalone()
 
-	irbCmd.Flags().Bool("debug", false, "Display any debugging information.")
+	irbCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
 	irbCmd.Flags().Bool("examples", false, "Show several examples.")
-	irbCmd.Flags().Bool("help", false, "Show this message.")
+	irbCmd.Flags().BoolP("help", "h", false, "Show this message.")
 	irbCmd.Flags().Bool("pry", false, "Use Pry instead of IRB. Implied if `HOMEBREW_PRY` is set.")
-	irbCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	irbCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	irbCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	irbCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(irbCmd)
 }

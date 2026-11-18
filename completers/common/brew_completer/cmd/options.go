@@ -18,12 +18,12 @@ func init() {
 
 	optionsCmd.Flags().Bool("command", false, "Show options for the specified <command>.")
 	optionsCmd.Flags().Bool("compact", false, "Show all options on a single line separated by spaces.")
-	optionsCmd.Flags().Bool("debug", false, "Display any debugging information.")
+	optionsCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
 	optionsCmd.Flags().Bool("eval-all", false, "Evaluate all available formulae and casks, whether installed or not, to show their options.")
-	optionsCmd.Flags().Bool("help", false, "Show this message.")
+	optionsCmd.Flags().BoolP("help", "h", false, "Show this message.")
 	optionsCmd.Flags().Bool("installed", false, "Show options for formulae that are currently installed.")
-	optionsCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	optionsCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	optionsCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	optionsCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(optionsCmd)
 
 	carapace.Gen(optionsCmd).PositionalAnyCompletion(

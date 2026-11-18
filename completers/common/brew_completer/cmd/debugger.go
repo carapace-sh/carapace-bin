@@ -15,11 +15,11 @@ var debuggerCmd = &cobra.Command{
 func init() {
 	carapace.Gen(debuggerCmd).Standalone()
 
-	debuggerCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	debuggerCmd.Flags().Bool("help", false, "Show this message.")
-	debuggerCmd.Flags().Bool("open", false, "Automatically open the debugger on failure.")
-	debuggerCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	debuggerCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	debuggerCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	debuggerCmd.Flags().BoolP("help", "h", false, "Show this message.")
+	debuggerCmd.Flags().BoolP("open", "O", false, "Automatically open the debugger on failure.")
+	debuggerCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	debuggerCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(debuggerCmd)
 
 	carapace.Gen(debuggerCmd).PositionalAnyCompletion(

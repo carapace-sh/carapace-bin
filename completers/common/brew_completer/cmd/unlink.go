@@ -16,11 +16,11 @@ var unlinkCmd = &cobra.Command{
 func init() {
 	carapace.Gen(unlinkCmd).Standalone()
 
-	unlinkCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	unlinkCmd.Flags().Bool("dry-run", false, "List files which would be unlinked without actually unlinking or deleting any files.")
-	unlinkCmd.Flags().Bool("help", false, "Show this message.")
-	unlinkCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	unlinkCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	unlinkCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	unlinkCmd.Flags().BoolP("dry-run", "n", false, "List files which would be unlinked without actually unlinking or deleting any files.")
+	unlinkCmd.Flags().BoolP("help", "h", false, "Show this message.")
+	unlinkCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	unlinkCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(unlinkCmd)
 
 	carapace.Gen(unlinkCmd).PositionalAnyCompletion(

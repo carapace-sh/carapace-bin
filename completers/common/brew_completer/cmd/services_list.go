@@ -15,10 +15,10 @@ var services_listCmd = &cobra.Command{
 func init() {
 	carapace.Gen(services_listCmd).Standalone()
 
-	services_listCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	services_listCmd.Flags().Bool("help", false, "Show this message.")
+	services_listCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	services_listCmd.Flags().BoolP("help", "h", false, "Show this message.")
 	services_listCmd.Flags().Bool("json", false, "Output as JSON.")
-	services_listCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	services_listCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	services_listCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	services_listCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	servicesCmd.AddCommand(services_listCmd)
 }

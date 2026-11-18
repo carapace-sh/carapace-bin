@@ -17,13 +17,13 @@ func init() {
 	carapace.Gen(linkCmd).Standalone()
 
 	linkCmd.Flags().Bool("HEAD", false, "Link the HEAD version of the formula if it is installed.")
-	linkCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	linkCmd.Flags().Bool("dry-run", false, "List files which would be linked or deleted by `brew link --overwrite` without actually linking or deleting any files.")
-	linkCmd.Flags().Bool("force", false, "Allow keg-only formulae to be linked.")
-	linkCmd.Flags().Bool("help", false, "Show this message.")
+	linkCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	linkCmd.Flags().BoolP("dry-run", "n", false, "List files which would be linked or deleted by `brew link --overwrite` without actually linking or deleting any files.")
+	linkCmd.Flags().BoolP("force", "f", false, "Allow keg-only formulae to be linked.")
+	linkCmd.Flags().BoolP("help", "h", false, "Show this message.")
 	linkCmd.Flags().Bool("overwrite", false, "Delete files that already exist in the prefix while linking.")
-	linkCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	linkCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	linkCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	linkCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(linkCmd)
 
 	carapace.Gen(linkCmd).PositionalAnyCompletion(
