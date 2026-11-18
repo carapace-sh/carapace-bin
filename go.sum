@@ -2,8 +2,8 @@ github.com/carapace-sh/carapace v1.18.2 h1:LrnlU9kMOqnaeVp/Iqmsl2rCVJ13C9E2DQenF
 github.com/carapace-sh/carapace v1.18.2/go.mod h1:/YNH4iLD7Gf8qjkwnetq4/v+u5pInb4QDPbszoI0hKI=
 github.com/carapace-sh/carapace-bridge v1.8.1 h1:BkPGTA3YsjkXmfkdDsjF+br3qLj5IsP4Y2WiI2XBEs0=
 github.com/carapace-sh/carapace-bridge v1.8.1/go.mod h1:BBCjl+Cwmv1oyJ/MXWF72hv+hMt48pkF63I0PUu9TC0=
-github.com/carapace-sh/carapace-jjlex v0.1.20 h1:Na2ssFYwk2IflW9GET4pB6ILMjfIVhO+sRbhQyQmWsI=
-github.com/carapace-sh/carapace-jjlex v0.1.20/go.mod h1:ae7sspInEiu0oQV4CK2MkGU4x/YcK3L6cZzpKYY4IW8=
+github.com/carapace-sh/carapace-jjlex v0.1.21 h1:NifssMrriqVTdD71RrmKVWxTX2PilF8nPoQUQlklKqc=
+github.com/carapace-sh/carapace-jjlex v0.1.21/go.mod h1:2sNb3BpeVhhYNMOtF7nbYnHdtFU47S9b7nBnB8/4IP8=
 github.com/carapace-sh/carapace-jq v0.0.4 h1:cnQ8mGkw9tICLkWs2OzxSwgB8nnGP8dRuXyC/MELdto=
 github.com/carapace-sh/carapace-jq v0.0.4/go.mod h1:17WLeCRuaMc6j6VP1VQ/usK/cmyOv7M4rA5sGunsHLk=
 github.com/carapace-sh/carapace-pflag v1.3.0 h1:RT1xJ+2p4c2WqYXPZZA7zu2jIi6Vt+pmalZf75yFzBM=
