@@ -16,8 +16,9 @@ var repo_deleteCmd = &cobra.Command{
 func init() {
 	carapace.Gen(repo_deleteCmd).Standalone()
 
+	repo_deleteCmd.Flags().Bool("accept-cascading-deletion-of-private-forks", false, "Accept that deleting a private repository also deletes its forks")
 	repo_deleteCmd.Flags().Bool("confirm", false, "Confirm deletion without prompting")
-	repo_deleteCmd.Flags().Bool("yes", false, "Confirm deletion without prompting")
+	repo_deleteCmd.Flags().Bool("yes", false, "Confirm deletion without prompting for confirmation")
 	repo_deleteCmd.Flag("confirm").Hidden = true
 	repoCmd.AddCommand(repo_deleteCmd)
 
