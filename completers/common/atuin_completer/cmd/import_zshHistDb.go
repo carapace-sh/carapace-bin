@@ -7,7 +7,7 @@ import (
 
 var import_zshHistDbCmd = &cobra.Command{
 	Use:   "zsh-hist-db",
-	Short: "Import history from the zsh history file",
+	Short: "Import history from the zsh-histdb database",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

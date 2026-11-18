@@ -17,7 +17,7 @@ func init() {
 	carapace.Gen(kv_deleteCmd).Standalone()
 
 	kv_deleteCmd.Flags().BoolP("help", "h", false, "Print help")
-	kv_deleteCmd.Flags().StringP("namespace", "n", "", "Namespace for the key-value pair")
+	kv_deleteCmd.Flags().StringP("namespace", "n", "default", "Namespace for the key-value pair")
 	kvCmd.AddCommand(kv_deleteCmd)
 
 	carapace.Gen(kv_deleteCmd).FlagCompletion(carapace.ActionMap{

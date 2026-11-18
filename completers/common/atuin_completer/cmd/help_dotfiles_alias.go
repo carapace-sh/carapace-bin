@@ -7,7 +7,7 @@ import (
 
 var help_dotfiles_aliasCmd = &cobra.Command{
 	Use:   "alias",
-	Short: "Manage shell aliases with Atuin",
+	Short: "List legacy shell aliases synced with Atuin",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

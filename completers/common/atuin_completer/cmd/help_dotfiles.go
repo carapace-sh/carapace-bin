@@ -7,7 +7,7 @@ import (
 
 var help_dotfilesCmd = &cobra.Command{
 	Use:   "dotfiles",
-	Short: "Manage your dotfiles with Atuin",
+	Short: "List legacy synced dotfiles data",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

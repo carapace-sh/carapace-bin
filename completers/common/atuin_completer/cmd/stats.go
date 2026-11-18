@@ -14,8 +14,13 @@ var statsCmd = &cobra.Command{
 func init() {
 	carapace.Gen(statsCmd).Standalone()
 
-	statsCmd.Flags().StringP("count", "c", "", "How many top commands to list")
-	statsCmd.Flags().BoolP("help", "h", false, "Print help")
-	statsCmd.Flags().StringP("ngram-size", "n", "", "The number of consecutive commands to consider")
+	statsCmd.Flags().StringP("count", "c", "10", "How many top commands to list")
+	statsCmd.Flags().String("filter-mode", "", "Filter commands by scope [global, host, session, directory, workspace]")
+	statsCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	statsCmd.Flags().StringP("ngram-size", "n", "1", "The number of consecutive commands to consider")
 	rootCmd.AddCommand(statsCmd)
+
+	carapace.Gen(statsCmd).FlagCompletion(carapace.ActionMap{
+		"filter-mode": carapace.ActionValues("directory", "global", "host", "session", "session-preload", "workspace"),
+	})
 }

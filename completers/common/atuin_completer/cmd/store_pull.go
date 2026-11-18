@@ -14,9 +14,9 @@ var store_pullCmd = &cobra.Command{
 func init() {
 	carapace.Gen(store_pullCmd).Standalone()
 
-	store_pullCmd.Flags().Bool("force", false, "Force push records This will first wipe the local store, and then download all records from the remote")
-	store_pullCmd.Flags().BoolP("help", "h", false, "Print help")
-	store_pullCmd.Flags().String("page", "", "Page Size How many records to download at once. Defaults to 100")
+	store_pullCmd.Flags().Bool("force", false, "Force pull records")
+	store_pullCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	store_pullCmd.Flags().String("page", "100", "Page Size")
 	store_pullCmd.Flags().StringP("tag", "t", "", "The tag to push (eg, 'history'). Defaults to all tags")
 	storeCmd.AddCommand(store_pullCmd)
 }

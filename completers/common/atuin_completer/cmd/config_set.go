@@ -16,7 +16,7 @@ func init() {
 	carapace.Gen(config_setCmd).Standalone()
 
 	config_setCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
-	config_setCmd.Flags().StringP("type", "t", "", "Store value as an explicit type")
+	config_setCmd.Flags().StringP("type", "t", "auto", "Store value as an explicit type")
 	configCmd.AddCommand(config_setCmd)
 
 	carapace.Gen(config_setCmd).FlagCompletion(carapace.ActionMap{

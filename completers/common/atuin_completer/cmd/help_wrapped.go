@@ -7,7 +7,7 @@ import (
 
 var help_wrappedCmd = &cobra.Command{
 	Use:   "wrapped",
-	Short: "",
+	Short: "Show a fun, year-in-review recap of your shell history",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

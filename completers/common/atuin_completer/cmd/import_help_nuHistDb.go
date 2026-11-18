@@ -7,7 +7,7 @@ import (
 
 var import_help_nuHistDbCmd = &cobra.Command{
 	Use:   "nu-hist-db",
-	Short: "Import history from the nu history file",
+	Short: "Import history from the nu history database",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

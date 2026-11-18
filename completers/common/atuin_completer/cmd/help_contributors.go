@@ -7,7 +7,7 @@ import (
 
 var help_contributorsCmd = &cobra.Command{
 	Use:   "contributors",
-	Short: "",
+	Short: "List the people who have contributed to Atuin",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

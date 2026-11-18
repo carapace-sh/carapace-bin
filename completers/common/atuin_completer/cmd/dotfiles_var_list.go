@@ -19,7 +19,7 @@ func init() {
 	dotfiles_var_listCmd.Flags().StringP("name", "n", "", "Filter variables by name (substring match)")
 	dotfiles_var_listCmd.Flags().BoolP("reverse", "r", false, "Sort in reverse (descending) order")
 	dotfiles_var_listCmd.Flags().Bool("shell-only", false, "Show only non-exported (shell) variables")
-	dotfiles_var_listCmd.Flags().String("sort-by", "", "Sort results by field")
+	dotfiles_var_listCmd.Flags().String("sort-by", "name", "Sort results by field")
 	dotfiles_var_listCmd.Flags().StringP("value", "v", "", "Filter variables by value (substring match)")
 	dotfiles_varCmd.AddCommand(dotfiles_var_listCmd)
 

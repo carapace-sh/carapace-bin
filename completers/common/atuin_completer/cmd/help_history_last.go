@@ -7,7 +7,7 @@ import (
 
 var help_history_lastCmd = &cobra.Command{
 	Use:   "last",
-	Short: "Get the last command ran",
+	Short: "Get the last command that was run",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

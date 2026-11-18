@@ -7,7 +7,7 @@ import (
 
 var help_infoCmd = &cobra.Command{
 	Use:   "info",
-	Short: "Information about dotfiles locations and ENV vars",
+	Short: "Information about Atuin data locations and ENV vars",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

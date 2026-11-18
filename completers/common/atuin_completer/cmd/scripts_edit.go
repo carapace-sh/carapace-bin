@@ -26,7 +26,7 @@ func init() {
 	scriptsCmd.AddCommand(scripts_editCmd)
 
 	carapace.Gen(scripts_editCmd).FlagCompletion(carapace.ActionMap{
-		"script": atuin.ActionScripts(),
+		"script": carapace.ActionFiles(),
 		"tags":   atuin.ActionTags(),
 	})
 }
