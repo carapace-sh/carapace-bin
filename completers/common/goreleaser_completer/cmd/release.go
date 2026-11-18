@@ -29,9 +29,9 @@ func init() {
 	releaseCmd.Flags().String("release-header-tmpl", "", "Load custom release notes header from a templated markdown file (overrides --release-header)")
 	releaseCmd.Flags().String("release-notes", "", "Load custom release notes from a markdown file (will skip GoReleaser changelog generation)")
 	releaseCmd.Flags().String("release-notes-tmpl", "", "Load custom release notes from a templated markdown file (overrides --release-notes)")
-	releaseCmd.Flags().StringSlice("skip", nil, "Skip the given options (valid options are announce, archive, aur, aur-source, before, chocolatey, docker, homebrew, ko, nfpm, nix, notarize, publish, sbom, scoop, sign, snapcraft, validate, winget)")
+	releaseCmd.Flags().StringSlice("skip", nil, "Skip the given options (valid options are announce, archive, aur, aur-source, before, changelog, chocolatey, docker, flatpak, homebrew, iru, ko, makeself, mcp, nfpm, nix, notarize, publish, sbom, scoop, sign, snapcraft, srpm, validate, winget)")
 	releaseCmd.Flags().Bool("snapshot", false, "Generate an unversioned snapshot release, skipping all validations and without publishing any artifacts (implies --skip=announce,publish,validate)")
-	releaseCmd.Flags().String("timeout", "", "Timeout to the entire release process")
+	releaseCmd.Flags().String("timeout", "1h0m0s", "Timeout to the entire release process")
 	releaseCmd.Flag("deprecated").Hidden = true
 	rootCmd.AddCommand(releaseCmd)
 

@@ -16,8 +16,8 @@ var initCmd = &cobra.Command{
 func init() {
 	carapace.Gen(initCmd).Standalone()
 
-	initCmd.Flags().StringP("config", "f", "", "Load configuration from file")
-	initCmd.Flags().StringP("language", "l", "", "Which language will be used")
+	initCmd.Flags().StringP("config", "f", ".goreleaser.yaml", "Load configuration from file")
+	initCmd.Flags().StringP("language", "l", "go", "Which language will be used")
 	rootCmd.AddCommand(initCmd)
 
 	carapace.Gen(initCmd).FlagCompletion(carapace.ActionMap{
