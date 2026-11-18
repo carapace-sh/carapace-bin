@@ -17,13 +17,13 @@ func init() {
 	carapace.Gen(linkageCmd).Standalone()
 
 	linkageCmd.Flags().Bool("cached", false, "Print the cached linkage values stored in `HOMEBREW_CACHE`, set by a previous `brew linkage` run.")
-	linkageCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	linkageCmd.Flags().Bool("help", false, "Show this message.")
-	linkageCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
+	linkageCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	linkageCmd.Flags().BoolP("help", "h", false, "Show this message.")
+	linkageCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
 	linkageCmd.Flags().Bool("reverse", false, "For every library that a keg references, print its dylib path followed by the binaries that link to it.")
 	linkageCmd.Flags().Bool("strict", false, "Exit with a non-zero status if any undeclared dependencies with linkage are found.")
 	linkageCmd.Flags().Bool("test", false, "Show only missing libraries and exit with a non-zero status if any missing libraries are found.")
-	linkageCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	linkageCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(linkageCmd)
 
 	carapace.Gen(linkageCmd).PositionalAnyCompletion(

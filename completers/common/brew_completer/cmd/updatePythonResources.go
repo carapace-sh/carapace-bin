@@ -16,16 +16,16 @@ var updatePythonResourcesCmd = &cobra.Command{
 func init() {
 	carapace.Gen(updatePythonResourcesCmd).Standalone()
 
-	updatePythonResourcesCmd.Flags().Bool("debug", false, "Display any debugging information.")
+	updatePythonResourcesCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
 	updatePythonResourcesCmd.Flags().String("exclude-packages", "", "Exclude these packages when finding resources.")
 	updatePythonResourcesCmd.Flags().String("extra-packages", "", "Include these additional packages when finding resources.")
-	updatePythonResourcesCmd.Flags().Bool("help", false, "Show this message.")
+	updatePythonResourcesCmd.Flags().BoolP("help", "h", false, "Show this message.")
 	updatePythonResourcesCmd.Flags().Bool("ignore-non-pypi-packages", false, "Don't fail if <formula> is not a PyPI package.")
 	updatePythonResourcesCmd.Flags().String("package-name", "", "Use the specified <package-name> when finding resources for <formula>. If no package name is specified, it will be inferred from the formula's stable URL.")
-	updatePythonResourcesCmd.Flags().Bool("print-only", false, "Print the updated resource blocks instead of changing <formula>.")
-	updatePythonResourcesCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	updatePythonResourcesCmd.Flags().Bool("silent", false, "Suppress any output.")
-	updatePythonResourcesCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	updatePythonResourcesCmd.Flags().BoolP("print-only", "p", false, "Print the updated resource blocks instead of changing <formula>.")
+	updatePythonResourcesCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	updatePythonResourcesCmd.Flags().BoolP("silent", "s", false, "Suppress any output.")
+	updatePythonResourcesCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	updatePythonResourcesCmd.Flags().String("version", "", "Use the specified <version> when finding resources for <formula>. If no version is specified, the current version for <formula> will be used.")
 	rootCmd.AddCommand(updatePythonResourcesCmd)
 

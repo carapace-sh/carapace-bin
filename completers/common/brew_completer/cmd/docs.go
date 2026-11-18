@@ -15,9 +15,9 @@ var docsCmd = &cobra.Command{
 func init() {
 	carapace.Gen(docsCmd).Standalone()
 
-	docsCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	docsCmd.Flags().Bool("help", false, "Show this message.")
-	docsCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	docsCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	docsCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	docsCmd.Flags().BoolP("help", "h", false, "Show this message.")
+	docsCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	docsCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(docsCmd)
 }

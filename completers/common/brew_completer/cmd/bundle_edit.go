@@ -14,10 +14,10 @@ var bundle_editCmd = &cobra.Command{
 func init() {
 	carapace.Gen(bundle_editCmd).Standalone()
 
-	bundle_editCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	bundle_editCmd.Flags().Bool("help", false, "Show this message.")
+	bundle_editCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	bundle_editCmd.Flags().BoolP("help", "h", false, "Show this message.")
 	bundle_editCmd.Flags().Bool("install", false, "Run `install` before editing the `Brewfile`.")
-	bundle_editCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	bundle_editCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	bundle_editCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	bundle_editCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	bundleCmd.AddCommand(bundle_editCmd)
 }

@@ -15,9 +15,9 @@ var services_cleanupCmd = &cobra.Command{
 func init() {
 	carapace.Gen(services_cleanupCmd).Standalone()
 
-	services_cleanupCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	services_cleanupCmd.Flags().Bool("help", false, "Show this message.")
-	services_cleanupCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	services_cleanupCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	services_cleanupCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	services_cleanupCmd.Flags().BoolP("help", "h", false, "Show this message.")
+	services_cleanupCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	services_cleanupCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	servicesCmd.AddCommand(services_cleanupCmd)
 }

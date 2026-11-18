@@ -14,9 +14,9 @@ var shellenvCmd = &cobra.Command{
 func init() {
 	carapace.Gen(shellenvCmd).Standalone()
 
-	shellenvCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	shellenvCmd.Flags().Bool("help", false, "Show this message.")
-	shellenvCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	shellenvCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	shellenvCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	shellenvCmd.Flags().BoolP("help", "h", false, "Show this message.")
+	shellenvCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	shellenvCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(shellenvCmd)
 }

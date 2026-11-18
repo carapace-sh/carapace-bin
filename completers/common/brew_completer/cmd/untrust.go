@@ -15,9 +15,9 @@ var untrustCmd = &cobra.Command{
 func init() {
 	carapace.Gen(untrustCmd).Standalone()
 
-	untrustCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	untrustCmd.Flags().Bool("help", false, "Show this message.")
-	untrustCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	untrustCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	untrustCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	untrustCmd.Flags().BoolP("help", "h", false, "Show this message.")
+	untrustCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	untrustCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(untrustCmd)
 }

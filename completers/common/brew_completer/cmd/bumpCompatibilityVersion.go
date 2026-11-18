@@ -16,11 +16,11 @@ var bumpCompatibilityVersionCmd = &cobra.Command{
 func init() {
 	carapace.Gen(bumpCompatibilityVersionCmd).Standalone()
 
-	bumpCompatibilityVersionCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	bumpCompatibilityVersionCmd.Flags().Bool("dry-run", false, "Print what would be done rather than doing it.")
-	bumpCompatibilityVersionCmd.Flags().Bool("help", false, "Show this message.")
-	bumpCompatibilityVersionCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	bumpCompatibilityVersionCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	bumpCompatibilityVersionCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	bumpCompatibilityVersionCmd.Flags().BoolP("dry-run", "n", false, "Print what would be done rather than doing it.")
+	bumpCompatibilityVersionCmd.Flags().BoolP("help", "h", false, "Show this message.")
+	bumpCompatibilityVersionCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	bumpCompatibilityVersionCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	bumpCompatibilityVersionCmd.Flags().Bool("write-only", false, "Make the expected file modifications without taking any Git actions.")
 	rootCmd.AddCommand(bumpCompatibilityVersionCmd)
 

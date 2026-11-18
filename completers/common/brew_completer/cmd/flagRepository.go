@@ -14,8 +14,8 @@ var flagRepositoryCmd = &cobra.Command{
 func init() {
 	carapace.Gen(flagRepositoryCmd).Standalone()
 
-	flagRepositoryCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	flagRepositoryCmd.Flags().Bool("help", false, "Show this message.")
-	flagRepositoryCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	flagRepositoryCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	flagRepositoryCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	flagRepositoryCmd.Flags().BoolP("help", "h", false, "Show this message.")
+	flagRepositoryCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	flagRepositoryCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 }

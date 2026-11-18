@@ -16,11 +16,11 @@ func init() {
 	carapace.Gen(determineTestRunnersCmd).Standalone()
 
 	determineTestRunnersCmd.Flags().Bool("all-supported", false, "Instead of selecting runners based on the chosen formula, return all supported runners.")
-	determineTestRunnersCmd.Flags().Bool("debug", false, "Display any debugging information.")
+	determineTestRunnersCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
 	determineTestRunnersCmd.Flags().Bool("dependents", false, "Determine runners for testing dependents. Requires `--eval-all` or `HOMEBREW_EVAL_ALL`.")
 	determineTestRunnersCmd.Flags().Bool("eval-all", false, "Evaluate all available formulae, whether installed or not, to determine testing dependents.")
-	determineTestRunnersCmd.Flags().Bool("help", false, "Show this message.")
-	determineTestRunnersCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	determineTestRunnersCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	determineTestRunnersCmd.Flags().BoolP("help", "h", false, "Show this message.")
+	determineTestRunnersCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	determineTestRunnersCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(determineTestRunnersCmd)
 }

@@ -17,13 +17,13 @@ func init() {
 	carapace.Gen(testCmd).Standalone()
 
 	testCmd.Flags().Bool("HEAD", false, "Test the HEAD version of a formula.")
-	testCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	testCmd.Flags().Bool("force", false, "Test formulae even if they are unlinked.")
-	testCmd.Flags().Bool("help", false, "Show this message.")
+	testCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	testCmd.Flags().BoolP("force", "f", false, "Test formulae even if they are unlinked.")
+	testCmd.Flags().BoolP("help", "h", false, "Show this message.")
 	testCmd.Flags().Bool("keep-tmp", false, "Retain the temporary files created for the test.")
-	testCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
+	testCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
 	testCmd.Flags().Bool("retry", false, "Retry if a testing fails.")
-	testCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	testCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(testCmd)
 
 	carapace.Gen(testCmd).PositionalAnyCompletion(

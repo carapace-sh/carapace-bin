@@ -15,10 +15,10 @@ var profCmd = &cobra.Command{
 func init() {
 	carapace.Gen(profCmd).Standalone()
 
-	profCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	profCmd.Flags().Bool("help", false, "Show this message.")
-	profCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
+	profCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	profCmd.Flags().BoolP("help", "h", false, "Show this message.")
+	profCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
 	profCmd.Flags().Bool("stackprof", false, "Use `stackprof` instead of `ruby-prof` (the default).")
-	profCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	profCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(profCmd)
 }

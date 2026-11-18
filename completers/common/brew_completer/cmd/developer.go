@@ -16,10 +16,10 @@ var developerCmd = &cobra.Command{
 func init() {
 	carapace.Gen(developerCmd).Standalone()
 
-	developerCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	developerCmd.Flags().Bool("help", false, "Show this message.")
-	developerCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	developerCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	developerCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	developerCmd.Flags().BoolP("help", "h", false, "Show this message.")
+	developerCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	developerCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(developerCmd)
 
 	carapace.Gen(developerCmd).PositionalCompletion(

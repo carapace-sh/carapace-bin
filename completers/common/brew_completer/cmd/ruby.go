@@ -15,11 +15,11 @@ var rubyCmd = &cobra.Command{
 func init() {
 	carapace.Gen(rubyCmd).Standalone()
 
-	rubyCmd.Flags().Bool("debug", false, "Display any debugging information.")
+	rubyCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
 	rubyCmd.Flags().StringS("e", "e", "", "Execute the given text string as a script.")
-	rubyCmd.Flags().Bool("help", false, "Show this message.")
-	rubyCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
+	rubyCmd.Flags().BoolP("help", "h", false, "Show this message.")
+	rubyCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
 	rubyCmd.Flags().StringS("r", "r", "", "Load a library using `require`.")
-	rubyCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	rubyCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(rubyCmd)
 }

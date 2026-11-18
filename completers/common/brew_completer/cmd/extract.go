@@ -16,11 +16,11 @@ var extractCmd = &cobra.Command{
 func init() {
 	carapace.Gen(extractCmd).Standalone()
 
-	extractCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	extractCmd.Flags().Bool("force", false, "Overwrite the destination formula if it already exists.")
-	extractCmd.Flags().Bool("help", false, "Show this message.")
-	extractCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	extractCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	extractCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	extractCmd.Flags().BoolP("force", "f", false, "Overwrite the destination formula if it already exists.")
+	extractCmd.Flags().BoolP("help", "h", false, "Show this message.")
+	extractCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	extractCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	extractCmd.Flags().String("version", "", "Extract the specified <version> of <formula> instead of the most recent.")
 	rootCmd.AddCommand(extractCmd)
 

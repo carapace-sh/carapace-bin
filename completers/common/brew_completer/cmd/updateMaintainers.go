@@ -15,9 +15,9 @@ var updateMaintainersCmd = &cobra.Command{
 func init() {
 	carapace.Gen(updateMaintainersCmd).Standalone()
 
-	updateMaintainersCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	updateMaintainersCmd.Flags().Bool("help", false, "Show this message.")
-	updateMaintainersCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	updateMaintainersCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	updateMaintainersCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	updateMaintainersCmd.Flags().BoolP("help", "h", false, "Show this message.")
+	updateMaintainersCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	updateMaintainersCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(updateMaintainersCmd)
 }

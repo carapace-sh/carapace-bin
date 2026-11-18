@@ -17,11 +17,11 @@ func init() {
 
 	updateTestCmd.Flags().String("before", "", "Use the commit at the specified <date> as the start commit.")
 	updateTestCmd.Flags().String("commit", "", "Use the specified <commit> as the start commit.")
-	updateTestCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	updateTestCmd.Flags().Bool("help", false, "Show this message.")
+	updateTestCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	updateTestCmd.Flags().BoolP("help", "h", false, "Show this message.")
 	updateTestCmd.Flags().Bool("keep-tmp", false, "Retain the temporary directory containing the new repository clone.")
-	updateTestCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
+	updateTestCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
 	updateTestCmd.Flags().Bool("to-tag", false, "Set `HOMEBREW_UPDATE_TO_TAG` to test updating between tags.")
-	updateTestCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	updateTestCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(updateTestCmd)
 }

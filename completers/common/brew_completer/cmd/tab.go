@@ -17,11 +17,11 @@ func init() {
 	carapace.Gen(tabCmd).Standalone()
 
 	tabCmd.Flags().Bool("cask", false, "Treat all named arguments as casks.")
-	tabCmd.Flags().Bool("debug", false, "Display any debugging information.")
+	tabCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
 	tabCmd.Flags().Bool("formula", false, "Treat all named arguments as formulae.")
-	tabCmd.Flags().Bool("help", false, "Show this message.")
-	tabCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	tabCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	tabCmd.Flags().BoolP("help", "h", false, "Show this message.")
+	tabCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	tabCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(tabCmd)
 
 	carapace.Gen(tabCmd).PositionalAnyCompletion(

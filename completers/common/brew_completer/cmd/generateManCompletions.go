@@ -15,9 +15,9 @@ var generateManCompletionsCmd = &cobra.Command{
 func init() {
 	carapace.Gen(generateManCompletionsCmd).Standalone()
 
-	generateManCompletionsCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	generateManCompletionsCmd.Flags().Bool("help", false, "Show this message.")
-	generateManCompletionsCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	generateManCompletionsCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	generateManCompletionsCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	generateManCompletionsCmd.Flags().BoolP("help", "h", false, "Show this message.")
+	generateManCompletionsCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	generateManCompletionsCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(generateManCompletionsCmd)
 }

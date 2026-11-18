@@ -17,17 +17,17 @@ func init() {
 	carapace.Gen(bumpCmd).Standalone()
 
 	bumpCmd.Flags().Bool("cask", false, "Check only casks.")
-	bumpCmd.Flags().Bool("debug", false, "Display any debugging information.")
+	bumpCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
 	bumpCmd.Flags().Bool("formula", false, "Check only formulae.")
 	bumpCmd.Flags().Bool("full-name", false, "Print formulae/casks with fully-qualified names.")
-	bumpCmd.Flags().Bool("help", false, "Show this message.")
+	bumpCmd.Flags().BoolP("help", "h", false, "Show this message.")
 	bumpCmd.Flags().Bool("installed", false, "Check formulae and casks that are currently installed.")
 	bumpCmd.Flags().String("limit", "", "Limit number of package results returned.")
 	bumpCmd.Flags().Bool("no-pull-requests", false, "Do not retrieve pull requests from GitHub.")
 	bumpCmd.Flags().Bool("open-pr", false, "Open a pull request for the new version if none have been opened yet.")
-	bumpCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
+	bumpCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
 	bumpCmd.Flags().String("start-with", "", "Letter or word that the list of package results should alphabetically follow.")
-	bumpCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	bumpCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(bumpCmd)
 
 	carapace.Gen(bumpCmd).PositionalAnyCompletion(

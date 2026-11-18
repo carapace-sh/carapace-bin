@@ -17,12 +17,12 @@ func init() {
 	carapace.Gen(editCmd).Standalone()
 
 	editCmd.Flags().Bool("cask", false, "Treat all named arguments as casks.")
-	editCmd.Flags().Bool("debug", false, "Display any debugging information.")
+	editCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
 	editCmd.Flags().Bool("formula", false, "Treat all named arguments as formulae.")
-	editCmd.Flags().Bool("help", false, "Show this message.")
+	editCmd.Flags().BoolP("help", "h", false, "Show this message.")
 	editCmd.Flags().Bool("print-path", false, "Print the file path to be edited, without opening an editor.")
-	editCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	editCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	editCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	editCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(editCmd)
 
 	carapace.Gen(editCmd).PositionalAnyCompletion(

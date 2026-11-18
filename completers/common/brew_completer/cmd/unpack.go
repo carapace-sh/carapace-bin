@@ -16,14 +16,14 @@ var unpackCmd = &cobra.Command{
 func init() {
 	carapace.Gen(unpackCmd).Standalone()
 
-	unpackCmd.Flags().Bool("debug", false, "Display any debugging information.")
+	unpackCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
 	unpackCmd.Flags().String("destdir", "", "Create subdirectories in the directory named by <path> instead.")
-	unpackCmd.Flags().Bool("force", false, "Overwrite the destination directory if it already exists.")
-	unpackCmd.Flags().Bool("git", false, "Initialise a Git repository in the unpacked source. This is useful for creating patches for the software.")
-	unpackCmd.Flags().Bool("help", false, "Show this message.")
+	unpackCmd.Flags().BoolP("force", "f", false, "Overwrite the destination directory if it already exists.")
+	unpackCmd.Flags().BoolP("git", "g", false, "Initialise a Git repository in the unpacked source. This is useful for creating patches for the software.")
+	unpackCmd.Flags().BoolP("help", "h", false, "Show this message.")
 	unpackCmd.Flags().Bool("patch", false, "Patches for <formula> will be applied to the unpacked source.")
-	unpackCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	unpackCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	unpackCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	unpackCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(unpackCmd)
 
 	carapace.Gen(unpackCmd).FlagCompletion(carapace.ActionMap{

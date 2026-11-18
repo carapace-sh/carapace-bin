@@ -15,10 +15,10 @@ var commandsCmd = &cobra.Command{
 func init() {
 	carapace.Gen(commandsCmd).Standalone()
 
-	commandsCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	commandsCmd.Flags().Bool("help", false, "Show this message.")
+	commandsCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	commandsCmd.Flags().BoolP("help", "h", false, "Show this message.")
 	commandsCmd.Flags().Bool("include-aliases", false, "Include aliases of internal commands.")
-	commandsCmd.Flags().Bool("quiet", false, "List only the names of commands without category headers.")
-	commandsCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	commandsCmd.Flags().BoolP("quiet", "q", false, "List only the names of commands without category headers.")
+	commandsCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(commandsCmd)
 }

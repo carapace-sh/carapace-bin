@@ -16,12 +16,12 @@ var tapInfoCmd = &cobra.Command{
 func init() {
 	carapace.Gen(tapInfoCmd).Standalone()
 
-	tapInfoCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	tapInfoCmd.Flags().Bool("help", false, "Show this message.")
+	tapInfoCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	tapInfoCmd.Flags().BoolP("help", "h", false, "Show this message.")
 	tapInfoCmd.Flags().Bool("installed", false, "Show information on each installed tap.")
 	tapInfoCmd.Flags().Bool("json", false, "Print a JSON representation of <tap>. Currently the default and only accepted value for <version> is `v1`. See the docs for examples of using the JSON output: <https://docs.brew.sh/Querying-Brew>")
-	tapInfoCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	tapInfoCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	tapInfoCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	tapInfoCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(tapInfoCmd)
 
 	carapace.Gen(tapInfoCmd).PositionalAnyCompletion(

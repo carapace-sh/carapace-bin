@@ -14,12 +14,12 @@ var environmentCmd = &cobra.Command{
 func init() {
 	carapace.Gen(environmentCmd).Standalone()
 
-	environmentCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	environmentCmd.Flags().Bool("help", false, "Show this message.")
+	environmentCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	environmentCmd.Flags().BoolP("help", "h", false, "Show this message.")
 	environmentCmd.Flags().Bool("plain", false, "Generate plain output even when piped.")
-	environmentCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
+	environmentCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
 	environmentCmd.Flags().String("shell", "", "Generate a list of environment variables for the specified shell, or `--shell=auto` to detect the current shell.")
-	environmentCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	environmentCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(environmentCmd)
 
 	carapace.Gen(environmentCmd).FlagCompletion(carapace.ActionMap{

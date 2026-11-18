@@ -16,11 +16,11 @@ var untapCmd = &cobra.Command{
 func init() {
 	carapace.Gen(untapCmd).Standalone()
 
-	untapCmd.Flags().Bool("debug", false, "Display any debugging information.")
-	untapCmd.Flags().Bool("force", false, "Untap even if formulae or casks from this tap are currently installed.")
-	untapCmd.Flags().Bool("help", false, "Show this message.")
-	untapCmd.Flags().Bool("quiet", false, "Make some output more quiet.")
-	untapCmd.Flags().Bool("verbose", false, "Make some output more verbose.")
+	untapCmd.Flags().BoolP("debug", "d", false, "Display any debugging information.")
+	untapCmd.Flags().BoolP("force", "f", false, "Untap even if formulae or casks from this tap are currently installed.")
+	untapCmd.Flags().BoolP("help", "h", false, "Show this message.")
+	untapCmd.Flags().BoolP("quiet", "q", false, "Make some output more quiet.")
+	untapCmd.Flags().BoolP("verbose", "v", false, "Make some output more verbose.")
 	rootCmd.AddCommand(untapCmd)
 
 	carapace.Gen(untapCmd).PositionalAnyCompletion(
