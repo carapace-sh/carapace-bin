@@ -14,6 +14,7 @@ var initCmd = &cobra.Command{
 func init() {
 	carapace.Gen(initCmd).Standalone()
 
+	initCmd.Flags().Bool("bind-ai-resume", false, "Bind CTRL-] to atuin threads resume (zsh, bash and fish; off by default: it replaces the shell's own binding)")
 	initCmd.Flags().Bool("disable-ai", false, "Disable the binding of ? to Atuin AI")
 	initCmd.Flags().Bool("disable-ctrl-r", false, "Disable the binding of CTRL-R to atuin")
 	initCmd.Flags().Bool("disable-up-arrow", false, "Disable the binding of the Up Arrow key to atuin")

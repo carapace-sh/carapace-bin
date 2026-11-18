@@ -7,7 +7,7 @@ import (
 
 var configCmd = &cobra.Command{
 	Use:   "config",
-	Short: "",
+	Short: "Get, set, or print values in your atuin config file",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

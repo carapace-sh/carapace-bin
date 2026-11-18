@@ -19,7 +19,7 @@ func init() {
 	kv_listCmd.Flags().Bool("all", false, "List all keys in all namespaces")
 	kv_listCmd.Flags().BoolP("all-namespaces", "a", false, "List all keys in all namespaces")
 	kv_listCmd.Flags().BoolP("help", "h", false, "Print help")
-	kv_listCmd.Flags().StringP("namespace", "n", "", "Namespace to list keys from")
+	kv_listCmd.Flags().StringP("namespace", "n", "default", "Namespace to list keys from")
 	kv_listCmd.Flag("all").Hidden = true
 	kvCmd.AddCommand(kv_listCmd)
 

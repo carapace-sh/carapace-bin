@@ -6,9 +6,10 @@ import (
 )
 
 var help_ai_initCmd = &cobra.Command{
-	Use:   "init",
-	Short: "Initialize shell integration",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:    "init",
+	Short:  "This command is no longer necessary. If you have it in your shell init file, feel free to remove it",
+	Hidden: true,
+	Run:    func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

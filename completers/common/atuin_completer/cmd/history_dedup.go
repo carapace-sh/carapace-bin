@@ -14,7 +14,7 @@ var history_dedupCmd = &cobra.Command{
 func init() {
 	carapace.Gen(history_dedupCmd).Standalone()
 
-	history_dedupCmd.Flags().StringP("before", "b", "", "Only delete results added before this date")
+	history_dedupCmd.Flags().StringP("before", "b", "", "Only delete results added before this date, read in the configured timezone unless it carries an explicit offset")
 	history_dedupCmd.Flags().BoolP("dry-run", "n", false, "List matching history lines without performing the actual deletion")
 	history_dedupCmd.Flags().String("dupkeep", "", "How many recent duplicates to keep")
 	history_dedupCmd.Flags().BoolP("help", "h", false, "Print help")

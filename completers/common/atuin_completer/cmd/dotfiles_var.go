@@ -7,7 +7,7 @@ import (
 
 var dotfiles_varCmd = &cobra.Command{
 	Use:   "var",
-	Short: "Manage shell and environment variables with Atuin",
+	Short: "List legacy shell and environment variables synced with Atuin",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 

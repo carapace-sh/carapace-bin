@@ -16,7 +16,7 @@ func init() {
 	carapace.Gen(kv_getCmd).Standalone()
 
 	kv_getCmd.Flags().BoolP("help", "h", false, "Print help")
-	kv_getCmd.Flags().StringP("namespace", "n", "", "Namespace for the key-value pair")
+	kv_getCmd.Flags().StringP("namespace", "n", "default", "Namespace for the key-value pair")
 	kvCmd.AddCommand(kv_getCmd)
 
 	carapace.Gen(kv_getCmd).FlagCompletion(carapace.ActionMap{

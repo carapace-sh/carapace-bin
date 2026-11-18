@@ -6,9 +6,10 @@ import (
 )
 
 var help_uuidCmd = &cobra.Command{
-	Use:   "uuid",
-	Short: "Generate a UUID",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:    "uuid",
+	Short:  "Generate a UUID",
+	Hidden: true,
+	Run:    func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

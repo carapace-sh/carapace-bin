@@ -14,8 +14,10 @@ var daemon_startCmd = &cobra.Command{
 func init() {
 	carapace.Gen(daemon_startCmd).Standalone()
 
+	daemon_startCmd.Flags().Bool("daemonize", false, "")
 	daemon_startCmd.Flags().Bool("force", false, "Force start: kill existing daemon process and reset the socket")
 	daemon_startCmd.Flags().BoolP("help", "h", false, "Print help")
 	daemon_startCmd.Flags().Bool("show-logs", false, "Also write daemon logs to the console (useful for debugging)")
+	daemon_startCmd.Flag("daemonize").Hidden = true
 	daemonCmd.AddCommand(daemon_startCmd)
 }

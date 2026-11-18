@@ -17,7 +17,7 @@ func init() {
 
 	kv_setCmd.Flags().BoolP("help", "h", false, "Print help")
 	kv_setCmd.Flags().StringP("key", "k", "", "Key to set")
-	kv_setCmd.Flags().StringP("namespace", "n", "", "Namespace for the key-value pair")
+	kv_setCmd.Flags().StringP("namespace", "n", "default", "Namespace for the key-value pair")
 	kv_setCmd.MarkFlagRequired("key")
 	kvCmd.AddCommand(kv_setCmd)
 

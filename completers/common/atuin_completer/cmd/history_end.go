@@ -17,6 +17,8 @@ func init() {
 	history_endCmd.Flags().StringP("duration", "d", "", "")
 	history_endCmd.Flags().StringP("exit", "e", "", "")
 	history_endCmd.Flags().BoolP("help", "h", false, "Print help")
+	history_endCmd.Flags().Bool("hook", false, "Passed by shell hooks; this flag disables logging to avoid corrupting the terminal and to minimize the amount of time the command takes to run")
 	history_endCmd.MarkFlagRequired("exit")
+	history_endCmd.Flag("hook").Hidden = true
 	historyCmd.AddCommand(history_endCmd)
 }

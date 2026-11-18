@@ -14,7 +14,7 @@ var scripts_runCmd = &cobra.Command{
 func init() {
 	carapace.Gen(scripts_runCmd).Standalone()
 
-	scripts_runCmd.Flags().BoolP("help", "h", false, "Print help")
-	scripts_runCmd.Flags().StringSliceP("var", "v", nil, "Specify template variables in the format KEY=VALUE Example: -v name=John -v greeting=\"Hello there\"")
+	scripts_runCmd.Flags().BoolP("help", "h", false, "Print help (see more with '--help')")
+	scripts_runCmd.Flags().StringSliceP("var", "v", nil, "Specify template variables in the format KEY=VALUE")
 	scriptsCmd.AddCommand(scripts_runCmd)
 }

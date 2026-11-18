@@ -16,7 +16,7 @@ func init() {
 
 	account_registerCmd.Flags().StringP("email", "e", "", "")
 	account_registerCmd.Flags().BoolP("help", "h", false, "Print help")
-	account_registerCmd.Flags().StringP("password", "p", "", "")
+	account_registerCmd.Flags().StringP("password", "p", "", "Your password, or `-` to read it from stdin. Falls back to `ATUIN_PASSWORD`, then a prompt")
 	account_registerCmd.Flags().StringP("username", "u", "", "")
 	accountCmd.AddCommand(account_registerCmd)
 }
