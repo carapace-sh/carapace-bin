@@ -26,7 +26,7 @@ func init() {
 	buildCmd.Flags().Bool("single-target", false, "Builds only for current GOOS and GOARCH, regardless of what's set in the configuration file")
 	buildCmd.Flags().StringSlice("skip", nil, "Skip the given options (valid options are: before, post-hooks, pre-hooks, validate)")
 	buildCmd.Flags().Bool("snapshot", false, "Generate an unversioned snapshot build, skipping all validations")
-	buildCmd.Flags().String("timeout", "", "Timeout to the entire build process")
+	buildCmd.Flags().String("timeout", "1h0m0s", "Timeout to the entire build process")
 	buildCmd.Flag("deprecated").Hidden = true
 	rootCmd.AddCommand(buildCmd)
 
