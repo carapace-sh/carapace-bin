@@ -87,6 +87,8 @@ aurs:
       - "carapace-aws-bin: for enriched aws completion"
       - "carapace-ffmpeg-bin: for FFmpeg completion"
       - "carapace-magick-bin: for ImageMagick completion"
+    package: |-
+      install -Dm644 "./carapace.db.gz" "${pkgdir}/usr/share/carapace/man/carapace.db.gz"
 
 nfpms:
   -
@@ -99,6 +101,12 @@ nfpms:
       - deb
       - rpm
       - termux.deb
+    contents:
+      - src: carapace.db.gz
+        dst: /usr/share/carapace/man/carapace.db.gz
+        type: file
+        file_info:
+          mode: 0644
 
 publishers:
   - name: fury
