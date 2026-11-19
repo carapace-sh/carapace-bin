@@ -58,6 +58,9 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-		net.ActionHosts(),
+		carapace.Batch(
+			net.ActionHosts(),
+			ssh.ActionHosts(rootCmd.Flag("F").Value.String()).Style("yellow"),
+		).ToA(),
 	)
 }
