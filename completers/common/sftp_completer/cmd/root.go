@@ -48,7 +48,7 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"D": carapace.ActionDirectories(),
 		"F": carapace.ActionFiles(),
-		"J": net.ActionHosts(),
+		"J": actionHosts(rootCmd),
 		"b": carapace.ActionFiles(),
 		"c": ssh.ActionCiphers(),
 		"i": carapace.ActionFiles(),
@@ -58,9 +58,13 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-		carapace.Batch(
-			net.ActionHosts(),
-			ssh.ActionHosts(rootCmd.Flag("F").Value.String()).Style("yellow"),
-		).ToA(),
+		actionHosts(rootCmd),
 	)
+}
+
+func actionHosts(cmd *cobra.Command) carapace.Action {
+	return carapace.Batch(
+		net.ActionHosts(),
+		ssh.ActionHosts(cmd.Flag("F").Value.String()).Style("yellow"),
+	).ToA()
 }

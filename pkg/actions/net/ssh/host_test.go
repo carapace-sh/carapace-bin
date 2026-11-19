@@ -1,8 +1,10 @@
 package ssh
 
 import (
+	"encoding/json"
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 
 	"github.com/carapace-sh/carapace"
@@ -64,4 +66,34 @@ func TestActionHostsExplicitConfigIsolation(t *testing.T) {
 	actual := ActionHosts(configPath).Invoke(carapace.Context{})
 	expected := carapace.ActionValues("explicit-only", "included-only").Tag("ssh hosts").Invoke(carapace.Context{})
 	assert.Equal(t, expected, actual)
+}
+
+func TestActionHostsDefaultUsesContextHome(t *testing.T) {
+	dir := t.TempDir()
+	sshDir := filepath.Join(dir, ".ssh")
+	if err := os.MkdirAll(sshDir, 0o755); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(filepath.Join(sshDir, "config"), []byte("Host home-host\nInclude conf.d/*.conf\n"), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.MkdirAll(filepath.Join(sshDir, "conf.d"), 0o755); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(filepath.Join(sshDir, "conf.d", "extra.conf"), []byte("Host extra-host\n"), 0o644); err != nil {
+		t.Fatal(err)
+	}
+
+	ctx := carapace.Context{Env: []string{"HOME=" + dir}}
+	actual := ActionHosts("").Invoke(ctx)
+	b, err := json.Marshal(actual)
+	if err != nil {
+		t.Fatal(err)
+	}
+	s := string(b)
+	for _, value := range []string{"extra-host", "home-host"} {
+		if !strings.Contains(s, `"`+value+`"`) {
+			t.Fatalf("expected value %q in %s", value, s)
+		}
+	}
 }
