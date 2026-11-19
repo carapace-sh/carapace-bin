@@ -47,7 +47,7 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"D": carapace.ActionFiles(),
 		"F": carapace.ActionFiles(),
-		"J": net.ActionHosts(),
+		"J": actionHosts(rootCmd),
 		"S": carapace.ActionFiles(),
 		"X": carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
@@ -75,8 +75,7 @@ func init() {
 			switch len(c.Parts) {
 			case 0:
 				return carapace.Batch(
-					net.ActionHosts(),
-					ssh.ActionHosts(rootCmd.Flag("F").Value.String()).Style("yellow"),
+					actionHosts(rootCmd),
 					carapace.ActionFiles(),
 				).ToA().NoSpace()
 			default:
@@ -84,4 +83,11 @@ func init() {
 			}
 		}),
 	)
+}
+
+func actionHosts(cmd *cobra.Command) carapace.Action {
+	return carapace.Batch(
+		net.ActionHosts(),
+		ssh.ActionHosts(cmd.Flag("F").Value.String()).Style("yellow"),
+	).ToA()
 }
