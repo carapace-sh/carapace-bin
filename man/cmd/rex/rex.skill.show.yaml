@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: show
+description: Print the guide that Rex's skill gives agents
+documentation:
+  command: |-
+    Print the guide that Rex’s skill gives agents.
+
+    An agent with the skill installed reads the guide through the skill. An agent without it can run this command to read the same guide.

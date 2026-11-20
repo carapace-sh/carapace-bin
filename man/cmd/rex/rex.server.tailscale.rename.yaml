@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rename
+description: Rename the enabled Tailscale node
+flags:
+  --json: output the resulting state as JSON
+documentation:
+  command: Rename the enabled Tailscale node without restarting or signing in again. NAME must be one DNS label of 1 to 63 ASCII letters, digits, or hyphens, with no leading or trailing hyphen. The new DNS name may appear after this command returns.

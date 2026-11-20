@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: skill
+description: Set up agents to use Rex
+documentation:
+  command: |-
+    Set up agents to use Rex.
+
+    Set up agents such as Claude Code and Codex to use Rex.
+
+    Rex installs two things into each agent. A skill teaches the agent how to use the rex command. A hook, in agents that support hooks, tells the agent at the start of each session which Rex session and terminal it is running in. Both get their text from the rex command each time the agent uses them, so upgrading Rex also updates what agents are told.
+
+    Run “rex skill setup” once per account, and “rex skill status” to see what is installed.

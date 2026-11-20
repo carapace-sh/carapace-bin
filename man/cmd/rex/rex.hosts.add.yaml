@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: add
+description: Add a host to your home
+flags:
+  --icon=: show the icon NAME next to the host
+documentation:
+  command: |-
+    Add a host to your home.
+
+    Add a host called LABEL, reached at each ENDPOINT in turn. An endpoint takes the same forms as `--server`.
+
+    A socket path, such as unix:///tmp/rex.sock, works only on a device where the path exists, such as the local end of an ssh `-L` forward. Other devices skip it and try the next endpoint.
+
+    The host goes to your home, so every device that follows your home sees it. No other host of yours may have the same label, ignoring case.
+
+    If your home is away, the host is held on this machine and listed at once. It is sent the next time `rex hosts` reaches your home.

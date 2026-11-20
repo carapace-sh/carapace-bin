@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ls
+description: List windows
+flags:
+  --json: output windows as JSON
+  --short: show short IDs (--short=false shows full IDs)
+  -A, --all: list windows in every session
+  -q, --quiet: print IDs only, one per line
+  -s, --session=: scope to session SESSION
+documentation:
+  command: List windows.

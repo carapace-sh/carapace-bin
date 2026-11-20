@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: kill
+description: Kill sessions
+documentation:
+  command: Kill sessions.

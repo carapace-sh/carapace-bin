@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ls
+description: List clients
+flags:
+  --all: include command line clients
+  --json: output clients as JSON
+  --short: show short IDs (--short=false shows full IDs)
+  -q, --quiet: print IDs only, one per line
+  -s, --session=: scope to session SESSION
+documentation:
+  command: |-
+    List clients.
+
+    List the clients connected to the server.
+
+    Each client says what it is when it connects. The label is the name a person gave it, and two clients may share one. Command line clients such as this one are hidden unless `--all` is given. With `--json`, the output is the server’s full reply, including command line clients. Use `-s` to list only the clients attached to one session.
+
+    ```sh
+    rex client ls
+    rex client ls -s work
+    rex client ls --all
+    rex client ls -q
+    ```

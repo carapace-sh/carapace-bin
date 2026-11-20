@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: forward
+description: Forward TCP ports
+documentation:
+  command: Forward TCP ports.

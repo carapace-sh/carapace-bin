@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: keymap
+description: Show what each key does
+flags:
+  --json: output the response as JSON
+  --request=: send the client.keymap request in FILE
+documentation:
+  command: |-
+    Show what each key does, as the server resolves it. The answer is the config file’s bindings stacked over the bindings the asking client ships with, and under the shortcuts recorded in that client’s own settings.
+
+    Without `--request` this command sends no layers and declares no actions of its own. The output is then the config file’s bindings alone, and a binding that names an action is not checked against any client’s list of actions. Pass a client’s own request to see the keymap that client receives. If that request sets server_actions, the output lists the same actions the client receives.
+
+    Bindings are listed with the top of each key’s stack first, which is the order a client tries them in. A binding in a mode is listed as the config file writes it, such as resize/left, and applies only while a client has that mode active. When there are modes, a table of them follows the bindings. The exit status is 1 when any complaint is an error.
+
+    ```sh
+    rex keymap
+    rex keymap --request client.json
+    rex keymap --json | jq '.bindings[] | select(.keys[0] == "cmd+d")'
+    ```

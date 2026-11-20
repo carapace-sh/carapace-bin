@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: config
+description: Work with Rex's config file
+documentation:
+  command: |-
+    Work with Rex’s config file.
+
+    Rex reads one configuration file per account, init.lua. It binds keys with rex.bind and takes them away with rex.unbind.
+
+    The file is REX_CONFIG when that variable is set. Otherwise it is rex/init.lua in the account’s configuration directory, which is $XDG_CONFIG_HOME/rex or ~/.config/rex on macOS and Linux, and %AppData%\rex on Windows.

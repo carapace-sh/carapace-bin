@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: remove
+description: Remove a host
+documentation:
+  command: |-
+    Remove a host.
+
+    Remove the host called LABEL, ignoring case, from the server it came from: your home, or this machine.
+
+    Removing a host declared in init.lua hides it. The line stays in the file, but no longer has an effect.
+
+    If the host is your home’s and your home is away, the removal is held on this machine and sent the next time `rex hosts` reaches your home.

@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: host
+description: Install Rex's terminfo entry on other machines
+documentation:
+  command: |-
+    Install Rex’s terminfo entry on other machines.
+
+    Install xterm-rex on a remote host and record that it is there, so that ssh stops announcing xterm-256color to it.
+
+    A record is compared, exactly, against the destination as ssh resolves it, so one machine can be recorded under more than one spelling.

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: completion
+description: Generate shell completion scripts for Rex
+documentation:
+  command: Generate shell completion scripts for Rex.

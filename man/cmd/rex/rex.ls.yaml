@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ls
+description: List sessions
+flags:
+  --json: output sessions as JSON
+  --short: show short IDs (--short=false shows full IDs)
+  -q, --quiet: print IDs only, one per line
+documentation:
+  command: List sessions.

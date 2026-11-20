@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: check
+description: Check which hosts can be reached from here
+flags:
+  --json: output the results as JSON
+documentation:
+  command: |-
+    Check which hosts can be reached from here.
+
+    Try to reach each of your hosts, or only the hosts called LABEL, ignoring case. All hosts are tried at once, and each one has up to `--timeout` to answer.
+
+    STATUS is one of:
+
+    reachable                a Rex server answered at ENDPOINT   not reachable from here  nothing answered, but the host may work from another network or device   down                     a machine answered, but not a Rex server
+
+    DETAIL says why a host could not be reached. For a reachable host, it says when the address now leads to a different machine than the one you added.
+
+    The check succeeds whatever it finds. Commands that connect to a host try the address that answered first.

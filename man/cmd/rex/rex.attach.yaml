@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: attach
+description: Attach to a session and show its oldest visible terminal block
+documentation:
+  command: |-
+    Attach to a session and show its oldest visible terminal block.
+
+    If SESSION is omitted, Rex attaches to the default session.

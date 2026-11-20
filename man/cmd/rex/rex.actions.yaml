@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: actions
+description: List the actions a client or the server offers
+flags:
+  --json: output actions as JSON
+documentation:
+  command: |-
+    List the actions a client or the server offers.
+
+    List the actions that a client or the server offers.
+
+    With `-C` or REX_CLIENT, this lists the actions that client offers, as it most recently reported them to the server. Otherwise it lists the actions the server offers: those that init.lua defines with rex.action, followed by those of every block type. A key binding can name any action in either list.
+
+    The ARGS column lists each action’s arguments. An argument followed by ? is optional.
+
+    ```sh
+    rex actions
+    rex -C studio actions
+    rex actions --json
+    ```

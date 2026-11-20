@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: new
+description: Forward ports until interrupted
+flags:
+  -L, --local=: listen here on port and connect to host:hostport from the server
+  -R, --remote=: listen on the server on port and connect to host:hostport from here
+  -s, --session=: keep the forwards' blocks in session SESSION
+documentation:
+  command: |-
+    Forward ports until interrupted.
+
+    Forward TCP connections through a Rex server, like ssh `-L` and ssh `-R`.
+
+    `-L` (“client’s port; server’s network”) [bind_address:]port:host:hostport listens on this machine on <port>, and connects each local connection to <host>:<hostport> from the server.
+
+    `-R` (“server’s port; client’s network”) [bind_address:]port:host:hostport listens on the server on <port>, and connects each remote connection to <host>:<hostport> from this machine.
+
+    The bind address defaults to 127.0.0.1; use * for every interface. Port 0 picks a free port. Give `-L` and `-R` as many times as you like to create multiple forwards. They will all be managed by this process and have the same lifetime.
+
+    Each forward is a tunnel block in the session chosen with `--session`, or the default session. `rex forward new` runs in the foreground until interrupted, then closes its blocks. It prints nothing while it works unless `-v` is given.
+
+    When the connection to the server drops, `rex forward new` reconnects and carries on with the same blocks. TCP connections that were open when it dropped are reset.
+
+    A forward whose block is closed, for example with `rex forward close`, stops. `rex forward new` exits once it has no forwards left. If the session is destroyed, it exits with status 3, as for a session that does not exist.
+
+    A `rex forward new` that is killed leaves its forwards’ blocks behind. Setting up the same forward again from this machine takes over its block instead of making a new one, so running the same command again works. A `-R` forward on port 0 always gets a new port. Blocks that a client on another machine may still come back for are left alone.

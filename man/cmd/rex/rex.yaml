@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rex
+description: The multiplexer for all work
+persistentflags:
+  --autostart: start a missing local server
+  --color=: set color WHEN to auto, always, or never
+  --timeout=: limit each connection and nonstreaming request to `duration`
+  -C, --client=: act on client `CLIENT`, given as a label or ID
+  -S, --server=: connect to `SERVER`, a host's label or a server address
+  -v, --verbose: increase diagnostic verbosity (repeatable)
+flags:
+  -h, --help: help for rex
+documentation:
+  command: |-
+    Rex is a terminal multiplexer for sessions, windows, and blocks with a CLI for automation and server management.
+
+    See https://www.superlogical.com/rex/docs for more information.
+
+    Global options:
+
+    Every command accepts these flags:
+
+    - `--autostart`: Start a missing local server (default: true).
+    - `-C, --client CLIENT`: Act on client CLIENT, given as a label or ID.
+    - `--color WHEN`: Set color WHEN to auto, always, or never (default: auto).
+    - `-S, --server SERVER`: Connect to SERVER, a host's label or a server address.
+    - `--timeout DURATION`: Limit each connection and nonstreaming request to DURATION (default: 10s).
+    - `-v, --verbose`: Increase diagnostic verbosity (repeatable).
+    - `-h, --help`: Show help for rex.

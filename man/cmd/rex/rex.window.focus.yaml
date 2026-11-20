@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: focus
+description: Focus a window
+flags:
+  --wrap: wrap next and prev at the ends
+  -s, --session=: scope to session SESSION
+documentation:
+  command: |-
+    Focus a window by ID, label, position, or ID suffix.
+
+    If WINDOW is omitted, focus the window containing REX_BLOCK when available. Otherwise, focus the active window in the default session. Use next or prev to move through window order.

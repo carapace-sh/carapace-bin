@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: check
+description: Load the config file and report what it found
+flags:
+  --json: output the result as JSON
+documentation:
+  command: |-
+    Load the config file and report what it found.
+
+    Load the config file and report where it is, whether it is there, how many keys it binds and unbinds, how many modes it uses, how many actions it defines, and everything loading it had to complain about. Without PATH the account’s own init.lua is used.
+
+    Only loading happens here. Some mistakes take more than the file to see, such as binding an action that neither this file nor the client has, or unbinding a key that nothing was bound to. Those depend on which client is asking, and “rex keymap” reports them.
+
+    The file is loaded by this rex binary, so it is checked against the functions and fields this version of Rex knows. A server running a different version may read it differently. “rex keymap” asks the running server instead.
+
+    The exit status is 1 when any complaint is an error.

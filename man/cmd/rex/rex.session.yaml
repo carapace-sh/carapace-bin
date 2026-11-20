@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: session
+description: Manage sessions
+documentation:
+  command: Manage sessions.

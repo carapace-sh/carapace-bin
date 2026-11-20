@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: move
+description: Move a window within its session's tab order
+flags:
+  --after=: move immediately after window W
+  --before=: move immediately before window W
+  --index=: move to one-based position N
+  -s, --session=: scope to session SESSION
+documentation:
+  command: |-
+    Move a window within its session’s tab order.
+
+    Exactly one of `--before`, `--after`, or `--index` is required. Window positions are numbered from one in the same order shown by window ls. An index past the end moves the window last.
+
+    If WINDOW is omitted, Rex uses the window containing REX_BLOCK when available. Otherwise, Rex uses the active window in the default session.
+
+    ```sh
+    rex window move logs --before editor
+    rex window move 3 --after 1
+    rex window move --index 1
+    rex window move -s work build --index 99
+    ```

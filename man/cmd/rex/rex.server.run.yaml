@@ -1,0 +1,40 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: run
+description: Run a foreground server
+flags:
+  --allow-anonymous: admit anonymous callers on plain TCP listeners
+  --block-dir=: discover executable block plugins in DIR (repeatable)
+  --block-plugin-reload: reload block plugins after source changes
+  --config=: read the config file at PATH
+  --exit-empty: stop when no sessions or control connections remain
+  --extra-listen=: also listen on ENDPOINT (repeatable)
+  --listen=: listen on ENDPOINT
+  --log-format=: 'write server logs as FORMAT: text or json'
+  --log-level=: 'log at LEVEL and above: debug, info, warn, or error'
+  --max-blocks=: refuse new blocks once the server holds N across all sessions
+  --max-panes=: refuse new panes once a window holds N
+  --max-sessions=: refuse new sessions once the server holds N
+  --max-windows=: refuse new windows once a session holds N
+  --restore: restore the saved sessions
+  --socket-mode=: set Unix socket permissions to MODE
+  --state-dir=: store persistent server state below DIR
+  --tailnet-allow-identified: admit every identified caller through the host's tailscaled
+  --tailscale: also serve the API over the tailnet as an embedded tsnet node
+  --tailscale-advertise-tag=: advertise ACL TAG when --tailscale enrolls the node (repeatable)
+  --tailscale-allow-tailnet-members: allow any tailnet member permitted by ACLs to reach Rex
+  --tailscale-auth-key-file=: enroll --tailscale with the one-time auth key read from FILE
+  --tailscale-control-url=: register the tailnet node with the control server at URL
+  --tailscale-hostname=: tailnet device NAME for --tailscale
+  --tailscaled-socket=: use the tailscaled LocalAPI socket at PATH
+  --websocket-origin-pattern=: allow browser WebSockets from cross-origin PATTERN (repeatable)
+documentation:
+  command: |-
+    Run a foreground server.
+
+    Run a Rex server in the foreground until it is stopped.
+
+    Ctrl+C, SIGTERM, and `rex server stop` end the server after it saves its sessions.
+
+    On Unix, what SIGHUP does depends on how the server runs. A server in a terminal saves and stops, because closing a terminal sends SIGHUP. A server with no terminal, such as one that systemd, launchd, or a container runtime runs, logs the signal and keeps running. A server started under nohup keeps ignoring the signal. A server that `rex server start` launched reopens its log file instead. See `rex server logs` `--help`.
+
+    If nothing reads the server’s output any more, for example because tee exited when its terminal closed or an ssh connection dropped, the server keeps running and its log lines are lost. Stop it with `rex server stop`.

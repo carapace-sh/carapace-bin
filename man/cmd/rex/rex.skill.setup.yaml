@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: setup
+description: Install Rex's skill and hooks into agents
+flags:
+  --agent=: use only AGENT, which is claude, codex, opencode or pi (repeatable)
+  --dry-run: report what would change without changing anything
+  --force: replace a skill named rex that Rex did not install
+  --json: print the result as JSON
+  --project: set up the current repository instead of your account
+  --session-naming: tell agents to name the session after their task
+documentation:
+  command: |-
+    Install Rex’s skill and hooks into agents.
+
+    Install Rex’s skill and hooks into the agents found on this machine, or into the agents named with `--agent`. If no agent is found, the skill alone goes into the shared ~/.agents/skills directory that most agents read.
+
+    The skill goes into each agent’s skill directory. Some agents share a directory, and it is written once. Hooks are added to each agent’s settings file, and the rest of the file is left as it was. Some agents ask you to approve a new hook before they run it, and the output says how.
+
+    Run this once per account. Running it again is safe, and updates anything an older Rex installed.
+
+    Pass `--session-naming` to have agents name the session after their task. A new setup leaves that off, and running setup again keeps the choice already installed unless you pass the flag.
+
+    If a skill named rex is already installed and Rex did not install it, it is left alone and reported as a conflict. Use `--force` to replace it.

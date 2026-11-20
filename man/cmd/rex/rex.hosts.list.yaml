@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+description: List your hosts
+flags:
+  --json: output the hosts as JSON
+documentation:
+  command: |-
+    List your hosts.
+
+    List the hosts your home keeps, including changes held for it, and the hosts of this machine’s own server.
+
+    FROM says which server a host came from, and is left out when your home is this machine. SOURCE is the init.lua line that declares a host, “stored” for a host added with `rex hosts`, or “held” for a host not yet sent to your home.
+
+    If your home is away, the list shows the hosts it had when it was last reached, and says how long ago that was. Warnings go to standard error.

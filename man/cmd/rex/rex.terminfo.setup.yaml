@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: setup
+description: Install Rex's terminfo entry and ssh guard
+flags:
+  --dry-run: report what would change without writing anything
+  --entry-only: install the entry alone
+  --json: output what the run did as JSON
+  --system: install the entry and the guard for every account on this machine
+documentation:
+  command: |-
+    Install Rex’s terminfo entry and ssh guard.
+
+    Install xterm-rex where programs find it, and configure ssh so that the name never reaches a host that has never heard of it.
+
+    Three things happen. The entry is installed in ~/.terminfo. A guard is written to Rex’s configuration directory. One Include line is added at the top of ~/.ssh/config. ssh is then asked what it would send to a host without the entry, and the answer is reported.
+
+    If your ssh configuration already includes a guard, as it does when home-manager manages it with Rex’s module, the guard and the Include line are skipped, because they would add nothing.
+
+    The guard needs OpenSSH 7.8 or later, because an older ssh refuses any configuration that contains it. With an older ssh, only the entry is installed, and the command fails with a message that says why.
+
+    With `--system` the entry goes into /usr/share/terminfo and the guard into /etc/ssh/ssh_config.d/50-rex.conf, so that every account on this machine has both, root included. That needs root, and it is what makes programs started through sudo and su find the entry. On FreeBSD, where /etc/ssh/ssh_config reads no other files, it also adds an Include line for the guard’s directory to the top of that file.
+
+    Run this once per account. Repeating it is harmless.
+
+    Two flags are meant for a program that sets an account up on someone’s behalf. `--entry-only` installs the entry and leaves ssh configuration alone, which is the half that needs no permission. `--json` reports what the run did as one object instead of the lines a person reads.
+
+    Installing the entry is not the whole story. A terminal claims the name once the guard is in place as well, and REX_TERM can name another entry instead. “rex terminfo status” reports what this machine would do.

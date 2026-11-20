@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: powershell
+description: Generate PowerShell completion
+documentation:
+  command: |-
+    Generate PowerShell completion.
+
+    Add the output of `rex completion powershell` to your PowerShell profile.

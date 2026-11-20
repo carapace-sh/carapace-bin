@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: 'on'
+description: Serve the API over the tailnet
+flags:
+  --advertise-tag=: advertise ACL TAG when this call enrolls a new node (repeatable)
+  --allow-tailnet-members: allow any caller admitted by the tailnet instead of only this node's owner
+  --auth-key-file=: enroll a new node with the one-time tailscale auth key read from FILE
+  --control-url=: register a node this call starts with the control server at URL
+  --hostname=: tailnet device NAME when this call starts the node
+  --json: output the resulting state as JSON
+documentation:
+  command: |-
+    Serve the API over the tailnet.
+
+    On is idempotent and runtime-only: a restarted server returns to its start flags. To keep Tailscale on, start the server with `--tailscale`. On Windows, “rex server install — —tailscale” does that each time the server starts. A node enabled for the first time begins Tailscale’s normal authentication flow; the login URL appears in the server log and in `rex server status`.
+
+    A one-time auth key enrolls a new node without that browser flow: pass `--auth-key-file` with a path, or ’-’ to read the key from stdin. There is deliberately no way to pass the key itself on the command line, where it would be visible in the process list. The key is needed only for a node’s first enrollment — the enrolled identity is kept on the server — and is ignored while the node is already enabled. ACL tags given with `--advertise-tag` are applied the same way: only when this call enrolls the node for the first time.
+
+    `--control-url` registers a node this call starts with another control server, such as Headscale. Each control server keeps its own saved login, so a node moved to a new one signs in again. To move a node that is already on, turn it off first. The server’s `--tailscale-control-url` is used when this flag is left out.

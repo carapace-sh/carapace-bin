@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: server
+description: Manage the Rex server
+documentation:
+  command: Manage the Rex server.

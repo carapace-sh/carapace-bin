@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: terminfo
+description: Set up and report Rex's terminal type
+documentation:
+  command: |-
+    Set up and report Rex’s terminal type.
+
+    Rex carries its own terminfo entry, xterm-rex, describing what its terminals support.
+
+    A terminal claims it wherever this account is set up for it, unless REX_TERM names another entry. Run “rex terminfo setup” once per account, and “rex terminfo status” to see what this machine would decide.

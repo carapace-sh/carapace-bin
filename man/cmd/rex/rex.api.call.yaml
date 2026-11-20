@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: call
+description: Call a server API method
+flags:
+  -s, --session=: scope to session SESSION
+documentation:
+  command: |-
+    Call a server API method.
+
+    Call one method exposed by the server’s control API.
+
+    METHOD is the API method name, such as server.status. ARGS must be a JSON object. Pass the object directly, use @path to read it from a file, or use - to read it from stdin. When ARGS is omitted, the request sends no arguments.
+
+    Methods that take a session_id require the connection to attach to that session. Use `--session` to resolve a session by ID or label and attach before the request. The command adds session_id to ARGS when it is missing. If ARGS already contains session_id, the value is preserved and must match the selected session. Without `--session`, a top-level session_id in ARGS is used for the attachment.
+
+    Method results are JSON. Output written to a terminal uses two-space indentation. Redirected output stays on one line for use in scripts.
+
+    ```sh
+    rex api call server.status
+    rex api call -s work session.view | jq '.windows | length'
+    rex api call session.create @layout.json
+    echo '{"label":"x"}' | rex api call session.create -
+    ```

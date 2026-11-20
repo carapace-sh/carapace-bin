@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: remove
+description: Remove Rex's skill and hooks from agents
+flags:
+  --agent=: use only AGENT, which is claude, codex, opencode or pi (repeatable)
+  --dry-run: report what would change without changing anything
+  --json: print the result as JSON
+  --project: remove from the current repository instead of your account
+documentation:
+  command: |-
+    Remove Rex’s skill and hooks from agents.
+
+    Remove Rex’s skill and hooks from every agent Rex knows, or from the agents named with `--agent`. Agents that are no longer installed are included, so nothing Rex installed is left behind.
+
+    Only files and hooks that Rex installed are removed, including older copies of the skill in other directories the agent reads. Other skills, hooks and settings are left as they were.

@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: focus
+description: Focus a block
+flags:
+  -s, --session=: scope to session SESSION
+  -w, --window=: scope to window WINDOW
+documentation:
+  command: |-
+    Focus a block by ID, label, or ID suffix.
+
+    If BLOCK is omitted, focus the block named by REX_BLOCK when available. Otherwise, focus the current block in the default window.

@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: nu
+description: Generate Nushell completion
+documentation:
+  command: |-
+    Generate Nushell completion.
+
+    Add the output of `rex completion nu` to your config.nu.

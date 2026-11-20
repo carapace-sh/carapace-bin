@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: new
+description: Create a block
+documentation:
+  command: Create a block.

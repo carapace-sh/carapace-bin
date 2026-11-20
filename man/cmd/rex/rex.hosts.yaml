@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: hosts
+description: List and change your hosts
+flags:
+  --json: output the hosts as JSON
+documentation:
+  command: |-
+    List and change the hosts you connect to.
+
+    List and change your hosts, the other Rex servers you connect to by label.
+
+    Your home keeps your hosts, so every device that follows the same home sees the same list. The hosts of this machine’s own server always count too, whatever your home is. If a host of this machine and a host of your home have the same label, this machine’s host wins.
+
+    A new host goes to your home. A change to a host goes to the server the host came from. If your home is away, the change is held on this machine and sent the next time `rex hosts` reaches your home. Until then, the list shows the hosts your home had when it was last reached.
+
+    To use a host, give its label to `--server`, as in “rex `-S` studio session ls”.
+
+    Without a command, list your hosts. The `--server` option and REX_SERVER do not change which servers this command talks to.

@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: focus
+description: Focus a block or window
+flags:
+  --wrap: continue from the other side at the edge
+  -s, --session=: scope to session SESSION
+  -w, --window=: scope to window WINDOW
+documentation:
+  command: |-
+    Focus a block or window.
+
+    The directions left, right, up, and down move between blocks by position. Next and prev move through the blocks in layout order. Focus stops at the edge of the layout or the end of the order. Use `--wrap` to continue from the other side.
+
+    A target can be a block or window ID, label, or ID suffix. A positive integer selects a window by its one-based position. If a target matches both a block and a window, use a full ID to select the intended resource.
+
+    ```sh
+    rex focus left
+    rex focus left --wrap
+    rex focus next --wrap
+    rex focus 2
+    rex focus logs
+    rex focus -s build editor
+    ```

@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: status
+description: Show server status
+flags:
+  --json: output server information as JSON
+documentation:
+  command: Show server status.

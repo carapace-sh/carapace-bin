@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: status
+description: Report whether Rex's skill and hooks are installed
+flags:
+  --json: print the report as JSON
+  --project: report on the current repository instead of your account
+documentation:
+  command: |-
+    Report whether Rex’s skill and hooks are installed.
+
+    Report, for each agent Rex knows, whether the agent was found on this machine and whether Rex’s skill and hooks are installed in it. Nothing is changed.
+
+    Each item is reported as one of:
+
+    current      installed and up to date   outdated     installed by an older Rex, or edited since   missing      not installed   foreign      a file of the same name that Rex did not install   unreadable   the file could not be read   unsupported  the agent cannot hold the item here

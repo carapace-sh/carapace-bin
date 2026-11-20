@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: new
+description: Create a window
+flags:
+  --focus: make the new window active
+  --interactive: also read the shell's interactive startup files
+  --json: output the created window as JSON
+  --keep-open: keep the terminal open after its command exits
+  --shell=: run COMMAND through SHELL's login environment
+  -c, --cwd=: working directory for the terminal
+  -s, --session=: scope to session SESSION
+documentation:
+  command: |-
+    Create a window in the selected session.
+
+    The new window becomes active by default. Use `--focus=false` to keep the active window and focused block unchanged. If the session has no active window, the new window becomes active even with `--focus=false`.
+
+    ```sh
+    rex window new
+    rex window new logs -- tail -f app.log
+    rex window new logs --focus=false -- tail -f app.log
+    rex window new -s build tests
+    ```

@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: reload
+description: Make the server read the config file again
+documentation:
+  command: |-
+    Make the server read the config file again and tell every client connected to it that their keys may have changed.
+
+    The generation counts the times this server has read the file. A client compares it against its own to notice that its keymap is out of date. It advances on every read, including one that failed.
+
+    A read that fails keeps the keys of the last one that worked. Only the file’s own complaints are reported here. For the ones that take a client’s own bindings to find, use “rex keymap”.
+
+    This runs on the server’s own machine, over its local socket. Whoever can edit the file is already there, and a remote caller is refused.
+
+    The exit status is 1 when any complaint is an error.

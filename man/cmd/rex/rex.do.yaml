@@ -1,0 +1,54 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: do
+description: Perform an action by name, or run a Lua script
+flags:
+  --all: listen for events from every session
+  --args=: pass the arguments as a JSON object (@FILE, or - for stdin)
+  --fail-fast: exit at the first rex.on handler that fails
+  --for=: stop listening for events after DURATION
+  --json: print the result as JSON
+  --origin=: 'report the origin as ORIGIN: key, palette, api, or cli'
+  -a, --action=: run the action NAME that the script defines
+  -b, --block=: apply the action to BLOCK
+  -e, --eval=: run CODE as a Lua script
+  -s, --session=: scope to session SESSION
+documentation:
+  command: |-
+    Perform an action or run a Lua script.
+
+    Perform an action by name, or run a Lua script.
+
+    A name without a dot is an action init.lua defines with rex.action. A name that starts with a client prefix, such as pane.split, is performed by the targeted client. A name that starts with a block type’s creator name, such as com.superlogical.terminal.reset, is a block action or method. Run “rex actions” to list them.
+
+    An action from init.lua can ask a question with rex.ui.input or rex.ui.pick. `rex do` can’t show the question itself, so every connected Rex app shows it, and `rex do` waits for someone to answer it on one of them. By default, `rex do` waits until the action finishes, however long that takes. Use `--timeout` to limit the wait. When the limit passes, `rex do` stops the action and exits with status 1.
+
+    To run a Lua script instead, give its path. The first argument is a script path when it contains a slash (or a backslash on Windows) or ends in .lua. Use - to read the script from stdin, or `-e` to give it on the command line. A script can call the same API as init.lua. Its return value prints the same way as an action’s result. In a script, rex.invoke runs the actions the script defines and asks the server to run any others.
+
+    A script can also call the hosts that “rex hosts” lists. rex.servers() returns their labels, and rex.server(LABEL) returns the same API helpers as rex, with calls going to that host. `rex do` connects to a host on the script’s first call to it, and stays connected until the script ends. `--server` chooses only the server that rex itself calls.
+
+    With `--action` NAME, `rex do` runs the script, then runs the action the script defines as NAME and prints that action’s result. Pairs are typed against that action’s schema. Use this to try an action in init.lua before the server reloads it.
+
+    A script that registers rex.on handlers keeps running after its last line, and runs its handlers as events arrive, one at a time. It hears the session that `-s`, `-b`, or the environment names, or every session if none is named. `--all` makes it hear every session, including ones created later. While it runs, rex.session.attach and rex.session.detach change what it hears.
+
+    Such a script runs until it calls rex.stop(CODE), and `rex do` exits with CODE, or 0 if it is left out. The script also stops, with status 0, when `--for` DURATION has passed, or when the last session it hears is destroyed, unless it hears every session. Ctrl-C stops it with status 130. A failed handler is reported and the script keeps going. With `--fail-fast`, the first failure exits with status 1.
+
+    Any script can pause. rex.sleep(SECONDS) waits for time to pass, and rex.wait(EVENT, FILTER, TIMEOUT) waits for an event, such as the exit of a command the script started. Nothing else in the script runs meanwhile. `--for` does not interrupt a pause at the top level of the script.
+
+    Arguments are KEY=VALUE pairs typed against the action’s schema. Use `--args` to pass a JSON object instead, or @FILE to read one, or - for stdin. A script reads its arguments from rex.args. Scripts have no schema, so each value’s type comes from how it is written: n=2 is a number and name=x is a string.
+
+    Pass large arguments, such as a long list of items, with @FILE or -. Linux can refuse a single command-line argument longer than 128 KiB. A Rex server accepts a request of up to 1 MiB, arguments included.
+
+    A client action needs a client. Use `-C` to name one, or REX_CLIENT. With neither, the app client is used when exactly one is connected. An init.lua action’s queued client actions go to the same client, and so do a script’s calls to rex.client.queue.
+
+    ```sh
+    rex do dev_layout branch=main
+    rex -C studio do pane.split direction=right
+    rex do com.superlogical.terminal.reset
+    rex -C studio do client.tab.goto index=2 --json
+    rex do ./layout.lua branch=main
+    rex do - < script.lua
+    rex do -e 'return rex.call("session.list")' --json
+    rex do notify.lua --args '{"title":"done"}'
+    rex do watch.lua --all --for 10m
+    rex do ~/.config/rex/init.lua --action dev_layout branch=main
+    ```
