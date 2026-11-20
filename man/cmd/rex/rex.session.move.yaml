@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: move
+description: Move a session to a new place in the session order
+flags:
+  --after=: move immediately after session S
+  --before=: move immediately before session S
+  --index=: move to one-based position N
+documentation:
+  command: |-
+    Move a session to a new place in the session order.
+
+    The session order is the order that session ls prints. It also decides which session a number names, so after a move, “rex session inspect 1” shows whichever session is now first.
+
+    Exactly one of `--before`, `--after`, or `--index` is required. Positions count from one. An index past the end moves the session last. Moving a session to where it already is does nothing and succeeds.
+
+    If SESSION is omitted, Rex uses REX_SESSION when it is set. Otherwise, Rex uses the default session.
+
+    ```sh
+    rex session move logs --before work
+    rex session move 3 --after 1
+    rex session move --index 1
+    rex session move build --index 99
+    ```

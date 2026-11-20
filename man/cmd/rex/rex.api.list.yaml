@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: list
+description: List server API methods
+flags:
+  --json: output the API help document as JSON
+  -q, --quiet: print method names only
+documentation:
+  command: |-
+    List server API methods.
+
+    List methods exposed by the connected server.
+
+    The default output has separate tables for regular API methods and methods provided by block creators. Use `--quiet` to print only method names, one per line. Use `--json` to print the complete help document returned by the server.

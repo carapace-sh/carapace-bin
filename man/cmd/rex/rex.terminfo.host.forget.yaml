@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: forget
+description: Forget that a host has Rex's terminfo entry
+documentation:
+  command: |-
+    Forget that a host has Rex’s terminfo entry.
+
+    Remove HOST from the hosts file, so that ssh goes back to announcing xterm-256color to it.
+
+    Use this when the entry is gone from that host, or when you connect to it as an account that does not have it.
+
+    HOST is the spelling that was recorded. Run “rex terminfo host ls” to see them.

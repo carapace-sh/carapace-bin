@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: events
+description: Stream server events as they occur
+flags:
+  --all: follow every server event, including clients joining, leaving, and changing
+  --json: output events as newline-delimited JSON
+  -s, --session=: scope to session SESSION
+documentation:
+  command: |-
+    Stream server events as they occur.
+
+    Without `--session`, events follows session creation, removal, state changes, and server connectivity for the whole server. Use `--session` to follow one session, including custom events emitted by its blocks. Use `--all` to follow every server event, including clients joining, leaving, and changing.
+
+    The default format writes one human-readable line per event. With `--json`, each line contains the same event JSON object sent by the server, compacted onto one line. Output is flushed after every event so pipelines can process events as they arrive.
+
+    The command runs until interrupted or the server disconnects. `--timeout` limits connecting and starting event delivery. It does not limit how long events are streamed.
+
+    ```sh
+    rex events
+    rex events -s build
+    rex events --all
+    rex events --json | jq -c 'select(.type == "session_created")'
+    ```

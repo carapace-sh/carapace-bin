@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: bash
+description: Generate Bash completion
+documentation:
+  command: |-
+    Generate Bash completion.
+
+    Load it with source <(`rex completion bash`), or install it in a bash-completion directory.

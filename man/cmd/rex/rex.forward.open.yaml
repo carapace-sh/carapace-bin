@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: open
+description: Forward a local port to a server-side target and open it
+flags:
+  --no-open: print the URL without opening it
+  -b, --bind=: listen on ADDRESS; * means every interface
+  -p, --port=: listen on PORT; 0 picks a free port
+  -s, --session=: keep the forward's block in session SESSION
+documentation:
+  command: |-
+    Forward a local port to a server-side target and open it.
+
+    Forward a port on this machine to a target that the server can reach, and open it. This is `rex forward new` `-L` for the common case of one forward.
+
+    The target is a URL, such as http://localhost:8080/app or postgres://db/app, or host:port, or a port, which means that port on the server’s localhost. A target without a scheme is taken to be http. A URL without a port uses the usual port for its scheme, if known.
+
+    The target can also be a terminal block, given by its ID or label, as rex block ls shows them. The forward then goes to the port that a program in the terminal is listening on, such as a development server started there, and is opened as http. If the terminal’s programs listen on several ports, `rex forward open` lists them and forwards none. An argument that reads as a URL, host:port or port is always taken as one, so name a block whose label reads that way by its ID. The server finds the ports of programs that are still attached to the terminal, so it misses e.g. a daemon.
+
+    The forward listens on `--bind` and `--port`, by default 127.0.0.1 and a free port. Once it listens, `rex forward open` prints the target’s URL with its host and port changed to where the forward listens, and opens that URL. An http or https URL goes to $BROWSER if it is set: a list of commands separated by colons, in which %s stands for the URL. Any other URL, or one $BROWSER cannot open, goes to the system’s handler for its scheme. `--no-open` only prints it.
+
+    A browser addresses what it sends to localhost and the forward’s port rather than to the target’s own name, so a site that checks the Host header, or that serves https with a certificate for its own name, may not work through the forward.
+
+    The forward’s block is kept in the session chosen with `--session`, or the default session. For a terminal block it is kept in the terminal’s session, and `--session` says which session to look for the terminal in.
+
+    `rex forward open` runs in the foreground like `rex forward new`, until it is interrupted or the forward is closed with `rex forward close`.

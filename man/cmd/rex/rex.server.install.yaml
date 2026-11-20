@@ -1,0 +1,47 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: install
+description: Start your server at boot and keep it running
+flags:
+  --channel=: install from the release channel NAME
+  --json: output what the command did as JSON
+  --label=: add the machine to your hosts as LABEL
+  --package: install the Rex package for the whole machine through sudo
+  --user: start the server when you sign in and stop it when you sign out
+  --yes: answer yes to every question
+documentation:
+  command: |-
+    Start your server at boot and keep it running.
+
+    Set up your personal Rex server to start on its own. By default, it starts when the machine boots and keeps running while you are logged out.
+
+    On Linux, this enables rex.socket, a systemd user unit that starts the server the first time a rex command connects. It also turns on lingering for your account with “loginctl enable-linger”. Lingering keeps your systemd user manager, and the server with it, running while you are logged out. No sudo is needed. If you run the rex that a Rex package installed, the package’s units are enabled as they are. For any other rex, copies of the units that run that binary are written to ~/.config/systemd/user. Each command run and each file written is printed first.
+
+    With `--user`, the server starts when you log in and stops when you log out, and lingering is left as it is.
+
+    If a rex command already started a server, that server keeps its sessions. An idle server is stopped so that the unit or service takes over right away. A server with sessions keeps running, and the unit or service starts at the next boot or login instead.
+
+    If the system does not let you turn on lingering, the server still starts when you log in, and the command says how an administrator can turn lingering on. If ~/.config/systemd/user already has a rex.service or rex.socket that rex did not write, such as one from the home-manager module, the command leaves it alone and fails.
+
+    On Windows, this creates a Windows Service that runs “rex server run” as your account. It starts at boot, shortly after the other automatic services, and keeps running while nobody is signed in and after you sign out. Creating it needs administrator rights, so run the command from a terminal started with “Run as administrator”. The command also grants your account the right to log on as a service, which Windows needs to start the service as you, and registers “Rex Server” as a source of the Event Log. It deletes the sign-in entry that `--user` adds, because only one of the two can run your server. Each change is printed first. The server and every program it starts run without administrator rights, as they would after a normal sign-in, even if your account is an administrator.
+
+    The command asks for your Windows password, because Windows needs it to start the service as your account while you are not signed in. Windows keeps it with the service. Rex does not keep it. Use the password of your Windows account, not a Windows Hello PIN. If you sign in with a Microsoft account, use the password of that Microsoft account. Without a terminal, the command reads the password from its standard input. If your password changes, run the command again, or the service cannot start at the next boot.
+
+    With `--user` on Windows, no administrator rights are needed. The command adds a value named “Rex Server” to HKCU\Software\Microsoft\Windows\CurrentVersion\Run, which runs “rex server start” each time you sign in. It also starts a server now if none is running, and leaves a running server alone. The server stops when you sign out of Windows, and starts again the next time you sign in. If the value is turned off in the Startup tab of Task Manager, the command says so. While the service exists, the command fails. Run “rex server uninstall” first.
+
+    On Windows, you can give the server flags after —. The server gets them each time it starts, so use them for settings that must last when the server restarts. For example, “rex server tailscale on” turns Tailscale on only until the server stops. This turns it on at every start:
+
+    `rex server install` — `--tailscale`
+
+    The service runs “rex server run” with the flags, and the “Rex Server” value that `--user` adds runs “rex server start” with them. The command refuses flags that the server would refuse, and then changes nothing. It also refuses `--listen`, because the server must stay on the named pipe where rex commands look for it. Use `--extra-listen` to add another endpoint.
+
+    Running the command again without — keeps the server flags that are already set. Give new flags after — to replace them, or — on its own to remove them. A server that is already running keeps its old flags until it restarts.
+
+    On Linux, systemd starts the server, so the command takes no server flags there. Set them in a drop-in file instead, with “systemctl `--user` edit rex.service”.
+
+    Running the command again is safe. Run it again after moving rex.
+
+    Linux with systemd and Windows are supported so far. Elsewhere, “rex server start” starts a server that runs until the machine restarts.
+
+    With an ssh:// endpoint, the command sets up your server on another machine that you can log in to with ssh, and installs Rex there first. It runs the Rex installer there with `--user`, which puts rex in ~/.local/bin and needs no sudo. As root, or with `--package`, it installs the Rex package for the whole machine instead, through sudo. Then it runs “rex server install” there, connects to the new server through ssh, and adds the machine to your hosts, so that “rex `-S` LABEL” reaches it. Only Linux machines are supported so far.
+
+    Each command that runs on the other machine is printed first, and the command asks before each change. `--yes` answers yes to every question. Without a terminal to ask on, `--yes` is required.

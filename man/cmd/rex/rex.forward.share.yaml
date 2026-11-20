@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: share
+description: Forward a server port to a target on this machine's side
+flags:
+  -b, --bind=: listen on ADDRESS; * means every interface
+  -p, --port=: listen on PORT; 0 picks a free port
+  -s, --session=: keep the forward's block in session SESSION
+documentation:
+  command: |-
+    Forward a server port to a target on this machine’s side.
+
+    Forward a port on the server to a target that this machine can reach. This is `rex forward new` `-R` for the common case of one forward.
+
+    The target is a URL, such as http://localhost:3000, or host:port, or a port, which means that port on this machine’s localhost. URLs without a port are read as for `rex forward open`.
+
+    The forward listens on the server on `--bind` and `--port`, by default 127.0.0.1 and a free port. Use `--bind '*'` to let other machines connect to it. Once it listens, `rex forward share` prints where: the target’s URL with its host and port changed, if the target is a URL, or else host:port. With `--bind '*'` the host is the server’s, as rex reached it.
+
+    Clients address what they send to the server rather than to the target’s own name, so a site that checks the Host header, or that serves https with a certificate for its own name, may not work through the forward.
+
+    `rex forward share` runs in the foreground like `rex forward new`, until it is interrupted or the forward is closed with `rex forward close`.

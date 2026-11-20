@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: install
+description: Install Rex's terminfo entry on a remote host
+documentation:
+  command: |-
+    Install Rex’s terminfo entry on a remote host.
+
+    Install xterm-rex on DESTINATION over ssh, and record the host so that ssh stops announcing xterm-256color to it.
+
+    The entry’s source is piped to the remote tic, which compiles it into ~/.terminfo there. Nothing else on the remote host is touched, and no interactive session is started. Options after — are passed to ssh, so “— `-p` 2222” and “— `-J` jump.example.com” work as usual.
+
+    The entry lands in the home directory of the account you connect as, while the record is kept per host. Another account on that host will not have the entry. Use “rex terminfo host forget” to undo a record.
+
+    What gets recorded is the spelling you typed, because that is what the guard compares against. When your ssh config rewrites it with HostName, that name is recorded as well, because a machine-wide guard sees the rewritten one. Either way, other spellings of the same machine keep the old terminal type until you install to them too.

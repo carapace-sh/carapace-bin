@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: wait
+description: Wait for a block, window, or session to end
+flags:
+  --for=: give up after DURATION
+  --json: output the terminating payload as JSON
+  -s, --session=: scope to session SESSION
+  -w, --window=: scope to window WINDOW
+documentation:
+  command: |-
+    Wait for a block, window, or session to end.
+
+    For a terminal block, wait returns the child process’s exit status. It does not wait for the block itself to close, so it also works with terminals created with `--keep-open`. Waiting for any other block, a window, or a session succeeds when that resource closes or is destroyed. If a terminal closes before reporting a child exit, wait returns 1. A block that closes before wait starts watching it also returns 1, because Rex can no longer tell what kind of block it was.
+
+    By default, wait runs until the target ends or the server disconnects. Use `--for` to limit the wait. The global `--timeout` still limits connections and individual API requests, but it does not limit event delivery. With `--json`, the command writes the payload that ended the wait as one line of JSON.
+
+    If Rex cannot determine a terminal child’s exit status, wait returns 1. Statuses above 255 are reduced modulo 256 to match shell behavior.
+
+    Targets may be IDs, labels, ID suffixes, or a window’s one-based position. If a target matches more than one resource kind, use a full ID to select the intended resource.
+
+    ```sh
+    rex wait c2a9f3
+    rex wait build
+    rex wait 2 -s work
+    rex wait --for 10m $B || echo timed out
+    ```

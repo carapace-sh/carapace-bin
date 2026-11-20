@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: show
+description: Print the terminfo source
+documentation:
+  command: |-
+    Print the terminfo source.
+
+    Compile it on another machine with: `rex terminfo show` | tic `-x` -

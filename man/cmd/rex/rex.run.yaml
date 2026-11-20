@@ -1,0 +1,36 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: run
+description: Run a command in a new terminal block
+flags:
+  --focus: focus the new block
+  --interactive: also read the shell's interactive startup files
+  --json: output the creation result as JSON
+  --keep-open: keep the terminal open after its command exits
+  --label=: set the new block label to TEXT
+  --ratio=: give the new block PCT percent of the split
+  --shell=: run COMMAND through SHELL's login environment
+  --split=: place the new block in DIRECTION relative to the anchor
+  --wait: wait and return the terminal child's exit status
+  -b, --block=: use BLOCK as the split anchor
+  -c, --cwd=: working directory for the terminal
+  -s, --session=: scope to session SESSION
+  -w, --window=: scope to window WINDOW
+documentation:
+  command: |-
+    Run a command in a new block.
+
+    Run a command in a new terminal block.
+
+    COMMAND runs through your login shell’s environment but not its interactive configuration, so profile variables and PATH apply and aliases do not. Use `--interactive` to read that configuration too, such as ~/.zshrc, for a program whose directory is added to PATH there. Use `--shell` to pick another shell, or `--shell=none` to start COMMAND directly.
+
+    By default, Rex places the block in a new window. Use `--split` to place it beside an existing block. Use `--focus=false` to preserve the active window. With `--wait`, Rex writes the creation result, then waits and returns the terminal child’s exit status.
+
+    ```sh
+    rex run -- htop
+    rex run --wait -- go test ./...
+    rex run --split=below --ratio 30 -- tail -f app.log
+    rex run -b editor --split=left -- lazygit
+    rex run -s build -- make
+    rex run --interactive -- opencode
+    rex run --shell=none -- /opt/tool/bin/x
+    ```

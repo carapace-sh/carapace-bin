@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: capture
+description: Print a terminal's screen
+flags:
+  --format=: 'output FORMAT: text, html, or vt'
+  --trim: remove trailing blank lines
+  --unwrap: join soft-wrapped lines
+  -b, --block=: target a `block`
+  -s, --session=: scope to session SESSION
+  -w, --window=: scope to window WINDOW
+documentation:
+  command: |-
+    Print a terminal’s screen and scrollback.
+
+    Print the screen and scrollback of a terminal block.
+
+    When `--block` is omitted, Rex uses REX_BLOCK if it names a live block. Otherwise, it uses the focused block of the default window. Text is the default format. HTML preserves rendered styling. VT preserves terminal control sequences. Output always ends with a newline.
+
+    A terminal keeps about 64 MiB of scrollback. That is roughly 100,000 lines of plain text at 80 columns, and fewer in a wider terminal or with styled output. Once the limit is reached, the oldest lines are dropped.
+
+    ```sh
+    rex capture
+    rex capture -b logs --trim > screen.txt
+    rex capture --format=html > screen.html
+    rex capture -s build -w 2
+    ```

@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: uninstall
+description: Stop starting your server on its own
+flags:
+  --json: output what the command did as JSON
+  --user: undo a rex server install --user
+  --yes: answer yes to every question
+documentation:
+  command: |-
+    Stop starting your server on its own.
+
+    Undo “rex server install”.
+
+    On Linux, this disables and stops rex.socket and rex.service, and removes the copies of them that `rex server install` wrote to ~/.config/systemd/user. Stopping the server ends every program running in its sessions. Units that a package installed stay in place, disabled. If ~/.config/systemd/user has a rex.service or rex.socket that rex did not write, such as one from the home-manager module, nothing is disabled or removed.
+
+    Lingering stays on, because other services of your account may need it. Turn it off with “loginctl disable-linger”.
+
+    On Windows, this stops and deletes the Windows Service that `rex server install` created, which ends every program running in its sessions. It also unregisters the “Rex Server” source of the Event Log, unless the service of another account still uses it. Removing the service needs a terminal started with “Run as administrator”. Your account keeps the right to log on as a service, because other services may need it.
+
+    It also deletes the value named “Rex Server” that `rex server install` `--user` added to HKCU\Software\Microsoft\Windows\CurrentVersion\Run, which needs no administrator rights. A server that the value started keeps running, along with its sessions. Stop it with “rex server stop”.
+
+    `--user` is accepted so that both commands take the same flags. Uninstall does the same with or without it.
+
+    With an ssh:// endpoint, the command runs “rex server uninstall” on that machine instead, after asking. Rex stays installed there, and the machine stays in your hosts. The command says how to remove each.

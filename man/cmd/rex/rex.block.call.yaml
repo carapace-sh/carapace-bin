@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: call
+description: Call a block method
+flags:
+  -b, --block=: target a `block`
+  -s, --session=: scope to session SESSION
+  -w, --window=: scope to window WINDOW
+documentation:
+  command: |-
+    Call a block method.
+
+    Call one method exposed by a block.
+
+    METHOD is the block method name. ARGS must be a JSON object. Pass the object directly, use @path to read it from a file, or use - to read it from stdin. When ARGS is omitted, the request sends no arguments.
+
+    When `--block` is omitted, Rex uses REX_BLOCK if it names a live block. Otherwise, it uses the focused block of the default window.
+
+    Method results are JSON. Output written to a terminal uses two-space indentation. Redirected output stays on one line for use in scripts. Use `rex block inspect` to list methods and `rex block inspect` `--json` to view their schemas.
+
+    ```sh
+    rex block call process
+    rex block call -b c2a9f3 write '{"data":"ls\n"}'
+    rex block call -b logs format @request.json
+    echo '{"format":"text","trim":true}' | rex block call format -
+    ```

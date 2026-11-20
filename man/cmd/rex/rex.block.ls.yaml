@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ls
+description: List blocks
+flags:
+  --json: output blocks as JSON
+  --short: show short IDs (--short=false shows full IDs)
+  -A, --all: list blocks in every session
+  -q, --quiet: print IDs only, one per line
+  -s, --session=: scope to session SESSION
+  -w, --window=: scope to window WINDOW
+documentation:
+  command: List blocks.

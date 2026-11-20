@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: home
+description: Show or choose your home server
+flags:
+  --json: output the home and your identity as JSON
+documentation:
+  command: |-
+    Show or choose your home server.
+
+    Show or choose your home, the server this device follows for hosts and shortcuts.
+
+    Your home is this machine unless you choose another. Any Rex server can be a home. A server is not told that it is someone’s home, and admits you the same way either way.
+
+    Without a command, connect to your home and show what it reports about you. Your choice is kept in home.json in Rex’s state directory. Setting REX_HOME chooses a home for one environment and takes precedence over the file. The `--server` option and REX_SERVER choose the server other commands talk to. They do not change your home.

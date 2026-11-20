@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: tailscale
+description: Manage the server's Tailscale node
+documentation:
+  command: Manage the server’s Tailscale node.

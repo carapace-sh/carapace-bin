@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: pair
+description: Show a QR code to pair another device
+flags:
+  --json: output the address as JSON
+documentation:
+  command: |-
+    Show a QR code to pair another device.
+
+    Show the server’s tailnet address as a QR code to scan with Rex on another device.
+
+    The code holds only the address, not a credential. The other device must be on the same tailnet. Tailscale must be on and its HTTPS address ready.

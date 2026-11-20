@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: edit
+description: Change a host
+flags:
+  --endpoint=: reach the host at ENDPOINT (repeatable, replaces all endpoints)
+  --icon=: show the icon NAME next to the host
+  --label=: rename the host to NEW
+documentation:
+  command: |-
+    Change a host.
+
+    Change the host called LABEL, ignoring case. Give at least one option. `--endpoint` replaces all of the host’s endpoints, and may be given more than once.
+
+    The change goes to the server the host came from: your home, or this machine. Editing a host declared in init.lua stores a host that takes the declaration’s place. The line stays in the file, but no longer has an effect.
+
+    If the host is your home’s and your home is away, the change is held on this machine and sent the next time `rex hosts` reaches your home.

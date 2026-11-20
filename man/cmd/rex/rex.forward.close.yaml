@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: close
+description: Close forwards
+flags:
+  --all: close every forward in the session
+  --orphaned: close every orphaned forward in the session
+  -s, --session=: scope to session SESSION
+documentation:
+  command: |-
+    Close forwards by closing their tunnel blocks. Give the forwards’ IDs, as rex forward ls shows them, or close every orphaned forward in the session with `--orphaned`, or every forward in it with `--all`.
+
+    A `rex forward new` that is carrying a closed forward stops it, and exits once it has no forwards left.

@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: stop
+description: Stop the server
+flags:
+  --discard: delete the saved sessions once the server has stopped
+  --if-idle: stop only if the server has no sessions and no other connected clients
+  --state-dir=: find the saved sessions for --discard below DIR
+documentation:
+  command: |-
+    Stop the server.
+
+    Stopping the server ends every program running in its sessions.
+
+    With `--if-idle`, the server stops only if it has no sessions and no other client is connected. Otherwise it keeps running, and the command says what is using it and exits with status 1. A client that connects at the same moment is refused, so it never starts work that the stop would end.
+
+    With `--discard`, the command also deletes the server’s saved sessions once it has stopped, so the next start begins with none. If no server is running, it only deletes them. If the stop is refused, nothing is deleted. Pass `--state-dir` if the server was started with one.
+
+    `--if-idle` needs a server recent enough to support it. With an older server, the command leaves the server running and exits with status 4. Without `--if-idle`, `rex server stop` works with a server of any version.

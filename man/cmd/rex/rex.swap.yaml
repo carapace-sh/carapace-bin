@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: swap
+description: Swap the layout positions of two visible blocks
+flags:
+  -s, --session=: scope to session SESSION
+  -w, --window=: scope to window WINDOW
+documentation:
+  command: |-
+    Swap two blocks.
+
+    Swap the layout positions of two visible blocks.
+
+    The blocks may be in different windows, but they must belong to the same session. Rex resolves both block arguments before changing the layout. The surrounding layout is unchanged.
+
+    ```sh
+    rex swap editor logs
+    rex swap c2a9f3 1bc2a9
+    ```

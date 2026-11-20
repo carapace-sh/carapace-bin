@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: move
+description: Move a block next to an anchor block
+flags:
+  --ratio=: give the moved block PCT percent of the split
+  -s, --session=: scope to session SESSION
+  -w, --window=: scope to window WINDOW
+documentation:
+  command: |-
+    Move a block next to another.
+
+    Move a block next to an anchor block.
+
+    DIRECTION selects BLOCK’s new position relative to ANCHOR. It must be right, left, above, or below. The two blocks may be in different windows, but both must be visible and belong to the same session.
+
+    If BLOCK is omitted, Rex uses REX_BLOCK when it identifies a visible block. Otherwise, Rex uses the focused block in the default window. The `--ratio` flag sets the percentage of the resulting split assigned to BLOCK. PCT must be between 1 and 99.
+
+    If a block label is also a direction word, identify the block by its full block ID or a hexadecimal ID suffix.
+
+    ```sh
+    rex move below editor
+    rex move logs right editor --ratio 30
+    rex move c2a9f3 above 1bc2a9 -s work
+    ```

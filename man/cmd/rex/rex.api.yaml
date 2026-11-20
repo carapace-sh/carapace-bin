@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: api
+description: Inspect and call methods exposed by the server's control API
+documentation:
+  command: |-
+    Inspect and call the server API.
+
+    Inspect and call methods exposed by the server’s control API.
+
+    Use call to run a method by name. Use list to discover the methods exposed by the connected server, including methods provided by block creators. Use describe to read one method’s schemas, examples, and validation rules.
+
+    ```sh
+    rex api call server.status
+    rex api call -s work session.view
+    rex api list
+    rex api describe session.new_split
+    ```

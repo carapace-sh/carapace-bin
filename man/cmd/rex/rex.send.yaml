@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: send
+description: Send input to a terminal
+flags:
+  -b, --block=: target a `block`
+  -s, --session=: scope to session SESSION
+  -w, --window=: scope to window WINDOW
+documentation:
+  command: |-
+    Send input to a terminal.
+
+    ```sh
+    rex send 'make test'
+    rex send -b logs $'\003'
+    printf 'y\n' | rex send
+    rex send -s build -w 2 'ls'
+    ```

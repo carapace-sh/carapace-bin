@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: inspect
+description: Inspect a window
+flags:
+  --json: output window information as JSON
+  -s, --session=: scope to session SESSION
+documentation:
+  command: Inspect a window.

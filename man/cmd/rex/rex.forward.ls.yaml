@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ls
+description: List forwards
+flags:
+  --json: output forwards as JSON
+  --short: show short IDs (--short=false shows full IDs)
+  -A, --all: list forwards in every session
+  -q, --quiet: print IDs only, one per line
+  -s, --session=: scope to session SESSION
+documentation:
+  command: |-
+    List forwards.
+
+    List the forwards in a session: the tunnel blocks that `rex forward new` and other clients create.
+
+    STATE is active while the client carrying the forward is connected, away while it is disconnected but may come back, and orphaned once nothing carries it, for example after its `rex forward new` was killed. An orphaned forward that listens on the server still accepts connections, which then time out, so `rex forward ls` warns about orphans; close them with `rex forward close`.
+
+    DIRECTION shows where the forward listens and where it connects from: client -> server is a `-L` forward, and server -> client is a `-R` one. A field the client did not report shows -.

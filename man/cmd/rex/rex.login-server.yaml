@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: login-server
+description: Run the multi-account login server
+flags:
+  --accounts=: map callers to accounts with the HuJSON FILE
+  --allow-anonymous: admit anonymous callers on plain TCP listeners
+  --extra-listen=: also listen on ENDPOINT (repeatable)
+  --listen=: listen on the root-only Unix ENDPOINT
+  --log-format=: 'write server logs as FORMAT: text or json'
+  --pam: open PAM sessions and run PAM account checks
+  --pam-service=: use the PAM policy for service NAME
+  --runtime-root=: keep the socket and accounts/ below DIR
+  --tailscaled-socket=: use the tailscaled LocalAPI socket at PATH
+documentation:
+  command: |-
+    Run the multi-account login server.
+
+    The login server runs as root. It identifies each caller, selects an operating system account through the accounts file, and starts or reuses a Rex server for that account. It proxies each accepted connection to the selected server. Clients select an account with https://ACCOUNT@host:port. Tailnet listeners admit every identified caller because the accounts file controls authorization. Local users use sudo to request another account. Send SIGHUP to reload the accounts file. Reloading closes revoked connections but leaves account servers and sessions running.

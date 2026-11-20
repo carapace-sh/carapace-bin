@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: unset
+description: Follow this machine again
+documentation:
+  command: |-
+    Follow this machine again.
+
+    Forget the home you chose, so this machine’s own server is your home again. This removes home.json. It succeeds if no home was chosen.
+
+    This command fails while REX_HOME is set, because that variable takes precedence over the file.

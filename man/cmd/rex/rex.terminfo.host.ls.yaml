@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: ls
+description: List the hosts recorded as having Rex's terminfo entry
+flags:
+  --json: output the list as JSON
+documentation:
+  command: |-
+    List the hosts recorded as having Rex’s terminfo entry, one per line, in the order they were added.
+
+    Each line is compared, exactly, against the destination as ssh resolves it. One machine can appear under more than one spelling, and each spelling is its own record.

@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: remove
+description: Remove the ssh guard, leaving the terminfo entry installed
+flags:
+  --dry-run: report what would change without writing anything
+  --json: output what the run did as JSON
+  --system: remove the guard that every account on this machine shares
+documentation:
+  command: |-
+    Remove the ssh guard, leaving the terminfo entry installed.
+
+    Remove Rex’s ssh guard and the Include line that puts it into effect, so that ssh goes back to forwarding whatever TERM it is given.
+
+    With `--system` the machine-wide guard /etc/ssh/ssh_config.d/50-rex.conf goes instead. On FreeBSD, so does the Include line the setup added to /etc/ssh/ssh_config. That needs root.
+
+    The terminfo entry stays where it was installed, in both cases. Shells that are already running with TERM=xterm-rex stop working the moment the entry disappears, so there is no command that deletes it. Remove the files by hand if you really want them gone.
+
+    `--json` reports what the run did as one object instead of the lines a person reads, in the shape the setup uses.

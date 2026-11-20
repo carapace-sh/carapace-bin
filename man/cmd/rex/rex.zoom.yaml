@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: zoom
+description: Zoom a block to fill its window
+flags:
+  --off: disable zoom
+  --on: enable zoom
+  -b, --block=: target a `block`
+  -s, --session=: scope to session SESSION
+  -w, --window=: scope to window WINDOW
+documentation:
+  command: |-
+    Zoom a block to fill its window.
+
+    Zoom changes only how the block is displayed. It does not change the underlying window layout. Without `--on` or `--off`, the command toggles the current zoom state. Use `--on` or `--off` to set the state explicitly.
+
+    BLOCK may be passed as an argument or with `--block`. If BLOCK is omitted, Rex uses REX_BLOCK when it identifies a live block. Otherwise, Rex uses the focused block in the default window.
+
+    ```sh
+    rex zoom
+    rex zoom --off
+    rex zoom -b logs --on
+    ```

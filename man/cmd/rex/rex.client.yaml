@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: client
+description: Inspect the clients connected to the server
+documentation:
+  command: |-
+    Manage clients.
+
+    Inspect the clients connected to the server.
+
+    A client is one program connected to the server, such as Rex.app or this command. Each client says what it is when it connects, and a person may give it a label.

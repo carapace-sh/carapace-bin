@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: send-key
+description: Send key presses to a terminal
+flags:
+  --action=: 'send one ACTION for each key: press, release, or repeat'
+  -b, --block=: target a `block`
+  -s, --session=: scope to session SESSION
+  -w, --window=: scope to window WINDOW
+documentation:
+  command: |-
+    Send key presses to a terminal
+
+    Each KEY uses Rex’s key binding syntax. Join modifiers with +, as in ctrl+c or shift+left. A bracketed name such as [Slash] selects a physical key. By default, Rex sends a press followed by a release for each key. Use `--action` to send one action instead.
+
+    Rex interprets printable keys using a US keyboard layout because send-key does not receive physical keyboard input. The generated text and physical key may differ on other layouts. Use `rex send` when exact text matters.
+
+    ```sh
+    rex send-key enter
+    rex send-key ctrl+c
+    rex send 'make test' && rex send-key enter
+    rex send-key -b logs ctrl+c
+    rex send-key shift+left shift+left
+    rex send-key --action release ctrl+[KeyQ]
+    ```

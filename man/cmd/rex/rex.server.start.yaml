@@ -1,0 +1,41 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: start
+description: Start a persistent server
+flags:
+  --allow-anonymous: admit anonymous callers on plain TCP listeners
+  --block-dir=: discover executable block plugins in DIR (repeatable)
+  --block-plugin-reload: reload block plugins after source changes
+  --config=: read the config file at PATH
+  --env=: pass environment variable NAME or NAME=VALUE to a new server (repeatable)
+  --exit-empty: stop when no sessions or control connections remain
+  --extra-listen=: also listen on ENDPOINT (repeatable)
+  --json: output server information as JSON
+  --listen=: listen on ENDPOINT
+  --log-format=: 'write server logs as FORMAT: text or json'
+  --log-level=: 'log at LEVEL and above: debug, info, warn, or error'
+  --log-max-size=: limit the active detached log to SIZE by clearing old contents
+  --max-blocks=: refuse new blocks once the server holds N across all sessions
+  --max-panes=: refuse new panes once a window holds N
+  --max-sessions=: refuse new sessions once the server holds N
+  --max-windows=: refuse new windows once a session holds N
+  --restore: restore the saved sessions
+  --socket-mode=: set Unix socket permissions to MODE
+  --state-dir=: store persistent server state below DIR
+  --tailnet-allow-identified: admit every identified caller through the host's tailscaled
+  --tailscale: also serve the API over the tailnet as an embedded tsnet node
+  --tailscale-advertise-tag=: advertise ACL TAG when --tailscale enrolls the node (repeatable)
+  --tailscale-allow-tailnet-members: allow any tailnet member permitted by ACLs to reach Rex
+  --tailscale-auth-key-file=: enroll --tailscale with the one-time auth key read from FILE
+  --tailscale-control-url=: register the tailnet node with the control server at URL
+  --tailscale-hostname=: tailnet device NAME for --tailscale
+  --tailscaled-socket=: use the tailscaled LocalAPI socket at PATH
+  --websocket-origin-pattern=: allow browser WebSockets from cross-origin PATTERN (repeatable)
+documentation:
+  command: |-
+    Start a persistent server.
+
+    Start is idempotent. Start options apply only when a new server is launched. An existing server retains its active configuration until explicitly restarted.
+
+    If you pass `--env` and this command does not launch the server, it prints a warning that names the variables it could not apply. To apply them, stop the server and run this command again, or set them in the service that starts the server, such as a systemd unit.
+
+    The log size limit applies only to the file created for a detached server. Rex clears that file before a write would exceed `--log-max-size`.

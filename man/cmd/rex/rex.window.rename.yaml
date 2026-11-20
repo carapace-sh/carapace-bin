@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: rename
+description: Rename a window
+flags:
+  -s, --session=: scope to session SESSION
+documentation:
+  command: Rename a window.

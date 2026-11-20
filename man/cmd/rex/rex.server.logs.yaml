@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: logs
+description: Show detached server logs
+flags:
+  --all: show the entire available detached log
+  --follow: follow appended log output until the server stops
+  --state-dir=: read server logs below DIR
+  -n, --lines=: show the newest N log lines
+documentation:
+  command: |-
+    Show detached server logs.
+
+    Show logs captured for a server launched by `rex server start`.
+
+    On Windows, the server that `rex server install` runs as a Windows Service writes to this log too, so this command shows its output as well. As with `rex server start`, Rex clears that log before it grows past 50MiB.
+
+    Servers started by other service managers, such as systemd or launchd, log through that manager instead. For a personal server run by the systemd user unit that the Linux packages and the home-manager module install, run journalctl `--user` `-u` rex. For the shared server that the Linux packages and the NixOS module install, run journalctl `-u` rex.service.
+
+    On Unix, rename/create rotation must send SIGHUP to the server after creating the replacement file. Only a server that `rex server start` launched reopens its log on SIGHUP. See `rex server run` `--help` for what the signal does to other servers. Windows uses copy-truncate or `--log-max-size`. `--follow` continues across log rotation.

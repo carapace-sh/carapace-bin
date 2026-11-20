@@ -1,0 +1,34 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: split
+description: Create a terminal block for a shell or command
+flags:
+  --focus: focus the new block
+  --interactive: also read the shell's interactive startup files
+  --json: output the creation result as JSON
+  --keep-open: keep the terminal open after its command exits
+  --label=: set the new block label to TEXT
+  --ratio=: give the new block PCT percent of the split
+  --shell=: run COMMAND through SHELL's login environment
+  --split=: place the new block in DIRECTION relative to the anchor
+  --wait: wait and return the terminal child's exit status
+  -b, --block=: use BLOCK as the split anchor
+  -c, --cwd=: working directory for the terminal
+  -s, --session=: scope to session SESSION
+  -w, --window=: scope to window WINDOW
+documentation:
+  command: |-
+    Split the focused block.
+
+    Create a terminal block for a shell or command.
+
+    A COMMAND runs through your login shell’s environment but not its interactive configuration. Use `--interactive` to read that configuration too, `--shell` to pick another shell, or `--shell=none` to start COMMAND directly.
+
+    By default, Rex splits the focused block and places the new block on its right. Use `-b` BLOCK to select another anchor or `--split` to choose another direction. Use `--focus=false` to preserve the current focus. With `--wait`, Rex writes the creation result, then waits and returns the terminal child’s exit status. Use `rex run` to place the block in a new window.
+
+    ```sh
+    rex split
+    rex split --split=below
+    rex split -b editor --split=left -- lazygit
+    rex split --wait -- make
+    rex split -- htop
+    ```

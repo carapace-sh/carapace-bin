@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: status
+description: Report the TERM a new terminal would be given, and why
+flags:
+  --json: output the report as JSON
+documentation:
+  command: |-
+    Report the TERM a new terminal would be given, and why.
+
+    Report the TERM a new terminal would be given, what was examined to decide it, and, when this account is not set up, which command fixes it.
+
+    A server claims xterm-rex wherever that is safe and keeps xterm-256color everywhere else. Naming an entry in REX_TERM overrides that and gives every terminal that name, which makes REX_TERM=xterm-256color the off switch. The value “auto” asks for the rule the server already follows.
+
+    The report covers the terminfo entry, the ssh client, both guard files, the hosts that have been recorded, and which configuration is responsible for what ssh would actually send.
+
+    Nothing of yours is changed and no host is contacted. The one file written is a throwaway copy of Rex’s guard, used to ask ssh what that guard would do on its own.

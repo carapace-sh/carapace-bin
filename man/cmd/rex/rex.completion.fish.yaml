@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: fish
+description: Generate Fish completion
+documentation:
+  command: |-
+    Generate Fish completion.
+
+    Install it with `rex completion fish` > ~/.config/fish/completions/rex.fish.

@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: describe
+description: Describe a server API method
+flags:
+  --json: output the method description as JSON
+documentation:
+  command: |-
+    Describe a server API method.
+
+    Describe one method exposed by the connected server.
+
+    The default output includes the method’s description and any available schemas, examples, and validation rules. Use `--json` to print the method’s entry from the server’s help document.
