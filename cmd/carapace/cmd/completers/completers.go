@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"runtime"
 	"slices"
 	"strings"
 
@@ -279,16 +280,118 @@ func AddBridges(m completer.CompleterMap, parse bool) error {
 }
 
 func AddSpecs(m completer.CompleterMap, parse bool) error {
-	dir, err := xdg.UserConfigDir()
+	dirs, err := SpecDirs()
 	if err != nil {
 		return err
 	}
-	specs, err := completer.ReadSpecs(filepath.Join(dir, "carapace", "specs"), "user", parse)
-	if err != nil {
-		return err
+	for _, dir := range dirs {
+		specs, err := completer.ReadSpecs(dir.Path, dir.Group, parse)
+		if err != nil {
+			return err
+		}
+		m.Merge(specs)
 	}
-	m.Merge(specs)
 	return nil
+}
+
+type specDir struct {
+	Path  string
+	Group string // "user" or "system"
+}
+
+// SpecDirs returns the spec base directories ordered by precedence; specs in
+// the "user" group take priority over the "system" group.
+func SpecDirs() ([]specDir, error) {
+	dirs := make([]specDir, 0)
+
+	userConfigDir, err := xdg.UserConfigDir()
+	if err != nil {
+		return nil, err
+	}
+	dirs = append(dirs, specDir{
+		Path:  filepath.Join(userConfigDir, "carapace", "specs"),
+		Group: "user",
+	})
+
+	for _, dir := range SpecPath() {
+		dirs = append(dirs, dir)
+	}
+
+	dataDirs, err := specDataDirs()
+	if err != nil {
+		return nil, err
+	}
+	for _, dataDir := range dataDirs {
+		dirs = append(dirs, specDir{
+			Path:  filepath.Join(dataDir, "carapace", "specs"),
+			Group: "system",
+		})
+	}
+
+	return dirs, nil
+}
+
+// SpecPath returns the spec base directories given in $CARAPACE_SPECS_PATH.
+// It is a path-list where entries may be classified as `path@user` or
+// `path@system`; unclassified entries default to "system" so package-managed
+// directories (nix ect.) cannot shadow the user's own specs.
+func SpecPath() (dirs []specDir) {
+	for entry := range strings.SplitSeq(os.Getenv("CARAPACE_SPECS_PATH"), string(os.PathListSeparator)) {
+		entry = strings.TrimSpace(entry)
+		if entry == "" {
+			continue
+		}
+
+		group := "system"
+		switch {
+		case strings.HasSuffix(entry, "@user"):
+			group = "user"
+			entry, _ = strings.CutSuffix(entry, "@user")
+		case strings.HasSuffix(entry, "@system"):
+			entry, _ = strings.CutSuffix(entry, "@system")
+		}
+		entry = strings.TrimSpace(entry)
+		if entry == "" {
+			continue
+		}
+
+		dirs = append(dirs, specDir{Path: entry, Group: group})
+	}
+	return
+}
+
+// specDataDirs returns the system data base directories ordered by preference.
+// Mirrors pkg/xdg.ConfigDirs but for data directories (see carapace-bin#3361).
+func specDataDirs() ([]string, error) {
+	var dirs []string
+	switch runtime.GOOS {
+	case "windows":
+		dir, ok := os.LookupEnv("PROGRAMDATA")
+		if !ok {
+			return nil, fmt.Errorf("missing PROGRAMDATA environment variable")
+		}
+		dirs = append(dirs, dir)
+
+	case "darwin":
+		dirs = append(dirs, "/Library/Application Support")
+
+	default:
+		if v, ok := os.LookupEnv("XDG_DATA_DIRS"); ok {
+			for dir := range strings.SplitSeq(v, string(os.PathListSeparator)) {
+				if filepath.IsAbs(dir) {
+					dirs = append(dirs, dir)
+				}
+			}
+		}
+		if len(dirs) == 0 {
+			dirs = append(dirs, "/usr/local/share", "/usr/share")
+		}
+	}
+
+	for index, dir := range dirs {
+		dirs[index] = filepath.ToSlash(dir)
+	}
+	return dirs, nil
 }
 
 func Lookup(nameVariantGroup string) (*completer.Completer, error) { // TODO choice as parameter?
@@ -325,24 +428,24 @@ func Description(name string) string {
 }
 
 func specDescription(name string) (string, error) {
-	confDir, err := xdg.UserConfigDir()
+	dirs, err := SpecDirs()
 	if err != nil {
 		return "", err
 	}
-
-	content, err := os.ReadFile(fmt.Sprintf("%v/carapace/specs/%v.yaml", confDir, name))
-	if err != nil {
-		return "", err
+	for _, dir := range dirs {
+		content, err := os.ReadFile(filepath.Join(dir.Path, name+".yaml"))
+		if err != nil {
+			continue
+		}
+		var s struct {
+			Description string
+		}
+		if err := yaml.Unmarshal(content, &s); err != nil {
+			continue
+		}
+		return s.Description, nil
 	}
-	var s struct {
-		Description string
-	}
-
-	err = yaml.Unmarshal(content, &s)
-	if err != nil {
-		return "", err
-	}
-	return s.Description, nil
+	return "", fmt.Errorf("spec %v.yaml not found in spec dirs", name)
 }
 
 func complete(name string, action carapace.Action) func() error {
