@@ -1,34 +1,31 @@
 package ssh
 
 import (
-	"strings"
+	"os"
 
 	"github.com/carapace-sh/carapace"
-	"github.com/kevinburke/ssh_config"
+	"github.com/carapace-sh/carapace-ssh/config"
 )
 
-// ActionHosts completes ssh hosts
-//
-//	github.com
-//	example.com
-func ActionHosts(config string) carapace.Action {
+// ActionHosts completes ssh hosts.
+func ActionHosts(configPath string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		settings := ssh_config.DefaultUserSettings
-		if config != "" {
-			// TODO this skips the system config
-			settings.ConfigFinder(func() string {
-				return config
-			})
+		opts := make([]config.Option, 0, 1)
+		if home := homeDir(c); home != "" {
+			opts = append(opts, config.WithHomeDir(home))
 		}
 
-		vals := make([]string, 0)
-		for _, host := range settings.GetHosts() {
-			for _, pattern := range host.Patterns {
-				if s := strings.ReplaceAll(pattern.String(), `\`, ""); !strings.ContainsAny(s, `+*?()|[]{}^$!`) {
-					vals = append(vals, s)
-				}
-			}
-		}
-		return carapace.ActionValues(vals...)
-	}).Tag("ssh hosts")
+		hosts, _ := config.HostCandidates(configPath, opts...)
+		return carapace.ActionValues(hosts...).Tag("ssh hosts")
+	})
+}
+
+func homeDir(c carapace.Context) string {
+	if h, ok := c.LookupEnv("HOME"); ok && h != "" {
+		return h
+	}
+	if h, err := os.UserHomeDir(); err == nil {
+		return h
+	}
+	return ""
 }

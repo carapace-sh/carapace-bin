@@ -29,9 +29,11 @@ require (
 
 require (
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
-	github.com/kevinburke/ssh_config v1.4.0
 )
+
+require github.com/carapace-sh/carapace-ssh v0.0.0
 
 replace github.com/spf13/pflag => github.com/carapace-sh/carapace-pflag v1.3.0
 
-replace github.com/kevinburke/ssh_config => github.com/carapace-sh/ssh_config v1.4.1-0.20260319075335-4f04016b8b4b
+
+replace github.com/carapace-sh/carapace-ssh => ../carapace-ssh
