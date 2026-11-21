@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/styles"
@@ -67,7 +68,7 @@ func ActionIssueTypes(opts RepoOpts) carapace.Action {
 				vals = append(vals, t.Name, t.Description, s)
 			}
 			return carapace.ActionStyledValuesDescribed(vals...)
-		})
+		}).Cache(24*time.Hour, opts.cacheKey())
 	}).Tag("issue types")
 }
 
