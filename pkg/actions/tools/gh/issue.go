@@ -4,11 +4,9 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
-	"time"
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/styles"
-	"github.com/carapace-sh/carapace/pkg/cache/key"
 	"github.com/carapace-sh/carapace/pkg/style"
 )
 
@@ -69,7 +67,7 @@ func ActionIssueTypes(opts RepoOpts) carapace.Action {
 				vals = append(vals, t.Name, t.Description, s)
 			}
 			return carapace.ActionStyledValuesDescribed(vals...)
-		}).Cache(24*time.Hour, opts.cacheKey())
+		})
 	}).Tag("issue types")
 }
 
@@ -143,10 +141,6 @@ func (o IssueOpts) Default() IssueOpts {
 
 func (o IssueOpts) repo() RepoOpts {
 	return RepoOpts{Host: o.Host, Owner: o.Owner, Name: o.Name}
-}
-
-func (o IssueOpts) cacheKey() key.Key {
-	return key.String(o.Host, o.Owner, o.Name, strconv.FormatBool(o.Closed), strconv.FormatBool(o.Open))
 }
 
 func (o IssueOpts) states() string {

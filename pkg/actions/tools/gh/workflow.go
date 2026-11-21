@@ -3,10 +3,8 @@ package gh
 import (
 	"fmt"
 	"strconv"
-	"time"
 
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace/pkg/cache/key"
 )
 
 // ActionWorkflowEvents completes events triggering a workflow
@@ -103,15 +101,6 @@ func (o WorkflowOpts) repo() RepoOpts {
 	return RepoOpts{Host: o.Host, Owner: o.Owner, Name: o.Name}
 }
 
-func (o WorkflowOpts) cacheKey() key.Key {
-	return key.String(o.Host, o.Owner, o.Name,
-		strconv.FormatBool(o.Enabled),
-		strconv.FormatBool(o.Disabled),
-		strconv.FormatBool(o.ById),
-		strconv.FormatBool(o.ByName),
-	)
-}
-
 // ActionWorkflows completes workflows
 //
 //	1234567 (build)
@@ -136,5 +125,5 @@ func ActionWorkflows(opts WorkflowOpts) carapace.Action {
 				return carapace.ActionValuesDescribed(vals...)
 			})
 		})
-	}).Tag("workflows").Cache(24*time.Hour, opts.cacheKey())
+	}).Tag("workflows")
 }

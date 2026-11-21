@@ -1,8 +1,6 @@
 package gh
 
 import (
-	"time"
-
 	"github.com/carapace-sh/carapace"
 )
 
@@ -37,7 +35,7 @@ func ActionLabels(opts RepoOpts) carapace.Action {
 			}
 			return carapace.ActionStyledValuesDescribed(vals...)
 		})
-	}).Tag("labels").Cache(24*time.Hour, opts.cacheKey())
+	}).Tag("labels")
 }
 
 // ActionLabelFields completes label fields

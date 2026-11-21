@@ -3,7 +3,6 @@ package gh
 import (
 	"fmt"
 	"strconv"
-	"time"
 
 	"github.com/carapace-sh/carapace"
 )
@@ -38,7 +37,7 @@ func ActionMilestones(opts RepoOpts) carapace.Action {
 				vals[index*2+1] = milestone.Description
 			}
 			return carapace.ActionValuesDescribed(vals...)
-		}).Cache(24*time.Hour, opts.cacheKey())
+		})
 	}).Tag("milestones")
 }
 
