@@ -201,8 +201,7 @@ func ActionIssues(opts IssueOpts) carapace.Action {
 			Query("gh", "issue", "",
 				"repo", opts.repo().fullName(),
 				"state", opts.stateFilter(),
-			).
-			Cache(24*time.Hour, opts.cacheKey())
+			)
 	}).Tag("issues")
 }
 
