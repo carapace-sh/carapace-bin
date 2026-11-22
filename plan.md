@@ -173,6 +173,12 @@ Even with state files, keep a defensive bridge path:
 - Old Go + new snippet: builtin shell-internal completions may be unavailable because old Go does not read `CARAPACE_SHELL_STATE`. This is acceptable if clearly documented for the experimental builtins feature; can be mitigated by dual-write for small payloads, but that weakens the fix.
 - Disabled `CARAPACE_BUILTINS`: no state dir, no behavior change.
 
+## Status
+
+- Branch: `fix/shell-builtin-state-file`
+- Implemented: Go state reader with env fallback, bash/bash-ble/oil/zsh/fish/nushell/powershell/xonsh/elvish snippet state-dir capture, E2BIG/exec-failure fallback for bash-family xargs snippets, fixture updates, shell state safety tests.
+- Not implemented: variable-content capture (must remain names-only unless an explicit insecure `CARAPACE_BUILTINS` guard is added), docs/release notes, broader cross-shell runtime validation.
+
 ## Implementation plan
 
 1. **Branch and plan** - done
