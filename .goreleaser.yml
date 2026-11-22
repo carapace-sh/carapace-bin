@@ -3,6 +3,7 @@ before:
   hooks:
     - go mod download
     - go generate ./cmd/...
+    - carapace-man compile man carapace.db.gz
 builds:
   - id: default
     env:
@@ -36,6 +37,9 @@ archives:
     ids:
      - default
     name_template: 'carapace-bin_{{ .Version }}_{{ .Os }}_{{ .Arch }}{{ with .Arm }}v{{ . }}{{ end }}{{ with .Mips }}_{{ . }}{{ end }}{{ if not (eq .Amd64 "v1") }}{{ .Amd64 }}{{ end }}'
+    files:
+      - src: ./carapace.db.gz
+        dst: .
     format_overrides:
       - goos: windows
         formats: ['zip']
@@ -43,6 +47,9 @@ archives:
     ids:
       - termux
     name_template: 'carapace-bin_{{ .Version }}_termux_{{ .Arch }}{{ with .Arm }}v{{ . }}{{ end }}{{ with .Mips }}_{{ . }}{{ end }}{{ if not (eq .Amd64 "v1") }}{{ .Amd64 }}{{ end }}'
+    files:
+      - src: ./carapace.db.gz
+        dst: .
 release:
   extra_files:
     - glob: ./carapace.db.gz
