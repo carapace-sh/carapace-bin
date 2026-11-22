@@ -17,7 +17,7 @@ func Elvish(completers []string) string {
 
 	envVars := "[E:CARAPACE_SHELL = 'elvish']"
 	if slices.Contains(env.Builtins(), "elvish") {
-		envVars = "[E:CARAPACE_SHELL = 'elvish'] [E:CARAPACE_SHELL_BUILTINS = (keys $builtin: | to-lines | slurp)]"
+		envVars = `[E:CARAPACE_SHELL = 'elvish'] [E:CARAPACE_SHELL_STATE = (try { var dir = (if (and (has-env XDG_RUNTIME_DIR) (path:is-dir $E:XDG_RUNTIME_DIR)) { path:join $E:XDG_RUNTIME_DIR carapace builtins (to-string (num (id -u))) (to-string (num $pid)) } else { mktemp -d (path:join (or (get-env TMPDIR) /tmp) carapace-builtin.XXXXXX) }); mkdir -p $dir; echo (keys $builtin: | to-lines) > (path:join $dir builtins); put $dir } catch { put '' })]`
 	}
 
 	snippet := `use builtin
