@@ -175,36 +175,34 @@ Even with state files, keep a defensive bridge path:
 
 ## Implementation plan
 
-1. **Branch and plan**
-   - Create `fix/shell-builtin-state-file`.
-   - Keep this plan updated as decisions are made.
+1. **Branch and plan** - done
+   - Created `fix/shell-builtin-state-file`.
+   - Plan updated as work progresses.
 
-2. **Go state reader**
-   - Add a small internal helper for reading shell state keys from `CARAPACE_SHELL_STATE`.
-   - Enforce path safety: absolute path, clean path, regular files only, size limit, no symlink traversal where supported.
-   - Update `pkg/actions/shell/shell.go` to use helper with env fallback.
+2. **Go state reader** - done
+   - Added `pkg/actions/shell/state.go` to read keys from `CARAPACE_SHELL_STATE` with legacy `CARAPACE_SHELL_*` env fallback.
+   - Enforced basic path safety: absolute clean dir, `os.OpenRoot`, regular file only, 1 MiB/100k line limits.
+   - Updated `pkg/actions/shell/shell.go` to use the helper.
 
-3. **Snippet generators**
-   - Update bash, bash-ble, oil, zsh, fish first (xargs/E2BIG path reported).
-   - Then update nushell, powershell, xonsh, elvish, tcsh/cmd-clink as applicable.
-   - Ensure capture writes names only.
-   - Ensure private directory/file permissions and atomic/overwritten writes.
-   - Add E2BIG/rc degradation safety net.
+3. **Snippet generators** - in progress
+   - Updated bash, bash-ble, oil, zsh, fish to write per-key state files and export `CARAPACE_SHELL_STATE`.
+   - Added E2BIG/exec-failure fallback: retry once with `CARAPACE_SHELL_STATE` unset for bash-family shells.
+   - Updated elvish, nushell, powershell, xonsh to write state files instead of exporting large env vars.
+   - tcsh/cmd-clink currently have no shell-internal builtin capture; no E2BIG state export path to migrate.
+   - Still to consider: stronger atomic temp+rename writes, stricter permission checks on existing dirs, Windows ACL behavior, and whether to treat `CARAPACE_SHELL_STATE` as internal.
 
-4. **Fixtures and tests**
-   - Update snippet fixtures under `cmd/carapace/cmd/snippet/_test/{builtins,env_builtins,...}`.
-   - Add Go tests for state-file reading, env fallback, permission/path validation, and size limits.
-   - Add snippet fixture coverage for state-dir export/write shape.
+4. **Fixtures and tests** - in progress
+   - Updated snippet fixtures for affected shells.
+   - Added Go tests for state-dir read, env fallback, relative-dir rejection, and missing-file fallback.
+   - Still to add: symlink/size-limit tests and integration coverage.
 
-5. **Docs**
-   - Update `docs/src/setup/environment.md` for `CARAPACE_BUILTINS` behavior and any new internal env var if it should be documented.
+5. **Docs** - pending
+   - Update `docs/src/setup/environment.md` and related docs if `CARAPACE_SHELL_STATE` becomes user-visible or needs internal mention.
    - Add release note/changelog entry as appropriate.
-   - Do not document variable-content capture unless implemented with an explicit insecure guard.
 
-6. **Validation**
-   - `go test ./cmd/carapace/cmd/snippet/... ./pkg/actions/shell/...`
-   - Broader `go test -v ./cmd/... ./man/...` as needed.
-   - `./custom-gcl run ./...` if Go code changes warrant lint.
+6. **Validation** - in progress
+   - Passed: `go test ./cmd/carapace/cmd/snippet/... ./pkg/actions/shell/... -count=1`.
+   - Pending: broader tests/lint as needed.
 
 ## Open questions
 
