@@ -47,12 +47,19 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           version: latest
-          args: release --clean
+          args: release --clean --skip publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           AUR_KEY: ${{ secrets.AUR_KEY }}
           FURY_TOKEN: ${{ secrets.FURY_TOKEN }}
           GORELEASER_GITHUB_TOKEN: ${{ secrets.GORELEASER_GITHUB_TOKEN }}
+
+      - name: Upload AUR package
+        uses: actions/upload-artifact@v7
+        with:
+          name: carapace-aur
+          path: dist/*amd64.apk
+          retention-days: 1
 
   man:
     runs-on: ubuntu-latest
