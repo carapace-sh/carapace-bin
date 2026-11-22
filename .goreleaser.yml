@@ -3,6 +3,7 @@ before:
   hooks:
     - go mod download
     - go generate ./cmd/...
+    - carapace-man compile man carapace.db.gz
 builds:
   - id: default
     env:
