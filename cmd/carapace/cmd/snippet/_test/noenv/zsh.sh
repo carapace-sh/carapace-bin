@@ -12,11 +12,28 @@ function _carapace_completer {
 
   # shellcheck disable=SC2086,SC2154,SC2155
   lines="$(echo "${compline}''" | xargs carapace "${command}" zsh 2>/dev/null)"
-  if [ $? -eq 1 ]; then
+  local _carapace_rc=$?
+  if [ $_carapace_rc -eq 1 ]; then
     lines="$(echo "${compline}'" | xargs carapace "${command}" zsh 2>/dev/null)"
-    if [ $? -eq 1 ]; then
+    _carapace_rc=$?
+    if [ $_carapace_rc -eq 1 ]; then
       lines="$(echo "${compline}\"" | xargs carapace "${command}" zsh 2>/dev/null)"
+      _carapace_rc=$?
     fi
+  fi
+  if [ $_carapace_rc -ne 0 ] && [ -n "${CARAPACE_SHELL_STATE:-}" ]; then
+    local _carapace_old_state="${CARAPACE_SHELL_STATE}"
+    unset CARAPACE_SHELL_STATE
+    lines="$(echo "${compline}''" | xargs carapace "${command}" zsh 2>/dev/null)"
+    _carapace_rc=$?
+    if [ $_carapace_rc -eq 1 ]; then
+      lines="$(echo "${compline}'" | xargs carapace "${command}" zsh 2>/dev/null)"
+      _carapace_rc=$?
+      if [ $_carapace_rc -eq 1 ]; then
+        lines="$(echo "${compline}\"" | xargs carapace "${command}" zsh 2>/dev/null)"
+      fi
+    fi
+    declare -x CARAPACE_SHELL_STATE="${_carapace_old_state}"
   fi
 
   local zstyle message noprefix data
@@ -36,6 +53,7 @@ function _carapace_completer {
 
     [[ ${#valuesArr[@]} -gt 1 ]] && _describe -t "${tag}" "${tag}" displaysArr valuesArr -Q -S ''
   done <<<"${data}"
+  [ -n "${_carapace_state_cleanup:-}" ] && rm -rf "$_carapace_state_cleanup"
 }
 
 compdef _carapace_completer example

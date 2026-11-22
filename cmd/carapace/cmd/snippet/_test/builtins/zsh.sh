@@ -9,19 +9,50 @@ function _carapace_completer {
   declare -x CARAPACE_COMPLINE="${words}"
   declare -x CARAPACE_ZSH_HASH_DIRS="$(hash -d)"
   declare -x CARAPACE_SHELL=zsh
-  declare -x CARAPACE_SHELL_ALIASES="${(k)aliases}"
-  declare -x CARAPACE_SHELL_BUILTINS="$(print -roC1 -- ${(k)builtins})"
-  declare -x CARAPACE_SHELL_FUNCTIONS="$(print -l ${(ok)functions})"
-  declare -x CARAPACE_SHELL_JOBS="$(print -l ${${(k)jobtexts}/#/%%%%})"
-  declare -x CARAPACE_SHELL_VARIABLES="$(print -l ${(ok)parameters})"
+  local _carapace_state _carapace_state_cleanup
+  _carapace_state=""
+  _carapace_state_cleanup=""
+  if [ -n "${XDG_RUNTIME_DIR:-}" ] && [ -d "${XDG_RUNTIME_DIR}" ] && [ -O "${XDG_RUNTIME_DIR}" ] && [ ! -L "${XDG_RUNTIME_DIR}" ]; then
+    _carapace_state="${XDG_RUNTIME_DIR}/carapace/builtins/${UID:-$(id -u)}/$$"
+  else
+    _carapace_state="$(mktemp -d "${TMPDIR:-/tmp}/carapace-builtin.XXXXXX" 2>/dev/null)" || _carapace_state=""
+    _carapace_state_cleanup="$_carapace_state"
+  fi
+  if [ -n "$_carapace_state" ] && mkdir -m 700 -p "$_carapace_state" 2>/dev/null && [ -O "$_carapace_state" ] && [ ! -L "$_carapace_state" ]; then
+    declare -x CARAPACE_SHELL_STATE="$_carapace_state"
+    print -l ${(k)aliases} > "$_carapace_state/aliases"
+    print -roC1 -- ${(k)builtins} > "$_carapace_state/builtins"
+    print -l ${(ok)functions} > "$_carapace_state/functions"
+    print -l ${${(k)jobtexts}/#/%%%%} > "$_carapace_state/jobs"
+    print -l ${(ok)parameters} > "$_carapace_state/variables"
+  else
+    unset CARAPACE_SHELL_STATE
+  fi
 
   # shellcheck disable=SC2086,SC2154,SC2155
   lines="$(echo "${compline}''" | xargs carapace "${command}" zsh 2>/dev/null)"
-  if [ $? -eq 1 ]; then
+  local _carapace_rc=$?
+  if [ $_carapace_rc -eq 1 ]; then
     lines="$(echo "${compline}'" | xargs carapace "${command}" zsh 2>/dev/null)"
-    if [ $? -eq 1 ]; then
+    _carapace_rc=$?
+    if [ $_carapace_rc -eq 1 ]; then
       lines="$(echo "${compline}\"" | xargs carapace "${command}" zsh 2>/dev/null)"
+      _carapace_rc=$?
     fi
+  fi
+  if [ $_carapace_rc -ne 0 ] && [ -n "${CARAPACE_SHELL_STATE:-}" ]; then
+    local _carapace_old_state="${CARAPACE_SHELL_STATE}"
+    unset CARAPACE_SHELL_STATE
+    lines="$(echo "${compline}''" | xargs carapace "${command}" zsh 2>/dev/null)"
+    _carapace_rc=$?
+    if [ $_carapace_rc -eq 1 ]; then
+      lines="$(echo "${compline}'" | xargs carapace "${command}" zsh 2>/dev/null)"
+      _carapace_rc=$?
+      if [ $_carapace_rc -eq 1 ]; then
+        lines="$(echo "${compline}\"" | xargs carapace "${command}" zsh 2>/dev/null)"
+      fi
+    fi
+    declare -x CARAPACE_SHELL_STATE="${_carapace_old_state}"
   fi
 
   local zstyle message noprefix data
@@ -41,6 +72,7 @@ function _carapace_completer {
 
     [[ ${#valuesArr[@]} -gt 1 ]] && _describe -t "${tag}" "${tag}" displaysArr valuesArr -Q -S ''
   done <<<"${data}"
+  [ -n "${_carapace_state_cleanup:-}" ] && rm -rf "$_carapace_state_cleanup"
 }
 
 compdef _carapace_completer example
