@@ -55,3 +55,35 @@ func TestReadShellKeyMissingFileFallsBack(t *testing.T) {
 		t.Fatalf("got %v want %v", got, want)
 	}
 }
+
+func TestReadShellKeyRejectsSymlink(t *testing.T) {
+	dir := t.TempDir()
+	target := filepath.Join(dir, "target")
+	if err := os.WriteFile(target, []byte("secret\n"), 0o600); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.Symlink(target, filepath.Join(dir, "functions")); err != nil {
+		t.Skip(err)
+	}
+	t.Setenv(shellStateEnv, dir)
+	t.Setenv("CARAPACE_SHELL_FUNCTIONS", "fallback")
+
+	got := readShellKey("functions")
+	want := []string{"fallback"}
+	if strings.Join(got, ",") != strings.Join(want, ",") {
+		t.Fatalf("got %v want %v", got, want)
+	}
+}
+
+func TestReadShellKeySizeLimit(t *testing.T) {
+	dir := t.TempDir()
+	if err := os.WriteFile(filepath.Join(dir, "functions"), []byte(strings.Repeat("a\n", maxStateLines+10)), 0o600); err != nil {
+		t.Fatal(err)
+	}
+	t.Setenv(shellStateEnv, dir)
+
+	got := readShellKey("functions")
+	if len(got) != maxStateLines {
+		t.Fatalf("got %d want %d", len(got), maxStateLines)
+	}
+}
