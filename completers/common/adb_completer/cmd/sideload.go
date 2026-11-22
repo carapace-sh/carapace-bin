@@ -17,6 +17,6 @@ func init() {
 	rootCmd.AddCommand(sideloadCmd)
 
 	carapace.Gen(sideloadCmd).PositionalCompletion(
-		carapace.ActionFiles(".zip"),
+		carapace.ActionFiles(".zip", ".bin"),
 	)
 }
