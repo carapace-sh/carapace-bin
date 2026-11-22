@@ -15,6 +15,9 @@ func testSnippetFixture(t *testing.T, shell string, file string, content string)
 		t.Fatal("failed to read fixture file")
 	}
 	expected := strings.ReplaceAll(string(b), "\r\n", "\n")
+	if configHome := os.Getenv("XDG_CONFIG_HOME"); configHome != "" {
+		expected = strings.ReplaceAll(expected, "/tmp/carapace-snippet-fixtures", filepath.ToSlash(configHome))
+	}
 	if runtime.GOOS == "windows" && expected != content+"\n" {
 		t.Skipf("fixture does not cover windows-specific snippet: %v", shell)
 	}
