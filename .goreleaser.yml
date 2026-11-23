@@ -39,7 +39,7 @@ archives:
     name_template: 'carapace-bin_{{ .Version }}_{{ .Os }}_{{ .Arch }}{{ with .Arm }}v{{ . }}{{ end }}{{ with .Mips }}_{{ . }}{{ end }}{{ if not (eq .Amd64 "v1") }}{{ .Amd64 }}{{ end }}'
     files:
       - src: ./carapace.db.gz
-        dst: .
+        dst: carapace.db.gz
     format_overrides:
       - goos: windows
         formats: ['zip']
@@ -49,7 +49,7 @@ archives:
     name_template: 'carapace-bin_{{ .Version }}_termux_{{ .Arch }}{{ with .Arm }}v{{ . }}{{ end }}{{ with .Mips }}_{{ . }}{{ end }}{{ if not (eq .Amd64 "v1") }}{{ .Amd64 }}{{ end }}'
     files:
       - src: ./carapace.db.gz
-        dst: .
+        dst: carapace.db.gz
 release:
   extra_files:
     - glob: ./carapace.db.gz
