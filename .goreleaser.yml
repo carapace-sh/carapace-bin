@@ -111,7 +111,7 @@ nfpms:
       - termux.deb
     contents:
       - src: carapace.db.gz
-        dst: /usr/share/carapace/man/carapace.db.gz
+        dst: '{{ if eq .Format "termux.deb" }}/data/data/com.termux/files{{ end }}/usr/share/carapace/man/carapace.db.gz'
         type: file
         file_info:
           mode: 0644
