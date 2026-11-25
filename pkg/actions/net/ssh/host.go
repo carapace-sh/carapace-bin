@@ -26,8 +26,12 @@ func ActionHosts(configPath string) carapace.Action {
 			knownOpts = append(knownOpts, knownhosts.WithHomeDir(home))
 		}
 		knownFromConfig, _ := knownhosts.IndexFromConfigPaths(idx.KnownHostsFiles(), knownOpts...)
-		knownDefault, _ := knownhosts.IndexDefault(knownOpts...)
-		hosts = knownhosts.Merge(hosts, knownFromConfig.HostCandidates(), knownDefault.HostCandidates())
+		if configPath == "" {
+			knownDefault, _ := knownhosts.IndexDefault(knownOpts...)
+			hosts = knownhosts.Merge(hosts, knownFromConfig.HostCandidates(), knownDefault.HostCandidates())
+		} else if len(knownFromConfig.HostCandidates()) > 0 {
+			hosts = knownhosts.Merge(hosts, knownFromConfig.HostCandidates())
+		}
 
 		return carapace.ActionValues(hosts...).Tag("ssh hosts")
 	})

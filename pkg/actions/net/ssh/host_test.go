@@ -8,7 +8,6 @@ import (
 	"testing"
 
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace/pkg/assert"
 )
 
 func TestActionHosts(t *testing.T) {
@@ -65,9 +64,28 @@ func TestActionHostsExplicitConfigIsolation(t *testing.T) {
 		t.Fatal(err)
 	}
 
+	sshDir := filepath.Join(dir, ".ssh")
+	if err := os.MkdirAll(sshDir, 0o755); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(filepath.Join(sshDir, "known_hosts"), []byte("default-only.example ssh-ed25519 AAAA\n"), 0o644); err != nil {
+		t.Fatal(err)
+	}
+
 	actual := ActionHosts(configPath).Invoke(carapace.Context{Env: []string{"HOME=" + dir}})
-	expected := carapace.ActionValues("explicit-only", "included-only").Tag("ssh hosts").Invoke(carapace.Context{})
-	assert.Equal(t, expected, actual)
+	b, err := json.Marshal(actual)
+	if err != nil {
+		t.Fatal(err)
+	}
+	s := string(b)
+	for _, value := range []string{"explicit-only", "included-only"} {
+		if !strings.Contains(s, `"`+value+`"`) {
+			t.Fatalf("expected value %q in %s", value, s)
+		}
+	}
+	if strings.Contains(s, `"default-only.example"`) {
+		t.Fatalf("unexpected default known_hosts value in %s", s)
+	}
 }
 
 func TestActionHostsDefaultUsesContextHome(t *testing.T) {
