@@ -66,10 +66,6 @@ func actionYesNo() carapace.Action {
 	return carapace.ActionValues("no", "yes").StyleF(style.ForKeyword)
 }
 
-func actionYesNoAsk(values ...string) carapace.Action {
-	return carapace.ActionValues(values...).StyleF(style.ForKeyword)
-}
-
 // ActionKexAlgorithms completes key exchange algorithms
 func ActionKexAlgorithms() carapace.Action {
 	return actionQuery("kex", "kex algorithms", "kex-algorithm")
@@ -136,7 +132,7 @@ func ActionOptions() carapace.Action {
 			"BindAddress":                      actionYesNo(),
 			"CanonicalDomains":                 carapace.ActionValues(),
 			"CanonicalizeFallbackLocal":        actionYesNo(),
-			"CanonicalizeHostname":             actionYesNoAsk("always", "no", "yes"),
+			"CanonicalizeHostname":             carapace.ActionValues("always", "no", "yes").StyleF(style.ForKeyword),
 			"CanonicalizeMaxDots":              carapace.ActionValues(),
 			"CanonicalizePermittedCNAMEs":      carapace.ActionValues(),
 			"CASignatureAlgorithms":            ActionSignatureAlgorithms(),
