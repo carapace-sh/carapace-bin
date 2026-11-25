@@ -123,14 +123,6 @@ func ActionIdentityAgents() carapace.Action {
 	})
 }
 
-// ActionKnownHostsFiles completes known hosts file values
-func ActionKnownHostsFiles() carapace.Action {
-	return carapace.Batch(
-		carapace.ActionValues("none"),
-		carapace.ActionFiles(),
-	).ToA()
-}
-
 // ActionOptions completes options and their values
 //
 //	AddKeysToAgent
@@ -168,7 +160,7 @@ func ActionOptions() carapace.Action {
 			"ForwardX11Timeout":                carapace.ActionValues("0", "5m", "10m", "30m", "1h"),
 			"ForwardX11Trusted":                actionYesNo(),
 			"GatewayPorts":                     actionYesNo(),
-			"GlobalKnownHostsFile":             ActionKnownHostsFiles(),
+			"GlobalKnownHostsFile":             carapace.Batch(carapace.ActionValues("none"), carapace.ActionFiles()).ToA(),
 			"GSSAPIAuthentication":             actionYesNo(),
 			"HashKnownHosts":                   actionYesNo(),
 			"Host":                             ActionHosts(""),
@@ -220,7 +212,7 @@ func ActionOptions() carapace.Action {
 			"TunnelDevice":                     carapace.ActionValues(),
 			"UpdateHostKeys":                   carapace.ActionValues("ask", "no", "yes"),
 			"User":                             os.ActionUsers(),
-			"UserKnownHostsFile":               ActionKnownHostsFiles(),
+			"UserKnownHostsFile":               carapace.Batch(carapace.ActionValues("none"), carapace.ActionFiles()).ToA(),
 			"VerifyHostKeyDNS":                 carapace.ActionValues("ask", "no", "yes"),
 			"VisualHostKey":                    actionYesNo(),
 			"XAuthLocation":                    carapace.ActionFiles(),
