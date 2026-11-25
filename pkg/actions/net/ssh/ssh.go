@@ -12,6 +12,41 @@ import (
 	"github.com/carapace-sh/carapace/pkg/style"
 )
 
+// ActionCiphers completes ciphers
+//
+//	3des-cbc
+//	aes128-cbc
+func ActionCiphers() carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		return carapace.ActionExecCommand("ssh", "-Q", "cipher")(func(output []byte) carapace.Action {
+			lines := strings.Split(strings.TrimSpace(string(output)), "\n")
+			if len(lines) == 1 && lines[0] == "" {
+				lines = nil
+			}
+			if len(lines) > 0 {
+				return carapace.ActionValues(lines...)
+			}
+			return carapace.ActionValues("3des-cbc", "aes128-cbc", "aes128-ctr", "aes192-cbc", "aes192-ctr", "aes256-cbc", "aes256-ctr", "arcfour", "arcfour128", "arcfour256", "blowfish-cbc", "cast128-cbc")
+		})
+	})
+}
+
+// ActionHostKeyAlgorithms completes host key algorithms
+//
+//	ssh-ed25519
+//	ssh-ed25519-cert-v01@openssh.com
+func ActionHostKeyAlgorithms() carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		return carapace.ActionExecCommand("ssh", "-Q", "HostKeyAlgorithms")(func(output []byte) carapace.Action {
+			lines := strings.Split(strings.TrimSpace(string(output)), "\n")
+			if len(lines) == 1 && lines[0] == "" {
+				return carapace.ActionValues()
+			}
+			return carapace.ActionValues(lines...)
+		})
+	})
+}
+
 func actionQuery(query string, fallback ...string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("ssh", "-Q", query)(func(output []byte) carapace.Action {
@@ -35,7 +70,28 @@ func actionYesNoAsk(values ...string) carapace.Action {
 	return carapace.ActionValues(values...).StyleF(style.ForKeyword)
 }
 
-func actionMatch() carapace.Action {
+// ActionKexAlgorithms completes key exchange algorithms
+func ActionKexAlgorithms() carapace.Action {
+	return actionQuery("kex")
+}
+
+// ActionMACs completes message authentication code algorithms
+func ActionMACs() carapace.Action {
+	return actionQuery("mac")
+}
+
+// ActionSignatureAlgorithms completes signature algorithms
+func ActionSignatureAlgorithms() carapace.Action {
+	return actionQuery("sig")
+}
+
+// ActionKeyTypes completes key types
+func ActionKeyTypes() carapace.Action {
+	return actionQuery("key")
+}
+
+// ActionMatchCriteria completes Match criteria
+func ActionMatchCriteria() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		criteria := option.MatchCriteria()
 		vals := make([]string, 0, len(criteria))
@@ -46,7 +102,8 @@ func actionMatch() carapace.Action {
 	})
 }
 
-func actionIdentityAgent() carapace.Action {
+// ActionIdentityAgents completes identity agent values
+func ActionIdentityAgents() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		vals := []string{"none", "SSH_AUTH_SOCK"}
 		seen := map[string]struct{}{"none": {}, "SSH_AUTH_SOCK": {}}
@@ -66,27 +123,12 @@ func actionIdentityAgent() carapace.Action {
 	})
 }
 
-func actionKnownHostsFiles() carapace.Action {
+// ActionKnownHostsFiles completes known hosts file values
+func ActionKnownHostsFiles() carapace.Action {
 	return carapace.Batch(
 		carapace.ActionValues("none"),
 		carapace.ActionFiles(),
 	).ToA()
-}
-
-// ActionCiphers completes ciphers
-//
-//	3des-cbc
-//	aes128-cbc
-func ActionCiphers() carapace.Action {
-	return actionQuery("cipher", "3des-cbc", "aes128-cbc", "aes128-ctr", "aes192-cbc", "aes192-ctr", "aes256-cbc", "aes256-ctr", "arcfour", "arcfour128", "arcfour256", "blowfish-cbc", "cast128-cbc")
-}
-
-// ActionHostKeyAlgorithms completes host key algorithms
-//
-//	ssh-ed25519
-//	ssh-ed25519-cert-v01@openssh.com
-func ActionHostKeyAlgorithms() carapace.Action {
-	return actionQuery("HostKeyAlgorithms")
 }
 
 // ActionOptions completes options and their values
@@ -105,7 +147,7 @@ func ActionOptions() carapace.Action {
 			"CanonicalizeHostname":             actionYesNoAsk("always", "no", "yes"),
 			"CanonicalizeMaxDots":              carapace.ActionValues(),
 			"CanonicalizePermittedCNAMEs":      carapace.ActionValues(),
-			"CASignatureAlgorithms":            actionQuery("sig"),
+			"CASignatureAlgorithms":            ActionSignatureAlgorithms(),
 			"CertificateFile":                  carapace.ActionFiles(),
 			"ChallengeResponseAuthentication":  actionYesNo(),
 			"CheckHostIP":                      actionYesNo(),
@@ -126,28 +168,28 @@ func ActionOptions() carapace.Action {
 			"ForwardX11Timeout":                carapace.ActionValues("0", "5m", "10m", "30m", "1h"),
 			"ForwardX11Trusted":                actionYesNo(),
 			"GatewayPorts":                     actionYesNo(),
-			"GlobalKnownHostsFile":             actionKnownHostsFiles(),
+			"GlobalKnownHostsFile":             ActionKnownHostsFiles(),
 			"GSSAPIAuthentication":             actionYesNo(),
 			"HashKnownHosts":                   actionYesNo(),
 			"Host":                             ActionHosts(""),
 			"HostbasedAuthentication":          actionYesNo(),
-			"HostbasedKeyTypes":                actionQuery("key"),
+			"HostbasedKeyTypes":                ActionKeyTypes(),
 			"HostKeyAlgorithms":                ActionHostKeyAlgorithms(),
 			"HostKeyAlias":                     carapace.ActionValues(),
 			"Hostname":                         carapace.ActionValues(),
 			"IdentitiesOnly":                   actionYesNo(),
-			"IdentityAgent":                    actionIdentityAgent(),
+			"IdentityAgent":                    ActionIdentityAgents(),
 			"IdentityFile":                     carapace.ActionFiles(),
 			"IPQoS":                            carapace.ActionValues("af11", "af12", "af13", "af21", "af22", "af23", "af31", "af32", "af33", "af41", "af42", "af43", "cs0", "cs1", "cs2", "cs3", "cs4", "cs5", "cs6", "cs7", "ef", "le", "lowdelay", "none", "reliability", "throughput"),
 			"KbdInteractiveAuthentication":     actionYesNo(),
 			"KbdInteractiveDevices":            carapace.ActionValues("bsdauth", "pam", "skey"),
-			"KexAlgorithms":                    actionQuery("kex"),
+			"KexAlgorithms":                    ActionKexAlgorithms(),
 			"KnownHostsCommand":                carapace.ActionFiles(),
 			"LocalCommand":                     carapace.ActionValues(),
 			"LocalForward":                     carapace.ActionValues(),
 			"LogLevel":                         carapace.ActionValues("DEBUG", "DEBUG1", "DEBUG2", "DEBUG3", "ERROR", "FATAL", "INFO", "QUIET", "VERBOSE"),
-			"MACs":                             actionQuery("mac"),
-			"Match":                            actionMatch(),
+			"MACs":                             ActionMACs(),
+			"Match":                            ActionMatchCriteria(),
 			"NoHostAuthenticationForLocalhost": actionYesNo(),
 			"NumberOfPasswordPrompts":          carapace.ActionValues("1", "2", "3"),
 			"PasswordAuthentication":           actionYesNo(),
@@ -158,7 +200,7 @@ func ActionOptions() carapace.Action {
 			"ProxyCommand":                     carapace.ActionValues(),
 			"ProxyJump":                        ActionHosts(""),
 			"ProxyUseFdpass":                   actionYesNo(),
-			"PubkeyAcceptedKeyTypes":           actionQuery("key"),
+			"PubkeyAcceptedKeyTypes":           ActionKeyTypes(),
 			"PubkeyAuthentication":             actionYesNo(),
 			"RekeyLimit":                       carapace.ActionValues("default", "1G", "1h"),
 			"RemoteCommand":                    carapace.ActionValues(),
@@ -178,7 +220,7 @@ func ActionOptions() carapace.Action {
 			"TunnelDevice":                     carapace.ActionValues(),
 			"UpdateHostKeys":                   carapace.ActionValues("ask", "no", "yes"),
 			"User":                             os.ActionUsers(),
-			"UserKnownHostsFile":               actionKnownHostsFiles(),
+			"UserKnownHostsFile":               ActionKnownHostsFiles(),
 			"VerifyHostKeyDNS":                 carapace.ActionValues("ask", "no", "yes"),
 			"VisualHostKey":                    actionYesNo(),
 			"XAuthLocation":                    carapace.ActionFiles(),
