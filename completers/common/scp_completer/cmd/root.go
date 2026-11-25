@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"strings"
+
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/completers/common/scp_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/net/ssh"
@@ -75,6 +77,9 @@ func init() {
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 			target, _, ok := destination.SplitSCPRemote(c.Value)
 			if !ok {
+				if prefix, _, ok := strings.Cut(c.Value, "@"); ok {
+					return action.ActionHosts(rootCmd).Prefix(prefix + "@").NoSpace()
+				}
 				return carapace.Batch(
 					action.ActionHosts(rootCmd).NoSpace(),
 					carapace.ActionFiles(),
