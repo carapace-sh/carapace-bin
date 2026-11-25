@@ -1,9 +1,12 @@
 package cmd
 
 import (
+	"strings"
+
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/net"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/net/ssh"
+	"github.com/carapace-sh/carapace-ssh/destination"
 	"github.com/spf13/cobra"
 )
 
@@ -58,7 +61,26 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PositionalCompletion(
-		actionHosts(rootCmd),
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			if strings.Contains(c.Value, ":") || destination.IsURI(c.Value) {
+				if remote, ok := destination.ParseRemote(c.Value); ok && remote.URI {
+					user := ""
+					if remote.Target.User != "" {
+						user = remote.Target.User + "@"
+					}
+					return actionHosts(rootCmd).Invoke(c).Prefix(user).Suffix(":").Filter(remote.Target.Host).ToA().NoSpace()
+				}
+				target, _, _ := destination.SplitSCPRemote(c.Value)
+				user := ""
+				host := target
+				if t := destination.ParseTarget(target); t.User != "" {
+					user = t.User + "@"
+					host = t.Host
+				}
+				return actionHosts(rootCmd).Invoke(c).Prefix(user).Suffix(":").Filter(host).ToA().NoSpace()
+			}
+			return actionHosts(rootCmd)
+		}),
 	)
 }
 
