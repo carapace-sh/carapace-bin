@@ -61,7 +61,10 @@ func ActionHosts() carapace.Action {
 	}).Tag("known hosts")
 }
 
-// ActionUserHosts completes known hosts, preserving a user@ prefix.
+// ActionUserHosts completes known hosts with a user prefix
+//
+//	user@192.168.1.1
+//	user@pihole
 func ActionUserHosts() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if prefix, _, ok := strings.Cut(c.Value, "@"); ok {

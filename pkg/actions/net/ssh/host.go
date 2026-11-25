@@ -9,7 +9,10 @@ import (
 	"github.com/carapace-sh/carapace-ssh/knownhosts"
 )
 
-// ActionHosts completes ssh hosts.
+// ActionHosts completes ssh hosts
+//
+//	github.com
+//	gitlab.com
 func ActionHosts(configPath string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		home := homeDir(c)
@@ -38,7 +41,10 @@ func ActionHosts(configPath string) carapace.Action {
 	})
 }
 
-// ActionUserHosts completes ssh hosts, preserving a user@ prefix.
+// ActionUserHosts completes ssh hosts with a user prefix
+//
+//	user@github.com
+//	user@gitlab.com
 func ActionUserHosts(configPath string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		if prefix, _, ok := strings.Cut(c.Value, "@"); ok {
