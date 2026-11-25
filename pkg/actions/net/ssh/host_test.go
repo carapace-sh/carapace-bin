@@ -33,18 +33,20 @@ Host all-host
 		t.Fatal(err)
 	}
 
-	actual := ActionHosts(configPath).Invoke(carapace.Context{})
-	expected := carapace.ActionValues(
-		"all-host",
-		"alpha",
-		"from-command",
-		"from-exec",
-		"jump",
-		"prod",
-		"prod-db",
-	).Tag("ssh hosts").Invoke(carapace.Context{})
-
-	assert.Equal(t, expected, actual)
+	actual := ActionHosts(configPath).Invoke(carapace.Context{Env: []string{"HOME=" + dir}})
+	b, err := json.Marshal(actual)
+	if err != nil {
+		t.Fatal(err)
+	}
+	s := string(b)
+	for _, value := range []string{"all-host", "alpha", "from-command", "from-exec", "jump", "prod", "prod-db"} {
+		if !strings.Contains(s, `"`+value+`"`) {
+			t.Fatalf("expected value %q in %s", value, s)
+		}
+	}
+	if !strings.Contains(s, `"ssh hosts"`) {
+		t.Fatalf("expected tag in %s", s)
+	}
 
 	if _, err := os.Stat(filepath.Join(dir, "marker")); !os.IsNotExist(err) {
 		t.Fatalf("expected Match exec to not run, marker stat err: %v", err)
@@ -63,7 +65,7 @@ func TestActionHostsExplicitConfigIsolation(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	actual := ActionHosts(configPath).Invoke(carapace.Context{})
+	actual := ActionHosts(configPath).Invoke(carapace.Context{Env: []string{"HOME=" + dir}})
 	expected := carapace.ActionValues("explicit-only", "included-only").Tag("ssh hosts").Invoke(carapace.Context{})
 	assert.Equal(t, expected, actual)
 }
@@ -92,6 +94,35 @@ func TestActionHostsDefaultUsesContextHome(t *testing.T) {
 	}
 	s := string(b)
 	for _, value := range []string{"extra-host", "home-host"} {
+		if !strings.Contains(s, `"`+value+`"`) {
+			t.Fatalf("expected value %q in %s", value, s)
+		}
+	}
+}
+
+func TestActionHostsMergesKnownHosts(t *testing.T) {
+	dir := t.TempDir()
+	sshDir := filepath.Join(dir, ".ssh")
+	if err := os.MkdirAll(sshDir, 0o755); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(filepath.Join(sshDir, "config"), []byte("Host config-host\nUserKnownHostsFile ~/.ssh/known_hosts.custom\n"), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(filepath.Join(sshDir, "known_hosts"), []byte("default.example ssh-ed25519 AAAA\n"), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(filepath.Join(sshDir, "known_hosts.custom"), []byte("custom.example ssh-ed25519 AAAA\n"), 0o644); err != nil {
+		t.Fatal(err)
+	}
+
+	actual := ActionHosts("").Invoke(carapace.Context{Env: []string{"HOME=" + dir}})
+	b, err := json.Marshal(actual)
+	if err != nil {
+		t.Fatal(err)
+	}
+	s := string(b)
+	for _, value := range []string{"config-host", "custom.example", "default.example"} {
 		if !strings.Contains(s, `"`+value+`"`) {
 			t.Fatalf("expected value %q in %s", value, s)
 		}

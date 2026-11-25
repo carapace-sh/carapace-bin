@@ -5,17 +5,30 @@ import (
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-ssh/config"
+	"github.com/carapace-sh/carapace-ssh/knownhosts"
 )
 
 // ActionHosts completes ssh hosts.
 func ActionHosts(configPath string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		opts := make([]config.Option, 0, 1)
-		if home := homeDir(c); home != "" {
-			opts = append(opts, config.WithHomeDir(home))
+		home := homeDir(c)
+
+		configOpts := make([]config.Option, 0, 1)
+		if home != "" {
+			configOpts = append(configOpts, config.WithHomeDir(home))
 		}
 
-		hosts, _ := config.HostCandidates(configPath, opts...)
+		idx, _ := config.IndexConfig(configPath, configOpts...)
+		hosts := idx.HostCandidates()
+
+		knownOpts := make([]knownhosts.Option, 0, 1)
+		if home != "" {
+			knownOpts = append(knownOpts, knownhosts.WithHomeDir(home))
+		}
+		knownFromConfig, _ := knownhosts.IndexFromConfigPaths(idx.KnownHostsFiles(), knownOpts...)
+		knownDefault, _ := knownhosts.IndexDefault(knownOpts...)
+		hosts = knownhosts.Merge(hosts, knownFromConfig.HostCandidates(), knownDefault.HostCandidates())
+
 		return carapace.ActionValues(hosts...).Tag("ssh hosts")
 	})
 }
