@@ -1,0 +1,12 @@
+ssh-ed25519: |
+  Ed25519 signature algorithm.
+ecdsa-sha2-nistp256: |
+  ECDSA signature using NIST P-256 and SHA-256.
+ecdsa-sha2-nistp384: |
+  ECDSA signature using NIST P-384 and SHA-384.
+ecdsa-sha2-nistp521: |
+  ECDSA signature using NIST P-521 and SHA-512.
+rsa-sha2-256: |
+  RSA signature using SHA-256.
+rsa-sha2-512: |
+  RSA signature using SHA-512.

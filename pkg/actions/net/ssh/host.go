@@ -1,34 +1,65 @@
 package ssh
 
 import (
+	"os"
 	"strings"
 
 	"github.com/carapace-sh/carapace"
-	"github.com/kevinburke/ssh_config"
+	"github.com/carapace-sh/carapace-ssh/config"
+	"github.com/carapace-sh/carapace-ssh/knownhosts"
 )
 
 // ActionHosts completes ssh hosts
 //
 //	github.com
-//	example.com
-func ActionHosts(config string) carapace.Action {
+//	gitlab.com
+func ActionHosts(configPath string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		settings := ssh_config.DefaultUserSettings
-		if config != "" {
-			// TODO this skips the system config
-			settings.ConfigFinder(func() string {
-				return config
-			})
+		home := homeDir(c)
+
+		configOpts := make([]config.Option, 0, 1)
+		if home != "" {
+			configOpts = append(configOpts, config.WithHomeDir(home))
 		}
 
-		vals := make([]string, 0)
-		for _, host := range settings.GetHosts() {
-			for _, pattern := range host.Patterns {
-				if s := strings.ReplaceAll(pattern.String(), `\`, ""); !strings.ContainsAny(s, `+*?()|[]{}^$!`) {
-					vals = append(vals, s)
-				}
-			}
+		idx, _ := config.IndexConfig(configPath, configOpts...)
+		hosts := idx.HostCandidates()
+
+		knownOpts := make([]knownhosts.Option, 0, 1)
+		if home != "" {
+			knownOpts = append(knownOpts, knownhosts.WithHomeDir(home))
 		}
-		return carapace.ActionValues(vals...)
-	}).Tag("ssh hosts")
+		knownFromConfig, _ := knownhosts.IndexFromConfigPaths(idx.KnownHostsFiles(), knownOpts...)
+		if configPath == "" {
+			knownDefault, _ := knownhosts.IndexDefault(knownOpts...)
+			hosts = knownhosts.Merge(hosts, knownFromConfig.HostCandidates(), knownDefault.HostCandidates())
+		} else if len(knownFromConfig.HostCandidates()) > 0 {
+			hosts = knownhosts.Merge(hosts, knownFromConfig.HostCandidates())
+		}
+
+		return carapace.ActionValues(hosts...).Tag("ssh hosts")
+	})
+}
+
+// ActionUserHosts completes ssh hosts with a user prefix
+//
+//	user@github.com
+//	user@gitlab.com
+func ActionUserHosts(configPath string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		if prefix, _, ok := strings.Cut(c.Value, "@"); ok {
+			return ActionHosts(configPath).Prefix(prefix + "@")
+		}
+		return ActionHosts(configPath)
+	})
+}
+
+func homeDir(c carapace.Context) string {
+	if h, ok := c.LookupEnv("HOME"); ok && h != "" {
+		return h
+	}
+	if h, err := os.UserHomeDir(); err == nil {
+		return h
+	}
+	return ""
 }

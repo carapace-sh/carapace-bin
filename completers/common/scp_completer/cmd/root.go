@@ -1,9 +1,12 @@
 package cmd
 
 import (
+	"strings"
+
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/net"
+	"github.com/carapace-sh/carapace-bin/completers/common/scp_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/net/ssh"
+	"github.com/carapace-sh/carapace-ssh/destination"
 	"github.com/spf13/cobra"
 )
 
@@ -47,7 +50,7 @@ func init() {
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
 		"D": carapace.ActionFiles(),
 		"F": carapace.ActionFiles(),
-		"J": net.ActionHosts(),
+		"J": action.ActionHosts(rootCmd),
 		"S": carapace.ActionFiles(),
 		"X": carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
@@ -71,17 +74,26 @@ func init() {
 	})
 
 	carapace.Gen(rootCmd).PositionalAnyCompletion(
-		carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
-			switch len(c.Parts) {
-			case 0:
+		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+			target, _, ok := destination.SplitSCPRemote(c.Value)
+			if !ok {
+				if prefix, _, ok := strings.Cut(c.Value, "@"); ok {
+					return action.ActionHosts(rootCmd).Prefix(prefix + "@").Suffix(":").NoSpace()
+				}
 				return carapace.Batch(
-					net.ActionHosts(),
-					ssh.ActionHosts(rootCmd.Flag("F").Value.String()).Style("yellow"),
+					action.ActionHosts(rootCmd).Suffix(":").NoSpace(),
 					carapace.ActionFiles(),
-				).ToA().NoSpace()
-			default:
-				return carapace.ActionValues()
+				).ToA()
 			}
+
+			user := ""
+			host := target
+			if t := destination.ParseTarget(target); t.User != "" {
+				user = t.User + "@"
+				host = t.Host
+			}
+
+			return action.ActionHosts(rootCmd).Invoke(c).Prefix(user).Suffix(":").Filter(host).ToA().NoSpace()
 		}),
 	)
 }

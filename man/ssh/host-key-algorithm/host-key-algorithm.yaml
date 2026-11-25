@@ -1,0 +1,16 @@
+ssh-ed25519: |
+  Ed25519 host key algorithm. Modern, fast, and recommended when supported.
+ssh-ed25519-cert-v01@openssh.com: |
+  Ed25519 OpenSSH certificate host key type.
+ecdsa-sha2-nistp256: |
+  ECDSA host key using NIST P-256 with SHA-256.
+ecdsa-sha2-nistp384: |
+  ECDSA host key using NIST P-384 with SHA-384.
+ecdsa-sha2-nistp521: |
+  ECDSA host key using NIST P-521 with SHA-512.
+rsa-sha2-256: |
+  RSA host key with SHA-256 signatures.
+rsa-sha2-512: |
+  RSA host key with SHA-512 signatures.
+ssh-rsa: |
+  RSA host key using legacy SHA-1 signatures. Retained for compatibility; prefer rsa-sha2-* when available.

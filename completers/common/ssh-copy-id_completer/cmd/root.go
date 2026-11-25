@@ -45,9 +45,12 @@ func init() {
 		carapace.ActionMultiParts("@", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				return os.ActionUsers().Invoke(c).Suffix("@").ToA()
+				return carapace.Batch(
+					os.ActionUsers().Invoke(c).Suffix("@").ToA(),
+					ssh.ActionHosts(""),
+				).ToA()
 			case 1:
-				return net.ActionHosts()
+				return ssh.ActionHosts("")
 			default:
 				return carapace.ActionValues()
 			}

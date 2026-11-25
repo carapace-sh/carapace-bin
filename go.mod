@@ -11,6 +11,7 @@ require (
 	github.com/carapace-sh/carapace-selfupdate v0.1.0
 	github.com/carapace-sh/carapace-shlex/v2 v2.1.4
 	github.com/carapace-sh/carapace-spec v1.10.2
+	github.com/carapace-sh/carapace-ssh v0.0.1
 	github.com/micromdm/plist v0.4.0
 	github.com/pelletier/go-toml v1.9.5
 	github.com/spf13/cobra v1.10.2
@@ -22,16 +23,10 @@ require (
 )
 
 require (
+	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/kr/pretty v0.1.0 // indirect
 	github.com/pelletier/go-toml/v2 v2.4.3 // indirect
 	gopkg.in/check.v1 v1.0.0-20180628173108-788fd7840127 // indirect
 )
 
-require (
-	github.com/inconshreveable/mousetrap v1.1.0 // indirect
-	github.com/kevinburke/ssh_config v1.4.0
-)
-
 replace github.com/spf13/pflag => github.com/carapace-sh/carapace-pflag v1.3.0
-
-replace github.com/kevinburke/ssh_config => github.com/carapace-sh/ssh_config v1.4.1-0.20260319075335-4f04016b8b4b
