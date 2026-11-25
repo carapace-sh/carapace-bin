@@ -62,10 +62,6 @@ func actionQuery(query, tag, uid string, fallback ...string) carapace.Action {
 	}).Tag(tag).Uid("ssh", uid)
 }
 
-func actionYesNo() carapace.Action {
-	return carapace.ActionValues("no", "yes").StyleF(style.ForKeyword)
-}
-
 // ActionKexAlgorithms completes key exchange algorithms
 func ActionKexAlgorithms() carapace.Action {
 	return actionQuery("kex", "kex algorithms", "kex-algorithm")
@@ -125,6 +121,10 @@ func ActionIdentityAgents() carapace.Action {
 //	AddressFamily=inet
 func ActionOptions() carapace.Action {
 	return carapace.ActionMultiParts("=", func(c carapace.Context) carapace.Action {
+		actionYesNo := func() carapace.Action {
+			return carapace.ActionValues("no", "yes").StyleF(style.ForKeyword)
+		}
+
 		options := map[string]carapace.Action{
 			"AddKeysToAgent":                   carapace.ActionValues("ask", "confirm", "no", "yes"),
 			"AddressFamily":                    carapace.ActionValues("any", "inet", "inet6"),
