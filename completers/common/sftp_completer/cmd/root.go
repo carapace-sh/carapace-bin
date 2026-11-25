@@ -80,7 +80,7 @@ func init() {
 				return action.ActionHosts(rootCmd).Invoke(c).Prefix(user).Suffix(":").Filter(host).ToA().NoSpace()
 			}
 			if prefix, _, ok := strings.Cut(c.Value, "@"); ok {
-				return action.ActionHosts(rootCmd).Prefix(prefix + "@")
+				return action.ActionHosts(rootCmd).Prefix(prefix + "@").Suffix(":").NoSpace()
 			}
 			return action.ActionHosts(rootCmd)
 		}),

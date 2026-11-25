@@ -2,6 +2,7 @@ package ssh
 
 import (
 	"os"
+	"strings"
 
 	"github.com/carapace-sh/carapace"
 	"github.com/carapace-sh/carapace-ssh/config"
@@ -34,6 +35,16 @@ func ActionHosts(configPath string) carapace.Action {
 		}
 
 		return carapace.ActionValues(hosts...).Tag("ssh hosts")
+	})
+}
+
+// ActionUserHosts completes ssh hosts, preserving a user@ prefix.
+func ActionUserHosts(configPath string) carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		if prefix, _, ok := strings.Cut(c.Value, "@"); ok {
+			return ActionHosts(configPath).Prefix(prefix + "@")
+		}
+		return ActionHosts(configPath)
 	})
 }
 

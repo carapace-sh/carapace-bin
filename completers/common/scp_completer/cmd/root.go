@@ -78,10 +78,10 @@ func init() {
 			target, _, ok := destination.SplitSCPRemote(c.Value)
 			if !ok {
 				if prefix, _, ok := strings.Cut(c.Value, "@"); ok {
-					return action.ActionHosts(rootCmd).Prefix(prefix + "@").NoSpace()
+					return action.ActionHosts(rootCmd).Prefix(prefix + "@").Suffix(":").NoSpace()
 				}
 				return carapace.Batch(
-					action.ActionHosts(rootCmd).NoSpace(),
+					action.ActionHosts(rootCmd).Suffix(":").NoSpace(),
 					carapace.ActionFiles(),
 				).ToA()
 			}
