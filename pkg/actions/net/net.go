@@ -61,6 +61,16 @@ func ActionHosts() carapace.Action {
 	}).Tag("known hosts")
 }
 
+// ActionUserHosts completes known hosts, preserving a user@ prefix.
+func ActionUserHosts() carapace.Action {
+	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
+		if prefix, _, ok := strings.Cut(c.Value, "@"); ok {
+			return ActionHosts().Prefix(prefix + "@")
+		}
+		return ActionHosts()
+	})
+}
+
 type IncludedDevices struct {
 	Bluetooth   bool
 	Bond        bool
