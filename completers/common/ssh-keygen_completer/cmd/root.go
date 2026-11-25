@@ -71,7 +71,7 @@ func init() {
 		"F": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				return net.ActionHosts().NoSpace()
+				return ssh.ActionHosts("").NoSpace()
 			case 1:
 				return net.ActionPorts()
 			default:
@@ -86,7 +86,7 @@ func init() {
 		"R": carapace.ActionMultiParts(":", func(c carapace.Context) carapace.Action {
 			switch len(c.Parts) {
 			case 0:
-				return net.ActionHosts().NoSpace()
+				return ssh.ActionHosts("").NoSpace()
 			case 1:
 				return net.ActionPorts()
 			default:
@@ -121,9 +121,9 @@ func init() {
 		),
 		"n": carapace.Batch(
 			os.ActionUsers(),
-			net.ActionHosts(),
+			ssh.ActionHosts(""),
 		).ToA().UniqueList(","),
-		"r": net.ActionHosts(),
+		"r": ssh.ActionHosts(""),
 		"s": carapace.ActionFiles(),
 		"t": carapace.ActionValues("dsa", "ecdsa", "ecdsa-sk", "ed25519", "ed25519-sk", "rsa"),
 		"w": carapace.ActionFiles(),

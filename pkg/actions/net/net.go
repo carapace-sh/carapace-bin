@@ -2,11 +2,13 @@
 package net
 
 import (
+	"net"
 	"os"
 	"regexp"
 	"strings"
 
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-ssh/knownhosts"
 	"github.com/carapace-sh/carapace/pkg/execlog"
 	"github.com/carapace-sh/carapace/pkg/style"
 )
@@ -17,26 +19,43 @@ import (
 //	pihole
 func ActionHosts() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		batch := carapace.Batch()
-		if file, err := c.Abs("~/.ssh/known_hosts"); err == nil {
-			if content, err := os.ReadFile(file); err == nil {
-				r := regexp.MustCompile(`^(?P<host>[^ ,#|]+)`)
-				rIPv4 := regexp.MustCompile(`^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$`)
-				rIPv6 := regexp.MustCompile(`^([A-Fa-f0-9]{0,4}:){5,7}[A-Fa-f0-9]{0,4}$`) // TODO likely wrong
-				for entry := range strings.SplitSeq(string(content), "\n") {
-					if r.MatchString(entry) {
-						if host := r.FindStringSubmatch(entry)[0]; rIPv4.MatchString(host) {
-							batch = append(batch, carapace.ActionStyledValues(host, style.Default).Tag("ipv4 addresses"))
-						} else if rIPv6.MatchString(host) {
-							batch = append(batch, carapace.ActionStyledValues(host, style.Bold).Tag("ipv6 addresses"))
-						} else {
-							batch = append(batch, carapace.ActionStyledValues(host, style.Blue).Tag("hostnames"))
-						}
-					}
-				}
-			} else {
-				batch = append(batch, carapace.ActionMessage(err.Error()))
+		opts := make([]knownhosts.Option, 0, 1)
+		if home, ok := c.LookupEnv("HOME"); ok && home != "" {
+			opts = append(opts, knownhosts.WithHomeDir(home))
+		} else if home, err := os.UserHomeDir(); err == nil && home != "" {
+			opts = append(opts, knownhosts.WithHomeDir(home))
+		}
+
+		known, _ := knownhosts.IndexDefault(opts...)
+		hosts := known.HostCandidates()
+		if len(hosts) == 0 {
+			return carapace.ActionValues().Tag("known hosts")
+		}
+
+		ipv4 := make([]string, 0)
+		ipv6 := make([]string, 0)
+		names := make([]string, 0)
+		for _, host := range hosts {
+			ip := net.ParseIP(host)
+			switch {
+			case ip == nil:
+				names = append(names, host)
+			case ip.To4() != nil:
+				ipv4 = append(ipv4, host)
+			default:
+				ipv6 = append(ipv6, host)
 			}
+		}
+
+		batch := carapace.Batch()
+		if len(ipv4) > 0 {
+			batch = append(batch, carapace.ActionStyledValues(ipv4...).Style(style.Default).Tag("ipv4 addresses"))
+		}
+		if len(ipv6) > 0 {
+			batch = append(batch, carapace.ActionStyledValues(ipv6...).Style(style.Bold).Tag("ipv6 addresses"))
+		}
+		if len(names) > 0 {
+			batch = append(batch, carapace.ActionStyledValues(names...).Style(style.Blue).Tag("hostnames"))
 		}
 		return batch.ToA()
 	}).Tag("known hosts")
