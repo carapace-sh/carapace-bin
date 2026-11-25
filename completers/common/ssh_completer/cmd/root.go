@@ -4,7 +4,7 @@ import (
 	"strings"
 
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/net"
+	"github.com/carapace-sh/carapace-bin/completers/common/ssh_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/net/ssh"
 	"github.com/spf13/cobra"
 )
@@ -83,7 +83,7 @@ func init() {
 		"E": carapace.ActionFiles(),
 		"F": carapace.ActionFiles(),
 		"I": carapace.ActionFiles(),
-		"J": actionHosts(rootCmd),
+		"J": action.ActionHosts(rootCmd),
 		"O": carapace.ActionValuesDescribed(
 			"cancel", "cancel forwardings",
 			"check", "check that the master process is running",
@@ -105,7 +105,7 @@ func init() {
 
 	carapace.Gen(rootCmd).PositionalCompletion(
 		carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-			action := actionHosts(rootCmd)
+			action := action.ActionHosts(rootCmd)
 
 			if strings.Contains(c.Value, "@") {
 				prefix := strings.SplitN(c.Value, "@", 2)[0]
@@ -114,13 +114,6 @@ func init() {
 			return action
 		}),
 	)
-}
-
-func actionHosts(cmd *cobra.Command) carapace.Action {
-	return carapace.Batch(
-		net.ActionHosts(),
-		ssh.ActionHosts(cmd.Flag("F").Value.String()).Style("yellow"),
-	).ToA()
 }
 
 func ActionQueryOptions() carapace.Action {
