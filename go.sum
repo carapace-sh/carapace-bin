@@ -16,6 +16,8 @@ github.com/carapace-sh/carapace-shlex/v2 v2.1.4 h1:v6YFX1MqaSQSzISZN1sa28Y6aFD4z
 github.com/carapace-sh/carapace-shlex/v2 v2.1.4/go.mod h1:07CXBqTrzzdZRgkFRpnDQ9zvIcGbKppjmaxNLyP+zgY=
 github.com/carapace-sh/carapace-spec v1.10.2 h1:VLyPJ6c+gXgS+Zz3ItXTT2aATEdKaf+3A0wHLmNvGR4=
 github.com/carapace-sh/carapace-spec v1.10.2/go.mod h1:K1SQSBUmsnsvSfzWuH6B+UmPehB9+2IWlG63rX7hbsM=
+github.com/carapace-sh/carapace-ssh v0.0.1 h1:NcMI7iV+7jnLDsAN+gIEJ/pl0Imsp/nuZwUaDSdX8Ds=
+github.com/carapace-sh/carapace-ssh v0.0.1/go.mod h1:VpYWKH4BYSKm3Egp65hcnZrpMOx3iZiqW8LW5i3442k=
 github.com/cpuguy83/go-md2man/v2 v2.0.6/go.mod h1:oOW0eioCTA6cOiMLiUPZOpcVxMig6NIQQ7OS05n1F4g=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
