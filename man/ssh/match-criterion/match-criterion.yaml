@@ -1,0 +1,42 @@
+all: |
+  `all`: Matches unconditionally. All criteria on the Match line, including `all`, must succeed for the block to be applied.
+canonical: |
+  `canonical`: Matches only when the configuration file is being re-parsed after hostname canonicalization (when `CanonicalizeHostname` is enabled).
+final: |
+  `final`: Requests that the configuration be re-parsed (regardless of `CanonicalizeHostname`), and matches only on the final pass.
+exec: |
+  `exec <command>`: Executes the specified command. The criterion matches when the command returns a zero exit status.
+command: |
+  `command <command>`: Like `exec`, but executes the command under the user's shell.
+host: |
+  `host <patterns>`: Matches when the target hostname matches one of the given patterns.
+originalhost: |
+  `originalhost <patterns>`: Matches against the hostname as typed on the command line, before any canonicalization or `HostName` substitution.
+user: |
+  `user <patterns>`: Matches when the target username matches one of the given patterns.
+localuser: |
+  `localuser <patterns>`: Matches when the local username (the one running ssh) matches one of the given patterns.
+localnetwork: |
+  `localnetwork <patterns>`: Matches when the network the user is on matches one of the given CIDR patterns.
+tagged: |
+  `tagged <patterns>`: Matches when the connection has a tag matching one of the given patterns (set via `Tag` directive).
+sessiontype: |
+  `sessiontype <type>`: Matches the requested session type: `shell`, `exec`, `subsystem`, or `none`.
+version: |
+  `version <patterns>`: Matches the OpenSSH version string against the given patterns.
+address: |
+  `address <patterns>`: Matches the target host address (IP) against the given patterns.
+group: |
+  `group <patterns>`: Matches when the remote user's group matches one of the given patterns.
+localgroup: |
+  `localgroup <patterns>`: Matches when the local user's group matches one of the given patterns.
+localaddress: |
+  `localaddress <patterns>`: Matches the local bind address against the given patterns.
+localport: |
+  `localport <ports>`: Matches the local port against the given port numbers.
+rdomain: |
+  `rdomain <patterns>`: Matches the routing domain of the connection against the given patterns.
+remoteport: |
+  `remoteport <ports>`: Matches the remote port against the given port numbers.
+ruser: |
+  `ruser <patterns>`: Matches the remote username against the given patterns.

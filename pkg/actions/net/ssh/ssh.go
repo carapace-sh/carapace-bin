@@ -28,7 +28,7 @@ func ActionCiphers() carapace.Action {
 			}
 			return carapace.ActionValues("3des-cbc", "aes128-cbc", "aes128-ctr", "aes192-cbc", "aes192-ctr", "aes256-cbc", "aes256-ctr", "arcfour", "arcfour128", "arcfour256", "blowfish-cbc", "cast128-cbc")
 		})
-	})
+	}).Tag("ciphers").Uid("ssh", "cipher")
 }
 
 // ActionHostKeyAlgorithms completes host key algorithms
@@ -44,10 +44,10 @@ func ActionHostKeyAlgorithms() carapace.Action {
 			}
 			return carapace.ActionValues(lines...)
 		})
-	})
+	}).Tag("host key algorithms").Uid("ssh", "host-key-algorithm")
 }
 
-func actionQuery(query string, fallback ...string) carapace.Action {
+func actionQuery(query, tag, uid string, fallback ...string) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
 		return carapace.ActionExecCommand("ssh", "-Q", query)(func(output []byte) carapace.Action {
 			lines := strings.Split(strings.TrimSpace(string(output)), "\n")
@@ -59,7 +59,7 @@ func actionQuery(query string, fallback ...string) carapace.Action {
 			}
 			return carapace.ActionValues(fallback...)
 		})
-	})
+	}).Tag(tag).Uid("ssh", uid)
 }
 
 func actionYesNo() carapace.Action {
@@ -72,22 +72,22 @@ func actionYesNoAsk(values ...string) carapace.Action {
 
 // ActionKexAlgorithms completes key exchange algorithms
 func ActionKexAlgorithms() carapace.Action {
-	return actionQuery("kex")
+	return actionQuery("kex", "kex algorithms", "kex-algorithm")
 }
 
 // ActionMACs completes message authentication code algorithms
 func ActionMACs() carapace.Action {
-	return actionQuery("mac")
+	return actionQuery("mac", "mac algorithms", "mac-algorithm")
 }
 
 // ActionSignatureAlgorithms completes signature algorithms
 func ActionSignatureAlgorithms() carapace.Action {
-	return actionQuery("sig")
+	return actionQuery("sig", "signature algorithms", "signature-algorithm")
 }
 
 // ActionKeyTypes completes key types
 func ActionKeyTypes() carapace.Action {
-	return actionQuery("key")
+	return actionQuery("key", "key types", "key-type")
 }
 
 // ActionMatchCriteria completes Match criteria
@@ -99,7 +99,7 @@ func ActionMatchCriteria() carapace.Action {
 			vals = append(vals, criterion.Name)
 		}
 		return carapace.ActionValues(vals...)
-	})
+	}).Tag("match criteria").Uid("ssh", "match-criterion")
 }
 
 // ActionIdentityAgents completes identity agent values

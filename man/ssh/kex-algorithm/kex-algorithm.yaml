@@ -1,0 +1,18 @@
+curve25519-sha256: |
+  Curve25519 ECDH key exchange with SHA-256. Modern, fast, and widely recommended.
+curve25519-sha256@libssh.org: |
+  Legacy name for Curve25519 ECDH key exchange with SHA-256; equivalent to `curve25519-sha256`.
+diffie-hellman-group14-sha256: |
+  Diffie-Hellman group 14 (2048-bit) with SHA-256. Widely supported; acceptable when stronger groups are unavailable.
+diffie-hellman-group16-sha512: |
+  Diffie-Hellman group 16 (4096-bit) with SHA-512. Stronger finite-field DH option.
+diffie-hellman-group18-sha512: |
+  Diffie-Hellman group 18 (8192-bit) with SHA-512. Strong finite-field DH option with higher cost.
+ecdh-sha2-nistp256: |
+  ECDH key exchange using NIST P-256 curve with SHA-256.
+ecdh-sha2-nistp384: |
+  ECDH key exchange using NIST P-384 curve with SHA-384.
+ecdh-sha2-nistp521: |
+  ECDH key exchange using NIST P-521 curve with SHA-512.
+sntrup761x25519-sha512@openssh.com: |
+  Hybrid post-quantum key exchange combining Streamlined NTRU Prime 761 with X25519.

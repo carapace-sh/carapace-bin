@@ -1,0 +1,14 @@
+hmac-sha1: |
+  HMAC with SHA-1. Legacy MAC; prefer SHA-2 or ETM variants when available.
+hmac-sha2-256: |
+  HMAC with SHA-256. Secure and widely supported.
+hmac-sha2-512: |
+  HMAC with SHA-512. Secure and widely supported.
+hmac-sha2-256-etm@openssh.com: |
+  HMAC-SHA-256 in encrypt-then-MAC mode. Preferred over non-ETM variants.
+hmac-sha2-512-etm@openssh.com: |
+  HMAC-SHA-512 in encrypt-then-MAC mode. Preferred over non-ETM variants.
+umac-64-etm@openssh.com: |
+  UMAC-64 in encrypt-then-MAC mode. Fast MAC with smaller tag size.
+umac-128-etm@openssh.com: |
+  UMAC-128 in encrypt-then-MAC mode. Fast MAC with 128-bit tag.

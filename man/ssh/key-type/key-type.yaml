@@ -1,0 +1,16 @@
+ssh-ed25519: |
+  Ed25519 public key type.
+ssh-ed25519-cert-v01@openssh.com: |
+  Ed25519 OpenSSH certificate key type.
+ecdsa-sha2-nistp256: |
+  ECDSA NIST P-256 public key type.
+ecdsa-sha2-nistp384: |
+  ECDSA NIST P-384 public key type.
+ecdsa-sha2-nistp521: |
+  ECDSA NIST P-521 public key type.
+rsa-sha2-256: |
+  RSA key type used with SHA-256 signatures.
+rsa-sha2-512: |
+  RSA key type used with SHA-512 signatures.
+ssh-rsa: |
+  Legacy RSA public key/signature type using SHA-1.
