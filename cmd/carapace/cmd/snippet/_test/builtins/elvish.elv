@@ -1,9 +1,10 @@
 use builtin
 # set paths = ['/tmp/carapace-snippet-fixtures/carapace/bin' $@paths]
+use path
 
 put example | each {|c|
     set edit:completion:arg-completer[$c] = {|@arg|
-        with [E:CARAPACE_SHELL = 'elvish'] [E:CARAPACE_SHELL_STATE = (try { var dir = (if (and (has-env XDG_RUNTIME_DIR) (path:is-dir $E:XDG_RUNTIME_DIR)) { path:join $E:XDG_RUNTIME_DIR carapace builtins (to-string (num (id -u))) (to-string (num $pid)) } else { mktemp -d (path:join (or (get-env TMPDIR) /tmp) carapace-builtin.XXXXXX) }); mkdir -p $dir; echo (keys $builtin: | to-lines) > (path:join $dir builtins); put $dir } catch { put '' })] {
+        with [E:CARAPACE_SHELL = 'elvish'] [E:CARAPACE_SHELL_STATE = (try { var dir = (if (and (has-env XDG_RUNTIME_DIR) (path:is-dir $E:XDG_RUNTIME_DIR)) { path:join $E:XDG_RUNTIME_DIR carapace builtins (to-string (num (id -u))) (to-string (num $pid)) } else { mktemp -d (path:join (if (has-env TMPDIR) { get-env TMPDIR } else { put /tmp }) carapace-builtin.XXXXXX) }); mkdir -p -m 700 $dir; echo (keys $builtin: | to-lines) > (path:join $dir builtins); put $dir } catch { put '' })] {
             carapace $c elvish (all $arg) | from-json | each {|completion|
     		put $completion[Messages] | all (one) | each {|m|
     			edit:notify (styled "error: " red)$m

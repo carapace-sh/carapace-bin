@@ -16,12 +16,14 @@ func Elvish(completers []string) string {
 	}
 
 	envVars := "[E:CARAPACE_SHELL = 'elvish']"
+	pathImport := ""
 	if slices.Contains(env.Builtins(), "elvish") {
-		envVars = `[E:CARAPACE_SHELL = 'elvish'] [E:CARAPACE_SHELL_STATE = (try { var dir = (if (and (has-env XDG_RUNTIME_DIR) (path:is-dir $E:XDG_RUNTIME_DIR)) { path:join $E:XDG_RUNTIME_DIR carapace builtins (to-string (num (id -u))) (to-string (num $pid)) } else { mktemp -d (path:join (or (get-env TMPDIR) /tmp) carapace-builtin.XXXXXX) }); mkdir -p $dir; echo (keys $builtin: | to-lines) > (path:join $dir builtins); put $dir } catch { put '' })]`
+		pathImport = "\nuse path"
+		envVars = `[E:CARAPACE_SHELL = 'elvish'] [E:CARAPACE_SHELL_STATE = (try { var dir = (if (and (has-env XDG_RUNTIME_DIR) (path:is-dir $E:XDG_RUNTIME_DIR)) { path:join $E:XDG_RUNTIME_DIR carapace builtins (to-string (num (id -u))) (to-string (num $pid)) } else { mktemp -d (path:join (if (has-env TMPDIR) { get-env TMPDIR } else { put /tmp }) carapace-builtin.XXXXXX) }); mkdir -p -m 700 $dir; echo (keys $builtin: | to-lines) > (path:join $dir builtins); put $dir } catch { put '' })]`
 	}
 
 	snippet := `use builtin
-%v
+%v%v
 
 put %v | each {|c|
     set edit:completion:arg-completer[$c] = {|@arg|
@@ -46,5 +48,5 @@ put %v | each {|c|
 }
 `
 
-	return fmt.Sprintf(snippet, pathSnippet("elvish"), shlex.Join(completers, shlex.Elvish), envVars, windowsSnippet)
+	return fmt.Sprintf(snippet, pathSnippet("elvish"), pathImport, shlex.Join(completers, shlex.Elvish), envVars, windowsSnippet)
 }
