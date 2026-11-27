@@ -43,7 +43,7 @@ func init() {
 	})
 
 	carapace.Gen(installCmd).PositionalCompletion(
-		carapace.ActionFiles(".apk"),
+		carapace.ActionFiles(".apk", ".apex"),
 	)
 }
 
