@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/adb_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/adb"
 	"github.com/spf13/cobra"
 )
@@ -36,7 +37,7 @@ func init() {
 		"abi":  carapace.ActionValues("arm64-v8a", "armeabi-v7a", "x86", "x86_64"),
 		"i":    adb.ActionPackages(),
 		"p":    adb.ActionPackages(),
-		"user": actionInstallUsers(),
+		"user": action.ActionInstallUsers(),
 	})
 
 	carapace.Gen(installMultipleCmd).PositionalAnyCompletion(

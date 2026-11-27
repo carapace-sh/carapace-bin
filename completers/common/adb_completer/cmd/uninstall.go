@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/completers/common/adb_completer/cmd/action"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/adb"
 	"github.com/spf13/cobra"
 )
@@ -21,7 +22,7 @@ func init() {
 	rootCmd.AddCommand(uninstallCmd)
 
 	carapace.Gen(uninstallCmd).FlagCompletion(carapace.ActionMap{
-		"user": actionInstallUsers(),
+		"user": action.ActionInstallUsers(),
 	})
 
 	carapace.Gen(uninstallCmd).PositionalCompletion(
