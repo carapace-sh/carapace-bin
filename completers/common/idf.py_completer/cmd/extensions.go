@@ -12,6 +12,8 @@ func init() {
 		Short: "Add dependency to the manifest file",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(addDependencyCmd).Standalone()
 	addDependencyCmd.Flags().String("component", "", "Name of the component in the project")
 	addDependencyCmd.Flags().String("git", "", "Git URL of the component")
 	addDependencyCmd.Flags().String("git-path", "", "Path to the component in the git repository")
@@ -27,6 +29,8 @@ func init() {
 		Short: "Run clang-tidy check under current folder",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(clangCheckCmd).Standalone()
 	clangCheckCmd.Flags().Bool("all-files", false, "Run clang-tidy with all files")
 	clangCheckCmd.Flags().StringArray("exclude-paths", nil, "Exclude extra files besides of the project dir")
 	clangCheckCmd.Flags().Bool("exit-code", false, "Exit with code based on the results of the code analysis")
@@ -45,6 +49,8 @@ func init() {
 		Short: "Generate html report to html_report folder",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(clangHtmlReportCmd).Standalone()
 	rootCmd.AddCommand(clangHtmlReportCmd)
 
 	createManifestCmd := &cobra.Command{
@@ -52,6 +58,8 @@ func init() {
 		Short: "Create manifest for specified component",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(createManifestCmd).Standalone()
 	createManifestCmd.Flags().String("component", "", "Name of the component in the project")
 	createManifestCmd.Flags().String("path", "", "Path to the component")
 	carapace.Gen(createManifestCmd).FlagCompletion(carapace.ActionMap{
@@ -64,6 +72,8 @@ func init() {
 		Short: "Create a project from an example in the ESP Component Registry",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(createProjectFromExampleCmd).Standalone()
 	createProjectFromExampleCmd.Flags().String("path", "", "Set the path for the new project")
 	carapace.Gen(createProjectFromExampleCmd).FlagCompletion(carapace.ActionMap{
 		"path": carapace.ActionDirectories(),
@@ -75,6 +85,8 @@ func init() {
 		Short: "Remove specified dependency from all manifest files",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(removeDependencyCmd).Standalone()
 	carapace.Gen(removeDependencyCmd).PositionalCompletion(
 		espidf.ActionDependencies(),
 	)
@@ -85,6 +97,8 @@ func init() {
 		Short: "Check application SBOM file or path for vulnerabilities",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(sbomCheckCmd).Standalone()
 	sbomCheckCmd.Flags().String("file", "", "SBOM file to check")
 	sbomCheckCmd.Flags().String("format", "", "Report format")
 	sbomCheckCmd.Flags().Bool("no-sync-db", false, "Prevent automatic update of local NVD database")
@@ -107,6 +121,8 @@ func init() {
 		Short: "Create application SBOM in one of the supported formats",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(sbomCreateCmd).Standalone()
 	sbomCreateCmd.Flags().String("format", "", "Output SBOM format")
 	sbomCreateCmd.Flags().String("output-file", "", "Output SBOM file")
 	sbomCreateCmd.Flags().String("spdx-file", "", "Output SBOM file (deprecated alias for --output-file)")
@@ -127,5 +143,7 @@ func init() {
 		Short: "Update dependencies of the project",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(updateDependenciesCmd).Standalone()
 	rootCmd.AddCommand(updateDependenciesCmd)
 }

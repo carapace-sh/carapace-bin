@@ -33,6 +33,8 @@ func init() {
 		Short: "Flash the app only",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(appFlashCmd).Standalone()
 	addFlashFlags(appFlashCmd)
 	rootCmd.AddCommand(appFlashCmd)
 
@@ -41,6 +43,8 @@ func init() {
 		Short: "Flash bootloader only",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(bootloaderFlashCmd).Standalone()
 	addFlashFlags(bootloaderFlashCmd)
 	rootCmd.AddCommand(bootloaderFlashCmd)
 
@@ -49,6 +53,8 @@ func init() {
 		Short: "Burn eFuse",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(efuseBurnCmd).Standalone()
 	addEfuseFlags(efuseBurnCmd)
 	rootCmd.AddCommand(efuseBurnCmd)
 
@@ -57,6 +63,8 @@ func init() {
 		Short: "Burn eFuse key",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(efuseBurnKeyCmd).Standalone()
 	addEfuseFlags(efuseBurnKeyCmd)
 	efuseBurnKeyCmd.Flags().Bool("force-write-always", false, "Write the eFuse even if already written or write protected")
 	efuseBurnKeyCmd.Flags().Bool("no-protect-key", false, "Disable default read- and write-protecting of the key")
@@ -68,6 +76,8 @@ func init() {
 		Short: "Dump eFuse blocks",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(efuseDumpCmd).Standalone()
 	addEfuseFlags(efuseDumpCmd)
 	efuseDumpCmd.Flags().String("file-name", "", "Saves dump for each block into separate file")
 	carapace.Gen(efuseDumpCmd).FlagCompletion(carapace.ActionMap{
@@ -80,6 +90,8 @@ func init() {
 		Short: "Read-protect eFuse",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(efuseReadProtectCmd).Standalone()
 	addEfuseFlags(efuseReadProtectCmd)
 	rootCmd.AddCommand(efuseReadProtectCmd)
 
@@ -88,6 +100,8 @@ func init() {
 		Short: "Show eFuse summary",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(efuseSummaryCmd).Standalone()
 	addEfuseFlags(efuseSummaryCmd)
 	efuseSummaryCmd.Flags().String("format", "", "Summary format")
 	carapace.Gen(efuseSummaryCmd).FlagCompletion(carapace.ActionMap{
@@ -100,6 +114,8 @@ func init() {
 		Short: "Write-protect eFuse",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(efuseWriteProtectCmd).Standalone()
 	addEfuseFlags(efuseWriteProtectCmd)
 	rootCmd.AddCommand(efuseWriteProtectCmd)
 
@@ -108,6 +124,8 @@ func init() {
 		Short: "Flash the encrypted app only",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(encryptedAppFlashCmd).Standalone()
 	addFlashFlags(encryptedAppFlashCmd)
 	rootCmd.AddCommand(encryptedAppFlashCmd)
 
@@ -116,6 +134,8 @@ func init() {
 		Short: "Flash the encrypted project",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(encryptedFlashCmd).Standalone()
 	addFlashFlags(encryptedFlashCmd)
 	rootCmd.AddCommand(encryptedFlashCmd)
 
@@ -124,6 +144,8 @@ func init() {
 		Short: "Erase entire flash chip",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(eraseFlashCmd).Standalone()
 	rootCmd.AddCommand(eraseFlashCmd)
 
 	eraseOtadataCmd := &cobra.Command{
@@ -131,6 +153,8 @@ func init() {
 		Short: "Erase otadata partition",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(eraseOtadataCmd).Standalone()
 	rootCmd.AddCommand(eraseOtadataCmd)
 
 	flashCmd := &cobra.Command{
@@ -138,6 +162,8 @@ func init() {
 		Short: "Flash the project",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(flashCmd).Standalone()
 	addFlashFlags(flashCmd)
 	rootCmd.AddCommand(flashCmd)
 
@@ -146,6 +172,8 @@ func init() {
 		Short: "Merge binaries into a single image",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(mergeBinCmd).Standalone()
 	mergeBinCmd.Flags().String("flash-offset", "", "Flash offset where the output file will be flashed")
 	mergeBinCmd.Flags().StringP("format", "f", "", "Format of the output file")
 	mergeBinCmd.Flags().Bool("md5-disable", false, "Disable MD5 checksum in UF2 output")
@@ -163,6 +191,8 @@ func init() {
 		Short: "Display serial output",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(monitorCmd).Standalone()
 	monitorCmd.Flags().StringP("command-file", "c", "", "Run IDF Monitor in command-stream mode from FILE")
 	monitorCmd.Flags().Bool("disable-auto-color", false, "Disable auto coloring logs")
 	monitorCmd.Flags().BoolP("encrypted", "E", false, "Enable encrypted flash targets")
@@ -183,6 +213,8 @@ func init() {
 		Short: "Flash partition table only",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(partitionTableFlashCmd).Standalone()
 	addFlashFlags(partitionTableFlashCmd)
 	rootCmd.AddCommand(partitionTableFlashCmd)
 
@@ -191,6 +223,8 @@ func init() {
 		Short: "Read otadata partition",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(readOtadataCmd).Standalone()
 	rootCmd.AddCommand(readOtadataCmd)
 
 	secureDecryptFlashDataCmd := &cobra.Command{
@@ -198,6 +232,8 @@ func init() {
 		Short: "Decrypt flash data",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(secureDecryptFlashDataCmd).Standalone()
 	secureDecryptFlashDataCmd.Flags().StringP("address", "a", "", "Address offset in flash")
 	secureDecryptFlashDataCmd.Flags().BoolP("aes-xts", "x", false, "Decrypt data using AES-XTS")
 	secureDecryptFlashDataCmd.Flags().String("flash-crypt-conf", "", "Override FLASH_CRYPT_CONF eFuse value")
@@ -215,6 +251,8 @@ func init() {
 		Short: "Generate secure bootloader digest",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(secureDigestSecureBootloaderCmd).Standalone()
 	secureDigestSecureBootloaderCmd.Flags().String("iv", "", "128 byte IV file")
 	secureDigestSecureBootloaderCmd.Flags().StringP("keyfile", "k", "", "256 bit key for secure boot digest")
 	secureDigestSecureBootloaderCmd.Flags().StringP("output", "o", "", "Output file for signed digest image")
@@ -231,6 +269,8 @@ func init() {
 		Short: "Encrypt flash data",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(secureEncryptFlashDataCmd).Standalone()
 	secureEncryptFlashDataCmd.Flags().StringP("address", "a", "", "Address offset in flash")
 	secureEncryptFlashDataCmd.Flags().BoolP("aes-xts", "x", false, "Encrypt data using AES-XTS")
 	secureEncryptFlashDataCmd.Flags().String("flash-crypt-conf", "", "Override FLASH_CRYPT_CONF eFuse value")
@@ -248,6 +288,8 @@ func init() {
 		Short: "Encrypt NVS partition",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(secureEncryptNvsPartitionCmd).Standalone()
 	secureEncryptNvsPartitionCmd.Flags().StringP("keyfile", "k", "", "File with NVS partition key")
 	carapace.Gen(secureEncryptNvsPartitionCmd).FlagCompletion(carapace.ActionMap{
 		"keyfile": carapace.ActionFiles(),
@@ -263,6 +305,8 @@ func init() {
 		Short: "Generate flash encryption key",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(secureGenerateFlashEncryptionKeyCmd).Standalone()
 	secureGenerateFlashEncryptionKeyCmd.Flags().StringP("keylen", "l", "", "Length of private key digest file (in bits)")
 	carapace.Gen(secureGenerateFlashEncryptionKeyCmd).FlagCompletion(carapace.ActionMap{
 		"keylen": carapace.ActionValues("192", "256", "512"),
@@ -275,6 +319,8 @@ func init() {
 		Short: "Generate key digest",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(secureGenerateKeyDigestCmd).Standalone()
 	secureGenerateKeyDigestCmd.Flags().StringP("keyfile", "k", "", "Public key file for digest generation")
 	secureGenerateKeyDigestCmd.Flags().StringP("output", "o", "", "Output file for key digest")
 	carapace.Gen(secureGenerateKeyDigestCmd).FlagCompletion(carapace.ActionMap{
@@ -288,6 +334,8 @@ func init() {
 		Short: "Generate NVS partition key",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(secureGenerateNvsPartitionKeyCmd).Standalone()
 	secureGenerateNvsPartitionKeyCmd.Flags().StringP("encryption-scheme", "s", "", "Encryption scheme to use")
 	secureGenerateNvsPartitionKeyCmd.Flags().StringP("hmac-keyfile", "l", "", "File to store the generated HMAC key")
 	secureGenerateNvsPartitionKeyCmd.Flags().StringP("keyfile", "k", "", "File to store the generated key")
@@ -303,6 +351,8 @@ func init() {
 		Short: "Generate secure boot signing key",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(secureGenerateSigningKeyCmd).Standalone()
 	secureGenerateSigningKeyCmd.Flags().StringP("scheme", "s", "", "Scheme of secure boot signing")
 	secureGenerateSigningKeyCmd.Flags().String("version", "", "Version of the secure boot signing scheme")
 	carapace.Gen(secureGenerateSigningKeyCmd).FlagCompletion(carapace.ActionMap{
@@ -317,6 +367,8 @@ func init() {
 		Short: "Sign data for secure boot",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(secureSignDataCmd).Standalone()
 	secureSignDataCmd.Flags().BoolP("append-signatures", "a", false, "Append signature block(s) to already signed image")
 	secureSignDataCmd.Flags().StringP("keyfile", "k", "", "Private key file for signing")
 	secureSignDataCmd.Flags().StringP("output", "o", "", "Output file for signed digest image")
@@ -338,6 +390,8 @@ func init() {
 		Short: "Verify secure boot signature",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(secureVerifySignatureCmd).Standalone()
 	secureVerifySignatureCmd.Flags().StringP("keyfile", "k", "", "Public key file for verification")
 	secureVerifySignatureCmd.Flags().String("version", "", "Version of the secure boot signing scheme")
 	carapace.Gen(secureVerifySignatureCmd).FlagCompletion(carapace.ActionMap{

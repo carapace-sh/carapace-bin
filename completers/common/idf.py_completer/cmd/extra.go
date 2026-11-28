@@ -35,6 +35,8 @@ func init() {
 		Short: "Build a standalone C file without project boilerplate",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(buildFileCmd).Standalone()
 	buildFileCmd.Flags().Bool("clean-cache", false, "Remove the cached container project before building")
 	carapace.Gen(buildFileCmd).PositionalCompletion(carapace.ActionFiles(".c", ".cpp"))
 	rootCmd.AddCommand(buildFileCmd)
@@ -44,6 +46,8 @@ func init() {
 		Short: "Create core dump ELF file and run GDB debug session",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(coredumpDebugCmd).Standalone()
 	addCoredumpFlags(coredumpDebugCmd)
 	rootCmd.AddCommand(coredumpDebugCmd)
 
@@ -52,6 +56,8 @@ func init() {
 		Short: "Print crashed task's registers, callstack, and memory regions",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(coredumpInfoCmd).Standalone()
 	addCoredumpFlags(coredumpInfoCmd)
 	coredumpInfoCmd.Flags().String("gdb-timeout-sec", "", "Overwrite the default internal delay for gdb responses")
 	coredumpInfoCmd.Flags().Bool("print-all-vars", false, "Print all variables tagged with COREDUMP_*_ATTR")
@@ -63,6 +69,8 @@ func init() {
 		Short: "Create a new component",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(createComponentCmd).Standalone()
 	rootCmd.AddCommand(createComponentCmd)
 
 	createProjectCmd := &cobra.Command{
@@ -70,6 +78,8 @@ func init() {
 		Short: "Create a new project",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(createProjectCmd).Standalone()
 	createProjectCmd.Flags().Bool("cpp", false, "Create a C++ main source file instead of C")
 	createProjectCmd.Flags().String("path", "", "Set the path for the new project")
 	carapace.Gen(createProjectCmd).FlagCompletion(carapace.ActionMap{
@@ -82,6 +92,8 @@ func init() {
 		Short: "Build the DFU binary",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(dfuCmd).Standalone()
 	dfuCmd.Flags().String("part-size", "", "Overwrite default partition size of mkdfu.py")
 	rootCmd.AddCommand(dfuCmd)
 
@@ -90,6 +102,8 @@ func init() {
 		Short: "Flash the DFU binary",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(dfuFlashCmd).Standalone()
 	dfuFlashCmd.Flags().String("path", "", "Specify path to DFU device")
 	rootCmd.AddCommand(dfuFlashCmd)
 
@@ -98,6 +112,8 @@ func init() {
 		Short: "List DFU capable devices",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(dfuListCmd).Standalone()
 	rootCmd.AddCommand(dfuListCmd)
 
 	diagCmd := &cobra.Command{
@@ -105,6 +121,8 @@ func init() {
 		Short: "Create diagnostic report",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(diagCmd).Standalone()
 	diagCmd.Flags().BoolP("append", "a", false, "Use recipes specified with -r in combination with built-in recipes")
 	diagCmd.Flags().BoolP("check", "c", false, "Validate recipes")
 	diagCmd.Flags().BoolP("debug", "d", false, "Print debug information")
@@ -130,6 +148,8 @@ func init() {
 		Short: "Run the GDB",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(gdbCmd).Standalone()
 	addGdbFlags(gdbCmd)
 	gdbCmd.Flags().Bool("batch", false, "Exit after processing gdbinit")
 	gdbCmd.Flags().String("gdb-tui", "", "Run gdb in TUI mode")
@@ -141,6 +161,8 @@ func init() {
 		Short: "GDB UI in default browser",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(gdbguiCmd).Standalone()
 	addGdbFlags(gdbguiCmd)
 	gdbguiCmd.Flags().String("gdbgui-port", "", "Port on which gdbgui will be hosted")
 	rootCmd.AddCommand(gdbguiCmd)
@@ -150,6 +172,8 @@ func init() {
 		Short: "GDB TUI mode",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(gdbtuiCmd).Standalone()
 	addGdbFlags(gdbtuiCmd)
 	rootCmd.AddCommand(gdbtuiCmd)
 
@@ -158,6 +182,8 @@ func init() {
 		Short: "Start MCP server for AI integration",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(mcpServerCmd).Standalone()
 	rootCmd.AddCommand(mcpServerCmd)
 
 	openocdCmd := &cobra.Command{
@@ -165,6 +191,8 @@ func init() {
 		Short: "Run openocd from current path",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(openocdCmd).Standalone()
 	openocdCmd.Flags().String("openocd-commands", "", "Command line arguments for openocd")
 	openocdCmd.Flags().String("openocd-scripts", "", "Script directory for openocd cfg files")
 	carapace.Gen(openocdCmd).FlagCompletion(carapace.ActionMap{
@@ -177,6 +205,8 @@ func init() {
 		Short: "Run post-debug actions",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(postDebugCmd).Standalone()
 	postDebugCmd.Flags().String("block", "", "Set to 1 for blocking console on outputs of async debug actions")
 	rootCmd.AddCommand(postDebugCmd)
 
@@ -185,6 +215,8 @@ func init() {
 		Short: "Run QEMU",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(qemuCmd).Standalone()
 	qemuCmd.Flags().String("efuse-file", "", "File used to store efuse values")
 	qemuCmd.Flags().String("flash-file", "", "File used as the qemu flash image")
 	qemuCmd.Flags().BoolP("gdb", "d", false, "Wait for gdb to connect")
@@ -201,6 +233,8 @@ func init() {
 		Short: "Generate the UF2 binary with all binaries included",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(uf2Cmd).Standalone()
 	uf2Cmd.Flags().Bool("md5-disable", false, "Disable MD5 checksum")
 	rootCmd.AddCommand(uf2Cmd)
 
@@ -209,6 +243,8 @@ func init() {
 		Short: "Generate a UF2 binary for the application only",
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
+
+	carapace.Gen(uf2AppCmd).Standalone()
 	uf2AppCmd.Flags().Bool("md5-disable", false, "Disable MD5 checksum")
 	rootCmd.AddCommand(uf2AppCmd)
 }
