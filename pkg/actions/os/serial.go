@@ -11,8 +11,6 @@ import (
 	"github.com/carapace-sh/carapace"
 )
 
-var comPortRegex = regexp.MustCompile(`\((COM\d+)\)\s*$`)
-
 // ActionSerialPorts completes available serial ports
 //
 //	COM5 (USB-SERIAL CH340)
@@ -41,15 +39,23 @@ func ActionSerialPorts() carapace.Action {
 
 		patterns := []string{
 			"/dev/cu.*",
-			"/dev/tty.*",
 			"/dev/ttyACM*",
 			"/dev/ttyS*",
 			"/dev/ttyUSB*",
 		}
 		vals := make([]string, 0)
+		seen := make(map[string]bool)
 		for _, pattern := range patterns {
-			if matches, err := filepath.Glob(pattern); err == nil {
-				vals = append(vals, matches...)
+			matches, err := filepath.Glob(pattern)
+			if err != nil {
+				continue
+			}
+			for _, match := range matches {
+				if seen[match] {
+					continue
+				}
+				seen[match] = true
+				vals = append(vals, match)
 			}
 		}
 		return carapace.ActionValues(vals...)
@@ -58,6 +64,7 @@ func ActionSerialPorts() carapace.Action {
 
 func readWindowsUSBSerialNames() map[string]string {
 	result := make(map[string]string)
+	comPortRegex := regexp.MustCompile(`\((COM\d+)\)\s*$`)
 	out, err := exec.Command("reg", "query", `HKLM\SYSTEM\CurrentControlSet\Enum\USB`, "/s", "/v", "FriendlyName").Output()
 	if err != nil {
 		return result
