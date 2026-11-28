@@ -7,26 +7,26 @@ import (
 
 // ActionBaudRates completes baud rates
 //
-//	9600 (common)
-//	115200 (common)
+//	9600
+//	115200
 func ActionBaudRates() carapace.Action {
-	return carapace.ActionStyledValuesDescribed(
-		"75", "legacy", style.Dim,
-		"300", "legacy", style.Dim,
-		"1200", "legacy", style.Dim,
-		"2400", "legacy", style.Dim,
-		"4800", "legacy", style.Dim,
-		"9600", "common", style.Default,
-		"14400", "legacy", style.Dim,
-		"19200", "common", style.Default,
-		"28800", "legacy", style.Dim,
-		"38400", "common", style.Default,
-		"57600", "common", style.Default,
-		"115200", "common", style.Default,
-		"230400", "high speed", style.Default,
-		"460800", "high speed", style.Default,
-		"921600", "high speed", style.Default,
-		"1500000", "hardware-dependent", style.Dim,
-		"2000000", "hardware-dependent", style.Dim,
+	return carapace.ActionStyledValues(
+		"75", style.Dim,
+		"300", style.Dim,
+		"1200", style.Dim,
+		"2400", style.Dim,
+		"4800", style.Dim,
+		"9600", style.Default,
+		"14400", style.Dim,
+		"19200", style.Default,
+		"28800", style.Dim,
+		"38400", style.Default,
+		"57600", style.Default,
+		"115200", style.Default,
+		"230400", style.Default,
+		"460800", style.Default,
+		"921600", style.Default,
+		"1500000", style.Dim,
+		"2000000", style.Dim,
 	).Tag("baud rates")
 }
