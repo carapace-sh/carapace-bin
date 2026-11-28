@@ -22,12 +22,16 @@ func init() {
 	rootCmd.Flags().Bool("archive-dependencies", false, "Display dependencies for all archives")
 	rootCmd.Flags().Bool("archive-deps", false, "Display dependencies for all archives")
 	rootCmd.Flags().String("archive-details", "", "Print detailed symbols per archive")
+	rootCmd.Flags().String("archive_details", "", "Print detailed symbols per archive")
+	rootCmd.Flag("archive_details").Hidden = true
 	rootCmd.Flags().Bool("archives", false, "Print per-archive sizes")
 	rootCmd.Flags().BoolP("debug", "d", false, "Print debug information")
 	rootCmd.Flags().Bool("dep-rev", false, "Use reverse dependencies for --archive-dependencies")
 	rootCmd.Flags().Bool("dep-reverse", false, "Use reverse dependencies for --archive-dependencies")
 	rootCmd.Flags().Bool("dep-sym", false, "Include dependency symbols for --archive-dependencies")
 	rootCmd.Flags().Bool("dep-symbols", false, "Include dependency symbols for --archive-dependencies")
+	rootCmd.Flags().Bool("dep-syms", false, "Include dependency symbols for --archive-dependencies")
+	rootCmd.Flag("dep-syms").Hidden = true
 	rootCmd.Flags().String("diff", "", "Compare sizes with another map file")
 	rootCmd.Flags().Bool("doc", false, "Display more comprehensive documentation")
 	rootCmd.Flags().Bool("files", false, "Print per-file sizes")

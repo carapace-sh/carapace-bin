@@ -6,9 +6,10 @@ import (
 )
 
 var postDebugCmd = &cobra.Command{
-	Use:   "post-debug",
-	Short: "Run post-debug actions",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "post-debug",
+	Aliases: []string{"post_debug"},
+	Short:   "Run post-debug actions",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {

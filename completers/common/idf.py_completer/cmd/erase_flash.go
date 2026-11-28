@@ -6,9 +6,10 @@ import (
 )
 
 var eraseFlashCmd = &cobra.Command{
-	Use:   "erase-flash",
-	Short: "Erase entire flash chip",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Use:     "erase-flash",
+	Aliases: []string{"erase_flash"},
+	Short:   "Erase entire flash chip",
+	Run:     func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {
