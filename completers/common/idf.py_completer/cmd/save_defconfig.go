@@ -13,6 +13,7 @@ var saveDefconfigCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(saveDefconfigCmd).Standalone()
+
 	saveDefconfigCmd.Flags().Bool("add-menu-labels", false, "Add menu labels to minimal config")
 	rootCmd.AddCommand(saveDefconfigCmd)
 }

@@ -14,6 +14,7 @@ var efuseBurnKeyCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(efuseBurnKeyCmd).Standalone()
+
 	common.AddEfuseFlags(efuseBurnKeyCmd)
 	efuseBurnKeyCmd.Flags().Bool("force-write-always", false, "Write the eFuse even if already written or write protected")
 	efuseBurnKeyCmd.Flags().Bool("no-protect-key", false, "Disable default read- and write-protecting of the key")

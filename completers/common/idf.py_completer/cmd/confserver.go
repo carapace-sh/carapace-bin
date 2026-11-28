@@ -13,6 +13,7 @@ var confserverCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(confserverCmd).Standalone()
+
 	confserverCmd.Flags().String("buffer-size", "", "Set the buffer size (in KB)")
 	rootCmd.AddCommand(confserverCmd)
 }

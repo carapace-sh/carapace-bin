@@ -13,9 +13,11 @@ var menuconfigCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(menuconfigCmd).Standalone()
+
 	menuconfigCmd.Flags().String("color-scheme", "", "Menuconfig color scheme")
 	menuconfigCmd.Flags().String("style", "", "Menuconfig color scheme")
 	rootCmd.AddCommand(menuconfigCmd)
+
 	carapace.Gen(menuconfigCmd).FlagCompletion(carapace.ActionMap{
 		"color-scheme": carapace.ActionValues("dark", "light"),
 		"style":        carapace.ActionValues("dark", "light"),

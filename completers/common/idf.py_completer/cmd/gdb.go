@@ -14,6 +14,7 @@ var gdbCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(gdbCmd).Standalone()
+
 	common.AddGdbFlags(gdbCmd)
 	gdbCmd.Flags().Bool("batch", false, "Exit after processing gdbinit")
 	gdbCmd.Flags().String("gdb-tui", "", "Run gdb in TUI mode")

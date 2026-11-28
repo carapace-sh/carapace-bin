@@ -14,6 +14,7 @@ var bootloaderFlashCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(bootloaderFlashCmd).Standalone()
+
 	common.AddFlashFlags(bootloaderFlashCmd)
 	rootCmd.AddCommand(bootloaderFlashCmd)
 }

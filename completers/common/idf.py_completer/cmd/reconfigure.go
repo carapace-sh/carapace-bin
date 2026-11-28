@@ -13,5 +13,6 @@ var reconfigureCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(reconfigureCmd).Standalone()
+
 	rootCmd.AddCommand(reconfigureCmd)
 }

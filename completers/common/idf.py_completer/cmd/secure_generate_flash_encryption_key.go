@@ -13,10 +13,13 @@ var secureGenerateFlashEncryptionKeyCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(secureGenerateFlashEncryptionKeyCmd).Standalone()
+
 	secureGenerateFlashEncryptionKeyCmd.Flags().StringP("keylen", "l", "", "Length of private key digest file (in bits)")
 	rootCmd.AddCommand(secureGenerateFlashEncryptionKeyCmd)
+
 	carapace.Gen(secureGenerateFlashEncryptionKeyCmd).FlagCompletion(carapace.ActionMap{
 		"keylen": carapace.ActionValues("192", "256", "512"),
 	})
+
 	carapace.Gen(secureGenerateFlashEncryptionKeyCmd).PositionalCompletion(carapace.ActionFiles())
 }

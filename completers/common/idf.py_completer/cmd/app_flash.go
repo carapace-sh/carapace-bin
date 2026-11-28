@@ -14,6 +14,7 @@ var appFlashCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(appFlashCmd).Standalone()
+
 	common.AddFlashFlags(appFlashCmd)
 	rootCmd.AddCommand(appFlashCmd)
 }

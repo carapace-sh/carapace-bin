@@ -13,5 +13,6 @@ var showEfuseTableCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(showEfuseTableCmd).Standalone()
+
 	rootCmd.AddCommand(showEfuseTableCmd)
 }

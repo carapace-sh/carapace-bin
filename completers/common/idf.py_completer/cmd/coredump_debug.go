@@ -14,6 +14,7 @@ var coredumpDebugCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(coredumpDebugCmd).Standalone()
+
 	common.AddCoredumpFlags(coredumpDebugCmd)
 	rootCmd.AddCommand(coredumpDebugCmd)
 }

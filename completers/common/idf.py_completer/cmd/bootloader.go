@@ -13,5 +13,6 @@ var bootloaderCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(bootloaderCmd).Standalone()
+
 	rootCmd.AddCommand(bootloaderCmd)
 }

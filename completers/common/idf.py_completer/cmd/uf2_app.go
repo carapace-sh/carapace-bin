@@ -13,6 +13,7 @@ var uf2AppCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(uf2AppCmd).Standalone()
+
 	uf2AppCmd.Flags().Bool("md5-disable", false, "Disable MD5 checksum")
 	rootCmd.AddCommand(uf2AppCmd)
 }

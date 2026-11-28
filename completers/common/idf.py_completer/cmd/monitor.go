@@ -14,6 +14,7 @@ var monitorCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(monitorCmd).Standalone()
+
 	monitorCmd.Flags().StringP("command-file", "c", "", "Run IDF Monitor in command-stream mode from FILE")
 	monitorCmd.Flags().Bool("disable-auto-color", false, "Disable auto coloring logs")
 	monitorCmd.Flags().BoolP("encrypted", "E", false, "Enable encrypted flash targets")
@@ -24,6 +25,7 @@ func init() {
 	monitorCmd.Flags().String("timestamp-format", "", "Set formatting of timestamps compatible with strftime()")
 	monitorCmd.Flags().Bool("timestamps", false, "Print a time stamp in the beginning of each line")
 	rootCmd.AddCommand(monitorCmd)
+
 	carapace.Gen(monitorCmd).FlagCompletion(carapace.ActionMap{
 		"command-file": carapace.ActionFiles(),
 		"monitor-baud": espidf.ActionBaudRates(),

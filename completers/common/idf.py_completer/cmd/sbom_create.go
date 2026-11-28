@@ -13,6 +13,7 @@ var sbomCreateCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(sbomCreateCmd).Standalone()
+
 	sbomCreateCmd.Flags().String("format", "", "Output SBOM format")
 	sbomCreateCmd.Flags().String("output-file", "", "Output SBOM file")
 	sbomCreateCmd.Flags().String("spdx-file", "", "Output SBOM file (deprecated alias for --output-file)")
@@ -20,6 +21,7 @@ func init() {
 	sbomCreateCmd.Flags().String("vex-output", "", "Output VEX file path")
 	sbomCreateCmd.Flag("spdx-file").Hidden = true
 	rootCmd.AddCommand(sbomCreateCmd)
+
 	carapace.Gen(sbomCreateCmd).FlagCompletion(carapace.ActionMap{
 		"format":      carapace.ActionValues("cyclonedx-json", "spdx-json", "spdx-json-ld", "spdx-tag-value"),
 		"output-file": carapace.ActionFiles(),

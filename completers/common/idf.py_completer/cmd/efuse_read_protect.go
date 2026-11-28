@@ -14,6 +14,7 @@ var efuseReadProtectCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(efuseReadProtectCmd).Standalone()
+
 	common.AddEfuseFlags(efuseReadProtectCmd)
 	rootCmd.AddCommand(efuseReadProtectCmd)
 }

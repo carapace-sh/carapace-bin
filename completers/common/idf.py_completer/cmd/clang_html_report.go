@@ -13,5 +13,6 @@ var clangHtmlReportCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(clangHtmlReportCmd).Standalone()
+
 	rootCmd.AddCommand(clangHtmlReportCmd)
 }

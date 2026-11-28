@@ -13,5 +13,6 @@ var dfuListCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(dfuListCmd).Standalone()
+
 	rootCmd.AddCommand(dfuListCmd)
 }

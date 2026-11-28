@@ -13,5 +13,6 @@ var eraseOtadataCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(eraseOtadataCmd).Standalone()
+
 	rootCmd.AddCommand(eraseOtadataCmd)
 }

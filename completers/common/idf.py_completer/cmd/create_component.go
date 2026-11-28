@@ -13,5 +13,6 @@ var createComponentCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(createComponentCmd).Standalone()
+
 	rootCmd.AddCommand(createComponentCmd)
 }

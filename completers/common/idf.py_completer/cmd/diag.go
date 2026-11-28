@@ -13,6 +13,7 @@ var diagCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(diagCmd).Standalone()
+
 	diagCmd.Flags().BoolP("append", "a", false, "Use recipes specified with -r in combination with built-in recipes")
 	diagCmd.Flags().BoolP("check", "c", false, "Validate recipes")
 	diagCmd.Flags().BoolP("debug", "d", false, "Print debug information")
@@ -26,6 +27,7 @@ func init() {
 	diagCmd.Flags().StringArrayP("tag", "t", nil, "Consider only recipes containing TAG")
 	diagCmd.Flags().StringP("zip", "z", "", "Create zip archive for diagnostic report in PATH")
 	rootCmd.AddCommand(diagCmd)
+
 	carapace.Gen(diagCmd).FlagCompletion(carapace.ActionMap{
 		"output": carapace.ActionFiles(),
 		"purge":  carapace.ActionFiles(),

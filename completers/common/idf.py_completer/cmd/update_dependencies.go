@@ -13,5 +13,6 @@ var updateDependenciesCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(updateDependenciesCmd).Standalone()
+
 	rootCmd.AddCommand(updateDependenciesCmd)
 }

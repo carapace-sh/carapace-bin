@@ -14,5 +14,6 @@ var eraseFlashCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(eraseFlashCmd).Standalone()
+
 	rootCmd.AddCommand(eraseFlashCmd)
 }

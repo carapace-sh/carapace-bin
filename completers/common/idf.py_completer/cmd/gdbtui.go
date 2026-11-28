@@ -14,6 +14,7 @@ var gdbtuiCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(gdbtuiCmd).Standalone()
+
 	common.AddGdbFlags(gdbtuiCmd)
 	rootCmd.AddCommand(gdbtuiCmd)
 }

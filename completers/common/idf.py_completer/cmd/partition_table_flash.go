@@ -14,6 +14,7 @@ var partitionTableFlashCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(partitionTableFlashCmd).Standalone()
+
 	common.AddFlashFlags(partitionTableFlashCmd)
 	rootCmd.AddCommand(partitionTableFlashCmd)
 }

@@ -13,5 +13,6 @@ var efuseCustomTableCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(efuseCustomTableCmd).Standalone()
+
 	rootCmd.AddCommand(efuseCustomTableCmd)
 }

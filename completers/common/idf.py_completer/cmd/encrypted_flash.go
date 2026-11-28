@@ -14,6 +14,7 @@ var encryptedFlashCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(encryptedFlashCmd).Standalone()
+
 	common.AddFlashFlags(encryptedFlashCmd)
 	rootCmd.AddCommand(encryptedFlashCmd)
 }

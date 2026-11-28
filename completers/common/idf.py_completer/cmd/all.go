@@ -14,5 +14,6 @@ var allCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(allCmd).Standalone()
+
 	rootCmd.AddCommand(allCmd)
 }

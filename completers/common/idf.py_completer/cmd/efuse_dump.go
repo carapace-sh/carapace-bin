@@ -14,9 +14,11 @@ var efuseDumpCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(efuseDumpCmd).Standalone()
+
 	common.AddEfuseFlags(efuseDumpCmd)
 	efuseDumpCmd.Flags().String("file-name", "", "Saves dump for each block into separate file")
 	rootCmd.AddCommand(efuseDumpCmd)
+
 	carapace.Gen(efuseDumpCmd).FlagCompletion(carapace.ActionMap{
 		"file-name": carapace.ActionFiles(),
 	})

@@ -14,6 +14,7 @@ var postDebugCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(postDebugCmd).Standalone()
+
 	postDebugCmd.Flags().String("block", "", "Set to 1 for blocking console on outputs of async debug actions")
 	rootCmd.AddCommand(postDebugCmd)
 }

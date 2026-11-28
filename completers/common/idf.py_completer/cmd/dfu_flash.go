@@ -13,6 +13,7 @@ var dfuFlashCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(dfuFlashCmd).Standalone()
+
 	dfuFlashCmd.Flags().String("path", "", "Specify path to DFU device")
 	rootCmd.AddCommand(dfuFlashCmd)
 }

@@ -14,7 +14,9 @@ var setTargetCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(setTargetCmd).Standalone()
+
 	rootCmd.AddCommand(setTargetCmd)
+
 	carapace.Gen(setTargetCmd).PositionalCompletion(
 		espidf.ActionTargets(),
 	)

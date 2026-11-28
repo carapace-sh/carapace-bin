@@ -13,12 +13,14 @@ var qemuCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(qemuCmd).Standalone()
+
 	qemuCmd.Flags().String("efuse-file", "", "File used to store efuse values")
 	qemuCmd.Flags().String("flash-file", "", "File used as the qemu flash image")
 	qemuCmd.Flags().BoolP("gdb", "d", false, "Wait for gdb to connect")
 	qemuCmd.Flags().BoolP("graphics", "g", false, "Enable graphical window")
 	qemuCmd.Flags().String("qemu-extra-args", "", "Extra arguments to pass to QEMU")
 	rootCmd.AddCommand(qemuCmd)
+
 	carapace.Gen(qemuCmd).FlagCompletion(carapace.ActionMap{
 		"efuse-file": carapace.ActionFiles(),
 		"flash-file": carapace.ActionFiles(),

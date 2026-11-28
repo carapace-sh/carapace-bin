@@ -14,6 +14,7 @@ var sizeCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(sizeCmd).Standalone()
+
 	common.AddSizeFlags(sizeCmd)
 	rootCmd.AddCommand(sizeCmd)
 }

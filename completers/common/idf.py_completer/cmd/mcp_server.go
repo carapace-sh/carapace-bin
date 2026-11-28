@@ -13,5 +13,6 @@ var mcpServerCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(mcpServerCmd).Standalone()
+
 	rootCmd.AddCommand(mcpServerCmd)
 }

@@ -14,6 +14,7 @@ var efuseWriteProtectCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(efuseWriteProtectCmd).Standalone()
+
 	common.AddEfuseFlags(efuseWriteProtectCmd)
 	rootCmd.AddCommand(efuseWriteProtectCmd)
 }

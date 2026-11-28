@@ -14,9 +14,11 @@ var efuseSummaryCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(efuseSummaryCmd).Standalone()
+
 	common.AddEfuseFlags(efuseSummaryCmd)
 	efuseSummaryCmd.Flags().String("format", "", "Summary format")
 	rootCmd.AddCommand(efuseSummaryCmd)
+
 	carapace.Gen(efuseSummaryCmd).FlagCompletion(carapace.ActionMap{
 		"format": carapace.ActionValues("json", "summary", "value-only"),
 	})

@@ -13,5 +13,6 @@ var readOtadataCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(readOtadataCmd).Standalone()
+
 	rootCmd.AddCommand(readOtadataCmd)
 }

@@ -13,5 +13,6 @@ var buildSystemTargetsCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(buildSystemTargetsCmd).Standalone()
+
 	rootCmd.AddCommand(buildSystemTargetsCmd)
 }

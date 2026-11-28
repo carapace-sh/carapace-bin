@@ -13,12 +13,14 @@ var mergeBinCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(mergeBinCmd).Standalone()
+
 	mergeBinCmd.Flags().String("flash-offset", "", "Flash offset where the output file will be flashed")
 	mergeBinCmd.Flags().StringP("format", "f", "", "Format of the output file")
 	mergeBinCmd.Flags().Bool("md5-disable", false, "Disable MD5 checksum in UF2 output")
 	mergeBinCmd.Flags().StringP("output", "o", "", "Output filename")
 	mergeBinCmd.Flags().String("pad-to-size", "", "Pad final binary file with FF bytes up to this flash size")
 	rootCmd.AddCommand(mergeBinCmd)
+
 	carapace.Gen(mergeBinCmd).FlagCompletion(carapace.ActionMap{
 		"format":      carapace.ActionValues("hex", "raw", "uf2"),
 		"output":      carapace.ActionFiles(),

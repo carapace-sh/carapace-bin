@@ -14,6 +14,7 @@ var efuseBurnCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(efuseBurnCmd).Standalone()
+
 	common.AddEfuseFlags(efuseBurnCmd)
 	rootCmd.AddCommand(efuseBurnCmd)
 }

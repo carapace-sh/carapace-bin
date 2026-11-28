@@ -13,11 +13,14 @@ var secureEncryptNvsPartitionCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(secureEncryptNvsPartitionCmd).Standalone()
+
 	secureEncryptNvsPartitionCmd.Flags().StringP("keyfile", "k", "", "File with NVS partition key")
 	rootCmd.AddCommand(secureEncryptNvsPartitionCmd)
+
 	carapace.Gen(secureEncryptNvsPartitionCmd).FlagCompletion(carapace.ActionMap{
 		"keyfile": carapace.ActionFiles(),
 	})
+
 	carapace.Gen(secureEncryptNvsPartitionCmd).PositionalCompletion(
 		carapace.ActionFiles(),
 		carapace.ActionFiles(),

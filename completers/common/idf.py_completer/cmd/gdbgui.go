@@ -14,6 +14,7 @@ var gdbguiCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(gdbguiCmd).Standalone()
+
 	common.AddGdbFlags(gdbguiCmd)
 	gdbguiCmd.Flags().String("gdbgui-port", "", "Port on which gdbgui will be hosted")
 	rootCmd.AddCommand(gdbguiCmd)

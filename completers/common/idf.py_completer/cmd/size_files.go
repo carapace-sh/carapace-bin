@@ -14,6 +14,7 @@ var sizeFilesCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(sizeFilesCmd).Standalone()
+
 	common.AddSizeFlags(sizeFilesCmd)
 	rootCmd.AddCommand(sizeFilesCmd)
 }

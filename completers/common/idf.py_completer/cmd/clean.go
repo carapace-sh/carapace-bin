@@ -13,5 +13,6 @@ var cleanCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(cleanCmd).Standalone()
+
 	rootCmd.AddCommand(cleanCmd)
 }

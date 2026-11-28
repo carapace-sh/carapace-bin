@@ -13,6 +13,7 @@ var dfuCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(dfuCmd).Standalone()
+
 	dfuCmd.Flags().String("part-size", "", "Overwrite default partition size of mkdfu.py")
 	rootCmd.AddCommand(dfuCmd)
 }

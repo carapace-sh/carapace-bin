@@ -13,6 +13,7 @@ var sbomCheckCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(sbomCheckCmd).Standalone()
+
 	sbomCheckCmd.Flags().String("file", "", "SBOM file to check")
 	sbomCheckCmd.Flags().String("format", "", "Report format")
 	sbomCheckCmd.Flags().Bool("no-sync-db", false, "Prevent automatic update of local NVD database")
@@ -22,6 +23,7 @@ func init() {
 	sbomCheckCmd.Flags().String("spdx-file", "", "SBOM file to check (deprecated alias for --file)")
 	sbomCheckCmd.Flag("spdx-file").Hidden = true
 	rootCmd.AddCommand(sbomCheckCmd)
+
 	carapace.Gen(sbomCheckCmd).FlagCompletion(carapace.ActionMap{
 		"file":        carapace.ActionFiles(),
 		"format":      carapace.ActionValues("csv", "json", "markdown", "table"),

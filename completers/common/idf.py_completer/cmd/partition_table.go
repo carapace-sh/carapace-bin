@@ -13,5 +13,6 @@ var partitionTableCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(partitionTableCmd).Standalone()
+
 	rootCmd.AddCommand(partitionTableCmd)
 }

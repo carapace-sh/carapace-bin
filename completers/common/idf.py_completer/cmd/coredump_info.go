@@ -14,6 +14,7 @@ var coredumpInfoCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(coredumpInfoCmd).Standalone()
+
 	common.AddCoredumpFlags(coredumpInfoCmd)
 	coredumpInfoCmd.Flags().String("gdb-timeout-sec", "", "Overwrite the default internal delay for gdb responses")
 	coredumpInfoCmd.Flags().Bool("print-all-vars", false, "Print all variables tagged with COREDUMP_*_ATTR")
