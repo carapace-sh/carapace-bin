@@ -37,9 +37,9 @@ archives:
     ids:
      - default
     name_template: 'carapace-bin_{{ .Version }}_{{ .Os }}_{{ .Arch }}{{ with .Arm }}v{{ . }}{{ end }}{{ with .Mips }}_{{ . }}{{ end }}{{ if not (eq .Amd64 "v1") }}{{ .Amd64 }}{{ end }}'
-    # files:
-    #   - src: ./carapace.db.gz
-    #     dst: .
+    files:
+      - src: ./carapace.db.gz
+        dst: carapace.db.gz
     format_overrides:
       - goos: windows
         formats: ['zip']
@@ -47,9 +47,9 @@ archives:
     ids:
       - termux
     name_template: 'carapace-bin_{{ .Version }}_termux_{{ .Arch }}{{ with .Arm }}v{{ . }}{{ end }}{{ with .Mips }}_{{ . }}{{ end }}{{ if not (eq .Amd64 "v1") }}{{ .Amd64 }}{{ end }}'
-    # files:
-    #   - src: ./carapace.db.gz
-    #     dst: .
+    files:
+      - src: ./carapace.db.gz
+        dst: carapace.db.gz
 release:
   extra_files:
     - glob: ./carapace.db.gz
@@ -94,8 +94,9 @@ aurs:
       - "carapace-aws-bin: for enriched aws completion"
       - "carapace-ffmpeg-bin: for FFmpeg completion"
       - "carapace-magick-bin: for ImageMagick completion"
-    # package: |-
-    #   install -Dm644 "./carapace.db.gz" "${pkgdir}/usr/share/carapace/man/carapace.db.gz"
+    package: |-
+      install -Dm755 "./carapace" "${pkgdir}/usr/bin/carapace"
+      install -Dm644 "./carapace.db.gz" "${pkgdir}/usr/share/carapace/man/carapace.db.gz"
 
 nfpms:
   -
@@ -108,12 +109,12 @@ nfpms:
       - deb
       - rpm
       - termux.deb
-    # contents:
-    #   - src: carapace.db.gz
-    #     dst: /usr/share/carapace/man/carapace.db.gz
-    #     type: file
-    #     file_info:
-    #       mode: 0644
+    contents:
+      - src: carapace.db.gz
+        dst: '{{ if eq .Format "termux.deb" }}/data/data/com.termux/files{{ end }}/usr/share/carapace/man/carapace.db.gz'
+        type: file
+        file_info:
+          mode: 0644
 
 publishers:
   - name: fury
