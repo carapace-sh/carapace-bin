@@ -30,10 +30,12 @@ func init() {
 	rootCmd.Flags().Bool("force-color", false, "Always colored monitor output")
 	rootCmd.Flags().StringP("make", "m", "", "Command to run make")
 	rootCmd.Flags().Bool("no-reset", false, "Do not reset the chip on monitor startup")
+	rootCmd.Flags().String("open-port-attempts", "", "Number of attempts to wait for the port to appear")
 	rootCmd.Flags().StringP("port", "p", "", "Serial port device")
 	rootCmd.Flags().String("print_filter", "", "Filtering string")
 	rootCmd.Flags().String("revision", "", "Revision of the target")
 	rootCmd.Flags().String("rom-elf-file", "", "ELF file of target ROM for address decoding")
+	rootCmd.Flags().BoolP("save-log", "s", false, "Save log of monitor")
 	rootCmd.Flags().String("target", "", "Target name (used when stack dump decoding is enabled)")
 	rootCmd.Flags().String("timestamp-format", "", "Set a strftime()-compatible timestamp format")
 	rootCmd.Flags().Bool("timestamps", false, "Add timestamp for each line")
@@ -44,7 +46,7 @@ func init() {
 		"baud":             espidf.ActionBaudRates(),
 		"decode-coredumps": carapace.ActionValues("disable", "info"),
 		"decode-panic":     carapace.ActionValues("backtrace", "disable"),
-		"eol":              carapace.ActionValues("cr", "crlf", "lf"),
+		"eol":              carapace.ActionValues("CR", "CRLF", "LF"),
 		"port":             espidf.ActionSerialPorts(),
 		"rom-elf-file":     carapace.ActionFiles(".elf"),
 		"target":           espidf.ActionTargets(),
