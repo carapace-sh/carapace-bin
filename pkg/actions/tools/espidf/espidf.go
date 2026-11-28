@@ -7,8 +7,6 @@ import (
 	"path/filepath"
 
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/net"
-	os_actions "github.com/carapace-sh/carapace-bin/pkg/actions/os"
 	"github.com/carapace-sh/carapace/pkg/style"
 	"go.yaml.in/yaml/v3"
 )
@@ -56,22 +54,6 @@ func readProjectTarget(dir string) string {
 		return ""
 	}
 	return desc.Target
-}
-
-// ActionBaudRates completes common serial baud rates
-//
-//	115200
-//	460800
-func ActionBaudRates() carapace.Action {
-	return net.ActionBaudRates()
-}
-
-// ActionSerialPorts completes available serial ports
-//
-//	COM5 (USB-SERIAL CH340)
-//	/dev/ttyUSB0
-func ActionSerialPorts() carapace.Action {
-	return os_actions.ActionSerialPorts()
 }
 
 // ActionPresets completes CMake configure presets from CMakePresets.json and CMakeUserPresets.json

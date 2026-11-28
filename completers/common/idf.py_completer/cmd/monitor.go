@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
-	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/espidf"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/net"
 	"github.com/spf13/cobra"
 )
 
@@ -29,6 +29,6 @@ func init() {
 
 	carapace.Gen(monitorCmd).FlagCompletion(carapace.ActionMap{
 		"command-file": carapace.ActionFiles(),
-		"monitor-baud": espidf.ActionBaudRates(),
+		"monitor-baud": net.ActionBaudRates(),
 	})
 }

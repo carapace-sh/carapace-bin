@@ -2,6 +2,8 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/net"
+	os_actions "github.com/carapace-sh/carapace-bin/pkg/actions/os"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/espidf"
 	"github.com/spf13/cobra"
 )
@@ -50,10 +52,10 @@ func init() {
 	rootCmd.Flag("service-profile").Hidden = true
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"baud":        espidf.ActionBaudRates(),
+		"baud":        net.ActionBaudRates(),
 		"build-dir":   carapace.ActionDirectories(),
 		"generator":   carapace.ActionValues("Ninja", "Unix Makefiles"),
-		"port":        espidf.ActionSerialPorts(),
+		"port":        os_actions.ActionSerialPorts(),
 		"preset":      espidf.ActionPresets(),
 		"project-dir": carapace.ActionDirectories(),
 	})

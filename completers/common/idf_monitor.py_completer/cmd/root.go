@@ -2,6 +2,8 @@ package cmd
 
 import (
 	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace-bin/pkg/actions/net"
+	os_actions "github.com/carapace-sh/carapace-bin/pkg/actions/os"
 	"github.com/carapace-sh/carapace-bin/pkg/actions/tools/espidf"
 	"github.com/spf13/cobra"
 )
@@ -43,11 +45,11 @@ func init() {
 	rootCmd.Flags().String("ws", "", "WebSocket URL for communicating with IDE tools")
 
 	carapace.Gen(rootCmd).FlagCompletion(carapace.ActionMap{
-		"baud":             espidf.ActionBaudRates(),
+		"baud":             net.ActionBaudRates(),
 		"decode-coredumps": carapace.ActionValues("disable", "info"),
 		"decode-panic":     carapace.ActionValues("backtrace", "disable"),
 		"eol":              carapace.ActionValues("CR", "CRLF", "LF"),
-		"port":             espidf.ActionSerialPorts(),
+		"port":             os_actions.ActionSerialPorts(),
 		"rom-elf-file":     carapace.ActionFiles(".elf"),
 		"target":           espidf.ActionTargets(),
 	})
