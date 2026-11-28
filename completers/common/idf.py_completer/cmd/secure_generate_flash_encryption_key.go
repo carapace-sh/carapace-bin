@@ -15,6 +15,7 @@ func init() {
 	carapace.Gen(secureGenerateFlashEncryptionKeyCmd).Standalone()
 
 	secureGenerateFlashEncryptionKeyCmd.Flags().StringP("keylen", "l", "", "Length of private key digest file (in bits)")
+
 	rootCmd.AddCommand(secureGenerateFlashEncryptionKeyCmd)
 
 	carapace.Gen(secureGenerateFlashEncryptionKeyCmd).FlagCompletion(carapace.ActionMap{

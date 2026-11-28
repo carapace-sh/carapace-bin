@@ -15,6 +15,7 @@ func init() {
 	carapace.Gen(secureEncryptNvsPartitionCmd).Standalone()
 
 	secureEncryptNvsPartitionCmd.Flags().StringP("keyfile", "k", "", "File with NVS partition key")
+
 	rootCmd.AddCommand(secureEncryptNvsPartitionCmd)
 
 	carapace.Gen(secureEncryptNvsPartitionCmd).FlagCompletion(carapace.ActionMap{

@@ -16,6 +16,7 @@ func init() {
 
 	createManifestCmd.Flags().String("component", "", "Name of the component in the project")
 	createManifestCmd.Flags().String("path", "", "Path to the component")
+
 	rootCmd.AddCommand(createManifestCmd)
 
 	carapace.Gen(createManifestCmd).FlagCompletion(carapace.ActionMap{

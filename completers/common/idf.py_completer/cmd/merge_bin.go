@@ -19,6 +19,7 @@ func init() {
 	mergeBinCmd.Flags().Bool("md5-disable", false, "Disable MD5 checksum in UF2 output")
 	mergeBinCmd.Flags().StringP("output", "o", "", "Output filename")
 	mergeBinCmd.Flags().String("pad-to-size", "", "Pad final binary file with FF bytes up to this flash size")
+
 	rootCmd.AddCommand(mergeBinCmd)
 
 	carapace.Gen(mergeBinCmd).FlagCompletion(carapace.ActionMap{

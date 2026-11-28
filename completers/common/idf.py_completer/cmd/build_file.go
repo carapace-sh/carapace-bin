@@ -15,6 +15,7 @@ func init() {
 	carapace.Gen(buildFileCmd).Standalone()
 
 	buildFileCmd.Flags().Bool("clean-cache", false, "Remove the cached container project before building")
+
 	rootCmd.AddCommand(buildFileCmd)
 
 	carapace.Gen(buildFileCmd).PositionalCompletion(carapace.ActionFiles(".c", ".cpp"))

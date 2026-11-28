@@ -17,6 +17,7 @@ func init() {
 
 	common.AddEfuseFlags(efuseSummaryCmd)
 	efuseSummaryCmd.Flags().String("format", "", "Summary format")
+
 	rootCmd.AddCommand(efuseSummaryCmd)
 
 	carapace.Gen(efuseSummaryCmd).FlagCompletion(carapace.ActionMap{

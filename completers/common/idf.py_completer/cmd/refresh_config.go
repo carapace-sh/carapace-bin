@@ -15,6 +15,7 @@ func init() {
 	carapace.Gen(refreshConfigCmd).Standalone()
 
 	refreshConfigCmd.Flags().String("policy", "", "Policy for handling defaults in the configuration")
+
 	rootCmd.AddCommand(refreshConfigCmd)
 
 	carapace.Gen(refreshConfigCmd).FlagCompletion(carapace.ActionMap{

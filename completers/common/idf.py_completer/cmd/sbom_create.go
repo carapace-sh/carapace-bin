@@ -20,6 +20,7 @@ func init() {
 	sbomCreateCmd.Flags().String("vex-format", "", "Vulnerability information format")
 	sbomCreateCmd.Flags().String("vex-output", "", "Output VEX file path")
 	sbomCreateCmd.Flag("spdx-file").Hidden = true
+
 	rootCmd.AddCommand(sbomCreateCmd)
 
 	carapace.Gen(sbomCreateCmd).FlagCompletion(carapace.ActionMap{

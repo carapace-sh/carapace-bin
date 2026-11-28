@@ -16,6 +16,7 @@ func init() {
 
 	secureGenerateSigningKeyCmd.Flags().StringP("scheme", "s", "", "Scheme of secure boot signing")
 	secureGenerateSigningKeyCmd.Flags().String("version", "", "Version of the secure boot signing scheme")
+
 	rootCmd.AddCommand(secureGenerateSigningKeyCmd)
 
 	carapace.Gen(secureGenerateSigningKeyCmd).FlagCompletion(carapace.ActionMap{

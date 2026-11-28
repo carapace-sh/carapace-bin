@@ -19,6 +19,7 @@ func init() {
 	qemuCmd.Flags().BoolP("gdb", "d", false, "Wait for gdb to connect")
 	qemuCmd.Flags().BoolP("graphics", "g", false, "Enable graphical window")
 	qemuCmd.Flags().String("qemu-extra-args", "", "Extra arguments to pass to QEMU")
+
 	rootCmd.AddCommand(qemuCmd)
 
 	carapace.Gen(qemuCmd).FlagCompletion(carapace.ActionMap{

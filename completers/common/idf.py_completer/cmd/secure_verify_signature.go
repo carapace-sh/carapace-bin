@@ -16,6 +16,7 @@ func init() {
 
 	secureVerifySignatureCmd.Flags().StringP("keyfile", "k", "", "Public key file for verification")
 	secureVerifySignatureCmd.Flags().String("version", "", "Version of the secure boot signing scheme")
+
 	rootCmd.AddCommand(secureVerifySignatureCmd)
 
 	carapace.Gen(secureVerifySignatureCmd).FlagCompletion(carapace.ActionMap{

@@ -16,6 +16,7 @@ func init() {
 
 	openocdCmd.Flags().String("openocd-commands", "", "Command line arguments for openocd")
 	openocdCmd.Flags().String("openocd-scripts", "", "Script directory for openocd cfg files")
+
 	rootCmd.AddCommand(openocdCmd)
 
 	carapace.Gen(openocdCmd).FlagCompletion(carapace.ActionMap{

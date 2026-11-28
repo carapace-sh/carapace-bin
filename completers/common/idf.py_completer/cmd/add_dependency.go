@@ -19,6 +19,7 @@ func init() {
 	addDependencyCmd.Flags().String("git-path", "", "Path to the component in the git repository")
 	addDependencyCmd.Flags().String("git-ref", "", "Git reference (branch, tag, commit SHA)")
 	addDependencyCmd.Flags().String("path", "", "Path to the component where the dependency will be added")
+
 	rootCmd.AddCommand(addDependencyCmd)
 
 	carapace.Gen(addDependencyCmd).FlagCompletion(carapace.ActionMap{

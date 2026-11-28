@@ -20,6 +20,7 @@ func init() {
 	clangCheckCmd.Flags().StringArray("include-paths", nil, "Include extra files besides of the project dir")
 	clangCheckCmd.Flags().String("run-clang-tidy-options", "", "Optional arguments passed to run-clang-tidy.py")
 	clangCheckCmd.Flags().String("run-clang-tidy-py", "", "Path to run-clang-tidy.py")
+
 	rootCmd.AddCommand(clangCheckCmd)
 
 	carapace.Gen(clangCheckCmd).FlagCompletion(carapace.ActionMap{

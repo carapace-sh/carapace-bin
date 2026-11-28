@@ -15,6 +15,7 @@ func init() {
 	carapace.Gen(createProjectFromExampleCmd).Standalone()
 
 	createProjectFromExampleCmd.Flags().String("path", "", "Set the path for the new project")
+
 	rootCmd.AddCommand(createProjectFromExampleCmd)
 
 	carapace.Gen(createProjectFromExampleCmd).FlagCompletion(carapace.ActionMap{

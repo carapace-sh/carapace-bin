@@ -24,6 +24,7 @@ func init() {
 	monitorCmd.Flags().String("print-filter", "", "Filter monitor output")
 	monitorCmd.Flags().String("timestamp-format", "", "Set formatting of timestamps compatible with strftime()")
 	monitorCmd.Flags().Bool("timestamps", false, "Print a time stamp in the beginning of each line")
+
 	rootCmd.AddCommand(monitorCmd)
 
 	carapace.Gen(monitorCmd).FlagCompletion(carapace.ActionMap{

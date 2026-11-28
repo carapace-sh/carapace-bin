@@ -16,6 +16,7 @@ func init() {
 
 	secureGenerateKeyDigestCmd.Flags().StringP("keyfile", "k", "", "Public key file for digest generation")
 	secureGenerateKeyDigestCmd.Flags().StringP("output", "o", "", "Output file for key digest")
+
 	rootCmd.AddCommand(secureGenerateKeyDigestCmd)
 
 	carapace.Gen(secureGenerateKeyDigestCmd).FlagCompletion(carapace.ActionMap{

@@ -16,6 +16,7 @@ func init() {
 
 	menuconfigCmd.Flags().String("color-scheme", "", "Menuconfig color scheme")
 	menuconfigCmd.Flags().String("style", "", "Menuconfig color scheme")
+
 	rootCmd.AddCommand(menuconfigCmd)
 
 	carapace.Gen(menuconfigCmd).FlagCompletion(carapace.ActionMap{
