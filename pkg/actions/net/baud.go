@@ -1,29 +1,32 @@
 package net
 
-import "github.com/carapace-sh/carapace"
+import (
+	"github.com/carapace-sh/carapace"
+	"github.com/carapace-sh/carapace/pkg/style"
+)
 
 // ActionBaudRates completes baud rates
 //
-//	75
-//	300
+//	9600 (common)
+//	115200 (common)
 func ActionBaudRates() carapace.Action {
-	return carapace.ActionValues(
-		"75",
-		"300",
-		"1200",
-		"2400",
-		"4800",
-		"9600",
-		"14400",
-		"19200",
-		"28800",
-		"38400",
-		"57600",
-		"115200",
-		"230400",
-		"460800",
-		"921600",
-		"1500000",
-		"2000000",
-	)
+	return carapace.ActionStyledValuesDescribed(
+		"75", "legacy", style.Dim,
+		"300", "legacy", style.Dim,
+		"1200", "legacy", style.Dim,
+		"2400", "legacy", style.Dim,
+		"4800", "legacy", style.Dim,
+		"9600", "common", style.Default,
+		"14400", "legacy", style.Dim,
+		"19200", "common", style.Default,
+		"28800", "legacy", style.Dim,
+		"38400", "common", style.Default,
+		"57600", "common", style.Default,
+		"115200", "common", style.Default,
+		"230400", "high speed", style.Default,
+		"460800", "high speed", style.Default,
+		"921600", "high speed", style.Default,
+		"1500000", "hardware-dependent", style.Dim,
+		"2000000", "hardware-dependent", style.Dim,
+	).Tag("baud rates")
 }
