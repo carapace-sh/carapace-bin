@@ -12,11 +12,28 @@ _carapace_completer() {
   local command="${COMP_WORDS[0]}" nospace data compline="${COMP_LINE:0:${COMP_POINT}}"
 
   data=$(echo "${compline}''" | xargs carapace "${command}" bash 2>/dev/null)
-  if [ $? -eq 1 ]; then
+  local _carapace_rc=$?
+  if [ $_carapace_rc -eq 1 ]; then
     data=$(echo "${compline}'" | xargs carapace "${command}" bash 2>/dev/null)
-    if [ $? -eq 1 ]; then
+    _carapace_rc=$?
+    if [ $_carapace_rc -eq 1 ]; then
     	data=$(echo "${compline}\"" | xargs carapace "${command}" bash 2>/dev/null)
+    	_carapace_rc=$?
     fi
+  fi
+  if [ $_carapace_rc -ne 0 ] && [ -n "${CARAPACE_SHELL_STATE:-}" ]; then
+    local _carapace_old_state="${CARAPACE_SHELL_STATE}"
+    unset CARAPACE_SHELL_STATE
+    data=$(echo "${compline}''" | xargs carapace "${command}" bash 2>/dev/null)
+    _carapace_rc=$?
+    if [ $_carapace_rc -eq 1 ]; then
+      data=$(echo "${compline}'" | xargs carapace "${command}" bash 2>/dev/null)
+      _carapace_rc=$?
+      if [ $_carapace_rc -eq 1 ]; then
+      	data=$(echo "${compline}\"" | xargs carapace "${command}" bash 2>/dev/null)
+      fi
+    fi
+    declare -x CARAPACE_SHELL_STATE="${_carapace_old_state}"
   fi
 
   IFS=$'\001' read -r -d '' nospace data <<<"${data}"
@@ -26,6 +43,7 @@ _carapace_completer() {
   [ "${nospace}" = true ] && compopt -o nospace
   local IFS=$'\n'
   [[ "${COMPREPLY[*]}" == "" ]] && COMPREPLY=() # fix for mapfile creating a non-empty array from empty command output
+  [ -n "${_carapace_state_cleanup:-}" ] && rm -rf "$_carapace_state_cleanup"
 }
 
 _carapace_completer_ble() {
@@ -39,7 +57,14 @@ _carapace_completer_ble() {
     local compline="${COMP_LINE:0:${COMP_POINT}}"
     local IFS=$'\n'
     local c
-    mapfile -t c < <(echo "$compline" | sed -e "s/ \$/ ''/" -e 's/"/\"/g' | xargs carapace "${command}" bash-ble)
+    mapfile -t c < <(echo "$compline" | sed -e "s/ \$/ ''/" -e 's/"/\"/g' | xargs carapace "${command}" bash-ble 2>/dev/null)
+    local _carapace_rc=$?
+    if [ $_carapace_rc -ne 0 ] && [ -n "${CARAPACE_SHELL_STATE:-}" ]; then
+      local _carapace_old_state="${CARAPACE_SHELL_STATE}"
+      unset CARAPACE_SHELL_STATE
+      mapfile -t c < <(echo "$compline" | sed -e "s/ \$/ ''/" -e 's/"/\"/g' | xargs carapace "${command}" bash-ble 2>/dev/null)
+      declare -x CARAPACE_SHELL_STATE="${_carapace_old_state}"
+    fi
     [[ "${c[*]}" == "" ]] && c=() # fix for mapfile creating a non-empty array from empty command output
 
     local cand

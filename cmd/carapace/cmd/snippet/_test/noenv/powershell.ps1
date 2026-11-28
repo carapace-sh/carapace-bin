@@ -35,6 +35,7 @@ $_carapace_completer = {
     $completions = @(
       $old = @{
         CARAPACE_SHELL = $env:CARAPACE_SHELL
+        CARAPACE_SHELL_STATE = $env:CARAPACE_SHELL_STATE
       }
       try {
         $env:CARAPACE_SHELL = "powershell"

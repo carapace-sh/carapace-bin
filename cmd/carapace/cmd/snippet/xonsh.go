@@ -14,12 +14,13 @@ import (
 func Xonsh(completers []string) string {
 	builtins := ""
 	if slices.Contains(env.Builtins(), "xonsh") {
-		builtins = `    carapace_env.update({
-        'CARAPACE_SHELL_ALIASES': '\n'.join(__xonsh__.aliases.keys()),
-        'CARAPACE_SHELL_BUILTINS': '\n'.join(vars(__xonsh__.builtins).keys()),
-        'CARAPACE_SHELL_FUNCTIONS': '\n'.join(k for k, v in __xonsh__.ctx.items() if callable(v)),
-        'CARAPACE_SHELL_VARIABLES': '\n'.join(__xonsh__.env.keys()),
-    })
+		builtins = `    carapace_state = os.path.join(os.environ.get('XDG_RUNTIME_DIR') or __import__('tempfile').gettempdir(), 'carapace', 'builtins', str(os.getuid()), str(os.getpid()))
+    os.makedirs(carapace_state, mode=0o700, exist_ok=True)
+    with open(os.path.join(carapace_state, 'aliases'), 'w') as f: f.write('\n'.join(__xonsh__.aliases.keys()))
+    with open(os.path.join(carapace_state, 'builtins'), 'w') as f: f.write('\n'.join(vars(__xonsh__.builtins).keys()))
+    with open(os.path.join(carapace_state, 'functions'), 'w') as f: f.write('\n'.join(k for k, v in __xonsh__.ctx.items() if callable(v)))
+    with open(os.path.join(carapace_state, 'variables'), 'w') as f: f.write('\n'.join(__xonsh__.env.keys()))
+    carapace_env['CARAPACE_SHELL_STATE'] = carapace_state
 `
 	}
 

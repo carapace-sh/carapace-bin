@@ -35,17 +35,20 @@ $_carapace_completer = {
     $completions = @(
       $old = @{
         CARAPACE_SHELL = $env:CARAPACE_SHELL
-        CARAPACE_SHELL_ALIASES = $env:CARAPACE_SHELL_ALIASES
-        CARAPACE_SHELL_BUILTINS = $env:CARAPACE_SHELL_BUILTINS
-        CARAPACE_SHELL_FUNCTIONS = $env:CARAPACE_SHELL_FUNCTIONS
-        CARAPACE_SHELL_VARIABLES = $env:CARAPACE_SHELL_VARIABLES
+        CARAPACE_SHELL_STATE = $env:CARAPACE_SHELL_STATE
       }
       try {
         $env:CARAPACE_SHELL = "powershell"
-        $env:CARAPACE_SHELL_ALIASES = ((Get-Alias).Name -join [char]10)
-        $env:CARAPACE_SHELL_BUILTINS = ((Get-Command -CommandType Cmdlet).Name -join [char]10)
-        $env:CARAPACE_SHELL_FUNCTIONS = ((Get-Command -CommandType Function).Name -join [char]10)
-        $env:CARAPACE_SHELL_VARIABLES = ((Get-Variable).Name -join [char]10)
+        $carapaceState = $env:CARAPACE_SHELL_STATE
+        if (-not $carapaceState) {
+          $carapaceState = Join-Path ([System.IO.Path]::GetTempPath()) ("carapace-builtin-" + [System.IO.Path]::GetRandomFileName())
+        }
+        New-Item -ItemType Directory -Force -Path $carapaceState | Out-Null
+        ((Get-Alias).Name -join [char]10) | Set-Content -NoNewline -Path (Join-Path $carapaceState "aliases")
+        ((Get-Command -CommandType Cmdlet).Name -join [char]10) | Set-Content -NoNewline -Path (Join-Path $carapaceState "builtins")
+        ((Get-Command -CommandType Function).Name -join [char]10) | Set-Content -NoNewline -Path (Join-Path $carapaceState "functions")
+        ((Get-Variable).Name -join [char]10) | Set-Content -NoNewline -Path (Join-Path $carapaceState "variables")
+        $env:CARAPACE_SHELL_STATE = $carapaceState
 
         if (!$wordToComplete) {
           carapace ($elems[0] -replace ('\.exe$', '')) powershell $($elems| ForEach-Object {$_}) '' | ConvertFrom-Json | ForEach-Object { [CompletionResult]::new($_.CompletionText, $_.ListItemText.replace('`e[', "`e["), [CompletionResultType]::ParameterValue, $_.ToolTip.replace('`e[', "`e[")) }

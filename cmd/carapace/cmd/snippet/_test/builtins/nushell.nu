@@ -18,13 +18,18 @@ let carapace_completer = {|place|
   if ($spans | length) == 1 {
     null
   } else {
-    let carapace_env = {
-      CARAPACE_SHELL: 'nushell'
-      CARAPACE_SHELL_ALIASES: (scope aliases | get name | uniq | str join "\n")
-      CARAPACE_SHELL_BUILTINS: (help commands | where category != "" | get name | each { split row " " | first } | uniq  | str join "\n")
-      CARAPACE_SHELL_FUNCTIONS: (help commands | where category == "" | get name | each { split row " " | first } | uniq  | str join "\n")
-      CARAPACE_SHELL_VARIABLES: (scope variables | get name | uniq | str join "\n")
-    }
+    let carapace_state = (if (($env.XDG_RUNTIME_DIR? | default "") != "") and (($env.XDG_RUNTIME_DIR | path type) == "dir") {
+      let dir = ($env.XDG_RUNTIME_DIR | path join "carapace" "builtins" (id -u | into string) ($nu.pid | into string))
+      mkdir $dir
+      $dir
+    } else {
+      mktemp -d
+    })
+    (scope aliases | get name | uniq | str join "\n") | save -f ($carapace_state | path join "aliases")
+    (help commands | where category != "" | get name | each { split row " " | first } | uniq  | str join "\n") | save -f ($carapace_state | path join "builtins")
+    (help commands | where category == "" | get name | each { split row " " | first } | uniq  | str join "\n") | save -f ($carapace_state | path join "functions")
+    (scope variables | get name | uniq | str join "\n") | save -f ($carapace_state | path join "variables")
+    let carapace_env = { CARAPACE_SHELL: 'nushell', CARAPACE_SHELL_STATE: $carapace_state }
     with-env $carapace_env {
       carapace $spans.0 nushell ...$spans | from json
     }

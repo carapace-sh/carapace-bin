@@ -11,18 +11,20 @@ import (
 )
 
 func Powershell(completers []string) string {
-	oldVars := `        CARAPACE_SHELL = $env:CARAPACE_SHELL`
+	oldVars := `        CARAPACE_SHELL = $env:CARAPACE_SHELL
+        CARAPACE_SHELL_STATE = $env:CARAPACE_SHELL_STATE`
 	builtins := ""
 	if slices.Contains(env.Builtins(), "powershell") {
-		oldVars = `        CARAPACE_SHELL = $env:CARAPACE_SHELL
-        CARAPACE_SHELL_ALIASES = $env:CARAPACE_SHELL_ALIASES
-        CARAPACE_SHELL_BUILTINS = $env:CARAPACE_SHELL_BUILTINS
-        CARAPACE_SHELL_FUNCTIONS = $env:CARAPACE_SHELL_FUNCTIONS
-        CARAPACE_SHELL_VARIABLES = $env:CARAPACE_SHELL_VARIABLES`
-		builtins = `        $env:CARAPACE_SHELL_ALIASES = ((Get-Alias).Name -join [char]10)
-        $env:CARAPACE_SHELL_BUILTINS = ((Get-Command -CommandType Cmdlet).Name -join [char]10)
-        $env:CARAPACE_SHELL_FUNCTIONS = ((Get-Command -CommandType Function).Name -join [char]10)
-        $env:CARAPACE_SHELL_VARIABLES = ((Get-Variable).Name -join [char]10)
+		builtins = `        $carapaceState = $env:CARAPACE_SHELL_STATE
+        if (-not $carapaceState) {
+          $carapaceState = Join-Path ([System.IO.Path]::GetTempPath()) ("carapace-builtin-" + [System.IO.Path]::GetRandomFileName())
+        }
+        New-Item -ItemType Directory -Force -Path $carapaceState | Out-Null
+        ((Get-Alias).Name -join [char]10) | Set-Content -NoNewline -Path (Join-Path $carapaceState "aliases")
+        ((Get-Command -CommandType Cmdlet).Name -join [char]10) | Set-Content -NoNewline -Path (Join-Path $carapaceState "builtins")
+        ((Get-Command -CommandType Function).Name -join [char]10) | Set-Content -NoNewline -Path (Join-Path $carapaceState "functions")
+        ((Get-Variable).Name -join [char]10) | Set-Content -NoNewline -Path (Join-Path $carapaceState "variables")
+        $env:CARAPACE_SHELL_STATE = $carapaceState
 `
 	}
 

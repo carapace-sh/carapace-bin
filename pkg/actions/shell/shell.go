@@ -18,7 +18,7 @@ import (
 //	cd
 func ActionBuiltins() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		action := carapace.ActionValues(strings.Fields(os.Getenv("CARAPACE_SHELL_BUILTINS"))...)
+		action := carapace.ActionValues(readShellKey("builtins")...)
 		switch os.Getenv("CARAPACE_SHELL") {
 		case "bash":
 			action = action.Filter(".", ":", "[")
@@ -37,7 +37,7 @@ func ActionBuiltins() carapace.Action {
 //	_my_private_func
 func ActionFunctions(hidden bool) carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		vals := strings.Fields(os.Getenv("CARAPACE_SHELL_FUNCTIONS"))
+		vals := readShellKey("functions")
 		if !hidden && !strings.HasPrefix(c.Value, "_") {
 			vals = slices.DeleteFunc(vals, func(s string) bool { return strings.HasPrefix(s, "_") })
 		}
@@ -56,7 +56,7 @@ func ActionFunctions(hidden bool) carapace.Action {
 //	%2
 func ActionJobSpecs() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return carapace.ActionValues(strings.Fields(os.Getenv("CARAPACE_SHELL_JOBS"))...)
+		return carapace.ActionValues(readShellKey("jobs")...)
 	}).Tag("job specs")
 }
 
@@ -66,7 +66,7 @@ func ActionJobSpecs() carapace.Action {
 //	la
 func ActionAliases() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return carapace.ActionValues(strings.Fields(os.Getenv("CARAPACE_SHELL_ALIASES"))...)
+		return carapace.ActionValues(readShellKey("aliases")...)
 	}).Tag("shell aliases")
 }
 
@@ -76,7 +76,7 @@ func ActionAliases() carapace.Action {
 //	HOME
 func ActionVariables() carapace.Action {
 	return carapace.ActionCallback(func(c carapace.Context) carapace.Action {
-		return carapace.ActionValues(strings.Fields(os.Getenv("CARAPACE_SHELL_VARIABLES"))...)
+		return carapace.ActionValues(readShellKey("variables")...)
 	}).Tag("shell variables")
 }
 

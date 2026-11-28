@@ -31,6 +31,7 @@ func ActionEnvironmentVariables() carapace.Action {
 			"CARAPACE_SHELL_BUILTINS",
 			"CARAPACE_SHELL_FUNCTIONS",
 			"CARAPACE_SHELL_JOBS",
+			"CARAPACE_SHELL_STATE",
 			"CARAPACE_SHELL_VARIABLES",
 		)
 	}).Tag("environment variables")

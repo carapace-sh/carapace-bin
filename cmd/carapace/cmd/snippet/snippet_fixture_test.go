@@ -10,6 +10,12 @@ import (
 
 func testSnippetFixture(t *testing.T, shell string, file string, content string) {
 	t.Helper()
+	if os.Getenv("CARAPACE_UPDATE_SNIPPET_FIXTURES") == "1" {
+		if err := os.WriteFile(file, []byte(content+"\n"), 0o644); err != nil {
+			t.Fatal(err)
+		}
+		return
+	}
 	b, err := os.ReadFile(file)
 	if err != nil {
 		t.Fatal("failed to read fixture file")
