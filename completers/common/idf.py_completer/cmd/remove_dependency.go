@@ -14,8 +14,8 @@ var removeDependencyCmd = &cobra.Command{
 
 func init() {
 	carapace.Gen(removeDependencyCmd).Standalone()
+	rootCmd.AddCommand(removeDependencyCmd)
 	carapace.Gen(removeDependencyCmd).PositionalCompletion(
 		espidf.ActionDependencies(),
 	)
-	rootCmd.AddCommand(removeDependencyCmd)
 }

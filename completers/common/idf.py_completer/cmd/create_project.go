@@ -15,8 +15,8 @@ func init() {
 	carapace.Gen(createProjectCmd).Standalone()
 	createProjectCmd.Flags().Bool("cpp", false, "Create a C++ main source file instead of C")
 	createProjectCmd.Flags().String("path", "", "Set the path for the new project")
+	rootCmd.AddCommand(createProjectCmd)
 	carapace.Gen(createProjectCmd).FlagCompletion(carapace.ActionMap{
 		"path": carapace.ActionDirectories(),
 	})
-	rootCmd.AddCommand(createProjectCmd)
 }

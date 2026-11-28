@@ -25,11 +25,11 @@ func init() {
 	diagCmd.Flags().StringArrayP("recipe", "r", nil, "Recipe to use")
 	diagCmd.Flags().StringArrayP("tag", "t", nil, "Consider only recipes containing TAG")
 	diagCmd.Flags().StringP("zip", "z", "", "Create zip archive for diagnostic report in PATH")
+	rootCmd.AddCommand(diagCmd)
 	carapace.Gen(diagCmd).FlagCompletion(carapace.ActionMap{
 		"output": carapace.ActionFiles(),
 		"purge":  carapace.ActionFiles(),
 		"recipe": carapace.ActionFiles(),
 		"zip":    carapace.ActionFiles(),
 	})
-	rootCmd.AddCommand(diagCmd)
 }

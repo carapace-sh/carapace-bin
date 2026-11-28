@@ -16,10 +16,10 @@ func init() {
 	secureGenerateNvsPartitionKeyCmd.Flags().StringP("encryption-scheme", "s", "", "Encryption scheme to use")
 	secureGenerateNvsPartitionKeyCmd.Flags().StringP("hmac-keyfile", "l", "", "File to store the generated HMAC key")
 	secureGenerateNvsPartitionKeyCmd.Flags().StringP("keyfile", "k", "", "File to store the generated key")
+	rootCmd.AddCommand(secureGenerateNvsPartitionKeyCmd)
 	carapace.Gen(secureGenerateNvsPartitionKeyCmd).FlagCompletion(carapace.ActionMap{
 		"encryption-scheme": carapace.ActionValues("Flash", "HMAC"),
 		"hmac-keyfile":      carapace.ActionFiles(),
 		"keyfile":           carapace.ActionFiles(),
 	})
-	rootCmd.AddCommand(secureGenerateNvsPartitionKeyCmd)
 }

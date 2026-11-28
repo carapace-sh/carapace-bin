@@ -21,6 +21,7 @@ func init() {
 	sbomCheckCmd.Flags().String("report-file", "", "Report output file")
 	sbomCheckCmd.Flags().String("spdx-file", "", "SBOM file to check (deprecated alias for --file)")
 	sbomCheckCmd.Flag("spdx-file").Hidden = true
+	rootCmd.AddCommand(sbomCheckCmd)
 	carapace.Gen(sbomCheckCmd).FlagCompletion(carapace.ActionMap{
 		"file":        carapace.ActionFiles(),
 		"format":      carapace.ActionValues("csv", "json", "markdown", "table"),
@@ -28,5 +29,4 @@ func init() {
 		"report-file": carapace.ActionFiles(),
 		"spdx-file":   carapace.ActionFiles(),
 	})
-	rootCmd.AddCommand(sbomCheckCmd)
 }

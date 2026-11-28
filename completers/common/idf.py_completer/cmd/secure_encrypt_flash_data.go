@@ -18,10 +18,10 @@ func init() {
 	secureEncryptFlashDataCmd.Flags().String("flash-crypt-conf", "", "Override FLASH_CRYPT_CONF eFuse value")
 	secureEncryptFlashDataCmd.Flags().StringP("keyfile", "k", "", "File with flash encryption key")
 	secureEncryptFlashDataCmd.Flags().StringP("output", "o", "", "Output file for encrypted data")
+	rootCmd.AddCommand(secureEncryptFlashDataCmd)
 	carapace.Gen(secureEncryptFlashDataCmd).FlagCompletion(carapace.ActionMap{
 		"keyfile": carapace.ActionFiles(),
 		"output":  carapace.ActionFiles(),
 	})
 	carapace.Gen(secureEncryptFlashDataCmd).PositionalCompletion(carapace.ActionFiles())
-	rootCmd.AddCommand(secureEncryptFlashDataCmd)
 }

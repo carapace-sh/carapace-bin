@@ -16,11 +16,11 @@ func init() {
 	secureDigestSecureBootloaderCmd.Flags().String("iv", "", "128 byte IV file")
 	secureDigestSecureBootloaderCmd.Flags().StringP("keyfile", "k", "", "256 bit key for secure boot digest")
 	secureDigestSecureBootloaderCmd.Flags().StringP("output", "o", "", "Output file for signed digest image")
+	rootCmd.AddCommand(secureDigestSecureBootloaderCmd)
 	carapace.Gen(secureDigestSecureBootloaderCmd).FlagCompletion(carapace.ActionMap{
 		"iv":      carapace.ActionFiles(),
 		"keyfile": carapace.ActionFiles(),
 		"output":  carapace.ActionFiles(),
 	})
 	carapace.Gen(secureDigestSecureBootloaderCmd).PositionalCompletion(carapace.ActionFiles())
-	rootCmd.AddCommand(secureDigestSecureBootloaderCmd)
 }

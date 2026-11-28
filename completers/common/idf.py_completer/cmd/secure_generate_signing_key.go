@@ -15,10 +15,10 @@ func init() {
 	carapace.Gen(secureGenerateSigningKeyCmd).Standalone()
 	secureGenerateSigningKeyCmd.Flags().StringP("scheme", "s", "", "Scheme of secure boot signing")
 	secureGenerateSigningKeyCmd.Flags().String("version", "", "Version of the secure boot signing scheme")
+	rootCmd.AddCommand(secureGenerateSigningKeyCmd)
 	carapace.Gen(secureGenerateSigningKeyCmd).FlagCompletion(carapace.ActionMap{
 		"scheme":  carapace.ActionValues("ecdsa256", "ecdsa384", "rsa3072"),
 		"version": carapace.ActionValues("1", "2"),
 	})
 	carapace.Gen(secureGenerateSigningKeyCmd).PositionalCompletion(carapace.ActionFiles())
-	rootCmd.AddCommand(secureGenerateSigningKeyCmd)
 }

@@ -19,6 +19,7 @@ func init() {
 	secureSignDataCmd.Flags().String("pub-key", "", "Public key files corresponding to the private key")
 	secureSignDataCmd.Flags().String("signature", "", "Pre-calculated signatures")
 	secureSignDataCmd.Flags().String("version", "", "Version of the secure boot signing scheme")
+	rootCmd.AddCommand(secureSignDataCmd)
 	carapace.Gen(secureSignDataCmd).FlagCompletion(carapace.ActionMap{
 		"keyfile":   carapace.ActionFiles(),
 		"output":    carapace.ActionFiles(),
@@ -27,5 +28,4 @@ func init() {
 		"version":   carapace.ActionValues("1", "2"),
 	})
 	carapace.Gen(secureSignDataCmd).PositionalCompletion(carapace.ActionFiles())
-	rootCmd.AddCommand(secureSignDataCmd)
 }
